@@ -12,7 +12,7 @@ theme:
   palette:
     scheme: mo
   font:
-    text: Montserrat
+    text: Ubuntu
 extra_css:
   - stylesheets/extra.css
 extra:
@@ -21,11 +21,20 @@ extra:
 nav:
   - MatrixOne:
     - Overview: 
-      - MatrixOne Introduction: MatrixOne/Overview/MatrixOne Introduction.md
-      - MatrixOne Architecture: MatrixOne/Overview/MatrixOne Architecture.md
+      - MatrixOne Introduction: MatrixOne/Overview/matrixone-introduction.md
+      - MatrixOne Architecture: MatrixOne/Overview/matrixone-architecture.md
+      - MySQL Compatibility: MatrixOne/Overview/mysql-compatibility.md
+      - What's New: MatrixOne/Overview/what's-new.md
+    - Get Started: 
+      - Install MatrixOne: MatrixOne/Get Started/install-matrixone.md
     - Develop:
-      - Design a Database: MatrixOne/Develop/DesignADatabase.md
-    - Deploy:
-      - Software and Hardware Requirements: MatrixOne/Deploy/Software-and-Hardware-Requirements.md
+      - Design a Database: MatrixOne/Develop/design-a-database.md
+    - Reference:
+      - SQL Reference: 
+        - SQL Syntax: MatrixOne/Reference/SQL Reference/sql-syntax.md
     - FAQs:
-      - MatrixOneFAQs: MatrixOne/FAQs/MatrixOne-FAQs.md
+      - General FAQs: MatrixOne/FAQs/general-faqs.md
+    - Release Notes:
+      - v0.1.0: MatrixOne/Release Notes/v0.1.0.md
+    - Glossary:
+      - Glossary: MatrixOne/Glossary/Glossary.md
