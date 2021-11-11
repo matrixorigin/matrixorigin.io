@@ -1,6 +1,6 @@
 # **MatrixOne Introduction** 
 
-MatrixOne is a future-hyperconverged cloud & edge native DBMS and owned by MatrixOrigin that supports transactional, analytic, and streaming workload with a simplified and distributed database engine, across multiple  datacenters, clouds, edges and other heterogenous infrastructures.
+MatrixOne is a future-oriented hyperconverged cloud & edge native DBMS and owned by MatrixOrigin that supports transactional, analytic, and streaming workload with a simplified and distributed database engine, across multiple  datacenters, clouds, edges and other heterogenous infrastructures.
 
 ## **Key Features** 
 ### **Hyperconverged Engine**

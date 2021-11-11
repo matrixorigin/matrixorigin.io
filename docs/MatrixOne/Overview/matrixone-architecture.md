@@ -2,7 +2,7 @@
 
 ## **Architecture**
 MatrixOne is totally redesigned. It consists of multiple components and form a complete system. The architecture is as follows:
-![MatrixOne Architecture](../../../Architecture.png)
+![MatrixOne Architecture](./imgs/MatrixOne-Architecture.png)
 
 ## **Query Parser Layer**
 * **Parser:** Parses SQL, Streaming Query, or Python language into an abstract syntax tree for further processing.
@@ -34,6 +34,6 @@ As an infrastructure agnostic DBMS, MtrixOne stores data in shared storage of S3
 ## **Learn More**
 This page outlines the architecture design of MatrixOne. For information on other options that are available when trying out MatrixOne, see the following:
 
-* [Install MatrixOne](../Get%20Started/install-matrixone.md)
+* [Install MatrixOne](../Get-Started/install-matrixone.md)
 * [MySQL Compatibility](mysql-compatibility.md)
 * [What‘s New](what's-new.md)
