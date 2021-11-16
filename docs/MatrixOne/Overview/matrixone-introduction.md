@@ -1,21 +1,21 @@
 # **MatrixOne Introduction** 
 
-MatrixOne is a future-oriented hyperconverged cloud & edge native DBMS and owned by MatrixOrigin that supports transactional, analytic, and streaming workload with a simplified and distributed database engine, across multiple  datacenters, clouds, edges and other heterogenous infrastructures.
+MatrixOne is a future-oriented hyperconverged cloud & edge native DBMS that supports transactional, analytical, and streaming workload with a simplified and distributed database engine, across multiple datacenters, clouds, edges and other heterogenous infrastructures.
 
 ## **Key Features** 
 ### **Hyperconverged Engine**
 * **Monolitic Engine**
   
-     A monolithic database engine is designed to support hybrid workloads: transactional, analytical, time-series, vector data etc.
+     A monolithic database engine is designed to support hybrid workloads: transactional, analytical, streaming, time-series, machine learning, etc.
 
 * **Built-in Streaming Engine**
   
-     With the built-in streaming Engine, MatrixOne supports in-database streaming processing by groundbreaking incremental materialized view maintenance.
+     With the built-in streaming engine, MatrixOne supports in-database streaming processing by groundbreaking incremental materialized view maintenance.
 
 ### **Cloud & Edge Native**
 * **Real Infrastructure Agnostic**
   
-     MatrixOne Supports seemless workload migration and bursting among different locations and infrastructures.
+     MatrixOne supports seemless workload migration and bursting among different locations and infrastructures.
 
 * **Multi-site Active/Active**
   
