@@ -1,11 +1,15 @@
-# **Benchmark Test**
+# **Complete a SSB Test with MatrixOne**
 
+Star Schema Benchmark（SSB）Test is a popular scenario for OLAP database performance tests. By going through this tutorial, you’ll learn how to complete a SSB Test with MatrixOne.
 
-### Star Schema Benchmark Tests Preparation
+In v0.1.0, only single table can work in MatrixOne. The following contents can be followed to data generation, data importing and querying.
 
-Start Schema Benchmark（SSB）is a popular scenario for OLAP database performance tests. In 0.1.0, only single table can work in MatrixOne. The following contents can be followed to data generation, data importing and querying.
+## **Before you begin**
 
-#### 1. Compile dbgen:
+Make sure you have already [installed MatrixOne](install-matrixone.md) and [connected to MatrixOne Server](../connect-to-matrixone-server.md).
+  
+
+## **1. Compile dbgen**
 
 ```
 $ git clone git@github.com:vadimtk/ssb-dbgen.git
@@ -13,7 +17,7 @@ $ cd ssb-dbgen
 $ make
 ```
 
-#### 2. Generate data:
+## **2. Generate data**
 
 With -s 1 dbgen generates 6 million rows (670MB), while while -s 10 it generates 60 million rows (which takes some time)
 
@@ -26,7 +30,7 @@ $ ./dbgen -s 1 -T d
 ```
 
 
-#### 3. Create tables in MatrixOne
+## **3. Create tables in MatrixOne**
 
 ```
 create database if not exists ssb;
@@ -153,7 +157,7 @@ CREATE TABLE lineorder_flat (
 );
 ```
 
-#### 4. Load data into the created tables
+## **4. Load data into the created tables**
 If you use dbgen to generate date for ssb, there is still an extra step to replace the ‘,’ in the end of every line. In the directory of ssb-dbgen, use the following command. 
 
 ```
@@ -195,7 +199,7 @@ Load data into lineorder_flat.
 load data infile '/ssb-dbgen-path/lineorder_flat.tbl ' into table lineorder_flat FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"' LINES TERMINATED BY '\n';
 ```
 
-#### 5.	Run SSB Queries
+## **5. Run SSB Queries**
 
 ```
 # Q1.1
