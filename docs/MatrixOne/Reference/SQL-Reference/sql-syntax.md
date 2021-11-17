@@ -145,6 +145,47 @@ $ SELECT * FROM test;
 |  123 |   abc   |
 +------+---------+
 ```
+
+### LOAD DATA
+
+The LOAD DATA statement reads rows from a text file into a table at a very high speed.
+
+#### Syntax
+
+```
+$ LOAD DATA
+    [LOW_PRIORITY | CONCURRENT] [LOCAL]
+    INFILE 'file_name'
+    [REPLACE | IGNORE]
+    INTO TABLE tbl_name
+    [PARTITION (partition_name [, partition_name] ...)]
+    [CHARACTER SET charset_name]
+    [{FIELDS | COLUMNS}
+        [TERMINATED BY 'string']
+        [[OPTIONALLY] ENCLOSED BY 'char']
+        [ESCAPED BY 'char']
+    ]
+    [LINES
+        [STARTING BY 'string']
+        [TERMINATED BY 'string']
+    ]
+    [IGNORE number {LINES | ROWS}]
+    [(col_name_or_user_var
+        [, col_name_or_user_var] ...)]
+    [SET col_name={expr | DEFAULT}
+        [, col_name={expr | DEFAULT}] ...]
+```
+#### Examples
+
+The SSB Test is an example of LOAD DATA syntax. [Complete a SSB Test with MatrixOne
+](../../Get-Started/Tutorial/SSB-test-with-matrixone.md)
+```
+$ LOAD DATA INFILE '/ssb-dbgen-path/lineorder_flat.tbl ' INTO TABLE lineorder_flat;
+```
+
+
+
+
 ### SHOW DATABASES
 
 Shows the list of databases that exist on the instance.
@@ -200,6 +241,21 @@ $ SHOW TABLES;
 | tracing       |
 +---------------+
 ```
+
+### USE
+
+The USE statement tells MatrixOne to use the named database as the default (current) database for subsequent statements. 
+
+#### Syntax
+```
+$ USE db_name
+```
+#### Examples
+```
+$ USE db1;
+$ SELECT COUNT(*) FROM mytable; 
+```
+
 
 ## Aggregate Functions
 
