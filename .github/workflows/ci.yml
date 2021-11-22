@@ -14,4 +14,4 @@ jobs:
             username: ${{ secrets.USERNAME }}
             password: ${{ secrets.PASSWORD }}
             port: ${{ secrets.PORT }}
-            script: cd /data/service/matrixorigin.io && git fetch && git pull
+            script: cd /service/matrixorigin.io && git fetch && git pull
