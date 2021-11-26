@@ -4,7 +4,7 @@ MatrixOne Data types conforms with MySQL Data types definition.
 
 Reference: <https://dev.mysql.com/doc/refman/8.0/en/data-types.html>
 
-## Integer Numbers
+## **Integer Numbers**
 
 |  Data Type   | Size  |  Min Value   | Max Value  |
 |  ----  | ----  |  ----  | ----  |
@@ -17,20 +17,20 @@ Reference: <https://dev.mysql.com/doc/refman/8.0/en/data-types.html>
 | INT UNSIGNED | 4 byte | 0	  | 4294967295 |
 | BIGINT UNSIGNED | 8 byte | 0	  | 18446744073709551615 |
 
-## Real Numbers
+## **Real Numbers**
 
 |  Data Type   | Size  |  Precision   | Syntax |
 |  ----  | ----  |  ----  | ----  |
 | FLOAT32  | 4 byte | 	23 bits  | FLOAT |
 | FLOAT64  | 8 byte |  53 bits  | DOUBLE |
 
-## String Types
+## **String Types**
 
 |  Data Type   | Size  | Syntax |
 |  ----  | ----  |   ----  |
 | String  | 24 byte | CHAR, VARCHAR |
 
-## Examples
+## **Examples**
 
 ```
 //Create a table named "numtable" with 3 attributes of an "int", a "float" and a "double"
