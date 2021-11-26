@@ -31,15 +31,29 @@ nav:
       - Connect to MatrixOne Server: MatrixOne/Get-Started/connect-to-matrixone-server.md
       - Tutorial:
         - SSB Test with MatrixOne: MatrixOne/Get-Started/Tutorial/SSB-test-with-matrixone.md
-    - Develop:
-      - Design a Database: MatrixOne/Develop/design-a-database.md
     - Reference:
       - SQL Reference: 
-        - SQL Syntax: MatrixOne/Reference/SQL-Reference/sql-syntax.md
+        - DDL:
+          - CREATE DATABASE: MatrixOne/Reference/SQL-Reference/Data-Definition-Statements/create-database.md
+          - CREATE TABLE: MatrixOne/Reference/SQL-Reference/Data-Definition-Statements/create-table.md
+          - DROP DATABASE: MatrixOne/Reference/SQL-Reference/Data-Definition-Statements/drop-database.md
+          - DROP TABLE: MatrixOne/Reference/SQL-Reference/Data-Definition-Statements/drop-table.md
+        - DML:
+          - INSERT: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/insert.md
+          - LOAD DATA: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/load-data.md
+          - SELECT: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/select.md
+          - SHOW DATABASES: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/show-databases.md
+          - SHOW TABLES: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/show-tables.md
+          - USE: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/use.md
+        - Aggregate Functions:
+          - AVG: MatrixOne/Reference/SQL-Reference/Aggregate-Functions/avg.md
+          - COUNT: MatrixOne/Reference/SQL-Reference/Aggregate-Functions/count.md
+          - MAX: MatrixOne/Reference/SQL-Reference/Aggregate-Functions/max.md
+          - MIN: MatrixOne/Reference/SQL-Reference/Aggregate-Functions/min.md
+          - SUM: MatrixOne/Reference/SQL-Reference/Aggregate-Functions/sum.md
         - Data Types: MatrixOne/Reference/SQL-Reference/data-types.md
     - FAQs:
       - General FAQs: MatrixOne/FAQs/general-faqs.md
     - Release Notes:
       - v0.1.0: MatrixOne/Release-Notes/v0.1.0.md
-    - Glossary:
-      - Glossary: MatrixOne/Glossary/Glossary.md
+    - Glossary: MatrixOne/Glossary/glossary.md
