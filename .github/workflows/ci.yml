@@ -14,4 +14,11 @@ jobs:
             username: ${{ secrets.USERNAME }}
             password: ${{ secrets.PASSWORD }}
             port: ${{ secrets.PORT }}
-            script: cd /service/matrixorigin.io && git fetch --all && git reset --hard origin/main && git pull && git submodule update --init
+            script: cd /service/matrixorigin.io 
+                    && git fetch --all 
+                    && git reset --hard origin/main 
+                    && git pull 
+                    && git submodule update --init
+                    && git submodule update --remote
+                    && git commit * -m "update submodule"
+                    && git push
