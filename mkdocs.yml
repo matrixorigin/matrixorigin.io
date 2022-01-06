@@ -17,6 +17,8 @@ extra_css:
   - stylesheets/extra.css
 extra:
   homepage: https://www.matrixorigin.cn
+  version:
+    provider: mike
 
 nav:
   - MatrixOne:
@@ -27,7 +29,8 @@ nav:
       - MySQL Compatibility: MatrixOne/Overview/mysql-compatibility.md
       - What's New: MatrixOne/Overview/what's-new.md
     - Get Started: 
-      - Install MatrixOne: MatrixOne/Get-Started/install-matrixone.md
+      - Install Standalone MatrixOne: MatrixOne/Get-Started/install-standalone-matrixone.md
+      - Install and configure distributed MatrixOne: MatrixOne/Get-Started/install-distributed-matrixone.md
       - Connect to MatrixOne Server: MatrixOne/Get-Started/connect-to-matrixone-server.md
       - Tutorial:
         - SSB Test with MatrixOne: MatrixOne/Get-Started/Tutorial/SSB-test-with-matrixone.md
@@ -38,6 +41,8 @@ nav:
           - CREATE TABLE: MatrixOne/Reference/SQL-Reference/Data-Definition-Statements/create-table.md
           - DROP DATABASE: MatrixOne/Reference/SQL-Reference/Data-Definition-Statements/drop-database.md
           - DROP TABLE: MatrixOne/Reference/SQL-Reference/Data-Definition-Statements/drop-table.md
+          - CREATE INDEX: MatrixOne/Reference/SQL-Reference/Data-Definition-Statements/create-index.md
+          - DROP INDEX: MatrixOne/Reference/SQL-Reference/Data-Definition-Statements/drop-index.md
         - DML:
           - INSERT: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/insert.md
           - LOAD DATA: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/load-data.md
@@ -45,6 +50,7 @@ nav:
           - SHOW DATABASES: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/show-databases.md
           - SHOW TABLES: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/show-tables.md
           - USE: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/use.md
+          - LIKE: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/like.md
         - Aggregate Functions:
           - AVG: MatrixOne/Reference/SQL-Reference/Aggregate-Functions/avg.md
           - COUNT: MatrixOne/Reference/SQL-Reference/Aggregate-Functions/count.md
@@ -57,3 +63,4 @@ nav:
       - General FAQs: MatrixOne/FAQs/general-faqs.md
     - Release Notes:
       - v0.1.0: MatrixOne/Release-Notes/v0.1.0.md
+      - v0.2.0: MatrixOne/Release-Notes/v0.2.0.md
