@@ -13,7 +13,7 @@
     
     
       
-        <title>MAX - MatrixOne Docs</title>
+        <title>CAST - MatrixOne Docs</title>
       
     
     
@@ -60,7 +60,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#max" class="md-skip">
+        <a href="#cast" class="md-skip">
           Skip to content
         </a>
       
@@ -100,7 +100,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              MAX
+              CAST
             
           </span>
         </div>
@@ -662,12 +662,14 @@
               
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4_1_2" type="checkbox" id="__nav_1_4_1_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4_1_2" type="checkbox" id="__nav_1_4_1_2" checked>
       
       
       
@@ -690,7 +692,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Data-Manipulation-Statements/insert/" class="md-nav__link">
+      <a href="../insert/" class="md-nav__link">
         INSERT
       </a>
     </li>
@@ -704,7 +706,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Data-Manipulation-Statements/load-data/" class="md-nav__link">
+      <a href="../load-data/" class="md-nav__link">
         LOAD DATA
       </a>
     </li>
@@ -718,7 +720,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Data-Manipulation-Statements/select/" class="md-nav__link">
+      <a href="../select/" class="md-nav__link">
         SELECT
       </a>
     </li>
@@ -732,7 +734,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Data-Manipulation-Statements/show-databases/" class="md-nav__link">
+      <a href="../show-databases/" class="md-nav__link">
         SHOW DATABASES
       </a>
     </li>
@@ -746,7 +748,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Data-Manipulation-Statements/show-tables/" class="md-nav__link">
+      <a href="../show-tables/" class="md-nav__link">
         SHOW TABLES
       </a>
     </li>
@@ -760,7 +762,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Data-Manipulation-Statements/use/" class="md-nav__link">
+      <a href="../use/" class="md-nav__link">
         USE
       </a>
     </li>
@@ -774,85 +776,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Data-Manipulation-Statements/like/" class="md-nav__link">
+      <a href="../like/" class="md-nav__link">
         LIKE
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../Data-Manipulation-Statements/cast/" class="md-nav__link">
-        CAST
-      </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-    
-  
-  
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4_1_3" type="checkbox" id="__nav_1_4_1_3" checked>
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_1_4_1_3">
-          Aggregate Functions
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Aggregate Functions" data-md-level="4">
-        <label class="md-nav__title" for="__nav_1_4_1_3">
-          <span class="md-nav__icon md-icon"></span>
-          Aggregate Functions
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../avg/" class="md-nav__link">
-        AVG
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../count/" class="md-nav__link">
-        COUNT
       </a>
     </li>
   
@@ -875,12 +800,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          MAX
+          CAST
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        MAX
+        CAST
       </a>
       
         
@@ -913,15 +838,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#arguments" class="md-nav__link">
-    Arguments
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#returned-value" class="md-nav__link">
-    Returned Value
+  <a href="#parameter-values" class="md-nav__link">
+    Parameter Values
   </a>
   
 </li>
@@ -929,6 +847,13 @@
         <li class="md-nav__item">
   <a href="#examples" class="md-nav__link">
     Examples
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#constraints" class="md-nav__link">
+    Constraints
   </a>
   
 </li>
@@ -942,13 +867,88 @@
 
             
           
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4_1_3" type="checkbox" id="__nav_1_4_1_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_4_1_3">
+          Aggregate Functions
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Aggregate Functions" data-md-level="4">
+        <label class="md-nav__title" for="__nav_1_4_1_3">
+          <span class="md-nav__icon md-icon"></span>
+          Aggregate Functions
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
             
               
   
   
   
     <li class="md-nav__item">
-      <a href="../min/" class="md-nav__link">
+      <a href="../../Aggregate-Functions/avg/" class="md-nav__link">
+        AVG
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Aggregate-Functions/count/" class="md-nav__link">
+        COUNT
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Aggregate-Functions/max/" class="md-nav__link">
+        MAX
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Aggregate-Functions/min/" class="md-nav__link">
         MIN
       </a>
     </li>
@@ -962,7 +962,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../sum/" class="md-nav__link">
+      <a href="../../Aggregate-Functions/sum/" class="md-nav__link">
         SUM
       </a>
     </li>
@@ -1174,15 +1174,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#arguments" class="md-nav__link">
-    Arguments
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#returned-value" class="md-nav__link">
-    Returned Value
+  <a href="#parameter-values" class="md-nav__link">
+    Parameter Values
   </a>
   
 </li>
@@ -1190,6 +1183,13 @@
         <li class="md-nav__item">
   <a href="#examples" class="md-nav__link">
     Examples
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#constraints" class="md-nav__link">
+    Constraints
   </a>
   
 </li>
@@ -1206,59 +1206,100 @@
             <article class="md-content__inner md-typeset">
               
                 
-<a href="https://github.com/matrixorigin/matrixone/edit/master/docs/MatrixOne/Reference/SQL-Reference/Aggregate-Functions/max.md" title="Edit this page" class="md-content__button md-icon">
+<a href="https://github.com/matrixorigin/matrixone/edit/master/docs/MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/cast.md" title="Edit this page" class="md-content__button md-icon">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
 </a>
 
 
-<h1 id="max"><strong>MAX</strong></h1>
+<h1 id="cast"><strong>CAST</strong></h1>
 <h2 id="description"><strong>Description</strong></h2>
-<p>Aggregate function.</p>
-<p>The MAX() function calculates the maximum value across a group of values.</p>
+<p>The CAST() function converts a value (of any type) into the specified datatype.</p>
 <h2 id="syntax"><strong>Syntax</strong></h2>
-<pre><code>&gt; MAX(expr)
+<pre><code>&gt; CAST(value AS datatype)
+
 </code></pre>
-<h2 id="arguments"><strong>Arguments</strong></h2>
+<h2 id="parameter-values"><strong>Parameter Values</strong></h2>
 <table>
 <thead>
 <tr>
-<th>Arguments</th>
+<th>Parameter</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>expr</td>
-<td>Any expression</td>
+<td>value</td>
+<td>Required. The value to convert</td>
+</tr>
+<tr>
+<td>datatype</td>
+<td>Required. The datatype to convert to</td>
 </tr>
 </tbody>
 </table>
-<h2 id="returned-value"><strong>Returned Value</strong></h2>
-<p>Returns the maximum value of expr. MAX() may take a string argument, in such cases, it returns the maximum string value. </p>
+<p>The datatype can be one of the following:</p>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DATE</td>
+<td>Converts value to DATE. Format: "YYYY-MM-DD"</td>
+</tr>
+<tr>
+<td>DATETIME</td>
+<td>Converts value to DATETIME. Format: "YYYY-MM-DD HH:MM:SS"</td>
+</tr>
+<tr>
+<td>DECIMAL</td>
+<td>Converts value to DECIMAL. Use the optional M and D parameters to specify the maximum number of digits (M) and the number of digits following the decimal point (D).</td>
+</tr>
+<tr>
+<td>TIME</td>
+<td>Converts value to TIME. Format: "HH:MM:SS"</td>
+</tr>
+<tr>
+<td>CHAR</td>
+<td>Converts value to CHAR (a fixed length string)</td>
+</tr>
+<tr>
+<td>NCHAR</td>
+<td>Converts value to NCHAR (like CHAR, but produces a string with the national character set)</td>
+</tr>
+<tr>
+<td>SIGNED</td>
+<td>Converts value to SIGNED (a signed 64-bit integer)</td>
+</tr>
+<tr>
+<td>UNSIGNED</td>
+<td>Converts value to UNSIGNED (an unsigned 64-bit integer)</td>
+</tr>
+<tr>
+<td>BINARY</td>
+<td>Converts value to BINARY (a binary string)</td>
+</tr>
+</tbody>
+</table>
 <h2 id="examples"><strong>Examples</strong></h2>
-<p>Note: numbers(N) – A table for test with the single number column (UInt64) that contains integers from 0 to N-1.</p>
-<pre><code>&gt; SELECT MAX(*) FROM numbers(3);
-+--------+
-| max(*) |
-+--------+
-|      2 |
-+--------+
+<pre><code>
+#Convert a value to a DATE datatype:
 
-&gt; SELECT MAX(number) FROM numbers(3);
-+-------------+
-| max(number) |
-+-------------+
-|           2 |
-+-------------+
+&gt; SELECT CAST(&quot;2017-08-29&quot; AS DATE);
 
-&gt; SELECT MAX(number) AS max FROM numbers(3);
-+------+
-| max  |
-+------+
-|    2 |
-+------+
+#Convert a value to a CHAR datatype:
+
+&gt; SELECT CAST(150 AS CHAR);
+
+#Convert a value to a SIGNED datatype:
+
+&gt;SELECT CAST(5-10 AS SIGNED);
+
 </code></pre>
-<hr />
+<h2 id="constraints"><strong>Constraints</strong></h2>
 
               
             </article>
@@ -1272,7 +1313,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../count/" class="md-footer__link md-footer__link--prev" aria-label="Previous: COUNT" rel="prev">
+        <a href="../like/" class="md-footer__link md-footer__link--prev" aria-label="Previous: LIKE" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1281,20 +1322,20 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              COUNT
+              LIKE
             </div>
           </div>
         </a>
       
       
         
-        <a href="../min/" class="md-footer__link md-footer__link--next" aria-label="Next: MIN" rel="next">
+        <a href="../../Aggregate-Functions/avg/" class="md-footer__link md-footer__link--next" aria-label="Next: AVG" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              MIN
+              AVG
             </div>
           </div>
           <div class="md-footer__button md-icon">
