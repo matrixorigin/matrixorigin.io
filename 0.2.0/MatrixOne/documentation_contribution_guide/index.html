@@ -478,6 +478,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Get-Started/Playground/" class="md-nav__link">
+        Playground
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -1135,16 +1149,12 @@
 <h1 id="how-to-contribute-to-documentation-project">How to contribute to documentation project?</h1>
 <ol>
 <li>Fork <a href="https://github.com/matrixorigin/matrixorigin.io">matrixorigin.io</a> and <a href="https://github.com/matrixorigin/matrixone">matrixone</a> repos.</li>
-<li>Clone the <a href="https://github.com/matrixorigin/matrixorigin.io">matrixorigin.io</a> repo, using <code>--repository</code> to retrieve the submodule of <a href="https://github.com/matrixorigin/matrixone">matrixone</a> repo.</li>
-</ol>
-<pre><code>$ git clone --recursive git@github.com:yourusername/matrixorigin.io.git
-</code></pre>
-<ol>
-<li>As the local repo has the full documentation project code, you can run <code>mkdocs serve</code> under <code>matrixorigin.io</code> folder, and check <code>http://localhost:8000</code> to check if this project runs well.  </li>
-</ol>
-<pre><code>$ mkdocs serve
-</code></pre>
-<ol>
+<li>Clone the <a href="https://github.com/matrixorigin/matrixorigin.io">matrixorigin.io</a> repo, using <code>--repository</code> to retrieve the submodule of <a href="https://github.com/matrixorigin/matrixone">matrixone</a> repo.
+<div class="highlight"><pre><span></span><code>$ git clone --recursive git@github.com:yourusername/matrixorigin.io.git
+</code></pre></div></li>
+<li>As the local repo has the full documentation project code, you can run <code>mkdocs serve</code> under <code>matrixorigin.io</code> folder, and check <code>http://localhost:8000</code> to check if this project runs well.<br />
+<div class="highlight"><pre><span></span><code>$ mkdocs serve
+</code></pre></div></li>
 <li>
 <p>Make your modification. If the modification is about the project settings, updating sitemap with new pages, or updating the CI workflow code. You can always check <code>http://localhost:8000</code> to see if your modification is effective. If your modification is about the markdown contents, after you update the <code>docs</code> submodule of <code>matrixorigin.io</code>, the same modifcation should be applied to the <code>matrixone</code> repo.</p>
 </li>

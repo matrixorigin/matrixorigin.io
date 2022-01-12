@@ -535,6 +535,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Playground/" class="md-nav__link">
+        Playground
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -1201,17 +1215,17 @@
 <p>Currently, MatrixOne is only compatible with Oracle MySQL client. This means that some features might not work with MariaDB client.</p>
 <h2 id="2-connect-to-matrixone-server"><strong>2. Connect to MatrixOne server</strong></h2>
 <p>You can use the MySQL command-line client to connect to MatrixOne server:</p>
-<pre><code>$ mysql -h IP -P PORT -uUsername -p
-</code></pre>
+<div class="highlight"><pre><span></span><code>$ mysql -h IP -P PORT -uUsername -p
+</code></pre></div>
 <p>The connection string is the same format as MySQL accepts. You need to provide a user name and a password. </p>
 <p>Use the built-in test account for example:</p>
 <ul>
 <li>user: dump</li>
 <li>password: 111</li>
 </ul>
-<pre><code>$ mysql -h 127.0.0.1 -P 6001 -udump -p
+<div class="highlight"><pre><span></span><code>$ mysql -h 127.0.0.1 -P 6001 -udump -p
 Enter password:
-</code></pre>
+</code></pre></div>
 <p>Currently, MatrixOne only supports the TCP listener. </p>
 
               

@@ -478,6 +478,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Get-Started/Playground/" class="md-nav__link">
+        Playground
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -1201,33 +1215,33 @@
 <h2 id="description"><strong>Description</strong></h2>
 <p>The LOAD DATA statement reads rows from a text file into a table at a very high speed.</p>
 <h2 id="syntax"><strong>Syntax</strong></h2>
-<pre><code>&gt; LOAD DATA
+<div class="highlight"><pre><span></span><code>&gt; LOAD DATA
     [LOW_PRIORITY | CONCURRENT] [LOCAL]
-    INFILE 'file_name'
+    INFILE &#39;file_name&#39;
     [REPLACE | IGNORE]
     INTO TABLE tbl_name
     [PARTITION (partition_name [, partition_name] ...)]
     [CHARACTER SET charset_name]
     [{FIELDS | COLUMNS}
-        [TERMINATED BY 'string']
-        [[OPTIONALLY] ENCLOSED BY 'char']
-        [ESCAPED BY 'char']
+        [TERMINATED BY &#39;string&#39;]
+        [[OPTIONALLY] ENCLOSED BY &#39;char&#39;]
+        [ESCAPED BY &#39;char&#39;]
     ]
     [LINES
-        [STARTING BY 'string']
-        [TERMINATED BY 'string']
+        [STARTING BY &#39;string&#39;]
+        [TERMINATED BY &#39;string&#39;]
     ]
     [IGNORE number {LINES | ROWS}]
     [(col_name_or_user_var
         [, col_name_or_user_var] ...)]
     [SET col_name={expr | DEFAULT}
         [, col_name={expr | DEFAULT}] ...]
-</code></pre>
+</code></pre></div>
 <h2 id="examples"><strong>Examples</strong></h2>
 <p>The SSB Test is an example of LOAD DATA syntax. <a href="../../Get-Started/Tutorial/SSB-test-with-matrixone.md">Complete a SSB Test with MatrixOne
-</a></p>
-<pre><code>&gt; LOAD DATA INFILE '/ssb-dbgen-path/lineorder_flat.tbl ' INTO TABLE lineorder_flat;
-</code></pre>
+</a>
+<div class="highlight"><pre><span></span><code>&gt; LOAD DATA INFILE &#39;/ssb-dbgen-path/lineorder_flat.tbl &#39; INTO TABLE lineorder_flat;
+</code></pre></div></p>
 
               
             </article>

@@ -478,6 +478,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Get-Started/Playground/" class="md-nav__link">
+        Playground
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -1220,33 +1234,32 @@
 <li>The underscore sign (_) represents one, single character</li>
 </ul>
 <h2 id="syntax"><strong>Syntax</strong></h2>
-<pre><code>&gt; SELECT column1, column2, ...
+<div class="highlight"><pre><span></span><code>&gt; SELECT column1, column2, ...
 FROM table_name
 WHERE columnN LIKE pattern;
-</code></pre>
+</code></pre></div>
 <h2 id="examples"><strong>Examples</strong></h2>
-<pre><code>&gt; SELECT * FROM Customers
-WHERE CustomerName LIKE 'a%'; //The following SQL statement selects all customers with a CustomerName starting with &quot;a&quot;
+<div class="highlight"><pre><span></span><code>&gt; SELECT * FROM Customers
+WHERE CustomerName LIKE &#39;a%&#39;; //The following SQL statement selects all customers with a CustomerName starting with &quot;a&quot;
 
 &gt; SELECT * FROM Customers
-WHERE CustomerName LIKE '%a'; //The following SQL statement selects all customers with a CustomerName ending with &quot;a&quot;
+WHERE CustomerName LIKE &#39;%a&#39;; //The following SQL statement selects all customers with a CustomerName ending with &quot;a&quot;
 
 &gt; SELECT * FROM Customers
-WHERE CustomerName LIKE '%or%'; //The following SQL statement selects all customers with a CustomerName that have &quot;or&quot; in any position
+WHERE CustomerName LIKE &#39;%or%&#39;; //The following SQL statement selects all customers with a CustomerName that have &quot;or&quot; in any position
 
 &gt; SELECT * FROM Customers
-WHERE CustomerName LIKE '_r%'; //The following SQL statement selects all customers with a CustomerName that have &quot;r&quot; in the second position
+WHERE CustomerName LIKE &#39;_r%&#39;; //The following SQL statement selects all customers with a CustomerName that have &quot;r&quot; in the second position
 
 &gt; SELECT * FROM Customers
-WHERE CustomerName LIKE 'a__%'; //The following SQL statement selects all customers with a CustomerName that starts with &quot;a&quot; and are at least 3 characters in length
+WHERE CustomerName LIKE &#39;a__%&#39;; //The following SQL statement selects all customers with a CustomerName that starts with &quot;a&quot; and are at least 3 characters in length
 
 &gt; SELECT * FROM Customers
-WHERE ContactName LIKE 'a%o'; //The following SQL statement selects all customers with a ContactName that starts with &quot;a&quot; and ends with &quot;o&quot;
+WHERE ContactName LIKE &#39;a%o&#39;; //The following SQL statement selects all customers with a ContactName that starts with &quot;a&quot; and ends with &quot;o&quot;
 
 &gt; SELECT * FROM Customers
-WHERE CustomerName NOT LIKE 'a%'; //The following SQL statement selects all customers with a CustomerName that does NOT start with &quot;a&quot;
-
-</code></pre>
+WHERE CustomerName NOT LIKE &#39;a%&#39;; //The following SQL statement selects all customers with a CustomerName that does NOT start with &quot;a&quot;
+</code></pre></div>
 <h2 id="constraints"><strong>Constraints</strong></h2>
 <p>NOT LIKE is not supported for now. </p>
 

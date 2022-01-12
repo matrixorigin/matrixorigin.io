@@ -582,6 +582,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Playground/" class="md-nav__link">
+        Playground
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -1293,26 +1307,26 @@
 <h4 id="1-install-go-as-necessary">1. Install Go as necessary</h4>
 <p>Go version 1.17+ is required.</p>
 <h4 id="2-get-the-matrixone-code">2. Get the MatrixOne code</h4>
-<pre><code>$ git clone https://github.com/matrixorigin/matrixone.git
+<div class="highlight"><pre><span></span><code>$ git clone https://github.com/matrixorigin/matrixone.git
 $ cd matrixone
-</code></pre>
+</code></pre></div>
 <h4 id="3-run-make">3. Run make</h4>
 <p>You can run <code>make debug</code>, <code>make clean</code>, or anything else our Makefile offers.</p>
-<pre><code>$ make config
+<div class="highlight"><pre><span></span><code>$ make config
 $ make build
-</code></pre>
+</code></pre></div>
 <h4 id="4-boot-matrixone-server">4. Boot MatrixOne server</h4>
-<pre><code>$ ./mo-server system_vars_config.toml
-</code></pre>
+<div class="highlight"><pre><span></span><code>$ ./mo-server system_vars_config.toml
+</code></pre></div>
 <h2 id="using-docker"><strong>Using docker</strong></h2>
 <h4 id="1-install-docker">1. Install Docker</h4>
 <p>Please verify that Docker daemon is running in the background:</p>
-<pre><code>$ docker --version
-</code></pre>
+<div class="highlight"><pre><span></span><code>$ docker --version
+</code></pre></div>
 <h4 id="2-create-and-run-the-container-for-the-latest-release-of-matrixone">2. Create and run the container for the latest release of MatrixOne</h4>
 <p>It will pull the image from Docker Hub if not exists.</p>
-<pre><code>$ docker run -d -p 6001:6001 --name matrixone matrixorigin/matrixone:latest
-</code></pre>
+<div class="highlight"><pre><span></span><code>$ docker run -d -p 6001:6001 --name matrixone matrixorigin/matrixone:latest
+</code></pre></div>
 
               
             </article>

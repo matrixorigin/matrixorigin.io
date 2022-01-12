@@ -478,6 +478,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Get-Started/Playground/" class="md-nav__link">
+        Playground
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -1227,25 +1241,25 @@
 <h2 id="description"><strong>Description</strong></h2>
 <p>Create a database.</p>
 <h2 id="syntax"><strong>Syntax</strong></h2>
-<pre><code>&gt; CREATE DATABASE [IF NOT EXISTS] &lt;database_name&gt; [create_option] ...
+<div class="highlight"><pre><span></span><code>&gt; CREATE DATABASE [IF NOT EXISTS] &lt;database_name&gt; [create_option] ...
 
 &gt; create_option: [DEFAULT] {
     CHARACTER SET [=] charset_name
   | COLLATE [=] collation_name
-  | ENCRYPTION [=] {'Y' | 'N'}
+  | ENCRYPTION [=] {&#39;Y&#39; | &#39;N&#39;}
 }
-</code></pre>
+</code></pre></div>
 <h4 id="create_database_statement">create_database_statement:</h4>
 <p><img alt="Create Database Diagram" src="https://github.com/matrixorigin/artwork/blob/main/docs/reference/create_database_statement.png?raw=true" /></p>
 <h2 id="examples"><strong>Examples</strong></h2>
-<pre><code>&gt; CREATE DATABASE test01;
+<div class="highlight"><pre><span></span><code>&gt; CREATE DATABASE test01;
 
 &gt; CREATE DATABASE IF NOT EXISTS test01;
 
-&gt; CREATE DATABASE test03 DEFAULT CHARACTER SET utf8 collate utf8_general_ci ENCRYPTION 'Y';
+&gt; CREATE DATABASE test03 DEFAULT CHARACTER SET utf8 collate utf8_general_ci ENCRYPTION &#39;Y&#39;;
 
-&gt; CREATE DATABASE test04 CHARACTER SET=utf8 collate=utf8_general_ci ENCRYPTION='N';
-</code></pre>
+&gt; CREATE DATABASE test04 CHARACTER SET=utf8 collate=utf8_general_ci ENCRYPTION=&#39;N&#39;;
+</code></pre></div>
 
               
             </article>
@@ -1259,7 +1273,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../../../../Get-Started/Tutorial/SSB-test-with-matrixone/" class="md-footer__link md-footer__link--prev" aria-label="Previous: SSB Test with MatrixOne" rel="prev">
+        <a href="../../../../Get-Started/Playground/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Playground" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1268,7 +1282,7 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              SSB Test with MatrixOne
+              Playground
             </div>
           </div>
         </a>

@@ -558,6 +558,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Playground/" class="md-nav__link">
+        Playground
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -1243,20 +1257,20 @@
 <h2 id="before-you-begin"><strong>Before you begin</strong></h2>
 <p>Make sure you have already <a href="install-matrixone.md">installed MatrixOne</a> and <a href="../../connect-to-matrixone-server/">connected to MatrixOne Server</a>.</p>
 <h2 id="1-compile-dbgen"><strong>1. Compile dbgen</strong></h2>
-<pre><code>$ git clone git@github.com:vadimtk/ssb-dbgen.git
+<div class="highlight"><pre><span></span><code>$ git clone git@github.com:vadimtk/ssb-dbgen.git
 $ cd ssb-dbgen
 $ make
-</code></pre>
+</code></pre></div>
 <h2 id="2-generate-data"><strong>2. Generate data</strong></h2>
 <p>With -s 1 dbgen generates 6 million rows (670MB), while while -s 10 it generates 60 million rows (which takes some time)</p>
-<pre><code>$ ./dbgen -s 1 -T c
+<div class="highlight"><pre><span></span><code>$ ./dbgen -s 1 -T c
 $ ./dbgen -s 1 -T l`
 $ ./dbgen -s 1 -T p
 $ ./dbgen -s 1 -T s
 $ ./dbgen -s 1 -T d
-</code></pre>
+</code></pre></div>
 <h2 id="3-create-tables-in-matrixone"><strong>3. Create tables in MatrixOne</strong></h2>
-<pre><code>create database if not exists ssb;
+<div class="highlight"><pre><span></span><code>create database if not exists ssb;
 use ssb
 drop table if exists lineorder;
 drop table if exists part;
@@ -1378,41 +1392,41 @@ CREATE TABLE lineorder_flat (
   P_SIZE int,
   P_CONTAINER char(10)
 );
-</code></pre>
+</code></pre></div>
 <h2 id="4-load-data-into-the-created-tables"><strong>4. Load data into the created tables</strong></h2>
 <p>If you use dbgen to generate date for ssb, there is still an extra step to replace the ‘,’ in the end of every line. In the directory of ssb-dbgen, use the following command. </p>
-<pre><code>$ sed -i 's/.$//' customer.tbl
-$ sed -i 's/.$//' date.tbl
-$ sed -i 's/.$//' supplier.tbl
-$ sed -i 's/.$//' lineorder.tbl
-$ sed -i 's/.$//' part.tbl
-</code></pre>
-<p>Then modify the parameter of system_vars_config.toml to a larger one in matrixone directory, such as 10GB. And restart MatrixOne service.</p>
-<pre><code>max-entry-bytes = &quot;10GB&quot;
-</code></pre>
+<div class="highlight"><pre><span></span><code>$ sed -i &#39;s/.$//&#39; customer.tbl
+$ sed -i &#39;s/.$//&#39; date.tbl
+$ sed -i &#39;s/.$//&#39; supplier.tbl
+$ sed -i &#39;s/.$//&#39; lineorder.tbl
+$ sed -i &#39;s/.$//&#39; part.tbl
+</code></pre></div>
+<p>Then modify the parameter of system_vars_config.toml to a larger one in matrixone directory, such as 10GB. And restart MatrixOne service.
+<div class="highlight"><pre><span></span><code>max-entry-bytes = &quot;10GB&quot;
+</code></pre></div></p>
 <p>Load data into related tables with this command in MatrixOne.</p>
-<pre><code>load data infile '/ssb-dbgen-path/supplier.tbl ' into table supplier FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '&quot;' LINES TERMINATED BY '\n';
+<div class="highlight"><pre><span></span><code>load data infile &#39;/ssb-dbgen-path/supplier.tbl &#39; into table supplier FIELDS TERMINATED BY &#39;,&#39; OPTIONALLY ENCLOSED BY &#39;&quot;&#39; LINES TERMINATED BY &#39;\n&#39;;
 
-load data infile '/ssb-dbgen-path/customer.tbl ' into table customer FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '&quot;' LINES TERMINATED BY '\n';
+load data infile &#39;/ssb-dbgen-path/customer.tbl &#39; into table customer FIELDS TERMINATED BY &#39;,&#39; OPTIONALLY ENCLOSED BY &#39;&quot;&#39; LINES TERMINATED BY &#39;\n&#39;;
 
-load data infile '/ssb-dbgen-path/date.tbl ' into table dim_date FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '&quot;' LINES TERMINATED BY '\n';
+load data infile &#39;/ssb-dbgen-path/date.tbl &#39; into table dim_date FIELDS TERMINATED BY &#39;,&#39; OPTIONALLY ENCLOSED BY &#39;&quot;&#39; LINES TERMINATED BY &#39;\n&#39;;
 
-load data infile '/ssb-dbgen-path/supplier.tbl ' into table supplier FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '&quot;' LINES TERMINATED BY '\n';
+load data infile &#39;/ssb-dbgen-path/supplier.tbl &#39; into table supplier FIELDS TERMINATED BY &#39;,&#39; OPTIONALLY ENCLOSED BY &#39;&quot;&#39; LINES TERMINATED BY &#39;\n&#39;;
 
-load data infile '/ssb-dbgen-path/part.tbl ' into table part FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '&quot;' LINES TERMINATED BY '\n';
+load data infile &#39;/ssb-dbgen-path/part.tbl &#39; into table part FIELDS TERMINATED BY &#39;,&#39; OPTIONALLY ENCLOSED BY &#39;&quot;&#39; LINES TERMINATED BY &#39;\n&#39;;
 
-load data infile '/ssb-dbgen-path/lineorder.tbl ' into table lineorder FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '&quot;' LINES TERMINATED BY '\n';
-</code></pre>
+load data infile &#39;/ssb-dbgen-path/lineorder.tbl &#39; into table lineorder FIELDS TERMINATED BY &#39;,&#39; OPTIONALLY ENCLOSED BY &#39;&quot;&#39; LINES TERMINATED BY &#39;\n&#39;;
+</code></pre></div>
 <p>Then you can query data in MatrixOne with the created table. 
 If you want to run a single table SSB query test, there is still one more data files needed for lineorder_flat. You can get the data files directly:</p>
 <blockquote>
 <p><a href="https://pan.baidu.com/s/1dCpcKsygdVuHzd-H-RWHFA">https://pan.baidu.com/s/1dCpcKsygdVuHzd-H-RWHFA</a>  code: k1rs</p>
 </blockquote>
 <p>Load data into lineorder_flat.</p>
-<pre><code>load data infile '/ssb-dbgen-path/lineorder_flat.tbl ' into table lineorder_flat FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '&quot;' LINES TERMINATED BY '\n';
-</code></pre>
+<div class="highlight"><pre><span></span><code>load data infile &#39;/ssb-dbgen-path/lineorder_flat.tbl &#39; into table lineorder_flat FIELDS TERMINATED BY &#39;,&#39; OPTIONALLY ENCLOSED BY &#39;&quot;&#39; LINES TERMINATED BY &#39;\n&#39;;
+</code></pre></div>
 <h2 id="5-run-ssb-queries"><strong>5. Run SSB Queries</strong></h2>
-<pre><code># Q1.1
+<div class="highlight"><pre><span></span><code># Q1.1
 SELECT sum(LO_EXTENDEDPRICE * LO_DISCOUNT) AS revenue FROM lineorder_flat WHERE LO_ORDERDATE&lt;=19930131 AND LO_ORDERDATE&gt;=19930101 AND LO_DISCOUNT BETWEEN 1 AND 3 AND LO_QUANTITY &lt; 25;
 
 # Q1.2
@@ -1425,44 +1439,44 @@ SELECT sum(LO_EXTENDEDPRICE * LO_DISCOUNT) AS revenue FROM lineorder_flat WHERE 
 
 # Q2.1
 
-SELECT sum(LO_REVENUE), LO_ORDERDATE, P_BRAND FROM lineorder_flat WHERE P_CATEGORY = 'MFGR#11' AND S_REGION = 'AMERICA' GROUP BY LO_ORDERDATE, P_BRAND ORDER BY LO_ORDERDATE, P_BRAND;
+SELECT sum(LO_REVENUE), LO_ORDERDATE, P_BRAND FROM lineorder_flat WHERE P_CATEGORY = &#39;MFGR#11&#39; AND S_REGION = &#39;AMERICA&#39; GROUP BY LO_ORDERDATE, P_BRAND ORDER BY LO_ORDERDATE, P_BRAND;
 
 # Q2.2
 
-SELECT sum(LO_REVENUE), LO_ORDERDATE, P_BRAND FROM lineorder_flat WHERE P_BRAND BETWEEN 'MFGR#2221' AND 'MFGR#2228' AND S_REGION = 'ASIA' GROUP BY LO_ORDERDATE, P_BRAND ORDER BY LO_ORDERDATE, P_BRAND;
+SELECT sum(LO_REVENUE), LO_ORDERDATE, P_BRAND FROM lineorder_flat WHERE P_BRAND BETWEEN &#39;MFGR#2221&#39; AND &#39;MFGR#2228&#39; AND S_REGION = &#39;ASIA&#39; GROUP BY LO_ORDERDATE, P_BRAND ORDER BY LO_ORDERDATE, P_BRAND;
 
 # Q2.3
 
-SELECT sum(LO_REVENUE), LO_ORDERDATE, P_BRAND FROM lineorder_flat WHERE P_BRAND = 'MFGR#2239' AND S_REGION = 'EUROPE' GROUP BY LO_ORDERDATE, P_BRAND ORDER BY LO_ORDERDATE, P_BRAND;
+SELECT sum(LO_REVENUE), LO_ORDERDATE, P_BRAND FROM lineorder_flat WHERE P_BRAND = &#39;MFGR#2239&#39; AND S_REGION = &#39;EUROPE&#39; GROUP BY LO_ORDERDATE, P_BRAND ORDER BY LO_ORDERDATE, P_BRAND;
 
 # Q3.1
 
-SELECT C_NATION, S_NATION, LO_ORDERDATE, sum(LO_REVENUE) AS revenue FROM lineorder_flat WHERE C_REGION = 'ASIA' AND S_REGION = 'ASIA' AND LO_ORDERDATE &gt;= 19920101 AND LO_ORDERDATE &lt;= 19970101 GROUP BY C_NATION, S_NATION, LO_ORDERDATE ORDER BY LO_ORDERDATE asc, revenue desc;
+SELECT C_NATION, S_NATION, LO_ORDERDATE, sum(LO_REVENUE) AS revenue FROM lineorder_flat WHERE C_REGION = &#39;ASIA&#39; AND S_REGION = &#39;ASIA&#39; AND LO_ORDERDATE &gt;= 19920101 AND LO_ORDERDATE &lt;= 19970101 GROUP BY C_NATION, S_NATION, LO_ORDERDATE ORDER BY LO_ORDERDATE asc, revenue desc;
 
 # Q3.2
 
-SELECT C_CITY, S_CITY, LO_ORDERDATE, sum(LO_REVENUE) AS revenue FROM lineorder_flat WHERE C_NATION = 'CHINA' AND S_NATION = 'CHINA' AND LO_ORDERDATE &gt;= 19920101 AND LO_ORDERDATE &lt;= 19971231 GROUP BY C_CITY, S_CITY, LO_ORDERDATE ORDER BY LO_ORDERDATE asc, revenue desc;
+SELECT C_CITY, S_CITY, LO_ORDERDATE, sum(LO_REVENUE) AS revenue FROM lineorder_flat WHERE C_NATION = &#39;CHINA&#39; AND S_NATION = &#39;CHINA&#39; AND LO_ORDERDATE &gt;= 19920101 AND LO_ORDERDATE &lt;= 19971231 GROUP BY C_CITY, S_CITY, LO_ORDERDATE ORDER BY LO_ORDERDATE asc, revenue desc;
 
 # Q3.3
 
-SELECT C_CITY, S_CITY, LO_ORDERDATE, sum(LO_REVENUE) AS revenue FROM lineorder_flat WHERE (C_CITY = 'UNITED KI0' OR C_CITY = 'UNITED KI7') AND (S_CITY = 'UNITED KI0' OR S_CITY = 'UNITED KI7') AND LO_ORDERDATE &gt;= 19920101 AND LO_ORDERDATE &lt;= 19971231 GROUP BY C_CITY, S_CITY, LO_ORDERDATE ORDER BY LO_ORDERDATE asc, revenue desc;
+SELECT C_CITY, S_CITY, LO_ORDERDATE, sum(LO_REVENUE) AS revenue FROM lineorder_flat WHERE (C_CITY = &#39;UNITED KI0&#39; OR C_CITY = &#39;UNITED KI7&#39;) AND (S_CITY = &#39;UNITED KI0&#39; OR S_CITY = &#39;UNITED KI7&#39;) AND LO_ORDERDATE &gt;= 19920101 AND LO_ORDERDATE &lt;= 19971231 GROUP BY C_CITY, S_CITY, LO_ORDERDATE ORDER BY LO_ORDERDATE asc, revenue desc;
 
 # Q3.4
 
-SELECT C_CITY, S_CITY, LO_ORDERDATE, sum(LO_REVENUE) AS revenue FROM lineorder_flat WHERE (C_CITY = 'UNITED KI0' OR C_CITY = 'UNITED KI7') AND (S_CITY = 'MOZAMBIQU1' OR S_CITY = 'KENYA    4') AND LO_ORDERDATE &gt;= 19971201 GROUP BY C_CITY, S_CITY, LO_ORDERDATE ORDER BY LO_ORDERDATE asc, revenue desc;
+SELECT C_CITY, S_CITY, LO_ORDERDATE, sum(LO_REVENUE) AS revenue FROM lineorder_flat WHERE (C_CITY = &#39;UNITED KI0&#39; OR C_CITY = &#39;UNITED KI7&#39;) AND (S_CITY = &#39;MOZAMBIQU1&#39; OR S_CITY = &#39;KENYA    4&#39;) AND LO_ORDERDATE &gt;= 19971201 GROUP BY C_CITY, S_CITY, LO_ORDERDATE ORDER BY LO_ORDERDATE asc, revenue desc;
 
 # Q4.1
 
-SELECT LO_ORDERDATE, C_NATION, sum(LO_REVENUE - LO_SUPPLYCOST) AS profit FROM lineorder_flat WHERE C_REGION = 'AMERICA' AND S_REGION = 'AMERICA' AND (P_MFGR = 'MFGR#1' OR P_MFGR = 'MFGR#2') GROUP BY LO_ORDERDATE, C_NATION ORDER BY LO_ORDERDATE, C_NATION;
+SELECT LO_ORDERDATE, C_NATION, sum(LO_REVENUE - LO_SUPPLYCOST) AS profit FROM lineorder_flat WHERE C_REGION = &#39;AMERICA&#39; AND S_REGION = &#39;AMERICA&#39; AND (P_MFGR = &#39;MFGR#1&#39; OR P_MFGR = &#39;MFGR#2&#39;) GROUP BY LO_ORDERDATE, C_NATION ORDER BY LO_ORDERDATE, C_NATION;
 
 # Q4.2
 
-SELECT LO_ORDERDATE, S_NATION, P_CATEGORY, sum(LO_REVENUE - LO_SUPPLYCOST) AS profit FROM lineorder_flat WHERE C_REGION = 'AMERICA' AND S_REGION = 'AMERICA' AND (LO_ORDERDATE&gt;= 19970101 OR LO_ORDERDATE &lt;= 19981231) AND (P_MFGR = 'MFGR#1' OR P_MFGR = 'MFGR#2') GROUP BY LO_ORDERDATE, S_NATION, P_CATEGORY ORDER BY LO_ORDERDATE, S_NATION, P_CATEGORY;
+SELECT LO_ORDERDATE, S_NATION, P_CATEGORY, sum(LO_REVENUE - LO_SUPPLYCOST) AS profit FROM lineorder_flat WHERE C_REGION = &#39;AMERICA&#39; AND S_REGION = &#39;AMERICA&#39; AND (LO_ORDERDATE&gt;= 19970101 OR LO_ORDERDATE &lt;= 19981231) AND (P_MFGR = &#39;MFGR#1&#39; OR P_MFGR = &#39;MFGR#2&#39;) GROUP BY LO_ORDERDATE, S_NATION, P_CATEGORY ORDER BY LO_ORDERDATE, S_NATION, P_CATEGORY;
 
 # Q4.3
 
-SELECT LO_ORDERDATE, S_CITY, P_BRAND, sum(LO_REVENUE - LO_SUPPLYCOST) AS profit FROM lineorder_flat WHERE S_NATION = 'UNITED STATES' AND (LO_ORDERDATE&gt;= 19970101 OR LO_ORDERDATE &lt;= 19981231) AND P_CATEGORY = 'MFGR#14' GROUP BY LO_ORDERDATE, S_CITY, P_BRAND ORDER BY LO_ORDERDATE, S_CITY, P_BRAND;
-</code></pre>
+SELECT LO_ORDERDATE, S_CITY, P_BRAND, sum(LO_REVENUE - LO_SUPPLYCOST) AS profit FROM lineorder_flat WHERE S_NATION = &#39;UNITED STATES&#39; AND (LO_ORDERDATE&gt;= 19970101 OR LO_ORDERDATE &lt;= 19981231) AND P_CATEGORY = &#39;MFGR#14&#39; GROUP BY LO_ORDERDATE, S_CITY, P_BRAND ORDER BY LO_ORDERDATE, S_CITY, P_BRAND;
+</code></pre></div>
 
               
             </article>
@@ -1492,13 +1506,13 @@ SELECT LO_ORDERDATE, S_CITY, P_BRAND, sum(LO_REVENUE - LO_SUPPLYCOST) AS profit 
       
       
         
-        <a href="../../../Reference/SQL-Reference/Data-Definition-Statements/create-database/" class="md-footer__link md-footer__link--next" aria-label="Next: CREATE DATABASE" rel="next">
+        <a href="../../Playground/" class="md-footer__link md-footer__link--next" aria-label="Next: Playground" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              CREATE DATABASE
+              Playground
             </div>
           </div>
           <div class="md-footer__button md-icon">
