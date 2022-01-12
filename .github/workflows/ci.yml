@@ -18,15 +18,5 @@ jobs:
             username: ${{ secrets.USERNAME }}
             password: ${{ secrets.PASSWORD }}
             port: ${{ secrets.PORT }}
-            script: cd /data/matrixorigin.io 
-                    && git fetch --all 
-                    && git reset --hard origin/main 
-                    && git pull 
-                    && git submodule update --init
-                    && git submodule update --remote
-                    && git commit -m "update submodules" || echo "No changes to commit"
-                    && git push
-                    && mike deploy --push --update-aliases ${{ github.event.inputs.version }} latest
-                    && git add *
-                    && git commit * -m "update site"
-                    && git push
+            script: cd /data/matrixorigin.io/scripts
+                    && ./upgrade.sh ${{ github.event.inputs.version }}
