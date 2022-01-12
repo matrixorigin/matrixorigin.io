@@ -474,6 +474,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Playground/" class="md-nav__link">
+        Playground
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -774,6 +788,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Reference/SQL-Reference/Data-Manipulation-Statements/cast/" class="md-nav__link">
+        CAST
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -1034,6 +1062,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation_contribution_guide/" class="md-nav__link">
+        Documentation Contribution Guide
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -1102,7 +1144,7 @@
 For distributed deployment, change each node's config file(system_vars_config.toml) according to the following instructions.
 </code></pre>
 <h3 id="deploy-matrixone-on-a-distributed-bare-metal-cluster"><strong>Deploy MatrixOne on a distributed bare-metal cluster</strong></h3>
-<pre><code>    1. Requirements: at least three nodes
+<p><code>1. Requirements: at least three nodes
 
     2. set up the prophet genesis node
         2.1. make sure the nodeID is unique
@@ -1124,8 +1166,7 @@ For distributed deployment, change each node's config file(system_vars_config.to
         4.3. change the addr-raft ip to the machine ip
         4.4. change the addr-client ip to the machine ip
         4.5. In the external-etcd attribute, fill the three empty string with the three client-urls of the three prophet node
-        4.6. make sure the dir-data is different from the other nodes in the cluster
-</code></pre>
+        4.6. make sure the dir-data is different from the other nodes in the cluster</code></p>
 <h3 id="deploy-matrixone-on-a-docker-cluster"><strong>Deploy MatrixOne on a docker cluster</strong></h3>
 <p>Start MatrixOne cluster on docker or kubernetes, please refer to this repo <a href="https://github.com/matrixorigin/matrixone-operator">matrixorigin/matrixone-operator</a>                                  </p>
 

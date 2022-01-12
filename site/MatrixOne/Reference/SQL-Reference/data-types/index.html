@@ -478,6 +478,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Get-Started/Playground/" class="md-nav__link">
+        Playground
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -782,6 +796,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Data-Manipulation-Statements/cast/" class="md-nav__link">
+        CAST
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -953,6 +981,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#time-and-date-types" class="md-nav__link">
+    Time and Date Types
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#examples" class="md-nav__link">
     Examples
   </a>
@@ -1104,6 +1139,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../documentation_contribution_guide/" class="md-nav__link">
+        Documentation Contribution Guide
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -1153,6 +1202,13 @@
         <li class="md-nav__item">
   <a href="#string-types" class="md-nav__link">
     String Types
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#time-and-date-types" class="md-nav__link">
+    Time and Date Types
   </a>
   
 </li>
@@ -1287,8 +1343,39 @@
 </tr>
 </tbody>
 </table>
+<h2 id="time-and-date-types"><strong>Time and Date Types</strong></h2>
+<table>
+<thead>
+<tr>
+<th>Data Type</th>
+<th>Size</th>
+<th>Resolution</th>
+<th>Min Value</th>
+<th>Max Value</th>
+<th>Precision</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Date</td>
+<td>2 byte</td>
+<td>day</td>
+<td>1000-01-01</td>
+<td>9999-12-31</td>
+<td>YYYY-MM-DD</td>
+</tr>
+<tr>
+<td>DateTime</td>
+<td>4 byte</td>
+<td>second</td>
+<td>1970-01-01 00:00:00</td>
+<td>2105-12-31 23:59:59</td>
+<td>YYYY-MM-DD hh:mm:ss</td>
+</tr>
+</tbody>
+</table>
 <h2 id="examples"><strong>Examples</strong></h2>
-<pre><code>//Create a table named &quot;numtable&quot; with 3 attributes of an &quot;int&quot;, a &quot;float&quot; and a &quot;double&quot;
+<div class="highlight"><pre><span></span><code>//Create a table named &quot;numtable&quot; with 3 attributes of an &quot;int&quot;, a &quot;float&quot; and a &quot;double&quot;
 &gt; create table numtable(id int,fl float, dl double);
 
 //Insert a dataset of int, float and double into table &quot;numtable&quot;
@@ -1316,10 +1403,8 @@
 &gt; create table names(name varchar(255),age char(255));
 
 //Insert a data of &quot;varchar&quot; and &quot;char&quot; into table &quot;names&quot; 
-&gt; insert into names(name, age) values('Abby', '24');
-
-
-</code></pre>
+&gt; insert into names(name, age) values(&#39;Abby&#39;, &#39;24&#39;);
+</code></pre></div>
 
               
             </article>

@@ -478,6 +478,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Get-Started/Playground/" class="md-nav__link">
+        Playground
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -839,6 +853,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cast/" class="md-nav__link">
+        CAST
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -1099,6 +1127,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../documentation_contribution_guide/" class="md-nav__link">
+        Documentation Contribution Guide
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -1173,7 +1215,7 @@
 <h2 id="description"><strong>Description</strong></h2>
 <p>Retrieves data from a table.</p>
 <h2 id="syntax"><strong>Syntax</strong></h2>
-<pre><code>&gt; SELECT
+<div class="highlight"><pre><span></span><code>&gt; SELECT
     [ALL | DISTINCT]
     select_expr [[AS] alias], ...
     [INTO variable [, ...]]
@@ -1186,9 +1228,9 @@
     [LIMIT row_count]
     [OFFSET row_count]
     ]
-</code></pre>
+</code></pre></div>
 <h2 id="examples"><strong>Examples</strong></h2>
-<pre><code>&gt; SELECT number FROM numbers(3);
+<div class="highlight"><pre><span></span><code>&gt; SELECT number FROM numbers(3);
 +--------+
 | number |
 +--------+
@@ -1200,7 +1242,7 @@
 &gt; SELECT * FROM t1 WHERE spID&gt;2 AND userID &lt;2 || userID &gt;=2 OR userID &lt; 2 LIMIT 3;
 
 &gt; SELECT userID,MAX(score) max_score FROM t1 WHERE userID &lt;2 || userID &gt; 3 GROUP BY userID ORDER BY max_score;
-</code></pre>
+</code></pre></div>
 
               
             </article>
