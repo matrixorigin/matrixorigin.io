@@ -4,6 +4,9 @@ repo_url: https://github.com/matrixorigin/matrixone
 theme:
   name: material
   logo: assets/logo.png
+  icon:
+    admonition:
+      note: octicons/tag-16  
   features:
     - navigation.instant  
     - navigation.tracking
@@ -19,7 +22,10 @@ extra:
   homepage: https://www.matrixorigin.cn
   version:
     provider: mike
-
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
 nav:
   - MatrixOne:
     - Home: README.md
@@ -34,6 +40,7 @@ nav:
       - Connect to MatrixOne Server: MatrixOne/Get-Started/connect-to-matrixone-server.md
       - Tutorial:
         - SSB Test with MatrixOne: MatrixOne/Get-Started/Tutorial/SSB-test-with-matrixone.md
+      - Playground: MatrixOne/Get-Started/Playground.md
     - Reference:
       - SQL Reference: 
         - DDL:
