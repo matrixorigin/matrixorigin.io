@@ -1088,10 +1088,57 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4_2" type="checkbox" id="__nav_1_4_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_4_2">
+          System Paramaters
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="System Paramaters" data-md-level="3">
+        <label class="md-nav__title" for="__nav_1_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          System Paramaters
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
-      <a href="../../Reference/configuration-settings/" class="md-nav__link">
-        Configuration Settings
+      <a href="../../System-Parameters/configuration-settings.md" class="md-nav__link">
+        General Settings
       </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../System-Parameters/distributed-settings.md" class="md-nav__link">
+        Distributed Settings
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -1301,7 +1348,7 @@
 <p>Make sure you have already <a href="install-matrixone.md">installed MatrixOne</a>.</p>
 <h2 id="1-install-mysql-client"><strong>1. Install MySQL client</strong></h2>
 <p>MatrixOne supports the MySQL wire protocol, so you can use MySQL client drivers to connect from various languages. </p>
-<p>Currently, MatrixOne is only compatible with Oracle MySQL client. This means that some features might not work with MariaDB client.</p>
+<p>Currently, MatrixOne is only compatible with Oracle MySQL client. This means that some features might not work with MariaDB client or Percona client.</p>
 <h2 id="2-connect-to-matrixone-server"><strong>2. Connect to MatrixOne server</strong></h2>
 <p>You can use the MySQL command-line client to connect to MatrixOne server:</p>
 <div class="highlight"><pre><span></span><code>$ mysql -h IP -P PORT -uUsername -p
