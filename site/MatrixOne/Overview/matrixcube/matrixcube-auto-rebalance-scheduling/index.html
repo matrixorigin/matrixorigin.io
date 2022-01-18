@@ -8,19 +8,19 @@
       
       
       
-      <link rel="icon" href="../../../../../assets/images/favicon.png">
+      <link rel="icon" href="../../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.4">
     
     
       
-        <title>LOAD DATA - MatrixOne Docs</title>
+        <title>Auto Rebalancing and Scheduling - MatrixOne Docs</title>
       
     
     
-      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.bb3983ee.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.bb3983ee.min.css">
       
         
-        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.e6a45f82.min.css">
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.e6a45f82.min.css">
         
       
     
@@ -34,9 +34,9 @@
       
     
     
-      <link rel="stylesheet" href="../../../../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("../../../../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -60,7 +60,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#load-data" class="md-skip">
+        <a href="#auto-rebalance-scheduling" class="md-skip">
           Skip to content
         </a>
       
@@ -84,7 +84,7 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="https://www.matrixorigin.cn" title="MatrixOne Docs" class="md-header__button md-logo" aria-label="MatrixOne Docs" data-md-component="logo">
       
-  <img src="../../../../../assets/logo.png" alt="logo">
+  <img src="../../../../assets/logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -100,7 +100,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              LOAD DATA
+              Auto Rebalancing and Scheduling
             
           </span>
         </div>
@@ -174,7 +174,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../../.." class="md-tabs__link md-tabs__link--active">
+      <a href="../../../.." class="md-tabs__link md-tabs__link--active">
         MatrixOne
       </a>
     </li>
@@ -210,7 +210,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href="https://www.matrixorigin.cn" title="MatrixOne Docs" class="md-nav__button md-logo" aria-label="MatrixOne Docs" data-md-component="logo">
       
-  <img src="../../../../../assets/logo.png" alt="logo">
+  <img src="../../../../assets/logo.png" alt="logo">
 
     </a>
     MatrixOne Docs
@@ -266,7 +266,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../.." class="md-nav__link">
+      <a href="../../../.." class="md-nav__link">
         Home
       </a>
     </li>
@@ -278,12 +278,14 @@
               
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_2" type="checkbox" id="__nav_1_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_2" type="checkbox" id="__nav_1_2" checked>
       
       
       
@@ -306,7 +308,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Overview/matrixone-introduction/" class="md-nav__link">
+      <a href="../../matrixone-introduction/" class="md-nav__link">
         MatrixOne Introduction
       </a>
     </li>
@@ -320,7 +322,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Overview/matrixone-architecture/" class="md-nav__link">
+      <a href="../../matrixone-architecture/" class="md-nav__link">
         MatrixOne Architecture
       </a>
     </li>
@@ -332,12 +334,14 @@
               
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_2_3" type="checkbox" id="__nav_1_2_3" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_2_3" type="checkbox" id="__nav_1_2_3" checked>
       
       
       
@@ -360,7 +364,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Overview/matrixcube/matrixcube-introduction/" class="md-nav__link">
+      <a href="../matrixcube-introduction/" class="md-nav__link">
         MatrixCube Introduction
       </a>
     </li>
@@ -372,11 +376,66 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../../../../Overview/matrixcube/matrixcube-auto-rebalance-scheduling/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Auto Rebalancing and Scheduling
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Auto Rebalancing and Scheduling
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#store-hearbeat" class="md-nav__link">
+    Store Hearbeat
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#replica-hearbeat" class="md-nav__link">
+    Replica Hearbeat
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#event-notify" class="md-nav__link">
+    Event Notify
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -388,7 +447,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Overview/matrixcube/matrixcube-shard-splitting/" class="md-nav__link">
+      <a href="../matrixcube-shard-splitting/" class="md-nav__link">
         Shard Splitting
       </a>
     </li>
@@ -402,7 +461,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Overview/matrixcube/matrixcube-proxy-routing/" class="md-nav__link">
+      <a href="../matrixcube-proxy-routing/" class="md-nav__link">
         Shard Proxy and Routing
       </a>
     </li>
@@ -423,7 +482,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Overview/mysql-compatibility/" class="md-nav__link">
+      <a href="../../mysql-compatibility/" class="md-nav__link">
         MySQL Compatibility
       </a>
     </li>
@@ -437,7 +496,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Overview/what%27s-new/" class="md-nav__link">
+      <a href="../../what%27s-new/" class="md-nav__link">
         What's New
       </a>
     </li>
@@ -484,7 +543,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Get-Started/install-standalone-matrixone/" class="md-nav__link">
+      <a href="../../../Get-Started/install-standalone-matrixone/" class="md-nav__link">
         Install Standalone MatrixOne
       </a>
     </li>
@@ -498,7 +557,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Get-Started/install-distributed-matrixone/" class="md-nav__link">
+      <a href="../../../Get-Started/install-distributed-matrixone/" class="md-nav__link">
         Install and configure distributed MatrixOne
       </a>
     </li>
@@ -512,7 +571,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Get-Started/connect-to-matrixone-server/" class="md-nav__link">
+      <a href="../../../Get-Started/connect-to-matrixone-server/" class="md-nav__link">
         Connect to MatrixOne Server
       </a>
     </li>
@@ -552,7 +611,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Get-Started/Tutorial/SSB-test-with-matrixone/" class="md-nav__link">
+      <a href="../../../Get-Started/Tutorial/SSB-test-with-matrixone/" class="md-nav__link">
         SSB Test with MatrixOne
       </a>
     </li>
@@ -573,7 +632,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Get-Started/Playground/" class="md-nav__link">
+      <a href="../../../Get-Started/Playground/" class="md-nav__link">
         Playground
       </a>
     </li>
@@ -592,14 +651,12 @@
               
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4" type="checkbox" id="__nav_1_4" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4" type="checkbox" id="__nav_1_4" >
       
       
       
@@ -620,14 +677,12 @@
               
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4_1" type="checkbox" id="__nav_1_4_1" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4_1" type="checkbox" id="__nav_1_4_1" >
       
       
       
@@ -676,7 +731,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Data-Definition-Statements/create-database/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Statements/create-database/" class="md-nav__link">
         CREATE DATABASE
       </a>
     </li>
@@ -690,7 +745,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Data-Definition-Statements/create-table/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Statements/create-table/" class="md-nav__link">
         CREATE TABLE
       </a>
     </li>
@@ -704,7 +759,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Data-Definition-Statements/drop-database/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Statements/drop-database/" class="md-nav__link">
         DROP DATABASE
       </a>
     </li>
@@ -718,7 +773,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Data-Definition-Statements/drop-table/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Statements/drop-table/" class="md-nav__link">
         DROP TABLE
       </a>
     </li>
@@ -732,7 +787,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Data-Definition-Statements/create-index/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Statements/create-index/" class="md-nav__link">
         CREATE INDEX
       </a>
     </li>
@@ -746,7 +801,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Data-Definition-Statements/drop-index/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Statements/drop-index/" class="md-nav__link">
         DROP INDEX
       </a>
     </li>
@@ -765,14 +820,12 @@
               
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4_1_2" type="checkbox" id="__nav_1_4_1_2" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4_1_2" type="checkbox" id="__nav_1_4_1_2" >
       
       
       
@@ -795,7 +848,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../insert/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Statements/insert/" class="md-nav__link">
         INSERT
       </a>
     </li>
@@ -807,66 +860,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          LOAD DATA
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Statements/load-data/" class="md-nav__link">
         LOAD DATA
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#description" class="md-nav__link">
-    Description
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#syntax" class="md-nav__link">
-    Syntax
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#examples" class="md-nav__link">
-    Examples
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -878,7 +876,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../select/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Statements/select/" class="md-nav__link">
         SELECT
       </a>
     </li>
@@ -892,7 +890,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../show-databases/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Statements/show-databases/" class="md-nav__link">
         SHOW DATABASES
       </a>
     </li>
@@ -906,7 +904,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../show-tables/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Statements/show-tables/" class="md-nav__link">
         SHOW TABLES
       </a>
     </li>
@@ -920,7 +918,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../use/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Statements/use/" class="md-nav__link">
         USE
       </a>
     </li>
@@ -934,7 +932,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../like/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Statements/like/" class="md-nav__link">
         LIKE
       </a>
     </li>
@@ -948,7 +946,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cast/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Statements/cast/" class="md-nav__link">
         CAST
       </a>
     </li>
@@ -995,7 +993,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Aggregate-Functions/avg/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Aggregate-Functions/avg/" class="md-nav__link">
         AVG
       </a>
     </li>
@@ -1009,7 +1007,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Aggregate-Functions/count/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Aggregate-Functions/count/" class="md-nav__link">
         COUNT
       </a>
     </li>
@@ -1023,7 +1021,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Aggregate-Functions/max/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Aggregate-Functions/max/" class="md-nav__link">
         MAX
       </a>
     </li>
@@ -1037,7 +1035,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Aggregate-Functions/min/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Aggregate-Functions/min/" class="md-nav__link">
         MIN
       </a>
     </li>
@@ -1051,7 +1049,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Aggregate-Functions/sum/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Aggregate-Functions/sum/" class="md-nav__link">
         SUM
       </a>
     </li>
@@ -1072,7 +1070,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../data-types/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/data-types/" class="md-nav__link">
         Data Types
       </a>
     </li>
@@ -1093,7 +1091,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../configuration-settings/" class="md-nav__link">
+      <a href="../../../Reference/configuration-settings/" class="md-nav__link">
         Configuration Settings
       </a>
     </li>
@@ -1140,7 +1138,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../FAQs/general-faqs/" class="md-nav__link">
+      <a href="../../../FAQs/general-faqs/" class="md-nav__link">
         General FAQs
       </a>
     </li>
@@ -1187,7 +1185,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Release-Notes/v0.1.0/" class="md-nav__link">
+      <a href="../../../Release-Notes/v0.1.0/" class="md-nav__link">
         v0.1.0
       </a>
     </li>
@@ -1201,7 +1199,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Release-Notes/v0.2.0/" class="md-nav__link">
+      <a href="../../../Release-Notes/v0.2.0/" class="md-nav__link">
         v0.2.0
       </a>
     </li>
@@ -1222,7 +1220,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../documentation_contribution_guide/" class="md-nav__link">
+      <a href="../../../documentation_contribution_guide/" class="md-nav__link">
         Documentation Contribution Guide
       </a>
     </li>
@@ -1263,22 +1261,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#description" class="md-nav__link">
-    Description
+  <a href="#store-hearbeat" class="md-nav__link">
+    Store Hearbeat
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#syntax" class="md-nav__link">
-    Syntax
+  <a href="#replica-hearbeat" class="md-nav__link">
+    Replica Hearbeat
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#examples" class="md-nav__link">
-    Examples
+  <a href="#event-notify" class="md-nav__link">
+    Event Notify
   </a>
   
 </li>
@@ -1295,42 +1293,43 @@
             <article class="md-content__inner md-typeset">
               
                 
-<a href="https://github.com/matrixorigin/matrixone/edit/master/docs/MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/load-data.md" title="Edit this page" class="md-content__button md-icon">
+<a href="https://github.com/matrixorigin/matrixone/edit/master/docs/MatrixOne/Overview/matrixcube/matrixcube-auto-rebalance-scheduling.md" title="Edit this page" class="md-content__button md-icon">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
 </a>
 
 
-<h1 id="load-data"><strong>LOAD DATA</strong></h1>
-<h2 id="description"><strong>Description</strong></h2>
-<p>The LOAD DATA statement reads rows from a text file into a table at a very high speed.</p>
-<h2 id="syntax"><strong>Syntax</strong></h2>
-<div class="highlight"><pre><span></span><code>&gt; LOAD DATA
-    [LOW_PRIORITY | CONCURRENT] [LOCAL]
-    INFILE &#39;file_name&#39;
-    [REPLACE | IGNORE]
-    INTO TABLE tbl_name
-    [PARTITION (partition_name [, partition_name] ...)]
-    [CHARACTER SET charset_name]
-    [{FIELDS | COLUMNS}
-        [TERMINATED BY &#39;string&#39;]
-        [[OPTIONALLY] ENCLOSED BY &#39;char&#39;]
-        [ESCAPED BY &#39;char&#39;]
-    ]
-    [LINES
-        [STARTING BY &#39;string&#39;]
-        [TERMINATED BY &#39;string&#39;]
-    ]
-    [IGNORE number {LINES | ROWS}]
-    [(col_name_or_user_var
-        [, col_name_or_user_var] ...)]
-    [SET col_name={expr | DEFAULT}
-        [, col_name={expr | DEFAULT}] ...]
-</code></pre></div>
-<h2 id="examples"><strong>Examples</strong></h2>
-<p>The SSB Test is an example of LOAD DATA syntax. <a href="../../Get-Started/Tutorial/SSB-test-with-matrixone.md">Complete a SSB Test with MatrixOne
-</a>
-<div class="highlight"><pre><span></span><code>&gt; LOAD DATA INFILE &#39;/ssb-dbgen-path/lineorder_flat.tbl &#39; INTO TABLE lineorder_flat;
-</code></pre></div></p>
+<h1 id="auto-rebalance-scheduling"><strong>Auto-Rebalance &amp; Scheduling</strong></h1>
+<p>MatrixCube is a framework to implement distributed system. For a distributed system, data are stored across many machines. When the number of machines changes, with cluster scaling out or machine crash for example, data need to be moved across machines. </p>
+<p><code>Prophet</code> is the key component of MatrixCube for Auto-Rebalance and Scheduling. An <code>Etcd Server</code> is embedded inside <code>Prophet</code> for storing the metadata of the cluster.</p>
+<p>It has three main objectives to reach:</p>
+<ul>
+<li>Keep the storage level of each <code>Store</code> balanced.</li>
+<li>Keep the write/read requests balanced. </li>
+<li>Keep the logical table distribution balanced. </li>
+</ul>
+<p>We designed a mechanism of <code>Heartbeat</code> and <code>Event Notify</code> to achieve these objectives. Each <code>Store</code> and <code>Leader Replica</code> will send <code>Hearbeat</code> information to <code>Prophet</code>, <code>Prophet</code> will make scheduling decision based on the information. We need to configure certain <code>Store</code>s to take the duty of <code>Prophet</code>.</p>
+<h2 id="store-hearbeat"><strong>Store Hearbeat</strong></h2>
+<p>Each <code>Store</code> sends <code>Heartbeat</code> periodically to <code>Prophet</code>, the <code>Heartbeat</code> includes: </p>
+<ul>
+<li>At the moment, how many <code>Replicas</code> are in this <code>Store</code>.</li>
+<li>At the moment, how much storage space does this <code>Store</code> have, how much space is already used, how much space remaining. </li>
+</ul>
+<p><code>Prophet</code> collects all <code>Heartbeats</code>, and <code>Prophet</code> will understand a global <code>Replica</code> mapping and the storage space of each <code>Store</code>. Based on this information, <code>Prophet</code> sends scheduling orders, moving some <code>Replica</code>s to proper <code>Store</code>s, in order to balance the <code>Replica</code> numbers for each <code>Store</code>. Since each <code>Replica</code> of a <code>Shard</code> is the same size, the storage space is thus equalized.</p>
+<h2 id="replica-hearbeat"><strong>Replica Hearbeat</strong></h2>
+<p>For each <code>Shard</code>, it has several <code>Replicas</code> distributed in several <code>Stores</code>. These <code>Replica</code>s form a <code>Raft-Group</code> and a <code>Leader</code> is elected. This <code>Leader</code> sends periodically <code>Heartbeats</code> to <code>Prophet</code>. This <code>Heartbeat</code> has information as:</p>
+<ul>
+<li>At the moment, how many <code>Replicas</code> a <code>Shard</code> has, and the latest active time of each <code>Replica</code>.</li>
+<li>At the moment, who is the <code>Leader Replica</code>. </li>
+</ul>
+<p><code>Prophet</code> collects all <code>Hearbeat</code>s and constructs a global <code>Shard Replica</code> and <code>Replica Leader</code> mapping. With this information, <code>Prophet</code> launches scheduling orders under the following circumstances:</p>
+<ul>
+<li><code>Add Replica</code> order: if the number of <code>Shard Replica</code> is not enough, look for appropriate <code>Stores</code> to add <code>Replicas</code>. </li>
+<li><code>Remove Replica</code> order: if the number of <code>Shard Replica</code> exceeds the limit, delete <code>Replicas</code> in appropriate <code>Stores</code>.</li>
+<li><code>Move Replica</code> order: if the number of <code>Shard Replica</code> is not balanced, some <code>Replicas</code> will be moved to achieve the balance. </li>
+<li><code>Transfer Leader</code> order: if the <code>Leader</code> number is not balanced in the cluster, some <code>Leaders</code> will be transferred. </li>
+</ul>
+<h2 id="event-notify"><strong>Event Notify</strong></h2>
+<p>The <code>Heartbeat</code> information collected will be synchronized to all MatrixCube <code>Stores</code>. Each <code>Store</code> will form the global routing table. </p>
 
               
             </article>
@@ -1344,7 +1343,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../insert/" class="md-footer__link md-footer__link--prev" aria-label="Previous: INSERT" rel="prev">
+        <a href="../matrixcube-introduction/" class="md-footer__link md-footer__link--prev" aria-label="Previous: MatrixCube Introduction" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1353,20 +1352,20 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              INSERT
+              MatrixCube Introduction
             </div>
           </div>
         </a>
       
       
         
-        <a href="../select/" class="md-footer__link md-footer__link--next" aria-label="Next: SELECT" rel="next">
+        <a href="../matrixcube-shard-splitting/" class="md-footer__link md-footer__link--next" aria-label="Next: Shard Splitting" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              SELECT
+              Shard Splitting
             </div>
           </div>
           <div class="md-footer__button md-icon">
@@ -1396,10 +1395,10 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../../../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../../assets/javascripts/workers/search.361d90f1.min.js", "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.361d90f1.min.js", "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../../../../assets/javascripts/bundle.289a2a4b.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.289a2a4b.min.js"></script>
       
     
   </body>
