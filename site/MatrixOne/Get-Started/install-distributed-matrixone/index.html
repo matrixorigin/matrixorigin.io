@@ -534,8 +534,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#two-types-of-nodes" class="md-nav__link">
-    Two Types of Nodes
+  <a href="#two-types-of-stores" class="md-nav__link">
+    Two Types of Stores
   </a>
   
 </li>
@@ -544,6 +544,40 @@
   <a href="#installation" class="md-nav__link">
     Installation
   </a>
+  
+    <nav class="md-nav" aria-label="Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step1" class="md-nav__link">
+    Step1:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step2" class="md-nav__link">
+    Step2:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step3" class="md-nav__link">
+    Step3:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step4" class="md-nav__link">
+    Step4:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1095,10 +1129,57 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4_2" type="checkbox" id="__nav_1_4_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_4_2">
+          System Paramaters
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="System Paramaters" data-md-level="3">
+        <label class="md-nav__title" for="__nav_1_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          System Paramaters
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
-      <a href="../../Reference/configuration-settings/" class="md-nav__link">
-        Configuration Settings
+      <a href="../../System-Parameters/configuration-settings.md" class="md-nav__link">
+        General Settings
       </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../System-Parameters/distributed-settings.md" class="md-nav__link">
+        Distributed Settings
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -1266,8 +1347,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#two-types-of-nodes" class="md-nav__link">
-    Two Types of Nodes
+  <a href="#two-types-of-stores" class="md-nav__link">
+    Two Types of Stores
   </a>
   
 </li>
@@ -1276,6 +1357,40 @@
   <a href="#installation" class="md-nav__link">
     Installation
   </a>
+  
+    <nav class="md-nav" aria-label="Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step1" class="md-nav__link">
+    Step1:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step2" class="md-nav__link">
+    Step2:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step3" class="md-nav__link">
+    Step3:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step4" class="md-nav__link">
+    Step4:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1311,13 +1426,66 @@
 
 
 <h1 id="install-distributed-matrixone"><strong>Install distributed MatrixOne</strong></h1>
-<p>MatrixOne supports distributed deloyment. At least 3 nodes are required for the distributed setting. </p>
-<h3 id="two-types-of-nodes">Two Types of Nodes</h3>
-<p>There are two types of nodes in a MatrixOne cluster: prophet nodes and pure storage nodes. The first three nodes are prophet nodes. The others are pure storage nodes. </p>
-<p>For example, if there're three nodes in the cluster, all the nodes are prophet nodes.
-If there're four nodes in the cluster, three are prophet nodes, one is a pure storage node.</p>
+<p>MatrixOne supports distributed deloyment. At least 3 stores (same as Nodes) are required for the distributed setting. </p>
+<h3 id="two-types-of-stores">Two Types of Stores</h3>
+<p>There are two types of stores in a MatrixOne cluster: prophet stores and pure storage stores. The first three stores are prophet stores. The others are pure storage stores. </p>
+<p>For example, if there're three stores in the cluster, all the stores are prophet stores.
+If there're five nodes in the cluster, three are prophet stores, two are pure storage stores.</p>
 <h3 id="installation">Installation</h3>
-<p>Each node must install a MatrixOne as standalone version. Installation steps are the same as <a href="../install-standalone-matrixone/">the standalone</a>. </p>
+<p>This tutorial is an example of 5 stores installation. </p>
+<h4 id="step1"><em>Step1</em>:</h4>
+<p>Prepare 3 servers as prophet stores (recommended specification: x86 CPU with 16 cores and 64GB memory, with CentOS 7+ OS).</p>
+<p>Each store must install a MatrixOne as standalone version. Installation steps are the same as <a href="../install-standalone-matrixone/">the standalone</a>. </p>
+<h4 id="step2"><em>Step2</em>:</h4>
+<p>Set up store1, which is also called the <code>Prophet Genesis Store</code>. </p>
+<ol>
+<li>Set <code>id</code> of the Prophet Genesis Store: 
+<div class="highlight"><pre><span></span><code>nodeID = 1
+</code></pre></div></li>
+<li>
+<p>Set  <code>addr-raft</code> and <code>addr-client</code> to receive Raft protocol and <code>Shard Proxy</code> messages from other MatrixCube stores: 
+<div class="highlight"><pre><span></span><code>addr-raft = &quot;your_ip_address:10000&quot;
+addr-client = &quot;your_ip_address:20000&quot;
+</code></pre></div></p>
+</li>
+<li>
+<p>Set the size limit of a <code>Shard</code>:
+<div class="highlight"><pre><span></span><code>shard-capacity-bytes = &quot;96MB&quot;
+</code></pre></div></p>
+</li>
+<li>
+<p>Set <code>rpc-addr</code> to receive heartbeats from the whole cluster:
+<div class="highlight"><pre><span></span><code>rpc-addr = &quot;your_ip_address:30000&quot;
+</code></pre></div></p>
+</li>
+<li>
+<p>Set <code>join</code>, <code>client-urls</code> and <code>peer-urls</code> to group into a Etcd-server cluster. As the Prophet Genesis Store is the first store, the <code>join</code> parameter can remain empty:</p>
+</li>
+</ol>
+<p><div class="highlight"><pre><span></span><code>join = &quot;&quot;
+client-urls = &quot;your_ip_address:40000&quot;
+peer-urls = &quot;your_ip_address:50000&quot;
+</code></pre></div>
+6. Set <code>storage-node</code> to TRUE, as the prophet store will hold the cluster metadata:
+<div class="highlight"><pre><span></span><code>storage-node = true
+</code></pre></div>
+7. Set <code>max-replicas</code> number to the replica numbers that you want, it can only be <code>2*N+1</code> numbers:
+<div class="highlight"><pre><span></span><code>max-replicas = 3
+</code></pre></div></p>
+<h4 id="step3"><em>Step3</em>:</h4>
+<p>Set up store2 and store3 as prophet stores. Repeat the same procedure of step1 and step2 for each store. The only two differences are setting a unique <code>nodeID</code> and a <code>join</code> ip address. 
+<div class="highlight"><pre><span></span><code>nodeID = 2 or 3; 
+join = &quot;ip_address_of_store1&quot;
+</code></pre></div></p>
+<h4 id="step4"><em>Step4</em>:</h4>
+<p>Set up the other two stores as pure storage store. Repeat the same procedure of step1 and step2 for each store. There are three more parameters to be set:
+* Set a unique number for nodeID. 
+* Set <code>storage-node</code> to TRUE.
+* Fill the three empty string with the three client-urls of the three prophet node for the <code>external-etcd</code> parameter.
+<div class="highlight"><pre><span></span><code>nodeID = 4/5;
+storage-node = false;
+storage-node = [&quot;ip_address_of_prophet_store1&quot;,&quot;ip_address_of_prophet_store2&quot;,&quot;ip_address_of_prophet_store3&quot;]
+</code></pre></div></p>
 <h3 id="generate-default-configuration">Generate Default Configuration</h3>
 <p>Run following command in directory <code>matrixone</code> to generate default Configuration.
 <div class="highlight"><pre><span></span><code>$ make config

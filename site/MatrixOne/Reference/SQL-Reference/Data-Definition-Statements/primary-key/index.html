@@ -13,7 +13,7 @@
     
     
       
-        <title>CREATE INDEX - MatrixOne Docs</title>
+        <title>**PRIMARY KEY** - MatrixOne Docs</title>
       
     
     
@@ -60,7 +60,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#create-index" class="md-skip">
+        <a href="#primary-key" class="md-skip">
           Skip to content
         </a>
       
@@ -100,7 +100,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              CREATE INDEX
+              **PRIMARY KEY**
             
           </span>
         </div>
@@ -166,15 +166,13 @@
         
   
   
-    
-  
 
 
   
   
   
     <li class="md-tabs__item">
-      <a href="../../../../.." class="md-tabs__link md-tabs__link--active">
+      <a href="../../../../.." class="md-tabs__link">
         MatrixOne
       </a>
     </li>
@@ -236,14 +234,12 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
       
       
       
@@ -592,14 +588,12 @@
               
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4" type="checkbox" id="__nav_1_4" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4" type="checkbox" id="__nav_1_4" >
       
       
       
@@ -620,14 +614,12 @@
               
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4_1" type="checkbox" id="__nav_1_4_1" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4_1" type="checkbox" id="__nav_1_4_1" >
       
       
       
@@ -648,14 +640,12 @@
               
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4_1_1" type="checkbox" id="__nav_1_4_1_1" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4_1_1" type="checkbox" id="__nav_1_4_1_1" >
       
       
       
@@ -732,73 +722,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          CREATE INDEX
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../create-index/" class="md-nav__link">
         CREATE INDEX
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#description" class="md-nav__link">
-    Description
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#syntax" class="md-nav__link">
-    Syntax
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#examples" class="md-nav__link">
-    Examples
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#constraints" class="md-nav__link">
-    Constraints
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1324,15 +1252,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#syntax" class="md-nav__link">
-    Syntax
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#examples" class="md-nav__link">
-    Examples
+  <a href="#sql-primary-key-on-create-table" class="md-nav__link">
+    SQL PRIMARY KEY on CREATE TABLE
   </a>
   
 </li>
@@ -1356,22 +1277,38 @@
             <article class="md-content__inner md-typeset">
               
                 
-<a href="https://github.com/matrixorigin/matrixone/edit/master/docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Statements/create-index.md" title="Edit this page" class="md-content__button md-icon">
+<a href="https://github.com/matrixorigin/matrixone/edit/master/docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Statements/primary-key.md" title="Edit this page" class="md-content__button md-icon">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
 </a>
 
 
-<h1 id="create-index"><strong>CREATE INDEX</strong></h1>
+<h1 id="primary-key"><strong>PRIMARY KEY</strong></h1>
 <h2 id="description"><strong>Description</strong></h2>
-<p>Create an index on a table column.</p>
-<h2 id="syntax"><strong>Syntax</strong></h2>
-<div class="highlight"><pre><span></span><code>&gt; CREATE INDEX index_name ON table_name (column_name)
+<p>The PRIMARY KEY constraint uniquely identifies each record in a table.</p>
+<p>Primary keys must contain UNIQUE values, and cannot contain NULL values.</p>
+<p>A table can have only ONE primary key; and in the table, this primary key can consist of single or multiple columns (fields).</p>
+<h2 id="sql-primary-key-on-create-table"><strong>SQL PRIMARY KEY on CREATE TABLE</strong></h2>
+<p>The following SQL creates a PRIMARY KEY on the "ID" column when the "Persons" table is created:</p>
+<div class="highlight"><pre><span></span><code>&gt; CREATE TABLE Persons (
+    ID int NOT NULL,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255),
+    Age int,
+    PRIMARY KEY (ID)
+);
 </code></pre></div>
-<h2 id="examples"><strong>Examples</strong></h2>
-<div class="highlight"><pre><span></span><code>&gt; CREATE INDEX PIndex ON Persons (LastName);
+<p>To allow naming of a PRIMARY KEY constraint, and for defining a PRIMARY KEY constraint on multiple columns, use the following SQL syntax:</p>
+<div class="highlight"><pre><span></span><code>&gt; CREATE TABLE Persons (
+    ID int NOT NULL,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255),
+    Age int,
+    CONSTRAINT PK_Person PRIMARY KEY (ID,LastName)
+);
 </code></pre></div>
+<p>Note: In the example above there is only ONE PRIMARY KEY (PK_Person). However, the VALUE of the primary key is made up of TWO COLUMNS (ID + LastName).</p>
 <h2 id="constraints"><strong>Constraints</strong></h2>
-<p>The index can only be applied for a single column. The index type, UNIQUE/FULLTEXT statements are not supported yet.</p>
+<p><code>DROP PRIMARY KEY</code> is not supported yet. </p>
 
               
             </article>
@@ -1381,41 +1318,6 @@
       </main>
       
         <footer class="md-footer">
-  
-    <nav class="md-footer__inner md-grid" aria-label="Footer">
-      
-        
-        <a href="../drop-table/" class="md-footer__link md-footer__link--prev" aria-label="Previous: DROP TABLE" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              DROP TABLE
-            </div>
-          </div>
-        </a>
-      
-      
-        
-        <a href="../drop-index/" class="md-footer__link md-footer__link--next" aria-label="Next: DROP INDEX" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              DROP INDEX
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
