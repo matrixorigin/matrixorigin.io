@@ -581,20 +581,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#generate-default-configuration" class="md-nav__link">
-    Generate Default Configuration
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#configuration-settings" class="md-nav__link">
-    Configuration Settings
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1184,7 +1170,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Customer-Functions/year.md" class="md-nav__link">
+      <a href="../../Reference/Customer-Functions/year/" class="md-nav__link">
         YEAR()
       </a>
     </li>
@@ -1469,20 +1455,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#generate-default-configuration" class="md-nav__link">
-    Generate Default Configuration
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#configuration-settings" class="md-nav__link">
-    Configuration Settings
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1561,138 +1533,7 @@ join = &quot;ip_address_of_store1&quot;
 storage-node = false;
 storage-node = [&quot;ip_address_of_prophet_store1&quot;,&quot;ip_address_of_prophet_store2&quot;,&quot;ip_address_of_prophet_store3&quot;]
 </code></pre></div></p>
-<h3 id="generate-default-configuration">Generate Default Configuration</h3>
-<p>Run following command in directory <code>matrixone</code> to generate default Configuration.
-<div class="highlight"><pre><span></span><code>$ make config
-</code></pre></div>
-The default Configuration file is <code>system_vars_config.toml</code>.</p>
-<h3 id="configuration-settings">Configuration Settings</h3>
-<p>To configurate a distributed setting, following parameters need to be modified in the default Configuration file 'system_vars_config.toml'.</p>
-<ul>
-<li>
-<p><strong>nodeID</strong></p>
-<p><code>nodeID</code> is the Node ID of the cube. In a cluster, each node should have a different <code>nodeID</code>.</p>
-</li>
-<li>
-<p><strong>addr-raft and addr-advertise-raft</strong></p>
-<p><code>addr-raft</code> is the address for raft-group rpc communication. </p>
-<p>It is the 10000 port of the node.</p>
-<div class="highlight"><pre><span></span><code>addr-raft = &quot;localhost:10000&quot;
-</code></pre></div>
-<p>Only docker deployment need adjust <code>addr-advertise-raft</code></p>
-<p>For docker deployment, the ip is <code>0.0.0.0</code></p>
-<div class="highlight"><pre><span></span><code>addr-raft = &quot;0.0.0.0:10000&quot;
-</code></pre></div>
-<p>In the case that some clients cannot access the raft-group, <code>addr-advertise-raft</code> must be manually set.</p>
-<div class="highlight"><pre><span></span><code>addr-advertise-raft = &quot;${HOST}:10000&quot;
-</code></pre></div>
-</li>
-<li>
-<p><strong>addr-client and addr-advertise-client</strong></p>
-<p><code>addr-client</code> is the address for cube service.
-It is the 20000 port of the node.</p>
-<div class="highlight"><pre><span></span><code>addr-client = &quot;localhost:20000&quot;  
-</code></pre></div>
-<p>Only docker deployment need adjust <code>addr-advertise-client</code></p>
-<p>For docker deployment, the ip is <code>0.0.0.0</code></p>
-<div class="highlight"><pre><span></span><code>addr-client = &quot;0.0.0.0:20000&quot;  
-</code></pre></div>
-<p>In the case that a client cannot access Cube through the default client URLs listened to by Cube, <code>addr-advertise-client</code> must be manually set.</p>
-<div class="highlight"><pre><span></span><code>addr-advertise-client = &quot;${HOST}:20000&quot;
-</code></pre></div>
-</li>
-<li>
-<p><strong>dir-data</strong></p>
-<p><code>dir-data</code> is the directory for cube data. In a cluster, each node should have a different <code>dir-data</code>.</p>
-</li>
-<li>
-<p><strong>store-heartbeat-duration</strong></p>
-<p><code>store-heartbeat-duration</code> is the period for this node to report information to scheduler. It should be less than 10s.</p>
-</li>
-<li>
-<p><strong>prophet name</strong></p>
-<p><code>name</code> in <code>Prophet Configs</code> is the name of the node. In a cluster, each node should have a different prophet name.</p>
-<div class="highlight"><pre><span></span><code>name = &quot;node0&quot;
-</code></pre></div>
-</li>
-<li>
-<p><strong>rpc-addr and rpc-advertise-addr</strong></p>
-<p><code>rpc-addr</code> is the address for other clients to access prophet. 
-It is the 30000 port of the node.</p>
-<div class="highlight"><pre><span></span><code>rpc-addr = &quot;localhost:30000&quot;
-</code></pre></div>
-<p>Only docker deployment need adjust <code>rpc-advertise-addr</code></p>
-<p>For docker deployment, the ip is <code>0.0.0.0</code></p>
-<div class="highlight"><pre><span></span><code>rpc-addr = &quot;0.0.0.0:30000&quot;  
-</code></pre></div>
-<p>In the case that a client cannot access prophet, <code>rpc-advertise-addr</code> must be manually set.</p>
-<div class="highlight"><pre><span></span><code>rpc-advertise-addr = &quot;${HOST}:30000&quot;
-</code></pre></div>
-</li>
-<li>
-<p><strong>storage-node</strong></p>
-<p><code>storage-node</code> is whether the node is a pure storage node.
-For the three prophet nodes, <code>storage-node</code> is <code>true</code>.</p>
-<div class="highlight"><pre><span></span><code>storage-node = true
-</code></pre></div>
-<p>For pure storage nodes, <code>storage-node</code> is <code>false</code></p>
-<div class="highlight"><pre><span></span><code>storage-node = false
-</code></pre></div>
-</li>
-<li>
-<p><strong>external-etcd</strong></p>
-<p>For the three prophet nodes, <code>external-etcd</code> is empty.</p>
-<div class="highlight"><pre><span></span><code>external-etcd = [&quot;&quot;, &quot;&quot;, &quot;&quot;]
-</code></pre></div>
-<p>For pure storage nodes, <code>external-etcd</code> is the list of the <code>client-urls</code> of the three prophet nodes, i.e. the 40000 port of the prophet nodes.</p>
-<div class="highlight"><pre><span></span><code>external-etcd = [&quot;http://ip_of_prophet_node1:40000&quot;, &quot;http://ip_of_prophet_node2:40000&quot;, &quot;http://ip_of_prophet_node3:40000&quot;]
-</code></pre></div>
-</li>
-<li>
-<p><strong>join</strong></p>
-<p><code>join</code> is for the second and third prophet nodes to join the raft group.
-For the first prophet node, <code>join</code> is a empty string.</p>
-<div class="highlight"><pre><span></span><code>join = &quot;&quot;
-</code></pre></div>
-<p>For the second and third prophet node, <code>join</code> is the <code>peer-urls</code> of the first prophet node.</p>
-<div class="highlight"><pre><span></span><code>join = &quot;http://ip_of_the_first_prophet_node:40000&quot;
-</code></pre></div>
-<p>For pure storage nodes, there's no need to adjust <code>join</code>.</p>
-</li>
-<li>
-<p><strong>client-urls and advertise-client-urls</strong></p>
-<p><code>client-urls</code> is exposed to other nodes in the cluster.
-It is 40000 port of the node</p>
-<div class="highlight"><pre><span></span><code>client-urls = &quot;http://localhost:40000&quot;
-</code></pre></div>
-<p>Only docker deployment need adjust <code>advertise-client-urls</code></p>
-<p>For docker deployment, the ip is <code>0.0.0.0</code></p>
-<div class="highlight"><pre><span></span><code>client-urls = &quot;http://0.0.0.0:40000&quot;
-</code></pre></div>
-<p>In the case that some clients ccannot access prophet through the default client URLs listened to by prophet, <code>advertise-client-urls</code> must be manually set.</p>
-<div class="highlight"><pre><span></span><code>advertise-client-urls = &quot;http://${HOST}:40000
-</code></pre></div>
-</li>
-<li>
-<p><strong>peer-urls and advertise-peer-urls</strong></p>
-<p><code>peer-urls</code> is the list of peer URLs to be listened to by a prophet node. It is the 40000 port of the node.</p>
-<div class="highlight"><pre><span></span><code>peer-urls = &quot;http://localhost:50000&quot;
-</code></pre></div>
-<p>Only docker deployment need adjust <code>advertise-peer-urls</code></p>
-<p>For docker deployment, the ip is <code>0.0.0.0</code></p>
-<div class="highlight"><pre><span></span><code>peer-urls = &quot;http://0.0.0.0:50000&quot;
-</code></pre></div>
-<p>In the case that a node cannot be listened to by a prophet node, <code>advertise-peer-urls</code> should be manually set.</p>
-<div class="highlight"><pre><span></span><code>advertise-peer-urls = &quot;http://${HOST}:50000&quot;
-</code></pre></div>
-</li>
-<li>
-<p><strong>max-replicas</strong></p>
-<p><code>max-replicas</code> is the max number of replica in a prophet group. It should be 3.</p>
-<div class="highlight"><pre><span></span><code>max-replicas = 3
-</code></pre></div>
-</li>
-</ul>
+<p>To learn more about our distribute system parameters, please refer to <a href="../../Reference/System-Parameters/distributed-settings/">distributed settings</a>. </p>
 
               
             </article>
