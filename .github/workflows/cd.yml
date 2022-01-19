@@ -2,10 +2,10 @@ name: cd
 on:
   workflow_dispatch:
     inputs:
-      version:
-        description: 'Document Version'
+      tag:
+        description: 'Document Image Tag'
         required: true
-        default: '0.2.0'
+        default: 'latest'
 
 jobs:
   deploy:
@@ -22,7 +22,7 @@ jobs:
                     && rm -rf matrixorigin.io
                     && git@github.com:matrixorigin/matrixorigin.io.git
                     && cd matrixorigin.io/deploy
-                    && docker pull matrixorigin/matrixorigin.io:latest
+                    && docker pull matrixorigin/matrixorigin.io:${{ github.event.inputs.tag }}
                     && docker-compose stop
                     && docker-compose up -d --build
       - name: deploy on server2
@@ -36,6 +36,6 @@ jobs:
                     && rm -rf matrixorigin.io
                     && git@github.com:matrixorigin/matrixorigin.io.git
                     && cd matrixorigin.io/deploy
-                    && docker pull matrixorigin/matrixorigin.io:latest
+                    && docker pull matrixorigin/matrixorigin.io:${{ github.event.inputs.tag }}
                     && docker-compose stop
                     && docker-compose up -d --build
