@@ -22,7 +22,7 @@ git push
 docker build . -t matrixorigin/matrixorigin.io:${doc_version}
 docker build . -t matrixorigin/matrixorigin.io:latest
 
-echo ${pw} | docker login --username matrixorigin --password-stdin
+docker login ${domain}
 if [[ $? == 0 ]]; then
      docker push matrixorigin/matrixorigin.io:${doc_version}
      docker push matrixorigin/matrixorigin.io:latest
