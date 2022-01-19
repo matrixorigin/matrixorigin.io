@@ -19,3 +19,14 @@ git add *
 git commit * -m "update site"
 git push
 
+docker build . -t matrixorigin/matrixorigin.io:${doc_version}
+docker build . -t matrixorigin/matrixorigin.io:latest
+
+echo ${pw} | docker login --username matrixorigin --password-stdin
+if [[ $? == 0 ]]; then
+     docker push matrixorigin/matrixorigin.io:${doc_version}
+     docker push matrixorigin/matrixorigin.io:latest
+else
+     echo "Login to docker hub failed"
+     exit 1
+fi

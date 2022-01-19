@@ -1,0 +1,41 @@
+name: cd
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Document Image Tag'
+        required: true
+        default: 'latest'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: deploy on server1
+        uses: appleboy/ssh-action@master
+        with:
+            host: ${{ secrets.DOCSSERVER1 }}
+            username: ${{ secrets.SERVERUSER }}
+            password: ${{ secrets.SERVERPASSWORD }}
+            port: ${{ secrets.SERVERPORT }}
+            script: cd /data
+                    && rm -rf matrixorigin.io
+                    && git@github.com:matrixorigin/matrixorigin.io.git
+                    && cd matrixorigin.io/deploy
+                    && docker pull matrixorigin/matrixorigin.io:${{ github.event.inputs.tag }}
+                    && docker-compose stop
+                    && docker-compose up -d --build
+      - name: deploy on server2
+        uses: appleboy/ssh-action@master
+        with:
+            host: ${{ secrets.DOCSSERVER2 }}
+            username: ${{ secrets.SERVERUSER }}
+            password: ${{ secrets.SERVERPASSWORD }}
+            port: ${{ secrets.SERVERPORT }}
+            script: cd /data
+                    && rm -rf matrixorigin.io
+                    && git@github.com:matrixorigin/matrixorigin.io.git
+                    && cd matrixorigin.io/deploy
+                    && docker pull matrixorigin/matrixorigin.io:${{ github.event.inputs.tag }}
+                    && docker-compose stop
+                    && docker-compose up -d --build
