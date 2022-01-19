@@ -20,6 +20,6 @@ jobs:
             port: ${{ secrets.SERVERPORT }}
             script: cd /data
                     && rm -rf matrixorigin.io
-                    && git clone --recursive git@github.com:sukki37/matrixorigin.io.git
+                    && git clone --recursive git@github.com:matrixorigin/matrixorigin.io.git
                     && cd matrixorigin.io/scripts
                     && ./upgrade.sh ${{ github.event.inputs.version }} ${{ secrets.DOCKERHUBPASSWORD }}
