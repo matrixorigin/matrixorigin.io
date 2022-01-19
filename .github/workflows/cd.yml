@@ -20,7 +20,7 @@ jobs:
             port: ${{ secrets.SERVERPORT }}
             script: cd /data
                     && rm -rf matrixorigin.io
-                    && git@github.com:matrixorigin/matrixorigin.io.git
+                    && git clone git@github.com:matrixorigin/matrixorigin.io.git
                     && cd matrixorigin.io/deploy
                     && docker pull matrixorigin/matrixorigin.io:${{ github.event.inputs.tag }}
                     && docker-compose stop
@@ -34,7 +34,7 @@ jobs:
             port: ${{ secrets.SERVERPORT }}
             script: cd /data
                     && rm -rf matrixorigin.io
-                    && git@github.com:matrixorigin/matrixorigin.io.git
+                    && git clone git@github.com:matrixorigin/matrixorigin.io.git
                     && cd matrixorigin.io/deploy
                     && docker pull matrixorigin/matrixorigin.io:${{ github.event.inputs.tag }}
                     && docker-compose stop
