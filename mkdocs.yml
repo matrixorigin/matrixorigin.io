@@ -41,7 +41,7 @@ nav:
       - What's New: MatrixOne/Overview/what's-new.md
     - Get Started: 
       - Install Standalone MatrixOne: MatrixOne/Get-Started/install-standalone-matrixone.md
-      - Install and configure distributed MatrixOne: MatrixOne/Get-Started/install-distributed-matrixone.md
+      - Install Distributed MatrixOne: MatrixOne/Get-Started/install-distributed-matrixone.md
       - Connect to MatrixOne Server: MatrixOne/Get-Started/connect-to-matrixone-server.md
       - Tutorial:
         - SSB Test with MatrixOne: MatrixOne/Get-Started/Tutorial/SSB-test-with-matrixone.md
@@ -55,6 +55,7 @@ nav:
           - DROP TABLE: MatrixOne/Reference/SQL-Reference/Data-Definition-Statements/drop-table.md
           - CREATE INDEX: MatrixOne/Reference/SQL-Reference/Data-Definition-Statements/create-index.md
           - DROP INDEX: MatrixOne/Reference/SQL-Reference/Data-Definition-Statements/drop-index.md
+          - PRIMARY KEY: MatrixOne/Reference/SQL-Reference/Data-Definition-Statements/primary-key.md
         - DML:
           - INSERT: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/insert.md
           - LOAD DATA: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/load-data.md
@@ -64,6 +65,7 @@ nav:
           - USE: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/use.md
           - LIKE: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/like.md
           - CAST: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/cast.md
+          - INNER JOIN: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/inner-join.md
         - Aggregate Functions:
           - AVG: MatrixOne/Reference/SQL-Reference/Aggregate-Functions/avg.md
           - COUNT: MatrixOne/Reference/SQL-Reference/Aggregate-Functions/count.md
@@ -71,9 +73,11 @@ nav:
           - MIN: MatrixOne/Reference/SQL-Reference/Aggregate-Functions/min.md
           - SUM: MatrixOne/Reference/SQL-Reference/Aggregate-Functions/sum.md
         - Data Types: MatrixOne/Reference/SQL-Reference/data-types.md
+      - Custom Functions:
+        - YEAR(): MatrixOne/Reference/Customer-Functions/year.md
       - System Paramaters: 
         - General Settings: MatrixOne/Reference/System-Parameters/configuration-settings.md
-        - Distributed Settings: MatrixOne/Reference/System-Parameters/distributed-settings.md
+        - Distributed Settings: MatrixOne/
     - FAQs:
       - General FAQs: MatrixOne/FAQs/general-faqs.md
     - Release Notes:
