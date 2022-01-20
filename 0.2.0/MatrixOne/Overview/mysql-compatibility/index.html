@@ -448,6 +448,67 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_2_5" type="checkbox" id="__nav_1_2_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_2_5">
+          Performance
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Performance" data-md-level="3">
+        <label class="md-nav__title" for="__nav_1_2_5">
+          <span class="md-nav__icon md-icon"></span>
+          Performance
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SSB%20Test%20Performance/" class="md-nav__link">
+        SSB Test Performance
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../NYC%20Test%20Performance/" class="md-nav__link">
+        NYC Test Performance
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
       <a href="../what%27s-new/" class="md-nav__link">
         What's New
@@ -566,6 +627,20 @@
     <li class="md-nav__item">
       <a href="../../Get-Started/Tutorial/SSB-test-with-matrixone/" class="md-nav__link">
         SSB Test with MatrixOne
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Get-Started/Tutorial/NYC-test-with-matrixone/" class="md-nav__link">
+        NYC Test with MatrixOne
       </a>
     </li>
   
@@ -1392,6 +1467,21 @@
 </tr>
 <tr>
 <td></td>
+<td></td>
+<td>DEFAULT can be supported now.</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>For cluster table, there should be properties("bucket"="n") in the end of DDL.</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>KEY(column) is not supported yet.</td>
+</tr>
+<tr>
+<td></td>
 <td>CREATE other projects</td>
 <td>Not supported now.</td>
 </tr>
@@ -1409,6 +1499,11 @@
 <td></td>
 <td>DROP TABLE</td>
 <td>Same as MySQL.</td>
+</tr>
+<tr>
+<td></td>
+<td>Drop Other objects</td>
+<td>Only DROP INDEX is supported.</td>
 </tr>
 <tr>
 <td>DML</td>
@@ -1463,7 +1558,12 @@
 <tr>
 <td></td>
 <td>SELECT</td>
-<td>All multi tables queries are not supported now.</td>
+<td>Only INNER JOIN with GROUP BY and ORDER BY is supported in multi table scenarios.</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>Table alias is not supported in INNER JOIN.</td>
 </tr>
 <tr>
 <td></td>
@@ -1516,9 +1616,19 @@
 <td>Local key word is not supported now.</td>
 </tr>
 <tr>
+<td></td>
+<td></td>
+<td>Relative path is limited supported now. Only based on mo-server file can be supported.</td>
+</tr>
+<tr>
 <td>Database Administration Statements</td>
 <td>SHOW</td>
 <td>Only show tables and show databases are supported.</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>Show CREATE TABLE and CREATE DATABASE are supported.</td>
 </tr>
 <tr>
 <td></td>
@@ -1563,7 +1673,12 @@
 <tr>
 <td></td>
 <td>Date</td>
-<td>Not supported now.</td>
+<td>Only 'YYYY-MM-DD' and 'YYYYMMDD' formats are supported.</td>
+</tr>
+<tr>
+<td></td>
+<td>Datetime</td>
+<td>Only 'YYYY-MM-DD HH:MM:SS' and 'YYYYMMDD HH:MM:SS' formats are supported.</td>
 </tr>
 <tr>
 <td></td>
@@ -1636,13 +1751,13 @@
       
       
         
-        <a href="../what%27s-new/" class="md-footer__link md-footer__link--next" aria-label="Next: What&#39;s New" rel="next">
+        <a href="../SSB%20Test%20Performance/" class="md-footer__link md-footer__link--next" aria-label="Next: SSB Test Performance" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              What's New
+              SSB Test Performance
             </div>
           </div>
           <div class="md-footer__button md-icon">

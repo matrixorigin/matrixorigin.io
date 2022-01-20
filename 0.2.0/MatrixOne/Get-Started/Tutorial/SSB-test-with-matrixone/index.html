@@ -436,6 +436,67 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_2_5" type="checkbox" id="__nav_1_2_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_2_5">
+          Performance
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Performance" data-md-level="3">
+        <label class="md-nav__title" for="__nav_1_2_5">
+          <span class="md-nav__icon md-icon"></span>
+          Performance
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Overview/SSB%20Test%20Performance/" class="md-nav__link">
+        SSB Test Performance
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Overview/NYC%20Test%20Performance/" class="md-nav__link">
+        NYC Test Performance
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
       <a href="../../../Overview/what%27s-new/" class="md-nav__link">
         What's New
@@ -635,6 +696,20 @@
   
 </nav>
       
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../NYC-test-with-matrixone/" class="md-nav__link">
+        NYC Test with MatrixOne
+      </a>
     </li>
   
 
@@ -1466,7 +1541,7 @@
 <p>Star Schema Benchmark（SSB）Test is a popular scenario for OLAP database performance tests. By going through this tutorial, you’ll learn how to complete a SSB Test with MatrixOne.</p>
 <p>In v0.1.0, only single table can work in MatrixOne. The following contents can be followed to data generation, data importing and querying.</p>
 <h2 id="before-you-begin"><strong>Before you begin</strong></h2>
-<p>Make sure you have already <a href="install-matrixone.md">installed MatrixOne</a> and <a href="../../connect-to-matrixone-server/">connected to MatrixOne Server</a>.</p>
+<p>Make sure you have already <a href="../../install-standalone-matrixone/">installed MatrixOne</a> and <a href="../../connect-to-matrixone-server/">connected to MatrixOne Server</a>.</p>
 <h2 id="1-compile-dbgen"><strong>1. Compile dbgen</strong></h2>
 <div class="highlight"><pre><span></span><code>$ git clone git@github.com:vadimtk/ssb-dbgen.git
 $ cd ssb-dbgen
@@ -1717,13 +1792,13 @@ SELECT LO_ORDERDATE, S_CITY, P_BRAND, sum(LO_REVENUE - LO_SUPPLYCOST) AS profit 
       
       
         
-        <a href="../../Playground/" class="md-footer__link md-footer__link--next" aria-label="Next: Playground" rel="next">
+        <a href="../NYC-test-with-matrixone/" class="md-footer__link md-footer__link--next" aria-label="Next: NYC Test with MatrixOne" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Playground
+              NYC Test with MatrixOne
             </div>
           </div>
           <div class="md-footer__button md-icon">
