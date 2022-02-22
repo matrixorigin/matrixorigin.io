@@ -1,0 +1,2030 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.7">
+    
+    
+      
+        <title>Contribute Documentation - MatrixOne Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.cd566b2a.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.e6a45f82.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,400i,700%7C&display=fallback">
+        <style>:root{--md-text-font:"Ubuntu";--md-code-font:""}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="mo" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#contributing-to-matrixone-documentation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-component="outdated" hidden>
+        <aside class="md-banner md-banner--warning">
+          
+        </aside>
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="https://www.matrixorigin.io" title="MatrixOne Docs" class="md-header__button md-logo" aria-label="MatrixOne Docs" data-md-component="logo">
+      
+  <img src="../../../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MatrixOne Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Contribute Documentation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/matrixorigin/matrixone/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    matrixorigin/matrixone
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link md-tabs__link--active">
+        MatrixOne
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://playground.matrixorigin.io/?tutorial=SSB-test-with-matrixone&step=1" class="md-tabs__link">
+        Playground
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://www.matrixorigin.io" title="MatrixOne Docs" class="md-nav__button md-logo" aria-label="MatrixOne Docs" data-md-component="logo">
+      
+  <img src="../../../../assets/logo.png" alt="logo">
+
+    </a>
+    MatrixOne Docs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/matrixorigin/matrixone/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    matrixorigin/matrixone
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1">
+          MatrixOne
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="MatrixOne" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          MatrixOne
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_2" type="checkbox" id="__nav_1_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_2">
+          Overview
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Overview" data-md-level="2">
+        <label class="md-nav__title" for="__nav_1_2">
+          <span class="md-nav__icon md-icon"></span>
+          Overview
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Overview/matrixone-introduction/" class="md-nav__link">
+        MatrixOne Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Overview/matrixone-architecture/" class="md-nav__link">
+        MatrixOne Architecture
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_2_3" type="checkbox" id="__nav_1_2_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_2_3">
+          MatrixCube Tech Design
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="MatrixCube Tech Design" data-md-level="3">
+        <label class="md-nav__title" for="__nav_1_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          MatrixCube Tech Design
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Overview/matrixcube/matrixcube-introduction/" class="md-nav__link">
+        MatrixCube Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Overview/matrixcube/matrixcube-auto-rebalance-scheduling/" class="md-nav__link">
+        Auto Rebalancing and Scheduling
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Overview/matrixcube/matrixcube-shard-splitting/" class="md-nav__link">
+        Shard Splitting
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Overview/matrixcube/matrixcube-proxy-routing/" class="md-nav__link">
+        Shard Proxy and Routing
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Overview/mysql-compatibility/" class="md-nav__link">
+        MySQL Compatibility
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_2_5" type="checkbox" id="__nav_1_2_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_2_5">
+          Performance
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Performance" data-md-level="3">
+        <label class="md-nav__title" for="__nav_1_2_5">
+          <span class="md-nav__icon md-icon"></span>
+          Performance
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Overview/SSB%20Test%20Performance/" class="md-nav__link">
+        SSB Test Performance
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Overview/NYC%20Test%20Performance/" class="md-nav__link">
+        NYC Test Performance
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Overview/what%27s-new/" class="md-nav__link">
+        What's New
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_3" type="checkbox" id="__nav_1_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_3">
+          Get Started
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Get Started" data-md-level="2">
+        <label class="md-nav__title" for="__nav_1_3">
+          <span class="md-nav__icon md-icon"></span>
+          Get Started
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Get-Started/install-standalone-matrixone/" class="md-nav__link">
+        Install Standalone MatrixOne
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Get-Started/install-distributed-matrixone/" class="md-nav__link">
+        Install Distributed MatrixOne
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Get-Started/connect-to-matrixone-server/" class="md-nav__link">
+        Connect to MatrixOne Server
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_3_4" type="checkbox" id="__nav_1_3_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_3_4">
+          Tutorial
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Tutorial" data-md-level="3">
+        <label class="md-nav__title" for="__nav_1_3_4">
+          <span class="md-nav__icon md-icon"></span>
+          Tutorial
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Get-Started/Tutorial/SSB-test-with-matrixone/" class="md-nav__link">
+        SSB Test with MatrixOne
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Get-Started/Tutorial/NYC-test-with-matrixone/" class="md-nav__link">
+        NYC Test with MatrixOne
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Get-Started/Playground/" class="md-nav__link">
+        Playground
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4" type="checkbox" id="__nav_1_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_4">
+          Reference
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Reference" data-md-level="2">
+        <label class="md-nav__title" for="__nav_1_4">
+          <span class="md-nav__icon md-icon"></span>
+          Reference
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4_1" type="checkbox" id="__nav_1_4_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_4_1">
+          SQL Reference
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="SQL Reference" data-md-level="3">
+        <label class="md-nav__title" for="__nav_1_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          SQL Reference
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4_1_1" type="checkbox" id="__nav_1_4_1_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_4_1_1">
+          DDL
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="DDL" data-md-level="4">
+        <label class="md-nav__title" for="__nav_1_4_1_1">
+          <span class="md-nav__icon md-icon"></span>
+          DDL
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Statements/create-database/" class="md-nav__link">
+        CREATE DATABASE
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Statements/create-table/" class="md-nav__link">
+        CREATE TABLE
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Statements/drop-database/" class="md-nav__link">
+        DROP DATABASE
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Statements/drop-table/" class="md-nav__link">
+        DROP TABLE
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Statements/create-index/" class="md-nav__link">
+        CREATE INDEX
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Statements/drop-index/" class="md-nav__link">
+        DROP INDEX
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Statements/primary-key/" class="md-nav__link">
+        PRIMARY KEY
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4_1_2" type="checkbox" id="__nav_1_4_1_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_4_1_2">
+          DML
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="DML" data-md-level="4">
+        <label class="md-nav__title" for="__nav_1_4_1_2">
+          <span class="md-nav__icon md-icon"></span>
+          DML
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Statements/insert/" class="md-nav__link">
+        INSERT
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Statements/load-data/" class="md-nav__link">
+        LOAD DATA
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Statements/select/" class="md-nav__link">
+        SELECT
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Statements/show-databases/" class="md-nav__link">
+        SHOW DATABASES
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Statements/show-tables/" class="md-nav__link">
+        SHOW TABLES
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Statements/use/" class="md-nav__link">
+        USE
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Statements/like/" class="md-nav__link">
+        LIKE
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Statements/cast/" class="md-nav__link">
+        CAST
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Statements/inner-join/" class="md-nav__link">
+        INNER JOIN
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4_1_3" type="checkbox" id="__nav_1_4_1_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_4_1_3">
+          Aggregate Functions
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Aggregate Functions" data-md-level="4">
+        <label class="md-nav__title" for="__nav_1_4_1_3">
+          <span class="md-nav__icon md-icon"></span>
+          Aggregate Functions
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/SQL-Reference/Aggregate-Functions/avg/" class="md-nav__link">
+        AVG
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/SQL-Reference/Aggregate-Functions/count/" class="md-nav__link">
+        COUNT
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/SQL-Reference/Aggregate-Functions/max/" class="md-nav__link">
+        MAX
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/SQL-Reference/Aggregate-Functions/min/" class="md-nav__link">
+        MIN
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/SQL-Reference/Aggregate-Functions/sum/" class="md-nav__link">
+        SUM
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/SQL-Reference/data-types/" class="md-nav__link">
+        Data Types
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4_2" type="checkbox" id="__nav_1_4_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_4_2">
+          Custom Functions
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Custom Functions" data-md-level="3">
+        <label class="md-nav__title" for="__nav_1_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          Custom Functions
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/Customer-Functions/year/" class="md-nav__link">
+        YEAR()
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4_3" type="checkbox" id="__nav_1_4_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_4_3">
+          System Paramaters
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="System Paramaters" data-md-level="3">
+        <label class="md-nav__title" for="__nav_1_4_3">
+          <span class="md-nav__icon md-icon"></span>
+          System Paramaters
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/System-Parameters/configuration-settings/" class="md-nav__link">
+        General Settings
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/System-Parameters/distributed-settings/" class="md-nav__link">
+        Distributed Settings
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_5" type="checkbox" id="__nav_1_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_5">
+          FAQs
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="FAQs" data-md-level="2">
+        <label class="md-nav__title" for="__nav_1_5">
+          <span class="md-nav__icon md-icon"></span>
+          FAQs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../FAQs/general-faqs/" class="md-nav__link">
+        General FAQs
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_6" type="checkbox" id="__nav_1_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_6">
+          Release Notes
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Release Notes" data-md-level="2">
+        <label class="md-nav__title" for="__nav_1_6">
+          <span class="md-nav__icon md-icon"></span>
+          Release Notes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Release-Notes/v0.1.0/" class="md-nav__link">
+        v0.1.0
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Release-Notes/v0.2.0/" class="md-nav__link">
+        v0.2.0
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../glossary/" class="md-nav__link">
+        Glossary
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_8" type="checkbox" id="__nav_1_8" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_8">
+          Contribution Guide
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Contribution Guide" data-md-level="2">
+        <label class="md-nav__title" for="__nav_1_8">
+          <span class="md-nav__icon md-icon"></span>
+          Contribution Guide
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../make-your-first-contribution/" class="md-nav__link">
+        Make Your First Contribution
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_8_2" type="checkbox" id="__nav_1_8_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_8_2">
+          How to Contribute
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="How to Contribute" data-md-level="3">
+        <label class="md-nav__title" for="__nav_1_8_2">
+          <span class="md-nav__icon md-icon"></span>
+          How to Contribute
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../types-of-contributions/" class="md-nav__link">
+        Types of Contributions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../preparation/" class="md-nav__link">
+        Preparation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../report-an-issue/" class="md-nav__link">
+        Report an Issue
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contribute-code/" class="md-nav__link">
+        Contribute Code
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../review-a-pull-request/" class="md-nav__link">
+        Review a Pull Request
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Contribute Documentation
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Contribute Documentation
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#before-you-start" class="md-nav__link">
+    Before you start
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-is-matrixone-documentation-project-organized" class="md-nav__link">
+    How is MatrixOne documentation project organized?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#matrixone-documentation-structure" class="md-nav__link">
+    MatrixOne Documentation Structure
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contribute-to-technical-documentation" class="md-nav__link">
+    Contribute to Technical Documentation
+  </a>
+  
+    <nav class="md-nav" aria-label="Contribute to Technical Documentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#contribute-workflow" class="md-nav__link">
+    Contribute Workflow
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contribute-a-blog-article" class="md-nav__link">
+    Contribute a blog article
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../make-a-design/" class="md-nav__link">
+        Make a Design
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_8_3" type="checkbox" id="__nav_1_8_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_8_3">
+          Code Style
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Code Style" data-md-level="3">
+        <label class="md-nav__title" for="__nav_1_8_3">
+          <span class="md-nav__icon md-icon"></span>
+          Code Style
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Code-Style/code-of-conduct/" class="md-nav__link">
+        Code of Conduct
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Code-Style/code-comment-style/" class="md-nav__link">
+        Code Comment Style
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Code-Style/commit-pr-style/" class="md-nav__link">
+        Commit & Pull Request Style
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Playground
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Playground" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Playground
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://playground.matrixorigin.io/?tutorial=SSB-test-with-matrixone&step=1" class="md-nav__link">
+        Playground
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#before-you-start" class="md-nav__link">
+    Before you start
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-is-matrixone-documentation-project-organized" class="md-nav__link">
+    How is MatrixOne documentation project organized?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#matrixone-documentation-structure" class="md-nav__link">
+    MatrixOne Documentation Structure
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contribute-to-technical-documentation" class="md-nav__link">
+    Contribute to Technical Documentation
+  </a>
+  
+    <nav class="md-nav" aria-label="Contribute to Technical Documentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#contribute-workflow" class="md-nav__link">
+    Contribute Workflow
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contribute-a-blog-article" class="md-nav__link">
+    Contribute a blog article
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+<a href="https://github.com/matrixorigin/matrixone/edit/main/docs/en/MatrixOne/Contribution-Guide/How-to-Contribute/contribute-documentation.md" title="Edit this page" class="md-content__button md-icon">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+</a>
+
+
+<h1 id="contributing-to-matrixone-documentation"><strong>Contributing to MatrixOne Documentation</strong></h1>
+<p>Contributions to the MatrixOne documentation are welcome from everyone. The MatrixOne community strives to make the contribution process simple and straightforward. To do that, we create this page to walk you through the whole process step by step.</p>
+<h2 id="before-you-start"><strong>Before you start</strong></h2>
+<p>Before you contribute please take a minute to familiarize yourself with basic <a href="https://www.markdownguide.org/basic-syntax/">Markdown</a> syntax and have a look at our <a href="../code_of_conduct.md">Code of Conduct</a> and the <a href="https://developers.google.com/style/">Google Developer Documentation Style Guide</a> for some guidance on how to write accessible, consistent and inclusive documentation.</p>
+<h2 id="how-is-matrixone-documentation-project-organized"><strong>How is MatrixOne documentation project organized?</strong></h2>
+<p>The MatrixOne documentation is managed in 3 repositories:</p>
+<ul>
+<li>
+<p>The main project framework and CI&amp;CD settings are in the <a href="https://github.com/matrixorigin/matrixorigin.io">matrixorigin.io</a> repo. </p>
+</li>
+<li>
+<p>The markdown contents are in the docs/en/MatrixOne folder of <a href="https://github.com/matrixorigin/matrixone">matrixone</a> repo. </p>
+</li>
+<li>
+<p>The images and unstructured data are located in the <a href="https://github.com/matrixorigin/artwork">artwork</a> repo. </p>
+</li>
+</ul>
+<p>The <code>matrixorigin.io</code> repo contains a submodule that links to <code>matrixone</code> repo contents. The images are referred as webimage links from <code>artwork</code> repo. The <code>matrixorigin.io</code> has implemented a CI&amp;CD project, which will be triggered by a new code merge and manual launch. This CI&amp;CD workflow publishs the documentation to <a href="https://docs.matrixorigin.io/">https://docs.matrixorigin.io/</a>.  </p>
+<p>The documentation project is based on the <a href="https://github.com/squidfunk/mkdocs-material">mkdocs-material</a>. You can find the corresponding syntax and commands with this project.</p>
+<h2 id="matrixone-documentation-structure"><strong>MatrixOne Documentation Structure</strong></h2>
+<p>The MatrixOne documentation content is planned with 6 main modules.  </p>
+<ul>
+<li>
+<p><strong>Overview</strong>: MatrixOne's introduction, features, architecture, tech design. </p>
+</li>
+<li>
+<p><strong>Get Started</strong>: How to quickly deploy and run a MatrixOne in a standalone or a distributed environment.</p>
+</li>
+<li>
+<p><strong>Reference</strong>: SQL reference, Configuration parameters, Error Codes.</p>
+</li>
+<li>
+<p><strong>FAQs</strong>: Product, Technical Design, SQL, Deployment FAQs.  </p>
+</li>
+<li>
+<p><strong>Develop</strong>: How to develop some applications based on MatrixOne using different programming languages.</p>
+</li>
+<li>
+<p><strong>Troubleshoot</strong>: Introduce common errors and debugging tools.</p>
+</li>
+<li>
+<p><strong>Release Notes</strong>: Release notes of all versions.</p>
+</li>
+<li>
+<p><strong>Contribution Guide</strong>: How to contribute to MatrixOne project.</p>
+</li>
+</ul>
+<h2 id="contribute-to-technical-documentation"><strong>Contribute to Technical Documentation</strong></h2>
+<p>If you are just correcting a typo or grammatical error, feel free to go ahead and <a href="https://github.com/matrixorigin/matrixone/pulls">create a pull request</a>. </p>
+<h3 id="contribute-workflow"><strong>Contribute Workflow</strong></h3>
+<p><em>1</em>. <a href="https://github.com/matrixorigin/matrixone/issues/new/choose">File an issue</a> and assign it to yourself by commenting<code>/assign</code>.</p>
+<p><em>2</em>. Fork <a href="https://github.com/matrixorigin/matrixorigin.io">matrixorigin.io</a> and <a href="https://github.com/matrixorigin/matrixone">matrixone</a> repos.
+<em>3</em>. Clone the <a href="https://github.com/matrixorigin/matrixorigin.io">matrixorigin.io</a> repo, using <code>--recursive</code> to retrieve the submodule of <a href="https://github.com/matrixorigin/matrixone">matrixone</a> repo.
+<div class="highlight"><pre><span></span><code>$ git clone --recursive git@github.com:yourusername/matrixorigin.io.git
+</code></pre></div>
+Clone the <a href="https://github.com/matrixorigin/matrixorigin.io">matrixone</a> repo to the other folder in local:
+<div class="highlight"><pre><span></span><code>$ git clone git@github.com:yourusername/matrixone.git
+</code></pre></div></p>
+<p><em>4</em>. Add <code>matrixone</code> repo as a remote repository in your local matrixone folder with:<br />
+<div class="highlight"><pre><span></span><code>git remote add upstream https://github.com/matrixorigin/matrixone.git
+</code></pre></div>
+Add <code>matrixorigin.io</code> repo as a remote repository in your local matrixorigin.io folder with:<br />
+<div class="highlight"><pre><span></span><code>git remote add upstream https://github.com/matrixorigin/matrixorigin.io.git
+</code></pre></div></p>
+<p><em>5</em>. As the local repo has the full documentation project code, you can run <code>mkdocs serve</code> under <code>matrixorigin.io</code> folder, and check <code>http://localhost:8000</code> to check if this project runs well.<br />
+<div class="highlight"><pre><span></span><code>$ mkdocs serve
+</code></pre></div>
+<em>6</em>. Make your modification. If the modification is about the project settings, updating the sitemap with new pages, or updating the CI&amp;CD workflow code. You can always check <code>http://localhost:8000</code> to see if your modification is effective. If your modification is about the markdown contents, after you update the <code>docs</code> submodule of <code>matrixorigin.io</code>, the same modifcation should be applied to the <code>matrixone</code> repo.</p>
+<p><em>7</em>. Push your git commits to your remote Github <code>matrixorigin.io</code> and <code>matrixone</code> repos. We recommend you to push to a new branch using the following commands:
+<div class="highlight"><pre><span></span><code>git push origin main:NEW_BRANCH
+</code></pre></div></p>
+<p><em>8</em>. Go back to GitHub, and submit a pull request in <code>NEW_BRANCH</code> so that we can review your changes.  </p>
+<p><em>9</em>. Once your code for both repos is merged, you'll wait for a CI&amp;CD workflow to restart running until the documentation website being updated.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>So once your pull requests are merged, the update to the website is not immediate. We'll need to run a manual launch to update it. </p>
+</div>
+<p><em>10</em>. At last, you should update your local and remote repo to help keep committing history clean. Override your local committing repo with:<br />
+<div class="highlight"><pre><span></span><code>git pull --force upstream main:main
+</code></pre></div>
+Update the <code>main</code> branch of your remote repo in Github:
+<div class="highlight"><pre><span></span><code>git push --force origin main:main
+</code></pre></div></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Most processes should be implemented in both <code>matrixorigin.io</code> and <code>matrixone</code>.  </p>
+</div>
+<h2 id="contribute-a-blog-article"><strong>Contribute a blog article</strong></h2>
+<p>If you would like to write an article for our blog, please <a href="https://github.com/matrixorigin/matrixone/issues/new/choose">file an issue</a> or send it to <a href="mailto:dengnan@matrixorigin.io">dengnan@matrixorigin.io</a>. Feel free to submit either a completed draft or article ideas. All submissions will be reviewed as quickly as possible. If your article or idea seems like a good fit for the blog, we will reach out to you directly.</p>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../review-a-pull-request/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Review a Pull Request" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Review a Pull Request
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../make-a-design/" class="md-footer__link md-footer__link--next" aria-label="Next: Make a Design" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Make a Design
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.22074ed6.min.js", "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.01de222e.min.js"></script>
+      
+    
+  </body>
+</html>
