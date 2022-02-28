@@ -973,6 +973,39 @@
     Syntax
   </a>
   
+    <nav class="md-nav" aria-label="Syntax">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#select-into" class="md-nav__link">
+    SELECT INTO
+  </a>
+  
+    <nav class="md-nav" aria-label="SELECT INTO">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#explanations" class="md-nav__link">
+    Explanations
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#constraints" class="md-nav__link">
+    Constraints
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1844,6 +1877,39 @@
     Syntax
   </a>
   
+    <nav class="md-nav" aria-label="Syntax">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#select-into" class="md-nav__link">
+    SELECT INTO
+  </a>
+  
+    <nav class="md-nav" aria-label="SELECT INTO">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#explanations" class="md-nav__link">
+    Explanations
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#constraints" class="md-nav__link">
+    Constraints
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1874,33 +1940,84 @@
 <h2 id="description"><strong>Description</strong></h2>
 <p>Retrieves data from a table.</p>
 <h2 id="syntax"><strong>Syntax</strong></h2>
-<div class="highlight"><pre><span></span><code>&gt; SELECT
-    [ALL | DISTINCT]
-    select_expr [[AS] alias], ...
-    [INTO variable [, ...]]
-    [ FROM table_references
-    [WHERE expr]
-    [GROUP BY {{col_name | expr | position}, ...
-    | extended_grouping_expr}]
-    [HAVING expr]
-    [ORDER BY {col_name | expr} [ASC | DESC], ...]
-    [LIMIT row_count]
-    [OFFSET row_count]
-    ]
+<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"></span>
+<span class="w">    </span><span class="p">[</span><span class="k">ALL</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">DISTINCT</span><span class="p">]</span><span class="w"></span>
+<span class="w">    </span><span class="n">select_expr</span><span class="w"> </span><span class="p">[[</span><span class="k">AS</span><span class="p">]</span><span class="w"> </span><span class="k">alias</span><span class="p">],</span><span class="w"> </span><span class="p">...</span><span class="w"></span>
+<span class="w">    </span><span class="p">[</span><span class="k">INTO</span><span class="w"> </span><span class="k">variable</span><span class="w"> </span><span class="p">[,</span><span class="w"> </span><span class="p">...]]</span><span class="w"></span>
+<span class="w">    </span><span class="p">[</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">table_references</span><span class="w"></span>
+<span class="w">    </span><span class="p">[</span><span class="k">WHERE</span><span class="w"> </span><span class="n">expr</span><span class="p">]</span><span class="w"></span>
+<span class="w">    </span><span class="p">[</span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="err">{{</span><span class="n">col_name</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">expr</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">position</span><span class="err">}</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="w"></span>
+<span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="n">extended_grouping_expr</span><span class="err">}</span><span class="p">]</span><span class="w"></span>
+<span class="w">    </span><span class="p">[</span><span class="k">HAVING</span><span class="w"> </span><span class="n">expr</span><span class="p">]</span><span class="w"></span>
+<span class="w">    </span><span class="p">[</span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="err">{</span><span class="n">col_name</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">expr</span><span class="err">}</span><span class="w"> </span><span class="p">[</span><span class="k">ASC</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">DESC</span><span class="p">],</span><span class="w"> </span><span class="p">...]</span><span class="w"></span>
+<span class="w">    </span><span class="p">[</span><span class="k">LIMIT</span><span class="w"> </span><span class="k">row_count</span><span class="p">]</span><span class="w"></span>
+<span class="w">    </span><span class="p">[</span><span class="k">OFFSET</span><span class="w"> </span><span class="k">row_count</span><span class="p">]</span><span class="w"></span>
+<span class="w">    </span><span class="p">]</span><span class="w"></span>
 </code></pre></div>
+<h3 id="select-into"><strong>SELECT INTO</strong></h3>
+<p><code>SELECT INTO</code> statement enables a query result to be stored in variables or written to a file  </p>
+<ul>
+<li>SELECT ... INTO <strong><em>var_list</em></strong> selects column values and stores them into variables.</li>
+<li>SELECT ... INTO OUTFILE writes the selected rows to a file. Column and line terminators can be specified to produce a specific output format.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">&lt;</span><span class="n">expr_list</span><span class="o">&gt;</span><span class="w"> </span>
+<span class="w">  </span><span class="k">INTO</span><span class="w"> </span><span class="n">OUTFILE</span><span class="w"> </span><span class="s1">&#39;file_name&#39;</span><span class="w"> </span>
+<span class="w">    </span><span class="p">[</span><span class="err">{</span><span class="n">FIELDS</span><span class="err">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">[</span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;char&#39;</span><span class="p">]</span><span class="w"> </span>
+<span class="w">        </span><span class="p">[</span><span class="n">ENCLOSED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;char&#39;</span><span class="p">]</span><span class="w"></span>
+<span class="w">    </span><span class="p">]</span><span class="w"></span>
+<span class="w">    </span><span class="p">[</span><span class="n">LINES</span><span class="w"></span>
+<span class="w">        </span><span class="p">[</span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;string&#39;</span><span class="p">]</span><span class="w"></span>
+<span class="w">    </span><span class="p">]</span><span class="w"></span>
+<span class="w">    </span><span class="p">[</span><span class="n">HEADER</span><span class="w"> </span><span class="s1">&#39;bool&#39;</span><span class="p">]</span><span class="w"></span>
+<span class="w">    </span><span class="p">[</span><span class="n">MAX_FILE_SIZE</span><span class="w"> </span><span class="n">long</span><span class="p">]</span><span class="w"> </span>
+<span class="w">    </span><span class="p">[</span><span class="n">FORCE_QUOTE</span><span class="w"> </span><span class="err">{</span><span class="s1">&#39;col1&#39;</span><span class="p">,</span><span class="s1">&#39;col2&#39;</span><span class="p">,...</span><span class="err">}</span><span class="p">]</span><span class="w"></span>
+</code></pre></div>
+<h4 id="explanations">Explanations</h4>
+<ul>
+<li><code>&lt;expr_list&gt;</code> is the query result you want to export. </li>
+<li><code>'file_name'</code> is the file name of the absolute path on the server. The query will fail if a file with the same filename already exists. And the front folder written in the absolute path must be created in advance, otherwise an error will occur.</li>
+<li><code>TERMINATED BY</code> is an optional argument as the field separator. The default value is comma <code>,</code>.</li>
+<li><code>ENCLOSED BY</code> is an optional argument as the inclusion character of column fields. The default value is double quotations <code>"</code>.</li>
+<li><code>LINES TERMINATED BY</code> is an optional argument as the end of a line. The default value is <code>\n</code>.</li>
+<li>When <code>HEADER</code> is <code>TRUE</code>, the table's title will also be exported, vice versa.</li>
+<li>You can limit the maximum size of the file using <code>MAX_FILE_SIZE</code> in KB.
+  For example, with <code>MAX_FILE_SIZE</code>=5242880(5GB), tables with size of 10GB are exported as two files distinguished  by the ordinal number in their name.<br />
+  When this value is not set, one file will be exported by default.</li>
+<li><code>FORCE_QUOTE</code> is used to add double quotes for every <code>NOT NULL</code> value in the specified column.</li>
+<li><code>NULL</code> values will be exported as <code>\N</code>.</li>
+</ul>
+<div class="admonition info suggestions">
+<p class="admonition-title">Info</p>
+<p>If <code>MAX_FILE_SIZE</code> is not set, a large file may be exported and the operation may fail. Therefore, we recommend you to set this value case by case.</p>
+</div>
+<h4 id="constraints">Constraints</h4>
+<ul>
+<li>The query will fail if a file with the same filename already exists.</li>
+<li>Only <strong><em>.csv</em></strong> types of files are supported currently.</li>
+<li>Currently, this command supports only the absolute path, and files can be exported only to the server host, not to the remote client.</li>
+</ul>
 <h2 id="examples"><strong>Examples</strong></h2>
-<div class="highlight"><pre><span></span><code>&gt; SELECT number FROM numbers(3);
-+--------+
-| number |
-+--------+
-|      0 |
-|      1 |
-|      2 |
-+--------+
+<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="nb">number</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">numbers</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span><span class="w"></span>
+<span class="o">+</span><span class="c1">--------+</span>
+<span class="o">|</span><span class="w"> </span><span class="nb">number</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">+</span><span class="c1">--------+</span>
+<span class="o">|</span><span class="w">      </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w">      </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w">      </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">+</span><span class="c1">--------+</span>
 
-&gt; SELECT * FROM t1 WHERE spID&gt;2 AND userID &lt;2 || userID &gt;=2 OR userID &lt; 2 LIMIT 3;
+<span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">spID</span><span class="o">&gt;</span><span class="mi">2</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">userID</span><span class="w"> </span><span class="o">&lt;</span><span class="mi">2</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">userID</span><span class="w"> </span><span class="o">&gt;=</span><span class="mi">2</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="n">userID</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"></span>
 
-&gt; SELECT userID,MAX(score) max_score FROM t1 WHERE userID &lt;2 || userID &gt; 3 GROUP BY userID ORDER BY max_score;
+<span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">userID</span><span class="p">,</span><span class="k">MAX</span><span class="p">(</span><span class="n">score</span><span class="p">)</span><span class="w"> </span><span class="n">max_score</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">userID</span><span class="w"> </span><span class="o">&lt;</span><span class="mi">2</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">userID</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">userID</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">max_score</span><span class="p">;</span><span class="w"></span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">outfile</span><span class="w"> </span><span class="s1">&#39;/Users/tmp/test.csv&#39;</span><span class="w"> </span>
+<span class="n">FIELDS</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;,&#39;</span><span class="w"> </span>
+<span class="n">ENCLOSED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;&quot;&#39;</span><span class="w"></span>
+<span class="n">LINES</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;\n&#39;</span><span class="w"> </span>
+<span class="n">header</span><span class="w"> </span><span class="s1">&#39;TRUE&#39;</span><span class="w"> </span>
+<span class="n">MAX_FILE_SIZE</span><span class="w"> </span><span class="mi">9223372036854775807</span><span class="w"> </span>
+<span class="n">FORCE_QUOTE</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"></span>
 </code></pre></div>
 
               
