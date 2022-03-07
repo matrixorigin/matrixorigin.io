@@ -1699,12 +1699,59 @@
       
       
         <label class="md-nav__link" for="__nav_1_8_3">
+          Tutorial
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Tutorial" data-md-level="3">
+        <label class="md-nav__title" for="__nav_1_8_3">
+          <span class="md-nav__icon md-icon"></span>
+          Tutorial
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Contribution-Guide/Tutorial/develop_builtin_functions/" class="md-nav__link">
+        Develop a built-in function
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_8_4" type="checkbox" id="__nav_1_8_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_8_4">
           Code Style
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Code Style" data-md-level="3">
-        <label class="md-nav__title" for="__nav_1_8_3">
+        <label class="md-nav__title" for="__nav_1_8_4">
           <span class="md-nav__icon md-icon"></span>
           Code Style
         </label>
@@ -1923,7 +1970,7 @@
 </table>
 <h2 id="returned-value"><strong>Returned Value</strong></h2>
 <p>Returns the sum of expr. A double if the input type is double, otherwise integer.</p>
-<p>f there are no matching rows, SUM() returns NULL.</p>
+<p>If there are no matching rows, SUM() returns NULL.</p>
 <h2 id="examples"><strong>Examples</strong></h2>
 <p>Note: numbers(N) – A table for test with the single number column (UInt64) that contains integers from 0 to N-1.</p>
 <div class="highlight"><pre><span></span><code>&gt; SELECT SUM(*) FROM numbers(3);
