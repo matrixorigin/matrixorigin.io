@@ -1704,12 +1704,59 @@
       
       
         <label class="md-nav__link" for="__nav_1_8_3">
+          Tutorial
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Tutorial" data-md-level="3">
+        <label class="md-nav__title" for="__nav_1_8_3">
+          <span class="md-nav__icon md-icon"></span>
+          Tutorial
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Contribution-Guide/Tutorial/develop_builtin_functions/" class="md-nav__link">
+        Develop a built-in function
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_8_4" type="checkbox" id="__nav_1_8_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_8_4">
           Code Style
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Code Style" data-md-level="3">
-        <label class="md-nav__title" for="__nav_1_8_3">
+        <label class="md-nav__title" for="__nav_1_8_4">
           <span class="md-nav__icon md-icon"></span>
           Code Style
         </label>
@@ -2053,7 +2100,7 @@ CREATE TABLE lineorder_flat (
 );
 </code></pre></div>
 <h2 id="4-load-data-into-the-created-tables"><strong>4. Load data into the created tables</strong></h2>
-<p>If you use dbgen to generate date for ssb, there is still an extra step to replace the ‘,’ in the end of every line. In the directory of ssb-dbgen, use the following command. </p>
+<p>If you use dbgen to generate data for ssb, there is still an extra step to replace the ‘,’ in the end of every line. In the directory of ssb-dbgen, use the following command. </p>
 <div class="highlight"><pre><span></span><code>$ sed -i &#39;s/.$//&#39; customer.tbl
 $ sed -i &#39;s/.$//&#39; date.tbl
 $ sed -i &#39;s/.$//&#39; supplier.tbl

@@ -1074,13 +1074,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#parameter-values" class="md-nav__link">
-    Parameter Values
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#examples" class="md-nav__link">
     Examples
   </a>
@@ -1692,12 +1685,59 @@
       
       
         <label class="md-nav__link" for="__nav_1_8_3">
+          Tutorial
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Tutorial" data-md-level="3">
+        <label class="md-nav__title" for="__nav_1_8_3">
+          <span class="md-nav__icon md-icon"></span>
+          Tutorial
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Contribution-Guide/Tutorial/develop_builtin_functions/" class="md-nav__link">
+        Develop a built-in function
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_8_4" type="checkbox" id="__nav_1_8_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_8_4">
           Code Style
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Code Style" data-md-level="3">
-        <label class="md-nav__title" for="__nav_1_8_3">
+        <label class="md-nav__title" for="__nav_1_8_4">
           <span class="md-nav__icon md-icon"></span>
           Code Style
         </label>
@@ -1854,13 +1894,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#parameter-values" class="md-nav__link">
-    Parameter Values
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#examples" class="md-nav__link">
     Examples
   </a>
@@ -1893,72 +1926,6 @@ FROM table1
 INNER JOIN table2
 ON table1.column_name = table2.column_name;
 </code></pre></div>
-<h2 id="parameter-values"><strong>Parameter Values</strong></h2>
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>value</td>
-<td>Required. The value to convert</td>
-</tr>
-<tr>
-<td>datatype</td>
-<td>Required. The datatype to convert to</td>
-</tr>
-</tbody>
-</table>
-<p>The datatype can be one of the following:</p>
-<table>
-<thead>
-<tr>
-<th>Value</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>DATE</td>
-<td>Converts value to DATE. Format: "YYYY-MM-DD"</td>
-</tr>
-<tr>
-<td>DATETIME</td>
-<td>Converts value to DATETIME. Format: "YYYY-MM-DD HH:MM:SS"</td>
-</tr>
-<tr>
-<td>DECIMAL</td>
-<td>Converts value to DECIMAL. Use the optional M and D parameters to specify the maximum number of digits (M) and the number of digits following the decimal point (D).</td>
-</tr>
-<tr>
-<td>TIME</td>
-<td>Converts value to TIME. Format: "HH:MM:SS"</td>
-</tr>
-<tr>
-<td>CHAR</td>
-<td>Converts value to CHAR (a fixed length string)</td>
-</tr>
-<tr>
-<td>NCHAR</td>
-<td>Converts value to NCHAR (like CHAR, but produces a string with the national character set)</td>
-</tr>
-<tr>
-<td>SIGNED</td>
-<td>Converts value to SIGNED (a signed 64-bit integer)</td>
-</tr>
-<tr>
-<td>UNSIGNED</td>
-<td>Converts value to UNSIGNED (an unsigned 64-bit integer)</td>
-</tr>
-<tr>
-<td>BINARY</td>
-<td>Converts value to BINARY (a binary string)</td>
-</tr>
-</tbody>
-</table>
 <h2 id="examples"><strong>Examples</strong></h2>
 <p>Let's look at a selection from the "Orders" table:</p>
 <table>
