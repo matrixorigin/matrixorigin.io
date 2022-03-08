@@ -2263,8 +2263,12 @@ make build
 <div class="admonition info">
 <p class="admonition-title">Info</p>
 <p>The logger print level of <code>system_vars_config.toml</code> is set to default as <code>DEBUG</code>, which will print a lot of information for you. If you only care about what your built-in function will print, you can modify the <code>system_vars_config.toml</code> and set <code>cubeLogLevel</code> and <code>level</code> to <code>ERROR</code> level.</p>
-<p>cubeLogLevel = "error"
-level = "error"</p>
+<p>cubeLogLevel = "error"</p>
+<p>level = "error"</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Sometimes a <code>port is in use</code> error at port 50000 will occur. You could checkout what process in occupying port 50000 by <code>lsof -i:50000</code>. This command helps you to get the PIDNAME of this process, then you can kill the process by <code>kill -9 PIDNAME</code>.</p>
 </div>
 <p>Step3: Connect to MatrixOne server with a MySQL client. Use the built-in test account for example:</p>
 <p>user: dump
