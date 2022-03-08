@@ -1957,23 +1957,25 @@
 </a>
 
 
-<h1 id="develop-a-built-in-function">Develop a built-in function</h1>
-<h2 id="prerequisite">Prerequisite</h2>
+<h1 id="develop-a-built-in-function"><strong>Develop a built-in function</strong></h1>
+<h2 id="prerequisite"><strong>Prerequisite</strong></h2>
 <p>To develop a build-in function for MatrixOne, you need a basic knowledge of Golang programming. You can go through this excellent <a href="https://www.educative.io/blog/golang-tutorial">Golang tutorial</a> to get some Golang basic concepts. </p>
-<h2 id="preparation">Preparation</h2>
+<h2 id="preparation"><strong>Preparation</strong></h2>
 <p>Before you start, please make sure that you have <code>Go</code> installed, cloned the <code>MatrixOne</code> code base.
 Please refer to <a href="../../How-to-Contribute/preparation/">Preparation</a> and <a href="../../How-to-Contribute/contribute-code/">Contribute Code</a> for more details.</p>
-<h2 id="what-is-a-built-in-function">What is a built-in function?</h2>
+<h2 id="what-is-a-built-in-function"><strong>What is a built-in function?</strong></h2>
 <p>There are two types of functions in a database,  built-in functions are functions that are shipped with the database, in contrast, user-defined functions is customized by the users. Built-in functions can be categorized according to the data types that they operate on i.e. strings, date and numeric built-in functions. </p>
 <p>An example of a built-in function is <code>abs()</code>, which when given a value calculates the absolute (non-negative) value of the number.</p>
 <p>Some functions, such as <code>abs()</code> are used to perform calculations, others such as <code>getdate()</code> are used to obtain a system value, such as the current data, or others, like <code>left()</code>, are used to manipulate textual data.</p>
-<p>Usually the built-in functions are categorized into major categories:
-* Conversion Functions
-* Logical Functions
-* Math Functions
-* String Functions
-* Date Functions</p>
-<h2 id="develop-an-abs-function">Develop an abs() function:</h2>
+<p>Usually the built-in functions are categorized into major categories:  </p>
+<ul>
+<li>Conversion Functions</li>
+<li>Logical Functions</li>
+<li>Math Functions</li>
+<li>String Functions</li>
+<li>Date Functions</li>
+</ul>
+<h2 id="develop-an-abs-function"><strong>Develop an abs() function:</strong></h2>
 <p>In this tutorial, we use the function ABS (get the absolute value) as an example.</p>
 <p>Step 1: register function</p>
 <p>MatrixOne doesn't distinguish between operators and functions. In our code repository, the file <code>pkg/builtin/types.go</code> register builtin functions as operators and we assign each operator a distinct integer number. To add a new function <code>abs()</code>, add a new const Abs in the const declaration.</p>
@@ -2003,17 +2005,13 @@ Please refer to <a href="../../How-to-Contribute/preparation/">Preparation</a> a
 <span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>In Golang, init function will be called when a package is initialized. We wrap all <code>ABS()</code>'s functionality inside this init function so we don't need to call it explicitly.</p>
-<ol>
-<li>function name registration</li>
-</ol>
+<p><strong>1.</strong> function name registration</p>
 <div class="highlight"><pre><span></span><code><span class="kd">func</span><span class="w"> </span><span class="nx">init</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="nx">extend</span><span class="p">.</span><span class="nx">FunctionRegistry</span><span class="p">[</span><span class="s">&quot;abs&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">builtin</span><span class="p">.</span><span class="nx">Abs</span><span class="w"> </span><span class="c1">// register function name</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>In MatrixOne, all letters in a function name will be lowercased during the parsing process, so register function names using only lowercase letters otherwise the function won't be recognized.</p>
-<ol>
-<li>declare function parameter types and return types.</li>
-</ol>
+<p><strong>2.</strong> declare function parameter types and return types.</p>
 <p>The function abs accepts all numeric types as its parameter(uint8, int8, float32...), we can return a 64bit value covering all different parameter types, or, to optimize the performance of our function, we can return different types with respect to the parameter type.</p>
 <p>Outside the init function, declare these variables for each pair of parameter type and return type.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="nx">argAndRets</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[]</span><span class="nx">argsAndRet</span><span class="p">{</span><span class="w"></span>
@@ -2249,7 +2247,7 @@ For certain cpu architectures, we could utilize the cpu's intrinsic SIMD instruc
 <span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>Here we go. Now we can fire up MatrixOne and take our abs function for a little spin.</p>
-<h2 id="compile-and-run-matrixone">Compile and run MatrixOne</h2>
+<h2 id="compile-and-run-matrixone"><strong>Compile and run MatrixOne</strong></h2>
 <p>Once the function is ready, we could compile and run MatrixOne to see the function behavior. </p>
 <p>Step1: Run <code>make config</code> and <code>make build</code> to compile the MatrixOne project and build binary file. 
 <div class="highlight"><pre><span></span><code>make config
@@ -2303,7 +2301,7 @@ Enter password:
 <p>Except for <code>abs()</code>, MatrixOne has already some neat examples for built-in functions, such as <code>floor()</code>, <code>round()</code>, <code>year()</code>. With some minor corresponding changes, the procedure is quite the same as other functions.</p>
 </div>
 <p>​</p>
-<h2 id="write-a-unit-test-for-your-function">Write a unit Test for your function</h2>
+<h2 id="write-a-unit-test-for-your-function"><strong>Write a unit Test for your function</strong></h2>
 <p>We recommend you to also write a unit test for the new function. 
 Go has a built-in testing command called <code>go test</code> and a package <code>testing</code> which combine to give a minimal but complete testing experience. It automates execution of any function of the form.
 <div class="highlight"><pre><span></span><code>func TestXxx(*testing.T)
