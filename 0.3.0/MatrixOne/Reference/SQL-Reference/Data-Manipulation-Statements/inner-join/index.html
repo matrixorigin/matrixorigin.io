@@ -1127,6 +1127,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#examples_1" class="md-nav__link">
+    Examples
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1975,6 +1982,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#examples_1" class="md-nav__link">
+    Examples
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1994,7 +2008,7 @@
 
 <h1 id="inner-join"><strong>INNER JOIN</strong></h1>
 <h2 id="description"><strong>Description</strong></h2>
-<p>The INNER JOIN keyword selects records that have matching values in both tables.</p>
+<p>The INNER JOIN keyword selects records that have matching values in both tables.(Same as <code>JOIN</code>)</p>
 <h2 id="syntax"><strong>Syntax</strong></h2>
 <div class="highlight"><pre><span></span><code>&gt; SELECT column_name(s)
 FROM table1
@@ -2002,107 +2016,47 @@ INNER JOIN table2
 ON table1.column_name = table2.column_name;
 </code></pre></div>
 <h2 id="examples"><strong>Examples</strong></h2>
-<p>Let's look at a selection from the "Orders" table:</p>
-<table>
-<thead>
-<tr>
-<th>OrderID</th>
-<th>CustomerID</th>
-<th>OrderDate</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>10308</td>
-<td>2</td>
-<td>1996-09-18</td>
-</tr>
-<tr>
-<td>10309</td>
-<td>37</td>
-<td>1996-09-19</td>
-</tr>
-<tr>
-<td>10310</td>
-<td>77</td>
-<td>1996-09-20</td>
-</tr>
-</tbody>
-</table>
-<p>Then, look at a selection from the "Customers" table:</p>
-<table>
-<thead>
-<tr>
-<th>CustomerID</th>
-<th>CustomerName</th>
-<th>ContactName</th>
-<th>Country</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>Alfreds Futterkiste</td>
-<td>Maria Anders</td>
-<td>Germany</td>
-</tr>
-<tr>
-<td>2</td>
-<td>Ana Trujillo Emparedados y helados</td>
-<td>Ana Trujillo</td>
-<td>Mexico</td>
-</tr>
-<tr>
-<td>3</td>
-<td>Antonio Moreno Taquería</td>
-<td>Antonio Moreno</td>
-<td>Mexico</td>
-</tr>
-</tbody>
-</table>
-<p>Notice that the "CustomerID" column in the "Orders" table refers to the "CustomerID" in the "Customers" table. The relationship between the two tables above is the "CustomerID" column.</p>
-<p>Then, we can create the following SQL statement (that contains an INNER JOIN), that selects records that have matching values in both tables:</p>
-<div class="highlight"><pre><span></span><code>&gt; SELECT Orders.OrderID, Customers.CustomerName, Orders.OrderDate
-FROM Orders
-INNER JOIN Customers ON Orders.CustomerID=Customers.CustomerID;
+<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="k">drop</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="n">t1</span><span class="p">,</span><span class="n">t2</span><span class="p">,</span><span class="n">t3</span><span class="p">;</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">libname1</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">21</span><span class="p">)</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="w"> </span><span class="k">primary</span><span class="w"> </span><span class="k">key</span><span class="p">,</span><span class="w"> </span><span class="n">city</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">20</span><span class="p">));</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="p">(</span><span class="n">isbn2</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">21</span><span class="p">)</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="w"> </span><span class="k">primary</span><span class="w"> </span><span class="k">key</span><span class="p">,</span><span class="w"> </span><span class="n">author</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span><span class="w"> </span><span class="n">title</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">60</span><span class="p">));</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t3</span><span class="w"> </span><span class="p">(</span><span class="n">isbn3</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">21</span><span class="p">)</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">,</span><span class="w"> </span><span class="n">libname3</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">21</span><span class="p">)</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">,</span><span class="w"> </span><span class="n">quantity</span><span class="w"> </span><span class="nb">int</span><span class="p">);</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;001&#39;</span><span class="p">,</span><span class="s1">&#39;Daffy&#39;</span><span class="p">,</span><span class="s1">&#39;Aducklife&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;002&#39;</span><span class="p">,</span><span class="s1">&#39;Bugs&#39;</span><span class="p">,</span><span class="s1">&#39;Arabbitlife&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;003&#39;</span><span class="p">,</span><span class="s1">&#39;Cowboy&#39;</span><span class="p">,</span><span class="s1">&#39;Lifeontherange&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;000&#39;</span><span class="p">,</span><span class="s1">&#39;Anonymous&#39;</span><span class="p">,</span><span class="s1">&#39;Wannabuythisbook?&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;004&#39;</span><span class="p">,</span><span class="s1">&#39;BestSeller&#39;</span><span class="p">,</span><span class="s1">&#39;OneHeckuvabook&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;005&#39;</span><span class="p">,</span><span class="s1">&#39;EveryoneBuys&#39;</span><span class="p">,</span><span class="s1">&#39;Thisverybook&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;006&#39;</span><span class="p">,</span><span class="s1">&#39;SanFran&#39;</span><span class="p">,</span><span class="s1">&#39;Itisasanfranlifestyle&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;007&#39;</span><span class="p">,</span><span class="s1">&#39;BerkAuthor&#39;</span><span class="p">,</span><span class="s1">&#39;Cool.Berkley.the.book&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t3</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;000&#39;</span><span class="p">,</span><span class="s1">&#39;NewYorkPublicLibra&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t3</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;001&#39;</span><span class="p">,</span><span class="s1">&#39;NewYorkPublicLibra&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t3</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;002&#39;</span><span class="p">,</span><span class="s1">&#39;NewYorkPublicLibra&#39;</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t3</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;003&#39;</span><span class="p">,</span><span class="s1">&#39;NewYorkPublicLibra&#39;</span><span class="p">,</span><span class="mi">4</span><span class="p">);</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t3</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;004&#39;</span><span class="p">,</span><span class="s1">&#39;NewYorkPublicLibra&#39;</span><span class="p">,</span><span class="mi">5</span><span class="p">);</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t3</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;005&#39;</span><span class="p">,</span><span class="s1">&#39;NewYorkPublicLibra&#39;</span><span class="p">,</span><span class="mi">6</span><span class="p">);</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t3</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;006&#39;</span><span class="p">,</span><span class="s1">&#39;SanFransiscoPublic&#39;</span><span class="p">,</span><span class="mi">5</span><span class="p">);</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t3</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;007&#39;</span><span class="p">,</span><span class="s1">&#39;BerkeleyPublic1&#39;</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t3</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;007&#39;</span><span class="p">,</span><span class="s1">&#39;BerkeleyPublic2&#39;</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t3</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;001&#39;</span><span class="p">,</span><span class="s1">&#39;NYC Lib&#39;</span><span class="p">,</span><span class="mi">8</span><span class="p">);</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;NewYorkPublicLibra&#39;</span><span class="p">,</span><span class="s1">&#39;NewYork&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;SanFransiscoPublic&#39;</span><span class="p">,</span><span class="s1">&#39;SanFran&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;BerkeleyPublic1&#39;</span><span class="p">,</span><span class="s1">&#39;Berkeley&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;BerkeleyPublic2&#39;</span><span class="p">,</span><span class="s1">&#39;Berkeley&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;NYCLib&#39;</span><span class="p">,</span><span class="s1">&#39;NewYork&#39;</span><span class="p">);</span><span class="w"></span>
+
+<span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">city</span><span class="p">,</span><span class="n">libname1</span><span class="p">,</span><span class="k">count</span><span class="p">(</span><span class="n">libname1</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t3</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">libname1</span><span class="o">=</span><span class="n">libname3</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">isbn3</span><span class="o">=</span><span class="n">isbn2</span><span class="w"> </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">city</span><span class="p">,</span><span class="n">libname1</span><span class="p">;</span><span class="w"></span>
+
+<span class="o">+</span><span class="c1">----------+--------------------+------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">city</span><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="n">libname1</span><span class="w">           </span><span class="o">|</span><span class="w"> </span><span class="n">a</span><span class="w">    </span><span class="o">|</span><span class="w"></span>
+<span class="o">+</span><span class="c1">----------+--------------------+------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">NewYork</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">NewYorkPublicLibra</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">6</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w"> </span><span class="n">SanFran</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">SanFransiscoPublic</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w"> </span><span class="n">Berkeley</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">BerkeleyPublic1</span><span class="w">    </span><span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w"> </span><span class="n">Berkeley</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">BerkeleyPublic2</span><span class="w">    </span><span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">+</span><span class="c1">----------+--------------------+------+</span>
 </code></pre></div>
-<p>and it will produce something like this:</p>
-<table>
-<thead>
-<tr>
-<th>OrderID</th>
-<th>CustomerName</th>
-<th>OrderDate</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>10308</td>
-<td>Ana Trujillo Emparedados y helados</td>
-<td>9/18/1996</td>
-</tr>
-<tr>
-<td>10365</td>
-<td>Antonio Moreno Taquería</td>
-<td>11/27/1996</td>
-</tr>
-<tr>
-<td>10383</td>
-<td>Around the Horn</td>
-<td>12/16/1996</td>
-</tr>
-<tr>
-<td>10355</td>
-<td>Around the Horn</td>
-<td>11/15/1996</td>
-</tr>
-<tr>
-<td>10278</td>
-<td>Berglunds snabbköp</td>
-<td>8/12/1996</td>
-</tr>
-</tbody>
-</table>
+<h2 id="examples_1"><strong>Examples</strong></h2>
+<p>Currently, <code>INNER JOIN</code> statement may cause crashing when executing some quiries.</p>
 
               
             </article>

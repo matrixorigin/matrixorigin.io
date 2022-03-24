@@ -1216,6 +1216,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#constraints" class="md-nav__link">
+    Constraints
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2003,6 +2010,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#constraints" class="md-nav__link">
+    Constraints
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2045,29 +2059,34 @@
 <h2 id="returned-value"><strong>Returned Value</strong></h2>
 <p>Returns the maximum value of expr. MAX() may take a string argument, in such cases, it returns the maximum string value. </p>
 <h2 id="examples"><strong>Examples</strong></h2>
-<p>Note: numbers(N) – A table for test with the single number column (UInt64) that contains integers from 0 to N-1.</p>
-<div class="highlight"><pre><span></span><code>&gt; SELECT MAX(*) FROM numbers(3);
-+--------+
-| max(*) |
-+--------+
-|      2 |
-+--------+
+<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="k">drop</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="n">tbl1</span><span class="p">,</span><span class="n">tbl2</span><span class="p">;</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">tbl1</span><span class="w"> </span><span class="p">(</span><span class="n">col_1a</span><span class="w"> </span><span class="n">tinyint</span><span class="p">,</span><span class="w"> </span><span class="n">col_1b</span><span class="w"> </span><span class="nb">smallint</span><span class="p">,</span><span class="w"> </span><span class="n">col_1c</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">col_1d</span><span class="w"> </span><span class="nb">bigint</span><span class="p">,</span><span class="w"> </span><span class="n">col_1e</span><span class="w"> </span><span class="nb">char</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">);</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">tbl1</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="ss">&quot;a&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">tbl1</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="ss">&quot;b&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">tbl1</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="ss">&quot;c&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">tbl1</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="ss">&quot;D&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">tbl1</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="ss">&quot;a&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">tbl1</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="ss">&quot;c&quot;</span><span class="p">);</span><span class="w"></span>
 
-&gt; SELECT MAX(number) FROM numbers(3);
-+-------------+
-| max(number) |
-+-------------+
-|           2 |
-+-------------+
+<span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="k">max</span><span class="p">(</span><span class="n">col_1d</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">tbl1</span><span class="p">;</span><span class="w"></span>
+<span class="o">+</span><span class="c1">-------------+</span>
+<span class="o">|</span><span class="w"> </span><span class="k">max</span><span class="p">(</span><span class="n">col_1d</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">+</span><span class="c1">-------------+</span>
+<span class="o">|</span><span class="w">          </span><span class="mi">12</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">+</span><span class="c1">-------------+</span>
 
-&gt; SELECT MAX(number) AS max FROM numbers(3);
-+------+
-| max  |
-+------+
-|    2 |
-+------+
+<span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="k">max</span><span class="p">(</span><span class="n">col_1c</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">m1</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">tbl1</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">col_1d</span><span class="o">&lt;</span><span class="mi">12</span><span class="w"> </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">col_1e</span><span class="p">;</span><span class="w"></span>
+<span class="o">+</span><span class="c1">------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">m1</span><span class="w">   </span><span class="o">|</span><span class="w"></span>
+<span class="o">+</span><span class="c1">------+</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">5</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w">    </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w">    </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">+</span><span class="c1">------+</span>
 </code></pre></div>
-<hr />
+<h2 id="constraints">Constraints</h2>
+<p>Currently, MatrixOne doesn't support select function() without from tables.</p>
 
               
             </article>

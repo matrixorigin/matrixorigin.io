@@ -2045,67 +2045,36 @@
 </tr>
 </tbody>
 </table>
-<p>The datatype can be one of the following:</p>
-<table>
-<thead>
-<tr>
-<th>Value</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>DATE</td>
-<td>Converts value to DATE. Format: "YYYY-MM-DD"</td>
-</tr>
-<tr>
-<td>DATETIME</td>
-<td>Converts value to DATETIME. Format: "YYYY-MM-DD HH:MM:SS"</td>
-</tr>
-<tr>
-<td>DECIMAL</td>
-<td>Converts value to DECIMAL. Use the optional M and D parameters to specify the maximum number of digits (M) and the number of digits following the decimal point (D).</td>
-</tr>
-<tr>
-<td>TIME</td>
-<td>Converts value to TIME. Format: "HH:MM:SS"</td>
-</tr>
-<tr>
-<td>CHAR</td>
-<td>Converts value to CHAR (a fixed length string)</td>
-</tr>
-<tr>
-<td>NCHAR</td>
-<td>Converts value to NCHAR (like CHAR, but produces a string with the national character set)</td>
-</tr>
-<tr>
-<td>SIGNED</td>
-<td>Converts value to SIGNED (a signed 64-bit integer)</td>
-</tr>
-<tr>
-<td>UNSIGNED</td>
-<td>Converts value to UNSIGNED (an unsigned 64-bit integer)</td>
-</tr>
-<tr>
-<td>BINARY</td>
-<td>Converts value to BINARY (a binary string)</td>
-</tr>
-</tbody>
-</table>
+<p>Currently, <code>cast</code> can support following conversion:
+ * Conversion between numeric types, mainly including SIGNED, UNSIGNED, FLOAT, and DOUBLE type.
+ * Numeric types to character CHAR type.
+ * Numeric character types to numerical types(negative into SIGNED).</p>
 <h2 id="examples"><strong>Examples</strong></h2>
-<div class="highlight"><pre><span></span><code>#Convert a value to a DATE datatype:
+<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="k">drop</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="n">b</span><span class="w"> </span><span class="nb">float</span><span class="p">,</span><span class="k">c</span><span class="w"> </span><span class="nb">char</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="n">d</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">15</span><span class="p">));</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">.</span><span class="mi">5</span><span class="p">,</span><span class="s1">&#39;1&#39;</span><span class="p">,</span><span class="s1">&#39;-2&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">CAST</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="nb">FLOAT</span><span class="p">)</span><span class="w"> </span><span class="n">a_cast</span><span class="p">,</span><span class="k">CAST</span><span class="p">(</span><span class="n">b</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">UNSIGNED</span><span class="p">)</span><span class="w"> </span><span class="n">b_cast</span><span class="p">,</span><span class="k">CAST</span><span class="p">(</span><span class="k">c</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">SIGNED</span><span class="p">)</span><span class="w"> </span><span class="n">c_cast</span><span class="p">,</span><span class="w"> </span><span class="k">CAST</span><span class="p">(</span><span class="n">d</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">SIGNED</span><span class="p">)</span><span class="w"> </span><span class="n">d_cast</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span><span class="w"></span>
+<span class="o">+</span><span class="c1">--------+--------+--------+--------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">a_cast</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">b_cast</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">c_cast</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">d_cast</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">+</span><span class="c1">--------+--------+--------+--------+</span>
+<span class="o">|</span><span class="w"> </span><span class="mi">1</span><span class="p">.</span><span class="mi">0000</span><span class="w"> </span><span class="o">|</span><span class="w">      </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w">      </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w">     </span><span class="o">-</span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">+</span><span class="c1">--------+--------+--------+--------+</span>
 
-&gt; SELECT CAST(&quot;2017-08-29&quot; AS DATE);
-
-#Convert a value to a CHAR datatype:
-
-&gt; SELECT CAST(150 AS CHAR);
-
-#Convert a value to a SIGNED datatype:
-
-&gt;SELECT CAST(5-10 AS SIGNED);
+<span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">CAST</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="nb">CHAR</span><span class="p">)</span><span class="w"> </span><span class="n">a_cast</span><span class="p">,</span><span class="w"> </span><span class="k">CAST</span><span class="p">(</span><span class="n">b</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="nb">CHAR</span><span class="p">)</span><span class="w"> </span><span class="n">b_cast</span><span class="p">,</span><span class="k">CAST</span><span class="p">(</span><span class="k">c</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">DOUBLE</span><span class="p">)</span><span class="w"> </span><span class="n">c_cast</span><span class="p">,</span><span class="w"> </span><span class="k">CAST</span><span class="p">(</span><span class="n">d</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="nb">FLOAT</span><span class="p">)</span><span class="w"> </span><span class="n">d_cast</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span><span class="w"></span>
+<span class="o">+</span><span class="c1">--------+--------+--------+---------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">a_cast</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">b_cast</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">c_cast</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">d_cast</span><span class="w">  </span><span class="o">|</span><span class="w"></span>
+<span class="o">+</span><span class="c1">--------+--------+--------+---------+</span>
+<span class="o">|</span><span class="w"> </span><span class="mi">1</span><span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="mi">1</span><span class="p">.</span><span class="mi">5</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="mi">1</span><span class="p">.</span><span class="mi">0000</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="o">-</span><span class="mi">2</span><span class="p">.</span><span class="mi">0000</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">+</span><span class="c1">--------+--------+--------+---------+</span>
 </code></pre></div>
 <h2 id="constraints"><strong>Constraints</strong></h2>
+<p>Currently, MatrixOne doesn't support select function() without from tables.</p>
+<ul>
+<li>Non-numeric character types cannot be converted to numeric types.</li>
+<li>Numeric and character types with formats of Data cannot be converted to Date.</li>
+<li>Date and Datetime types cannot be converted to character types.</li>
+<li>Date and Datetime cannot be converted to each other.</li>
+</ul>
 
               
             </article>
