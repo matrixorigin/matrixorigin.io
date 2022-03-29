@@ -2203,6 +2203,7 @@ some annotations for this code snippet above:</p>
 since we need a float32 vector here, its size should be 4 * len(origVecCol), 4 bytes for each float32.</p>
 <p>2.encoding.DecodeFloat32Slice: this is just type casting. </p>
 <p>3.Vector.Nsp: MatrixOne uses bitmaps to store the NULL values in a column, Vector.Nsp is a wrap up struct for this bitmap.</p>
+<p>4.the boolean parameter of the Fn: this boolean value is usually used to indicate whether the vector passed in is a constant(it has length 1), sometimes we could make use of this situation for our function implementation, for example, pkg/sql/colexec/extend/overload/plus.go. </p>
 <p>Since the result vector has the same type as the original vector, we could use the original vector to store our result when we don't need our original vector anymore in our execution plan(i.e., the reference count of the original vector is 0 or 1).</p>
 <p>To reuse the original vector when possible:</p>
 <div class="highlight"><pre><span></span><code><span class="kd">func</span><span class="w"> </span><span class="nx">init</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
