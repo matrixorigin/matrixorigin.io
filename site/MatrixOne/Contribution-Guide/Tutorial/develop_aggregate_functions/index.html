@@ -2409,11 +2409,12 @@ To add a new function <code>var()</code>, add a new const <code>Variance</code> 
 </code></pre></div>
 <p>Step2: implement the <code>Ring</code> interface</p>
 <p><em>1. Define <code>Ring</code> structure</em></p>
-<pre><code>Create `variance.go` under `pkg/container/ring`, and define a structure of `VarRing`.
-</code></pre>
-<p>As we calculate the overall variance, we need to calculate:
-* The numeric <code>Sums</code> and the null value numbers of each group, to calculate the average.
-* Values of each group, to calculate the variance. </p>
+<p>Create <code>variance.go</code> under <code>pkg/container/ring</code>, and define a structure of <code>VarRing</code>.</p>
+<p>As we calculate the overall variance, we need to calculate:</p>
+<ul>
+<li>The numeric <code>Sums</code> and the null value numbers of each group, to calculate the average.</li>
+<li>Values of each group, to calculate the variance. </li>
+</ul>
 <div class="highlight"><pre><span></span><code><span class="w">   </span><span class="c1">//Implementation1</span><span class="w"></span>
 
 <span class="w">   </span><span class="kd">type</span><span class="w"> </span><span class="nx">VarRing</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
