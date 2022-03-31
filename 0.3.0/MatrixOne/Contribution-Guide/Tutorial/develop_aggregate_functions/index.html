@@ -1830,6 +1830,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#develop-an-var-function" class="md-nav__link">
+    Develop an var() function
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#compile-and-run-matrixone" class="md-nav__link">
     Compile and run MatrixOne
   </a>
@@ -2073,6 +2080,13 @@
         <li class="md-nav__item">
   <a href="#the-secret-of-factorisation" class="md-nav__link">
     The secret of factorisation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#develop-an-var-function" class="md-nav__link">
+    Develop an var() function
   </a>
   
 </li>
@@ -2363,22 +2377,15 @@ Below is two different implementation for <code>Variance</code> (the second one 
 
 <span class="w">    </span><span class="nx">NullCounts</span><span class="w"> </span><span class="p">[]</span><span class="kt">int64</span><span class="w"> </span><span class="c1">// group to record number of the null value</span><span class="w"></span>
 <span class="w">   </span><span class="p">}</span><span class="w"></span>
-<span class="w">   </span><span class="s">```</span>
-
-<span class="s">## **Develop an var() function**</span>
-
-<span class="s">In this tutorial, we walk you through the complete implementation of Variance (get the standard overall variance value) aggregate function as an example with two different methods. </span>
-
-<span class="s">Step 1: register function</span>
-
-<span class="s">MatrixOne doesn&#39;t distinguish between operators and functions. </span>
-<span class="s">In our code repository, the file `</span><span class="nx">pkg</span><span class="o">/</span><span class="nx">sql</span><span class="o">/</span><span class="nx">viewexec</span><span class="o">/</span><span class="nx">transformer</span><span class="o">/</span><span class="nx">types</span><span class="p">.</span><span class="k">go</span><span class="s">` register aggregate functions as operators </span>
-<span class="s">and we assign each operator a distinct integer number. </span>
-<span class="s">To add a new function `</span><span class="kd">var</span><span class="p">()</span><span class="s">`, add a new const `</span><span class="nx">Variance</span><span class="s">` in the const declaration and `</span><span class="kd">var</span><span class="s">` in the name declaration.</span>
-
-
-<span class="s">   ```</span><span class="k">go</span><span class="w"></span>
-<span class="w">   </span><span class="kd">const</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+</code></pre></div>
+<h2 id="develop-an-var-function"><strong>Develop an var() function</strong></h2>
+<p>In this tutorial, we walk you through the complete implementation of Variance (get the standard overall variance value) aggregate function as an example with two different methods. </p>
+<p>Step 1: register function</p>
+<p>MatrixOne doesn't distinguish between operators and functions. 
+In our code repository, the file <code>pkg/sql/viewexec/transformer/types.go</code> register aggregate functions as operators 
+and we assign each operator a distinct integer number. 
+To add a new function <code>var()</code>, add a new const <code>Variance</code> in the const declaration and <code>var</code> in the name declaration.</p>
+<div class="highlight"><pre><span></span><code><span class="w">   </span><span class="kd">const</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
 <span class="w">    </span><span class="nx">Sum</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">iota</span><span class="w"></span>
 <span class="w">    </span><span class="nx">Avg</span><span class="w"></span>
 <span class="w">    </span><span class="nx">Max</span><span class="w"></span>
@@ -2399,19 +2406,15 @@ Below is two different implementation for <code>Variance</code> (the second one 
 <span class="w">    </span><span class="nx">ApproxCountDistinct</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;approx_count_distinct&quot;</span><span class="p">,</span><span class="w"></span>
 <span class="w">    </span><span class="nx">Variance</span><span class="p">:</span><span class="w">            </span><span class="s">&quot;var&quot;</span><span class="p">,</span><span class="w"></span>
 <span class="w">   </span><span class="p">}</span><span class="w"></span>
-<span class="w">   </span><span class="s">```</span>
-
-<span class="s">Step2: implement the `</span><span class="nx">Ring</span><span class="s">` interface</span>
-
-<span class="s">*1. Define `</span><span class="nx">Ring</span><span class="s">` structure*</span>
-
-<span class="s">    Create `</span><span class="nx">variance</span><span class="p">.</span><span class="k">go</span><span class="s">` under `</span><span class="nx">pkg</span><span class="o">/</span><span class="nx">container</span><span class="o">/</span><span class="nx">ring</span><span class="s">`, and define a structure of `</span><span class="nx">VarRing</span><span class="s">`.</span>
-<span class="s">As we calculate the overall variance, we need to calculate:</span>
-<span class="s">* The numeric `</span><span class="nx">Sums</span><span class="s">` and the null value numbers of each group, to calculate the average.</span>
-<span class="s">* Values of each group, to calculate the variance. </span>
-
-<span class="s">   ```</span><span class="k">go</span><span class="w"></span>
-<span class="w">   </span><span class="c1">//Implementation1</span><span class="w"></span>
+</code></pre></div>
+<p>Step2: implement the <code>Ring</code> interface</p>
+<p><em>1. Define <code>Ring</code> structure</em></p>
+<pre><code>Create `variance.go` under `pkg/container/ring`, and define a structure of `VarRing`.
+</code></pre>
+<p>As we calculate the overall variance, we need to calculate:
+* The numeric <code>Sums</code> and the null value numbers of each group, to calculate the average.
+* Values of each group, to calculate the variance. </p>
+<div class="highlight"><pre><span></span><code><span class="w">   </span><span class="c1">//Implementation1</span><span class="w"></span>
 
 <span class="w">   </span><span class="kd">type</span><span class="w"> </span><span class="nx">VarRing</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="c1">// Typ is vector&#39;s value type</span><span class="w"></span>
@@ -2437,16 +2440,13 @@ Below is two different implementation for <code>Variance</code> (the second one 
 
 <span class="w">    </span><span class="nx">NullCounts</span><span class="w"> </span><span class="p">[]</span><span class="kt">int64</span><span class="w"> </span><span class="c1">// group to record number of the null value</span><span class="w"></span>
 <span class="w">   </span><span class="p">}</span><span class="w"></span>
-<span class="w">   </span><span class="s">```</span>
-
-<span class="s">*2. Implement the functions of `</span><span class="nx">Ring</span><span class="s">` interface*</span>
-
-<span class="s">You can checkout the full implmetation at [variance.go](https://github.com/matrixorigin/matrixone/blob/main/pkg/container/ring/variance/variance.go).</span>
-
-<span class="s">* `</span><span class="nx">Fill</span><span class="s">` function</span>
-
-<span class="s">   ```</span><span class="k">go</span><span class="w"></span>
-<span class="w">      </span><span class="c1">//Implementation1</span><span class="w"></span>
+</code></pre></div>
+<p><em>2. Implement the functions of <code>Ring</code> interface</em></p>
+<p>You can checkout the full implmetation at <a href="https://github.com/matrixorigin/matrixone/blob/main/pkg/container/ring/variance/variance.go">variance.go</a>.</p>
+<ul>
+<li><code>Fill</code> function</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="w">      </span><span class="c1">//Implementation1</span><span class="w"></span>
 
 <span class="w">    </span><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">v</span><span class="w"> </span><span class="o">*</span><span class="nx">VarRing</span><span class="p">)</span><span class="w"> </span><span class="nx">Fill</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span><span class="w"> </span><span class="nx">j</span><span class="w"> </span><span class="kt">int64</span><span class="p">,</span><span class="w"> </span><span class="nx">z</span><span class="w"> </span><span class="kt">int64</span><span class="p">,</span><span class="w"> </span><span class="nx">vec</span><span class="w"> </span><span class="o">*</span><span class="nx">vector</span><span class="p">.</span><span class="nx">Vector</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="nx">value</span><span class="w"> </span><span class="kt">float64</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
@@ -2485,12 +2485,11 @@ Below is two different implementation for <code>Variance</code> (the second one 
 <span class="w">            </span><span class="nx">v</span><span class="p">.</span><span class="nx">NullCounts</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">z</span><span class="w"></span>
 <span class="w">        </span><span class="p">}</span><span class="w"></span>
 <span class="w">      </span><span class="p">}</span><span class="w"></span>
-<span class="w">   </span><span class="s">```</span>
-<span class="s">* `</span><span class="nx">Add</span><span class="s">` function   </span>
-
-<span class="s">   ```</span><span class="k">go</span><span class="w"></span>
-
-<span class="w">      </span><span class="c1">//Implementation1</span><span class="w"></span>
+</code></pre></div>
+<ul>
+<li><code>Add</code> function   </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="w">      </span><span class="c1">//Implementation1</span><span class="w"></span>
 <span class="w">      </span><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">v</span><span class="w"> </span><span class="o">*</span><span class="nx">VarRing</span><span class="p">)</span><span class="w"> </span><span class="nx">Add</span><span class="p">(</span><span class="nx">a</span><span class="w"> </span><span class="kd">interface</span><span class="p">{},</span><span class="w"> </span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="w"> </span><span class="kt">int64</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">          </span><span class="nx">v2</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">a</span><span class="p">.(</span><span class="o">*</span><span class="nx">VarRing</span><span class="p">)</span><span class="w"></span>
 <span class="w">          </span><span class="nx">v</span><span class="p">.</span><span class="nx">Sums</span><span class="p">[</span><span class="nx">x</span><span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">v2</span><span class="p">.</span><span class="nx">Sums</span><span class="p">[</span><span class="nx">y</span><span class="p">]</span><span class="w"></span>
@@ -2505,14 +2504,11 @@ Below is two different implementation for <code>Variance</code> (the second one 
 <span class="w">        </span><span class="nx">v</span><span class="p">.</span><span class="nx">SumX2</span><span class="p">[</span><span class="nx">x</span><span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">v2</span><span class="p">.</span><span class="nx">SumX2</span><span class="p">[</span><span class="nx">y</span><span class="p">]</span><span class="w"></span>
 <span class="w">        </span><span class="nx">v</span><span class="p">.</span><span class="nx">NullCounts</span><span class="p">[</span><span class="nx">x</span><span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">v2</span><span class="p">.</span><span class="nx">NullCounts</span><span class="p">[</span><span class="nx">y</span><span class="p">]</span><span class="w"></span>
 <span class="w">      </span><span class="p">}</span><span class="w"></span>
-
-<span class="w">   </span><span class="s">```</span>
-
-<span class="s">   * `</span><span class="nx">Mul</span><span class="s">` function   </span>
-
-<span class="s">   ```</span><span class="k">go</span><span class="w"></span>
-
-<span class="w">      </span><span class="c1">//Implementation1</span><span class="w"></span>
+</code></pre></div>
+<ul>
+<li><code>Mul</code> function   </li>
+</ul>
+<p><div class="highlight"><pre><span></span><code><span class="w">      </span><span class="c1">//Implementation1</span><span class="w"></span>
 <span class="w">      </span><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">v</span><span class="w"> </span><span class="o">*</span><span class="nx">VarRing</span><span class="p">)</span><span class="w"> </span><span class="nx">Mul</span><span class="p">(</span><span class="nx">a</span><span class="w"> </span><span class="kd">interface</span><span class="p">{},</span><span class="w"> </span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="p">,</span><span class="w"> </span><span class="nx">z</span><span class="w"> </span><span class="kt">int64</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">          </span><span class="nx">v2</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">a</span><span class="p">.(</span><span class="o">*</span><span class="nx">VarRing</span><span class="p">)</span><span class="w"></span>
 <span class="w">          </span><span class="p">{</span><span class="w"></span>
@@ -2533,12 +2529,9 @@ Below is two different implementation for <code>Variance</code> (the second one 
 <span class="w">            </span><span class="nx">v</span><span class="p">.</span><span class="nx">NullCounts</span><span class="p">[</span><span class="nx">x</span><span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">v2</span><span class="p">.</span><span class="nx">NullCounts</span><span class="p">[</span><span class="nx">y</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">z</span><span class="w"></span>
 <span class="w">        </span><span class="p">}</span><span class="w"></span>
 <span class="w">      </span><span class="p">}</span><span class="w"></span>
-
-<span class="w">   </span><span class="s">```</span>
-<span class="s">   * `</span><span class="nx">Eval</span><span class="s">` function  </span>
-
-<span class="s">   ```</span><span class="k">go</span><span class="w"></span>
-<span class="w">         </span><span class="c1">//Implementation1</span><span class="w"></span>
+</code></pre></div>
+* <code>Eval</code> function  </p>
+<div class="highlight"><pre><span></span><code><span class="w">         </span><span class="c1">//Implementation1</span><span class="w"></span>
 <span class="w">      </span><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">v</span><span class="w"> </span><span class="o">*</span><span class="nx">VarRing</span><span class="p">)</span><span class="w"> </span><span class="nx">Eval</span><span class="p">(</span><span class="nx">zs</span><span class="w"> </span><span class="p">[]</span><span class="kt">int64</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="nx">vector</span><span class="p">.</span><span class="nx">Vector</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">          </span><span class="k">defer</span><span class="w"> </span><span class="kd">func</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">              </span><span class="o">...</span><span class="w"></span>
@@ -2585,26 +2578,25 @@ Below is two different implementation for <code>Variance</code> (the second one 
 
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="o">...</span><span class="w"></span>
 <span class="w">      </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="s">```</span>
-
-
-
-<span class="s">*3. Implement encoding and decoding for `</span><span class="nx">VarRing</span><span class="s">`*</span>
-
-
-<span class="s">In the `</span><span class="nx">pkg</span><span class="o">/</span><span class="nx">sql</span><span class="o">/</span><span class="nx">protocol</span><span class="o">/</span><span class="nx">protocol</span><span class="p">.</span><span class="k">go</span><span class="s">` file, implement the code for serialization and deserialization of `</span><span class="nx">VarRing</span><span class="s">`. </span>
-
-
-<span class="s">   | Serialization function | Deserialization function    |</span>
-<span class="s">   | ------------------ | ----------------------------------- |</span>
-<span class="s">   | EncodeRing         | DecodeRing&lt;br&gt;DecodeRingWithProcess |</span>
-
-
-<span class="s">Serialization: </span>
-
-
-<span class="s">```</span><span class="k">go</span><span class="w"></span>
-<span class="w">   </span><span class="k">case</span><span class="w"> </span><span class="o">*</span><span class="nx">variance</span><span class="p">.</span><span class="nx">VarRing</span><span class="p">:</span><span class="w"></span>
+</code></pre></div>
+<p><em>3. Implement encoding and decoding for <code>VarRing</code></em></p>
+<p>In the <code>pkg/sql/protocol/protocol.go</code> file, implement the code for serialization and deserialization of <code>VarRing</code>. </p>
+<table>
+<thead>
+<tr>
+<th>Serialization function</th>
+<th>Deserialization function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EncodeRing</td>
+<td>DecodeRing<br>DecodeRingWithProcess</td>
+</tr>
+</tbody>
+</table>
+<p>Serialization: </p>
+<div class="highlight"><pre><span></span><code><span class="w">   </span><span class="k">case</span><span class="w"> </span><span class="o">*</span><span class="nx">variance</span><span class="p">.</span><span class="nx">VarRing</span><span class="p">:</span><span class="w"></span>
 <span class="w">        </span><span class="nx">buf</span><span class="p">.</span><span class="nx">WriteByte</span><span class="p">(</span><span class="nx">VarianceRing</span><span class="p">)</span><span class="w"></span>
 <span class="w">        </span><span class="c1">// NullCounts</span><span class="w"></span>
 <span class="w">        </span><span class="nx">n</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="nx">v</span><span class="p">.</span><span class="nx">NullCounts</span><span class="p">)</span><span class="w"></span>
