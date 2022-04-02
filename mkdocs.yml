@@ -88,12 +88,24 @@ nav:
           - MAX: MatrixOne/Reference/SQL-Reference/Aggregate-Functions/max.md
           - MIN: MatrixOne/Reference/SQL-Reference/Aggregate-Functions/min.md
           - SUM: MatrixOne/Reference/SQL-Reference/Aggregate-Functions/sum.md
+          - BIT_AND: MatrixOne/Reference/SQL-Reference/Aggregate-Functions/bit_and.md
         - Data Types: MatrixOne/Reference/SQL-Reference/data-types.md
       - Custom Functions:
         - LENGTH(): MatrixOne/Reference/Customer-Functions/length.md
         - FLOOR(): MatrixOne/Reference/Customer-Functions/floor.md
         - ROUND(): MatrixOne/Reference/Customer-Functions/round.md
         - YEAR(): MatrixOne/Reference/Customer-Functions/year.md
+        - MONTH(): MatrixOne/Reference/Customer-Functions/month.md
+        - WEEKDAY(): MatrixOne/Reference/Customer-Functions/weekday.md
+        - UTC_TIMESTAMP(): MatrixOne/Reference/Customer-Functions/utc_timestamp.md
+        - SIN(): MatrixOne/Reference/Customer-Functions/sin.md
+        - COS(): MatrixOne/Reference/Customer-Functions/cos.md
+        - TAN(): MatrixOne/Reference/Customer-Functions/tan.md
+        - COT(): MatrixOne/Reference/Customer-Functions/cot.md
+        - ATAN(): MatrixOne/Reference/Customer-Functions/atan.md
+        - LTRIM(): MatrixOne/Reference/Customer-Functions/ltrim.md
+        - RTRIM(): MatrixOne/Reference/Customer-Functions/rtrim.md
+        - LPAD(): MatrixOne/Reference/Customer-Functions/lpad.md
       - System Paramaters: 
         - General Settings: MatrixOne/Reference/System-Parameters/configuration-settings.md
         - Distributed Settings: MatrixOne/Reference/System-Parameters/distributed-settings.md
