@@ -1223,6 +1223,34 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Aggregate-Functions/bit_or/" class="md-nav__link">
+        BIT_OR
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Aggregate-Functions/bit_xor/" class="md-nav__link">
+        BIT_XOR
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -1436,20 +1464,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Customer-Functions/utc_timestamp/" class="md-nav__link">
-        UTC_TIMESTAMP()
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../Customer-Functions/sin/" class="md-nav__link">
         SIN()
       </a>
@@ -1508,6 +1522,20 @@
     <li class="md-nav__item">
       <a href="../../Customer-Functions/atan/" class="md-nav__link">
         ATAN()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Customer-Functions/acos/" class="md-nav__link">
+        ACOS()
       </a>
     </li>
   
@@ -2339,7 +2367,7 @@
 <td>day</td>
 <td>1000-01-01</td>
 <td>9999-12-31</td>
-<td>YYYY-MM-DD</td>
+<td>YYYY-MM-DD/YYYYMMDD</td>
 </tr>
 <tr>
 <td>DateTime</td>
@@ -2381,6 +2409,13 @@
 
 //Insert a data of &quot;varchar&quot; and &quot;char&quot; into table &quot;names&quot; 
 &gt; insert into names(name, age) values(&#39;Abby&#39;, &#39;24&#39;);
+
+//Create a table named &quot;calendar&quot; with 2 attributes of a &quot;date&quot; and a &quot;datetime&quot;
+&gt; create table calendar(a date, b datetime);
+
+//Insert a data of &quot;date&quot; and &quot;datetime&quot; into table &quot;calendar&quot; 
+&gt; insert into calendar(a, b) values(&#39;20220202, &#39;2022-02-02 00:10:30&#39;);
+&gt; insert into calendar(a, b) values(&#39;2022-02-02, &#39;2022-02-02 00:10:30&#39;);
 </code></pre></div>
 
               
@@ -2395,7 +2430,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../Aggregate-Functions/bit_and/" class="md-footer__link md-footer__link--prev" aria-label="Previous: BIT_AND" rel="prev">
+        <a href="../Aggregate-Functions/bit_xor/" class="md-footer__link md-footer__link--prev" aria-label="Previous: BIT_XOR" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -2404,7 +2439,7 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              BIT_AND
+              BIT_XOR
             </div>
           </div>
         </a>

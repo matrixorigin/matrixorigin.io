@@ -1221,6 +1221,34 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL-Reference/Aggregate-Functions/bit_or/" class="md-nav__link">
+        BIT_OR
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL-Reference/Aggregate-Functions/bit_xor/" class="md-nav__link">
+        BIT_XOR
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -1436,20 +1464,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../utc_timestamp/" class="md-nav__link">
-        UTC_TIMESTAMP()
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../sin/" class="md-nav__link">
         SIN()
       </a>
@@ -1508,6 +1522,20 @@
     <li class="md-nav__item">
       <a href="../atan/" class="md-nav__link">
         ATAN()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../acos/" class="md-nav__link">
+        ACOS()
       </a>
     </li>
   
@@ -2238,25 +2266,17 @@
 </table>
 <h2 id="examples"><strong>Examples</strong></h2>
 <div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="k">drop</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span><span class="w"></span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">date</span><span class="p">);</span><span class="w"></span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="s1">&#39;20211223&#39;</span><span class="p">);</span><span class="w"></span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="s1">&#39;2021-12-24&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">date</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="n">datetime</span><span class="p">);</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="s1">&#39;20211223&#39;</span><span class="p">,</span><span class="s1">&#39;2021-10-22 09:23:23&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="s1">&#39;2021-12-23&#39;</span><span class="p">,</span><span class="s1">&#39;2021-10-22 00:23:23&#39;</span><span class="p">);</span><span class="w"></span>
 
-<span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">toyear</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span><span class="w"></span>
-<span class="o">+</span><span class="c1">---------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">year</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
-<span class="o">+</span><span class="c1">---------+</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">2021</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
-<span class="o">|</span><span class="w">    </span><span class="mi">2021</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
-<span class="o">+</span><span class="c1">---------+</span>
-
-<span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="k">year</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span><span class="w"></span>
-<span class="o">+</span><span class="c1">---------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">year</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
-<span class="o">+</span><span class="c1">---------+</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">2021</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
-<span class="o">|</span><span class="w">    </span><span class="mi">2021</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
-<span class="o">+</span><span class="c1">---------+</span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="k">year</span><span class="p">(</span><span class="n">a</span><span class="p">),</span><span class="w"> </span><span class="n">toyear</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span><span class="w"></span>
+<span class="o">+</span><span class="c1">---------+-----------+</span>
+<span class="o">|</span><span class="w"> </span><span class="k">year</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">toyear</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">+</span><span class="c1">---------+-----------+</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">2021</span><span class="w"> </span><span class="o">|</span><span class="w">      </span><span class="mi">2021</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w">    </span><span class="mi">2021</span><span class="w"> </span><span class="o">|</span><span class="w">      </span><span class="mi">2021</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">+</span><span class="c1">---------+-----------+</span>
 </code></pre></div>
 <h2 id="constraints"><strong>Constraints</strong></h2>
 <p>The date type supports only <code>yyyy-mm-dd</code> and <code>yyyymmdd</code> for now. </p>
