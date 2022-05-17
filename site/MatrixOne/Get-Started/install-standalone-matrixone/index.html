@@ -9,7 +9,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.13">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.15">
     
     
       
@@ -17,7 +17,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.e411adfe.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.c382b1dc.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.cc9b2e1e.min.css">
@@ -1887,6 +1887,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../Reference/Builtin-Functions/String/lengthUTF8/" class="md-nav__link">
+        LENGTHUTF8()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../Reference/Builtin-Functions/String/ltrim/" class="md-nav__link">
         LTRIM()
       </a>
@@ -1973,6 +1987,20 @@
     <li class="md-nav__item">
       <a href="../../Reference/Builtin-Functions/String/substring/" class="md-nav__link">
         SUBSTRING()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Reference/Builtin-Functions/String/space/" class="md-nav__link">
+        SPACE()
       </a>
     </li>
   
@@ -2811,11 +2839,16 @@ $ make build
 <div class="highlight"><pre><span></span><code>$ ./mo-server system_vars_config.toml
 </code></pre></div>
 <h2 id="downloading-binary-packages"><strong>Downloading binary packages</strong></h2>
-<p>Starting with 0.3.0, you can download binary packages directly to run MatrixOne in the X86_64 Linux environment.</p>
+<p>Starting with 0.3.0, you can download binary packages directly to run MatrixOne in the X86_64 Linux or Mac X86_64 environment.</p>
 <h4 id="1-download-binary-packages-and-decompress">1. Download binary packages and decompress</h4>
-<div class="highlight"><pre><span></span><code>$ wget https://github.com/matrixorigin/matrixone/releases/download/v0.3.0/mo-server-v0.3.0-linux-amd64.zip
-$ unzip mo-server-v0.3.0-linux-amd64.zip
-</code></pre></div>
+<p>Linux Environment
+<div class="highlight"><pre><span></span><code>$ wget https://github.com/matrixorigin/matrixone/releases/download/v0.4.0/mo-server-v0.4.0-linux-amd64.zip
+$ unzip mo-server-v0.4.0-linux-amd64.zip
+</code></pre></div></p>
+<p>MacOS Environment
+<div class="highlight"><pre><span></span><code>$ https://github.com/matrixorigin/matrixone/releases/download/v0.4.0/mo-server-v0.4.0-darwin-x86_64.zip
+$ unzip mo-server-v0.4.0-darwin-x86_64.zip
+</code></pre></div></p>
 <h4 id="2launch-matrixone-server">2.Launch MatrixOne server</h4>
 <div class="highlight"><pre><span></span><code>$./mo-server system_vars_config.toml
 </code></pre></div>
@@ -2896,7 +2929,7 @@ $ unzip mo-server-v0.3.0-linux-amd64.zip
     <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky"], "search": "../../../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.ed9748b7.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.a6c66575.min.js"></script>
       
     
   </body>
