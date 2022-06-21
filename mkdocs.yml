@@ -9,7 +9,7 @@ theme:
       note: fontawesome/solid/sticky-note
       info: fontawesome/solid/info-circle
   features:
-    - navigation.instant  
+    - navigation.instant
     - navigation.tracking
     - navigation.tabs
     - navigation.tabs.sticky
@@ -38,12 +38,12 @@ markdown_extensions:
 nav:
   - MatrixOne:
     - Home: README.md
-    - Overview: 
+    - Overview:
       - MatrixOne Introduction: MatrixOne/Overview/matrixone-introduction.md
       - MatrixOne Architecture: MatrixOne/Overview/matrixone-architecture.md
       - MatrixOne Tech Design:
         - MatrixOne Modules: MatrixOne/Overview/MatrixOne-Tech-Design/matrixone-techdesign.md
-      - MatrixCube Tech Design: 
+      - MatrixCube Tech Design:
         - MatrixCube Introduction: MatrixOne/Overview/matrixcube/matrixcube-introduction.md
         - Auto Rebalancing and Scheduling: MatrixOne/Overview/matrixcube/matrixcube-auto-rebalance-scheduling.md
         - Shard Splitting: MatrixOne/Overview/matrixcube/matrixcube-shard-splitting.md
@@ -53,7 +53,7 @@ nav:
         - SSB Test Performance: MatrixOne/Overview/SSB Test Performance.md
         - NYC Test Performance: MatrixOne/Overview/NYC Test Performance.md
       - What's New: MatrixOne/Overview/whats-new.md
-    - Get Started: 
+    - Get Started:
       - Install Standalone MatrixOne: MatrixOne/Get-Started/install-standalone-matrixone.md
       - Install Distributed MatrixOne: MatrixOne/Get-Started/install-distributed-matrixone.md
       - Connect to MatrixOne Server: MatrixOne/Get-Started/connect-to-matrixone-server.md
@@ -62,7 +62,7 @@ nav:
         - NYC Test with MatrixOne: MatrixOne/Get-Started/Tutorial/NYC-test-with-matrixone.md
       - Playground: MatrixOne/Get-Started/Playground.md
     - Reference:
-      - SQL Reference: 
+      - SQL Reference:
         - DDL:
           - CREATE DATABASE: MatrixOne/Reference/SQL-Reference/Data-Definition-Statements/create-database.md
           - CREATE TABLE: MatrixOne/Reference/SQL-Reference/Data-Definition-Statements/create-table.md
@@ -97,7 +97,7 @@ nav:
           - Date Types Overview: MatrixOne/Reference/Data-Types/data-types.md
           - Fixed-Point Types (Exact Value) - DECIMAL: MatrixOne/Reference/Data-Types/fixed-point-types.md
       - Builtin Functions:
-        - Mathematical: 
+        - Mathematical:
           - ABS(): MatrixOne/Reference/Builtin-Functions/Mathematical/abs.md
           - SIN(): MatrixOne/Reference/Builtin-Functions/Mathematical/sin.md
           - COS(): MatrixOne/Reference/Builtin-Functions/Mathematical/cos.md
@@ -114,13 +114,17 @@ nav:
           - LOG(): MatrixOne/Reference/Builtin-Functions/Mathematical/log.md
           - LN(): MatrixOne/Reference/Builtin-Functions/Mathematical/ln.md
           - EXP(): MatrixOne/Reference/Builtin-Functions/Mathematical/exp.md
-        - Datetime: 
+        - Datetime:
           - YEAR(): MatrixOne/Reference/Builtin-Functions/Datetime/year.md
           - MONTH(): MatrixOne/Reference/Builtin-Functions/Datetime/month.md
           - DATE(): MatrixOne/Reference/Builtin-Functions/Datetime/date.md
           - WEEKDAY(): MatrixOne/Reference/Builtin-Functions/Datetime/weekday.md
           - DAYOFYEAR(): MatrixOne/Reference/Builtin-Functions/Datetime/dayofyear.md
-        - String: 
+        - String:
+          - BIN(): MatrixOne/Reference/Builtin-Functions/String/bin.md
+          - CONCAT_WS(): MatrixOne/Reference/Builtin-Functions/String/concat_ws.md
+          - FIND_IN_SET(): MatrixOne/Reference/Builtin-Functions/String/find_in_set.md
+          - OCT(): MatrixOne/Reference/Builtin-Functions/String/oct.md
           - EMPTY(): MatrixOne/Reference/Builtin-Functions/String/empty.md
           - LENGTH(): MatrixOne/Reference/Builtin-Functions/String/length.md
           - LENGTHUTF8(): MatrixOne/Reference/Builtin-Functions/String/lengthUTF8.md
@@ -133,7 +137,7 @@ nav:
           - SUBSTRING(): MatrixOne/Reference/Builtin-Functions/String/substring.md
           - SPACE(): MatrixOne/Reference/Builtin-Functions/String/space.md
           - REVERSE(): MatrixOne/Reference/Builtin-Functions/String/reverse.md
-      - System Paramaters: 
+      - System Paramaters:
         - General Settings: MatrixOne/Reference/System-Parameters/configuration-settings.md
         - Distributed Settings: MatrixOne/Reference/System-Parameters/distributed-settings.md
     - Develop:
@@ -145,10 +149,11 @@ nav:
       - v0.2.0: MatrixOne/Release-Notes/v0.2.0.md
       - v0.3.0: MatrixOne/Release-Notes/v0.3.0.md
       - v0.4.0: MatrixOne/Release-Notes/v0.4.0.md
+      - v0.5.0: MatrixOne/Release-Notes/v0.5.0.md
     - Glossary: MatrixOne/glossary.md
-    - Contribution Guide: 
+    - Contribution Guide:
       - Make Your First Contribution: MatrixOne/Contribution-Guide/make-your-first-contribution.md
-      - How to Contribute: 
+      - How to Contribute:
         - Types of Contributions: MatrixOne/Contribution-Guide/How-to-Contribute/types-of-contributions.md
         - Preparation: MatrixOne/Contribution-Guide/How-to-Contribute/preparation.md
         - Report an Issue: MatrixOne/Contribution-Guide/How-to-Contribute/report-an-issue.md
@@ -156,10 +161,10 @@ nav:
         - Review a Pull Request: MatrixOne/Contribution-Guide/How-to-Contribute/review-a-pull-request.md
         - Contribute Documentation: MatrixOne/Contribution-Guide/How-to-Contribute/contribute-documentation.md
         - Make a Design: MatrixOne/Contribution-Guide/How-to-Contribute/make-a-design.md
-      - Tutorial: 
+      - Tutorial:
         - Develop a built-in function: MatrixOne/Contribution-Guide/Tutorial/develop_builtin_functions.md
         - Develop an aggregate function: MatrixOne/Contribution-Guide/Tutorial/develop_aggregate_functions.md
-      - Code Style: 
+      - Code Style:
         - Code of Conduct: MatrixOne/Contribution-Guide/Code-Style/code-of-conduct.md
         - Code Comment Style: MatrixOne/Contribution-Guide/Code-Style/code-comment-style.md
         - Commit & Pull Request Style: MatrixOne/Contribution-Guide/Code-Style/commit-pr-style.md
