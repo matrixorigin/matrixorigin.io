@@ -86,6 +86,8 @@ nav:
             - LEFT JOIN: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/join/left-join.md
             - RIGHT JOIN: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/join/right-join.md
             - FULL JOIN: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/join/full-join.md
+            - OUTER JOIN: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/join/outer-join.md
+            - NATURAL JOIN: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/join/natural-join.md
         - Aggregate Functions:
           - AVG: MatrixOne/Reference/SQL-Reference/Aggregate-Functions/avg.md
           - COUNT: MatrixOne/Reference/SQL-Reference/Aggregate-Functions/count.md
@@ -124,6 +126,13 @@ nav:
           - DATE(): MatrixOne/Reference/Builtin-Functions/Datetime/date.md
           - WEEKDAY(): MatrixOne/Reference/Builtin-Functions/Datetime/weekday.md
           - DAYOFYEAR(): MatrixOne/Reference/Builtin-Functions/Datetime/dayofyear.md
+          - EXTRACT(): MatrixOne/Reference/Builtin-Functions/Datetime/extract.md
+          - DATE_ADD(): MatrixOne/Reference/Builtin-Functions/Datetime/date-add.md
+          - DATE_SUB(): MatrixOne/Reference/Builtin-Functions/Datetime/date-sub.md
+          - TO_DATE(): MatrixOne/Reference/Builtin-Functions/Datetime/to-date.md
+          - UNIX_TIMESTAMP: MatrixOne/Reference/Builtin-Functions/Datetime/unix-timestamp.md
+          - FROM_UNIXTIME: MatrixOne/Reference/Builtin-Functions/Datetime/from-unixtime.md
+          - UTC_TIMESTAMP(): MatrixOne/Reference/Builtin-Functions/Datetime/utc-timestamp.md
         - String:
           - BIN(): MatrixOne/Reference/Builtin-Functions/String/bin.md
           - CONCAT_WS(): MatrixOne/Reference/Builtin-Functions/String/concat_ws.md
@@ -173,3 +182,5 @@ nav:
         - Commit & Pull Request Style: MatrixOne/Contribution-Guide/Code-Style/commit-pr-style.md
   - Playground:
     - Playground: https://playground.matrixorigin.io/?tutorial=SSB-test-with-matrixone&step=1
+
+<!--end-->
