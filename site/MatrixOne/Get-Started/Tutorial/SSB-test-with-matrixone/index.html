@@ -390,67 +390,6 @@
   
   
   
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_2_4" type="checkbox" id="__nav_1_2_4" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_1_2_4">
-          Performance
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Performance" data-md-level="3">
-        <label class="md-nav__title" for="__nav_1_2_4">
-          <span class="md-nav__icon md-icon"></span>
-          Performance
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../Overview/SSB%20Test%20Performance/" class="md-nav__link">
-        SSB Test Performance
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../Overview/NYC%20Test%20Performance/" class="md-nav__link">
-        NYC Test Performance
-      </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
     <li class="md-nav__item">
       <a href="../../../Overview/whats-new/" class="md-nav__link">
         What's New
@@ -667,20 +606,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../NYC-test-with-matrixone/" class="md-nav__link">
-        NYC Test with MatrixOne
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../TPCH-test-with-matrixone/" class="md-nav__link">
         TPCH Test with MatrixOne
       </a>
@@ -845,34 +770,6 @@
     <li class="md-nav__item">
       <a href="../../../Reference/SQL-Reference/Data-Definition-Statements/drop-table/" class="md-nav__link">
         DROP TABLE
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../Reference/SQL-Reference/Data-Definition-Statements/create-index/" class="md-nav__link">
-        CREATE INDEX
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../Reference/SQL-Reference/Data-Definition-Statements/drop-index/" class="md-nav__link">
-        DROP INDEX
       </a>
     </li>
   
@@ -3997,7 +3894,6 @@
 
 <h1 id="complete-a-ssb-test-with-matrixone"><strong>Complete a SSB Test with MatrixOne</strong></h1>
 <p>The Star Schema Benchmark（SSB）Test is a popular scenario for OLAP database performance tests. By going through this tutorial, you’ll learn how to complete a SSB Test with MatrixOne.</p>
-<p>In v0.1.0, only single table can work in MatrixOne. The following contents can be followed for generating data, importing data, and querying data.</p>
 <h2 id="before-you-begin"><strong>Before you begin</strong></h2>
 <p>Make sure you have already <a href="../../install-standalone-matrixone/">installed MatrixOne</a> and <a href="../../connect-to-matrixone-server/">connected to MatrixOne Server</a>.</p>
 <h2 id="1-compile-dbgen"><strong>1. Compile dbgen</strong></h2>
@@ -4012,6 +3908,9 @@ $ ./dbgen -s 1 -T l
 $ ./dbgen -s 1 -T p
 $ ./dbgen -s 1 -T s
 $ ./dbgen -s 1 -T d
+</code></pre></div>
+<p>We have also prepared a 1GB dataset for downloading.  You can get the data files directly:</p>
+<div class="highlight"><pre><span></span><code>https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/lineorder_flat.tar.bz2
 </code></pre></div>
 <h2 id="3-create-tables-in-matrixone"><strong>3. Create tables in MatrixOne</strong></h2>
 <div class="highlight"><pre><span></span><code>create database if not exists ssb;
@@ -4138,9 +4037,6 @@ CREATE TABLE lineorder_flat(
 );
 </code></pre></div>
 <h2 id="4-load-data-into-the-created-tables"><strong>4. Load data into the created tables</strong></h2>
-<p>Modify the parameter of system_vars_config.toml to a larger one in matrixone directory, such as 10GB. And restart MatrixOne service.</p>
-<div class="highlight"><pre><span></span><code>max-entry-bytes = &quot;10GB&quot;
-</code></pre></div>
 <p>Load data into related tables with this command in MatrixOne.</p>
 <div class="highlight"><pre><span></span><code>load data infile &#39;/ssb-dbgen-path/supplier.tbl&#39; into table supplier FIELDS TERMINATED BY &#39;,&#39; OPTIONALLY ENCLOSED BY &#39;&quot;&#39; LINES TERMINATED BY &#39;\n&#39;;
 
@@ -4362,13 +4258,13 @@ If you want to run a single table SSB query test, there is still one more data f
       
       
         
-        <a href="../NYC-test-with-matrixone/" class="md-footer__link md-footer__link--next" aria-label="Next: NYC Test with MatrixOne" rel="next">
+        <a href="../TPCH-test-with-matrixone/" class="md-footer__link md-footer__link--next" aria-label="Next: TPCH Test with MatrixOne" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              NYC Test with MatrixOne
+              TPCH Test with MatrixOne
             </div>
           </div>
           <div class="md-footer__button md-icon">

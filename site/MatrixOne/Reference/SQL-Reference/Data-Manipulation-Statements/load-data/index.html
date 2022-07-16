@@ -390,67 +390,6 @@
   
   
   
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_2_4" type="checkbox" id="__nav_1_2_4" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_1_2_4">
-          Performance
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Performance" data-md-level="3">
-        <label class="md-nav__title" for="__nav_1_2_4">
-          <span class="md-nav__icon md-icon"></span>
-          Performance
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../Overview/SSB%20Test%20Performance/" class="md-nav__link">
-        SSB Test Performance
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../Overview/NYC%20Test%20Performance/" class="md-nav__link">
-        NYC Test Performance
-      </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
     <li class="md-nav__item">
       <a href="../../../../Overview/whats-new/" class="md-nav__link">
         What's New
@@ -555,20 +494,6 @@
     <li class="md-nav__item">
       <a href="../../../../Get-Started/Tutorial/SSB-test-with-matrixone/" class="md-nav__link">
         SSB Test with MatrixOne
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../Get-Started/Tutorial/NYC-test-with-matrixone/" class="md-nav__link">
-        NYC Test with MatrixOne
       </a>
     </li>
   
@@ -761,34 +686,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Data-Definition-Statements/create-index/" class="md-nav__link">
-        CREATE INDEX
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../Data-Definition-Statements/drop-index/" class="md-nav__link">
-        DROP INDEX
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../Data-Definition-Statements/primary-key/" class="md-nav__link">
         PRIMARY KEY
       </a>
@@ -944,6 +841,13 @@
         <li class="md-nav__item">
   <a href="#examples" class="md-nav__link">
     Examples
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#constraints" class="md-nav__link">
+    Constraints
   </a>
   
 </li>
@@ -3897,6 +3801,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#constraints" class="md-nav__link">
+    Constraints
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -3920,12 +3831,8 @@
 <p>The LOAD DATA statement reads rows from a text file into a table at a very high speed.</p>
 <h2 id="syntax"><strong>Syntax</strong></h2>
 <div class="highlight"><pre><span></span><code>&gt; LOAD DATA
-    [LOW_PRIORITY | CONCURRENT] [LOCAL]
     INFILE &#39;file_name&#39;
-    [REPLACE | IGNORE]
     INTO TABLE tbl_name
-    [PARTITION (partition_name [, partition_name] ...)]
-    [CHARACTER SET charset_name]
     [{FIELDS | COLUMNS}
         [TERMINATED BY &#39;string&#39;]
         [[OPTIONALLY] ENCLOSED BY &#39;char&#39;]
@@ -3935,17 +3842,14 @@
         [STARTING BY &#39;string&#39;]
         [TERMINATED BY &#39;string&#39;]
     ]
-    [IGNORE number {LINES | ROWS}]
-    [(col_name_or_user_var
-        [, col_name_or_user_var] ...)]
-    [SET col_name={expr | DEFAULT}
-        [, col_name={expr | DEFAULT}] ...]
 </code></pre></div>
 <h2 id="examples"><strong>Examples</strong></h2>
 <p>The SSB Test is an example of LOAD DATA syntax. <a href="../../../../Get-Started/Tutorial/SSB-test-with-matrixone/">Complete a SSB Test with MatrixOne
 </a></p>
 <div class="highlight"><pre><span></span><code>&gt; LOAD DATA INFILE &#39;/ssb-dbgen-path/lineorder_flat.tbl &#39; INTO TABLE lineorder_flat;
 </code></pre></div>
+<h2 id="constraints"><strong>Constraints</strong></h2>
+<p>Only CSV format file is supported for now. </p>
 
               
             </article>

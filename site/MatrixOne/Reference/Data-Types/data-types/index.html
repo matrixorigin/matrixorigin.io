@@ -390,67 +390,6 @@
   
   
   
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_2_4" type="checkbox" id="__nav_1_2_4" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_1_2_4">
-          Performance
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Performance" data-md-level="3">
-        <label class="md-nav__title" for="__nav_1_2_4">
-          <span class="md-nav__icon md-icon"></span>
-          Performance
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../Overview/SSB%20Test%20Performance/" class="md-nav__link">
-        SSB Test Performance
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../Overview/NYC%20Test%20Performance/" class="md-nav__link">
-        NYC Test Performance
-      </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
     <li class="md-nav__item">
       <a href="../../../Overview/whats-new/" class="md-nav__link">
         What's New
@@ -555,20 +494,6 @@
     <li class="md-nav__item">
       <a href="../../../Get-Started/Tutorial/SSB-test-with-matrixone/" class="md-nav__link">
         SSB Test with MatrixOne
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../Get-Started/Tutorial/NYC-test-with-matrixone/" class="md-nav__link">
-        NYC Test with MatrixOne
       </a>
     </li>
   
@@ -747,34 +672,6 @@
     <li class="md-nav__item">
       <a href="../../SQL-Reference/Data-Definition-Statements/drop-table/" class="md-nav__link">
         DROP TABLE
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../SQL-Reference/Data-Definition-Statements/create-index/" class="md-nav__link">
-        CREATE INDEX
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../SQL-Reference/Data-Definition-Statements/drop-index/" class="md-nav__link">
-        DROP INDEX
       </a>
     </li>
   
@@ -4098,19 +3995,19 @@
 </tr>
 <tr>
 <td>DateTime</td>
-<td>4 byte</td>
+<td>8 byte</td>
 <td>second</td>
-<td>1970-01-01 00:00:00</td>
-<td>2105-12-31 23:59:59</td>
-<td>YYYY-MM-DD hh:mm:ss</td>
+<td>0001-01-01 00:00:00.000000</td>
+<td>9999-12-31 23:59:59.999999</td>
+<td>YYYY-MM-DD hh:mi:ssssss</td>
 </tr>
 <tr>
 <td>TIMESTAMP</td>
 <td>8 byte</td>
-<td></td>
-<td>1970-01-01 00:00:01</td>
-<td>2038-01-19 03:14:07</td>
-<td>YYYY-MM-DD HH:MM:SS</td>
+<td>second</td>
+<td>1970-01-01 00:00:01.000000</td>
+<td>2038-01-19 03:14:07.999999</td>
+<td>YYYYMMDD hh:mi:ss.ssssss</td>
 </tr>
 </tbody>
 </table>

@@ -390,67 +390,6 @@
   
   
   
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_2_4" type="checkbox" id="__nav_1_2_4" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_1_2_4">
-          Performance
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Performance" data-md-level="3">
-        <label class="md-nav__title" for="__nav_1_2_4">
-          <span class="md-nav__icon md-icon"></span>
-          Performance
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../Overview/SSB%20Test%20Performance/" class="md-nav__link">
-        SSB Test Performance
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../Overview/NYC%20Test%20Performance/" class="md-nav__link">
-        NYC Test Performance
-      </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
     <li class="md-nav__item">
       <a href="../../Overview/whats-new/" class="md-nav__link">
         What's New
@@ -543,8 +482,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-install-go-as-necessary" class="md-nav__link">
-    1. Install Go as necessary
+  <a href="#1-install-go-as-necessary-dependancy" class="md-nav__link">
+    1. Install Go as necessary dependancy
   </a>
   
 </li>
@@ -652,8 +591,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-create-and-run-the-container-for-the-latest-release-of-matrixone" class="md-nav__link">
-    2. Create and run the container for the latest release of MatrixOne
+  <a href="#2-create-and-run-the-container-of-matrixone" class="md-nav__link">
+    2. Create and run the container of MatrixOne
   </a>
   
 </li>
@@ -727,20 +666,6 @@
     <li class="md-nav__item">
       <a href="../Tutorial/SSB-test-with-matrixone/" class="md-nav__link">
         SSB Test with MatrixOne
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../Tutorial/NYC-test-with-matrixone/" class="md-nav__link">
-        NYC Test with MatrixOne
       </a>
     </li>
   
@@ -917,34 +842,6 @@
     <li class="md-nav__item">
       <a href="../../Reference/SQL-Reference/Data-Definition-Statements/drop-table/" class="md-nav__link">
         DROP TABLE
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Definition-Statements/create-index/" class="md-nav__link">
-        CREATE INDEX
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Definition-Statements/drop-index/" class="md-nav__link">
-        DROP INDEX
       </a>
     </li>
   
@@ -3996,8 +3893,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-install-go-as-necessary" class="md-nav__link">
-    1. Install Go as necessary
+  <a href="#1-install-go-as-necessary-dependancy" class="md-nav__link">
+    1. Install Go as necessary dependancy
   </a>
   
 </li>
@@ -4105,8 +4002,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-create-and-run-the-container-for-the-latest-release-of-matrixone" class="md-nav__link">
-    2. Create and run the container for the latest release of MatrixOne
+  <a href="#2-create-and-run-the-container-of-matrixone" class="md-nav__link">
+    2. Create and run the container of MatrixOne
   </a>
   
 </li>
@@ -4142,10 +4039,15 @@
 
 
 <h1 id="install-standalone-matrixone"><strong>Install standalone MatrixOne</strong></h1>
-<p>MatrixOne supports Linux and MacOS. You can install a standalone MatrixOne version either by <a href="#building-from-source">building from source</a> or <a href="#using-docker">using docker</a>.</p>
+<p>MatrixOne supports Linux and MacOS. You can install a standalone MatrixOne version by 3 methods: </p>
+<ul>
+<li>Building from source.</li>
+<li>Using binary package.</li>
+<li>Using Docker.</li>
+</ul>
 <p>Recommended hardware specification: x86 CPU with 4 cores and 32GB memory, with CentOS 7+ OS.</p>
 <h2 id="method-1-building-from-source"><strong>Method 1: Building from source</strong></h2>
-<h4 id="1-install-go-as-necessary">1. Install Go as necessary</h4>
+<h4 id="1-install-go-as-necessary-dependancy">1. Install Go as necessary dependancy</h4>
 <p>Go version 1.18 is required.</p>
 <h4 id="2-get-the-matrixone-code">2. Get the MatrixOne code</h4>
 <p>Depending on your needs, choose whether you want to keep your code up to date, or if you want to get the latest stable version of the code.</p>
@@ -4157,6 +4059,7 @@ $ cd matrixone
 <h5 id="option-2-get-the-matrixonestable-version-code">Option 2: Get the MatrixOne(Stable Version) code</h5>
 <p>If you want to get the latest stable version code released by MatrixOne, please switch to the branch of version <strong>0.5.0</strong> first.</p>
 <div class="highlight"><pre><span></span><code>$ git clone https://github.com/matrixorigin/matrixone.git
+$ git checkout 0.5.0
 $ cd matrixone
 </code></pre></div>
 <h4 id="3-run-make">3. Run make</h4>
@@ -4171,7 +4074,7 @@ $ make build
 <p>When you finish installing MatrixOne, you can refer to the section below to connect to the MatrixOne server.</p>
 <p>See <a href="../connect-to-matrixone-server/">Connect to MatrixOne server</a>.</p>
 <h2 id="method-2-downloading-binary-packages"><strong>Method 2: Downloading binary packages</strong></h2>
-<p>Starting with 0.5.0, you can download binary packages directly to run MatrixOne in the X86_64 Linux or Mac X86_64 environment.</p>
+<p>For each release, you can download binary packages directly to run MatrixOne in the X86_64 Linux or Mac X86_64 environment.</p>
 <h4 id="1-download-binary-packages-and-decompress">1. Download binary packages and decompress</h4>
 <p>Linux Environment</p>
 <div class="highlight"><pre><span></span><code>$ wget https://github.com/matrixorigin/matrixone/releases/download/v0.5.0/mo-server-v0.5.0-linux-amd64.zip
@@ -4192,9 +4095,13 @@ $ unzip mo-server-v0.5.0-darwin-x86_64.zip
 <p>Please verify that Docker daemon is running in the background:</p>
 <div class="highlight"><pre><span></span><code>$ docker --version
 </code></pre></div>
-<h4 id="2-create-and-run-the-container-for-the-latest-release-of-matrixone">2. Create and run the container for the latest release of MatrixOne</h4>
-<p>It will pull the image from Docker Hub if not exists.</p>
+<h4 id="2-create-and-run-the-container-of-matrixone">2. Create and run the container of MatrixOne</h4>
+<p>It will pull the image from Docker Hub if not exists. You can choose to pull the latest image or a stable version.</p>
+<p>Latest Image</p>
 <div class="highlight"><pre><span></span><code>$ docker run -d -p 6001:6001 --name matrixone matrixorigin/matrixone:latest
+</code></pre></div>
+<p>0.5.0 Version Image</p>
+<div class="highlight"><pre><span></span><code>$ docker run -d -p 6001:6001 --name matrixone matrixorigin/matrixone:0.5.0
 </code></pre></div>
 <p>For the information on the user name and password, see the next step - Connect to MatrixOne Server.</p>
 <h4 id="3-connect-to-matrixone-server_1">3. Connect to MatrixOne Server</h4>
