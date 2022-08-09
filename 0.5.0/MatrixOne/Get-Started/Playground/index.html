@@ -1854,7 +1854,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Statements/operators/flow-control-functions/case-when.md" class="md-nav__link">
+      <a href="../../Reference/SQL-Reference/Data-Manipulation-Statements/operators/flow-control-functions/case-when/" class="md-nav__link">
         CASE WHEN
       </a>
     </li>
@@ -2949,7 +2949,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/String/lengthUTF8/" class="md-nav__link">
+      <a href="../../Reference/Builtin-Functions/String/lengthUTF8.md" class="md-nav__link">
         LENGTHUTF8()
       </a>
     </li>
@@ -3908,21 +3908,16 @@
 <p><a href="https://playground.matrixorigin.io/?tutorial=SSB-test-with-matrixone&amp;step=1">MatrixOne Playground</a> allows you to try SQL statements and explore features of MatrixOne instantly from your web browser with interactive tutorials.  </p>
 <ul>
 <li>For docs about our SQL commands, you can see <a href="../../Reference/SQL-Reference/Data-Definition-Statements/create-database/">SQL Reference</a>.  </li>
-<li>For tutorials about <strong>SSB</strong> test, you can see <a href="../Tutorial/SSB-test-with-matrixone/">Tutorial</a>.</li>
+<li>For tutorials about <strong>SSB</strong> or <strong>TPCH</strong> test, you can see <a href="../Tutorial/SSB-test-with-matrixone/">Tutorial</a>.</li>
 </ul>
 <h2 id="limitations"><strong>Limitations</strong></h2>
 <p>You can only operate in <strong>read-only</strong> mode in MatixOrigin Playground，so DDL commands and part of DML commands which may change the data are not available. The detail limitations are shown below:</p>
 <ul>
 <li>
-<p><strong>DDL</strong> commands are not available:<br />
-<code>create/drop table</code> , <code>truncate</code> , <code>update</code> , <code>set</code> , <code>use</code>  </p>
+<p>Part of <strong>DDL</strong> commands are not available: <code>truncate</code>,<code>set</code></p>
 </li>
 <li>
-<p>Part of <strong>DML</strong> commands are not available：<br />
-<code>insert</code> , <code>replace</code> , <code>delete</code>,<code>select into</code>  </p>
-</li>
-<li>
-<p><code>commit</code> is not available</p>
+<p>Part of <strong>DML</strong> commands are not available：<code>replace</code></p>
 </li>
 <li>
 <p><code>call</code> is not available</p>
@@ -3940,7 +3935,7 @@
 <h3 id="test-preperations"><strong>Test Preperations</strong></h3>
 <p>This tutorial walks you through the most popular <strong>Star Schema Benchmark（SSB）</strong>Test SQL statements with MatrixOne. To better experience MatrixOne's features and performance, test queries in this tutorial will run without filters.<br />
 Before you start, the test datasets have been pre-loaded in  database <code>ssb</code>. To list available tables in the database you can query :</p>
-<div class="highlight"><pre><span></span><code>SHOW TABLES；
+<div class="highlight"><pre><span></span><code>SHOW TABLES;
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title"><font size=4>Tips</font></p>
@@ -3955,7 +3950,7 @@ For example:  </p>
 <li><strong>Run Q1.1 query</strong></li>
 </ul>
 <div class="highlight"><pre><span></span><code>select sum(lo_revenue) as revenue
-from lineorder join dates on lo_orderdate = d_datekey；
+from lineorder join dates on lo_orderdate = d_datekey;
 </code></pre></div>
 <p>And you can use <code>join</code> in queries:</p>
 <ul>
@@ -3963,7 +3958,7 @@ from lineorder join dates on lo_orderdate = d_datekey；
 </ul>
 <div class="highlight"><pre><span></span><code>select sum(lo_revenue) as revenue
 from lineorder
-join dates on lo_orderdate = d_datekey；
+join dates on lo_orderdate = d_datekey;
 </code></pre></div>
 <p>Additionally, <code>group by</code> and <code>order by</code> can be used:</p>
 <ul>

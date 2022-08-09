@@ -13,7 +13,7 @@
     
     
       
-        <title>LENGTHUTF8() - MatrixOne Docs</title>
+        <title>**CHAR_LENGTH** - MatrixOne Docs</title>
       
     
     
@@ -61,7 +61,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#lengthutf8" class="md-skip">
+        <a href="#char_length" class="md-skip">
           Skip to content
         </a>
       
@@ -101,7 +101,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              LENGTHUTF8()
+              **CHAR_LENGTH**
             
           </span>
         </div>
@@ -193,15 +193,13 @@
         
   
   
-    
-  
 
 
   
   
   
     <li class="md-tabs__item">
-      <a href="../../../../.." class="md-tabs__link md-tabs__link--active">
+      <a href="../../../../.." class="md-tabs__link">
         MatrixOne
       </a>
     </li>
@@ -279,14 +277,12 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
       
       
       
@@ -546,14 +542,12 @@
               
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4" type="checkbox" id="__nav_1_4" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4" type="checkbox" id="__nav_1_4" >
       
       
       
@@ -1779,7 +1773,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../SQL-Reference/Data-Manipulation-Statements/operators/flow-control-functions/case-when.md" class="md-nav__link">
+      <a href="../../../SQL-Reference/Data-Manipulation-Statements/operators/flow-control-functions/case-when/" class="md-nav__link">
         CASE WHEN
       </a>
     </li>
@@ -2292,14 +2286,12 @@
               
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4_3" type="checkbox" id="__nav_1_4_3" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4_3" type="checkbox" id="__nav_1_4_3" >
       
       
       
@@ -2778,14 +2770,12 @@
               
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4_3_3" type="checkbox" id="__nav_1_4_3_3" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4_3_3" type="checkbox" id="__nav_1_4_3_3" >
       
       
       
@@ -2876,73 +2866,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          LENGTHUTF8()
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../lengthUTF8.md" class="md-nav__link">
         LENGTHUTF8()
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#description" class="md-nav__link">
-    Description
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#syntax" class="md-nav__link">
-    Syntax
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#arguments" class="md-nav__link">
-    Arguments
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#examples" class="md-nav__link">
-    Examples
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -3876,18 +3804,22 @@
             <article class="md-content__inner md-typeset">
               
                 
-<a href="https://github.com/matrixorigin/matrixone/edit/main/docs/en/MatrixOne/Reference/Builtin-Functions/String/lengthUTF8.md" title="Edit this page" class="md-content__button md-icon">
+<a href="https://github.com/matrixorigin/matrixone/edit/main/docs/en/MatrixOne/Reference/Builtin-Functions/String/char-length.md" title="Edit this page" class="md-content__button md-icon">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
 </a>
 
 
 
-<h1 id="lengthutf8"><strong>LENGTHUTF8()</strong></h1>
+<h1 id="char_length"><strong>CHAR_LENGTH</strong></h1>
 <h2 id="description"><strong>Description</strong></h2>
-<p>The lengthUTF8() function returns the length of the string str, measured in code points. A multibyte character counts as a single code point. This means that, for a string containing two 3-byte characters, LENGTH() returns 6, whereas LENGTHUTF8() returns 2.  </p>
+<p>The <code>CHAR_LENGTH</code> function returns the length of the string str, measured in code points. A multibyte character counts as a single code point. This means that, for a string containing two 3-byte characters, <code>CHAR_LENGTH</code> returns 6, whereas <code>CHAR_LENGTH</code> returns 2.  </p>
 <h2 id="syntax"><strong>Syntax</strong></h2>
-<div class="highlight"><pre><span></span><code>&gt; LENGTHUTF8(str)
+<div class="highlight"><pre><span></span><code>&gt; CHAR_LENGTH(str)
 </code></pre></div>
+<div class="admonition note">
+<p class="admonition-title"><font size=4>note</font></p>
+<p><font size=3>The alias for <code>CHAR_LENGTH</code> can also be <code>lengthUTF8()</code></font></p>
+</div>
 <h2 id="arguments"><strong>Arguments</strong></h2>
 <table>
 <thead>
@@ -3907,7 +3839,7 @@
 <div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="k">drop</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span><span class="w"></span>
 <span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">255</span><span class="p">),</span><span class="n">b</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">255</span><span class="p">));</span><span class="w"></span>
 <span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="s1">&#39;nihao&#39;</span><span class="p">,</span><span class="s1">&#39;你好&#39;</span><span class="p">);</span><span class="w"></span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">lengthUTF8</span><span class="p">(</span><span class="n">a</span><span class="p">),</span><span class="w"> </span><span class="n">lengthUTF8</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="k">char_length</span><span class="p">(</span><span class="n">a</span><span class="p">),</span><span class="w"> </span><span class="k">char_length</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span><span class="w"></span>
 <span class="o">+</span><span class="c1">---------------+---------------+</span>
 <span class="o">|</span><span class="w"> </span><span class="n">lengthutf8</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">lengthutf8</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
 <span class="o">+</span><span class="c1">---------------+---------------+</span>
@@ -3923,41 +3855,6 @@
       </main>
       
         <footer class="md-footer">
-  
-    <nav class="md-footer__inner md-grid" aria-label="Footer">
-      
-        
-        <a href="../length/" class="md-footer__link md-footer__link--prev" aria-label="Previous: LENGTH()" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              LENGTH()
-            </div>
-          </div>
-        </a>
-      
-      
-        
-        <a href="../ltrim/" class="md-footer__link md-footer__link--next" aria-label="Next: LTRIM()" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              LTRIM()
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
