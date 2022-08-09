@@ -482,8 +482,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-install-go-as-necessary-dependency" class="md-nav__link">
-    1. Install Go as necessary dependency
+  <a href="#1-install-go-as-necessary-dependancy" class="md-nav__link">
+    1. Install Go as necessary dependancy
   </a>
   
 </li>
@@ -557,8 +557,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-launch-matrixone-server" class="md-nav__link">
-    2. Launch MatrixOne server
+  <a href="#2launch-matrixone-server" class="md-nav__link">
+    2.Launch MatrixOne server
   </a>
   
 </li>
@@ -606,6 +606,13 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference" class="md-nav__link">
+    Reference
+  </a>
   
 </li>
       
@@ -1949,7 +1956,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Statements/operators/flow-control-functions/case-when.md" class="md-nav__link">
+      <a href="../../Reference/SQL-Reference/Data-Manipulation-Statements/operators/flow-control-functions/case-when/" class="md-nav__link">
         CASE WHEN
       </a>
     </li>
@@ -3044,7 +3051,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/String/lengthUTF8/" class="md-nav__link">
+      <a href="../../Reference/Builtin-Functions/String/lengthUTF8.md" class="md-nav__link">
         LENGTHUTF8()
       </a>
     </li>
@@ -3949,8 +3956,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-install-go-as-necessary-dependency" class="md-nav__link">
-    1. Install Go as necessary dependency
+  <a href="#1-install-go-as-necessary-dependancy" class="md-nav__link">
+    1. Install Go as necessary dependancy
   </a>
   
 </li>
@@ -4024,8 +4031,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-launch-matrixone-server" class="md-nav__link">
-    2. Launch MatrixOne server
+  <a href="#2launch-matrixone-server" class="md-nav__link">
+    2.Launch MatrixOne server
   </a>
   
 </li>
@@ -4076,6 +4083,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#reference" class="md-nav__link">
+    Reference
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -4095,20 +4109,20 @@
 
 
 <h1 id="install-standalone-matrixone"><strong>Install standalone MatrixOne</strong></h1>
-<p>MatrixOne supports Linux and macOS. You can install a standalone MatrixOne version by 3 methods:</p>
+<p>MatrixOne supports Linux and MacOS. You can install a standalone MatrixOne version by 3 methods:</p>
 <ul>
-<li>Building from the source.</li>
-<li>Using binary package.</li>
-<li>Using Docker.</li>
+<li><p><a href="#code_source">Method 1: Building from source</a>.</p></li>
+<li><p><a href="#binary_packages">Method 2: Using binary package</a>.</p></li>
+<li><p><a href="#use_docker">Method 3: Using Docker</a>.</p></li>
 </ul>
 <p>Recommended hardware specification: x86 CPU with 4 cores and 32GB memory, with CentOS 7+ OS.</p>
-<h2 id="method-1-building-from-source"><strong>Method 1: Building from source</strong></h2>
-<h4 id="1-install-go-as-necessary-dependency">1. Install Go as necessary dependency</h4>
+<h2 id="method-1-building-from-source"><h2><a name="code_source">Method 1: Building from source</a></h2></h2>
+<h4 id="1-install-go-as-necessary-dependancy">1. Install Go as necessary dependancy</h4>
 <p>Go version 1.18 is required.</p>
 <h4 id="2-get-the-matrixone-code">2. Get the MatrixOne code</h4>
 <p>Depending on your needs, choose whether you want to keep your code up to date, or if you want to get the latest stable version of the code.</p>
 <h5 id="option-1-get-the-matrixonepreview-version-code">Option 1: Get the MatrixOne(Preview Version) code</h5>
-<p>The <strong>main</strong> branch is the default branch. The code on the main branch is always up-to-date but not stable enough.</p>
+<p>The <strong>main</strong> branch is the default branch, the code on the main branch is always up-to-date but not stable enough.</p>
 <div class="highlight"><pre><span></span><code>git clone https://github.com/matrixorigin/matrixone.git
 cd matrixone
 </code></pre></div>
@@ -4129,40 +4143,42 @@ make build
 <h4 id="5-connect-to-matrixone-server">5. Connect to MatrixOne Server</h4>
 <p>When you finish installing MatrixOne, you can refer to the section below to connect to the MatrixOne server.</p>
 <p>See <a href="../connect-to-matrixone-server/">Connect to MatrixOne server</a>.</p>
-<h2 id="method-2-downloading-binary-packages"><strong>Method 2: Downloading binary packages</strong></h2>
+<h2 id="method-2-downloading-binary-packages"><h2><a name="binary_packages">Method 2: Downloading binary packages</a></h2></h2>
 <p>For each release, you can download binary packages directly to run MatrixOne in the X86_64 Linux or Mac X86_64 environment.</p>
 <h4 id="1-download-binary-packages-and-decompress">1. Download binary packages and decompress</h4>
 <p>Linux Environment</p>
 <div class="highlight"><pre><span></span><code>wget https://github.com/matrixorigin/matrixone/releases/download/v0.5.0/mo-server-v0.5.0-linux-amd64.zip
 unzip mo-server-v0.5.0-linux-amd64.zip
 </code></pre></div>
-<p>macOS Environment</p>
+<p>MacOS Environment</p>
 <div class="highlight"><pre><span></span><code>wget https://github.com/matrixorigin/matrixone/releases/download/v0.5.0/mo-server-v0.5.0-darwin-x86_64.zip
 unzip mo-server-v0.5.0-darwin-x86_64.zip
 </code></pre></div>
-<h4 id="2-launch-matrixone-server">2. Launch MatrixOne server</h4>
-<div class="highlight"><pre><span></span><code>$./mo-server system_vars_config.toml
+<h4 id="2launch-matrixone-server">2.Launch MatrixOne server</h4>
+<div class="highlight"><pre><span></span><code>./mo-server system_vars_config.toml
 </code></pre></div>
 <h4 id="3-connect-to-matrixone-server">3. Connect to MatrixOne Server</h4>
 <p>When you finish installing MatrixOne, you can refer to the section below to connect to the MatrixOne server.</p>
 <p>See <a href="../connect-to-matrixone-server/">Connect to MatrixOne server</a>.</p>
-<h2 id="method-3-using-docker"><strong>Method 3: Using docker</strong></h2>
+<h2 id="method-3-using-docker"><h2><a name="use_docker">Method 3: Using docker</a></h2></h2>
 <h4 id="1-install-docker">1. Install Docker</h4>
-<p>Please verify that the docker daemon is running in the background:</p>
+<p>Please verify that Docker daemon is running in the background:</p>
 <div class="highlight"><pre><span></span><code>docker --version
 </code></pre></div>
 <h4 id="2-create-and-run-the-container-of-matrixone">2. Create and run the container of MatrixOne</h4>
-<p>It will pull the image from Docker Hub if it does not exist. You can choose to pull the latest image or a stable version.</p>
+<p>It will pull the image from Docker Hub if not exists. You can choose to pull the latest image or a stable version.</p>
 <p>Latest Image</p>
 <div class="highlight"><pre><span></span><code>docker run -d -p 6001:6001 --name matrixone matrixorigin/matrixone:latest
 </code></pre></div>
 <p>0.5.0 Version Image</p>
 <div class="highlight"><pre><span></span><code>docker run -d -p 6001:6001 --name matrixone matrixorigin/matrixone:0.5.0
 </code></pre></div>
-<p>For the user name and password information, see the next step - Connect to MatrixOne Server.</p>
+<p>For the information on the user name and password, see the next step - Connect to MatrixOne Server.</p>
 <h4 id="3-connect-to-matrixone-server_1">3. Connect to MatrixOne Server</h4>
 <p>When you finish installing MatrixOne, you can refer to the section below to connect to the MatrixOne server.</p>
 <p>See <a href="../connect-to-matrixone-server/">Connect to MatrixOne server</a>.</p>
+<h2 id="reference">Reference</h2>
+<p>For more information on deployment，see<a href="../../FAQs/deployment-faqs/">Deployment FAQs</a>.</p>
 
               
             </article>
