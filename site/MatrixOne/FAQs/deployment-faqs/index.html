@@ -3981,6 +3981,62 @@
 <li>For Linux, please refer to this detailed <a href="https://www.linuxtechi.com/set-ulimit-file-descriptors-limit-linux-servers/">guide</a> to set the ulimit to 100000.</li>
 </ul>
 <p>After setting this value, there will be no more <code>too many open files</code> error.</p>
+<ul>
+<li><strong>Ssb-dbgen cannot be compiled on a PC with M1 chip</strong></li>
+</ul>
+<p>To complete the following configuration, then compiling 'SSB-DBgen' for a PC with M1 chip:</p>
+<ol>
+<li>
+<p>Download and install <a href="https://gcc.gnu.org/install/">GCC11</a>.</p>
+</li>
+<li>
+<p>To ensure the gcc-11 is successful installed, run the following ccommand:</p>
+</li>
+</ol>
+<div class="highlight"><pre><span></span><code>gcc-11 -v
+</code></pre></div>
+<p>The successful result is as below:</p>
+<div class="highlight"><pre><span></span><code>Using built-in specs.
+COLLECT_GCC=gcc-11
+COLLECT_LTO_WRAPPER=/opt/homebrew/Cellar/gcc@11/11.3.0/bin/../libexec/gcc/aarch64-apple-darwin21/11/lto-wrapper
+Target: aarch64-apple-darwin21
+Configured with: ../configure --prefix=/opt/homebrew/opt/gcc@11 --libdir=/opt/homebrew/opt/gcc@11/lib/gcc/11 --disable-nls --enable-checking=release --with-gcc-major-version-only --enable-languages=c,c++,objc,obj-c++,fortran --program-suffix=-11 --with-gmp=/opt/homebrew/opt/gmp --with-mpfr=/opt/homebrew/opt/mpfr --with-mpc=/opt/homebrew/opt/libmpc --with-isl=/opt/homebrew/opt/isl --with-zstd=/opt/homebrew/opt/zstd --with-pkgversion=&#39;Homebrew GCC 11.3.0&#39; --with-bugurl=https://github.com/Homebrew/homebrew-core/issues --build=aarch64-apple-darwin21 --with-system-zlib --with-sysroot=/Library/Developer/CommandLineTools/SDKs/MacOSX12.sdk
+Thread model: posix
+Supported LTO compression algorithms: zlib zstd
+gcc version 11.3.0 (Homebrew GCC 11.3.0)
+</code></pre></div>
+<ol>
+<li>
+<p>Modify the <em>bm_utils.c</em> file in the <em>ssb-dbgen</em> directory:</p>
+</li>
+<li>
+<p>Change the <code>#include &lt;malloc.h&gt;</code> in line 41 to <code>#include &lt;sys/malloc.h&gt;</code></p>
+</li>
+<li>
+<p>Change the <code>open(fullpath, ((*mode == 'r')?O_RDONLY:O_WRONLY)|O_CREAT|O_LARGEFILE,0644);</code> in line 398 to <code>open(fullpath, ((*mode == 'r')?O_RDONLY:O_WRONLY)|O_CREAT,0644);</code></p>
+</li>
+<li>
+<p>Modify the <em>varsub.c</em> file in the <em>ssb-dbgen</em> directory:</p>
+</li>
+<li>
+<p>Change the <code>#include &lt;malloc.h&gt;</code> in line 5 to <code>#include &lt;sys/malloc.h&gt;</code></p>
+</li>
+<li>
+<p>Modify the <em>makefile</em> file in the <em>ssb-dbgen</em> directory:</p>
+</li>
+<li>
+<p>Change the <code>CC      = gcc</code> in line 5 to <code>CC      = gcc-11</code></p>
+</li>
+<li>
+<p>Enter into <em>ssb-dbgen</em> directory again and compile:</p>
+</li>
+</ol>
+<div class="highlight"><pre><span></span><code>cd ssb-dbgen
+make
+</code></pre></div>
+<ol>
+<li>Check the <em>ssb-dbgen</em> directory, when the the <em>dbgen</em> file is generated, indicating that the compilation is successful.</li>
+</ol>
 
               
             </article>
