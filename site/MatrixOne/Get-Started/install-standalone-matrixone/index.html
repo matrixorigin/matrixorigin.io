@@ -598,8 +598,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-connect-to-matrixone-server_1" class="md-nav__link">
-    3. Connect to MatrixOne Server
+  <a href="#3-mount-the-data-directoryoptional" class="md-nav__link">
+    3. Mount the data directory(Optional)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-connect-to-matrixone-server" class="md-nav__link">
+    4. Connect to MatrixOne Server
   </a>
   
 </li>
@@ -644,22 +651,36 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../update-standalone-matrixone/" class="md-nav__link">
+        Update Standalone MatrixOne
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
     
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_3_3" type="checkbox" id="__nav_1_3_3" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_3_4" type="checkbox" id="__nav_1_3_4" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_3_3">
+        <label class="md-nav__link" for="__nav_1_3_4">
           Tutorial
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Tutorial" data-md-level="3">
-        <label class="md-nav__title" for="__nav_1_3_3">
+        <label class="md-nav__title" for="__nav_1_3_4">
           <span class="md-nav__icon md-icon"></span>
           Tutorial
         </label>
@@ -3468,6 +3489,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../Release-Notes/v0.5.1/" class="md-nav__link">
+        v0.5.1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../Release-Notes/v0.5.0/" class="md-nav__link">
         v0.5.0
       </a>
@@ -4072,8 +4107,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-connect-to-matrixone-server_1" class="md-nav__link">
-    3. Connect to MatrixOne Server
+  <a href="#3-mount-the-data-directoryoptional" class="md-nav__link">
+    3. Mount the data directory(Optional)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-connect-to-matrixone-server" class="md-nav__link">
+    4. Connect to MatrixOne Server
   </a>
   
 </li>
@@ -4118,7 +4160,7 @@
 <p>Recommended hardware specification: x86 CPU with 4 cores and 32GB memory, with CentOS 7+ OS.</p>
 <h2 id="method-1-building-from-source"><h2><a name="code_source">Method 1: Building from source</a></h2></h2>
 <h4 id="1-install-go-as-necessary-dependancy">1. Install Go as necessary dependancy</h4>
-<p>Go version 1.18 is required.</p>
+<p>Go version 1.19 is required.</p>
 <h4 id="2-get-the-matrixone-code">2. Get the MatrixOne code</h4>
 <p>Depending on your needs, choose whether you want to keep your code up to date, or if you want to get the latest stable version of the code.</p>
 <h5 id="option-1-get-the-matrixonepreview-version-code">Option 1: Get the MatrixOne(Preview Version) code</h5>
@@ -4174,11 +4216,18 @@ unzip mo-server-v0.5.0-darwin-x86_64.zip
 <div class="highlight"><pre><span></span><code>docker run -d -p 6001:6001 --name matrixone matrixorigin/matrixone:0.5.0
 </code></pre></div>
 <p>For the information on the user name and password, see the next step - Connect to MatrixOne Server.</p>
-<h4 id="3-connect-to-matrixone-server_1">3. Connect to MatrixOne Server</h4>
+<h4 id="3-mount-the-data-directoryoptional">3. Mount the data directory(Optional)</h4>
+<p>To customize the configuration file, you can mount the custom configuration file stored on the local disk.</p>
+<div class="highlight"><pre><span></span><code>docker run -d -p 6001:6001 -v ${path_name}/system_vars_config.toml:/system_vars_config.toml:ro -v ${path_name}/store:/store:rw --name matrixone matrixorigin/matrixone:0.5.1
+</code></pre></div>
+<h4 id="4-connect-to-matrixone-server">4. Connect to MatrixOne Server</h4>
 <p>When you finish installing MatrixOne, you can refer to the section below to connect to the MatrixOne server.</p>
 <p>See <a href="../connect-to-matrixone-server/">Connect to MatrixOne server</a>.</p>
 <h2 id="reference">Reference</h2>
-<p>For more information on deployment，see<a href="../../FAQs/deployment-faqs/">Deployment FAQs</a>.</p>
+<ul>
+<li>For more information on update，see<a href="../update-standalone-matrixone/">Update Standalone MatrixOne</a>.</li>
+<li>For more information on deployment，see<a href="../../FAQs/deployment-faqs/">Deployment FAQs</a>.</li>
+</ul>
 
               
             </article>
