@@ -2215,6 +2215,8 @@
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
       
+        
+      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           EXPLAIN
@@ -2231,19 +2233,14 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#explain" class="md-nav__link">
-    EXPLAIN
-  </a>
-  
-</li>
       
         <li class="md-nav__item">
   <a href="#syntax" class="md-nav__link">
@@ -2263,75 +2260,6 @@
   <a href="#parameters" class="md-nav__link">
     Parameters
   </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#output-structure" class="md-nav__link">
-    Output Structure
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#node-types" class="md-nav__link">
-    Node types
-  </a>
-  
-    <nav class="md-nav" aria-label="Node types">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#table-scan" class="md-nav__link">
-    Table Scan
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#values-scan" class="md-nav__link">
-    Values Scan
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#project" class="md-nav__link">
-    Project
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#aggregate" class="md-nav__link">
-    Aggregate
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#filter" class="md-nav__link">
-    Filter
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#join" class="md-nav__link">
-    Join
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#sort" class="md-nav__link">
-    Sort
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -2408,6 +2336,20 @@
   
 </nav>
       
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../explain-workflow/" class="md-nav__link">
+        EXPLAIN Output Format
+      </a>
     </li>
   
 
@@ -3383,7 +3325,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Develop/develop_python_application/" class="md-nav__link">
+      <a href="../../../../Develop/develop-python-application/" class="md-nav__link">
         Develop Python Applications
       </a>
     </li>
@@ -3989,19 +3931,14 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#explain" class="md-nav__link">
-    EXPLAIN
-  </a>
-  
-</li>
       
         <li class="md-nav__item">
   <a href="#syntax" class="md-nav__link">
@@ -4021,75 +3958,6 @@
   <a href="#parameters" class="md-nav__link">
     Parameters
   </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#output-structure" class="md-nav__link">
-    Output Structure
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#node-types" class="md-nav__link">
-    Node types
-  </a>
-  
-    <nav class="md-nav" aria-label="Node types">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#table-scan" class="md-nav__link">
-    Table Scan
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#values-scan" class="md-nav__link">
-    Values Scan
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#project" class="md-nav__link">
-    Project
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#aggregate" class="md-nav__link">
-    Aggregate
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#filter" class="md-nav__link">
-    Filter
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#join" class="md-nav__link">
-    Join
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#sort" class="md-nav__link">
-    Sort
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -4180,10 +4048,8 @@
 
 
 
-  <h1>EXPLAIN</h1>
-
-<h2 id="explain">EXPLAIN</h2>
-<p>EXPLAIN — show the execution plan of a statement</p>
+<h1 id="explain">EXPLAIN</h1>
+<p>EXPLAIN — show the execution plan of a statement.</p>
 <h2 id="syntax">Syntax</h2>
 <div class="highlight"><pre><span></span><code>EXPLAIN [ ( option [, ...] ) ] statement
 
@@ -4191,7 +4057,7 @@ where option can be one of:
     VERBOSE [ boolean ]
     FORMAT { TEXT | JSON }
 </code></pre></div>
-<p>For 0.5.0, only <code>TEXT</code> format is supported.</p>
+<p>For 0.5.1, only <code>TEXT</code> format is supported.</p>
 <h2 id="description">Description</h2>
 <p>This command displays the execution plan that the MatrixOne planner generates for the supplied statement. The execution plan shows how the table(s) referenced by the statement will be scanned — by plain sequential scan, index scan, etc. — and if multiple tables are referenced, what join algorithms will be used to bring together the required rows from each input table.</p>
 <p>The most critical part of the display is the estimated statement execution cost, which is the planner's guess at how long it will take to run the statement (measured in cost units that are arbitrary, but conventionally mean disk page fetches). Actually two numbers are shown: the start-up cost before the first row can be returned, and the total cost to return all the rows. For most queries the total cost is what matters, but in contexts such as a subquery in <code>EXISTS</code>, the planner will choose the smallest start-up cost instead of the smallest total cost (since the executor will stop after getting one row, anyway). Also, if you limit the number of rows to return with a <code>LIMIT</code> clause, the planner makes an appropriate interpolation between the endpoint costs to estimate which plan is really the cheapest.</p>
@@ -4211,313 +4077,9 @@ where option can be one of:
 <ul>
 <li>STETEMENT</li>
 </ul>
-<p>MatrixOne supports any <code>SELECT</code>, <code>UPDATE</code>, <code>DELETE</code> statement execution plan. For <code>INSERT</code> statement, only <code>INSERT INTO..SELECT</code> is supported in 0.5.0 version. <code>INSERT INTO...VALUES</code> is not supported yet.</p>
-<h2 id="output-structure">Output Structure</h2>
-<p>The command's result is a textual description of the plan selected for the <em><code>statement</code></em>, optionally annotated with execution statistics.</p>
-<p>Take the following SQL as an example, we demonstrate the output structure.</p>
-<div class="highlight"><pre><span></span><code>explain select city,libname1,count(libname1) as a from t3 join t1 on libname1=libname3 join t2 on isbn3=isbn2 group by city,libname1;
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>+--------------------------------------------------------------------------------------------+
-| QUERY PLAN                                                                                 |
-+--------------------------------------------------------------------------------------------+
-| Project(cost=0.00..0.00 card=400.00 ndv=0.00 rowsize=0                                     |
-|   -&gt;  Aggregate(cost=0.00..0.00 card=400.00 ndv=0.00 rowsize=0                             |
-|         Group Key:#[0,1], #[0,0]                                                           |
-|         Aggregate Functions: count(#[0,0])                                                 |
-|         -&gt;  Join(cost=0.00..0.00 card=400.00 ndv=0.00 rowsize=0                            |
-|               Join Type: INNER                                                             |
-|               Join Cond: (#[1,2] = #[0,0])                                                 |
-|               -&gt;  Table Scan on abc.t2(cost=0.00..0.00 card=8.00 ndv=0.00 rowsize=0        |
-|               -&gt;  Join(cost=0.00..0.00 card=50.00 ndv=0.00 rowsize=0                       |
-|                     Join Type: INNER                                                       |
-|                     Join Cond: (#[0,0] = #[1,1])                                           |
-|                     -&gt;  Table Scan on abc.t1(cost=0.00..0.00 card=5.00 ndv=0.00 rowsize=0  |
-|                     -&gt;  Table Scan on abc.t3(cost=0.00..0.00 card=10.00 ndv=0.00 rowsize=0 |
-+--------------------------------------------------------------------------------------------+
-13 rows in set (0.00 sec)
-</code></pre></div>
-<p>EXPLAIN outputs a tree structure, named as <code>Execution Plan Tree</code>. Every leaf node includes the information of node type, affected objects and other properties such as <code>cost</code>, <code>rowsize</code> etc. We can simplify the above example only with node type information. It visualizes the whole process of a SQL query,  shows which operation nodes it goes through and what are their cost  estimation.</p>
-<div class="highlight"><pre><span></span><code>Project
-└── Aggregate
-    └── Join
-        └── Table Scan
-        └── Join
-              └──Table Scan
-              └──Table Scan
-</code></pre></div>
-<h2 id="node-types">Node types</h2>
-<p>In 0.5.0 version, the following node types are supported.</p>
-<table>
-<thead>
-<tr>
-<th>Node Type</th>
-<th>Name in Explain</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Node_VALUE_SCAN</td>
-<td>Values Scan</td>
-</tr>
-<tr>
-<td>Node_TABLE_SCAN</td>
-<td>Table Scan</td>
-</tr>
-<tr>
-<td>Node_PROJECT</td>
-<td>Project</td>
-</tr>
-<tr>
-<td>Node_AGG</td>
-<td>Aggregate</td>
-</tr>
-<tr>
-<td>Node_FILTER</td>
-<td>Filter</td>
-</tr>
-<tr>
-<td>Node_JOIN</td>
-<td>Join</td>
-</tr>
-<tr>
-<td>Node_SORT</td>
-<td>Sort</td>
-</tr>
-<tr>
-<td>Node_INSERT</td>
-<td>Insert</td>
-</tr>
-<tr>
-<td>Node_UPDATE</td>
-<td>Update</td>
-</tr>
-<tr>
-<td>Node_DELETE</td>
-<td>Delete</td>
-</tr>
-</tbody>
-</table>
-<h4 id="table-scan">Table Scan</h4>
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Format</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>cost</td>
-<td>cost=0.00..0.00</td>
-<td>The first is estimated start-up cost. This is the time expended before the output phase can begin, e.g., time to do the sorting in a sort node. The second is estimated total cost. This is stated on the assumption that the plan node is run to completion, i.e., all available rows are retrieved. In practice a node's parent node might stop short of reading all available rows (see the <code>LIMIT</code> example below).</td>
-</tr>
-<tr>
-<td>card</td>
-<td>card=14.00</td>
-<td>Estimated column cardinality.</td>
-</tr>
-<tr>
-<td>ndv</td>
-<td>ndv=0.00</td>
-<td>Estimated number of distinct values.</td>
-</tr>
-<tr>
-<td>rowsize</td>
-<td>rowsize=0.00</td>
-<td>Estimated rowsize.</td>
-</tr>
-<tr>
-<td>output</td>
-<td>Output: #[0,0], #[0,1], #[0,2], #[0,3], #[0,4], #[0,5], #[0,6], #[0,7]</td>
-<td>Node output information.</td>
-</tr>
-<tr>
-<td>Table</td>
-<td>Table : 'emp' (0:'empno', 1:'ename', 2:'job', 3:'mgr',)</td>
-<td>Table definition information after column pruning.</td>
-</tr>
-<tr>
-<td>Filter Cond</td>
-<td>Filter Cond: (CAST(#[0,5] AS DECIMAL128) &gt; CAST(20 AS DECIMAL128))</td>
-<td>Filter condition.</td>
-</tr>
-</tbody>
-</table>
-<h4 id="values-scan">Values Scan</h4>
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Format</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>cost</td>
-<td>(cost=0.00..0.00 card=14.00 ndv=0.00 rowsize=0)</td>
-<td>Estimated cost</td>
-</tr>
-<tr>
-<td>output</td>
-<td>Output: 0</td>
-<td>Node output information</td>
-</tr>
-</tbody>
-</table>
-<h4 id="project">Project</h4>
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Format</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>cost</td>
-<td>(cost=0.00..0.00 card=25.00 ndv=0.00 rowsize=0)</td>
-<td>Estimated cost</td>
-</tr>
-<tr>
-<td>output</td>
-<td>Output: (CAST(#[0,0] AS INT64) + 2)</td>
-<td>Node output information</td>
-</tr>
-</tbody>
-</table>
-<h4 id="aggregate">Aggregate</h4>
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Format</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>cost</td>
-<td>(cost=0.00..0.00 card=14.00 ndv=0.00 rowsize=0)</td>
-<td>Estimated cost</td>
-</tr>
-<tr>
-<td>output</td>
-<td>Output: #[0,0], #[0,1], #[0,2], #[0,3], #[0,4], #[0,5], #[0,6], #[0,7]</td>
-<td>Node output information</td>
-</tr>
-<tr>
-<td>Group Key</td>
-<td>Group Key:#[0,0]</td>
-<td>Key for grouping</td>
-</tr>
-<tr>
-<td>Aggregate Functions</td>
-<td>Aggregate Functions: max(#[0,1])</td>
-<td>Aggregate function name</td>
-</tr>
-</tbody>
-</table>
-<h4 id="filter">Filter</h4>
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Format</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>cost</td>
-<td>(cost=0.00..0.00 card=14.00 ndv=0.00 rowsize=0)</td>
-<td>Estimated cost</td>
-</tr>
-<tr>
-<td>output</td>
-<td>Output: #[0,0], #[0,1], #[0,2], #[0,3], #[0,4], #[0,5], #[0,6], #[0,7]</td>
-<td>Node output information</td>
-</tr>
-<tr>
-<td>Filter Cond</td>
-<td>Filter Cond: (CAST(#[0,1] AS INT64) &gt; 10)</td>
-<td>Filter condition</td>
-</tr>
-</tbody>
-</table>
-<h4 id="join">Join</h4>
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Format</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>cost</td>
-<td>(cost=0.00..0.00 card=14.00 ndv=0.00 rowsize=0)</td>
-<td>Estimated cost</td>
-</tr>
-<tr>
-<td>output</td>
-<td>Output: #[0,0]</td>
-<td>Node output information</td>
-</tr>
-<tr>
-<td>Join Type: INNER</td>
-<td>Join Type: INNER</td>
-<td>Join type</td>
-</tr>
-<tr>
-<td>Join Cond</td>
-<td>Join Cond: (#[0,0] = #[1,0])</td>
-<td>Join condition</td>
-</tr>
-</tbody>
-</table>
-<h4 id="sort">Sort</h4>
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Format</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>cost</td>
-<td>(cost=0.00..0.00 card=25.00 ndv=0.00 rowsize=0)</td>
-<td>Estimated cost</td>
-</tr>
-<tr>
-<td>output</td>
-<td>Output: #[0,0], #[0,1], #[0,2], #[0,3], #[0,4], #[0,5], #[0,6], #[0,7]</td>
-<td>Node output information</td>
-</tr>
-<tr>
-<td>Sort Key</td>
-<td>Sort Key: #[0,0] DESC,  #[0,1] INTERNAL</td>
-<td>Sort key</td>
-</tr>
-<tr>
-<td>Limit</td>
-<td>Limit: 10</td>
-<td>Number limit for output data</td>
-</tr>
-<tr>
-<td>Offset</td>
-<td>Offset: 20</td>
-<td>Number offset for output data</td>
-</tr>
-</tbody>
-</table>
+<p>MatrixOne supports any <code>SELECT</code>, <code>UPDATE</code>, <code>DELETE</code> statement execution plan. For <code>INSERT</code> statement, only <code>INSERT INTO..SELECT</code> is supported in 0.5.1 version. <code>INSERT INTO...VALUES</code> is not supported yet.</p>
 <h2 id="examples">Examples</h2>
-<h4 id="node_table_scan">Node_TABLE_SCAN</h4>
+<h3 id="node_table_scan">Node_TABLE_SCAN</h3>
 <div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">explain</span><span class="w"> </span><span class="k">verbose</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">N_NAME</span><span class="p">,</span><span class="w"> </span><span class="n">N_REGIONKEY</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">NATION</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">N_NATIONKEY</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="n">N_NATIONKEY</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"></span>
 <span class="o">+</span><span class="c1">------------------------------------------------------------------------------------+</span>
 <span class="o">|</span><span class="w"> </span><span class="n">QUERY</span><span class="w"> </span><span class="n">PLAN</span><span class="w">                                                                         </span><span class="o">|</span><span class="w"></span>
@@ -4530,7 +4092,7 @@ where option can be one of:
 <span class="o">|</span><span class="w">         </span><span class="n">Filter</span><span class="w"> </span><span class="n">Cond</span><span class="p">:</span><span class="w"> </span><span class="p">((</span><span class="k">CAST</span><span class="p">(</span><span class="o">#</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">INT64</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="p">(</span><span class="k">CAST</span><span class="p">(</span><span class="o">#</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">INT64</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">10</span><span class="p">))</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
 <span class="o">+</span><span class="c1">------------------------------------------------------------------------------------+</span>
 </code></pre></div>
-<h4 id="node_value_scan">Node_VALUE_SCAN</h4>
+<h3 id="node_value_scan">Node_VALUE_SCAN</h3>
 <div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">explain</span><span class="w"> </span><span class="k">verbose</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="k">abs</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
 <span class="o">+</span><span class="c1">-----------------------------------------------------------------------------+</span>
 <span class="o">|</span><span class="w"> </span><span class="n">QUERY</span><span class="w"> </span><span class="n">PLAN</span><span class="w">                                                                  </span><span class="o">|</span><span class="w"></span>
@@ -4541,7 +4103,7 @@ where option can be one of:
 <span class="o">|</span><span class="w">         </span><span class="k">Output</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">                                                           </span><span class="o">|</span><span class="w"></span>
 <span class="o">+</span><span class="c1">-----------------------------------------------------------------------------+</span>
 </code></pre></div>
-<h4 id="node_sort">Node_SORT</h4>
+<h3 id="node_sort">Node_SORT</h3>
 <div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">explain</span><span class="w"> </span><span class="k">verbose</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">N_NAME</span><span class="p">,</span><span class="w"> </span><span class="n">N_REGIONKEY</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">NATION</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">N_NATIONKEY</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">N_NATIONKEY</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">N_NAME</span><span class="p">,</span><span class="w"> </span><span class="n">N_REGIONKEY</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span><span class="w"></span>
 <span class="o">+</span><span class="c1">--------------------------------------------------------------------------------------------+</span>
 <span class="o">|</span><span class="w"> </span><span class="n">QUERY</span><span class="w"> </span><span class="n">PLAN</span><span class="w">                                                                                 </span><span class="o">|</span><span class="w"></span>
@@ -4586,7 +4148,7 @@ where option can be one of:
 <span class="o">|</span><span class="w">                     </span><span class="n">Filter</span><span class="w"> </span><span class="n">Cond</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="k">abs</span><span class="p">(</span><span class="k">CAST</span><span class="p">(</span><span class="o">#</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">INT64</span><span class="p">))</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="o">#</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="s1">&#39;%AA&#39;</span><span class="p">)</span><span class="w">    </span><span class="o">|</span><span class="w"></span>
 <span class="o">+</span><span class="c1">-------------------------------------------------------------------------------------------+</span>
 </code></pre></div>
-<h4 id="node_agg">Node_AGG</h4>
+<h3 id="node_agg">Node_AGG</h3>
 <div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">explain</span><span class="w"> </span><span class="k">verbose</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">NATION</span><span class="w"> </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">N_NAME</span><span class="p">;</span><span class="w"></span>
 <span class="o">+</span><span class="c1">-------------------------------------------------------------------------------------+</span>
 <span class="o">|</span><span class="w"> </span><span class="n">QUERY</span><span class="w"> </span><span class="n">PLAN</span><span class="w">                                                                          </span><span class="o">|</span><span class="w"></span>
@@ -4602,7 +4164,7 @@ where option can be one of:
 <span class="o">|</span><span class="w">               </span><span class="k">Table</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;nation&#39;</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="s1">&#39;n_nationkey&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">:</span><span class="s1">&#39;n_name&#39;</span><span class="p">)</span><span class="w">                         </span><span class="o">|</span><span class="w"></span>
 <span class="o">+</span><span class="c1">-------------------------------------------------------------------------------------+</span>
 </code></pre></div>
-<h4 id="node_join">Node_JOIN</h4>
+<h3 id="node_join">Node_JOIN</h3>
 <div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">explain</span><span class="w"> </span><span class="k">verbose</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">NATION</span><span class="p">.</span><span class="n">N_NAME</span><span class="p">,</span><span class="w"> </span><span class="n">REGION</span><span class="p">.</span><span class="n">R_NAME</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">NATION</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">REGION</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">NATION</span><span class="p">.</span><span class="n">N_REGIONKEY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">REGION</span><span class="p">.</span><span class="n">R_REGIONKEY</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">NATION</span><span class="p">.</span><span class="n">N_REGIONKEY</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="k">LENGTH</span><span class="p">(</span><span class="n">NATION</span><span class="p">.</span><span class="n">N_NAME</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="k">LENGTH</span><span class="p">(</span><span class="n">REGION</span><span class="p">.</span><span class="n">R_NAME</span><span class="p">);</span><span class="w"></span>
 <span class="o">+</span><span class="c1">--------------------------------------------------------------------------------------------+</span>
 <span class="o">|</span><span class="w"> </span><span class="n">QUERY</span><span class="w"> </span><span class="n">PLAN</span><span class="w">                                                                                 </span><span class="o">|</span><span class="w"></span>
@@ -4625,7 +4187,7 @@ where option can be one of:
 <span class="o">|</span><span class="w">                     </span><span class="n">Filter</span><span class="w"> </span><span class="n">Cond</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="k">CAST</span><span class="p">(</span><span class="o">#</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">INT64</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w">                              </span><span class="o">|</span><span class="w"></span>
 <span class="o">+</span><span class="c1">--------------------------------------------------------------------------------------------+</span>
 </code></pre></div>
-<h4 id="node_insert">Node_INSERT</h4>
+<h3 id="node_insert">Node_INSERT</h3>
 <div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">explain</span><span class="w"> </span><span class="k">verbose</span><span class="w"> </span><span class="k">INSERT</span><span class="w"> </span><span class="n">NATION</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">nation</span><span class="p">;</span><span class="w"></span>
 <span class="o">+</span><span class="c1">---------------------------------------------------------------------------------------------+</span>
 <span class="o">|</span><span class="w"> </span><span class="n">QUERY</span><span class="w"> </span><span class="n">PLAN</span><span class="w">                                                                                  </span><span class="o">|</span><span class="w"></span>
@@ -4640,7 +4202,7 @@ where option can be one of:
 <span class="o">+</span><span class="c1">---------------------------------------------------------------------------------------------+</span>
 <span class="mi">7</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span><span class="w"></span>
 </code></pre></div>
-<h4 id="node_update">Node_Update</h4>
+<h3 id="node_update">Node_Update</h3>
 <div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">explain</span><span class="w"> </span><span class="k">verbose</span><span class="w"> </span><span class="k">UPDATE</span><span class="w"> </span><span class="n">NATION</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">N_NAME</span><span class="w"> </span><span class="o">=</span><span class="s1">&#39;U1&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">N_REGIONKEY</span><span class="o">=</span><span class="mi">2</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">N_NATIONKEY</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span><span class="w"></span>
 <span class="o">+</span><span class="c1">-------------------------------------------------------------------------------------+</span>
 <span class="o">|</span><span class="w"> </span><span class="n">QUERY</span><span class="w"> </span><span class="n">PLAN</span><span class="w">                                                                          </span><span class="o">|</span><span class="w"></span>
@@ -4655,7 +4217,7 @@ where option can be one of:
 <span class="o">|</span><span class="w">               </span><span class="n">Filter</span><span class="w"> </span><span class="n">Cond</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="k">CAST</span><span class="p">(</span><span class="o">#</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">INT64</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w">                             </span><span class="o">|</span><span class="w"></span>
 <span class="o">+</span><span class="c1">-------------------------------------------------------------------------------------+</span>
 </code></pre></div>
-<h4 id="node_delete">Node_Delete</h4>
+<h3 id="node_delete">Node_Delete</h3>
 <div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">explain</span><span class="w"> </span><span class="k">verbose</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">NATION</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">N_NATIONKEY</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"></span>
 <span class="o">+</span><span class="c1">-------------------------------------------------------------------------------------+</span>
 <span class="o">|</span><span class="w"> </span><span class="n">QUERY</span><span class="w"> </span><span class="n">PLAN</span><span class="w">                                                                          </span><span class="o">|</span><span class="w"></span>
@@ -4713,13 +4275,13 @@ where option can be one of:
       
       
         
-        <a href="../../../Data-Types/data-types/" class="md-footer__link md-footer__link--next" aria-label="Next: Date Types Overview" rel="next">
+        <a href="../explain-workflow/" class="md-footer__link md-footer__link--next" aria-label="Next: EXPLAIN Output Format" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Date Types Overview
+              EXPLAIN Output Format
             </div>
           </div>
           <div class="md-footer__button md-icon">

@@ -2211,6 +2211,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/SQL-Reference/Explain/explain-workflow/" class="md-nav__link">
+        EXPLAIN Output Format
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -3181,7 +3195,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Develop/develop_python_application/" class="md-nav__link">
+      <a href="../../../Develop/develop-python-application/" class="md-nav__link">
         Develop Python Applications
       </a>
     </li>
@@ -3664,8 +3678,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#preparation" class="md-nav__link">
-    Preparation
+  <a href="#before-you-start" class="md-nav__link">
+    Before you start
   </a>
   
 </li>
@@ -3919,8 +3933,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#preparation" class="md-nav__link">
-    Preparation
+  <a href="#before-you-start" class="md-nav__link">
+    Before you start
   </a>
   
 </li>
@@ -4008,9 +4022,9 @@
 
 <h1 id="develop-an-aggregate-function"><strong>Develop an aggregate function</strong></h1>
 <h2 id="prerequisite"><strong>Prerequisite</strong></h2>
-<p>To develop an aggregate function for MatrixOne, you need a basic knowledge of Golang programming. You can go through this excellent <a href="https://www.educative.io/blog/golang-tutorial">Golang tutorial</a> to learn some basic Golang concepts. </p>
-<h2 id="preparation"><strong>Preparation</strong></h2>
-<p>Before you start, please make sure that you have <code>Go</code> installed and have cloned the <code>MatrixOne</code> code base.
+<p>To develop an aggregate function for MatrixOne, you need a basic knowledge of Golang programming. You can go through this excellent <a href="https://www.educative.io/blog/golang-tutorial">Golang tutorial</a> to learn some basic Golang concepts.</p>
+<h2 id="before-you-start"><strong>Before you start</strong></h2>
+<p>Make sure that you have <code>Go</code> installed and have cloned the <code>MatrixOne</code> code base.
 Please refer to <a href="../../How-to-Contribute/preparation/">Preparation</a> and <a href="../../How-to-Contribute/contribute-code/">Contribute Code</a> for more details.</p>
 <h2 id="what-is-an-aggregation-function"><strong>What is an aggregation function?</strong></h2>
 <p>In database systems, an aggregate function or aggregation function is a function where the values of multiple rows are grouped together to form a single summary value.</p>
@@ -4024,15 +4038,15 @@ Please refer to <a href="../../How-to-Contribute/preparation/">Preparation</a> a
 <h2 id="aggregate-function-in-matrixone"><strong>Aggregate function in MatrixOne</strong></h2>
 <p>The function <code>join</code> in MatrixOne's database is highly efficient and less redundant in comparison with
 other state-of-the-art databases via factorisation making it a key feature. Therefore, many operations in MatrixOne need to be adapted to the factorisation method, in order
-to improve efficiency when performing <code>join</code>. Aggregate functions are an example of an important feature among these operations. </p>
+to improve efficiency when performing <code>join</code>. Aggregate functions are an example of an important feature among these operations.</p>
 <p>To implement aggragate functions in MatrixOne, we design a data structure named <code>Ring</code>. Every aggregate function needs to implement the <code>Ring</code> interface
-in order to be factorized when <code>join</code> occurs. </p>
+in order to be factorized when <code>join</code> occurs.</p>
 <p>For the common aggregate function <code>AVG</code> as an example, we need to calculate the number of groups and their total numeric sum, then get an average result.
 This is common practice for any database design. However, when a query with <code>join</code> occurs between two tables, the common method is to get a Cartesian product by joining tables first,
-then perform an <code>AVG</code> with that Cartesian product. This is an expensive computational cost as a Cartesian product can be very large. 
+then perform an <code>AVG</code> with that Cartesian product. This is an expensive computational cost as a Cartesian product can be very large.
 In MatrixOne's implementation, the factorisation method pushs down the calculation of group statistics and sum before the <code>join</code> operation is performed. This method helps to reduce
-a lot in computational and storage cost. Factorisation 
-is realized by the <code>Ring</code> interface and its inner functions. </p>
+a lot in computational and storage cost. Factorisation
+is realized by the <code>Ring</code> interface and its inner functions.</p>
 <p>To checkout more about the factorisation theory and factorised database, please refer to <a href="https://fdbresearch.github.io/principles.html">Principles of Factorised Databases</a>.</p>
 <h2 id="what-is-a-ring"><strong>What is a <code>Ring</code></strong></h2>
 <p><code>Ring</code> is an important data structure for MatrixOne factorisation, as well as a mathematical algebraic concept with a clear <a href="https://en.wikipedia.org/wiki/Ring_(mathematics)">definition</a>.
@@ -4117,16 +4131,16 @@ The <code>+</code>(addition) is defined as merging two <code>Ring</code>s groups
 </tr>
 </tbody>
 </table>
-<p>The implementation of <code>Ring</code> data structure is under <code>/pkg/container/ring/</code>. </p>
+<p>The implementation of <code>Ring</code> data structure is under <code>/pkg/container/ring/</code>.</p>
 <h2 id="how-does-ring-work-with-query"><strong>How does <code>Ring</code> work with query:</strong></h2>
 <p>To better understand the <code>Ring</code> interface, we can take aggregate function <code>sum()</code> as an example. We'll walk you through the whole process
 of <code>Ring</code>.</p>
 <p>There are two different scenarios for aggregation functions with <code>Ring</code>s.</p>
 <p><em>1. Query with single table.</em></p>
-<p>In the single table scenario, when we run the below query, it generates one or several <code>Ring</code>s, 
-depending on the storage blocks the <code>T1</code> table is stored. The number of blocks depends on the storage strategy. Each <code>Ring</code> will 
-store several groups of sums. The number of the group depends on how many duplicate rows are in this <code>Ring</code>. </p>
-<div class="highlight"><pre><span></span><code><span class="n">T1</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="p">)</span><span class="w"> </span>
+<p>In the single table scenario, when we run the below query, it generates one or several <code>Ring</code>s,
+depending on the storage blocks the <code>T1</code> table is stored. The number of blocks depends on the storage strategy. Each <code>Ring</code> will
+store several groups of sums. The number of the group depends on how many duplicate rows are in this <code>Ring</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">T1</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="p">)</span><span class="w"></span>
 <span class="o">+</span><span class="c1">------+-------+------+</span>
 <span class="o">|</span><span class="w"> </span><span class="n">id</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">age</span><span class="w">  </span><span class="o">|</span><span class="w"></span>
 <span class="o">+</span><span class="c1">------+-------+------+</span>
@@ -4159,7 +4173,7 @@ store several groups of sums. The number of the group depends on how many duplic
 </code></pre></div>
 <p><em>2. Query with joining multiple tables.</em></p>
 <p>In the multiple tables join scenario, we have two tables <code>Tc</code> and <code>Ts</code>. The query looks like the following.</p>
-<div class="highlight"><pre><span></span><code><span class="n">Tc</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><span class="n">Tc</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="p">)</span><span class="w"></span>
 <span class="o">+</span><span class="c1">------+-------+</span>
 <span class="o">|</span><span class="w"> </span><span class="n">id</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
 <span class="o">+</span><span class="c1">------+-------+</span>
@@ -4173,7 +4187,7 @@ store several groups of sums. The number of the group depends on how many duplic
 <span class="o">|</span><span class="w">    </span><span class="mi">8</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">three</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
 <span class="o">|</span><span class="w">    </span><span class="mi">9</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">three</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
 <span class="o">|</span><span class="w">   </span><span class="mi">10</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">three</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
-<span class="o">+</span><span class="c1">------+-------+ </span>
+<span class="o">+</span><span class="c1">------+-------+</span>
 
 <span class="n">Ts</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="p">)</span><span class="w"></span>
 <span class="o">+</span><span class="c1">------+------+</span>
@@ -4204,16 +4218,16 @@ of <code>Ring-Ts</code> is called to calculate the sum calculated from the <code
 <p>Now we get values of <code>[class, sum(age)]</code>, then perform a group by with class which will give us the final result.</p>
 <h2 id="the-secret-of-factorisation"><strong>The secret of factorisation</strong></h2>
 <p>From the above example, you can see that the <code>Ring</code> performs some pre calculations and only the result(like <code>sum</code>) is stored in its structure. When performing operations like <code>join</code>,
-only simple <code>Add</code> or <code>Multiplication</code> is needed to get the result, which is called a push down calculation in <code>factorisation</code>. With the help of this push down, we no longer need to 
+only simple <code>Add</code> or <code>Multiplication</code> is needed to get the result, which is called a push down calculation in <code>factorisation</code>. With the help of this push down, we no longer need to
 deal with a costly Cartesian product. As the joined table number increases, the factorisation allows us to take linear cost of performing that instead of exponential increase.</p>
-<p>Take the implementation of <code>Variance</code> function as an example. </p>
+<p>Take the implementation of <code>Variance</code> function as an example.</p>
 <p>The variance formula is as below:</p>
 <div class="highlight"><pre><span></span><code>Variance = Σ [(xi - x̅)^2]/n
 
 Example: xi = 10,8,6,12,14, x̅ = 10
 Calculation: ((10-10)^2+(8-10)^2+(6-10)^2+(12-10)^2+(14-10)^2)/5 = 8
 </code></pre></div>
-<p>If we proceed with implementing this formula, we have to record all values of each group, and also maintain these values 
+<p>If we proceed with implementing this formula, we have to record all values of each group, and also maintain these values
 with <code>Add</code> and <code>Mul</code> operations of <code>Ring</code>. Eventually the result is calculated in an <code>Eval()</code> function. This implementation has a drawback of high memory cost since we have to store all the values during processing.</p>
 <p>In the <code>Avg</code> implementation, it doesn't store all values in the <code>Ring</code>. Instead it stores only the <code>sum</code> of each group and the null numbers.  It returns the final result with a simple division. This method saves a lot of memory space.</p>
 <p>Now let's turn the <code>Variance</code> formula a bit into a different form:</p>
@@ -4222,7 +4236,7 @@ with <code>Add</code> and <code>Mul</code> operations of <code>Ring</code>. Even
 Example: xi = 10,8,6,12,14, x̅ = 10
 Calculation: (10^2+8^2+6^2+12^2+14^2)/5-10^2 = 8
 </code></pre></div>
-<p>This formula's result is exactly the same as the previous one, but we only have to record the values sum of <code>xi^2</code> and the sum of <code>xi</code>. We can largely reduce the memory space 
+<p>This formula's result is exactly the same as the previous one, but we only have to record the values sum of <code>xi^2</code> and the sum of <code>xi</code>. We can largely reduce the memory space
 with this kind of reformulation.</p>
 <p>To conclude, every aggregate function needs to find a way to record as little values as possible in order to reduce memory cost.
 Below are two different implementations for <code>Variance</code> (the second one has a better performance):</p>
@@ -4254,11 +4268,11 @@ Below are two different implementations for <code>Variance</code> (the second on
 <span class="w">   </span><span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <h2 id="develop-an-var-function"><strong>Develop an var() function</strong></h2>
-<p>In this tutorial, we will walk you through the complete implementation of the Variance (get the standard overall variance value) aggregate function as an example with two different methods. </p>
+<p>In this tutorial, we will walk you through the complete implementation of the Variance (get the standard overall variance value) aggregate function as an example with two different methods.</p>
 <p>Step 1: register function</p>
-<p>MatrixOne doesn't distinguish between operators and functions. 
-In our code repository, the file <code>pkg/sql/viewexec/transformer/types.go</code> registers aggregate functions as operators 
-and we assign each operator a distinct integer number. 
+<p>MatrixOne doesn't distinguish between operators and functions.
+In our code repository, the file <code>pkg/sql/viewexec/transformer/types.go</code> registers aggregate functions as operators
+and we assign each operator a distinct integer number.
 To add a new function <code>var()</code>, first add a new const <code>Variance</code> in the const declaration and <code>var</code> in the name declaration.</p>
 <div class="highlight"><pre><span></span><code><span class="w">   </span><span class="kd">const</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
 <span class="w">    </span><span class="nx">Sum</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">iota</span><span class="w"></span>
@@ -4288,7 +4302,7 @@ To add a new function <code>var()</code>, first add a new const <code>Variance</
 <p>As we calculate the overall variance, we need to calculate:</p>
 <ul>
 <li>The numeric <code>Sums</code> and the null value numbers of each group, to calculate the average.</li>
-<li>Values of each group, to calculate the variance. </li>
+<li>Values of each group, to calculate the variance.</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="w">   </span><span class="c1">//Implementation1</span><span class="w"></span>
 
@@ -4458,7 +4472,7 @@ To add a new function <code>var()</code>, first add a new const <code>Variance</
 <span class="w">      </span><span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p><em>3. Implement encoding and decoding for <code>VarRing</code></em></p>
-<p>In the <code>pkg/sql/protocol/protocol.go</code> file, implement the code for serialization and deserialization of <code>VarRing</code>. </p>
+<p>In the <code>pkg/sql/protocol/protocol.go</code> file, implement the code for serialization and deserialization of <code>VarRing</code>.</p>
 <table>
 <thead>
 <tr>
@@ -4473,7 +4487,7 @@ To add a new function <code>var()</code>, first add a new const <code>Variance</
 </tr>
 </tbody>
 </table>
-<p>Serialization: </p>
+<p>Serialization:</p>
 <div class="highlight"><pre><span></span><code><span class="w">   </span><span class="k">case</span><span class="w"> </span><span class="o">*</span><span class="nx">variance</span><span class="p">.</span><span class="nx">VarRing</span><span class="p">:</span><span class="w"></span>
 <span class="w">        </span><span class="nx">buf</span><span class="p">.</span><span class="nx">WriteByte</span><span class="p">(</span><span class="nx">VarianceRing</span><span class="p">)</span><span class="w"></span>
 <span class="w">        </span><span class="c1">// NullCounts</span><span class="w"></span>
@@ -4537,8 +4551,8 @@ To add a new function <code>var()</code>, first add a new const <code>Variance</
 </code></pre></div>
 <p>Here we go. Now we can fire up MatrixOne and try with our <code>var()</code> function.</p>
 <h2 id="compile-and-run-matrixone"><strong>Compile and run MatrixOne</strong></h2>
-<p>Once the aggregation function is ready, we can compile and run MatrixOne to see the function behavior. </p>
-<p>Step1: Run <code>make config</code> and <code>make build</code> to compile the MatrixOne project and build binary file. </p>
+<p>Once the aggregation function is ready, we can compile and run MatrixOne to see the function behavior.</p>
+<p>Step1: Run <code>make config</code> and <code>make build</code> to compile the MatrixOne project and build binary file.</p>
 <div class="highlight"><pre><span></span><code>make config
 make build
 </code></pre></div>
@@ -4546,7 +4560,7 @@ make build
 <p class="admonition-title">Info</p>
 <p><code>make config</code> generates a new configuration file. In this tutorial you only need to run it once. If you modify some code and want to recompile, you only have to run <code>make build</code>.  </p>
 </div>
-<p>Step2: Run <code>./mo-server system_vars_config.toml</code> to launch MatrixOne, the MatrixOne server will start to listen for client connecting. </p>
+<p>Step2: Run <code>./mo-server system_vars_config.toml</code> to launch MatrixOne, the MatrixOne server will start to listen for client connecting.</p>
 <div class="highlight"><pre><span></span><code>./mo-server system_vars_config.toml
 </code></pre></div>
 <div class="admonition info">
@@ -4565,8 +4579,8 @@ password: 111</p>
 <div class="highlight"><pre><span></span><code>mysql -h 127.0.0.1 -P 6001 -udump -p
 Enter password:
 </code></pre></div>
-<p>Step4: Test your function behavior with some data. Below is an example. You can check if you get the right mathematical variance result. 
-You can also try an <code>inner join</code> and check the result, if the result is correct, the factorisation is valid. </p>
+<p>Step4: Test your function behavior with some data. Below is an example. You can check if you get the right mathematical variance result.
+You can also try an <code>inner join</code> and check the result, if the result is correct, the factorisation is valid.</p>
 <div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">variance</span><span class="p">;</span><span class="w"></span>
 <span class="o">+</span><span class="c1">------+------+</span>
 <span class="o">|</span><span class="w"> </span><span class="n">a</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="n">b</span><span class="w">    </span><span class="o">|</span><span class="w"></span>
@@ -4616,13 +4630,13 @@ You can also try an <code>inner join</code> and check the result, if the result 
 </div>
 <p>​</p>
 <h2 id="write-unit-test-for-your-function"><strong>Write unit Test for your function</strong></h2>
-<p>We recommend that you also write a unit test for the new function. 
+<p>We recommend that you also write a unit test for the new function.
 Go has a built-in testing command called <code>go test</code> and a package <code>testing</code> which combine to give a minimal yet complete testing experience. It automates execution of any function of the form.</p>
 <div class="highlight"><pre><span></span><code>func TestXxx(*testing.T)
 </code></pre></div>
-<p>To write a new test suite, create a file whose name ends <code>_test.go</code> that contains the <code>TestXxx</code> functions as described here. Put the file in the same package as the one being tested. The file will be excluded from regular package builds but will be included when the <code>go test</code> command is run. </p>
-<p>Step1: Create a file named <code>variance_test.go</code> under <code>pkg/container/ring/variance/</code> directory. 
-Import the <code>testing</code> framework and the <code>reflect</code> framework we are going to use for testing. </p>
+<p>To write a new test suite, create a file whose name ends <code>_test.go</code> that contains the <code>TestXxx</code> functions as described here. Put the file in the same package as the one being tested. The file will be excluded from regular package builds but will be included when the <code>go test</code> command is run.</p>
+<p>Step1: Create a file named <code>variance_test.go</code> under <code>pkg/container/ring/variance/</code> directory.
+Import the <code>testing</code> framework and the <code>reflect</code> framework we are going to use for testing.</p>
 <div class="highlight"><pre><span></span><code><span class="kn">package</span><span class="w"> </span><span class="nx">variance</span><span class="w"></span>
 
 <span class="kn">import</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
@@ -4706,17 +4720,17 @@ You can check the complete test code of <code>VarRing</code> there.</p>
 <div class="highlight"><pre><span></span><code>go test
 </code></pre></div>
 <p>This picks up any files matching packagename_test.go.
-If you are getting a <code>PASS</code>, you are passing the unit test. </p>
+If you are getting a <code>PASS</code>, you are passing the unit test.</p>
 <p>In MatrixOne, we have a <code>bvt</code> test framework which will run all the unit tests defined in the whole package, and each time your make a pull request to the code base, the test will automatically run.
 You code will be merged only if the <code>bvt</code> test pass.</p>
 <h2 id="conduct-a-performance-test"><strong>Conduct a Performance Test</strong></h2>
 <p>Aggregate functions are an important feature of a database system, with queries on hundreds of millions of data rows, the time consumption of an aggregate function is quite significant.
-Thus, we recommend you to run a performance test. </p>
+Thus, we recommend you to run a performance test.</p>
 <p>Step1: Download the standard test dataset.</p>
 <p>We have prepared a single table SSB query dataset with 10 million rows of data. The raw data file size is about 4GB, 500MB after being zipped.  You can get the data files directly:</p>
 <div class="highlight"><pre><span></span><code>https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/lineorder_flat.tar.bz2
 </code></pre></div>
-<p>Step2: Unzip the file and Load the data into MatrixOne. </p>
+<p>Step2: Unzip the file and Load the data into MatrixOne.</p>
 <p>With the following SQL you can create the database and table, and load the <code>lineorder_flat.tbl</code> into MatrixOne.</p>
 <div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="n">ssb</span><span class="p">;</span><span class="w"></span>
 <span class="n">use</span><span class="w"> </span><span class="n">ssb</span><span class="p">;</span><span class="w"></span>
@@ -4772,7 +4786,7 @@ Thus, we recommend you to run a performance test. </p>
 <span class="k">select</span><span class="w"> </span><span class="k">sum</span><span class="p">(</span><span class="n">LO_SUPPKEY</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">lineorder_flat</span><span class="p">;</span><span class="w"></span>
 <span class="k">select</span><span class="w"> </span><span class="n">yourfunction</span><span class="p">(</span><span class="n">LO_SUPPKEY</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">lineorder_flat</span><span class="p">;</span><span class="w"></span>
 </code></pre></div>
-<p>Step4: When you submit your PR, please submit these performance results in your PR comment as well. </p>
+<p>Step4: When you submit your PR, please submit these performance results in your PR comment as well.</p>
 
               
             </article>
