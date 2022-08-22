@@ -2329,6 +2329,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Explain/explain-workflow/" class="md-nav__link">
+        EXPLAIN Output Format
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -3299,7 +3313,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Develop/develop_python_application/" class="md-nav__link">
+      <a href="../../../../Develop/develop-python-application/" class="md-nav__link">
         Develop Python Applications
       </a>
     </li>
@@ -4016,7 +4030,7 @@
 
 <h2 id="transactions">Transactions</h2>
 <p>MatrixOne supports bundling multiple SQL statements into a single all-or-nothing transaction. Each transaction guarantees ACID semantics spanning arbitrary tables and rows. If a transaction succeeds, all mutations are applied together with virtual simultaneity. If any part of a transaction fails, the entire transaction is aborted, and the database is left unchanged. MatrixOne guarantees that while a transaction is pending, it is isolated from other concurrent transactions with snapshot isolation.</p>
-<p>In 0.5.0 version, MatrixOne supports standalone database transaction. MatrixOne supports optimistic transaction mode.</p>
+<p>In 0.5.1 version, MatrixOne supports standalone database transaction. MatrixOne supports optimistic transaction mode.</p>
 <p>This document introduces commonly used transaction-related statements, explicit and implicit transactions, isolation levels, lazy check for constraints, and transaction sizes.</p>
 <h3 id="sql-statements">SQL statements</h3>
 <p>The following SQL statements control transactions：</p>
@@ -4024,7 +4038,7 @@
 <li><code>START TRANSACTION</code> or <code>BEGIN</code> start a new transaction.</li>
 <li><code>COMMIT</code> commits the current transaction, making its changes permanent.</li>
 <li><code>ROLLBACK</code> rolls back the current transaction, canceling its changes.</li>
-<li><code>SET autocommit</code> disables or enables the default autocommit mode for the current session. (It's not fully implemented in 0.5.0 version, MatrixOne only supports autocommit mode enabled, it cannot be switched off yet). </li>
+<li><code>SET autocommit</code> disables or enables the default autocommit mode for the current session. (It's not fully implemented in 0.5.1 version, MatrixOne only supports autocommit mode enabled, it cannot be switched off yet).</li>
 </ul>
 <h4 id="starting-a-transaction">Starting a transaction</h4>
 <p>The statements <code>BEGIN</code> and <code>START TRANSACTION</code> can be used interchangeably to explicitly start a new transaction.</p>
@@ -4074,7 +4088,7 @@
 <span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span><span class="w"></span>
 </code></pre></div>
 <p>In the above example, the <code>ROLLBACK</code> statement has no effect. This is because the <code>INSERT</code> statement is executed in autocommit. <code>ROLLBACK</code> only works with a <code>BEGIN</code> or <code>START TRANSACTION</code>. That is, it was the equivalent of the following single-statement transaction:</p>
-<div class="highlight"><pre><span></span><code>START TRANSACTION; 
+<div class="highlight"><pre><span></span><code>START TRANSACTION;
 Insert into test values(1,1);
 COMMIT;
 </code></pre></div>
@@ -4102,7 +4116,7 @@ Query OK, 0 rows affected (0.03 sec)
 mysql&gt; SELECT * from test;
 Empty set (0.01 sec)
 </code></pre></div>
-<p>The <code>autocommit</code> system variable cannot be changed on either a global nor session basis for now. </p>
+<p>The <code>autocommit</code> system variable cannot be changed on either a global nor session basis for now.</p>
 <h4 id="explicit-and-implicit-transaction">Explicit and implicit transaction</h4>
 <p>MatrixOne supports explicit transactions (use <code>[BEGIN|START TRANSACTION]</code> and <code>COMMIT</code> to define the start and end of the transaction) and implicit transactions (by default).</p>
 <p>If you start a new transaction through the <code>[BEGIN|START TRANSACTION]</code> statement, the autocommit is disabled before <code>COMMIT</code> or <code>ROLLBACK</code> which makes the transaction becomes explicit.</p>
@@ -4217,7 +4231,7 @@ mysql&gt; select * from t1;
 </tbody>
 </table>
 <h4 id="optimistic-transaction-model">Optimistic Transaction Model</h4>
-<p>MatrixOne supports an optimistic transaction model. Users who use optimistic concurrency do not lock a row when reading it. When a user wants to update a row, the application must determine whether another user has changed the row since it was read. Optimistic concurrency is generally used in environments with a low contention for data. </p>
+<p>MatrixOne supports an optimistic transaction model. Users who use optimistic concurrency do not lock a row when reading it. When a user wants to update a row, the application must determine whether another user has changed the row since it was read. Optimistic concurrency is generally used in environments with a low contention for data.</p>
 <p>In an optimistic concurrency model, a violation is considered to have occurred if, after a user receives a value from the database, another user modifies the value before the first user has attempted to modify it. How the server resolves a concurrency violation is best shown by first describing the following example.</p>
 <p>The following tables follow an example of optimistic concurrency.</p>
 <p>At 1:00 p.m., User1 reads a row from the database with the following values:</p>
