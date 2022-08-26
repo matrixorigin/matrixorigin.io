@@ -47,10 +47,12 @@ nav:
       - Install Standalone MatrixOne: MatrixOne/Get-Started/install-standalone-matrixone.md
       - Connect to MatrixOne Server: MatrixOne/Get-Started/connect-to-matrixone-server.md
       - Update Standalone MatrixOne: MatrixOne/Get-Started/update-standalone-matrixone.md
-      - Tutorial:
-        - SSB Test with MatrixOne: MatrixOne/Get-Started/Tutorial/SSB-test-with-matrixone.md
-        - TPCH Test with MatrixOne: MatrixOne/Get-Started/Tutorial/TPCH-test-with-matrixone.md
       - Playground: MatrixOne/Get-Started/Playground.md
+    - Tutorial:
+      - SSB Test with MatrixOne: MatrixOne/Tutorial/SSB-test-with-matrixone.md
+      - TPCH Test with MatrixOne: MatrixOne/Tutorial/TPCH-test-with-matrixone.md
+      - Develop Python Applications: MatrixOne/Tutorial/develop-python-application.md
+      - JDBC connect to MatrixOne: MatrixOne/Tutorial/develop-java-connect-mo.md
     - Reference:
       - SQL Reference:
         - DDL:
@@ -206,8 +208,13 @@ nav:
       - MatrixOne Catalog: MatrixOne/Reference/System-tables.md
     - Test:
       - MO-Tester: MatrixOne/Test/mo-tester.md
-    - Develop:
-      - Develop Python Applications: MatrixOne/Develop/develop-python-application.md
+    - Develop Guide:
+      - Connect to MatrixOne:
+        - Using client connect to the MatrixOne: MatrixOne/Develop/connect-mo/client-connect-to-matrixone.md
+        - Using programming connect to the MatrixOne: MatrixOne/Develop/connect-mo/programming-connect-to-matrixone.md
+      - Import Data:
+        - Import Using Source: MatrixOne/Develop/import-data/use-source-import-data.md
+        - Import Using Docker: MatrixOne/Develop/import-data/use-docker-import-data.md
     - FAQs:
       - Product FAQs: MatrixOne/FAQs/product-faqs.md
       - Deployment FAQs: MatrixOne/FAQs/deployment-faqs.md
@@ -230,7 +237,7 @@ nav:
         - Review a Pull Request: MatrixOne/Contribution-Guide/How-to-Contribute/review-a-pull-request.md
         - Contribute Documentation: MatrixOne/Contribution-Guide/How-to-Contribute/contribute-documentation.md
         - Make a Design: MatrixOne/Contribution-Guide/How-to-Contribute/make-a-design.md
-      - Tutorial:
+      - Contribution Tutorial:
         - Develop a built-in function: MatrixOne/Contribution-Guide/Tutorial/develop_builtin_functions.md
         - Develop an aggregate function: MatrixOne/Contribution-Guide/Tutorial/develop_aggregate_functions.md
       - Code Style:
