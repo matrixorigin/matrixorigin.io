@@ -3411,6 +3411,67 @@
 
             
           
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_7_3" type="checkbox" id="__nav_1_7_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_7_3">
+          Export Data
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Export Data" data-md-level="3">
+        <label class="md-nav__title" for="__nav_1_7_3">
+          <span class="md-nav__icon md-icon"></span>
+          Export Data
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../general-method-export-data.md" class="md-nav__link">
+        Export data in general method
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../use-docker-export-data.md" class="md-nav__link">
+        Export data using Docker
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -4171,19 +4232,21 @@ PRIMARY KEY (role_id)
 <h3 id="steps">Steps</h3>
 <p>The appropriate raw data to import into MatrixOne is the form type, or the <em>.csv</em> file which is generated through using <code>SELECT INTO... OUTFILE</code> from MySQL.</p>
 <ol>
-<li>The MySQL Client export statement is as follows:</li>
-</ol>
+<li>
+<p>The MySQL Client export statement is as follows:</p>
 <div class="highlight"><pre><span></span><code>mysql&gt; SELECT * FROM xxxx
 INTO OUTFILE &quot;/tmp/xxx.csv&quot;
 FIELDS TERMINATED BY &#39;,&#39; OPTIONALLY ENCLOSED BY &#39;&quot;&#39; LINES TERMINATED BY &quot;\r\n&quot;;
 </code></pre></div>
-<ol>
-<li>In MatrixOne, you need to build the corresponding table first, and then import data through <code>LOAD DATA</code>:</li>
-</ol>
+</li>
+<li>
+<p>In MatrixOne, you need to build the corresponding table first, and then import data through <code>LOAD DATA</code>:</p>
 <div class="highlight"><pre><span></span><code>mysql&gt; LOAD DATA INFILE &#39;/tmp/xxx.csv&#39;
 INTO TABLE xxxxxx
 FIELDS TERMINATED BY &#39;,&#39; OPTIONALLY ENCLOSED BY &#39;&quot;&#39; LINES TERMINATED BY &quot;\r\n&quot;;
 </code></pre></div>
+</li>
+</ol>
 
               
             </article>
