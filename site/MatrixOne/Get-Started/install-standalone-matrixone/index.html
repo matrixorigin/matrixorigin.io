@@ -497,8 +497,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#option-1-get-the-matrixonepreview-version-code-to-build" class="md-nav__link">
-    Option 1: Get the MatrixOne(Preview Version) code to build
+  <a href="#option-1-get-the-matrixonedevelop-version-code-to-build" class="md-nav__link">
+    Option 1: Get the MatrixOne(Develop Version) code to build
   </a>
   
 </li>
@@ -4142,8 +4142,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#option-1-get-the-matrixonepreview-version-code-to-build" class="md-nav__link">
-    Option 1: Get the MatrixOne(Preview Version) code to build
+  <a href="#option-1-get-the-matrixonedevelop-version-code-to-build" class="md-nav__link">
+    Option 1: Get the MatrixOne(Develop Version) code to build
   </a>
   
 </li>
@@ -4285,11 +4285,11 @@
 <p>Go version 1.19 is required.</p>
 <h3 id="2-get-the-matrixone-code-to-build-matrixone">2. Get the MatrixOne code to build MatrixOne</h3>
 <p>Depending on your needs, choose whether you want to keep your code up to date, or if you want to get the latest stable version of the code.</p>
-<h4 id="option-1-get-the-matrixonepreview-version-code-to-build">Option 1: Get the MatrixOne(Preview Version) code to build</h4>
+<h4 id="option-1-get-the-matrixonedevelop-version-code-to-build">Option 1: Get the MatrixOne(Develop Version) code to build</h4>
 <p>The <strong>main</strong> branch is the default branch, the code on the main branch is always up-to-date but not stable enough.</p>
 <ol>
 <li>
-<p>Get the MatrixOne(Preview Version) code:</p>
+<p>Get the MatrixOne(Develop Version, also called Pre0.6 version) code:</p>
 <div class="highlight"><pre><span></span><code>git clone https://github.com/matrixorigin/matrixone.git
 cd matrixone
 </code></pre></div>
@@ -4303,7 +4303,7 @@ cd matrixone
 <p>Launch MatrixOne server：</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The startup-config file of MatrixOne(Preview Version) is different from the startup-config file of MatrixOne(Stable Version). The startup-config file code of MatrixOne(Preview Version) is as below:</p>
+<p>The startup-config file of MatrixOne(Develop Version) is different from the startup-config file of MatrixOne(Stable Version). The startup-config file code of MatrixOne(Develop Version) is as below:</p>
 </div>
 <div class="highlight"><pre><span></span><code>./mo-service -cfg ./etc/cn-standalone-test.toml
 </code></pre></div>
@@ -4328,7 +4328,7 @@ make build
 <p>Launch MatrixOne server：</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The startup-config file of MatrixOne(Stable Version) is different from the startup-config file of MatrixOne(Preview Version). The startup-config file code of MatrixOne(Stable Version) is as below:</p>
+<p>The startup-config file of MatrixOne(Stable Version) is different from the startup-config file of MatrixOne(Develop Version). The startup-config file code of MatrixOne(Stable Version) is as below:</p>
 </div>
 <div class="highlight"><pre><span></span><code>./mo-server system_vars_config.toml
 </code></pre></div>
@@ -4360,13 +4360,24 @@ unzip mo-server-v0.5.1-darwin-x86_64.zip
 <div class="highlight"><pre><span></span><code>docker --version
 </code></pre></div>
 <h3 id="2-create-and-run-the-container-of-matrixone">2. Create and run the container of MatrixOne</h3>
-<p>It will pull the image from Docker Hub if not exists. You can choose to pull the latest image or a stable version.</p>
-<p>Latest Image</p>
-<div class="highlight"><pre><span></span><code>docker run -d -p 6001:6001 --name matrixone matrixorigin/matrixone:latest
+<p>It will pull the image from Docker Hub if not exists. You can choose to pull the stable version image or the develop version image.</p>
+<ul>
+<li>Stable Version Image(0.5.1 version)</li>
+</ul>
+<div class="highlight"><pre><span></span><code>docker run -d -p <span class="m">6001</span>:6001 --name matrixone matrixorigin/matrixone:0.5.1
 </code></pre></div>
-<p>0.5.1 Version Image</p>
-<div class="highlight"><pre><span></span><code>docker run -d -p 6001:6001 --name matrixone matrixorigin/matrixone:0.5.1
+<ul>
+<li>
+<p>If you want to pull the develop version image, see <a href="https://hub.docker.com/r/matrixorigin/matrixone/tags">Docker Hub</a>, get the image tag. An example as below:</p>
+<p>Develop Version Image(Pre0.6 version)</p>
+<div class="highlight"><pre><span></span><code>docker run -d -p <span class="m">6001</span>:6001 --name matrixone matrixorigin/matrixone:nightly-commitnumber
 </code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>The <em>nightly</em> version is updated once a day.</p>
+</div>
+</li>
+</ul>
 <p>For the information on the user name and password, see the next step - Connect to MatrixOne Server.</p>
 <h3 id="3-mount-the-data-directoryoptional">3. Mount the data directory(Optional)</h3>
 <p>To customize the configuration file, you can mount the custom configuration file stored on the local disk.</p>
