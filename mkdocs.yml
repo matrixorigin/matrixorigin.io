@@ -42,31 +42,32 @@ nav:
       - MatrixOne Introduction: MatrixOne/Overview/matrixone-introduction.md
       - MatrixOne Architecture: MatrixOne/Overview/matrixone-architecture.md
       - What's New: MatrixOne/Overview/whats-new.md
-    - Get Started:
+    - Getting Started:
       - Install Standalone MatrixOne: MatrixOne/Get-Started/install-standalone-matrixone.md
       - Connect to MatrixOne Server: MatrixOne/Get-Started/connect-to-matrixone-server.md
+      - Basic SQL: https://docs.pingcap.com/tidb/stable/basic-sql-operations
       - Playground: MatrixOne/Get-Started/Playground.md
-    - Develop Guide:
+    - Developing Guide:
       - Connect to MatrixOne:
         - Using client connect to the MatrixOne: MatrixOne/Develop/connect-mo/client-connect-to-matrixone.md
         - Using Java connect to the MatrixOne: MatrixOne/Develop/connect-mo/java-connect-to-matrixone.md
         - Using Python connect to the MatrixOne: MatrixOne/Develop/connect-mo/python-connect-to-matrixone.md
       - Import Data:
-        - Import Using Source: MatrixOne/Develop/import-data/use-source-import-data.md
-        - Import Using Docker: MatrixOne/Develop/import-data/use-docker-import-data.md
+        - Import Data: MatrixOne/Develop/import-data/import-data.md
       - Export Data:
-        - Export data in general method: MatrixOne/Develop/export-data/general-method-export-data.md
-        - Export data using Docker: MatrixOne/Develop/export-data/use-docker-export-data.md
+        - Export data: MatrixOne/Develop/export-data/export-data.md
       - Example Application:
-        - JDBC connect to MatrixOne Example: MatrixOne/Tutorial/develop-java-connect-mo.md
+        - Build a simple Java CRUD demo with MatrixOne: MatrixOne/Tutorial/develop-java-crud-demo.md
         - Python stock analysis Demo: MatrixOne/Tutorial/develop-python-application.md
-    - Maintain:
-      - Upgrade Standalone MatrixOne: MatrixOne/Get-Started/upgrade-standalone-matrixone.md
-    - Test:
-      - Performance Test:
+    - Maintenance:
+      - Upgrade Standalone MatrixOne: MatrixOne/Maintain/upgrade-standalone-matrixone.md
+    - Migration:
+      - Migrate data from MySQL to MatrixOne: MatrixOne/Migrate/migrate-from-mysql-to-matrixone.md
+    - Testing:
+      - Performance Testing:
         - SSB Test with MatrixOne: MatrixOne/Tutorial/SSB-test-with-matrixone.md
         - TPCH Test with MatrixOne: MatrixOne/Tutorial/TPCH-test-with-matrixone.md
-      - Test Tool:
+      - Testing Tool:
         - MO-Tester: MatrixOne/Test/mo-tester.md
     - Reference:
       - SQL Reference:
