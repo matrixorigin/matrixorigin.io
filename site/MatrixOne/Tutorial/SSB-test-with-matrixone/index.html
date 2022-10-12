@@ -942,15 +942,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#option-1-generate-your-own-dataset" class="md-nav__link">
-    Option 1: Generate your own dataset
+  <a href="#option-1-generate-the-single-table-dataset" class="md-nav__link">
+    Option 1: Generate the single table dataset
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#option-2-use-an-existing-dataset" class="md-nav__link">
-    Option 2: Use an existing dataset
+  <a href="#option-2-download-the-large-wide-table-dataset" class="md-nav__link">
+    Option 2: Download the large wide table dataset
   </a>
   
 </li>
@@ -976,15 +976,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#option-1-load-data-into-related-tables-with-this-command-in-matrixone" class="md-nav__link">
-    Option 1: Load data into related tables with this command in MatrixOne
+  <a href="#option-1-load-the-sigle-table-dataset-into-related-tables-with-this-command-in-matrixone" class="md-nav__link">
+    Option 1: Load the sigle table dataset into related tables with this command in MatrixOne
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#option-2-load-data-into-the-lineorder_flat" class="md-nav__link">
-    Option 2: Load data into the lineorder_flat
+  <a href="#option-2-load-the-large-wide-table-dataset-into-the-lineorder_flat" class="md-nav__link">
+    Option 2: Load the large wide table dataset into the lineorder_flat
   </a>
   
 </li>
@@ -4282,15 +4282,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#option-1-generate-your-own-dataset" class="md-nav__link">
-    Option 1: Generate your own dataset
+  <a href="#option-1-generate-the-single-table-dataset" class="md-nav__link">
+    Option 1: Generate the single table dataset
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#option-2-use-an-existing-dataset" class="md-nav__link">
-    Option 2: Use an existing dataset
+  <a href="#option-2-download-the-large-wide-table-dataset" class="md-nav__link">
+    Option 2: Download the large wide table dataset
   </a>
   
 </li>
@@ -4316,15 +4316,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#option-1-load-data-into-related-tables-with-this-command-in-matrixone" class="md-nav__link">
-    Option 1: Load data into related tables with this command in MatrixOne
+  <a href="#option-1-load-the-sigle-table-dataset-into-related-tables-with-this-command-in-matrixone" class="md-nav__link">
+    Option 1: Load the sigle table dataset into related tables with this command in MatrixOne
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#option-2-load-data-into-the-lineorder_flat" class="md-nav__link">
-    Option 2: Load data into the lineorder_flat
+  <a href="#option-2-load-the-large-wide-table-dataset-into-the-lineorder_flat" class="md-nav__link">
+    Option 2: Load the large wide table dataset into the lineorder_flat
   </a>
   
 </li>
@@ -4420,7 +4420,7 @@ make
 <p>Compile dbgen on a PC with M1 chip. See <a href="../../FAQs/deployment-faqs/">Deployment FAQs</a>.</p>
 </div>
 <h2 id="2-generate-data"><strong>2. Generate data</strong></h2>
-<h3 id="option-1-generate-your-own-dataset">Option 1: Generate your own dataset</h3>
+<h3 id="option-1-generate-the-single-table-dataset">Option 1: Generate the single table dataset</h3>
 <p>With -s 1 dbgen generates 6 million rows (670MB), while while -s 10 it generates 60 million rows (which takes some time)</p>
 <div class="highlight"><pre><span></span><code>./dbgen -s <span class="m">1</span> -T c
 ./dbgen -s <span class="m">1</span> -T l
@@ -4428,8 +4428,8 @@ make
 ./dbgen -s <span class="m">1</span> -T s
 ./dbgen -s <span class="m">1</span> -T d
 </code></pre></div>
-<h3 id="option-2-use-an-existing-dataset">Option 2: Use an existing dataset</h3>
-<p>We have also prepared a 1GB dataset for downloading.  You can get the data files directly:</p>
+<h3 id="option-2-download-the-large-wide-table-dataset">Option 2: Download the large wide table dataset</h3>
+<p>We have also prepared a 1GB large wide table dataset for downloading. You can get the data files directly:</p>
 <div class="highlight"><pre><span></span><code>https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/lineorder_flat.tar.bz2
 </code></pre></div>
 <h2 id="3-create-tables-in-matrixone"><strong>3. Create tables in MatrixOne</strong></h2>
@@ -4557,7 +4557,7 @@ CREATE TABLE lineorder_flat(
 );
 </code></pre></div>
 <h2 id="4-load-data-into-the-created-tables"><strong>4. Load data into the created tables</strong></h2>
-<h3 id="option-1-load-data-into-related-tables-with-this-command-in-matrixone">Option 1: Load data into related tables with this command in MatrixOne</h3>
+<h3 id="option-1-load-the-sigle-table-dataset-into-related-tables-with-this-command-in-matrixone">Option 1: Load the sigle table dataset into related tables with this command in MatrixOne</h3>
 <div class="highlight"><pre><span></span><code>load data infile &#39;/ssb-dbgen-path/supplier.tbl&#39; into table supplier FIELDS TERMINATED BY &#39;,&#39; OPTIONALLY ENCLOSED BY &#39;&quot;&#39; LINES TERMINATED BY &#39;\n&#39;;
 
 load data infile &#39;/ssb-dbgen-path/customer.tbl&#39; into table customer FIELDS TERMINATED BY &#39;,&#39; OPTIONALLY ENCLOSED BY &#39;&quot;&#39; LINES TERMINATED BY &#39;\n&#39;;
@@ -4569,7 +4569,7 @@ load data infile &#39;/ssb-dbgen-path/part.tbl&#39; into table part FIELDS TERMI
 load data infile &#39;/ssb-dbgen-path/lineorder.tbl&#39; into table lineorder FIELDS TERMINATED BY &#39;,&#39; OPTIONALLY ENCLOSED BY &#39;&quot;&#39; LINES TERMINATED BY &#39;\n&#39;;
 </code></pre></div>
 <p>Then you can query data in MatrixOne with the created table.</p>
-<h3 id="option-2-load-data-into-the-lineorder_flat">Option 2: Load data into the lineorder_flat</h3>
+<h3 id="option-2-load-the-large-wide-table-dataset-into-the-lineorder_flat">Option 2: Load the large wide table dataset into the <em>lineorder_flat</em></h3>
 <div class="highlight"><pre><span></span><code>load data infile &#39;/ssb-dbgen-path/lineorder_flat.tbl&#39; into table lineorder_flat FIELDS TERMINATED BY &#39;,&#39; OPTIONALLY ENCLOSED BY &#39;&quot;&#39; LINES TERMINATED BY &#39;\n&#39;;
 </code></pre></div>
 <h2 id="5-run-ssb-queries"><strong>5. Run SSB Queries</strong></h2>
