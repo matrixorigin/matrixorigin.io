@@ -4321,8 +4321,6 @@
 </li>
 <li>
 <p>To ensure the gcc-11 is successful installed, run the following command:</p>
-</li>
-</ol>
 <div class="highlight"><pre><span></span><code>gcc-11 -v
 </code></pre></div>
 <p>The successful result is as below:</p>
@@ -4335,37 +4333,39 @@ Thread model: posix
 Supported LTO compression algorithms: zlib zstd
 gcc version 11.3.0 (Homebrew GCC 11.3.0)
 </code></pre></div>
-<ol>
+</li>
 <li>
 <p>Modify the <em>bm_utils.c</em> file in the <em>ssb-dbgen</em> directory:</p>
-</li>
+<ul>
 <li>
 <p>Change the <code>#include &lt;malloc.h&gt;</code> in line 41 to <code>#include &lt;sys/malloc.h&gt;</code></p>
 </li>
 <li>
 <p>Change the <code>open(fullpath, ((*mode == 'r')?O_RDONLY:O_WRONLY)|O_CREAT|O_LARGEFILE,0644);</code> in line 398 to <code>open(fullpath, ((*mode == 'r')?O_RDONLY:O_WRONLY)|O_CREAT,0644);</code></p>
 </li>
-<li>
-<p>Modify the <em>varsub.c</em> file in the <em>ssb-dbgen</em> directory:</p>
+</ul>
 </li>
 <li>
-<p>Change the <code>#include &lt;malloc.h&gt;</code> in line 5 to <code>#include &lt;sys/malloc.h&gt;</code></p>
+<p>Modify the <em>varsub.c</em> file in the <em>ssb-dbgen</em> directory:</p>
+<ul>
+<li>Change the <code>#include &lt;malloc.h&gt;</code> in line 5 to <code>#include &lt;sys/malloc.h&gt;</code></li>
+</ul>
 </li>
 <li>
 <p>Modify the <em>makefile</em> file in the <em>ssb-dbgen</em> directory:</p>
-</li>
-<li>
-<p>Change the <code>CC      = gcc</code> in line 5 to <code>CC      = gcc-11</code></p>
+<ul>
+<li>Change the <code>CC      = gcc</code> in line 5 to <code>CC      = gcc-11</code></li>
+</ul>
 </li>
 <li>
 <p>Enter into <em>ssb-dbgen</em> directory again and compile:</p>
-</li>
-</ol>
 <div class="highlight"><pre><span></span><code>cd ssb-dbgen
 make
 </code></pre></div>
-<ol>
-<li>Check the <em>ssb-dbgen</em> directory, when the the <em>dbgen</em> file is generated, indicating that the compilation is successful.</li>
+</li>
+<li>
+<p>Check the <em>ssb-dbgen</em> directory, when the the <em>dbgen</em> file is generated, indicating that the compilation is successful.</p>
+</li>
 </ol>
 
               
