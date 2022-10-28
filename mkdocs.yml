@@ -56,6 +56,8 @@ nav:
         - Database Client IDE: MatrixOne/Develop/connect-mo/0.6-database-ide.md
         - Java connect to MatrixOne:
           - JDBC: MatrixOne/Develop/connect-mo/0.6-java-connect-to-matrixone/connect-mo-with-jdbc.md
+          - Hibernate: MatrixOne/Develop/connect-mo/0.6-java-connect-to-matrixone/springboot-hibernate-crud-demo.md
+          - MyBatis: MatrixOne/Develop/connect-mo/0.6-java-connect-to-matrixone/springboot-mybatis-crud-demo.md
         - Python connect to the MatrixOne: MatrixOne/Develop/connect-mo/python-connect-to-matrixone.md
       - Schema Design:
         - Overview: MatrixOne/Develop/0.6-schema-design/overview.md
@@ -80,6 +82,7 @@ nav:
         - Python stock analysis Demo: MatrixOne/Tutorial/develop-python-application.md
     - Maintenance:
       - Upgrade Standalone MatrixOne: MatrixOne/Maintain/upgrade-standalone-matrixone.md
+      - MatrixOne Directory Structure: MatrixOne/Maintain/mo-directory-structure.md
     - Migration:
       - From MySQL to MatrixOne: MatrixOne/Migrate/migrate-from-mysql-to-matrixone.md
     - Testing:
@@ -297,6 +300,7 @@ nav:
         - General Settings: MatrixOne/Reference/System-Parameters/configuration-settings.md
         - Time Zone Support: MatrixOne/Reference/System-Parameters/0.6-timezone.md
       - MatrixOne Catalog: MatrixOne/Reference/System-tables.md
+      - Limitations: MatrixOne/Reference/Limitations/mo-jdbc-feature-list.md
     - FAQs:
       - Product FAQs: MatrixOne/FAQs/product-faqs.md
       - Deployment FAQs: MatrixOne/FAQs/deployment-faqs.md
