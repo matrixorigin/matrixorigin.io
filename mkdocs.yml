@@ -52,12 +52,9 @@ nav:
     - Developing Guide:
       - Connect to MatrixOne:
         - MatrixOne SSL connection: MatrixOne/Develop/connect-mo/configure-mo-ssl-connection.md
-        - MySQL Client: MatrixOne/Develop/connect-mo/client-connect-to-matrixone.md
         - Database Client IDE: MatrixOne/Develop/connect-mo/0.6-database-ide.md
         - Java connect to MatrixOne:
           - JDBC: MatrixOne/Develop/connect-mo/0.6-java-connect-to-matrixone/connect-mo-with-jdbc.md
-          - Hibernate: MatrixOne/Develop/connect-mo/0.6-java-connect-to-matrixone/springboot-hibernate-crud-demo.md
-          - MyBatis: MatrixOne/Develop/connect-mo/0.6-java-connect-to-matrixone/springboot-mybatis-crud-demo.md
         - Python connect to the MatrixOne: MatrixOne/Develop/connect-mo/python-connect-to-matrixone.md
       - Schema Design:
         - Overview: MatrixOne/Develop/0.6-schema-design/overview.md
@@ -79,6 +76,8 @@ nav:
         - Transaction Overview: MatrixOne/Reference/SQL-Reference/Transactions/transaction-overview.md
       - Example Application:
         - Build a simple Java CRUD demo with MatrixOne: MatrixOne/Tutorial/develop-java-crud-demo.md
+        - Hibernate: MatrixOne/Tutorial/springboot-hibernate-crud-demo.md
+        - MyBatis: MatrixOne/Tutorial/springboot-mybatis-crud-demo.md
         - Python stock analysis Demo: MatrixOne/Tutorial/develop-python-application.md
     - Maintenance:
       - Upgrade Standalone MatrixOne: MatrixOne/Maintain/upgrade-standalone-matrixone.md
@@ -96,6 +95,14 @@ nav:
       - Slow Queries: MatrixOne/Troubleshooting/slow-queries.md
       - Common statistic data query: MatrixOne/Troubleshooting/common-statistics-query.md
       - Audit: MatrixOne/Troubleshooting/audit.md
+    - Performance Tuning:
+      - Understanding the Query Execution Plan:
+        - Query Execution Plan Overview: MatrixOne/0.6-Performance-Tuning/explain-overview.md
+        - Using EXPLAIN to learn the execution plan: MatrixOne/0.6-Performance-Tuning/explain-walkthrough.md
+        - Explain Statements Using JOIN: MatrixOne/0.6-Performance-Tuning/explain-joins.md
+        - Explain Statements Using Subqueries: MatrixOne/0.6-Performance-Tuning/explain-subqueries.md
+        - Explain Statements Using Aggregation: MatrixOne/0.6-Performance-Tuning/explain-aggregation.md
+        - EXPLAIN Statements Using Views: MatrixOne/0.6-Performance-Tuning/explain-views.md
     - Security:
       - Access Control Overview: MatrixOne/0.6-Security/access-control-overview.md
       - Access Control Permission: MatrixOne/0.6-Security/access-control.md
