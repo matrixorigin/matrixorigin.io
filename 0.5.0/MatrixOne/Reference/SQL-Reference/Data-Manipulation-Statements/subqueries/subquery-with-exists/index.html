@@ -208,22 +208,6 @@
   
 
       
-        
-  
-  
-
-
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="https://playground.matrixorigin.io/?tutorial=SSB-test-with-matrixone&step=1" class="md-tabs__link">
-        Playground
-      </a>
-    </li>
-  
-
-      
     </ul>
   </div>
 </nav>
@@ -516,20 +500,6 @@
           
         </ul>
       </nav>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../../Get-Started/Playground/" class="md-nav__link">
-        Playground
-      </a>
     </li>
   
 
@@ -931,7 +901,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../derived-tables/" class="md-nav__link">
+      <a href="../derived-tables.md" class="md-nav__link">
         Derived Tables
       </a>
     </li>
@@ -945,7 +915,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../comparisons-using-subqueries/" class="md-nav__link">
+      <a href="../comparisons-using-subqueries.md" class="md-nav__link">
         Comparisons Using Subqueries
       </a>
     </li>
@@ -959,7 +929,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../subquery-with-any-some/" class="md-nav__link">
+      <a href="../subquery-with-any-some.md" class="md-nav__link">
         SUBQUERY with ANY or SOME
       </a>
     </li>
@@ -973,7 +943,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../subquery-with-all/" class="md-nav__link">
+      <a href="../subquery-with-all.md" class="md-nav__link">
         SUBQUERY with ALL
       </a>
     </li>
@@ -1037,13 +1007,6 @@
         <li class="md-nav__item">
   <a href="#examples" class="md-nav__link">
     Examples
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#constraints" class="md-nav__link">
-    Constraints
   </a>
   
 </li>
@@ -1847,7 +1810,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../operators/flow-control-functions/case-when/" class="md-nav__link">
+      <a href="../../operators/flow-control-functions/case-when.md" class="md-nav__link">
         CASE WHEN
       </a>
     </li>
@@ -2942,7 +2905,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Builtin-Functions/String/lengthUTF8.md" class="md-nav__link">
+      <a href="../../../../Builtin-Functions/String/lengthUTF8/" class="md-nav__link">
         LENGTHUTF8()
       </a>
     </li>
@@ -3284,7 +3247,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../FAQs/product-faqs/" class="md-nav__link">
+      <a href="../../../../../FAQs/product-faqs.md" class="md-nav__link">
         Product FAQs
       </a>
     </li>
@@ -3298,7 +3261,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../FAQs/deployment-faqs/" class="md-nav__link">
+      <a href="../../../../../FAQs/deployment-faqs.md" class="md-nav__link">
         Deployment FAQs
       </a>
     </li>
@@ -3312,7 +3275,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../FAQs/sql-faqs/" class="md-nav__link">
+      <a href="../../../../../FAQs/sql-faqs.md" class="md-nav__link">
         SQL FAQs
       </a>
     </li>
@@ -3359,7 +3322,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../Release-Notes/v0.5.0/" class="md-nav__link">
+      <a href="../../../../../Release-Notes/v0.5.0.md" class="md-nav__link">
         v0.5.0
       </a>
     </li>
@@ -3764,54 +3727,6 @@
   
 
     
-      
-      
-      
-
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_2">
-          Playground
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Playground" data-md-level="1">
-        <label class="md-nav__title" for="__nav_2">
-          <span class="md-nav__icon md-icon"></span>
-          Playground
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="https://playground.matrixorigin.io/?tutorial=SSB-test-with-matrixone&step=1" class="md-nav__link">
-        Playground
-      </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-    
   </ul>
 </nav>
                   </div>
@@ -3859,13 +3774,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#constraints" class="md-nav__link">
-    Constraints
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -3895,32 +3803,30 @@ WHERE EXISTS
 (SELECT column_name FROM table_name WHERE condition);
 </code></pre></div>
 <h2 id="examples"><strong>Examples</strong></h2>
-<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">int</span><span class="p">);</span><span class="w"></span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="nb">int</span><span class="p">);</span><span class="w"></span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t3</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">int</span><span class="p">);</span><span class="w"></span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t4</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">);</span><span class="w"></span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">);</span><span class="w"></span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">7</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">7</span><span class="p">);</span><span class="w"></span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t4</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">8</span><span class="p">),(</span><span class="mi">3</span><span class="p">,</span><span class="mi">8</span><span class="p">),(</span><span class="mi">5</span><span class="p">,</span><span class="mi">9</span><span class="p">);</span><span class="w"></span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t3</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">6</span><span class="p">),(</span><span class="mi">7</span><span class="p">),(</span><span class="mi">3</span><span class="p">);</span><span class="w"></span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t3</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">t2</span><span class="p">.</span><span class="n">b</span><span class="o">=</span><span class="n">t3</span><span class="p">.</span><span class="n">a</span><span class="p">);</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;</span> <span class="k">create</span> <span class="k">table</span> <span class="n">t1</span> <span class="p">(</span><span class="n">a</span> <span class="nb">int</span><span class="p">);</span>
+<span class="o">&gt;</span> <span class="k">create</span> <span class="k">table</span> <span class="n">t2</span> <span class="p">(</span><span class="n">a</span> <span class="nb">int</span><span class="p">,</span> <span class="n">b</span> <span class="nb">int</span><span class="p">);</span>
+<span class="o">&gt;</span> <span class="k">create</span> <span class="k">table</span> <span class="n">t3</span> <span class="p">(</span><span class="n">a</span> <span class="nb">int</span><span class="p">);</span>
+<span class="o">&gt;</span> <span class="k">create</span> <span class="k">table</span> <span class="n">t4</span> <span class="p">(</span><span class="n">a</span> <span class="nb">int</span> <span class="k">not</span> <span class="k">null</span><span class="p">,</span> <span class="n">b</span> <span class="nb">int</span> <span class="k">not</span> <span class="k">null</span><span class="p">);</span>
+<span class="o">&gt;</span> <span class="k">insert</span> <span class="k">into</span> <span class="n">t1</span> <span class="k">values</span> <span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="o">&gt;</span> <span class="k">insert</span> <span class="k">into</span> <span class="n">t2</span> <span class="k">values</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">7</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">7</span><span class="p">);</span>
+<span class="o">&gt;</span> <span class="k">insert</span> <span class="k">into</span> <span class="n">t4</span> <span class="k">values</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">8</span><span class="p">),(</span><span class="mi">3</span><span class="p">,</span><span class="mi">8</span><span class="p">),(</span><span class="mi">5</span><span class="p">,</span><span class="mi">9</span><span class="p">);</span>
+<span class="o">&gt;</span> <span class="k">insert</span> <span class="k">into</span> <span class="n">t3</span> <span class="k">values</span> <span class="p">(</span><span class="mi">6</span><span class="p">),(</span><span class="mi">7</span><span class="p">),(</span><span class="mi">3</span><span class="p">);</span>
+<span class="o">&gt;</span> <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">t3</span> <span class="k">where</span> <span class="k">exists</span> <span class="p">(</span><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">t2</span> <span class="k">where</span> <span class="n">t2</span><span class="p">.</span><span class="n">b</span><span class="o">=</span><span class="n">t3</span><span class="p">.</span><span class="n">a</span><span class="p">);</span>
 <span class="o">+</span><span class="c1">------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">a</span><span class="w">    </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span> <span class="n">a</span>    <span class="o">|</span>
 <span class="o">+</span><span class="c1">------+</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">7</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span>    <span class="mi">7</span> <span class="o">|</span>
 <span class="o">+</span><span class="c1">------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span><span class="w"></span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t3</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">t2</span><span class="p">.</span><span class="n">b</span><span class="o">=</span><span class="n">t3</span><span class="p">.</span><span class="n">a</span><span class="p">);</span><span class="w"></span>
+<span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">t3</span> <span class="k">where</span> <span class="k">not</span> <span class="k">exists</span> <span class="p">(</span><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">t2</span> <span class="k">where</span> <span class="n">t2</span><span class="p">.</span><span class="n">b</span><span class="o">=</span><span class="n">t3</span><span class="p">.</span><span class="n">a</span><span class="p">);</span>
 <span class="o">+</span><span class="c1">------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">a</span><span class="w">    </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span> <span class="n">a</span>    <span class="o">|</span>
 <span class="o">+</span><span class="c1">------+</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">6</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
-<span class="o">|</span><span class="w">    </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span>    <span class="mi">6</span> <span class="o">|</span>
+<span class="o">|</span>    <span class="mi">3</span> <span class="o">|</span>
 <span class="o">+</span><span class="c1">------+</span>
-<span class="mi">2</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span><span class="w"></span>
+<span class="mi">2</span> <span class="k">rows</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="constraints"><strong>Constraints</strong></h2>
-<p>MatrixOne does not support selecting multiple columns for the subquery.</p>
 
               
             </article>
@@ -3934,7 +3840,7 @@ WHERE EXISTS
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../subquery-with-all/" class="md-footer__link md-footer__link--prev" aria-label="Previous: SUBQUERY with ALL" rel="prev">
+        <a href="../../subquery/" class="md-footer__link md-footer__link--prev" aria-label="Previous: SUBQUERY Overview" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -3943,7 +3849,7 @@ WHERE EXISTS
               <span class="md-footer__direction">
                 Previous
               </span>
-              SUBQUERY with ALL
+              SUBQUERY Overview
             </div>
           </div>
         </a>
