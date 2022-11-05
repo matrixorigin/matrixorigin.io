@@ -9,7 +9,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.2.8">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.2.8">
     
     
       
@@ -203,22 +203,6 @@
     <li class="md-tabs__item">
       <a href="../../.." class="md-tabs__link md-tabs__link--active">
         MatrixOne
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-
-
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="https://playground.matrixorigin.io/?tutorial=SSB-test-with-matrixone&step=1" class="md-tabs__link">
-        Playground
       </a>
     </li>
   
@@ -568,20 +552,6 @@
   
 </nav>
       
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../Playground/" class="md-nav__link">
-        Playground
-      </a>
     </li>
   
 
@@ -5662,54 +5632,6 @@
   
 
     
-      
-      
-      
-
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_2">
-          Playground
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Playground" data-md-level="1">
-        <label class="md-nav__title" for="__nav_2">
-          <span class="md-nav__icon md-icon"></span>
-          Playground
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="https://playground.matrixorigin.io/?tutorial=SSB-test-with-matrixone&step=1" class="md-nav__link">
-        Playground
-      </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-    
   </ul>
 </nav>
                   </div>
@@ -5829,88 +5751,88 @@
 <ul>
 <li>To show the list of databases, use the <code>SHOW DATABASES</code> statement:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="k">SHOW</span><span class="w"> </span><span class="n">DATABASES</span><span class="p">;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">SHOW</span> <span class="n">DATABASES</span><span class="p">;</span>
 </code></pre></div>
 <ul>
 <li>To create the database named <em>dbdemo</em>, use the <code>CREATE DATABASE db_name [options];</code> statement, for example:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">dbdemo</span><span class="p">;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span> <span class="k">DATABASE</span> <span class="n">dbdemo</span><span class="p">;</span>
 </code></pre></div>
 <p>or:</p>
-<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">dbdemo</span><span class="p">;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span> <span class="k">DATABASE</span> <span class="k">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span> <span class="n">dbdemo</span><span class="p">;</span>
 </code></pre></div>
 <p>Add <code>IF NOT EXISTS</code> to prevent an error if the database exists.</p>
 <ul>
 <li>To use the database named <em>dbdemo</em>, use the following statement:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="n">USE</span><span class="w"> </span><span class="n">dbdemo</span><span class="p">;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="n">USE</span> <span class="n">dbdemo</span><span class="p">;</span>
 </code></pre></div>
 <ul>
 <li>To show all the tables in a database, use the <code>SHOW TABLES</code> statement:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="k">SHOW</span><span class="w"> </span><span class="n">TABLES</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">dbdemo</span><span class="p">;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">SHOW</span> <span class="n">TABLES</span> <span class="k">FROM</span> <span class="n">dbdemo</span><span class="p">;</span>
 </code></pre></div>
 <ul>
 <li>To delete a database, use the <code>DROP DATABASE</code> statement:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="k">DROP</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">dbdemo</span><span class="p">;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">DROP</span> <span class="k">DATABASE</span> <span class="n">dbdemo</span><span class="p">;</span>
 </code></pre></div>
 <h2 id="basic-sql-about-create-show-and-drop-a-table">Basic SQL about CREATE, SHOW, and DROP a table</h2>
 <ul>
 <li>To create a table, use the <code>CREATE TABLE</code> statement:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">table_name</span><span class="w"> </span><span class="k">column_name</span><span class="w"> </span><span class="n">data_type</span><span class="w"> </span><span class="k">constraint</span><span class="p">;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="k">table_name</span> <span class="k">column_name</span> <span class="n">data_type</span> <span class="k">constraint</span><span class="p">;</span>
 </code></pre></div>
 <p>For example, to create a table named <em>person</em> which includes fields such as <em>number</em>, <em>name</em>, and <em>birthday</em>, use the following statement:</p>
-<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">person</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
-<span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="p">(</span><span class="mi">11</span><span class="p">),</span><span class="w"></span>
-<span class="w">    </span><span class="n">name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">),</span><span class="w"></span>
-<span class="w">    </span><span class="n">birthday</span><span class="w"> </span><span class="nb">DATE</span><span class="w"></span>
-<span class="w">    </span><span class="p">);</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">person</span> <span class="p">(</span>
+    <span class="n">id</span> <span class="nb">INT</span><span class="p">(</span><span class="mi">11</span><span class="p">),</span>
+    <span class="n">name</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">),</span>
+    <span class="n">birthday</span> <span class="nb">DATE</span>
+    <span class="p">);</span>
 </code></pre></div>
 <ul>
 <li>To view the statement that creates the table (DDL), use the <code>SHOW CREATE</code> statement:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="k">SHOW</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">person</span><span class="p">;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">SHOW</span> <span class="k">CREATE</span> <span class="k">table</span> <span class="n">person</span><span class="p">;</span>
 </code></pre></div>
 <p>Expected result:</p>
 <div class="highlight"><pre><span></span><code><span class="o">+</span><span class="c1">--------+-----------------------------------------------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">Table</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="k">Create</span><span class="w"> </span><span class="k">Table</span><span class="w">                                                                                                    </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span> <span class="k">Table</span>  <span class="o">|</span> <span class="k">Create</span> <span class="k">Table</span>                                                                                                    <span class="o">|</span>
 <span class="o">+</span><span class="c1">--------+-----------------------------------------------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">person</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="o">`</span><span class="n">person</span><span class="o">`</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
-<span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"></span>
-<span class="o">`</span><span class="n">name</span><span class="o">`</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"></span>
-<span class="o">`</span><span class="n">birthday</span><span class="o">`</span><span class="w"> </span><span class="nb">DATE</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="w"></span>
-<span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span> <span class="n">person</span> <span class="o">|</span> <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">person</span><span class="o">`</span> <span class="p">(</span>
+<span class="o">`</span><span class="n">id</span><span class="o">`</span> <span class="nb">INT</span> <span class="k">DEFAULT</span> <span class="k">NULL</span><span class="p">,</span>
+<span class="o">`</span><span class="n">name</span><span class="o">`</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span><span class="p">,</span>
+<span class="o">`</span><span class="n">birthday</span><span class="o">`</span> <span class="nb">DATE</span> <span class="k">DEFAULT</span> <span class="k">NULL</span>
+<span class="p">)</span> <span class="o">|</span>
 <span class="o">+</span><span class="c1">--------+-----------------------------------------------------------------------------------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span><span class="w"></span>
+<span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span> <span class="n">sec</span><span class="p">)</span>
 </code></pre></div>
 <ul>
 <li>To delete a table, use the <code>DROP TABLE</code> statement:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="k">DROP</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">person</span><span class="p">;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">DROP</span> <span class="k">TABLE</span> <span class="n">person</span><span class="p">;</span>
 </code></pre></div>
 <h2 id="basic-sql-about-insert-update-and-delete-data">Basic SQL about INSERT, UPDATE, and DELETE data</h2>
 <p>Common DML features are adding, modifying, and deleting table records. The corresponding commands are <code>INSERT</code>, <code>UPDATE</code>, and <code>DELETE</code>.</p>
 <ul>
 <li>To insert data into a table, use the <code>INSERT</code> statement:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">person</span><span class="w"> </span><span class="k">VALUES</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;tom&#39;</span><span class="p">,</span><span class="s1">&#39;20170912&#39;</span><span class="p">);</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">person</span> <span class="k">VALUES</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;tom&#39;</span><span class="p">,</span><span class="s1">&#39;20170912&#39;</span><span class="p">);</span>
 </code></pre></div>
 <ul>
 <li>To insert a record containing data of some fields into a table, use the <code>INSERT</code> statement:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">person</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;2&#39;</span><span class="p">,</span><span class="s1">&#39;bob&#39;</span><span class="p">);</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">person</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="n">name</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;2&#39;</span><span class="p">,</span><span class="s1">&#39;bob&#39;</span><span class="p">);</span>
 </code></pre></div>
 <ul>
 <li>To update some fields of a record in a table, use the <code>UPDATE</code> statement:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="k">UPDATE</span><span class="w"> </span><span class="n">person</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">birthday</span><span class="o">=</span><span class="s1">&#39;20180808&#39;</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">UPDATE</span> <span class="n">person</span> <span class="k">SET</span> <span class="n">birthday</span><span class="o">=</span><span class="s1">&#39;20180808&#39;</span> <span class="k">WHERE</span> <span class="n">id</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span>
 </code></pre></div>
 <ul>
 <li>To delete the data in a table, use the <code>DELETE</code> statement:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="k">DELETE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">person</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">DELETE</span> <span class="k">FROM</span> <span class="n">person</span> <span class="k">WHERE</span> <span class="n">id</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span>
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -5921,64 +5843,64 @@
 <ul>
 <li>To view the data in a table, use the <code>SELECT</code> statement:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">person</span><span class="p">;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">person</span><span class="p">;</span>
 </code></pre></div>
 <p>Expected result:</p>
 <div class="highlight"><pre><span></span><code><span class="o">+</span><span class="c1">------+------+------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">id</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">birthday</span><span class="w">   </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span> <span class="n">id</span>   <span class="o">|</span> <span class="n">name</span> <span class="o">|</span> <span class="n">birthday</span>   <span class="o">|</span>
 <span class="o">+</span><span class="c1">------+------+------------+</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">tom</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="mi">2017</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">12</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span>    <span class="mi">1</span> <span class="o">|</span> <span class="n">tom</span>  <span class="o">|</span> <span class="mi">2017</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">12</span> <span class="o">|</span>
 <span class="o">+</span><span class="c1">------+------+------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span><span class="w"></span>
+<span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
 </code></pre></div>
 <ul>
 <li>To query a specific column, add the column name after the <code>SELECT</code> keyword:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">person</span><span class="p">;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span> <span class="n">name</span> <span class="k">FROM</span> <span class="n">person</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span> <span class="n">name</span> <span class="o">|</span>
 <span class="o">+</span><span class="c1">------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">tom</span><span class="w">  </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span> <span class="n">tom</span>  <span class="o">|</span>
 <span class="o">+</span><span class="c1">------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span><span class="w"></span>
+<span class="mi">1</span> <span class="k">rows</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
 </code></pre></div>
 <p>Use the <code>WHERE</code> clause to filter all records that match the conditions and then return the result:</p>
-<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">person</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">id</span><span class="o">&lt;</span><span class="mi">5</span><span class="p">;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">person</span> <span class="k">where</span> <span class="n">id</span><span class="o">&lt;</span><span class="mi">5</span><span class="p">;</span>
 </code></pre></div>
 <p>Expected result:</p>
 <div class="highlight"><pre><span></span><code><span class="o">+</span><span class="c1">------+------+------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">id</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">birthday</span><span class="w">   </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span> <span class="n">id</span>   <span class="o">|</span> <span class="n">name</span> <span class="o">|</span> <span class="n">birthday</span>   <span class="o">|</span>
 <span class="o">+</span><span class="c1">------+------+------------+</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">tom</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="mi">2017</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">12</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span>    <span class="mi">1</span> <span class="o">|</span> <span class="n">tom</span>  <span class="o">|</span> <span class="mi">2017</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">12</span> <span class="o">|</span>
 <span class="o">+</span><span class="c1">------+------+------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span><span class="w"></span>
+<span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
 </code></pre></div>
 <h2 id="basic-sql-about-creat-grant-and-drop-a-user">Basic SQL about CREAT, GRANT, and DROP a user</h2>
 <p>DCL are usually used to create or delete users, and manage user privileges.</p>
 <ul>
 <li>To create a user, use the <code>CREATE USER</code> statement. The following example creates a user named <em>mouser</em> with the password <em>111</em>:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">mouser</span><span class="w"> </span><span class="n">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;111&#39;</span><span class="p">;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span> <span class="k">USER</span> <span class="n">mouser</span> <span class="n">IDENTIFIED</span> <span class="k">BY</span> <span class="s1">&#39;111&#39;</span><span class="p">;</span>
 </code></pre></div>
 <ul>
 <li>To create a rule for the user:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">ROLE</span><span class="w"> </span><span class="n">role_r1</span><span class="p">,</span><span class="n">role_r2</span><span class="p">,</span><span class="n">role_r3</span><span class="p">;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span> <span class="k">ROLE</span> <span class="n">role_r1</span><span class="p">,</span><span class="n">role_r2</span><span class="p">,</span><span class="n">role_r3</span><span class="p">;</span>
 </code></pre></div>
 <ul>
 <li>To grant mouser the role_r1:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="k">GRANT</span><span class="w"> </span><span class="n">role_r1</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">mouser</span><span class="p">;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">GRANT</span> <span class="n">role_r1</span> <span class="k">to</span> <span class="n">mouser</span><span class="p">;</span>
 </code></pre></div>
 <ul>
 <li>To grant mouser the privilege to create table in the dbdemo database:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="k">GRANT</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">role_r1</span><span class="p">;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">GRANT</span> <span class="k">create</span> <span class="k">table</span> <span class="k">on</span> <span class="k">database</span> <span class="o">*</span> <span class="k">to</span> <span class="n">role_r1</span><span class="p">;</span>
 </code></pre></div>
 <ul>
 <li>To check the privileges of root:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="k">SHOW</span><span class="w"> </span><span class="n">GRANTS</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">root</span><span class="p">;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">SHOW</span> <span class="n">GRANTS</span> <span class="k">for</span> <span class="n">root</span><span class="p">;</span>
 </code></pre></div>
 <pre><code>!!! note
      MatrixOne supports viewing the privileges of root currently but does not support viewing the privileges of current users.
@@ -5986,7 +5908,7 @@
 <ul>
 <li>To delete mouser:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="k">DROP</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">mouser</span><span class="p">;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">DROP</span> <span class="k">USER</span> <span class="n">mouser</span><span class="p">;</span>
 </code></pre></div>
 
               
@@ -6017,13 +5939,13 @@
       
       
         
-        <a href="../Playground/" class="md-footer__link md-footer__link--next" aria-label="Next: Playground" rel="next">
+        <a href="../../Develop/connect-mo/configure-mo-ssl-connection/" class="md-footer__link md-footer__link--next" aria-label="Next: MatrixOne SSL connection" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Playground
+              MatrixOne SSL connection
             </div>
           </div>
           <div class="md-footer__button md-icon">
