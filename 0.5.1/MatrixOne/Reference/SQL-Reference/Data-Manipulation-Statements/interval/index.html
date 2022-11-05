@@ -9,7 +9,7 @@
       
       
       <link rel="icon" href="../../../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.0, mkdocs-material-8.2.8">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.2.8">
     
     
       
@@ -203,22 +203,6 @@
     <li class="md-tabs__item">
       <a href="../../../../.." class="md-tabs__link md-tabs__link--active">
         MatrixOne
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-
-
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="https://playground.matrixorigin.io/?tutorial=SSB-test-with-matrixone&step=1" class="md-tabs__link">
-        Playground
       </a>
     </li>
   
@@ -440,20 +424,6 @@
     <li class="md-nav__item">
       <a href="../../../../Get-Started/connect-to-matrixone-server/" class="md-nav__link">
         Connect to MatrixOne Server
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../Get-Started/Playground/" class="md-nav__link">
-        Playground
       </a>
     </li>
   
@@ -4127,54 +4097,6 @@
   
 
     
-      
-      
-      
-
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_2">
-          Playground
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Playground" data-md-level="1">
-        <label class="md-nav__title" for="__nav_2">
-          <span class="md-nav__icon md-icon"></span>
-          Playground
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="https://playground.matrixorigin.io/?tutorial=SSB-test-with-matrixone&step=1" class="md-nav__link">
-        Playground
-      </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-    
   </ul>
 </nav>
                   </div>
@@ -4430,143 +4352,143 @@ date - INTERVAL expr unit
 <ul>
 <li>Temporal intervals are used for <code>DATE_ADD()</code> and <code>DATE_SUB()</code>:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">DATE_SUB</span><span class="p">(</span><span class="s1">&#39;2018-05-01&#39;</span><span class="p">,</span><span class="nb">INTERVAL</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">YEAR</span><span class="p">);</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">DATE_SUB</span><span class="p">(</span><span class="s1">&#39;2018-05-01&#39;</span><span class="p">,</span><span class="nb">INTERVAL</span> <span class="mi">1</span> <span class="k">YEAR</span><span class="p">);</span>
 <span class="o">+</span><span class="c1">-----------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">date_sub</span><span class="p">(</span><span class="mi">2018</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">01</span><span class="p">,</span><span class="w"> </span><span class="nb">interval</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="k">year</span><span class="p">))</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span> <span class="n">date_sub</span><span class="p">(</span><span class="mi">2018</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">01</span><span class="p">,</span> <span class="nb">interval</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="k">year</span><span class="p">))</span> <span class="o">|</span>
 <span class="o">+</span><span class="c1">-----------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">2017</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">01</span><span class="w">                              </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span> <span class="mi">2017</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">01</span>                              <span class="o">|</span>
 <span class="o">+</span><span class="c1">-----------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span><span class="w"></span>
+<span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
 
-<span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">DATE_ADD</span><span class="p">(</span><span class="s1">&#39;2020-12-31 23:59:59&#39;</span><span class="p">,</span><span class="w"> </span><span class="nb">INTERVAL</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">SECOND</span><span class="p">);</span><span class="w"></span>
+<span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">DATE_ADD</span><span class="p">(</span><span class="s1">&#39;2020-12-31 23:59:59&#39;</span><span class="p">,</span> <span class="nb">INTERVAL</span> <span class="mi">1</span> <span class="k">SECOND</span><span class="p">);</span>
 <span class="o">+</span><span class="c1">----------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">date_add</span><span class="p">(</span><span class="mi">2020</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">31</span><span class="w"> </span><span class="mi">23</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mi">59</span><span class="p">,</span><span class="w"> </span><span class="nb">interval</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="k">second</span><span class="p">))</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span> <span class="n">date_add</span><span class="p">(</span><span class="mi">2020</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">31</span> <span class="mi">23</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mi">59</span><span class="p">,</span> <span class="nb">interval</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="k">second</span><span class="p">))</span> <span class="o">|</span>
 <span class="o">+</span><span class="c1">----------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">2021</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="w"> </span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="w">                                </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span> <span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span>                                <span class="o">|</span>
 <span class="o">+</span><span class="c1">----------------------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span><span class="w"></span>
+<span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span> <span class="n">sec</span><span class="p">)</span>
 
-<span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">DATE_ADD</span><span class="p">(</span><span class="s1">&#39;2018-12-31 23:59:59&#39;</span><span class="p">,</span><span class="w"> </span><span class="nb">INTERVAL</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">DAY</span><span class="p">);</span><span class="w"></span>
+<span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">DATE_ADD</span><span class="p">(</span><span class="s1">&#39;2018-12-31 23:59:59&#39;</span><span class="p">,</span> <span class="nb">INTERVAL</span> <span class="mi">1</span> <span class="k">DAY</span><span class="p">);</span>
 <span class="o">+</span><span class="c1">-------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">date_add</span><span class="p">(</span><span class="mi">2018</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">31</span><span class="w"> </span><span class="mi">23</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mi">59</span><span class="p">,</span><span class="w"> </span><span class="nb">interval</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="k">day</span><span class="p">))</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span> <span class="n">date_add</span><span class="p">(</span><span class="mi">2018</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">31</span> <span class="mi">23</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mi">59</span><span class="p">,</span> <span class="nb">interval</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="k">day</span><span class="p">))</span> <span class="o">|</span>
 <span class="o">+</span><span class="c1">-------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">2019</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="w"> </span><span class="mi">23</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mi">59</span><span class="w">                             </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span> <span class="mi">2019</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span> <span class="mi">23</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mi">59</span>                             <span class="o">|</span>
 <span class="o">+</span><span class="c1">-------------------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span><span class="w"></span>
+<span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
 
-<span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">DATE_ADD</span><span class="p">(</span><span class="s1">&#39;2100-12-31 23:59:59&#39;</span><span class="p">,</span><span class="w"> </span><span class="nb">INTERVAL</span><span class="w"> </span><span class="s1">&#39;1:1&#39;</span><span class="w"> </span><span class="n">MINUTE_SECOND</span><span class="p">);</span><span class="w"></span>
+<span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">DATE_ADD</span><span class="p">(</span><span class="s1">&#39;2100-12-31 23:59:59&#39;</span><span class="p">,</span> <span class="nb">INTERVAL</span> <span class="s1">&#39;1:1&#39;</span> <span class="n">MINUTE_SECOND</span><span class="p">);</span>
 <span class="o">+</span><span class="c1">-------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">date_add</span><span class="p">(</span><span class="mi">2100</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">31</span><span class="w"> </span><span class="mi">23</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mi">59</span><span class="p">,</span><span class="w"> </span><span class="nb">interval</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">minute_second</span><span class="p">))</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span> <span class="n">date_add</span><span class="p">(</span><span class="mi">2100</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">31</span> <span class="mi">23</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mi">59</span><span class="p">,</span> <span class="nb">interval</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="n">minute_second</span><span class="p">))</span> <span class="o">|</span>
 <span class="o">+</span><span class="c1">-------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">2101</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="w"> </span><span class="mi">00</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">00</span><span class="w">                                         </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span> <span class="mi">2101</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span> <span class="mi">00</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">00</span>                                         <span class="o">|</span>
 <span class="o">+</span><span class="c1">-------------------------------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span><span class="w"></span>
+<span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
 
-<span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">DATE_SUB</span><span class="p">(</span><span class="s1">&#39;2025-01-01 00:00:00&#39;</span><span class="p">,</span><span class="w"> </span><span class="nb">INTERVAL</span><span class="w"> </span><span class="s1">&#39;1 1:1:1&#39;</span><span class="w"> </span><span class="n">DAY_SECOND</span><span class="p">);</span><span class="w"></span>
+<span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">DATE_SUB</span><span class="p">(</span><span class="s1">&#39;2025-01-01 00:00:00&#39;</span><span class="p">,</span> <span class="nb">INTERVAL</span> <span class="s1">&#39;1 1:1:1&#39;</span> <span class="n">DAY_SECOND</span><span class="p">);</span>
 <span class="o">+</span><span class="c1">--------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">date_sub</span><span class="p">(</span><span class="mi">2025</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="w"> </span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">,</span><span class="w"> </span><span class="nb">interval</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">day_second</span><span class="p">))</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span> <span class="n">date_sub</span><span class="p">(</span><span class="mi">2025</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span> <span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">,</span> <span class="nb">interval</span><span class="p">(</span><span class="mi">1</span> <span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="n">day_second</span><span class="p">))</span> <span class="o">|</span>
 <span class="o">+</span><span class="c1">--------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">30</span><span class="w"> </span><span class="mi">22</span><span class="p">:</span><span class="mi">58</span><span class="p">:</span><span class="mi">59</span><span class="w">                                          </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span> <span class="mi">2024</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">30</span> <span class="mi">22</span><span class="p">:</span><span class="mi">58</span><span class="p">:</span><span class="mi">59</span>                                          <span class="o">|</span>
 <span class="o">+</span><span class="c1">--------------------------------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span><span class="w"></span>
+<span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
 
-<span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">DATE_ADD</span><span class="p">(</span><span class="s1">&#39;1900-01-01 00:00:00&#39;</span><span class="p">,</span><span class="w"> </span><span class="nb">INTERVAL</span><span class="w"> </span><span class="s1">&#39;-1 10&#39;</span><span class="w"> </span><span class="n">DAY_HOUR</span><span class="p">);</span><span class="w"></span>
+<span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">DATE_ADD</span><span class="p">(</span><span class="s1">&#39;1900-01-01 00:00:00&#39;</span><span class="p">,</span> <span class="nb">INTERVAL</span> <span class="s1">&#39;-1 10&#39;</span> <span class="n">DAY_HOUR</span><span class="p">);</span>
 <span class="o">+</span><span class="c1">----------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">date_add</span><span class="p">(</span><span class="mi">1900</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="w"> </span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">,</span><span class="w"> </span><span class="nb">interval</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="n">day_hour</span><span class="p">))</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span> <span class="n">date_add</span><span class="p">(</span><span class="mi">1900</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span> <span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">,</span> <span class="nb">interval</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span> <span class="mi">10</span><span class="p">,</span> <span class="n">day_hour</span><span class="p">))</span> <span class="o">|</span>
 <span class="o">+</span><span class="c1">----------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">1899</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">30</span><span class="w"> </span><span class="mi">14</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">.</span><span class="mi">000000</span><span class="w">                               </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span> <span class="mi">1899</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">30</span> <span class="mi">14</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">.</span><span class="mi">000000</span>                               <span class="o">|</span>
 <span class="o">+</span><span class="c1">----------------------------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span><span class="w"></span>
+<span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
 
-<span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">DATE_SUB</span><span class="p">(</span><span class="s1">&#39;1998-01-02&#39;</span><span class="p">,</span><span class="w"> </span><span class="nb">INTERVAL</span><span class="w"> </span><span class="mi">31</span><span class="w"> </span><span class="k">DAY</span><span class="p">);</span><span class="w"></span>
+<span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">DATE_SUB</span><span class="p">(</span><span class="s1">&#39;1998-01-02&#39;</span><span class="p">,</span> <span class="nb">INTERVAL</span> <span class="mi">31</span> <span class="k">DAY</span><span class="p">);</span>
 <span class="o">+</span><span class="c1">-----------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">date_sub</span><span class="p">(</span><span class="mi">1998</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">02</span><span class="p">,</span><span class="w"> </span><span class="nb">interval</span><span class="p">(</span><span class="mi">31</span><span class="p">,</span><span class="w"> </span><span class="k">day</span><span class="p">))</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span> <span class="n">date_sub</span><span class="p">(</span><span class="mi">1998</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">02</span><span class="p">,</span> <span class="nb">interval</span><span class="p">(</span><span class="mi">31</span><span class="p">,</span> <span class="k">day</span><span class="p">))</span> <span class="o">|</span>
 <span class="o">+</span><span class="c1">-----------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">1997</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">02</span><span class="w">                              </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span> <span class="mi">1997</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">02</span>                              <span class="o">|</span>
 <span class="o">+</span><span class="c1">-----------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span><span class="w"></span>
+<span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
 
-<span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">DATE_ADD</span><span class="p">(</span><span class="s1">&#39;1992-12-31 23:59:59.000002&#39;</span><span class="p">,</span><span class="w"> </span><span class="nb">INTERVAL</span><span class="w"> </span><span class="s1">&#39;1.999999&#39;</span><span class="w"> </span><span class="n">SECOND_MICROSECOND</span><span class="p">);</span><span class="w"></span>
+<span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">DATE_ADD</span><span class="p">(</span><span class="s1">&#39;1992-12-31 23:59:59.000002&#39;</span><span class="p">,</span> <span class="nb">INTERVAL</span> <span class="s1">&#39;1.999999&#39;</span> <span class="n">SECOND_MICROSECOND</span><span class="p">);</span>
 <span class="o">+</span><span class="c1">------------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">date_add</span><span class="p">(</span><span class="mi">1992</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">31</span><span class="w"> </span><span class="mi">23</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mi">59</span><span class="p">.</span><span class="mi">000002</span><span class="p">,</span><span class="w"> </span><span class="nb">interval</span><span class="p">(</span><span class="mi">1</span><span class="p">.</span><span class="mi">999999</span><span class="p">,</span><span class="w"> </span><span class="n">second_microsecond</span><span class="p">))</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span> <span class="n">date_add</span><span class="p">(</span><span class="mi">1992</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">31</span> <span class="mi">23</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mi">59</span><span class="p">.</span><span class="mi">000002</span><span class="p">,</span> <span class="nb">interval</span><span class="p">(</span><span class="mi">1</span><span class="p">.</span><span class="mi">999999</span><span class="p">,</span> <span class="n">second_microsecond</span><span class="p">))</span> <span class="o">|</span>
 <span class="o">+</span><span class="c1">------------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">1993</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="w"> </span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">01</span><span class="p">.</span><span class="mi">000001</span><span class="w">                                                   </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span> <span class="mi">1993</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span> <span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">01</span><span class="p">.</span><span class="mi">000001</span>                                                   <span class="o">|</span>
 <span class="o">+</span><span class="c1">------------------------------------------------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span><span class="w"></span>
+<span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
 </code></pre></div>
 <h3 id="example-2">Example 2</h3>
 <ul>
 <li>Using INTERVAL together with the <code>+</code> or <code>-</code> operator</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="s1">&#39;2018-12-31 23:59:59&#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">INTERVAL</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">SECOND</span><span class="p">;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="s1">&#39;2018-12-31 23:59:59&#39;</span> <span class="o">+</span> <span class="nb">INTERVAL</span> <span class="mi">1</span> <span class="k">SECOND</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">-------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">2018</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">31</span><span class="w"> </span><span class="mi">23</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mi">59</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">interval</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="k">second</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span> <span class="mi">2018</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">31</span> <span class="mi">23</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mi">59</span> <span class="o">+</span> <span class="nb">interval</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="k">second</span><span class="p">)</span> <span class="o">|</span>
 <span class="o">+</span><span class="c1">-------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">2019</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="w"> </span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="w">                       </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span> <span class="mi">2019</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span> <span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span>                       <span class="o">|</span>
 <span class="o">+</span><span class="c1">-------------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span><span class="w"></span>
+<span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
 
-<span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="nb">INTERVAL</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">DAY</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;2018-12-31&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="o">&gt;</span> <span class="k">SELECT</span> <span class="nb">INTERVAL</span> <span class="mi">1</span> <span class="k">DAY</span> <span class="o">+</span> <span class="s1">&#39;2018-12-31&#39;</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">-------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="nb">interval</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="k">day</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2018</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">31</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span> <span class="nb">interval</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="k">day</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2018</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">31</span> <span class="o">|</span>
 <span class="o">+</span><span class="c1">-------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">2019</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="w">                    </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span> <span class="mi">2019</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span>                    <span class="o">|</span>
 <span class="o">+</span><span class="c1">-------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span><span class="w"></span>
+<span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
 
-<span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="s1">&#39;2025-01-01&#39;</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nb">INTERVAL</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">SECOND</span><span class="p">;</span><span class="w"></span>
+<span class="o">&gt;</span> <span class="k">SELECT</span> <span class="s1">&#39;2025-01-01&#39;</span> <span class="o">-</span> <span class="nb">INTERVAL</span> <span class="mi">1</span> <span class="k">SECOND</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">----------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">2025</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nb">interval</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="k">second</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span> <span class="mi">2025</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span> <span class="o">-</span> <span class="nb">interval</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="k">second</span><span class="p">)</span> <span class="o">|</span>
 <span class="o">+</span><span class="c1">----------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">31</span><span class="w"> </span><span class="mi">23</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mi">59</span><span class="w">              </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span> <span class="mi">2024</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">31</span> <span class="mi">23</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mi">59</span>              <span class="o">|</span>
 <span class="o">+</span><span class="c1">----------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span><span class="w"></span>
+<span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
 </code></pre></div>
 <h3 id="example-3">Example 3</h3>
 <p>If you add to or subtract from a date value something that contains a time part, the result is automatically converted to a datetime value:</p>
-<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">DATE_ADD</span><span class="p">(</span><span class="s1">&#39;2023-01-01&#39;</span><span class="p">,</span><span class="w"> </span><span class="nb">INTERVAL</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">DAY</span><span class="p">);</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">DATE_ADD</span><span class="p">(</span><span class="s1">&#39;2023-01-01&#39;</span><span class="p">,</span> <span class="nb">INTERVAL</span> <span class="mi">1</span> <span class="k">DAY</span><span class="p">);</span>
 <span class="o">+</span><span class="c1">----------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">date_add</span><span class="p">(</span><span class="mi">2023</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="p">,</span><span class="w"> </span><span class="nb">interval</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="k">day</span><span class="p">))</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span> <span class="n">date_add</span><span class="p">(</span><span class="mi">2023</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="p">,</span> <span class="nb">interval</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="k">day</span><span class="p">))</span> <span class="o">|</span>
 <span class="o">+</span><span class="c1">----------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">2023</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">02</span><span class="w">                             </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span> <span class="mi">2023</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">02</span>                             <span class="o">|</span>
 <span class="o">+</span><span class="c1">----------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span><span class="w"></span>
+<span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
 
-<span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">DATE_ADD</span><span class="p">(</span><span class="s1">&#39;2023-01-01&#39;</span><span class="p">,</span><span class="w"> </span><span class="nb">INTERVAL</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">HOUR</span><span class="p">);</span><span class="w"></span>
+<span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">DATE_ADD</span><span class="p">(</span><span class="s1">&#39;2023-01-01&#39;</span><span class="p">,</span> <span class="nb">INTERVAL</span> <span class="mi">1</span> <span class="n">HOUR</span><span class="p">);</span>
 <span class="o">+</span><span class="c1">-----------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">date_add</span><span class="p">(</span><span class="mi">2023</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="p">,</span><span class="w"> </span><span class="nb">interval</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">hour</span><span class="p">))</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span> <span class="n">date_add</span><span class="p">(</span><span class="mi">2023</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="p">,</span> <span class="nb">interval</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">hour</span><span class="p">))</span> <span class="o">|</span>
 <span class="o">+</span><span class="c1">-----------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">2023</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="w"> </span><span class="mi">01</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="w">                     </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span> <span class="mi">2023</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span> <span class="mi">01</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span>                     <span class="o">|</span>
 <span class="o">+</span><span class="c1">-----------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span><span class="w"></span>
+<span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span> <span class="n">sec</span><span class="p">)</span>
 </code></pre></div>
 <h3 id="example-4">Example 4</h3>
 <p>If you add MONTH, YEAR_MONTH, or YEAR and the resulting date has a day that is larger than the maximum day for the new month, the day is adjusted to the maximum days in the new month:</p>
-<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">DATE_ADD</span><span class="p">(</span><span class="s1">&#39;2019-01-30&#39;</span><span class="p">,</span><span class="w"> </span><span class="nb">INTERVAL</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">MONTH</span><span class="p">);</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">DATE_ADD</span><span class="p">(</span><span class="s1">&#39;2019-01-30&#39;</span><span class="p">,</span> <span class="nb">INTERVAL</span> <span class="mi">1</span> <span class="k">MONTH</span><span class="p">);</span>
 <span class="o">+</span><span class="c1">------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">date_add</span><span class="p">(</span><span class="mi">2019</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">30</span><span class="p">,</span><span class="w"> </span><span class="nb">interval</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="k">month</span><span class="p">))</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span> <span class="n">date_add</span><span class="p">(</span><span class="mi">2019</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">30</span><span class="p">,</span> <span class="nb">interval</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="k">month</span><span class="p">))</span> <span class="o">|</span>
 <span class="o">+</span><span class="c1">------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">2019</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">28</span><span class="w">                               </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span> <span class="mi">2019</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">28</span>                               <span class="o">|</span>
 <span class="o">+</span><span class="c1">------------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span><span class="w"></span>
+<span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
 </code></pre></div>
 <h3 id="example-5">Example 5</h3>
 <p>Date arithmetic operations require complete dates and do not work with incomplete dates such as '2016-07-00' or badly malformed dates:</p>
-<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">DATE_ADD</span><span class="p">(</span><span class="s1">&#39;2016-07-00&#39;</span><span class="p">,</span><span class="w"> </span><span class="nb">INTERVAL</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">DAY</span><span class="p">);</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">DATE_ADD</span><span class="p">(</span><span class="s1">&#39;2016-07-00&#39;</span><span class="p">,</span> <span class="nb">INTERVAL</span> <span class="mi">1</span> <span class="k">DAY</span><span class="p">);</span>
 <span class="o">+</span><span class="c1">----------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">date_add</span><span class="p">(</span><span class="mi">2016</span><span class="o">-</span><span class="mi">07</span><span class="o">-</span><span class="mi">00</span><span class="p">,</span><span class="w"> </span><span class="nb">interval</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="k">day</span><span class="p">))</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span> <span class="n">date_add</span><span class="p">(</span><span class="mi">2016</span><span class="o">-</span><span class="mi">07</span><span class="o">-</span><span class="mi">00</span><span class="p">,</span> <span class="nb">interval</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="k">day</span><span class="p">))</span> <span class="o">|</span>
 <span class="o">+</span><span class="c1">----------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w">                                   </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span> <span class="k">NULL</span>                                   <span class="o">|</span>
 <span class="o">+</span><span class="c1">----------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span><span class="w"></span>
+<span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
 
-<span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="s1">&#39;2005-03-32&#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">INTERVAL</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">MONTH</span><span class="p">;</span><span class="w"></span>
+<span class="o">&gt;</span> <span class="k">SELECT</span> <span class="s1">&#39;2005-03-32&#39;</span> <span class="o">+</span> <span class="nb">INTERVAL</span> <span class="mi">1</span> <span class="k">MONTH</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">---------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">2005</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">32</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">interval</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="k">month</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span> <span class="mi">2005</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">32</span> <span class="o">+</span> <span class="nb">interval</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="k">month</span><span class="p">)</span> <span class="o">|</span>
 <span class="o">+</span><span class="c1">---------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w">                            </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span> <span class="k">NULL</span>                            <span class="o">|</span>
 <span class="o">+</span><span class="c1">---------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span><span class="w"></span>
+<span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
 </code></pre></div>
 
               
