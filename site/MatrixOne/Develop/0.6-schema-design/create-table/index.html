@@ -9,7 +9,7 @@
       
       
       <link rel="icon" href="../../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.2.8">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.2.8">
     
     
       
@@ -203,22 +203,6 @@
     <li class="md-tabs__item">
       <a href="../../../.." class="md-tabs__link md-tabs__link--active">
         MatrixOne
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-
-
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="https://playground.matrixorigin.io/?tutorial=SSB-test-with-matrixone&step=1" class="md-tabs__link">
-        Playground
       </a>
     </li>
   
@@ -482,20 +466,6 @@
     <li class="md-nav__item">
       <a href="../../../Get-Started/0.6-basic-sql/" class="md-nav__link">
         Basic SQL
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../Get-Started/Playground/" class="md-nav__link">
-        Playground
       </a>
     </li>
   
@@ -5718,54 +5688,6 @@
   
 
     
-      
-      
-      
-
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_2">
-          Playground
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Playground" data-md-level="1">
-        <label class="md-nav__title" for="__nav_2">
-          <span class="md-nav__icon md-icon"></span>
-          Playground
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="https://playground.matrixorigin.io/?tutorial=SSB-test-with-matrixone&step=1" class="md-nav__link">
-        Playground
-      </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-    
   </ul>
 </nav>
                   </div>
@@ -5928,7 +5850,7 @@
 <h2 id="name-a-table">Name a table</h2>
 <p>The first step for creating a table is to give your table a name. Do not use meaningless names that will cause great distress to yourself or your colleagues in the future. It is recommended that you follow your company or organization's table naming convention.</p>
 <p>The <code>CREATE TABLE</code> statement usually takes the following form:</p>
-<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="err">{</span><span class="k">table_name</span><span class="err">}</span><span class="w"> </span><span class="p">(</span><span class="err">{</span><span class="n">elements</span><span class="err">}</span><span class="p">);</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="err">{</span><span class="k">table_name</span><span class="err">}</span> <span class="p">(</span><span class="err">{</span><span class="n">elements</span><span class="err">}</span><span class="p">);</span>
 </code></pre></div>
 <p>For more information on <code>CREATE TABLE</code> statement, see <a href="../../../Reference/SQL-Reference/Data-Definition-Statements/create-table/">CREATE TABLE</a>.</p>
 <p><strong>Parameter description</strong></p>
@@ -5952,11 +5874,11 @@
 <li>{column_qualification}: Column qualifications.</li>
 </ul>
 <p>Suppose you need to create a table to store the <em>user</em> information in the <em>modatabase</em> database.</p>
-<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="o">`</span><span class="n">modatabase</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">users</span><span class="o">`</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
-<span class="w">  </span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="w"> </span><span class="nb">bigint</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="o">`</span><span class="n">nickname</span><span class="o">`</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span><span class="w"></span>
-<span class="w">  </span><span class="o">`</span><span class="n">balance</span><span class="o">`</span><span class="w"> </span><span class="nb">decimal</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w"></span>
-<span class="p">);</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">modatabase</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">users</span><span class="o">`</span> <span class="p">(</span>
+  <span class="o">`</span><span class="n">id</span><span class="o">`</span> <span class="nb">bigint</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">nickname</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+  <span class="o">`</span><span class="n">balance</span><span class="o">`</span> <span class="nb">decimal</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="p">);</span>
 </code></pre></div>
 <p><strong>Explanations</strong></p>
 <p>The following table explains the fields in the above example:</p>
@@ -5993,13 +5915,13 @@
 <p>MatrixOne supports many other column data types, including the integer types, floating-point types, date and time types. For more information, see <a href="../../../Reference/Data-Types/data-types/">Data Types</a>.</p>
 <p><strong>Create a complex table</strong></p>
 <p>Create a <em>books</em> table which will be the core of the modatabase data. The <em>books</em> table contains fields for the book's ids, titles, stock, prices, and publication dates.</p>
-<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="o">`</span><span class="n">modatabase</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">books</span><span class="o">`</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
-<span class="w">  </span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="w"> </span><span class="nb">bigint</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="o">`</span><span class="n">title</span><span class="o">`</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span><span class="w"></span>
-<span class="w">  </span><span class="o">`</span><span class="n">published_at</span><span class="o">`</span><span class="w"> </span><span class="n">datetime</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="o">`</span><span class="n">stock</span><span class="o">`</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="o">`</span><span class="n">price</span><span class="o">`</span><span class="w"> </span><span class="nb">decimal</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w"></span>
-<span class="p">);</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">modatabase</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">books</span><span class="o">`</span> <span class="p">(</span>
+  <span class="o">`</span><span class="n">id</span><span class="o">`</span> <span class="nb">bigint</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">title</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+  <span class="o">`</span><span class="n">published_at</span><span class="o">`</span> <span class="n">datetime</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">stock</span><span class="o">`</span> <span class="nb">int</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">price</span><span class="o">`</span> <span class="nb">decimal</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="p">);</span>
 </code></pre></div>
 <p>This table contains more data types than the users table.</p>
 <table>
@@ -6033,38 +5955,38 @@
 <h3 id="set-default-value">Set default value</h3>
 <p>To set a default value on a column, use the <code>DEFAULT</code> constraint. The default value allows you to insert data without specifying a value for each column.</p>
 <p>You can use <code>DEFAULT</code> together with supported SQL functions to move the calculation of defaults out of the application layer, thus saving resources of the application layer. The resources consumed by the calculation do not disappear and are moved to the MatrixOne cluster. Commonly, you can insert data with the default time. The following exemplifies setting the default value in the <em>ratings</em> table:</p>
-<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="o">`</span><span class="n">modatabase</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">ratings</span><span class="o">`</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
-<span class="w">  </span><span class="o">`</span><span class="n">book_id</span><span class="o">`</span><span class="w"> </span><span class="nb">bigint</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="o">`</span><span class="n">user_id</span><span class="o">`</span><span class="w"> </span><span class="nb">bigint</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="o">`</span><span class="n">score</span><span class="o">`</span><span class="w"> </span><span class="n">tinyint</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="o">`</span><span class="n">rated_at</span><span class="o">`</span><span class="w"> </span><span class="n">datetime</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">NOW</span><span class="p">(),</span><span class="w"></span>
-<span class="w">  </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="o">`</span><span class="n">book_id</span><span class="o">`</span><span class="p">,</span><span class="o">`</span><span class="n">user_id</span><span class="o">`</span><span class="p">)</span><span class="w"></span>
-<span class="p">);</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">modatabase</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">ratings</span><span class="o">`</span> <span class="p">(</span>
+  <span class="o">`</span><span class="n">book_id</span><span class="o">`</span> <span class="nb">bigint</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">user_id</span><span class="o">`</span> <span class="nb">bigint</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">score</span><span class="o">`</span> <span class="n">tinyint</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">rated_at</span><span class="o">`</span> <span class="n">datetime</span> <span class="k">DEFAULT</span> <span class="n">NOW</span><span class="p">(),</span>
+  <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">book_id</span><span class="o">`</span><span class="p">,</span><span class="o">`</span><span class="n">user_id</span><span class="o">`</span><span class="p">)</span>
+<span class="p">);</span>
 </code></pre></div>
 <h3 id="prevent-duplicate-values">Prevent duplicate values</h3>
 <p>If you need to prevent duplicate values in a column, you can use the <code>UNIQUE</code> constraint.</p>
 <p>For example, to make sure that users' nicknames are unique, you can rewrite the table creation SQL statement for the <em>users</em> table like this:</p>
-<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="o">`</span><span class="n">modatabase</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">users</span><span class="o">`</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
-<span class="w">  </span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="w"> </span><span class="nb">bigint</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="o">`</span><span class="n">balance</span><span class="o">`</span><span class="w"> </span><span class="nb">decimal</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="w"></span>
-<span class="w">  </span><span class="o">`</span><span class="n">nickname</span><span class="o">`</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">UNIQUE</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="p">)</span><span class="w"></span>
-<span class="p">);</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">modatabase</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">users</span><span class="o">`</span> <span class="p">(</span>
+  <span class="o">`</span><span class="n">id</span><span class="o">`</span> <span class="nb">bigint</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">balance</span><span class="o">`</span> <span class="nb">decimal</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span>
+  <span class="o">`</span><span class="n">nickname</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="k">UNIQUE</span><span class="p">,</span>
+  <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="p">)</span>
+<span class="p">);</span>
 </code></pre></div>
 <p>If you try to insert the same nickname in the <em>users</em> table, an error is returned.</p>
 <h3 id="prevent-null-values">Prevent null values</h3>
 <p>If you need to prevent null values in a column, you can use the <code>NOT NULL</code> constraint.</p>
 <p>Take user nicknames as an example. To ensure that a nickname is not only unique but is also not null, you can rewrite the SQL statement for creating the <em>users</em> table as follows:</p>
-<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="o">`</span><span class="n">modatabase</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">users</span><span class="o">`</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
-<span class="w">  </span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="w"> </span><span class="nb">bigint</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="o">`</span><span class="n">balance</span><span class="o">`</span><span class="w"> </span><span class="nb">decimal</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="w"></span>
-<span class="w">  </span><span class="o">`</span><span class="n">nickname</span><span class="o">`</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">UNIQUE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="p">)</span><span class="w"></span>
-<span class="p">);</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">modatabase</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">users</span><span class="o">`</span> <span class="p">(</span>
+  <span class="o">`</span><span class="n">id</span><span class="o">`</span> <span class="nb">bigint</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">balance</span><span class="o">`</span> <span class="nb">decimal</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span>
+  <span class="o">`</span><span class="n">nickname</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="k">UNIQUE</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="p">)</span>
+<span class="p">);</span>
 </code></pre></div>
 <h2 id="execute-the-create-table-statement">Execute the CREATE TABLE statement</h2>
 <p>To view all tables under the <em>modatabase</em> database, use the <code>SHOW TABLES</code> statement.</p>
-<div class="highlight"><pre><span></span><code><span class="k">SHOW</span><span class="w"> </span><span class="n">TABLES</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="o">`</span><span class="n">modatabase</span><span class="o">`</span><span class="p">;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">SHOW</span> <span class="n">TABLES</span> <span class="k">IN</span> <span class="o">`</span><span class="n">modatabase</span><span class="o">`</span><span class="p">;</span>
 </code></pre></div>
 <p>Running results:</p>
 <div class="highlight"><pre><span></span><code>+----------------------+

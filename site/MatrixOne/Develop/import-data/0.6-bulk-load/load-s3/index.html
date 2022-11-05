@@ -9,7 +9,7 @@
       
       
       <link rel="icon" href="../../../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.2.8">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.2.8">
     
     
       
@@ -203,22 +203,6 @@
     <li class="md-tabs__item">
       <a href="../../../../.." class="md-tabs__link md-tabs__link--active">
         MatrixOne
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-
-
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="https://playground.matrixorigin.io/?tutorial=SSB-test-with-matrixone&step=1" class="md-tabs__link">
-        Playground
       </a>
     </li>
   
@@ -482,20 +466,6 @@
     <li class="md-nav__item">
       <a href="../../../../Get-Started/0.6-basic-sql/" class="md-nav__link">
         Basic SQL
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../Get-Started/Playground/" class="md-nav__link">
-        Playground
       </a>
     </li>
   
@@ -5678,54 +5648,6 @@
   
 
     
-      
-      
-      
-
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_2">
-          Playground
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Playground" data-md-level="1">
-        <label class="md-nav__title" for="__nav_2">
-          <span class="md-nav__icon md-icon"></span>
-          Playground
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="https://playground.matrixorigin.io/?tutorial=SSB-test-with-matrixone&step=1" class="md-nav__link">
-        Playground
-      </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-    
   </ul>
 </nav>
                   </div>
@@ -5845,18 +5767,18 @@
 </code></pre></div>
 <p>This typical installation maps its local path <em>~/tmp/docker_loaddata_demo</em> to a inner-container path <em>/ssb-dbgen-path</em>.</p>
 <h2 id="basic-command">Basic command</h2>
-<div class="highlight"><pre><span></span><code><span class="k">LOAD</span><span class="w"> </span><span class="k">DATA</span><span class="w"></span>
-<span class="w">    </span><span class="p">[</span><span class="w"> </span><span class="n">INFILE</span><span class="w"> </span><span class="s1">&#39;string&#39;</span><span class="w"></span>
-<span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="n">INFILE</span><span class="w"> </span><span class="err">{</span><span class="ss">&quot;filepath&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;compression&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="err">}</span><span class="w"></span>
-<span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="n">URL</span><span class="w"> </span><span class="n">s3options</span><span class="w"> </span><span class="err">{</span><span class="ss">&quot;endpoint&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;access_key_id&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;secret_access_key&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;bucket&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;filepath&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;region&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;compression&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="err">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">[</span><span class="k">IGNORE</span><span class="p">]</span><span class="w"></span>
-<span class="w">    </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">tbl_name</span><span class="w"></span>
-<span class="w">    </span><span class="p">[</span><span class="nb">CHARACTER</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">charset_name</span><span class="p">]</span><span class="w"></span>
-<span class="w">    </span><span class="p">[</span><span class="err">{</span><span class="n">FIELDS</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">COLUMNS</span><span class="err">}</span><span class="w"></span>
-<span class="w">        </span><span class="p">[[</span><span class="n">OPTIONALLY</span><span class="p">]</span><span class="w"> </span><span class="n">ENCLOSED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;char&#39;</span><span class="p">]</span><span class="w"></span>
-<span class="w">    </span><span class="p">]</span><span class="w"></span>
-<span class="w">    </span><span class="p">]</span><span class="w"></span>
-<span class="w">    </span><span class="p">[</span><span class="k">IGNORE</span><span class="w"> </span><span class="nb">number</span><span class="w"> </span><span class="err">{</span><span class="n">LINES</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">ROWS</span><span class="err">}</span><span class="p">]</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">LOAD</span> <span class="k">DATA</span>
+    <span class="p">[</span> <span class="n">INFILE</span> <span class="s1">&#39;string&#39;</span>
+    <span class="o">|</span> <span class="n">INFILE</span> <span class="err">{</span><span class="ss">&quot;filepath&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="p">,</span> <span class="ss">&quot;compression&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="err">}</span>
+    <span class="o">|</span> <span class="n">URL</span> <span class="n">s3options</span> <span class="err">{</span><span class="ss">&quot;endpoint&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="p">,</span> <span class="ss">&quot;access_key_id&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="p">,</span> <span class="ss">&quot;secret_access_key&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="p">,</span> <span class="ss">&quot;bucket&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="p">,</span> <span class="ss">&quot;filepath&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="p">,</span> <span class="ss">&quot;region&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="p">,</span> <span class="ss">&quot;compression&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="err">}</span>
+    <span class="p">[</span><span class="k">IGNORE</span><span class="p">]</span>
+    <span class="k">INTO</span> <span class="k">TABLE</span> <span class="n">tbl_name</span>
+    <span class="p">[</span><span class="nb">CHARACTER</span> <span class="k">SET</span> <span class="n">charset_name</span><span class="p">]</span>
+    <span class="p">[</span><span class="err">{</span><span class="n">FIELDS</span> <span class="o">|</span> <span class="n">COLUMNS</span><span class="err">}</span>
+        <span class="p">[[</span><span class="n">OPTIONALLY</span><span class="p">]</span> <span class="n">ENCLOSED</span> <span class="k">BY</span> <span class="s1">&#39;char&#39;</span><span class="p">]</span>
+    <span class="p">]</span>
+    <span class="p">]</span>
+    <span class="p">[</span><span class="k">IGNORE</span> <span class="nb">number</span> <span class="err">{</span><span class="n">LINES</span> <span class="o">|</span> <span class="k">ROWS</span><span class="err">}</span><span class="p">]</span>
 </code></pre></div>
 <!--待确认-heni-->
 
@@ -5909,11 +5831,11 @@
 </table>
 <p>For more information, see <a href="../../../../Reference/SQL-Reference/Data-Manipulation-Statements/load-data/">LOAD DATA</a>.</p>
 <p><strong>Code Example</strong>：</p>
-<div class="highlight"><pre><span></span><code><span class="o">##</span><span class="w"> </span><span class="n">Non</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">specified</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="n">Compressed</span><span class="w"> </span><span class="n">format</span><span class="w"></span>
-<span class="k">LOAD</span><span class="w"> </span><span class="k">DATA</span><span class="w"> </span><span class="n">INFILE</span><span class="w"> </span><span class="n">URL</span><span class="w"> </span><span class="n">s3option</span><span class="err">{</span><span class="ss">&quot;endpoint&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;access_key_id&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;secret_access_key&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;bucket&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;filepath&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;region&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="err">}</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="n">FIELDS</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;,&#39;</span><span class="w"> </span><span class="n">ENCLOSED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;\&quot;&#39;</span><span class="w"> </span><span class="n">LINES</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;\n&#39;</span><span class="p">;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="o">##</span> <span class="n">Non</span> <span class="o">-</span> <span class="n">specified</span> <span class="n">file</span> <span class="n">Compressed</span> <span class="n">format</span>
+<span class="k">LOAD</span> <span class="k">DATA</span> <span class="n">INFILE</span> <span class="n">URL</span> <span class="n">s3option</span><span class="err">{</span><span class="ss">&quot;endpoint&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="p">,</span> <span class="ss">&quot;access_key_id&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="p">,</span> <span class="ss">&quot;secret_access_key&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="p">,</span> <span class="ss">&quot;bucket&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="p">,</span> <span class="ss">&quot;filepath&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="p">,</span> <span class="ss">&quot;region&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="err">}</span> <span class="k">INTO</span> <span class="k">TABLE</span> <span class="n">t1</span> <span class="n">FIELDS</span> <span class="n">TERMINATED</span> <span class="k">BY</span> <span class="s1">&#39;,&#39;</span> <span class="n">ENCLOSED</span> <span class="k">BY</span> <span class="s1">&#39;\&quot;&#39;</span> <span class="n">LINES</span> <span class="n">TERMINATED</span> <span class="k">BY</span> <span class="s1">&#39;\n&#39;</span><span class="p">;</span>
 
-<span class="o">##</span><span class="w"> </span><span class="n">Specifies</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="n">Compressed</span><span class="w"> </span><span class="n">format</span><span class="w"></span>
-<span class="k">LOAD</span><span class="w"> </span><span class="k">DATA</span><span class="w"> </span><span class="n">INFILE</span><span class="w"> </span><span class="n">URL</span><span class="w"> </span><span class="n">s3option</span><span class="err">{</span><span class="ss">&quot;endpoint&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;access_key_id&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;secret_access_key&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;bucket&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;filepath&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;region&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;compression&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="err">}</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="n">FIELDS</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;,&#39;</span><span class="w"> </span><span class="n">ENCLOSED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;\&quot;&#39;</span><span class="w"> </span><span class="n">LINES</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;\n&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="o">##</span> <span class="n">Specifies</span> <span class="n">the</span> <span class="n">file</span> <span class="n">Compressed</span> <span class="n">format</span>
+<span class="k">LOAD</span> <span class="k">DATA</span> <span class="n">INFILE</span> <span class="n">URL</span> <span class="n">s3option</span><span class="err">{</span><span class="ss">&quot;endpoint&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="p">,</span> <span class="ss">&quot;access_key_id&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="p">,</span> <span class="ss">&quot;secret_access_key&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="p">,</span> <span class="ss">&quot;bucket&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="p">,</span> <span class="ss">&quot;filepath&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="p">,</span> <span class="ss">&quot;region&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="p">,</span> <span class="ss">&quot;compression&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="err">}</span> <span class="k">INTO</span> <span class="k">TABLE</span> <span class="n">t1</span> <span class="n">FIELDS</span> <span class="n">TERMINATED</span> <span class="k">BY</span> <span class="s1">&#39;,&#39;</span> <span class="n">ENCLOSED</span> <span class="k">BY</span> <span class="s1">&#39;\&quot;&#39;</span> <span class="n">LINES</span> <span class="n">TERMINATED</span> <span class="k">BY</span> <span class="s1">&#39;\n&#39;</span><span class="p">;</span>
 </code></pre></div>
 <h2 id="example">Example</h2>
 <p>For example purposes, we have prepared data from AWS S3. If you do not already have an account on AWS S3, please sign up first.</p>
@@ -5929,10 +5851,10 @@ You can read this document to understand the main steps; specific data and accou
 </li>
 <li>
 <p>Launch the MySQL Client, create tables in MatrixOne, for example:</p>
-<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n">db1</span><span class="p">;</span><span class="w"></span>
-<span class="n">use</span><span class="w"> </span><span class="n">db1</span><span class="p">;</span><span class="w"></span>
-<span class="k">drop</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span><span class="w"></span>
-<span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="p">(</span><span class="n">num_col1</span><span class="w"> </span><span class="n">tinyint</span><span class="p">,</span><span class="n">num_col2</span><span class="w"> </span><span class="nb">smallint</span><span class="p">,</span><span class="n">num_col3</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="n">num_col4</span><span class="w"> </span><span class="nb">bigint</span><span class="p">,</span><span class="n">num_col5</span><span class="w"> </span><span class="n">tinyint</span><span class="w"> </span><span class="n">unsigned</span><span class="p">,</span><span class="n">num_col6</span><span class="w"> </span><span class="nb">smallint</span><span class="w"> </span><span class="n">unsigned</span><span class="p">,</span><span class="n">num_col7</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="n">unsigned</span><span class="p">,</span><span class="n">num_col8</span><span class="w"> </span><span class="nb">bigint</span><span class="w"> </span><span class="n">unsigned</span><span class="w"> </span><span class="p">,</span><span class="n">num_col9</span><span class="w"> </span><span class="nb">float</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="n">num_col10</span><span class="w"> </span><span class="n">double</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span><span class="n">num_col11</span><span class="w"> </span><span class="nb">decimal</span><span class="p">(</span><span class="mi">38</span><span class="p">,</span><span class="mi">19</span><span class="p">));</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">create</span> <span class="k">database</span> <span class="n">db1</span><span class="p">;</span>
+<span class="n">use</span> <span class="n">db1</span><span class="p">;</span>
+<span class="k">drop</span> <span class="k">table</span> <span class="k">if</span> <span class="k">exists</span> <span class="n">t1</span><span class="p">;</span>
+<span class="k">create</span> <span class="k">table</span> <span class="n">t1</span><span class="p">(</span><span class="n">num_col1</span> <span class="n">tinyint</span><span class="p">,</span><span class="n">num_col2</span> <span class="nb">smallint</span><span class="p">,</span><span class="n">num_col3</span> <span class="nb">int</span><span class="p">,</span><span class="n">num_col4</span> <span class="nb">bigint</span><span class="p">,</span><span class="n">num_col5</span> <span class="n">tinyint</span> <span class="n">unsigned</span><span class="p">,</span><span class="n">num_col6</span> <span class="nb">smallint</span> <span class="n">unsigned</span><span class="p">,</span><span class="n">num_col7</span> <span class="nb">int</span> <span class="n">unsigned</span><span class="p">,</span><span class="n">num_col8</span> <span class="nb">bigint</span> <span class="n">unsigned</span> <span class="p">,</span><span class="n">num_col9</span> <span class="nb">float</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="n">num_col10</span> <span class="n">double</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span><span class="n">num_col11</span> <span class="nb">decimal</span><span class="p">(</span><span class="mi">38</span><span class="p">,</span><span class="mi">19</span><span class="p">));</span>
 </code></pre></div>
 </li>
 <li>
@@ -5942,7 +5864,7 @@ You can read this document to understand the main steps; specific data and accou
 </li>
 <li>
 <p>After the import is successful, you can run SQL statements to check the result of imported data:</p>
-<div class="highlight"><pre><span></span><code><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">t1</span><span class="p">;</span>
 </code></pre></div>
 </li>
 </ol>
@@ -5958,37 +5880,37 @@ You can read this document to understand the main steps; specific data and accou
 </li>
 <li>
 <p>After the import is successful, you can run SQL statements to check the result of imported data:</p>
-<div class="highlight"><pre><span></span><code><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">ex_table_s3_1</span><span class="p">;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">ex_table_s3_1</span><span class="p">;</span>
 </code></pre></div>
 </li>
 <li>
 <p>(Optional)If you need to import external table data into a data table in MatrixOne, you can use the following SQL statement:</p>
 <p>Create a new table t1 in MatrixOne:</p>
-<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="p">(</span><span class="n">num_col1</span><span class="w"> </span><span class="n">tinyint</span><span class="p">,</span><span class="n">num_col2</span><span class="w"> </span><span class="nb">smallint</span><span class="p">,</span><span class="n">num_col3</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="n">num_col4</span><span class="w"> </span><span class="nb">bigint</span><span class="p">,</span><span class="n">num_col5</span><span class="w"> </span><span class="n">tinyint</span><span class="w"> </span><span class="n">unsigned</span><span class="p">,</span><span class="n">num_col6</span><span class="w"> </span><span class="nb">smallint</span><span class="w"> </span><span class="n">unsigned</span><span class="p">,</span><span class="n">num_col7</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="n">unsigned</span><span class="p">,</span><span class="n">num_col8</span><span class="w"> </span><span class="nb">bigint</span><span class="w"> </span><span class="n">unsigned</span><span class="w"> </span><span class="p">,</span><span class="n">num_col9</span><span class="w"> </span><span class="nb">float</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="n">num_col10</span><span class="w"> </span><span class="n">double</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span><span class="n">num_col11</span><span class="w"> </span><span class="nb">decimal</span><span class="p">(</span><span class="mi">38</span><span class="p">,</span><span class="mi">19</span><span class="p">));</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">create</span> <span class="k">table</span> <span class="n">t1</span><span class="p">(</span><span class="n">num_col1</span> <span class="n">tinyint</span><span class="p">,</span><span class="n">num_col2</span> <span class="nb">smallint</span><span class="p">,</span><span class="n">num_col3</span> <span class="nb">int</span><span class="p">,</span><span class="n">num_col4</span> <span class="nb">bigint</span><span class="p">,</span><span class="n">num_col5</span> <span class="n">tinyint</span> <span class="n">unsigned</span><span class="p">,</span><span class="n">num_col6</span> <span class="nb">smallint</span> <span class="n">unsigned</span><span class="p">,</span><span class="n">num_col7</span> <span class="nb">int</span> <span class="n">unsigned</span><span class="p">,</span><span class="n">num_col8</span> <span class="nb">bigint</span> <span class="n">unsigned</span> <span class="p">,</span><span class="n">num_col9</span> <span class="nb">float</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="n">num_col10</span> <span class="n">double</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span><span class="n">num_col11</span> <span class="nb">decimal</span><span class="p">(</span><span class="mi">38</span><span class="p">,</span><span class="mi">19</span><span class="p">));</span>
 </code></pre></div>
 <p>Import the external table <em>ex_table_s3_1</em> to <em>t1</em>:</p>
-<div class="highlight"><pre><span></span><code><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">ex_table_s3_1</span><span class="p">;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">insert</span> <span class="k">into</span> <span class="n">t1</span> <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">ex_table_s3_1</span><span class="p">;</span>
 </code></pre></div>
 </li>
 </ol>
 <h4 id="about-external-table-with-load-data">About external table with <code>Load data</code></h4>
 <p>An example of the <code>Load data</code> syntax for an external table is:</p>
-<div class="highlight"><pre><span></span><code><span class="o">##</span><span class="w"> </span><span class="k">Create</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">external</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">S3</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="p">(</span><span class="n">specify</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">compression</span><span class="w"> </span><span class="n">format</span><span class="p">)</span><span class="w"></span>
-<span class="k">create</span><span class="w"> </span><span class="k">external</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t</span><span class="p">(...)</span><span class="w"> </span><span class="n">URL</span><span class="w"> </span><span class="n">s3option</span><span class="err">{</span><span class="ss">&quot;endpoint&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;access_key_id&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;secret_access_key&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;bucket&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;filepath&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;region&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;compression&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="err">}</span><span class="w"> </span><span class="n">FIELDS</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;,&#39;</span><span class="w"> </span><span class="n">ENCLOSED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;\&quot;&#39;</span><span class="w"> </span><span class="n">LINES</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;\n&#39;</span><span class="p">;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="o">##</span> <span class="k">Create</span> <span class="n">a</span> <span class="k">external</span> <span class="k">table</span> <span class="k">for</span> <span class="n">an</span> <span class="n">S3</span> <span class="n">file</span> <span class="p">(</span><span class="n">specify</span> <span class="n">the</span> <span class="n">compression</span> <span class="n">format</span><span class="p">)</span>
+<span class="k">create</span> <span class="k">external</span> <span class="k">table</span> <span class="n">t</span><span class="p">(...)</span> <span class="n">URL</span> <span class="n">s3option</span><span class="err">{</span><span class="ss">&quot;endpoint&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="p">,</span> <span class="ss">&quot;access_key_id&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="p">,</span> <span class="ss">&quot;secret_access_key&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="p">,</span> <span class="ss">&quot;bucket&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="p">,</span> <span class="ss">&quot;filepath&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="p">,</span> <span class="ss">&quot;region&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="p">,</span> <span class="ss">&quot;compression&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="err">}</span> <span class="n">FIELDS</span> <span class="n">TERMINATED</span> <span class="k">BY</span> <span class="s1">&#39;,&#39;</span> <span class="n">ENCLOSED</span> <span class="k">BY</span> <span class="s1">&#39;\&quot;&#39;</span> <span class="n">LINES</span> <span class="n">TERMINATED</span> <span class="k">BY</span> <span class="s1">&#39;\n&#39;</span><span class="p">;</span>
 
-<span class="o">##</span><span class="w"> </span><span class="k">Create</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">external</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">S3</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="k">no</span><span class="w"> </span><span class="n">compression</span><span class="w"> </span><span class="n">format</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">specified</span><span class="p">,</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">format</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">auto</span><span class="p">,</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="n">format</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">automatically</span><span class="w"> </span><span class="k">checked</span><span class="p">)</span><span class="w"></span>
-<span class="k">create</span><span class="w"> </span><span class="k">external</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t</span><span class="p">(...)</span><span class="w"> </span><span class="n">URL</span><span class="w"> </span><span class="n">s3option</span><span class="err">{</span><span class="ss">&quot;endpoint&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;access_key_id&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;secret_access_key&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;bucket&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;filepath&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;region&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="err">}</span><span class="w"> </span><span class="n">FIELDS</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;,&#39;</span><span class="w"> </span><span class="n">ENCLOSED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;\&quot;&#39;</span><span class="w"> </span><span class="n">LINES</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;\n&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="o">##</span> <span class="k">Create</span> <span class="n">a</span> <span class="k">external</span> <span class="k">table</span> <span class="k">for</span> <span class="n">an</span> <span class="n">S3</span> <span class="n">file</span> <span class="p">(</span><span class="k">if</span> <span class="k">no</span> <span class="n">compression</span> <span class="n">format</span> <span class="k">is</span> <span class="n">specified</span><span class="p">,</span> <span class="n">the</span> <span class="n">format</span> <span class="k">is</span> <span class="n">auto</span><span class="p">,</span> <span class="k">and</span> <span class="n">the</span> <span class="n">file</span> <span class="n">format</span> <span class="k">is</span> <span class="n">automatically</span> <span class="k">checked</span><span class="p">)</span>
+<span class="k">create</span> <span class="k">external</span> <span class="k">table</span> <span class="n">t</span><span class="p">(...)</span> <span class="n">URL</span> <span class="n">s3option</span><span class="err">{</span><span class="ss">&quot;endpoint&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="p">,</span> <span class="ss">&quot;access_key_id&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="p">,</span> <span class="ss">&quot;secret_access_key&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="p">,</span> <span class="ss">&quot;bucket&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="p">,</span> <span class="ss">&quot;filepath&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="p">,</span> <span class="ss">&quot;region&quot;</span><span class="o">=</span><span class="s1">&#39;&lt;string&gt;&#39;</span><span class="err">}</span> <span class="n">FIELDS</span> <span class="n">TERMINATED</span> <span class="k">BY</span> <span class="s1">&#39;,&#39;</span> <span class="n">ENCLOSED</span> <span class="k">BY</span> <span class="s1">&#39;\&quot;&#39;</span> <span class="n">LINES</span> <span class="n">TERMINATED</span> <span class="k">BY</span> <span class="s1">&#39;\n&#39;</span><span class="p">;</span>
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>MatrixOne only supports <code>select</code> on external tables. <code>Delete</code>, <code>insert</code>, and <code>update</code> are not supported.</p>
 </div>
 <p>If the S3 file is specified to an external table, you can use the <code>select</code> to read the the external table file. To import data into a MatrixOne table, use the following SQL statements as an example:</p>
-<div class="highlight"><pre><span></span><code><span class="o">##</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">MatrixOne</span><span class="s1">&#39;s table, t is the external table</span>
+<div class="highlight"><pre><span></span><code><span class="o">##</span> <span class="n">t1</span> <span class="k">is</span> <span class="n">the</span> <span class="n">MatrixOne</span><span class="s1">&#39;s table, t is the external table</span>
 <span class="s1">insert into t1 select * from t;</span>
 
-<span class="s1">## You can also select a column from the external table file to import into the MatrixOne&#39;</span><span class="n">s</span><span class="w"> </span><span class="k">table</span><span class="w"></span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t</span><span class="p">;</span><span class="w"></span>
+<span class="s1">## You can also select a column from the external table file to import into the MatrixOne&#39;</span><span class="n">s</span> <span class="k">table</span>
+<span class="k">insert</span> <span class="k">into</span> <span class="n">t1</span> <span class="k">select</span> <span class="n">a</span> <span class="k">from</span> <span class="n">t</span><span class="p">;</span>
 </code></pre></div>
 
               
