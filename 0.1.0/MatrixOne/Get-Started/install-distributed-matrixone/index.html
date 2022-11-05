@@ -9,15 +9,15 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.4">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.2.8">
     
     
       
-        <title>Install MatrixOne - MatrixOne Docs</title>
+        <title>**Install distributed MatrixOne** - MatrixOne Docs</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.bb3983ee.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.644de097.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.e6a45f82.min.css">
@@ -28,9 +28,10 @@
     
       
         
+        
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,400i,700%7C&display=fallback">
-        <style>:root{--md-text-font:"Ubuntu";--md-code-font:""}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Ubuntu";--md-code-font:"Roboto Mono"}</style>
       
     
     
@@ -60,7 +61,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#install-matrixone" class="md-skip">
+        <a href="#install-distributed-matrixone" class="md-skip">
           Skip to content
         </a>
       
@@ -68,12 +69,6 @@
     <div data-md-component="announce">
       
     </div>
-    
-      <div data-md-component="outdated" hidden>
-        <aside class="md-banner md-banner--warning">
-          
-        </aside>
-      </div>
     
     
       
@@ -100,7 +95,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Install MatrixOne
+              **Install distributed MatrixOne**
             
           </span>
         </div>
@@ -144,10 +139,10 @@
     
     
       <div class="md-header__source">
-        <a href="https://github.com/matrixorigin/matrixone/" title="Go to repository" class="md-source" data-md-component="source">
+        <a href="https://github.com/matrixorigin/matrixone" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     matrixorigin/matrixone
@@ -166,15 +161,13 @@
         
   
   
-    
-  
 
 
   
   
   
     <li class="md-tabs__item">
-      <a href="../../.." class="md-tabs__link md-tabs__link--active">
+      <a href="../../.." class="md-tabs__link">
         MatrixOne
       </a>
     </li>
@@ -217,10 +210,10 @@
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/matrixorigin/matrixone/" title="Go to repository" class="md-source" data-md-component="source">
+      <a href="https://github.com/matrixorigin/matrixone" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     matrixorigin/matrixone
@@ -236,14 +229,12 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
       
       
       
@@ -367,14 +358,12 @@
               
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_3" type="checkbox" id="__nav_1_3" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_3" type="checkbox" id="__nav_1_3" >
       
       
       
@@ -395,113 +384,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Install MatrixOne
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../install-matrixone.md" class="md-nav__link">
         Install MatrixOne
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#building-from-source" class="md-nav__link">
-    Building from source
-  </a>
-  
-    <nav class="md-nav" aria-label="Building from source">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-install-go-as-necessary" class="md-nav__link">
-    1. Install Go as necessary
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-get-the-matrixone-code" class="md-nav__link">
-    2. Get the MatrixOne code
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-run-make" class="md-nav__link">
-    3. Run make
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-boot-matrixone-server" class="md-nav__link">
-    4. Boot MatrixOne server
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#using-docker" class="md-nav__link">
-    Using docker
-  </a>
-  
-    <nav class="md-nav" aria-label="Using docker">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-install-docker" class="md-nav__link">
-    1. Install Docker
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-create-and-run-the-container-for-the-latest-release-of-matrixone" class="md-nav__link">
-    2. Create and run the container for the latest release of MatrixOne
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1105,70 +992,30 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#building-from-source" class="md-nav__link">
-    Building from source
+  <a href="#two-types-of-nodes" class="md-nav__link">
+    Two Types of Nodes
   </a>
-  
-    <nav class="md-nav" aria-label="Building from source">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-install-go-as-necessary" class="md-nav__link">
-    1. Install Go as necessary
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-get-the-matrixone-code" class="md-nav__link">
-    2. Get the MatrixOne code
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-run-make" class="md-nav__link">
-    3. Run make
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-boot-matrixone-server" class="md-nav__link">
-    4. Boot MatrixOne server
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#using-docker" class="md-nav__link">
-    Using docker
-  </a>
-  
-    <nav class="md-nav" aria-label="Using docker">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-install-docker" class="md-nav__link">
-    1. Install Docker
+  <a href="#installation" class="md-nav__link">
+    Installation
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#2-create-and-run-the-container-for-the-latest-release-of-matrixone" class="md-nav__link">
-    2. Create and run the container for the latest release of MatrixOne
+      
+        <li class="md-nav__item">
+  <a href="#generate-default-configuration" class="md-nav__link">
+    Generate Default Configuration
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-settings" class="md-nav__link">
+    Configuration Settings
+  </a>
   
 </li>
       
@@ -1184,37 +1031,129 @@
             <article class="md-content__inner md-typeset">
               
                 
-<a href="https://github.com/matrixorigin/matrixone/edit/master/docs/MatrixOne/Get-Started/install-matrixone.md" title="Edit this page" class="md-content__button md-icon">
+<a href="https://github.com/matrixorigin/matrixone/edit/master/docs/MatrixOne/Get-Started/install-distributed-matrixone.md" title="Edit this page" class="md-content__button md-icon">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
 </a>
 
 
-<h1 id="install-matrixone"><strong>Install MatrixOne</strong></h1>
-<p>MatrixOne supports Linux and MacOS. You can install MatrixOne either by <a href="#building-from-source">building from source</a> or <a href="#using-docker">using docker</a>.</p>
-<h2 id="building-from-source"><strong>Building from source</strong></h2>
-<h4 id="1-install-go-as-necessary">1. Install Go as necessary</h4>
-<p>Go version 1.17+ is required.</p>
-<h4 id="2-get-the-matrixone-code">2. Get the MatrixOne code</h4>
-<pre><code>$ git clone https://github.com/matrixorigin/matrixone.git
-$ cd matrixone
-</code></pre>
-<h4 id="3-run-make">3. Run make</h4>
-<p>You can run <code>make debug</code>, <code>make clean</code>, or anything else our Makefile offers.</p>
+
+<h1 id="install-distributed-matrixone"><strong>Install distributed MatrixOne</strong></h1>
+<p>MatrixOne supports distributed deloyment. At least 3 nodes are required for the distributed setting. </p>
+<h3 id="two-types-of-nodes">Two Types of Nodes</h3>
+<p>There are two types of nodes in a MatrixOne cluster: prophet nodes and pure storage nodes. The first three nodes are prophet nodes. The others are pure storage nodes. </p>
+<p>For example, if there're three nodes in the cluster, all the nodes are prophet nodes.
+If there're four nodes in the cluster, three are prophet nodes, one is a pure storage node.</p>
+<h3 id="installation">Installation</h3>
+<p>Each node must install a MatrixOne as standalone version. Installation steps are the same as <a href="../install-standalone-matrixone/">the standalone</a>. </p>
+<h3 id="generate-default-configuration">Generate Default Configuration</h3>
+<p>Run following command in directory <code>matrixone</code> to generate default Configuration.</p>
 <pre><code>$ make config
-$ make build
 </code></pre>
-<h4 id="4-boot-matrixone-server">4. Boot MatrixOne server</h4>
-<pre><code>$ ./mo-server system_vars_config.toml
-</code></pre>
-<h2 id="using-docker"><strong>Using docker</strong></h2>
-<h4 id="1-install-docker">1. Install Docker</h4>
-<p>Please verify that Docker daemon is running in the background:</p>
-<pre><code>$ docker --version
-</code></pre>
-<h4 id="2-create-and-run-the-container-for-the-latest-release-of-matrixone">2. Create and run the container for the latest release of MatrixOne</h4>
-<p>It will pull the image from Docker Hub if not exists.</p>
-<pre><code>$ docker run -d -p 6001:6001 --name matrixone matrixorigin/matrixone:latest
-</code></pre>
+<p>The default Configuration file is <code>system_vars_config.toml</code>.</p>
+<h3 id="configuration-settings">Configuration Settings</h3>
+<p>To configurate a distributed setting, following parameters need to be modified in the default Configuration file 'system_vars_config.toml'.</p>
+<ul>
+<li>
+<p><strong>nodeID</strong></p>
+<p><code>nodeID</code> is the Node ID of the cube. In a cluster, each node should have a different <code>nodeID</code>.</p>
+</li>
+<li>
+<p><strong>addr-raft and addr-advertise-raft</strong></p>
+<p><code>addr-raft</code> is the address for raft-group rpc communication. </p>
+<p>It is the 10000 port of the node.</p>
+<p><code>addr-raft = "localhost:10000"</code></p>
+<p>Only docker deployment need adjust <code>addr-advertise-raft</code></p>
+<p>For docker deployment, the ip is <code>0.0.0.0</code></p>
+<p><code>addr-raft = "0.0.0.0:10000"</code></p>
+<p>In the case that some clients cannot access the raft-group, <code>addr-advertise-raft</code> must be manually set.</p>
+<p><code>addr-advertise-raft = "${HOST}:10000"</code></p>
+</li>
+<li>
+<p><strong>addr-client and addr-advertise-client</strong></p>
+<p><code>addr-client</code> is the address for cube service.
+It is the 20000 port of the node.</p>
+<p><code>addr-client = "localhost:20000"</code></p>
+<p>Only docker deployment need adjust <code>addr-advertise-client</code></p>
+<p>For docker deployment, the ip is <code>0.0.0.0</code></p>
+<p><code>addr-client = "0.0.0.0:20000"</code></p>
+<p>In the case that a client cannot access Cube through the default client URLs listened to by Cube, <code>addr-advertise-client</code> must be manually set.</p>
+<p><code>addr-advertise-client = "${HOST}:20000"</code></p>
+</li>
+<li>
+<p><strong>dir-data</strong></p>
+<p><code>dir-data</code> is the directory for cube data. In a cluster, each node should have a different <code>dir-data</code>.</p>
+</li>
+<li>
+<p><strong>store-heartbeat-duration</strong></p>
+<p><code>store-heartbeat-duration</code> is the period for this node to report information to scheduler. It should be less than 10s.</p>
+</li>
+<li>
+<p><strong>prophet name</strong></p>
+<p><code>name</code> in <code>Prophet Configs</code> is the name of the node. In a cluster, each node should have a different prophet name.</p>
+<p><code>name = "node0"</code></p>
+</li>
+<li>
+<p><strong>rpc-addr and rpc-advertise-addr</strong></p>
+<p><code>rpc-addr</code> is the address for other clients to access prophet. 
+It is the 30000 port of the node.</p>
+<p><code>rpc-addr = "localhost:30000"</code></p>
+<p>Only docker deployment need adjust <code>rpc-advertise-addr</code></p>
+<p>For docker deployment, the ip is <code>0.0.0.0</code></p>
+<p><code>rpc-addr = "0.0.0.0:30000"</code></p>
+<p>In the case that a client cannot access prophet, <code>rpc-advertise-addr</code> must be manually set.</p>
+<p><code>rpc-advertise-addr = "${HOST}:30000"</code></p>
+</li>
+<li>
+<p><strong>storage-node</strong></p>
+<p><code>storage-node</code> is whether the node is a pure storage node.
+For the three prophet nodes, <code>storage-node</code> is <code>true</code>.</p>
+<p><code>storage-node = true</code></p>
+<p>For pure storage nodes, <code>storage-node</code> is <code>false</code></p>
+<p><code>storage-node = false</code></p>
+</li>
+<li>
+<p><strong>external-etcd</strong></p>
+<p>For the three prophet nodes, <code>external-etcd</code> is empty.</p>
+<p><code>external-etcd = ["", "", ""]</code></p>
+<p>For pure storage nodes, <code>external-etcd</code> is the list of the <code>client-urls</code> of the three prophet nodes, i.e. the 40000 port of the prophet nodes.</p>
+<p><code>external-etcd = ["http://ip_of_prophet_node1:40000", "http://ip_of_prophet_node2:40000", "http://ip_of_prophet_node3:40000"]</code></p>
+</li>
+<li>
+<p><strong>join</strong></p>
+<p><code>join</code> is for the second and third prophet nodes to join the raft group.
+For the first prophet node, <code>join</code> is a empty string.</p>
+<p><code>join = ""</code></p>
+<p>For the second and third prophet node, <code>join</code> is the <code>peer-urls</code> of the first prophet node.</p>
+<p><code>join = "http://ip_of_the_first_prophet_node:40000"</code></p>
+<p>For pure storage nodes, there's no need to adjust <code>join</code>.</p>
+</li>
+<li>
+<p><strong>client-urls and advertise-client-urls</strong></p>
+<p><code>client-urls</code> is exposed to other nodes in the cluster.
+It is 40000 port of the node</p>
+<p><code>client-urls = "http://localhost:40000"</code> </p>
+<p>Only docker deployment need adjust <code>advertise-client-urls</code></p>
+<p>For docker deployment, the ip is <code>0.0.0.0</code></p>
+<p><code>client-urls = "http://0.0.0.0:40000"</code></p>
+<p>In the case that some clients ccannot access prophet through the default client URLs listened to by prophet, <code>advertise-client-urls</code> must be manually set.</p>
+<p><code>advertise-client-urls = "http://${HOST}:40000</code></p>
+</li>
+<li>
+<p><strong>peer-urls and advertise-peer-urls</strong></p>
+<p><code>peer-urls</code> is the list of peer URLs to be listened to by a prophet node. It is the 40000 port of the node.</p>
+<p><code>peer-urls = "http://localhost:50000"</code></p>
+<p>Only docker deployment need adjust <code>advertise-peer-urls</code></p>
+<p>For docker deployment, the ip is <code>0.0.0.0</code></p>
+<p><code>peer-urls = "http://0.0.0.0:50000"</code></p>
+<p>In the case that a node cannot be listened to by a prophet node, <code>advertise-peer-urls</code> should be manually set.</p>
+<p><code>advertise-peer-urls = "http://${HOST}:50000"</code></p>
+</li>
+<li>
+<p><strong>max-replicas</strong></p>
+<p><code>max-replicas</code> is the max number of replica in a prophet group. It should be 3.</p>
+<p><code>max-replicas = 3</code></p>
+</li>
+</ul>
 
               
             </article>
@@ -1224,41 +1163,6 @@ $ make build
       </main>
       
         <footer class="md-footer">
-  
-    <nav class="md-footer__inner md-grid" aria-label="Footer">
-      
-        
-        <a href="../../Overview/what%27s-new/" class="md-footer__link md-footer__link--prev" aria-label="Previous: What&#39;s New" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              What's New
-            </div>
-          </div>
-        </a>
-      
-      
-        
-        <a href="../connect-to-matrixone-server/" class="md-footer__link md-footer__link--next" aria-label="Next: Connect to MatrixOne Server" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              Connect to MatrixOne Server
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -1280,10 +1184,10 @@ $ make build
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../assets/javascripts/workers/search.361d90f1.min.js", "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky"], "search": "../../../assets/javascripts/workers/search.5e67fbfe.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.289a2a4b.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.c44cc438.min.js"></script>
       
     
   </body>
