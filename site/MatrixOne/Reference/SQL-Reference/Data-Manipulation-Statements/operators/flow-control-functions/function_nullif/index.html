@@ -206,22 +206,6 @@
   
 
       
-        
-  
-  
-
-
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="https://playground.matrixorigin.io/?tutorial=SSB-test-with-matrixone&step=1" class="md-tabs__link">
-        Playground
-      </a>
-    </li>
-  
-
-      
     </ul>
   </div>
 </nav>
@@ -512,20 +496,6 @@
           
         </ul>
       </nav>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../../../Get-Started/Playground/" class="md-nav__link">
-        Playground
-      </a>
     </li>
   
 
@@ -919,7 +889,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../subqueries/derived-tables/" class="md-nav__link">
+      <a href="../../../subqueries/derived-tables.md" class="md-nav__link">
         Derived Tables
       </a>
     </li>
@@ -933,7 +903,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../subqueries/comparisons-using-subqueries/" class="md-nav__link">
+      <a href="../../../subqueries/comparisons-using-subqueries.md" class="md-nav__link">
         Comparisons Using Subqueries
       </a>
     </li>
@@ -947,7 +917,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../subqueries/subquery-with-any-some/" class="md-nav__link">
+      <a href="../../../subqueries/subquery-with-any-some.md" class="md-nav__link">
         SUBQUERY with ANY or SOME
       </a>
     </li>
@@ -961,7 +931,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../subqueries/subquery-with-all/" class="md-nav__link">
+      <a href="../../../subqueries/subquery-with-all.md" class="md-nav__link">
         SUBQUERY with ALL
       </a>
     </li>
@@ -1773,7 +1743,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../case-when/" class="md-nav__link">
+      <a href="../case-when.md" class="md-nav__link">
         CASE WHEN
       </a>
     </li>
@@ -2868,7 +2838,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../Builtin-Functions/String/lengthUTF8.md" class="md-nav__link">
+      <a href="../../../../../Builtin-Functions/String/lengthUTF8/" class="md-nav__link">
         LENGTHUTF8()
       </a>
     </li>
@@ -3210,7 +3180,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../FAQs/product-faqs/" class="md-nav__link">
+      <a href="../../../../../../FAQs/product-faqs.md" class="md-nav__link">
         Product FAQs
       </a>
     </li>
@@ -3224,7 +3194,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../FAQs/deployment-faqs/" class="md-nav__link">
+      <a href="../../../../../../FAQs/deployment-faqs.md" class="md-nav__link">
         Deployment FAQs
       </a>
     </li>
@@ -3238,7 +3208,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../FAQs/sql-faqs/" class="md-nav__link">
+      <a href="../../../../../../FAQs/sql-faqs.md" class="md-nav__link">
         SQL FAQs
       </a>
     </li>
@@ -3285,7 +3255,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../Release-Notes/v0.5.0/" class="md-nav__link">
+      <a href="../../../../../../Release-Notes/v0.5.0.md" class="md-nav__link">
         v0.5.0
       </a>
     </li>
@@ -3690,54 +3660,6 @@
   
 
     
-      
-      
-      
-
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_2">
-          Playground
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Playground" data-md-level="1">
-        <label class="md-nav__title" for="__nav_2">
-          <span class="md-nav__icon md-icon"></span>
-          Playground
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="https://playground.matrixorigin.io/?tutorial=SSB-test-with-matrixone&step=1" class="md-nav__link">
-        Playground
-      </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-    
   </ul>
 </nav>
                   </div>
@@ -3811,25 +3733,25 @@
 <div class="highlight"><pre><span></span><code>&gt; NULLIF(expr1,expr2)
 </code></pre></div>
 <h2 id="examples"><strong>Examples</strong></h2>
-<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">NULLIF</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="k">NULLIF</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
 <span class="o">+</span><span class="c1">--------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">nullif</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span> <span class="k">nullif</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">|</span>
 <span class="o">+</span><span class="c1">--------------+</span>
-<span class="o">|</span><span class="w">         </span><span class="k">NULL</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span>         <span class="k">NULL</span> <span class="o">|</span>
 <span class="o">+</span><span class="c1">--------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span><span class="w"></span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">NULLIF</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span><span class="w"></span>
+<span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="k">SELECT</span> <span class="k">NULLIF</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
 <span class="o">+</span><span class="c1">--------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">nullif</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span> <span class="k">nullif</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">|</span>
 <span class="o">+</span><span class="c1">--------------+</span>
-<span class="o">|</span><span class="w">            </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span>            <span class="mi">1</span> <span class="o">|</span>
 <span class="o">+</span><span class="c1">--------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span><span class="w"></span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">CAST</span><span class="p">(</span><span class="n">IFNULL</span><span class="p">(</span><span class="k">NULL</span><span class="p">,</span><span class="w"> </span><span class="k">NULL</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="nb">DECIMAL</span><span class="p">);</span><span class="w"></span>
+<span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span> <span class="n">sec</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="k">SELECT</span> <span class="k">CAST</span><span class="p">(</span><span class="n">IFNULL</span><span class="p">(</span><span class="k">NULL</span><span class="p">,</span> <span class="k">NULL</span><span class="p">)</span> <span class="k">AS</span> <span class="nb">DECIMAL</span><span class="p">);</span>
 <span class="o">+</span><span class="c1">-----------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">cast</span><span class="p">(</span><span class="n">ifnull</span><span class="p">(</span><span class="k">null</span><span class="p">,</span><span class="w"> </span><span class="k">null</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">decimal</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span> <span class="k">cast</span><span class="p">(</span><span class="n">ifnull</span><span class="p">(</span><span class="k">null</span><span class="p">,</span> <span class="k">null</span><span class="p">)</span> <span class="k">as</span> <span class="nb">decimal</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span> <span class="o">|</span>
 <span class="o">+</span><span class="c1">-----------------------------------------+</span>
-<span class="o">|</span><span class="w">                                    </span><span class="k">NULL</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span>                                    <span class="k">NULL</span> <span class="o">|</span>
 <span class="o">+</span><span class="c1">-----------------------------------------+</span>
 </code></pre></div>
 
