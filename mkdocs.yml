@@ -3,13 +3,13 @@ repo_name: matrixorigin/matrixone
 repo_url: https://github.com/matrixorigin/matrixone
 theme:
   name: material
-  logo: assets/new-logo.png
+  logo: assets/logo.png
   icon:
     admonition:
       note: fontawesome/solid/sticky-note
       info: fontawesome/solid/info-circle
   features:
-    - navigation.instant
+    - navigation.instant  
     - navigation.tracking
     - navigation.tabs
     - navigation.tabs.sticky
@@ -24,13 +24,6 @@ extra:
   homepage: https://www.matrixorigin.io
   version:
     provider: mike
-  alternate:
-    - name: English
-      link: https://docs.matrixorigin.io
-      lang: en
-    - name: 中文简体
-      link: https://docs.matrixorigin.io/cn/
-      lang: cn
 markdown_extensions:
   - admonition
   - pymdownx.details
@@ -38,297 +31,67 @@ markdown_extensions:
 nav:
   - MatrixOne:
     - Home: README.md
-    - Overview:
+    - Overview: 
       - MatrixOne Introduction: MatrixOne/Overview/matrixone-introduction.md
-      - MatrixOne Feature List: MatrixOne/Overview/matrixone-feature-list.md
       - MatrixOne Architecture: MatrixOne/Overview/matrixone-architecture.md
+      - MatrixCube Tech Design: 
+        - MatrixCube Introduction: MatrixOne/Overview/matrixcube/matrixcube-introduction.md
+        - Auto Rebalancing and Scheduling: MatrixOne/Overview/matrixcube/matrixcube-auto-rebalance-scheduling.md
+        - Shard Splitting: MatrixOne/Overview/matrixcube/matrixcube-shard-splitting.md
+        - Shard Proxy and Routing: MatrixOne/Overview/matrixcube/matrixcube-proxy-routing.md
       - MySQL Compatibility: MatrixOne/Overview/mysql-compatibility.md
-      - What's New: MatrixOne/Overview/whats-new.md
-    - Getting Started:
-      - Install and Launch MatrixOne: MatrixOne/Get-Started/install-standalone-matrixone.md
+      - Performance:
+        - SSB Test Performance: MatrixOne/Overview/SSB Test Performance.md
+        - NYC Test Performance: MatrixOne/Overview/NYC Test Performance.md
+      - What's New: MatrixOne/Overview/what's-new.md
+    - Get Started: 
+      - Install Standalone MatrixOne: MatrixOne/Get-Started/install-standalone-matrixone.md
+      - Install Distributed MatrixOne: MatrixOne/Get-Started/install-distributed-matrixone.md
       - Connect to MatrixOne Server: MatrixOne/Get-Started/connect-to-matrixone-server.md
-      - Basic SQL: MatrixOne/Get-Started/0.6-basic-sql.md
-      - Playground: MatrixOne/Get-Started/Playground.md
-    - Developing Guide:
-      - Connect to MatrixOne:
-        - MatrixOne SSL connection: MatrixOne/Develop/connect-mo/configure-mo-ssl-connection.md
-        - Database Client IDE: MatrixOne/Develop/connect-mo/0.6-database-ide.md
-        - Java connect to MatrixOne:
-          - JDBC: MatrixOne/Develop/connect-mo/0.6-java-connect-to-matrixone/connect-mo-with-jdbc.md
-        - Python connect to the MatrixOne: MatrixOne/Develop/connect-mo/python-connect-to-matrixone.md
-      - Schema Design:
-        - Overview: MatrixOne/Develop/0.6-schema-design/overview.md
-        - Create Database: MatrixOne/Develop/0.6-schema-design/create-database.md
-        - Create Table: MatrixOne/Develop/0.6-schema-design/create-table.md
-      - Import Data:
-        - Bulk Load:
-          - Import the csv: MatrixOne/Develop/import-data/0.6-bulk-load/load-csv.md
-          - Import the jsonlines: MatrixOne/Develop/import-data/0.6-bulk-load/load-jsonline.md
-          - Import the S3 files: MatrixOne/Develop/import-data/0.6-bulk-load/load-s3.md
-      - Read Data:
-        - Query Data from a Single Table: MatrixOne/Develop/0.6-read-data/query-data-single-table.md
-        - Multi-table Join Queries: MatrixOne/Develop/0.6-read-data/multitable-join-query.md
-        - Subquery: MatrixOne/Develop/0.6-read-data/subquery.md
-        - Views: MatrixOne/Develop/0.6-read-data/views.md
-        - Common Table Expression: MatrixOne/Develop/0.6-read-data/cte.md
-      - Export Data:
-        - Export data: MatrixOne/Develop/export-data/export-data.md
-        - Using the `modump` backup and restore databases: MatrixOne/Develop/export-data/backup-restore-matrixone-with_modump.md
-      - Transactions:
-        - Transaction Overview: MatrixOne/Reference/SQL-Reference/Transactions/transaction-overview.md
-      - Example Application:
-        - Build a simple Java CRUD demo with MatrixOne: MatrixOne/Tutorial/develop-java-crud-demo.md
-        - Hibernate: MatrixOne/Tutorial/springboot-hibernate-crud-demo.md
-        - MyBatis: MatrixOne/Tutorial/springboot-mybatis-crud-demo.md
-        - ORMs: MatrixOne/Tutorial/connect_mo_with_orm.md
-        - Python stock analysis Demo: MatrixOne/Tutorial/develop-python-application.md
-    - Maintenance:
-      - Upgrade Standalone MatrixOne: MatrixOne/Maintain/upgrade-standalone-matrixone.md
-      - MatrixOne Directory Structure: MatrixOne/Maintain/mo-directory-structure.md
-    - Migration:
-      - From MySQL to MatrixOne: MatrixOne/Migrate/migrate-from-mysql-to-matrixone.md
-    - Testing:
-      - Performance Testing:
-        - SSB Test with MatrixOne: MatrixOne/Tutorial/SSB-test-with-matrixone.md
-        - TPCH Test with MatrixOne: MatrixOne/Tutorial/TPCH-test-with-matrixone.md
-      - Testing Tool:
-        - MO-Tester: MatrixOne/Test/0.6-mo-tester.md
-        - MO-Tester Specification: MatrixOne/Test/0.6-mo-tester-reference.md
-    - Troubleshooting:
-      - Slow Queries: MatrixOne/Troubleshooting/slow-queries.md
-      - Common statistic data query: MatrixOne/Troubleshooting/common-statistics-query.md
-      - Audit: MatrixOne/Troubleshooting/audit.md
-    - Performance Tuning:
-      - Understanding the Query Execution Plan:
-        - Query Execution Plan Overview: MatrixOne/0.6-Performance-Tuning/explain-overview.md
-        - Using EXPLAIN to learn the execution plan: MatrixOne/0.6-Performance-Tuning/explain-walkthrough.md
-        - Explain Statements Using JOIN: MatrixOne/0.6-Performance-Tuning/explain-joins.md
-        - Explain Statements Using Subqueries: MatrixOne/0.6-Performance-Tuning/explain-subqueries.md
-        - Explain Statements Using Aggregation: MatrixOne/0.6-Performance-Tuning/explain-aggregation.md
-        - EXPLAIN Statements Using Views: MatrixOne/0.6-Performance-Tuning/explain-views.md
-    - Security:
-      - Access Control Overview: MatrixOne/0.6-Security/access-control-overview.md
-      - Access Control Permission: MatrixOne/0.6-Security/access-control.md
-      - TLS Introduction: MatrixOne/0.6-Security/TLS-introduction.md
+      - Tutorial:
+        - SSB Test with MatrixOne: MatrixOne/Get-Started/Tutorial/SSB-test-with-matrixone.md
+        - NYC Test with MatrixOne: MatrixOne/Get-Started/Tutorial/NYC-test-with-matrixone.md
     - Reference:
-      - SQL Reference:
-        - DAL:
-          - CREATE ACCOUNT: MatrixOne/Reference/SQL-Reference/0.6-Database-Administration-Statements/create-account.md
-          - CREATE ROLE: MatrixOne/Reference/SQL-Reference/0.6-Database-Administration-Statements/create-role.md
-          - CREATE USER: MatrixOne/Reference/SQL-Reference/0.6-Database-Administration-Statements/create-user.md
-          - DROP ACCOUNT: MatrixOne/Reference/SQL-Reference/0.6-Database-Administration-Statements/drop-account.md
-          - DROP USER: MatrixOne/Reference/SQL-Reference/0.6-Database-Administration-Statements/drop-user.md
-          - DROP ROLE: MatrixOne/Reference/SQL-Reference/0.6-Database-Administration-Statements/drop-role.md
-          - GRANT:
-            - GRANT <privileges>: MatrixOne/Reference/SQL-Reference/0.6-Database-Administration-Statements/grant-privileges.md
-            - GRANT ROLE: MatrixOne/Reference/SQL-Reference/0.6-Database-Administration-Statements/grant-role.md
-          - SET ROLE: MatrixOne/Reference/SQL-Reference/0.6-Database-Administration-Statements/set-role.md
-          - REVOKE: MatrixOne/Reference/SQL-Reference/0.6-Database-Administration-Statements/revoke.md
+      - SQL Reference: 
         - DDL:
           - CREATE DATABASE: MatrixOne/Reference/SQL-Reference/Data-Definition-Statements/create-database.md
-          - CREATE TABLE: MatrixOne/Reference/SQL-Reference/Data-Definition-Statements/0.6-create-table.md
-          - CREATE TEMPORARY TABLE: MatrixOne/Reference/SQL-Reference/Data-Definition-Statements/0.6-create-temporary-tables.md
-          - SHOW DATABASES: MatrixOne/Reference/SQL-Reference/Data-Definition-Statements/0.6-show-databases.md
+          - CREATE TABLE: MatrixOne/Reference/SQL-Reference/Data-Definition-Statements/create-table.md
           - DROP DATABASE: MatrixOne/Reference/SQL-Reference/Data-Definition-Statements/drop-database.md
           - DROP TABLE: MatrixOne/Reference/SQL-Reference/Data-Definition-Statements/drop-table.md
-          - PRIMARY KEY: MatrixOne/Reference/SQL-Reference/Data-Definition-Statements/0.6-primary-key.md
-          - VIEW:
-            - VIEW Overview: MatrixOne/Reference/SQL-Reference/Data-Definition-Statements/0.6-using-view/view-overview.md
-            - CREATE VIEW: MatrixOne/Reference/SQL-Reference/Data-Definition-Statements/0.6-using-view/create-view.md
-            - DROP VIEW: MatrixOne/Reference/SQL-Reference/Data-Definition-Statements/0.6-using-view/drop-view.md
+          - CREATE INDEX: MatrixOne/Reference/SQL-Reference/Data-Definition-Statements/create-index.md
+          - DROP INDEX: MatrixOne/Reference/SQL-Reference/Data-Definition-Statements/drop-index.md
+          - PRIMARY KEY: MatrixOne/Reference/SQL-Reference/Data-Definition-Statements/primary-key.md
         - DML:
-          - INSERT: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/0.6-insert.md
-          - INSERT INTO SELECT: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/insert-into-select.md
-          - UPDATE: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/0.6-update.md
-          - DELETE: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/0.6-delete.md
+          - INSERT: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/insert.md
           - LOAD DATA: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/load-data.md
           - SELECT: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/select.md
           - SHOW DATABASES: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/show-databases.md
           - SHOW TABLES: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/show-tables.md
           - USE: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/use.md
-          - INTERVAL: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/interval.md
-          - With CTE: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/with-cte.md
-          - UNION: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/0.6-union.md
-          - INTERSECT: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/0.6-intersect.md
-          - MINUS: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/0.6-minus.md
-          - SUBQUERY:
-            - SUBQUERY Overview: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/subquery.md
-            - Derived Tables: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/subqueries/derived-tables.md
-            - Comparisons Using Subqueries: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/subqueries/comparisons-using-subqueries.md
-            - SUBQUERY with ANY or SOME: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/subqueries/subquery-with-any-some.md
-            - SUBQUERY with ALL: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/subqueries/subquery-with-all.md
-            - SUBQUERY with EXISTS: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/subqueries/subquery-with-exists.md
-            - SUBQUERY with IN: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/subqueries/subquery-with-in.md
-          - JOIN:
-            - JOIN Overview: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/join.md
-            - INNER JOIN: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/join/inner-join.md
-            - LEFT JOIN: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/join/left-join.md
-            - RIGHT JOIN: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/join/right-join.md
-            - FULL JOIN: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/join/full-join.md
-            - OUTER JOIN: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/join/outer-join.md
-            - NATURAL JOIN: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/join/natural-join.md
-          - OPERATORS:
-            - OPERATORS Overview: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/operators.md
-            - OPERATORS Precedence: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/operators/operator-precedence.md
-            - Arithmetic Operators:
-              - Arithmetic Operators Overview: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/operators/arithmetic-operators/arithmetic-operators-overview.md
-              - '%,MOD': MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/operators/arithmetic-operators/mod.md
-              - '*': MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/operators/arithmetic-operators/multiplication.md
-              - +: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/operators/arithmetic-operators/addition.md
-              - -: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/operators/arithmetic-operators/minus.md
-              - -: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/operators/arithmetic-operators/unary-minus.md
-              - /: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/operators/arithmetic-operators/division.md
-              - DIV: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/operators/arithmetic-operators/div.md
-            - Assignment Operators:
-              - Assignment Operators Overview: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/operators/assignment-operators/assignment-operators-overview.md
-              - =: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/operators/assignment-operators/equal.md
-            - Bit Functions and Operators:
-              - Bit Functions and Operators Overview: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/operators/0.6-bit-functions-and-operators/bit-functions-and-operators-overview.md
-              - '&': MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/operators/0.6-bit-functions-and-operators/bitwise-and.md
-              - '>>': MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/operators/0.6-bit-functions-and-operators/right-shift.md
-              - '<<': MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/operators/0.6-bit-functions-and-operators/left-shift.md
-              - '^': MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/operators/0.6-bit-functions-and-operators/bitwise-xor.md
-              - '|': MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/operators/0.6-bit-functions-and-operators/bitwise-or.md
-              - '~': MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/operators/0.6-bit-functions-and-operators/bitwise-inversion.md
-            - Cast Functions and Operators:
-              - Cast Functions and Operators Overview: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/operators/cast-functions-and-operators/cast-functions-and-operators-overview.md
-              - CAST: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/operators/cast-functions-and-operators/cast.md
-              - CONVERT: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/operators/cast-functions-and-operators/convert.md
-            - Comparison Functions and Operators:
-              - Comparison Functions and Operators Overview: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/operators/comparison-functions-and-operators/comparison-functions-and-operators-overview.md
-              - '>': MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/operators/comparison-functions-and-operators/greater-than.md
-              - '>=': MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/operators/comparison-functions-and-operators/greater-than-or-equal.md
-              - <: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/operators/comparison-functions-and-operators/less-than.md
-              - <>,!=: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/operators/comparison-functions-and-operators/not-equal.md
-              - <=: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/operators/comparison-functions-and-operators/less-than-or-equal.md
-              - =: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/operators/comparison-functions-and-operators/assign-equal.md
-              - BETWEEN ... AND ...: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/operators/comparison-functions-and-operators/between.md
-              - IN: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/operators/comparison-functions-and-operators/in.md
-              - IS: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/operators/comparison-functions-and-operators/is.md
-              - IS NOT: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/operators/comparison-functions-and-operators/is-not.md
-              - IS NOT NULL: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/operators/comparison-functions-and-operators/is-not-null.md
-              - IS NULL: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/operators/comparison-functions-and-operators/is-null.md
-              - LIKE: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/operators/comparison-functions-and-operators/like.md
-              - NOT BETWEEN ... AND ...: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/operators/comparison-functions-and-operators/not-between.md
-              - NOT LIKE: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/operators/comparison-functions-and-operators/not-like.md
-            - Flow Control Functions:
-              - Flow Control Functions Overview: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/operators/flow-control-functions/flow-control-functions-overview.md
-              - CASE WHEN: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/operators/flow-control-functions/case-when.md
-              - IF: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/operators/flow-control-functions/function_if.md
-            - Logical Operators:
-              - Logical Operators Overview: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/operators/logical-operators/logical-operators-overview.md
-              - AND,&&: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/operators/logical-operators/and.md
-              - NOT,!: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/operators/logical-operators/not.md
-              - OR: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/operators/logical-operators/or.md
-              - XOR: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/operators/logical-operators/xor.md
-        - Prepared Statements:
-          - Prepared Statements Overview: MatrixOne/Reference/SQL-Reference/0.6-Prepared-Statements/prepared-statements-overview.md
-          - PREPARE: MatrixOne/Reference/SQL-Reference/0.6-Prepared-Statements/prepare.md
-          - EXCUTE: MatrixOne/Reference/SQL-Reference/0.6-Prepared-Statements/execute.md
-          - DEALLOCATE: MatrixOne/Reference/SQL-Reference/0.6-Prepared-Statements/deallocate.md
+          - LIKE: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/like.md
+          - CAST: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/cast.md
+          - INNER JOIN: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/inner-join.md
         - Aggregate Functions:
           - AVG: MatrixOne/Reference/SQL-Reference/Aggregate-Functions/avg.md
           - COUNT: MatrixOne/Reference/SQL-Reference/Aggregate-Functions/count.md
           - MAX: MatrixOne/Reference/SQL-Reference/Aggregate-Functions/max.md
           - MIN: MatrixOne/Reference/SQL-Reference/Aggregate-Functions/min.md
           - SUM: MatrixOne/Reference/SQL-Reference/Aggregate-Functions/sum.md
-          - ANY_VALUE: MatrixOne/Reference/SQL-Reference/Aggregate-Functions/any-value.md
-          - BIT_AND: MatrixOne/Reference/SQL-Reference/Aggregate-Functions/bit_and.md
-          - BIT_OR: MatrixOne/Reference/SQL-Reference/Aggregate-Functions/bit_or.md
-          - BIT_XOR: MatrixOne/Reference/SQL-Reference/Aggregate-Functions/bit_xor.md
-          - STDDEV_POP: MatrixOne/Reference/SQL-Reference/Aggregate-Functions/stddev_pop.md
-          - VAR: MatrixOne/Reference/SQL-Reference/Aggregate-Functions/var.md
-        - Explain:
-          - EXPLAIN: MatrixOne/Reference/SQL-Reference/Explain/0.6-explain.md
-          - EXPLAIN Output Format: MatrixOne/Reference/SQL-Reference/Explain/explain-workflow.md
-          - Explain Analyze: MatrixOne/Reference/SQL-Reference/Explain/0.6-explain-analyze.md
-      - Data Types:
-          - Date Types Overview: MatrixOne/Reference/Data-Types/0.6-data-types.md
-          - Data Type Conversion: MatrixOne/Reference/Data-Types/data-type-conversion.md
-          - Timestamp Initialization: MatrixOne/Reference/Data-Types/0.6-timestamp-initialization.md
-          - JSON Data Type: MatrixOne/Reference/Data-Types/0.6-json-type.md
-          - BLOB Data Type: MatrixOne/Reference/Data-Types/0.6-blob-type.md
-          - Fixed-Point Types (Exact Value) - DECIMAL: MatrixOne/Reference/Data-Types/fixed-point-types.md
-      - Builtin Functions:
-        - Mathematical:
-          - ABS(): MatrixOne/Reference/Builtin-Functions/Mathematical/abs.md
-          - SIN(): MatrixOne/Reference/Builtin-Functions/Mathematical/sin.md
-          - COS(): MatrixOne/Reference/Builtin-Functions/Mathematical/cos.md
-          - TAN(): MatrixOne/Reference/Builtin-Functions/Mathematical/tan.md
-          - COT(): MatrixOne/Reference/Builtin-Functions/Mathematical/cot.md
-          - ACOS(): MatrixOne/Reference/Builtin-Functions/Mathematical/acos.md
-          - ATAN(): MatrixOne/Reference/Builtin-Functions/Mathematical/atan.md
-          - SINH(): MatrixOne/Reference/Builtin-Functions/Mathematical/sinh.md
-          - FLOOR(): MatrixOne/Reference/Builtin-Functions/Mathematical/floor.md
-          - ROUND(): MatrixOne/Reference/Builtin-Functions/Mathematical/round.md
-          - CEIL(): MatrixOne/Reference/Builtin-Functions/Mathematical/ceil.md
-          - POWER(): MatrixOne/Reference/Builtin-Functions/Mathematical/power.md
-          - PI(): MatrixOne/Reference/Builtin-Functions/Mathematical/pi.md
-          - LOG(): MatrixOne/Reference/Builtin-Functions/Mathematical/log.md
-          - LN(): MatrixOne/Reference/Builtin-Functions/Mathematical/ln.md
-          - UUID(): MatrixOne/Reference/Builtin-Functions/Mathematical/0.6-uuid.md
-          - EXP(): MatrixOne/Reference/Builtin-Functions/Mathematical/exp.md
-        - Datetime:
-          - DATE_FORMAT(): MatrixOne/Reference/Builtin-Functions/Datetime/0.6-date-format.md
-          - YEAR(): MatrixOne/Reference/Builtin-Functions/Datetime/year.md
-          - MONTH(): MatrixOne/Reference/Builtin-Functions/Datetime/0.6-month.md
-          - DATE(): MatrixOne/Reference/Builtin-Functions/Datetime/date.md
-          - WEEKDAY(): MatrixOne/Reference/Builtin-Functions/Datetime/0.6-weekday.md
-          - TIMESTAMP(): MatrixOne/Reference/Builtin-Functions/Datetime/0.6-timestamp.md
-          - DAYOFYEAR(): MatrixOne/Reference/Builtin-Functions/Datetime/dayofyear.md
-          - EXTRACT(): MatrixOne/Reference/Builtin-Functions/Datetime/extract.md
-          - DATE_ADD(): MatrixOne/Reference/Builtin-Functions/Datetime/date-add.md
-          - DATE_SUB(): MatrixOne/Reference/Builtin-Functions/Datetime/date-sub.md
-          - TO_DATE(): MatrixOne/Reference/Builtin-Functions/Datetime/to-date.md
-          - DAY(): MatrixOne/Reference/Builtin-Functions/Datetime/0.6-day.md
-          - UNIX_TIMESTAMP: MatrixOne/Reference/Builtin-Functions/Datetime/0.6-unix-timestamp.md
-          - FROM_UNIXTIME: MatrixOne/Reference/Builtin-Functions/Datetime/0.6-from-unixtime.md
-          - UTC_TIMESTAMP(): MatrixOne/Reference/Builtin-Functions/Datetime/0.6-utc-timestamp.md
-          - CURRENT_TIMESTAMP(): MatrixOne/Reference/Builtin-Functions/Datetime/0.6-current-timestamp.md
-        - String:
-          - BIN(): MatrixOne/Reference/Builtin-Functions/String/0.6-bin.md
-          - BIT_LENGTH(): MatrixOne/Reference/Builtin-Functions/String/0.6-bit-length.md
-          - HEX(): MatrixOne/Reference/Builtin-Functions/String/0.6-hex.md
-          - CONCAT_WS(): MatrixOne/Reference/Builtin-Functions/String/concat-ws.md
-          - FIND_IN_SET(): MatrixOne/Reference/Builtin-Functions/String/find-in-set.md
-          - OCT(): MatrixOne/Reference/Builtin-Functions/String/oct.md
-          - EMPTY(): MatrixOne/Reference/Builtin-Functions/String/empty.md
-          - LENGTH(): MatrixOne/Reference/Builtin-Functions/String/length.md
-          - CHAR_LENGTH(): MatrixOne/Reference/Builtin-Functions/String/char-length.md
-          - LTRIM(): MatrixOne/Reference/Builtin-Functions/String/ltrim.md
-          - RTRIM(): MatrixOne/Reference/Builtin-Functions/String/rtrim.md
-          - LPAD(): MatrixOne/Reference/Builtin-Functions/String/lpad.md
-          - RPAD(): MatrixOne/Reference/Builtin-Functions/String/rpad.md
-          - STARTSWITH(): MatrixOne/Reference/Builtin-Functions/String/startswith.md
-          - ENDSWITH(): MatrixOne/Reference/Builtin-Functions/String/endswith.md
-          - SUBSTRING(): MatrixOne/Reference/Builtin-Functions/String/substring.md
-          - SPACE(): MatrixOne/Reference/Builtin-Functions/String/space.md
-          - REVERSE(): MatrixOne/Reference/Builtin-Functions/String/reverse.md
-        - Table:
-          - UUNEST(): MatrixOne/Reference/Builtin-Functions/Table/0.6-unnest.md
-      - System Paramaters:
+        - Data Types: MatrixOne/Reference/SQL-Reference/data-types.md
+      - Custom Functions:
+        - YEAR(): MatrixOne/Reference/Customer-Functions/year.md
+      - System Paramaters: 
         - General Settings: MatrixOne/Reference/System-Parameters/configuration-settings.md
-        - Time Zone Support: MatrixOne/Reference/System-Parameters/0.6-timezone.md
-      - MatrixOne Catalog: MatrixOne/Reference/System-tables.md
-      - Limitations:
-        - JDBC supported features list: MatrixOne/Reference/Limitations/mo-jdbc-feature-list.md
-        - Partitioning supported features list: MatrixOne/Reference/Limitations/mo-partition-support.md
+        - Distributed Settings: MatrixOne/Reference/System-Parameters/distributed-settings.md
     - FAQs:
-      - Product FAQs: MatrixOne/FAQs/product-faqs.md
-      - Deployment FAQs: MatrixOne/FAQs/deployment-faqs.md
-      - SQL FAQs: MatrixOne/FAQs/sql-faqs.md
+      - General FAQs: MatrixOne/FAQs/general-faqs.md
     - Release Notes:
-      - Release Timeline: MatrixOne/Release-Notes/release-timeline.md
-      - v0.5.1: MatrixOne/Release-Notes/v0.5.1.md
-      - v0.5.0: MatrixOne/Release-Notes/v0.5.0.md
-      - v0.4.0: MatrixOne/Release-Notes/v0.4.0.md
-      - v0.3.0: MatrixOne/Release-Notes/v0.3.0.md
-      - v0.2.0: MatrixOne/Release-Notes/v0.2.0.md
       - v0.1.0: MatrixOne/Release-Notes/v0.1.0.md
+      - v0.2.0: MatrixOne/Release-Notes/v0.2.0.md
     - Glossary: MatrixOne/glossary.md
-    - Contribution Guide:
+    - Contribution Guide: 
       - Make Your First Contribution: MatrixOne/Contribution-Guide/make-your-first-contribution.md
-      - How to Contribute:
+      - How to Contribute: 
         - Types of Contributions: MatrixOne/Contribution-Guide/How-to-Contribute/types-of-contributions.md
         - Preparation: MatrixOne/Contribution-Guide/How-to-Contribute/preparation.md
         - Report an Issue: MatrixOne/Contribution-Guide/How-to-Contribute/report-an-issue.md
@@ -336,9 +99,7 @@ nav:
         - Review a Pull Request: MatrixOne/Contribution-Guide/How-to-Contribute/review-a-pull-request.md
         - Contribute Documentation: MatrixOne/Contribution-Guide/How-to-Contribute/contribute-documentation.md
         - Make a Design: MatrixOne/Contribution-Guide/How-to-Contribute/make-a-design.md
-      - Code Style:
+      - Code Style: 
         - Code of Conduct: MatrixOne/Contribution-Guide/Code-Style/code-of-conduct.md
         - Code Comment Style: MatrixOne/Contribution-Guide/Code-Style/code-comment-style.md
         - Commit & Pull Request Style: MatrixOne/Contribution-Guide/Code-Style/commit-pr-style.md
-  - Playground:
-    - Playground: https://playground.matrixorigin.io/?tutorial=SSB-test-with-matrixone&step=1
