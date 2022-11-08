@@ -18,6 +18,17 @@
 |---|-----|
 | [=](operators/assignment-operators/equal.md) | Equal operator |
 
+## [**Bit Functions and Operators**](operators/bit-functions-and-operators/bit-functions-and-operators-overview.md)
+
+| Name | Description|
+|---|-----|
+| [&](operators/bit-functions-and-operators/bitwise-and.md) | Bitwise AND |
+| [>>](operators/bit-functions-and-operators/right-shift.md) | Right shift |
+| [<<](operators/bit-functions-and-operators/left-shift.md) |Left shift|
+| [^](operators/bit-functions-and-operators/bitwise-xor.md) |Bitwise XOR|
+| [|](operators/bit-functions-and-operators/bitwise-or.md) |Bitwise OR|
+| [~](operators/bit-functions-and-operators/bitwise-inversion.md) |Bitwise inversion|
+
 ## [**Cast Functions and Operators**](operators/cast-functions-and-operators/cast-functions-and-operators-overview.md)
 
 | Name | Description|
@@ -44,6 +55,7 @@
 | [LIKE](operators/comparison-functions-and-operators/like.md) | Simple pattern matching |
 | [NOT BETWEEN ... AND ...](operators/comparison-functions-and-operators/not-between.md) | Whether a value is not within a range of values |
 | [NOT LIKE](operators/comparison-functions-and-operators/not-like.md) | Negation of simple pattern matching |
+| [COALESCE](operators/comparison-functions-and-operators/coalesce.md)|Return the first non-null value in a list|
 
 ## [**Flow Control Functions**](operators/flow-control-functions/flow-control-functions-overview.md)
 

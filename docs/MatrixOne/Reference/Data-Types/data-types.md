@@ -26,17 +26,41 @@ Reference: <https://dev.mysql.com/doc/refman/8.0/en/data-types.html>
 
 ## **String Types**
 
-|  Data Type   | Size  | Syntax |
-|  ----  | ----  |   ----  |
-| String  | 24 byte | CHAR, VARCHAR |
+|  Data Type   | Size  | Syntax | Description|
+|  ----  | ----  |   ----  | ---- |
+| char      | 24 byte  |CHAR| Fixed length string |
+| varchar   | 24 byte  |VARCHAR| Variable length string|
+| text      | 1073741824 bytes| TEXT |Long text data|
+
+## **Binary Types**
+
+|  Data Type   | Size  | Syntax | Description|
+|  ----  | ----  |   ----  | ---- |
+| tinyblob  | 255 bytes   |TINYBLOB|A binary string of up to 255 characters|
+| blob      | 65535 bytes   |BLOB|Long text data in binary form|
+| mediumblob| 16777215 bytes  |MEDIUMBLOB|Medium length text data in binary form|
+| longblob  | 4294967295 bytes  |LONGBLOB|Large text data in binary form|
+
+## **JSON Types**
+
+|JSON Data Type| Syntax |
+|---|---|
+|Value| INT、FLOAT|
+|String| CHAR、VARCHAR、TINYTEXT、TEXT、MEDIUMTEXT、LONGTEXT、TINYBLOB、BLOB、MEDIUMBLOB、LONGBLOB |
+|Bool| TRUE、FALSE|
+|Array| An ordered sequence of zero or more values. Each value can be of any type. Arrays are enclosed in `[]` and elements are separated by commas. |
+|Time and date|Date、Datetime|
+|Object|An unordered collection of zero or more key-value pairs. The key must be a string, and the value can be of any type. Objects are enclosed by `{}`, separated by commas between key-value pairs, and separated by colons `:` between keys and values.|
+|Null| NULL|
 
 ## **Time and Date Types**
 
 |  Data Type   | Size  | Resolution |  Min Value   | Max Value  | Precision |
 |  ----  | ----  |   ----  |  ----  | ----  |   ----  |
-| Date  | 4 byte | day | 1000-01-01  | 9999-12-31 | YYYY-MM-DD/YYYYMMDD |
+|  Time  | 8 byte  |   time  |  -2562047787:59:59.999999 | 2562047787:59:59.999999  |   hh:mm:ss.ssssss  |
+| Date  | 4 byte | day | 0001-01-01  | 9999-12-31 | YYYY-MM-DD/YYYYMMDD |
 | DateTime  | 8 byte | second | 0001-01-01 00:00:00.000000  | 9999-12-31 23:59:59.999999 | YYYY-MM-DD hh:mi:ssssss |
-| TIMESTAMP|8 byte|second|1970-01-01 00:00:01.000000|2038-01-19 03:14:07.999999|YYYYMMDD hh:mi:ss.ssssss|
+| TIMESTAMP|8 byte|second|0001-01-01 00:00:00.000000|9999-12-31 23:59:59.999999|YYYYMMDD hh:mi:ss.ssssss|
 
 ## **Bool**
 
@@ -50,7 +74,7 @@ Reference: <https://dev.mysql.com/doc/refman/8.0/en/data-types.html>
 |  Data Type   | Size  |  Precision   | Syntax |
 |  ----  | ----  |  ----  | ----  |
 | Decimal64  | 8 byte | 	19 digits  | Decimal(N,S), N range(1,18), S range(0,N) |
-| Decimal128  | 16 byte | 	38 digits  | Decimal(N,S), N range(19,38), S range(0,N) |
+| Decimal128  | 16 byte | 	38 digits  | Decimal(N,S), N range(18,38), S range(0,N) |
 
 ## **Examples**
 

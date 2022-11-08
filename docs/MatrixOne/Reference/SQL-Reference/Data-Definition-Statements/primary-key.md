@@ -24,5 +24,4 @@ The following SQL creates a PRIMARY KEY on the "ID" column when the "Persons" ta
 
 ## **Constraints**
 
-1. `DROP PRIMARY KEY` with `ALTER TABLE` is not supported yet.
-2. Composite primary key(the primary key consists of multiple columns) is not supported yet.
+`DROP PRIMARY KEY` with `ALTER TABLE` is not supported yet.

@@ -221,8 +221,8 @@ GRANT create table on database * to role_r1;
 SHOW GRANTS for root;
 ```
 
-    !!! note
-         MatrixOne supports viewing the privileges of root currently but does not support viewing the privileges of current users.
+!!! note
+    MatrixOne supports viewing the privileges of root currently but does not support viewing the privileges of current users.
 
 - To delete mouser:
 

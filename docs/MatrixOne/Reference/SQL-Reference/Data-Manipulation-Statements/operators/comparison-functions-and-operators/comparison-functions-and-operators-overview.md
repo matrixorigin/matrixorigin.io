@@ -17,6 +17,7 @@
 | [LIKE](like.md) | Simple pattern matching |
 | [NOT BETWEEN ... AND ...](not-between.md) | Whether a value is not within a range of values |
 | [NOT LIKE](not-like.md) | Negation of simple pattern matching |
+| [COALESCE](coalesce.md)|Return the first non-null value in a list|
 
 Comparison operations result in a value of `TRUE`, `FALSE`, or `NULL`. These operations work for both numbers and strings. Strings are automatically converted to numbers and numbers to strings as necessary.
 
