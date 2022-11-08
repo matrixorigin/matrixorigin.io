@@ -8,6 +8,7 @@ EXPLAIN — show the execution plan of a statement.
 EXPLAIN [ ( option [, ...] ) ] statement
 
 where option can be one of:
+    ANALYZE [ boolean ]
     VERBOSE [ boolean ]
     FORMAT { TEXT | JSON }
 ```
@@ -20,7 +21,13 @@ This command displays the execution plan that the MatrixOne planner generates fo
 
 The most critical part of the display is the estimated statement execution cost, which is the planner's guess at how long it will take to run the statement (measured in cost units that are arbitrary, but conventionally mean disk page fetches). Actually two numbers are shown: the start-up cost before the first row can be returned, and the total cost to return all the rows. For most queries the total cost is what matters, but in contexts such as a subquery in `EXISTS`, the planner will choose the smallest start-up cost instead of the smallest total cost (since the executor will stop after getting one row, anyway). Also, if you limit the number of rows to return with a `LIMIT` clause, the planner makes an appropriate interpolation between the endpoint costs to estimate which plan is really the cheapest.
 
+The ANALYZE option causes the statement to be actually executed, not only planned. Then actual run time statistics are added to the display, including the total elapsed time expended within each plan node (in milliseconds) and the total number of rows it actually returned. This is useful for seeing whether the planner's estimates are close to reality.
+
 ## Parameters
+
+* ANALYZE:
+
+Carry out the command and show actual run times and other statistics. This parameter defaults to `FALSE`.
 
 * VERBOSE:
 
