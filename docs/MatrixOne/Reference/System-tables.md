@@ -151,7 +151,7 @@ Every account has its own `mo_global_variables` table. `Sys` account doesn't hav
 
 `system_metrics` collect the status and statistics of SQL statements, CPU & memory resource usage.
 
-`system_metrics ` tables have more or less same column types, fields in these tables are described as follows:
+`system_metrics` tables have more or less same column types, fields in these tables are described as follows:
 
 * collecttime：Collection time
 * value:  the value of the collecting metric
