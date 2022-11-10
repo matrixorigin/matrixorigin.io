@@ -1,194 +1,398 @@
-# MatrixOne Catalog
+# MatrixOne System Database and Tables
 
-MatrixOne catalog is a component where MatrixOne stores system information. We can access the system information by `mo_catalog` database.  The `mo_catalog` database is created by MatrixOne at initialization.
+MatrixOne system database and tables are where MatrixOne stores system information. We can access the system information by them. There are 6 system databases created by MatrixOne at initialization: `mo_catalog`, `information_schema`, `system_metrcis`, `system`, `mysql`,`mo_task`. `mo_task` is under development and has no direct impact with users. The other system databases and tables functions are described in this document.
 
-In 0.5.1, the `mo_catalog` is not fully implemented, users can check basic information about the their database and tables, but writing values into `mo_catalog` by users is not supported yet.
+## `mo_catalog` database
 
-There are three tables in the `mo_catalog` database:
+`mo_catalog` is used to store the metadata of MatrixOne objects: databases, tables, columns, system variables, accounts, users and roles.
 
-## mo_database table
+As MatrixOne 0.6 has introduced the concept of multi-tenancy, the default `sys` account and other accounts have slightly different behaviors. For `sys` account, as admin for the multi-tenancy management, has full access to three system tables, `mo_database`, `mo_tables`, `mo_columns`, while other accounts access these three tables as `views`. `sys` account has also a reserved system table `mo_account` which serves the multi-tenancy management.
 
-This table contains the database information.
+### mo_database table (Non-sys account access it as view)
 
-* table structure:
+| column           | type            | comments                                |
+| ---------------- | --------------- | --------------------------------------- |
+| dat_id           | bigint unsigned | Primary key                             |
+| datname          | varchar(100)    | Database name                           |
+| dat_catalog_name | varchar(100)    | Database catalog name, default as `def` |
+| dat_createsql    | varchar(100)    | Database creation SQL statement         |
+| owner            | int unsigned    | role_id                                 |
+| creator          | int unsigned    | user_id                                 |
+| created_time     | timestamp       | Create time                             |
+| account_id       | int unsigned    | account id                               |
 
-| Attributes       | Type          | Primary key | Description   |
-| ---------------- | ------------- | ----------- | ------------- |
-| datname          | varchar(256)  | Primary key | database name |
-| dat_catalog_name | varchar(256)  |             | catalog name  |
-| dat_createsql    | varchar(4096) |             | create sql    |
+### mo_tables table (Non-sys account access it as view)
 
-* table initial rows:
+| column         | type            | comments                                                     |
+| -------------- | --------------- | ------------------------------------------------------------ |
+| rel_id         | bigint unsigned | Primary key                                                  |
+| relname        | varchar(100)    | Name of the table, index, view, etc.                         |
+| reldatabase    | varchar(100)    | The database that contains this relation. reference mo_database.datname |
+| reldatabase_id | bigint unsigned | The database id that contains this relation. reference mo_database.datid |
+| relpersistence | varchar(100)    | p = permanent table, t = temporary table                     |
+| relkind        | varchar(100)    | r = ordinary table, e = external table, i = index, S = sequence, v = view, m = materialized view |
+| rel_comment    | varchar(100)    |                                                              |
+| rel_createsql  | varchar(100)    | Table creation SQL statement                                 |
+| created_time   | timestamp       | Create time                                                  |
+| creator        | int unsigned    | Creator ID                                                   |
+| owner          | int unsigned    | creator's default role id                                    |
+| account_id     | int unsigned    | account id                                                    |
+| partitioned    | text            | Partition by statement                                       |
+| viewdef        | text            | view definition statement                                    |
 
-At initialization, `mo_database` have some default rows in place.
+### mo_columns table (Non-sys account access it as view)
 
-| datname            | dat_catalog_name | dat_createsql                                    |
-| ------------------ | ---------------- | ------------------------------------------------ |
-| mo_catalog         | def              | hardcode                                         |
-| information_schema | def              | create database if not exists information_schema |
-| system_metrics     | def              |                                                  |
+| column           | type     | comments                                                |
+| --------------------- | --------------- | ------------------------------------------------------------ |
+| att_uniq_name         | varchar(256)    | Primary Key. Hidden, composite primary key, format is like "${att_relname_id}-${attname}" |
+| account_id            | int unsigned    | accountID                                                     |
+| att_database_id       | bigint unsigned | databaseID                                                   |
+| att_database          | varchar(256)    | database Name                                                |
+| att_relname_id        | bigint unsigned | table id                                                     |
+| att_relname           | varchar(256)    | The table this column belongs to.(references mo_tables.relname) |
+| attname               | varchar(256)    | The column name                                              |
+| atttyp                | varchar(256)    | The data type of this column (zero for a dropped column).    |
+| attnum                | int             | The number of the column. Ordinary columns are numbered from 1 up. |
+| att_length            | int             | bytes count for the type.                                    |
+| attnotnull            | tinyint(1)      | This represents a not-null constraint.                       |
+| atthasdef             | tinyint(1)      | This column has a default expression or generation expression. |
+| att_default           | varchar(1024)   | default expression                                           |
+| attisdropped          | tinyint(1)      | This column has been dropped and is no longer valid. A dropped column is still physically present in the table, but is ignored by the parser and so cannot be accessed via SQL. |
+| att_constraint_type   | char(1)         | p = primary key constraint, n=no constraint                  |
+| att_is_unsigned       | tinyint(1)      | unsigned or not                                              |
+| att_is_auto_increment | tinyint(1)      | auto increment or not                                        |
+| att_comment           | varchar(1024)   | comment                                                      |
+| att_is_hidden         | tinyint(1)      | hidden or not                                                |
+| attr_has_update       | tinyint(1)      | This columns has update expression                           |
+| attr_update           | varchar(1024)   | update expression                                            |
 
-## mo_tables table
+### mo_account table (Only sys account has access)
 
-This table contains the information about the table, index, view etc.
+| column       | type         | comments     |
+| ------------ | ------------ | ------------ |
+| account_id   | int unsigned | Primary key  |
+| account_name | varchar(100) | account name  |
+| status       | varchar(100) | open/suspend |
+| created_time | timestamp    | create time  |
+| comments     | varchar(256) | comment      |
 
-* table structure:
+### mo_role table
 
-| Attributes     | Type          | Primary key | Description                                                  |
-| -------------- | ------------- | ----------- | ------------------------------------------------------------ |
-| relname        | varchar(256)  | PK          | Name of the table, index, view, etc.                         |
-| reldatabase    | varchar(256)  | PK,FK       | The database that contains this relation. reference mo_database.datname |
-| relpersistence | char(1)       |             | p = permanent table, t = temporary table                     |
-| relkind        | char(1)       |             | r = ordinary table, i = index, S = sequence, v = view, m = materialized view |
-| rel_comment    | varchar(1024) |             | comment                                                      |
-| rel_createsql  | varchar(4096) |             | create sql                                                   |
+| column       | type         | comments                      |
+| ------------ | ------------ | ----------------------------- |
+| role_id      | int unsigned | Primary key                   |
+| role_name    | varchar(100) | role name                     |
+| creator      | int unsigned | user_id                       |
+| owner        | int unsigned | MOADMIN/ACCOUNTADMIN  ownerid |
+| created_time | timestamp    | create time                   |
+| comments     | text         | comment                       |
 
-* table initial rows:
+### mo_global_variables table
 
-At initialization, `mo_tables` have some default rows in place.
-
-| relname             | reldatabase        | repersistence | relkind | rel_createsql | rel_comment                                            |
-| ------------------- | ------------------ | ------------- | ------- | ------------- | ------------------------------------------------------ |
-| mo_database         | mo_catalog         | 'p'           | 'r'     | tae hardcode  | databases                                              |
-| mo_tables           | mo_catalog         | 'p'           | 'r'     | tae hardcode  | tables                                                 |
-| mo_columns          | mo_catalog         | 'p'           | 'r'     | tae hardcode  | columns                                                |
-| mo_global_variables | mo_catalog         | 'p'           | 'r'     | create sql    | system variables                                       |
-| mo_user             | mo_catalog         | 'p'           | 'r'     | create sql    | user                                                   |
-| schemata            | information_schema | 'p'           | 'v'     | create sql    | schemas                                                |
-| tables              | information_schema | 'p'           | 'v'     | create sql    | tables                                                 |
-| columns             | information_schema | 'p'           | 'v'     | create sql    | columns                                                |
-| key_column_usage    | information_schema | 'p'           | 'v'     | create sql    | columns related to unique, primary key, or foreign key |
-| views               | information_schema | 'p'           | 'v'     | create sql    | views                                                  |
-
-## mo_columns table
-
-This table contains the information about the table attributes.
-
-* table structure:
-
-| Attributes            | Type          | Primary key | Description                                                  |
-| --------------------- | ------------- | ----------- | ------------------------------------------------------------ |
-| att_database          | varchar(256)  | PK          | database                                                     |
-| att_relname           | varchar(256)  | PK,UK       | The table this column belongs to.(references mo_tables.relname) |
-| attname               | varchar(256)  | PK          | The column name                                              |
-| atttyp                | int           |             | The data type of this column (zero for a dropped column).    |
-| attnum                | int           | UK          | The number of the column. Ordinary columns are numbered from 1 up. |
-| att_length            | int           |             | bytes count for the type.                                    |
-| attnotnull            | tinyint(1)    |             | This represents a not-null constraint.                       |
-| atthasdef             | tinyint(1)    |             | This column has a default expression or generation expression. |
-| att_default           | varchar(1024) |             | default expression                                           |
-| attisdropped          | tinyint(1)    |             | This column has been dropped and is no longer valid. A dropped column is still physically present in the table, but is ignored by the parser and so cannot be accessed via SQL. |
-| att_constraint_type   | char(1)       |             | p = primary key constraint, n=no constraint                  |
-| att_is_unsigned       | tinyint(1)    |             | unsigned or not                                              |
-| att_is_auto_increment | tinyint       |             | auto increment or not                                        |
-| att_comment           | varchar(1024) |             | comment                                                      |
-| att_is_hidden         | tinyint(1)    |             | hidden or not                                                |
-
-* table initial rows:
-
-| att_database | att_relname | attname               | atttyp  | attnum | attnotnull | atthasdef | att_default | attisdropped | att_constraint_type | att_is_unsigned | att_is_auto_increment | att_comment     | att_is_hidden |
-| ------------ | ----------- | --------------------- | ------- | ------ | ---------- | --------- | ----------- | ------------ | ------------------- | --------------- | --------------------- | --------------- | ------------- |
-| mo_catalog   | mo_database | datname               | varchar | 0      | 1          | 0         | ''          | 0            | 'p'                 | 0               | 0                     | 'database name' | 0             |
-| mo_catalog   | mo_database | dat_catalog_name      | varchar | 1      | 1          | 0         | ''          | 0            | 'p'                 | 0               | 0                     | 'catalog'       | 0             |
-| mo_catalog   | mo_database | dat_createsql         | varchar | 2      | 1          |           |             |              |                     |                 |                       |                 |               |
-| mo_catalog   | mo_tables   | relname               | varchar | 0      | 1          |           |             |              | 'p'                 |                 |                       |                 |               |
-| mo_catalog   | mo_tables   | reldatabase           | varchar | 1      | 1          |           |             |              | 'p'                 |                 |                       |                 |               |
-| mo_catalog   | mo_tables   | relpersistence        | char    | 2      | 1          |           |             |              |                     |                 |                       |                 |               |
-| mo_catalog   | mo_tables   | relkind               | char    | 3      | 1          |           |             |              |                     |                 |                       |                 |               |
-| mo_catalog   | mo_tables   | rel_createsql         | varchar | 4      | 0          |           |             |              |                     |                 |                       |                 |               |
-| mo_catalog   | mo_tables   | rel_comment           | varchar | 5      | 0          |           |             |              |                     |                 |                       |                 |               |
-| mo_catalog   | mo_columns  | att_database          | varchar | 0      | 1          |           |             |              |                     |                 |                       |                 |               |
-| mo_catalog   | mo_columns  | att_relname           | varchar | 1      | 1          |           |             |              |                     |                 |                       |                 |               |
-| mo_catalog   | mo_columns  | attname               | varchar | 2      | 1          |           |             |              |                     |                 |                       |                 |               |
-| mo_catalog   | mo_columns  | atttyp                | int     | 3      | 1          |           |             |              |                     |                 |                       |                 |               |
-| mo_catalog   | mo_columns  | attnum                | int     | 4      | 1          |           |             |              |                     |                 |                       |                 |               |
-| mo_catalog   | mo_columns  | attnotnull            | tinyint | 5      | 1          |           |             |              |                     |                 |                       |                 |               |
-| mo_catalog   | mo_columns  | atthasdef             | tinyint | 6      | 1          |           |             |              |                     |                 |                       |                 |               |
-| mo_catalog   | mo_columns  | att_default           | varchar | 7      | 0          |           |             |              |                     |                 |                       |                 |               |
-| mo_catalog   | mo_columns  | attisdropped          | tinyint | 8      | 1          |           |             |              |                     |                 |                       |                 |               |
-| mo_catalog   | mo_columns  | att_constraint_type   | char    | 9      | 1          |           |             |              |                     |                 |                       |                 |               |
-| mo_catalog   | mo_columns  | att_is_unsigned       | tinyint | 10     | 1          |           |             |              |                     |                 |                       |                 |               |
-| mo_catalog   | mo_columns  | att_is_auto_increment | tinyint | 11     | 1          |           |             |              |                     |                 |                       |                 |               |
-| mo_catalog   | mo_columns  | att_comment           | varchar | 12     | 0          |           |             |              |                     |                 |                       |                 |               |
-| mo_catalog   | mo_columns  | att_is_hidden         | tinyint | 13     | 1          |           |             |              |                     |                 |                       |                 |               |
-| ...          |             |                       |         |        |            |           |             |              |                     |                 |                       |                 |               |
-
-## mo_global_variables table
-
-This table contains the information about the system variables.
-
-* table structure:
+Every account has its own `mo_global_variables` table. `Sys` account doesn't have direct access to this table for other accounts.
 
 | Attributes        | Type          | Primary key | Description    |
 | ----------------- | ------------- | ----------- | -------------- |
 | gv_variable_name  | varchar(256)  | PK          | variable name  |
 | gv_variable_value | varchar(1024) |             | variable value |
 
-* table initial rows:
+### **mo_user** table
 
-| gv_variable_name    | gv_variable_value |
-| ------------------- | ----------------- |
-| gv_variable_name    | gv_variable_value |
-| max_allowed_packet  | 67108864          |
-| version_comment     | MatrixOne         |
-| port                | 6001              |
-| host                | 0.0.0.0           |
-| storePath           | ./store           |
-| batchSizeInLoadData | 40000             |
-| ...                 |                   |
+| column                | type         | comments            |
+| --------------------- | ------------ | ------------------- |
+| user_id               | int unsigned | PK                  |
+| user_host             | varchar(100) |                     |
+| user_name             | varchar(100) |                     |
+| authentication_string | varchar(100) |                     |
+| status                | varchar(8)   | open,locked,expired |
+| created_time          | timestamp    |                     |
+| expired_time          | timestamp    |                     |
+| login_type            | varchar(16)  | ssl/password/other  |
+| creator               | int unsigned | user id             |
+| owner                 | int unsigned | admin role id       |
+| default_role          | int unsigned | role id             |
 
-## mo_user table
+### mo_user_grant user
 
-This table contains the information of user accounts.
+| column            | type         | comments                            |
+| ----------------- | ------------ | ----------------------------------- |
+| role_id           | int unsigned | Primary key                         |
+| user_id           | int unsigned | Primary key, user_id                |
+| granted_time      | timestamp    | granted time                        |
+| with_grant_option | bool         | If permission granting is permitted |
 
-* table structure:
+### mo_role_grant user
 
-| Attributes             | Type          | Primary key | Description |
-| ---------------------- | ------------- | ----------- | ----------- |
-| user_host              | varchar(256)  | PK          | user host   |
-| user_name              | varchar(256)  | PK          | user name   |
-| Select_priv            | char          |             | 'N','Y'     |
-| Insert_priv            | char          |             | 'N','Y'     |
-| Update_priv            | char          |             | 'N','Y'     |
-| Delete_priv            | char          |             | 'N','Y'     |
-| Create_priv            | char          |             | 'N','Y'     |
-| Drop_priv              | char          |             | 'N','Y'     |
-| Reload_priv            | char          |             | 'N','Y'     |
-| Shutdown_priv          | char          |             | 'N','Y'     |
-| Process_priv           | char          |             | 'N','Y'     |
-| File_priv              | char          |             | 'N','Y'     |
-| Grant_priv             | char          |             | 'N','Y'     |
-| References_priv        | char          |             | 'N','Y'     |
-| Index_priv             | char          |             | 'N','Y'     |
-| Alter_priv             | char          |             | 'N','Y'     |
-| Show_db_priv           | char          |             | 'N','Y'     |
-| Super_priv             | char          |             | 'N','Y'     |
-| Create_tmp_table_priv  | char          |             | 'N','Y'     |
-| Lock_tables_priv       | char          |             | 'N','Y'     |
-| Execute_priv           | char          |             | 'N','Y'     |
-| Repl_slave_priv        | char          |             | 'N','Y'     |
-| Repl_client_priv       | char          |             | 'N','Y'     |
-| Create_view_priv       | char          |             | 'N','Y'     |
-| Show_view_priv         | char          |             | 'N','Y'     |
-| Create_routine_priv    | char          |             | 'N','Y'     |
-| Alter_routine_priv     | char          |             | 'N','Y'     |
-| Create_user_priv       | char          |             | 'N','Y'     |
-| Event_priv             | char          |             | 'N','Y'     |
-| Trigger_priv           | char          |             | 'N','Y'     |
-| Create_tablespace_priv | char          |             | 'N','Y'     |
-| max_questions          | int unsigned  |             |             |
-| max_updates            | int unsigned  |             |             |
-| max_connections        | int unsigned  |             |             |
-| max_user_connections   | int unsigned  |             |             |
-| authentication_string  | varchar(4096) |             | password    |
-| account_locked         | char          |             | 'N','Y'     |
-| Create_role_priv       | char          |             | 'N','Y'     |
-| Drop_role_priv         | char          |             | 'N','Y'     |
+| column            | type         | comments                            |
+| ----------------- | ------------ | ----------------------------------- |
+| granted_id        | int unsigned | Primary key，granted id             |
+| grantee_id        | int unsigned | Primary key，grantee id             |
+| operation_role_id | int unsigned | operation role id                   |
+| operation_user_id | int unsigned | operation user id                   |
+| granted_time      | timestamp    | granted time                        |
+| with_grant_option | bool         | If permission granting is permitted |
 
-* table initial rows:
+### mo_role_privs user
 
-| user_host | user_name | authentication_string |
-| --------- | --------- | --------------------- |
-| localhost | root      | ''                    |
-| localhost | dump      | 111                   |
-| ...       |           |                       |
+| column            | type            | comments                            |
+| ----------------- | --------------- | ----------------------------------- |
+| role_id           | int unsigned    | Primary key                         |
+| role_name         | varchar(100)    | role name                           |
+| obj_type          | varchar(16)     | Primary key                         |
+| obj_id            | bigint unsigned | Primary key                         |
+| privilege_id      | int             | Primary key                         |
+| privilege_name    | varchar(100)    |                                     |
+| privilege_level   | varchar(100)    |                                     |
+| operation_user_id | int unsigned    | user_id                             |
+| granted_time      | timestamp       |                                     |
+| with_grant_option | bool            | If permission granting is permitted |
+
+## `system_metrics` database
+
+`system_metrics` collect the status and statistics of SQL statements, CPU & memory resource usage.
+
+`system_metrics ` tables have more or less same column types, fields in these tables are described as follows:
+
+* collecttime：Collection time
+* value:  the value of the collecting metric
+
+- node: the MatrixOne node uuid
+- role: the MatrixOne node role, can be CN, DN or LOG.  
+- internal：can be either 1 or 0.  Collect as 1if the SQL statement is launched by internal, as 0 if the SQL statement is launched by user.
+- type：SQL type, can be `select`, `insert`, `update`, `delete`, `other` types.
+
+### `metrics` table
+
+| Column      | Type         | Comment                                                      |
+| ----------- | ------------ | ------------------------------------------------------------ |
+| metric_name | VARCHAR(128) | metric name, like: sql_statement_total, server_connections, process_cpu_percent, sys_memory_used, .. |
+| collecttime | DATETIME     | metric data collect time                                     |
+| value       | DOUBLE       | metric value                                                 |
+| node        | VARCHAR(36)  | node uuid                                                    |
+| role        | VARCHAR(32)  | node role                                                    |
+| account     | VARCHAR(128) | account name                                                 |
+| type        | VARCHAR(32)  | SQL type                                                     |
+
+The other tables are all views of the `metrics` table:
+
+* `process_cpu_percent` table: Process CPU busy percentage.
+* `process_open_fs` table: Number of open file descriptors.
+* `process_resident_memory_bytes` table: Resident memory size in bytes.
+* `server_connection` table: Server connection numbers.
+* `sql_statement_errors` table: Counter of sql statements executed with errors.
+* `sql_statement_total` table: Counter of executed sql statement.
+* `sql_transaction_errors` table: Counter of transactional statements executed with errors.
+* `sql_transaction_total` table: Counter of transactional sql statement.
+* `sys_cpu_combined_percent` table: System CPU busy percentage, average among all logical cores.
+* `sys_cpu_seconds_total` table: System CPU time spent in seconds, normalized by number of cores
+* `sys_disk_read_bytes` table: System disk read in bytes.
+* `sys_disk_write_bytes` table: System disk write in bytes.
+* `sys_memory_available` table: System memory available in bytes.
+* `sys_memory_used` table: System memory used in bytes.
+* `sys_net_recv_bytes` table: System net received in bytes.
+* `sys_net_sent_bytes` table: System net sent in bytes.
+
+## `system` database
+
+`System` database stores MatrixOne historical SQL statements, system logs, error information.
+
+### `statement_info` table
+
+It records user and system SQL statement with detailed information.
+
+| Column                | Type          | Comments                                                     |
+| --------------------- | ------------- | ------------------------------------------------------------ |
+| statement_id          | VARCHAR(36)   | statement unique id                                          |
+| transaction_id        | VARCHAR(36)   | Transaction unique id                                        |
+| session_id            | VARCHAR(36)   | session unique id                                            |
+| account               | VARCHAR(1024) | account name                                                 |
+| user                  | VARCHAR(1024) | user name                                                    |
+| host                  | VARCHAR(1024) | user client ip                                               |
+| database              | VARCHAR(1024) | what database current session stay in                        |
+| statement             | TEXT          | sql statement                                                |
+| statement_tag         | TEXT          | note tag in statement(Reserved)                              |
+| statement_fingerprint | TEXT          | note tag in statement(Reserved)                              |
+| node_uuid             | VARCHAR(36)   | node uuid, which node gen this data                          |
+| node_type             | VARCHAR(64)   | node type in MO, val in [DN, CN, LOG]                        |
+| request_at            | DATETIME      | request accept datetime                                      |
+| response_at           | DATETIME      | response send datetime                                       |
+| duration              | BIGINT        | exec time, unit: ns                                          |
+| status                | VARCHAR(32)   | sql statement running status, enum: Running, Success, Failed |
+| err_code              | VARCHAR(1024) | error code                                                   |
+| error                 | TEXT          | error message                                                |
+| exec_plan             | JSON          | statement execution plan                                     |
+| rows_read             | BIGINT        | rows read total                                              |
+| bytes_scan            | BIGINT        | bytes scan total                                             |
+
+### `rawlog` table
+
+It records very detailed system logs.
+
+| Column         | Type          | Comments                                                     |
+| -------------- | ------------- | ------------------------------------------------------------ |
+| raw_item       | VARCHAR(1024) | raw log item                                                 |
+| node_uuid      | VARCHAR(36)   | node uuid, which node gen this data.                         |
+| node_type      | VARCHAR(64)   | node type in MO, val in [DN, CN, LOG]                        |
+| span_id        | VARCHAR(16)   | span unique id                                               |
+| statement_id   | VARCHAR(36)   | statement unique id                                          |
+| logger_name    | VARCHAR(1024) | logger name                                                  |
+| timestamp      | DATETIME      | timestamp of action                                          |
+| level          | VARCHAR(1024) | log level, enum: debug, info, warn, error, panic, fatal      |
+| caller         | VARCHAR(1024) | where it log, like: package/file.go:123                      |
+| message        | TEXT          | log message                                                  |
+| extra          | JSON          | log dynamic fields                                           |
+| err_code       | VARCHAR(1024) | error log                                                    |
+| error          | TEXT          | error message                                                |
+| stack          | VARCHAR(4096) |                                                              |
+| span_name      | VARCHAR(1024) | span name, for example: step name of execution plan, function name in code, ... |
+| parent_span_id | VARCHAR(16)   | parent span unique id                                        |
+| start_time     | DATETIME      |                                                              |
+| end_time       | DATETIME      |                                                              |
+| duration       | BIGINT        | exec time, unit: ns                                          |
+| resource       | JSON          | static resource information                                  |
+
+The other 3 tables(`log_info`, `span_info` and `error_info`) are views of `statement_info` and `rawlog` table.
+
+## `information_schema` database
+
+Information Schema provides an ANSI-standard way of viewing system metadata. MatrixOne also provides a number of custom `information_schema` tables, in addition to the tables included for MySQL compatibility.
+
+Many `INFORMATION_SCHEMA` tables have a corresponding `SHOW` command. The benefit of querying `INFORMATION_SCHEMA` is that it is possible to join between tables.
+
+### Tables for MySQL compatibility
+
+| Table Name       | Description                                                  |
+| :--------------- | :----------------------------------------------------------- |
+| CHARACTER_SETS   | Provides a list of character sets the server supports.       |
+| COLUMNS          | Provides a list of columns for all tables.                   |
+| ENGINES          | Provides a list of supported storage engines.                |
+| KEY_COLUMN_USAGE | Describes the key constraints of the columns, such as the primary key constraint. |
+| PROCESSLIST      | Provides similar information to the command `SHOW PROCESSLIST`. |
+| SCHEMATA         | Provides similar information to `SHOW DATABASES`.            |
+| TABLES           | Provides a list of tables that the current user has visibility of. Similar to `SHOW TABLES`. |
+| TRIGGERS         | Provides similar information to `SHOW TRIGGERS`.             |
+| USER_PRIVILEGES  | Summarizes the privileges associated with the current user.  |
+
+### `CHARACTER_SETS` table
+
+The description of columns in the `CHARACTER_SETS` table is as follows:
+
+- `CHARACTER_SET_NAME`: The name of the character set.
+- `DEFAULT_COLLATE_NAME` The default collation name of the character set.
+- `DESCRIPTION` The description of the character set.
+- `MAXLEN` The maximum length required to store a character in this character set.
+
+### `COLUMNS` table
+
+The description of columns in the `COLUMNS` table is as follows:
+
+- `TABLE_CATALOG`: The name of the catalog to which the table with the column belongs. The value is always `def`.
+- `TABLE_SCHEMA`: The name of the schema in which the table with the column is located.
+- `TABLE_NAME`: The name of the table with the column.
+- `COLUMN_NAME`: The name of the column.
+- `ORDINAL_POSITION`: The position of the column in the table.
+- `COLUMN_DEFAULT`: The default value of the column. If the explicit default value is `NULL`, or if the column definition does not include the `default` clause, this value is `NULL`.
+- `IS_NULLABLE`: Whether the column is nullable. If the column can store null values, this value is `YES`; otherwise, it is `NO`.
+- `DATA_TYPE`: The type of data in the column.
+- `CHARACTER_MAXIMUM_LENGTH`: For string columns, the maximum length in characters.
+- `CHARACTER_OCTET_LENGTH`: For string columns, the maximum length in bytes.
+- `NUMERIC_PRECISION`: The numeric precision of a number-type column.
+- `NUMERIC_SCALE`: The numeric scale of a number-type column.
+- `DATETIME_PRECISION`: For time-type columns, the fractional seconds precision.
+- `CHARACTER_SET_NAME`: The name of the character set of a string column.
+- `COLLATION_NAME`: The name of the collation of a string column.
+- `COLUMN_TYPE`: The column type.
+- `COLUMN_KEY`: Whether this column is indexed. This field might have the following values:
+  - `Empty`: This column is not indexed, or this column is indexed and is the second column in a multi-column non-unique index.
+  - `PRI`: This column is the primary key or one of multiple primary keys.
+  - `UNI`: This column is the first column of the unique index.
+  - `MUL`: The column is the first column of a non-unique index, in which a given value is allowed to occur for multiple times.
+- `EXTRA`: Any additional information of the given column.
+- `PRIVILEGES`: The privilege that the current user has on this column.
+- `COLUMN_COMMENT`: Comments contained in the column definition.
+- `GENERATION_EXPRESSION`: For generated columns, this value displays the expression used to calculate the column value. For non-generated columns, the value is empty.
+- `SRS_ID`: This value applies to spatial columns. It contains the column `SRID` value that indicates the spatial reference system for values stored in the column.
+
+### `ENGINES` table
+
+The description of columns in the `ENGINES` table is as follows:
+
+- `ENGINES`: The name of the storage engine.
+- `SUPPORT`: The level of support that the server has on the storage engine.
+- `COMMENT`: The brief comment on the storage engine.
+- `TRANSACTIONS`: Whether the storage engine supports transactions.
+- `XA`: Whether the storage engine supports XA transactions.
+- `SAVEPOINTS`: Whether the storage engine supports `savepoints`.
+
+### `PROCESSLIST` table
+
+Fields in the `PROCESSLIST` table are described as follows:
+
+- ID: The ID of the user connection.
+- USER: The name of the user who is executing `PROCESS`.
+- HOST: The address that the user is connecting to.
+- DB: The name of the currently connected default database.
+- COMMAND: The command type that `PROCESS` is executing.
+- TIME: The current execution duration of `PROCESS`, in seconds.
+- STATE: The current connection state.
+- INFO: The requested statement that is being processed.
+
+### `SCHEMATA` table
+
+The `SCHEMATA` table provides information about databases. The table data is equivalent to the result of the `SHOW DATABASES` statement. Fields in the `SCHEMATA` table are described as follows:
+
+- `CATALOG_NAME`: The catalog to which the database belongs.
+- `SCHEMA_NAME`: The database name.
+- `DEFAULT_CHARACTER_SET_NAME`: The default character set of the database.
+- `DEFAULT_COLLATION_NAME`: The default collation of the database.
+- `SQL_PATH`: The value of this item is always `NULL`.
+- `DEFAULT_TABLE_ENCRYPTION`: defines the *default encryption* setting for databases and general tablespaces.
+
+### `TABLES` table
+
+The description of columns in the `TABLES` table is as follows:
+
+- `TABLE_CATALOG`: The name of the catalog which the table belongs to. The value is always `def`.
+- `TABLE_SCHEMA`: The name of the schema which the table belongs to.
+- `TABLE_NAME`: The name of the table.
+- `TABLE_TYPE`: The type of the table.
+- `ENGINE`: The type of the storage engine.
+- `VERSION`: Version. The value is `10` by default.
+- `ROW_FORMAT`: The row format. The value is currently `Compact`.
+- `TABLE_ROWS`: The number of rows in the table in statistics.
+- `AVG_ROW_LENGTH`: The average row length of the table. `AVG_ROW_LENGTH` = `DATA_LENGTH` / `TABLE_ROWS`.
+- `DATA_LENGTH`: Data length. `DATA_LENGTH` = `TABLE_ROWS` * the sum of storage lengths of the columns in the tuple. The replicas of TiKV are not taken into account.
+- `MAX_DATA_LENGTH`: The maximum data length. The value is currently `0`, which means the data length has no upper limit.
+- `INDEX_LENGTH`: The index length. `INDEX_LENGTH` = `TABLE_ROWS` * the sum of lengths of the columns in the index tuple.
+- `DATA_FREE`: Data fragment. The value is currently `0`.
+- `AUTO_INCREMENT`: The current step of the auto- increment primary key.
+- `CREATE_TIME`: The time at which the table is created.
+- `UPDATE_TIME`: The time at which the table is updated.
+- `CHECK_TIME`: The time at which the table is checked.
+- `TABLE_COLLATION`: The collation of strings in the table.
+- `CHECKSUM`: Checksum.
+- `CREATE_OPTIONS`: Creates options.
+- `TABLE_COMMENT`: The comments and notes of the table.
+
+### `USER_PRIVILEGES` table
+
+The `USER_PRIVILEGES` table provides information about global privileges.
+
+Fields in the `USER_PRIVILEGES` table are described as follows:
+
+- `GRANTEE`: The name of the granted user, which is in the format of `'user_name'@'host_name'`.
+- `TABLE_CATALOG`: The name of the catalog to which the table belongs. This value is always `def`.
+- `PRIVILEGE_TYPE`: The privilege type to be granted. Only one privilege type is shown in each row.
+- `IS_GRANTABLE`: If you have the `GRANT OPTION` privilege, the value is `YES`; otherwise, the value is `NO`.
+
+## `mysql` database
+
+### Grant system tables
+
+These system tables contain grant information about user accounts and their privileges:
+
+- `user`: user accounts, global privileges, and other non-privilege columns.
+- `db`: database-level privileges.
+- `tables_priv`: table-level privileges.
+- `columns_priv`: column-level privileges.
+- `procs_priv`: stored procedure and stored function privileges.
