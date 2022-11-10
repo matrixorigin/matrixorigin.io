@@ -42,7 +42,7 @@ You can use the `a1` to access MatrixOne, the code example is as follows:
 
 ### Check the `mo_role`, `mo_user` and `mo_user_grant`
 
-Through the `mo_role` table, you can see that two system roles, `accountadmin` and `public`, are initialized by default in `a1`, and their creator is `1`, the Owner is `0`, and the corresponding login account is ` root`, the role is `MOADMIN`.
+Through the `mo_role` table, you can see that two system roles, `accountadmin` and `public`, are initialized by default in `a1`, and their creator is `1`, the Owner is `0`, and the corresponding login account is `root`, the role is `MOADMIN`.
 
 The code example is as follows:
 
