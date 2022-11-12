@@ -1,30 +1,12 @@
-# **Install standalone MatrixOne**
+# Unit 2. Install standalone MatrixOne
 
-MatrixOne supports Linux and MacOS. You can install a standalone MatrixOne version by 3 methods:
+Congratulations!  Now that you've finished installing the dependency tools. Let's learn how to install the standalone MatrixOne.  
 
-- <p><a href="#code_source">Method 1: Building from source code</a>.</p>
-- <p><a href="#binary_packages">Method 2: Using binary package</a>.</p>
-- <p><a href="#use_docker">Method 3: Using Docker</a>.</p>
+To facilitate developers or technology enthusiasts with different operating habits to install the MatrixOne standalone version most conveniently and quickly, we provide the following three installation methods. You can choose the most suitable installation method for you according to your needs:
 
-Recommended hardware specification: x86 CPU with 4 cores and 32GB memory, with CentOS 7+ OS.
-
-For more information on the required operating system versions for deploying MatrixOne, see [Hardware and Operating system requirements](../FAQs/deployment-faqs.md)。
-
-## Before you start
-
-### 1. Install Go as necessary dependancy
-
-Go version 1.19 is required.
-
-### 2. Install MySQL Client
-
-MySQL version [8.0.30](https://dev.mysql.com/downloads/installer/) is recommended.
-
-To install MySQL client, enter into the [MySQL Community Downloads](https://dev.mysql.com/downloads/mysql/) download page:
-
-1. According to your System, Select **Select Operating System**.
-
-2. Click **Select OS Version** from the drop-down list.  Version 8.0.30 or later is recommended.
+- <p><a href="#code_source">Method 1: Building from source code</a>.</p> If you always need to get the latest version code, you can choose to install and deploy MatrixOne by **Building from source code**.
+- <p><a href="#binary_packages">Method 2: Using binary package</a>.</p> If you like installing the package directly, you can choose to install and deploy MatrixOne by **Using binary package**.
+- <p><a href="#use_docker">Method 3: Using Docker</a>.</p> If you usually use Docker, you can also install and deploy MatrixOne by **Using Docker**.
 
 ## <h2><a name="code_source">Method 1: Building from source code</a></h2>
 
@@ -32,109 +14,115 @@ To install MySQL client, enter into the [MySQL Community Downloads](https://dev.
 
 Depending on your needs, choose whether you want to keep your code up to date, or if you want to get the latest stable version of the code.
 
-#### Option 1: Get the MatrixOne(Develop Version) code to build
+=== "Get the MatrixOne(Develop Version) code to build"
 
-The **main** branch is the default branch, the code on the main branch is always up-to-date but not stable enough.
+     The **main** branch is the default branch, the code on the main branch is always up-to-date but not stable enough.
 
-1. Get the MatrixOne(Develop Version, also called Pre0.6 version) code:
+     1. Get the MatrixOne(Develop Version, also called Pre0.6 version) code:
 
-    ```
-    git clone https://github.com/matrixorigin/matrixone.git
-    cd matrixone
-    ```
+         ```
+         git clone https://github.com/matrixorigin/matrixone.git
+         cd matrixone
+         ```
 
-2. You can run `make debug`, `make clean`, or anything else our Makefile offers.
+     2. Run `make build` to compile the MatrixOne file:
 
-    ```
-    make build
-    ```
+         ```
+         make build
+         ```
 
-3. Launch MatrixOne server：
+         __Tips__: You can also run `make debug`, `make clean`, or anything else our `Makefile` offers, `make debug` can be used to debug the build process, and `make clean` can be used to clean up the build process.
 
-    !!! note
-         The startup-config file of MatrixOne(Develop Version) is different from the startup-config file of MatrixOne(Stable Version). The startup-config file code of MatrixOne(Develop Version) is as below:
+     3. Launch MatrixOne server：
 
-    ```
-    ./mo-service -cfg ./etc/cn-standalone-test.toml
-    ```
+         __Notes__: The startup-config file of MatrixOne(Develop Version) is different from the startup-config file of MatrixOne(Stable Version). The startup-config file code of MatrixOne(Develop Version) is as below:
 
-#### Option 2: Get the MatrixOne(Stable Version) code to build
+         ```
+         ./mo-service -cfg ./etc/cn-standalone-test.toml
+         ```
 
-1. If you want to get the latest stable version code released by MatrixOne, please switch to the branch of version **0.5.1** first.
+=== "Get the MatrixOne(Stable Version) code to build"
 
-    ```
-    git clone https://github.com/matrixorigin/matrixone.git
-    git checkout 0.5.1
-    cd matrixone
-    ```
+     1. If you want to get the latest stable version code released by MatrixOne, please switch to the branch of version **0.5.1** first.
 
-2. You can run `make debug`, `make clean`, or anything else our Makefile offers.
+         ```
+         git clone https://github.com/matrixorigin/matrixone.git
+         git checkout 0.5.1
+         cd matrixone
+         ```
 
-    ```
-    make config
-    make build
-    ```
+     2. Run `make config` and `make build` to compile the MatrixOne file:
 
-3. Launch MatrixOne server：
+         ```
+         make config
+         make build
+         ```
 
-    !!! note
-         The startup-config file of MatrixOne(Stable Version) is different from the startup-config file of MatrixOne(Develop Version). The startup-config file code of MatrixOne(Stable Version) is as below:
+         __Tips__: You can also run `make debug`, `make clean`, or anything else our `Makefile` offers, `make debug` can be used to debug the build process, and `make clean` can be used to clean up the build process.
 
-    ```
-    ./mo-server system_vars_config.toml
-    ```
+     3. Launch MatrixOne server：
+
+         __Notes__: The startup-config file of MatrixOne(Stable Version) is different from the startup-config file of MatrixOne(Develop Version). The startup-config file code of MatrixOne(Stable Version) is as below:
+
+         ```
+         ./mo-server system_vars_config.toml
+         ```
 
 ### 2. Connect to MatrixOne Server
 
-When you finish installing and starting MatrixOne, many logs are generated in startup mode. Then you can start a new terminal and connect to a matrixone, for more information on connecting to MatrixOne, see [Connect to MatrixOne server](connect-to-matrixone-server.md).
+When you finish installing and starting MatrixOne, many logs are generated in startup mode. Then you can start a new terminal and connect to MatrixOne, for more information on connecting to MatrixOne, see [Unit 3: Connect to MatrixOne server](connect-to-matrixone-server.md).
 
-## <h2><a name="binary_packages">Method 2: Downloading binary packages</a></h2>
+If you are interested in learning about other installation methods, please continue reading the following sections.
 
-For each release, you can download binary packages directly to run MatrixOne in the X86_64 Linux or Mac X86_64 environment.
+## <h2><a name="binary_packages">Method 2: Using binary packages</a></h2>
+
+From 0.3.0 release, you can download binary packages.
 
 ### 1. Download binary packages and decompress
 
-**Linux Environment**
+=== "**Linux Environment**"
 
-   + Downloading method 1:
+      **Download Method 1** and **Download Method 2** need to install the download tools `wget` and `curl` first. If you have not installed it, you can see [Unit 1. Install Dependency Tools](install-dependency-tool.md) to install the download tools.
 
-      ```bash
-      wget https://github.com/matrixorigin/matrixone/releases/download/v0.5.1/mo-server-v0.5.1-linux-amd64.zip
-      unzip mo-server-v0.5.1-linux-amd64.zip
-      ```
+     + **Downloading method 1: Using `wget` to install binary packages**
 
-   + Downloading method 2:
+        ```bash
+        wget https://github.com/matrixorigin/matrixone/releases/download/v0.5.1/mo-server-v0.5.1-linux-amd64.zip
+        unzip mo-server-v0.5.1-linux-amd64.zip
+        ```
 
-      ```bash
-      curl -OL https://github.com/matrixorigin/matrixone/releases/download/v0.5.1/mo-server-v0.5.1-linux-amd64.zip
-      unzip mo-server-v0.5.1-linux-amd64.zip
-      ```
+     + **Downloading method 2: Using `curl` to install binary packages**
 
-   + Downloading method 3:
+        ```bash
+        curl -OL https://github.com/matrixorigin/matrixone/releases/download/v0.5.1/mo-server-v0.5.1-linux-amd64.zip
+        unzip mo-server-v0.5.1-linux-amd64.zip
+        ```
 
-      Go to the [version 0.5.1](https://github.com/matrixorigin/matrixone/releases/tag/v0.5.1), pull down to find the **Assets** column, and click the installation package *mo-server-v0. 5.1-linux-amd64.zip* can be downloaded.
+     + **Downloading method 3: If you want a more intuitive way to download the page, you can go to the following page link and download**
 
-**MacOS Environment**
+        Go to the [version 0.5.1](https://github.com/matrixorigin/matrixone/releases/tag/v0.5.1), pull down to find the **Assets** column, and click the installation package *mo-server-v0. 5.1-linux-amd64.zip* can be downloaded.
 
-   + Downloading method 1:
+=== "**MacOS Environment**"
 
-      ```bash
-      wget https://github.com/matrixorigin/matrixone/releases/download/v0.5.1/mo-server-v0.5.1-darwin-x86_64.zip
-      unzip mo-server-v0.5.1-darwin-x86_64.zip
-      ```
+      **Download Method 1** and **Download Method 2** need to install the download tools `wget` and `curl` first. If you have not installed it, you can see [Unit 1. Install Dependency Tools](install-dependency-tool.md) to install the download tools.
 
-      MacOS does not contain the `wget` command by default. You need to install the `wget` command in advance. You can also download and install the binary packages by referring to *Download Method 2* as below.
+     + **Downloading method 1: Using `wget` to install binary packages**
 
-   + Downloading method 2:
+        ```bash
+        wget https://github.com/matrixorigin/matrixone/releases/download/v0.5.1/mo-server-v0.5.1-darwin-x86_64.zip
+        unzip mo-server-v0.5.1-darwin-x86_64.zip
+        ```
 
-      ```bash
-      curl -OL https://github.com/matrixorigin/matrixone/releases/download/v0.5.1/mo-server-v0.5.1-darwin-x86_64.zip
-      unzip mo-server-v0.5.1-darwin-x86_64.zip
-      ```
+     + **Downloading method 2: Using `curl` to install binary packages**
 
-   + Downloading method 3:
+        ```bash
+        curl -OL https://github.com/matrixorigin/matrixone/releases/download/v0.5.1/mo-server-v0.5.1-darwin-x86_64.zip
+        unzip mo-server-v0.5.1-darwin-x86_64.zip
+        ```
 
-      Go to the [version 0.5.1](https://github.com/matrixorigin/matrixone/releases/tag/v0.5.1), pull down to find the **Assets** column, and click the installation package *mo-server-v0.5.1-darwin-x86_64.zip* can be downloaded.
+     + **Downloading method 3: If you want a more intuitive way to download the page, you can go to the following page link and download**
+
+        Go to the [version 0.5.1](https://github.com/matrixorigin/matrixone/releases/tag/v0.5.1), pull down to find the **Assets** column, and click the installation package *mo-server-v0.5.1-darwin-x86_64.zip* can be downloaded.
 
 !!! info
     MatrixOne only supports installation on ARM chipset with source code build; if you are using MacOS M1 and above, for more information on using source code build to install MatrixOne, see <a href="#code_source">Method 1: Building from source code</a>. Using release binary files from X86 chipset will lead to unknown problems.
@@ -147,42 +135,38 @@ For each release, you can download binary packages directly to run MatrixOne in 
 
 ### 3. Connect to MatrixOne Server
 
-When you finish installing and starting MatrixOne, many logs are generated in startup mode. Then you can start a new terminal and connect to a matrixone, for more information on connecting to MatrixOne, see [Connect to MatrixOne server](connect-to-matrixone-server.md).
+When you finish installing and starting MatrixOne, many logs are generated in startup mode. Then you can start a new terminal and connect to MatrixOne, for more information on connecting to MatrixOne, see [Unit 3: Connect to MatrixOne server](connect-to-matrixone-server.md).
+
+If you are interested in learning about other installation methods, please continue reading the following sections.
 
 ## <h2><a name="use_docker">Method 3: Using docker</a></h2>
 
-### 1. Install Docker
+You need to install **Docker** first if you want to **Use Docker** to install MatrixOne. If you have not installed Docker, you can see [Unit 1. Install Dependency Tools](install-dependency-tool.md) to install the download Docker.
 
-Please verify that Docker daemon is running in the background:
-
-```
-docker --version
-```
-
-### 2. Create and run the container of MatrixOne
+### 1. Create and run the container of MatrixOne
 
 It will pull the image from Docker Hub if not exists. You can choose to pull the stable version image or the develop version image.
 
-- Stable Version Image(0.5.1 version)
+=== "Stable Version Image(0.5.1 version)"
 
-```bash
-docker run -d -p 6001:6001 --name matrixone matrixorigin/matrixone:0.5.1
-```
+     ```bash
+     docker run -d -p 6001:6001 --name matrixone matrixorigin/matrixone:0.5.1
+     ```
 
-- If you want to pull the develop version image, see [Docker Hub](https://hub.docker.com/r/matrixorigin/matrixone/tags), get the image tag. An example as below:
+=== "Develop Version Image(Pre0.6 version)"
 
-    Develop Version Image(Pre0.6 version)
+      If you want to pull the develop version image, see [Docker Hub](https://hub.docker.com/r/matrixorigin/matrixone/tags), get the image tag. An example as below:
 
-    ```bash
-    docker run -d -p 6001:6001 --name matrixone matrixorigin/matrixone:nightly-commitnumber
-    ```
+      ```bash
+      docker run -d -p 6001:6001 --name matrixone matrixorigin/matrixone:nightly-commitnumber
+      ```
 
-    !!! info
-         The *nightly* version is updated once a day.
+      !!! info
+          The *nightly* version is updated once a day.
 
-For the information on the user name and password, see the next step - Connect to MatrixOne Server.
+For the information on the user name and password, see step 3- Connect to MatrixOne Server.
 
-### 3. Mount the data directory(Optional)
+### 2. Mount the data directory(Optional)
 
 To customize the configuration file, you can mount the custom configuration file stored on the local disk.
 
@@ -199,9 +183,13 @@ docker run -d -p 6001:6001 -v ${path_name}/system_vars_config.toml:/system_vars_
 
 For more information on the description of *Docker run*, run the commands `docker run --help`.
 
-### 4. Connect to MatrixOne Server
+### 3. Connect to MatrixOne Server
 
-When you finish installing and starting MatrixOne, many logs are generated in startup mode. Then you can start a new terminal and connect to a matrixone, for more information on connecting to MatrixOne, see [Connect to MatrixOne server](connect-to-matrixone-server.md).
+When you finish installing and starting MatrixOne, many logs are generated in startup mode. Then you can start a new terminal and connect to MatrixOne, for more information on connecting to MatrixOne, see [Unit 3: Connect to MatrixOne server](connect-to-matrixone-server.md).
+
+## Next Unit
+
+[Unit 3. Connect to MatrixOne Server](connect-to-matrixone-server.md)
 
 ## Reference
 
