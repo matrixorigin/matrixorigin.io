@@ -16,7 +16,7 @@ The result returned by `TIMEDIFF()` is limited to the range allowed for TIME val
 
 |  Arguments   | Description  |
 |  ----  | ----  |
-| expr  | Required. expr1 and expr2 are strings which are converted to TIME or DATETIME expressions; these must be of the same type following conversion. Returns NULL if expr1 or expr2 is NULL.|
+|expr1,expr2  | Required. expr1 and expr2 are strings which are converted to TIME or DATETIME expressions; these must be of the same type following conversion. Returns NULL if expr1 or expr2 is NULL.|
 
 ## **Examples**
 
