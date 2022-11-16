@@ -34,7 +34,6 @@ Object permission can be classified into **Account Permission**, **User Permissi
 |OWNERSHIP|All permissions of the Account. The account can be set using `WITH GRANT OPTION`|
 |SHOW GRANT	|View the permission list of a role or user under the current account|
 
-
 ### User Permission
 
 |Permissions|Description|
