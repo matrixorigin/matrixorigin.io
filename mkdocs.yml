@@ -65,6 +65,7 @@ nav:
         - Create Database: MatrixOne/Develop/schema-design/create-database.md
         - Create Table: MatrixOne/Develop/schema-design/create-table.md
       - Import Data:
+        - Insert: MatrixOne/Develop/import-data/insert-data.md
         - Bulk Load:
           - Import the csv: MatrixOne/Develop/import-data/bulk-load/load-csv.md
           - Import the jsonlines: MatrixOne/Develop/import-data/bulk-load/load-jsonline.md
@@ -116,7 +117,7 @@ nav:
       - Access Control Overview: MatrixOne/Security/access-control-overview.md
       - Access Control Permission: MatrixOne/Security/access-control.md
       - TLS Introduction: MatrixOne/Security/TLS-introduction.md
-      - Quick start about Creating Account, User and Role: MatrixOne/Security/quick-start-account.md
+      - Quick Start: Creating Account, User and Role: MatrixOne/Security/quick-start-account.md
     - Reference:
       - SQL Reference:
         - DAL:
@@ -126,9 +127,8 @@ nav:
           - DROP ACCOUNT: MatrixOne/Reference/SQL-Reference/Database-Administration-Statements/drop-account.md
           - DROP USER: MatrixOne/Reference/SQL-Reference/Database-Administration-Statements/drop-user.md
           - DROP ROLE: MatrixOne/Reference/SQL-Reference/Database-Administration-Statements/drop-role.md
-          - GRANT:
-            - GRANT <privileges>: MatrixOne/Reference/SQL-Reference/Database-Administration-Statements/grant-privileges.md
-            - GRANT ROLE: MatrixOne/Reference/SQL-Reference/Database-Administration-Statements/grant-role.md
+          - GRANT: MatrixOne/Reference/SQL-Reference/Database-Administration-Statements/grant.md
+          - SHOW GRANT: MatrixOne/Reference/SQL-Reference/Database-Administration-Statements/show-grants.md
           - SET ROLE: MatrixOne/Reference/SQL-Reference/Database-Administration-Statements/set-role.md
           - REVOKE: MatrixOne/Reference/SQL-Reference/Database-Administration-Statements/revoke.md
         - DDL:
