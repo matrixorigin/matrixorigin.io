@@ -28,10 +28,6 @@ The code example is as follows:
 
 ### Use `a1` to access MatrixOne
 
-在 MatrixOne 中，租户（Account)之间的访问控制体系和数据都是完全隔离的，所以在访问不同的 租户（Account)时，需要分别做登录鉴权。
-
-你可以使用刚才创建的管理员用户访问 `a1`，代码示例如下：
-
 In MatrixOne, the access control system and data between accounts are completely isolated, so when accessing different accounts, separate login authentication is required.
 
 You can use the `a1` to access MatrixOne, the code example is as follows:
