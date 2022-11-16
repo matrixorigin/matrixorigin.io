@@ -4,15 +4,9 @@
 
 Make sure you have already [installed MatrixOne](install-standalone-matrixone.md).
 
-## **1. Install MySQL client**
+You can open a new terminal window and use the MySQL command line client to connect to the MatrixOne service.
 
-MatrixOne supports the MySQL wire protocol, so you can use MySQL client drivers to connect from various languages. For more information on connecting to MatrixOne through a MySQL client, see[Connect to the MatrixOne server through a client](../Develop/connect-mo/client-connect-to-matrixone.md).
-
-Currently, MatrixOne is only compatible with the Oracle MySQL client. This means that some features might not work with the MariaDB client or Percona client.
-
-If you have installed MySQL client, see the following steps.
-
-## **2. Connect to MatrixOne server**
+## **Connect to MatrixOne server**
 
 You can use the MySQL command-line client to connect to MatrixOne server:
 
@@ -20,12 +14,12 @@ You can use the MySQL command-line client to connect to MatrixOne server:
 mysql -h IP -P PORT -uUsername -p
 ```
 
-The connection string is the same format as MySQL accepts. You need to provide a user name and a password.
-
-Use the built-in test account for example:
+After you enter the preceding command, the terminal will prompt you to provide the username and password. You can use our built-in account:
 
 - user: dump
 - password: 111
+
+You can also use the following command line on the MySQL client to connect to the MatrixOne service:
 
 ```
 mysql -h 127.0.0.1 -P 6001 -udump -p
@@ -33,6 +27,8 @@ Enter password:
 ```
 
 Currently, MatrixOne only supports the TCP listener.
+
+## Reference
 
 For more information on connecting to MatriOne, see
 [Using client connect to the MatrixOne server](../Develop/connect-mo/client-connect-to-matrixone.md),[Connecting to MatrixOne with JDBC](../Develop/connect-mo/java-connect-to-matrixone/connect-mo-with-jdbc.md), and [Connecting to MatrixOne with Python](../Develop/connect-mo/python-connect-to-matrixone.md).
