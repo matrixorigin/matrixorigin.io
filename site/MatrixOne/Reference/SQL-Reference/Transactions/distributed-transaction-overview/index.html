@@ -13,7 +13,7 @@
     
     
       
-        <title>**AVG** - MatrixOne Docs</title>
+        <title>Distributed Transaction - MatrixOne Docs</title>
       
     
     
@@ -61,7 +61,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#avg" class="md-skip">
+        <a href="#distributed-transaction" class="md-skip">
           Skip to content
         </a>
       
@@ -101,7 +101,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              **AVG**
+              Distributed Transaction
             
           </span>
         </div>
@@ -193,13 +193,15 @@
         
   
   
+    
+  
 
 
   
   
   
     <li class="md-tabs__item">
-      <a href="../../../../.." class="md-tabs__link">
+      <a href="../../../../.." class="md-tabs__link md-tabs__link--active">
         MatrixOne
       </a>
     </li>
@@ -277,12 +279,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" checked>
       
       
       
@@ -448,8 +452,36 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../Get-Started/getting-started-with-mo.md" class="md-nav__link">
+        Quick Start Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Get-Started/install-dependency-tool.md" class="md-nav__link">
+        Unit 1. Install Dependency Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../Get-Started/install-standalone-matrixone/" class="md-nav__link">
-        Install and Launch MatrixOne
+        Unit 2. Install and Launch MatrixOne
       </a>
     </li>
   
@@ -463,7 +495,7 @@
   
     <li class="md-nav__item">
       <a href="../../../../Get-Started/connect-to-matrixone-server/" class="md-nav__link">
-        Connect to MatrixOne Server
+        Unit 3. Connect to MatrixOne Server
       </a>
     </li>
   
@@ -509,12 +541,14 @@
               
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4" type="checkbox" id="__nav_1_4" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4" type="checkbox" id="__nav_1_4" checked>
       
       
       
@@ -1004,12 +1038,14 @@
               
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4_6" type="checkbox" id="__nav_1_4_6" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4_6" type="checkbox" id="__nav_1_4_6" checked>
       
       
       
@@ -1032,7 +1068,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Transactions/transaction-overview/" class="md-nav__link">
+      <a href="../transaction-overview/" class="md-nav__link">
         Transaction Overview
       </a>
     </li>
@@ -1044,11 +1080,100 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../../Transactions/distributed-transaction-overview.md" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Distributed Transaction
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Distributed Transaction
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-the-transaction" class="md-nav__link">
+    What is the transaction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#isolation-level" class="md-nav__link">
+    Isolation level
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#transaction-types-in-matrixone" class="md-nav__link">
+    Transaction Types in MatrixOne
+  </a>
+  
+    <nav class="md-nav" aria-label="Transaction Types in MatrixOne">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#explicit-transaction-rules" class="md-nav__link">
+    Explicit transaction rules
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implicit-transaction-rules" class="md-nav__link">
+    Implicit Transaction Rules
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mvcc" class="md-nav__link">
+    MVCC
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#matrixone-transaction-flow" class="md-nav__link">
+    MatrixOne transaction flow
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1502,6 +1627,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Troubleshooting/error-code/" class="md-nav__link">
+        Error Code
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -1721,6 +1860,20 @@
     <li class="md-nav__item">
       <a href="../../../../Security/TLS-introduction/" class="md-nav__link">
         TLS Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Security/quick-start-account/" class="md-nav__link">
+        Quick start about Creating Account, User and Role
       </a>
     </li>
   
@@ -2066,7 +2219,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Data-Definition-Statements/create-external-table.md" class="md-nav__link">
+      <a href="../../Data-Definition-Statements/create-external-table/" class="md-nav__link">
         CREATE EXTERNAL TABLE
       </a>
     </li>
@@ -3746,7 +3899,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../avg/" class="md-nav__link">
+      <a href="../../Aggregate-Functions/avg/" class="md-nav__link">
         AVG
       </a>
     </li>
@@ -3760,7 +3913,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../count/" class="md-nav__link">
+      <a href="../../Aggregate-Functions/count/" class="md-nav__link">
         COUNT
       </a>
     </li>
@@ -3774,7 +3927,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../max/" class="md-nav__link">
+      <a href="../../Aggregate-Functions/max/" class="md-nav__link">
         MAX
       </a>
     </li>
@@ -3788,7 +3941,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../min/" class="md-nav__link">
+      <a href="../../Aggregate-Functions/min/" class="md-nav__link">
         MIN
       </a>
     </li>
@@ -3802,7 +3955,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../sum/" class="md-nav__link">
+      <a href="../../Aggregate-Functions/sum/" class="md-nav__link">
         SUM
       </a>
     </li>
@@ -3816,7 +3969,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../any-value/" class="md-nav__link">
+      <a href="../../Aggregate-Functions/any-value/" class="md-nav__link">
         ANY_VALUE
       </a>
     </li>
@@ -3830,7 +3983,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../bit_and/" class="md-nav__link">
+      <a href="../../Aggregate-Functions/bit_and/" class="md-nav__link">
         BIT_AND
       </a>
     </li>
@@ -3844,7 +3997,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../bit_or/" class="md-nav__link">
+      <a href="../../Aggregate-Functions/bit_or/" class="md-nav__link">
         BIT_OR
       </a>
     </li>
@@ -3858,7 +4011,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../bit_xor/" class="md-nav__link">
+      <a href="../../Aggregate-Functions/bit_xor/" class="md-nav__link">
         BIT_XOR
       </a>
     </li>
@@ -3872,7 +4025,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../stddev_pop/" class="md-nav__link">
+      <a href="../../Aggregate-Functions/stddev_pop/" class="md-nav__link">
         STDDEV_POP
       </a>
     </li>
@@ -3886,7 +4039,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../var/" class="md-nav__link">
+      <a href="../../Aggregate-Functions/var/" class="md-nav__link">
         VAR
       </a>
     </li>
@@ -4008,7 +4161,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Variable/custom-variable.md" class="md-nav__link">
+      <a href="../../../Variable/custom-variable/" class="md-nav__link">
         Custom variable
       </a>
     </li>
@@ -4688,6 +4841,34 @@
     <li class="md-nav__item">
       <a href="../../../Builtin-Functions/Datetime/current-timestamp/" class="md-nav__link">
         CURRENT_TIMESTAMP()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Builtin-Functions/Datetime/timediff/" class="md-nav__link">
+        TIMEDIFF()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Builtin-Functions/Datetime/datediff/" class="md-nav__link">
+        DATEDIFF()
       </a>
     </li>
   
@@ -5737,36 +5918,56 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#description" class="md-nav__link">
-    Description
+  <a href="#what-is-the-transaction" class="md-nav__link">
+    What is the transaction
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#syntax" class="md-nav__link">
-    Syntax
+  <a href="#isolation-level" class="md-nav__link">
+    Isolation level
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#arguments" class="md-nav__link">
-    Arguments
+  <a href="#transaction-types-in-matrixone" class="md-nav__link">
+    Transaction Types in MatrixOne
+  </a>
+  
+    <nav class="md-nav" aria-label="Transaction Types in MatrixOne">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#explicit-transaction-rules" class="md-nav__link">
+    Explicit transaction rules
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implicit-transaction-rules" class="md-nav__link">
+    Implicit Transaction Rules
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mvcc" class="md-nav__link">
+    MVCC
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#returned-value" class="md-nav__link">
-    Returned Value
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#examples" class="md-nav__link">
-    Examples
+  <a href="#matrixone-transaction-flow" class="md-nav__link">
+    MatrixOne transaction flow
   </a>
   
 </li>
@@ -5783,74 +5984,81 @@
             <article class="md-content__inner md-typeset">
               
                 
-<a href="https://github.com/matrixorigin/matrixone/edit/main/docs/en/MatrixOne/Reference/SQL-Reference/Aggregate-Functions/0.6-avg.md" title="Edit this page" class="md-content__button md-icon">
+<a href="https://github.com/matrixorigin/matrixone/edit/main/docs/en/MatrixOne/Reference/SQL-Reference/Transactions/distributed-transaction-overview.md" title="Edit this page" class="md-content__button md-icon">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
 </a>
 
 
 
-<h1 id="avg"><strong>AVG</strong></h1>
-<h2 id="description"><strong>Description</strong></h2>
-<p>Aggregate function.</p>
-<p>The AVG() function calculates the average value of the argument.</p>
-<h2 id="syntax"><strong>Syntax</strong></h2>
-<div class="highlight"><pre><span></span><code>&gt; AVG(expr)
-</code></pre></div>
-<h2 id="arguments"><strong>Arguments</strong></h2>
-<table>
-<thead>
-<tr>
-<th>Arguments</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>expr</td>
-<td>Any numerical expression</td>
-</tr>
-</tbody>
-</table>
-<h2 id="returned-value"><strong>Returned Value</strong></h2>
-<p>The arithmetic mean, always as Double.</p>
-<p>NaN if the input parameter is empty.</p>
-<h2 id="examples"><strong>Examples</strong></h2>
-<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="k">drop</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="n">tbl1</span><span class="p">,</span><span class="n">tbl2</span><span class="p">;</span><span class="w"></span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">tbl1</span><span class="w"> </span><span class="p">(</span><span class="n">col_1a</span><span class="w"> </span><span class="n">tinyint</span><span class="p">,</span><span class="w"> </span><span class="n">col_1b</span><span class="w"> </span><span class="nb">smallint</span><span class="p">,</span><span class="w"> </span><span class="n">col_1c</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">col_1d</span><span class="w"> </span><span class="nb">bigint</span><span class="p">,</span><span class="w"> </span><span class="n">col_1e</span><span class="w"> </span><span class="nb">char</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">);</span><span class="w"></span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">tbl1</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="ss">&quot;a&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">tbl1</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="ss">&quot;b&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">tbl1</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="ss">&quot;c&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">tbl1</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="ss">&quot;D&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">tbl1</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="ss">&quot;a&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">tbl1</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="ss">&quot;c&quot;</span><span class="p">);</span><span class="w"></span>
-
-<span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="k">avg</span><span class="p">(</span><span class="n">col_1c</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">tbl1</span><span class="p">;</span><span class="w"></span>
-<span class="o">+</span><span class="c1">-------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">avg</span><span class="p">(</span><span class="n">col_1c</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
-<span class="o">+</span><span class="c1">-------------+</span>
-<span class="o">|</span><span class="w">      </span><span class="mi">3</span><span class="p">.</span><span class="mi">5000</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
-<span class="o">+</span><span class="c1">-------------+</span>
-
-<span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="k">sum</span><span class="p">(</span><span class="n">col_1d</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">s1</span><span class="p">,</span><span class="k">avg</span><span class="p">(</span><span class="n">col_1d</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">a3</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">tbl1</span><span class="w"> </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">col_1e</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">s1</span><span class="w"> </span><span class="k">desc</span><span class="p">;</span><span class="w"></span>
-<span class="o">+</span><span class="c1">------+---------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">s1</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">a3</span><span class="w">      </span><span class="o">|</span><span class="w"></span>
-<span class="o">+</span><span class="c1">------+---------+</span>
-<span class="o">|</span><span class="w">   </span><span class="mi">21</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">10</span><span class="p">.</span><span class="mi">5000</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
-<span class="o">|</span><span class="w">   </span><span class="mi">18</span><span class="w"> </span><span class="o">|</span><span class="w">  </span><span class="mi">9</span><span class="p">.</span><span class="mi">0000</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
-<span class="o">|</span><span class="w">   </span><span class="mi">10</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">10</span><span class="p">.</span><span class="mi">0000</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
-<span class="o">|</span><span class="w">    </span><span class="mi">8</span><span class="w"> </span><span class="o">|</span><span class="w">  </span><span class="mi">8</span><span class="p">.</span><span class="mi">0000</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
-<span class="o">+</span><span class="c1">------+---------+</span>
-
-<span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="k">avg</span><span class="p">(</span><span class="n">col_1d</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">a1</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">tbl1</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">col_1d</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">13</span><span class="w"> </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">col_1e</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">a1</span><span class="p">;</span><span class="w"></span>
-<span class="o">+</span><span class="c1">---------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">a1</span><span class="w">      </span><span class="o">|</span><span class="w"></span>
-<span class="o">+</span><span class="c1">---------+</span>
-<span class="o">|</span><span class="w">  </span><span class="mi">8</span><span class="p">.</span><span class="mi">0000</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
-<span class="o">|</span><span class="w">  </span><span class="mi">9</span><span class="p">.</span><span class="mi">0000</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
-<span class="o">|</span><span class="w"> </span><span class="mi">10</span><span class="p">.</span><span class="mi">0000</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
-<span class="o">|</span><span class="w"> </span><span class="mi">10</span><span class="p">.</span><span class="mi">5000</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
-<span class="o">+</span><span class="c1">---------+</span>
-</code></pre></div>
+<h1 id="distributed-transaction">Distributed Transaction</h1>
+<h2 id="what-is-the-transaction">What is the transaction</h2>
+<p>The transaction is a program execution unit in the database that accesses and possibly updates various data items. It usually consists of one or more control statements combined with SQL statements. Usually, transactions need to have four characteristics of ACID:</p>
+<ul>
+<li><strong>Atomicity</strong></li>
+</ul>
+<p>The atomicity of a transaction means that a transaction is an indivisible unit, and the operations in a transaction either all or none of them occur.</p>
+<ul>
+<li><strong>Consistency</strong></li>
+</ul>
+<p>Transactional consistency means that data must remain correct and obey all data-related constraints before and after the transaction.</p>
+<ul>
+<li><strong>Isolation</strong></li>
+</ul>
+<p>The isolation of a transaction is that when multiple users access concurrently, the specified isolation level must be observed between transactions. Within the determined isolation level range, one transaction cannot be interfered with by another transaction.</p>
+<ul>
+<li><strong>Durability</strong>
+   Transaction durability means that when a transaction is committed in the database, its changes to the data are permanent, regardless of whether the database software is restarted.</li>
+</ul>
+<h2 id="isolation-level">Isolation level</h2>
+<p>Standard database isolation levels include <strong>Read Uncommitted</strong>, <strong>Read Committed</strong>, <strong>Repeatable read</strong>, <strong>Serializable</strong>, etc. In MatrixOne 0.6, the supported isolation level is <strong>Snapshot Isolation</strong>.</p>
+<p>Different from other isolation levels, snapshot isolation has the following characteristics:</p>
+<ul>
+<li>Snapshot isolation does not reflect changes made to data by other synchronized transactions for data read within a specified transaction. Specifies that the transaction uses the rows of data read at the beginning of this transaction.</li>
+<li>Data is not locked when read, so snapshot transactions do not prevent other transactions from writing data.</li>
+<li>Transactions that write data also do not prevent snapshot transactions from reading data.</li>
+</ul>
+<h2 id="transaction-types-in-matrixone">Transaction Types in MatrixOne</h2>
+<p>According to the distributed transaction type, it can be divided into optimistic and pessimistic transactions. MatrixOne adopts optimistic transactions, and the logical process of its processing is as follows:</p>
+<p>Step 1: Take a snapshot of the transaction-related data and cache it in memory.</p>
+<p>Step 2: Read and write snapshot data cached in memory.</p>
+<p>Step 3: Check the constraint integrity and data consistency at the time of submission, and roll back the whole transaction if it does not meet the requirement.</p>
+<p>According to the start and end of the transaction, the transaction is divided into an explicit transaction and an implicit transaction:</p>
+<ul>
+<li>Explicit transactions, which start with <code>BEGIN/START TRANSACTION</code> and end with <code>COMMIT/ROLLBACK</code>, allow users to clearly and unambiguously determine the start, end, and full content of the transaction.</li>
+<li>Implicit transaction, when the transaction start does not contain <code>BEGIN/START TRANSACTION</code>, the enabled transaction becomes an implicit transaction. The end of the transaction is determined according to the value of the system parameter <code>AUTOCOMMIT</code>.</li>
+<li>No matter the implicit transaction or explicit transaction, the data consistency will be checked when the user submits it. If any operation cannot be satisfied during the period, the entire transaction will be rolled back to ensure the principle of the transaction.</li>
+</ul>
+<h3 id="explicit-transaction-rules">Explicit transaction rules</h3>
+<ul>
+<li>An explicit transaction starts and ends with <code>BEGIN...END</code> or <code>START TRANSACTIONS...COMMIT/ROLLBACK</code>.</li>
+<li>In an explicit transaction, DML and DDL can exist simultaneously, but if the occurrence of DDL will affect the result of DML, such as <code>drop table</code> or <code>alter table</code>, the DDL will be judged to fail and report an error. Affected statements are committed or rolled back typically.</li>
+<li>In an explicit transaction, other straightforward transactions cannot be nested. For example, if <code>START TANSACTIONS</code> is encountered after <code>START TANSACTIONS</code>, all statements between two <code>START TANSACTIONS</code> will be forced to commit, regardless of the value of <code>AUTOCOMMIT</code> 1 or 0.</li>
+<li>In an explicit transaction, only DML and DDL can be included, and no parameter configuration or management commands can be modified, such as <code>set [parameter] = [value]</code>, <code>create user</code>, etc.</li>
+<li>In an explicit transaction, if an error occurs in a statement, to ensure the atomicity of the transaction, the error of a single statement at the time of commit will force the entire transaction to be rolled back.</li>
+</ul>
+<h3 id="implicit-transaction-rules">Implicit Transaction Rules</h3>
+<ul>
+<li>When <code>AUTOCOMMIT</code> changes, all previously uncommitted DML statements are automatically committed.</li>
+<li>With <code>AUTOCOMMIT=1</code>, each DML statement is a separate transaction, committed immediately after execution.</li>
+<li>In the case of <code>AUTOCOMMIT=0</code>, each DML statement will not be committed immediately after execution, you need to manually perform <code>COMMIT</code> or <code>ROLLBACK</code>, if the client exits without committing or rolling back, then Rollback by default.</li>
+<li>In the case of <code>AUTOCOMMIT=0</code>, in the case of uncommitted DML, if the DDL that appears has no effect on the result of the previous DML, then the DDL will take effect when it is submitted; if it has an effect on the previous DML , such as <code>drop table</code> or <code>alter table</code>, an error is reported to indicate that the statement failed to execute. When committing or rolling back, the unaffected statement is normally committed or rolled back.</li>
+</ul>
+<h2 id="mvcc">MVCC</h2>
+<p>MVCC (Multiversion Concurrency Control) is applied to MatrixOne to ensure transaction snapshot and achieve transaction isolation.</p>
+<p>Create a Latch Free linked list based on the pointer field of the data tuple (Tuple, that is, each row in the table), called the version chain. This version chain allows the database to locate the desired version of a Tuple. Therefore, the storage mechanism of these versions of data is an essential consideration in the design of the database storage engine.</p>
+<p>One solution is the Append Only mechanism, where all tuple versions of a table are stored in the same storage space. This method is used in Postgre SQL. To update an existing Tuple, the database first fetches an empty slot from the table for the new version; then, it copies the current version's contents to the latest version. Finally, it applies the modifications to the Tuple in the newly allocated Slot. The critical decision of the Append Only mechanism is how to order the version chain of Tuple. Since it is impossible to maintain a lock-free doubly linked list, the version chain only points in one direction, either from Old to New (O2N) or New to Old (N2O).</p>
+<p>Another similar scheme is called Time Travel, which stores the information of the version chain separately, while the main table maintains the main version data.</p>
+<p>The third option is to maintain the main version of the tuple in the main table, and maintain a series of delta versions in a separate database comparison tool (delta) store. This storage is called a rollback segment in MySQL and Oracle. To update an existing tuple, the database fetches a contiguous space from the delta store to create a new delta version. This delta version contains the original value of the modified property, not the entire tuple. Then the database directly updates the main version in the main table (In Place Update).</p>
+<p><img alt="image-20221026152318567" src="https://github.com/matrixorigin/artwork/blob/main/docs/distributed-transaction/mvcc.jpg" /></p>
+<h2 id="matrixone-transaction-flow">MatrixOne transaction flow</h2>
+<p>MatrixOne's CN (Coordinator, node) and DN (Data Node, data node) are participants in important nodes, a complete transaction process.</p>
+<ol>
+<li>The transaction CN accepts the transaction initiation request and generates the transaction TID (Transaction ID, ID).</li>
+<li>CN determines which DN needs to synchronize log collection (Logtail) and then directly synchronizes Logtail from a specific DN.</li>
+<li>According to the CN's post-tracking space log collection (log), the CN receives the Logtail application workspace (Workspace).</li>
+<li>The CN pushes the commit or rollback request of the transaction to the DN, and the DN decides the transaction.</li>
+<li>DN controls the MVCC mechanism and persists transaction logs to the server (Log service).</li>
+</ol>
 
               
             </article>
@@ -5860,6 +6068,41 @@
       </main>
       
         <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../transaction-overview/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Transaction Overview" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Transaction Overview
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../../../../Tutorial/develop-java-crud-demo/" class="md-footer__link md-footer__link--next" aria-label="Next: Build a simple Java CRUD demo with MatrixOne" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Build a simple Java CRUD demo with MatrixOne
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">

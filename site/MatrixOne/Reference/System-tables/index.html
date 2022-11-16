@@ -61,7 +61,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#matrixone-catalog" class="md-skip">
+        <a href="#matrixone-system-database-and-tables" class="md-skip">
           Skip to content
         </a>
       
@@ -452,8 +452,36 @@
   
   
     <li class="md-nav__item">
+      <a href="../../Get-Started/getting-started-with-mo.md" class="md-nav__link">
+        Quick Start Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Get-Started/install-dependency-tool.md" class="md-nav__link">
+        Unit 1. Install Dependency Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../Get-Started/install-standalone-matrixone/" class="md-nav__link">
-        Install and Launch MatrixOne
+        Unit 2. Install and Launch MatrixOne
       </a>
     </li>
   
@@ -467,7 +495,7 @@
   
     <li class="md-nav__item">
       <a href="../../Get-Started/connect-to-matrixone-server/" class="md-nav__link">
-        Connect to MatrixOne Server
+        Unit 3. Connect to MatrixOne Server
       </a>
     </li>
   
@@ -1050,7 +1078,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../SQL-Reference/Transactions/distributed-transaction-overview.md" class="md-nav__link">
+      <a href="../SQL-Reference/Transactions/distributed-transaction-overview/" class="md-nav__link">
         Distributed Transaction
       </a>
     </li>
@@ -1506,6 +1534,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Troubleshooting/error-code/" class="md-nav__link">
+        Error Code
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -1725,6 +1767,20 @@
     <li class="md-nav__item">
       <a href="../../Security/TLS-introduction/" class="md-nav__link">
         TLS Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Security/quick-start-account/" class="md-nav__link">
+        Quick start about Creating Account, User and Role
       </a>
     </li>
   
@@ -2072,7 +2128,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../SQL-Reference/Data-Definition-Statements/create-external-table.md" class="md-nav__link">
+      <a href="../SQL-Reference/Data-Definition-Statements/create-external-table/" class="md-nav__link">
         CREATE EXTERNAL TABLE
       </a>
     </li>
@@ -4014,7 +4070,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../SQL-Reference/Variable/custom-variable.md" class="md-nav__link">
+      <a href="../Variable/custom-variable/" class="md-nav__link">
         Custom variable
       </a>
     </li>
@@ -4700,6 +4756,34 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Builtin-Functions/Datetime/timediff/" class="md-nav__link">
+        TIMEDIFF()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Builtin-Functions/Datetime/datediff/" class="md-nav__link">
+        DATEDIFF()
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -5147,37 +5231,221 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#mo_database-table" class="md-nav__link">
-    mo_database table
+  <a href="#mo_catalog-database" class="md-nav__link">
+    mo_catalog database
+  </a>
+  
+    <nav class="md-nav" aria-label="mo_catalog database">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mo_database-table-non-sys-account-access-it-as-view" class="md-nav__link">
+    mo_database table (Non-sys account access it as view)
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#mo_tables-table" class="md-nav__link">
-    mo_tables table
+        
+          <li class="md-nav__item">
+  <a href="#mo_tables-table-non-sys-account-access-it-as-view" class="md-nav__link">
+    mo_tables table (Non-sys account access it as view)
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#mo_columns-table" class="md-nav__link">
-    mo_columns table
+        
+          <li class="md-nav__item">
+  <a href="#mo_columns-table-non-sys-account-access-it-as-view" class="md-nav__link">
+    mo_columns table (Non-sys account access it as view)
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
+  <a href="#mo_account-table-only-sys-account-has-access" class="md-nav__link">
+    mo_account table (Only sys account has access)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mo_role-table" class="md-nav__link">
+    mo_role table
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#mo_global_variables-table" class="md-nav__link">
     mo_global_variables table
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#mo_user-table" class="md-nav__link">
     mo_user table
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mo_user_grant-user" class="md-nav__link">
+    mo_user_grant user
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mo_role_grant-user" class="md-nav__link">
+    mo_role_grant user
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mo_role_privs-user" class="md-nav__link">
+    mo_role_privs user
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#system_metrics-database" class="md-nav__link">
+    system_metrics database
+  </a>
+  
+    <nav class="md-nav" aria-label="system_metrics database">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metrics-table" class="md-nav__link">
+    metrics table
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#system-database" class="md-nav__link">
+    system database
+  </a>
+  
+    <nav class="md-nav" aria-label="system database">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#statement_info-table" class="md-nav__link">
+    statement_info table
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rawlog-table" class="md-nav__link">
+    rawlog table
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#information_schema-database" class="md-nav__link">
+    information_schema database
+  </a>
+  
+    <nav class="md-nav" aria-label="information_schema database">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tables-for-mysql-compatibility" class="md-nav__link">
+    Tables for MySQL compatibility
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#character_sets-table" class="md-nav__link">
+    CHARACTER_SETS table
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#columns-table" class="md-nav__link">
+    COLUMNS table
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#engines-table" class="md-nav__link">
+    ENGINES table
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#processlist-table" class="md-nav__link">
+    PROCESSLIST table
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#schemata-table" class="md-nav__link">
+    SCHEMATA table
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tables-table" class="md-nav__link">
+    TABLES table
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user_privileges-table" class="md-nav__link">
+    USER_PRIVILEGES table
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mysql-database" class="md-nav__link">
+    mysql database
+  </a>
+  
+    <nav class="md-nav" aria-label="mysql database">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#grant-system-tables" class="md-nav__link">
+    Grant system tables
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -5812,37 +6080,221 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#mo_database-table" class="md-nav__link">
-    mo_database table
+  <a href="#mo_catalog-database" class="md-nav__link">
+    mo_catalog database
+  </a>
+  
+    <nav class="md-nav" aria-label="mo_catalog database">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mo_database-table-non-sys-account-access-it-as-view" class="md-nav__link">
+    mo_database table (Non-sys account access it as view)
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#mo_tables-table" class="md-nav__link">
-    mo_tables table
+        
+          <li class="md-nav__item">
+  <a href="#mo_tables-table-non-sys-account-access-it-as-view" class="md-nav__link">
+    mo_tables table (Non-sys account access it as view)
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#mo_columns-table" class="md-nav__link">
-    mo_columns table
+        
+          <li class="md-nav__item">
+  <a href="#mo_columns-table-non-sys-account-access-it-as-view" class="md-nav__link">
+    mo_columns table (Non-sys account access it as view)
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
+  <a href="#mo_account-table-only-sys-account-has-access" class="md-nav__link">
+    mo_account table (Only sys account has access)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mo_role-table" class="md-nav__link">
+    mo_role table
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#mo_global_variables-table" class="md-nav__link">
     mo_global_variables table
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#mo_user-table" class="md-nav__link">
     mo_user table
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mo_user_grant-user" class="md-nav__link">
+    mo_user_grant user
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mo_role_grant-user" class="md-nav__link">
+    mo_role_grant user
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mo_role_privs-user" class="md-nav__link">
+    mo_role_privs user
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#system_metrics-database" class="md-nav__link">
+    system_metrics database
+  </a>
+  
+    <nav class="md-nav" aria-label="system_metrics database">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metrics-table" class="md-nav__link">
+    metrics table
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#system-database" class="md-nav__link">
+    system database
+  </a>
+  
+    <nav class="md-nav" aria-label="system database">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#statement_info-table" class="md-nav__link">
+    statement_info table
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rawlog-table" class="md-nav__link">
+    rawlog table
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#information_schema-database" class="md-nav__link">
+    information_schema database
+  </a>
+  
+    <nav class="md-nav" aria-label="information_schema database">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tables-for-mysql-compatibility" class="md-nav__link">
+    Tables for MySQL compatibility
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#character_sets-table" class="md-nav__link">
+    CHARACTER_SETS table
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#columns-table" class="md-nav__link">
+    COLUMNS table
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#engines-table" class="md-nav__link">
+    ENGINES table
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#processlist-table" class="md-nav__link">
+    PROCESSLIST table
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#schemata-table" class="md-nav__link">
+    SCHEMATA table
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tables-table" class="md-nav__link">
+    TABLES table
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user_privileges-table" class="md-nav__link">
+    USER_PRIVILEGES table
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mysql-database" class="md-nav__link">
+    mysql database
+  </a>
+  
+    <nav class="md-nav" aria-label="mysql database">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#grant-system-tables" class="md-nav__link">
+    Grant system tables
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -5864,747 +6316,343 @@
 
 
 
-<h1 id="matrixone-catalog">MatrixOne Catalog</h1>
-<p>MatrixOne catalog is a component where MatrixOne stores system information. We can access the system information by <code>mo_catalog</code> database.  The <code>mo_catalog</code> database is created by MatrixOne at initialization.</p>
-<p>In 0.5.1, the <code>mo_catalog</code> is not fully implemented, users can check basic information about the their database and tables, but writing values into <code>mo_catalog</code> by users is not supported yet.</p>
-<p>There are three tables in the <code>mo_catalog</code> database:</p>
-<h2 id="mo_database-table">mo_database table</h2>
-<p>This table contains the database information.</p>
-<ul>
-<li>table structure:</li>
-</ul>
+<h1 id="matrixone-system-database-and-tables">MatrixOne System Database and Tables</h1>
+<p>MatrixOne system database and tables are where MatrixOne stores system information. We can access the system information by them. There are 6 system databases created by MatrixOne at initialization: <code>mo_catalog</code>, <code>information_schema</code>, <code>system_metrcis</code>, <code>system</code>, <code>mysql</code>,<code>mo_task</code>. <code>mo_task</code> is under development and has no direct impact with users. The other system databases and tables functions are described in this document.</p>
+<h2 id="mo_catalog-database"><code>mo_catalog</code> database</h2>
+<p><code>mo_catalog</code> is used to store the metadata of MatrixOne objects: databases, tables, columns, system variables, accounts, users and roles.</p>
+<p>As MatrixOne 0.6 has introduced the concept of multi-tenancy, the default <code>sys</code> account and other accounts have slightly different behaviors. For <code>sys</code> account, as admin for the multi-tenancy management, has full access to three system tables, <code>mo_database</code>, <code>mo_tables</code>, <code>mo_columns</code>, while other accounts access these three tables as <code>views</code>. <code>sys</code> account has also a reserved system table <code>mo_account</code> which serves the multi-tenancy management.</p>
+<h3 id="mo_database-table-non-sys-account-access-it-as-view">mo_database table (Non-sys account access it as view)</h3>
 <table>
 <thead>
 <tr>
-<th>Attributes</th>
-<th>Type</th>
-<th>Primary key</th>
-<th>Description</th>
+<th>column</th>
+<th>type</th>
+<th>comments</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>datname</td>
-<td>varchar(256)</td>
+<td>dat_id</td>
+<td>bigint unsigned</td>
 <td>Primary key</td>
-<td>database name</td>
+</tr>
+<tr>
+<td>datname</td>
+<td>varchar(100)</td>
+<td>Database name</td>
 </tr>
 <tr>
 <td>dat_catalog_name</td>
-<td>varchar(256)</td>
-<td></td>
-<td>catalog name</td>
+<td>varchar(100)</td>
+<td>Database catalog name, default as <code>def</code></td>
 </tr>
 <tr>
 <td>dat_createsql</td>
-<td>varchar(4096)</td>
-<td></td>
-<td>create sql</td>
+<td>varchar(100)</td>
+<td>Database creation SQL statement</td>
+</tr>
+<tr>
+<td>owner</td>
+<td>int unsigned</td>
+<td>role_id</td>
+</tr>
+<tr>
+<td>creator</td>
+<td>int unsigned</td>
+<td>user_id</td>
+</tr>
+<tr>
+<td>created_time</td>
+<td>timestamp</td>
+<td>Create time</td>
+</tr>
+<tr>
+<td>account_id</td>
+<td>int unsigned</td>
+<td>account id</td>
 </tr>
 </tbody>
 </table>
-<ul>
-<li>table initial rows:</li>
-</ul>
-<p>At initialization, <code>mo_database</code> have some default rows in place.</p>
+<h3 id="mo_tables-table-non-sys-account-access-it-as-view">mo_tables table (Non-sys account access it as view)</h3>
 <table>
 <thead>
 <tr>
-<th>datname</th>
-<th>dat_catalog_name</th>
-<th>dat_createsql</th>
+<th>column</th>
+<th>type</th>
+<th>comments</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>mo_catalog</td>
-<td>def</td>
-<td>hardcode</td>
+<td>rel_id</td>
+<td>bigint unsigned</td>
+<td>Primary key</td>
 </tr>
-<tr>
-<td>information_schema</td>
-<td>def</td>
-<td>create database if not exists information_schema</td>
-</tr>
-<tr>
-<td>system_metrics</td>
-<td>def</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h2 id="mo_tables-table">mo_tables table</h2>
-<p>This table contains the information about the table, index, view etc.</p>
-<ul>
-<li>table structure:</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>Attributes</th>
-<th>Type</th>
-<th>Primary key</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
 <tr>
 <td>relname</td>
-<td>varchar(256)</td>
-<td>PK</td>
+<td>varchar(100)</td>
 <td>Name of the table, index, view, etc.</td>
 </tr>
 <tr>
 <td>reldatabase</td>
-<td>varchar(256)</td>
-<td>PK,FK</td>
+<td>varchar(100)</td>
 <td>The database that contains this relation. reference mo_database.datname</td>
 </tr>
 <tr>
+<td>reldatabase_id</td>
+<td>bigint unsigned</td>
+<td>The database id that contains this relation. reference mo_database.datid</td>
+</tr>
+<tr>
 <td>relpersistence</td>
-<td>char(1)</td>
-<td></td>
+<td>varchar(100)</td>
 <td>p = permanent table, t = temporary table</td>
 </tr>
 <tr>
 <td>relkind</td>
-<td>char(1)</td>
-<td></td>
-<td>r = ordinary table, i = index, S = sequence, v = view, m = materialized view</td>
+<td>varchar(100)</td>
+<td>r = ordinary table, e = external table, i = index, S = sequence, v = view, m = materialized view</td>
 </tr>
 <tr>
 <td>rel_comment</td>
-<td>varchar(1024)</td>
+<td>varchar(100)</td>
 <td></td>
-<td>comment</td>
 </tr>
 <tr>
 <td>rel_createsql</td>
-<td>varchar(4096)</td>
-<td></td>
-<td>create sql</td>
+<td>varchar(100)</td>
+<td>Table creation SQL statement</td>
+</tr>
+<tr>
+<td>created_time</td>
+<td>timestamp</td>
+<td>Create time</td>
+</tr>
+<tr>
+<td>creator</td>
+<td>int unsigned</td>
+<td>Creator ID</td>
+</tr>
+<tr>
+<td>owner</td>
+<td>int unsigned</td>
+<td>creator's default role id</td>
+</tr>
+<tr>
+<td>account_id</td>
+<td>int unsigned</td>
+<td>account id</td>
+</tr>
+<tr>
+<td>partitioned</td>
+<td>text</td>
+<td>Partition by statement</td>
+</tr>
+<tr>
+<td>viewdef</td>
+<td>text</td>
+<td>view definition statement</td>
 </tr>
 </tbody>
 </table>
-<ul>
-<li>table initial rows:</li>
-</ul>
-<p>At initialization, <code>mo_tables</code> have some default rows in place.</p>
+<h3 id="mo_columns-table-non-sys-account-access-it-as-view">mo_columns table (Non-sys account access it as view)</h3>
 <table>
 <thead>
 <tr>
-<th>relname</th>
-<th>reldatabase</th>
-<th>repersistence</th>
-<th>relkind</th>
-<th>rel_createsql</th>
-<th>rel_comment</th>
+<th>column</th>
+<th>type</th>
+<th>comments</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>mo_database</td>
-<td>mo_catalog</td>
-<td>'p'</td>
-<td>'r'</td>
-<td>tae hardcode</td>
-<td>databases</td>
+<td>att_uniq_name</td>
+<td>varchar(256)</td>
+<td>Primary Key. Hidden, composite primary key, format is like "${att_relname_id}-${attname}"</td>
 </tr>
 <tr>
-<td>mo_tables</td>
-<td>mo_catalog</td>
-<td>'p'</td>
-<td>'r'</td>
-<td>tae hardcode</td>
-<td>tables</td>
+<td>account_id</td>
+<td>int unsigned</td>
+<td>accountID</td>
 </tr>
 <tr>
-<td>mo_columns</td>
-<td>mo_catalog</td>
-<td>'p'</td>
-<td>'r'</td>
-<td>tae hardcode</td>
-<td>columns</td>
+<td>att_database_id</td>
+<td>bigint unsigned</td>
+<td>databaseID</td>
 </tr>
-<tr>
-<td>mo_global_variables</td>
-<td>mo_catalog</td>
-<td>'p'</td>
-<td>'r'</td>
-<td>create sql</td>
-<td>system variables</td>
-</tr>
-<tr>
-<td>mo_user</td>
-<td>mo_catalog</td>
-<td>'p'</td>
-<td>'r'</td>
-<td>create sql</td>
-<td>user</td>
-</tr>
-<tr>
-<td>schemata</td>
-<td>information_schema</td>
-<td>'p'</td>
-<td>'v'</td>
-<td>create sql</td>
-<td>schemas</td>
-</tr>
-<tr>
-<td>tables</td>
-<td>information_schema</td>
-<td>'p'</td>
-<td>'v'</td>
-<td>create sql</td>
-<td>tables</td>
-</tr>
-<tr>
-<td>columns</td>
-<td>information_schema</td>
-<td>'p'</td>
-<td>'v'</td>
-<td>create sql</td>
-<td>columns</td>
-</tr>
-<tr>
-<td>key_column_usage</td>
-<td>information_schema</td>
-<td>'p'</td>
-<td>'v'</td>
-<td>create sql</td>
-<td>columns related to unique, primary key, or foreign key</td>
-</tr>
-<tr>
-<td>views</td>
-<td>information_schema</td>
-<td>'p'</td>
-<td>'v'</td>
-<td>create sql</td>
-<td>views</td>
-</tr>
-</tbody>
-</table>
-<h2 id="mo_columns-table">mo_columns table</h2>
-<p>This table contains the information about the table attributes.</p>
-<ul>
-<li>table structure:</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>Attributes</th>
-<th>Type</th>
-<th>Primary key</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
 <tr>
 <td>att_database</td>
 <td>varchar(256)</td>
-<td>PK</td>
-<td>database</td>
+<td>database Name</td>
+</tr>
+<tr>
+<td>att_relname_id</td>
+<td>bigint unsigned</td>
+<td>table id</td>
 </tr>
 <tr>
 <td>att_relname</td>
 <td>varchar(256)</td>
-<td>PK,UK</td>
 <td>The table this column belongs to.(references mo_tables.relname)</td>
 </tr>
 <tr>
 <td>attname</td>
 <td>varchar(256)</td>
-<td>PK</td>
 <td>The column name</td>
 </tr>
 <tr>
 <td>atttyp</td>
-<td>int</td>
-<td></td>
+<td>varchar(256)</td>
 <td>The data type of this column (zero for a dropped column).</td>
 </tr>
 <tr>
 <td>attnum</td>
 <td>int</td>
-<td>UK</td>
 <td>The number of the column. Ordinary columns are numbered from 1 up.</td>
 </tr>
 <tr>
 <td>att_length</td>
 <td>int</td>
-<td></td>
 <td>bytes count for the type.</td>
 </tr>
 <tr>
 <td>attnotnull</td>
 <td>tinyint(1)</td>
-<td></td>
 <td>This represents a not-null constraint.</td>
 </tr>
 <tr>
 <td>atthasdef</td>
 <td>tinyint(1)</td>
-<td></td>
 <td>This column has a default expression or generation expression.</td>
 </tr>
 <tr>
 <td>att_default</td>
 <td>varchar(1024)</td>
-<td></td>
 <td>default expression</td>
 </tr>
 <tr>
 <td>attisdropped</td>
 <td>tinyint(1)</td>
-<td></td>
 <td>This column has been dropped and is no longer valid. A dropped column is still physically present in the table, but is ignored by the parser and so cannot be accessed via SQL.</td>
 </tr>
 <tr>
 <td>att_constraint_type</td>
 <td>char(1)</td>
-<td></td>
 <td>p = primary key constraint, n=no constraint</td>
 </tr>
 <tr>
 <td>att_is_unsigned</td>
 <td>tinyint(1)</td>
-<td></td>
 <td>unsigned or not</td>
 </tr>
 <tr>
 <td>att_is_auto_increment</td>
-<td>tinyint</td>
-<td></td>
+<td>tinyint(1)</td>
 <td>auto increment or not</td>
 </tr>
 <tr>
 <td>att_comment</td>
 <td>varchar(1024)</td>
-<td></td>
 <td>comment</td>
 </tr>
 <tr>
 <td>att_is_hidden</td>
 <td>tinyint(1)</td>
-<td></td>
 <td>hidden or not</td>
+</tr>
+<tr>
+<td>attr_has_update</td>
+<td>tinyint(1)</td>
+<td>This columns has update expression</td>
+</tr>
+<tr>
+<td>attr_update</td>
+<td>varchar(1024)</td>
+<td>update expression</td>
 </tr>
 </tbody>
 </table>
-<ul>
-<li>table initial rows:</li>
-</ul>
+<h3 id="mo_account-table-only-sys-account-has-access">mo_account table (Only sys account has access)</h3>
 <table>
 <thead>
 <tr>
-<th>att_database</th>
-<th>att_relname</th>
-<th>attname</th>
-<th>atttyp</th>
-<th>attnum</th>
-<th>attnotnull</th>
-<th>atthasdef</th>
-<th>att_default</th>
-<th>attisdropped</th>
-<th>att_constraint_type</th>
-<th>att_is_unsigned</th>
-<th>att_is_auto_increment</th>
-<th>att_comment</th>
-<th>att_is_hidden</th>
+<th>column</th>
+<th>type</th>
+<th>comments</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>mo_catalog</td>
-<td>mo_database</td>
-<td>datname</td>
-<td>varchar</td>
-<td>0</td>
-<td>1</td>
-<td>0</td>
-<td>''</td>
-<td>0</td>
-<td>'p'</td>
-<td>0</td>
-<td>0</td>
-<td>'database name'</td>
-<td>0</td>
+<td>account_id</td>
+<td>int unsigned</td>
+<td>Primary key</td>
 </tr>
 <tr>
-<td>mo_catalog</td>
-<td>mo_database</td>
-<td>dat_catalog_name</td>
-<td>varchar</td>
-<td>1</td>
-<td>1</td>
-<td>0</td>
-<td>''</td>
-<td>0</td>
-<td>'p'</td>
-<td>0</td>
-<td>0</td>
-<td>'catalog'</td>
-<td>0</td>
+<td>account_name</td>
+<td>varchar(100)</td>
+<td>account name</td>
 </tr>
 <tr>
-<td>mo_catalog</td>
-<td>mo_database</td>
-<td>dat_createsql</td>
-<td>varchar</td>
-<td>2</td>
-<td>1</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td>status</td>
+<td>varchar(100)</td>
+<td>open/suspend</td>
 </tr>
 <tr>
-<td>mo_catalog</td>
-<td>mo_tables</td>
-<td>relname</td>
-<td>varchar</td>
-<td>0</td>
-<td>1</td>
-<td></td>
-<td></td>
-<td></td>
-<td>'p'</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td>created_time</td>
+<td>timestamp</td>
+<td>create time</td>
 </tr>
 <tr>
-<td>mo_catalog</td>
-<td>mo_tables</td>
-<td>reldatabase</td>
-<td>varchar</td>
-<td>1</td>
-<td>1</td>
-<td></td>
-<td></td>
-<td></td>
-<td>'p'</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>mo_catalog</td>
-<td>mo_tables</td>
-<td>relpersistence</td>
-<td>char</td>
-<td>2</td>
-<td>1</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>mo_catalog</td>
-<td>mo_tables</td>
-<td>relkind</td>
-<td>char</td>
-<td>3</td>
-<td>1</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>mo_catalog</td>
-<td>mo_tables</td>
-<td>rel_createsql</td>
-<td>varchar</td>
-<td>4</td>
-<td>0</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>mo_catalog</td>
-<td>mo_tables</td>
-<td>rel_comment</td>
-<td>varchar</td>
-<td>5</td>
-<td>0</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>mo_catalog</td>
-<td>mo_columns</td>
-<td>att_database</td>
-<td>varchar</td>
-<td>0</td>
-<td>1</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>mo_catalog</td>
-<td>mo_columns</td>
-<td>att_relname</td>
-<td>varchar</td>
-<td>1</td>
-<td>1</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>mo_catalog</td>
-<td>mo_columns</td>
-<td>attname</td>
-<td>varchar</td>
-<td>2</td>
-<td>1</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>mo_catalog</td>
-<td>mo_columns</td>
-<td>atttyp</td>
-<td>int</td>
-<td>3</td>
-<td>1</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>mo_catalog</td>
-<td>mo_columns</td>
-<td>attnum</td>
-<td>int</td>
-<td>4</td>
-<td>1</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>mo_catalog</td>
-<td>mo_columns</td>
-<td>attnotnull</td>
-<td>tinyint</td>
-<td>5</td>
-<td>1</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>mo_catalog</td>
-<td>mo_columns</td>
-<td>atthasdef</td>
-<td>tinyint</td>
-<td>6</td>
-<td>1</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>mo_catalog</td>
-<td>mo_columns</td>
-<td>att_default</td>
-<td>varchar</td>
-<td>7</td>
-<td>0</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>mo_catalog</td>
-<td>mo_columns</td>
-<td>attisdropped</td>
-<td>tinyint</td>
-<td>8</td>
-<td>1</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>mo_catalog</td>
-<td>mo_columns</td>
-<td>att_constraint_type</td>
-<td>char</td>
-<td>9</td>
-<td>1</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>mo_catalog</td>
-<td>mo_columns</td>
-<td>att_is_unsigned</td>
-<td>tinyint</td>
-<td>10</td>
-<td>1</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>mo_catalog</td>
-<td>mo_columns</td>
-<td>att_is_auto_increment</td>
-<td>tinyint</td>
-<td>11</td>
-<td>1</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>mo_catalog</td>
-<td>mo_columns</td>
-<td>att_comment</td>
-<td>varchar</td>
-<td>12</td>
-<td>0</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>mo_catalog</td>
-<td>mo_columns</td>
-<td>att_is_hidden</td>
-<td>tinyint</td>
-<td>13</td>
-<td>1</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>...</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td>comments</td>
+<td>varchar(256)</td>
+<td>comment</td>
 </tr>
 </tbody>
 </table>
-<h2 id="mo_global_variables-table">mo_global_variables table</h2>
-<p>This table contains the information about the system variables.</p>
-<ul>
-<li>table structure:</li>
-</ul>
+<h3 id="mo_role-table">mo_role table</h3>
+<table>
+<thead>
+<tr>
+<th>column</th>
+<th>type</th>
+<th>comments</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>role_id</td>
+<td>int unsigned</td>
+<td>Primary key</td>
+</tr>
+<tr>
+<td>role_name</td>
+<td>varchar(100)</td>
+<td>role name</td>
+</tr>
+<tr>
+<td>creator</td>
+<td>int unsigned</td>
+<td>user_id</td>
+</tr>
+<tr>
+<td>owner</td>
+<td>int unsigned</td>
+<td>MOADMIN/ACCOUNTADMIN  ownerid</td>
+</tr>
+<tr>
+<td>created_time</td>
+<td>timestamp</td>
+<td>create time</td>
+</tr>
+<tr>
+<td>comments</td>
+<td>text</td>
+<td>comment</td>
+</tr>
+</tbody>
+</table>
+<h3 id="mo_global_variables-table">mo_global_variables table</h3>
+<p>Every account has its own <code>mo_global_variables</code> table. <code>Sys</code> account doesn't have direct access to this table for other accounts.</p>
 <table>
 <thead>
 <tr>
@@ -6629,331 +6677,688 @@
 </tr>
 </tbody>
 </table>
-<ul>
-<li>table initial rows:</li>
-</ul>
+<h3 id="mo_user-table"><strong>mo_user</strong> table</h3>
 <table>
 <thead>
 <tr>
-<th>gv_variable_name</th>
-<th>gv_variable_value</th>
+<th>column</th>
+<th>type</th>
+<th>comments</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>gv_variable_name</td>
-<td>gv_variable_value</td>
+<td>user_id</td>
+<td>int unsigned</td>
+<td>PK</td>
 </tr>
-<tr>
-<td>max_allowed_packet</td>
-<td>67108864</td>
-</tr>
-<tr>
-<td>version_comment</td>
-<td>MatrixOne</td>
-</tr>
-<tr>
-<td>port</td>
-<td>6001</td>
-</tr>
-<tr>
-<td>host</td>
-<td>0.0.0.0</td>
-</tr>
-<tr>
-<td>storePath</td>
-<td>./store</td>
-</tr>
-<tr>
-<td>batchSizeInLoadData</td>
-<td>40000</td>
-</tr>
-<tr>
-<td>...</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h2 id="mo_user-table">mo_user table</h2>
-<p>This table contains the information of user accounts.</p>
-<ul>
-<li>table structure:</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>Attributes</th>
-<th>Type</th>
-<th>Primary key</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
 <tr>
 <td>user_host</td>
-<td>varchar(256)</td>
-<td>PK</td>
-<td>user host</td>
+<td>varchar(100)</td>
+<td></td>
 </tr>
 <tr>
 <td>user_name</td>
-<td>varchar(256)</td>
-<td>PK</td>
-<td>user name</td>
-</tr>
-<tr>
-<td>Select_priv</td>
-<td>char</td>
-<td></td>
-<td>'N','Y'</td>
-</tr>
-<tr>
-<td>Insert_priv</td>
-<td>char</td>
-<td></td>
-<td>'N','Y'</td>
-</tr>
-<tr>
-<td>Update_priv</td>
-<td>char</td>
-<td></td>
-<td>'N','Y'</td>
-</tr>
-<tr>
-<td>Delete_priv</td>
-<td>char</td>
-<td></td>
-<td>'N','Y'</td>
-</tr>
-<tr>
-<td>Create_priv</td>
-<td>char</td>
-<td></td>
-<td>'N','Y'</td>
-</tr>
-<tr>
-<td>Drop_priv</td>
-<td>char</td>
-<td></td>
-<td>'N','Y'</td>
-</tr>
-<tr>
-<td>Reload_priv</td>
-<td>char</td>
-<td></td>
-<td>'N','Y'</td>
-</tr>
-<tr>
-<td>Shutdown_priv</td>
-<td>char</td>
-<td></td>
-<td>'N','Y'</td>
-</tr>
-<tr>
-<td>Process_priv</td>
-<td>char</td>
-<td></td>
-<td>'N','Y'</td>
-</tr>
-<tr>
-<td>File_priv</td>
-<td>char</td>
-<td></td>
-<td>'N','Y'</td>
-</tr>
-<tr>
-<td>Grant_priv</td>
-<td>char</td>
-<td></td>
-<td>'N','Y'</td>
-</tr>
-<tr>
-<td>References_priv</td>
-<td>char</td>
-<td></td>
-<td>'N','Y'</td>
-</tr>
-<tr>
-<td>Index_priv</td>
-<td>char</td>
-<td></td>
-<td>'N','Y'</td>
-</tr>
-<tr>
-<td>Alter_priv</td>
-<td>char</td>
-<td></td>
-<td>'N','Y'</td>
-</tr>
-<tr>
-<td>Show_db_priv</td>
-<td>char</td>
-<td></td>
-<td>'N','Y'</td>
-</tr>
-<tr>
-<td>Super_priv</td>
-<td>char</td>
-<td></td>
-<td>'N','Y'</td>
-</tr>
-<tr>
-<td>Create_tmp_table_priv</td>
-<td>char</td>
-<td></td>
-<td>'N','Y'</td>
-</tr>
-<tr>
-<td>Lock_tables_priv</td>
-<td>char</td>
-<td></td>
-<td>'N','Y'</td>
-</tr>
-<tr>
-<td>Execute_priv</td>
-<td>char</td>
-<td></td>
-<td>'N','Y'</td>
-</tr>
-<tr>
-<td>Repl_slave_priv</td>
-<td>char</td>
-<td></td>
-<td>'N','Y'</td>
-</tr>
-<tr>
-<td>Repl_client_priv</td>
-<td>char</td>
-<td></td>
-<td>'N','Y'</td>
-</tr>
-<tr>
-<td>Create_view_priv</td>
-<td>char</td>
-<td></td>
-<td>'N','Y'</td>
-</tr>
-<tr>
-<td>Show_view_priv</td>
-<td>char</td>
-<td></td>
-<td>'N','Y'</td>
-</tr>
-<tr>
-<td>Create_routine_priv</td>
-<td>char</td>
-<td></td>
-<td>'N','Y'</td>
-</tr>
-<tr>
-<td>Alter_routine_priv</td>
-<td>char</td>
-<td></td>
-<td>'N','Y'</td>
-</tr>
-<tr>
-<td>Create_user_priv</td>
-<td>char</td>
-<td></td>
-<td>'N','Y'</td>
-</tr>
-<tr>
-<td>Event_priv</td>
-<td>char</td>
-<td></td>
-<td>'N','Y'</td>
-</tr>
-<tr>
-<td>Trigger_priv</td>
-<td>char</td>
-<td></td>
-<td>'N','Y'</td>
-</tr>
-<tr>
-<td>Create_tablespace_priv</td>
-<td>char</td>
-<td></td>
-<td>'N','Y'</td>
-</tr>
-<tr>
-<td>max_questions</td>
-<td>int unsigned</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>max_updates</td>
-<td>int unsigned</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>max_connections</td>
-<td>int unsigned</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>max_user_connections</td>
-<td>int unsigned</td>
-<td></td>
+<td>varchar(100)</td>
 <td></td>
 </tr>
 <tr>
 <td>authentication_string</td>
-<td>varchar(4096)</td>
+<td>varchar(100)</td>
 <td></td>
-<td>password</td>
 </tr>
 <tr>
-<td>account_locked</td>
-<td>char</td>
-<td></td>
-<td>'N','Y'</td>
+<td>status</td>
+<td>varchar(8)</td>
+<td>open,locked,expired</td>
 </tr>
 <tr>
-<td>Create_role_priv</td>
-<td>char</td>
+<td>created_time</td>
+<td>timestamp</td>
 <td></td>
-<td>'N','Y'</td>
 </tr>
 <tr>
-<td>Drop_role_priv</td>
-<td>char</td>
+<td>expired_time</td>
+<td>timestamp</td>
 <td></td>
-<td>'N','Y'</td>
+</tr>
+<tr>
+<td>login_type</td>
+<td>varchar(16)</td>
+<td>ssl/password/other</td>
+</tr>
+<tr>
+<td>creator</td>
+<td>int unsigned</td>
+<td>user id</td>
+</tr>
+<tr>
+<td>owner</td>
+<td>int unsigned</td>
+<td>admin role id</td>
+</tr>
+<tr>
+<td>default_role</td>
+<td>int unsigned</td>
+<td>role id</td>
 </tr>
 </tbody>
 </table>
-<ul>
-<li>table initial rows:</li>
-</ul>
+<h3 id="mo_user_grant-user">mo_user_grant user</h3>
 <table>
 <thead>
 <tr>
-<th>user_host</th>
-<th>user_name</th>
-<th>authentication_string</th>
+<th>column</th>
+<th>type</th>
+<th>comments</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>localhost</td>
-<td>root</td>
-<td>''</td>
+<td>role_id</td>
+<td>int unsigned</td>
+<td>Primary key</td>
 </tr>
 <tr>
-<td>localhost</td>
-<td>dump</td>
-<td>111</td>
+<td>user_id</td>
+<td>int unsigned</td>
+<td>Primary key, user_id</td>
 </tr>
 <tr>
-<td>...</td>
-<td></td>
-<td></td>
+<td>granted_time</td>
+<td>timestamp</td>
+<td>granted time</td>
+</tr>
+<tr>
+<td>with_grant_option</td>
+<td>bool</td>
+<td>If permission granting is permitted</td>
 </tr>
 </tbody>
 </table>
+<h3 id="mo_role_grant-user">mo_role_grant user</h3>
+<table>
+<thead>
+<tr>
+<th>column</th>
+<th>type</th>
+<th>comments</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>granted_id</td>
+<td>int unsigned</td>
+<td>Primary key，granted id</td>
+</tr>
+<tr>
+<td>grantee_id</td>
+<td>int unsigned</td>
+<td>Primary key，grantee id</td>
+</tr>
+<tr>
+<td>operation_role_id</td>
+<td>int unsigned</td>
+<td>operation role id</td>
+</tr>
+<tr>
+<td>operation_user_id</td>
+<td>int unsigned</td>
+<td>operation user id</td>
+</tr>
+<tr>
+<td>granted_time</td>
+<td>timestamp</td>
+<td>granted time</td>
+</tr>
+<tr>
+<td>with_grant_option</td>
+<td>bool</td>
+<td>If permission granting is permitted</td>
+</tr>
+</tbody>
+</table>
+<h3 id="mo_role_privs-user">mo_role_privs user</h3>
+<table>
+<thead>
+<tr>
+<th>column</th>
+<th>type</th>
+<th>comments</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>role_id</td>
+<td>int unsigned</td>
+<td>Primary key</td>
+</tr>
+<tr>
+<td>role_name</td>
+<td>varchar(100)</td>
+<td>role name</td>
+</tr>
+<tr>
+<td>obj_type</td>
+<td>varchar(16)</td>
+<td>Primary key</td>
+</tr>
+<tr>
+<td>obj_id</td>
+<td>bigint unsigned</td>
+<td>Primary key</td>
+</tr>
+<tr>
+<td>privilege_id</td>
+<td>int</td>
+<td>Primary key</td>
+</tr>
+<tr>
+<td>privilege_name</td>
+<td>varchar(100)</td>
+<td></td>
+</tr>
+<tr>
+<td>privilege_level</td>
+<td>varchar(100)</td>
+<td></td>
+</tr>
+<tr>
+<td>operation_user_id</td>
+<td>int unsigned</td>
+<td>user_id</td>
+</tr>
+<tr>
+<td>granted_time</td>
+<td>timestamp</td>
+<td></td>
+</tr>
+<tr>
+<td>with_grant_option</td>
+<td>bool</td>
+<td>If permission granting is permitted</td>
+</tr>
+</tbody>
+</table>
+<h2 id="system_metrics-database"><code>system_metrics</code> database</h2>
+<p><code>system_metrics</code> collect the status and statistics of SQL statements, CPU &amp; memory resource usage.</p>
+<p><code>system_metrics</code> tables have more or less same column types, fields in these tables are described as follows:</p>
+<ul>
+<li>collecttime：Collection time</li>
+<li>
+<p>value:  the value of the collecting metric</p>
+</li>
+<li>
+<p>node: the MatrixOne node uuid</p>
+</li>
+<li>role: the MatrixOne node role, can be CN, DN or LOG.  </li>
+<li>internal：can be either 1 or 0.  Collect as 1if the SQL statement is launched by internal, as 0 if the SQL statement is launched by user.</li>
+<li>type：SQL type, can be <code>select</code>, <code>insert</code>, <code>update</code>, <code>delete</code>, <code>other</code> types.</li>
+</ul>
+<h3 id="metrics-table"><code>metrics</code> table</h3>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Type</th>
+<th>Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>metric_name</td>
+<td>VARCHAR(128)</td>
+<td>metric name, like: sql_statement_total, server_connections, process_cpu_percent, sys_memory_used, ..</td>
+</tr>
+<tr>
+<td>collecttime</td>
+<td>DATETIME</td>
+<td>metric data collect time</td>
+</tr>
+<tr>
+<td>value</td>
+<td>DOUBLE</td>
+<td>metric value</td>
+</tr>
+<tr>
+<td>node</td>
+<td>VARCHAR(36)</td>
+<td>node uuid</td>
+</tr>
+<tr>
+<td>role</td>
+<td>VARCHAR(32)</td>
+<td>node role</td>
+</tr>
+<tr>
+<td>account</td>
+<td>VARCHAR(128)</td>
+<td>account name</td>
+</tr>
+<tr>
+<td>type</td>
+<td>VARCHAR(32)</td>
+<td>SQL type</td>
+</tr>
+</tbody>
+</table>
+<p>The other tables are all views of the <code>metrics</code> table:</p>
+<ul>
+<li><code>process_cpu_percent</code> table: Process CPU busy percentage.</li>
+<li><code>process_open_fs</code> table: Number of open file descriptors.</li>
+<li><code>process_resident_memory_bytes</code> table: Resident memory size in bytes.</li>
+<li><code>server_connection</code> table: Server connection numbers.</li>
+<li><code>sql_statement_errors</code> table: Counter of sql statements executed with errors.</li>
+<li><code>sql_statement_total</code> table: Counter of executed sql statement.</li>
+<li><code>sql_transaction_errors</code> table: Counter of transactional statements executed with errors.</li>
+<li><code>sql_transaction_total</code> table: Counter of transactional sql statement.</li>
+<li><code>sys_cpu_combined_percent</code> table: System CPU busy percentage, average among all logical cores.</li>
+<li><code>sys_cpu_seconds_total</code> table: System CPU time spent in seconds, normalized by number of cores</li>
+<li><code>sys_disk_read_bytes</code> table: System disk read in bytes.</li>
+<li><code>sys_disk_write_bytes</code> table: System disk write in bytes.</li>
+<li><code>sys_memory_available</code> table: System memory available in bytes.</li>
+<li><code>sys_memory_used</code> table: System memory used in bytes.</li>
+<li><code>sys_net_recv_bytes</code> table: System net received in bytes.</li>
+<li><code>sys_net_sent_bytes</code> table: System net sent in bytes.</li>
+</ul>
+<h2 id="system-database"><code>system</code> database</h2>
+<p><code>System</code> database stores MatrixOne historical SQL statements, system logs, error information.</p>
+<h3 id="statement_info-table"><code>statement_info</code> table</h3>
+<p>It records user and system SQL statement with detailed information.</p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Type</th>
+<th>Comments</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>statement_id</td>
+<td>VARCHAR(36)</td>
+<td>statement unique id</td>
+</tr>
+<tr>
+<td>transaction_id</td>
+<td>VARCHAR(36)</td>
+<td>Transaction unique id</td>
+</tr>
+<tr>
+<td>session_id</td>
+<td>VARCHAR(36)</td>
+<td>session unique id</td>
+</tr>
+<tr>
+<td>account</td>
+<td>VARCHAR(1024)</td>
+<td>account name</td>
+</tr>
+<tr>
+<td>user</td>
+<td>VARCHAR(1024)</td>
+<td>user name</td>
+</tr>
+<tr>
+<td>host</td>
+<td>VARCHAR(1024)</td>
+<td>user client ip</td>
+</tr>
+<tr>
+<td>database</td>
+<td>VARCHAR(1024)</td>
+<td>what database current session stay in</td>
+</tr>
+<tr>
+<td>statement</td>
+<td>TEXT</td>
+<td>sql statement</td>
+</tr>
+<tr>
+<td>statement_tag</td>
+<td>TEXT</td>
+<td>note tag in statement(Reserved)</td>
+</tr>
+<tr>
+<td>statement_fingerprint</td>
+<td>TEXT</td>
+<td>note tag in statement(Reserved)</td>
+</tr>
+<tr>
+<td>node_uuid</td>
+<td>VARCHAR(36)</td>
+<td>node uuid, which node gen this data</td>
+</tr>
+<tr>
+<td>node_type</td>
+<td>VARCHAR(64)</td>
+<td>node type in MO, val in [DN, CN, LOG]</td>
+</tr>
+<tr>
+<td>request_at</td>
+<td>DATETIME</td>
+<td>request accept datetime</td>
+</tr>
+<tr>
+<td>response_at</td>
+<td>DATETIME</td>
+<td>response send datetime</td>
+</tr>
+<tr>
+<td>duration</td>
+<td>BIGINT</td>
+<td>exec time, unit: ns</td>
+</tr>
+<tr>
+<td>status</td>
+<td>VARCHAR(32)</td>
+<td>sql statement running status, enum: Running, Success, Failed</td>
+</tr>
+<tr>
+<td>err_code</td>
+<td>VARCHAR(1024)</td>
+<td>error code</td>
+</tr>
+<tr>
+<td>error</td>
+<td>TEXT</td>
+<td>error message</td>
+</tr>
+<tr>
+<td>exec_plan</td>
+<td>JSON</td>
+<td>statement execution plan</td>
+</tr>
+<tr>
+<td>rows_read</td>
+<td>BIGINT</td>
+<td>rows read total</td>
+</tr>
+<tr>
+<td>bytes_scan</td>
+<td>BIGINT</td>
+<td>bytes scan total</td>
+</tr>
+</tbody>
+</table>
+<h3 id="rawlog-table"><code>rawlog</code> table</h3>
+<p>It records very detailed system logs.</p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Type</th>
+<th>Comments</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>raw_item</td>
+<td>VARCHAR(1024)</td>
+<td>raw log item</td>
+</tr>
+<tr>
+<td>node_uuid</td>
+<td>VARCHAR(36)</td>
+<td>node uuid, which node gen this data.</td>
+</tr>
+<tr>
+<td>node_type</td>
+<td>VARCHAR(64)</td>
+<td>node type in MO, val in [DN, CN, LOG]</td>
+</tr>
+<tr>
+<td>span_id</td>
+<td>VARCHAR(16)</td>
+<td>span unique id</td>
+</tr>
+<tr>
+<td>statement_id</td>
+<td>VARCHAR(36)</td>
+<td>statement unique id</td>
+</tr>
+<tr>
+<td>logger_name</td>
+<td>VARCHAR(1024)</td>
+<td>logger name</td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td>DATETIME</td>
+<td>timestamp of action</td>
+</tr>
+<tr>
+<td>level</td>
+<td>VARCHAR(1024)</td>
+<td>log level, enum: debug, info, warn, error, panic, fatal</td>
+</tr>
+<tr>
+<td>caller</td>
+<td>VARCHAR(1024)</td>
+<td>where it log, like: package/file.go:123</td>
+</tr>
+<tr>
+<td>message</td>
+<td>TEXT</td>
+<td>log message</td>
+</tr>
+<tr>
+<td>extra</td>
+<td>JSON</td>
+<td>log dynamic fields</td>
+</tr>
+<tr>
+<td>err_code</td>
+<td>VARCHAR(1024)</td>
+<td>error log</td>
+</tr>
+<tr>
+<td>error</td>
+<td>TEXT</td>
+<td>error message</td>
+</tr>
+<tr>
+<td>stack</td>
+<td>VARCHAR(4096)</td>
+<td></td>
+</tr>
+<tr>
+<td>span_name</td>
+<td>VARCHAR(1024)</td>
+<td>span name, for example: step name of execution plan, function name in code, ...</td>
+</tr>
+<tr>
+<td>parent_span_id</td>
+<td>VARCHAR(16)</td>
+<td>parent span unique id</td>
+</tr>
+<tr>
+<td>start_time</td>
+<td>DATETIME</td>
+<td></td>
+</tr>
+<tr>
+<td>end_time</td>
+<td>DATETIME</td>
+<td></td>
+</tr>
+<tr>
+<td>duration</td>
+<td>BIGINT</td>
+<td>exec time, unit: ns</td>
+</tr>
+<tr>
+<td>resource</td>
+<td>JSON</td>
+<td>static resource information</td>
+</tr>
+</tbody>
+</table>
+<p>The other 3 tables(<code>log_info</code>, <code>span_info</code> and <code>error_info</code>) are views of <code>statement_info</code> and <code>rawlog</code> table.</p>
+<h2 id="information_schema-database"><code>information_schema</code> database</h2>
+<p>Information Schema provides an ANSI-standard way of viewing system metadata. MatrixOne also provides a number of custom <code>information_schema</code> tables, in addition to the tables included for MySQL compatibility.</p>
+<p>Many <code>INFORMATION_SCHEMA</code> tables have a corresponding <code>SHOW</code> command. The benefit of querying <code>INFORMATION_SCHEMA</code> is that it is possible to join between tables.</p>
+<h3 id="tables-for-mysql-compatibility">Tables for MySQL compatibility</h3>
+<table>
+<thead>
+<tr>
+<th align="left">Table Name</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">CHARACTER_SETS</td>
+<td align="left">Provides a list of character sets the server supports.</td>
+</tr>
+<tr>
+<td align="left">COLUMNS</td>
+<td align="left">Provides a list of columns for all tables.</td>
+</tr>
+<tr>
+<td align="left">ENGINES</td>
+<td align="left">Provides a list of supported storage engines.</td>
+</tr>
+<tr>
+<td align="left">KEY_COLUMN_USAGE</td>
+<td align="left">Describes the key constraints of the columns, such as the primary key constraint.</td>
+</tr>
+<tr>
+<td align="left">PROCESSLIST</td>
+<td align="left">Provides similar information to the command <code>SHOW PROCESSLIST</code>.</td>
+</tr>
+<tr>
+<td align="left">SCHEMATA</td>
+<td align="left">Provides similar information to <code>SHOW DATABASES</code>.</td>
+</tr>
+<tr>
+<td align="left">TABLES</td>
+<td align="left">Provides a list of tables that the current user has visibility of. Similar to <code>SHOW TABLES</code>.</td>
+</tr>
+<tr>
+<td align="left">TRIGGERS</td>
+<td align="left">Provides similar information to <code>SHOW TRIGGERS</code>.</td>
+</tr>
+<tr>
+<td align="left">USER_PRIVILEGES</td>
+<td align="left">Summarizes the privileges associated with the current user.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="character_sets-table"><code>CHARACTER_SETS</code> table</h3>
+<p>The description of columns in the <code>CHARACTER_SETS</code> table is as follows:</p>
+<ul>
+<li><code>CHARACTER_SET_NAME</code>: The name of the character set.</li>
+<li><code>DEFAULT_COLLATE_NAME</code> The default collation name of the character set.</li>
+<li><code>DESCRIPTION</code> The description of the character set.</li>
+<li><code>MAXLEN</code> The maximum length required to store a character in this character set.</li>
+</ul>
+<h3 id="columns-table"><code>COLUMNS</code> table</h3>
+<p>The description of columns in the <code>COLUMNS</code> table is as follows:</p>
+<ul>
+<li><code>TABLE_CATALOG</code>: The name of the catalog to which the table with the column belongs. The value is always <code>def</code>.</li>
+<li><code>TABLE_SCHEMA</code>: The name of the schema in which the table with the column is located.</li>
+<li><code>TABLE_NAME</code>: The name of the table with the column.</li>
+<li><code>COLUMN_NAME</code>: The name of the column.</li>
+<li><code>ORDINAL_POSITION</code>: The position of the column in the table.</li>
+<li><code>COLUMN_DEFAULT</code>: The default value of the column. If the explicit default value is <code>NULL</code>, or if the column definition does not include the <code>default</code> clause, this value is <code>NULL</code>.</li>
+<li><code>IS_NULLABLE</code>: Whether the column is nullable. If the column can store null values, this value is <code>YES</code>; otherwise, it is <code>NO</code>.</li>
+<li><code>DATA_TYPE</code>: The type of data in the column.</li>
+<li><code>CHARACTER_MAXIMUM_LENGTH</code>: For string columns, the maximum length in characters.</li>
+<li><code>CHARACTER_OCTET_LENGTH</code>: For string columns, the maximum length in bytes.</li>
+<li><code>NUMERIC_PRECISION</code>: The numeric precision of a number-type column.</li>
+<li><code>NUMERIC_SCALE</code>: The numeric scale of a number-type column.</li>
+<li><code>DATETIME_PRECISION</code>: For time-type columns, the fractional seconds precision.</li>
+<li><code>CHARACTER_SET_NAME</code>: The name of the character set of a string column.</li>
+<li><code>COLLATION_NAME</code>: The name of the collation of a string column.</li>
+<li><code>COLUMN_TYPE</code>: The column type.</li>
+<li><code>COLUMN_KEY</code>: Whether this column is indexed. This field might have the following values:</li>
+<li><code>Empty</code>: This column is not indexed, or this column is indexed and is the second column in a multi-column non-unique index.</li>
+<li><code>PRI</code>: This column is the primary key or one of multiple primary keys.</li>
+<li><code>UNI</code>: This column is the first column of the unique index.</li>
+<li><code>MUL</code>: The column is the first column of a non-unique index, in which a given value is allowed to occur for multiple times.</li>
+<li><code>EXTRA</code>: Any additional information of the given column.</li>
+<li><code>PRIVILEGES</code>: The privilege that the current user has on this column.</li>
+<li><code>COLUMN_COMMENT</code>: Comments contained in the column definition.</li>
+<li><code>GENERATION_EXPRESSION</code>: For generated columns, this value displays the expression used to calculate the column value. For non-generated columns, the value is empty.</li>
+<li><code>SRS_ID</code>: This value applies to spatial columns. It contains the column <code>SRID</code> value that indicates the spatial reference system for values stored in the column.</li>
+</ul>
+<h3 id="engines-table"><code>ENGINES</code> table</h3>
+<p>The description of columns in the <code>ENGINES</code> table is as follows:</p>
+<ul>
+<li><code>ENGINES</code>: The name of the storage engine.</li>
+<li><code>SUPPORT</code>: The level of support that the server has on the storage engine.</li>
+<li><code>COMMENT</code>: The brief comment on the storage engine.</li>
+<li><code>TRANSACTIONS</code>: Whether the storage engine supports transactions.</li>
+<li><code>XA</code>: Whether the storage engine supports XA transactions.</li>
+<li><code>SAVEPOINTS</code>: Whether the storage engine supports <code>savepoints</code>.</li>
+</ul>
+<h3 id="processlist-table"><code>PROCESSLIST</code> table</h3>
+<p>Fields in the <code>PROCESSLIST</code> table are described as follows:</p>
+<ul>
+<li>ID: The ID of the user connection.</li>
+<li>USER: The name of the user who is executing <code>PROCESS</code>.</li>
+<li>HOST: The address that the user is connecting to.</li>
+<li>DB: The name of the currently connected default database.</li>
+<li>COMMAND: The command type that <code>PROCESS</code> is executing.</li>
+<li>TIME: The current execution duration of <code>PROCESS</code>, in seconds.</li>
+<li>STATE: The current connection state.</li>
+<li>INFO: The requested statement that is being processed.</li>
+</ul>
+<h3 id="schemata-table"><code>SCHEMATA</code> table</h3>
+<p>The <code>SCHEMATA</code> table provides information about databases. The table data is equivalent to the result of the <code>SHOW DATABASES</code> statement. Fields in the <code>SCHEMATA</code> table are described as follows:</p>
+<ul>
+<li><code>CATALOG_NAME</code>: The catalog to which the database belongs.</li>
+<li><code>SCHEMA_NAME</code>: The database name.</li>
+<li><code>DEFAULT_CHARACTER_SET_NAME</code>: The default character set of the database.</li>
+<li><code>DEFAULT_COLLATION_NAME</code>: The default collation of the database.</li>
+<li><code>SQL_PATH</code>: The value of this item is always <code>NULL</code>.</li>
+<li><code>DEFAULT_TABLE_ENCRYPTION</code>: defines the <em>default encryption</em> setting for databases and general tablespaces.</li>
+</ul>
+<h3 id="tables-table"><code>TABLES</code> table</h3>
+<p>The description of columns in the <code>TABLES</code> table is as follows:</p>
+<ul>
+<li><code>TABLE_CATALOG</code>: The name of the catalog which the table belongs to. The value is always <code>def</code>.</li>
+<li><code>TABLE_SCHEMA</code>: The name of the schema which the table belongs to.</li>
+<li><code>TABLE_NAME</code>: The name of the table.</li>
+<li><code>TABLE_TYPE</code>: The type of the table.</li>
+<li><code>ENGINE</code>: The type of the storage engine.</li>
+<li><code>VERSION</code>: Version. The value is <code>10</code> by default.</li>
+<li><code>ROW_FORMAT</code>: The row format. The value is currently <code>Compact</code>.</li>
+<li><code>TABLE_ROWS</code>: The number of rows in the table in statistics.</li>
+<li><code>AVG_ROW_LENGTH</code>: The average row length of the table. <code>AVG_ROW_LENGTH</code> = <code>DATA_LENGTH</code> / <code>TABLE_ROWS</code>.</li>
+<li><code>DATA_LENGTH</code>: Data length. <code>DATA_LENGTH</code> = <code>TABLE_ROWS</code> * the sum of storage lengths of the columns in the tuple. The replicas of TiKV are not taken into account.</li>
+<li><code>MAX_DATA_LENGTH</code>: The maximum data length. The value is currently <code>0</code>, which means the data length has no upper limit.</li>
+<li><code>INDEX_LENGTH</code>: The index length. <code>INDEX_LENGTH</code> = <code>TABLE_ROWS</code> * the sum of lengths of the columns in the index tuple.</li>
+<li><code>DATA_FREE</code>: Data fragment. The value is currently <code>0</code>.</li>
+<li><code>AUTO_INCREMENT</code>: The current step of the auto- increment primary key.</li>
+<li><code>CREATE_TIME</code>: The time at which the table is created.</li>
+<li><code>UPDATE_TIME</code>: The time at which the table is updated.</li>
+<li><code>CHECK_TIME</code>: The time at which the table is checked.</li>
+<li><code>TABLE_COLLATION</code>: The collation of strings in the table.</li>
+<li><code>CHECKSUM</code>: Checksum.</li>
+<li><code>CREATE_OPTIONS</code>: Creates options.</li>
+<li><code>TABLE_COMMENT</code>: The comments and notes of the table.</li>
+</ul>
+<h3 id="user_privileges-table"><code>USER_PRIVILEGES</code> table</h3>
+<p>The <code>USER_PRIVILEGES</code> table provides information about global privileges.</p>
+<p>Fields in the <code>USER_PRIVILEGES</code> table are described as follows:</p>
+<ul>
+<li><code>GRANTEE</code>: The name of the granted user, which is in the format of <code>'user_name'@'host_name'</code>.</li>
+<li><code>TABLE_CATALOG</code>: The name of the catalog to which the table belongs. This value is always <code>def</code>.</li>
+<li><code>PRIVILEGE_TYPE</code>: The privilege type to be granted. Only one privilege type is shown in each row.</li>
+<li><code>IS_GRANTABLE</code>: If you have the <code>GRANT OPTION</code> privilege, the value is <code>YES</code>; otherwise, the value is <code>NO</code>.</li>
+</ul>
+<h2 id="mysql-database"><code>mysql</code> database</h2>
+<h3 id="grant-system-tables">Grant system tables</h3>
+<p>These system tables contain grant information about user accounts and their privileges:</p>
+<ul>
+<li><code>user</code>: user accounts, global privileges, and other non-privilege columns.</li>
+<li><code>db</code>: database-level privileges.</li>
+<li><code>tables_priv</code>: table-level privileges.</li>
+<li><code>columns_priv</code>: column-level privileges.</li>
+<li><code>procs_priv</code>: stored procedure and stored function privileges.</li>
+</ul>
 
               
             </article>
