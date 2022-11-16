@@ -48,7 +48,7 @@ LOAD DATA
 |bucket| S3 Bucket to access |
 |filepath| relative file path |
 |region| AWS S3 Area|
-|compression| Compressed format of S3 files. If empty, it indicates uncompressed files. Supported fields or Compressed format are "auto", "none", "gzip", "bzip2", "flate", "zlib", and "lz4".|
+|compression| Compressed format of S3 files. If empty, it indicates uncompressed files. Supported fields or Compressed format are "auto", "none", "gzip", "bzip2", and "lz4".|
 |auto|Compressed format: indicates that the file name extension automatically checks the compressed format of a file|
 |none|Compressed format: indicates the uncompressed format, and the rest indicates the compressed format of the file|
 

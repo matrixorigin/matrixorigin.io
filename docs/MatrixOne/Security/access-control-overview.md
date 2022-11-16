@@ -1,10 +1,10 @@
 # Privilege Control in MatrixOne - Access Control Overview
 
-MatrixOne 的权限控制是结合了基于角色的访问控制 (RBAC，Role-based access control) 和自主访问控制 (DAC，Discretionary access control) 两种安全模型设计和实现的，它既保证了数据访问的安全性，又给数据库运维人员提供了灵活且便捷的管理方法。
-
 MatrixOne's permission control is designed and implemented by combining two security models of role-based access control (RBAC, Role-based access control) and discretionary access control (DAC, Discretionary access control), which ensures the security of data access, and it provides a flexible and convenient management method for database operation and maintenance personnel.
 
 - Role-based access control: Assign permissions to roles, and then assign roles to users.
+
+   ![](https://github.com/matrixorigin/artwork/blob/main/docs/security/basic-concepts.png?raw=true)
 
 - Discretionary Access Control: Every object has an owner who can set and grant access to that object.
 
@@ -13,6 +13,8 @@ MatrixOne's permission control is designed and implemented by combining two secu
 ### Object
 
 An object is an entity that encapsulates permissions in MatrixOne, and these entities have a certain hierarchical structure. For example, a **Cluster** contains multiple **Account** (Account), and a **Account** contains multiple **User**, **Role** , **Database**, and a **Database** contains multiple **Table**, **View, etc. This hierarchical structure is shown in the following figure:
+
+![](https://github.com/matrixorigin/artwork/blob/main/docs/security/object.png?raw=true)
 
 - Each object has one and only one **Owner**; otherwise, the **Owner** has the **Ownership** permission of the object.
 
@@ -33,8 +35,6 @@ A role is an entity with access rights. Any database user who wants to access an
 - A role can be granted access to multiple objects.
 - Permissions can be passed between roles, usually there are two methods of **Grant** and **Inheritance**.
 
-   + **授予**：权限的授予具有一次授予永久生效的特性。例如*角色1*拥有权限 a， b， c； *角色2*拥有权限 d，此时将*角色1*的权限授予给*角色2*，则*角色2*拥有权限 a， b， c， d，当删除 角色1 后， *角色2*仍拥有权限 a， b， c， d。
-   + **继承**：权限的继承具有动态传递的特性。例如*角色1*拥有权限 a， b， c； *角色3*拥有权限 e， f，可以指定*角色3*继承*角色1*，则*角色3*拥有权限 a， b， c， e， f； 当删除*角色1*后，*角色3*仅拥有权限 e， f。
    + Grant: The grant of permission has the characteristic of granting a permanent effect. For example, role 1 has permissions a, b, c, and role 2 has permission d. At this time, if the permissions of role 1 are granted to role 2, then role 2 has permissions a, b, c, and d. When role 1 is deleted, role 2 Still have permissions a, b, c, d.
    + Inheritance: Inheritance of permissions has the characteristics of dynamic transfer. For example, role 1 has permissions a, b, c, role 3 has permissions e, f, you can specify role 3 to inherit role 1, then role 3 has permissions a, b, c, e, f, when role 1 is deleted, role 3 Only have permissions e, f.
 
@@ -42,7 +42,7 @@ A role is an entity with access rights. Any database user who wants to access an
           1.Manipulating granted and inherited roles requires Ownership permission on the object or one of the advanced grant permissions.
           2.The inheritance relationship of roles cannot be looped.
 
-- 在 MatrixOne 中，实现了租户间权限隔离，即 Account 内的角色和用户仅在该 Account 内生效，不会影响和传递给其他 Account，角色之间的授权也仅限在 Account 内。
+- MatrixOne implements permission isolation among tenants. That is, roles and users in an Account take effect only in the Account and are not transferred to other accounts. Authorization between roles is also limited to the Account.
 
 ### Switching Role
 
