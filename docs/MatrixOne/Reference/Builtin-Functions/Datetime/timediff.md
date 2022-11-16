@@ -21,6 +21,14 @@ The result returned by `TIMEDIFF()` is limited to the range allowed for TIME val
 ## **Examples**
 
 ```sql
+> select timediff("22:22:22", "11:00:00");
++------------------------------+
+| timediff(22:22:22, 11:00:00) |
++------------------------------+
+| 11:22:22.000000              |
++------------------------------+
+1 row in set (0.01 sec)
+
 > select timediff(cast('22:22:22' as time), cast('-11:11:11' as time));
 +-------------------------------------------------------------------+
 | timediff(cast(22:22:22 as time(26)), cast(-11:11:11 as time(26))) |
