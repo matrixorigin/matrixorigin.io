@@ -117,7 +117,7 @@ FROM *table1*
 WHERE *condition*;
 ```
 
-## Demo Database
+## Northwind sample database
 
 In this tutorial we will use the Northwind sample database.
 
