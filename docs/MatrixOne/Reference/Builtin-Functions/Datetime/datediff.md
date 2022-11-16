@@ -14,7 +14,7 @@
 
 |  Arguments   | Description  |
 |  ----  | ----  |
-| expr  | Required. expr1 and expr2 are date or date-and-time expressions. Only the date parts of the values are used in the calculation. |
+| expr1,expr2  | Required. expr1 and expr2 are date or date-and-time expressions. Only the date parts of the values are used in the calculation. |
 
 ## **Examples**
 
