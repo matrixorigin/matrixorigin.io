@@ -452,8 +452,36 @@
   
   
     <li class="md-nav__item">
+      <a href="../../Get-Started/getting-started-with-mo.md" class="md-nav__link">
+        Quick Start Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Get-Started/install-dependency-tool.md" class="md-nav__link">
+        Unit 1. Install Dependency Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../Get-Started/install-standalone-matrixone/" class="md-nav__link">
-        Install and Launch MatrixOne
+        Unit 2. Install and Launch MatrixOne
       </a>
     </li>
   
@@ -467,7 +495,7 @@
   
     <li class="md-nav__item">
       <a href="../../Get-Started/connect-to-matrixone-server/" class="md-nav__link">
-        Connect to MatrixOne Server
+        Unit 3. Connect to MatrixOne Server
       </a>
     </li>
   
@@ -1050,7 +1078,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Transactions/distributed-transaction-overview.md" class="md-nav__link">
+      <a href="../../Reference/SQL-Reference/Transactions/distributed-transaction-overview/" class="md-nav__link">
         Distributed Transaction
       </a>
     </li>
@@ -1506,6 +1534,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Troubleshooting/error-code/" class="md-nav__link">
+        Error Code
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -1829,6 +1871,20 @@
     <li class="md-nav__item">
       <a href="../TLS-introduction/" class="md-nav__link">
         TLS Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quick-start-account/" class="md-nav__link">
+        Quick start about Creating Account, User and Role
       </a>
     </li>
   
@@ -2174,7 +2230,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Definition-Statements/create-external-table.md" class="md-nav__link">
+      <a href="../../Reference/SQL-Reference/Data-Definition-Statements/create-external-table/" class="md-nav__link">
         CREATE EXTERNAL TABLE
       </a>
     </li>
@@ -4116,7 +4172,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Variable/custom-variable.md" class="md-nav__link">
+      <a href="../../Reference/Variable/custom-variable/" class="md-nav__link">
         Custom variable
       </a>
     </li>
@@ -4796,6 +4852,34 @@
     <li class="md-nav__item">
       <a href="../../Reference/Builtin-Functions/Datetime/current-timestamp/" class="md-nav__link">
         CURRENT_TIMESTAMP()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Reference/Builtin-Functions/Datetime/timediff/" class="md-nav__link">
+        TIMEDIFF()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Reference/Builtin-Functions/Datetime/datediff/" class="md-nav__link">
+        DATEDIFF()
       </a>
     </li>
   
@@ -5931,19 +6015,18 @@
 
 
 <h1 id="privilege-control-in-matrixone-access-control-overview">Privilege Control in MatrixOne - Access Control Overview</h1>
-<p>MatrixOne 的权限控制是结合了基于角色的访问控制 (RBAC，Role-based access control) 和自主访问控制 (DAC，Discretionary access control) 两种安全模型设计和实现的，它既保证了数据访问的安全性，又给数据库运维人员提供了灵活且便捷的管理方法。</p>
 <p>MatrixOne's permission control is designed and implemented by combining two security models of role-based access control (RBAC, Role-based access control) and discretionary access control (DAC, Discretionary access control), which ensures the security of data access, and it provides a flexible and convenient management method for database operation and maintenance personnel.</p>
 <ul>
-<li>
-<p>Role-based access control: Assign permissions to roles, and then assign roles to users.</p>
-</li>
-<li>
-<p>Discretionary Access Control: Every object has an owner who can set and grant access to that object.</p>
-</li>
+<li>Role-based access control: Assign permissions to roles, and then assign roles to users.</li>
+</ul>
+<p><img alt="" src="https://github.com/matrixorigin/artwork/blob/main/docs/security/basic-concepts.png?raw=true" /></p>
+<ul>
+<li>Discretionary Access Control: Every object has an owner who can set and grant access to that object.</li>
 </ul>
 <h2 id="basic-concepts">Basic concepts</h2>
 <h3 id="object">Object</h3>
 <p>An object is an entity that encapsulates permissions in MatrixOne, and these entities have a certain hierarchical structure. For example, a <strong>Cluster</strong> contains multiple <strong>Account</strong> (Account), and a <strong>Account</strong> contains multiple <strong>User</strong>, <strong>Role</strong> , <strong>Database</strong>, and a <strong>Database</strong> contains multiple <strong>Table</strong>, **View, etc. This hierarchical structure is shown in the following figure:</p>
+<p><img alt="" src="https://github.com/matrixorigin/artwork/blob/main/docs/security/object.png?raw=true" /></p>
 <ul>
 <li>Each object has one and only one <strong>Owner</strong>; otherwise, the <strong>Owner</strong> has the <strong>Ownership</strong> permission of the object.</li>
 </ul>
@@ -5965,10 +6048,8 @@
 <p>Permissions can be passed between roles, usually there are two methods of <strong>Grant</strong> and <strong>Inheritance</strong>.</p>
 </li>
 <li>
-<p><strong>授予</strong>：权限的授予具有一次授予永久生效的特性。例如<em>角色1</em>拥有权限 a， b， c； <em>角色2</em>拥有权限 d，此时将<em>角色1</em>的权限授予给<em>角色2</em>，则<em>角色2</em>拥有权限 a， b， c， d，当删除 角色1 后， <em>角色2</em>仍拥有权限 a， b， c， d。</p>
+<p>Grant: The grant of permission has the characteristic of granting a permanent effect. For example, role 1 has permissions a, b, c, and role 2 has permission d. At this time, if the permissions of role 1 are granted to role 2, then role 2 has permissions a, b, c, and d. When role 1 is deleted, role 2 Still have permissions a, b, c, d.</p>
 </li>
-<li><strong>继承</strong>：权限的继承具有动态传递的特性。例如<em>角色1</em>拥有权限 a， b， c； <em>角色3</em>拥有权限 e， f，可以指定<em>角色3</em>继承<em>角色1</em>，则<em>角色3</em>拥有权限 a， b， c， e， f； 当删除<em>角色1</em>后，<em>角色3</em>仅拥有权限 e， f。</li>
-<li>Grant: The grant of permission has the characteristic of granting a permanent effect. For example, role 1 has permissions a, b, c, and role 2 has permission d. At this time, if the permissions of role 1 are granted to role 2, then role 2 has permissions a, b, c, and d. When role 1 is deleted, role 2 Still have permissions a, b, c, d.</li>
 <li>
 <p>Inheritance: Inheritance of permissions has the characteristics of dynamic transfer. For example, role 1 has permissions a, b, c, role 3 has permissions e, f, you can specify role 3 to inherit role 1, then role 3 has permissions a, b, c, e, f, when role 1 is deleted, role 3 Only have permissions e, f.</p>
 <p>!!! note
@@ -5976,7 +6057,7 @@
       2.The inheritance relationship of roles cannot be looped.</p>
 </li>
 <li>
-<p>在 MatrixOne 中，实现了租户间权限隔离，即 Account 内的角色和用户仅在该 Account 内生效，不会影响和传递给其他 Account，角色之间的授权也仅限在 Account 内。</p>
+<p>MatrixOne implements permission isolation among tenants. That is, roles and users in an Account take effect only in the Account and are not transferred to other accounts. Authorization between roles is also limited to the Account.</p>
 </li>
 </ul>
 <h3 id="switching-role">Switching Role</h3>
