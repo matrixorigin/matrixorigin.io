@@ -6,7 +6,9 @@ The `GRANT` statement assigns privileges and roles to MatrixOne users and roles.
 
 ### GRANT Overview
 
-System permissions are those of the initial system *root*. The system *root* can create and delete other *accounts*, and manage *accounts*. A system *root* cannot manage other resources of other *accounts*.
+System permissions are those of the initial system *root*. The system *root* can create and delete other *accounts*, and manage *accounts*. A system *root* cannot manage other resources of other *accounts*. 
+
+To use `GRANT` to GRANT permissions to other users or roles, you must first have the `WITH GRANT OPTION` permissions and the permissions you are granting. Use the' SHOW GRANTS' statement to find out the grant status of your current or another role. For more information, see [SHOW GRANTS](show-grants.md).
 
 The `REVOKE` statement is related to `GRANT` and enables administrators to remove account privileges. For more information on `REVOKE`, see [REVOKE](revoke.md).
 
