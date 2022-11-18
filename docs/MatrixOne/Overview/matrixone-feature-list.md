@@ -87,7 +87,7 @@ This document lists the features supported by MatrixOne for the latest version.
 | ------------------------------------ | ---- |
 | PRIMARY KEY                          | Y    |
 | Composite PRIMARY KEY                | Y    |
-| UNIQUE KEY                           | Y, Syntax only implementation   |
+| UNIQUE KEY                           | Y   |
 | Secondary KEY                        | Y, Syntax only implementation  |
 | FOREIGN KEY                          | N    |
 | Enforced Constraints on Invalid Data | Y    |
