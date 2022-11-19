@@ -73,8 +73,8 @@ Reference: <https://dev.mysql.com/doc/refman/8.0/en/data-types.html>
 
 |  Data Type   | Size  |  Precision   | Syntax |
 |  ----  | ----  |  ----  | ----  |
-| Decimal64  | 8 byte | 	19 digits  | Decimal(N,S), N range(1,18), S range(0,N) |
-| Decimal128  | 16 byte | 	38 digits  | Decimal(N,S), N range(18,38), S range(0,N) |
+| Decimal  | 8 byte | 	19 digits  | Decimal(N,S) <br> N is the total number of digits, the range is(1 ~ 18). The decimal point and (for negative numbers) the - sign are not counted in N. <br>S is the number of digits after the decimal point (the scale), the range is(0 ~ N)<br> If S is 0, values have no decimal point or fractional part. If S is omitted, the default is 0. If N is omitted, the default is 1. <br>For example, Decimal(10,8) represents a number with a total length of 10 and a decimal place of 8. |
+| Decimal  | 16 byte | 	38 digits  |  Decimal(N,S) <br> N is the total number of digits, the range is(18 ~ 38). The decimal point and (for negative numbers) the - sign are not counted in N. <br>S is the number of digits after the decimal point (the scale), the range is(0 ~ N)<br> If S is 0, values have no decimal point or fractional part. If S is omitted, the default is 0. If N is omitted, the default is 18. <br>For example, Decimal(20,9) represents a number with a total length of 20 and a decimal place of 9.  |
 
 ## **Examples**
 
