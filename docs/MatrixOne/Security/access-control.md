@@ -4,7 +4,7 @@ The access control permissions of a MatrixOne are classified into **System Permi
 
 ## System Permission
 
-System permissions are those of the initial system account. The system account can create and delete other accounts, and manage accounts. A system account cannot manage other resources of other accounts.
+System permissions are those of the initial system root. The system root can create and delete other accounts, and manage accounts. A system root cannot manage other resources of other accounts.
 
 |Permissions|Description|
 |---|---|
@@ -32,6 +32,7 @@ Object permission can be classified into **Account Permission**, **User Permissi
 |MANAGE GRANTS|Permission management. You can authorize roles and inherit permission from roles|
 |ALL [PRIVILEGES]|All permissions of the Account|
 |OWNERSHIP|All permissions of the Account. The account can be set using `WITH GRANT OPTION`|
+|SHOW GRANT	|View the permission list of a role or user under the current account|
 
 ### User Permission
 
@@ -52,7 +53,7 @@ Object permission can be classified into **Account Permission**, **User Permissi
 |SHOW TABLES|View all tables in the current database|
 |CREATE TABLE|Create a table|
 |DROP TABLE|Delete a table|
-|CREATE VIEW|Create a view，无对应表权限时创建视图无法查询|
+|CREATE VIEW|Create a view,A view created without the corresponding table permission cannot be queried|
 |DROP VIEW|Delete a view|
 |ALTER TABLE|Modify a table|
 |ALTER VIEW|Modify a view. A view created without the corresponding table permission cannot be queried.|
