@@ -149,7 +149,7 @@ CREATE TABLE `modatabase`.`users` (
 );
 ```
 
-## Execute the CREATE TABLE statement
+## Execute the SHOW TABLES statement
 
 To view all tables under the *modatabase* database, use the `SHOW TABLES` statement.
 
