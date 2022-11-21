@@ -452,36 +452,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Get-Started/getting-started-with-mo.md" class="md-nav__link">
-        Quick Start Overview
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../Get-Started/install-dependency-tool.md" class="md-nav__link">
-        Unit 1. Install Dependency Tools
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../../Get-Started/install-standalone-matrixone/" class="md-nav__link">
-        Unit 2. Install and Launch MatrixOne
+        Install and Launch MatrixOne
       </a>
     </li>
   
@@ -495,7 +467,7 @@
   
     <li class="md-nav__item">
       <a href="../../../../Get-Started/connect-to-matrixone-server/" class="md-nav__link">
-        Unit 3. Connect to MatrixOne Server
+        Connect to MatrixOne Server
       </a>
     </li>
   
@@ -791,22 +763,36 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../../../../Develop/import-data/insert-data/" class="md-nav__link">
+        Insert
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
     
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4_3_1" type="checkbox" id="__nav_1_4_3_1" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4_3_2" type="checkbox" id="__nav_1_4_3_2" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_4_3_1">
+        <label class="md-nav__link" for="__nav_1_4_3_2">
           Bulk Load
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Bulk Load" data-md-level="4">
-        <label class="md-nav__title" for="__nav_1_4_3_1">
+        <label class="md-nav__title" for="__nav_1_4_3_2">
           <span class="md-nav__icon md-icon"></span>
           Bulk Load
         </label>
@@ -1780,7 +1766,7 @@
   
     <li class="md-nav__item">
       <a href="../../../../Security/quick-start-account/" class="md-nav__link">
-        Quick start about Creating Account, User and Role
+        Quick Start about Creating Account, User and Role
       </a>
     </li>
   
@@ -1967,35 +1953,9 @@
   
   
   
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_1_1_7" type="checkbox" id="__nav_1_11_1_1_7" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_1_11_1_1_7">
-          GRANT
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="GRANT" data-md-level="5">
-        <label class="md-nav__title" for="__nav_1_11_1_1_7">
-          <span class="md-nav__icon md-icon"></span>
-          GRANT
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
     <li class="md-nav__item">
-      <a href="../grant-privileges/" class="md-nav__link">
-        GRANT <privileges>
+      <a href="../grant/" class="md-nav__link">
+        GRANT
       </a>
     </li>
   
@@ -2008,16 +1968,9 @@
   
   
     <li class="md-nav__item">
-      <a href="../grant-role/" class="md-nav__link">
-        GRANT ROLE
+      <a href="../show-grants/" class="md-nav__link">
+        SHOW GRANT
       </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
     </li>
   
 
@@ -6006,8 +5959,8 @@
 
 <h1 id="set-role"><strong>SET ROLE</strong></h1>
 <h2 id="description"><strong>Description</strong></h2>
-<p>Specifies the active/current primary role for the session. The currently-active primary role sets the context that determines whether the current user has the necessary privileges to execute <code>CREATE &lt;object&gt;</code> statements or perform any other SQL action.</p>
-<p>Note that authorization to perform any SQL action other than creating objects can be provided by secondary roles.</p>
+<p>Specifies the active/current primary role or secondary role for the session.</p>
+<p>The authorization to perform any SQL action other than creating objects can be provided by secondary roles.</p>
 <h2 id="syntax"><strong>Syntax</strong></h2>
 <div class="highlight"><pre><span></span><code>&gt; SET SECONDARY ROLE {
     NONE
@@ -6016,6 +5969,67 @@
 SET ROLE role
 </code></pre></div>
 <h3 id="explanations">Explanations</h3>
+<p>A role is a collection of permissions, and a user can correspond to multiple roles.</p>
+<p>For example, user1 has the primary role role1, secondary roles role2 and role3, role1 is granted the permissions pri1 and pri2; role2 is given the permission pri3; role3 is given the permission pri4, the permission comparison representation is as follows:</p>
+<table>
+<thead>
+<tr>
+<th>User name</th>
+<th>Role name</th>
+<th>Privilege name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>user1</td>
+<td>role1</td>
+<td>pri1,pri2</td>
+</tr>
+<tr>
+<td></td>
+<td>role2</td>
+<td>pri3</td>
+</tr>
+<tr>
+<td></td>
+<td>role3</td>
+<td>pri4</td>
+</tr>
+</tbody>
+</table>
+<p>For a more intuitive understanding, you can refer to the following example:</p>
+<table>
+<thead>
+<tr>
+<th>User</th>
+<th>Role</th>
+<th>Privilege Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tom</td>
+<td>Application Developer</td>
+<td>Read Data, Write Data</td>
+</tr>
+<tr>
+<td></td>
+<td>O&amp;M expert</td>
+<td>Read data</td>
+</tr>
+<tr>
+<td></td>
+<td>Database Administrator</td>
+<td>Administrator Privileges</td>
+</tr>
+</tbody>
+</table>
+<p>At this time, Tom's main role is an application developer, and Tom needs to call <em>administrator authority</em>, then Tom can use two methods:</p>
+<ul>
+<li>To switch his role to <em>database administrator</em>, use the <code>SET ROLE role</code> statement.</li>
+<li>To use all privileges of primary and secondary roles, use the <code>SET SECONDARY ROLE ALL</code> statement.</li>
+</ul>
+<p>The two statements are explained as follows:</p>
 <h4 id="set-secondary-role-all">SET SECONDARY ROLE ALL</h4>
 <p>The union of all roles of the user.</p>
 <h4 id="set-secondary-role-none">SET SECONDARY ROLE NONE</h4>
@@ -6023,7 +6037,29 @@ SET ROLE role
 <h4 id="set-role-role">SET ROLE role</h4>
 <p>Switching the current ROLE to a new role.</p>
 <h2 id="examples"><strong>Examples</strong></h2>
-<p>```sql</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="k">drop</span><span class="w"> </span><span class="k">role</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="n">use_role_1</span><span class="p">,</span><span class="n">use_role_2</span><span class="p">,</span><span class="n">use_role_3</span><span class="p">,</span><span class="n">use_role_4</span><span class="p">,</span><span class="n">use_role_5</span><span class="p">;</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">drop</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="n">use_user_1</span><span class="p">,</span><span class="n">use_user_2</span><span class="p">;</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">drop</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="n">use_db_1</span><span class="p">;</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">role</span><span class="w"> </span><span class="n">use_role_1</span><span class="p">,</span><span class="n">use_role_2</span><span class="p">,</span><span class="n">use_role_3</span><span class="p">,</span><span class="n">use_role_4</span><span class="p">,</span><span class="n">use_role_5</span><span class="p">;</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n">use_db_1</span><span class="p">;</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="n">use_user_1</span><span class="w"> </span><span class="n">identified</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="s1">&#39;123456&#39;</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="k">role</span><span class="w"> </span><span class="n">use_role_1</span><span class="p">;</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">grant</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="p">,</span><span class="k">insert</span><span class="w"> </span><span class="p">,</span><span class="k">update</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="o">*</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">use_role_1</span><span class="p">;</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">grant</span><span class="w"> </span><span class="k">all</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">use_role_2</span><span class="p">;</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">grant</span><span class="w"> </span><span class="n">use_role_2</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">use_user_1</span><span class="p">;</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">use_db_1</span><span class="p">.</span><span class="n">use_table_1</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="n">b</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span><span class="k">c</span><span class="w"> </span><span class="n">double</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="n">secondary</span><span class="w"> </span><span class="k">role</span><span class="w"> </span><span class="k">all</span><span class="p">;</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="n">grants</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="s1">&#39;use_user_1&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="o">+</span><span class="c1">-----------------------------------------------------------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">Grants</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">use_user_1</span><span class="o">@</span><span class="n">localhost</span><span class="w">                           </span><span class="o">|</span><span class="w"></span>
+<span class="o">+</span><span class="c1">-----------------------------------------------------------+</span>
+<span class="o">|</span><span class="w"> </span><span class="k">GRANT</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="o">*</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="o">`</span><span class="n">use_user_1</span><span class="o">`@`</span><span class="n">localhost</span><span class="o">`</span><span class="w">        </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w"> </span><span class="k">GRANT</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="o">*</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="o">`</span><span class="n">use_user_1</span><span class="o">`@`</span><span class="n">localhost</span><span class="o">`</span><span class="w">        </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w"> </span><span class="k">GRANT</span><span class="w"> </span><span class="k">update</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="o">*</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="o">`</span><span class="n">use_user_1</span><span class="o">`@`</span><span class="n">localhost</span><span class="o">`</span><span class="w">        </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w"> </span><span class="k">GRANT</span><span class="w"> </span><span class="k">connect</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">account</span><span class="w">  </span><span class="o">`</span><span class="n">use_user_1</span><span class="o">`@`</span><span class="n">localhost</span><span class="o">`</span><span class="w">        </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w"> </span><span class="k">GRANT</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="k">all</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="o">`</span><span class="n">use_user_1</span><span class="o">`@`</span><span class="n">localhost</span><span class="o">`</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">+</span><span class="c1">-----------------------------------------------------------+</span>
+<span class="mi">5</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
 
               
             </article>
@@ -6037,7 +6073,7 @@ SET ROLE role
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../grant-role/" class="md-footer__link md-footer__link--prev" aria-label="Previous: GRANT ROLE" rel="prev">
+        <a href="../show-grants/" class="md-footer__link md-footer__link--prev" aria-label="Previous: SHOW GRANT" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -6046,7 +6082,7 @@ SET ROLE role
               <span class="md-footer__direction">
                 Previous
               </span>
-              GRANT ROLE
+              SHOW GRANT
             </div>
           </div>
         </a>

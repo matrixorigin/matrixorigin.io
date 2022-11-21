@@ -452,36 +452,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Get-Started/getting-started-with-mo.md" class="md-nav__link">
-        Quick Start Overview
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../Get-Started/install-dependency-tool.md" class="md-nav__link">
-        Unit 1. Install Dependency Tools
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../Get-Started/install-standalone-matrixone/" class="md-nav__link">
-        Unit 2. Install and Launch MatrixOne
+        Install and Launch MatrixOne
       </a>
     </li>
   
@@ -495,7 +467,7 @@
   
     <li class="md-nav__item">
       <a href="../../../Get-Started/connect-to-matrixone-server/" class="md-nav__link">
-        Unit 3. Connect to MatrixOne Server
+        Connect to MatrixOne Server
       </a>
     </li>
   
@@ -791,22 +763,36 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../../../Develop/import-data/insert-data/" class="md-nav__link">
+        Insert
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
     
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4_3_1" type="checkbox" id="__nav_1_4_3_1" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4_3_2" type="checkbox" id="__nav_1_4_3_2" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_4_3_1">
+        <label class="md-nav__link" for="__nav_1_4_3_2">
           Bulk Load
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Bulk Load" data-md-level="4">
-        <label class="md-nav__title" for="__nav_1_4_3_1">
+        <label class="md-nav__title" for="__nav_1_4_3_2">
           <span class="md-nav__icon md-icon"></span>
           Bulk Load
         </label>
@@ -1780,7 +1766,7 @@
   
     <li class="md-nav__item">
       <a href="../../../Security/quick-start-account/" class="md-nav__link">
-        Quick start about Creating Account, User and Role
+        Quick Start about Creating Account, User and Role
       </a>
     </li>
   
@@ -1963,35 +1949,9 @@
   
   
   
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_1_1_7" type="checkbox" id="__nav_1_11_1_1_7" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_1_11_1_1_7">
-          GRANT
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="GRANT" data-md-level="5">
-        <label class="md-nav__title" for="__nav_1_11_1_1_7">
-          <span class="md-nav__icon md-icon"></span>
-          GRANT
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
     <li class="md-nav__item">
-      <a href="../../SQL-Reference/Database-Administration-Statements/grant-privileges/" class="md-nav__link">
-        GRANT <privileges>
+      <a href="../../SQL-Reference/Database-Administration-Statements/grant/" class="md-nav__link">
+        GRANT
       </a>
     </li>
   
@@ -2004,16 +1964,9 @@
   
   
     <li class="md-nav__item">
-      <a href="../../SQL-Reference/Database-Administration-Statements/grant-role/" class="md-nav__link">
-        GRANT ROLE
+      <a href="../../SQL-Reference/Database-Administration-Statements/show-grants/" class="md-nav__link">
+        SHOW GRANT
       </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
     </li>
   
 
@@ -6280,16 +6233,16 @@
 </thead>
 <tbody>
 <tr>
-<td>Decimal64</td>
+<td>Decimal</td>
 <td>8 byte</td>
 <td>19 digits</td>
-<td>Decimal(N,S), N range(1,18), S range(0,N)</td>
+<td>Decimal(N,S) <br> N is the total number of digits, the range is(1 ~ 18). The decimal point and (for negative numbers) the - sign are not counted in N. <br>S is the number of digits after the decimal point (the scale), the range is(0 ~ N)<br> If S is 0, values have no decimal point or fractional part. If S is omitted, the default is 0. If N is omitted, the default is 1. <br>For example, Decimal(10,8) represents a number with a total length of 10 and a decimal place of 8.</td>
 </tr>
 <tr>
-<td>Decimal128</td>
+<td>Decimal</td>
 <td>16 byte</td>
 <td>38 digits</td>
-<td>Decimal(N,S), N range(18,38), S range(0,N)</td>
+<td>Decimal(N,S) <br> N is the total number of digits, the range is(18 ~ 38). The decimal point and (for negative numbers) the - sign are not counted in N. <br>S is the number of digits after the decimal point (the scale), the range is(0 ~ N)<br> If S is 0, values have no decimal point or fractional part. If S is omitted, the default is 0. If N is omitted, the default is 18. <br>For example, Decimal(20,9) represents a number with a total length of 20 and a decimal place of 9.</td>
 </tr>
 </tbody>
 </table>

@@ -452,36 +452,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Get-Started/getting-started-with-mo.md" class="md-nav__link">
-        Quick Start Overview
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../Get-Started/install-dependency-tool.md" class="md-nav__link">
-        Unit 1. Install Dependency Tools
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../Get-Started/install-standalone-matrixone/" class="md-nav__link">
-        Unit 2. Install and Launch MatrixOne
+        Install and Launch MatrixOne
       </a>
     </li>
   
@@ -495,7 +467,7 @@
   
     <li class="md-nav__item">
       <a href="../../../Get-Started/connect-to-matrixone-server/" class="md-nav__link">
-        Unit 3. Connect to MatrixOne Server
+        Connect to MatrixOne Server
       </a>
     </li>
   
@@ -845,8 +817,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#execute-the-create-table-statement" class="md-nav__link">
-    Execute the CREATE TABLE statement
+  <a href="#execute-the-show-tables-statement" class="md-nav__link">
+    Execute the SHOW TABLES statement
   </a>
   
 </li>
@@ -932,22 +904,36 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../../import-data/insert-data/" class="md-nav__link">
+        Insert
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
     
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4_3_1" type="checkbox" id="__nav_1_4_3_1" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4_3_2" type="checkbox" id="__nav_1_4_3_2" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_4_3_1">
+        <label class="md-nav__link" for="__nav_1_4_3_2">
           Bulk Load
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Bulk Load" data-md-level="4">
-        <label class="md-nav__title" for="__nav_1_4_3_1">
+        <label class="md-nav__title" for="__nav_1_4_3_2">
           <span class="md-nav__icon md-icon"></span>
           Bulk Load
         </label>
@@ -1921,7 +1907,7 @@
   
     <li class="md-nav__item">
       <a href="../../../Security/quick-start-account/" class="md-nav__link">
-        Quick start about Creating Account, User and Role
+        Quick Start about Creating Account, User and Role
       </a>
     </li>
   
@@ -2102,35 +2088,9 @@
   
   
   
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_1_1_7" type="checkbox" id="__nav_1_11_1_1_7" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_1_11_1_1_7">
-          GRANT
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="GRANT" data-md-level="5">
-        <label class="md-nav__title" for="__nav_1_11_1_1_7">
-          <span class="md-nav__icon md-icon"></span>
-          GRANT
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
     <li class="md-nav__item">
-      <a href="../../../Reference/SQL-Reference/Database-Administration-Statements/grant-privileges/" class="md-nav__link">
-        GRANT <privileges>
+      <a href="../../../Reference/SQL-Reference/Database-Administration-Statements/grant/" class="md-nav__link">
+        GRANT
       </a>
     </li>
   
@@ -2143,16 +2103,9 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Reference/SQL-Reference/Database-Administration-Statements/grant-role/" class="md-nav__link">
-        GRANT ROLE
+      <a href="../../../Reference/SQL-Reference/Database-Administration-Statements/show-grants/" class="md-nav__link">
+        SHOW GRANT
       </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
     </li>
   
 
@@ -6028,8 +5981,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#execute-the-create-table-statement" class="md-nav__link">
-    Execute the CREATE TABLE statement
+  <a href="#execute-the-show-tables-statement" class="md-nav__link">
+    Execute the SHOW TABLES statement
   </a>
   
 </li>
@@ -6235,7 +6188,7 @@
 <span class="w">  </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="p">)</span><span class="w"></span>
 <span class="p">);</span><span class="w"></span>
 </code></pre></div>
-<h2 id="execute-the-create-table-statement">Execute the CREATE TABLE statement</h2>
+<h2 id="execute-the-show-tables-statement">Execute the SHOW TABLES statement</h2>
 <p>To view all tables under the <em>modatabase</em> database, use the <code>SHOW TABLES</code> statement.</p>
 <div class="highlight"><pre><span></span><code><span class="k">SHOW</span><span class="w"> </span><span class="n">TABLES</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="o">`</span><span class="n">modatabase</span><span class="o">`</span><span class="p">;</span><span class="w"></span>
 </code></pre></div>
@@ -6318,13 +6271,13 @@
       
       
         
-        <a href="../../import-data/bulk-load/load-csv/" class="md-footer__link md-footer__link--next" aria-label="Next: Import the csv" rel="next">
+        <a href="../../import-data/insert-data/" class="md-footer__link md-footer__link--next" aria-label="Next: Insert" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Import the csv
+              Insert
             </div>
           </div>
           <div class="md-footer__button md-icon">
