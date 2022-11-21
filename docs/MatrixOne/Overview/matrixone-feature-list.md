@@ -18,7 +18,7 @@ This document lists the features supported by MatrixOne for the latest version.
 | ALTER VIEW                    | N    |
 | CREATE OR REPLACE VIEW        | N    |
 | DROP VIEW                     | Y    |
-| TRUNCATE                      | N    |
+| TRUNCATE                      | Y    |
 | SEQUENCE                      | N    |
 | AUTO_INCREMENT                | Y    |
 | Temporary tables              | Y    |
@@ -74,7 +74,7 @@ This document lists the features supported by MatrixOne for the latest version.
 |                      | MEDIUMBLOB        | Y    |
 |                      | LONGBLOB          | Y    |
 | Time and Date Types  | Date              | Y    |
-|                      | Time              | N    |
+|                      | Time              | Y    |
 |                      | DateTime          | Y    |
 |                      | Timestamp         | Y    |
 | Boolean Type         | BOOL              | Y    |
@@ -87,8 +87,8 @@ This document lists the features supported by MatrixOne for the latest version.
 | ------------------------------------ | ---- |
 | PRIMARY KEY                          | Y    |
 | Composite PRIMARY KEY                | Y    |
-| UNIQUE KEY                           | Y    |
-| Secondary KEY                        | Y    |
+| UNIQUE KEY                           | Y   |
+| Secondary KEY                        | Y, Syntax only implementation  |
 | FOREIGN KEY                          | N    |
 | Enforced Constraints on Invalid Data | Y    |
 | ENUM and SET Constraints             | N    |

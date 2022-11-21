@@ -11,6 +11,9 @@ Removes one or more privileges on a securable object from a role. The privileges
     priv_type [(column_list)]
       [, priv_type [(column_list)]] ...
     ON object_type priv_level
+
+> REVOKE [IF EXISTS] role [, role ] ...
+    FROM user_or_role [, user_or_role ] ...
 ```
 
 ## **Examples**
