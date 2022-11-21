@@ -54,7 +54,7 @@ Depending on your needs, choose whether you want to keep your code up to date, o
          make build
          ```
 
-         __Tips__: You can also run `make debug`, `make clean`, or anything else our `Makefile` offers, `make debug` can be used to debug the build process, and `make clean` can be used to clean up the build process.
+         __Tips__: You can also run `make debug`, `make clean`, or anything else our `Makefile` offers, `make debug` can be used to debug the build process, and `make clean` can be used to clean up the build process. If you get an error while run `make build`, see [Deployment FAQs](../FAQs/deployment-faqs.md).
 
      3. Launch MatrixOne server：
 
@@ -81,7 +81,7 @@ Depending on your needs, choose whether you want to keep your code up to date, o
          make build
          ```
 
-         __Tips__: You can also run `make debug`, `make clean`, or anything else our `Makefile` offers, `make debug` can be used to debug the build process, and `make clean` can be used to clean up the build process.
+         __Tips__: You can also run `make debug`, `make clean`, or anything else our `Makefile` offers, `make debug` can be used to debug the build process, and `make clean` can be used to clean up the build process. If you get an error while run `make build`, see [Deployment FAQs](../FAQs/deployment-faqs.md).
 
      3. Launch MatrixOne server：
 

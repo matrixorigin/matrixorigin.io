@@ -50,8 +50,18 @@ Normally you don't need to change anything for installation. A default setting o
 To solve the error, you need to set the environment variable. Run the following command:
 
 ```
+cd ~
+sudo vim .bash_profile
+Password:
+```
+
+After entering the root password you set in the MySQL client installation window, type *i* on the keyboard to enter the insert status and continue typing the following command:
+
+```
 export PATH=${PATH}:/usr/local/mysql/bin
 ```
+
+Click *esc* on the keyboard to exit the insert status and type `:wq` at the bottom to save and exit. Continue typing `source. bash_profile` and press **Enter** to run the environment variable.
 
 * **When I install MatrixOne by building from source, I got an error of the following and the build failed, how can I proceed?**
 
