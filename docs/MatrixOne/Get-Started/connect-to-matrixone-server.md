@@ -1,4 +1,4 @@
-# **Connect to MatrixOne Server**
+# **Connect to standalone MatrixOne**
 
 ## **Before you start**
 
