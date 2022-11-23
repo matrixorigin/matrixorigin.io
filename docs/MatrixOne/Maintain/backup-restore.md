@@ -61,7 +61,7 @@ If you want to generate the backup of a single table in a database, run the foll
 ```
 
 !!! note
-    If you have multiple databases, you need to run `modump `multiple times to generate SQLs one by one.
+    If you have multiple databases, you need to run `modump` multiple times to generate SQLs one by one.
 
 ### 3. Restore the backup to MatrixOne server
 
