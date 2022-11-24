@@ -2,9 +2,9 @@
 
 Bulk load data is supported in MatrixOne. Using the MatrixOne database, according to different data volumes, file types, or additional data storage locations, you can choose other import methods to improve your work efficiency.
 
-## Import the different formats data
+## Import the different file types
 
-According to the different data formats, MatrixOne currently mainly supports importing *.csv* or jsonlines format data:
+According to the different file types, MatrixOne currently mainly supports importing *.csv* or jsonlines:
 
 - For how to import *.csv* format, see [Import *.csv* format data](load-csv.md).
 - For how to import *.jl* format, see [Import jsonlines format data](load-jsonline.md).
