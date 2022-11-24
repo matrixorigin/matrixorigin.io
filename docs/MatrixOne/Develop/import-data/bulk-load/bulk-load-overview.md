@@ -13,5 +13,5 @@ According to the different file types, MatrixOne currently mainly supports impor
 
 According to the different data storage locations, MatrixOne supports *importing data from local* and *importing data from S3(Simple Storage Service)*.
 
-- For how to import data locally, see [Import *.csv* format data from local] (load-csv.md) or [Import jsonlines data from local] (load-jsonline.md).
+- For how to import data from local host, see [Import *.csv* format data from local] (load-csv.md) or [Import jsonlines data from local] (load-jsonline.md).
 - For how to import data from S3, see [Import data from S3](load-s3.md).
