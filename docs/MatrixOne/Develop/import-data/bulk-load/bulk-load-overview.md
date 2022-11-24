@@ -9,7 +9,7 @@ According to the different data formats, MatrixOne currently mainly supports imp
 - For how to import *.csv* format, see [Import *.csv* format data](load-csv.md).
 - For how to import *.jl* format, see [Import jsonlines format data](load-jsonline.md).
 
-## Import data from different locations
+## Import data from different data storage locations
 
 According to the different data storage locations, MatrixOne supports *importing data from local* and *importing data from S3(Simple Storage Service)*.
 
