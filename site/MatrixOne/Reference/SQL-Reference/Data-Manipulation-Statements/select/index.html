@@ -453,7 +453,7 @@
   
     <li class="md-nav__item">
       <a href="../../../../Get-Started/install-standalone-matrixone/" class="md-nav__link">
-        Install and Launch MatrixOne
+        Install standalone MatrixOne
       </a>
     </li>
   
@@ -467,7 +467,7 @@
   
     <li class="md-nav__item">
       <a href="../../../../Get-Started/connect-to-matrixone-server/" class="md-nav__link">
-        Connect to MatrixOne Server
+        Connect to standalone MatrixOne Server
       </a>
     </li>
   
@@ -804,8 +804,22 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../Develop/import-data/bulk-load/bulk-load-overview/" class="md-nav__link">
+        Bulk Load Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../Develop/import-data/bulk-load/load-csv/" class="md-nav__link">
-        Import the csv
+        Import .csv format data
       </a>
     </li>
   
@@ -819,7 +833,7 @@
   
     <li class="md-nav__item">
       <a href="../../../../Develop/import-data/bulk-load/load-jsonline/" class="md-nav__link">
-        Import the jsonlines
+        Import jsonlines format data
       </a>
     </li>
   
@@ -833,7 +847,7 @@
   
     <li class="md-nav__item">
       <a href="../../../../Develop/import-data/bulk-load/load-s3/" class="md-nav__link">
-        Import the S3 files
+        Import data from S3
       </a>
     </li>
   
@@ -989,8 +1003,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Develop/export-data/export-data/" class="md-nav__link">
-        Export data
+      <a href="../../../../Develop/export-data/select-into-outfile/" class="md-nav__link">
+        Export data by SELECT INTO...OUTFILE
       </a>
     </li>
   
@@ -1003,8 +1017,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Develop/export-data/backup-restore-matrixone-with_modump/" class="md-nav__link">
-        Using the `modump` backup and restore databases
+      <a href="../../../../Develop/export-data/modump/" class="md-nav__link">
+        Export data by modump
       </a>
     </li>
   
@@ -1223,6 +1237,20 @@
     <li class="md-nav__item">
       <a href="../../../../Maintain/upgrade-standalone-matrixone/" class="md-nav__link">
         Upgrade Standalone MatrixOne
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Maintain/backup-restore/" class="md-nav__link">
+        Backup and Restore
       </a>
     </li>
   
@@ -2378,6 +2406,74 @@
     Syntax
   </a>
   
+    <nav class="md-nav" aria-label="Syntax">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#explanations" class="md-nav__link">
+    Explanations
+  </a>
+  
+    <nav class="md-nav" aria-label="Explanations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#select_expr" class="md-nav__link">
+    select_expr
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#table_references" class="md-nav__link">
+    table_references
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#where" class="md-nav__link">
+    WHERE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#group-by" class="md-nav__link">
+    GROUP BY
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#having" class="md-nav__link">
+    HAVING
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#order-by" class="md-nav__link">
+    ORDER BY
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limit" class="md-nav__link">
+    LIMIT
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -2478,6 +2574,46 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_1_3_12" type="checkbox" id="__nav_1_11_1_3_12" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_11_1_3_12">
+          Set Operations
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Set Operations" data-md-level="5">
+        <label class="md-nav__title" for="__nav_1_11_1_3_12">
+          <span class="md-nav__icon md-icon"></span>
+          Set Operations
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../union-intersect-minus-overview/" class="md-nav__link">
+        Combining Queries (UNION, INTERSECT, MINUS)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
       <a href="../union/" class="md-nav__link">
         UNION
@@ -2515,6 +2651,13 @@
 
             
           
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
             
               
   
@@ -2524,18 +2667,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_1_3_15" type="checkbox" id="__nav_1_11_1_3_15" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_1_3_13" type="checkbox" id="__nav_1_11_1_3_13" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_11_1_3_15">
+        <label class="md-nav__link" for="__nav_1_11_1_3_13">
           SUBQUERY
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="SUBQUERY" data-md-level="5">
-        <label class="md-nav__title" for="__nav_1_11_1_3_15">
+        <label class="md-nav__title" for="__nav_1_11_1_3_13">
           <span class="md-nav__icon md-icon"></span>
           SUBQUERY
         </label>
@@ -2655,18 +2798,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_1_3_16" type="checkbox" id="__nav_1_11_1_3_16" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_1_3_14" type="checkbox" id="__nav_1_11_1_3_14" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_11_1_3_16">
+        <label class="md-nav__link" for="__nav_1_11_1_3_14">
           JOIN
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="JOIN" data-md-level="5">
-        <label class="md-nav__title" for="__nav_1_11_1_3_16">
+        <label class="md-nav__title" for="__nav_1_11_1_3_14">
           <span class="md-nav__icon md-icon"></span>
           JOIN
         </label>
@@ -2786,18 +2929,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_1_3_17" type="checkbox" id="__nav_1_11_1_3_17" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_1_3_15" type="checkbox" id="__nav_1_11_1_3_15" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_11_1_3_17">
+        <label class="md-nav__link" for="__nav_1_11_1_3_15">
           OPERATORS
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="OPERATORS" data-md-level="5">
-        <label class="md-nav__title" for="__nav_1_11_1_3_17">
+        <label class="md-nav__title" for="__nav_1_11_1_3_15">
           <span class="md-nav__icon md-icon"></span>
           OPERATORS
         </label>
@@ -2840,18 +2983,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_1_3_17_3" type="checkbox" id="__nav_1_11_1_3_17_3" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_1_3_15_3" type="checkbox" id="__nav_1_11_1_3_15_3" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_11_1_3_17_3">
+        <label class="md-nav__link" for="__nav_1_11_1_3_15_3">
           Arithmetic Operators
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Arithmetic Operators" data-md-level="6">
-        <label class="md-nav__title" for="__nav_1_11_1_3_17_3">
+        <label class="md-nav__title" for="__nav_1_11_1_3_15_3">
           <span class="md-nav__icon md-icon"></span>
           Arithmetic Operators
         </label>
@@ -2985,18 +3128,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_1_3_17_4" type="checkbox" id="__nav_1_11_1_3_17_4" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_1_3_15_4" type="checkbox" id="__nav_1_11_1_3_15_4" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_11_1_3_17_4">
+        <label class="md-nav__link" for="__nav_1_11_1_3_15_4">
           Assignment Operators
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Assignment Operators" data-md-level="6">
-        <label class="md-nav__title" for="__nav_1_11_1_3_17_4">
+        <label class="md-nav__title" for="__nav_1_11_1_3_15_4">
           <span class="md-nav__icon md-icon"></span>
           Assignment Operators
         </label>
@@ -3046,18 +3189,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_1_3_17_5" type="checkbox" id="__nav_1_11_1_3_17_5" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_1_3_15_5" type="checkbox" id="__nav_1_11_1_3_15_5" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_11_1_3_17_5">
+        <label class="md-nav__link" for="__nav_1_11_1_3_15_5">
           Bit Functions and Operators
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Bit Functions and Operators" data-md-level="6">
-        <label class="md-nav__title" for="__nav_1_11_1_3_17_5">
+        <label class="md-nav__title" for="__nav_1_11_1_3_15_5">
           <span class="md-nav__icon md-icon"></span>
           Bit Functions and Operators
         </label>
@@ -3177,18 +3320,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_1_3_17_6" type="checkbox" id="__nav_1_11_1_3_17_6" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_1_3_15_6" type="checkbox" id="__nav_1_11_1_3_15_6" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_11_1_3_17_6">
+        <label class="md-nav__link" for="__nav_1_11_1_3_15_6">
           Cast Functions and Operators
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Cast Functions and Operators" data-md-level="6">
-        <label class="md-nav__title" for="__nav_1_11_1_3_17_6">
+        <label class="md-nav__title" for="__nav_1_11_1_3_15_6">
           <span class="md-nav__icon md-icon"></span>
           Cast Functions and Operators
         </label>
@@ -3252,18 +3395,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_1_3_17_7" type="checkbox" id="__nav_1_11_1_3_17_7" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_1_3_15_7" type="checkbox" id="__nav_1_11_1_3_15_7" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_11_1_3_17_7">
+        <label class="md-nav__link" for="__nav_1_11_1_3_15_7">
           Comparison Functions and Operators
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Comparison Functions and Operators" data-md-level="6">
-        <label class="md-nav__title" for="__nav_1_11_1_3_17_7">
+        <label class="md-nav__title" for="__nav_1_11_1_3_15_7">
           <span class="md-nav__icon md-icon"></span>
           Comparison Functions and Operators
         </label>
@@ -3523,18 +3666,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_1_3_17_8" type="checkbox" id="__nav_1_11_1_3_17_8" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_1_3_15_8" type="checkbox" id="__nav_1_11_1_3_15_8" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_11_1_3_17_8">
+        <label class="md-nav__link" for="__nav_1_11_1_3_15_8">
           Flow Control Functions
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Flow Control Functions" data-md-level="6">
-        <label class="md-nav__title" for="__nav_1_11_1_3_17_8">
+        <label class="md-nav__title" for="__nav_1_11_1_3_15_8">
           <span class="md-nav__icon md-icon"></span>
           Flow Control Functions
         </label>
@@ -3598,18 +3741,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_1_3_17_9" type="checkbox" id="__nav_1_11_1_3_17_9" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_1_3_15_9" type="checkbox" id="__nav_1_11_1_3_15_9" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_11_1_3_17_9">
+        <label class="md-nav__link" for="__nav_1_11_1_3_15_9">
           Logical Operators
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Logical Operators" data-md-level="6">
-        <label class="md-nav__title" for="__nav_1_11_1_3_17_9">
+        <label class="md-nav__title" for="__nav_1_11_1_3_15_9">
           <span class="md-nav__icon md-icon"></span>
           Logical Operators
         </label>
@@ -5857,6 +6000,74 @@
     Syntax
   </a>
   
+    <nav class="md-nav" aria-label="Syntax">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#explanations" class="md-nav__link">
+    Explanations
+  </a>
+  
+    <nav class="md-nav" aria-label="Explanations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#select_expr" class="md-nav__link">
+    select_expr
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#table_references" class="md-nav__link">
+    table_references
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#where" class="md-nav__link">
+    WHERE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#group-by" class="md-nav__link">
+    GROUP BY
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#having" class="md-nav__link">
+    HAVING
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#order-by" class="md-nav__link">
+    ORDER BY
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limit" class="md-nav__link">
+    LIMIT
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -5905,39 +6116,102 @@
 <span class="w">      </span><span class="p">[</span><span class="k">ASC</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">DESC</span><span class="p">]]</span><span class="w"></span>
 <span class="w">    </span><span class="p">[</span><span class="k">HAVING</span><span class="w"> </span><span class="n">where_condition</span><span class="p">]</span><span class="w"></span>
 <span class="w">    </span><span class="p">[</span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="err">{</span><span class="n">col_name</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">expr</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">position</span><span class="err">}</span><span class="w"></span>
-<span class="w">      </span><span class="p">[</span><span class="k">ASC</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">DESC</span><span class="p">]]</span><span class="w"></span>
+<span class="w">      </span><span class="p">[</span><span class="k">ASC</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">DESC</span><span class="p">]]</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="n">NULLS</span><span class="w"> </span><span class="err">{</span><span class="w"> </span><span class="k">FIRST</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">LAST</span><span class="w"> </span><span class="err">}</span><span class="w"> </span><span class="p">]</span><span class="w"></span>
 <span class="w">    </span><span class="p">[</span><span class="k">LIMIT</span><span class="w"> </span><span class="err">{</span><span class="p">[</span><span class="k">offset</span><span class="p">,]</span><span class="w"> </span><span class="k">row_count</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">row_count</span><span class="w"> </span><span class="k">OFFSET</span><span class="w"> </span><span class="k">offset</span><span class="err">}</span><span class="p">]</span><span class="w"></span>
 </code></pre></div>
+<h3 id="explanations">Explanations</h3>
+<p>The most commonly used clauses of <code>SELECT</code> statements are these:</p>
+<h4 id="select_expr"><code>select_expr</code></h4>
+<p>Each <code>select_expr</code> indicates a column that you want to retrieve. There must be at least one <code>select_expr</code>.</p>
+<p>The list of <code>select_expr</code> terms comprises the select list that indicates which columns to retrieve. Terms specify a column or expression or can use *-shorthand:</p>
+<ul>
+<li>A select list consisting only of a single unqualified * can be used as shorthand to select all columns from all tables:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>SELECT * FROM t1
+</code></pre></div>
+<ul>
+<li><code>tbl_name.*</code> can be used as a qualified shorthand to select all columns from the named table:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>SELECT t1.*, t2.* FROM t1
+</code></pre></div>
+<ul>
+<li>A <code>select_expr</code> can be given an alias using <code>AS</code> alias_name.</li>
+</ul>
+<h4 id="table_references"><code>table_references</code></h4>
+<ul>
+<li>
+<p>The <code>FROM table_references</code> clause indicates the table or tables from which to retrieve rows.</p>
+</li>
+<li>
+<p>You can refer to a table within the default database as <code>tbl_name</code>, or as <code>db_name.tbl_name</code> to specify a database explicitly. You can refer to a column as <code>col_name</code>, <code>tbl_name.col_name</code>, or <code>db_name.tbl_name.col_name</code>. You need not specify a <code>tbl_name</code> or <code>db_name.tbl_name</code> prefix for a column reference unless the reference would be ambiguous.</p>
+</li>
+<li>
+<p>A table reference can be aliased using <code>tbl_name AS alias_name</code> or <code>tbl_name alias_name</code>.</p>
+</li>
+</ul>
+<h4 id="where"><code>WHERE</code></h4>
+<p>The <code>WHERE</code> clause, if given, indicates the condition or conditions that rows must satisfy to be selected. <code>where_condition</code> is an expression that evaluates to true for each row to be selected. The statement selects all rows if there is no <code>WHERE</code> clause.</p>
+<h4 id="group-by"><code>GROUP BY</code></h4>
+<p>Columns selected for output can be referred to in ORDER BY and GROUP BY clauses using column names, column aliases, or column positions.</p>
+<h4 id="having"><code>HAVING</code></h4>
+<p>The <code>HAVING</code> clause, like the <code>WHERE</code> clause, specifies selection conditions.</p>
+<h4 id="order-by"><code>ORDER BY</code></h4>
+<p>To sort in reverse order, add the DESC (descending) keyword to the name of the column in the <code>ORDER BY</code> clause that you are sorting by. The default is ascending order; this can be specified explicitly using the ASC keyword.</p>
+<h4 id="limit"><code>LIMIT</code></h4>
+<p>The <code>LIMIT</code> clause can be used to constrain the number of rows returned by the SELECT statement.</p>
 <h2 id="examples"><strong>Examples</strong></h2>
-<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="nb">number</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">numbers</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span><span class="w"></span>
-<span class="o">+</span><span class="c1">--------+</span>
-<span class="o">|</span><span class="w"> </span><span class="nb">number</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
-<span class="o">+</span><span class="c1">--------+</span>
-<span class="o">|</span><span class="w">      </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
-<span class="o">|</span><span class="w">      </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
-<span class="o">|</span><span class="w">      </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
-<span class="o">+</span><span class="c1">--------+</span>
+<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">spID</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="n">userID</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="n">score</span><span class="w"> </span><span class="nb">smallint</span><span class="p">);</span><span class="w"></span>
+<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span><span class="w"></span>
+<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">);</span><span class="w"></span>
+<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span><span class="w"></span>
+<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">);</span><span class="w"></span>
+<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">10</span><span class="p">);</span><span class="w"></span>
+<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">99</span><span class="p">);</span><span class="w"></span>
+<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="k">null</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">99</span><span class="p">);</span><span class="w"></span>
 
-<span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">spID</span><span class="o">&gt;</span><span class="mi">2</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">userID</span><span class="w"> </span><span class="o">&lt;</span><span class="mi">2</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">userID</span><span class="w"> </span><span class="o">&gt;=</span><span class="mi">2</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="n">userID</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"></span>
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">spID</span><span class="o">&gt;</span><span class="mi">2</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">userID</span><span class="w"> </span><span class="o">&lt;</span><span class="mi">2</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">userID</span><span class="w"> </span><span class="o">&gt;=</span><span class="mi">2</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="n">userID</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"></span>
+<span class="o">+</span><span class="c1">------+--------+-------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">spid</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">userid</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">score</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">+</span><span class="c1">------+--------+-------+</span>
+<span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="o">|</span><span class="w">      </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">99</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w">      </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w">     </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w">      </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w">     </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">+</span><span class="c1">------+--------+-------+</span>
 
-<span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">userID</span><span class="p">,</span><span class="k">MAX</span><span class="p">(</span><span class="n">score</span><span class="p">)</span><span class="w"> </span><span class="n">max_score</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">userID</span><span class="w"> </span><span class="o">&lt;</span><span class="mi">2</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">userID</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">userID</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">max_score</span><span class="p">;</span><span class="w"></span>
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">userID</span><span class="p">,</span><span class="k">MAX</span><span class="p">(</span><span class="n">score</span><span class="p">)</span><span class="w"> </span><span class="n">max_score</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">userID</span><span class="w"> </span><span class="o">&lt;</span><span class="mi">2</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">userID</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">userID</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">max_score</span><span class="p">;</span><span class="w"></span>
+<span class="o">+</span><span class="c1">--------+-----------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">userid</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">max_score</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">+</span><span class="c1">--------+-----------+</span>
+<span class="o">|</span><span class="w">      </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w">         </span><span class="mi">5</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w">      </span><span class="mi">6</span><span class="w"> </span><span class="o">|</span><span class="w">        </span><span class="mi">10</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w">      </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span><span class="w">        </span><span class="mi">99</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w">     </span><span class="mi">11</span><span class="w"> </span><span class="o">|</span><span class="w">        </span><span class="mi">99</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">+</span><span class="c1">--------+-----------+</span>
 
-<span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">spID</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="n">userID</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="n">score</span><span class="w"> </span><span class="nb">smallint</span><span class="p">);</span><span class="w"></span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span><span class="w"></span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">);</span><span class="w"></span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span><span class="w"></span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">);</span><span class="w"></span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">10</span><span class="p">);</span><span class="w"></span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">99</span><span class="p">);</span><span class="w"></span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">userID</span><span class="p">,</span><span class="k">count</span><span class="p">(</span><span class="n">score</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">userID</span><span class="w"> </span><span class="k">having</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="n">score</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">1</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">userID</span><span class="p">;</span><span class="w"></span>
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">userID</span><span class="p">,</span><span class="k">count</span><span class="p">(</span><span class="n">score</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">userID</span><span class="w"> </span><span class="k">having</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="n">score</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">1</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">userID</span><span class="p">;</span><span class="w"></span>
 <span class="o">+</span><span class="c1">--------+--------------+</span>
 <span class="o">|</span><span class="w"> </span><span class="n">userid</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="n">score</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
 <span class="o">+</span><span class="c1">--------+--------------+</span>
 <span class="o">|</span><span class="w">      </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w">            </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
 <span class="o">+</span><span class="c1">--------+--------------+</span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">userID</span><span class="p">,</span><span class="k">count</span><span class="p">(</span><span class="n">score</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">userID</span><span class="o">&gt;</span><span class="mi">2</span><span class="w"> </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">userID</span><span class="w"> </span><span class="k">having</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="n">score</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">1</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">userID</span><span class="p">;</span><span class="w"></span>
+
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">userID</span><span class="p">,</span><span class="k">count</span><span class="p">(</span><span class="n">score</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">userID</span><span class="o">&gt;</span><span class="mi">2</span><span class="w"> </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">userID</span><span class="w"> </span><span class="k">having</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="n">score</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">1</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">userID</span><span class="p">;</span><span class="w"></span>
 <span class="n">Empty</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span><span class="n">s</span><span class="w"></span>
+
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">spID</span><span class="w"> </span><span class="k">asc</span><span class="w"> </span><span class="n">nulls</span><span class="w"> </span><span class="k">last</span><span class="p">;</span><span class="w"></span>
+<span class="o">+</span><span class="c1">------+--------+-------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">spid</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">userid</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">score</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">+</span><span class="c1">------+--------+-------+</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w">      </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w">     </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w">      </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w">     </span><span class="mi">5</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w">      </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w">     </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w">      </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w">     </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w">    </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w">      </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w">     </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w">    </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span><span class="w">      </span><span class="mi">6</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">10</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w">    </span><span class="mi">5</span><span class="w"> </span><span class="o">|</span><span class="w">     </span><span class="mi">11</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">99</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="o">|</span><span class="w">      </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">99</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">+</span><span class="c1">------+--------+-------+</span>
 </code></pre></div>
 <h2 id="constraints"><strong>Constraints</strong></h2>
 <ol>
