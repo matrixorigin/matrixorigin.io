@@ -47,8 +47,8 @@ nav:
       - MySQL Compatibility: MatrixOne/Overview/mysql-compatibility.md
       - What's New: MatrixOne/Overview/whats-new.md
     - Getting Started:
-      - Install and Launch MatrixOne: MatrixOne/Get-Started/install-standalone-matrixone.md
-      - Connect to MatrixOne Server: MatrixOne/Get-Started/connect-to-matrixone-server.md
+      - Install standalone MatrixOne: MatrixOne/Get-Started/install-standalone-matrixone.md
+      - Connect to standalone MatrixOne Server: MatrixOne/Get-Started/connect-to-matrixone-server.md
       - Basic SQL: MatrixOne/Get-Started/basic-sql.md
       - Playground: MatrixOne/Get-Started/Playground.md
     - Developing Guide:
@@ -65,9 +65,10 @@ nav:
       - Import Data:
         - Insert: MatrixOne/Develop/import-data/insert-data.md
         - Bulk Load:
-          - Import the csv: MatrixOne/Develop/import-data/bulk-load/load-csv.md
-          - Import the jsonlines: MatrixOne/Develop/import-data/bulk-load/load-jsonline.md
-          - Import the S3 files: MatrixOne/Develop/import-data/bulk-load/load-s3.md
+          - Bulk Load Overview: MatrixOne/Develop/import-data/bulk-load/bulk-load-overview.md
+          - Import .csv format data: MatrixOne/Develop/import-data/bulk-load/load-csv.md
+          - Import jsonlines format data: MatrixOne/Develop/import-data/bulk-load/load-jsonline.md
+          - Import data from S3: MatrixOne/Develop/import-data/bulk-load/load-s3.md
       - Read Data:
         - Query Data from a Single Table: MatrixOne/Develop/read-data/query-data-single-table.md
         - Multi-table Join Queries: MatrixOne/Develop/read-data/multitable-join-query.md
@@ -75,8 +76,8 @@ nav:
         - Views: MatrixOne/Develop/read-data/views.md
         - Common Table Expression: MatrixOne/Develop/read-data/cte.md
       - Export Data:
-        - Export data: MatrixOne/Develop/export-data/export-data.md
-        - Using the `modump` backup and restore databases: MatrixOne/Develop/export-data/backup-restore-matrixone-with_modump.md
+        - Export data by SELECT INTO...OUTFILE: MatrixOne/Develop/export-data/select-into-outfile.md
+        - Export data by modump: MatrixOne/Develop/export-data/modump.md
       - Transactions:
         - Transaction Overview: MatrixOne/Reference/SQL-Reference/Transactions/transaction-overview.md
         - Distributed Transaction: MatrixOne/Reference/SQL-Reference/Transactions/distributed-transaction-overview.md
@@ -88,6 +89,7 @@ nav:
         - Python stock analysis Demo: MatrixOne/Tutorial/develop-python-application.md
     - Maintenance:
       - Upgrade Standalone MatrixOne: MatrixOne/Maintain/upgrade-standalone-matrixone.md
+      - Backup and Restore: MatrixOne/Maintain/backup-restore.md
       - MatrixOne Directory Structure: MatrixOne/Maintain/mo-directory-structure.md
     - Migration:
       - From MySQL to MatrixOne: MatrixOne/Migrate/migrate-from-mysql-to-matrixone.md
@@ -154,9 +156,11 @@ nav:
           - USE: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/use.md
           - INTERVAL: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/interval.md
           - With CTE: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/with-cte.md
-          - UNION: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/union.md
-          - INTERSECT: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/intersect.md
-          - MINUS: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/minus.md
+          - Set Operations:
+            - Combining Queries (UNION, INTERSECT, MINUS): MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/union-intersect-minus-overview.md
+            - UNION: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/union.md
+            - INTERSECT: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/intersect.md
+            - MINUS: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/minus.md
           - SUBQUERY:
             - SUBQUERY Overview: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/subquery.md
             - Derived Tables: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Statements/subqueries/derived-tables.md
