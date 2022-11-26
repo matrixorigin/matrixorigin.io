@@ -107,3 +107,7 @@ Multiple-table join Syntax is also supported.
 +------+------+------+
 3 rows in set (0.00 sec)
 ```
+
+## **Constraints**
+
+`INSERT...ON DUPLICATE KEY UPDATE` is not supported now.

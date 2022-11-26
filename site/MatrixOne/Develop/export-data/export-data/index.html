@@ -193,15 +193,13 @@
         
   
   
-    
-  
 
 
   
   
   
     <li class="md-tabs__item">
-      <a href="../../../.." class="md-tabs__link md-tabs__link--active">
+      <a href="../../../.." class="md-tabs__link">
         MatrixOne
       </a>
     </li>
@@ -279,14 +277,12 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
       
       
       
@@ -453,7 +449,7 @@
   
     <li class="md-nav__item">
       <a href="../../../Get-Started/install-standalone-matrixone/" class="md-nav__link">
-        Install and Launch MatrixOne
+        Install standalone MatrixOne
       </a>
     </li>
   
@@ -467,7 +463,7 @@
   
     <li class="md-nav__item">
       <a href="../../../Get-Started/connect-to-matrixone-server/" class="md-nav__link">
-        Connect to MatrixOne Server
+        Connect to standalone MatrixOne Server
       </a>
     </li>
   
@@ -513,14 +509,12 @@
               
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4" type="checkbox" id="__nav_1_4" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4" type="checkbox" id="__nav_1_4" >
       
       
       
@@ -806,8 +800,22 @@
   
   
     <li class="md-nav__item">
+      <a href="../../import-data/bulk-load/bulk-load-overview/" class="md-nav__link">
+        Bulk Load Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../import-data/bulk-load/load-csv/" class="md-nav__link">
-        Import the csv
+        Import .csv format data
       </a>
     </li>
   
@@ -821,7 +829,7 @@
   
     <li class="md-nav__item">
       <a href="../../import-data/bulk-load/load-jsonline/" class="md-nav__link">
-        Import the jsonlines
+        Import jsonlines format data
       </a>
     </li>
   
@@ -835,7 +843,7 @@
   
     <li class="md-nav__item">
       <a href="../../import-data/bulk-load/load-s3/" class="md-nav__link">
-        Import the S3 files
+        Import data from S3
       </a>
     </li>
   
@@ -963,14 +971,12 @@
               
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4_5" type="checkbox" id="__nav_1_4_5" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4_5" type="checkbox" id="__nav_1_4_5" >
       
       
       
@@ -991,65 +997,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Export data
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        Export data
+    <li class="md-nav__item">
+      <a href="../select-into-outfile/" class="md-nav__link">
+        Export data by SELECT INTO...OUTFILE
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#before-you-start" class="md-nav__link">
-    Before you start
-  </a>
-  
-    <nav class="md-nav" aria-label="Before you start">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#steps" class="md-nav__link">
-    Steps
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1061,8 +1013,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../backup-restore-matrixone-with_modump/" class="md-nav__link">
-        Using the `modump` backup and restore databases
+      <a href="../modump/" class="md-nav__link">
+        Export data by modump
       </a>
     </li>
   
@@ -1281,6 +1233,20 @@
     <li class="md-nav__item">
       <a href="../../../Maintain/upgrade-standalone-matrixone/" class="md-nav__link">
         Upgrade Standalone MatrixOne
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Maintain/backup-restore/" class="md-nav__link">
+        Backup and Restore
       </a>
     </li>
   
@@ -2468,6 +2434,46 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_1_3_12" type="checkbox" id="__nav_1_11_1_3_12" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_11_1_3_12">
+          Set Operations
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Set Operations" data-md-level="5">
+        <label class="md-nav__title" for="__nav_1_11_1_3_12">
+          <span class="md-nav__icon md-icon"></span>
+          Set Operations
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Statements/union-intersect-minus-overview/" class="md-nav__link">
+        Combining Queries (UNION, INTERSECT, MINUS)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
       <a href="../../../Reference/SQL-Reference/Data-Manipulation-Statements/union/" class="md-nav__link">
         UNION
@@ -2505,6 +2511,13 @@
 
             
           
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
             
               
   
@@ -2514,18 +2527,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_1_3_15" type="checkbox" id="__nav_1_11_1_3_15" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_1_3_13" type="checkbox" id="__nav_1_11_1_3_13" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_11_1_3_15">
+        <label class="md-nav__link" for="__nav_1_11_1_3_13">
           SUBQUERY
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="SUBQUERY" data-md-level="5">
-        <label class="md-nav__title" for="__nav_1_11_1_3_15">
+        <label class="md-nav__title" for="__nav_1_11_1_3_13">
           <span class="md-nav__icon md-icon"></span>
           SUBQUERY
         </label>
@@ -2645,18 +2658,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_1_3_16" type="checkbox" id="__nav_1_11_1_3_16" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_1_3_14" type="checkbox" id="__nav_1_11_1_3_14" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_11_1_3_16">
+        <label class="md-nav__link" for="__nav_1_11_1_3_14">
           JOIN
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="JOIN" data-md-level="5">
-        <label class="md-nav__title" for="__nav_1_11_1_3_16">
+        <label class="md-nav__title" for="__nav_1_11_1_3_14">
           <span class="md-nav__icon md-icon"></span>
           JOIN
         </label>
@@ -2776,18 +2789,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_1_3_17" type="checkbox" id="__nav_1_11_1_3_17" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_1_3_15" type="checkbox" id="__nav_1_11_1_3_15" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_11_1_3_17">
+        <label class="md-nav__link" for="__nav_1_11_1_3_15">
           OPERATORS
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="OPERATORS" data-md-level="5">
-        <label class="md-nav__title" for="__nav_1_11_1_3_17">
+        <label class="md-nav__title" for="__nav_1_11_1_3_15">
           <span class="md-nav__icon md-icon"></span>
           OPERATORS
         </label>
@@ -2830,18 +2843,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_1_3_17_3" type="checkbox" id="__nav_1_11_1_3_17_3" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_1_3_15_3" type="checkbox" id="__nav_1_11_1_3_15_3" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_11_1_3_17_3">
+        <label class="md-nav__link" for="__nav_1_11_1_3_15_3">
           Arithmetic Operators
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Arithmetic Operators" data-md-level="6">
-        <label class="md-nav__title" for="__nav_1_11_1_3_17_3">
+        <label class="md-nav__title" for="__nav_1_11_1_3_15_3">
           <span class="md-nav__icon md-icon"></span>
           Arithmetic Operators
         </label>
@@ -2975,18 +2988,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_1_3_17_4" type="checkbox" id="__nav_1_11_1_3_17_4" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_1_3_15_4" type="checkbox" id="__nav_1_11_1_3_15_4" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_11_1_3_17_4">
+        <label class="md-nav__link" for="__nav_1_11_1_3_15_4">
           Assignment Operators
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Assignment Operators" data-md-level="6">
-        <label class="md-nav__title" for="__nav_1_11_1_3_17_4">
+        <label class="md-nav__title" for="__nav_1_11_1_3_15_4">
           <span class="md-nav__icon md-icon"></span>
           Assignment Operators
         </label>
@@ -3036,18 +3049,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_1_3_17_5" type="checkbox" id="__nav_1_11_1_3_17_5" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_1_3_15_5" type="checkbox" id="__nav_1_11_1_3_15_5" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_11_1_3_17_5">
+        <label class="md-nav__link" for="__nav_1_11_1_3_15_5">
           Bit Functions and Operators
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Bit Functions and Operators" data-md-level="6">
-        <label class="md-nav__title" for="__nav_1_11_1_3_17_5">
+        <label class="md-nav__title" for="__nav_1_11_1_3_15_5">
           <span class="md-nav__icon md-icon"></span>
           Bit Functions and Operators
         </label>
@@ -3167,18 +3180,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_1_3_17_6" type="checkbox" id="__nav_1_11_1_3_17_6" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_1_3_15_6" type="checkbox" id="__nav_1_11_1_3_15_6" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_11_1_3_17_6">
+        <label class="md-nav__link" for="__nav_1_11_1_3_15_6">
           Cast Functions and Operators
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Cast Functions and Operators" data-md-level="6">
-        <label class="md-nav__title" for="__nav_1_11_1_3_17_6">
+        <label class="md-nav__title" for="__nav_1_11_1_3_15_6">
           <span class="md-nav__icon md-icon"></span>
           Cast Functions and Operators
         </label>
@@ -3242,18 +3255,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_1_3_17_7" type="checkbox" id="__nav_1_11_1_3_17_7" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_1_3_15_7" type="checkbox" id="__nav_1_11_1_3_15_7" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_11_1_3_17_7">
+        <label class="md-nav__link" for="__nav_1_11_1_3_15_7">
           Comparison Functions and Operators
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Comparison Functions and Operators" data-md-level="6">
-        <label class="md-nav__title" for="__nav_1_11_1_3_17_7">
+        <label class="md-nav__title" for="__nav_1_11_1_3_15_7">
           <span class="md-nav__icon md-icon"></span>
           Comparison Functions and Operators
         </label>
@@ -3513,18 +3526,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_1_3_17_8" type="checkbox" id="__nav_1_11_1_3_17_8" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_1_3_15_8" type="checkbox" id="__nav_1_11_1_3_15_8" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_11_1_3_17_8">
+        <label class="md-nav__link" for="__nav_1_11_1_3_15_8">
           Flow Control Functions
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Flow Control Functions" data-md-level="6">
-        <label class="md-nav__title" for="__nav_1_11_1_3_17_8">
+        <label class="md-nav__title" for="__nav_1_11_1_3_15_8">
           <span class="md-nav__icon md-icon"></span>
           Flow Control Functions
         </label>
@@ -3588,18 +3601,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_1_3_17_9" type="checkbox" id="__nav_1_11_1_3_17_9" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_1_3_15_9" type="checkbox" id="__nav_1_11_1_3_15_9" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_11_1_3_17_9">
+        <label class="md-nav__link" for="__nav_1_11_1_3_15_9">
           Logical Operators
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Logical Operators" data-md-level="6">
-        <label class="md-nav__title" for="__nav_1_11_1_3_17_9">
+        <label class="md-nav__title" for="__nav_1_11_1_3_15_9">
           <span class="md-nav__icon md-icon"></span>
           Logical Operators
         </label>
@@ -5935,41 +5948,6 @@
       </main>
       
         <footer class="md-footer">
-  
-    <nav class="md-footer__inner md-grid" aria-label="Footer">
-      
-        
-        <a href="../../read-data/cte/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Common Table Expression" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              Common Table Expression
-            </div>
-          </div>
-        </a>
-      
-      
-        
-        <a href="../backup-restore-matrixone-with_modump/" class="md-footer__link md-footer__link--next" aria-label="Next: Using the `modump` backup and restore databases" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              Using the `modump` backup and restore databases
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
