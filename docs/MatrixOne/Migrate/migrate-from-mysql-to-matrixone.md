@@ -2,73 +2,64 @@
 
 This document describes how to migrate data from MySQL to MatrixOne.
 
-### Dump MySQL data
+### 1. Dump MySQL data
 
-We suppose you have full access to your MySQL instances.
+We suppose you have full access to your MySQL instances. 
 
-Firstly, we use `mysqldump` to dump MySQL table structures and data to a single file with the following command.
+Firstly, we use `mysqldump` to dump MySQL table structures and data to a single file with the following command. You can take a look at this wonderful [tutorial](https://simplebackups.com/blog/the-complete-mysqldump-guide-with-examples/) if you are not familiar with `mysqldump`. The syntax is as below: 
 
 ```
 mysqldump -h IP_ADDRESS -uUSERNAME -pPASSWORD -d DB_NAME1 DB_NAME2 ... OUTPUT_FILE_NAME.SQL
 ```
 
-For example, this following command dumps all table structures and data to a single file named `a.sql`.
+For example, this following command dumps all table structures and data of the database `test` to a single file named `a.sql`.
 
 ```
-mysqldump -h 127.0.0.1 -uroot -proot -d test a.sql
+mysqldump -h 127.0.0.1 -uroot -proot -d test > a.sql
 ```
 
-### Modify SQL file
+### 2. Modify SQL file
 
-The SQL file doesn't fully fit with MatrixOne yet. We'll need to remove and modify several element to adapt the SQL file to MatrixOne's format.
+The SQL file dumped from MySQL is not fully compatible with MatrixOne yet. We'll need to remove and modify several elements to adapt the SQL file to MatrixOne's format.
 
-* Unsupported syntax or features need to be removed: AUTO_INCREMENT, UNIQUE KEY, KEY, CHARACTER SET/CHARSET, COLLATE, ROW_FORMAT, USING BTREE, LOCK TABLE, SET SYSTEM_VARIABLE, ENGINE.
-* Unsupported data type: If you use TEXT or BLOB type, you can modify them to VARCHAR type, with a estimated size.
-* Limited support: If you use composite primary key, you should modify them to a single primary key or completely remove it.
+* Unsupported syntax or features need to be removed:  CHARACTER SET/CHARSET, COLLATE, ROW_FORMAT, USING BTREE, LOCK TABLE, SET SYSTEM_VARIABLE, ENGINE.
+* Unsupported data type: If you use BINARY type, you can modify them to BLOB type.
 
 We take a typical `mysqldump` table as an example:
 
 ```
-CREATE TABLE `roles` (
-	`role_id` int(11) NOT NULL AUTO_INCREMENT,
-	`role_name` varchar(128) DEFAULT NULL,
-	`state` int(11) DEFAULT NULL,
-	`company_id` int(11) DEFAULT NULL,
-	`remark` varchar(1024) DEFAULT NULL,
-	`created_by` text DEFAULT NULL,
-	`created_time` datetime DEFAULT NULL,
-	`updated_by` varchar(64) DEFAULT NULL,
-	`updated_time` datetime DEFAULT NULL,
-	`is_deleted` int(11) DEFAULT '0',
-	`deleted_by` varchar(64) DEFAULT NULL,
-	`deleted_time` datetime DEFAULT NULL,
-	PRIMARY KEY (`role_id`),
-	UNIQUE KEY(`state`),
-	KEY `idx_company_state` (`company_id`,`state`)
-) ENGINE=InnoDB AUTO_INCREMENT=395 DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `tool`;
+CREATE TABLE IF NOT EXISTS `tool` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `tool_id` bigint DEFAULT NULL COMMENT 'id',
+  `operation_type` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'type',
+  `remark` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'remark',
+  `create_user` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'create user',
+  `create_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT 'create time',
+  PRIMARY KEY (`id`) USING BTREE,
+  KEY `tool_id_IDX` (`tool_id`) USING BTREE,
+  KEY `operation_type_IDX` (`operation_type`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=1913 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC COMMENT='tool table';
 ```
 
 To be able to successfully create this table in MatrixOne, it will be modifed as:
 
 ```
-CREATE TABLE roles (
-	role_id int(11) NOT NULL,
-	role_name varchar(128) DEFAULT NULL,
-	state int(11) DEFAULT NULL,
-	company_id int(11) DEFAULT NULL,
-	remark varchar(1024) DEFAULT NULL,
-	created_by varchar(64) DEFAULT NULL,
-	created_time datetime DEFAULT NULL,
-	updated_by varchar(64) DEFAULT NULL,
-	updated_time datetime DEFAULT NULL,
-	is_deleted int(11) DEFAULT '0',
-	deleted_by varchar(64) DEFAULT NULL,
-	deleted_time datetime DEFAULT NULL,
-	PRIMARY KEY (role_id)
-);
+DROP TABLE IF EXISTS `tool`;
+CREATE TABLE IF NOT EXISTS `tool` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `tool_id` bigint DEFAULT NULL COMMENT 'id',
+  `operation_type` varchar(50) DEFAULT NULL COMMENT 'type',
+  `remark` varchar(100) DEFAULT NULL COMMENT 'remark',
+  `create_user` varchar(20) DEFAULT NULL COMMENT 'create user',
+  `create_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT 'create time',
+  PRIMARY KEY (`id`),
+  KEY `tool_id_IDX` (`tool_id`),
+  KEY `operation_type_IDX` (`operation_type`)
+) COMMENT='tool table';
 ```
 
-### Import into MatrixOne
+### 3. Import into MatrixOne
 
 Once your dumped SQL file was ready, you can import the whole table structures and data into MatrixOne.
 
