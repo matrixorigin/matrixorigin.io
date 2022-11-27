@@ -9,7 +9,14 @@ This document describes how to use SQL to query data from a single table in a da
 
 ### Preparation
 
-Create a tables named *token_count* to prepare for querying:
+Create a database named *token_demo* firstly:
+
+```sql
+CREATE DATABASE token_demo;
+USE token_demo;
+```
+
+Create a table named *token_count* to prepare for querying:
 
 ```sql
 CREATE TABLE token_count (

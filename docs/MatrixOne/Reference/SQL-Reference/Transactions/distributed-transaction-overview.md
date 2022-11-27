@@ -72,7 +72,7 @@ Another similar scheme is called Time Travel, which stores the information of th
 
 The third option is to maintain the main version of the tuple in the main table, and maintain a series of delta versions in a separate database comparison tool (delta) store. This storage is called a rollback segment in MySQL and Oracle. To update an existing tuple, the database fetches a contiguous space from the delta store to create a new delta version. This delta version contains the original value of the modified property, not the entire tuple. Then the database directly updates the main version in the main table (In Place Update).
 
-![image-20221026152318567](https://github.com/matrixorigin/artwork/blob/main/docs/distributed-transaction/mvcc.jpg)
+![image-20221026152318567](https://github.com/matrixorigin/artwork/blob/main/docs/distributed-transaction/mvcc.png?raw=true)
 
 ## MatrixOne transaction flow
 
