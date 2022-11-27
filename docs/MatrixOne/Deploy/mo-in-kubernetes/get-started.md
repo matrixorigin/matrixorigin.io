@@ -55,6 +55,7 @@ This section describes three methods for creating Kubernetes clusters that can b
 ```
 $ eksctl create cluster --name matrixone --nodegroup-name db --node-type m5.xlarge --node3 3 --node-ami auto
 ```
+
 #### Method 2: Create and launch Google GKE cluster
 
 1. Refer to the official documentation of [Deploying applications to GKE clusters](https://cloud.google.com/kubernetes-engine/docs/deploy-app-cluster) to to install and configure the `gcloud` command-line tool.
