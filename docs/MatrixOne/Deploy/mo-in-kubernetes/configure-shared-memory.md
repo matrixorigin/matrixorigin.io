@@ -51,9 +51,9 @@ If you are using the AWS public cloud, it is recommended to configure AWS S3 as 
 
 The above example uses a static access key to grant the MatrixOne cluster access to the target S3 bucket. Kubernetes can also be based on [IAM roles for service accounts](https://docs.aws.amazon.com/zh_cn/eks/latest/userguide/iam-roles-for-service-accounts.html) provided by AWS. The mechanism authorizes the MatrixOne cluster, which avoids storing static key files in the system and enhances security. The configuration process is as follows:
 
-1. Refer to [AWS Official Document](https://docs.aws.amazon.com/zh_cn/eks/latest/userguide/associate-service-account-role.html), create a k8s `ServiceAccount associated with AWS Role `, and permit the corresponding AWS Role to access the target S3 bucket.
+1. Refer to [AWS Official Document](https://docs.aws.amazon.com/zh_cn/eks/latest/userguide/associate-service-account-role.html), create a k8s `ServiceAccount associated with AWS Role`, and permit the corresponding AWS Role to access the target S3 bucket.
 
-2. Configure the MatrixOne cluster to use the `ServiceAccount` created in the first step through the `.spec.serviceAccountName` field, and delete the `secretRef` configuration of s3. The code example is as follows:
+2. Configure the MatrixOne cluster to use the `ServiceAccount` created in the first step through the `.spec.serviceAccountName` field, and delete the `secretRef` configuration of S3. The code example is as follows:
 
     ```
     pec:
