@@ -12,7 +12,7 @@ MatrixOne's permission control is designed and implemented by combining two secu
 
 ### Object
 
-An object is an entity that encapsulates permissions in MatrixOne, and these entities have a certain hierarchical structure. For example, a **Cluster** contains multiple **Account** (Account), and a **Account** contains multiple **User**, **Role** , **Database**, and a **Database** contains multiple **Table**, **View, etc. This hierarchical structure is shown in the following figure:
+An object is an entity that encapsulates permissions in MatrixOne, and these entities have a certain hierarchical structure. For example, a **Cluster** contains multiple **Account** (Account), and a **Account** contains multiple **User**, **Role** , **Database**, and a **Database** contains multiple **Table**, **View**, etc. This hierarchical structure is shown in the following figure:
 
 ![](https://github.com/matrixorigin/artwork/blob/main/docs/security/object.png?raw=true)
 
@@ -26,6 +26,22 @@ An object is an entity that encapsulates permissions in MatrixOne, and these ent
 - If the object owner is deleted, the object's owner is automatically changed to the owner of the deleted object.
 - The ACCOUNTADMIN role has Ownership permissions on all objects by default.
 - The set of access permissions for each object is different. For more information, please refer to [Access Control Permissions](access-control.md).
+
+### Cluster Administrator
+
+After the MatrixOne cluster is deployed, the system will generate a user with the highest authority to manage the cluster by default, that is, the cluster administrator (also called *root* or *dump*) and the role corresponding to this authority is **MOADMIN**. It can create, delete and manage other accounts but cannot manage other resources under a different account.
+
+### Account
+
+MatrixOne version 0.6 introduces the multi-accounts function. Multiple accounts can be created in a MatrixOne cluster. Objects between accounts are entirely independent; that is, users in account A cannot access data in account B.
+
+Accounts are also called **Accounts** in MatrixOne. After the cluster is initialized, the system administrator will create a default system account.
+
+To achieve cluster isolation, you can use the cluster administrator to create an account to manage each cluster separately. When creating a new account, you need to specify a new account administrator account and password for the new account.
+
+__Tip__: The command format of the login account: `mysql -h IP -P PORT -uAccountName:Username -p`
+
+Accounts in the cluster share the cluster's resources, and resources will be isolated when they are used. MatrixOne ensures that the resources used by the account are completely isolated and will not affect other account use.
 
 ### Role
 
@@ -42,7 +58,7 @@ A role is an entity with access rights. Any database user who wants to access an
           1.Manipulating granted and inherited roles requires Ownership permission on the object or one of the advanced grant permissions.
           2.The inheritance relationship of roles cannot be looped.
 
-- MatrixOne implements permission isolation among tenants. That is, roles and users in an Account take effect only in the Account and are not transferred to other accounts. Authorization between roles is also limited to the Account.
+- MatrixOne implements permission isolation among account. That is, roles and users in an Account take effect only in the Account and are not transferred to other accounts. Authorization between roles is also limited to the Account.
 
 ### Switching Role
 
@@ -58,7 +74,7 @@ The default parameter is `all`. If you choose to use `all`, the permissions of a
 
 ### Deleting Object
 
-When deleting a tenant, you need to close or suspend the tenant first, that is, you need to execute the SQL statement `close` or `suspend`.
+When deleting a account, you need to close or suspend the account first, that is, you need to execute the SQL statement `close` or `suspend`.
 When deleting a role, it will force all authorized role revoke users, that is, you need to execute the SQL statement `revoke`.
 When deleting a user, the deletion of the user fails if the user currently has a session.
 
