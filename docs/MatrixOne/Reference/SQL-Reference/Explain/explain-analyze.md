@@ -1,5 +1,7 @@
 # Obtaining Information with EXPLAIN ANALYZE
 
+EXPLAIN ANALYZE is a profiling tool for your queries that will show you where SQL spends time on your query and why. It will plan the query, instrument it and execute it while counting rows and measuring time spent at various points in the execution plan. When execution finishes, EXPLAIN ANALYZE will print the plan and the measurements instead of the query result.
+
 `EXPLAIN ANALYZE`, which runs a statement and produces EXPLAIN output along with timing and additional, iterator-based, information about how the optimizer's expectations matched the actual execution. For each iterator, the following information is provided:
 
 - Estimated execution cost
