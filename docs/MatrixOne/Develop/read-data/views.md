@@ -24,16 +24,16 @@ A view acts as a virtual table, whose schema is defined by the `SELECT` statemen
 Create two tables to prepare for using the VIEW:
 
 ```sql
-> CREATE TABLE t00(a INTEGER);
-> INSERT INTO t00 VALUES (1),(2);
-> CREATE TABLE t01(a INTEGER);
-> INSERT INTO t01 VALUES (1);
+CREATE TABLE t00(a INTEGER);
+INSERT INTO t00 VALUES (1),(2);
+CREATE TABLE t01(a INTEGER);
+INSERT INTO t01 VALUES (1);
 ```
 
 Query the table *t00*:
 
 ```sql
-> select * from t00;
+mysql> select * from t00;
 +------+
 | a    |
 +------+
@@ -45,7 +45,7 @@ Query the table *t00*:
 Query the table *t01*:
 
 ```sql
-> select * from t01;
+mysql> select * from t01;
 +------+
 | a    |
 +------+
@@ -66,7 +66,7 @@ you cannot create a view with the same name as an existing view or table.
 **Example**:
 
 ```sql
-> CREATE VIEW v0 AS SELECT t00.a, t01.a AS b FROM t00 LEFT JOIN t01 USING(a);
+CREATE VIEW v0 AS SELECT t00.a, t01.a AS b FROM t00 LEFT JOIN t01 USING(a);
 Query OK, 0 rows affected (0.02 sec)
 ```
 
@@ -75,7 +75,7 @@ Query OK, 0 rows affected (0.02 sec)
 Once a view is created, you can use the `SELECT` statement to query the view just like a normal table.
 
 ```sql
-> SELECT * FROM v0;
+mysql> SELECT * FROM v0;
 +------+------+
 | a    | b    |
 +------+------+
@@ -89,7 +89,7 @@ Once a view is created, you can use the `SELECT` statement to query the view jus
 Use the `SHOW CREATE TABLE|VIEW view_name` statement:
 
 ```sql
-> SHOW CREATE VIEW v0;
+mysql> SHOW CREATE VIEW v0;
 +------+----------------------------------------------------------------------------+
 | View | Create View                                                                |
 +------+----------------------------------------------------------------------------+
@@ -103,5 +103,5 @@ Use the `SHOW CREATE TABLE|VIEW view_name` statement:
 Use the `DROP VIEW view_name;` statement to drop a view.
 
 ```sql
-DROP VIEW v0;
+mysql> DROP VIEW v0;
 ```
