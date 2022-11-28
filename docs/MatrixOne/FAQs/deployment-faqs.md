@@ -47,21 +47,43 @@ Normally you don't need to change anything for installation. A default setting o
 
 * **After the MySQL client is installed, I open the terminal and run `mysql`, I got an error of `command not found: mysql`.**
 
-To solve the error, you need to set the environment variable. Run the following command:
+To solve the error, you need to set the environment variable. Open a new terminal window, run the following command:
 
-```
-cd ~
-sudo vim .bash_profile
-Password:
-```
+=== "**Linux Environment**"
 
-After entering the root password you set in the MySQL client installation window, type *i* on the keyboard to enter the insert status and continue typing the following command:
+     ```
+     cd ~
+     sudo vim /etc/profile
+     Password:
+     ```
 
-```
-export PATH=${PATH}:/usr/local/mysql/bin
-```
+     After pressing **Enter** on the keyboard to execute the above command, you need to enter the root user password, which is the root password you set in the installation window when you installed the MySQL client. If no password has been set, press **Enter** to skip the password.
 
-Click *esc* on the keyboard to exit the insert status and type `:wq` at the bottom to save and exit. Continue typing `source. bash_profile` and press **Enter** to run the environment variable.
+     After entering/skiping the root password, you will enter *profile*, click **i** on the keyboard to enter the insert state, and you can enter the following command at the bottom of the file:
+
+     ```
+     export PATH=/software/mysql/bin:$PATH
+     ```
+
+     Click *esc* on the keyboard to exit the insert status and type `:wq` at the bottom to save and exit. Continue typing `source  /etc/profile` and press **Enter** to run the environment variable.
+
+=== "**MacOS Environment**"
+
+     ```
+     cd ~
+     sudo vim .bash_profile
+     Password:
+     ```
+
+     After pressing **Enter** on the keyboard to execute the above command, you need to enter the root user password, which is the root password you set in the installation window when you installed the MySQL client. If no password has been set, press **Enter** to skip the password.
+
+     After entering/skiping the root password, you will enter *.bash_profile*, click **i** on the keyboard to enter the insert state, and you can enter the following command at the bottom of the file:
+
+     ```
+     export PATH=${PATH}:/usr/local/mysql/bin
+     ```
+
+     Click *esc* on the keyboard to exit the insert status and type `:wq` at the bottom to save and exit. Continue typing `source. bash_profile` and press **Enter** to run the environment variable.
 
 * **When I install MatrixOne by building from source, I got an error of the following and the build failed, how can I proceed?**
 
