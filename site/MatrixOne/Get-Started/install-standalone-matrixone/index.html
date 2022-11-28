@@ -208,22 +208,6 @@
   
 
       
-        
-  
-  
-
-
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="https://playground.matrixorigin.io/?tutorial=SSB-test-with-matrixone&step=1" class="md-tabs__link">
-        Playground
-      </a>
-    </li>
-  
-
-      
     </ul>
   </div>
 </nav>
@@ -377,8 +361,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Overview/matrixone-architecture/" class="md-nav__link">
-        MatrixOne Architecture
+      <a href="../../Overview/matrixOne-architecture-design/" class="md-nav__link">
+        MatrixOne Architecture Design
       </a>
     </li>
   
@@ -605,22 +589,29 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-create-and-run-the-container-of-matrixone" class="md-nav__link">
-    3. Create and run the container of MatrixOne
+  <a href="#3-check-the-docker-running-status" class="md-nav__link">
+    3. Check the Docker running status
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-mount-the-data-directoryoptional" class="md-nav__link">
-    4. Mount the data directory(Optional)
+  <a href="#4-create-and-run-the-container-of-matrixone" class="md-nav__link">
+    4. Create and run the container of MatrixOne
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#5-connect-to-matrixone-server" class="md-nav__link">
-    5. Connect to MatrixOne Server
+  <a href="#5-mount-the-data-directoryoptional" class="md-nav__link">
+    5. Mount the data directory(Optional)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-connect-to-matrixone-server" class="md-nav__link">
+    6. Connect to MatrixOne Server
   </a>
   
 </li>
@@ -668,20 +659,6 @@
     <li class="md-nav__item">
       <a href="../basic-sql/" class="md-nav__link">
         Basic SQL
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../Playground/" class="md-nav__link">
-        Playground
       </a>
     </li>
   
@@ -829,7 +806,7 @@
   
     <li class="md-nav__item">
       <a href="../../Develop/connect-mo/python-connect-to-matrixone/" class="md-nav__link">
-        Python connect to the MatrixOne
+        Python connect to MatrixOne
       </a>
     </li>
   
@@ -1404,14 +1381,14 @@
       
       
         <label class="md-nav__link" for="__nav_1_5">
-          Maintenance
+          Deploy
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Maintenance" data-md-level="2">
+      <nav class="md-nav" aria-label="Deploy" data-md-level="2">
         <label class="md-nav__title" for="__nav_1_5">
           <span class="md-nav__icon md-icon"></span>
-          Maintenance
+          Deploy
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -1421,13 +1398,135 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Maintain/upgrade-standalone-matrixone/" class="md-nav__link">
-        Upgrade Standalone MatrixOne
+      <a href="../../Deploy/check-before-deployment/" class="md-nav__link">
+        Software and Hardware Recommendations
       </a>
     </li>
   
 
             
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_5_2" type="checkbox" id="__nav_1_5_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_5_2">
+          Deploy MatrixOne Cluster on Kubernetes
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Deploy MatrixOne Cluster on Kubernetes" data-md-level="3">
+        <label class="md-nav__title" for="__nav_1_5_2">
+          <span class="md-nav__icon md-icon"></span>
+          Deploy MatrixOne Cluster on Kubernetes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deploy/install-and-launch-in-k8s/" class="md-nav__link">
+        Deploy MatrixOne Cluster on Kubernetes Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deploy/mo-in-kubernetes/whats-mo-operator/" class="md-nav__link">
+        What is MatrixOne Operator
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deploy/mo-in-kubernetes/get-started/" class="md-nav__link">
+        Using MatrixOne Operator deploy MatrixOne Cluster
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deploy/mo-in-kubernetes/configure-shared-memory/" class="md-nav__link">
+        Configure shared memory for MatrixOne
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_6" type="checkbox" id="__nav_1_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_6">
+          Maintenance
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Maintenance" data-md-level="2">
+        <label class="md-nav__title" for="__nav_1_6">
+          <span class="md-nav__icon md-icon"></span>
+          Maintenance
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
           
             
               
@@ -1473,18 +1572,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_6" type="checkbox" id="__nav_1_6" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_7" type="checkbox" id="__nav_1_7" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_6">
+        <label class="md-nav__link" for="__nav_1_7">
           Migration
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Migration" data-md-level="2">
-        <label class="md-nav__title" for="__nav_1_6">
+        <label class="md-nav__title" for="__nav_1_7">
           <span class="md-nav__icon md-icon"></span>
           Migration
         </label>
@@ -1520,18 +1619,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_7" type="checkbox" id="__nav_1_7" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_8" type="checkbox" id="__nav_1_8" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_7">
+        <label class="md-nav__link" for="__nav_1_8">
           Testing
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Testing" data-md-level="2">
-        <label class="md-nav__title" for="__nav_1_7">
+        <label class="md-nav__title" for="__nav_1_8">
           <span class="md-nav__icon md-icon"></span>
           Testing
         </label>
@@ -1546,18 +1645,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_7_1" type="checkbox" id="__nav_1_7_1" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_8_1" type="checkbox" id="__nav_1_8_1" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_7_1">
+        <label class="md-nav__link" for="__nav_1_8_1">
           Performance Testing
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Performance Testing" data-md-level="3">
-        <label class="md-nav__title" for="__nav_1_7_1">
+        <label class="md-nav__title" for="__nav_1_8_1">
           <span class="md-nav__icon md-icon"></span>
           Performance Testing
         </label>
@@ -1591,6 +1690,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tutorial/TPCC-test-with-matrixone/" class="md-nav__link">
+        TPCC Test with MatrixOne
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -1607,18 +1720,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_7_2" type="checkbox" id="__nav_1_7_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_8_2" type="checkbox" id="__nav_1_8_2" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_7_2">
+        <label class="md-nav__link" for="__nav_1_8_2">
           Testing Tool
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Testing Tool" data-md-level="3">
-        <label class="md-nav__title" for="__nav_1_7_2">
+        <label class="md-nav__title" for="__nav_1_8_2">
           <span class="md-nav__icon md-icon"></span>
           Testing Tool
         </label>
@@ -1675,18 +1788,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_8" type="checkbox" id="__nav_1_8" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_9" type="checkbox" id="__nav_1_9" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_8">
+        <label class="md-nav__link" for="__nav_1_9">
           Troubleshooting
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Troubleshooting" data-md-level="2">
-        <label class="md-nav__title" for="__nav_1_8">
+        <label class="md-nav__title" for="__nav_1_9">
           <span class="md-nav__icon md-icon"></span>
           Troubleshooting
         </label>
@@ -1764,18 +1877,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_9" type="checkbox" id="__nav_1_9" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_10" type="checkbox" id="__nav_1_10" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_9">
+        <label class="md-nav__link" for="__nav_1_10">
           Performance Tuning
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Performance Tuning" data-md-level="2">
-        <label class="md-nav__title" for="__nav_1_9">
+        <label class="md-nav__title" for="__nav_1_10">
           <span class="md-nav__icon md-icon"></span>
           Performance Tuning
         </label>
@@ -1790,18 +1903,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_9_1" type="checkbox" id="__nav_1_9_1" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_10_1" type="checkbox" id="__nav_1_10_1" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_9_1">
+        <label class="md-nav__link" for="__nav_1_10_1">
           Understanding the Query Execution Plan
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Understanding the Query Execution Plan" data-md-level="3">
-        <label class="md-nav__title" for="__nav_1_9_1">
+        <label class="md-nav__title" for="__nav_1_10_1">
           <span class="md-nav__icon md-icon"></span>
           Understanding the Query Execution Plan
         </label>
@@ -1914,18 +2027,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_10" type="checkbox" id="__nav_1_10" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11" type="checkbox" id="__nav_1_11" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_10">
+        <label class="md-nav__link" for="__nav_1_11">
           Security
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Security" data-md-level="2">
-        <label class="md-nav__title" for="__nav_1_10">
+        <label class="md-nav__title" for="__nav_1_11">
           <span class="md-nav__icon md-icon"></span>
           Security
         </label>
@@ -2003,18 +2116,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11" type="checkbox" id="__nav_1_11" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12" type="checkbox" id="__nav_1_12" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_11">
+        <label class="md-nav__link" for="__nav_1_12">
           Reference
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Reference" data-md-level="2">
-        <label class="md-nav__title" for="__nav_1_11">
+        <label class="md-nav__title" for="__nav_1_12">
           <span class="md-nav__icon md-icon"></span>
           Reference
         </label>
@@ -2029,18 +2142,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_1" type="checkbox" id="__nav_1_11_1" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_1" type="checkbox" id="__nav_1_12_1" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_11_1">
+        <label class="md-nav__link" for="__nav_1_12_1">
           SQL Reference
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="SQL Reference" data-md-level="3">
-        <label class="md-nav__title" for="__nav_1_11_1">
+        <label class="md-nav__title" for="__nav_1_12_1">
           <span class="md-nav__icon md-icon"></span>
           SQL Reference
         </label>
@@ -2055,18 +2168,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_1_1" type="checkbox" id="__nav_1_11_1_1" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_1_1" type="checkbox" id="__nav_1_12_1_1" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_11_1_1">
+        <label class="md-nav__link" for="__nav_1_12_1_1">
           DAL
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="DAL" data-md-level="4">
-        <label class="md-nav__title" for="__nav_1_11_1_1">
+        <label class="md-nav__title" for="__nav_1_12_1_1">
           <span class="md-nav__icon md-icon"></span>
           DAL
         </label>
@@ -2228,18 +2341,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_1_2" type="checkbox" id="__nav_1_11_1_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_1_2" type="checkbox" id="__nav_1_12_1_2" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_11_1_2">
+        <label class="md-nav__link" for="__nav_1_12_1_2">
           DDL
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="DDL" data-md-level="4">
-        <label class="md-nav__title" for="__nav_1_11_1_2">
+        <label class="md-nav__title" for="__nav_1_12_1_2">
           <span class="md-nav__icon md-icon"></span>
           DDL
         </label>
@@ -2366,18 +2479,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_1_2_9" type="checkbox" id="__nav_1_11_1_2_9" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_1_2_9" type="checkbox" id="__nav_1_12_1_2_9" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_11_1_2_9">
+        <label class="md-nav__link" for="__nav_1_12_1_2_9">
           VIEW
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="VIEW" data-md-level="5">
-        <label class="md-nav__title" for="__nav_1_11_1_2_9">
+        <label class="md-nav__title" for="__nav_1_12_1_2_9">
           <span class="md-nav__icon md-icon"></span>
           VIEW
         </label>
@@ -2448,18 +2561,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_1_3" type="checkbox" id="__nav_1_11_1_3" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_1_3" type="checkbox" id="__nav_1_12_1_3" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_11_1_3">
+        <label class="md-nav__link" for="__nav_1_12_1_3">
           DML
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="DML" data-md-level="4">
-        <label class="md-nav__title" for="__nav_1_11_1_3">
+        <label class="md-nav__title" for="__nav_1_12_1_3">
           <span class="md-nav__icon md-icon"></span>
           DML
         </label>
@@ -2628,18 +2741,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_1_3_12" type="checkbox" id="__nav_1_11_1_3_12" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_1_3_12" type="checkbox" id="__nav_1_12_1_3_12" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_11_1_3_12">
+        <label class="md-nav__link" for="__nav_1_12_1_3_12">
           Set Operations
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Set Operations" data-md-level="5">
-        <label class="md-nav__title" for="__nav_1_11_1_3_12">
+        <label class="md-nav__title" for="__nav_1_12_1_3_12">
           <span class="md-nav__icon md-icon"></span>
           Set Operations
         </label>
@@ -2717,18 +2830,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_1_3_13" type="checkbox" id="__nav_1_11_1_3_13" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_1_3_13" type="checkbox" id="__nav_1_12_1_3_13" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_11_1_3_13">
+        <label class="md-nav__link" for="__nav_1_12_1_3_13">
           SUBQUERY
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="SUBQUERY" data-md-level="5">
-        <label class="md-nav__title" for="__nav_1_11_1_3_13">
+        <label class="md-nav__title" for="__nav_1_12_1_3_13">
           <span class="md-nav__icon md-icon"></span>
           SUBQUERY
         </label>
@@ -2848,18 +2961,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_1_3_14" type="checkbox" id="__nav_1_11_1_3_14" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_1_3_14" type="checkbox" id="__nav_1_12_1_3_14" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_11_1_3_14">
+        <label class="md-nav__link" for="__nav_1_12_1_3_14">
           JOIN
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="JOIN" data-md-level="5">
-        <label class="md-nav__title" for="__nav_1_11_1_3_14">
+        <label class="md-nav__title" for="__nav_1_12_1_3_14">
           <span class="md-nav__icon md-icon"></span>
           JOIN
         </label>
@@ -2979,18 +3092,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_1_3_15" type="checkbox" id="__nav_1_11_1_3_15" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_1_3_15" type="checkbox" id="__nav_1_12_1_3_15" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_11_1_3_15">
+        <label class="md-nav__link" for="__nav_1_12_1_3_15">
           OPERATORS
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="OPERATORS" data-md-level="5">
-        <label class="md-nav__title" for="__nav_1_11_1_3_15">
+        <label class="md-nav__title" for="__nav_1_12_1_3_15">
           <span class="md-nav__icon md-icon"></span>
           OPERATORS
         </label>
@@ -3033,18 +3146,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_1_3_15_3" type="checkbox" id="__nav_1_11_1_3_15_3" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_1_3_15_3" type="checkbox" id="__nav_1_12_1_3_15_3" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_11_1_3_15_3">
+        <label class="md-nav__link" for="__nav_1_12_1_3_15_3">
           Arithmetic Operators
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Arithmetic Operators" data-md-level="6">
-        <label class="md-nav__title" for="__nav_1_11_1_3_15_3">
+        <label class="md-nav__title" for="__nav_1_12_1_3_15_3">
           <span class="md-nav__icon md-icon"></span>
           Arithmetic Operators
         </label>
@@ -3178,18 +3291,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_1_3_15_4" type="checkbox" id="__nav_1_11_1_3_15_4" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_1_3_15_4" type="checkbox" id="__nav_1_12_1_3_15_4" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_11_1_3_15_4">
+        <label class="md-nav__link" for="__nav_1_12_1_3_15_4">
           Assignment Operators
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Assignment Operators" data-md-level="6">
-        <label class="md-nav__title" for="__nav_1_11_1_3_15_4">
+        <label class="md-nav__title" for="__nav_1_12_1_3_15_4">
           <span class="md-nav__icon md-icon"></span>
           Assignment Operators
         </label>
@@ -3239,18 +3352,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_1_3_15_5" type="checkbox" id="__nav_1_11_1_3_15_5" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_1_3_15_5" type="checkbox" id="__nav_1_12_1_3_15_5" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_11_1_3_15_5">
+        <label class="md-nav__link" for="__nav_1_12_1_3_15_5">
           Bit Functions and Operators
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Bit Functions and Operators" data-md-level="6">
-        <label class="md-nav__title" for="__nav_1_11_1_3_15_5">
+        <label class="md-nav__title" for="__nav_1_12_1_3_15_5">
           <span class="md-nav__icon md-icon"></span>
           Bit Functions and Operators
         </label>
@@ -3370,18 +3483,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_1_3_15_6" type="checkbox" id="__nav_1_11_1_3_15_6" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_1_3_15_6" type="checkbox" id="__nav_1_12_1_3_15_6" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_11_1_3_15_6">
+        <label class="md-nav__link" for="__nav_1_12_1_3_15_6">
           Cast Functions and Operators
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Cast Functions and Operators" data-md-level="6">
-        <label class="md-nav__title" for="__nav_1_11_1_3_15_6">
+        <label class="md-nav__title" for="__nav_1_12_1_3_15_6">
           <span class="md-nav__icon md-icon"></span>
           Cast Functions and Operators
         </label>
@@ -3445,18 +3558,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_1_3_15_7" type="checkbox" id="__nav_1_11_1_3_15_7" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_1_3_15_7" type="checkbox" id="__nav_1_12_1_3_15_7" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_11_1_3_15_7">
+        <label class="md-nav__link" for="__nav_1_12_1_3_15_7">
           Comparison Functions and Operators
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Comparison Functions and Operators" data-md-level="6">
-        <label class="md-nav__title" for="__nav_1_11_1_3_15_7">
+        <label class="md-nav__title" for="__nav_1_12_1_3_15_7">
           <span class="md-nav__icon md-icon"></span>
           Comparison Functions and Operators
         </label>
@@ -3716,18 +3829,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_1_3_15_8" type="checkbox" id="__nav_1_11_1_3_15_8" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_1_3_15_8" type="checkbox" id="__nav_1_12_1_3_15_8" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_11_1_3_15_8">
+        <label class="md-nav__link" for="__nav_1_12_1_3_15_8">
           Flow Control Functions
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Flow Control Functions" data-md-level="6">
-        <label class="md-nav__title" for="__nav_1_11_1_3_15_8">
+        <label class="md-nav__title" for="__nav_1_12_1_3_15_8">
           <span class="md-nav__icon md-icon"></span>
           Flow Control Functions
         </label>
@@ -3791,18 +3904,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_1_3_15_9" type="checkbox" id="__nav_1_11_1_3_15_9" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_1_3_15_9" type="checkbox" id="__nav_1_12_1_3_15_9" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_11_1_3_15_9">
+        <label class="md-nav__link" for="__nav_1_12_1_3_15_9">
           Logical Operators
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Logical Operators" data-md-level="6">
-        <label class="md-nav__title" for="__nav_1_11_1_3_15_9">
+        <label class="md-nav__title" for="__nav_1_12_1_3_15_9">
           <span class="md-nav__icon md-icon"></span>
           Logical Operators
         </label>
@@ -3908,18 +4021,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_1_4" type="checkbox" id="__nav_1_11_1_4" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_1_4" type="checkbox" id="__nav_1_12_1_4" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_11_1_4">
+        <label class="md-nav__link" for="__nav_1_12_1_4">
           Prepared Statements
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Prepared Statements" data-md-level="4">
-        <label class="md-nav__title" for="__nav_1_11_1_4">
+        <label class="md-nav__title" for="__nav_1_12_1_4">
           <span class="md-nav__icon md-icon"></span>
           Prepared Statements
         </label>
@@ -3997,18 +4110,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_1_5" type="checkbox" id="__nav_1_11_1_5" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_1_5" type="checkbox" id="__nav_1_12_1_5" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_11_1_5">
+        <label class="md-nav__link" for="__nav_1_12_1_5">
           Aggregate Functions
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Aggregate Functions" data-md-level="4">
-        <label class="md-nav__title" for="__nav_1_11_1_5">
+        <label class="md-nav__title" for="__nav_1_12_1_5">
           <span class="md-nav__icon md-icon"></span>
           Aggregate Functions
         </label>
@@ -4184,18 +4297,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_1_6" type="checkbox" id="__nav_1_11_1_6" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_1_6" type="checkbox" id="__nav_1_12_1_6" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_11_1_6">
+        <label class="md-nav__link" for="__nav_1_12_1_6">
           Explain
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Explain" data-md-level="4">
-        <label class="md-nav__title" for="__nav_1_11_1_6">
+        <label class="md-nav__title" for="__nav_1_12_1_6">
           <span class="md-nav__icon md-icon"></span>
           Explain
         </label>
@@ -4259,18 +4372,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_1_7" type="checkbox" id="__nav_1_11_1_7" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_1_7" type="checkbox" id="__nav_1_12_1_7" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_11_1_7">
+        <label class="md-nav__link" for="__nav_1_12_1_7">
           System variable
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="System variable" data-md-level="4">
-        <label class="md-nav__title" for="__nav_1_11_1_7">
+        <label class="md-nav__title" for="__nav_1_12_1_7">
           <span class="md-nav__icon md-icon"></span>
           System variable
         </label>
@@ -4313,18 +4426,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_2" type="checkbox" id="__nav_1_11_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_2" type="checkbox" id="__nav_1_12_2" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_11_2">
+        <label class="md-nav__link" for="__nav_1_12_2">
           Data Types
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Data Types" data-md-level="3">
-        <label class="md-nav__title" for="__nav_1_11_2">
+        <label class="md-nav__title" for="__nav_1_12_2">
           <span class="md-nav__icon md-icon"></span>
           Data Types
         </label>
@@ -4430,18 +4543,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_3" type="checkbox" id="__nav_1_11_3" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_3" type="checkbox" id="__nav_1_12_3" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_11_3">
+        <label class="md-nav__link" for="__nav_1_12_3">
           Builtin Functions
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Builtin Functions" data-md-level="3">
-        <label class="md-nav__title" for="__nav_1_11_3">
+        <label class="md-nav__title" for="__nav_1_12_3">
           <span class="md-nav__icon md-icon"></span>
           Builtin Functions
         </label>
@@ -4456,18 +4569,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_3_1" type="checkbox" id="__nav_1_11_3_1" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_3_1" type="checkbox" id="__nav_1_12_3_1" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_11_3_1">
+        <label class="md-nav__link" for="__nav_1_12_3_1">
           Mathematical
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Mathematical" data-md-level="4">
-        <label class="md-nav__title" for="__nav_1_11_3_1">
+        <label class="md-nav__title" for="__nav_1_12_3_1">
           <span class="md-nav__icon md-icon"></span>
           Mathematical
         </label>
@@ -4727,18 +4840,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_3_2" type="checkbox" id="__nav_1_11_3_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_3_2" type="checkbox" id="__nav_1_12_3_2" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_11_3_2">
+        <label class="md-nav__link" for="__nav_1_12_3_2">
           Datetime
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Datetime" data-md-level="4">
-        <label class="md-nav__title" for="__nav_1_11_3_2">
+        <label class="md-nav__title" for="__nav_1_12_3_2">
           <span class="md-nav__icon md-icon"></span>
           Datetime
         </label>
@@ -5012,18 +5125,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_3_3" type="checkbox" id="__nav_1_11_3_3" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_3_3" type="checkbox" id="__nav_1_12_3_3" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_11_3_3">
+        <label class="md-nav__link" for="__nav_1_12_3_3">
           String
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="String" data-md-level="4">
-        <label class="md-nav__title" for="__nav_1_11_3_3">
+        <label class="md-nav__title" for="__nav_1_12_3_3">
           <span class="md-nav__icon md-icon"></span>
           String
         </label>
@@ -5288,53 +5401,6 @@
 
             
           
-            
-              
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_3_4" type="checkbox" id="__nav_1_11_3_4" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_1_11_3_4">
-          Table
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Table" data-md-level="4">
-        <label class="md-nav__title" for="__nav_1_11_3_4">
-          <span class="md-nav__icon md-icon"></span>
-          Table
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/Table/unnest/" class="md-nav__link">
-        UUNEST()
-      </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-            
-          
         </ul>
       </nav>
     </li>
@@ -5351,18 +5417,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_4" type="checkbox" id="__nav_1_11_4" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_4" type="checkbox" id="__nav_1_12_4" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_11_4">
+        <label class="md-nav__link" for="__nav_1_12_4">
           System Paramaters
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="System Paramaters" data-md-level="3">
-        <label class="md-nav__title" for="__nav_1_11_4">
+        <label class="md-nav__title" for="__nav_1_12_4">
           <span class="md-nav__icon md-icon"></span>
           System Paramaters
         </label>
@@ -5426,18 +5492,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_6" type="checkbox" id="__nav_1_11_6" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_6" type="checkbox" id="__nav_1_12_6" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_11_6">
+        <label class="md-nav__link" for="__nav_1_12_6">
           Limitations
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Limitations" data-md-level="3">
-        <label class="md-nav__title" for="__nav_1_11_6">
+        <label class="md-nav__title" for="__nav_1_12_6">
           <span class="md-nav__icon md-icon"></span>
           Limitations
         </label>
@@ -5494,18 +5560,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12" type="checkbox" id="__nav_1_12" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_13" type="checkbox" id="__nav_1_13" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_12">
+        <label class="md-nav__link" for="__nav_1_13">
           FAQs
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="FAQs" data-md-level="2">
-        <label class="md-nav__title" for="__nav_1_12">
+        <label class="md-nav__title" for="__nav_1_13">
           <span class="md-nav__icon md-icon"></span>
           FAQs
         </label>
@@ -5569,18 +5635,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_13" type="checkbox" id="__nav_1_13" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_14" type="checkbox" id="__nav_1_14" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_13">
+        <label class="md-nav__link" for="__nav_1_14">
           Release Notes
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Release Notes" data-md-level="2">
-        <label class="md-nav__title" for="__nav_1_13">
+        <label class="md-nav__title" for="__nav_1_14">
           <span class="md-nav__icon md-icon"></span>
           Release Notes
         </label>
@@ -5714,18 +5780,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_15" type="checkbox" id="__nav_1_15" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_16" type="checkbox" id="__nav_1_16" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_15">
+        <label class="md-nav__link" for="__nav_1_16">
           Contribution Guide
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Contribution Guide" data-md-level="2">
-        <label class="md-nav__title" for="__nav_1_15">
+        <label class="md-nav__title" for="__nav_1_16">
           <span class="md-nav__icon md-icon"></span>
           Contribution Guide
         </label>
@@ -5754,18 +5820,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_15_2" type="checkbox" id="__nav_1_15_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_16_2" type="checkbox" id="__nav_1_16_2" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_15_2">
+        <label class="md-nav__link" for="__nav_1_16_2">
           How to Contribute
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="How to Contribute" data-md-level="3">
-        <label class="md-nav__title" for="__nav_1_15_2">
+        <label class="md-nav__title" for="__nav_1_16_2">
           <span class="md-nav__icon md-icon"></span>
           How to Contribute
         </label>
@@ -5885,18 +5951,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_15_3" type="checkbox" id="__nav_1_15_3" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_16_3" type="checkbox" id="__nav_1_16_3" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_15_3">
+        <label class="md-nav__link" for="__nav_1_16_3">
           Code Style
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Code Style" data-md-level="3">
-        <label class="md-nav__title" for="__nav_1_15_3">
+        <label class="md-nav__title" for="__nav_1_16_3">
           <span class="md-nav__icon md-icon"></span>
           Code Style
         </label>
@@ -5953,54 +6019,6 @@
           
         </ul>
       </nav>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_2">
-          Playground
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Playground" data-md-level="1">
-        <label class="md-nav__title" for="__nav_2">
-          <span class="md-nav__icon md-icon"></span>
-          Playground
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="https://playground.matrixorigin.io/?tutorial=SSB-test-with-matrixone&step=1" class="md-nav__link">
-        Playground
-      </a>
     </li>
   
 
@@ -6156,22 +6174,29 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-create-and-run-the-container-of-matrixone" class="md-nav__link">
-    3. Create and run the container of MatrixOne
+  <a href="#3-check-the-docker-running-status" class="md-nav__link">
+    3. Check the Docker running status
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-mount-the-data-directoryoptional" class="md-nav__link">
-    4. Mount the data directory(Optional)
+  <a href="#4-create-and-run-the-container-of-matrixone" class="md-nav__link">
+    4. Create and run the container of MatrixOne
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#5-connect-to-matrixone-server" class="md-nav__link">
-    5. Connect to MatrixOne Server
+  <a href="#5-mount-the-data-directoryoptional" class="md-nav__link">
+    5. Mount the data directory(Optional)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-connect-to-matrixone-server" class="md-nav__link">
+    6. Connect to MatrixOne Server
   </a>
   
 </li>
@@ -6219,16 +6244,24 @@
 <table>
 <thead>
 <tr>
+<th align="left">Operating System</th>
+<th align="left">Operating System Version</th>
 <th align="left">CPU</th>
 <th align="left">Memory</th>
-<th align="left">Operating system</th>
 </tr>
 </thead>
 <tbody>
 <tr>
+<td align="left">CentOS</td>
+<td align="left">7.3 and later</td>
 <td align="left">x86 CPU; 4 Cores</td>
-<td align="left">32 GB memory</td>
-<td align="left">CentOS 7+</td>
+<td align="left">32 GB</td>
+</tr>
+<tr>
+<td align="left">macOS</td>
+<td align="left">Monterey 12.3 and later</td>
+<td align="left">- x86 CPU；4 Cores<br>- ARM；4 Cores</td>
+<td align="left">32 GB</td>
 </tr>
 </tbody>
 </table>
@@ -6241,11 +6274,24 @@
 </div>
 <p>Click <a href="https://go.dev/doc/install" target="_blank">Go Download and install</a> to enter its official documentation, and follow the installation steps to complete the <strong>Go</strong> installation.</p>
 <p>To verify whether <strong>Go</strong> is installed, please execute the code <code>go version</code>. When <strong>Go</strong> is installed successfully, the example code line is as follows:  </p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1"><strong>Linux Environment</strong></label><label for="__tabbed_1_2"><strong>MacOS Environment</strong></label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>The example code line is as follows:  </p>
+<div class="highlight"><pre><span></span><code>go version go1.19.3 linux/amd64
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>The example code line is as follows:</p>
 <div class="highlight"><pre><span></span><code>go version go1.19 darwin/arm64
 </code></pre></div>
+</div>
+</div>
+</div>
 <h3 id="2-build-matrixone-by-using-matrixone-code">2. Build MatrixOne by using MatrixOne code</h3>
 <p>Depending on your needs, choose whether you want to keep your code up to date, or if you want to get the latest stable version of the code.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Get the MatrixOne(Develop Version) code to build</label><label for="__tabbed_1_2">Get the MatrixOne(Stable Version) code to build</label></div>
+<p><strong>Tips</strong>: When using MatrixOne source code to build MatrixOne, there is no much difference between the source code for <strong>Linux environment</strong> and <strong>MacOS environment</strong>. This chapter focuses on building Matrixone source code for different versions.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Get the MatrixOne(Develop Version) code to build</label><label for="__tabbed_2_2">Get the MatrixOne(Stable Version) code to build</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>The <strong>main</strong> branch is the default branch, the code on the main branch is always up-to-date but not stable enough.</p>
@@ -6260,7 +6306,7 @@ cd matrixone
 <p>Run <code>make build</code> to compile the MatrixOne file:</p>
 <div class="highlight"><pre><span></span><code>make build
 </code></pre></div>
-<p><strong>Tips</strong>: You can also run <code>make debug</code>, <code>make clean</code>, or anything else our <code>Makefile</code> offers, <code>make debug</code> can be used to debug the build process, and <code>make clean</code> can be used to clean up the build process. If you get an error while run <code>make build</code>, see <a href="../../FAQs/deployment-faqs/">Deployment FAQs</a>.</p>
+<p><strong>Tips</strong>: You can also run <code>make debug</code>, <code>make clean</code>, or anything else our <code>Makefile</code> offers, <code>make debug</code> can be used to debug the build process, and <code>make clean</code> can be used to clean up the build process. If you get an error like <code>Get "https://proxy.golang.org/........": dial tcp 142.251.43.17:443: i/o timeout</code> while running <code>make build</code>, see <a href="../../FAQs/deployment-faqs/">Deployment FAQs</a>.</p>
 </li>
 <li>
 <p>Launch MatrixOne server：</p>
@@ -6284,7 +6330,7 @@ cd matrixone
 <div class="highlight"><pre><span></span><code>make config
 make build
 </code></pre></div>
-<p><strong>Tips</strong>: You can also run <code>make debug</code>, <code>make clean</code>, or anything else our <code>Makefile</code> offers, <code>make debug</code> can be used to debug the build process, and <code>make clean</code> can be used to clean up the build process. If you get an error while run <code>make build</code>, see <a href="../../FAQs/deployment-faqs/">Deployment FAQs</a>.</p>
+<p><strong>Tips</strong>: You can also run <code>make debug</code>, <code>make clean</code>, or anything else our <code>Makefile</code> offers, <code>make debug</code> can be used to debug the build process, and <code>make clean</code> can be used to clean up the build process. If you get an error like <code>Get "https://proxy.golang.org/........": dial tcp 142.251.43.17:443: i/o timeout</code> while running <code>make build</code>, see <a href="../../FAQs/deployment-faqs/">Deployment FAQs</a>.</p>
 </li>
 <li>
 <p>Launch MatrixOne server：</p>
@@ -6303,7 +6349,7 @@ make build
 <h3 id="1-install-wget-or-curl">1. Install <code>wget</code> or <code>curl</code></h3>
 <p>We'll provide a method of <strong>Using binary package</strong> to install MatrixOne. If you prefer to use the command line, you can pre-install <code>wget</code> or <code>curl</code>.</p>
 <p><strong>Tips</strong>: It is recommended that you download and install one of these two tools to facilitate future operations.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Install <code>wget</code></label><label for="__tabbed_2_2">Install <code>curl</code></label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Install <code>wget</code></label><label for="__tabbed_3_2">Install <code>curl</code></label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>The <code>wget</code> tool is used to download files from the specified URL. <code>wget</code> is a unique file download tool; it is very stable and has a download speed.</p>
@@ -6311,6 +6357,17 @@ make build
 <div class="highlight"><pre><span></span><code>wget -V
 </code></pre></div>
 <p>The successful installation results (only part of the code is displayed) are as follows:</p>
+<ul>
+<li>Linux environment:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>GNU Wget 1.21.3 built on linux-gnu.
+...
+Copyright (C) 2015 Free Software Foundation, Inc.
+...
+</code></pre></div>
+<ul>
+<li>MacOS environment:</li>
+</ul>
 <div class="highlight"><pre><span></span><code>GNU Wget 1.21.3 is compiled on darwin21.3.0.
 ...
 Copyright © 2015 Free Software Foundation, Inc.
@@ -6323,6 +6380,16 @@ Copyright © 2015 Free Software Foundation, Inc.
 <div class="highlight"><pre><span></span><code>curl --version
 </code></pre></div>
 <p>The successful installation results (only part of the code is displayed) are as follows:</p>
+<ul>
+<li>Linux environment:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>curl 7.84.0 (x86_64-pc-linux-gnu) libcurl/7.84.0 OpenSSL/1.1.1k-fips zlib/1.2.11
+Release-Date: 2022-06-27
+...
+</code></pre></div>
+<ul>
+<li>MacOS environment:</li>
+</ul>
 <div class="highlight"><pre><span></span><code>curl 7.84.0 (x86_64-apple-darwin22.0) libcurl/7.84.0 (SecureTransport) LibreSSL/3.3.6 zlib/1.2.11 nghttp2/1.47.0
 Release-Date: 2022-06-27
 ...
@@ -6331,7 +6398,7 @@ Release-Date: 2022-06-27
 </div>
 </div>
 <h3 id="2-download-binary-packages-and-decompress">2. Download binary packages and decompress</h3>
-<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1"><strong>Linux Environment</strong></label><label for="__tabbed_3_2"><strong>MacOS Environment</strong></label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1"><strong>Linux Environment</strong></label><label for="__tabbed_4_2"><strong>MacOS Environment</strong></label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p><strong>Download Method 1</strong> and <strong>Download Method 2</strong> need to install the download tools <code>wget</code> or <code>curl</code> first.</p>
@@ -6387,6 +6454,7 @@ unzip mo-server-v0.5.1-darwin-x86_64.zip
 <h3 id="4-connect-to-matrixone-server">4. Connect to MatrixOne Server</h3>
 <p>When you finish installing and starting MatrixOne, many logs are generated in startup mode. Then you can start a new terminal and connect to MatrixOne, for more information on connecting to MatrixOne, see <a href="../connect-to-matrixone-server/">Connect to MatrixOne server</a>.</p>
 <h2 id="method-3-using-docker"><h2><a name="use_docker">Method 3: Using docker</a></h2></h2>
+<p><strong>Tips</strong>: When using Docker to build MatrixOne, there is no much difference between the source code for <strong>Linux environment</strong> and <strong>MacOS environment</strong>.</p>
 <h3 id="1-download-and-install-docker">1. Download and install Docker</h3>
 <p>Click <a href="https://docs.docker.com/get-docker/" target="_blank">Get Docker</a>, enter into the Docker's official document page, depending on your operating system, download and install the corresponding Docker.  </p>
 <p>After the installation, click to open Docker and go to the next step to verify whether the installation is successful.</p>
@@ -6397,27 +6465,41 @@ unzip mo-server-v0.5.1-darwin-x86_64.zip
 <p>The successful installation results are as follows:</p>
 <div class="highlight"><pre><span></span><code>Docker version 20.10.17, build 100c701
 </code></pre></div>
-<h3 id="3-create-and-run-the-container-of-matrixone">3. Create and run the container of MatrixOne</h3>
+<h3 id="3-check-the-docker-running-status">3. Check the Docker running status</h3>
+<p>Run the following command to start Docker and check whether the running status is successfully:</p>
+<div class="highlight"><pre><span></span><code>systemctl start docker
+systemctl status docker
+</code></pre></div>
+<p>The following code example indicates that Docker is running. <code>Active: active (running)</code> shows that Docker is running.</p>
+<div class="highlight"><pre><span></span><code>docker.service - Docker Application Container Engine
+   Loaded: loaded (/usr/lib/systemd/system/docker.service; disabled; vendor preset: disabled)
+   Active: active (running) since Sat 2022-11-26 17:48:32 CST; 6s ago
+     Docs: https://docs.docker.com
+ Main PID: 234496 (dockerd)
+    Tasks: 8
+   Memory: 23.6M
+</code></pre></div>
+<p>Or you can open your local Docker client and launch Docker.</p>
+<h3 id="4-create-and-run-the-container-of-matrixone">4. Create and run the container of MatrixOne</h3>
 <p>It will pull the image from Docker Hub if not exists. You can choose to pull the stable version image or the develop version image.</p>
-<ul>
-<li>Stable Version Image(0.5.1 version)</li>
-</ul>
-<div class="highlight"><pre><span></span><code>docker run -d -p <span class="m">6001</span>:6001 --name matrixone matrixorigin/matrixone:0.5.1
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Stable Version Image(0.5.1 version)</label><label for="__tabbed_5_2">Develop Version Image(Pre0.6 version)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker pull matrixorigin/matrixone:0.5.1
+docker run -d -p <span class="m">6001</span>:6001 --name matrixone matrixorigin/matrixone:0.5.1
 </code></pre></div>
-<ul>
-<li>
-<p>If you want to pull the develop version image, see <a href="https://hub.docker.com/r/matrixorigin/matrixone/tags">Docker Hub</a>, get the image tag. An example as below:</p>
-<p>Develop Version Image(Pre0.6 version)</p>
-<div class="highlight"><pre><span></span><code>docker run -d -p <span class="m">6001</span>:6001 --name matrixone matrixorigin/matrixone:nightly-commitnumber
-</code></pre></div>
-<div class="admonition info">
-<p class="admonition-title">Info</p>
-<p>The <em>nightly</em> version is updated once a day.</p>
 </div>
-</li>
-</ul>
-<p>For the information on the user name and password, see the next step - Connect to MatrixOne Server.</p>
-<h3 id="4-mount-the-data-directoryoptional">4. Mount the data directory(Optional)</h3>
+<div class="tabbed-block">
+<p>If you want to pull the develop version image, see <a href="https://hub.docker.com/r/matrixorigin/matrixone/tags">Docker Hub</a>, get the image tag. An example as below:</p>
+<div class="highlight"><pre><span></span><code>docker pull matrixorigin/matrixone:nightly-commitnumber
+docker run -d -p <span class="m">6001</span>:6001 --name matrixone matrixorigin/matrixone:nightly-commitnumber
+</code></pre></div>
+<p><strong>Notes</strong>: The <em>nightly</em> version is updated once a day.</p>
+</div>
+</div>
+</div>
+<p>For the information on the user name and password, see the step 6 - Connect to MatrixOne Server.</p>
+<h3 id="5-mount-the-data-directoryoptional">5. Mount the data directory(Optional)</h3>
 <p>To customize the configuration file, you can mount the custom configuration file stored on the local disk.</p>
 <div class="highlight"><pre><span></span><code>docker run -d -p 6001:6001 -v ${path_name}/system_vars_config.toml:/system_vars_config.toml:ro -v ${path_name}/store:/store:rw --name matrixone matrixorigin/matrixone:0.5.1
 </code></pre></div>
@@ -6448,7 +6530,7 @@ unzip mo-server-v0.5.1-darwin-x86_64.zip
 </tbody>
 </table>
 <p>For more information on the description of <em>Docker run</em>, run the commands <code>docker run --help</code>.</p>
-<h3 id="5-connect-to-matrixone-server">5. Connect to MatrixOne Server</h3>
+<h3 id="6-connect-to-matrixone-server">6. Connect to MatrixOne Server</h3>
 <p>When you finish installing and starting MatrixOne, many logs are generated in startup mode. Then you can start a new terminal and connect to MatrixOne, for more information on connecting to MatrixOne, see <a href="../connect-to-matrixone-server/">Connect to MatrixOne server</a>.</p>
 <h2 id="reference">Reference</h2>
 <ul>
