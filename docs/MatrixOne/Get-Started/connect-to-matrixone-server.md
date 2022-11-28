@@ -15,28 +15,63 @@ Or you can click <a href="https://dev.mysql.com/downloads/mysql" target="_blank"
 
 After the installation is completed, configure the MySQL client environment variables:
 
-1. Open a new terminal window and enter the following command:
+=== "**Linux Environment**"
 
-    ```
-    cd ~
-    sudo vim .bash_profile
-    ```
+     1. Open a new terminal window and enter the following command:
 
-2. After pressing **Enter** on the keyboard to execute the above command, you need to enter the root user password, which is the root password you set in the installation window when you installed the MySQL client.
+         ```
+         cd ~
+         sudo vim /etc/profile
+         ```
 
-3. After entering the root password, you will enter *.bash_profile*, click **i** on the keyboard to enter the insert state, and you can enter the following command at the bottom of the file:
+     2. After pressing **Enter** on the keyboard to execute the above command, you need to enter the root user password, which is the root password you set in the installation window when you installed the MySQL client. If no password has been set, press **Enter** to skip the password.
 
-    ```
-    export PATH=${PATH}:/usr/local/mysql/bin
-    ```
+     3. After entering/skiping the root password, you will enter *profile*, click **i** on the keyboard to enter the insert state, and you can enter the following command at the bottom of the file:
 
-4. After the input is completed, click **esc** on the keyboard to exit the insert state, and enter `:wq` at the bottom to save and exit.
+        ```
+        export PATH=/software/mysql/bin:$PATH
+        ```
 
-5. Enter the command `source .bash_profile`, press **Enter** to execute, and run the environment variable.
+     4. After the input is completed, click **esc** on the keyboard to exit the insert state, and enter `:wq` at the bottom to save and exit.
 
-6. To test whether MySQL is available, enter `mysql -u root -p`, press **Enter** to execute, the root user password is required, if `mysql>` is displayed, it means that the MySQL client is enabled.
+     5. Enter the command `source  /etc/profile`, press **Enter** to execute, and run the environment variable.
 
-7. Then, you can enter `exit` to exit, and continue to browse the next chapter **Connect to MatrixOne Server**.
+     6. To test whether MySQL is available:
+
+         - Method 1： Enter `mysql -u root -p`, press **Enter** to execute, the root user password is required, if `mysql>` is displayed, it means that the MySQL client is enabled.
+
+         - Method 2: Run the command `mysql --version`, if MySQL client is installed successfully, the example code line is as follows: `mysql  Ver 8.0.31 for Linux on x86_64 (Source distribution)`
+
+     7. If MySQL is available, close the current terminal and browse the next chapter **Connect to MatrixOne Server**.
+
+=== "**MacOS Environment**"
+
+     1. Open a new terminal window and enter the following command:
+
+        ```
+        cd ~
+        sudo vim .bash_profile
+        ```
+
+     2. After pressing **Enter** on the keyboard to execute the above command, you need to enter the root user password, which is the root password you set in the installation window when you installed the MySQL client. If no password has been set, press **Enter** to skip the password.
+
+     3. After entering/skiping the root password, you will enter *.bash_profile*, click **i** on the keyboard to enter the insert state, and you can enter the following command at the bottom of the file:
+
+        ```
+        export PATH=${PATH}:/usr/local/mysql/bin
+        ```
+
+     4. After the input is completed, click **esc** on the keyboard to exit the insert state, and enter `:wq` at the bottom to save and exit.
+
+     5. Enter the command `source .bash_profile`, press **Enter** to execute, and run the environment variable.
+
+     6. To test whether MySQL is available:
+
+         - Method 1： Enter `mysql -u root -p`, press **Enter** to execute, the root user password is required, if `mysql>` is displayed, it means that the MySQL client is enabled.
+
+         - Method 2: Run the command `mysql --version`, if MySQL client is installed successfully, the example code line is as follows: `mysql  Ver 8.0.31 for macos12 on arm64 (MySQL Community Server - GPL)`
+
+     7. If MySQL is available, close the current terminal and browse the next chapter **Connect to MatrixOne Server**.
 
 __Tips__: Currently, MatrixOne is only compatible with the Oracle MySQL client. This means that some features might not work with the MariaDB client or Percona client.
 

@@ -43,7 +43,7 @@ nav:
     - Overview:
       - MatrixOne Introduction: MatrixOne/Overview/matrixone-introduction.md
       - MatrixOne Feature List: MatrixOne/Overview/matrixone-feature-list.md
-      - MatrixOne Architecture: MatrixOne/Overview/matrixone-architecture.md
+      - MatrixOne Architecture Design: MatrixOne/Overview/matrixOne-architecture-design.md
       - MySQL Compatibility: MatrixOne/Overview/mysql-compatibility.md
       - What's New: MatrixOne/Overview/whats-new.md
     - Getting Started:
@@ -56,7 +56,7 @@ nav:
         - Database Client IDE: MatrixOne/Develop/connect-mo/database-ide.md
         - Java connect to MatrixOne:
           - JDBC: MatrixOne/Develop/connect-mo/java-connect-to-matrixone/connect-mo-with-jdbc.md
-        - Python connect to the MatrixOne: MatrixOne/Develop/connect-mo/python-connect-to-matrixone.md
+        - Python connect to MatrixOne: MatrixOne/Develop/connect-mo/python-connect-to-matrixone.md
       - Schema Design:
         - Overview: MatrixOne/Develop/schema-design/overview.md
         - Create Database: MatrixOne/Develop/schema-design/create-database.md
@@ -95,6 +95,7 @@ nav:
       - Performance Testing:
         - SSB Test with MatrixOne: MatrixOne/Tutorial/SSB-test-with-matrixone.md
         - TPCH Test with MatrixOne: MatrixOne/Tutorial/TPCH-test-with-matrixone.md
+        - TPCC Test with MatrixOne: MatrixOne/Tutorial/TPCC-test-with-matrixone.md
       - Testing Tool:
         - MO-Tester: MatrixOne/Test/mo-tester.md
         - MO-Tester Specification: MatrixOne/Test/mo-tester-reference.md
@@ -317,8 +318,6 @@ nav:
           - SUBSTRING(): MatrixOne/Reference/Builtin-Functions/String/substring.md
           - SPACE(): MatrixOne/Reference/Builtin-Functions/String/space.md
           - REVERSE(): MatrixOne/Reference/Builtin-Functions/String/reverse.md
-        - Table:
-          - UUNEST(): MatrixOne/Reference/Builtin-Functions/Table/unnest.md
       - System Paramaters:
         - General Settings: MatrixOne/Reference/System-Parameters/configuration-settings.md
         - Time Zone Support: MatrixOne/Reference/System-Parameters/timezone.md

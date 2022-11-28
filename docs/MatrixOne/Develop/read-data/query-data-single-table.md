@@ -9,7 +9,14 @@ This document describes how to use SQL to query data from a single table in a da
 
 ### Preparation
 
-Create a tables named *token_count* to prepare for querying:
+Create a database named *token_demo* firstly:
+
+```sql
+CREATE DATABASE token_demo;
+USE token_demo;
+```
+
+Create a table named *token_count* to prepare for querying:
 
 ```sql
 CREATE TABLE token_count (
@@ -38,7 +45,7 @@ INSERT INTO token_count VALUES (29,'a71250b7ed780f6ef3185bfffe027983',4,17700,'b
 Execute the following SQL statement in a MySQL client:
 
 ```sql
-> SELECT id, token FROM token_count;
+mysql> SELECT id, token FROM token_count;
 ```
 
 Result is as below：
@@ -66,7 +73,7 @@ Result is as below：
 To filter query results, you can use the `WHERE` statement.
 
 ```sql
-SELECT * FROM token_count WHERE id = 25;
+mysql> SELECT * FROM token_count WHERE id = 25;
 ```
 
 Result is as below：
@@ -86,9 +93,7 @@ To sort query results, you can use the `ORDER BY` statement.
 For example, the following SQL statement can be used to sort the data in the *token_count* table in descending order (DESC) by *times* column.
 
 ```sql
-SELECT id, token, times
-FROM token_count
-ORDER BY times DESC;
+mysql> SELECT id, token, times FROM token_count ORDER BY times DESC;
 ```
 
 Result is as below：
@@ -116,10 +121,7 @@ Result is as below：
 To limit the number of query results, you can use the `LIMIT` statement.
 
 ```sql
-SELECT id, token, times
-FROM token_count
-ORDER BY times DESC
-LIMIT 5;
+mysql> SELECT id, token, times FROM token_count ORDER BY times DESC LIMIT 5;
 ```
 
 Result is as below：
@@ -143,11 +145,7 @@ To have a better understanding of the overall data situation, you can use the `G
 For example, you can group basic information by `id`, `count`, and `times` columns and count them separately:
 
 ```sql
-SELECT id, count, times
-FROM token_count
-GROUP BY id, count, times
-ORDER BY times DESC
-LIMIT 5;
+mysql> SELECT id, count, times FROM token_count GROUP BY id, count, times ORDER BY times DESC LIMIT 5;
 ```
 
 Result is as below：

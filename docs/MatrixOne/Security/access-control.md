@@ -4,7 +4,7 @@ The access control permissions of a MatrixOne are classified into **System Permi
 
 ## System Permission
 
-System permissions are those of the initial system root. The system root can create and delete other accounts, and manage accounts. A system root cannot manage other resources of other accounts.
+System permissions are the permissions of the initial system account. The system account is the cluster system administrator *root* or *dump*, also called the cluster administrator. The system root can create and delete other accounts, and manage accounts. A system root cannot manage other resources of other accounts.
 
 |Permissions|Description|
 |---|---|
@@ -17,6 +17,8 @@ System permissions are those of the initial system root. The system root can cre
 Object permission can be classified into **Account Permission**, **User Permission**, **Role Permission**, **Database Permission**, and **Table Permission**.
 
 ### Account Permission
+
+Objects with *Account Permission* can have the following permissions:
 
 |Permissions|Description|
 |---|---|
@@ -36,17 +38,23 @@ Object permission can be classified into **Account Permission**, **User Permissi
 
 ### User Permission
 
+Objects with *User Permission* can have the following permissions:
+
 |Permissions|Description|
 |---|---|
 |Ownership|You can manage all user permission, including modifying user information, passwords, and deleting users, and transfer these permissions to other roles.|
 
 ### Role Permission
 
+Objects with *Role Permission* can have the following permissions:
+
 |Permissions|Description|
 |---|---|
 |Ownership|You can manage all rights of a role, including modifying the name, description, and deletion of a role, and transfer these rights to other roles.|
 
 ### Database Permission
+
+Objects with *Database Permission* can have the following permissions:
 
 |Permissions|Description|
 |---|---|
@@ -62,6 +70,8 @@ Object permission can be classified into **Account Permission**, **User Permissi
 
 ### Table Permission
 
+Objects with *Table Permission* can have the following permissions:
+
 |Permissions|Description|
 |---|---|
 |SELECT|Execute the `SELECT` statement|
@@ -75,6 +85,8 @@ Object permission can be classified into **Account Permission**, **User Permissi
 |OWNERSHIP|Specifies all permissions for the table, append `WITH GRANT OPTION`|
 
 ### Table Routine Level Permission
+
+Objects with *Table Routine Level Permission* can have the following permissions:
 
 |Permissions|Description|
 |---|---|
