@@ -12,9 +12,10 @@ To facilitate developers or technology enthusiasts with different operating habi
 
 MatrixOne supports **Linux** and **MacOS**. For quick start, we recommend the following hardware specifications:
 
-| CPU     | Memory | Operating system   |
-| :------ | :----- | :-------------- |
-| x86 CPU; 4 Cores | 32 GB memory | CentOS 7+ |
+| Operating System    | Operating System Version | CPU   |Memory|
+| :------ | :----- | :-------------- |  :------|
+|CentOS| 7.3 and later| x86 CPU; 4 Cores | 32 GB |
+|macOS| Monterey 12.3 and later | - x86 CPU；4 Cores<br>- ARM；4 Cores | 32 GB |
 
 For more information on the required operating system versions for deploying MatrixOne, see [Hardware and Operating system requirements](../FAQs/deployment-faqs.md).
 
@@ -29,13 +30,27 @@ Click <a href="https://go.dev/doc/install" target="_blank">Go Download and insta
 
 To verify whether **Go** is installed, please execute the code `go version`. When **Go** is installed successfully, the example code line is as follows:  
 
-```
-go version go1.19 darwin/arm64
-```
+=== "**Linux Environment**"
+
+     The example code line is as follows:  
+
+     ```
+     go version go1.19.3 linux/amd64
+     ```
+
+=== "**MacOS Environment**"
+
+      The example code line is as follows:
+
+      ```
+      go version go1.19 darwin/arm64
+      ```
 
 ### 2. Build MatrixOne by using MatrixOne code
 
 Depending on your needs, choose whether you want to keep your code up to date, or if you want to get the latest stable version of the code.
+
+__Tips__: When using MatrixOne source code to build MatrixOne, there is no much difference between the source code for **Linux environment** and **MacOS environment**. This chapter focuses on building Matrixone source code for different versions.
 
 === "Get the MatrixOne(Develop Version) code to build"
 
@@ -54,7 +69,7 @@ Depending on your needs, choose whether you want to keep your code up to date, o
          make build
          ```
 
-         __Tips__: You can also run `make debug`, `make clean`, or anything else our `Makefile` offers, `make debug` can be used to debug the build process, and `make clean` can be used to clean up the build process. If you get an error while run `make build`, see [Deployment FAQs](../FAQs/deployment-faqs.md).
+         __Tips__: You can also run `make debug`, `make clean`, or anything else our `Makefile` offers, `make debug` can be used to debug the build process, and `make clean` can be used to clean up the build process. If you get an error like `Get "https://proxy.golang.org/........": dial tcp 142.251.43.17:443: i/o timeout` while running `make build`, see [Deployment FAQs](../FAQs/deployment-faqs.md).
 
      3. Launch MatrixOne server：
 
@@ -81,7 +96,7 @@ Depending on your needs, choose whether you want to keep your code up to date, o
          make build
          ```
 
-         __Tips__: You can also run `make debug`, `make clean`, or anything else our `Makefile` offers, `make debug` can be used to debug the build process, and `make clean` can be used to clean up the build process. If you get an error while run `make build`, see [Deployment FAQs](../FAQs/deployment-faqs.md).
+         __Tips__: You can also run `make debug`, `make clean`, or anything else our `Makefile` offers, `make debug` can be used to debug the build process, and `make clean` can be used to clean up the build process. If you get an error like `Get "https://proxy.golang.org/........": dial tcp 142.251.43.17:443: i/o timeout` while running `make build`, see [Deployment FAQs](../FAQs/deployment-faqs.md).
 
      3. Launch MatrixOne server：
 
@@ -117,6 +132,17 @@ __Tips__: It is recommended that you download and install one of these two tools
 
      The successful installation results (only part of the code is displayed) are as follows:
 
+     - Linux environment:
+
+     ```
+     GNU Wget 1.21.3 built on linux-gnu.
+     ...
+     Copyright (C) 2015 Free Software Foundation, Inc.
+     ...
+     ```
+
+     - MacOS environment:
+
      ```
      GNU Wget 1.21.3 is compiled on darwin21.3.0.
      ...
@@ -135,6 +161,16 @@ __Tips__: It is recommended that you download and install one of these two tools
      ```
 
      The successful installation results (only part of the code is displayed) are as follows:
+
+     - Linux environment:
+
+     ```
+     curl 7.84.0 (x86_64-pc-linux-gnu) libcurl/7.84.0 OpenSSL/1.1.1k-fips zlib/1.2.11
+     Release-Date: 2022-06-27
+     ...
+     ```
+
+     - MacOS environment:
 
      ```
      curl 7.84.0 (x86_64-apple-darwin22.0) libcurl/7.84.0 (SecureTransport) LibreSSL/3.3.6 zlib/1.2.11 nghttp2/1.47.0
@@ -203,6 +239,8 @@ When you finish installing and starting MatrixOne, many logs are generated in st
 
 ## <h2><a name="use_docker">Method 3: Using docker</a></h2>
 
+__Tips__: When using Docker to build MatrixOne, there is no much difference between the source code for **Linux environment** and **MacOS environment**.
+
 ### 1. Download and install Docker
 
 Click <a href="https://docs.docker.com/get-docker/" target="_blank">Get Docker</a>, enter into the Docker's official document page, depending on your operating system, download and install the corresponding Docker.  
@@ -223,30 +261,54 @@ The successful installation results are as follows:
 Docker version 20.10.17, build 100c701
 ```
 
-### 3. Create and run the container of MatrixOne
+### 3. Check the Docker running status  
+
+Run the following command to start Docker and check whether the running status is successfully:
+
+```
+systemctl start docker
+systemctl status docker
+```
+
+The following code example indicates that Docker is running. `Active: active (running)` shows that Docker is running.
+
+```
+docker.service - Docker Application Container Engine
+   Loaded: loaded (/usr/lib/systemd/system/docker.service; disabled; vendor preset: disabled)
+   Active: active (running) since Sat 2022-11-26 17:48:32 CST; 6s ago
+     Docs: https://docs.docker.com
+ Main PID: 234496 (dockerd)
+    Tasks: 8
+   Memory: 23.6M
+```
+
+Or you can open your local Docker client and launch Docker.
+
+### 4. Create and run the container of MatrixOne
 
 It will pull the image from Docker Hub if not exists. You can choose to pull the stable version image or the develop version image.
 
-- Stable Version Image(0.5.1 version)
+=== "Stable Version Image(0.5.1 version)"
 
-```bash
-docker run -d -p 6001:6001 --name matrixone matrixorigin/matrixone:0.5.1
-```
+      ```bash
+      docker pull matrixorigin/matrixone:0.5.1
+      docker run -d -p 6001:6001 --name matrixone matrixorigin/matrixone:0.5.1
+      ```
 
-- If you want to pull the develop version image, see [Docker Hub](https://hub.docker.com/r/matrixorigin/matrixone/tags), get the image tag. An example as below:
+=== "Develop Version Image(Pre0.6 version)"
 
-    Develop Version Image(Pre0.6 version)
+      If you want to pull the develop version image, see [Docker Hub](https://hub.docker.com/r/matrixorigin/matrixone/tags), get the image tag. An example as below:
 
-    ```bash
-    docker run -d -p 6001:6001 --name matrixone matrixorigin/matrixone:nightly-commitnumber
-    ```
+      ```bash
+      docker pull matrixorigin/matrixone:nightly-commitnumber
+      docker run -d -p 6001:6001 --name matrixone matrixorigin/matrixone:nightly-commitnumber
+      ```
 
-    !!! info
-         The *nightly* version is updated once a day.
+      __Notes__: The *nightly* version is updated once a day.
 
-For the information on the user name and password, see the next step - Connect to MatrixOne Server.
+For the information on the user name and password, see the step 6 - Connect to MatrixOne Server.
 
-### 4. Mount the data directory(Optional)
+### 5. Mount the data directory(Optional)
 
 To customize the configuration file, you can mount the custom configuration file stored on the local disk.
 
@@ -263,7 +325,7 @@ docker run -d -p 6001:6001 -v ${path_name}/system_vars_config.toml:/system_vars_
 
 For more information on the description of *Docker run*, run the commands `docker run --help`.
 
-### 5. Connect to MatrixOne Server
+### 6. Connect to MatrixOne Server
 
 When you finish installing and starting MatrixOne, many logs are generated in startup mode. Then you can start a new terminal and connect to MatrixOne, for more information on connecting to MatrixOne, see [Connect to MatrixOne server](connect-to-matrixone-server.md).
 
