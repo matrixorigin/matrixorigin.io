@@ -22,12 +22,12 @@ SELECT ... FROM <query_name>;
 
 ### Preparation
 
-You can create a simple table and insert some data to help you understand the CTE statements shown later: 
+You can create a simple table and insert some data to help you understand the CTE statements shown later:
 
 ```sql
-> drop table if exists t1;
-> create table t1(a int, b int, c int);
-> insert into t1 values(null,null,null),(2,3,4);
+drop table if exists t1;
+create table t1(a int, b int, c int);
+insert into t1 values(null,null,null),(2,3,4);
 ```
 
 ## CTE Example
@@ -35,7 +35,7 @@ You can create a simple table and insert some data to help you understand the CT
 In the following example, `qn` is created as a temporary result set and the corresponding query results are cached in MatrixOne. You can perform a formal `qn` query better than in a non-CTE scenario.
 
 ```sql
-WITH qn AS (SELECT a FROM t1), qn2 as (select b from t1)
+mysql> WITH qn AS (SELECT a FROM t1), qn2 as (select b from t1)
 SELECT * FROM qn;
 ```
 

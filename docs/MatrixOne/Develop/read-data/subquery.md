@@ -86,13 +86,13 @@ insert into t2 values(9,8,4,9,9849.312,9849312,9849.312,'see you','subquery','20
 For a self-contained subquery that uses subquery as operand of comparison operators (`>`, `>=`, `<`, `<=`, `=` , or `! =`), the inner subquery queries only once, and MatrixOne rewrites it as a constant during the execution plan phase.
 
 ```sql
-select * from t1 where t1.id in (select t2.id from t2 where t2.id>=3);
+mysql> select * from t1 where t1.id in (select t2.id from t2 where t2.id>=3);
 ```
 
 The inner subquery is executed before MatrixOne executes the above query:
 
 ```sql
-select t2.id from t2 where t2.id>=3;
+mysql> select t2.id from t2 where t2.id>=3;
 ```
 
 Result is as below:
@@ -120,19 +120,13 @@ For correlated subquery, because the inner subquery references the columns from 
 Therefore, in the process of processing, MatrixOne will try to Decorrelate of Correlated Subquery to improve the query efficiency at the execution plan level.
 
 ```sql
-SELECT *
-FROM t1
-WHERE id in (
-       SELECT id
-       FROM t2
-       WHERE t1.ti = t2.ti and t2.id>=4
-       );
+mysql> SELECT * FROM t1 WHERE id in ( SELECT id FROM t2 WHERE t1.ti = t2.ti and t2.id>=4);
 ```
 
 Rewrites it to an equivalent join query:
 
 ```sql
-select t1.* from t1 join t2 on t1.id=t2.id where t2.id>=4;
+mysql> select t1.* from t1 join t2 on t1.id=t2.id where t2.id>=4;
 ```
 
 As a best practice, in actual development, it is recommended to avoid querying through a correlated subquery if you can write another equivalent query with better performance.
