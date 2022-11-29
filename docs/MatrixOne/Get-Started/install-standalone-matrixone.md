@@ -358,9 +358,23 @@ It will pull the image from Docker Hub if not exists. You can choose to pull the
 
 For the information on the user name and password, see the step 6 - Connect to MatrixOne Server.
 
-### 5. Mount the data directory(Optional)
+### 5. Mount the configuration file and the data directory(Optional)
 
-If you need to mount the *data directory*, you can mount it on the local disk before starting Docker:
+If you need to mount the *configuration file* and the *data directory*, you can mount it on the local disk before starting Docker:
+
+- **Mount the configuration file**
+
+```
+docker run -d -p 6001:6001 -v ${local_data_path}/etc:/etc:rw  --entrypoint "/mo-service" matrixorigin/matrixone:0.6.0 -launch /etc/launch-tae-CN-tae-DN/launch.toml
+```
+
+|Parameter|Description|
+|---|---|
+|${local_data_path}/etc:/etc|mount */etc/ to local disk directory|
+|--entrypoint "/mo-service"|Specifies that the container starts the MatrixOne service|
+|-launch /etc/launch-tae-CN-tae-DN/launch.toml|launch mode in */etc/|
+
+- **Mount the data directory**
 
 ```
 docker run -d -p 6001:6001 -v ${local_data_path}:/mo-data:rw --name matrixone matrixorigin/matrixone:0.6.0
@@ -368,7 +382,7 @@ docker run -d -p 6001:6001 -v ${local_data_path}:/mo-data:rw --name matrixone ma
 
 |Parameter|Description|
 |---|---|
-|${local_data_path}:/mo-data|Backup */mo-data* to local disk directory|
+|${local_data_path}:/mo-data|mount */mo-data* to local disk directory|
 
 After the mount is successful, you can find the corresponding data directory on your local disk, as shown in the following example:
 
@@ -377,7 +391,7 @@ After the mount is successful, you can find the corresponding data directory on 
 cd ${local_data_path}
 # View the data files or folders mounted in the current directory
 ls
-cn-data  etl  local  logservice-data
+cn-data  etc  etl  local  logservice-data
 ```
 
 For more information on the description of *Docker run*, run the commands `docker run --help`.
