@@ -360,7 +360,7 @@ For the information on the user name and password, see the step 6 - Connect to M
 
 ### 5. Mount the configuration file and the data directory(Optional)
 
-If you need to mount the *configuration file* and the *data directory*, you can mount it on the local disk before starting Docker:
+If you need to mount the *configuration file* and the *data directory*, you can mount them on the local disk before starting Docker:
 
 - **Mount the configuration file**
 
