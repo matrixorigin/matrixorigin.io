@@ -365,7 +365,7 @@ If you need to mount the *configuration file* and the *data directory*, you can 
 - **Mount the configuration file**
 
 ```
-docker run -d -p 6001:6001 -v ${local_data_path}/etc:/etc:rw  --entrypoint "/mo-service" matrixorigin/matrixone:0.6.0 -launch /etc/launch-tae-CN-tae-DN/launch.toml
+docker run -d -p 6001:6001 -v ${local_data_path}/etc:/etc:rw  --entrypoint "/mo-service" matrixorigin/matrixone:0.6.0 -launch /etc/quickstart/launch.toml
 ```
 
 |Parameter|Description|
