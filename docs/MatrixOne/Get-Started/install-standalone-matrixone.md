@@ -360,7 +360,7 @@ For the information on the user name and password, see the step 6 - Connect to M
 
 ### 5. Mount the configuration file and the data directory(Optional)
 
-If you need to mount the *configuration file* and the *data directory*, you can mount it to an empty directory on the local disk before starting Docker:
+If you need to mount the *configuration file* and the *data directory*, refer to the following section:
 
 - **Mount the configuration file**
 
@@ -370,7 +370,7 @@ docker run -d -p 6001:6001 -v ${local_data_path}/etc:/etc:rw  --entrypoint "/mo-
 
 |Parameter|Description|
 |---|---|
-|${local_data_path}/etc:/etc|mount */etc/ to local disk directory|
+|${local_data_path}/etc:/etc|mount the local disk directory to the container */etc* file |
 |--entrypoint "/mo-service"|Specifies that the container starts the MatrixOne service|
 |-launch /etc/launch-tae-CN-tae-DN/launch.toml|launch mode in */etc/|
 
@@ -382,7 +382,7 @@ docker run -d -p 6001:6001 -v ${local_data_path}:/mo-data:rw --name matrixone ma
 
 |Parameter|Description|
 |---|---|
-|${local_data_path}:/mo-data|mount */mo-data* to local disk directory|
+|${local_data_path}:/mo-data|mount the local disk directory to the container */mo-data* file|
 
 Or you can mount both of them together:
 
