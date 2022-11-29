@@ -27,53 +27,60 @@ The return value is an integer if no argument is given or the argument does not 
 If you use `UNIX_TIMESTAMP()` and `FROM_UNIXTIME()` to convert between values in a non-UTC time zone and Unix timestamp values, the conversion is lossy because the mapping is not one-to-one in both directions. For example, due to conventions for local time zone changes such as Daylight Saving Time (DST), it is possible for `UNIX_TIMESTAMP()` to map two values that are distinct in a non-UTC time zone to the same Unix timestamp value. `FROM_UNIXTIME()` maps that value back to only one of the original values. Here is an example, using values that are distinct in the MET time zone:
 
 ```sql
-> SET time_zone = 'MET';
-> SELECT UNIX_TIMESTAMP('2005-03-27 03:00:00');
+mysql> SET time_zone = 'MET';
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> SELECT UNIX_TIMESTAMP('2005-03-27 03:00:00');
 +-------------------------------------+
 | unix_timestamp(2005-03-27 03:00:00) |
 +-------------------------------------+
 |                          1111885200 |
 +-------------------------------------+
+1 row in set (0.00 sec)
 
-> SELECT UNIX_TIMESTAMP('2005-03-27 02:00:00');
+mysql> SELECT UNIX_TIMESTAMP('2005-03-27 02:00:00');
 +-------------------------------------+
 | unix_timestamp(2005-03-27 02:00:00) |
 +-------------------------------------+
 |                          1111885200 |
 +-------------------------------------+
+1 row in set (0.00 sec)
 
-> SELECT FROM_UNIXTIME(1111885200);
+mysql> SELECT FROM_UNIXTIME(1111885200);
 +---------------------------+
 | from_unixtime(1111885200) |
 +---------------------------+
 | 2005-03-27 03:00:00       |
 +---------------------------+
+1 row in set (0.00 sec)
 ```
 
 ## **Examples**
 
 ```sql
-> SELECT UNIX_TIMESTAMP("2016-07-11");
+mysql> SELECT UNIX_TIMESTAMP("2016-07-11");
 +----------------------------+
 | unix_timestamp(2016-07-11) |
 +----------------------------+
-|                 1468195200 |
+|                 1468188000 |
 +----------------------------+
+1 row in set (0.00 sec)
 
-> SELECT UNIX_TIMESTAMP('2015-11-13 10:20:19');
+mysql> SELECT UNIX_TIMESTAMP('2015-11-13 10:20:19');
 +-------------------------------------+
 | unix_timestamp(2015-11-13 10:20:19) |
 +-------------------------------------+
-|                          1447381219 |
+|                          1447406419 |
 +-------------------------------------+
-1 row in set (0.03 sec)
+1 row in set (0.00 sec)
 
-> SELECT UNIX_TIMESTAMP('2015-11-13 10:20:19.012');
+mysql> SELECT UNIX_TIMESTAMP('2015-11-13 10:20:19.012');
 +-----------------------------------------+
 | unix_timestamp(2015-11-13 10:20:19.012) |
 +-----------------------------------------+
-|                              1447381219 |
+|                       1447406419.012000 |
 +-----------------------------------------+
+1 row in set (0.00 sec)
 ```
 
 ## **Constraints**
