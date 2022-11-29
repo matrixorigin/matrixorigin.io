@@ -358,9 +358,9 @@ It will pull the image from Docker Hub if not exists. You can choose to pull the
 
 For the information on the user name and password, see the step 6 - Connect to MatrixOne Server.
 
-### 5. Mount the configuration file and the data directory(Optional)
+### 5. Mount the configuration file(Optional)
 
-If you need to mount the *configuration file* and the *data directory*, refer to the following section:
+If you need to mount the *configuration file*, refer to the following section:
 
 - **Mount the configuration file**
 
@@ -372,23 +372,7 @@ docker run -d -p 6001:6001 -v ${local_data_path}/etc:/etc:rw  --entrypoint "/mo-
 |---|---|
 |${local_data_path}/etc:/etc|mount the local disk directory to the container */etc* file |
 |--entrypoint "/mo-service"|Specifies that the container starts the MatrixOne service|
-|-launch /etc/launch-tae-CN-tae-DN/launch.toml|launch mode in */etc/|
-
-- **Mount the data directory**
-
-```
-docker run -d -p 6001:6001 -v ${local_data_path}:/mo-data:rw --name matrixone matrixorigin/matrixone:0.6.0
-```
-
-|Parameter|Description|
-|---|---|
-|${local_data_path}:/mo-data|mount the local disk directory to the container */mo-data* file|
-
-Or you can mount both of them together:
-
-```
-docker run -d -p 6001:6001 -v ${local_data_path}/etc:/etc:rw -v ${local_data_path}:/mo-data:rw --entrypoint "/mo-service" matrixorigin/matrixone:0.6.0 -launch /etc/quickstart/launch.toml
-```
+|-launch /etc/quickstart/launch.toml|launch mode in */etc/|
 
 After the mount is successful, you can find the corresponding data directory on your local disk, as shown in the following example:
 
@@ -397,7 +381,7 @@ After the mount is successful, you can find the corresponding data directory on 
 cd ${local_data_path}
 # View the data files or folders mounted in the current directory
 ls
-cn-data  etc  etl  local  logservice-data
+etc
 ```
 
 For more information on the description of *Docker run*, run the commands `docker run --help`.
