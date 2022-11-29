@@ -20,21 +20,21 @@ The ``FROM_UNIXTIME()`` function returns a representation of ``unix_timestamp`` 
 ## **Examples**
 
 ```sql
-> SELECT FROM_UNIXTIME(1447430881);
+mysql> SELECT FROM_UNIXTIME(1447430881);
 +---------------------------+
 | from_unixtime(1447430881) |
 +---------------------------+
-| 2015-11-13 06:08:01       |
+| 2015-11-14 00:08:01       |
 +---------------------------+
 1 row in set (0.00 sec)
 
-> SELECT FROM_UNIXTIME(1447430881,  '%Y %D %M %h:%i:%s %x');
+mysql> SELECT FROM_UNIXTIME(1447430881,  '%Y %D %M %h:%i:%s %x');
 +-------------------------------------------------+
 | from_unixtime(1447430881, %Y %D %M %h:%i:%s %x) |
 +-------------------------------------------------+
-| 2015 13th November 06:08:01 2015                |
+| 2015 14th November 12:08:01 2015                |
 +-------------------------------------------------+
-1 row in set (0.01 sec)
+1 row in set (0.00 sec)
 ```
 
 ## **Constraints**
