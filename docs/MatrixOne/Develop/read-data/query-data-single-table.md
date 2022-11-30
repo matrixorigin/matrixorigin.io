@@ -7,7 +7,6 @@ This document describes how to use SQL to query data from a single table in a da
 - Make sure you have already [installed and launched MatrixOne](../../Get-Started/install-standalone-matrixone.md).
 - Use MySQL client to [connect to MatrixOne](../../Get-Started/connect-to-matrixone-server.md).
 
-
 ### Preparation
 
 Create a database named *token_demo* firstly:
