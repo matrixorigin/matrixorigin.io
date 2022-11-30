@@ -21,15 +21,17 @@ The result type is derived from the argument type.
 ## **Examples**
 
 ```sql
-> drop table if exists t1;
-> create table t1(a int,b float);
-> insert into t1 values(1,-3.1416);
-> insert into t1 values(-1,1.57);
-> select abs(a),abs(b) from t1;
-+--------+--------+
-| abs(a) | abs(b) |
-+--------+--------+
-|      1 | 3.1416 |
-|      1 | 1.5700 |
-+--------+--------+
+drop table if exists t1;
+create table t1(a int,b float);
+insert into t1 values(1,-3.1416);
+insert into t1 values(-1,1.57);
+
+mysql> select abs(a),abs(b) from t1;
++--------+--------------------+
+| abs(a) | abs(b)             |
++--------+--------------------+
+|      1 | 3.1415998935699463 |
+|      1 | 1.5700000524520874 |
++--------+--------------------+
+2 rows in set (0.01 sec)
 ```
