@@ -391,3 +391,4 @@ When you finish installing and launching MatrixOne, many logs are generated in s
 ## Reference
 
 - For more information on deployment，see [Deployment FAQs](../FAQs/deployment-faqs.md).
+- For more information on distributed installation, see [Deploy MatrixOne Cluster on Kubernetes Overview](../Deploy/install-and-launch-in-k8s.md)
