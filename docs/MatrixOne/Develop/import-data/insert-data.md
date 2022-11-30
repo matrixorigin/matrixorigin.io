@@ -4,8 +4,8 @@ This document describes how to insert data into MatrixOne by using the SQL langu
 
 ## Before you start
 
-- Make sure you have already [installed and launched MatrixOne](https://docs.matrixorigin.io/0.5.1/MatrixOne/Get-Started/install-standalone-matrixone/).
-- Use MySQL client to [connect to MatrixOne](https://docs.matrixorigin.io/0.5.1/MatrixOne/Get-Started/connect-to-matrixone-server/)
+- Make sure you have already [installed and launched MatrixOne](../../Get-Started/install-standalone-matrixone.md).
+- Use MySQL client to [connect to MatrixOne](../../Get-Started/connect-to-matrixone-server.md).
 
 ## INSERT INTO Statement
 

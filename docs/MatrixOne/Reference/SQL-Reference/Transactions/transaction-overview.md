@@ -2,7 +2,7 @@
 
 MatrixOne supports bundling multiple SQL statements into a single all-or-nothing transaction. Each transaction guarantees ACID semantics spanning arbitrary tables and rows. If a transaction succeeds, all mutations are applied together with virtual simultaneity. If any part of a transaction fails, the entire transaction is aborted, and the database is left unchanged. MatrixOne guarantees that while a transaction is pending, it is isolated from other concurrent transactions with snapshot isolation.
 
-In 0.5.1 version, MatrixOne supports standalone database transaction. MatrixOne supports optimistic transaction mode.
+In 0.6.0 version, MatrixOne supports standalone database transaction. MatrixOne supports optimistic transaction mode.
 
 This document introduces commonly used transaction-related statements, explicit and implicit transactions, isolation levels, lazy check for constraints, and transaction sizes.
 
@@ -13,7 +13,7 @@ The following SQL statements control transactions：
 - `START TRANSACTION` or `BEGIN` start a new transaction.
 - `COMMIT` commits the current transaction, making its changes permanent.
 - `ROLLBACK` rolls back the current transaction, canceling its changes.
-- `SET autocommit` disables or enables the default autocommit mode for the current session. (It's not fully implemented in 0.5.1 version, MatrixOne only supports autocommit mode enabled, it cannot be switched off yet).
+- `SET autocommit` disables or enables the default autocommit mode for the current session. (It's not fully implemented in 0.6.0 version, MatrixOne only supports autocommit mode enabled, it cannot be switched off yet).
 
 #### Starting a transaction
 

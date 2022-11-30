@@ -7,7 +7,7 @@
 
 Before you start, make sure you have downloaded and installed the following software.
 
-* [MatrixOne 0.5.1](https://docs.matrixorigin.io/0.5.1/MatrixOne/Get-Started/install-standalone-matrixone/): Follow the installation instruction and launch MatrixOne 0.5.1. Create a database by MySQL client.
+* [Install MatrixOne](../Get-Started/install-standalone-matrixone/): Follow the installation instruction and launch MatrixOne. Create a database by MySQL client.
 
 ```
 mysql> CREATE DATABASE TEST;

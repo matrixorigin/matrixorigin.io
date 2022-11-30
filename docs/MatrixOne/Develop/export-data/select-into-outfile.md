@@ -37,15 +37,14 @@ The `SELECT ... INTO OUTFILE` has the following properties −
 
 ### Before you start
 
-- Make sure you have already [installed and launched MatrixOne](https://docs.matrixorigin.io/0.5.1/MatrixOne/Get-Started/install-standalone-matrixone/).
-
-- Use MySQL client to [connect to MatrixOne](https://docs.matrixorigin.io/0.5.1/MatrixOne/Get-Started/connect-to-matrixone-server/).
+- Make sure you have already [installed and launched MatrixOne](../../Get-Started/install-standalone-matrixone.md).
+- Use MySQL client to [connect to MatrixOne](../../Get-Started/connect-to-matrixone-server.md).
 
 !!! note
     If you install MatrixOne by `docker`, the directory is inside the docker image by default. To work with local directory, you need to bind a local directory to the container. In the following example, the local file system path `/tmp/docker_export_demo/store` is binded to the MatrixOne docker image, with a mapping to the `/store` path. For more information, see [Docker Mount Volume tutorial](https://www.freecodecamp.org/news/docker-mount-volume-guide-how-to-mount-a-local-directory/).
 
 ```
-docker run -d -p 6001:6001 -v ~/tmp/docker_export_demo/store:/store:rw --name matrixone matrixorigin/matrixone:0.5.1
+docker run -d -p 6001:6001 -v ~/tmp/docker_export_demo/store:/store:rw --name matrixone matrixorigin/matrixone:0.6.0
 ```
 
 ### Steps

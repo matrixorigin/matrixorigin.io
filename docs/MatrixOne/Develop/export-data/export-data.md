@@ -4,14 +4,13 @@ This document will guide you how to export data in MatrixOne.
 
 ## Before you start
 
-- Make sure you have already [installed and launched MatrixOne](https://docs.matrixorigin.io/0.5.1/MatrixOne/Get-Started/install-standalone-matrixone/).
-
-- Use MySQL client to [connect to MatrixOne](https://docs.matrixorigin.io/0.5.1/MatrixOne/Get-Started/connect-to-matrixone-server/). 
+- Make sure you have already [installed and launched MatrixOne](../../Get-Started/install-standalone-matrixone.md).
+- Use MySQL client to [connect to MatrixOne](../../Get-Started/connect-to-matrixone-server.md).
 
 If you use the `docker` install, please make sure that you have a data directory mounted to the container. For example,
 
 ```
-docker run -d -p 6001:6001 -v ~/tmp/docker_export_demo/store:/store:rw --name matrixone matrixorigin/matrixone:0.5.1
+docker run -d -p 6001:6001 -v ~/tmp/docker_export_demo/store:/store:rw --name matrixone matrixorigin/matrixone:0.6.0
 ```
 
 !!! note
@@ -42,7 +41,7 @@ docker run -d -p 6001:6001 -v ~/tmp/docker_export_demo/store:/store:rw --name ma
     select * from user into outfile '~/tmp/export_demo/export_datatable.txt'
     ```
 
-    For installation with docker, export the your mounted directory path of container as the following example. The directory `store` refers to the local path of `~/tmp/docker_export_demo/store`. 
+    For installation with docker, export the your mounted directory path of container as the following example. The directory `store` refers to the local path of `~/tmp/docker_export_demo/store`.
 
     ```
     select * from user into outfile 'store/export_datatable.txt';
