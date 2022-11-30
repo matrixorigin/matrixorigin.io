@@ -56,7 +56,7 @@ __Tips__: When using MatrixOne source code to build MatrixOne, there is no much 
 
      The **main** branch is the default branch, the code on the main branch is always up-to-date but not stable enough.
 
-     1. Get the MatrixOne(Develop Version, also called Pre0.6 version) code:
+     1. Get the MatrixOne(Develop Version) code:
 
          ```
          git clone https://github.com/matrixorigin/matrixone.git
@@ -71,21 +71,13 @@ __Tips__: When using MatrixOne source code to build MatrixOne, there is no much 
 
          __Tips__: You can also run `make debug`, `make clean`, or anything else our `Makefile` offers, `make debug` can be used to debug the build process, and `make clean` can be used to clean up the build process. If you get an error like `Get "https://proxy.golang.org/........": dial tcp 142.251.43.17:443: i/o timeout` while running `make build`, see [Deployment FAQs](../FAQs/deployment-faqs.md).
 
-     3. Launch MatrixOne server：
-
-         __Notes__: The startup-config file of MatrixOne(Develop Version) is different from the startup-config file of MatrixOne(Stable Version). The startup-config file code of MatrixOne(Develop Version) is as below:
-
-         ```
-         ./mo-service -cfg ./etc/cn-standalone-test.toml
-         ```
-
 === "Get the MatrixOne(Stable Version) code to build"
 
-     1. If you want to get the latest stable version code released by MatrixOne, please switch to the branch of version **0.5.1** first.
+     1. If you want to get the latest stable version code released by MatrixOne, please switch to the branch of version **0.6.0** first.
 
          ```
          git clone https://github.com/matrixorigin/matrixone.git
-         git checkout 0.5.1
+         git checkout 0.6.0
          cd matrixone
          ```
 
@@ -98,17 +90,41 @@ __Tips__: When using MatrixOne source code to build MatrixOne, there is no much 
 
          __Tips__: You can also run `make debug`, `make clean`, or anything else our `Makefile` offers, `make debug` can be used to debug the build process, and `make clean` can be used to clean up the build process. If you get an error like `Get "https://proxy.golang.org/........": dial tcp 142.251.43.17:443: i/o timeout` while running `make build`, see [Deployment FAQs](../FAQs/deployment-faqs.md).
 
-     3. Launch MatrixOne server：
+### <h3><a name="launch">3. Launch MatrixOne server</a></h2>
 
-         __Notes__: The startup-config file of MatrixOne(Stable Version) is different from the startup-config file of MatrixOne(Develop Version). The startup-config file code of MatrixOne(Stable Version) is as below:
+=== "**Launch in the frontend**"
 
-         ```
-         ./mo-server system_vars_config.toml
-         ```
+      This launch method will keep the `mo-service` process running in the frontend, the system log will be printed in real time. If you'd like to stop MatrixOne server, just make a CTRL+C or close your current terminal.
 
-### 2. Connect to MatrixOne Server
+      ```
+      # Start mo-service in the backend
+      ./mo-service -launch ./etc/quickstart/launch.toml
+      ```
 
-When you finish installing and starting MatrixOne, many logs are generated in startup mode. Then you can start a new terminal and connect to MatrixOne, for more information on connecting to MatrixOne, see [Connect to MatrixOne server](connect-to-matrixone-server.md).
+=== "**Launch in the backend**"
+
+      This launch method will put the `mo-service` process running in the backend, the system log will be redirected to the `test.log` file. If you'd like to stop MatrixOne server, you need to find out its `PID` by and kill it by the following commands. Below is a full example of the whole process.
+
+      ```
+      # Start mo-service in the backend
+      nohup ./mo-service -launch ./etc/quickstart/launch.toml &> test.log &
+
+      # Find mo-service PID
+      ps aux | grep mo-service
+
+      [root@VM-0-10-centos ~]# ps aux | grep mo-service
+      root       15277  2.8 16.6 8870276 5338016 ?     Sl   Nov25 156:59 ./mo-service -launch ./etc/quickstart/launch.toml
+      root      836740  0.0  0.0  12136  1040 pts/0    S+   10:39   0:00 grep --color=auto mo-service
+
+      # Kill the mo-service process
+      kill -9 15277
+      ```
+
+      __Tips__: As shown in the above example, use the command `ps aux | grep mo-service` to find out that the process number running on MatrixOne is `15277`, and `kill -9 15277` means to stop MatrixOne with the process number `15277`.
+
+### 4. Connect to MatrixOne Server
+
+When you finish installing and launching MatrixOne, many logs are generated in startup mode. Then you can start a new terminal and connect to MatrixOne, for more information on connecting to MatrixOne, see [Connect to MatrixOne server](connect-to-matrixone-server.md).
 
 ## <h2><a name="binary_packages">Method 2: Downloading binary packages</a></h2>
 
@@ -187,20 +203,20 @@ __Tips__: It is recommended that you download and install one of these two tools
      + **Downloading method 1: Using `wget` to install binary packages**
 
         ```bash
-        wget https://github.com/matrixorigin/matrixone/releases/download/v0.5.1/mo-server-v0.5.1-linux-amd64.zip
-        unzip mo-server-v0.5.1-linux-amd64.zip
+        wget https://github.com/matrixorigin/matrixone/releases/download/v0.6.0/mo-v0.6.0-linux-amd64.zip
+        unzip mo-v0.6.0-linux-amd64.zip
         ```
 
      + **Downloading method 2: Using `curl` to install binary packages**
 
         ```bash
-        curl -OL https://github.com/matrixorigin/matrixone/releases/download/v0.5.1/mo-server-v0.5.1-linux-amd64.zip
-        unzip mo-server-v0.5.1-linux-amd64.zip
+        curl -OL https://github.com/matrixorigin/matrixone/releases/download/v0.6.0/mo-v0.6.0-linux-amd64.zip
+        unzip mo-v0.6.0-linux-amd64.zip
         ```
 
      + **Downloading method 3: If you want a more intuitive way to download the page, you can go to the following page link and download**
 
-        Go to the [version 0.5.1](https://github.com/matrixorigin/matrixone/releases/tag/v0.5.1), pull down to find the **Assets** column, and click the installation package *mo-server-v0. 5.1-linux-amd64.zip* can be downloaded.
+        Go to the [version 0.6.0](https://github.com/matrixorigin/matrixone/releases/tag/v0.6.0), pull down to find the **Assets** column, and click the installation package *mo-v0.6.0-linux-amd64.zip* can be downloaded.
 
 === "**MacOS Environment**"
 
@@ -209,33 +225,61 @@ __Tips__: It is recommended that you download and install one of these two tools
      + **Downloading method 1: Using `wget` to install binary packages**
 
         ```bash
-        wget https://github.com/matrixorigin/matrixone/releases/download/v0.5.1/mo-server-v0.5.1-darwin-x86_64.zip
-        unzip mo-server-v0.5.1-darwin-x86_64.zip
+        wget https://github.com/matrixorigin/matrixone/releases/download/v0.6.0/mo-v0.6.0-darwin-x86_64.zip
+        unzip mo-v0.6.0-darwin-x86_64.zip
         ```
 
      + **Downloading method 2: Using `curl` to install binary packages**
 
         ```bash
-        curl -OL https://github.com/matrixorigin/matrixone/releases/download/v0.5.1/mo-server-v0.5.1-darwin-x86_64.zip
-        unzip mo-server-v0.5.1-darwin-x86_64.zip
+        curl -OL https://github.com/matrixorigin/matrixone/releases/download/v0.6.0/mo-v0.6.0-darwin-x86_64.zip
+        unzip mo-v0.6.0-darwin-x86_64.zip
         ```
 
      + **Downloading method 3: If you want a more intuitive way to download the page, you can go to the following page link and download**
 
-        Go to the [version 0.5.1](https://github.com/matrixorigin/matrixone/releases/tag/v0.5.1), pull down to find the **Assets** column, and click the installation package *mo-server-v0.5.1-darwin-x86_64.zip* can be downloaded.
+        Go to the [version 0.6.0](https://github.com/matrixorigin/matrixone/releases/tag/v0.6.0), pull down to find the **Assets** column, and click the installation package *mo-v0.6.0-darwin-x86_64.zip* can be downloaded.
 
 !!! info
     MatrixOne only supports installation on ARM chipset with source code build; if you are using MacOS M1 and above, for more information on using source code build to install MatrixOne, see <a href="#code_source">Method 1: Building from source code</a>. Using release binary files from X86 chipset will lead to unknown problems.
 
 ### 3. Launch MatrixOne server
 
-```
-./mo-server system_vars_config.toml
-```
+Launch MatrixOne server in the frontend or backend as <a href="#launch">3. Launch MatrixOne server</a> suggests in **Building from source code**.
+
+=== "**Launch in the frontend**"
+
+      This launch method will keep the `mo-service` process running in the frontend, the system log will be printed in real time. If you'd like to stop MatrixOne server, just make a CTRL+C or close your current terminal.
+
+      ```
+      # Start mo-service in the backend
+      ./mo-service -launch ./etc/quickstart/launch.toml
+      ```
+
+=== "**Launch in the backend**"
+
+      This launch method will put the `mo-service` process running in the backend, the system log will be redirected to the `test.log` file. If you'd like to stop MatrixOne server, you need to find out its `PID` by and kill it by the following commands. Below is a full example of the whole process.
+
+      ```
+      # Start mo-service in the backend
+      nohup ./mo-service -launch ./etc/quickstart/launch.toml &> test.log &
+
+      # Find mo-service PID
+      ps aux | grep mo-service
+
+      [root@VM-0-10-centos ~]# ps aux | grep mo-service
+      root       15277  2.8 16.6 8870276 5338016 ?     Sl   Nov25 156:59 ./mo-service -launch ./etc/quickstart/launch.toml
+      root      836740  0.0  0.0  12136  1040 pts/0    S+   10:39   0:00 grep --color=auto mo-service
+
+      # Kill the mo-service process
+      kill -9 15277
+      ```
+
+      __Tips__: As shown in the above example, use the command `ps aux | grep mo-service` to find out that the process number running on MatrixOne is `15277`, and `kill -9 15277` means to stop MatrixOne with the process number `15277`.
 
 ### 4. Connect to MatrixOne Server
 
-When you finish installing and starting MatrixOne, many logs are generated in startup mode. Then you can start a new terminal and connect to MatrixOne, for more information on connecting to MatrixOne, see [Connect to MatrixOne server](connect-to-matrixone-server.md).
+When you finish installing and launching MatrixOne, many logs are generated in startup mode. Then you can start a new terminal and connect to MatrixOne, for more information on connecting to MatrixOne, see [Connect to MatrixOne server](connect-to-matrixone-server.md).
 
 ## <h2><a name="use_docker">Method 3: Using docker</a></h2>
 
@@ -263,7 +307,11 @@ Docker version 20.10.17, build 100c701
 
 ### 3. Check the Docker running status  
 
-Run the following command to start Docker and check whether the running status is successfully:
+Run the following command to start Docker and check whether the running status is successfully. The check suggestions for different operating environments are as follows:
+
+- **Linux Environment**:
+
+In Linux environment, you can execute the following command in your terminal:
 
 ```
 systemctl start docker
@@ -282,20 +330,22 @@ docker.service - Docker Application Container Engine
    Memory: 23.6M
 ```
 
-Or you can open your local Docker client and launch Docker.
+- **MacOS Environment**:
+
+In MacOS environment, You can open your local Docker client and launch Docker.
 
 ### 4. Create and run the container of MatrixOne
 
 It will pull the image from Docker Hub if not exists. You can choose to pull the stable version image or the develop version image.
 
-=== "Stable Version Image(0.5.1 version)"
+=== "Stable Version Image(0.6.0 version)"
 
       ```bash
-      docker pull matrixorigin/matrixone:0.5.1
-      docker run -d -p 6001:6001 --name matrixone matrixorigin/matrixone:0.5.1
+      docker pull matrixorigin/matrixone:0.6.0
+      docker run -d -p 6001:6001 --name matrixone matrixorigin/matrixone:0.6.0
       ```
 
-=== "Develop Version Image(Pre0.6 version)"
+=== "Develop Version Image"
 
       If you want to pull the develop version image, see [Docker Hub](https://hub.docker.com/r/matrixorigin/matrixone/tags), get the image tag. An example as below:
 
@@ -308,28 +358,37 @@ It will pull the image from Docker Hub if not exists. You can choose to pull the
 
 For the information on the user name and password, see the step 6 - Connect to MatrixOne Server.
 
-### 5. Mount the data directory(Optional)
+### 5. Mount the configuration file(Optional)
 
-To customize the configuration file, you can mount the custom configuration file stored on the local disk.
+If you need to mount the *configuration file*, refer to the following section:
 
 ```
-docker run -d -p 6001:6001 -v ${path_name}/system_vars_config.toml:/system_vars_config.toml:ro -v ${path_name}/store:/store:rw --name matrixone matrixorigin/matrixone:0.5.1
+docker run -d -p 6001:6001 -v ${local_data_path}/etc:/etc:rw  --entrypoint "/mo-service" matrixorigin/matrixone:0.6.0 -launch /etc/quickstart/launch.toml
 ```
 
 |Parameter|Description|
 |---|---|
-|${path_name}/system_vars_config.toml|The local disk directory to which the configuration file *system_vars_config.toml* is mounted|
-|/system_vars_config.toml| */system_vars_config.toml* in the container|
-|${path_name}/store|*/store* path of the backup local disk directory|
-|/store|*/store* directory in the container|
+|${local_data_path}/etc:/etc|mount the local disk directory to the container */etc* file |
+|--entrypoint "/mo-service"|Specifies that the container starts the MatrixOne service|
+|-launch /etc/quickstart/launch.toml|launch mode in */etc/|
+
+After the mount is successful, you can find the corresponding data directory on your local disk, as shown in the following example:
+
+```
+# Enter into your local disk where you mounted the data directory
+cd ${local_data_path}
+# View the data files or folders mounted in the current directory
+ls
+etc
+```
 
 For more information on the description of *Docker run*, run the commands `docker run --help`.
 
 ### 6. Connect to MatrixOne Server
 
-When you finish installing and starting MatrixOne, many logs are generated in startup mode. Then you can start a new terminal and connect to MatrixOne, for more information on connecting to MatrixOne, see [Connect to MatrixOne server](connect-to-matrixone-server.md).
+When you finish installing and launching MatrixOne, many logs are generated in startup mode. Then you can start a new terminal and connect to MatrixOne, for more information on connecting to MatrixOne, see [Connect to MatrixOne server](connect-to-matrixone-server.md).
 
 ## Reference
 
-- For more information on update, see [Upgrade Standalone MatrixOne](../Maintain/upgrade-standalone-matrixone.md).
 - For more information on deployment，see [Deployment FAQs](../FAQs/deployment-faqs.md).
+- For more information on distributed installation, see [Deploy MatrixOne Cluster on Kubernetes Overview](../Deploy/install-and-launch-in-k8s.md)
