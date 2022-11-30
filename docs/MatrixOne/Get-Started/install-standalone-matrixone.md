@@ -390,5 +390,4 @@ When you finish installing and launching MatrixOne, many logs are generated in s
 
 ## Reference
 
-- For more information on update, see [Upgrade Standalone MatrixOne](../Maintain/upgrade-standalone-matrixone.md).
 - For more information on deployment，see [Deployment FAQs](../FAQs/deployment-faqs.md).
