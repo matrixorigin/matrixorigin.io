@@ -77,12 +77,12 @@ The database node (DN) is the carrier used to run MatrixOne's distributed storag
 
 The computing node (CN) is a component of Matrixone that accesses user requests and processes SQL. The toolkit includes the following modules:
 
-- Frontend, SQL protocol, SQL SQL SQL message message
-- Plan, analyze the SQL processed by Frontend, and generate a complete compilation execution plan based on MatrixOne's calculation engine and send it to Pipeline.
-- Pipeline, analyze the execution plan, convert the execution plan into an actual execution plan, and then execute the Pipeline execution plan.
-- Disttae, responsible for the reading task of the entity, including synchronizing Logtail from DN and reading data from S3, and sending the written data to DN.
+- Frontend, it handles the client SQL protocol, accepts the client's message, parses it to get the executable SQL of MatrixOne, calls other modules to execute the SQL, organizes the query results into a message, and returns it to the client.
+- Plan, parse the SQL processed by Frontend, generate a logical execution plan based on MatrixOne's calculation engine and send it to Pipeline.
+- Pipeline, which parses the logical plan, converts the logical plan into an actual execution plan and then runs the execution plan through Pipeline.
+- Disttae, responsible for specific read and write tasks, including synchronizing Logtail from DN and reading data from S3, and sending the written data to DN.
 
-### **Streeam Engine**
+### **Stream Engine**
 
 Coming soon...
 
