@@ -514,8 +514,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-connect-to-matrixone-server" class="md-nav__link">
-    2. Connect to MatrixOne Server
+  <a href="#3-launch-matrixone-server" class="md-nav__link">
+    3. Launch MatrixOne server
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-connect-to-matrixone-server" class="md-nav__link">
+    4. Connect to MatrixOne Server
   </a>
   
 </li>
@@ -548,14 +555,14 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-launch-matrixone-server" class="md-nav__link">
+  <a href="#3-launch-matrixone-server_1" class="md-nav__link">
     3. Launch MatrixOne server
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-connect-to-matrixone-server" class="md-nav__link">
+  <a href="#4-connect-to-matrixone-server_1" class="md-nav__link">
     4. Connect to MatrixOne Server
   </a>
   
@@ -603,8 +610,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#5-mount-the-data-directoryoptional" class="md-nav__link">
-    5. Mount the data directory(Optional)
+  <a href="#5-mount-the-configuration-fileoptional" class="md-nav__link">
+    5. Mount the configuration file(Optional)
   </a>
   
 </li>
@@ -5672,6 +5679,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../Release-Notes/v0.6.0/" class="md-nav__link">
+        v0.6.0
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../Release-Notes/v0.5.1/" class="md-nav__link">
         v0.5.1
       </a>
@@ -6099,8 +6120,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-connect-to-matrixone-server" class="md-nav__link">
-    2. Connect to MatrixOne Server
+  <a href="#3-launch-matrixone-server" class="md-nav__link">
+    3. Launch MatrixOne server
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-connect-to-matrixone-server" class="md-nav__link">
+    4. Connect to MatrixOne Server
   </a>
   
 </li>
@@ -6133,14 +6161,14 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-launch-matrixone-server" class="md-nav__link">
+  <a href="#3-launch-matrixone-server_1" class="md-nav__link">
     3. Launch MatrixOne server
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-connect-to-matrixone-server" class="md-nav__link">
+  <a href="#4-connect-to-matrixone-server_1" class="md-nav__link">
     4. Connect to MatrixOne Server
   </a>
   
@@ -6188,8 +6216,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#5-mount-the-data-directoryoptional" class="md-nav__link">
-    5. Mount the data directory(Optional)
+  <a href="#5-mount-the-configuration-fileoptional" class="md-nav__link">
+    5. Mount the configuration file(Optional)
   </a>
   
 </li>
@@ -6297,7 +6325,7 @@
 <p>The <strong>main</strong> branch is the default branch, the code on the main branch is always up-to-date but not stable enough.</p>
 <ol>
 <li>
-<p>Get the MatrixOne(Develop Version, also called Pre0.6 version) code:</p>
+<p>Get the MatrixOne(Develop Version) code:</p>
 <div class="highlight"><pre><span></span><code>git clone https://github.com/matrixorigin/matrixone.git
 cd matrixone
 </code></pre></div>
@@ -6308,20 +6336,14 @@ cd matrixone
 </code></pre></div>
 <p><strong>Tips</strong>: You can also run <code>make debug</code>, <code>make clean</code>, or anything else our <code>Makefile</code> offers, <code>make debug</code> can be used to debug the build process, and <code>make clean</code> can be used to clean up the build process. If you get an error like <code>Get "https://proxy.golang.org/........": dial tcp 142.251.43.17:443: i/o timeout</code> while running <code>make build</code>, see <a href="../../FAQs/deployment-faqs/">Deployment FAQs</a>.</p>
 </li>
-<li>
-<p>Launch MatrixOne server：</p>
-<p><strong>Notes</strong>: The startup-config file of MatrixOne(Develop Version) is different from the startup-config file of MatrixOne(Stable Version). The startup-config file code of MatrixOne(Develop Version) is as below:</p>
-<div class="highlight"><pre><span></span><code>./mo-service -cfg ./etc/cn-standalone-test.toml
-</code></pre></div>
-</li>
 </ol>
 </div>
 <div class="tabbed-block">
 <ol>
 <li>
-<p>If you want to get the latest stable version code released by MatrixOne, please switch to the branch of version <strong>0.5.1</strong> first.</p>
+<p>If you want to get the latest stable version code released by MatrixOne, please switch to the branch of version <strong>0.6.0</strong> first.</p>
 <div class="highlight"><pre><span></span><code>git clone https://github.com/matrixorigin/matrixone.git
-git checkout 0.5.1
+git checkout 0.6.0
 cd matrixone
 </code></pre></div>
 </li>
@@ -6332,24 +6354,46 @@ make build
 </code></pre></div>
 <p><strong>Tips</strong>: You can also run <code>make debug</code>, <code>make clean</code>, or anything else our <code>Makefile</code> offers, <code>make debug</code> can be used to debug the build process, and <code>make clean</code> can be used to clean up the build process. If you get an error like <code>Get "https://proxy.golang.org/........": dial tcp 142.251.43.17:443: i/o timeout</code> while running <code>make build</code>, see <a href="../../FAQs/deployment-faqs/">Deployment FAQs</a>.</p>
 </li>
-<li>
-<p>Launch MatrixOne server：</p>
-<p><strong>Notes</strong>: The startup-config file of MatrixOne(Stable Version) is different from the startup-config file of MatrixOne(Develop Version). The startup-config file code of MatrixOne(Stable Version) is as below:</p>
-<div class="highlight"><pre><span></span><code>./mo-server system_vars_config.toml
-</code></pre></div>
-</li>
 </ol>
 </div>
 </div>
 </div>
-<h3 id="2-connect-to-matrixone-server">2. Connect to MatrixOne Server</h3>
-<p>When you finish installing and starting MatrixOne, many logs are generated in startup mode. Then you can start a new terminal and connect to MatrixOne, for more information on connecting to MatrixOne, see <a href="../connect-to-matrixone-server/">Connect to MatrixOne server</a>.</p>
+<h3 id="3-launch-matrixone-server"><h3><a name="launch">3. Launch MatrixOne server</a></h2></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1"><strong>Launch in the frontend</strong></label><label for="__tabbed_3_2"><strong>Launch in the backend</strong></label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>This launch method will keep the <code>mo-service</code> process running in the frontend, the system log will be printed in real time. If you'd like to stop MatrixOne server, just make a CTRL+C or close your current terminal.</p>
+<div class="highlight"><pre><span></span><code># Start mo-service in the backend
+./mo-service -launch ./etc/quickstart/launch.toml
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>This launch method will put the <code>mo-service</code> process running in the backend, the system log will be redirected to the <code>test.log</code> file. If you'd like to stop MatrixOne server, you need to find out its <code>PID</code> by and kill it by the following commands. Below is a full example of the whole process.</p>
+<div class="highlight"><pre><span></span><code># Start mo-service in the backend
+nohup ./mo-service -launch ./etc/quickstart/launch.toml &amp;&gt; test.log &amp;
+
+# Find mo-service PID
+ps aux | grep mo-service
+
+[root@VM-0-10-centos ~]# ps aux | grep mo-service
+root       15277  2.8 16.6 8870276 5338016 ?     Sl   Nov25 156:59 ./mo-service -launch ./etc/quickstart/launch.toml
+root      836740  0.0  0.0  12136  1040 pts/0    S+   10:39   0:00 grep --color=auto mo-service
+
+# Kill the mo-service process
+kill -9 15277
+</code></pre></div>
+<p><strong>Tips</strong>: As shown in the above example, use the command <code>ps aux | grep mo-service</code> to find out that the process number running on MatrixOne is <code>15277</code>, and <code>kill -9 15277</code> means to stop MatrixOne with the process number <code>15277</code>.</p>
+</div>
+</div>
+</div>
+<h3 id="4-connect-to-matrixone-server">4. Connect to MatrixOne Server</h3>
+<p>When you finish installing and launching MatrixOne, many logs are generated in startup mode. Then you can start a new terminal and connect to MatrixOne, for more information on connecting to MatrixOne, see <a href="../connect-to-matrixone-server/">Connect to MatrixOne server</a>.</p>
 <h2 id="method-2-downloading-binary-packages"><h2><a name="binary_packages">Method 2: Downloading binary packages</a></h2></h2>
 <p>From 0.3.0 release, you can download binary packages.</p>
 <h3 id="1-install-wget-or-curl">1. Install <code>wget</code> or <code>curl</code></h3>
 <p>We'll provide a method of <strong>Using binary package</strong> to install MatrixOne. If you prefer to use the command line, you can pre-install <code>wget</code> or <code>curl</code>.</p>
 <p><strong>Tips</strong>: It is recommended that you download and install one of these two tools to facilitate future operations.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Install <code>wget</code></label><label for="__tabbed_3_2">Install <code>curl</code></label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Install <code>wget</code></label><label for="__tabbed_4_2">Install <code>curl</code></label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>The <code>wget</code> tool is used to download files from the specified URL. <code>wget</code> is a unique file download tool; it is very stable and has a download speed.</p>
@@ -6398,26 +6442,26 @@ Release-Date: 2022-06-27
 </div>
 </div>
 <h3 id="2-download-binary-packages-and-decompress">2. Download binary packages and decompress</h3>
-<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1"><strong>Linux Environment</strong></label><label for="__tabbed_4_2"><strong>MacOS Environment</strong></label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1"><strong>Linux Environment</strong></label><label for="__tabbed_5_2"><strong>MacOS Environment</strong></label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p><strong>Download Method 1</strong> and <strong>Download Method 2</strong> need to install the download tools <code>wget</code> or <code>curl</code> first.</p>
 <ul>
 <li>
 <p><strong>Downloading method 1: Using <code>wget</code> to install binary packages</strong></p>
-<div class="highlight"><pre><span></span><code>wget https://github.com/matrixorigin/matrixone/releases/download/v0.5.1/mo-server-v0.5.1-linux-amd64.zip
-unzip mo-server-v0.5.1-linux-amd64.zip
+<div class="highlight"><pre><span></span><code>wget https://github.com/matrixorigin/matrixone/releases/download/v0.6.0/mo-v0.6.0-linux-amd64.zip
+unzip mo-v0.6.0-linux-amd64.zip
 </code></pre></div>
 </li>
 <li>
 <p><strong>Downloading method 2: Using <code>curl</code> to install binary packages</strong></p>
-<div class="highlight"><pre><span></span><code>curl -OL https://github.com/matrixorigin/matrixone/releases/download/v0.5.1/mo-server-v0.5.1-linux-amd64.zip
-unzip mo-server-v0.5.1-linux-amd64.zip
+<div class="highlight"><pre><span></span><code>curl -OL https://github.com/matrixorigin/matrixone/releases/download/v0.6.0/mo-v0.6.0-linux-amd64.zip
+unzip mo-v0.6.0-linux-amd64.zip
 </code></pre></div>
 </li>
 <li>
 <p><strong>Downloading method 3: If you want a more intuitive way to download the page, you can go to the following page link and download</strong></p>
-<p>Go to the <a href="https://github.com/matrixorigin/matrixone/releases/tag/v0.5.1">version 0.5.1</a>, pull down to find the <strong>Assets</strong> column, and click the installation package <em>mo-server-v0. 5.1-linux-amd64.zip</em> can be downloaded.</p>
+<p>Go to the <a href="https://github.com/matrixorigin/matrixone/releases/tag/v0.6.0">version 0.6.0</a>, pull down to find the <strong>Assets</strong> column, and click the installation package <em>mo-v0.6.0-linux-amd64.zip</em> can be downloaded.</p>
 </li>
 </ul>
 </div>
@@ -6426,19 +6470,19 @@ unzip mo-server-v0.5.1-linux-amd64.zip
 <ul>
 <li>
 <p><strong>Downloading method 1: Using <code>wget</code> to install binary packages</strong></p>
-<div class="highlight"><pre><span></span><code>wget https://github.com/matrixorigin/matrixone/releases/download/v0.5.1/mo-server-v0.5.1-darwin-x86_64.zip
-unzip mo-server-v0.5.1-darwin-x86_64.zip
+<div class="highlight"><pre><span></span><code>wget https://github.com/matrixorigin/matrixone/releases/download/v0.6.0/mo-v0.6.0-darwin-x86_64.zip
+unzip mo-v0.6.0-darwin-x86_64.zip
 </code></pre></div>
 </li>
 <li>
 <p><strong>Downloading method 2: Using <code>curl</code> to install binary packages</strong></p>
-<div class="highlight"><pre><span></span><code>curl -OL https://github.com/matrixorigin/matrixone/releases/download/v0.5.1/mo-server-v0.5.1-darwin-x86_64.zip
-unzip mo-server-v0.5.1-darwin-x86_64.zip
+<div class="highlight"><pre><span></span><code>curl -OL https://github.com/matrixorigin/matrixone/releases/download/v0.6.0/mo-v0.6.0-darwin-x86_64.zip
+unzip mo-v0.6.0-darwin-x86_64.zip
 </code></pre></div>
 </li>
 <li>
 <p><strong>Downloading method 3: If you want a more intuitive way to download the page, you can go to the following page link and download</strong></p>
-<p>Go to the <a href="https://github.com/matrixorigin/matrixone/releases/tag/v0.5.1">version 0.5.1</a>, pull down to find the <strong>Assets</strong> column, and click the installation package <em>mo-server-v0.5.1-darwin-x86_64.zip</em> can be downloaded.</p>
+<p>Go to the <a href="https://github.com/matrixorigin/matrixone/releases/tag/v0.6.0">version 0.6.0</a>, pull down to find the <strong>Assets</strong> column, and click the installation package <em>mo-v0.6.0-darwin-x86_64.zip</em> can be downloaded.</p>
 </li>
 </ul>
 </div>
@@ -6448,11 +6492,37 @@ unzip mo-server-v0.5.1-darwin-x86_64.zip
 <p class="admonition-title">Info</p>
 <p>MatrixOne only supports installation on ARM chipset with source code build; if you are using MacOS M1 and above, for more information on using source code build to install MatrixOne, see <a href="#code_source">Method 1: Building from source code</a>. Using release binary files from X86 chipset will lead to unknown problems.</p>
 </div>
-<h3 id="3-launch-matrixone-server">3. Launch MatrixOne server</h3>
-<div class="highlight"><pre><span></span><code>./mo-server system_vars_config.toml
+<h3 id="3-launch-matrixone-server_1">3. Launch MatrixOne server</h3>
+<p>Launch MatrixOne server in the frontend or backend as <a href="#launch">3. Launch MatrixOne server</a> suggests in <strong>Building from source code</strong>.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1"><strong>Launch in the frontend</strong></label><label for="__tabbed_6_2"><strong>Launch in the backend</strong></label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>This launch method will keep the <code>mo-service</code> process running in the frontend, the system log will be printed in real time. If you'd like to stop MatrixOne server, just make a CTRL+C or close your current terminal.</p>
+<div class="highlight"><pre><span></span><code># Start mo-service in the backend
+./mo-service -launch ./etc/quickstart/launch.toml
 </code></pre></div>
-<h3 id="4-connect-to-matrixone-server">4. Connect to MatrixOne Server</h3>
-<p>When you finish installing and starting MatrixOne, many logs are generated in startup mode. Then you can start a new terminal and connect to MatrixOne, for more information on connecting to MatrixOne, see <a href="../connect-to-matrixone-server/">Connect to MatrixOne server</a>.</p>
+</div>
+<div class="tabbed-block">
+<p>This launch method will put the <code>mo-service</code> process running in the backend, the system log will be redirected to the <code>test.log</code> file. If you'd like to stop MatrixOne server, you need to find out its <code>PID</code> by and kill it by the following commands. Below is a full example of the whole process.</p>
+<div class="highlight"><pre><span></span><code># Start mo-service in the backend
+nohup ./mo-service -launch ./etc/quickstart/launch.toml &amp;&gt; test.log &amp;
+
+# Find mo-service PID
+ps aux | grep mo-service
+
+[root@VM-0-10-centos ~]# ps aux | grep mo-service
+root       15277  2.8 16.6 8870276 5338016 ?     Sl   Nov25 156:59 ./mo-service -launch ./etc/quickstart/launch.toml
+root      836740  0.0  0.0  12136  1040 pts/0    S+   10:39   0:00 grep --color=auto mo-service
+
+# Kill the mo-service process
+kill -9 15277
+</code></pre></div>
+<p><strong>Tips</strong>: As shown in the above example, use the command <code>ps aux | grep mo-service</code> to find out that the process number running on MatrixOne is <code>15277</code>, and <code>kill -9 15277</code> means to stop MatrixOne with the process number <code>15277</code>.</p>
+</div>
+</div>
+</div>
+<h3 id="4-connect-to-matrixone-server_1">4. Connect to MatrixOne Server</h3>
+<p>When you finish installing and launching MatrixOne, many logs are generated in startup mode. Then you can start a new terminal and connect to MatrixOne, for more information on connecting to MatrixOne, see <a href="../connect-to-matrixone-server/">Connect to MatrixOne server</a>.</p>
 <h2 id="method-3-using-docker"><h2><a name="use_docker">Method 3: Using docker</a></h2></h2>
 <p><strong>Tips</strong>: When using Docker to build MatrixOne, there is no much difference between the source code for <strong>Linux environment</strong> and <strong>MacOS environment</strong>.</p>
 <h3 id="1-download-and-install-docker">1. Download and install Docker</h3>
@@ -6466,7 +6536,11 @@ unzip mo-server-v0.5.1-darwin-x86_64.zip
 <div class="highlight"><pre><span></span><code>Docker version 20.10.17, build 100c701
 </code></pre></div>
 <h3 id="3-check-the-docker-running-status">3. Check the Docker running status</h3>
-<p>Run the following command to start Docker and check whether the running status is successfully:</p>
+<p>Run the following command to start Docker and check whether the running status is successfully. The check suggestions for different operating environments are as follows:</p>
+<ul>
+<li><strong>Linux Environment</strong>:</li>
+</ul>
+<p>In Linux environment, you can execute the following command in your terminal:</p>
 <div class="highlight"><pre><span></span><code>systemctl start docker
 systemctl status docker
 </code></pre></div>
@@ -6479,14 +6553,17 @@ systemctl status docker
     Tasks: 8
    Memory: 23.6M
 </code></pre></div>
-<p>Or you can open your local Docker client and launch Docker.</p>
+<ul>
+<li><strong>MacOS Environment</strong>:</li>
+</ul>
+<p>In MacOS environment, You can open your local Docker client and launch Docker.</p>
 <h3 id="4-create-and-run-the-container-of-matrixone">4. Create and run the container of MatrixOne</h3>
 <p>It will pull the image from Docker Hub if not exists. You can choose to pull the stable version image or the develop version image.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Stable Version Image(0.5.1 version)</label><label for="__tabbed_5_2">Develop Version Image(Pre0.6 version)</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">Stable Version Image(0.6.0 version)</label><label for="__tabbed_7_2">Develop Version Image</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>docker pull matrixorigin/matrixone:0.5.1
-docker run -d -p <span class="m">6001</span>:6001 --name matrixone matrixorigin/matrixone:0.5.1
+<div class="highlight"><pre><span></span><code>docker pull matrixorigin/matrixone:0.6.0
+docker run -d -p <span class="m">6001</span>:6001 --name matrixone matrixorigin/matrixone:0.6.0
 </code></pre></div>
 </div>
 <div class="tabbed-block">
@@ -6499,9 +6576,9 @@ docker run -d -p <span class="m">6001</span>:6001 --name matrixone matrixorigin/
 </div>
 </div>
 <p>For the information on the user name and password, see the step 6 - Connect to MatrixOne Server.</p>
-<h3 id="5-mount-the-data-directoryoptional">5. Mount the data directory(Optional)</h3>
-<p>To customize the configuration file, you can mount the custom configuration file stored on the local disk.</p>
-<div class="highlight"><pre><span></span><code>docker run -d -p 6001:6001 -v ${path_name}/system_vars_config.toml:/system_vars_config.toml:ro -v ${path_name}/store:/store:rw --name matrixone matrixorigin/matrixone:0.5.1
+<h3 id="5-mount-the-configuration-fileoptional">5. Mount the configuration file(Optional)</h3>
+<p>If you need to mount the <em>configuration file</em>, refer to the following section:</p>
+<div class="highlight"><pre><span></span><code>docker run -d -p 6001:6001 -v ${local_data_path}/etc:/etc:rw  --entrypoint &quot;/mo-service&quot; matrixorigin/matrixone:0.6.0 -launch /etc/quickstart/launch.toml
 </code></pre></div>
 <table>
 <thead>
@@ -6512,30 +6589,33 @@ docker run -d -p <span class="m">6001</span>:6001 --name matrixone matrixorigin/
 </thead>
 <tbody>
 <tr>
-<td>${path_name}/system_vars_config.toml</td>
-<td>The local disk directory to which the configuration file <em>system_vars_config.toml</em> is mounted</td>
+<td>${local_data_path}/etc:/etc</td>
+<td>mount the local disk directory to the container <em>/etc</em> file</td>
 </tr>
 <tr>
-<td>/system_vars_config.toml</td>
-<td><em>/system_vars_config.toml</em> in the container</td>
+<td>--entrypoint "/mo-service"</td>
+<td>Specifies that the container starts the MatrixOne service</td>
 </tr>
 <tr>
-<td>${path_name}/store</td>
-<td><em>/store</em> path of the backup local disk directory</td>
-</tr>
-<tr>
-<td>/store</td>
-<td><em>/store</em> directory in the container</td>
+<td>-launch /etc/quickstart/launch.toml</td>
+<td>launch mode in */etc/</td>
 </tr>
 </tbody>
 </table>
+<p>After the mount is successful, you can find the corresponding data directory on your local disk, as shown in the following example:</p>
+<div class="highlight"><pre><span></span><code># Enter into your local disk where you mounted the data directory
+cd ${local_data_path}
+# View the data files or folders mounted in the current directory
+ls
+etc
+</code></pre></div>
 <p>For more information on the description of <em>Docker run</em>, run the commands <code>docker run --help</code>.</p>
 <h3 id="6-connect-to-matrixone-server">6. Connect to MatrixOne Server</h3>
-<p>When you finish installing and starting MatrixOne, many logs are generated in startup mode. Then you can start a new terminal and connect to MatrixOne, for more information on connecting to MatrixOne, see <a href="../connect-to-matrixone-server/">Connect to MatrixOne server</a>.</p>
+<p>When you finish installing and launching MatrixOne, many logs are generated in startup mode. Then you can start a new terminal and connect to MatrixOne, for more information on connecting to MatrixOne, see <a href="../connect-to-matrixone-server/">Connect to MatrixOne server</a>.</p>
 <h2 id="reference">Reference</h2>
 <ul>
-<li>For more information on update, see <a href="../../Maintain/upgrade-standalone-matrixone/">Upgrade Standalone MatrixOne</a>.</li>
 <li>For more information on deployment，see <a href="../../FAQs/deployment-faqs/">Deployment FAQs</a>.</li>
+<li>For more information on distributed installation, see <a href="../../Deploy/install-and-launch-in-k8s/">Deploy MatrixOne Cluster on Kubernetes Overview</a></li>
 </ul>
 
               
