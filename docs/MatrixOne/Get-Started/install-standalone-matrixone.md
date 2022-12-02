@@ -97,7 +97,7 @@ __Tips__: When using MatrixOne source code to build MatrixOne, there is no much 
       This launch method will keep the `mo-service` process running in the frontend, the system log will be printed in real time. If you'd like to stop MatrixOne server, just make a CTRL+C or close your current terminal.
 
       ```
-      # Start mo-service in the backend
+      # Start mo-service in the frontend
       ./mo-service -launch ./etc/quickstart/launch.toml
       ```
 
@@ -252,7 +252,7 @@ Launch MatrixOne server in the frontend or backend as <a href="#launch">3. Launc
       This launch method will keep the `mo-service` process running in the frontend, the system log will be printed in real time. If you'd like to stop MatrixOne server, just make a CTRL+C or close your current terminal.
 
       ```
-      # Start mo-service in the backend
+      # Start mo-service in the frontend
       ./mo-service -launch ./etc/quickstart/launch.toml
       ```
 

@@ -18,7 +18,7 @@ mysql> SELECT * FROM TEST
     -> INTO OUTFILE '/root/test.csv';
 ```
 
-You can change the output format using various options to indicate how to quote and delimit columns and records. Using the following code to export the tutorial_tbl table in a CSV format with CRLF-terminated lines:
+You can change the output format using various options to indicate how to quote and delimit columns and records. Using the following code to export the *TEST* table in a CSV format with CRLF-terminated lines:
 
 ```
 mysql> SELECT * FROM TEST INTO OUTFILE '/root/test.csv'
