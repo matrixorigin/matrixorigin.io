@@ -20,7 +20,7 @@ Create a new table.
 
 #### Temporary Tables
 
-You can use the `TEMPORARY` keyword when creating a table. A `TEMPORARY` table is visible only within the current session, and is dropped automatically when the session is closed. For more information, see [Temporary Tables](create-temporary-tables.md).
+You can use the `TEMPORARY` keyword when creating a table. A `TEMPORARY` table is visible only within the current session, and is dropped automatically when the session is closed. For more information, see [Create Temporary Tables](create-temporary-tables.md).
 
 #### COMMENT
 
@@ -186,7 +186,7 @@ PARTITION BY LIST COLUMNS(a,b) (
 
 The number of partitions may optionally be specified with a PARTITIONS num clause, where num is the number of partitions. If both this clause and any PARTITION clauses are used, num must be equal to the total number of any partitions that are declared using PARTITION clauses.
 
-#### create_table_statement
+### Syntax Diagram
 
 ![Create Table Diagram](https://github.com/matrixorigin/artwork/blob/main/docs/reference/create_table_statement.png?raw=true)
 
