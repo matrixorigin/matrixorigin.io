@@ -10,7 +10,8 @@ This document will guide you how to export data in MatrixOne.
 If you use the `docker` install, please make sure that you have a data directory mounted to the container. For example,
 
 ```
-docker run -d -p 6001:6001 -v ~/tmp/docker_export_demo/store:/store:rw --name matrixone matrixorigin/matrixone:0.6.0
+export MOUNT_PATH=$PWD
+sudo docker run --name mount-data --privileged -d -p 6001:6001 -v $MOUNT_PATH/mo-data:/mo-data:rw matrixorigin/matrixone:0.6.0
 ```
 
 !!! note
