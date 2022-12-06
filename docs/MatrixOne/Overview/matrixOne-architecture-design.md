@@ -82,9 +82,9 @@ The computing node (CN) is a component of Matrixone that accesses user requests 
 - Pipeline, which parses the logical plan, converts the logical plan into an actual execution plan and then runs the execution plan through Pipeline.
 - Disttae, responsible for specific read and write tasks, including synchronizing Logtail from DN and reading data from S3, and sending the written data to DN.
 
-### **Streeam Engine
+### **Stream Engine**
 
-Coming soon...
+The streaming engine is a new component to ease users' streaming join the ETL process from OLTP to OLAP. It is planned in the MatrixOne roadmap but not implemented yet. 
 
 ## **MatrixOne Features**
 
