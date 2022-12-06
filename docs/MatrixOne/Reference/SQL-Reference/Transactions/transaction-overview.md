@@ -96,12 +96,12 @@ COMMIT;
 
 Autocommit will not apply if a transaction has been explicitly started. In the following example, the `ROLLBACK` statement successfully reverts the `INSERT` statement:
 
-```
+```sql
 mysql> SELECT @@autocommit;
 +--------------+
 | @@autocommit |
 +--------------+
-| on           |
+|            1 |
 +--------------+
 1 row in set (0.01 sec)
 
