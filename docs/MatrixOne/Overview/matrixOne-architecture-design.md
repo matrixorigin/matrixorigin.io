@@ -84,7 +84,7 @@ The computing node (CN) is a component of Matrixone that accesses user requests 
 
 ### **Stream Engine**
 
-The streaming engine is a new component to ease users' streaming join ETL process from OLTP to OLAP. It is planned in the MatrixOne roadmap but not implemented yet. 
+The streaming engine is a new component to ease users' streaming join the ETL process from OLTP to OLAP. It is planned in the MatrixOne roadmap but not implemented yet. 
 
 ## **MatrixOne Features**
 
