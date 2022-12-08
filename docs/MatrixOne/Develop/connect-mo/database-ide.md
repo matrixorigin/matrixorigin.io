@@ -2,7 +2,7 @@
 
 MatrixOne now supports the following Database client tools:
 
-- MySQL Shell
+- MySQL Client
 - Navicat
 - DBeaver
 
@@ -38,7 +38,7 @@ Make sure you have already [installed and launched MatrixOne](../../Get-Started/
 
     ```
     Welcome to the MySQL monitor. Commands end with ; or \g. Your MySQL connection id is 1031
-    Server version: 0.5.1 MatrixOne
+    Server version: 0.6.0 MatrixOne
     Copyright (c) 2000, 2022, Oracle and/or its affiliates.
 
     Oracle is a registered trademark of Oracle Corporation and/or its affiliates. Other names may be trademarks of their respective owners.
@@ -63,6 +63,9 @@ For more information on deployment, see [Deployment FAQs](../../FAQs/deployment-
 3. Click **Save**, save the configuration.
 
 4. To connect to the MatrixOne server, double-click **MatrixOne** in the database directory on the left.
+
+!!! note
+    By default setting, navicat connection will experience some bugs for now.
 
 ## Connect to the MatrixOne Server through DBeaver
 
