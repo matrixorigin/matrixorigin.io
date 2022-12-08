@@ -38,7 +38,7 @@ MatrixOne SQL syntax conforms with MySQL 8.0.23 version.
 |   |   | Local key word is not supported now. |
 |   |   | Relative path is limited supported now. Only based on mo-server file can be supported. |
 ||JOIN|Same as MySQL.|
-| | SUBQUERY | Non-scalar subquery is not supported now. |
+| | SUBQUERY | Non-scalar subquery is supported limitedly. |
 | Database Administration Statements  | SHOW | `SHOW` statement is supported limitedly.  |
 | Utility Statements  | Explain | The result of explain a SQL is different with MySQL. |
 |||`json` output is not supported yet.|
