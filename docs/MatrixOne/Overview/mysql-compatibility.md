@@ -50,6 +50,7 @@ MatrixOne SQL syntax conforms with MySQL 8.0.23 version.
 | | DECIMAL | The max precision is 38 digits. |
 |   | Date | Only 'YYYY-MM-DD' and 'YYYYMMDD' formats are supported.  |
 |   | Datetime | Only 'YYYY-MM-DD HH:MM:SS' and 'YYYYMMDD HH:MM:SS' formats are supported.  |
+| | Timestamp | Same as MySQL. |
 |   | Other types | Not supported now.  |
 | Operators  | "+","-","*","/"|Same as MySQL.|
 ||	DIV, %, MOD|Same as MySQL.|
@@ -57,7 +58,8 @@ MatrixOne SQL syntax conforms with MySQL 8.0.23 version.
 ||IN | Supported for constant lists  |
 ||NOT, AND, &&,OR, "\|\|" | Same as MySQL.|
 |   | CAST | Supported with different conversion rules. |
-| Functions | any_value | Any_value is an aggregate function in MatrixOne. Cannot be used in group by or filter condition. |
+| Functions |  MAX, MIN, COUNT, AVG, SUM | Same as MySQL. |
+||any_value | Any_value is an aggregate function in MatrixOne. Cannot be used in group by or filter condition. |
 ||`REGEXP_INSTR()`，`REGEXP_LIKE()`，`REGEXP_REPLACE()`，`REGEXP_SUBSTR()`|The third parameter is not supported yet|
 ||to_date|Only constants are supported for date entries|
 |System command|SHOW GRANTS FOR USERS| Only the permissions of directly authorized roles can be displayed. The rights of inherited roles cannot be shown. |
