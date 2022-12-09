@@ -1,7 +1,7 @@
 # Explore SQL with MatrixOne
 
 MatrixOne is compatible with MySQL, you can use MySQL statements directly in most of the cases. For unsupported features, see [MySQL Compatibility](../Overview/mysql-compatibility.md), and for more information on connecting to MatriOne, see
-[Using client connect to the MatrixOne server](../Develop/connect-mo/client-connect-to-matrixone.md).
+[Using client connect to the MatrixOne server](../Develop/connect-mo/database-ide.md).
 
 ## What is SQL?
 
@@ -187,9 +187,9 @@ Expected result:
 1 row in set (0.00 sec)
 ```
 
-## Basic SQL about CREAT, GRANT, and DROP a user
+## Basic SQL about CREATE, GRANT, and DROP a user
 
-DCL are usually used to create or delete users, and manage user privileges.
+`CREATE`, `GRANT`, and `DROP` are usually used to create or delete users, and manage user privileges.
 
 - To create a user, use the `CREATE USER` statement. The following example creates a user named *mouser* with the password *111*:
 
@@ -197,7 +197,7 @@ DCL are usually used to create or delete users, and manage user privileges.
 CREATE USER mouser IDENTIFIED BY '111';
 ```
 
-- To create a rule for the user:
+- To create a role for the user:
 
 ```sql
 CREATE ROLE role_r1,role_r2,role_r3;

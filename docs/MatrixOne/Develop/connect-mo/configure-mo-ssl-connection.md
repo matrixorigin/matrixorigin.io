@@ -59,8 +59,9 @@ To create the SSL keys, perform the following steps:
 
 To test the SSL configuration, perform the following steps:
 
-1. Launch MatrixOne service. Please refer to [Installed and launched MatrixOne](../../Get-Started/install-standalone-matrixone.md).
-2. Connect to MatrixOne service by MySQL client, please refer to [Connect to MatrixOne](../../Get-Started/connect-to-matrixone-server.md).
+1. Launch MatrixOne service. Please refer to [Deploy standalone MatrixOne](../../Get-Started/install-standalone-matrixone.md).
+
+2. Connect to MatrixOne service by MySQL client:
 
     ```
     mysql -h IP_ADDRESS -P 6001 -udump -p111
@@ -80,7 +81,7 @@ To test the SSL configuration, perform the following steps:
     Current pager:		stdout
     Using outfile:		''
     Using delimiter:	;
-    Server version:		0.5.1 MatrixOne
+    Server version:		0.6.0 MatrixOne
     Protocol version:	10
     Connection:		127.0.0.1 via TCP/IP
     Client characterset:	utf8mb4

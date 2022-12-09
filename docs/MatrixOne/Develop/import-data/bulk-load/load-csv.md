@@ -4,16 +4,14 @@ This document will guide you on how to import large amounts of *.csv* data to Ma
 
 ## Before you start
 
-- Make sure you have already [installed and launched MatrixOne](https://docs.matrixorigin.io/0.5.1/MatrixOne/Get-Started/install-standalone-matrixone/).
-- Use MySQL client to [connect to MatrixOne](https://docs.matrixorigin.io/0.5.1/MatrixOne/Get-Started/connect-to-matrixone-server/).
+Make sure you have already [Deployed standalone MatrixOne](../../../Get-Started/install-standalone-matrixone.md).
 
-If you use the `docker` install, please make sure that you have a data directory mounted to the container. For example,
+!!! note
+    If you install MatrixOne by `docker`, the directory is inside the docker image by default. To work with local directory, you need to bind a local directory to the container. In the following example, the local file system path `${local_data_path}/mo-data` is binded to the MatrixOne docker image, with a mapping to the `/mo-data` path. For more information, see [Docker Mount Volume tutorial](https://www.freecodecamp.org/news/docker-mount-volume-guide-how-to-mount-a-local-directory/).
 
-```T
-docker run -d -p 6001:6001 -v ~/tmp/docker_loaddata_demo:/ssb-dbgen-path:rw --name matrixone matrixorigin/matrixone:0.5.1
 ```
-
-This typical installation maps its local path *~/tmp/docker_loaddata_demo* to a inner-container path */ssb-dbgen-path*.
+sudo docker run --name <name> --privileged -d -p 6001:6001 -v ${local_data_path}/mo-data:/mo-data:rw matrixorigin/matrixone:0.6.0
+```
 
 ## Using the `Load data` command in MySQL Client
 
@@ -43,7 +41,7 @@ You can use `Load Data` to import data from big data files. Currently, MatrixOne
 
 ### Example using `Load data` with `docker` version
 
-We will walk through the whole process of loading data with MatrixOne 0.5.1 docker version.
+We will walk through the whole process of loading data with MatrixOne 0.6.0 docker version.
 
 1. Download the dataset file and store the data in *~/tmp/docker_loaddata_demo/*:
 
@@ -61,7 +59,7 @@ We will walk through the whole process of loading data with MatrixOne 0.5.1 dock
 3. Use Docker to launch MatrixOne, and mount the directory *~/tmp/docker_loaddata_demo/* that stores data files to a directory in the container. The container directory is */sb-dbgen-path* as an example:
 
     ```
-    docker run -d -p 6001:6001 -v ~/tmp/ docker_loaddata_demo:/ssb-dbgen-path:rw --name matrixone matrixorigin/matrixone:0.5.1
+    sudo docker run --name <name> --privileged -d -p 6001:6001 -v ~/tmp/docker_loaddata_demo/:/ssb-dbgen-path:rw matrixorigin/matrixone:0.6.0
     ```
 
 4. Connect to MatrixOne server:
