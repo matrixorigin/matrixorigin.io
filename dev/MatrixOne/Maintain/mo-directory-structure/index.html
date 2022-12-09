@@ -361,7 +361,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Overview/matrixOne-architecture-design/" class="md-nav__link">
+      <a href="../../Overview/matrixone-architecture-design/" class="md-nav__link">
         MatrixOne Architecture Design
       </a>
     </li>
@@ -437,21 +437,7 @@
   
     <li class="md-nav__item">
       <a href="../../Get-Started/install-standalone-matrixone/" class="md-nav__link">
-        Install standalone MatrixOne
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../Get-Started/connect-to-matrixone-server/" class="md-nav__link">
-        Connect to standalone MatrixOne Server
+        Deploy standalone MatrixOne
       </a>
     </li>
   
@@ -552,7 +538,7 @@
   
     <li class="md-nav__item">
       <a href="../../Develop/connect-mo/database-ide/" class="md-nav__link">
-        Database Client IDE
+        Connecting to MatrixOne with Database Client Tool
       </a>
     </li>
   
@@ -1345,6 +1331,20 @@
     <li class="md-nav__item">
       <a href="../backup-restore/" class="md-nav__link">
         Backup and Restore
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mount-data-by-docker/" class="md-nav__link">
+        Mount directory to Docker container
       </a>
     </li>
   
@@ -4269,7 +4269,7 @@
   
     <li class="md-nav__item">
       <a href="../../Reference/Data-Types/data-types/" class="md-nav__link">
-        Date Types Overview
+        Data Types Overview
       </a>
     </li>
   
@@ -5902,37 +5902,37 @@
 <h1 id="matrixone-directory-structure">MatrixOne Directory Structure</h1>
 <p>After MatrixOne has been installed and connected, the MatrixOne automatically generates the following directories for storing data files or metadata information.</p>
 <p>Enter into the <em>matrixone</em> directory and execute <code>ls</code> to view the directory structure. The related directory structure and uses are as follows:</p>
-<p>matrixone    //MatrixOne main directory<br>
-├── etc   //configuration file directory<br>
-│   └── quickstart //configration file directory<br>
-├── mo-data  //data file directory<br>
-│   ├── local   //local fileservice directory<br>
-│   │   ├── xf<br>
-│   │   └── dnservice   //dn node information directory<br>
-│   ├── etl  //external table directory<br>
-│   │        └── sys //Which account does the external table information belong to<br>
-│   │            ├──  logs //type of statistics<br>
-│   │               └── 2022 // the year of statistics<br>
-│   │                   └── 10  //month of statistics<br>
-│   │                       └── 27 // the number of days of statistics<br>
-│   │                           ├── metric //system indicators storage directory<br>
-│   │                           ├── rawlog //log storage directory<br>
-│   │                           └── statement_info //information storage directory<br>
-│   │           └── merged //Merge records of past external table information<br>
-│   │                  └──  2022 // the year of statistics<br>
-│   │                      └──  10  //month of statistics<br>
-│   │                         └──  27 // the number of days of statistics<br>
-│   │                           ├── metric //system indicators storage directory<br>
-│   │                           ├── rawlog //log storage directory<br>
-│   │                           └── statement_info //information storage directory<br>
-│   └── logservice  //logservice directory<br>
- |      └── 7c4dccb4-4d3c-41f8-b482-5251dc7a41bf //logservice node directory (randomly generated uuid)<br>
-│       ├──hostname //MatrixOne server domain name<br>
-│       │   └── 00000000000000000001 //snapshot directory<br>
-│        |     ├── exported-snapshot //exporting snapshot Directory<br>
- |         │     └── snapshot-part-n //snapshot partial directory<br>
-│       │       └── tandb //bootstrap directory<br>
-└── s3  //data storage directory<br></p>
+<p>matrixone    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//<strong><em>MatrixOne main directory</em></strong><br>
+|-- etc   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//<strong><em>configuration file directory</em></strong><br>
+│&nbsp;&nbsp;&nbsp;&nbsp; |-- quickstart &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//<strong><em>configration file directory</em></strong><br>
+|-- mo-data  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//<strong><em>data file directory</em></strong><br>
+│&nbsp;&nbsp;&nbsp;&nbsp; |-- local   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//<strong><em>local fileservice directory</em></strong><br>
+│&nbsp;&nbsp;&nbsp;&nbsp; │&nbsp;&nbsp;&nbsp;&nbsp; |-- cnservice&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//<strong><em>cn node information directory</em></strong><br>
+│&nbsp;&nbsp;&nbsp;&nbsp; │&nbsp;&nbsp;&nbsp;&nbsp; |-- dnservice   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//<strong><em>dn node information directory</em></strong><br>
+│&nbsp;&nbsp;&nbsp;&nbsp; |-- etl  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//<strong><em>external table directory</em></strong><br>
+│&nbsp;&nbsp;&nbsp;&nbsp; │&nbsp;&nbsp;&nbsp;&nbsp;      |-- sys &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//<strong><em>Which account does the external table information belong to</em></strong><br>
+│&nbsp;&nbsp;&nbsp;&nbsp; │&nbsp;&nbsp;&nbsp;&nbsp;          |--  logs &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//<strong><em>type of statistics</em></strong><br>
+│&nbsp;&nbsp;&nbsp;&nbsp; │&nbsp;&nbsp;&nbsp;&nbsp;             |-- 2022 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//<strong><em>the year of statistics</em></strong><br>
+│&nbsp;&nbsp;&nbsp;&nbsp; │&nbsp;&nbsp;&nbsp;&nbsp;                 |-- 10  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//<strong><em>month of statistics</em></strong><br>
+│&nbsp;&nbsp;&nbsp;&nbsp; │&nbsp;&nbsp;&nbsp;&nbsp;                     |-- 27 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//<strong><em>the number of days of statistics</em></strong><br>
+│&nbsp;&nbsp;&nbsp;&nbsp; │&nbsp;&nbsp;&nbsp;&nbsp;                         |-- metric &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//<strong><em>system indicators storage directory</em></strong><br>
+│&nbsp;&nbsp;&nbsp;&nbsp; │&nbsp;&nbsp;&nbsp;&nbsp;                         |-- rawlog &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//<strong><em>log storage directory</em></strong><br>
+│&nbsp;&nbsp;&nbsp;&nbsp; │&nbsp;&nbsp;&nbsp;&nbsp;                         |-- statement_info &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//<strong><em>information storage directory</em></strong><br>
+│&nbsp;&nbsp;&nbsp;&nbsp; │         &nbsp;&nbsp;|-- merged &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//<strong><em>Merge records of past external table information</em></strong><br>
+│&nbsp;&nbsp;&nbsp;&nbsp; │&nbsp;&nbsp;&nbsp;&nbsp;                |--  2022 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//<strong><em> the year of statistics</em></strong><br>
+│&nbsp;&nbsp;&nbsp;&nbsp; │&nbsp;&nbsp;&nbsp;&nbsp;                    |--  10  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//<strong><em>month of statistics</em></strong><br>
+│&nbsp;&nbsp;&nbsp;&nbsp; │&nbsp;&nbsp;&nbsp;&nbsp;                       |--  27 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//<strong><em> the number of days of statistics</em></strong><br>
+│&nbsp;&nbsp;&nbsp;&nbsp; │&nbsp;&nbsp;&nbsp;&nbsp;                         |-- metric &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//<strong><em>system indicators storage directory</em></strong><br>
+│&nbsp;&nbsp;&nbsp;&nbsp; │&nbsp;&nbsp;&nbsp;&nbsp;                         |-- rawlog &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//<strong><em>log storage directory</em></strong><br>
+│&nbsp;&nbsp;&nbsp;&nbsp; │&nbsp;&nbsp;&nbsp;&nbsp;                         |-- statement_info &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//<strong><em>information storage directory</em></strong><br>
+│&nbsp;&nbsp;&nbsp;&nbsp; |-- logservice  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//<strong><em>logservice directory</em></strong><br>
+|       &nbsp;|-- 7c4dccb4-4d3c-41f8-b482-5251dc7a41bf &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//<strong><em>logservice node directory (randomly generated uuid)</em></strong><br>
+│&nbsp;&nbsp;&nbsp;&nbsp;     |--hostname &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//<strong><em>MatrixOne server domain name</em></strong><br>
+│&nbsp;&nbsp;&nbsp;&nbsp;     │&nbsp;&nbsp;&nbsp;&nbsp; |-- 00000000000000000001 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//<strong><em>snapshot directory</em></strong><br>
+│&nbsp;&nbsp;&nbsp;&nbsp;     |    &nbsp;&nbsp;&nbsp;|-- exported-snapshot &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//<strong><em>exporting snapshot Directory</em></strong><br>
+|&nbsp; &nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;   |-- snapshot-part-n &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//<strong><em>snapshot partial directory</em></strong><br>
+│&nbsp;&nbsp;&nbsp;&nbsp;     │&nbsp;&nbsp;&nbsp;&nbsp;     |-- tandb &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//<strong><em>bootstrap directory</em></strong><br>
+|-- s3  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//<strong><em>data storage directory</em></strong><br></p>
 
               
             </article>
@@ -5946,7 +5946,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../backup-restore/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Backup and Restore" rel="prev">
+        <a href="../mount-data-by-docker/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Mount directory to Docker container" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -5955,7 +5955,7 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              Backup and Restore
+              Mount directory to Docker container
             </div>
           </div>
         </a>

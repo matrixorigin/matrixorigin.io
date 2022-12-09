@@ -13,7 +13,7 @@
     
     
       
-        <title>Database Client IDE - MatrixOne Docs</title>
+        <title>Connecting to MatrixOne with Database Client Tool - MatrixOne Docs</title>
       
     
     
@@ -101,7 +101,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Database Client IDE
+              Connecting to MatrixOne with Database Client Tool
             
           </span>
         </div>
@@ -361,7 +361,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Overview/matrixOne-architecture-design/" class="md-nav__link">
+      <a href="../../../Overview/matrixone-architecture-design/" class="md-nav__link">
         MatrixOne Architecture Design
       </a>
     </li>
@@ -437,21 +437,7 @@
   
     <li class="md-nav__item">
       <a href="../../../Get-Started/install-standalone-matrixone/" class="md-nav__link">
-        Install standalone MatrixOne
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../Get-Started/connect-to-matrixone-server/" class="md-nav__link">
-        Connect to standalone MatrixOne Server
+        Deploy standalone MatrixOne
       </a>
     </li>
   
@@ -565,12 +551,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Database Client IDE
+          Connecting to MatrixOne with Database Client Tool
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Database Client IDE
+        Connecting to MatrixOne with Database Client Tool
       </a>
       
         
@@ -1409,6 +1395,20 @@
     <li class="md-nav__item">
       <a href="../../../Maintain/backup-restore/" class="md-nav__link">
         Backup and Restore
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Maintain/mount-data-by-docker/" class="md-nav__link">
+        Mount directory to Docker container
       </a>
     </li>
   
@@ -4323,7 +4323,7 @@
   
     <li class="md-nav__item">
       <a href="../../../Reference/Data-Types/data-types/" class="md-nav__link">
-        Date Types Overview
+        Data Types Overview
       </a>
     </li>
   
@@ -5992,7 +5992,7 @@
 <h1 id="connecting-to-matrixone-with-database-client-tool">Connecting to MatrixOne with Database Client Tool</h1>
 <p>MatrixOne now supports the following Database client tools:</p>
 <ul>
-<li>MySQL Shell</li>
+<li>MySQL Client</li>
 <li>Navicat</li>
 <li>DBeaver</li>
 </ul>
@@ -6019,7 +6019,7 @@ Enter password:
 </code></pre></div>
 <p>The successful result is as below:</p>
 <div class="highlight"><pre><span></span><code>Welcome to the MySQL monitor. Commands end with ; or \g. Your MySQL connection id is 1031
-Server version: 0.5.1 MatrixOne
+Server version: 0.6.0 MatrixOne
 Copyright (c) 2000, 2022, Oracle and/or its affiliates.
 
 Oracle is a registered trademark of Oracle Corporation and/or its affiliates. Other names may be trademarks of their respective owners.
@@ -6051,6 +6051,10 @@ Type &#39;help;&#39; or &#39;\h&#39; for help. Type &#39;\c&#39; to clear the cu
 <p>To connect to the MatrixOne server, double-click <strong>MatrixOne</strong> in the database directory on the left.</p>
 </li>
 </ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>By default setting, navicat connection will experience some bugs for now.</p>
+</div>
 <h2 id="connect-to-the-matrixone-server-through-dbeaver">Connect to the MatrixOne Server through DBeaver</h2>
 <ol>
 <li>

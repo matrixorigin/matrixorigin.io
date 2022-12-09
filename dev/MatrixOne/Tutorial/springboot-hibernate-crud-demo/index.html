@@ -361,7 +361,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Overview/matrixOne-architecture-design/" class="md-nav__link">
+      <a href="../../Overview/matrixone-architecture-design/" class="md-nav__link">
         MatrixOne Architecture Design
       </a>
     </li>
@@ -437,21 +437,7 @@
   
     <li class="md-nav__item">
       <a href="../../Get-Started/install-standalone-matrixone/" class="md-nav__link">
-        Install standalone MatrixOne
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../Get-Started/connect-to-matrixone-server/" class="md-nav__link">
-        Connect to standalone MatrixOne Server
+        Deploy standalone MatrixOne
       </a>
     </li>
   
@@ -554,7 +540,7 @@
   
     <li class="md-nav__item">
       <a href="../../Develop/connect-mo/database-ide/" class="md-nav__link">
-        Database Client IDE
+        Connecting to MatrixOne with Database Client Tool
       </a>
     </li>
   
@@ -1539,6 +1525,20 @@
     <li class="md-nav__item">
       <a href="../../Maintain/backup-restore/" class="md-nav__link">
         Backup and Restore
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Maintain/mount-data-by-docker/" class="md-nav__link">
+        Mount directory to Docker container
       </a>
     </li>
   
@@ -4453,7 +4453,7 @@
   
     <li class="md-nav__item">
       <a href="../../Reference/Data-Types/data-types/" class="md-nav__link">
-        Date Types Overview
+        Data Types Overview
       </a>
     </li>
   
@@ -6267,9 +6267,9 @@
 </code></pre></div>
 <h3 id="2-create-a-new-spring-boot-project-using-intellij-idea">2. Create a new Spring Boot Project Using IntelliJ IDEA</h3>
 <p>Choose <strong>Spring Initializer</strong>, and name the project as you want.</p>
-<p><img alt="image-20221027094625081" src="https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/hibernate/image-20221027094625081.png" /></p>
+<p><img alt="image-20221027094625081" src="https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/hibernate/image-20221027094625081.png?raw=true" /></p>
 <p>Choose <strong>Spring Web</strong>,  <strong>JDBC API</strong>,  <strong>Spring Data JPA</strong>, and <strong>MySQL Driver</strong> as dependencies for this project.</p>
-<p><img alt="image-20221027101504418" src="https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/hibernate/image-20221027101504418.png" /></p>
+<p><img alt="image-20221027101504418" src="https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/hibernate/image-20221027101504418.png?raw=true" /></p>
 <p>Click <strong>Create</strong>,  the project will be created. The dependencies are listed in the <em>pom.xml</em> file. Usually you don't need to modify anything.</p>
 <div class="highlight"><pre><span></span><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
@@ -6408,7 +6408,7 @@ mysql&gt; INSERT INTO `book` (`id`, `author`, `category`, `name`, `pages`, `pric
 </code></pre></div>
 <h2 id="write-code">Write Code</h2>
 <p>After setting up the environment, we write code to implement a simple CRUD application. After finishing coding, you'll have a project structure as below. You can create these packages and java class in advance. We will code the Create, Update, Insert, Delete, Select operations for this demo application.</p>
-<p><img alt="image-20221027105233860" src="https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/hibernate/image-20221027105233860.png" /></p>
+<p><img alt="image-20221027105233860" src="https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/hibernate/image-20221027105233860.png?raw=true" /></p>
 <h3 id="1-bookstorecontrollerjava">1. BookStoreController.java</h3>
 <div class="highlight"><pre><span></span><code>package com.example.jpademo.controller;
 
@@ -6759,7 +6759,7 @@ public class JpademoApplication {
 </code></pre></div>
 <h2 id="test">Test</h2>
 <p>Build and test this project.</p>
-<p><img alt="image-20221027110133726" src="https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/hibernate/image-20221027110133726.png" /></p>
+<p><img alt="image-20221027110133726" src="https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/hibernate/image-20221027110133726.png?raw=true" /></p>
 <p>When you see the following messages, the application is well launched, we can call REST endpoints by using POSTMAN.</p>
 <div class="highlight"><pre><span></span><code>2022-10-27 11:16:16.793  INFO 93488 --- [           main] com.example.jpademo.JpademoApplication   : Starting JpademoApplication on nandeng-macbookpro.local with PID 93488 (/Users/nandeng/IdeaProjects/jpademo/target/classes started by nandeng in /Users/nandeng/IdeaProjects/jpademo)
 2022-10-27 11:16:16.796  INFO 93488 --- [           main] com.example.jpademo.JpademoApplication   : No active profile set, falling back to default profiles: default
@@ -6789,7 +6789,7 @@ public class JpademoApplication {
 <h3 id="1-to-get-list-of-books-call-following-endpoint-with-get-request">1. To get list of books call following endpoint with GET Request</h3>
 <div class="highlight"><pre><span></span><code> http://localhost:8080/bookservice/books
 </code></pre></div>
-<p><img alt="image-20221027112426189" src="https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/hibernate/image-20221027112426189.png" /></p>
+<p><img alt="image-20221027112426189" src="https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/hibernate/image-20221027112426189.png?raw=true" /></p>
 <h3 id="2-to-create-new-book-use-following-url-with-post-request">2. To Create New Book use following url with POST Request</h3>
 <div class="highlight"><pre><span></span><code>http://localhost:8080/bookservice/books
 </code></pre></div>
@@ -6803,11 +6803,11 @@ public class JpademoApplication {
     &quot;price&quot;: 10
   }
 </code></pre></div>
-<p><img alt="image-20221027115733788" src="https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/hibernate/image-20221027115733788.png" /></p>
+<p><img alt="image-20221027115733788" src="https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/hibernate/image-20221027115733788.png?raw=true" /></p>
 <h3 id="3-to-get-a-particular-book-use-following-url-with-get-request-type-in-postman">3. To get a particular book, use following url with <code>GET</code> request type in postman</h3>
 <div class="highlight"><pre><span></span><code>  http://localhost:8080/bookservice/books/&lt;id&gt;
 </code></pre></div>
-<p><img alt="image-20221027115844378" src="https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/hibernate/image-20221027115844378.png" /></p>
+<p><img alt="image-20221027115844378" src="https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/hibernate/image-20221027115844378.png?raw=true" /></p>
 <h3 id="4-to-update-book-in-database-use-following-url-with-put-request-type-in-postman">4. To update Book in database, use following url with <code>PUT</code> request type in postman</h3>
 <div class="highlight"><pre><span></span><code>    http://localhost:8080/bookservice/books/&lt;id&gt;
 </code></pre></div>
@@ -6828,11 +6828,11 @@ public class JpademoApplication {
     &quot;price&quot;: 12
   }
 </code></pre></div>
-<p><img alt="image-20221027120144112" src="https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/hibernate/image-20221027120144112.png" /></p>
+<p><img alt="image-20221027120144112" src="https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/hibernate/image-20221027120144112.png?raw=true" /></p>
 <h3 id="5-to-delete-a-particular-book-from-database-use-following-url-with-delete-request-type-in-postman">5. To delete a particular Book from database, use following url with <code>DELETE</code> request type in postman</h3>
 <div class="highlight"><pre><span></span><code>  http://localhost:8080/bookservice/books/&lt;id&gt;
 </code></pre></div>
-<p><img alt="image-20221027120306830" src="https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/hibernate/image-20221027120306830.png" /></p>
+<p><img alt="image-20221027120306830" src="https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/hibernate/image-20221027120306830.png?raw=true" /></p>
 <div class="highlight"><pre><span></span><code>mysql&gt; select * from book;
 +----+--------------------------+----------+----------------------------------+-------+-------+-------------+
 | id | author                   | category | name                             | pages | price | publication |

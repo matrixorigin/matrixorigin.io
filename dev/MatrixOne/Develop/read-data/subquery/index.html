@@ -361,7 +361,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Overview/matrixOne-architecture-design/" class="md-nav__link">
+      <a href="../../../Overview/matrixone-architecture-design/" class="md-nav__link">
         MatrixOne Architecture Design
       </a>
     </li>
@@ -437,21 +437,7 @@
   
     <li class="md-nav__item">
       <a href="../../../Get-Started/install-standalone-matrixone/" class="md-nav__link">
-        Install standalone MatrixOne
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../Get-Started/connect-to-matrixone-server/" class="md-nav__link">
-        Connect to standalone MatrixOne Server
+        Deploy standalone MatrixOne
       </a>
     </li>
   
@@ -554,7 +540,7 @@
   
     <li class="md-nav__item">
       <a href="../../connect-mo/database-ide/" class="md-nav__link">
-        Database Client IDE
+        Connecting to MatrixOne with Database Client Tool
       </a>
     </li>
   
@@ -1435,6 +1421,20 @@
     <li class="md-nav__item">
       <a href="../../../Maintain/backup-restore/" class="md-nav__link">
         Backup and Restore
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Maintain/mount-data-by-docker/" class="md-nav__link">
+        Mount directory to Docker container
       </a>
     </li>
   
@@ -4349,7 +4349,7 @@
   
     <li class="md-nav__item">
       <a href="../../../Reference/Data-Types/data-types/" class="md-nav__link">
-        Date Types Overview
+        Data Types Overview
       </a>
     </li>
   
@@ -6088,10 +6088,7 @@ For example: ``select * from tableA where tableA.column = (select tableB.column 
 </ul>
 <h2 id="example">Example</h2>
 <h3 id="before-you-start">Before you start</h3>
-<ul>
-<li>Make sure you have already <a href="https://docs.matrixorigin.io/0.5.1/MatrixOne/Get-Started/install-standalone-matrixone/">installed and launched MatrixOne</a>.</li>
-<li>Use MySQL client to <a href="https://docs.matrixorigin.io/0.5.1/MatrixOne/Get-Started/connect-to-matrixone-server/">connect to MatrixOne</a>.</li>
-</ul>
+<p>Make sure you have already <a href="../../../Get-Started/install-standalone-matrixone/">Deployed standalone MatrixOne</a>.</p>
 <h3 id="preparation">Preparation</h3>
 <div class="highlight"><pre><span></span><code><span class="k">drop</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span><span class="w"></span>
 <span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="n">ti</span><span class="w"> </span><span class="n">tinyint</span><span class="w"> </span><span class="n">unsigned</span><span class="p">,</span><span class="n">si</span><span class="w"> </span><span class="nb">smallint</span><span class="p">,</span><span class="n">bi</span><span class="w"> </span><span class="nb">bigint</span><span class="w"> </span><span class="n">unsigned</span><span class="p">,</span><span class="n">fl</span><span class="w"> </span><span class="nb">float</span><span class="p">,</span><span class="n">dl</span><span class="w"> </span><span class="n">double</span><span class="p">,</span><span class="n">de</span><span class="w"> </span><span class="nb">decimal</span><span class="p">,</span><span class="n">ch</span><span class="w"> </span><span class="nb">char</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span><span class="n">vch</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span><span class="n">dd</span><span class="w"> </span><span class="nb">date</span><span class="p">,</span><span class="n">dt</span><span class="w"> </span><span class="n">datetime</span><span class="p">);</span><span class="w"></span>

@@ -361,7 +361,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Overview/matrixOne-architecture-design/" class="md-nav__link">
+      <a href="../../Overview/matrixone-architecture-design/" class="md-nav__link">
         MatrixOne Architecture Design
       </a>
     </li>
@@ -437,21 +437,7 @@
   
     <li class="md-nav__item">
       <a href="../../Get-Started/install-standalone-matrixone/" class="md-nav__link">
-        Install standalone MatrixOne
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../Get-Started/connect-to-matrixone-server/" class="md-nav__link">
-        Connect to standalone MatrixOne Server
+        Deploy standalone MatrixOne
       </a>
     </li>
   
@@ -552,7 +538,7 @@
   
     <li class="md-nav__item">
       <a href="../../Develop/connect-mo/database-ide/" class="md-nav__link">
-        Database Client IDE
+        Connecting to MatrixOne with Database Client Tool
       </a>
     </li>
   
@@ -1343,6 +1329,20 @@
     <li class="md-nav__item">
       <a href="../../Maintain/backup-restore/" class="md-nav__link">
         Backup and Restore
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Maintain/mount-data-by-docker/" class="md-nav__link">
+        Mount directory to Docker container
       </a>
     </li>
   
@@ -4364,7 +4364,7 @@
   
     <li class="md-nav__item">
       <a href="../../Reference/Data-Types/data-types/" class="md-nav__link">
-        Date Types Overview
+        Data Types Overview
       </a>
     </li>
   
@@ -6075,7 +6075,7 @@
 <p>The TPC-H is a decision support benchmark. It consists of a suite of business oriented ad-hoc queries and concurrent data modifications. The queries and the data populating the database have been chosen to have broad industry-wide relevance. This benchmark illustrates decision support systems that examine large volumes of data, execute queries with a high degree of complexity, and give answers to critical business questions. TPC-H is a widely used benchmark for OLAP databases.</p>
 <p>By walking through this tutorial, you'll learn how to complete a TPC-H Test with MatrixOne.</p>
 <h2 id="before-you-start"><strong>Before you start</strong></h2>
-<p>Make sure you have already <a href="../../Get-Started/install-standalone-matrixone/">installed MatrixOne</a> and <a href="../../Get-Started/connect-to-matrixone-server/">connected to MatrixOne Server</a>.</p>
+<p>Make sure you have already <a href="../../Get-Started/install-standalone-matrixone/">Deployed standalone MatrixOne</a>.</p>
 <h2 id="1-compile-tpch-dbgen"><strong>1. Compile TPCH dbgen</strong></h2>
 <p>The tpch dbgen utility generates, by default, a set of flat files suitable for loading into the tpch schema with the size based on the “Scale Factor” argument. A scale factor of 1 produces a complete data set of approximately 1 GB, a scale factor of 10 produces a data set of approximately 10 GB etc.</p>
 <div class="highlight"><pre><span></span><code>git clone https://github.com/electrum/tpch-dbgen.git

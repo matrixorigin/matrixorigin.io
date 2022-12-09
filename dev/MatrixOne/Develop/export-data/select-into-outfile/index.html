@@ -361,7 +361,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Overview/matrixOne-architecture-design/" class="md-nav__link">
+      <a href="../../../Overview/matrixone-architecture-design/" class="md-nav__link">
         MatrixOne Architecture Design
       </a>
     </li>
@@ -437,21 +437,7 @@
   
     <li class="md-nav__item">
       <a href="../../../Get-Started/install-standalone-matrixone/" class="md-nav__link">
-        Install standalone MatrixOne
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../Get-Started/connect-to-matrixone-server/" class="md-nav__link">
-        Connect to standalone MatrixOne Server
+        Deploy standalone MatrixOne
       </a>
     </li>
   
@@ -554,7 +540,7 @@
   
     <li class="md-nav__item">
       <a href="../../connect-mo/database-ide/" class="md-nav__link">
-        Database Client IDE
+        Connecting to MatrixOne with Database Client Tool
       </a>
     </li>
   
@@ -1415,6 +1401,20 @@
     <li class="md-nav__item">
       <a href="../../../Maintain/backup-restore/" class="md-nav__link">
         Backup and Restore
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Maintain/mount-data-by-docker/" class="md-nav__link">
+        Mount directory to Docker container
       </a>
     </li>
   
@@ -4329,7 +4329,7 @@
   
     <li class="md-nav__item">
       <a href="../../../Reference/Data-Types/data-types/" class="md-nav__link">
-        Date Types Overview
+        Data Types Overview
       </a>
     </li>
   
@@ -6014,7 +6014,7 @@
 <div class="highlight"><pre><span></span><code>mysql&gt; SELECT * FROM TEST
     -&gt; INTO OUTFILE &#39;/root/test.csv&#39;;
 </code></pre></div>
-<p>You can change the output format using various options to indicate how to quote and delimit columns and records. Using the following code to export the tutorial_tbl table in a CSV format with CRLF-terminated lines:</p>
+<p>You can change the output format using various options to indicate how to quote and delimit columns and records. Using the following code to export the <em>TEST</em> table in a CSV format with CRLF-terminated lines:</p>
 <div class="highlight"><pre><span></span><code>mysql&gt; SELECT * FROM TEST INTO OUTFILE &#39;/root/test.csv&#39;
    -&gt; FIELDS TERMINATED BY &#39;,&#39; ENCLOSED BY &#39;&quot;&#39;
    -&gt; LINES TERMINATED BY &#39;\r\n&#39;;
@@ -6028,19 +6028,12 @@
 </ul>
 <h2 id="example">Example</h2>
 <h3 id="before-you-start">Before you start</h3>
-<ul>
-<li>
-<p>Make sure you have already <a href="https://docs.matrixorigin.io/0.5.1/MatrixOne/Get-Started/install-standalone-matrixone/">installed and launched MatrixOne</a>.</p>
-</li>
-<li>
-<p>Use MySQL client to <a href="https://docs.matrixorigin.io/0.5.1/MatrixOne/Get-Started/connect-to-matrixone-server/">connect to MatrixOne</a>.</p>
-</li>
-</ul>
+<p>Make sure you have already <a href="../../../Get-Started/install-standalone-matrixone/">Deployed standalone MatrixOne</a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>If you install MatrixOne by <code>docker</code>, the directory is inside the docker image by default. To work with local directory, you need to bind a local directory to the container. In the following example, the local file system path <code>/tmp/docker_export_demo/store</code> is binded to the MatrixOne docker image, with a mapping to the <code>/store</code> path. For more information, see <a href="https://www.freecodecamp.org/news/docker-mount-volume-guide-how-to-mount-a-local-directory/">Docker Mount Volume tutorial</a>.</p>
+<p>If you install MatrixOne by <code>docker</code>, the directory is inside the docker image by default. To work with local directory, you need to bind a local directory to the container. In the following example, the local file system path <code>${local_data_path}/mo-data</code> is binded to the MatrixOne docker image, with a mapping to the <code>/mo-data</code> path. For more information, see <a href="https://www.freecodecamp.org/news/docker-mount-volume-guide-how-to-mount-a-local-directory/">Docker Mount Volume tutorial</a>.</p>
 </div>
-<div class="highlight"><pre><span></span><code>docker run -d -p 6001:6001 -v ~/tmp/docker_export_demo/store:/store:rw --name matrixone matrixorigin/matrixone:0.5.1
+<div class="highlight"><pre><span></span><code>sudo docker run --name &lt;name&gt; --privileged -d -p 6001:6001 -v ${local_data_path}/mo-data:/mo-data:rw matrixorigin/matrixone:0.6.0
 </code></pre></div>
 <h3 id="steps">Steps</h3>
 <ol>
@@ -6064,8 +6057,8 @@
 <p>For installation with source code or binary file, export the table to your local directory, for example, <em>~/tmp/export_demo/export_datatable.txt</em>.</p>
 <div class="highlight"><pre><span></span><code>select * from user into outfile &#39;~/tmp/export_demo/export_datatable.txt&#39;
 </code></pre></div>
-<p>For installation with docker, export the your mounted directory path of container as the following example. The directory <code>store</code> refers to the local path of <code>~/tmp/docker_export_demo/store</code>.</p>
-<div class="highlight"><pre><span></span><code>select * from user into outfile &#39;store/export_datatable.txt&#39;;
+<p>For installation with docker, export the your mounted directory path of container as the following example. The directory <code>mo-data</code> refers to the local path of <code>~/tmp/docker_export_demo/mo-data</code>.</p>
+<div class="highlight"><pre><span></span><code>select * from user into outfile &#39;mo-data/export_datatable.txt&#39;;
 </code></pre></div>
 </li>
 <li>

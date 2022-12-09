@@ -361,7 +361,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Overview/matrixOne-architecture-design/" class="md-nav__link">
+      <a href="../../../../Overview/matrixone-architecture-design/" class="md-nav__link">
         MatrixOne Architecture Design
       </a>
     </li>
@@ -437,21 +437,7 @@
   
     <li class="md-nav__item">
       <a href="../../../../Get-Started/install-standalone-matrixone/" class="md-nav__link">
-        Install standalone MatrixOne
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../Get-Started/connect-to-matrixone-server/" class="md-nav__link">
-        Connect to standalone MatrixOne Server
+        Deploy standalone MatrixOne
       </a>
     </li>
   
@@ -552,7 +538,7 @@
   
     <li class="md-nav__item">
       <a href="../../../../Develop/connect-mo/database-ide/" class="md-nav__link">
-        Database Client IDE
+        Connecting to MatrixOne with Database Client Tool
       </a>
     </li>
   
@@ -1343,6 +1329,20 @@
     <li class="md-nav__item">
       <a href="../../../../Maintain/backup-restore/" class="md-nav__link">
         Backup and Restore
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Maintain/mount-data-by-docker/" class="md-nav__link">
+        Mount directory to Docker container
       </a>
     </li>
   
@@ -2275,15 +2275,15 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#create_table_statement" class="md-nav__link">
-    create_table_statement
-  </a>
+      </ul>
+    </nav>
   
 </li>
         
-      </ul>
-    </nav>
+          <li class="md-nav__item">
+  <a href="#syntax-diagram" class="md-nav__link">
+    Syntax Diagram
+  </a>
   
 </li>
         
@@ -4372,7 +4372,7 @@
   
     <li class="md-nav__item">
       <a href="../../../Data-Types/data-types/" class="md-nav__link">
-        Date Types Overview
+        Data Types Overview
       </a>
     </li>
   
@@ -6043,15 +6043,15 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#create_table_statement" class="md-nav__link">
-    create_table_statement
-  </a>
+      </ul>
+    </nav>
   
 </li>
         
-      </ul>
-    </nav>
+          <li class="md-nav__item">
+  <a href="#syntax-diagram" class="md-nav__link">
+    Syntax Diagram
+  </a>
   
 </li>
         
@@ -6099,7 +6099,7 @@
 </code></pre></div>
 <h3 id="explanations">Explanations</h3>
 <h4 id="temporary-tables">Temporary Tables</h4>
-<p>You can use the <code>TEMPORARY</code> keyword when creating a table. A <code>TEMPORARY</code> table is visible only within the current session, and is dropped automatically when the session is closed. For more information, see <a href="../create-temporary-tables/">Temporary Tables</a>.</p>
+<p>You can use the <code>TEMPORARY</code> keyword when creating a table. A <code>TEMPORARY</code> table is visible only within the current session, and is dropped automatically when the session is closed. For more information, see <a href="../create-temporary-tables/">Create Temporary Tables</a>.</p>
 <h4 id="comment">COMMENT</h4>
 <p>A comment for a column or a table can be specified with the <code>COMMENT</code> option.</p>
 <ul>
@@ -6233,7 +6233,7 @@ PARTITION BY LIST COLUMNS(a,b) (
 <li><strong>PARTITIONS num</strong></li>
 </ul>
 <p>The number of partitions may optionally be specified with a PARTITIONS num clause, where num is the number of partitions. If both this clause and any PARTITION clauses are used, num must be equal to the total number of any partitions that are declared using PARTITION clauses.</p>
-<h4 id="create_table_statement">create_table_statement</h4>
+<h3 id="syntax-diagram">Syntax Diagram</h3>
 <p><img alt="Create Table Diagram" src="https://github.com/matrixorigin/artwork/blob/main/docs/reference/create_table_statement.png?raw=true" /></p>
 <h2 id="examples"><strong>Examples</strong></h2>
 <ul>
