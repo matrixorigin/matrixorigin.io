@@ -43,12 +43,11 @@ nav:
     - Overview:
       - MatrixOne Introduction: MatrixOne/Overview/matrixone-introduction.md
       - MatrixOne Feature List: MatrixOne/Overview/matrixone-feature-list.md
-      - MatrixOne Architecture Design: MatrixOne/Overview/matrixOne-architecture-design.md
+      - MatrixOne Architecture Design: MatrixOne/Overview/matrixone-architecture-design.md
       - MySQL Compatibility: MatrixOne/Overview/mysql-compatibility.md
       - What's New: MatrixOne/Overview/whats-new.md
     - Getting Started:
-      - Install standalone MatrixOne: MatrixOne/Get-Started/install-standalone-matrixone.md
-      - Connect to standalone MatrixOne Server: MatrixOne/Get-Started/connect-to-matrixone-server.md
+      - Deploy standalone MatrixOne: MatrixOne/Get-Started/install-standalone-matrixone.md
       - Basic SQL: MatrixOne/Get-Started/basic-sql.md
     - Developing Guide:
       - Connect to MatrixOne:
@@ -95,6 +94,7 @@ nav:
         - Configure shared memory for MatrixOne: MatrixOne/Deploy/mo-in-kubernetes/configure-shared-memory.md
     - Maintenance:
       - Backup and Restore: MatrixOne/Maintain/backup-restore.md
+      - Mount directory to Docker container: MatrixOne/Maintain/mount-data-by-docker.md
       - MatrixOne Directory Structure: MatrixOne/Maintain/mo-directory-structure.md
     - Migration:
       - From MySQL to MatrixOne: MatrixOne/Migrate/migrate-from-mysql-to-matrixone.md
@@ -262,7 +262,7 @@ nav:
         - System variable:
           - Custom variable: MatrixOne/Reference/Variable/custom-variable.md
       - Data Types:
-          - Date Types Overview: MatrixOne/Reference/Data-Types/data-types.md
+          - Data Types Overview: MatrixOne/Reference/Data-Types/data-types.md
           - Data Type Conversion: MatrixOne/Reference/Data-Types/data-type-conversion.md
           - Timestamp Initialization: MatrixOne/Reference/Data-Types/timestamp-initialization.md
           - JSON Data Type: MatrixOne/Reference/Data-Types/json-type.md
