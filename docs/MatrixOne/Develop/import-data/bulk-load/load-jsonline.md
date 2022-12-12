@@ -4,16 +4,14 @@ This document will guide you on how to import jsonlines (that is *.jl* file) dat
 
 ## Before you start
 
-- Make sure you have already [installed and launched MatrixOne](https://docs.matrixorigin.io/0.5.1/MatrixOne/Get-Started/install-standalone-matrixone/).
-- Use MySQL client to [connect to MatrixOne](https://docs.matrixorigin.io/0.5.1/MatrixOne/Get-Started/connect-to-matrixone-server/).
+Make sure you have already [Deployed standalone MatrixOne](../../../Get-Started/install-standalone-matrixone.md).
 
-If you use the `docker` install, please make sure that you have a data directory mounted to the container. For example,
+!!! note
+    If you install MatrixOne by `docker`, the directory is inside the docker image by default. To work with local directory, you need to bind a local directory to the container. In the following example, the local file system path `${local_data_path}/mo-data` is binded to the MatrixOne docker image, with a mapping to the `/mo-data` path. For more information, see [Docker Mount Volume tutorial](https://www.freecodecamp.org/news/docker-mount-volume-guide-how-to-mount-a-local-directory/).
 
-```T
-docker run -d -p 6001:6001 -v ~/tmp/docker_loaddata_demo:/ssb-dbgen-path:rw --name matrixone matrixorigin/matrixone:0.5.1
 ```
-
-This typical installation maps its local path *~/tmp/docker_loaddata_demo* to a inner-container path */ssb-dbgen-path*.
+sudo docker run --name <name> --privileged -d -p 6001:6001 -v ${local_data_path}/mo-data:/mo-data:rw matrixorigin/matrixone:0.6.0
+```
 
 ### Basic command
 
@@ -103,4 +101,4 @@ load data infile {'filepath'='data.txt', 'format'='jsonline','jsondata'='object'
     ```
 
 !!! note
-    If you use Docker to launch MatrixOne, when you try to import the jsonline file, please make sure that you have a data directory mounted to the container. For more information on backing up the store directory, see[Back up the store directory in the container to the host](../../../Maintain/upgrade-standalone-matrixone/#1back-up-the-store-directory-in-the-container-to-the-host).
+    If you use Docker to launch MatrixOne, when you try to import the jsonline file, please make sure that you have a data directory mounted to the container. 

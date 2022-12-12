@@ -4,7 +4,7 @@ The Star Schema Benchmark（SSB）Test is a popular scenario for OLAP database p
 
 ## **Before you start**
 
-Make sure you have already [installed MatrixOne](../Get-Started/install-standalone-matrixone.md) and [connected to MatrixOne Server](../Get-Started/connect-to-matrixone-server.md).
+Make sure you have already [Deployed standalone MatrixOne](../Get-Started/install-standalone-matrixone.md).
 
 ## **1. Compile dbgen**
 

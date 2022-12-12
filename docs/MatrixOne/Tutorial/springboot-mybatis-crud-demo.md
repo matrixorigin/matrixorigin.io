@@ -25,11 +25,11 @@ mysql> CREATE DATABASE test;
 
 Choose **Spring Initializer**, and name the project as you want.
 
-![image-20221026152318567](https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/mybatis/image-20221026152318567.png)
+![image-20221026152318567](https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/mybatis/image-20221026152318567.png?raw=true)
 
 Choose **Spring Web**, **MyBatis Framework**, **JDBC API** and **MySQL Driver** as dependencies for this project.
 
-![image-20221026152447954](https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/mybatis/image-20221026152447954.png)
+![image-20221026152447954](https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/mybatis/image-20221026152447954.png?raw=true)
 
 Click **Create**,  the project will be created. The dependencies are listed in the *pom.xml* file. Usually you don't need to modify anything.
 
@@ -161,7 +161,7 @@ server.port=8080
 
 After setting up the environment, we write code to implement a simple CRUD application. After finishing coding, you'll have a project structure as below. You can create these packages and java class in advance. We will code the Create, Update, Insert, Delete, Select operations for this demo application.
 
-![image-20221026155656694](https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/mybatis/image-20221026155656694.png)
+![image-20221026155656694](https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/mybatis/image-20221026155656694.png?raw=true)
 
 ### 1. UserController.java
 
@@ -465,7 +465,7 @@ public class MyBatisDemoApplication {
 
 Build and launch this project.
 
-![image-20221026161226923](https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/mybatis/image-20221026161226923.png)
+![image-20221026161226923](https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/mybatis/image-20221026161226923.png?raw=true)
 
 When you see the following messages, the application is well launched and you can open your browser and send HTTP request.
 
@@ -484,7 +484,7 @@ When you see the following messages, the application is well launched and you ca
 
 ### 1. Test Create Table
 
-![image-20221026161929338](https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/mybatis/image-20221026161929338.png)
+![image-20221026161929338](https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/mybatis/image-20221026161929338.png?raw=true)
 
 In MySQL client, we can verify if the table has been successfully created.
 
@@ -519,7 +519,7 @@ PRIMARY KEY (`id`)
 
 ### 2. Test Add User
 
-![image-20221026162317800](https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/mybatis/image-20221026162317800.png)
+![image-20221026162317800](https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/mybatis/image-20221026162317800.png?raw=true)
 
 ```
 mysql> select * from user;
@@ -533,11 +533,11 @@ mysql> select * from user;
 
 ### 3. Test Select User
 
-![image-20221026162455058](https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/mybatis/image-20221026162455058.png)
+![image-20221026162455058](https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/mybatis/image-20221026162455058.png?raw=true)
 
 ### 4. Test Update User
 
-![image-20221026162613066](https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/mybatis/image-20221026162613066.png)
+![image-20221026162613066](https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/mybatis/image-20221026162613066.png?raw=true)
 
 ```
 mysql> select * from user;
@@ -551,7 +551,7 @@ mysql> select * from user;
 
 ### 5. Test Delete User
 
-![image-20221026162756460](https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/mybatis/image-20221026162756460.png)
+![image-20221026162756460](https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/mybatis/image-20221026162756460.png?raw=true)
 
 ```
 mysql> select * from user;

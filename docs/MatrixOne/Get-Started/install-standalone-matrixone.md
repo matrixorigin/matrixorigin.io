@@ -1,14 +1,13 @@
-# **Install standalone MatrixOne**
+# **Deploy standalone MatrixOne**
 
-To facilitate developers or technology enthusiasts with different operating habits to install the MatrixOne standalone version most conveniently and quickly, we provide the following three installation methods. You can choose the most suitable installation method for you according to your needs:
+The applicable scenario of the standalone MatrixOne is to use a single server, experience the smallest MatrixOne with the complete topology, and simulate the production deployment steps.
 
-- <p><a href="#code_source">Method 1: Building from source code</a>.</p> If you always need to get the latest version code, you can choose to install and deploy MatrixOne by **Building from source code**.
-- <p><a href="#binary_packages">Method 2: Using binary package</a>.</p> If you like installing the package directly, you can choose to install and deploy MatrixOne by **Using binary package**.
-- <p><a href="#use_docker">Method 3: Using Docker</a>.</p> If you usually use Docker, you can also install and deploy MatrixOne by **Using Docker**.
+**The main steps of standalone MatrixOne deployment are as follows**:
 
-## Before you start
+<a href="#install_mo">Step 1: Install standalone MatrixOne</a><br>
+<a href="#connect_mo">Step 2: Connect to standalone MatrixOne</a>
 
-### Recommended operating system
+**Recommended operating system**
 
 MatrixOne supports **Linux** and **MacOS**. For quick start, we recommend the following hardware specifications:
 
@@ -19,9 +18,17 @@ MatrixOne supports **Linux** and **MacOS**. For quick start, we recommend the fo
 
 For more information on the required operating system versions for deploying MatrixOne, see [Hardware and Operating system requirements](../FAQs/deployment-faqs.md).
 
-## <h2><a name="code_source">Method 1: Building from source code</a></h2>
+## <h2><a name="install_mo">Step 1: Install standalone MatrixOne</a></h2>
 
-### 1. Install Go as necessary dependency
+To facilitate developers or technology enthusiasts with different operating habits to install the MatrixOne standalone version most conveniently and quickly, we provide the following three installation methods. You can choose the most suitable installation method for you according to your needs:
+
+- <p><a href="#code_source">Method 1: Building from source code</a>.</p> If you always need to get the latest version code, you can choose to install and deploy MatrixOne by **Building from source code**.
+- <p><a href="#binary_packages">Method 2: Using binary package</a>.</p> If you like installing the package directly, you can choose to install and deploy MatrixOne by **Using binary package**.
+- <p><a href="#use_docker">Method 3: Using Docker</a>.</p> If you usually use Docker, you can also install and deploy MatrixOne by **Using Docker**.
+
+### <h3><a name="code_source">Method 1: Building from source code</a></h3>
+
+#### 1. Install Go as necessary dependency
 
 !!! note
     Go version 1.19 is required.
@@ -46,7 +53,7 @@ To verify whether **Go** is installed, please execute the code `go version`. Whe
       go version go1.19 darwin/arm64
       ```
 
-### 2. Build MatrixOne by using MatrixOne code
+#### 2. Build MatrixOne by using MatrixOne code
 
 Depending on your needs, choose whether you want to keep your code up to date, or if you want to get the latest stable version of the code.
 
@@ -90,14 +97,14 @@ __Tips__: When using MatrixOne source code to build MatrixOne, there is no much 
 
          __Tips__: You can also run `make debug`, `make clean`, or anything else our `Makefile` offers, `make debug` can be used to debug the build process, and `make clean` can be used to clean up the build process. If you get an error like `Get "https://proxy.golang.org/........": dial tcp 142.251.43.17:443: i/o timeout` while running `make build`, see [Deployment FAQs](../FAQs/deployment-faqs.md).
 
-### <h3><a name="launch">3. Launch MatrixOne server</a></h2>
+#### <h4><a name="launch">3. Launch MatrixOne server</a></h4>
 
 === "**Launch in the frontend**"
 
       This launch method will keep the `mo-service` process running in the frontend, the system log will be printed in real time. If you'd like to stop MatrixOne server, just make a CTRL+C or close your current terminal.
 
       ```
-      # Start mo-service in the backend
+      # Start mo-service in the frontend
       ./mo-service -launch ./etc/quickstart/launch.toml
       ```
 
@@ -122,15 +129,15 @@ __Tips__: When using MatrixOne source code to build MatrixOne, there is no much 
 
       __Tips__: As shown in the above example, use the command `ps aux | grep mo-service` to find out that the process number running on MatrixOne is `15277`, and `kill -9 15277` means to stop MatrixOne with the process number `15277`.
 
-### 4. Connect to MatrixOne Server
+#### 4. Connect to MatrixOne Server
 
-When you finish installing and launching MatrixOne, many logs are generated in startup mode. Then you can start a new terminal and connect to MatrixOne, for more information on connecting to MatrixOne, see [Connect to MatrixOne server](connect-to-matrixone-server.md).
+When you finish installing and launching MatrixOne, many logs are generated in startup mode. Then you can start a new terminal and connect to MatrixOne, for more information on connecting to MatrixOne, see <a href="#connect_mo">Step 2: Connect to standalone MatrixOne</a>.
 
-## <h2><a name="binary_packages">Method 2: Downloading binary packages</a></h2>
+### <h3><a name="binary_packages">Method 2: Downloading binary packages</a></h3>
 
 From 0.3.0 release, you can download binary packages.
 
-### 1. Install `wget` or `curl`
+#### 1. Install `wget` or `curl`
 
 We'll provide a method of **Using binary package** to install MatrixOne. If you prefer to use the command line, you can pre-install `wget` or `curl`.
 
@@ -194,7 +201,7 @@ __Tips__: It is recommended that you download and install one of these two tools
      ...
      ```
 
-### 2. Download binary packages and decompress
+#### 2. Download binary packages and decompress
 
 === "**Linux Environment**"
 
@@ -243,7 +250,7 @@ __Tips__: It is recommended that you download and install one of these two tools
 !!! info
     MatrixOne only supports installation on ARM chipset with source code build; if you are using MacOS M1 and above, for more information on using source code build to install MatrixOne, see <a href="#code_source">Method 1: Building from source code</a>. Using release binary files from X86 chipset will lead to unknown problems.
 
-### 3. Launch MatrixOne server
+#### 3. Launch MatrixOne server
 
 Launch MatrixOne server in the frontend or backend as <a href="#launch">3. Launch MatrixOne server</a> suggests in **Building from source code**.
 
@@ -252,7 +259,7 @@ Launch MatrixOne server in the frontend or backend as <a href="#launch">3. Launc
       This launch method will keep the `mo-service` process running in the frontend, the system log will be printed in real time. If you'd like to stop MatrixOne server, just make a CTRL+C or close your current terminal.
 
       ```
-      # Start mo-service in the backend
+      # Start mo-service in the frontend
       ./mo-service -launch ./etc/quickstart/launch.toml
       ```
 
@@ -277,21 +284,21 @@ Launch MatrixOne server in the frontend or backend as <a href="#launch">3. Launc
 
       __Tips__: As shown in the above example, use the command `ps aux | grep mo-service` to find out that the process number running on MatrixOne is `15277`, and `kill -9 15277` means to stop MatrixOne with the process number `15277`.
 
-### 4. Connect to MatrixOne Server
+#### 4. Connect to MatrixOne Server
 
-When you finish installing and launching MatrixOne, many logs are generated in startup mode. Then you can start a new terminal and connect to MatrixOne, for more information on connecting to MatrixOne, see [Connect to MatrixOne server](connect-to-matrixone-server.md).
+When you finish installing and launching MatrixOne, many logs are generated in startup mode. Then you can start a new terminal and connect to MatrixOne, for more information on connecting to MatrixOne, see <a href="#connect_mo">Step 2: Connect to standalone MatrixOne</a>.
 
-## <h2><a name="use_docker">Method 3: Using docker</a></h2>
+### <h3><a name="use_docker">Method 3: Using docker</a></h3>
 
 __Tips__: When using Docker to build MatrixOne, there is no much difference between the source code for **Linux environment** and **MacOS environment**.
 
-### 1. Download and install Docker
+#### 1. Download and install Docker
 
 Click <a href="https://docs.docker.com/get-docker/" target="_blank">Get Docker</a>, enter into the Docker's official document page, depending on your operating system, download and install the corresponding Docker.  
 
 After the installation, click to open Docker and go to the next step to verify whether the installation is successful.
 
-### 2. Verify that the Docker installation is successful  
+#### 2. Verify that the Docker installation is successful  
 
 You can verify the Docker version by using the following lines:
 
@@ -305,7 +312,7 @@ The successful installation results are as follows:
 Docker version 20.10.17, build 100c701
 ```
 
-### 3. Check the Docker running status  
+#### 3. Check the Docker running status  
 
 Run the following command to start Docker and check whether the running status is successfully. The check suggestions for different operating environments are as follows:
 
@@ -334,7 +341,7 @@ docker.service - Docker Application Container Engine
 
 In MacOS environment, You can open your local Docker client and launch Docker.
 
-### 4. Create and run the container of MatrixOne
+#### 4. Create and run the container of MatrixOne
 
 It will pull the image from Docker Hub if not exists. You can choose to pull the stable version image or the develop version image.
 
@@ -356,39 +363,113 @@ It will pull the image from Docker Hub if not exists. You can choose to pull the
 
       __Notes__: The *nightly* version is updated once a day.
 
-For the information on the user name and password, see the step 6 - Connect to MatrixOne Server.
+If you need to mount data directories or customize configure files, see [Mount the directory to Docker container](../Maintain/mount-data-by-docker.md)。
 
-### 5. Mount the configuration file(Optional)
+For the information on the user name and password, see <a href="#connect_mo">Step 2: Connect to standalone MatrixOne</a>.
 
-If you need to mount the *configuration file*, refer to the following section:
+## <h2><a name="connect_mo">Step 2: Connect to standalone MatrixOne</a></h2>
+
+### Before you start
+
+#### Install MySQL Client
+
+!!! note
+    MySQL client version 8.0.30 or later is recommended.
+
+If the **MySQL client** has not been installed, you can find different installation methods of operation system in <a href="https://dev.mysql.com/doc/refman/8.0/en/installing.html" target="_blank">Installing and Upgrading MySQL</a>. You can follow the *Installing and Upgrading MySQL* to install it.
+
+Or you can click <a href="https://dev.mysql.com/downloads/mysql" target="_blank">MySQL Community Downloads</a> to enter into the MySQL client download and installation page. According to your operating system and hardware environment, drop down to select **Select Operating System**, then drop down to select **Select OS Version**, and select the download installation package to install as needed.
+
+#### Configure the MySQL client environment variables
+
+After the installation is completed, configure the MySQL client environment variables:
+
+=== "**Linux Environment**"
+
+     1. Open a new terminal window and enter the following command:
+
+         ```
+         cd ~
+         sudo vim /etc/profile
+         ```
+
+     2. After pressing **Enter** on the keyboard to execute the above command, you need to enter the root user password, which is the root password you set in the installation window when you installed the MySQL client. If no password has been set, press **Enter** to skip the password.
+
+     3. After entering/skiping the root password, you will enter *profile*, click **i** on the keyboard to enter the insert state, and you can enter the following command at the bottom of the file:
+
+        ```
+        export PATH=/software/mysql/bin:$PATH
+        ```
+
+     4. After the input is completed, click **esc** on the keyboard to exit the insert state, and enter `:wq` at the bottom to save and exit.
+
+     5. Enter the command `source  /etc/profile`, press **Enter** to execute, and run the environment variable.
+
+     6. To test whether MySQL is available:
+
+         - Method 1： Enter `mysql -u root -p`, press **Enter** to execute, the root user password is required, if `mysql>` is displayed, it means that the MySQL client is enabled.
+
+         - Method 2: Run the command `mysql --version`, if MySQL client is installed successfully, the example code line is as follows: `mysql  Ver 8.0.31 for Linux on x86_64 (Source distribution)`
+
+     7. If MySQL is available, close the current terminal and browse the next chapter **Connect to MatrixOne Server**.
+
+=== "**MacOS Environment**"
+
+     1. Open a new terminal window and enter the following command:
+
+        ```
+        cd ~
+        sudo vim .bash_profile
+        ```
+
+     2. After pressing **Enter** on the keyboard to execute the above command, you need to enter the root user password, which is the root password you set in the installation window when you installed the MySQL client. If no password has been set, press **Enter** to skip the password.
+
+     3. After entering/skiping the root password, you will enter *.bash_profile*, click **i** on the keyboard to enter the insert state, and you can enter the following command at the bottom of the file:
+
+        ```
+        export PATH=${PATH}:/usr/local/mysql/bin
+        ```
+
+     4. After the input is completed, click **esc** on the keyboard to exit the insert state, and enter `:wq` at the bottom to save and exit.
+
+     5. Enter the command `source .bash_profile`, press **Enter** to execute, and run the environment variable.
+
+     6. To test whether MySQL is available:
+
+         - Method 1： Enter `mysql -u root -p`, press **Enter** to execute, the root user password is required, if `mysql>` is displayed, it means that the MySQL client is enabled.
+
+         - Method 2: Run the command `mysql --version`, if MySQL client is installed successfully, the example code line is as follows: `mysql  Ver 8.0.31 for macos12 on arm64 (MySQL Community Server - GPL)`
+
+     7. If MySQL is available, close the current terminal and browse the next chapter **Connect to MatrixOne Server**.
+
+__Tips__: Currently, MatrixOne is only compatible with the Oracle MySQL client. This means that some features might not work with the MariaDB client or Percona client.
+
+### **Connect to MatrixOne**
+
+You can use the MySQL command-line client to connect to MatrixOne server. Open a new terminal window and enter the following command:
 
 ```
-docker run -d -p 6001:6001 -v ${local_data_path}/etc:/etc:rw  --entrypoint "/mo-service" matrixorigin/matrixone:0.6.0 -launch /etc/quickstart/launch.toml
+mysql -h IP -P PORT -uUsername -p
 ```
 
-|Parameter|Description|
-|---|---|
-|${local_data_path}/etc:/etc|mount the local disk directory to the container */etc* file |
-|--entrypoint "/mo-service"|Specifies that the container starts the MatrixOne service|
-|-launch /etc/quickstart/launch.toml|launch mode in */etc/|
+After you enter the preceding command, the terminal will prompt you to provide the username and password. You can use our built-in account:
 
-After the mount is successful, you can find the corresponding data directory on your local disk, as shown in the following example:
+- user: dump
+- password: 111
+
+You can also use the following command line on the MySQL client to connect to the MatrixOne service:
 
 ```
-# Enter into your local disk where you mounted the data directory
-cd ${local_data_path}
-# View the data files or folders mounted in the current directory
-ls
-etc
+mysql -h 127.0.0.1 -P 6001 -udump -p
+Enter password:
 ```
 
-For more information on the description of *Docker run*, run the commands `docker run --help`.
-
-### 6. Connect to MatrixOne Server
-
-When you finish installing and launching MatrixOne, many logs are generated in startup mode. Then you can start a new terminal and connect to MatrixOne, for more information on connecting to MatrixOne, see [Connect to MatrixOne server](connect-to-matrixone-server.md).
+Currently, MatrixOne only supports the TCP listener.
 
 ## Reference
 
-- For more information on deployment，see [Deployment FAQs](../FAQs/deployment-faqs.md).
+- For more information on the method of connecting to MatrixOne, see [Connecting to MatrixOne with Database Client Tool](../Develop/connect-mo/database-ide.md), [Connecting to MatrixOne with JDBC](../Develop/connect-mo/java-connect-to-matrixone/connect-mo-with-jdbc.md), and [Connecting to MatrixOne with Python](../Develop/connect-mo/python-connect-to-matrixone.md).
+
+- For more information on the questions of deployment，see [Deployment FAQs](../FAQs/deployment-faqs.md).
+
 - For more information on distributed installation, see [Deploy MatrixOne Cluster on Kubernetes Overview](../Deploy/install-and-launch-in-k8s.md)

@@ -6,7 +6,7 @@ By walking through this tutorial, you'll learn how to complete a TPC-H Test with
 
 ## **Before you start**
 
-Make sure you have already [installed MatrixOne](../Get-Started/install-standalone-matrixone.md) and [connected to MatrixOne Server](../Get-Started/connect-to-matrixone-server.md).
+Make sure you have already [Deployed standalone MatrixOne](../Get-Started/install-standalone-matrixone.md).
 
 ## **1. Compile TPCH dbgen**
 

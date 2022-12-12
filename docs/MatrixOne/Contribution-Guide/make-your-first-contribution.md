@@ -71,8 +71,7 @@ Now you can edit the code, modify the documents, and make whatever changes you w
 #### **Run MatrixOne in a standalone mode**
 
 If you want to demonstrate whether the changes you made are valid or produce an issue, you need to run MatrixOne in a standalone mode.  
-Before running, make sure you have installed MatrixOne according to our [Install tutorial](./../Get-Started/install-standalone-matrixone.md).
-And you can connect MatrixOne Serve according to the [Connect tutorial](./../Get-Started/connect-to-matrixone-server.md).
+Before running, make sure you have deployed MatrixOne according to our [Deploy standalone MatrixOne](./../Get-Started/install-standalone-matrixone.md).
 
 ### **Step 5: Commit to your local repo**
 

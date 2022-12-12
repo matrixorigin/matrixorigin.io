@@ -18,7 +18,7 @@ mysql> SELECT * FROM TEST
     -> INTO OUTFILE '/root/test.csv';
 ```
 
-You can change the output format using various options to indicate how to quote and delimit columns and records. Using the following code to export the tutorial_tbl table in a CSV format with CRLF-terminated lines:
+You can change the output format using various options to indicate how to quote and delimit columns and records. Using the following code to export the *TEST* table in a CSV format with CRLF-terminated lines:
 
 ```
 mysql> SELECT * FROM TEST INTO OUTFILE '/root/test.csv'
@@ -37,15 +37,13 @@ The `SELECT ... INTO OUTFILE` has the following properties −
 
 ### Before you start
 
-- Make sure you have already [installed and launched MatrixOne](https://docs.matrixorigin.io/0.5.1/MatrixOne/Get-Started/install-standalone-matrixone/).
-
-- Use MySQL client to [connect to MatrixOne](https://docs.matrixorigin.io/0.5.1/MatrixOne/Get-Started/connect-to-matrixone-server/).
+Make sure you have already [Deployed standalone MatrixOne](../../Get-Started/install-standalone-matrixone.md).
 
 !!! note
-    If you install MatrixOne by `docker`, the directory is inside the docker image by default. To work with local directory, you need to bind a local directory to the container. In the following example, the local file system path `/tmp/docker_export_demo/store` is binded to the MatrixOne docker image, with a mapping to the `/store` path. For more information, see [Docker Mount Volume tutorial](https://www.freecodecamp.org/news/docker-mount-volume-guide-how-to-mount-a-local-directory/).
+    If you install MatrixOne by `docker`, the directory is inside the docker image by default. To work with local directory, you need to bind a local directory to the container. In the following example, the local file system path `${local_data_path}/mo-data` is binded to the MatrixOne docker image, with a mapping to the `/mo-data` path. For more information, see [Docker Mount Volume tutorial](https://www.freecodecamp.org/news/docker-mount-volume-guide-how-to-mount-a-local-directory/).
 
 ```
-docker run -d -p 6001:6001 -v ~/tmp/docker_export_demo/store:/store:rw --name matrixone matrixorigin/matrixone:0.5.1
+sudo docker run --name <name> --privileged -d -p 6001:6001 -v ${local_data_path}/mo-data:/mo-data:rw matrixorigin/matrixone:0.6.0
 ```
 
 ### Steps
@@ -73,10 +71,10 @@ docker run -d -p 6001:6001 -v ~/tmp/docker_export_demo/store:/store:rw --name ma
     select * from user into outfile '~/tmp/export_demo/export_datatable.txt'
     ```
 
-    For installation with docker, export the your mounted directory path of container as the following example. The directory `store` refers to the local path of `~/tmp/docker_export_demo/store`.
+    For installation with docker, export the your mounted directory path of container as the following example. The directory `mo-data` refers to the local path of `~/tmp/docker_export_demo/mo-data`.
 
     ```
-    select * from user into outfile 'store/export_datatable.txt';
+    select * from user into outfile 'mo-data/export_datatable.txt';
     ```
 
 3. Check the table in your directory `export_datatable.txt`, the result is as below:
