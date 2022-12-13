@@ -10,13 +10,15 @@ This document describes how to configure your MatrixOne server to use SSL for da
 
 To create the directory that will contain the SSL keys, perform the following steps:
 
-1. Log into your server via SSH. Check if you have the **[mysql_ssl_rsa_setup](https://dev.mysql.com/doc/refman/5.7/en/mysql-ssl-rsa-setup.html)** tool in place.
+1. Log into your server via SSH. Check if you have the `mysql_ssl_rsa_setup` tool in place. Usually if you have installed MySQL, the `mysql_ssl_rsa_setup` binary will also be installed. 
 
-    If you see this following message, it means you have installed it. If not, please [install MySQL](https://dev.mysql.com/doc/mysql-getting-started/en/) first, and this `mysql_ssl_rsa_setup` will be installed along.
+    If you try to execute this command `mysql_ssl_rsa_setup` and you see this following message, it means you have installed it. If not, please [install MySQL](https://dev.mysql.com/doc/mysql-getting-started/en/) first, and this `mysql_ssl_rsa_setup` will be installed along. You can also check the path of `mysql_ssl_rsa_setup` binary file with `whereis mysql_ssl_rsa_setup`. 
 
     ```
     [pcusername@VM-0-12-centos matrixone]$ mysql_ssl_rsa_setup
     2022-10-19 10:57:30 [ERROR]   Failed to access directory pointed by --datadir. Please make sure that directory exists and is accessible by mysql_ssl_rsa_setup. Supplied value : /var/lib/mysql
+    [pcusername@VM-0-12-centos matrixone]$ whereis mysql_ssl_rsa_setup
+    mysql_ssl_rsa_setup: /usr/bin/mysql_ssl_rsa_setup /usr/share/man/man1/mysql_ssl_rsa_setup.1.gz
     ```
 
 2. Create an SSL key storage directory that MatrixOne can access. For example, run the `mkdir /home/user/mo_keys` command to create a `mo_keys` directory.
@@ -43,7 +45,7 @@ To create the SSL keys, perform the following steps:
     ├── server-cert.pem<br>
     └── server-key.pem<br>
 
-2. Insert the following lines in the `[cn.frontend]` section of the `etc/launch-tae-logservice/cn1.toml` file in MatrixOne folder:
+2. Insert the following lines in the `[cn.frontend]` section of the `etc/launch-tae-CN-tae-DN/cn.toml` file in MatrixOne folder:
 
     ```
     [cn.frontend]
