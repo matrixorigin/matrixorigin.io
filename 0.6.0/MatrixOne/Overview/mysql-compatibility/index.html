@@ -363,7 +363,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../matrixOne-architecture-design/" class="md-nav__link">
+      <a href="../matrixone-architecture-design/" class="md-nav__link">
         MatrixOne Architecture Design
       </a>
     </li>
@@ -449,21 +449,7 @@
   
     <li class="md-nav__item">
       <a href="../../Get-Started/install-standalone-matrixone/" class="md-nav__link">
-        Install standalone MatrixOne
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../Get-Started/connect-to-matrixone-server/" class="md-nav__link">
-        Connect to standalone MatrixOne Server
+        Deploy standalone MatrixOne
       </a>
     </li>
   
@@ -564,7 +550,7 @@
   
     <li class="md-nav__item">
       <a href="../../Develop/connect-mo/database-ide/" class="md-nav__link">
-        Database Client IDE
+        Connecting to MatrixOne with Database Client Tool
       </a>
     </li>
   
@@ -1355,6 +1341,20 @@
     <li class="md-nav__item">
       <a href="../../Maintain/backup-restore/" class="md-nav__link">
         Backup and Restore
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Maintain/mount-data-by-docker/" class="md-nav__link">
+        Mount directory to Docker container
       </a>
     </li>
   
@@ -4269,7 +4269,7 @@
   
     <li class="md-nav__item">
       <a href="../../Reference/Data-Types/data-types/" class="md-nav__link">
-        Date Types Overview
+        Data Types Overview
       </a>
     </li>
   
@@ -5911,7 +5911,7 @@
 </thead>
 <tbody>
 <tr>
-<td>DDL</td>
+<td>Data Definition Language（DDL)</td>
 <td>CREATE DATABASE</td>
 <td>A database with Chinese name is not supported.</td>
 </tr>
@@ -5928,11 +5928,6 @@
 <tr>
 <td></td>
 <td>CREATE TABLE</td>
-<td>Temporary tables are not supported.</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
 <td>Partition tables are not supported.</td>
 </tr>
 <tr>
@@ -5948,17 +5943,12 @@
 <tr>
 <td></td>
 <td></td>
-<td>Composite Primary Key is not supported yet.</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
 <td>KEY(column) is not supported yet.</td>
 </tr>
 <tr>
 <td></td>
 <td></td>
-<td>AUTO_INCREMENT is not supported yet.</td>
+<td>AUTO_INCREMENT is supported limitedly. The custom starting value is not supported yet.</td>
 </tr>
 <tr>
 <td></td>
@@ -5981,7 +5971,22 @@
 <td>Same as MySQL.</td>
 </tr>
 <tr>
-<td>DML</td>
+<td></td>
+<td>CREAT VIEW</td>
+<td>The <code>with check option</code> clause is not supported yet.</td>
+</tr>
+<tr>
+<td>Data Manipulation Language (DML)</td>
+<td>UPDATA</td>
+<td>Same as MySQL.</td>
+</tr>
+<tr>
+<td></td>
+<td>DELETE</td>
+<td>Same as MySQL.</td>
+</tr>
+<tr>
+<td></td>
 <td>INSERT</td>
 <td>LOW_PRIORITY, DELAYED, HIGH_PRIORITY are not supported now.</td>
 </tr>
@@ -6058,7 +6063,7 @@
 <tr>
 <td></td>
 <td></td>
-<td>SET is not supported now.</td>
+<td>SET is supported limitedly. Only <code>SET columns_name=nullif(expr1,expr2)</code> is supported.</td>
 </tr>
 <tr>
 <td></td>
@@ -6078,37 +6083,22 @@
 <tr>
 <td></td>
 <td>SUBQUERY</td>
-<td>Non-scalar subquery is not supported now.</td>
+<td>Non-scalar subquery is supported limitedly.</td>
 </tr>
 <tr>
 <td>Database Administration Statements</td>
 <td>SHOW</td>
-<td>Only show tables and show databases are supported.</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td>Show CREATE TABLE and CREATE DATABASE are supported.</td>
-</tr>
-<tr>
-<td></td>
-<td>Other statements</td>
-<td>Not supported now.</td>
+<td><code>SHOW</code> statement is supported limitedly.</td>
 </tr>
 <tr>
 <td>Utility Statements</td>
-<td>USE</td>
-<td>Use database is the same as MySQL.</td>
-</tr>
-<tr>
-<td></td>
 <td>Explain</td>
 <td>The result of explain a SQL is different with MySQL.</td>
 </tr>
 <tr>
 <td></td>
 <td></td>
-<td>Explain Analyze is not supported yet.</td>
+<td><code>json</code> output is not supported yet.</td>
 </tr>
 <tr>
 <td></td>
@@ -6153,7 +6143,7 @@
 <tr>
 <td></td>
 <td>Timestamp</td>
-<td>Same as MySQL, but MatrixOne doesn't support timezone yet, timestamp value doesn't shift by timezone change.</td>
+<td>Same as MySQL.</td>
 </tr>
 <tr>
 <td></td>
@@ -6173,7 +6163,7 @@
 <tr>
 <td></td>
 <td>LIKE</td>
-<td>Same as MySQL</td>
+<td>Same as MySQL.</td>
 </tr>
 <tr>
 <td></td>
@@ -6187,23 +6177,33 @@
 </tr>
 <tr>
 <td></td>
-<td>XOR</td>
-<td>Not supported now.</td>
-</tr>
-<tr>
-<td></td>
 <td>CAST</td>
 <td>Supported with different conversion rules.</td>
 </tr>
 <tr>
 <td>Functions</td>
 <td>MAX, MIN, COUNT, AVG, SUM</td>
-<td>Same as MySQL. Distinct is not supported yet.</td>
+<td>Same as MySQL.</td>
 </tr>
 <tr>
 <td></td>
 <td>any_value</td>
 <td>Any_value is an aggregate function in MatrixOne. Cannot be used in group by or filter condition.</td>
+</tr>
+<tr>
+<td></td>
+<td><code>REGEXP_INSTR()</code>，<code>REGEXP_LIKE()</code>，<code>REGEXP_REPLACE()</code>，<code>REGEXP_SUBSTR()</code></td>
+<td>The third parameter is not supported yet</td>
+</tr>
+<tr>
+<td></td>
+<td>to_date</td>
+<td>Only constants are supported for date entries</td>
+</tr>
+<tr>
+<td>System command</td>
+<td>SHOW GRANTS FOR USERS</td>
+<td>Only the permissions of directly authorized roles can be displayed. The rights of inherited roles cannot be shown.</td>
 </tr>
 </tbody>
 </table>
@@ -6220,7 +6220,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../matrixOne-architecture-design/" class="md-footer__link md-footer__link--prev" aria-label="Previous: MatrixOne Architecture Design" rel="prev">
+        <a href="../matrixone-architecture-design/" class="md-footer__link md-footer__link--prev" aria-label="Previous: MatrixOne Architecture Design" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>

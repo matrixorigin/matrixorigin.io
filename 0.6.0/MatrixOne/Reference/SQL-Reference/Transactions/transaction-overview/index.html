@@ -361,7 +361,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Overview/matrixOne-architecture-design/" class="md-nav__link">
+      <a href="../../../../Overview/matrixone-architecture-design/" class="md-nav__link">
         MatrixOne Architecture Design
       </a>
     </li>
@@ -437,21 +437,7 @@
   
     <li class="md-nav__item">
       <a href="../../../../Get-Started/install-standalone-matrixone/" class="md-nav__link">
-        Install standalone MatrixOne
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../Get-Started/connect-to-matrixone-server/" class="md-nav__link">
-        Connect to standalone MatrixOne Server
+        Deploy standalone MatrixOne
       </a>
     </li>
   
@@ -554,7 +540,7 @@
   
     <li class="md-nav__item">
       <a href="../../../../Develop/connect-mo/database-ide/" class="md-nav__link">
-        Database Client IDE
+        Connecting to MatrixOne with Database Client Tool
       </a>
     </li>
   
@@ -1459,6 +1445,20 @@
     <li class="md-nav__item">
       <a href="../../../../Maintain/backup-restore/" class="md-nav__link">
         Backup and Restore
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Maintain/mount-data-by-docker/" class="md-nav__link">
+        Mount directory to Docker container
       </a>
     </li>
   
@@ -4373,7 +4373,7 @@
   
     <li class="md-nav__item">
       <a href="../../../Data-Types/data-types/" class="md-nav__link">
-        Date Types Overview
+        Data Types Overview
       </a>
     </li>
   
@@ -6158,28 +6158,28 @@ Insert into test values(1,1);
 COMMIT;
 </code></pre></div>
 <p>Autocommit will not apply if a transaction has been explicitly started. In the following example, the <code>ROLLBACK</code> statement successfully reverts the <code>INSERT</code> statement:</p>
-<div class="highlight"><pre><span></span><code>mysql&gt; SELECT @@autocommit;
-+--------------+
-| @@autocommit |
-+--------------+
-| on           |
-+--------------+
-1 row in set (0.01 sec)
+<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">@@</span><span class="n">autocommit</span><span class="p">;</span><span class="w"></span>
+<span class="o">+</span><span class="c1">--------------+</span>
+<span class="o">|</span><span class="w"> </span><span class="o">@@</span><span class="n">autocommit</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">+</span><span class="c1">--------------+</span>
+<span class="o">|</span><span class="w">            </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">+</span><span class="c1">--------------+</span>
+<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span><span class="w"></span>
 
-mysql&gt; create table test (c int primary key,d int);
-Query OK, 0 rows affected (0.03 sec)
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">test</span><span class="w"> </span><span class="p">(</span><span class="k">c</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="k">primary</span><span class="w"> </span><span class="k">key</span><span class="p">,</span><span class="n">d</span><span class="w"> </span><span class="nb">int</span><span class="p">);</span><span class="w"></span>
+<span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">03</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span><span class="w"></span>
 
-mysql&gt; BEGIN;
-Query OK, 0 rows affected (0.00 sec)
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">BEGIN</span><span class="p">;</span><span class="w"></span>
+<span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span><span class="w"></span>
 
-mysql&gt; Insert into test values(1,1);
-Query OK, 1 row affected (0.01 sec)
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">Insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">test</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span><span class="w"></span>
 
-mysql&gt; ROLLBACK;
-Query OK, 0 rows affected (0.03 sec)
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">ROLLBACK</span><span class="p">;</span><span class="w"></span>
+<span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">03</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span><span class="w"></span>
 
-mysql&gt; SELECT * from test;
-Empty set (0.01 sec)
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">test</span><span class="p">;</span><span class="w"></span>
+<span class="n">Empty</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span><span class="w"></span>
 </code></pre></div>
 <p>The <code>autocommit</code> system variable cannot be changed on either a global nor session basis for now.</p>
 <h4 id="explicit-and-implicit-transaction">Explicit and implicit transaction</h4>

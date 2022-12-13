@@ -361,7 +361,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Overview/matrixOne-architecture-design/" class="md-nav__link">
+      <a href="../../../Overview/matrixone-architecture-design/" class="md-nav__link">
         MatrixOne Architecture Design
       </a>
     </li>
@@ -437,21 +437,7 @@
   
     <li class="md-nav__item">
       <a href="../../../Get-Started/install-standalone-matrixone/" class="md-nav__link">
-        Install standalone MatrixOne
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../Get-Started/connect-to-matrixone-server/" class="md-nav__link">
-        Connect to standalone MatrixOne Server
+        Deploy standalone MatrixOne
       </a>
     </li>
   
@@ -631,7 +617,7 @@
   
     <li class="md-nav__item">
       <a href="../database-ide/" class="md-nav__link">
-        Database Client IDE
+        Connecting to MatrixOne with Database Client Tool
       </a>
     </li>
   
@@ -1422,6 +1408,20 @@
     <li class="md-nav__item">
       <a href="../../../Maintain/backup-restore/" class="md-nav__link">
         Backup and Restore
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Maintain/mount-data-by-docker/" class="md-nav__link">
+        Mount directory to Docker container
       </a>
     </li>
   
@@ -4336,7 +4336,7 @@
   
     <li class="md-nav__item">
       <a href="../../../Reference/Data-Types/data-types/" class="md-nav__link">
-        Date Types Overview
+        Data Types Overview
       </a>
     </li>
   
@@ -6023,10 +6023,12 @@
 <p>To create the directory that will contain the SSL keys, perform the following steps:</p>
 <ol>
 <li>
-<p>Log into your server via SSH. Check if you have the <strong><a href="https://dev.mysql.com/doc/refman/5.7/en/mysql-ssl-rsa-setup.html">mysql_ssl_rsa_setup</a></strong> tool in place.</p>
-<p>If you see this following message, it means you have installed it. If not, please <a href="https://dev.mysql.com/doc/mysql-getting-started/en/">install MySQL</a> first, and this <code>mysql_ssl_rsa_setup</code> will be installed along.</p>
+<p>Log into your server via SSH. Check if you have the <code>mysql_ssl_rsa_setup</code> tool in place. Usually if you have installed MySQL, the <code>mysql_ssl_rsa_setup</code> binary will also be installed. </p>
+<p>If you try to execute this command <code>mysql_ssl_rsa_setup</code> and you see this following message, it means you have installed it. If not, please <a href="https://dev.mysql.com/doc/mysql-getting-started/en/">install MySQL</a> first, and this <code>mysql_ssl_rsa_setup</code> will be installed along. You can also check the path of <code>mysql_ssl_rsa_setup</code> binary file with <code>whereis mysql_ssl_rsa_setup</code>. </p>
 <div class="highlight"><pre><span></span><code>[pcusername@VM-0-12-centos matrixone]$ mysql_ssl_rsa_setup
 2022-10-19 10:57:30 [ERROR]   Failed to access directory pointed by --datadir. Please make sure that directory exists and is accessible by mysql_ssl_rsa_setup. Supplied value : /var/lib/mysql
+[pcusername@VM-0-12-centos matrixone]$ whereis mysql_ssl_rsa_setup
+mysql_ssl_rsa_setup: /usr/bin/mysql_ssl_rsa_setup /usr/share/man/man1/mysql_ssl_rsa_setup.1.gz
 </code></pre></div>
 </li>
 <li>
@@ -6052,7 +6054,7 @@
 └── server-key.pem<br></p>
 </li>
 <li>
-<p>Insert the following lines in the <code>[cn.frontend]</code> section of the <code>etc/launch-tae-logservice/cn1.toml</code> file in MatrixOne folder:</p>
+<p>Insert the following lines in the <code>[cn.frontend]</code> section of the <code>etc/launch-tae-CN-tae-DN/cn.toml</code> file in MatrixOne folder:</p>
 <div class="highlight"><pre><span></span><code>[cn.frontend]
 enableTls = true
 tlsCertFile = &quot;/home/user/mo_keys/server-cert.pem&quot;
@@ -6065,9 +6067,11 @@ tlsCaFile = &quot;/home/user/mo_keys/ca.pem&quot;
 <h3 id="test-the-ssl-configuration">Test the SSL configuration</h3>
 <p>To test the SSL configuration, perform the following steps:</p>
 <ol>
-<li>Launch MatrixOne service. Please refer to <a href="../../../Get-Started/install-standalone-matrixone/">Installed and launched MatrixOne</a>.</li>
 <li>
-<p>Connect to MatrixOne service by MySQL client, please refer to <a href="../../../Get-Started/connect-to-matrixone-server/">Connect to MatrixOne</a>.</p>
+<p>Launch MatrixOne service. Please refer to <a href="../../../Get-Started/install-standalone-matrixone/">Deploy standalone MatrixOne</a>.</p>
+</li>
+<li>
+<p>Connect to MatrixOne service by MySQL client:</p>
 <div class="highlight"><pre><span></span><code>mysql -h IP_ADDRESS -P 6001 -udump -p111
 </code></pre></div>
 </li>
@@ -6084,7 +6088,7 @@ SSL:            Cipher in use is TLS_AES_128_GCM_SHA256
 Current pager:      stdout
 Using outfile:      &#39;&#39;
 Using delimiter:    ;
-Server version:     0.5.1 MatrixOne
+Server version:     0.6.0 MatrixOne
 Protocol version:   10
 Connection:     127.0.0.1 via TCP/IP
 Client characterset:    utf8mb4
@@ -6124,13 +6128,13 @@ Binary data as:     Hexadecimal
       
       
         
-        <a href="../database-ide/" class="md-footer__link md-footer__link--next" aria-label="Next: Database Client IDE" rel="next">
+        <a href="../database-ide/" class="md-footer__link md-footer__link--next" aria-label="Next: Connecting to MatrixOne with Database Client Tool" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Database Client IDE
+              Connecting to MatrixOne with Database Client Tool
             </div>
           </div>
           <div class="md-footer__button md-icon">

@@ -361,7 +361,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Overview/matrixOne-architecture-design/" class="md-nav__link">
+      <a href="../../Overview/matrixone-architecture-design/" class="md-nav__link">
         MatrixOne Architecture Design
       </a>
     </li>
@@ -437,21 +437,7 @@
   
     <li class="md-nav__item">
       <a href="../../Get-Started/install-standalone-matrixone/" class="md-nav__link">
-        Install standalone MatrixOne
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../Get-Started/connect-to-matrixone-server/" class="md-nav__link">
-        Connect to standalone MatrixOne Server
+        Deploy standalone MatrixOne
       </a>
     </li>
   
@@ -554,7 +540,7 @@
   
     <li class="md-nav__item">
       <a href="../../Develop/connect-mo/database-ide/" class="md-nav__link">
-        Database Client IDE
+        Connecting to MatrixOne with Database Client Tool
       </a>
     </li>
   
@@ -1525,6 +1511,20 @@
     <li class="md-nav__item">
       <a href="../../Maintain/backup-restore/" class="md-nav__link">
         Backup and Restore
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Maintain/mount-data-by-docker/" class="md-nav__link">
+        Mount directory to Docker container
       </a>
     </li>
   
@@ -4439,7 +4439,7 @@
   
     <li class="md-nav__item">
       <a href="../../Reference/Data-Types/data-types/" class="md-nav__link">
-        Date Types Overview
+        Data Types Overview
       </a>
     </li>
   
@@ -6238,9 +6238,9 @@
 </code></pre></div>
 <h3 id="2-create-a-new-spring-boot-project-using-intellij-idea">2. Create a new Spring Boot Project Using IntelliJ IDEA</h3>
 <p>Choose <strong>Spring Initializer</strong>, and name the project as you want.</p>
-<p><img alt="image-20221026152318567" src="https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/mybatis/image-20221026152318567.png" /></p>
+<p><img alt="image-20221026152318567" src="https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/mybatis/image-20221026152318567.png?raw=true" /></p>
 <p>Choose <strong>Spring Web</strong>, <strong>MyBatis Framework</strong>, <strong>JDBC API</strong> and <strong>MySQL Driver</strong> as dependencies for this project.</p>
-<p><img alt="image-20221026152447954" src="https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/mybatis/image-20221026152447954.png" /></p>
+<p><img alt="image-20221026152447954" src="https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/mybatis/image-20221026152447954.png?raw=true" /></p>
 <p>Click <strong>Create</strong>,  the project will be created. The dependencies are listed in the <em>pom.xml</em> file. Usually you don't need to modify anything.</p>
 <div class="highlight"><pre><span></span><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
@@ -6361,7 +6361,7 @@ server.port=8080
 </code></pre></div>
 <h2 id="write-code">Write Code</h2>
 <p>After setting up the environment, we write code to implement a simple CRUD application. After finishing coding, you'll have a project structure as below. You can create these packages and java class in advance. We will code the Create, Update, Insert, Delete, Select operations for this demo application.</p>
-<p><img alt="image-20221026155656694" src="https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/mybatis/image-20221026155656694.png" /></p>
+<p><img alt="image-20221026155656694" src="https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/mybatis/image-20221026155656694.png?raw=true" /></p>
 <h3 id="1-usercontrollerjava">1. UserController.java</h3>
 <div class="highlight"><pre><span></span><code>package com.example.mybatisdemo.controller;
 
@@ -6644,7 +6644,7 @@ public class MyBatisDemoApplication {
 </code></pre></div>
 <h2 id="test">Test</h2>
 <p>Build and launch this project.</p>
-<p><img alt="image-20221026161226923" src="https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/mybatis/image-20221026161226923.png" /></p>
+<p><img alt="image-20221026161226923" src="https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/mybatis/image-20221026161226923.png?raw=true" /></p>
 <p>When you see the following messages, the application is well launched and you can open your browser and send HTTP request.</p>
 <div class="highlight"><pre><span></span><code>2022-10-26 16:13:24.030  INFO 60253 --- [           main] c.e.mybatisdemo.MyBatisDemoApplication   : Starting MyBatisDemoApplication on nandeng-macbookpro.local with PID 60253 (/Users/nandeng/IdeaProjects/MyBatisDemo/target/classes started by nandeng in /Users/nandeng/IdeaProjects/MyBatisDemo)
 2022-10-26 16:13:24.035  INFO 60253 --- [           main] c.e.mybatisdemo.MyBatisDemoApplication   : No active profile set, falling back to default profiles: default
@@ -6658,7 +6658,7 @@ public class MyBatisDemoApplication {
 2022-10-26 16:13:26.272  INFO 60253 --- [           main] c.e.mybatisdemo.MyBatisDemoApplication   : Started MyBatisDemoApplication in 2.669 seconds (JVM running for 3.544)
 </code></pre></div>
 <h3 id="1-test-create-table">1. Test Create Table</h3>
-<p><img alt="image-20221026161929338" src="https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/mybatis/image-20221026161929338.png" /></p>
+<p><img alt="image-20221026161929338" src="https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/mybatis/image-20221026161929338.png?raw=true" /></p>
 <p>In MySQL client, we can verify if the table has been successfully created.</p>
 <div class="highlight"><pre><span></span><code>mysql&gt; use test;
 Reading table information for completion of table and column names
@@ -6688,7 +6688,7 @@ PRIMARY KEY (`id`)
 1 row in set (0.01 sec)
 </code></pre></div>
 <h3 id="2-test-add-user">2. Test Add User</h3>
-<p><img alt="image-20221026162317800" src="https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/mybatis/image-20221026162317800.png" /></p>
+<p><img alt="image-20221026162317800" src="https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/mybatis/image-20221026162317800.png?raw=true" /></p>
 <div class="highlight"><pre><span></span><code>mysql&gt; select * from user;
 +------+----------+----------+----------+
 | id   | username | password | address  |
@@ -6698,9 +6698,9 @@ PRIMARY KEY (`id`)
 1 row in set (0.00 sec)
 </code></pre></div>
 <h3 id="3-test-select-user">3. Test Select User</h3>
-<p><img alt="image-20221026162455058" src="https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/mybatis/image-20221026162455058.png" /></p>
+<p><img alt="image-20221026162455058" src="https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/mybatis/image-20221026162455058.png?raw=true" /></p>
 <h3 id="4-test-update-user">4. Test Update User</h3>
-<p><img alt="image-20221026162613066" src="https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/mybatis/image-20221026162613066.png" /></p>
+<p><img alt="image-20221026162613066" src="https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/mybatis/image-20221026162613066.png?raw=true" /></p>
 <div class="highlight"><pre><span></span><code>mysql&gt; select * from user;
 +------+----------+----------+---------+
 | id   | username | password | address |
@@ -6710,7 +6710,7 @@ PRIMARY KEY (`id`)
 1 row in set (0.00 sec)
 </code></pre></div>
 <h3 id="5-test-delete-user">5. Test Delete User</h3>
-<p><img alt="image-20221026162756460" src="https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/mybatis/image-20221026162756460.png" /></p>
+<p><img alt="image-20221026162756460" src="https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/mybatis/image-20221026162756460.png?raw=true" /></p>
 <div class="highlight"><pre><span></span><code>mysql&gt; select * from user;
 Empty set (0.00 sec)
 </code></pre></div>

@@ -13,7 +13,7 @@
     
     
       
-        <title>**MatrixOne Architecture** - MatrixOne Docs</title>
+        <title>Mount directory to Docker container - MatrixOne Docs</title>
       
     
     
@@ -61,7 +61,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#matrixone-architecture" class="md-skip">
+        <a href="#mount-directory-to-docker-container" class="md-skip">
           Skip to content
         </a>
       
@@ -101,7 +101,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              **MatrixOne Architecture**
+              Mount directory to Docker container
             
           </span>
         </div>
@@ -193,13 +193,15 @@
         
   
   
+    
+  
 
 
   
   
   
     <li class="md-tabs__item">
-      <a href="../../.." class="md-tabs__link">
+      <a href="../../.." class="md-tabs__link md-tabs__link--active">
         MatrixOne
       </a>
     </li>
@@ -261,12 +263,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" checked>
       
       
       
@@ -329,7 +333,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../matrixone-introduction/" class="md-nav__link">
+      <a href="../../Overview/matrixone-introduction/" class="md-nav__link">
         MatrixOne Introduction
       </a>
     </li>
@@ -343,7 +347,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../matrixone-feature-list/" class="md-nav__link">
+      <a href="../../Overview/matrixone-feature-list/" class="md-nav__link">
         MatrixOne Feature List
       </a>
     </li>
@@ -357,7 +361,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../matrixOne-architecture-design/" class="md-nav__link">
+      <a href="../../Overview/matrixone-architecture-design/" class="md-nav__link">
         MatrixOne Architecture Design
       </a>
     </li>
@@ -371,7 +375,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../mysql-compatibility/" class="md-nav__link">
+      <a href="../../Overview/mysql-compatibility/" class="md-nav__link">
         MySQL Compatibility
       </a>
     </li>
@@ -385,7 +389,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../whats-new/" class="md-nav__link">
+      <a href="../../Overview/whats-new/" class="md-nav__link">
         What's New
       </a>
     </li>
@@ -433,21 +437,7 @@
   
     <li class="md-nav__item">
       <a href="../../Get-Started/install-standalone-matrixone/" class="md-nav__link">
-        Install standalone MatrixOne
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../Get-Started/connect-to-matrixone-server/" class="md-nav__link">
-        Connect to standalone MatrixOne Server
+        Deploy standalone MatrixOne
       </a>
     </li>
   
@@ -548,7 +538,7 @@
   
     <li class="md-nav__item">
       <a href="../../Develop/connect-mo/database-ide/" class="md-nav__link">
-        Database Client IDE
+        Connecting to MatrixOne with Database Client Tool
       </a>
     </li>
   
@@ -1309,12 +1299,14 @@
               
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_6" type="checkbox" id="__nav_1_6" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_6" type="checkbox" id="__nav_1_6" checked>
       
       
       
@@ -1337,7 +1329,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Maintain/backup-restore/" class="md-nav__link">
+      <a href="../backup-restore/" class="md-nav__link">
         Backup and Restore
       </a>
     </li>
@@ -1349,9 +1341,71 @@
               
   
   
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Mount directory to Docker container
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Mount directory to Docker container
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mount-the-data-directory" class="md-nav__link">
+    Mount the data directory
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mount-the-customized-configuration-file" class="md-nav__link">
+    Mount the customized configuration file
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
   
     <li class="md-nav__item">
-      <a href="../../Maintain/mo-directory-structure/" class="md-nav__link">
+      <a href="../mo-directory-structure/" class="md-nav__link">
         MatrixOne Directory Structure
       </a>
     </li>
@@ -4253,7 +4307,7 @@
   
     <li class="md-nav__item">
       <a href="../../Reference/Data-Types/data-types/" class="md-nav__link">
-        Date Types Overview
+        Data Types Overview
       </a>
     </li>
   
@@ -5874,50 +5928,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#architecture" class="md-nav__link">
-    Architecture
+  <a href="#mount-the-data-directory" class="md-nav__link">
+    Mount the data directory
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#cluster-management-layer" class="md-nav__link">
-    Cluster Management Layer
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#serverless-layer" class="md-nav__link">
-    Serverless Layer
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#logreliability-layer" class="md-nav__link">
-    Log(Reliability) Layer
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#storage-layer" class="md-nav__link">
-    Storage Layer
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#storage-provision-layer" class="md-nav__link">
-    Storage Provision Layer
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#learn-more" class="md-nav__link">
-    Learn More
+  <a href="#mount-the-customized-configuration-file" class="md-nav__link">
+    Mount the customized configuration file
   </a>
   
 </li>
@@ -5934,46 +5953,106 @@
             <article class="md-content__inner md-typeset">
               
                 
-<a href="https://github.com/matrixorigin/matrixone/edit/main/docs/en/MatrixOne/Overview/matrixone-architecture.md" title="Edit this page" class="md-content__button md-icon">
+<a href="https://github.com/matrixorigin/matrixone/edit/main/docs/en/MatrixOne/Maintain/mount-data-by-docker.md" title="Edit this page" class="md-content__button md-icon">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
 </a>
 
 
 
-<h1 id="matrixone-architecture"><strong>MatrixOne Architecture</strong></h1>
-<h2 id="architecture"><strong>Architecture</strong></h2>
-<p>MatrixOne is the first open-source distributed HSTAP database that supports OLTP, OLAP, and Streaming with a single auto-tuning storage engine.
-As a redefinition of the HTAP database, HSTAP aims to meet all the needs of Transactional Processing (TP) and Analytical Processing (AP) within a single database. Compared with the traditional HTAP, HSTAP emphasizes its built-in streaming capability used for connecting TP and AP tables. This provides users with an experience that a database can be used just like a Big Data platform, with which many users are already familiar thanks to the Big Data boom.</p>
-<p>With minimal integration efforts, MatrixOne frees users from the limitations of Big Data and provides one-stop coverage for all TP and AP scenarios for enterprises.</p>
-<p>MatrixOne is redesigned from scratch and introduces many innovations as well as many best practices in the other DBMS. It adopts a disaggregated storage and computes architecture, where data are stored on S3 object storage in the cloud to achieve low cost, and the compute nodes are stateless and can be started at will to achieve the ultimate elasticity. In the case of on-premises deployment, MatrixOne can utilize the user's HDFS or other supported distributed file system to save data. MatrixOne also comes with an S3-compatible built-in alternative to ensure the elasticity, high reliability, and high performance of its storage without relying on any external components. The architecture is as follows:
-<img alt="MatrixOne Architecture" src="https://github.com/matrixorigin/artwork/blob/main/docs/overview/matrixone_new_arch.png?raw=true" /></p>
-<p>The architecture of MatrixOne is divided into several layers:</p>
-<h2 id="cluster-management-layer"><strong>Cluster Management Layer</strong></h2>
-<p>Being responsible for cluster management, it interacts with Kubernetes to obtain resources dynamically when in the cloud-native environment, while in the on-premises deployment, it gets hold of resources based on the configuration. Cluster status is continuously monitored with the role of each node allocated based on resource information. Maintenance works are carried out to ensure that all system components are up and running despite occasional node and network failures. It rebalances the loads on nodes when necessary as well. Major components in this layer are:</p>
-<ul>
-<li>Prophet Scheduler: take charge of load balancing and node keep-alive.</li>
-<li>Resource Manager: being responsible for physical resources provision.</li>
-</ul>
-<h2 id="serverless-layer"><strong>Serverless Layer</strong></h2>
-<p>Serverless Layer is a general term for a series of stateless nodes, which, as a whole, contains three categories:</p>
-<ul>
-<li>Background tasks: the most important one is called Offload Worker, which is responsible for offloading expensive compaction tasks and flushing data to S3 storage.</li>
-<li>SQL compute nodes: responsible for executing SQL requests, here divided into write nodes and read nodes. The former also provides the ability to read the freshest data.</li>
-<li>Stream task processing node: responsible for executing stream processing requests.</li>
-</ul>
-<h2 id="logreliability-layer"><strong>Log(Reliability) Layer</strong></h2>
-<p>As MatrixOne's Single Source of Truth, data is considered as persistently stored in MatrixOne once it is written into the Log Layer. It is built upon our world-class expertise in the Replicated State Machine model to guarantee state-of-the-art high throughput, high availability, and strong consistency for our data. Following a fully modular and disaggregated design by itself, it is also the central component that helps to decouple the storage and compute layers. This in turn earns our architecture much higher elasticity when compared with traditional NewSQL architecture.</p>
-<h2 id="storage-layer"><strong>Storage Layer</strong></h2>
-<p>The storage layer transforms the incoming data from the Log Layer into an efficient form for future processing and storage. This includes cache maintenance for fast accessing data that has already been written to S3. In MatrixOne, TAE (Transactional Analytic Engine) is the primary interface exposed by the Storage Layer, which can support both row and columnar storage together with transaction capabilities. Besides, the Storage Layer includes other internally used storage capabilities as well, e.g. the intermediate storage for streaming.</p>
-<h2 id="storage-provision-layer"><strong>Storage Provision Layer</strong></h2>
-<p>As an infrastructure agnostic DBMS, MatrixOne stores data in shared storage of S3 / HDFS, or local disks, on-premise servers, hybrid, and any cloud, or even smart devices. The Storage Provision Layer hides such complexity from upper layers by just presenting them with a unified interface for accessing such diversified storage resources.</p>
-<h2 id="learn-more"><strong>Learn More</strong></h2>
-<p>This page outlines the overall architecture design of MatrixOne. For information on other options that are available when trying out MatrixOne, see the following:</p>
-<ul>
-<li><a href="../../Get-Started/install-standalone-matrixone/">Install MatrixOne</a></li>
-<li><a href="../mysql-compatibility/">MySQL Compatibility</a></li>
-<li><a href="../whats-new/">What's New</a></li>
-</ul>
+<h1 id="mount-directory-to-docker-container">Mount directory to Docker container</h1>
+<p>This document will teach you how to mount the <em>data directory</em> or your <em>customized configuration file</em> to the Docker container when you launch MatrixOne by using Docker.</p>
+<h2 id="mount-the-data-directory">Mount the <em>data directory</em></h2>
+<p>To ensure the safety of the data directory, mount the local data directory to the Docker container by the following steps:</p>
+<ol>
+<li>
+<p>To check if MatrixOne has been running in Docker, execute the following command:</p>
+<div class="highlight"><pre><span></span><code>docker ps -a
+</code></pre></div>
+</li>
+<li>
+<p>To stop the running container if MatrixOne has been running in Docker, execute the following command:</p>
+<div class="highlight"><pre><span></span><code>docker stop &lt;containerID&gt;
+docker rm &lt;containerID&gt;
+</code></pre></div>
+<p>Skip this step if MatrixOne is not running in Docker.</p>
+</li>
+<li>
+<p>Mount the local <strong>empty directory</strong> to the Docker container directory <em>/mo-data</em>, execute the following command:</p>
+<div class="highlight"><pre><span></span><code>sudo docker run --name &lt;name&gt; --privileged -d -p <span class="m">6001</span>:6001 -v <span class="si">${</span><span class="nv">local_data_path</span><span class="si">}</span>/mo-data:/mo-data:rw matrixorigin/matrixone:0.6.0
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Parameters</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>${local_data_path}/mo-data:/mo-data</td>
+<td>mount the local disk directory <em>${local_data_path}/mo-data</em> to the container directory <em>/mo-data</em> <br> <strong>Tips</strong>: The local data directory to be mounted must be an empty directory.</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ol>
+<h2 id="mount-the-customized-configuration-file">Mount the <em>customized configuration file</em></h2>
+<p>If you need to modify the configuration file. In that case, it would be best to copy the configuration file in Docker to your local directory and then mount the local directory where the configuration file is stored to the Docker container directory. Refer to the following steps to mount the configuration file to the Docker container:</p>
+<ol>
+<li>
+<p>To check if MatrixOne has been running in Docker, execute the following command:</p>
+<div class="highlight"><pre><span></span><code>docker ps -a
+</code></pre></div>
+</li>
+<li>
+<p>To launch MatrixOne MatrixOne has not been running in Docker, execute the following command:</p>
+<div class="highlight"><pre><span></span><code>docker run -d -p 6001:6001 --name matrixone matrixorigin/matrixone:0.6.0
+</code></pre></div>
+</li>
+<li>
+<p>Check the containerID that MatrixOne has been running in Docker, and copy the configuration file directory to the local directory:</p>
+<div class="highlight"><pre><span></span><code>docker ps -a
+docker cp &lt;containerID&gt;:/etc .
+</code></pre></div>
+</li>
+<li>
+<p>To stop the MatrixOne when the copy is completed, execute the following command:</p>
+<div class="highlight"><pre><span></span><code>docker stop &lt;containerID&gt;
+docker rm &lt;containerID&gt;
+</code></pre></div>
+</li>
+<li>
+<p>(Optional) Modify the configuration file and save it.</p>
+</li>
+<li>
+<p>Mount the configuration file to the Docker container directory and launch MatrixOne. Execute the following command:</p>
+<div class="highlight"><pre><span></span><code>sudo docker run --name &lt;name&gt; --privileged -d -p <span class="m">6001</span>:6001 -v <span class="si">${</span><span class="nv">local_config_path</span><span class="si">}</span>/etc:/etc:rw  --entrypoint <span class="s2">&quot;/mo-service&quot;</span> matrixorigin/matrixone:0.6.0 -launch /etc/quickstart/launch.toml
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Parameters</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>${local_config_path}/etc:/etc</td>
+<td>mount the local customize configration directory <em>${local_config_path}/etc</em> to the container directory <em>/etc</em></td>
+</tr>
+<tr>
+<td>--entrypoint "/mo-service"</td>
+<td>Specifies that the container starts the MatrixOne service</td>
+</tr>
+<tr>
+<td>-launch /etc/quickstart/launch.toml</td>
+<td>launch mode in <em>/etc/</em></td>
+</tr>
+</tbody>
+</table>
+</li>
+</ol>
+<p>For more information on the description of <em>Docker run</em>, run the commands <code>docker run --help</code>.</p>
 
               
             </article>
@@ -5983,6 +6062,41 @@ As a redefinition of the HTAP database, HSTAP aims to meet all the needs of Tran
       </main>
       
         <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../backup-restore/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Backup and Restore" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Backup and Restore
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../mo-directory-structure/" class="md-footer__link md-footer__link--next" aria-label="Next: MatrixOne Directory Structure" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              MatrixOne Directory Structure
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">

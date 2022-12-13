@@ -361,7 +361,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Overview/matrixOne-architecture-design/" class="md-nav__link">
+      <a href="../../../../Overview/matrixone-architecture-design/" class="md-nav__link">
         MatrixOne Architecture Design
       </a>
     </li>
@@ -437,21 +437,7 @@
   
     <li class="md-nav__item">
       <a href="../../../../Get-Started/install-standalone-matrixone/" class="md-nav__link">
-        Install standalone MatrixOne
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../Get-Started/connect-to-matrixone-server/" class="md-nav__link">
-        Connect to standalone MatrixOne Server
+        Deploy standalone MatrixOne
       </a>
     </li>
   
@@ -554,7 +540,7 @@
   
     <li class="md-nav__item">
       <a href="../../../connect-mo/database-ide/" class="md-nav__link">
-        Database Client IDE
+        Connecting to MatrixOne with Database Client Tool
       </a>
     </li>
   
@@ -1444,6 +1430,20 @@
     <li class="md-nav__item">
       <a href="../../../../Maintain/backup-restore/" class="md-nav__link">
         Backup and Restore
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Maintain/mount-data-by-docker/" class="md-nav__link">
+        Mount directory to Docker container
       </a>
     </li>
   
@@ -4358,7 +4358,7 @@
   
     <li class="md-nav__item">
       <a href="../../../../Reference/Data-Types/data-types/" class="md-nav__link">
-        Date Types Overview
+        Data Types Overview
       </a>
     </li>
   
@@ -6062,14 +6062,13 @@
 <p>MatrixOne can read the Simple Storage Service (S3) files and import data to MatrixOne database.</p>
 <p>Currently, S3 supports AWS and mainstream cloud vendors in China. In addition, files on S3 support compressed formats and regular expression rules for file paths to read multiple files. For example, "/Users/*.txt" will read all files ending with <em>.txt</em>.</p>
 <h2 id="before-you-start">Before you start</h2>
-<ul>
-<li>Make sure you have already <a href="https://docs.matrixorigin.io/0.5.1/MatrixOne/Get-Started/install-standalone-matrixone/">installed and launched MatrixOne</a>.</li>
-<li>Use MySQL client to <a href="https://docs.matrixorigin.io/0.5.1/MatrixOne/Get-Started/connect-to-matrixone-server/">connect to MatrixOne</a>.</li>
-</ul>
-<p>If you use the <code>docker</code> install, please make sure that you have a data directory mounted to the container. For example,</p>
-<div class="highlight"><pre><span></span><code>docker run -d -p 6001:6001 -v ~/tmp/docker_loaddata_demo:/ssb-dbgen-path:rw --name matrixone matrixorigin/matrixone:0.5.1
+<p>Make sure you have already <a href="../../../../Get-Started/install-standalone-matrixone/">Deployed standalone MatrixOne</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you install MatrixOne by <code>docker</code>, the directory is inside the docker image by default. To work with local directory, you need to bind a local directory to the container. In the following example, the local file system path <code>${local_data_path}/mo-data</code> is binded to the MatrixOne docker image, with a mapping to the <code>/mo-data</code> path. For more information, see <a href="https://www.freecodecamp.org/news/docker-mount-volume-guide-how-to-mount-a-local-directory/">Docker Mount Volume tutorial</a>.</p>
+</div>
+<div class="highlight"><pre><span></span><code>sudo docker run --name &lt;name&gt; --privileged -d -p 6001:6001 -v ${local_data_path}/mo-data:/mo-data:rw matrixorigin/matrixone:0.6.0
 </code></pre></div>
-<p>This typical installation maps its local path <em>~/tmp/docker_loaddata_demo</em> to a inner-container path <em>/ssb-dbgen-path</em>.</p>
 <h2 id="basic-command">Basic command</h2>
 <div class="highlight"><pre><span></span><code><span class="k">LOAD</span><span class="w"> </span><span class="k">DATA</span><span class="w"></span>
 <span class="w">    </span><span class="p">[</span><span class="w"> </span><span class="n">INFILE</span><span class="w"> </span><span class="s1">&#39;string&#39;</span><span class="w"></span>
