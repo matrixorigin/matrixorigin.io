@@ -1,7 +1,7 @@
 # Explore SQL with MatrixOne
 
 MatrixOne is compatible with MySQL, you can use MySQL statements directly in most of the cases. For unsupported features, see [MySQL Compatibility](../Overview/mysql-compatibility.md), and for more information on connecting to MatriOne, see
-[Using client connect to the MatrixOne server](../Develop/connect-mo/database-ide.md).
+[Using client connect to the MatrixOne server](../Develop/connect-mo/database-client-tools.md).
 
 ## What is SQL?
 

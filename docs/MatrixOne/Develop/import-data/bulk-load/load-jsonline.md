@@ -26,7 +26,7 @@ load data infile {'filepath'='data.txt', 'format'='jsonline','jsondata'='object'
 |Parameter|Description|
 |:-:|:-:|
 |filepath|The file path.|
-|compression|Compression format, BZIP2, GZIP, LZO, SNAPPY, ZLIB are supported.|
+|compression|Compression format, BZIP2, GZIP are supported.|
 |format|format, the file format *.csv* and *.jsonline* are supported.|
 |jsondata|jsondata format. object and array are supported. If `format` is *jsonline*, must specify *jsondata*.|
 
@@ -101,4 +101,4 @@ load data infile {'filepath'='data.txt', 'format'='jsonline','jsondata'='object'
     ```
 
 !!! note
-    If you use Docker to launch MatrixOne, when you try to import the jsonline file, please make sure that you have a data directory mounted to the container. 
+    If you use Docker to launch MatrixOne, when you try to import the jsonline file, please make sure that you have a data directory mounted to the container.
