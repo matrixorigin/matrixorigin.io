@@ -52,6 +52,7 @@ For more information on deployment, see [Deployment FAQs](../../FAQs/deployment-
 1. As MatrixOne 0.6 is not fully compatible with MySQL 8.0, we reset the MatrixOne server version to 0.6.0 for adapting Navicat connection.
 
 Before launch MatrixOne, insert the following lines in the `[cn.frontend]` section of the `etc/launch-tae-CN-tae-DN/cn.toml` file in MatrixOne folder, then launch MatrixOne. 
+
     ```
     [cn.frontend]
     ServerVersionPrefix = " "
