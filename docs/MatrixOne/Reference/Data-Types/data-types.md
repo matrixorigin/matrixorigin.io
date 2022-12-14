@@ -31,15 +31,7 @@ Reference: <https://dev.mysql.com/doc/refman/8.0/en/data-types.html>
 | char      | 24 byte  |CHAR| Fixed length string |
 | varchar   | 24 byte  |VARCHAR| Variable length string|
 | text      | 1073741824 bytes| TEXT |Long text data|
-
-## **Binary Types**
-
-|  Data Type   | Size  | Syntax | Description|
-|  ----  | ----  |   ----  | ---- |
-| tinyblob  | 255 bytes   |TINYBLOB|A binary string of up to 255 characters|
-| blob      | 65535 bytes   |BLOB|Long text data in binary form|
-| mediumblob| 16777215 bytes  |MEDIUMBLOB|Medium length text data in binary form|
-| longblob  | 4294967295 bytes  |LONGBLOB|Large text data in binary form|
+| blob      | 1073741824 bytes| BLOB |Long text data in binary form|
 
 ## **JSON Types**
 
