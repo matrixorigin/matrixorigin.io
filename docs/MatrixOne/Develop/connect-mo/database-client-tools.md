@@ -65,7 +65,6 @@ Before launch MatrixOne, insert the following lines in the `[cn.frontend]` secti
 !!! note
     If you use Docker install method and need to modify this configuration file, please refer to [Mount configuration file with Docker](../../Maintain/mount-data-by-docker.md).
 
-
 2. Download and install [Navicat](https://www.navicat.com/en/products).
 
 3. Open Navicat, click **Connection > MySQL**, and fill in the following parameters in the pop-up window:
@@ -83,7 +82,6 @@ Before launch MatrixOne, insert the following lines in the `[cn.frontend]` secti
 
 5. To connect to the MatrixOne server, double-click **MatrixOne** in the database directory on the left. 
 
-
 6. Once you connect to MatrixOne, you will see 6 default system databases. And on the right you will see the information about this connection.
 
 ![navicat_databases](https://github.com/matrixorigin/artwork/blob/main/docs/develop/navicat-databases.png?raw=true)
@@ -96,7 +94,6 @@ Before launch MatrixOne, insert the following lines in the `[cn.frontend]` secti
 
 2. Open DBeaver, click **Connection**, select **MySQL**, then click **Next**, and fill in the following parameters in the pop-up window. Click **Finish**, save the configuration.
 
-
     - **Host**: 127.0.0.1
     - **Port**: 6001
     - **User Name**: dump
@@ -106,8 +103,6 @@ Before launch MatrixOne, insert the following lines in the `[cn.frontend]` secti
 
 ![dbeaver-connection](https://github.com/matrixorigin/artwork/blob/main/docs/develop/dbeaver-connection.png?raw=true)
 
-
-
 3. To connect to the MatrixOne server, double-click **127.0.0.1** in the database navigation on the left. You will see the four default system databases. 
 
 ![dbeaver-databases](https://github.com/matrixorigin/artwork/blob/main/docs/develop/dbeaver-databases.png?raw=true)
@@ -116,4 +111,3 @@ Before launch MatrixOne, insert the following lines in the `[cn.frontend]` secti
 
 ![dbeaver-show-system-objects](https://github.com/matrixorigin/artwork/blob/main/docs/develop/show-system-objects.png?raw=true)
 ![dbeaver-databases-with-view](https://github.com/matrixorigin/artwork/blob/main/docs/develop/dbeaver-databases-with-view.png?raw=true)
-
