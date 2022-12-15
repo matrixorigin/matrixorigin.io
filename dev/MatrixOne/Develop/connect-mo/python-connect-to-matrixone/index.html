@@ -171,7 +171,7 @@
     
     
       <div class="md-header__source">
-        <a href="https://github.com/matrixorigin/matrixone" title="Go to repository" class="md-source" data-md-component="source">
+        <a href="https://github.com/matrixorigin/matrixorigin.io" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
@@ -244,7 +244,7 @@
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/matrixorigin/matrixone" title="Go to repository" class="md-source" data-md-component="source">
+      <a href="https://github.com/matrixorigin/matrixorigin.io" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
@@ -541,7 +541,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../database-ide/" class="md-nav__link">
+      <a href="../database-client-tools/" class="md-nav__link">
         Connecting to MatrixOne with Database Client Tool
       </a>
     </li>
@@ -582,7 +582,21 @@
   
     <li class="md-nav__item">
       <a href="../java-connect-to-matrixone/connect-mo-with-jdbc/" class="md-nav__link">
-        JDBC
+        Connect MatrixOne with JDBC
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../java-connect-to-matrixone/connect-mo-with-orm/" class="md-nav__link">
+        Connect MatrixOne with Java ORMs
       </a>
     </li>
   
@@ -645,6 +659,13 @@
         <li class="md-nav__item">
   <a href="#using-python-pymysql-connect-to-matrixone" class="md-nav__link">
     Using Python pymysql connect to MatrixOne
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-sqlalchemy-connect-to-matrixone" class="md-nav__link">
+    Using sqlalchemy connect to MatrixOne
   </a>
   
 </li>
@@ -1170,20 +1191,6 @@
     <li class="md-nav__item">
       <a href="../../../Tutorial/springboot-mybatis-crud-demo/" class="md-nav__link">
         MyBatis
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../Tutorial/connect_mo_with_orm/" class="md-nav__link">
-        ORMs
       </a>
     </li>
   
@@ -4371,8 +4378,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Reference/Data-Types/blob-type/" class="md-nav__link">
-        BLOB Data Type
+      <a href="../../../Reference/Data-Types/blob-text-type/" class="md-nav__link">
+        BLOB and TEXT Type
       </a>
     </li>
   
@@ -5951,6 +5958,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#using-sqlalchemy-connect-to-matrixone" class="md-nav__link">
+    Using sqlalchemy connect to MatrixOne
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#reference" class="md-nav__link">
     Reference
   </a>
@@ -5969,31 +5983,125 @@
             <article class="md-content__inner md-typeset">
               
                 
-<a href="https://github.com/matrixorigin/matrixone/edit/main/docs/en/MatrixOne/Develop/connect-mo/python-connect-to-matrixone.md" title="Edit this page" class="md-content__button md-icon">
+<a href="https://github.com/matrixorigin/matrixorigin.io/edit/main/docs/MatrixOne/Develop/connect-mo/python-connect-to-matrixone.md" title="Edit this page" class="md-content__button md-icon">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
 </a>
 
 
 
 <h1 id="connecting-to-matrixone-with-python">Connecting to MatrixOne with Python</h1>
-<p>MatrixOne supports Python connection.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>MatrixOne only supports <code>pymysql</code> driver in 0.5 release, <code>sqlalchemy</code> and <code>mysql-connector</code> are not supported yet.</p>
-</div>
+<p>MatrixOne supports Python connection, in 0.6.0 release, <code>pymysql</code> and <code>sqlalchemy</code> drivers are supported. This tutorial will walk you through how to connect MatrixOne by these two python drivers.</p>
 <h2 id="before-you-start">Before you start</h2>
-<p>Make sure you have already <a href="../../../Get-Started/install-standalone-matrixone/">installed and launched MatrixOne</a>.</p>
+<ol>
+<li>Make sure you have already <a href="../../../Get-Started/install-standalone-matrixone/">installed and launched MatrixOne</a>.</li>
+<li>Make sure you have already installed <a href="https://www.python.org/downloads/">Python 3.8(or plus) version</a>.  </li>
+</ol>
+<div class="highlight"><pre><span></span><code>#To check with Python installation and its version
+python3 -V
+</code></pre></div>
+<ol>
+<li>Make sure you have already installed MySQL.</li>
+</ol>
 <h2 id="using-python-pymysql-connect-to-matrixone">Using Python pymysql connect to MatrixOne</h2>
+<p>The PyMySQL is a pure-Python MySQL client library.</p>
 <ol>
 <li>
-<p>Download and install pymysql tool:</p>
+<p>Download and install pymysql and cryptography tool:</p>
 <div class="highlight"><pre><span></span><code>pip3 install pymysql
+pip3 install cryptography
+
+#If you are in China mainland and have a low downloading speed, you can speed up the download by following commands.
+pip3 install pymysql -i https://pypi.tuna.tsinghua.edu.cn/simple
+pip3 install cryptography -i https://pypi.tuna.tsinghua.edu.cn/simple
 </code></pre></div>
 </li>
 <li>
-<p>Call <code>import pymysql</code> in your application, for more information on  <code>pymysql</code>, see <a href="https://pypi.org/project/PyMySQL/">https://pypi.org/project/PyMySQL/</a>.</p>
+<p>Connect to MatrixOne by MySQL client. Create a new database named <em>test</em>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n">test</span><span class="p">;</span><span class="w"></span>
+</code></pre></div>
+</li>
+<li>
+<p>Create a plain text file <code>pymysql_connect_matrixone.py</code> and put the code below.</p>
 </li>
 </ol>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/usr/bin/python3</span>
+
+<span class="kn">import</span> <span class="nn">pymysql</span>
+
+<span class="c1"># Open database connection</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">pymysql</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+        <span class="n">host</span><span class="o">=</span><span class="s1">&#39;127.0.0.1&#39;</span><span class="p">,</span>
+        <span class="n">port</span><span class="o">=</span><span class="mi">6001</span><span class="p">,</span>
+        <span class="n">user</span><span class="o">=</span><span class="s1">&#39;dump&#39;</span><span class="p">,</span> 
+        <span class="n">password</span> <span class="o">=</span> <span class="s2">&quot;111&quot;</span><span class="p">,</span>
+        <span class="n">db</span><span class="o">=</span><span class="s1">&#39;test&#39;</span><span class="p">,</span>
+        <span class="p">)</span>
+<span class="c1"># prepare a cursor object using cursor() method</span>
+<span class="n">cursor</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+
+<span class="c1"># execute SQL query using execute() method.</span>
+<span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT VERSION()&quot;</span><span class="p">)</span>
+
+<span class="c1"># Fetch a single row using fetchone() method.</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Database version : </span><span class="si">%s</span><span class="s2"> &quot;</span> <span class="o">%</span> <span class="n">data</span><span class="p">)</span>
+
+<span class="c1"># disconnect from server</span>
+<span class="n">db</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></div>
+<ol>
+<li>Execute this python file in the command line terminal.</li>
+</ol>
+<div class="highlight"><pre><span></span><code>&gt; python3 pymysql_connect_matrixone.py
+Database version : 8.0.30-MatrixOne-v0.6.0
+</code></pre></div>
+<h2 id="using-sqlalchemy-connect-to-matrixone">Using sqlalchemy connect to MatrixOne</h2>
+<p>SQLAlchemy is the Python SQL toolkit and Object Relational Mapper(ORM) that gives application developers the full power and flexibility of SQL.</p>
+<ol>
+<li>
+<p>Download and install sqlalchemy tool:</p>
+<div class="highlight"><pre><span></span><code>pip3 install sqlalchemy
+
+#If you are in China mainland and have a low downloading speed, you can speed up the download by following commands.
+pip3 install sqlalchemy -i https://pypi.tuna.tsinghua.edu.cn/simple
+</code></pre></div>
+</li>
+<li>
+<p>Connect to MatrixOne by MySQL client. Create a new database named <em>test</em>, a new table named <em>student</em> and insert two records.</p>
+</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n">test</span><span class="p">;</span><span class="w"></span>
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="n">use</span><span class="w"> </span><span class="n">test</span><span class="p">;</span><span class="w"></span>
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">student</span><span class="w"> </span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="nb">int</span><span class="p">);</span><span class="w"></span>
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">student</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="ss">&quot;tom&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">11</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="ss">&quot;alice&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;10&quot;</span><span class="p">);</span><span class="w"></span>
+</code></pre></div>
+<ol>
+<li>Create a plain text file <code>sqlalchemy_connect_matrixone.py</code> and put the code below,</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/usr/bin/python3</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span><span class="p">,</span> <span class="n">text</span>
+
+<span class="c1"># Open database connection</span>
+<span class="n">my_conn</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s2">&quot;mysql+mysqldb://dump:111@127.0.0.1:6001/test&quot;</span><span class="p">)</span>
+
+<span class="c1"># execute SQL query using execute() method.</span>
+<span class="n">query</span><span class="o">=</span><span class="n">text</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM student LIMIT 0,10&quot;</span><span class="p">)</span>
+<span class="n">my_data</span><span class="o">=</span><span class="n">my_conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+
+<span class="c1"># print SQL result</span>
+<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">my_data</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;name:&quot;</span><span class="p">,</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;age:&quot;</span><span class="p">,</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;age&quot;</span><span class="p">])</span>
+</code></pre></div>
+<ol>
+<li>Execute this python file in the command line terminal.</li>
+</ol>
+<div class="highlight"><pre><span></span><code>python3 sqlalchemy_connect_matrixone.py
+name: tom
+age: 11
+name: alice
+age: 10
+</code></pre></div>
 <h2 id="reference">Reference</h2>
 <p>For the example about using pymysql conn to MatrixOne, see<a href="../../../Tutorial/develop-python-application/">Build a simple stock analysis Python App with MatrixOne</a>.</p>
 
@@ -6009,7 +6117,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../java-connect-to-matrixone/connect-mo-with-jdbc/" class="md-footer__link md-footer__link--prev" aria-label="Previous: JDBC" rel="prev">
+        <a href="../java-connect-to-matrixone/connect-mo-with-orm/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Connect MatrixOne with Java ORMs" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -6018,7 +6126,7 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              JDBC
+              Connect MatrixOne with Java ORMs
             </div>
           </div>
         </a>
