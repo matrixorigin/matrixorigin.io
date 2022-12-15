@@ -110,6 +110,7 @@ create table dates (
         d_date char (18),
         d_dayofweek char (9),
         d_month char (9),
+        d_year int,
         d_yearmonthnum int,
         d_yearmonth char (7),
         d_daynuminweek varchar(12),

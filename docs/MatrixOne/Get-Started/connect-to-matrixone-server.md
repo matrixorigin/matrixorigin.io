@@ -100,4 +100,4 @@ Currently, MatrixOne only supports the TCP listener.
 ## Reference
 
 For more information on connecting to MatriOne, see
-[Using client connect to the MatrixOne server](../Develop/connect-mo/database-ide.md),[Connecting to MatrixOne with JDBC](../Develop/connect-mo/java-connect-to-matrixone/connect-mo-with-jdbc.md), and [Connecting to MatrixOne with Python](../Develop/connect-mo/python-connect-to-matrixone.md).
+[Using client connect to the MatrixOne server](../Develop/connect-mo/database-client-tools.md),[Connecting to MatrixOne with JDBC](../Develop/connect-mo/java-connect-to-matrixone/connect-mo-with-jdbc.md), and [Connecting to MatrixOne with Python](../Develop/connect-mo/python-connect-to-matrixone.md).
