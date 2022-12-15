@@ -8,11 +8,9 @@ MO-Tester is a java-based tester suite for MatrixOne. It has built a whole toolc
 
 MO-Tester content locations:
 
-* *Cases*: <https://github.com/matrixorigin/matrixone/tree/main/test/cases>
+* *Cases*: <https://github.com/matrixorigin/matrixone/tree/main/test/distributed/cases>
 
-* *Result*: <https://github.com/matrixorigin/mo-tester/tree/main/result>
-
-    + *Result* can also generated in the path of [/cases](https://github.com/matrixorigin/matrixone/tree/main/test/cases/), for example, [/cases/auto_increment](https://github.com/matrixorigin/matrixone/tree/main/test/cases/auto_increment).
+* *Result* is generated in the path of **/cases**, for example, [/cases/auto_increment](https://github.com/matrixorigin/matrixone/tree/main/test/distributed/cases/auto_increment).
 
 * *Report*: once finished running, a `mo-tester/report` will be generated in the local directory.
 
