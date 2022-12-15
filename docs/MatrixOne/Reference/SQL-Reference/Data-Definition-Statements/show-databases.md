@@ -30,3 +30,4 @@ Database information is also available from the `INFORMATION_SCHEMA` SCHEMATA ta
 | demo_1             |
 +--------------------+
 7 rows in set (0.00 sec)
+```

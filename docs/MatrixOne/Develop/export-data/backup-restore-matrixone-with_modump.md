@@ -89,7 +89,7 @@ Restoring a MatrixOne database using the exported *.sql* file is simple. To rest
 Connect to MatrixOne with MySQL client in the same server, and make sure the exported *.sql* file is also in the same machine as the MySQL client.
 
 ```
-mysql> create database t if not exists;
+mysql> create database if not exists t;
 mysql> source /YOUR_SQL_FILE_PATH/t.sql
 ```
 
