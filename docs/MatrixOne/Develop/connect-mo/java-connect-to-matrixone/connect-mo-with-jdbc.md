@@ -8,7 +8,7 @@ Prerequisite to understand Java Database Connectivity with MatrixOne, make sure 
 
 1. Make sure you have already [installed and launched MatrixOne](../../../Get-Started/install-standalone-matrixone.md).
 2. Make sure you have already installed [JDK 8+ version](https://www.oracle.com/sg/java/technologies/javase/javase8-archive-downloads.html).
-3. Make sure you have already installed MySQL.
+3. Make sure you have already installed MySQL installed.
 4. Make sure you have already installed JAVA IDE, this document uses [IntelliJ IDEA](https://www.jetbrains.com/idea/) as an example, you can also download other IDE.
 
 ## Steps
