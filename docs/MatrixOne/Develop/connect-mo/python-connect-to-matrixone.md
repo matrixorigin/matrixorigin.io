@@ -28,7 +28,7 @@ The PyMySQL is a pure-Python MySQL client library.
     pip3 install pymysql -i https://pypi.tuna.tsinghua.edu.cn/simple
     pip3 install cryptography -i https://pypi.tuna.tsinghua.edu.cn/simple
     ```
-    
+
 2. Connect to MatrixOne by MySQL client. Create a new database named *test*.
 
     ```sql
@@ -37,40 +37,40 @@ The PyMySQL is a pure-Python MySQL client library.
 
 3. Create a plain text file `pymysql_connect_matrixone.py` and put the code below.
 
-```python
-#!/usr/bin/python3
+    ```python
+    #!/usr/bin/python3
 
-import pymysql
+    import pymysql
 
-# Open database connection
-db = pymysql.connect(
-        host='127.0.0.1',
-	    port=6001,
-        user='dump', 
-        password = "111",
-        db='test',
-        )
-# prepare a cursor object using cursor() method
-cursor = db.cursor()
+    # Open database connection
+    db = pymysql.connect(
+            host='127.0.0.1',
+	        port=6001,
+            user='dump',
+            password = "111",
+            db='test',
+            )
+    # prepare a cursor object using cursor() method
+    cursor = db.cursor()
 
-# execute SQL query using execute() method.
-cursor.execute("SELECT VERSION()")
+    # execute SQL query using execute() method.
+    cursor.execute("SELECT VERSION()")
 
-# Fetch a single row using fetchone() method.
-data = cursor.fetchone()
-print ("Database version : %s " % data)
+    # Fetch a single row using fetchone() method.
+    data = cursor.fetchone()
+    print ("Database version : %s " % data)
 
-# disconnect from server
-db.close()
+    # disconnect from server
+    db.close()
 
-```
+    ```
 
 4. Execute this python file in the command line terminal.
 
-```
-> python3 pymysql_connect_matrixone.py
-Database version : 8.0.30-MatrixOne-v0.6.0
-```
+    ```
+    > python3 pymysql_connect_matrixone.py
+    Database version : 8.0.30-MatrixOne-v0.6.0
+    ```
 
 ## Using sqlalchemy connect to MatrixOne
 
@@ -87,43 +87,43 @@ SQLAlchemy is the Python SQL toolkit and Object Relational Mapper(ORM) that give
 
 2. Connect to MatrixOne by MySQL client. Create a new database named *test*, a new table named *student* and insert two records.
 
-```sql
-mysql> create database test;
-mysql> use test;
-mysql> create table student (name varchar(20), age int);
-mysql> insert into student values ("tom", 11), ("alice", "10");
+    ```sql
+    mysql> create database test;
+    mysql> use test;
+    mysql> create table student (name varchar(20), age int);
+    mysql> insert into student values ("tom", 11), ("alice", "10");
 
-```
+    ```
 
 3. Create a plain text file `sqlalchemy_connect_matrixone.py` and put the code below,
 
-```python
-#!/usr/bin/python3
-from sqlalchemy import create_engine, text
+    ```python
+    #!/usr/bin/python3
+    from sqlalchemy import create_engine, text
 
-# Open database connection
-my_conn = create_engine("mysql+mysqldb://dump:111@127.0.0.1:6001/test")
+    # Open database connection
+    my_conn = create_engine("mysql+mysqldb://dump:111@127.0.0.1:6001/test")
 
-# execute SQL query using execute() method.
-query=text("SELECT * FROM student LIMIT 0,10")
-my_data=my_conn.execute(query)
+    # execute SQL query using execute() method.
+    query=text("SELECT * FROM student LIMIT 0,10")
+    my_data=my_conn.execute(query)
 
-# print SQL result
-for row in my_data:
-        print("name:", row["name"])
-        print("age:", row["age"])
+    # print SQL result
+    for row in my_data:
+            print("name:", row["name"])
+            print("age:", row["age"])
 
-```
+    ```
 
 4. Execute this python file in the command line terminal.
 
-```
-python3 sqlalchemy_connect_matrixone.py
-name: tom
-age: 11
-name: alice
-age: 10
-```
+    ```
+    python3 sqlalchemy_connect_matrixone.py
+    name: tom
+    age: 11
+    name: alice
+    age: 10
+    ```
 
 ## Reference
 
