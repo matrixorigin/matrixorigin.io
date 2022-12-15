@@ -537,7 +537,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/connect-mo/database-ide/" class="md-nav__link">
+      <a href="../../Develop/connect-mo/database-client-tools/" class="md-nav__link">
         Connecting to MatrixOne with Database Client Tool
       </a>
     </li>
@@ -578,7 +578,21 @@
   
     <li class="md-nav__item">
       <a href="../../Develop/connect-mo/java-connect-to-matrixone/connect-mo-with-jdbc/" class="md-nav__link">
-        JDBC
+        Connect MatrixOne with JDBC
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Develop/connect-mo/java-connect-to-matrixone/connect-mo-with-orm/" class="md-nav__link">
+        Connect MatrixOne with Java ORMs
       </a>
     </li>
   
@@ -1111,20 +1125,6 @@
     <li class="md-nav__item">
       <a href="../../Tutorial/springboot-mybatis-crud-demo/" class="md-nav__link">
         MyBatis
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../Tutorial/connect_mo_with_orm/" class="md-nav__link">
-        ORMs
       </a>
     </li>
   
@@ -4324,8 +4324,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Data-Types/blob-type/" class="md-nav__link">
-        BLOB Data Type
+      <a href="../../Reference/Data-Types/blob-text-type/" class="md-nav__link">
+        BLOB and TEXT Type
       </a>
     </li>
   
@@ -5919,9 +5919,9 @@
 │&nbsp;&nbsp;&nbsp;&nbsp; │&nbsp;&nbsp;&nbsp;&nbsp;                         |-- rawlog &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//<strong><em>log storage directory</em></strong><br>
 │&nbsp;&nbsp;&nbsp;&nbsp; │&nbsp;&nbsp;&nbsp;&nbsp;                         |-- statement_info &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//<strong><em>information storage directory</em></strong><br>
 │&nbsp;&nbsp;&nbsp;&nbsp; │         &nbsp;&nbsp;|-- merged &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//<strong><em>Merge records of past external table information</em></strong><br>
-│&nbsp;&nbsp;&nbsp;&nbsp; │&nbsp;&nbsp;&nbsp;&nbsp;                |--  2022 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//<strong><em> the year of statistics</em></strong><br>
+│&nbsp;&nbsp;&nbsp;&nbsp; │&nbsp;&nbsp;&nbsp;&nbsp;                |--  2022 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//<strong><em>the year of statistics</em></strong><br>
 │&nbsp;&nbsp;&nbsp;&nbsp; │&nbsp;&nbsp;&nbsp;&nbsp;                    |--  10  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//<strong><em>month of statistics</em></strong><br>
-│&nbsp;&nbsp;&nbsp;&nbsp; │&nbsp;&nbsp;&nbsp;&nbsp;                       |--  27 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//<strong><em> the number of days of statistics</em></strong><br>
+│&nbsp;&nbsp;&nbsp;&nbsp; │&nbsp;&nbsp;&nbsp;&nbsp;                       |--  27 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//<strong><em>the number of days of statistics</em></strong><br>
 │&nbsp;&nbsp;&nbsp;&nbsp; │&nbsp;&nbsp;&nbsp;&nbsp;                         |-- metric &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//<strong><em>system indicators storage directory</em></strong><br>
 │&nbsp;&nbsp;&nbsp;&nbsp; │&nbsp;&nbsp;&nbsp;&nbsp;                         |-- rawlog &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//<strong><em>log storage directory</em></strong><br>
 │&nbsp;&nbsp;&nbsp;&nbsp; │&nbsp;&nbsp;&nbsp;&nbsp;                         |-- statement_info &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//<strong><em>information storage directory</em></strong><br>

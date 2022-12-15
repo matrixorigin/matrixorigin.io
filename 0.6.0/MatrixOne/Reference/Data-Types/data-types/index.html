@@ -537,7 +537,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Develop/connect-mo/database-ide/" class="md-nav__link">
+      <a href="../../../Develop/connect-mo/database-client-tools/" class="md-nav__link">
         Connecting to MatrixOne with Database Client Tool
       </a>
     </li>
@@ -578,7 +578,21 @@
   
     <li class="md-nav__item">
       <a href="../../../Develop/connect-mo/java-connect-to-matrixone/connect-mo-with-jdbc/" class="md-nav__link">
-        JDBC
+        Connect MatrixOne with JDBC
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Develop/connect-mo/java-connect-to-matrixone/connect-mo-with-orm/" class="md-nav__link">
+        Connect MatrixOne with Java ORMs
       </a>
     </li>
   
@@ -1111,20 +1125,6 @@
     <li class="md-nav__item">
       <a href="../../../Tutorial/springboot-mybatis-crud-demo/" class="md-nav__link">
         MyBatis
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../Tutorial/connect_mo_with_orm/" class="md-nav__link">
-        ORMs
       </a>
     </li>
   
@@ -4315,13 +4315,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#binary-types" class="md-nav__link">
-    Binary Types
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#json-types" class="md-nav__link">
     JSON Types
   </a>
@@ -4413,8 +4406,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../blob-type/" class="md-nav__link">
-        BLOB Data Type
+      <a href="../blob-text-type/" class="md-nav__link">
+        BLOB and TEXT Type
       </a>
     </li>
   
@@ -6000,13 +5993,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#binary-types" class="md-nav__link">
-    Binary Types
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#json-types" class="md-nav__link">
     JSON Types
   </a>
@@ -6177,42 +6163,11 @@
 <td>TEXT</td>
 <td>Long text data</td>
 </tr>
-</tbody>
-</table>
-<h2 id="binary-types"><strong>Binary Types</strong></h2>
-<table>
-<thead>
-<tr>
-<th>Data Type</th>
-<th>Size</th>
-<th>Syntax</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>tinyblob</td>
-<td>255 bytes</td>
-<td>TINYBLOB</td>
-<td>A binary string of up to 255 characters</td>
-</tr>
 <tr>
 <td>blob</td>
-<td>65535 bytes</td>
+<td>1073741824 bytes</td>
 <td>BLOB</td>
 <td>Long text data in binary form</td>
-</tr>
-<tr>
-<td>mediumblob</td>
-<td>16777215 bytes</td>
-<td>MEDIUMBLOB</td>
-<td>Medium length text data in binary form</td>
-</tr>
-<tr>
-<td>longblob</td>
-<td>4294967295 bytes</td>
-<td>LONGBLOB</td>
-<td>Large text data in binary form</td>
 </tr>
 </tbody>
 </table>

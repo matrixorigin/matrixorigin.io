@@ -13,7 +13,7 @@
     
     
       
-        <title>JDBC - MatrixOne Docs</title>
+        <title>Connect MatrixOne with JDBC - MatrixOne Docs</title>
       
     
     
@@ -61,7 +61,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#how-to-connect-matrixone-with-jdbc" class="md-skip">
+        <a href="#connect-matrixone-with-jdbc" class="md-skip">
           Skip to content
         </a>
       
@@ -101,7 +101,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              JDBC
+              Connect MatrixOne with JDBC
             
           </span>
         </div>
@@ -541,7 +541,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../database-ide/" class="md-nav__link">
+      <a href="../../database-client-tools/" class="md-nav__link">
         Connecting to MatrixOne with Database Client Tool
       </a>
     </li>
@@ -593,12 +593,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          JDBC
+          Connect MatrixOne with JDBC
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        JDBC
+        Connect MatrixOne with JDBC
       </a>
       
         
@@ -628,26 +628,6 @@
     Steps
   </a>
   
-    <nav class="md-nav" aria-label="Steps">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#scenario-1-use-jdbc-to-connect-to-matrixone-when-creating-a-new-project" class="md-nav__link">
-    Scenario 1: Use JDBC to connect to MatrixOne when creating a new project
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scenario-2-use-jdbc-to-connect-to-matrixone-when-using-a-existing-project" class="md-nav__link">
-    Scenario 2: Use JDBC to connect to MatrixOne when using a existing project
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -661,6 +641,20 @@
   
 </nav>
       
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../connect-mo-with-orm/" class="md-nav__link">
+        Connect MatrixOne with Java ORMs
+      </a>
     </li>
   
 
@@ -1192,20 +1186,6 @@
     <li class="md-nav__item">
       <a href="../../../../Tutorial/springboot-mybatis-crud-demo/" class="md-nav__link">
         MyBatis
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../Tutorial/connect_mo_with_orm/" class="md-nav__link">
-        ORMs
       </a>
     </li>
   
@@ -4393,8 +4373,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Data-Types/blob-type/" class="md-nav__link">
-        BLOB Data Type
+      <a href="../../../../Reference/Data-Types/blob-text-type/" class="md-nav__link">
+        BLOB and TEXT Type
       </a>
     </li>
   
@@ -5970,26 +5950,6 @@
     Steps
   </a>
   
-    <nav class="md-nav" aria-label="Steps">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#scenario-1-use-jdbc-to-connect-to-matrixone-when-creating-a-new-project" class="md-nav__link">
-    Scenario 1: Use JDBC to connect to MatrixOne when creating a new project
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scenario-2-use-jdbc-to-connect-to-matrixone-when-using-a-existing-project" class="md-nav__link">
-    Scenario 2: Use JDBC to connect to MatrixOne when using a existing project
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -6017,29 +5977,20 @@
 
 
 
-<h1 id="how-to-connect-matrixone-with-jdbc">How to connect MatrixOne with JDBC</h1>
+<h1 id="connect-matrixone-with-jdbc">Connect MatrixOne with JDBC</h1>
 <p>In Java, we can connect to MatrixOne with JDBC(Java Database Connectivity) through the Java code. JDBC is one of the standard APIs for database connectivity, using it we can easily run our query, statement, and also fetch data from the database.</p>
 <h2 id="before-you-start">Before you start</h2>
 <p>Prerequisite to understand Java Database Connectivity with MatrixOne, make sure you have installed these items as below:</p>
 <ol>
 <li>Make sure you have already <a href="../../../../Get-Started/install-standalone-matrixone/">installed and launched MatrixOne</a>.</li>
 <li>Make sure you have already installed <a href="https://www.oracle.com/sg/java/technologies/javase/javase8-archive-downloads.html">JDK 8+ version</a>.</li>
-<li>
-<p>To set up the connectivity user should have MySQL Download and install <a href="https://dev.mysql.com/downloads/connector/j/">JDBC Connector</a> to the Java (JAR file), the ‘JAR’ file must be in classpath while compiling and running the code of JDBC.</p>
-<ul>
-<li><em>Platform-independent</em> Operating System is recommended.</li>
-<li>connector version <em>mysql-connector-java-8.0.31.jar</em> is recommended.</li>
-</ul>
-</li>
-<li>
-<p>Make sure you have already installed JAVA IDE, this document uses <a href="http://netbeans.org/downloads/index.html">Apache NetBeans 15</a> as an example, you can also download other IDE.</p>
-</li>
+<li>Make sure you have already installed MySQL client.</li>
+<li>Make sure you have already installed JAVA IDE, this document uses <a href="https://www.jetbrains.com/idea/">IntelliJ IDEA</a> as an example, you can also download other IDE.</li>
 </ol>
 <h2 id="steps">Steps</h2>
-<h3 id="scenario-1-use-jdbc-to-connect-to-matrixone-when-creating-a-new-project">Scenario 1: Use JDBC to connect to MatrixOne when creating a new project</h3>
 <ol>
 <li>
-<p>Create a new database named <em>test</em> or other names you want in MatrixOne and create a new table named <em>t1</em>:</p>
+<p>Connect to MatrixOne by MySQL client. Create a new database named <em>test</em> or other names you want in MatrixOne and create a new table named <em>t1</em>:</p>
 <div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n">test</span><span class="p">;</span><span class="w"></span>
 <span class="n">use</span><span class="w"> </span><span class="n">test</span><span class="p">;</span><span class="w"></span>
 <span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="w"></span>
@@ -6050,65 +6001,56 @@
 </code></pre></div>
 </li>
 <li>
-<p>Add the downloaded connector into NetBeans. Select <strong>Services &gt; Databases &gt; Drivers</strong>, right click <strong>MySQL(Connector/J driver)</strong> and choose <strong>Customize</strong> in the Services sheet, click <strong>Add</strong>. add the <em>mysql-connector-java-8.0.31.jar</em>, enter <em>com.mysql.cj.jdbc.Driver</em> into Drive Class.</p>
+<p>Create a new Java project <strong>testJDBC</strong> in IDEA and select <strong>Maven</strong> as build system, then click on <strong>Create</strong>.</p>
+<p><img alt="JDBC create project" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/JDBC_connect/JDBC-create-project.png?raw=true" /></p>
 </li>
 <li>
-<p>Right click <strong>MySQL(Connector/J driver)</strong> and choose <strong>Connect Using</strong> to configure as following:</p>
-<ul>
-<li>Host: 127.0.0.1</li>
-<li>Port: 6001</li>
-<li>Database: test</li>
-<li>User Name: dump</li>
-<li>Password: 111</li>
-<li>Remmember password: Yes</li>
-</ul>
+<p>Click on the <strong>File &gt; Project Structure</strong>, enter into <strong><em>*Project Setting</em>*, select and click </strong>Library<strong>, then click </strong>+<strong> button, add new project library </strong>From Maven**.</p>
+<p><img alt="JDBC project structure" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/JDBC_connect/JDBC-project-structure.png?raw=true" /></p>
+<p><img alt="JDBC add library" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/JDBC_connect/JDBC-from-maven.png?raw=true" /></p>
 </li>
 <li>
-<p>Click <strong>Test Connection</strong>， when the test <strong>Connection Succeeded</strong>, it means you can connect your MatrixOne with JDBC.</p>
-</li>
-</ol>
-<h3 id="scenario-2-use-jdbc-to-connect-to-matrixone-when-using-a-existing-project">Scenario 2: Use JDBC to connect to MatrixOne when using a existing project</h3>
-<p>If you want to use the connector in your existing project, you can follow these steps:</p>
-<ol>
-<li>
-<p>Add this <em>mysql-connector-java-8.0.31.jar</em> into the <em>lib</em> directory of the <strong><a href="https://github.com/matrixorigin/mo-tester">mo-tester</a></strong> repository.</p>
+<p>Search library with <strong>mysql-connector-java</strong>,  select <strong>mysql:mysql-connector-java:8.0.30</strong>, apply it to this project.</p>
+<p><img alt="JDBC add driver" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/JDBC_connect/JDBC-add-driver.png?raw=true" /></p>
 </li>
 <li>
-<p>Add dependency into <em>pom.xml</em> file of the <strong><a href="https://github.com/matrixorigin/mo-tester">mo-tester</a></strong> repository.</p>
-<div class="highlight"><pre><span></span><code>&lt;dependency&gt;
-    &lt;groupId&gt;mysql&lt;/groupId&gt;
-    &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
-    &lt;version&gt;8.0.xx&lt;/version&gt;
-&lt;/dependency&gt;
-</code></pre></div>
-</li>
-<li>
-<p>Add the following statements as example:</p>
-</li>
-</ol>
-<div class="highlight"><pre><span></span><code>import java.sql.Connection;
+<p>Modify the default Java source code at <strong>src/main/java/org/example/Main.java</strong>. In general, the code below create a connection with the connection address and credentials, after connecting to MatrixOne, you can operate on MatrixOne database and tables by Java language.</p>
+<p>For a full example about how to develop a CRUD(Create, Read, Update, Delete) application in MatrixOne with JDBC, please refer to this <a href="../../../../Tutorial/develop-java-crud-demo/">JDBC CRUD tutorial</a>.</p>
+<div class="highlight"><pre><span></span><code>package org.example;
+
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-Connection conn = null;
-...
-try {
-    conn =
-       DriverManager.getConnection(&quot;jdbc:mysql://localhost:6001/test&quot; +
-                                   &quot;user=account_name:user_name&amp;password=your_password&quot;);
 
-    // Do something with the Connection
 
-   ...
-} catch (SQLException ex) {
-    // handle any errors
-    System.out.println(&quot;SQLException: &quot; + ex.getMessage());
-    System.out.println(&quot;SQLState: &quot; + ex.getSQLState());
-    System.out.println(&quot;VendorError: &quot; + ex.getErrorCode());
+public class Main {
+
+
+    private static String jdbcURL = &quot;jdbc:mysql://127.0.0.1:6001/test&quot;;
+    private static String jdbcUsername = &quot;dump&quot;;
+    private static String jdbcPassword = &quot;111&quot;;
+
+    public static void main(String[] args) {
+
+
+        try {
+            Connection connection = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
+            // Do something with the Connection
+
+        } catch (SQLException ex) {
+            // handle any errors
+            System.out.println(&quot;SQLException: &quot; + ex.getMessage());
+            System.out.println(&quot;SQLState: &quot; + ex.getSQLState());
+            System.out.println(&quot;VendorError: &quot; + ex.getErrorCode());
+        }
+    }
 }
 </code></pre></div>
+</li>
+</ol>
 <h2 id="reference">Reference</h2>
-<p>For more information on MatrixOne support when developing applications using JDBC, see <a href="../../../../Reference/Limitations/mo-jdbc-feature-list/">JDBC supported features list in MatrixOne</a>.</p>
+<p>For a full list about MatrixOne's support for JDBC features, see <a href="../../../../Reference/Limitations/mo-jdbc-feature-list/">JDBC supported features list in MatrixOne</a>.</p>
 
               
             </article>
@@ -6122,7 +6064,7 @@ try {
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../../database-ide/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Connecting to MatrixOne with Database Client Tool" rel="prev">
+        <a href="../../database-client-tools/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Connecting to MatrixOne with Database Client Tool" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -6138,13 +6080,13 @@ try {
       
       
         
-        <a href="../../python-connect-to-matrixone/" class="md-footer__link md-footer__link--next" aria-label="Next: Python connect to MatrixOne" rel="next">
+        <a href="../connect-mo-with-orm/" class="md-footer__link md-footer__link--next" aria-label="Next: Connect MatrixOne with Java ORMs" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Python connect to MatrixOne
+              Connect MatrixOne with Java ORMs
             </div>
           </div>
           <div class="md-footer__button md-icon">

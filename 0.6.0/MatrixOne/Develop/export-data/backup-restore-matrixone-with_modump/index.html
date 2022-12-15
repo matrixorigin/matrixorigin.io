@@ -533,7 +533,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../connect-mo/database-ide/" class="md-nav__link">
+      <a href="../../connect-mo/database-client-tools/" class="md-nav__link">
         Connecting to MatrixOne with Database Client Tool
       </a>
     </li>
@@ -574,7 +574,21 @@
   
     <li class="md-nav__item">
       <a href="../../connect-mo/java-connect-to-matrixone/connect-mo-with-jdbc/" class="md-nav__link">
-        JDBC
+        Connect MatrixOne with JDBC
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../connect-mo/java-connect-to-matrixone/connect-mo-with-orm/" class="md-nav__link">
+        Connect MatrixOne with Java ORMs
       </a>
     </li>
   
@@ -1107,20 +1121,6 @@
     <li class="md-nav__item">
       <a href="../../../Tutorial/springboot-mybatis-crud-demo/" class="md-nav__link">
         MyBatis
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../Tutorial/connect_mo_with_orm/" class="md-nav__link">
-        ORMs
       </a>
     </li>
   
@@ -4308,8 +4308,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Reference/Data-Types/blob-type/" class="md-nav__link">
-        BLOB Data Type
+      <a href="../../../Reference/Data-Types/blob-text-type/" class="md-nav__link">
+        BLOB and TEXT Type
       </a>
     </li>
   
@@ -5999,7 +5999,7 @@ insert into t1 values (1, 1, 1, 1, 1, 1, 1, 1, 1, 1, &#39;2019-01-01&#39;, &#39;
 <h2 id="restore-the-backup-to-matrixone-server">Restore the backup to MatrixOne server</h2>
 <p>Restoring a MatrixOne database using the exported <em>.sql</em> file is simple. To restore the database, you must create an empty database and use <code>mysql client</code> to restore.</p>
 <p>Connect to MatrixOne with MySQL client in the same server, and make sure the exported <em>.sql</em> file is also in the same machine as the MySQL client.</p>
-<div class="highlight"><pre><span></span><code>mysql&gt; create database t if not exists;
+<div class="highlight"><pre><span></span><code>mysql&gt; create database if not exists t;
 mysql&gt; source /YOUR_SQL_FILE_PATH/t.sql
 </code></pre></div>
 <p>Once command executes successfully, execute the following command to verify that all objects have been created on the <code>t</code> database.</p>
