@@ -1,12 +1,12 @@
-# How to connect MatrixOne with Java ORMs
+# Connect MatrixOne with Java ORMs
 
 Apart from connecting with JDBC, more typically, we'll connect to our MySQL database using an Object Relational Mapping (ORM) Framework. We will introduce how to connect to MatrixOne with Spring Data JPA and MyBatis in this article.
 
 ## MyBatis
 
-[MyBatis](https://github.com/mybatis/mybatis-3) was introduced in 2010 and is a SQL mapper framework with simplicity as its strength. We provide a full building CRUD application tutorial with [MyBatis and Spring Boot](../../../Tutorial/springboot-mybatis-crud-demo.md). Here, we'll focus on how to configure MyBatis with MatrixOne connection. 
+[MyBatis](https://github.com/mybatis/mybatis-3) was introduced in 2010 and is a SQL mapper framework with simplicity as its strength. We provide a full building CRUD application tutorial with [MyBatis and Spring Boot](../../../Tutorial/springboot-mybatis-crud-demo.md). Here, we'll focus on how to configure MyBatis with MatrixOne connection.
 
-The below example is a typical setting with **Maven** build system. 
+The below example is a typical setting with **Maven** build system.
 
 ### 1. Add MyBatis-Spring-Boot-Starter in Pom.xml
 
@@ -47,7 +47,7 @@ mybatis.mapper-locations=classpath:mapping/*xml
 
 Spring Data JPA is a robust framework that helps reduce boilerplate code and provides a mechanism for implementing basic CRUD operations via one of several predefined repository interfaces. We provide a full building CRUD application tutorial with [Spring Data JPA and Spring Boot](../../../Tutorial/springboot-hibernate-crud-demo.md). We'll focus on how to configure Spring JPA with MatrixOne connection.
 
-The below example is a typical setting with **Maven** build system. 
+The below example is a typical setting with **Maven** build system.
 
 ### 1. Add spring-boot-starter-data-jpa in Pom.xml
 
