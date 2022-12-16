@@ -6,13 +6,11 @@ This document will guide you on how to import large amounts of *.csv* format dat
 
 Make sure you have already [Deployed and Launched standalone MatrixOne](../../../Get-Started/install-standalone-matrixone.md).
 
-
 ## Using the `Load data` command in MySQL Client
 
 You can use `Load Data` to import data from big data files. Currently, MatrixOne only supports `csv` format. A `csv`(comma-separated values) file is a delimited text file that uses a comma to separate values.
 
 1. Before executing `Load Data` in MatrixOne, the table needs to be created in advance. For now, the data file is required to be at the same machine with MatrixOne server, a file transfer is necessary if they are in separate machines.
-
 
 2. Launch the MySQL Client in the MatrixOne local server for accessing the local file system.
 
