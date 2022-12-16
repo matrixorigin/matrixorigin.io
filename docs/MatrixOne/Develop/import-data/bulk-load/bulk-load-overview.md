@@ -1,7 +1,8 @@
 # Bulk Load Overview
 
-Bulk load data is supported in MatrixOne. Using the MatrixOne database, according to different data volumes, file types, or additional data storage locations, you can choose other import methods to improve your work efficiency.
-
+Bulk loading is the fastest way to insert large numbers of rows into a MatrixOne table. MatrixOne supports loading *csv*
+and *jsonline* files from local file system or an S3-compatible object storage.
+ 
 ## Import the different file types
 
 According to the different file types, MatrixOne currently mainly supports importing *.csv* or jsonlines:

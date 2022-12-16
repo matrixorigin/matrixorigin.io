@@ -1,26 +1,18 @@
 # Import the *.csv* data
 
-This document will guide you on how to import large amounts of *.csv* data to MatrixOne.
+This document will guide you on how to import large amounts of *.csv* format data to MatrixOne.
 
 ## Before you start
 
-Make sure you have already [Deployed standalone MatrixOne](../../../Get-Started/install-standalone-matrixone.md).
+Make sure you have already [Deployed and Launched standalone MatrixOne](../../../Get-Started/install-standalone-matrixone.md).
 
-!!! note
-    If you install MatrixOne by `docker`, the directory is inside the docker image by default. To work with local directory, you need to bind a local directory to the container. In the following example, the local file system path `${local_data_path}/mo-data` is binded to the MatrixOne docker image, with a mapping to the `/mo-data` path. For more information, see [Docker Mount Volume tutorial](https://www.freecodecamp.org/news/docker-mount-volume-guide-how-to-mount-a-local-directory/).
-
-```
-sudo docker run --name <name> --privileged -d -p 6001:6001 -v ${local_data_path}/mo-data:/mo-data:rw matrixorigin/matrixone:0.6.0
-```
 
 ## Using the `Load data` command in MySQL Client
 
-You can use `Load Data` to import data from big data files. Currently, MatrixOne only supports `csv` files.
+You can use `Load Data` to import data from big data files. Currently, MatrixOne only supports `csv` format. A `csv`(comma-separated values) file is a delimited text file that uses a comma to separate values.
 
 1. Before executing `Load Data` in MatrixOne, the table needs to be created in advance. For now, the data file is required to be at the same machine with MatrixOne server, a file transfer is necessary if they are in separate machines.
 
-    !!! note
-        If you are working with MatrixOne `docker` version, please put the data file in the directory mounted to the container, otherwise the container cann't perceive.
 
 2. Launch the MySQL Client in the MatrixOne local server for accessing the local file system.
 
@@ -36,12 +28,10 @@ You can use `Load Data` to import data from big data files. Currently, MatrixOne
     FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"' LINES TERMINATED BY "\r\n";
     ```
 
-    !!! note
-        For the `docker` version, the file path needs to be in the mounted directory.
-
 ### Example using `Load data` with `docker` version
 
-We will walk through the whole process of loading data with MatrixOne 0.6.0 docker version.
+If you install MatrixOne by `docker`, the file system is inside the docker image by default. To work with local directory, you need to bind a local directory to the container. In the following example, the local file system path `~/tmp/docker_loaddata_demo/` is binded to the MatrixOne docker image, with a mapping to the `/ssb-dbgen-path` path inside the docker.
+We will walk you through the whole process of loading data with MatrixOne 0.6.0 docker version in this example.
 
 1. Download the dataset file and store the data in *~/tmp/docker_loaddata_demo/*:
 
@@ -59,7 +49,7 @@ We will walk through the whole process of loading data with MatrixOne 0.6.0 dock
 3. Use Docker to launch MatrixOne, and mount the directory *~/tmp/docker_loaddata_demo/* that stores data files to a directory in the container. The container directory is */sb-dbgen-path* as an example:
 
     ```
-    sudo docker run --name <name> --privileged -d -p 6001:6001 -v ~/tmp/docker_loaddata_demo/:/ssb-dbgen-path:rw matrixorigin/matrixone:0.6.0
+    sudo docker run --name matrixone --privileged -d -p 6001:6001 -v ~/tmp/docker_loaddata_demo/:/ssb-dbgen-path:rw matrixorigin/matrixone:0.6.0
     ```
 
 4. Connect to MatrixOne server:
