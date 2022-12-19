@@ -1,7 +1,7 @@
 # Build a simple Java CRUD demo with MatrixOne
 
 !!! note
-    The source code of this demo can be downloaded at [github](https://github.com/matrixorigin/matrixone_java_crud_example).  
+    The source code of this demo can be downloaded at [Java CRUD Example](https://github.com/matrixorigin/matrixone_java_crud_example).  
 
 ## Setup your environment
 
