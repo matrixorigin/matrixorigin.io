@@ -1,12 +1,12 @@
-# Build a SpringBoot+Hibernate CRUD demo with MatrixOne
+# Build a SpringBoot+Spring Data JPA CRUD demo with MatrixOne
 
-This tutorial completes a simple Demo based on **SpringBoot+Hibernate+MatrixOne+Intellij IDEA** , and realizes the basic CRUD function.
+This tutorial completes a simple Demo based on **SpringBoot+Spring Data JPA+MatrixOne+Intellij IDEA** , and realizes the basic CRUD function.
 
 ## Before you start
 
 A brief introduction about these softwares concerned:
 
-* Hibernate: Hibernate ORM is an object–relational mapping tool for the Java programming language. It provides a framework for mapping an object-oriented domain model to a relational database.
+* Spring Data JPA: JPA is a specification that defines an API for object-relational mappings and for managing persistent objects. Spring Data JPA is an object–relational mapping tool for the Java programming language. It provides a framework for mapping an object-oriented domain model to a relational database.
 * Intellij IDEA: IntelliJ IDEA is a popular IDE for Java developers. It has a lot of plugins that can enhance our efficiency.
 * Maven: Maven is a powerful management tool in Java that can automatically download and import Jar file according to the configuration in the pom.xml file. This feature reduces the conflicts between different versions of Jar files.
 * Spring: Spring is one of the most popular frameworks in Java and more and more enterprise is using the Spring framework to build their project. Spring Boot is built on top of the conventional spring framework. So, it provides all the features of spring and is yet easier to use than spring.
@@ -19,7 +19,7 @@ A brief introduction about these softwares concerned:
 Follow the [installation instruction and launch MatrixOne 0.6](../Get-Started/install-standalone-matrixone.md). Create a database `test` by MySQL client.
 
 ```
-mysql> CREATE DATABASE test;
+mysql> create database test;
 ```
 
 ### 2. Create a new Spring Boot Project Using IntelliJ IDEA
@@ -142,7 +142,7 @@ spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 # Data Source name
 spring.datasource.name=defaultDataSource
 
-# Database connection url, modify to MatrixOne address and port, with paratemers
+# Database connection url, modify to MatrixOne address and port, with parameters
 spring.datasource.url=jdbc:mysql://127.0.0.1:6001/test?characterSetResults=UTF-8&continueBatchOnError=false&useServerPrepStmts=true&alwaysSendSetIsolation=false&useLocalSessionState=true&zeroDateTimeBehavior=CONVERT_TO_NULL&failoverReadOnly=false&serverTimezone=Asia/Shanghai&socketTimeout=30000
 # Database username and password
 spring.datasource.username=dump
@@ -159,7 +159,8 @@ spring.jpa.hibernate.ddl-auto = validate
 
 ### 4. Create table and insert some data in MatrixOne
 
-Connect to MatrixOne with MySQL client and execute the following SQL statements.
+Connect to MatrixOne with MySQL client and execute the following SQL statements. You can save these SQL statements in a *book.sql* under */resource/database/*. 
+
 
 ```
 mysql> USE test;
