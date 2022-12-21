@@ -1,25 +1,26 @@
 # Build a simple Java CRUD demo with MatrixOne
 
 !!! note
-    The source code of this demo can be downloaded at [Java CRUD Example](https://github.com/matrixorigin/matrixone_java_crud_example).  
+    The source code of this demo can be downloaded at [github](https://github.com/matrixorigin/matrixone_java_crud_example).  
 
 ## Setup your environment
 
 Before you start, make sure you have downloaded and installed the following software.
 
-* Make sure you have already [Deployed standalone MatrixOne](../Get-Started/install-standalone-matrixone.md). Create a database by MySQL client.
+* [Install and deployed standalone MatrixOne](../Get-Started/install-standalone-matrixone.md). Create a database by MySQL client.
 
 ```
-mysql> CREATE DATABASE TEST;
+mysql> create database test;
 ```
 
-* [lntelIiJ IDEA(2022.2.1 or later version)](https://www.jetbrains.com/idea/download/).
+* [lntelliJ IDEA(2022.2.1 or later version)](https://www.jetbrains.com/idea/download/).
 * [JDK 8+ version](https://www.oracle.com/sg/java/technologies/javase/javase8-archive-downloads.html): Choose the version according to your OS.
 * [MySQL JDBC connector 8.0+ version](https://dev.mysql.com/downloads/connector/j/): It's recommanded to download the platform independent version, and unzip the downloaded file.
 
-!Note：We take IDEA as an IDE example to demonstrate the process, you are free to choose Eclipse or other IDE tools for the same purpose.
-
 ![image-20220927102516885](https://github.com/matrixorigin/artwork/blob/main/docs/reference/jdbc_download.png?raw=true)
+
+!!! note: 
+    We take IDEA as an IDE example to demonstrate the process, you are free to choose Eclipse or other IDE tools for the same purpose.
 
 ## Initialize a new Java project
 
@@ -27,13 +28,15 @@ Launch IDEA, and create a new Java project as below:
 
 ![image-20220927104740221](https://github.com/matrixorigin/artwork/blob/main/docs/reference/jdbc_create_project.png?raw=true)
 
-In your **Project Setting > Libraries**, import the *mysql-connector-java-8.0.xx.jar* file.
+In your **Project Setting > Libraries**, import the *mysql-connector-java-8.0.30.jar* file.
 
 ![image-20220927104904770](https://github.com/matrixorigin/artwork/blob/main/docs/reference/jdbc_import_library.png?raw=true)
 
-## Write  Java code to connect with MatrixOne
+## Write Java code to connect with MatrixOne
 
 Firstly we create a Java class named as `JDBCUtils` as a connection utility. This class will serve as a tool to connect with MatrixOne and execute SQL queries.
+
+Under the *src* directory, create a file named `JDBCUtils.java`, and edit this file with the following code. 
 
 ```
 import java.sql.Connection;
@@ -41,7 +44,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class JDBCUtils {
-    private static String jdbcURL = "jdbc:mysql://127.0.0.1:6001/TEST";
+    private static String jdbcURL = "jdbc:mysql://127.0.0.1:6001/test";
     private static String jdbcUsername = "dump";
     private static String jdbcPassword = "111";
 
@@ -75,6 +78,8 @@ public class JDBCUtils {
 ```
 
 Secondly we write example code for Create/Insert/Update/Delete operations with MatrixOne.
+
+We need to create corresponding java source code files as `Create.java`, `Insert.java`, `Select.java`, `Update.java` under the *src* directory, and put the code below in these files. 
 
 #### Create
 
@@ -114,7 +119,7 @@ public class Create {
 }
 ```
 
-Executing this code will create a table in the `TEST` database.
+Executing this code will create a table in the `test` database, then we verify in mysql client to check if the table is created. 
 
 ```
 mysql> show create table student;
