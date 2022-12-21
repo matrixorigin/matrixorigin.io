@@ -161,7 +161,6 @@ spring.jpa.hibernate.ddl-auto = validate
 
 Connect to MatrixOne with MySQL client and execute the following SQL statements. You can save these SQL statements in a *book.sql* under */resource/database/*. 
 
-
 ```
 mysql> USE test;
 mysql> CREATE TABLE IF NOT EXISTS `book` (

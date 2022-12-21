@@ -485,6 +485,7 @@ When you see the following messages, the application is well launched and you ca
 ### 1. Test Create Table
 
 Launch your browser and type the following url:
+
 ```
 http://localhost:8080/test/create
 ```
@@ -525,9 +526,11 @@ PRIMARY KEY (`id`)
 ### 2. Test Add User
 
 Launch your browser and type the following url:
+
 ```
 http://localhost:8080/test/add?username=tom&password=123456&address=shanghai
 ```
+
 ![image-20221026162317800](https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/mybatis/image-20221026162317800.png?raw=true)
 
 In MySQL client, we can verify if the record is added.
@@ -545,6 +548,7 @@ mysql> select * from user;
 ### 3. Test Select User
 
 Launch your browser and type the following url:
+
 ```
 http://localhost:8080/test/selectUserByid?id=1
 ```
@@ -556,15 +560,14 @@ We can directly get the queried result from the browser.
 ### 4. Test Update User
 
 Launch your browser and type the following url:
+
 ```
 http://localhost:8080/test/update/username=tom&password=654321&address=beijing
 ```
 
-
 ![image-20221026162613066](https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/mybatis/image-20221026162613066.png?raw=true)
 
 In MySQL client, we can verify if the record is updated.
-
 
 ```
 mysql> select * from user;
@@ -579,12 +582,12 @@ mysql> select * from user;
 ### 5. Test Delete User
 
 Launch your browser and type the following url:
+
 ```
 http://localhost:8080/test/delete?id=1
 ```
 
 ![image-20221026162756460](https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/mybatis/image-20221026162756460.png?raw=true)
-
 
 In MySQL client, we can verify if the record is deleted.
 
