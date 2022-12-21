@@ -1,7 +1,7 @@
 # Build a simple Java CRUD demo with MatrixOne
 
 !!! note
-    The source code of this demo can be downloaded at [github](https://github.com/matrixorigin/matrixone_java_crud_example).  
+    The source code of this demo can be downloaded at [Java CRUD Example](https://github.com/matrixorigin/matrixone_java_crud_example).  
 
 ## Setup your environment
 
@@ -19,7 +19,7 @@ mysql> create database test;
 
 ![image-20220927102516885](https://github.com/matrixorigin/artwork/blob/main/docs/reference/jdbc_download.png?raw=true)
 
-!!! note: 
+!!! note
     We take IDEA as an IDE example to demonstrate the process, you are free to choose Eclipse or other IDE tools for the same purpose.
 
 ## Initialize a new Java project
@@ -36,7 +36,7 @@ In your **Project Setting > Libraries**, import the *mysql-connector-java-8.0.30
 
 Firstly we create a Java class named as `JDBCUtils` as a connection utility. This class will serve as a tool to connect with MatrixOne and execute SQL queries.
 
-Under the *src* directory, create a file named `JDBCUtils.java`, and edit this file with the following code. 
+Under the *src* directory, create a file named `JDBCUtils.java`, and edit this file with the following code.
 
 ```
 import java.sql.Connection;
@@ -79,7 +79,7 @@ public class JDBCUtils {
 
 Secondly we write example code for Create/Insert/Update/Delete operations with MatrixOne.
 
-We need to create corresponding java source code files as `Create.java`, `Insert.java`, `Select.java`, `Update.java` under the *src* directory, and put the code below in these files. 
+We need to create corresponding java source code files as `Create.java`, `Insert.java`, `Select.java`, `Update.java` under the *src* directory, and put the code below in these files.
 
 #### Create
 
@@ -119,7 +119,7 @@ public class Create {
 }
 ```
 
-Executing this code will create a table in the `test` database, then we verify in mysql client to check if the table is created. 
+Executing this code will create a table in the `test` database, then we verify in mysql client to check if the table is created.
 
 ```
 mysql> show create table student;
