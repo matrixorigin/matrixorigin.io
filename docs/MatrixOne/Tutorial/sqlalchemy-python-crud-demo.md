@@ -1,7 +1,6 @@
 # Build a simple Python+SQLAlchemy CRUD demo with MatrixOne
 
-This tutorial shows you how to build a simple Python+SQLAlchemy CRUD(Create, Read, Update, Delete) application with MatrixOne. SQLAlchemy is one of the most popular ORM tools in python language. 
-
+This tutorial shows you how to build a simple Python+SQLAlchemy CRUD(Create, Read, Update, Delete) application with MatrixOne. SQLAlchemy is one of the most popular ORM tools in python language.
 
 ## Before you start
 
@@ -10,46 +9,42 @@ A brief introduction about these softwares concerned:
 * SQLAlchemy: SQLAlchemy is a python library that facilitates the communication between Python programs and databases. Most of the times, this library is used as an Object Relational Mapper (ORM) tool that translates Python classes to tables on relational databases and automatically converts function calls to SQL statements.
 * Faker: Faker is a Python library that generates fake data. Fake data is often used for testing or filling databases with some dummy data.
 
-
-
-## Setup your environment
+### Setup your environment
 
 Before you start, make sure you have downloaded and installed the following software.
 
 1. Make sure you have already [installed and launched MatrixOne](../../Get-Started/install-standalone-matrixone.md). Connect to MatrixOne and create a database by MySQL client.
 
-```
-mysql> create database test;
-```
+    ```
+    mysql> create database test;
+    ```
 
 2. Make sure you have already installed [Python 3.8(or plus) version](https://www.python.org/downloads/).  
 
-```
-#To check with Python installation and its version
-python3 -V
-```
+    ```
+    #To check with Python installation and its version
+    python3 -V
+    ```
 
 3. Make sure you have already installed MySQL.
 4. Download and install sqlalchemy, pymysql, cryptography and faker tool.
 
-```
-pip3 install sqlalchemy
-pip3 install pymysql
-pip3 install cryptography
-pip3 install faker
+    ```
+    pip3 install sqlalchemy
+    pip3 install pymysql
+    pip3 install cryptography
+    pip3 install faker
 
-#If you are in China mainland and have a low downloading speed, you can speed up the download by following commands.
-pip3 install sqlalchemy -i https://pypi.tuna.tsinghua.edu.cn/simple
-pip3 install pymysql -i https://pypi.tuna.tsinghua.edu.cn/simple
-pip3 install cryptography -i https://pypi.tuna.tsinghua.edu.cn/simple
-pip3 install faker -i https://pypi.tuna.tsinghua.edu.cn/simple
-```
+    #If you are in China mainland and have a low downloading speed, you can speed up the download by following commands.
+    pip3 install sqlalchemy -i https://pypi.tuna.tsinghua.edu.cn/simple
+    pip3 install pymysql -i https://pypi.tuna.tsinghua.edu.cn/simple
+    pip3 install cryptography -i https://pypi.tuna.tsinghua.edu.cn/simple
+    pip3 install faker -i https://pypi.tuna.tsinghua.edu.cn/simple
+    ```
 
+As we have explained how to connect to MatrixOne by SQLAlchemy in the other [tutorial](../Develop/connect-mo/python-connect-to-matrixone.md), we will focus on the CRUD(Create, Read, Update, Delete) implementations in this tutorial.
 
-As we have explained how to connect to MatrixOne by SQLAlchemy in the other [tutorial](../Develop/connect-mo/python-connect-to-matrixone.md), we will focus on the CRUD(Create, Read, Update, Delete) implementations in this tutorial. 
-
-
-## Create 
+## Create
 
 As an Object Relational Mapper(ORM) tool, SQLAlchemy allows developers to create python class to map the table in relational database. In the example below, we will create a `Customer` class which is a representation of `Customer` table in MatrixOne, the code which defines `Customer` is equal to a SQL statement as:
 
@@ -100,7 +95,7 @@ class Customer(Base):
 # Generate 10 Customer records
 Customers = [Customer(name= faker.name(),address = faker.address()) for i in range(10)]
 
-# Create the table 
+# Create the table
 Base.metadata.create_all(engine)
 
 # Insert all customer records to Customer table
@@ -111,11 +106,13 @@ session.commit()
 ```
 
 Execute this file in a terminal with such command:
+
 ```
 > python3 sqlalchemy_create.py
 ```
 
 Then we verify the table creation in MySQL client:
+
 ```
 mysql> show tables;
 +----------------+
@@ -154,12 +151,14 @@ New Jameshaven, SD 89585     |
 
 ## Read
 
-In the following example, we read data from the `Customer` table by two ways. 
+In the following example, we read data from the `Customer` table by two ways.
 
 The first one is a full scan, which equals to a query as:
+
 ```
 select * from `Customer`
 ```
+
 The second one is a point query, which equals to a query as:
 
 ```
@@ -167,7 +166,6 @@ select * from `Customer` where `cname` = 'David Mccann';
 ```
 
 We create this example in a text file named `sqlalchemy_read.py`, and put the following code:
-
 
 ```
 from sqlalchemy import create_engine, Column, Integer, String
@@ -212,6 +210,7 @@ print("\n------------------------\n")
 ```
 
 Execute this file in a terminal with such command and we will see the query result:
+
 ```
 > python3 sqlalchemy_read.py
 cname:Wendy Luna caddress:002 Brian Plaza
@@ -265,7 +264,6 @@ Anthonyberg, DC 06558
 In the following example, we update the first `cname` column of `Customer` table by another value.
 We create this example in a text file named `sqlalchemy_update.py`, and put the following code:
 
-
 ```
 from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
@@ -309,7 +307,9 @@ session.commit()
 customer = session.query(Customer).first()
 print(customer)
 ```
+
 Execute this file in a terminal with such command and we will see the query result:
+
 ```
 > python3 sqlalchemy_update.py     
 cname:Wendy Luna caddress:002 Brian Plaza
@@ -322,6 +322,7 @@ Andrewhaven, SC 88456
 ```
 
 Then we verify the record being updated in MySQL client:
+
 ```
 mysql> select * from `Customer`;
 +------+------------------+-----------------------------------------------------+
@@ -397,6 +398,7 @@ customers = session.query(Customer).all()
 for customer in customers:
      print(customer.__str__() +"\n--------------------------\n")
 ```
+
 Execute this file in a terminal with such command and we will see the query result:
 
 ```
@@ -439,6 +441,7 @@ New Jameshaven, SD 89585
 ```
 
 Then we verify the record being deleted in MySQL client:
+
 ```
 mysql> select * from `Customer`;
 +------+------------------+-----------------------------------------------------+
