@@ -10,7 +10,7 @@ By walking through this tutorial, you'll learn how to complete a TPC-C Test with
 
 ## **Before you start**
 
-Make sure you have already [Deployed standalone MatrixOne](../Get-Started/install-standalone-matrixone.md).
+Make sure you have already [Deployed standalone MatrixOne](../../Get-Started/install-standalone-matrixone.md).
 
 ### Clone mo-tpch repository
 

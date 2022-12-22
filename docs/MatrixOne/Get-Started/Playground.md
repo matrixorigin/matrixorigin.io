@@ -3,7 +3,7 @@
 [MatrixOne Playground](https://playground.matrixorigin.io/?tutorial=SSB-test-with-matrixone&step=1) allows you to try SQL statements and explore features of MatrixOne instantly from your web browser with interactive tutorials.  
 
 * For docs about our SQL commands, you can see [SQL Reference](../Reference/SQL-Reference/Data-Definition-Statements/create-database.md).  
-* For tutorials about **SSB** or **TPCH** test, you can see [Tutorial](../Tutorial/SSB-test-with-matrixone.md).
+* For tutorials about **SSB** or **TPCH** test, you can see [Tutorial](../Test/performance-testing/SSB-test-with-matrixone.md).
 
 ## **Limitations**
 
