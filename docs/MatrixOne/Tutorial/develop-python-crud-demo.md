@@ -1,30 +1,32 @@
 # Build a simple Python CRUD demo with MatrixOne
- 
-## Setup your environment
+
+## Before you start
+
+### Setup your environment
 
 Before you start, make sure you have downloaded and installed the following software.
 
 1. Make sure you have already [installed and launched MatrixOne](../../Get-Started/install-standalone-matrixone.md).
 2. Make sure you have already installed [Python 3.8(or plus) version](https://www.python.org/downloads/).  
 
-```
-#To check with Python installation and its version
-python3 -V
-```
+    ```
+    #To check with Python installation and its version
+    python3 -V
+    ```
 
 3. Make sure you have already installed MySQL.
 4. Download and install pymysql and cryptography tool.
 
-```
-pip3 install pymysql
-pip3 install cryptography
+    ```
+    pip3 install pymysql
+    pip3 install cryptography
 
-#If you are in China mainland and have a low downloading speed, you can speed up the download by following commands.
-pip3 install pymysql -i https://pypi.tuna.tsinghua.edu.cn/simple
-pip3 install cryptography -i https://pypi.tuna.tsinghua.edu.cn/simple
-```
+    #If you are in China mainland and have a low downloading speed, you can speed up the download by following commands.
+    pip3 install pymysql -i https://pypi.tuna.tsinghua.edu.cn/simple
+    pip3 install cryptography -i https://pypi.tuna.tsinghua.edu.cn/simple
+    ```
 
-As we have explained how to connect to MatrixOne by pymysql in the other [tutorial](../Develop/connect-mo/python-connect-to-matrixone.md), we will focus on the CRUD(Create, Read, Update, Delete) implementations in this tutorial. 
+As we have explained how to connect to MatrixOne by pymysql in the other [tutorial](../Develop/connect-mo/python-connect-to-matrixone.md), we will focus on the CRUD(Create, Read, Update, Delete) implementations in this tutorial.
 
 ## Create Table
 
@@ -38,7 +40,7 @@ import pymysql.cursors
 SQL_CONNECTION = pymysql.connect(
         host='127.0.0.1',
 	port=6001,
-        user='dump', 
+        user='dump',
         password = "111",
         db='test',
         cursorclass=pymysql.cursors.DictCursor,
@@ -59,14 +61,14 @@ with SQL_CONNECTION.cursor() as cursor:
 
 ```
 
-Execute this python file by a terminal with the command line below. This will create a table `cars` in MatrixOne inside database `test`. 
+Execute this python file by a terminal with the command line below. This will create a table `cars` in MatrixOne inside database `test`.
 
 ```
 > python3 create.py
 Table created
 ```
 
-We can verify the table creation with MySQL client. 
+We can verify the table creation with MySQL client.
 
 ```
 mysql> show tables;
@@ -90,7 +92,7 @@ PRIMARY KEY (`id`)
 1 row in set (0.03 sec)
 ```
 
-#### Insert 
+## Insert
 
 Secondly we create a text file named `insert.py`, and put the following code:
 
@@ -102,7 +104,7 @@ import pymysql.cursors
 SQL_CONNECTION = pymysql.connect(
         host='127.0.0.1',
 	    port=6001,
-        user='dump', 
+        user='dump',
         password = "111",
         db='test',
         cursorclass=pymysql.cursors.DictCursor,
@@ -127,7 +129,7 @@ with SQL_CONNECTION.cursor() as cursor:
         SQL_CONNECTION.close()
 ```
 
-Executing the following code will insert a record in the `cars` table, then we verify in mysql client to check if the record is inserted. 
+Executing the following code will insert a record in the `cars` table, then we verify in mysql client to check if the record is inserted.
 
 ```
 > python3 insert.py
@@ -145,7 +147,7 @@ mysql> select * from cars;
 1 row in set (0.03 sec)
 ```
 
-#### Select
+## Select
 
 Thirdly we create a text file named `read.py`, and put the following code:
 
@@ -157,7 +159,7 @@ import pymysql.cursors
 SQL_CONNECTION = pymysql.connect(
         host='127.0.0.1',
 	    port=6001,
-        user='dump', 
+        user='dump',
         password = "111",
         db='test',
         cursorclass=pymysql.cursors.DictCursor,
@@ -190,7 +192,7 @@ Executing this code will select and return all records in the `cars` table.
 [{'id': 1, 'car_model': 'accord', 'car_brand': 'honda'}]
 ```
 
-#### Update
+## Update
 
 Fourthly we create a text file named `update.py`, and put the following code:
 
@@ -202,7 +204,7 @@ import pymysql.cursors
 SQL_CONNECTION = pymysql.connect(
         host='127.0.0.1',
 	    port=6001,
-        user='dump', 
+        user='dump',
         password = "111",
         db='test',
         cursorclass=pymysql.cursors.DictCursor,
@@ -228,7 +230,7 @@ with SQL_CONNECTION.cursor() as cursor:
 
 ```
 
-Executing this code will update the record with id `1`, then we verify in mysql client to check if the record is updated. 
+Executing this code will update the record with id `1`, then we verify in mysql client to check if the record is updated.
 
 ```
 > python3 read.py
@@ -246,7 +248,7 @@ mysql> select * from cars;
 1 row in set (0.02 sec)
 ```
 
-#### DELETE
+## Delete
 
 Finally we create a text file named `delete.py`, and put the following code:
 
@@ -258,7 +260,7 @@ import pymysql.cursors
 SQL_CONNECTION = pymysql.connect(
         host='127.0.0.1',
 	    port=6001,
-        user='dump', 
+        user='dump',
         password = "111",
         db='test',
         cursorclass=pymysql.cursors.DictCursor,
@@ -283,7 +285,7 @@ with SQL_CONNECTION.cursor() as cursor:
         SQL_CONNECTION.close()
 ```
 
-Executing this code will delete the record with id `1`, then we verify in mysql client to check if the record is updated. 
+Executing this code will delete the record with id `1`, then we verify in mysql client to check if the record is updated.
 
 ```
 > python3 delete.py
