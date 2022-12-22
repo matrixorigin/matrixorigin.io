@@ -59,9 +59,11 @@ After the modifications are complete, save the *props.mo* file.
 Open a new terminal window, execute the following command:
 
 ```
-cd mo-tpch
+cd mo-tpcc
 ./runSQL.sh props.mo tableCreates
 ```
+
+__Npte__: If you get an error like `java:command not found` while running `./runSQL.sh props.mo tableCreates`, install or reinstall Java and the JDK on your computer.
 
 The above code means to enter the *mo-tpch* directory and create the TPCC database and table.
 
