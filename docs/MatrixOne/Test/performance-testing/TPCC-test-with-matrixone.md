@@ -59,7 +59,7 @@ After the modifications are complete, save the *props.mo* file.
 Open a new terminal window, execute the following command:
 
 ```
-cd mo-tpch
+cd mo-tpcc
 ./runSQL.sh props.mo tableCreates
 ```
 
