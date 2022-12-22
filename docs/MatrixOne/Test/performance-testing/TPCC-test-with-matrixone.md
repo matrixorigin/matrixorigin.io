@@ -2,7 +2,7 @@
 
 By walking through this tutorial, you'll learn how to complete a TPC-C Test with MatrixOne.
 
-## **Overview of TPC-C**
+## **TPC-C Overview**
 
 TPC-C is an industry-standard benchmark for OLTP databases. TPC-C models a warehouse-centric order processing application, and the database used in the TPC-C benchmark consists of nine tables, such as Warehouse, Customer, Order, Item, and so on (See the below ER diagram). Except for the item table, each record is populated on a per-warehouse basis, and the number of warehouses can be configurable as a scale factor.
 
