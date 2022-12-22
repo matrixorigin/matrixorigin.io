@@ -1163,7 +1163,7 @@
   
     <li class="md-nav__item">
       <a href="../../../../Tutorial/develop-java-crud-demo/" class="md-nav__link">
-        Build a simple Java CRUD demo with MatrixOne
+        Build a Java CRUD demo
       </a>
     </li>
   
@@ -1177,7 +1177,7 @@
   
     <li class="md-nav__item">
       <a href="../../../../Tutorial/springboot-hibernate-crud-demo/" class="md-nav__link">
-        Hibernate
+        Build a CRUD demo with SpringBoot and Spring JPA
       </a>
     </li>
   
@@ -1191,7 +1191,7 @@
   
     <li class="md-nav__item">
       <a href="../../../../Tutorial/springboot-mybatis-crud-demo/" class="md-nav__link">
-        MyBatis
+        Build a CRUD demo with SpringBoot and MyBatis
       </a>
     </li>
   
@@ -1204,8 +1204,22 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Tutorial/develop-python-application/" class="md-nav__link">
-        Python stock analysis Demo
+      <a href="../../../../Tutorial/sqlalchemy-python-crud-demo/" class="md-nav__link">
+        Build a simple Python+SQLAlchemy CRUD demo
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Tutorial/develop-python-crud-demo/" class="md-nav__link">
+        Build a simple Python CRUD demo
       </a>
     </li>
   
@@ -1542,7 +1556,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Tutorial/SSB-test-with-matrixone/" class="md-nav__link">
+      <a href="../../../../Test/performance-testing/SSB-test-with-matrixone/" class="md-nav__link">
         SSB Test with MatrixOne
       </a>
     </li>
@@ -1556,7 +1570,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Tutorial/TPCH-test-with-matrixone/" class="md-nav__link">
+      <a href="../../../../Test/performance-testing/TPCH-test-with-matrixone/" class="md-nav__link">
         TPCH Test with MatrixOne
       </a>
     </li>
@@ -1570,7 +1584,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Tutorial/TPCC-test-with-matrixone/" class="md-nav__link">
+      <a href="../../../../Test/performance-testing/TPCC-test-with-matrixone/" class="md-nav__link">
         TPCC Test with MatrixOne
       </a>
     </li>
@@ -1617,7 +1631,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Test/mo-tester/" class="md-nav__link">
+      <a href="../../../../Test/testing-tool/mo-tester/" class="md-nav__link">
         MO-Tester
       </a>
     </li>
@@ -1631,7 +1645,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Test/mo-tester-reference/" class="md-nav__link">
+      <a href="../../../../Test/testing-tool/mo-tester-reference/" class="md-nav__link">
         MO-Tester Specification
       </a>
     </li>
@@ -5983,31 +5997,23 @@
             <article class="md-content__inner md-typeset">
               
                 
-<a href="https://github.com/matrixorigin/matrixorigin.io/edit/0.6.0/docs/MatrixOne/Develop/import-data/bulk-load/load-csv.md" title="Edit this page" class="md-content__button md-icon">
+<a href="https://github.com/matrixorigin/matrixorigin.io/edit/main/docs/MatrixOne/Develop/import-data/bulk-load/load-csv.md" title="Edit this page" class="md-content__button md-icon">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
 </a>
 
 
 
 <h1 id="import-the-csv-data">Import the <em>.csv</em> data</h1>
-<p>This document will guide you on how to import large amounts of <em>.csv</em> data to MatrixOne.</p>
+<p>This document will guide you on how to import large amounts of <em>.csv</em> format data to MatrixOne.</p>
 <h2 id="before-you-start">Before you start</h2>
-<p>Make sure you have already <a href="../../../../Get-Started/install-standalone-matrixone/">Deployed standalone MatrixOne</a>.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>If you install MatrixOne by <code>docker</code>, the directory is inside the docker image by default. To work with local directory, you need to bind a local directory to the container. In the following example, the local file system path <code>${local_data_path}/mo-data</code> is binded to the MatrixOne docker image, with a mapping to the <code>/mo-data</code> path. For more information, see <a href="https://www.freecodecamp.org/news/docker-mount-volume-guide-how-to-mount-a-local-directory/">Docker Mount Volume tutorial</a>.</p>
-</div>
-<div class="highlight"><pre><span></span><code>sudo docker run --name &lt;name&gt; --privileged -d -p 6001:6001 -v ${local_data_path}/mo-data:/mo-data:rw matrixorigin/matrixone:0.6.0
-</code></pre></div>
+<p>Make sure you have already <a href="../../../../Get-Started/install-standalone-matrixone/">Deployed and Launched standalone MatrixOne</a>.</p>
 <h2 id="using-the-load-data-command-in-mysql-client">Using the <code>Load data</code> command in MySQL Client</h2>
-<p>You can use <code>Load Data</code> to import data from big data files. Currently, MatrixOne only supports <code>csv</code> files.</p>
+<p>You can use <code>Load Data</code> to import data from big data files.</p>
+<p>This section will describe how to import a <em>.csv</em> file.</p>
+<p><strong>Note</strong>: A <code>csv</code>(comma-separated values) file is a delimited text file that uses a comma to separate values.</p>
 <ol>
 <li>
 <p>Before executing <code>Load Data</code> in MatrixOne, the table needs to be created in advance. For now, the data file is required to be at the same machine with MatrixOne server, a file transfer is necessary if they are in separate machines.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>If you are working with MatrixOne <code>docker</code> version, please put the data file in the directory mounted to the container, otherwise the container cann't perceive.</p>
-</div>
 </li>
 <li>
 <p>Launch the MySQL Client in the MatrixOne local server for accessing the local file system.</p>
@@ -6020,14 +6026,11 @@
 INTO TABLE xxxxxx
 FIELDS TERMINATED BY &#39;,&#39; OPTIONALLY ENCLOSED BY &#39;&quot;&#39; LINES TERMINATED BY &quot;\r\n&quot;;
 </code></pre></div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>For the <code>docker</code> version, the file path needs to be in the mounted directory.</p>
-</div>
 </li>
 </ol>
 <h3 id="example-using-load-data-with-docker-version">Example using <code>Load data</code> with <code>docker</code> version</h3>
-<p>We will walk through the whole process of loading data with MatrixOne 0.6.0 docker version.</p>
+<p>If you install MatrixOne by <code>docker</code>, the file system is inside the docker image by default. To work with local directory, you need to bind a local directory to the container. In the following example, the local file system path <code>~/tmp/docker_loaddata_demo/</code> is binded to the MatrixOne docker image, with a mapping to the <code>/ssb-dbgen-path</code> path inside the docker.
+We will walk you through the whole process of loading data with MatrixOne 0.6.0 docker version in this example.</p>
 <ol>
 <li>
 <p>Download the dataset file and store the data in <em>~/tmp/docker_loaddata_demo/</em>:</p>
@@ -6042,7 +6045,7 @@ wget https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/lineor
 </li>
 <li>
 <p>Use Docker to launch MatrixOne, and mount the directory <em>~/tmp/docker_loaddata_demo/</em> that stores data files to a directory in the container. The container directory is <em>/sb-dbgen-path</em> as an example:</p>
-<div class="highlight"><pre><span></span><code>sudo docker run --name &lt;name&gt; --privileged -d -p 6001:6001 -v ~/tmp/docker_loaddata_demo/:/ssb-dbgen-path:rw matrixorigin/matrixone:0.6.0
+<div class="highlight"><pre><span></span><code>sudo docker run --name matrixone --privileged -d -p 6001:6001 -v ~/tmp/docker_loaddata_demo/:/ssb-dbgen-path:rw matrixorigin/matrixone:0.6.0
 </code></pre></div>
 </li>
 <li>

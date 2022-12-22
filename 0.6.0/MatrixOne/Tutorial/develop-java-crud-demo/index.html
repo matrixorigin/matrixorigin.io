@@ -13,7 +13,7 @@
     
     
       
-        <title>Build a simple Java CRUD demo with MatrixOne - MatrixOne Docs</title>
+        <title>Build a Java CRUD demo - MatrixOne Docs</title>
       
     
     
@@ -101,7 +101,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Build a simple Java CRUD demo with MatrixOne
+              Build a Java CRUD demo
             
           </span>
         </div>
@@ -1109,12 +1109,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Build a simple Java CRUD demo with MatrixOne
+          Build a Java CRUD demo
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Build a simple Java CRUD demo with MatrixOne
+        Build a Java CRUD demo
       </a>
       
         
@@ -1148,10 +1148,10 @@
       
         <li class="md-nav__item">
   <a href="#write-java-code-to-connect-with-matrixone" class="md-nav__link">
-    Write  Java code to connect with MatrixOne
+    Write Java code to connect with MatrixOne
   </a>
   
-    <nav class="md-nav" aria-label="Write  Java code to connect with MatrixOne">
+    <nav class="md-nav" aria-label="Write Java code to connect with MatrixOne">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1203,7 +1203,7 @@
   
     <li class="md-nav__item">
       <a href="../springboot-hibernate-crud-demo/" class="md-nav__link">
-        Hibernate
+        Build a CRUD demo with SpringBoot and Spring JPA
       </a>
     </li>
   
@@ -1217,7 +1217,7 @@
   
     <li class="md-nav__item">
       <a href="../springboot-mybatis-crud-demo/" class="md-nav__link">
-        MyBatis
+        Build a CRUD demo with SpringBoot and MyBatis
       </a>
     </li>
   
@@ -1230,8 +1230,22 @@
   
   
     <li class="md-nav__item">
-      <a href="../develop-python-application/" class="md-nav__link">
-        Python stock analysis Demo
+      <a href="../sqlalchemy-python-crud-demo/" class="md-nav__link">
+        Build a simple Python+SQLAlchemy CRUD demo
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../develop-python-crud-demo/" class="md-nav__link">
+        Build a simple Python CRUD demo
       </a>
     </li>
   
@@ -1568,7 +1582,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../SSB-test-with-matrixone/" class="md-nav__link">
+      <a href="../../Test/performance-testing/SSB-test-with-matrixone/" class="md-nav__link">
         SSB Test with MatrixOne
       </a>
     </li>
@@ -1582,7 +1596,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../TPCH-test-with-matrixone/" class="md-nav__link">
+      <a href="../../Test/performance-testing/TPCH-test-with-matrixone/" class="md-nav__link">
         TPCH Test with MatrixOne
       </a>
     </li>
@@ -1596,7 +1610,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../TPCC-test-with-matrixone/" class="md-nav__link">
+      <a href="../../Test/performance-testing/TPCC-test-with-matrixone/" class="md-nav__link">
         TPCC Test with MatrixOne
       </a>
     </li>
@@ -1643,7 +1657,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Test/mo-tester/" class="md-nav__link">
+      <a href="../../Test/testing-tool/mo-tester/" class="md-nav__link">
         MO-Tester
       </a>
     </li>
@@ -1657,7 +1671,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Test/mo-tester-reference/" class="md-nav__link">
+      <a href="../../Test/testing-tool/mo-tester-reference/" class="md-nav__link">
         MO-Tester Specification
       </a>
     </li>
@@ -5986,10 +6000,10 @@
       
         <li class="md-nav__item">
   <a href="#write-java-code-to-connect-with-matrixone" class="md-nav__link">
-    Write  Java code to connect with MatrixOne
+    Write Java code to connect with MatrixOne
   </a>
   
-    <nav class="md-nav" aria-label="Write  Java code to connect with MatrixOne">
+    <nav class="md-nav" aria-label="Write Java code to connect with MatrixOne">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -6037,7 +6051,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-<a href="https://github.com/matrixorigin/matrixorigin.io/edit/0.6.0/docs/MatrixOne/Tutorial/develop-java-crud-demo.md" title="Edit this page" class="md-content__button md-icon">
+<a href="https://github.com/matrixorigin/matrixorigin.io/edit/main/docs/MatrixOne/Tutorial/develop-java-crud-demo.md" title="Edit this page" class="md-content__button md-icon">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
 </a>
 
@@ -6046,35 +6060,39 @@
 <h1 id="build-a-simple-java-crud-demo-with-matrixone">Build a simple Java CRUD demo with MatrixOne</h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The source code of this demo can be downloaded at <a href="https://github.com/matrixorigin/matrixone_java_crud_example">github</a>.  </p>
+<p>The source code of this demo can be downloaded at <a href="https://github.com/matrixorigin/matrixone_java_crud_example">Java CRUD Example</a>.  </p>
 </div>
 <h2 id="setup-your-environment">Setup your environment</h2>
 <p>Before you start, make sure you have downloaded and installed the following software.</p>
 <ul>
-<li>Make sure you have already <a href="../../Get-Started/install-standalone-matrixone/">Deployed standalone MatrixOne</a>. Create a database by MySQL client.</li>
+<li><a href="../../Get-Started/install-standalone-matrixone/">Install and deployed standalone MatrixOne</a>. Create a database by MySQL client.</li>
 </ul>
-<div class="highlight"><pre><span></span><code>mysql&gt; CREATE DATABASE TEST;
+<div class="highlight"><pre><span></span><code>mysql&gt; create database test;
 </code></pre></div>
 <ul>
-<li><a href="https://www.jetbrains.com/idea/download/">lntelIiJ IDEA(2022.2.1 or later version)</a>.</li>
+<li><a href="https://www.jetbrains.com/idea/download/">lntelliJ IDEA(2022.2.1 or later version)</a>.</li>
 <li><a href="https://www.oracle.com/sg/java/technologies/javase/javase8-archive-downloads.html">JDK 8+ version</a>: Choose the version according to your OS.</li>
 <li><a href="https://dev.mysql.com/downloads/connector/j/">MySQL JDBC connector 8.0+ version</a>: It's recommanded to download the platform independent version, and unzip the downloaded file.</li>
 </ul>
-<p>!Note：We take IDEA as an IDE example to demonstrate the process, you are free to choose Eclipse or other IDE tools for the same purpose.</p>
 <p><img alt="image-20220927102516885" src="https://github.com/matrixorigin/artwork/blob/main/docs/reference/jdbc_download.png?raw=true" /></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We take IDEA as an IDE example to demonstrate the process, you are free to choose Eclipse or other IDE tools for the same purpose.</p>
+</div>
 <h2 id="initialize-a-new-java-project">Initialize a new Java project</h2>
 <p>Launch IDEA, and create a new Java project as below:</p>
 <p><img alt="image-20220927104740221" src="https://github.com/matrixorigin/artwork/blob/main/docs/reference/jdbc_create_project.png?raw=true" /></p>
-<p>In your <strong>Project Setting &gt; Libraries</strong>, import the <em>mysql-connector-java-8.0.xx.jar</em> file.</p>
+<p>In your <strong>Project Setting &gt; Libraries</strong>, import the <em>mysql-connector-java-8.0.30.jar</em> file.</p>
 <p><img alt="image-20220927104904770" src="https://github.com/matrixorigin/artwork/blob/main/docs/reference/jdbc_import_library.png?raw=true" /></p>
-<h2 id="write-java-code-to-connect-with-matrixone">Write  Java code to connect with MatrixOne</h2>
+<h2 id="write-java-code-to-connect-with-matrixone">Write Java code to connect with MatrixOne</h2>
 <p>Firstly we create a Java class named as <code>JDBCUtils</code> as a connection utility. This class will serve as a tool to connect with MatrixOne and execute SQL queries.</p>
+<p>Under the <em>src</em> directory, create a file named <code>JDBCUtils.java</code>, and edit this file with the following code.</p>
 <div class="highlight"><pre><span></span><code>import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class JDBCUtils {
-    private static String jdbcURL = &quot;jdbc:mysql://127.0.0.1:6001/TEST&quot;;
+    private static String jdbcURL = &quot;jdbc:mysql://127.0.0.1:6001/test&quot;;
     private static String jdbcUsername = &quot;dump&quot;;
     private static String jdbcPassword = &quot;111&quot;;
 
@@ -6107,6 +6125,7 @@ public class JDBCUtils {
 }
 </code></pre></div>
 <p>Secondly we write example code for Create/Insert/Update/Delete operations with MatrixOne.</p>
+<p>We need to create corresponding java source code files as <code>Create.java</code>, <code>Insert.java</code>, <code>Select.java</code>, <code>Update.java</code> under the <em>src</em> directory, and put the code below in these files.</p>
 <h4 id="create">Create</h4>
 <div class="highlight"><pre><span></span><code>import java.sql.Connection;
 import java.sql.SQLException;
@@ -6142,7 +6161,7 @@ public class Create {
     }
 }
 </code></pre></div>
-<p>Executing this code will create a table in the <code>TEST</code> database.</p>
+<p>Executing this code will create a table in the <code>test</code> database, then we verify in mysql client to check if the table is created.</p>
 <div class="highlight"><pre><span></span><code>mysql&gt; show create table student;
 +---------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Table   | Create Table                                                                                                                                                                                        |
@@ -6321,13 +6340,13 @@ public class Select {
       
       
         
-        <a href="../springboot-hibernate-crud-demo/" class="md-footer__link md-footer__link--next" aria-label="Next: Hibernate" rel="next">
+        <a href="../springboot-hibernate-crud-demo/" class="md-footer__link md-footer__link--next" aria-label="Next: Build a CRUD demo with SpringBoot and Spring JPA" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Hibernate
+              Build a CRUD demo with SpringBoot and Spring JPA
             </div>
           </div>
           <div class="md-footer__button md-icon">

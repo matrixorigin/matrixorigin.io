@@ -1162,7 +1162,7 @@
   
     <li class="md-nav__item">
       <a href="../../../Tutorial/develop-java-crud-demo/" class="md-nav__link">
-        Build a simple Java CRUD demo with MatrixOne
+        Build a Java CRUD demo
       </a>
     </li>
   
@@ -1176,7 +1176,7 @@
   
     <li class="md-nav__item">
       <a href="../../../Tutorial/springboot-hibernate-crud-demo/" class="md-nav__link">
-        Hibernate
+        Build a CRUD demo with SpringBoot and Spring JPA
       </a>
     </li>
   
@@ -1190,7 +1190,7 @@
   
     <li class="md-nav__item">
       <a href="../../../Tutorial/springboot-mybatis-crud-demo/" class="md-nav__link">
-        MyBatis
+        Build a CRUD demo with SpringBoot and MyBatis
       </a>
     </li>
   
@@ -1203,8 +1203,22 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Tutorial/develop-python-application/" class="md-nav__link">
-        Python stock analysis Demo
+      <a href="../../../Tutorial/sqlalchemy-python-crud-demo/" class="md-nav__link">
+        Build a simple Python+SQLAlchemy CRUD demo
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tutorial/develop-python-crud-demo/" class="md-nav__link">
+        Build a simple Python CRUD demo
       </a>
     </li>
   
@@ -1541,7 +1555,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Tutorial/SSB-test-with-matrixone/" class="md-nav__link">
+      <a href="../../../Test/performance-testing/SSB-test-with-matrixone/" class="md-nav__link">
         SSB Test with MatrixOne
       </a>
     </li>
@@ -1555,7 +1569,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Tutorial/TPCH-test-with-matrixone/" class="md-nav__link">
+      <a href="../../../Test/performance-testing/TPCH-test-with-matrixone/" class="md-nav__link">
         TPCH Test with MatrixOne
       </a>
     </li>
@@ -1569,7 +1583,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Tutorial/TPCC-test-with-matrixone/" class="md-nav__link">
+      <a href="../../../Test/performance-testing/TPCC-test-with-matrixone/" class="md-nav__link">
         TPCC Test with MatrixOne
       </a>
     </li>
@@ -1616,7 +1630,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Test/mo-tester/" class="md-nav__link">
+      <a href="../../../Test/testing-tool/mo-tester/" class="md-nav__link">
         MO-Tester
       </a>
     </li>
@@ -1630,7 +1644,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Test/mo-tester-reference/" class="md-nav__link">
+      <a href="../../../Test/testing-tool/mo-tester-reference/" class="md-nav__link">
         MO-Tester Specification
       </a>
     </li>
@@ -5983,7 +5997,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-<a href="https://github.com/matrixorigin/matrixorigin.io/edit/0.6.0/docs/MatrixOne/Develop/connect-mo/python-connect-to-matrixone.md" title="Edit this page" class="md-content__button md-icon">
+<a href="https://github.com/matrixorigin/matrixorigin.io/edit/main/docs/MatrixOne/Develop/connect-mo/python-connect-to-matrixone.md" title="Edit this page" class="md-content__button md-icon">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
 </a>
 
@@ -6022,8 +6036,6 @@ pip3 install cryptography -i https://pypi.tuna.tsinghua.edu.cn/simple
 </li>
 <li>
 <p>Create a plain text file <code>pymysql_connect_matrixone.py</code> and put the code below.</p>
-</li>
-</ol>
 <div class="highlight"><pre><span></span><code><span class="ch">#!/usr/bin/python3</span>
 
 <span class="kn">import</span> <span class="nn">pymysql</span>
@@ -6032,7 +6044,7 @@ pip3 install cryptography -i https://pypi.tuna.tsinghua.edu.cn/simple
 <span class="n">db</span> <span class="o">=</span> <span class="n">pymysql</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
         <span class="n">host</span><span class="o">=</span><span class="s1">&#39;127.0.0.1&#39;</span><span class="p">,</span>
         <span class="n">port</span><span class="o">=</span><span class="mi">6001</span><span class="p">,</span>
-        <span class="n">user</span><span class="o">=</span><span class="s1">&#39;dump&#39;</span><span class="p">,</span> 
+        <span class="n">user</span><span class="o">=</span><span class="s1">&#39;dump&#39;</span><span class="p">,</span>
         <span class="n">password</span> <span class="o">=</span> <span class="s2">&quot;111&quot;</span><span class="p">,</span>
         <span class="n">db</span><span class="o">=</span><span class="s1">&#39;test&#39;</span><span class="p">,</span>
         <span class="p">)</span>
@@ -6049,12 +6061,14 @@ pip3 install cryptography -i https://pypi.tuna.tsinghua.edu.cn/simple
 <span class="c1"># disconnect from server</span>
 <span class="n">db</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </code></pre></div>
-<ol>
-<li>Execute this python file in the command line terminal.</li>
-</ol>
+</li>
+<li>
+<p>Execute this python file in the command line terminal.</p>
 <div class="highlight"><pre><span></span><code>&gt; python3 pymysql_connect_matrixone.py
 Database version : 8.0.30-MatrixOne-v0.6.0
 </code></pre></div>
+</li>
+</ol>
 <h2 id="using-sqlalchemy-connect-to-matrixone">Using sqlalchemy connect to MatrixOne</h2>
 <p>SQLAlchemy is the Python SQL toolkit and Object Relational Mapper(ORM) that gives application developers the full power and flexibility of SQL.</p>
 <ol>
@@ -6068,16 +6082,14 @@ pip3 install sqlalchemy -i https://pypi.tuna.tsinghua.edu.cn/simple
 </li>
 <li>
 <p>Connect to MatrixOne by MySQL client. Create a new database named <em>test</em>, a new table named <em>student</em> and insert two records.</p>
-</li>
-</ol>
 <div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n">test</span><span class="p">;</span><span class="w"></span>
 <span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="n">use</span><span class="w"> </span><span class="n">test</span><span class="p">;</span><span class="w"></span>
 <span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">student</span><span class="w"> </span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="nb">int</span><span class="p">);</span><span class="w"></span>
 <span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">student</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="ss">&quot;tom&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">11</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="ss">&quot;alice&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;10&quot;</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
-<ol>
-<li>Create a plain text file <code>sqlalchemy_connect_matrixone.py</code> and put the code below,</li>
-</ol>
+</li>
+<li>
+<p>Create a plain text file <code>sqlalchemy_connect_matrixone.py</code> and put the code below,</p>
 <div class="highlight"><pre><span></span><code><span class="ch">#!/usr/bin/python3</span>
 <span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span><span class="p">,</span> <span class="n">text</span>
 
@@ -6093,17 +6105,19 @@ pip3 install sqlalchemy -i https://pypi.tuna.tsinghua.edu.cn/simple
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;name:&quot;</span><span class="p">,</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">])</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;age:&quot;</span><span class="p">,</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;age&quot;</span><span class="p">])</span>
 </code></pre></div>
-<ol>
-<li>Execute this python file in the command line terminal.</li>
-</ol>
+</li>
+<li>
+<p>Execute this python file in the command line terminal.</p>
 <div class="highlight"><pre><span></span><code>python3 sqlalchemy_connect_matrixone.py
 name: tom
 age: 11
 name: alice
 age: 10
 </code></pre></div>
+</li>
+</ol>
 <h2 id="reference">Reference</h2>
-<p>For the example about using pymysql conn to MatrixOne, see<a href="../../../Tutorial/develop-python-application/">Build a simple stock analysis Python App with MatrixOne</a>.</p>
+<p>For the example about using pymysql conn to MatrixOne, see<a href="../../Tutorial/develop-python-application.md">Build a simple stock analysis Python App with MatrixOne</a>.</p>
 
               
             </article>

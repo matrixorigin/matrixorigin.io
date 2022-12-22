@@ -13,7 +13,7 @@
     
     
       
-        <title>Hibernate - MatrixOne Docs</title>
+        <title>Build a CRUD demo with SpringBoot and Spring JPA - MatrixOne Docs</title>
       
     
     
@@ -61,7 +61,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#build-a-springboothibernate-crud-demo-with-matrixone" class="md-skip">
+        <a href="#build-a-springbootspring-data-jpa-crud-demo-with-matrixone" class="md-skip">
           Skip to content
         </a>
       
@@ -101,7 +101,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Hibernate
+              Build a CRUD demo with SpringBoot and Spring JPA
             
           </span>
         </div>
@@ -1100,7 +1100,7 @@
   
     <li class="md-nav__item">
       <a href="../develop-java-crud-demo/" class="md-nav__link">
-        Build a simple Java CRUD demo with MatrixOne
+        Build a Java CRUD demo
       </a>
     </li>
   
@@ -1123,12 +1123,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Hibernate
+          Build a CRUD demo with SpringBoot and Spring JPA
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Hibernate
+        Build a CRUD demo with SpringBoot and Spring JPA
       </a>
       
         
@@ -1320,7 +1320,7 @@
   
     <li class="md-nav__item">
       <a href="../springboot-mybatis-crud-demo/" class="md-nav__link">
-        MyBatis
+        Build a CRUD demo with SpringBoot and MyBatis
       </a>
     </li>
   
@@ -1333,8 +1333,22 @@
   
   
     <li class="md-nav__item">
-      <a href="../develop-python-application/" class="md-nav__link">
-        Python stock analysis Demo
+      <a href="../sqlalchemy-python-crud-demo/" class="md-nav__link">
+        Build a simple Python+SQLAlchemy CRUD demo
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../develop-python-crud-demo/" class="md-nav__link">
+        Build a simple Python CRUD demo
       </a>
     </li>
   
@@ -1671,7 +1685,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../SSB-test-with-matrixone/" class="md-nav__link">
+      <a href="../../Test/performance-testing/SSB-test-with-matrixone/" class="md-nav__link">
         SSB Test with MatrixOne
       </a>
     </li>
@@ -1685,7 +1699,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../TPCH-test-with-matrixone/" class="md-nav__link">
+      <a href="../../Test/performance-testing/TPCH-test-with-matrixone/" class="md-nav__link">
         TPCH Test with MatrixOne
       </a>
     </li>
@@ -1699,7 +1713,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../TPCC-test-with-matrixone/" class="md-nav__link">
+      <a href="../../Test/performance-testing/TPCC-test-with-matrixone/" class="md-nav__link">
         TPCC Test with MatrixOne
       </a>
     </li>
@@ -1746,7 +1760,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Test/mo-tester/" class="md-nav__link">
+      <a href="../../Test/testing-tool/mo-tester/" class="md-nav__link">
         MO-Tester
       </a>
     </li>
@@ -1760,7 +1774,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Test/mo-tester-reference/" class="md-nav__link">
+      <a href="../../Test/testing-tool/mo-tester-reference/" class="md-nav__link">
         MO-Tester Specification
       </a>
     </li>
@@ -6243,18 +6257,18 @@
             <article class="md-content__inner md-typeset">
               
                 
-<a href="https://github.com/matrixorigin/matrixorigin.io/edit/0.6.0/docs/MatrixOne/Tutorial/springboot-hibernate-crud-demo.md" title="Edit this page" class="md-content__button md-icon">
+<a href="https://github.com/matrixorigin/matrixorigin.io/edit/main/docs/MatrixOne/Tutorial/springboot-hibernate-crud-demo.md" title="Edit this page" class="md-content__button md-icon">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
 </a>
 
 
 
-<h1 id="build-a-springboothibernate-crud-demo-with-matrixone">Build a SpringBoot+Hibernate CRUD demo with MatrixOne</h1>
-<p>This tutorial completes a simple Demo based on <strong>SpringBoot+Hibernate+MatrixOne+Intellij IDEA</strong> , and realizes the basic CRUD function.</p>
+<h1 id="build-a-springbootspring-data-jpa-crud-demo-with-matrixone">Build a SpringBoot+Spring Data JPA CRUD demo with MatrixOne</h1>
+<p>This tutorial completes a simple Demo based on <strong>SpringBoot+Spring Data JPA+MatrixOne+Intellij IDEA</strong> , and realizes the basic CRUD function.</p>
 <h2 id="before-you-start">Before you start</h2>
 <p>A brief introduction about these softwares concerned:</p>
 <ul>
-<li>Hibernate: Hibernate ORM is an object–relational mapping tool for the Java programming language. It provides a framework for mapping an object-oriented domain model to a relational database.</li>
+<li>Spring Data JPA: JPA is a specification that defines an API for object-relational mappings and for managing persistent objects. Spring Data JPA is an object–relational mapping tool for the Java programming language. It provides a framework for mapping an object-oriented domain model to a relational database.</li>
 <li>Intellij IDEA: IntelliJ IDEA is a popular IDE for Java developers. It has a lot of plugins that can enhance our efficiency.</li>
 <li>Maven: Maven is a powerful management tool in Java that can automatically download and import Jar file according to the configuration in the pom.xml file. This feature reduces the conflicts between different versions of Jar files.</li>
 <li>Spring: Spring is one of the most popular frameworks in Java and more and more enterprise is using the Spring framework to build their project. Spring Boot is built on top of the conventional spring framework. So, it provides all the features of spring and is yet easier to use than spring.</li>
@@ -6263,7 +6277,7 @@
 <h2 id="set-up-environment">Set up environment</h2>
 <h3 id="1-install-and-launch-matrixone">1. Install and Launch MatrixOne</h3>
 <p>Follow the <a href="../../Get-Started/install-standalone-matrixone/">installation instruction and launch MatrixOne 0.6</a>. Create a database <code>test</code> by MySQL client.</p>
-<div class="highlight"><pre><span></span><code>mysql&gt; CREATE DATABASE test;
+<div class="highlight"><pre><span></span><code>mysql&gt; create database test;
 </code></pre></div>
 <h3 id="2-create-a-new-spring-boot-project-using-intellij-idea">2. Create a new Spring Boot Project Using IntelliJ IDEA</h3>
 <p>Choose <strong>Spring Initializer</strong>, and name the project as you want.</p>
@@ -6374,7 +6388,7 @@ spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 # Data Source name
 spring.datasource.name=defaultDataSource
 
-# Database connection url, modify to MatrixOne address and port, with paratemers
+# Database connection url, modify to MatrixOne address and port, with parameters
 spring.datasource.url=jdbc:mysql://127.0.0.1:6001/test?characterSetResults=UTF-8&amp;continueBatchOnError=false&amp;useServerPrepStmts=true&amp;alwaysSendSetIsolation=false&amp;useLocalSessionState=true&amp;zeroDateTimeBehavior=CONVERT_TO_NULL&amp;failoverReadOnly=false&amp;serverTimezone=Asia/Shanghai&amp;socketTimeout=30000
 # Database username and password
 spring.datasource.username=dump
@@ -6389,7 +6403,7 @@ spring.jpa.properties.hibernate.format_sql = true
 spring.jpa.hibernate.ddl-auto = validate
 </code></pre></div>
 <h3 id="4-create-table-and-insert-some-data-in-matrixone">4. Create table and insert some data in MatrixOne</h3>
-<p>Connect to MatrixOne with MySQL client and execute the following SQL statements.</p>
+<p>Connect to MatrixOne with MySQL client and execute the following SQL statements. You can save these SQL statements in a <em>book.sql</em> under <em>/resource/database/</em>. </p>
 <div class="highlight"><pre><span></span><code>mysql&gt; USE test;
 mysql&gt; CREATE TABLE IF NOT EXISTS `book` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -6856,7 +6870,7 @@ public class JpademoApplication {
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../develop-java-crud-demo/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Build a simple Java CRUD demo with MatrixOne" rel="prev">
+        <a href="../develop-java-crud-demo/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Build a Java CRUD demo" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -6865,20 +6879,20 @@ public class JpademoApplication {
               <span class="md-footer__direction">
                 Previous
               </span>
-              Build a simple Java CRUD demo with MatrixOne
+              Build a Java CRUD demo
             </div>
           </div>
         </a>
       
       
         
-        <a href="../springboot-mybatis-crud-demo/" class="md-footer__link md-footer__link--next" aria-label="Next: MyBatis" rel="next">
+        <a href="../springboot-mybatis-crud-demo/" class="md-footer__link md-footer__link--next" aria-label="Next: Build a CRUD demo with SpringBoot and MyBatis" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              MyBatis
+              Build a CRUD demo with SpringBoot and MyBatis
             </div>
           </div>
           <div class="md-footer__button md-icon">
