@@ -1,12 +1,14 @@
-# **Complete a TPCC Test with MatrixOne**
-
-TPC Benchmark C is an on-line transaction processing (OLTP) benchmark. TPC-C is more complex than previous OLTP benchmarks such as TPC-A because of its multiple transaction types, more complex database and overall execution structure. TPC-C involves a mix of five concurrent transactions of different types and complexity either executed on-line or queued for deferred execution.
-
-This TPCC test is customed from benchmarksql-5.0, to run TPCC Benchmark for MatrixOne.
-
-The TPCC test mainly customized the schema, SQL statements, and some transaction conflict processing codes.
+# **Complete a TPC-C Test with MatrixOne**
 
 By walking through this tutorial, you'll learn how to complete a TPC-C Test with MatrixOne.
+
+## **TPC-C Overview**
+
+TPC-C is an industry-standard benchmark for OLTP databases. TPC-C models a warehouse-centric order processing application, and the database used in the TPC-C benchmark consists of nine tables, such as Warehouse, Customer, Order, Item, and so on (See the below ER diagram). Except for the item table, each record is populated on a per-warehouse basis, and the number of warehouses can be configurable as a scale factor.
+
+![TPCC diagram](https://miro.medium.com/max/1400/1*oZOCQB2c84bVxOqbCW1Fsw.webp)
+
+TPC-C has five transaction types: NewOrder, Payment, OrderStatus, Delivery, and StockLevel. The request rate of each transaction is defined in the specification, and almost 90% of transactions are NewOrder and Payment, which are write-intensive. TPC-C transactions mostly access a single (local) warehouse, but about 10% of transactions interact with another (remote) warehouse.
 
 ## **Before you start**
 
@@ -28,7 +30,8 @@ Now you can execute commands step by step as the following descriptions.
 
 ### 1. Configure the *props.mo* file
 
-After the mo-tpch repository is cloned, open the *mo-tpch* directory, and modify the configuration items of the *props.mo* file:
+After the mo-tpch repository is cloned, open the *mo-tpcc* directory, and modify the configuration items of the *props.mo* file. The number of warehouses 
+can be configurable by the `warehouse=XX` row in this file. 
 
 ```
 db=mo
@@ -38,7 +41,7 @@ user=dump
 password=111
 
 //the number of warehouse
-warehouses=1
+warehouses=10
 loadWorkers=4
 
 //the num of terminals that will simultaneously run
@@ -202,12 +205,12 @@ primary key (s_w_id, s_i_id)
 ) PARTITION BY KEY(s_w_id);
 ```
 
-### 3. Generate and load TPCC data to MatrixOne
+### 3. Generate TPCC data 
 
-To generate and load the TPCC data to MatrixOne, execute the following command:
+To generate the TPCC data execute the following command:
 
 ```
-./runLoader.sh props.mo warehouse 10
+./runLoader.sh props.mo filelocation /yourpath/
 ```
 
 The following is an example of the command output:
@@ -220,24 +223,69 @@ driver=com.mysql.cj.jdbc.Driver
 conn=jdbc:mysql://127.0.0.1:6001/tpcc?characterSetResults=utf8&continueBatchOnError=false&useServerPrepStmts=true&alwaysSendSetIsolation=false&useLocalSessionState=true&zeroDateTimeBehavior=CONVERT_TO_NULL&failoverReadOnly=false&serverTimezone=Asia/Shanghai&enabledTLSProtocols=TLSv1.2&useSSL=false
 user=dump
 password=***********
-warehouses=1
+warehouses=10
 loadWorkers=4
 fileLocation (not defined)
 csvNullValue (not defined - using default '')
 
 Worker 000: Loading ITEM
 Worker 001: Loading Warehouse      1
+Worker 002: Loading Warehouse      2
+Worker 003: Loading Warehouse      3
 Worker 000: Loading ITEM done
+Worker 000: Loading Warehouse      4
+Worker 003: Loading Warehouse      3 done
+Worker 003: Loading Warehouse      5
 Worker 001: Loading Warehouse      1 done
+Worker 001: Loading Warehouse      6
+Worker 002: Loading Warehouse      2 done
+Worker 002: Loading Warehouse      7
+Worker 000: Loading Warehouse      4 done
+Worker 000: Loading Warehouse      8
+Worker 003: Loading Warehouse      5 done
+Worker 003: Loading Warehouse      9
+Worker 000: Loading Warehouse      8 done
+Worker 000: Loading Warehouse     10
+Worker 002: Loading Warehouse      7 done
+Worker 001: Loading Warehouse      6 done
+Worker 000: Loading Warehouse     10 done
+Worker 003: Loading Warehouse      9 done
 ```
 
-If only need to generate data, execute the following command:
+You will find in your designated path 10 csv files. Each csv file maps to a table created in the second step.
 
 ```
-./runLoader.sh props.mo warehouse 10 filelocation /yourpath/
+config.csv
+cust-hist.csv
+customer.csv
+district.csv
+item.csv
+new-order.csv
+order-line.csv
+order.csv
+stock.csv
+warehouse.csv
 ```
 
-### 4. Run TPCC test
+### 4. Load TPCC data to MatrixOne
+
+Use MySQL client to connect to MatrixOne and execute the following statements to load the csv files into MatrixOne. 
+
+```
+mysql> load data infile '/yourpath/config.csv' INTO TABLE bmsql_config FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"' LINES TERMINATED BY "\r\n";
+load data infile '/yourpath/cust-hist.csv' INTO TABLE bmsql_history FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"' LINES TERMINATED BY "\r\n";
+load data infile '/yourpath/data/customer.csv' INTO TABLE bmsql_customer FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"' LINES TERMINATED BY "\r\n";
+load data infile '/yourpath/data/district.csv' INTO TABLE bmsql_district FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"' LINES TERMINATED BY "\r\n";
+load data infile '/yourpath/data/warehouse.csv' INTO TABLE bmsql_warehouse FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"' LINES TERMINATED BY "\r\n";
+load data infile '/yourpath/item.csv' INTO TABLE bmsql_item FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"' LINES TERMINATED BY "\r\n";
+load data infile '/yourpath/new-order.csv' INTO TABLE bmsql_new_order FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"' LINES TERMINATED BY "\r\n";
+load data infile '/yourpath/order-line.csv' INTO TABLE bmsql_order_line FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"' LINES TERMINATED BY "\r\n";
+load data infile '/yourpath/stock.csv' INTO TABLE bmsql_stock FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"' LINES TERMINATED BY "\r\n";
+load data infile '/yourpath/order.csv' INTO TABLE bmsql_oorder FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"' LINES TERMINATED BY "\r\n";
+
+```
+
+### 5. Run TPCC test
 
 To run the TPCC test, execute the following command:
 
@@ -249,42 +297,84 @@ The following is an example of the command output:
 
 ```
 .:./lib/*
-2022-11-27 01:07:44 INFO  jTPCC:78 - Term-00,
-2022-11-27 01:07:44 INFO  jTPCC:79 - Term-00, +-------------------------------------------------------------+
-2022-11-27 01:07:44 INFO  jTPCC:80 - Term-00,      BenchmarkSQL v5.0
-2022-11-27 01:07:44 INFO  jTPCC:81 - Term-00, +-------------------------------------------------------------+
-2022-11-27 01:07:44 INFO  jTPCC:82 - Term-00,  (c) 2003, Raul Barbosa
-2022-11-27 01:07:44 INFO  jTPCC:83 - Term-00,  (c) 2004-2016, Denis Lussier
-2022-11-27 01:07:44 INFO  jTPCC:84 - Term-00,  (c) 2016, Jan Wieck
-2022-11-27 01:07:44 INFO  jTPCC:85 - Term-00, +-------------------------------------------------------------+
-2022-11-27 01:07:44 INFO  jTPCC:86 - Term-00,
-2022-11-27 01:07:44 INFO  jTPCC:63 - Term-00, db=mo
-2022-11-27 01:07:44 INFO  jTPCC:63 - Term-00, driver=com.mysql.cj.jdbc.Driver
-2022-11-27 01:07:44 INFO  jTPCC:63 - Term-00, conn=jdbc:mysql://127.0.0.1:6001/tpcc?characterSetResults=utf8&continueBatchOnError=false&useServerPrepStmts=true&alwaysSendSetIsolation=false&useLocalSessionState=true&zeroDateTimeBehavior=CONVERT_TO_NULL&failoverReadOnly=false&serverTimezone=Asia/Shanghai&enabledTLSProtocols=TLSv1.2&useSSL=false
-2022-11-27 01:07:44 INFO  jTPCC:63 - Term-00, user=dump
-2022-11-27 01:07:44 INFO  jTPCC:93 - Term-00,
-2022-11-27 01:07:44 INFO  jTPCC:63 - Term-00, warehouses=1
-2022-11-27 01:07:44 INFO  jTPCC:63 - Term-00, terminals=1
-2022-11-27 01:07:44 INFO  jTPCC:100 - Term-00, runMins=1
-2022-11-27 01:07:44 INFO  jTPCC:63 - Term-00, limitTxnsPerMin=0
-2022-11-27 01:07:44 INFO  jTPCC:63 - Term-00, terminalWarehouseFixed=null
-2022-11-27 01:07:44 INFO  jTPCC:108 - Term-00,
-2022-11-27 01:07:44 INFO  jTPCC:63 - Term-00, newOrderWeight=null
-2022-11-27 01:07:44 INFO  jTPCC:63 - Term-00, paymentWeight=null
-2022-11-27 01:07:44 INFO  jTPCC:63 - Term-00, orderStatusWeight=null
-2022-11-27 01:07:44 INFO  jTPCC:63 - Term-00, deliveryWeight=null
-2022-11-27 01:07:44 INFO  jTPCC:63 - Term-00, stockLevelWeight=null
-2022-11-27 01:07:44 INFO  jTPCC:115 - Term-00,
-2022-11-27 01:07:44 INFO  jTPCC:63 - Term-00, resultDirectory=null
-2022-11-27 01:07:44 INFO  jTPCC:63 - Term-00, osCollectorScript=null
-2022-11-27 01:07:44 INFO  jTPCC:119 - Term-00,
-2022-11-27 01:07:44 INFO  jTPCC:710 - Term-00, Loading database driver: 'com.mysql.cj.jdbc.Driver'...
-2022-11-27 01:07:44 INFO  jTPCC:324 - Term-00, C value for C_LAST during load: 229
-2022-11-27 01:07:44 INFO  jTPCC:325 - Term-00, C value for C_LAST this run:    110
-2022-11-27 01:07:44 INFO  jTPCC:326 - Term-00,
-Term-00, Running Average tpmTOTAL: 0.00    Current tpmTOTAL: 0    Memory Usage: 15MB / 260MB      2022-11-27 01:07:44 ERROR jTPCC:715 - Term-00, Invalid number in mix percentage!
-java.lang.Exception
-        at io.mo.jTPCC.<init>(jTPCC.java:429)
-        at io.mo.jTPCC.main(jTPCC.java:57)
-Term-00, Running Average tpmTOTAL: 0.00    Current tpmTOTAL: 0    Memory Usage: 15MB / 260MB
+2022-12-22 21:15:35 INFO  jTPCC:78 - Term-00, 
+2022-12-22 21:15:35 INFO  jTPCC:79 - Term-00, +-------------------------------------------------------------+
+2022-12-22 21:15:35 INFO  jTPCC:80 - Term-00,      BenchmarkSQL v5.0
+2022-12-22 21:15:35 INFO  jTPCC:81 - Term-00, +-------------------------------------------------------------+
+2022-12-22 21:15:35 INFO  jTPCC:82 - Term-00,  (c) 2003, Raul Barbosa
+2022-12-22 21:15:35 INFO  jTPCC:83 - Term-00,  (c) 2004-2016, Denis Lussier
+2022-12-22 21:15:35 INFO  jTPCC:84 - Term-00,  (c) 2016, Jan Wieck
+2022-12-22 21:15:35 INFO  jTPCC:85 - Term-00, +-------------------------------------------------------------+
+2022-12-22 21:15:35 INFO  jTPCC:86 - Term-00, 
+2022-12-22 21:15:35 INFO  jTPCC:63 - Term-00, db=mo
+2022-12-22 21:15:35 INFO  jTPCC:63 - Term-00, driver=com.mysql.cj.jdbc.Driver
+2022-12-22 21:15:35 INFO  jTPCC:63 - Term-00, conn=jdbc:mysql://127.0.0.1:6001/tpcc?characterSetResults=utf8&continueBatchOnError=false&useServerPrepStmts=true&alwaysSendSetIsolation=false&useLocalSessionState=true&zeroDateTimeBehavior=CONVERT_TO_NULL&failoverReadOnly=false&serverTimezone=Asia/Shanghai&enabledTLSProtocols=TLSv1.2&useSSL=false
+2022-12-22 21:15:35 INFO  jTPCC:63 - Term-00, user=dump
+2022-12-22 21:15:35 INFO  jTPCC:93 - Term-00, 
+2022-12-22 21:15:35 INFO  jTPCC:63 - Term-00, warehouses=10
+2022-12-22 21:15:35 INFO  jTPCC:63 - Term-00, terminals=1
+2022-12-22 21:15:35 INFO  jTPCC:100 - Term-00, runMins=1
+2022-12-22 21:15:35 INFO  jTPCC:63 - Term-00, limitTxnsPerMin=0
+2022-12-22 21:15:35 INFO  jTPCC:63 - Term-00, terminalWarehouseFixed=false
+2022-12-22 21:15:35 INFO  jTPCC:108 - Term-00, 
+2022-12-22 21:15:35 INFO  jTPCC:63 - Term-00, newOrderWeight=45
+2022-12-22 21:15:35 INFO  jTPCC:63 - Term-00, paymentWeight=43
+2022-12-22 21:15:35 INFO  jTPCC:63 - Term-00, orderStatusWeight=4
+2022-12-22 21:15:35 INFO  jTPCC:63 - Term-00, deliveryWeight=4
+2022-12-22 21:15:35 INFO  jTPCC:63 - Term-00, stockLevelWeight=4
+2022-12-22 21:15:35 INFO  jTPCC:115 - Term-00, 
+2022-12-22 21:15:35 INFO  jTPCC:63 - Term-00, resultDirectory=my_result_%tY-%tm-%td_%tH%tM%tS
+2022-12-22 21:15:35 INFO  jTPCC:63 - Term-00, osCollectorScript=null
+2022-12-22 21:15:35 INFO  jTPCC:119 - Term-00, 
+2022-12-22 21:15:35 INFO  jTPCC:710 - Term-00, Loading database driver: 'com.mysql.cj.jdbc.Driver'...
+2022-12-22 21:15:35 INFO  jTPCC:219 - Term-00, copied props.mo to my_result_2022-12-22_211535/run.properties
+2022-12-22 21:15:35 INFO  jTPCC:239 - Term-00, created my_result_2022-12-22_211535/data/runInfo.csv for runID 1
+2022-12-22 21:15:35 INFO  jTPCC:255 - Term-00, writing per transaction results to my_result_2022-12-22_211535/data/result.csv
+2022-12-22 21:15:35 INFO  jTPCC:268 - Term-00,
+2022-12-22 21:15:36 INFO  jTPCC:324 - Term-00, C value for C_LAST during load: 28
+2022-12-22 21:15:36 INFO  jTPCC:325 - Term-00, C value for C_LAST this run:    132
+2022-12-22 21:15:36 INFO  jTPCC:326 - Term-00, 
+2022-12-22 21:15:36 INFO  jTPCC:710 - Term-00, Session started!   Memory Usage: 17MB / 245MB          
+2022-12-22 21:15:36 INFO  jTPCC:710 - Term-00, Creating 1 terminal(s) with -1 transaction(s) per terminal...
+2022-12-22 21:15:36 INFO  jTPCC:710 - Term-00, Terminal Warehouse is NOT fixed
+2022-12-22 21:15:36 INFO  jTPCC:710 - Term-00, Transaction Weights: 45% New-Order, 43% Payment, 4% Order-Status, 4% Delivery, 4% Stock-Level
+2022-12-22 21:15:36 INFO  jTPCC:710 - Term-00, Number of Terminals      1
+2022-12-22 21:15:36 INFO  jTPCC:710 - Term-00, Creating database connection for Term-01...
+2022-12-22 21:15:36 INFO  jTPCC:710 - Term-00, Term-01  7
+2022-12-22 21:15:36 INFO  jTPCC:710 - Term-00, Transaction      Weight
+2022-12-22 21:15:36 INFO  jTPCC:710 - Term-00, % New-Order      45
+2022-12-22 21:15:36 INFO  jTPCC:710 - Term-00, % Payment        43
+2022-12-22 21:15:36 INFO  jTPCC:710 - Term-00, % Order-Status   4
+2022-12-22 21:15:36 INFO  jTPCC:710 - Term-00, % Delivery       4
+2022-12-22 21:15:36 INFO  jTPCC:710 - Term-00, % Stock-Level    4
+2022-12-22 21:15:36 INFO  jTPCC:710 - Term-00, Transaction Number       Terminal        Type    Execution Time (ms)             Comment
+2022-12-22 21:15:36 INFO  jTPCC:710 - Term-00, Created 1 terminal(s) successfully!
+2022-12-22 21:15:36 INFO  jTPCC:710 - Term-00, Starting all terminals...
+2022-12-22 21:15:36 INFO  jTPCC:710 - Term-00, All terminals started executing 2022-12-22 21:15:36
+Term-00, Running Average tpmTOTAL: 60000.00    Current tpmTOTAL: 12    Memory Usage: 19MB / 245MB   2022-12-22 21:15:36 INFO  jTPCCTerminal:350 - Term-01, Executing for a limited time...
+2022-12-22 21:16:42 INFO  jTPCC:710 - Term-00, The time limit has been reached.: 21MB / 245MB          
+2022-12-22 21:16:42 INFO  jTPCC:710 - Term-00, Signalling all terminals to stop...
+2022-12-22 21:16:42 INFO  jTPCCTerminal:350 - Term-01, 
+2022-12-22 21:16:42 INFO  jTPCCTerminal:350 - Term-01, Terminal received stop signal!
+2022-12-22 21:16:42 INFO  jTPCCTerminal:350 - Term-01, Finishing current transaction before exit...
+2022-12-22 21:16:42 INFO  jTPCC:710 - Term-00, Waiting for all active transactions to end...
+2022-12-22 21:16:42 INFO  jTPCCTerminal:350 - Term-01, OTAL: 24    Memory Usage: 22MB / 245MB          
+2022-12-22 21:16:42 INFO  jTPCCTerminal:350 - Term-01, Closing statement and connection...
+2022-12-22 21:16:42 INFO  jTPCCTerminal:350 - Term-01, 
+2022-12-22 21:16:42 INFO  jTPCCTerminal:350 - Term-01, Terminal 'Term-01' finished after 0 transaction(s).
+2022-12-22 21:16:42 INFO  jTPCC:710 - Term-00, All terminals finished executing 2022-12-22 21:16:42
+
+2022-12-22 21:16:42 INFO  jTPCC:694 - Term-00, 
+2022-12-22 21:16:42 INFO  jTPCC:695 - Term-00, 
+2022-12-22 21:16:42 INFO  jTPCC:696 - Term-00, Measured tpmC (NewOrders) = 2.74
+2022-12-22 21:16:42 INFO  jTPCC:697 - Term-00, Measured tpmTOTAL = 3.66
+2022-12-22 21:16:42 INFO  jTPCC:698 - Term-00, Measured tpmE (ErrorCount) = 0.0
+2022-12-22 21:16:42 INFO  jTPCC:699 - Term-00, Session Start     = 2022-12-22 21:15:36
+2022-12-22 21:16:42 INFO  jTPCC:700 - Term-00, Session End       = 2022-12-22 21:16:42
+2022-12-22 21:16:42 INFO  jTPCC:701 - Term-00, Transaction Count = 3
+2022-12-22 21:16:42 INFO  jTPCC:702 - Term-00, Transaction Error = 0
+2022-12-22 21:16:42 INFO  jTPCC:703 - Term-00, Transaction NewOrders = 3
+2022-12-22 21:16:42 INFO  jTPCC:710 - Term-00, Session finished!
 ```
+
+The value of tpmC(transactions per minute) is given in the result. 
