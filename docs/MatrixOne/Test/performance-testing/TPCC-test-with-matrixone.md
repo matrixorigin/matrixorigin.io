@@ -12,7 +12,7 @@ TPC-C has five transaction types: NewOrder, Payment, OrderStatus, Delivery, and 
 
 ## **Before you start**
 
-Make sure you have already [Deployed standalone MatrixOne](../Get-Started/install-standalone-matrixone.md).
+Make sure you have already [Deployed standalone MatrixOne](../../Get-Started/install-standalone-matrixone.md).
 
 ### Clone mo-tpch repository
 

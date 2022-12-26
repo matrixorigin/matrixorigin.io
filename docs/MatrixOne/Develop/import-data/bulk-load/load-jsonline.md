@@ -4,7 +4,7 @@ This document will guide you on how to import JSONLines (that is *.jl* or *.json
 
 ## About JSONLines format
 
-JSON(JavaScript Object Notation) is a popular file format for about two decades, nowadays became de-facto of data exchange format standard, replacing XML, that was a huge buzzword in the early 2000’s. If you are not familiar with JSON format, please help yourself to know about it with this [official documentation](https://www.json.org/json-en.html). 
+JSON(JavaScript Object Notation) is a popular file format for about two decades, nowadays became de-facto of data exchange format standard, replacing XML, that was a huge buzzword in the early 2000’s. If you are not familiar with JSON format, please help yourself to know about it with this [official documentation](https://www.json.org/json-en.html).
 
 [JSONLines](https://jsonlines.org/) text format, also called newline-delimited JSON, is a convenient format for storing structured data that may be processed one record at a time. Basically, JSONL is a file format that allows one JSON object per line with lines delimited by a newline character `\n`.  Each line of the file is independent, so commas are not required at the beginning or ending of lines.  Nor does the entire contents of the file need to be enclosed in square or curly braces.
 
@@ -20,9 +20,9 @@ The JSON Lines format has three requirements:
 
 ## Valid JSONLines format for MatrixOne
 
-JSONLines format only requires a valid JSON value for each line. But MatrixOne requires a more structured JSONLines format, only an JSON object or an JSON array with the same type of values and a plain structure are allowed in MatrixOne. If your JSONLines file has nested structures, MatrixOne doesn't support loading it for now. 
+JSONLines format only requires a valid JSON value for each line. But MatrixOne requires a more structured JSONLines format, only an JSON object or an JSON array with the same type of values and a plain structure are allowed in MatrixOne. If your JSONLines file has nested structures, MatrixOne doesn't support loading it for now.
 
-A valid object JSONLines example: 
+A valid object JSONLines example:
 
 ```
 {"id":1,"father":"Mark","mother":"Charlotte"}
@@ -45,14 +45,14 @@ A valid array JSONLines example, it needs to look like a CSV format.
 ["Gilbert", "2013", 24, true]
 ["Alexa", "2013", 29, true]
 ["May", "2012B", 14, false]
-["Deloise", "2012A", 19, true] 
+["Deloise", "2012A", 19, true]
 ```
 
-Invalid array JSONLines example (Data type and column numbers don't match): 
+Invalid array JSONLines example (Data type and column numbers don't match):
 ["Gilbert", "2013", 24, true, 100]
 ["Alexa", "2013", "twenty nine", true]
 ["May", "2012B", 14, "no"]
-["Deloise", "2012A", 19, true, 40] 
+["Deloise", "2012A", 19, true, 40]
 
 ## Syntax
 
@@ -74,7 +74,7 @@ LOAD DATA INFILE
 
 **DDL guidelines for JSONLines format data**
 
-Before load JSONLines data into MatrixOne, we need to firstly create a table. As JSON data type is not the same as MatrixOne data type, we need a guideline for DDL. 
+Before load JSONLines data into MatrixOne, we need to firstly create a table. As JSON data type is not the same as MatrixOne data type, we need a guideline for DDL.
 
 |JSON Type|MatrixOne Type|
 |:-:|:-:|
@@ -101,7 +101,7 @@ mysql> create table t1 (name varchar(100), session varchar(100), score int, comp
 ["Gilbert", "2013", 24, true]
 ["Alexa", "2013", 29, true]
 ["May", "2012B", 14, false]
-["Deloise", "2012A", 19, true] 
+["Deloise", "2012A", 19, true]
 ```
 
 **Some examples**
@@ -123,7 +123,7 @@ load data infile {'filepath'='data.jl.gz', 'compression'='gzip','format'='jsonli
 
 In this tutorial, we will guide you through loading two jsonline files with object and array jsonformat.
 
-1. Prepare the data files. You can also download and use the *.jl* file we prepared. The data directory needs to be with in the same machine as MatrixOne server. The following steps are illustrated with sample data. 
+1. Prepare the data files. You can also download and use the *.jl* file we prepared. The data directory needs to be with in the same machine as MatrixOne server. The following steps are illustrated with sample data.
 
     - Example data file 1：*[jsonline_object.jl](https://github.com/matrixorigin/matrixone/blob/main/test/distributed/resources/load_data/jsonline_object.jl)*
     - Example data file  2：*[jsonline_array.jl](https://github.com/matrixorigin/matrixone/blob/main/test/distributed/resources/load_data/jsonline_array.jl)*
@@ -187,5 +187,5 @@ In this tutorial, we will guide you through loading two jsonline files with obje
 ## Constraints
 
 1. `Load data` doesn't support JSON type in schema.
-2. JSONLine files with nested structure data(object, array) cannot be loaded in MatrixOne. 
+2. JSONLine files with nested structure data(object, array) cannot be loaded in MatrixOne.
 3. Null type data cannot be loaded in MatrixOne.

@@ -23,7 +23,7 @@ The Cases and Results are 1-1 correspondence, and they are actually `git submodu
 
 * Make sure you have installed jdk8.
 
-* Launch MatrixOne or other database instance. Please refer to more information about [how to install and launch MatrixOne](../Get-Started/install-standalone-matrixone.md).
+* Launch MatrixOne or other database instance. Please refer to more information about [how to install and launch MatrixOne](../../Get-Started/install-standalone-matrixone.md).
 
 * Clone *mo-tester* repository.
 

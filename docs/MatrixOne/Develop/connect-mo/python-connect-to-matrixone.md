@@ -124,7 +124,7 @@ SQLAlchemy is the Python SQL toolkit and Object Relational Mapper(ORM) that give
     name: alice
     age: 10
     ```
-
+    
 ## Reference
 
-For the example about using pymysql conn to MatrixOne, see[Build a simple stock analysis Python App with MatrixOne](../../Tutorial/develop-python-application.md).
+For the example about using Python to build a simple CRUD with MatrixOne, see [Build a simple Python+SQLAlchemy CRUD demo with MatrixOne](../../Tutorial/sqlalchemy-python-crud-demo.md) and [Build a simple Python CRUD demo with MatrixOne](../../Tutorial/develop-python-crud-demo.md)

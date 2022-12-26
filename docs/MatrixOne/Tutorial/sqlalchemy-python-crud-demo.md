@@ -13,7 +13,7 @@ A brief introduction about these softwares concerned:
 
 Before you start, make sure you have downloaded and installed the following software.
 
-1. Make sure you have already [installed and launched MatrixOne](../../Get-Started/install-standalone-matrixone.md). Connect to MatrixOne and create a database by MySQL client.
+1. Make sure you have already [installed and launched MatrixOne](../Get-Started/install-standalone-matrixone.md). Connect to MatrixOne and create a database by MySQL client.
 
     ```
     mysql> create database test;
