@@ -1,153 +1,234 @@
-# Import the data from S3
+# Import the data from S3 Compatible object storage
 
 ## Overview
 
-MatrixOne can read the Simple Storage Service (S3) files and import data to MatrixOne database.
+S3 (Simple Storage Service) object storage refers to Amazon’s Simple Storage Service. You can also store almost any type and any size of data with S3 compatible object storage, including data lakes, cloud-native applications, and mobile apps. If you are not familiar with S3 object service, you may look up some basic introductions in [AWS](https://docs.aws.amazon.com/s3/index.html). 
 
-Currently, S3 supports AWS and mainstream cloud vendors in China. In addition, files on S3 support compressed formats and regular expression rules for file paths to read multiple files. For example, "/Users/\*.txt" will read all files ending with *.txt*.
+As AWS S3 has been remarkably successful for more than a decade, it became the de facto standard for object storage. Thus almost every main stream public cloud vendors provide a S3 compatible object storage service. 
 
-## Before you start
+MatrixOne supports to load files from S3 compatible object storage services into databases. Currently, MatrixOne supports AWS, and mainstream cloud vendors in China (Alibaba Cloud, Tencent Cloud). 
 
-Make sure you have already [Deployed standalone MatrixOne](../../../Get-Started/install-standalone-matrixone.md).
+In MatrixOne, there are two methods to import the data from S3 compatible object storage: 
 
-!!! note
-    If you install MatrixOne by `docker`, the directory is inside the docker image by default. To work with local directory, you need to bind a local directory to the container. In the following example, the local file system path `${local_data_path}/mo-data` is binded to the MatrixOne docker image, with a mapping to the `/mo-data` path. For more information, see [Docker Mount Volume tutorial](https://www.freecodecamp.org/news/docker-mount-volume-guide-how-to-mount-a-local-directory/).
+* Use `Load data` with a s3option to load file into MatrixOne. With this method will load the data into MatrixOne and all next queries will happen inside MatrixOne. 
+* Create an `external table` with a s3option mapping to a S3 file, and query this external table directly. With this method, data accesss is still through S3 compatible object storage service, the networking latency will be counted for each query.  
 
-```
-sudo docker run --name <name> --privileged -d -p 6001:6001 -v ${local_data_path}/mo-data:/mo-data:rw matrixorigin/matrixone:0.6.0
-```
+## Method1: LOAD DATA
 
-## Basic command
+### Syntax
 
 ```sql
 LOAD DATA
-    [ INFILE 'string'
-    | INFILE {"filepath"='<string>', "compression"='<string>'}
     | URL s3options {"endpoint"='<string>', "access_key_id"='<string>', "secret_access_key"='<string>', "bucket"='<string>', "filepath"='<string>', "region"='<string>', "compression"='<string>'}
-    [IGNORE]
     INTO TABLE tbl_name
-    [CHARACTER SET charset_name]
     [{FIELDS | COLUMNS}
+        [TERMINATED BY 'string']
         [[OPTIONALLY] ENCLOSED BY 'char']
-    ]
+        [ESCAPED BY 'char']
     ]
     [IGNORE number {LINES | ROWS}]
 ```
-
-<!--待确认-heni-->
 
 **Parameter Description**
 
 |Parameter|Description|
 |:-:|:-:|
-|endpoint|A endpoint is a URL that can conncect to AWS Web service. For example: s3.us-west-2.amazonaws.com|
-|access_key_id| S3 Access key ID |
-|secret_access_key| S3 Secret access key |
+|endpoint|A endpoint is a URL that can conncect to object storage service. For example: s3.us-west-2.amazonaws.com|
+|access_key_id| Access key ID |
+|secret_access_key| Secret access key |
 |bucket| S3 Bucket to access |
-|filepath| relative file path |
-|region| AWS S3 Area|
-|compression| Compressed format of S3 files. If empty, it indicates uncompressed files. Supported fields or Compressed format are "auto", "none", "gzip", "bzip2", and "lz4".|
-|auto|Compressed format: indicates that the file name extension automatically checks the compressed format of a file|
-|none|Compressed format: indicates the uncompressed format, and the rest indicates the compressed format of the file|
+|filepath| relative file path. regex expression is supported as /files/*.csv. |
+|region| object storage service region|
+|compression| Compressed format of S3 files. If empty or "none", it indicates uncompressed files. Supported fields or Compressed format are "auto", "none", "gzip", "bz2", and "lz4".|
 
-For more information, see [LOAD DATA](../../../Reference/SQL-Reference/Data-Manipulation-Statements/load-data.md).
+The other paramaters are identical to a ordinary LOAD DATA, see [LOAD DATA](../../../Reference/SQL-Reference/Data-Manipulation-Statements/load-data.md) for more details.
 
-**Code Example**：
+**Statement Examples**：
 
 ```sql
-## Non - specified file Compressed format
-LOAD DATA INFILE URL s3option{"endpoint"='<string>', "access_key_id"='<string>', "secret_access_key"='<string>', "bucket"='<string>', "filepath"='<string>', "region"='<string>'} INTO TABLE t1 FIELDS TERMINATED BY ',' ENCLOSED BY '\"' LINES TERMINATED BY '\n';
+# LOAD a csv file from AWS S3 us-east-1 region, test-load-mo bucket, without compression
+LOAD DATA URL s3option{"endpoint"='s3.us-east-1.amazonaws.com', "access_key_id"='XXXXXX', "secret_access_key"='XXXXXX', "bucket"='test-load-mo', "filepath"='test.csv', "region"='us-east-1', "compression"='none'} INTO TABLE t1 FIELDS TERMINATED BY ',' ENCLOSED BY '\"' LINES TERMINATED BY '\n';
 
-## Specifies the file Compressed format
-LOAD DATA INFILE URL s3option{"endpoint"='<string>', "access_key_id"='<string>', "secret_access_key"='<string>', "bucket"='<string>', "filepath"='<string>', "region"='<string>', "compression"='<string>'} INTO TABLE t1 FIELDS TERMINATED BY ',' ENCLOSED BY '\"' LINES TERMINATED BY '\n';
+# LOAD all csv files from Alibaba Cloud OSS Shanghai region, test-load-data bucket, without compression
+LOAD DATA URL s3option{"endpoint"='oss-cn-shanghai.aliyuncs.com', "access_key_id"='XXXXXX', "secret_access_key"='XXXXXX', "bucket"='test-load-data', "filepath"='/test/*.csv', "region"='oss-cn-shanghai', "compression"='none'} INTO TABLE t1 FIELDS TERMINATED BY ',' ENCLOSED BY '\"' LINES TERMINATED BY '\n';
+
+# LOAD a csv file from Tencent Cloud COS Shanghai region, test-1252279971 bucket, without bz2 compression
+LOAD DATA URL s3option{"endpoint"='cos.ap-shanghai.myqcloud.com', "access_key_id"='XXXXXX', "secret_access_key"='XXXXXX', "bucket"='test-1252279971', "filepath"='test.csv.bz2', "region"='ap-shanghai', "compression"='bz2'} INTO TABLE t1 FIELDS TERMINATED BY ',' ENCLOSED BY '\"' LINES TERMINATED BY '\n';
 ```
 
-## Example
+### Tutorial1: Load a file from AWS S3
 
-For example purposes, we have prepared data from AWS S3. If you do not already have an account on AWS S3, please sign up first.
+In this tutorial, we will walk you through the whole process of loading a **.csv** file from AWS S3, we assume that you already have an AWS account and have already your data file ready in your S3 service. If you do not already have an that yet, please sign up and upload your data file first, you may check on the AWS S3 [official tutorial](https://docs.aws.amazon.com/AmazonS3/latest/userguide/GetStartedWithS3.html). The process for Alibaba Cloud OSS and Tencent Cloud COS are similar to AWS S3.
 
 !!! note
-    This code example does not show account information such as access_id because of account privacy.
+    This code example does not show account information such as access_key_id and secret_access_key because of account privacy.
     You can read this document to understand the main steps; specific data and account information will not be shown.
 
-### Method 1: Import S3 file to MatrixOne
+1. Download the [data file](https://github.com/matrixorigin/matrixone/blob/main/test/distributed/resources/load_data/char_varchar_1.csv). Enter into **AWS S3 > buckets**, create a bucket **test-loading** with a public access and upload the file *char_varchar_1.csv*.
 
-1. Prepare the data file. Enter into **AWS S3 > buckets** and find the file *file-demo*.
+![create bucket](https://github.com/matrixorigin/artwork/blob/main/docs/develop/load_S3/create_bucket.png?raw=true)
+![public block](https://github.com/matrixorigin/artwork/blob/main/docs/develop/load_S3/create_bucket_public_block.png?raw=true)
 
-2. Launch the MySQL Client, create tables in MatrixOne, for example:
+2. Get or create your AWS api key. Enter into **Your Account Name > Security Credentials**, get your existing Access Key or create a new one. 
 
-    ```sql
-    create database db1;
-    use db1;
-    drop table if exists t1;
-    create table t1(num_col1 tinyint,num_col2 smallint,num_col3 int,num_col4 bigint,num_col5 tinyint unsigned,num_col6 smallint unsigned,num_col7 int unsigned,num_col8 bigint unsigned ,num_col9 float(5,3),num_col10 double(6,5),num_col11 decimal(38,19));
-    ```
+![security credential](https://github.com/matrixorigin/artwork/blob/main/docs/develop/load_S3/security_credential.png?raw=true)
+![Access Key](https://github.com/matrixorigin/artwork/blob/main/docs/develop/load_S3/access_key.png?raw=true)
 
-2. Import the file into MatrixOne:
+You can get the access key id and secret access key from the downloaded credentials or from this webpage. 
+![Retrieve Access Key](https://github.com/matrixorigin/artwork/blob/main/docs/develop/load_S3/retrieve_access_key.png?raw=true)
 
-    ```
-    LOAD DATA INFILE URL s3option{"endpoint"='s3.us-west-2.amazonaws.com', "access_key_id"='<string>', "secret_access_key"='<string>', "bucket"='<string>', "filepath"='<string>', "region"='<string>', "compression"='<string>'} INTO TABLE t1 FIELDS TERMINATED BY ',' ENCLOSED BY '\"' LINES TERMINATED BY '\n';
-    ```
-
-3. After the import is successful, you can run SQL statements to check the result of imported data:
-
-    ```sql
-    select * from t1;
-    ```
-
-### Method 2: Specify S3 file to an external table
-
-1. Prepare the data file. Enter into **AWS S3 > buckets** and find the file *file-demo*.
-
-2. Launch the MySQL Client, specify S3 file to an external table:
-
-    ```
-    create external table ex_table_s3_1(num_col1 tinyint,num_col2 smallint,num_col3 int,num_col4 bigint,num_col5 tinyint unsigned,num_col6 smallint unsigned,num_col7 int unsigned,num_col8 bigint unsigned ,num_col9 float(5,3),num_col10 double(6,5),num_col11 decimal(38,19)) URL s3option{"endpoint"='s3.us-west-2.amazonaws.com',"access_key_id"='AKIAW2D4ZBGTXW2S2PVR', "secret_access_key"='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', "bucket"='heni-test', "filepath"='s3://heni-test/ex_table_number.csv', "region"='us-west-2'} fields terminated by ',' enclosed by '\"' lines terminated by '\n';
-    ```
-
-3. After the import is successful, you can run SQL statements to check the result of imported data:
-
-    ```sql
-    select * from ex_table_s3_1;
-    ```
-
-4. (Optional)If you need to import external table data into a data table in MatrixOne, you can use the following SQL statement:
-
-    Create a new table t1 in MatrixOne:
-
-    ```sql
-    create table t1(num_col1 tinyint,num_col2 smallint,num_col3 int,num_col4 bigint,num_col5 tinyint unsigned,num_col6 smallint unsigned,num_col7 int unsigned,num_col8 bigint unsigned ,num_col9 float(5,3),num_col10 double(6,5),num_col11 decimal(38,19));
-    ```
-
-    Import the external table *ex_table_s3_1* to *t1*:
-
-    ```sql
-    insert into t1 select * from ex_table_s3_1;
-    ```
-
-#### About external table with `Load data`
-
-An example of the `Load data` syntax for an external table is:
+3. Launch the MySQL Client, create tables in MatrixOne, for example:
 
 ```sql
-## Create a external table for an S3 file (specify the compression format)
-create external table t(...) URL s3option{"endpoint"='<string>', "access_key_id"='<string>', "secret_access_key"='<string>', "bucket"='<string>', "filepath"='<string>', "region"='<string>', "compression"='<string>'} FIELDS TERMINATED BY ',' ENCLOSED BY '\"' LINES TERMINATED BY '\n';
+create database db;
+use db;
+drop table if exists t1;
+create table t1(col1 char(225), col2 varchar(225), col3 text, col4 varchar(225));
+```
 
-## Create a external table for an S3 file (if no compression format is specified, the format is auto, and the file format is automatically checked)
-create external table t(...) URL s3option{"endpoint"='<string>', "access_key_id"='<string>', "secret_access_key"='<string>', "bucket"='<string>', "filepath"='<string>', "region"='<string>'} FIELDS TERMINATED BY ',' ENCLOSED BY '\"' LINES TERMINATED BY '\n';
+4. Import the file into MatrixOne:
+
+```
+LOAD DATA INFILE URL s3option{"endpoint"='s3.us-east-1.amazonaws.com', "access_key_id"='XXXXXX', "secret_access_key"='XXXXXX', "bucket"='test-loading', "filepath"='char_varchar_1.csv', "region"='us-east-1', "compression"='none'} INTO TABLE t1;
+```
+
+5. After the import is successful, you can run SQL statements to check the result of imported data:
+
+```sql
+mysql> select * from t1;
++-----------+-----------+-----------+-----------+
+| col1      | col2      | col3      | col4      |
++-----------+-----------+-----------+-----------+
+| a         | b         | c         | d         |
+| a         | b         | c         | d         |
+| 'a'       | 'b'       | 'c'       | 'd'       |
+| 'a'       | 'b'       | 'c'       | 'd'       |
+| aa,aa     | bb,bb     | cc,cc     | dd,dd     |
+| aa,       | bb,       | cc,       | dd,       |
+| aa,,,aa   | bb,,,bb   | cc,,,cc   | dd,,,dd   |
+| aa',',,aa | bb',',,bb | cc',',,cc | dd',',,dd |
+| aa"aa     | bb"bb     | cc"cc     | dd"dd     |
+| aa"aa     | bb"bb     | cc"cc     | dd"dd     |
+| aa"aa     | bb"bb     | cc"cc     | dd"dd     |
+| aa""aa    | bb""bb    | cc""cc    | dd""dd    |
+| aa""aa    | bb""bb    | cc""cc    | dd""dd    |
+| aa",aa    | bb",bb    | cc",cc    | dd",dd    |
+| aa"",aa   | bb"",bb   | cc"",cc   | dd"",dd   |
+|           |           |           |           |
+|           |           |           |           |
+| NULL      | NULL      | NULL      | NULL      |
+|           |           |           |           |
+| "         | "         | "         | "         |
+| ""        | ""        | ""        | ""        |
++-----------+-----------+-----------+-----------+
+21 rows in set (0.03 sec)
+```
+
+## Method2: Specify S3 file to an external table
+
+### Syntax
+
+```sql
+create external table t(...) URL s3option{"endpoint"='<string>', "access_key_id"='<string>', "secret_access_key"='<string>', "bucket"='<string>', "filepath"='<string>', "region"='<string>', "compression"='<string>'}     
+[{FIELDS | COLUMNS}
+        [TERMINATED BY 'string']
+        [[OPTIONALLY] ENCLOSED BY 'char']
+        [ESCAPED BY 'char']
+]
+[IGNORE number {LINES | ROWS}];
 ```
 
 !!! note
     MatrixOne only supports `select` on external tables. `Delete`, `insert`, and `update` are not supported.
 
-If the S3 file is specified to an external table, you can use the `select` to read the the external table file. To import data into a MatrixOne table, use the following SQL statements as an example:
+**Parameter Description**
+
+|Parameter|Description|
+|:-:|:-:|
+|endpoint|A endpoint is a URL that can conncect to object storage service. For example: s3.us-west-2.amazonaws.com|
+|access_key_id| Access key ID |
+|secret_access_key| Secret access key |
+|bucket| S3 Bucket to access |
+|filepath| relative file path. regex expression is supported as /files/*.csv. |
+|region| object storage service region|
+|compression| Compressed format of S3 files. If empty or "none", it indicates uncompressed files. Supported fields or Compressed format are "auto", "none", "gzip", "bz2", and "lz4".|
+
+The other paramaters are identical to a ordinary LOAD DATA, see [LOAD DATA](../../../Reference/SQL-Reference/Data-Manipulation-Statements/load-data.md) for more details.
+
+For more information about External Table, see [CREATE EXTERNAL TABLE](../../../Reference/SQL-Reference/Data-Definition-Statements/create-external-table.md).
+
+**Statement Examples**：
 
 ```sql
-## t1 is the MatrixOne's table, t is the external table
-insert into t1 select * from t;
+## Create a external table for a .csv file from AWS S3
+create external table t1(col1 char(225)) url s3option{"endpoint"='s3.us-east-1.amazonaws.com', "access_key_id"='XXXXXX', "secret_access_key"='XXXXXX', "bucket"='test-loading', "filepath"='test.csv', "region"='us-east-1', "compression"='none'} fields terminated by ',' enclosed by '\"' lines terminated by '\n';
 
-## You can also select a column from the external table file to import into the MatrixOne's table
-insert into t1 select a from t;
+## Create a external table for a .csv file compressed with BZIP2 from Tencent Cloud
+create external table t1(col1 char(225)) url s3option{"endpoint"='cos.ap-shanghai.myqcloud.com', "access_key_id"='XXXXXX', "secret_access_key"='XXXXXX', "bucket"='test-1252279971', "filepath"='test.csv.bz2', "region"='ap-shanghai', "compression"='bz2'} fields terminated by ',' enclosed by '\"' lines terminated by '\n' ignore 1 lines;
 ```
 
-For more information, see [CREATE EXTERNAL TABLE](../../../Reference/SQL-Reference/Data-Definition-Statements/create-external-table.md).
+### Tutorial: Create an external table with S3 file
+
+In this tutorial, we will walk you through the whole process of create an external table with a **.csv** file from AWS S3.
+
+1. Follow the first and second steps in tutorial1 to configure AWS S3.
+
+2. Launch the MySQL Client, specify S3 file to an external table:
+
+```sql
+create database db;
+use db;
+drop table if exists t1;
+create external table t1(col1 char(225), col2 varchar(225), col3 text, col4 varchar(225)) url s3option{"endpoint"='s3.us-east-1.amazonaws.com', "access_key_id"='XXXXXX', "secret_access_key"='XXXXXX', "bucket"='test-loading', "filepath"='char_varchar_1.csv', "region"='us-east-1', "compression"='none'} fields terminated by ',' enclosed by '\"' lines terminated by '\n';
+```
+
+3. After the import is successful, you can run SQL statements to check the result of imported data. You can see that the query speed is significant slower than quering from a local table.
+
+```sql
+select * from t1;
++-----------+-----------+-----------+-----------+
+| col1      | col2      | col3      | col4      |
++-----------+-----------+-----------+-----------+
+| a         | b         | c         | d         |
+| a         | b         | c         | d         |
+| 'a'       | 'b'       | 'c'       | 'd'       |
+| 'a'       | 'b'       | 'c'       | 'd'       |
+| aa,aa     | bb,bb     | cc,cc     | dd,dd     |
+| aa,       | bb,       | cc,       | dd,       |
+| aa,,,aa   | bb,,,bb   | cc,,,cc   | dd,,,dd   |
+| aa',',,aa | bb',',,bb | cc',',,cc | dd',',,dd |
+| aa"aa     | bb"bb     | cc"cc     | dd"dd     |
+| aa"aa     | bb"bb     | cc"cc     | dd"dd     |
+| aa"aa     | bb"bb     | cc"cc     | dd"dd     |
+| aa""aa    | bb""bb    | cc""cc    | dd""dd    |
+| aa""aa    | bb""bb    | cc""cc    | dd""dd    |
+| aa",aa    | bb",bb    | cc",cc    | dd",dd    |
+| aa"",aa   | bb"",bb   | cc"",cc   | dd"",dd   |
+|           |           |           |           |
+|           |           |           |           |
+| NULL      | NULL      | NULL      | NULL      |
+|           |           |           |           |
+| "         | "         | "         | "         |
+| ""        | ""        | ""        | ""        |
++-----------+-----------+-----------+-----------+
+21 rows in set (1.32 sec)
+```
+
+4. (Optional)If you need to import external table data into a data table in MatrixOne, you can use the following SQL statement:
+
+Create a new table t2 in MatrixOne:
+
+```sql
+create table t2(col1 char(225), col2 varchar(225), col3 text, col4 varchar(225));
+```
+
+Import the external table *t1* to *t2*:
+
+```sql
+insert into t2 select * from t1;
+```
+
+## Constraints
+
+1. MatrixOne only supports loading *.csv* format files from S3-compatible object storage.
+2. To load many files with a regex path, MatrixOne still has some bugs in loading `*.csv` without a parent directory. You can only load files as `/test/*.csv`. 
