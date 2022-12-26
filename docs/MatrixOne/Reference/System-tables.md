@@ -1,14 +1,17 @@
 # MatrixOne System Database and Tables
 
-MatrixOne system database and tables are where MatrixOne stores system information. We can access the system information by them. There are 6 system databases created by MatrixOne at initialization: `mo_catalog`, `information_schema`, `system_metrcis`, `system`, `mysql`,`mo_task`. `mo_task` is under development and has no direct impact with users. The other system databases and tables functions are described in this document.
+MatrixOne system database and tables are where MatrixOne stores system information. We can access the system information by them. There are 6 system databases created by MatrixOne at initialization: `mo_catalog`, `information_schema`, `system_metrcis`, `system`, `mysql`,`mo_task`. `mo_task` is under development and has no direct impact with users. 
+The other system databases and tables functions are described in this document.
+
+System databases and tables can only be modified by system and users can only read from them. 
 
 ## `mo_catalog` database
 
 `mo_catalog` is used to store the metadata of MatrixOne objects: databases, tables, columns, system variables, accounts, users and roles.
 
-As MatrixOne 0.6 has introduced the concept of multi-tenancy, the default `sys` account and other accounts have slightly different behaviors. For `sys` account, as admin for the multi-tenancy management, has full access to three system tables, `mo_database`, `mo_tables`, `mo_columns`, while other accounts access these three tables as `views`. `sys` account has also a reserved system table `mo_account` which serves the multi-tenancy management.
+As MatrixOne 0.6 has introduced the concept of multi-tenancy, the default `sys` account and other accounts have slightly different behaviors. The system table `mo_account` which serves the multi-tenancy management is only visible for `sys` account, the other accounts don't see this table. 
 
-### mo_database table (Non-sys account access it as view)
+### mo_database table 
 
 | column           | type            | comments                                |
 | ---------------- | --------------- | --------------------------------------- |
@@ -16,12 +19,12 @@ As MatrixOne 0.6 has introduced the concept of multi-tenancy, the default `sys` 
 | datname          | varchar(100)    | Database name                           |
 | dat_catalog_name | varchar(100)    | Database catalog name, default as `def` |
 | dat_createsql    | varchar(100)    | Database creation SQL statement         |
-| owner            | int unsigned    | role_id                                 |
-| creator          | int unsigned    | user_id                                 |
+| owner            | int unsigned    | Role id                                 |
+| creator          | int unsigned    | User id                                 |
 | created_time     | timestamp       | Create time                             |
-| account_id       | int unsigned    | account id                               |
+| account_id       | int unsigned    | Account id                               |
 
-### mo_tables table (Non-sys account access it as view)
+### mo_tables table 
 
 | column         | type            | comments                                                     |
 | -------------- | --------------- | ------------------------------------------------------------ |
@@ -35,12 +38,12 @@ As MatrixOne 0.6 has introduced the concept of multi-tenancy, the default `sys` 
 | rel_createsql  | varchar(100)    | Table creation SQL statement                                 |
 | created_time   | timestamp       | Create time                                                  |
 | creator        | int unsigned    | Creator ID                                                   |
-| owner          | int unsigned    | creator's default role id                                    |
-| account_id     | int unsigned    | account id                                                    |
-| partitioned    | text            | Partition by statement                                       |
-| viewdef        | text            | view definition statement                                    |
+| owner          | int unsigned    | Creator's default role id                                    |
+| account_id     | int unsigned    | Account id                                                    |
+| partitioned    | blob            | Partition by statement                                       |
+| viewdef        | blob            | View definition statement                                    |
 
-### mo_columns table (Non-sys account access it as view)
+### mo_columns table 
 
 | column           | type     | comments                                                |
 | --------------------- | --------------- | ------------------------------------------------------------ |
@@ -66,11 +69,11 @@ As MatrixOne 0.6 has introduced the concept of multi-tenancy, the default `sys` 
 | attr_has_update       | tinyint(1)      | This columns has update expression                           |
 | attr_update           | varchar(1024)   | update expression                                            |
 
-### mo_account table (Only sys account has access)
+### mo_account table (Only visible for `sys` account)
 
 | column       | type         | comments     |
 | ------------ | ------------ | ------------ |
-| account_id   | int unsigned | Primary key  |
+| account_id   | int unsigned | account id  |
 | account_name | varchar(100) | account name  |
 | status       | varchar(100) | open/suspend |
 | created_time | timestamp    | create time  |
@@ -80,71 +83,62 @@ As MatrixOne 0.6 has introduced the concept of multi-tenancy, the default `sys` 
 
 | column       | type         | comments                      |
 | ------------ | ------------ | ----------------------------- |
-| role_id      | int unsigned | Primary key                   |
+| role_id      | int unsigned | role id                   |
 | role_name    | varchar(100) | role name                     |
 | creator      | int unsigned | user_id                       |
 | owner        | int unsigned | MOADMIN/ACCOUNTADMIN  ownerid |
 | created_time | timestamp    | create time                   |
 | comments     | text         | comment                       |
 
-### mo_global_variables table
-
-Every account has its own `mo_global_variables` table. `Sys` account doesn't have direct access to this table for other accounts.
-
-| Attributes        | Type          | Primary key | Description    |
-| ----------------- | ------------- | ----------- | -------------- |
-| gv_variable_name  | varchar(256)  | PK          | variable name  |
-| gv_variable_value | varchar(1024) |             | variable value |
-
 ### **mo_user** table
 
 | column                | type         | comments            |
 | --------------------- | ------------ | ------------------- |
-| user_id               | int unsigned | PK                  |
-| user_host             | varchar(100) |                     |
-| user_name             | varchar(100) |                     |
-| authentication_string | varchar(100) |                     |
+| user_id               | int | user id                |
+| user_host             | varchar(100) |  user host address                   |
+| user_name             | varchar(100) |  user name                   |
+| authentication_string | varchar(100) |  authentication string encrypted with password                   |
 | status                | varchar(8)   | open,locked,expired |
-| created_time          | timestamp    |                     |
-| expired_time          | timestamp    |                     |
+| created_time          | timestamp    | user created time                   |
+| expired_time          | timestamp    | user expired time                    |
 | login_type            | varchar(16)  | ssl/password/other  |
-| creator               | int unsigned | user id             |
-| owner                 | int unsigned | admin role id       |
-| default_role          | int unsigned | role id             |
+| creator               | int | the creator id who created this user             |
+| owner                 | int | the admin id for this user      |
+| default_role          | int | the default role id for this user          |
 
-### mo_user_grant user
-
-| column            | type         | comments                            |
-| ----------------- | ------------ | ----------------------------------- |
-| role_id           | int unsigned | Primary key                         |
-| user_id           | int unsigned | Primary key, user_id                |
-| granted_time      | timestamp    | granted time                        |
-| with_grant_option | bool         | If permission granting is permitted |
-
-### mo_role_grant user
+### mo_user_grant table
 
 | column            | type         | comments                            |
 | ----------------- | ------------ | ----------------------------------- |
-| granted_id        | int unsigned | Primary key，granted id             |
-| grantee_id        | int unsigned | Primary key，grantee id             |
-| operation_role_id | int unsigned | operation role id                   |
-| operation_user_id | int unsigned | operation user id                   |
+| role_id           | int unsigned | role id                        |
+| user_id           | int unsigned | user id                |
 | granted_time      | timestamp    | granted time                        |
 | with_grant_option | bool         | If permission granting is permitted |
 
-### mo_role_privs user
+### mo_role_grant table
+
+| column            | type         | comments                            |
+| ----------------- | ------------ | ----------------------------------- |
+| granted_id        | int  | the role id being granted              |
+| grantee_id        | int  | the role id to grant others             |
+| operation_role_id | int  | operation role id                   |
+| operation_user_id | int  | operation user id                   |
+| granted_time      | timestamp    | granted time                        |
+| with_grant_option | bool         | If permission granting is permitted |
+
+### mo_role_privs table
 
 | column            | type            | comments                            |
 | ----------------- | --------------- | ----------------------------------- |
-| role_id           | int unsigned    | Primary key                         |
-| role_name         | varchar(100)    | role name                           |
-| obj_type          | varchar(16)     | Primary key                         |
-| obj_id            | bigint unsigned | Primary key                         |
-| privilege_id      | int             | Primary key                         |
-| privilege_name    | varchar(100)    |                                     |
-| privilege_level   | varchar(100)    |                                     |
-| operation_user_id | int unsigned    | user_id                             |
-| granted_time      | timestamp       |                                     |
+| role_id           | int     | role id                        |
+| role_name         | varchar(100)    | role name: accountadmin/public                           |
+| obj_type          | varchar(16)     | object type: account/database/table                         |
+| obj_id            | bigint unsigned | object id                         |
+| privilege_id      | int             | privilege id                      |
+| privilege_name    | varchar(100)    | privilege name: the list of privileges                                   |
+| privilege_level   | varchar(100)    | level of privileges                                    |
+| operation_user_id | int unsigned    | operation user id                             |
+| granted_time      | timestamp       | granted time                                    |
 | with_grant_option | bool            | If permission granting is permitted |
 
 ## `system_metrics` database
@@ -158,22 +152,22 @@ Every account has its own `mo_global_variables` table. `Sys` account doesn't hav
 
 - node: the MatrixOne node uuid
 - role: the MatrixOne node role, can be CN, DN or LOG.  
-- internal：can be either 1 or 0.  Collect as 1if the SQL statement is launched by internal, as 0 if the SQL statement is launched by user.
+- account: default as "sys", the account who fires the SQL request.
 - type：SQL type, can be `select`, `insert`, `update`, `delete`, `other` types.
 
-### `metrics` table
+### `metric` table
 
 | Column      | Type         | Comment                                                      |
 | ----------- | ------------ | ------------------------------------------------------------ |
 | metric_name | VARCHAR(128) | metric name, like: sql_statement_total, server_connections, process_cpu_percent, sys_memory_used, .. |
 | collecttime | DATETIME     | metric data collect time                                     |
 | value       | DOUBLE       | metric value                                                 |
-| node        | VARCHAR(36)  | node uuid                                                    |
-| role        | VARCHAR(32)  | node role                                                    |
-| account     | VARCHAR(128) | account name                                                 |
-| type        | VARCHAR(32)  | SQL type                                                     |
+| node        | VARCHAR(36)  | MatrixOne node uuid                                                    |
+| role        | VARCHAR(32)  | MatrixOne node role                                                    |
+| account     | VARCHAR(128) | account name, default "sys"                                                 |
+| type        | VARCHAR(32)  | SQL type: like insert, select, update ...                                                  |
 
-The other tables are all views of the `metrics` table:
+The other tables are all views of the `metric` table:
 
 * `process_cpu_percent` table: Process CPU busy percentage.
 * `process_open_fs` table: Number of open file descriptors.
