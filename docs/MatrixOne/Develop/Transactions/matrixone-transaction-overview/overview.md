@@ -7,6 +7,7 @@ MatrixOne transactions follow the Standard Definition and Basic Characteristics 
 ## Transaction type of MatrixOne
 
 In MatrixOne, transactions, like general transactions, are also divided into the following two categories:
+
 - According to whether there is a clear start and end, it is divided into explicit and implicit transactions.
 - Divided into optimistic and pessimistic transactions according to the use stage of resource locks.
 
