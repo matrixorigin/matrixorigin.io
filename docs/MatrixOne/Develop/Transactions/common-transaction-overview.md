@@ -36,7 +36,6 @@ Usually, transactions need to have four characteristics of ACID:
    create table t1(a int primary key,b varchar(5) not null);
    ```
 
-
    To ensure data consistency here, when inserting data, to ensure the data type and range of columns a and b, the primary key constraint of column a and the non-null constraint of column b must be satisfied at the same time:
 
    ```
