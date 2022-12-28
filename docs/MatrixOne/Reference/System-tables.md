@@ -1,17 +1,17 @@
 # MatrixOne System Database and Tables
 
-MatrixOne system database and tables are where MatrixOne stores system information. We can access the system information by them. There are 6 system databases created by MatrixOne at initialization: `mo_catalog`, `information_schema`, `system_metrcis`, `system`, `mysql`,`mo_task`. `mo_task` is under development and has no direct impact with users. 
-The other system databases and tables functions are described in this document.
+MatrixOne system database and tables are where MatrixOne stores system information. We can access the system information through them. MatrixOne creates 6 system databases at initialization: `mo_catalog`, `information_schema`, `system_metrcis`, `system`, `mysql`, and `mo_task`. `mo_task` is under development and have no direct impact on users.
+The other system databases and table functions are described in this document.
 
-System databases and tables can only be modified by system and users can only read from them. 
+The system can only modify system databases and tables, and users can only read from them.
 
 ## `mo_catalog` database
 
-`mo_catalog` is used to store the metadata of MatrixOne objects: databases, tables, columns, system variables, accounts, users and roles.
+`mo_catalog` stores the metadata of MatrixOne objects: databases, tables, columns, system variables, accounts, users, and roles.
 
-As MatrixOne 0.6 has introduced the concept of multi-tenancy, the default `sys` account and other accounts have slightly different behaviors. The system table `mo_account` which serves the multi-tenancy management is only visible for `sys` account, the other accounts don't see this table. 
+As MatrixOne 0.6 has introduced the concept of multi-tenancy, the default `sys` account and other accounts have slightly different behaviors. The system table `mo_account`, which serves the multi-tenancy management, is only visible for the `sys` account; the other accounts don't see this table.
 
-### mo_database table 
+### mo_database table
 
 | column           | type            | comments                                |
 | ---------------- | --------------- | --------------------------------------- |
@@ -24,7 +24,7 @@ As MatrixOne 0.6 has introduced the concept of multi-tenancy, the default `sys` 
 | created_time     | timestamp       | Create time                             |
 | account_id       | int unsigned    | Account id                               |
 
-### mo_tables table 
+### mo_tables table
 
 | column         | type            | comments                                                     |
 | -------------- | --------------- | ------------------------------------------------------------ |
@@ -43,7 +43,7 @@ As MatrixOne 0.6 has introduced the concept of multi-tenancy, the default `sys` 
 | partitioned    | blob            | Partition by statement                                       |
 | viewdef        | blob            | View definition statement                                    |
 
-### mo_columns table 
+### mo_columns table
 
 | column           | type     | comments                                                |
 | --------------------- | --------------- | ------------------------------------------------------------ |
