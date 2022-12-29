@@ -194,19 +194,22 @@ Expected result:
 - To create a user, use the `CREATE USER` statement. The following example creates a user named *mouser* with the password *111*:
 
 ```sql
-CREATE USER mouser IDENTIFIED BY '111';
+> CREATE USER mouser IDENTIFIED BY '111';
+Query OK, 0 rows affected (0.10 sec)
 ```
 
 - To create a role for the user:
 
 ```sql
-CREATE ROLE role_r1,role_r2,role_r3;
+> CREATE ROLE role_r1;
+Query OK, 0 rows affected (0.05 sec)
 ```
 
 - To grant mouser the role_r1:
 
 ```sql
-GRANT role_r1 to mouser;
+> GRANT role_r1 to mouser;
+Query OK, 0 rows affected (0.04 sec)
 ```
 
 - To grant mouser the privilege to create table in the dbdemo database:
@@ -215,17 +218,25 @@ GRANT role_r1 to mouser;
 GRANT create table on database * to role_r1;
 ```
 
-- To check the privileges of root:
+- To check the privileges of mouser:
 
 ```sql
-SHOW GRANTS for root;
+> SHOW GRANTS for mouser@localhost;
++-------------------------------------------------------+
+| Grants for mouser@localhost                           |
++-------------------------------------------------------+
+| GRANT create table ON database * `mouser`@`localhost` |
+| GRANT connect ON account  `mouser`@`localhost`        |
++-------------------------------------------------------+
+2 rows in set (0.02 sec)
 ```
 
-!!! note
-    MatrixOne supports viewing the privileges of root currently but does not support viewing the privileges of current users.
+You have successfully granted the permission of `create table` in the database to *mouser*.
 
 - To delete mouser:
 
 ```sql
 DROP USER mouser;
 ```
+
+Privilege management is a huge but very useful function. For more information, see [Privilege Management](../Security/about-privilege-management.md).
