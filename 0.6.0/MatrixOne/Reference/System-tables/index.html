@@ -1034,7 +1034,47 @@
   
   
     <li class="md-nav__item">
-      <a href="../SQL-Reference/Transactions/transaction-overview/" class="md-nav__link">
+      <a href="../../Develop/Transactions/common-transaction-overview/" class="md-nav__link">
+        General Transaction Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4_6_2" type="checkbox" id="__nav_1_4_6_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_4_6_2">
+          Transaction by MatrixOne Server
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Transaction by MatrixOne Server" data-md-level="4">
+        <label class="md-nav__title" for="__nav_1_4_6_2">
+          <span class="md-nav__icon md-icon"></span>
+          Transaction by MatrixOne Server
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Develop/Transactions/matrixone-transaction-overview/overview/" class="md-nav__link">
         Transaction Overview
       </a>
     </li>
@@ -1048,9 +1088,86 @@
   
   
     <li class="md-nav__item">
-      <a href="../SQL-Reference/Transactions/distributed-transaction-overview/" class="md-nav__link">
-        Distributed Transaction
+      <a href="../../Develop/Transactions/matrixone-transaction-overview/explicit-transaction/" class="md-nav__link">
+        Explicit Transaction
       </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Develop/Transactions/matrixone-transaction-overview/implicit-transaction/" class="md-nav__link">
+        Implicit Transaction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Develop/Transactions/matrixone-transaction-overview/optimistic-transaction/" class="md-nav__link">
+        Optimistic Transaction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Develop/Transactions/matrixone-transaction-overview/snapshot-isolation/" class="md-nav__link">
+        Isolation Level
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Develop/Transactions/matrixone-transaction-overview/mvcc/" class="md-nav__link">
+        MVCC
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Develop/Transactions/matrixone-transaction-overview/scenario/" class="md-nav__link">
+        Transaction Scenario
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -5340,29 +5457,29 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#mo_database-table-non-sys-account-access-it-as-view" class="md-nav__link">
-    mo_database table (Non-sys account access it as view)
+  <a href="#mo_database-table" class="md-nav__link">
+    mo_database table
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#mo_tables-table-non-sys-account-access-it-as-view" class="md-nav__link">
-    mo_tables table (Non-sys account access it as view)
+  <a href="#mo_tables-table" class="md-nav__link">
+    mo_tables table
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#mo_columns-table-non-sys-account-access-it-as-view" class="md-nav__link">
-    mo_columns table (Non-sys account access it as view)
+  <a href="#mo_columns-table" class="md-nav__link">
+    mo_columns table
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#mo_account-table-only-sys-account-has-access" class="md-nav__link">
-    mo_account table (Only sys account has access)
+  <a href="#mo_account-table-only-visible-for-sys-account" class="md-nav__link">
+    mo_account table (Only visible for sys account)
   </a>
   
 </li>
@@ -5375,13 +5492,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#mo_global_variables-table" class="md-nav__link">
-    mo_global_variables table
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#mo_user-table" class="md-nav__link">
     mo_user table
   </a>
@@ -5389,22 +5499,22 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#mo_user_grant-user" class="md-nav__link">
-    mo_user_grant user
+  <a href="#mo_user_grant-table" class="md-nav__link">
+    mo_user_grant table
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#mo_role_grant-user" class="md-nav__link">
-    mo_role_grant user
+  <a href="#mo_role_grant-table" class="md-nav__link">
+    mo_role_grant table
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#mo_role_privs-user" class="md-nav__link">
-    mo_role_privs user
+  <a href="#mo_role_privs-table" class="md-nav__link">
+    mo_role_privs table
   </a>
   
 </li>
@@ -5423,8 +5533,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#metrics-table" class="md-nav__link">
-    metrics table
+  <a href="#metric-table" class="md-nav__link">
+    metric table
   </a>
   
 </li>
@@ -6155,29 +6265,29 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#mo_database-table-non-sys-account-access-it-as-view" class="md-nav__link">
-    mo_database table (Non-sys account access it as view)
+  <a href="#mo_database-table" class="md-nav__link">
+    mo_database table
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#mo_tables-table-non-sys-account-access-it-as-view" class="md-nav__link">
-    mo_tables table (Non-sys account access it as view)
+  <a href="#mo_tables-table" class="md-nav__link">
+    mo_tables table
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#mo_columns-table-non-sys-account-access-it-as-view" class="md-nav__link">
-    mo_columns table (Non-sys account access it as view)
+  <a href="#mo_columns-table" class="md-nav__link">
+    mo_columns table
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#mo_account-table-only-sys-account-has-access" class="md-nav__link">
-    mo_account table (Only sys account has access)
+  <a href="#mo_account-table-only-visible-for-sys-account" class="md-nav__link">
+    mo_account table (Only visible for sys account)
   </a>
   
 </li>
@@ -6190,13 +6300,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#mo_global_variables-table" class="md-nav__link">
-    mo_global_variables table
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#mo_user-table" class="md-nav__link">
     mo_user table
   </a>
@@ -6204,22 +6307,22 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#mo_user_grant-user" class="md-nav__link">
-    mo_user_grant user
+  <a href="#mo_user_grant-table" class="md-nav__link">
+    mo_user_grant table
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#mo_role_grant-user" class="md-nav__link">
-    mo_role_grant user
+  <a href="#mo_role_grant-table" class="md-nav__link">
+    mo_role_grant table
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#mo_role_privs-user" class="md-nav__link">
-    mo_role_privs user
+  <a href="#mo_role_privs-table" class="md-nav__link">
+    mo_role_privs table
   </a>
   
 </li>
@@ -6238,8 +6341,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#metrics-table" class="md-nav__link">
-    metrics table
+  <a href="#metric-table" class="md-nav__link">
+    metric table
   </a>
   
 </li>
@@ -6384,11 +6487,13 @@
 
 
 <h1 id="matrixone-system-database-and-tables">MatrixOne System Database and Tables</h1>
-<p>MatrixOne system database and tables are where MatrixOne stores system information. We can access the system information by them. There are 6 system databases created by MatrixOne at initialization: <code>mo_catalog</code>, <code>information_schema</code>, <code>system_metrcis</code>, <code>system</code>, <code>mysql</code>,<code>mo_task</code>. <code>mo_task</code> is under development and has no direct impact with users. The other system databases and tables functions are described in this document.</p>
+<p>MatrixOne system database and tables are where MatrixOne stores system information. We can access the system information through them. MatrixOne creates 6 system databases at initialization: <code>mo_catalog</code>, <code>information_schema</code>, <code>system_metrcis</code>, <code>system</code>, <code>mysql</code>, and <code>mo_task</code>. <code>mo_task</code> is under development and have no direct impact on users.
+The other system databases and table functions are described in this document.</p>
+<p>The system can only modify system databases and tables, and users can only read from them.</p>
 <h2 id="mo_catalog-database"><code>mo_catalog</code> database</h2>
-<p><code>mo_catalog</code> is used to store the metadata of MatrixOne objects: databases, tables, columns, system variables, accounts, users and roles.</p>
-<p>As MatrixOne 0.6 has introduced the concept of multi-tenancy, the default <code>sys</code> account and other accounts have slightly different behaviors. For <code>sys</code> account, as admin for the multi-tenancy management, has full access to three system tables, <code>mo_database</code>, <code>mo_tables</code>, <code>mo_columns</code>, while other accounts access these three tables as <code>views</code>. <code>sys</code> account has also a reserved system table <code>mo_account</code> which serves the multi-tenancy management.</p>
-<h3 id="mo_database-table-non-sys-account-access-it-as-view">mo_database table (Non-sys account access it as view)</h3>
+<p><code>mo_catalog</code> stores the metadata of MatrixOne objects: databases, tables, columns, system variables, accounts, users, and roles.</p>
+<p>As MatrixOne 0.6 has introduced the concept of multi-tenancy, the default <code>sys</code> account and other accounts have slightly different behaviors. The system table <code>mo_account</code>, which serves the multi-tenancy management, is only visible for the <code>sys</code> account; the other accounts don't see this table.</p>
+<h3 id="mo_database-table">mo_database table</h3>
 <table>
 <thead>
 <tr>
@@ -6421,12 +6526,12 @@
 <tr>
 <td>owner</td>
 <td>int unsigned</td>
-<td>role_id</td>
+<td>Role id</td>
 </tr>
 <tr>
 <td>creator</td>
 <td>int unsigned</td>
-<td>user_id</td>
+<td>User id</td>
 </tr>
 <tr>
 <td>created_time</td>
@@ -6436,11 +6541,11 @@
 <tr>
 <td>account_id</td>
 <td>int unsigned</td>
-<td>account id</td>
+<td>Account id</td>
 </tr>
 </tbody>
 </table>
-<h3 id="mo_tables-table-non-sys-account-access-it-as-view">mo_tables table (Non-sys account access it as view)</h3>
+<h3 id="mo_tables-table">mo_tables table</h3>
 <table>
 <thead>
 <tr>
@@ -6503,26 +6608,26 @@
 <tr>
 <td>owner</td>
 <td>int unsigned</td>
-<td>creator's default role id</td>
+<td>Creator's default role id</td>
 </tr>
 <tr>
 <td>account_id</td>
 <td>int unsigned</td>
-<td>account id</td>
+<td>Account id</td>
 </tr>
 <tr>
 <td>partitioned</td>
-<td>text</td>
+<td>blob</td>
 <td>Partition by statement</td>
 </tr>
 <tr>
 <td>viewdef</td>
-<td>text</td>
-<td>view definition statement</td>
+<td>blob</td>
+<td>View definition statement</td>
 </tr>
 </tbody>
 </table>
-<h3 id="mo_columns-table-non-sys-account-access-it-as-view">mo_columns table (Non-sys account access it as view)</h3>
+<h3 id="mo_columns-table">mo_columns table</h3>
 <table>
 <thead>
 <tr>
@@ -6639,7 +6744,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="mo_account-table-only-sys-account-has-access">mo_account table (Only sys account has access)</h3>
+<h3 id="mo_account-table-only-visible-for-sys-account">mo_account table (Only visible for <code>sys</code> account)</h3>
 <table>
 <thead>
 <tr>
@@ -6652,7 +6757,7 @@
 <tr>
 <td>account_id</td>
 <td>int unsigned</td>
-<td>Primary key</td>
+<td>account id</td>
 </tr>
 <tr>
 <td>account_name</td>
@@ -6689,7 +6794,7 @@
 <tr>
 <td>role_id</td>
 <td>int unsigned</td>
-<td>Primary key</td>
+<td>role id</td>
 </tr>
 <tr>
 <td>role_name</td>
@@ -6718,32 +6823,6 @@
 </tr>
 </tbody>
 </table>
-<h3 id="mo_global_variables-table">mo_global_variables table</h3>
-<p>Every account has its own <code>mo_global_variables</code> table. <code>Sys</code> account doesn't have direct access to this table for other accounts.</p>
-<table>
-<thead>
-<tr>
-<th>Attributes</th>
-<th>Type</th>
-<th>Primary key</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>gv_variable_name</td>
-<td>varchar(256)</td>
-<td>PK</td>
-<td>variable name</td>
-</tr>
-<tr>
-<td>gv_variable_value</td>
-<td>varchar(1024)</td>
-<td></td>
-<td>variable value</td>
-</tr>
-</tbody>
-</table>
 <h3 id="mo_user-table"><strong>mo_user</strong> table</h3>
 <table>
 <thead>
@@ -6756,23 +6835,23 @@
 <tbody>
 <tr>
 <td>user_id</td>
-<td>int unsigned</td>
-<td>PK</td>
+<td>int</td>
+<td>user id</td>
 </tr>
 <tr>
 <td>user_host</td>
 <td>varchar(100)</td>
-<td></td>
+<td>user host address</td>
 </tr>
 <tr>
 <td>user_name</td>
 <td>varchar(100)</td>
-<td></td>
+<td>user name</td>
 </tr>
 <tr>
 <td>authentication_string</td>
 <td>varchar(100)</td>
-<td></td>
+<td>authentication string encrypted with password</td>
 </tr>
 <tr>
 <td>status</td>
@@ -6782,12 +6861,12 @@
 <tr>
 <td>created_time</td>
 <td>timestamp</td>
-<td></td>
+<td>user created time</td>
 </tr>
 <tr>
 <td>expired_time</td>
 <td>timestamp</td>
-<td></td>
+<td>user expired time</td>
 </tr>
 <tr>
 <td>login_type</td>
@@ -6796,22 +6875,22 @@
 </tr>
 <tr>
 <td>creator</td>
-<td>int unsigned</td>
-<td>user id</td>
+<td>int</td>
+<td>the creator id who created this user</td>
 </tr>
 <tr>
 <td>owner</td>
-<td>int unsigned</td>
-<td>admin role id</td>
+<td>int</td>
+<td>the admin id for this user</td>
 </tr>
 <tr>
 <td>default_role</td>
-<td>int unsigned</td>
-<td>role id</td>
+<td>int</td>
+<td>the default role id for this user</td>
 </tr>
 </tbody>
 </table>
-<h3 id="mo_user_grant-user">mo_user_grant user</h3>
+<h3 id="mo_user_grant-table">mo_user_grant table</h3>
 <table>
 <thead>
 <tr>
@@ -6824,12 +6903,12 @@
 <tr>
 <td>role_id</td>
 <td>int unsigned</td>
-<td>Primary key</td>
+<td>role id</td>
 </tr>
 <tr>
 <td>user_id</td>
 <td>int unsigned</td>
-<td>Primary key, user_id</td>
+<td>user id</td>
 </tr>
 <tr>
 <td>granted_time</td>
@@ -6843,7 +6922,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="mo_role_grant-user">mo_role_grant user</h3>
+<h3 id="mo_role_grant-table">mo_role_grant table</h3>
 <table>
 <thead>
 <tr>
@@ -6855,22 +6934,22 @@
 <tbody>
 <tr>
 <td>granted_id</td>
-<td>int unsigned</td>
-<td>Primary key，granted id</td>
+<td>int</td>
+<td>the role id being granted</td>
 </tr>
 <tr>
 <td>grantee_id</td>
-<td>int unsigned</td>
-<td>Primary key，grantee id</td>
+<td>int</td>
+<td>the role id to grant others</td>
 </tr>
 <tr>
 <td>operation_role_id</td>
-<td>int unsigned</td>
+<td>int</td>
 <td>operation role id</td>
 </tr>
 <tr>
 <td>operation_user_id</td>
-<td>int unsigned</td>
+<td>int</td>
 <td>operation user id</td>
 </tr>
 <tr>
@@ -6885,7 +6964,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="mo_role_privs-user">mo_role_privs user</h3>
+<h3 id="mo_role_privs-table">mo_role_privs table</h3>
 <table>
 <thead>
 <tr>
@@ -6897,48 +6976,48 @@
 <tbody>
 <tr>
 <td>role_id</td>
-<td>int unsigned</td>
-<td>Primary key</td>
+<td>int</td>
+<td>role id</td>
 </tr>
 <tr>
 <td>role_name</td>
 <td>varchar(100)</td>
-<td>role name</td>
+<td>role name: accountadmin/public</td>
 </tr>
 <tr>
 <td>obj_type</td>
 <td>varchar(16)</td>
-<td>Primary key</td>
+<td>object type: account/database/table</td>
 </tr>
 <tr>
 <td>obj_id</td>
 <td>bigint unsigned</td>
-<td>Primary key</td>
+<td>object id</td>
 </tr>
 <tr>
 <td>privilege_id</td>
 <td>int</td>
-<td>Primary key</td>
+<td>privilege id</td>
 </tr>
 <tr>
 <td>privilege_name</td>
 <td>varchar(100)</td>
-<td></td>
+<td>privilege name: the list of privileges</td>
 </tr>
 <tr>
 <td>privilege_level</td>
 <td>varchar(100)</td>
-<td></td>
+<td>level of privileges</td>
 </tr>
 <tr>
 <td>operation_user_id</td>
 <td>int unsigned</td>
-<td>user_id</td>
+<td>operation user id</td>
 </tr>
 <tr>
 <td>granted_time</td>
 <td>timestamp</td>
-<td></td>
+<td>granted time</td>
 </tr>
 <tr>
 <td>with_grant_option</td>
@@ -6959,10 +7038,10 @@
 <p>node: the MatrixOne node uuid</p>
 </li>
 <li>role: the MatrixOne node role, can be CN, DN or LOG.  </li>
-<li>internal：can be either 1 or 0.  Collect as 1if the SQL statement is launched by internal, as 0 if the SQL statement is launched by user.</li>
+<li>account: default as "sys", the account who fires the SQL request.</li>
 <li>type：SQL type, can be <code>select</code>, <code>insert</code>, <code>update</code>, <code>delete</code>, <code>other</code> types.</li>
 </ul>
-<h3 id="metrics-table"><code>metrics</code> table</h3>
+<h3 id="metric-table"><code>metric</code> table</h3>
 <table>
 <thead>
 <tr>
@@ -6990,26 +7069,26 @@
 <tr>
 <td>node</td>
 <td>VARCHAR(36)</td>
-<td>node uuid</td>
+<td>MatrixOne node uuid</td>
 </tr>
 <tr>
 <td>role</td>
 <td>VARCHAR(32)</td>
-<td>node role</td>
+<td>MatrixOne node role</td>
 </tr>
 <tr>
 <td>account</td>
 <td>VARCHAR(128)</td>
-<td>account name</td>
+<td>account name, default "sys"</td>
 </tr>
 <tr>
 <td>type</td>
 <td>VARCHAR(32)</td>
-<td>SQL type</td>
+<td>SQL type: like insert, select, update ...</td>
 </tr>
 </tbody>
 </table>
-<p>The other tables are all views of the <code>metrics</code> table:</p>
+<p>The other tables are all views of the <code>metric</code> table:</p>
 <ul>
 <li><code>process_cpu_percent</code> table: Process CPU busy percentage.</li>
 <li><code>process_open_fs</code> table: Number of open file descriptors.</li>

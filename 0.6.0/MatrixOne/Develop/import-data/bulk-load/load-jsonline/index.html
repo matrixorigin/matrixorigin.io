@@ -1109,7 +1109,47 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Transactions/transaction-overview/" class="md-nav__link">
+      <a href="../../../Transactions/common-transaction-overview/" class="md-nav__link">
+        General Transaction Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4_6_2" type="checkbox" id="__nav_1_4_6_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_4_6_2">
+          Transaction by MatrixOne Server
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Transaction by MatrixOne Server" data-md-level="4">
+        <label class="md-nav__title" for="__nav_1_4_6_2">
+          <span class="md-nav__icon md-icon"></span>
+          Transaction by MatrixOne Server
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Transactions/matrixone-transaction-overview/overview/" class="md-nav__link">
         Transaction Overview
       </a>
     </li>
@@ -1123,9 +1163,86 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Transactions/distributed-transaction-overview/" class="md-nav__link">
-        Distributed Transaction
+      <a href="../../../Transactions/matrixone-transaction-overview/explicit-transaction/" class="md-nav__link">
+        Explicit Transaction
       </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Transactions/matrixone-transaction-overview/implicit-transaction/" class="md-nav__link">
+        Implicit Transaction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Transactions/matrixone-transaction-overview/optimistic-transaction/" class="md-nav__link">
+        Optimistic Transaction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Transactions/matrixone-transaction-overview/snapshot-isolation/" class="md-nav__link">
+        Isolation Level
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Transactions/matrixone-transaction-overview/mvcc/" class="md-nav__link">
+        MVCC
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Transactions/matrixone-transaction-overview/scenario/" class="md-nav__link">
+        Transaction Scenario
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -6022,7 +6139,7 @@
 <h1 id="import-the-jsonlines-data">Import the JSONLines data</h1>
 <p>This document will guide you on how to import JSONLines (that is <em>.jl</em> or <em>.jsonl</em> file) data to MatrixOne.</p>
 <h2 id="about-jsonlines-format">About JSONLines format</h2>
-<p>JSON(JavaScript Object Notation) is a popular file format for about two decades, nowadays became de-facto of data exchange format standard, replacing XML, that was a huge buzzword in the early 2000’s. If you are not familiar with JSON format, please help yourself to know about it with this <a href="https://www.json.org/json-en.html">official documentation</a>. </p>
+<p>JSON(JavaScript Object Notation) is a popular file format for about two decades, nowadays became de-facto of data exchange format standard, replacing XML, that was a huge buzzword in the early 2000’s. If you are not familiar with JSON format, please help yourself to know about it with this <a href="https://www.json.org/json-en.html">official documentation</a>.</p>
 <p><a href="https://jsonlines.org/">JSONLines</a> text format, also called newline-delimited JSON, is a convenient format for storing structured data that may be processed one record at a time. Basically, JSONL is a file format that allows one JSON object per line with lines delimited by a newline character <code>\n</code>.  Each line of the file is independent, so commas are not required at the beginning or ending of lines.  Nor does the entire contents of the file need to be enclosed in square or curly braces.</p>
 <p>JSONLines is appealing format for data streaming. Since every new line means a separate entry makes the JSON Lines formatted file streamable. It doesn’t require custom parsers. Just read a line, parse as JSON, read a line, parse as JSON… and so on.</p>
 <p>The JSON Lines format has three requirements:</p>
@@ -6038,8 +6155,8 @@
 </li>
 </ul>
 <h2 id="valid-jsonlines-format-for-matrixone">Valid JSONLines format for MatrixOne</h2>
-<p>JSONLines format only requires a valid JSON value for each line. But MatrixOne requires a more structured JSONLines format, only an JSON object or an JSON array with the same type of values and a plain structure are allowed in MatrixOne. If your JSONLines file has nested structures, MatrixOne doesn't support loading it for now. </p>
-<p>A valid object JSONLines example: </p>
+<p>JSONLines format only requires a valid JSON value for each line. But MatrixOne requires a more structured JSONLines format, only an JSON object or an JSON array with the same type of values and a plain structure are allowed in MatrixOne. If your JSONLines file has nested structures, MatrixOne doesn't support loading it for now.</p>
+<p>A valid object JSONLines example:</p>
 <div class="highlight"><pre><span></span><code>{&quot;id&quot;:1,&quot;father&quot;:&quot;Mark&quot;,&quot;mother&quot;:&quot;Charlotte&quot;}
 {&quot;id&quot;:2,&quot;father&quot;:&quot;John&quot;,&quot;mother&quot;:&quot;Ann&quot;}
 {&quot;id&quot;:3,&quot;father&quot;:&quot;Bob&quot;,&quot;mother&quot;:&quot;Monika&quot;}
@@ -6054,13 +6171,13 @@
 [&quot;Gilbert&quot;, &quot;2013&quot;, 24, true]
 [&quot;Alexa&quot;, &quot;2013&quot;, 29, true]
 [&quot;May&quot;, &quot;2012B&quot;, 14, false]
-[&quot;Deloise&quot;, &quot;2012A&quot;, 19, true] 
+[&quot;Deloise&quot;, &quot;2012A&quot;, 19, true]
 </code></pre></div>
-<p>Invalid array JSONLines example (Data type and column numbers don't match): 
+<p>Invalid array JSONLines example (Data type and column numbers don't match):
 ["Gilbert", "2013", 24, true, 100]
 ["Alexa", "2013", "twenty nine", true]
 ["May", "2012B", 14, "no"]
-["Deloise", "2012A", 19, true, 40] </p>
+["Deloise", "2012A", 19, true, 40]</p>
 <h2 id="syntax">Syntax</h2>
 <div class="highlight"><pre><span></span><code>LOAD DATA INFILE
     {&#39;filepath&#39;=&#39;FILEPATH&#39;, &#39;compression&#39;=&#39;COMPRESSION_FORMAT&#39;, &#39;format&#39;=&#39;FILE_FORMAT&#39;, &#39;jsondata&#39;=&#39;object&#39;/&#39;array&#39;} INTO TABLE table_name [IGNORE x LINES/ROWS];
@@ -6115,7 +6232,7 @@
 </tbody>
 </table>
 <p><strong>DDL guidelines for JSONLines format data</strong></p>
-<p>Before load JSONLines data into MatrixOne, we need to firstly create a table. As JSON data type is not the same as MatrixOne data type, we need a guideline for DDL. </p>
+<p>Before load JSONLines data into MatrixOne, we need to firstly create a table. As JSON data type is not the same as MatrixOne data type, we need a guideline for DDL.</p>
 <table>
 <thead>
 <tr>
@@ -6177,7 +6294,7 @@
 [&quot;Gilbert&quot;, &quot;2013&quot;, 24, true]
 [&quot;Alexa&quot;, &quot;2013&quot;, 29, true]
 [&quot;May&quot;, &quot;2012B&quot;, 14, false]
-[&quot;Deloise&quot;, &quot;2012A&quot;, 19, true] 
+[&quot;Deloise&quot;, &quot;2012A&quot;, 19, true]
 </code></pre></div>
 <p><strong>Some examples</strong></p>
 <p>These are some full SQL examples to load a JSONLines file to MatrixOne.</p>
@@ -6194,7 +6311,7 @@ load data infile {&#39;filepath&#39;=&#39;data.jl.gz&#39;, &#39;compression&#39;
 <p>In this tutorial, we will guide you through loading two jsonline files with object and array jsonformat.</p>
 <ol>
 <li>
-<p>Prepare the data files. You can also download and use the <em>.jl</em> file we prepared. The data directory needs to be with in the same machine as MatrixOne server. The following steps are illustrated with sample data. </p>
+<p>Prepare the data files. You can also download and use the <em>.jl</em> file we prepared. The data directory needs to be with in the same machine as MatrixOne server. The following steps are illustrated with sample data.</p>
 <ul>
 <li>Example data file 1：<em><a href="https://github.com/matrixorigin/matrixone/blob/main/test/distributed/resources/load_data/jsonline_object.jl">jsonline_object.jl</a></em></li>
 <li>Example data file  2：<em><a href="https://github.com/matrixorigin/matrixone/blob/main/test/distributed/resources/load_data/jsonline_array.jl">jsonline_array.jl</a></em></li>
@@ -6256,7 +6373,7 @@ load data infile {&#39;filepath&#39;=&#39;data.jl.gz&#39;, &#39;compression&#39;
 <h2 id="constraints">Constraints</h2>
 <ol>
 <li><code>Load data</code> doesn't support JSON type in schema.</li>
-<li>JSONLine files with nested structure data(object, array) cannot be loaded in MatrixOne. </li>
+<li>JSONLine files with nested structure data(object, array) cannot be loaded in MatrixOne.</li>
 <li>Null type data cannot be loaded in MatrixOne.</li>
 </ol>
 

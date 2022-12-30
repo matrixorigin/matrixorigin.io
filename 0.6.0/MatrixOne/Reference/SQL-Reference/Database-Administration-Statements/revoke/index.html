@@ -1034,7 +1034,47 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Transactions/transaction-overview/" class="md-nav__link">
+      <a href="../../../../Develop/Transactions/common-transaction-overview/" class="md-nav__link">
+        General Transaction Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4_6_2" type="checkbox" id="__nav_1_4_6_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_4_6_2">
+          Transaction by MatrixOne Server
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Transaction by MatrixOne Server" data-md-level="4">
+        <label class="md-nav__title" for="__nav_1_4_6_2">
+          <span class="md-nav__icon md-icon"></span>
+          Transaction by MatrixOne Server
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Develop/Transactions/matrixone-transaction-overview/overview/" class="md-nav__link">
         Transaction Overview
       </a>
     </li>
@@ -1048,9 +1088,86 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Transactions/distributed-transaction-overview/" class="md-nav__link">
-        Distributed Transaction
+      <a href="../../../../Develop/Transactions/matrixone-transaction-overview/explicit-transaction/" class="md-nav__link">
+        Explicit Transaction
       </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Develop/Transactions/matrixone-transaction-overview/implicit-transaction/" class="md-nav__link">
+        Implicit Transaction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Develop/Transactions/matrixone-transaction-overview/optimistic-transaction/" class="md-nav__link">
+        Optimistic Transaction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Develop/Transactions/matrixone-transaction-overview/snapshot-isolation/" class="md-nav__link">
+        Isolation Level
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Develop/Transactions/matrixone-transaction-overview/mvcc/" class="md-nav__link">
+        MVCC
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Develop/Transactions/matrixone-transaction-overview/scenario/" class="md-nav__link">
+        Transaction Scenario
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -6004,12 +6121,37 @@
     FROM user_or_role [, user_or_role ] ...
 </code></pre></div>
 <h2 id="examples"><strong>Examples</strong></h2>
-<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="k">drop</span><span class="w"> </span><span class="k">role</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="n">rolex</span><span class="p">;</span><span class="w"></span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">role</span><span class="w"> </span><span class="n">rolex</span><span class="p">;</span><span class="w"></span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">drop</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="n">userx</span><span class="p">;</span><span class="w"></span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="n">userx</span><span class="w"> </span><span class="n">identified</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="s1">&#39;111&#39;</span><span class="p">;</span><span class="w"></span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">grant</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">userx</span><span class="p">;</span><span class="w"></span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">revoke</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">userx</span><span class="p">;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">mouser</span><span class="w"> </span><span class="n">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;111&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">10</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span><span class="w"></span>
+
+<span class="o">&gt;</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">ROLE</span><span class="w"> </span><span class="n">role_r1</span><span class="p">;</span><span class="w"></span>
+<span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">05</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span><span class="w"></span>
+
+<span class="o">&gt;</span><span class="w"> </span><span class="k">GRANT</span><span class="w"> </span><span class="n">role_r1</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">mouser</span><span class="p">;</span><span class="w"></span>
+<span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">04</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span><span class="w"></span>
+
+<span class="o">&gt;</span><span class="w"> </span><span class="k">GRANT</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">role_r1</span><span class="p">;</span><span class="w"></span>
+<span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">03</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span><span class="w"></span>
+
+<span class="o">&gt;</span><span class="w"> </span><span class="k">SHOW</span><span class="w"> </span><span class="n">GRANTS</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">mouser</span><span class="o">@</span><span class="n">localhost</span><span class="p">;</span><span class="w"></span>
+<span class="o">+</span><span class="c1">-------------------------------------------------------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">Grants</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">mouser</span><span class="o">@</span><span class="n">localhost</span><span class="w">                           </span><span class="o">|</span><span class="w"></span>
+<span class="o">+</span><span class="c1">-------------------------------------------------------+</span>
+<span class="o">|</span><span class="w"> </span><span class="k">GRANT</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="o">`</span><span class="n">mouser</span><span class="o">`@`</span><span class="n">localhost</span><span class="o">`</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w"> </span><span class="k">GRANT</span><span class="w"> </span><span class="k">connect</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">account</span><span class="w">  </span><span class="o">`</span><span class="n">mouser</span><span class="o">`@`</span><span class="n">localhost</span><span class="o">`</span><span class="w">        </span><span class="o">|</span><span class="w"></span>
+<span class="o">+</span><span class="c1">-------------------------------------------------------+</span>
+<span class="mi">2</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">02</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span><span class="w"></span>
+
+<span class="o">&gt;</span><span class="w"> </span><span class="k">REVOKE</span><span class="w"> </span><span class="n">role_r1</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">mouser</span><span class="p">;</span><span class="w"></span>
+<span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">04</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span><span class="w"></span>
+
+<span class="o">&gt;</span><span class="w"> </span><span class="k">SHOW</span><span class="w"> </span><span class="k">GRANT</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">mouser</span><span class="o">@</span><span class="n">localhost</span><span class="p">;</span><span class="w"></span>
+<span class="o">+</span><span class="c1">------------------------------------------------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">Grants</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">mouser</span><span class="o">@</span><span class="n">localhost</span><span class="w">                    </span><span class="o">|</span><span class="w"></span>
+<span class="o">+</span><span class="c1">------------------------------------------------+</span>
+<span class="o">|</span><span class="w"> </span><span class="k">GRANT</span><span class="w"> </span><span class="k">connect</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">account</span><span class="w">  </span><span class="o">`</span><span class="n">mouser</span><span class="o">`@`</span><span class="n">localhost</span><span class="o">`</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">+</span><span class="c1">------------------------------------------------+</span>
+<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">02</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span><span class="w"></span>
 </code></pre></div>
 
               
