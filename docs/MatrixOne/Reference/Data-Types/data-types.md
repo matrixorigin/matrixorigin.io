@@ -128,12 +128,12 @@ mysql> select min(big),max(big),max(big)-1 from floattable;
 
 ## **String Types**
 
-|  Data Type   | Size  | Syntax | Description|
-|  ----  | ----  |   ----  | ---- |
-| char      | 0 ~ 24 bytes  |CHAR| Fixed length string |
-| varchar   | 0 ~ 24 bytes  |VARCHAR| Variable length string|
-| text      | 0 ~ 1073741824 bytes| TEXT |Long text data, TINY TEXT, MEDIUM TEXT, and LONG TEXT are not distinguished|
-| blob      | 0 ~ 1073741824 bytes| BLOB |Long text data in binary form, TINY BLOB, MEDIUM BLOB, and LONG BLOB are not distinguished|
+|  Data Type   | Size |Length | Syntax | Description|
+|  ----  | ----  |  ---  | ----  | ---- |
+| char      | 24 bytes| 0 ~ 4294967295 |CHAR| Fixed length string |
+| varchar   | 24 bytes| 0 ~ 4294967295 |VARCHAR| Variable length string|
+| text      | 1 GB|other types mapping |TEXT |Long text data, TINY TEXT, MEDIUM TEXT, and LONG TEXT are not distinguished|
+| blob      | 1 GB| other types mapping|BLOB |Long text data in binary form, TINY BLOB, MEDIUM BLOB, and LONG BLOB are not distinguished|
 
 ### **Examples**
 
