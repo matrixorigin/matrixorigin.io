@@ -36,6 +36,7 @@ Usually, transactions need to have four characteristics of ACID:
    create table t1(a int primary key,b varchar(5) not null);
    ```
 
+
    To ensure data consistency here, when inserting data, to ensure the data type and range of columns a and b, the primary key constraint of column a and the non-null constraint of column b must be satisfied at the same time:
 
    ```
@@ -162,4 +163,243 @@ ANSI/ISO SQL defines four standard isolation levels:
 
 Higher levels provide stronger isolation by requiring more restrictions than lower isolation levels. The standard allows transactions to run at a stronger transaction isolation level.
 
-MatrixOne's transaction isolation is slightly different from the general isolation definition and isolation level division; see [Snapshot Isolation](matrixone-transaction-overview/snapshot-isolation.md).
+### Isolation level example
+
+You can directly use the MySQL client to connect to your local MySQL database to experience the transaction isolation levels of **Dirty Write**, **Dirty Read**, **Fuzzy Read**, and **Phantom Read**.
+
+This chapter prepares several examples to help you quickly understand these isolation levels.
+
+#### Before you start
+
+##### Enable isolation level in MySQL
+
+Enable the isolation level in MySQL using the following command line:
+
+```
+set global transaction isolation level REPEATABLE READ;
+set global transaction isolation level READ COMMITTED;
+set global transaction isolation level READ UNCOMMITTED;
+set global transaction isolation level SERIALIZABLE;
+```
+
+#### Create a database and a table
+
+Create a database and a table using the following command line:
+
+```sql
+create database isolate_demo;
+use isolate_demo;
+create table tu(a int primary key);
+insert into tu values(1);
+```
+
+#### Dirty Write
+
+*Dirty write* will occur when the isolation level of a database read is *uncommitted*.
+
+1. In session 1, start a transaction and query table *tu*, and update the value of column a:
+
+    ```
+    start transaction;
+    select * from tu;
+    +------+
+    | a    |
+    +------+
+    |    1 |
+    +------+
+    update tu set a=2 where a=1;
+    ```
+
+2. In session 2, start the transaction and query table *tu*, and update the value of column a:
+
+    ```
+    start transaction;
+    select * from tu;
+    +------+
+    | a    |
+    +------+
+    |    2 |
+    +------+
+    update tu set a=3 where a=2;
+    select * from tu;
+    +------+
+    | a    |
+    +------+
+    |    3 |
+    +------+
+    commit;
+    ```
+
+3. Roll back the transaction in session 1:
+
+    ```
+    rollback；
+    ```
+
+
+4. Query table *tu* in session 2:
+
+    ```
+    select * from tu;
+    +------+
+    | a    |
+    +------+
+    |    1 |
+    +------+
+    ```
+
+
+At this time, you can find that the modification of column a by session 2 did not take effect, and the data was still in the state before the transaction of session 1 started. This scenario is called *dirty write*.
+
+#### Dirty Read
+
+*Dirty read* will occur when the isolation level of a database is *read uncommitted*:
+
+1. In session 1, start a transaction and query table *tu*, and update the value of column a:
+
+    ```
+    start transaction;
+    select * from tu;
+    +------+
+    | a    |
+    +------+
+    |    1 |
+    +------+
+    update tu set a=2 where a=1;
+    ```
+
+2. In session 2, start the transaction and query table *tu*:
+
+    ```
+    select * from tu;
+    +------+
+    | a    |
+    +------+
+    |    2 |
+    +------+
+    ```
+
+3. Roll back the transaction and query table *tu* in session 1:
+
+    ```
+    rollback;
+    select * from tu;
+    +------+
+    | a    |
+    +------+
+    |    1 |
+    +------+
+    ```
+
+4. Query table *tu* in session 2:
+
+    ```
+    select * from tu;
+    +------+
+    | a    |
+    +------+
+    |    1 |
+    +------+
+    ```
+
+The previously queried value of session 2 has changed, and the previously queried column a is equal to 2. This scenario is called *dirty read*.
+
+#### Fuzzy Read
+
+*Fuzzy Read* will occur when the isolation level of a database is *read committed*.
+
+1. In session 1, start a transaction and query table *tu*
+
+    ```
+    start transaction;
+    select * from tu;
+    +------+
+    | a    |
+    +------+
+    |    3 |
+    +------+
+    ```
+
+2. In session 2, start the transaction and query table *tu*, and update the value of column a:
+
+    ```
+    start transaction;
+    update tu set a=2 where a=3;
+    commit;
+    ```
+
+3. Continue to query the data in the table *tu* in the session 1, and you will find that the data has changed:
+
+    ```
+    select * from tu;
+    +------+
+    | a    |
+    +------+
+    |    2 |
+    +------+
+    ```
+
+4. In session 2, start the transaction and update the value of column a:
+
+    ```
+    start transaction;
+    update tu set a=1 where a=2;
+    commit;
+    ```
+
+5. Continue to query the data in the table *tu* in the session 1, and you will find that the data has changed again:
+
+    ```
+    start transaction;
+    select * from tu;
+    +------+
+    | a    |
+    +------+
+    |    1 |
+    +------+
+    ```
+
+In session 1, in the same transaction, without any data modification to the *tu* table, the value of column a changes every time it is queried. This scenario is called *fuzzy read*.
+
+#### Phantom
+
+*Phantom* will occur when the isolation level of a database *repeatable read*.
+
+1. In session 1, start a transaction and query table *tu*:
+
+    ```
+    start transaction;
+    select * from tu;
+    +------+
+    | a    |
+    +------+
+    |    1 |
+    +------+
+    ```
+
+2. In session 2, start the transaction and query table *tu*, and update the value of column a, then commit this transaction:
+
+    ```
+    start transaction;
+    insert into tu values(2);
+    commit;
+    ```
+
+3. Continue to query the data in the table *tu* in the session 1:
+
+    ```
+    select * from tu;
+    +------+
+    | a    |
+    +------+
+    |    1 |
+    |    2 |
+    +------+
+    ```
+
+At this time, session 1 sees data that has never appeared before, and this scenario is called phantom reading.
+
+The difference between phantom read and non-repeatable read is that the scene involved in non-repeatable read only includes data updates, and the total number of results does not change. In contrast, a phantom read occurs after the `insert`/`delete` statement. The total number of results that appear for a query has changed.
+
+!!! note
+    MatrixOne's transaction isolation is slightly different from the general isolation definition and isolation level division; see [Snapshot Isolation](matrixone-transaction-overview/snapshot-isolation.md).
