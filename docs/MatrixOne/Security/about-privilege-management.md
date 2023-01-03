@@ -41,11 +41,11 @@ Then, since high-level objects can create low-level objects, the higher-level ob
 
 When an object is created, the creator is the object's owner, who has the highest authority to manage the object (that is, **Ownership authority**, which is all the authority encapsulated in the object). The owner's operation authority sets all operations on the object.
 
-For example, the Table object has `Select`, `Insert`, `Update`, `Delete`, `Truncate`, and `Ownership` privileges; if a role has the Ownership privilege of a certain Table, then the role is equivalent to having ` Select`, `Insert`, `Update`, `Delete`, `Truncate` privileges.
+For example, the Table object has `Select`, `Insert`, `Update`, `Delete`, `Truncate`, and `Ownership` privileges; if a role has the Ownership privilege of a certain Table, then the role is equivalent to having `Select`, `Insert`, `Update`, `Delete`, `Truncate` privileges.
 
 Due to the transitivity between privileges, roles, and users, you can understand the creator of an object (starting now referred to as the object owner) as a role.
 
-**How to understand that the creator of an object is a role? **
+**How to understand that the creator of an object is a role?**
 
 A user can have multiple roles at the same time. For example, User A has three roles: Role 1, Role 2, and Role 3. Each role has different privileges, as shown in the following figure, to help you quickly understand this behavior:
 
