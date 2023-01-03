@@ -41,11 +41,11 @@ Then, since high-level objects can create low-level objects, the higher-level ob
 
 When an object is created, the creator is the object's owner, who has the highest authority to manage the object (that is, **Ownership authority**, which is all the authority encapsulated in the object). The owner's operation authority sets all operations on the object.
 
-For example, the Table object has `Select`, `Insert`  `Update`, `Delete`, `Truncate`, and `Ownership` privileges; if a role has the Ownership privilege of a certain Table, then the role is equivalent to having ` Select`, `Insert`, `Update`, `Delete`, `Truncate` privileges.
+For example, the Table object has `Select`, `Insert`, `Update`, `Delete`, `Truncate`, and `Ownership` privileges; if a role has the Ownership privilege of a certain Table, then the role is equivalent to having ` Select`, `Insert`, `Update`, `Delete`, `Truncate` privileges.
 
 Due to the transitivity between privileges, roles, and users, you can understand the creator of an object (starting now referred to as the object owner) as a role.
 
-**How ​​to understand that the creator of an object is a role? **
+**How to understand that the creator of an object is a role? **
 
 A user can have multiple roles at the same time. For example, User A has three roles: Role 1, Role 2, and Role 3. Each role has different privileges, as shown in the following figure, to help you quickly understand this behavior:
 
@@ -108,7 +108,7 @@ In MatrixOne, the behavior details of roles are as follows:
 !!! note
     1. The privilege inheritance of roles is dynamic. If the privileges of the inherited role change, the scope of privileges inherited by the inherited role will also change dynamically.
     2. The inheritance relationship of roles cannot form a loop. For example, role1 inherits role2, role 2 inherits role3, and role3 inherits role1.
-    3. The transfer of privileges between roles makes privilege management more convenient, but it also has risks. For this reason, MatrixOne only allows roles with *Manage Grants* privilege to do this kind of operation. This privilege is granted to the system default role *MOADMIN by default * or *ACCOUNTADMIN*, and it is not recommended to grant this privilege to a custom role when creating a new one.
+    3. The transfer of privileges between roles makes privilege management more convenient, but it also has risks. For this reason, MatrixOne only allows roles with *Manage Grants* privilege to do this kind of operation. This privilege is granted to the system default role *MOADMIN* by default or *ACCOUNTADMIN*, and it is not recommended to grant this privilege to a custom role when creating a new one.
 
 #### Role Switching
 
