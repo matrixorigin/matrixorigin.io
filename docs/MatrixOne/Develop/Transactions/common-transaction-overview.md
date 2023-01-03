@@ -36,7 +36,6 @@ Usually, transactions need to have four characteristics of ACID:
    create table t1(a int primary key,b varchar(5) not null);
    ```
 
-
    To ensure data consistency here, when inserting data, to ensure the data type and range of columns a and b, the primary key constraint of column a and the non-null constraint of column b must be satisfied at the same time:
 
    ```
@@ -236,7 +235,6 @@ insert into tu values(1);
     rollback；
     ```
 
-
 4. Query table *tu* in session 2:
 
     ```
@@ -247,7 +245,6 @@ insert into tu values(1);
     |    1 |
     +------+
     ```
-
 
 At this time, you can find that the modification of column a by session 2 did not take effect, and the data was still in the state before the transaction of session 1 started. This scenario is called *dirty write*.
 
