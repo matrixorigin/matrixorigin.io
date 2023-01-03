@@ -31,7 +31,7 @@ Create a data administrator role and grant him global management permissions wit
 
 ### Steps
 
-#### Step 1: Use the account administrator to create the database administrator.
+#### Step 1: Use the account administrator to create the database administrator
 
 1. Log in to the account with the account administrator account:
 
