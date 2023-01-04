@@ -92,7 +92,7 @@ In this tutorial, we will walk you through the process of loading a **.csv** fil
 4. Import the file into MatrixOne:
 
     ```
-    LOAD DATA INFILE URL s3option{"endpoint"='s3.us-east-1.amazonaws.com', "access_key_id"='XXXXXX', "secret_access_key"='XXXXXX', "bucket"='test-loading', "filepath"='char_varchar_1.csv', "region"='us-east-1', "compression"='none'} INTO TABLE t1;
+    LOAD DATA URL s3option{"endpoint"='s3.us-east-1.amazonaws.com', "access_key_id"='XXXXXX', "secret_access_key"='XXXXXX', "bucket"='test-loading', "filepath"='char_varchar_1.csv', "region"='us-east-1', "compression"='none'} INTO TABLE t1;
     ```
 
 5. After the import is successful, you can run SQL statements to check the result of imported data:
