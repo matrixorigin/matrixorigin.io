@@ -22,7 +22,6 @@ The LOAD DATA statement reads rows from a text file into a table at a very high 
     [IGNORE number {LINES | ROWS}]
 ```
 
-
 ### Input File Location
 
 Currently MatrixOne only supports to load data on server host, and the `file_name` must be an absolute path name for MatrixOne to locate it.
@@ -100,6 +99,7 @@ For example, if some input values are special character `\`, you can use `escape
 LOAD DATA INFILE 'data.txt' INTO TABLE table1
   FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"' ESCAPED BY '\\';
 ```
+
 **LINES TERMINATED BY**
 
 `LINES TERMINATED BY` specifies the delimiter for the a line. The `LINES TERMINATED BY` values can be more than one character.
