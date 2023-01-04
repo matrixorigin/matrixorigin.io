@@ -127,11 +127,17 @@ nav:
         - Explain Statements Using Subqueries: MatrixOne/Performance-Tuning/explain-subqueries.md
         - Explain Statements Using Aggregation: MatrixOne/Performance-Tuning/explain-aggregation.md
         - EXPLAIN Statements Using Views: MatrixOne/Performance-Tuning/explain-views.md
-    - Security:
-      - Access Control Overview: MatrixOne/Security/access-control-overview.md
-      - Access Control Permission: MatrixOne/Security/access-control.md
+    - Privilege:
       - TLS Introduction: MatrixOne/Security/TLS-introduction.md
-      - Quick Start about Creating Account, User and Role: MatrixOne/Security/quick-start-account.md
+      - What is MatrixOne Privilege Management:
+        - About MatrixOne Privilege Management: MatrixOne/Security/about-privilege-management.md
+        - Best Practices: MatrixOne/Security/best-practice.md
+      - User Guide:
+        - Quick Start:
+          - Create accounts, Verify Resource Isolation: MatrixOne/Security/how-tos/quick-start-create-account.md
+          - Use the new account to creates users, roles, grant the privilege: MatrixOne/Security/how-tos/quick-start-create-user.md
+        - Privileges Management User guide: MatrixOne/Security/how-tos/user-guide.md
+      - Application Scenario: MatrixOne/Security/app-scenarios.md
     - Reference:
       - SQL Reference:
         - DAL:

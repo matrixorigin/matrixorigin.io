@@ -1,124 +1,153 @@
 # TLS Introduction
 
-Transport Layer Security (TLS) is a widely adopted security protocol designed to promote Internet communications' privacy and data security.
+## Overview
+
+Transport Layer Security (TLS) is a widely adopted security protocol designed to promote privacy and data security for Internet communications.
 
 MatrixOne uses non-encrypted connections by default and supports enabling encrypted connections based on the TLS protocol. The supported protocol versions are TLS 1.0, TLS 1.1, and TLS 1.2.
 
-To use encrypted connections, you need to enable encrypted connection support on the Matrix One server and specify the use of encrypted connections on the client side.
+- Disable TLS encrypted connection (default): Use the username and password to connect to MatrixOne directly.
 
-## Enable TLS for MatrixOne
+- Enable TLS encrypted connection: Encrypted connection support needs to be enabled on the MatrixOne server, and encrypted connection should be specified on the client side. You can follow the instructions below to enable a TLS secure connection.
 
-1. Generate certificate and key
+This document will guide you how to enable TLS secure connection.
 
-MatrixOne does not yet support loading password-protected private keys, so a private key file without a password must be provided. Certificates and keys can be signed and generated using OpenSSL. It is recommended to use the tool `mysql_ssl_rsa_setup` that comes with MySQL to generate quickly:
+**Main steps of TLS secure connection configuration**:
 
-```
-mysql_ssl_rsa_setup --datadir=./yourpath
-yourpath
-├── ca-key.pem
-├── ca.pem
-├── client-cert.pem
-├── client-key.pem
-├── private_key.pem
-├── public_key.pem
-├── server-cert.pem
-└── server-key.pem
-```
+1. First, enable TLS in MatrixOne.
 
-2. Modify TLS configuration of MatrixOne
+2. Then, configure the MySQL client security connection parameters.
 
-To enable TLS support of MatrixOne, you need to modify the configuration information of `[cn.frontend]`. The configuration information is explained as follows:
+After completing the configuration of these two main steps, a TLS secure connection can be established, as detailed below:
 
-|Parameter| Description|
-|---|---|
-|enableTls|Boolean type, whether to enable TLS support on the MO server. Defaults to false.|
-|tlsCertFile|Specify the SSL certificate file path|
-|tlsKeyFile|Specifies the private key corresponding to the certificate file|
-|tlsCaFile|Optional. Specify trusted CA certificate file path|
+## Step 1: Enable MatrixOne's TLS support
 
-An example of modifying the TLS configuration is as below:
+1. Generate certificate and key: MatrixOne does not yet support loading a private key protected by a password, so a private key file without a password must be provided. Certificates and keys can be issued and generated using OpenSSL. It is recommended to use the tool `mysql_ssl_rsa_setup` that comes with MySQL to generate quickly:
 
-```
-[cn.frontend]
-#default is false. With true. Server will support tls
-enableTls = true
+    ```
+    #Check your local MySQL client installation directory
+    ps -ef|grep mysql
+    #Go to the installation directory of your local MySQL client
+    cd /usr/local/mysql/bin
+    #Generate certificate and key
+    ./mysql_ssl_rsa_setup --datadir=<yourpath>
+    #Check your generated pem file
+    ls <yourpath>
+    ├── ca-key.pem
+    ├── ca.pem
+    ├── client-cert.pem
+    ├── client-key.pem
+    ├── private_key.pem
+    ├── public_key.pem
+    ├── server-cert.pem
+    └── server-key.pem
+    ```
 
-#default is ''. Path of file that contains X509 certificate in PEM format for client
-tlsCertFile = "yourpath/server-cert.pem"
+    __Note__:  `<yourpath>` in the above code is the local directory path where you need to store the generated certificate and key files.
 
-#default is ''. Path of file that contains X509 key in PEM format for client
-tlsKeyFile = "yourpath/server-key.pem"
+2. Enter the *cn.toml* configuration file in your local MatrixOne file directory path *matrixone/etc/launch-tae-CN-tae-DN/*:
 
-#default is ''. Path of file that contains list of trusted SSL CAs for client
-tlsCaFile = "yourpath/ca.pem"
-```
+    You can also use the vim command to open the cn. toml file directly in the terminal
 
-If the configured file path or content is wrong, the MatrixOne server will fail to start.
+    ```
+    vim $matrixone/etc/launch-tae-CN-tae-DN/cn.toml
+    ```
 
-3. Verify that MatrixOne's SSL is enabled
+    Copy and paste the code below into the configuration file:
 
-After logging in with the MySQL client, use the Status command to check whether SSL is enabled.
+    ```
+    [cn.frontend]
+    #default is false. With true. Server will support tls
+    enableTls = true
 
-The value of the returned SSL will have a corresponding description. If it is not enabled, the returned result is `Not in use`:
+    #default is ''. Path of file that contains X509 certificate in PEM format for client
+    tlsCertFile = "<yourpath>/server-cert.pem"
 
-```sql
-mysql -h 127.0.0.1 -P 6001 -udump -p111
+    #default is ''. Path of file that contains X509 key in PEM format for client
+    tlsKeyFile = "<yourpath>/server-key.pem"
 
-Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+    #default is ''. Path of file that contains list of trusted SSL CAs for client
+    tlsCaFile = "<yourpath>/ca.pem"
+    ```
 
-mysql> status
---------------
-/usr/local/mysql/bin/mysql  Ver 8.0.30 for macos12 on arm64 (MySQL Community Server - GPL)
+    __Note__: `<yourpath>` in the above code is the local directory path where you need to store the generated certificate and key files
 
-Connection id:		1001
-Current database:
-Current user:		dump@0.0.0.0
-SSL:			    Not in use
-Current pager:		stdout
-Using outfile:		''
-Using delimiter:	;
-Server version:		0.6.0 MatrixOne
-Protocol version:	10
-Connection:		127.0.0.1 via TCP/IP
-ERROR 1105 (HY000): the system variable does not exist
-ERROR 2014 (HY000): Commands out of sync; you can't run this command now
-Client characterset:	utf8mb4
-Server characterset:	utf8mb4
-TCP port:		6001
-Binary data as:		Hexadecimal
---------------
-```
+    In the above code, the configuration parameters are explained as follows:
 
-If enabled, the result is:
+    |Parameters|Description|
+    |---|---|
+    |enableTls|Bool, enable TLS support on the MatrixOne server.|
+    |tlsCertFile|Specify the SSL certificate file path|
+    |tlsKeyFile|Specify the private key corresponding to the certificate file|
+    |tlsCaFile|Optional, specify the trusted CA certificate file path|
 
-```sql
-mysql -h 127.0.0.1 -P 6001 -udump -p111
+    __Note__: If you use Docker to install and launch MatrixOne, before modifying the configuration file, you need to mount the configuration file first and then modify it. For more information, see [Mount directory to Docker container](../Maintain/mount-data-by-docker.md).
 
-Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+3. Verify that MatrixOne's SSL is enabled.
 
-mysql> status
-mysql  Ver 8.0.28 for macos11 on arm64 (MySQL Community Server - GPL)
+    ① Use the MySQL client to connect to MatrixOne:
 
-Connection id:          1001
-Current database:
-Current user:           dump@0.0.0.0
-SSL:                    Cipher in use is TLS_AES_128_GCM_SHA256
-Current pager:          stdout
-Using outfile:          ''
-Using delimiter:        ;
-Server version:         0.5.0 MatrixOne
-Protocol version:       10
-Connection:             127.0.0.1 via TCP/IP
-ERROR 20101 (HY000): internal error: the system variable does not exist
-ERROR 2014 (HY000): Commands out of sync; you can't run this command now
-Client characterset:    utf8mb4
-Server characterset:    utf8mb4
-TCP port:               6001
-Binary data as:         Hexadecimal
---------------
-```
+    ```
+    mysql -h 127.0.0.1 -P 6001 -udump -p111
 
-## Configure MySQL client
+    Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+    ```
+
+    ② Use the `Status` command to check whether SSL is enabled.
+
+    Successfully enabled, the code example is as follows; you can see that the SSL status is `Cipher in use is TLS_AES_128_GCM_SHA256`:
+
+    ```
+    mysql> status
+    mysql  Ver 8.0.28 for macos11 on arm64 (MySQL Community Server - GPL)
+
+    Connection id:          1001
+    Current database:
+    Current user:           dump@0.0.0.0
+    SSL:                    Cipher in use is TLS_AES_128_GCM_SHA256
+    Current pager:          stdout
+    Using outfile:          ''
+    Using delimiter:        ;
+    Server version:         0.6.0 MatrixOne
+    Protocol version:       10
+    Connection:             127.0.0.1 via TCP/IP
+    ERROR 20101 (HY000): internal error: the system variable does not exist
+    ERROR 2014 (HY000): Commands out of sync; you can't run this command now
+    Client characterset:    utf8mb4
+    Server characterset:    utf8mb4
+    TCP port:               6001
+    Binary data as:         Hexadecimal
+    --------------
+    ```
+
+    If it is not enabled successfully, the returned result is as follows; you can see that the SSL status is `Not in use`; you need to recheck whether the local directory path (namely <yourpath>) of the certificate and key file you configured in the above steps is correct:
+
+    ```
+    mysql> status;
+    /usr/local/mysql/bin/mysql  Ver 8.0.30 for macos12 on arm64 (MySQL Community Server - GPL)
+
+    Connection id:		1009
+    Current database:	test
+    Current user:		root@0.0.0.0
+    SSL:			Not in use
+    Current pager:		stdout
+    Using outfile:		''
+    Using delimiter:	;
+    Server version:		8.0.30-MatrixOne-v0.6.0 MatrixOne
+    Protocol version:	10
+    Connection:		127.0.0.1 via TCP/IP
+    Server characterset:	utf8mb4
+    Db     characterset:	utf8mb4
+    Client characterset:	utf8mb4
+    Conn.  characterset:	utf8mb4
+    TCP port:		6001
+    Binary data as:		Hexadecimal
+    --------------
+    ```
+
+After completing the above steps, MatrixOne's TLS is enabled.
+
+## Step 2: Configure the parameters of MySQL client
 
 When a MySQL client connects to Matrix One Server, the encrypted connection behavior needs to be specified by the `--ssl-mode` parameter, such as:
 
