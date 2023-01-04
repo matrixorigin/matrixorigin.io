@@ -162,7 +162,5 @@ ANSI/ISO SQL defines four standard isolation levels:
 
 Higher levels provide stronger isolation by requiring more restrictions than lower isolation levels. The standard allows transactions to run at a stronger transaction isolation level.
 
-The difference between phantom read and non-repeatable read is that the scene involved in non-repeatable read only includes data updates, and the total number of results does not change. In contrast, a phantom read occurs after the `insert`/`delete` statement. The total number of results that appear for a query has changed.
-
 !!! note
     MatrixOne's transaction isolation is slightly different from the general isolation definition and isolation level division; see [Snapshot Isolation](matrixone-transaction-overview/snapshot-isolation.md).
