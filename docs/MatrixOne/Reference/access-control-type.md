@@ -1,6 +1,6 @@
-# Privilege Control in MatrixOne - Access Control Permission
+# Privilege Control Types
 
-The access control permissions of a MatrixOne are classified into **System Permission** and **Object Permission**. You can refer to the permissions granted to roles.
+The privilege control of a MatrixOne is classified into **System Permission** and **Object Permission**. You can refer to the permissions granted to roles.
 
 ## System Permission
 

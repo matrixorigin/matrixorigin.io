@@ -6,13 +6,13 @@ The `GRANT` statement assigns privileges and roles to MatrixOne users and roles.
 
 ### GRANT Overview
 
-System permissions are those of the initial system *root*. The system *root* can create and delete other *accounts*, and manage *accounts*. A system *root* cannot manage other resources of other *accounts*. 
+System permissions are those of the initial system *root*. The system *root* can create and delete other *accounts*, and manage *accounts*. A system *root* cannot manage other resources of other *accounts*.
 
 To use `GRANT` to GRANT permissions to other users or roles, you must first have the `WITH GRANT OPTION` permissions and the permissions you are granting. Use the' SHOW GRANTS' statement to find out the grant status of your current or another role. For more information, see [SHOW GRANTS](show-grants.md).
 
 The `REVOKE` statement is related to `GRANT` and enables administrators to remove account privileges. For more information on `REVOKE`, see [REVOKE](revoke.md).
 
-Normally, a cluster has one root by default, the root first uses `CREATE ACCOUNT` to create a new account and define its nonprivilege characteristics such as its password, then account uses `CREATE USER` to create an user and uses `GRANT` to define its privileges. `ALTER ACCOUNT` may be used to change the nonprivilege characteristics of existing accounts. `ALTER USER` is used to change the privilege characteristics of existing users. For more information on privileges supported by MatrixOne, see [Privilege Control in MatrixOne - Access Control Permission](../../../Security/access-control.md).
+Normally, a cluster has one root by default, the root first uses `CREATE ACCOUNT` to create a new account and define its nonprivilege characteristics such as its password, then account uses `CREATE USER` to create an user and uses `GRANT` to define its privileges. `ALTER ACCOUNT` may be used to change the nonprivilege characteristics of existing accounts. `ALTER USER` is used to change the privilege characteristics of existing users. For more information on privileges supported by MatrixOne, see [Privilege Control Types](../../access-control-type.md).
 
 `GRANT` responds with `Query OK, 0 rows affected` when executed successfully. To determine what privileges result from the operation, use [SHOW GRANTS](show-grants.md)
 
