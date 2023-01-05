@@ -50,13 +50,14 @@ Column definitions typically take the following form.
 - {data_type}: The column data type.
 - {column_qualification}: Column qualifications.
 
-Suppose you need to create a table to store the *user* information in the *modatabase* database.
+Suppose you need to create a table to store the *NATION* information in the *modatabase* database.
 
 ```sql
-CREATE TABLE `modatabase`.`users` (
-  `id` bigint,
-  `nickname` varchar(100),
-  `balance` decimal(15,2)
+CREATE TABLE NATION(
+N_NATIONKEY  INTEGER NOT NULL,
+N_NAME       CHAR(25) NOT NULL,
+N_REGIONKEY  INTEGER NOT NULL,
+N_COMMENT    VARCHAR(152),
 );
 ```
 
@@ -66,23 +67,29 @@ The following table explains the fields in the above example:
 
 |Filed Name|Data Types|Function|Description|
 |---|---|---|---|
-|id|bigint|This is used to represent a unique user identifier.| This means that all user identifiers should be of the bigint type.|
-|nickname|varchar|user's nickname|The length limit of 100 characters|
-|balance|decimal|Balance of user|decimal(5,2) means a precision of 5 and a scale of 2, with the range from -999.99 to 999.99. decimal(6,1) means a precision of 6 and a scale of 1, with the range from -99999.9 to 99999.9. decimal is a fixed-point types, which can be used to store numbers accurately.|
+|N_NATIONKEY|INTEGER|This is used to represent a unique nation identifier.| This means that all nation identifiers should be of the integr type.|
+|N_NAME|CHAR|nation's name|The length limit of 25 characters|
+|N_REGIONKEY|INTEGER|This is used to represent a unique region identifier.|This means that all region identifiers should be of the integr type.|
+|N_COMMENT|VARCHAR|comment|The length limit of 152 characters|
 
 MatrixOne supports many other column data types, including the integer types, floating-point types, date and time types. For more information, see [Data Types](../../Reference/Data-Types/data-types.md).
 
 **Create a complex table**
 
-Create a *books* table which will be the core of the modatabase data. The *books* table contains fields for the book's ids, titles, stock, prices, and publication dates.
+Create a *ORDERS* table:
 
 ```sql
-CREATE TABLE `modatabase`.`books` (
-  `id` bigint NOT NULL,
-  `title` varchar(100),
-  `published_at` datetime,
-  `stock` int,
-  `price` decimal(15,2)
+CREATE TABLE ORDERS(
+O_ORDERKEY       BIGINT NOT NULL,
+O_CUSTKEY        INTEGER NOT NULL,
+O_ORDERSTATUS    CHAR(1) NOT NULL,
+O_TOTALPRICE     DECIMAL(15,2) NOT NULL,
+O_ORDERDATE      DATE NOT NULL,
+O_ORDERPRIORITY  CHAR(15) NOT NULL,
+O_CLERK          CHAR(15) NOT NULL,
+O_SHIPPRIORITY   INTEGER NOT NULL,
+O_COMMENT        VARCHAR(79) NOT NULL,
+PRIMARY KEY (O_ORDERKEY)
 );
 ```
 
@@ -90,8 +97,8 @@ This table contains more data types than the users table.
 
 |Filed Name|Data Types|Function|Description|
 |---|---|---|---|
-|stock|int|The type of right size is recommended |To avoid using too much disk or even affecting performance (too large a type range) or data overflow (too small a data type range).|
-|published_at|datetime|publication dates|The datetime type can be used to store time values.|
+|O_TOTALPRICE|DECIMAL|decimal(5,2) means a precision of 5 and a scale of 2, with the range from -999.99 to 999.99. decimal(6,1) means a precision of 6 and a scale of 1, with the range from -99999.9 to 99999.9. decimal is a fixed-point types, which can be used to store numbers accurately.|
+|O_ORDERDATE|DATE|orders' date|The date type can be used to store date values.|
 
 ## Select primary key
 
@@ -105,47 +112,54 @@ A table can be created without a primary key or with a non-integer primary key.
 
 To set a default value on a column, use the `DEFAULT` constraint. The default value allows you to insert data without specifying a value for each column.
 
-You can use `DEFAULT` together with supported SQL functions to move the calculation of defaults out of the application layer, thus saving resources of the application layer. The resources consumed by the calculation do not disappear and are moved to the MatrixOne cluster. Commonly, you can insert data with the default time. The following exemplifies setting the default value in the *ratings* table:
+You can use `DEFAULT` together with supported SQL functions to move the calculation of defaults out of the application layer, thus saving resources of the application layer. The resources consumed by the calculation do not disappear and are moved to the MatrixOne cluster. The following exemplifies setting the default value in the simple table:
 
 ```sql
-CREATE TABLE `modatabase`.`ratings` (
-  `book_id` bigint,
-  `user_id` bigint,
-  `score` tinyint,
-  `rated_at` datetime DEFAULT NOW(),
-  PRIMARY KEY (`book_id`,`user_id`)
-);
+create table t1(a int default (1), b int);
+insert into t1(b) values(1), (1);
+> select * from t1;
++------+------+
+| a    | b    |
++------+------+
+|    1 |    1 |
+|    1 |    1 |
++------+------+
+2 rows in set (0.01 sec)
 ```
+
+As you can see, the default value of a is 1.
 
 ### Prevent duplicate values
 
 If you need to prevent duplicate values in a column, you can use the `UNIQUE` constraint.
 
-For example, to make sure that users' nicknames are unique, you can rewrite the table creation SQL statement for the *users* table like this:
+For example, to make sure that nation' key are unique, you can write the table creation SQL statement for the *NATION* table like this:
 
 ```sql
-CREATE TABLE `modatabase`.`users` (
-  `id` bigint,
-  `balance` decimal(15,2),
-  `nickname` varchar(100) UNIQUE,
-  PRIMARY KEY (`id`)
+CREATE TABLE NATION(
+N_NATIONKEY  INTEGER NOT NULL,
+N_NAME       CHAR(25) NOT NULL,
+N_REGIONKEY  INTEGER NOT NULL,
+N_COMMENT    VARCHAR(152),
+PRIMARY KEY (N_NATIONKEY)
 );
 ```
 
-If you try to insert the same nickname in the *users* table, an error is returned.
+If you try to insert the same `N_NATIONKEY` in the *NATION* table, an error is returned.
 
 ### Prevent null values
 
 If you need to prevent null values in a column, you can use the `NOT NULL` constraint.
 
-Take user nicknames as an example. To ensure that a nickname is not only unique but is also not null, you can rewrite the SQL statement for creating the *users* table as follows:
+Take *NATION* table as an example. To ensure that a nation's name is not only unique but is also not null, you can write the SQL statement for creating the *NATION* table as follows:
 
 ```sql
-CREATE TABLE `modatabase`.`users` (
-  `id` bigint,
-  `balance` decimal(15,2),
-  `nickname` varchar(100) UNIQUE NOT NULL,
-  PRIMARY KEY (`id`)
+CREATE TABLE NATION(
+N_NATIONKEY  INTEGER NOT NULL,
+N_NAME       CHAR(25) NOT NULL,
+N_REGIONKEY  INTEGER NOT NULL,
+N_COMMENT    VARCHAR(152),
+PRIMARY KEY (N_NATIONKEY)
 );
 ```
 
@@ -163,9 +177,8 @@ Running results:
 +----------------------+
 | tables_in_modatabase |
 +----------------------+
-| books                |
-| ratings              |
-| users                |
+| nation               |
+| orders               |
 +----------------------+
 ```
 
