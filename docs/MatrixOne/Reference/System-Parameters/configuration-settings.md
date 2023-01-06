@@ -1,4 +1,4 @@
-# **Distributed Parameters Settings**
+# **General Parameters Settings**
 
 There are three configuration files *cn.toml*, *dn.toml* and *log.toml* in the *matrixone/etc/launch-tae-CN-tae-DN/* directory.
 
