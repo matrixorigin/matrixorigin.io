@@ -56,4 +56,4 @@ Query OK, 0 rows affected (0.04 sec)
 
 ## **Constraints**
 
-MatrxiOne does not supports `CREAT USER COMMENT` and `CREAT USER ATTRIBUTE` now.
+MatrxiOne does not supports `CREATE USER COMMENT` and `CREAT USER ATTRIBUTE` now.
