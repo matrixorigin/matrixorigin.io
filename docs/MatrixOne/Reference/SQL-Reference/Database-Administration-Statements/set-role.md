@@ -64,11 +64,17 @@ Switching the current ROLE to a new role.
 > create role use_role_1,use_role_2,use_role_3,use_role_4,use_role_5;
 > create database use_db_1;
 > create user use_user_1 identified by '123456' default role use_role_1;
+##grant the `select`, `insert` and `update` privileges of all tables to use_role_1
 > grant select ,insert ,update on table *.* to use_role_1;
+#grant all the privileges of database to use_role_2
 > grant all on database * to use_role_2;
+#grant the use_role_2 to use_user_1
 > grant use_role_2 to use_user_1;
+#create table named `use_table_1`
 > create table use_db_1.use_table_1(a int,b varchar(20),c double );
+#set user use_user_1 primary and secondary roles are all available
 > set secondary role all;
+#show the privileges of `use_user_1`
 > show grants for 'use_user_1'@'localhost';
 +-----------------------------------------------------------+
 | Grants for use_user_1@localhost                           |
@@ -80,4 +86,5 @@ Switching the current ROLE to a new role.
 | GRANT database all ON database * `use_user_1`@`localhost` |
 +-----------------------------------------------------------+
 5 rows in set (0.01 sec)
+#It can be seen that the `use_user_1` has the default privilege to connect to MatrixOne; it also has the `select`, `insert` and `update` privileges on all tables, and also has all the privileges on the database
 ```
