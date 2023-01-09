@@ -16,21 +16,38 @@ Create a database.
 }
 ```
 
-#### Create Database Diagram
-
-![Create Database Diagram](https://github.com/matrixorigin/artwork/blob/main/docs/reference/create_database_statement.png?raw=true)
-
 ## **Examples**
 
+```sql
+CREATE DATABASE test01;
+CREATE DATABASE IF NOT EXISTS test01;
+CREATE DATABASE test02 DEFAULT CHARACTER SET utf8 collate utf8_general_ci ENCRYPTION 'Y';
+CREATE DATABASE test03 CHARACTER SET=utf8 collate=utf8_general_ci ENCRYPTION='N';
 ```
-> CREATE DATABASE test01;
 
-> CREATE DATABASE IF NOT EXISTS test01;
+**Expected Result**
 
-> CREATE DATABASE test03 DEFAULT CHARACTER SET utf8 collate utf8_general_ci ENCRYPTION 'Y';
+You can use [`SHOW DATABASES`](../Database-Administration-Statements/SHOW-Statements/show-databases.md) to check if the databases have been created.
 
-> CREATE DATABASE test04 CHARACTER SET=utf8 collate=utf8_general_ci ENCRYPTION='N';
+```sql
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| mo_task            |
+| information_schema |
+| mysql              |
+| system_metrics     |
+| system             |
+| test01             |
+| test02             |
+| test03             |
+| mo_catalog         |
++--------------------+
+10 rows in set (0.01 sec)
 ```
+
+You can see that the new database *test01*, *test02* and *test03* have been created in addition to the six system databases.
 
 ## **Constraints**
 

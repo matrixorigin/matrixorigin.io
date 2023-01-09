@@ -18,16 +18,19 @@ Database information is also available from the `INFORMATION_SCHEMA` SCHEMATA ta
 ## **Examples**
 
 ```sql
-> create database demo_1;
-> show databases;
+create database demo_1;
+
+mysql> show databases;
 +--------------------+
 | Database           |
 +--------------------+
-| mo_catalog         |
-| system             |
-| system_metrics     |
+| mo_task            |
 | information_schema |
-| demo_1             |
+| mysql              |
+| system_metrics     |
+| system             |
+| demo_1         |
+| mo_catalog         |
 +--------------------+
 7 rows in set (0.00 sec)
 ```

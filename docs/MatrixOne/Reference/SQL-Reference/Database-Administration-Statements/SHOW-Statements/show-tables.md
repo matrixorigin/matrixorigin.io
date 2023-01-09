@@ -31,7 +31,3 @@ Shows the list of tables in the currently selected database.
 | tracing       |
 +---------------+
 ```
-
-## **Constraints**
-
-MatrixOne does not support `SHOW TABLE STATUS` for now.

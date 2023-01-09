@@ -27,7 +27,7 @@ create account <account_name> admin_name='<user_name>' identified by '<password>
 |<user_name>|The administrator username of the newly created account, which will be automatically granted the highest privilege role of the account, namely `ACCOUNTADMIN`|
 |<password>|Newly created account administrator password|
 
-For more information, see [CREATE ACCOUNT](../../Reference/SQL-Reference/Database-Administration-Statements/create-account.md).
+For more information, see [CREATE ACCOUNT](../../Reference/SQL-Reference/Database-Administration-Statements/Account-Management-Statements/create-account.md).
 
 ### Select Account
 
@@ -54,7 +54,7 @@ drop account if exists <account_name>;
 !!! note
     After the account is deleted, it cannot be restored, including all data under the account account. Please use it with caution.
 
-For more information, see [DROP ACCOUNT](../../Reference/SQL-Reference/Database-Administration-Statements/drop-account.md).
+For more information, see [DROP ACCOUNT](../../Reference/SQL-Reference/Database-Administration-Statements/Account-Management-Statements/drop-account.md).
 
 ## Manage User
 
@@ -79,7 +79,7 @@ create user <user_name> identified by '<password>';
 |<user_name>|The name of a new user|
 |<password>|The password of a new user|
 
-For more information, see [CREATE USER](../../Reference/SQL-Reference/Database-Administration-Statements/create-user.md).
+For more information, see [CREATE USER](../../Reference/SQL-Reference/Database-Administration-Statements/Account-Management-Statements/create-user.md).
 
 ### View User
 
@@ -118,7 +118,7 @@ drop user if exist <user_name>;
 !!! note
     When deleting a user, you need to stop the user's current session first, otherwise the deletion will fail.
 
-For more information, see [DROP USER](../../Reference/SQL-Reference/Database-Administration-Statements/drop-user.md).
+For more information, see [DROP USER](../../Reference/SQL-Reference/Database-Administration-Statements/Account-Management-Statements/drop-user.md).
 
 ## Manage Role
 
@@ -142,7 +142,7 @@ create role <role_name>;
 |---|---|
 |<role_name>|The name of a new role|
 
-For more information, see [CREATE ROLE](../../Reference/SQL-Reference/Database-Administration-Statements/create-role.md).
+For more information, see [CREATE ROLE](../../Reference/SQL-Reference/Database-Administration-Statements/Account-Management-Statements/create-role.md).
 
 ### View Role
 
@@ -176,7 +176,7 @@ set role <role_name>;
 |---|---|
 |<role_name>|The name of the role to be switched|
 
-For more information, see [SET ROLE](../../Reference/SQL-Reference/Database-Administration-Statements/set-role.md).
+For more information, see [SET ROLE](../../Reference/SQL-Reference/Database-Administration-Statements/Account-Management-Statements/set-role.md).
 
 ### Delete Role
 
@@ -201,7 +201,7 @@ drop role if exists <role_name>;
 !!! note
     When deleting a specified role, the roles of authorized users will be recovered simultaneously.
 
-For more information, see [DROP ROLE](../../Reference/SQL-Reference/Database-Administration-Statements/drop-role.md).
+For more information, see [DROP ROLE](../../Reference/SQL-Reference/Database-Administration-Statements/Account-Management-Statements/drop-role.md).
 
 ## Manage Privilege
 
@@ -228,7 +228,7 @@ grant <privilege> on <object_type> <object_name> to <role_name>
 |<object_name>|The name of object|
 |<role_name>|The name of the role which is granted|
 
-For more information, see [DRANT PRIVILEGES](../../Reference/SQL-Reference/Database-Administration-Statements/grant-privileges.md).
+For more information, see [DRANT PRIVILEGES](../../Reference/SQL-Reference/Database-Administration-Statements/Account-Management-Statements/grant-privileges.md).
 
 ### Grant certain kind of object privileges to a role
 
@@ -255,7 +255,7 @@ grant <privilege> on table *.* to <role_name>;
 !!! note
     Although this operation is relatively simple when authorizing multiple objects of the same category, it is also prone to permission leakage, so please use it with caution.
 
-For more information, see [DRANT PRIVILEGES](../../Reference/SQL-Reference/Database-Administration-Statements/grant-privileges.md).
+For more information, see [DRANT PRIVILEGES](../../Reference/SQL-Reference/Database-Administration-Statements/Account-Management-Statements/grant-privileges.md).
 
 ### Grant a role to a user
 
@@ -278,7 +278,7 @@ grant <role_name> to <user_name>;
 |<role_name>|The name of the role which is granted|
 |<user_name>|The name of the user which is granted|
 
-For more information, see [DRANT ROLE](../../Reference/SQL-Reference/Database-Administration-Statements/grant-role.md).
+For more information, see [DRANT ROLE](../../Reference/SQL-Reference/Database-Administration-Statements/Account-Management-Statements/grant-role.md).
 
 ### One role inherit the privileges of another role
 
@@ -297,7 +297,7 @@ grant <role_a> to <role_b>;
 !!! note
     The permissions are inherited dynamically. If the permissions of role_a change, the permissions inherited by role_b will also change dynamically. MatrixOne does not allow role ring inheritance; that is, role1 inherits role2, role2 inherits role3, but  role3 can not inherits role1.
 
-For more information, see [DRANT ROLE](../../Reference/SQL-Reference/Database-Administration-Statements/grant-role.md).
+For more information, see [DRANT ROLE](../../Reference/SQL-Reference/Database-Administration-Statements/Account-Management-Statements/grant-role.md).
 
 ### Show the privilege of user
 
@@ -319,7 +319,7 @@ show grants for <user_name>@<localhost>
 |---|---|
 |<user_name>|The name of user which is granted.|
 
-For more information, see [SHOW GRANTS](../../Reference/SQL-Reference/Database-Administration-Statements/show-grants.md).
+For more information, see [SHOW GRANTS](../../Reference/SQL-Reference/Database-Administration-Statements/Account-Management-Statements/show-grants.md).
 
 ### Revoke the role of user
 
@@ -342,7 +342,7 @@ revoke <role_name> from <user_name>
 |<role_name>|The name of role which is granted.|
 |<user_name>|The name of user which is granted.|
 
-For more information, see [REVOKE](../../Reference/SQL-Reference/Database-Administration-Statements/revoke.md).
+For more information, see [REVOKE](../../Reference/SQL-Reference/Database-Administration-Statements/Account-Management-Statements/revoke.md).
 
 ### Revoke privilege of roles
 
@@ -367,4 +367,4 @@ revoke <privilege> on <object_type> <object_name> to <role_name>;
 |<object_name>|The name of the object|
 |<role_name>|A role that needs to be granted|
 
-For more information, see [REVOKE](../../Reference/SQL-Reference/Database-Administration-Statements/revoke.md).
+For more information, see [REVOKE](../../Reference/SQL-Reference/Database-Administration-Statements/Account-Management-Statements/revoke.md).

@@ -18,7 +18,9 @@ The `IF EXISTS` clause prevents an error from occurring for views that don't exi
 ## **Examples**
 
 ```sql
-> CREATE TABLE t1(c1 INT PRIMARY KEY, c2 INT);
-> CREATE VIEW v1 AS SELECT * FROM t1;
-> DROP VIEW v1;
+CREATE TABLE t1(c1 INT PRIMARY KEY, c2 INT);
+CREATE VIEW v1 AS SELECT * FROM t1;
+
+mysql> DROP VIEW v1;
+Query OK, 0 rows affected (0.02 sec)
 ```
