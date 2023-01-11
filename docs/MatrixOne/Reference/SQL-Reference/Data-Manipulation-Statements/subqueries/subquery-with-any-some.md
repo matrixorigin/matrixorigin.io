@@ -18,19 +18,20 @@ Subqueries that use the `ANY` keyword return true when any value retrieved in th
 ## **Examples**
 
 ```sql
-> create table t1 (a int);
-> create table t2 (a int, b int);
-> create table t3 (a int);
-> create table t4 (a int not null, b int not null);
-> create table t5 (a int);
-> create table t6 (a int, b int);
-> insert into t1 values (2);
-> insert into t2 values (1,7),(2,7);
-> insert into t4 values (4,8),(3,8),(5,9);
-> insert into t5 values (null);
-> insert into t3 values (6),(7),(3);
-> insert into t6 values (10,7),(null,7);
-> select * from t3 where a <> any (select b from t2);
+create table t1 (a int);
+create table t2 (a int, b int);
+create table t3 (a int);
+create table t4 (a int not null, b int not null);
+create table t5 (a int);
+create table t6 (a int, b int);
+insert into t1 values (2);
+insert into t2 values (1,7),(2,7);
+insert into t4 values (4,8),(3,8),(5,9);
+insert into t5 values (null);
+insert into t3 values (6),(7),(3);
+insert into t6 values (10,7),(null,7);
+
+mysql> select * from t3 where a <> any (select b from t2);
 +------+
 | a    |
 +------+
@@ -39,7 +40,7 @@ Subqueries that use the `ANY` keyword return true when any value retrieved in th
 +------+
 2 rows in set (0.00 sec)
 
-> select * from t3 where a <> some (select b from t2);
+mysql> select * from t3 where a <> some (select b from t2);
 +------+
 | a    |
 +------+
@@ -48,7 +49,7 @@ Subqueries that use the `ANY` keyword return true when any value retrieved in th
 +------+
 2 rows in set (0.00 sec)
 
-> select * from t3 where a = some (select b from t2);
+mysql> select * from t3 where a = some (select b from t2);
 +------+
 | a    |
 +------+
@@ -56,7 +57,7 @@ Subqueries that use the `ANY` keyword return true when any value retrieved in th
 +------+
 1 row in set (0.00 sec)
 
-> select * from t3 where a = any (select b from t2);
+mysql> select * from t3 where a = any (select b from t2);
 +------+
 | a    |
 +------+
@@ -64,7 +65,7 @@ Subqueries that use the `ANY` keyword return true when any value retrieved in th
 +------+
 1 row in set (0.00 sec)
 
-> select a,b from t6 where a >  any ( select a ,b from t4 where a>3);
+mysql> select a,b from t6 where a >  any ( select a ,b from t4 where a>3);
 ERROR 1105 (HY000): subquery should return 1 column
 ```
 

@@ -23,21 +23,21 @@ In the statement containing the WITH clause, each CTE name can be referenced to 
 ## **Examples**
 
 ```sql
-> CREATE TABLE t1
+CREATE TABLE t1
     (a INTEGER,
     b INTEGER,
     c INTEGER
     );
-> INSERT INTO t1 VALUES
+INSERT INTO t1 VALUES
     (1, 1, 10), (1, 2, 20), (1, 3, 30), (2, 1, 40), (2, 2, 50), (2, 3, 60);
-> CREATE TABLE t2
+CREATE TABLE t2
     (a INTEGER,
     d INTEGER,
     e INTEGER
     );
-> INSERT INTO t2 VALUES
+INSERT INTO t2 VALUES
     (1, 6, 60), (2, 6, 60), (3, 6, 60);
-> WITH
+mysql> WITH
     cte AS
     (SELECT SUM(c) AS c, SUM(b) AS b, a
     FROM t1

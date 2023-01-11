@@ -13,7 +13,7 @@ Logical `OR,||`. When both operands are non-NULL, the result is `true` if any op
 ## **Examples**
 
 ```sql
-> select 1 or 1;
+mysql> select 1 or 1;
 +--------+
 | 1 or 1 |
 +--------+
@@ -21,7 +21,7 @@ Logical `OR,||`. When both operands are non-NULL, the result is `true` if any op
 +--------+
 1 row in set (0.01 sec)
 
-> select 1 or 0;
+mysql> select 1 or 0;
 +--------+
 | 1 or 0 |
 +--------+
@@ -29,7 +29,7 @@ Logical `OR,||`. When both operands are non-NULL, the result is `true` if any op
 +--------+
 1 row in set (0.00 sec)
 
-> select 0 or 0;
+mysql> select 0 or 0;
 +--------+
 | 0 or 0 |
 +--------+
@@ -37,7 +37,7 @@ Logical `OR,||`. When both operands are non-NULL, the result is `true` if any op
 +--------+
 1 row in set (0.01 sec)
 
-> select 0 or null;
+mysql> select 0 or null;
 +-----------+
 | 0 or null |
 +-----------+
@@ -45,7 +45,7 @@ Logical `OR,||`. When both operands are non-NULL, the result is `true` if any op
 +-----------+
 1 row in set (0.00 sec)
 
-> select 1 or null;
+mysql> select 1 or null;
 +-----------+
 | 1 or null |
 +-----------+
@@ -55,10 +55,10 @@ Logical `OR,||`. When both operands are non-NULL, the result is `true` if any op
 ```
 
 ```sql
-> create table t1 (a boolean,b bool);
-> insert into t1 values (0,1),(true,false),(true,1),(0,false),(NULL,NULL);
-> select * from t1;
-> select a or b from t1;
+create table t1 (a boolean,b bool);
+insert into t1 values (0,1),(true,false),(true,1),(0,false),(NULL,NULL);
+
+mysql> select a or b from t1;
 +--------+
 | a or b |
 +--------+

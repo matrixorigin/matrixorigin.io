@@ -31,7 +31,7 @@ This `CASE` syntax returns the result for the first condition that is true. If n
 ## **Examples**
 
 ```sql
-> SELECT CASE WHEN 1>0 THEN 'true' ELSE 'false' END;
+mysql> SELECT CASE WHEN 1>0 THEN 'true' ELSE 'false' END;
 +------------------------------------------+
 | case when 1 > 0 then true else false end |
 +------------------------------------------+
@@ -41,13 +41,13 @@ This `CASE` syntax returns the result for the first condition that is true. If n
 ```
 
 ```sql
-> CREATE TABLE t1 (a INT, b INT);
+CREATE TABLE t1 (a INT, b INT);
 Query OK, 0 rows affected (0.01 sec)
 
-> INSERT INTO t1 VALUES (1,1),(2,1),(3,2),(4,2),(5,3),(6,3);
+INSERT INTO t1 VALUES (1,1),(2,1),(3,2),(4,2),(5,3),(6,3);
 Query OK, 6 rows affected (0.01 sec)
 
-> SELECT CASE WHEN AVG(a)>=0 THEN 'Positive' ELSE 'Negative' END FROM t1 GROUP BY b;
+mysql> SELECT CASE WHEN AVG(a)>=0 THEN 'Positive' ELSE 'Negative' END FROM t1 GROUP BY b;
 +-------------------------------------------------------+
 | case when avg(a) >= 0 then Positive else Negative end |
 +-------------------------------------------------------+
