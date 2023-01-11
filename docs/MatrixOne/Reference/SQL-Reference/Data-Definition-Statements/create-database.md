@@ -19,10 +19,7 @@ Create a database.
 ## **Examples**
 
 ```sql
-CREATE DATABASE test01;
 CREATE DATABASE IF NOT EXISTS test01;
-CREATE DATABASE test02 DEFAULT CHARACTER SET utf8 collate utf8_general_ci ENCRYPTION 'Y';
-CREATE DATABASE test03 CHARACTER SET=utf8 collate=utf8_general_ci ENCRYPTION='N';
 ```
 
 **Expected Result**
@@ -40,14 +37,12 @@ mysql> show databases;
 | system_metrics     |
 | system             |
 | test01             |
-| test02             |
-| test03             |
 | mo_catalog         |
 +--------------------+
 10 rows in set (0.01 sec)
 ```
 
-You can see that the new database *test01*, *test02* and *test03* have been created in addition to the six system databases.
+You can see that the new database *test01* has been created in addition to the six system databases.
 
 ## **Constraints**
 
