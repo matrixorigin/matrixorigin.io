@@ -162,4 +162,5 @@ ANSI/ISO SQL defines four standard isolation levels:
 
 Higher levels provide stronger isolation by requiring more restrictions than lower isolation levels. The standard allows transactions to run at a stronger transaction isolation level.
 
-MatrixOne's transaction isolation is slightly different from the general isolation definition and isolation level division; see [Snapshot Isolation](matrixone-transaction-overview/snapshot-isolation.md).
+!!! note
+    MatrixOne's transaction isolation is slightly different from the general isolation definition and isolation level division; see [Snapshot Isolation](matrixone-transaction-overview/snapshot-isolation.md).
