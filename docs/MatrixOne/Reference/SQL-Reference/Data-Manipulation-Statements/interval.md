@@ -65,7 +65,7 @@ We permits any punctuation delimiter in the expr format. Those shown in the tabl
 - Temporal intervals are used for `DATE_ADD()` and `DATE_SUB()`:
 
 ```SQL
-> SELECT DATE_SUB('2018-05-01',INTERVAL 1 YEAR);
+mysql> SELECT DATE_SUB('2018-05-01',INTERVAL 1 YEAR);
 +-----------------------------------------+
 | date_sub(2018-05-01, interval(1, year)) |
 +-----------------------------------------+
@@ -73,7 +73,7 @@ We permits any punctuation delimiter in the expr format. Those shown in the tabl
 +-----------------------------------------+
 1 row in set (0.00 sec)
 
-> SELECT DATE_ADD('2020-12-31 23:59:59', INTERVAL 1 SECOND);
+mysql> SELECT DATE_ADD('2020-12-31 23:59:59', INTERVAL 1 SECOND);
 +----------------------------------------------------+
 | date_add(2020-12-31 23:59:59, interval(1, second)) |
 +----------------------------------------------------+
@@ -81,7 +81,7 @@ We permits any punctuation delimiter in the expr format. Those shown in the tabl
 +----------------------------------------------------+
 1 row in set (0.01 sec)
 
-> SELECT DATE_ADD('2018-12-31 23:59:59', INTERVAL 1 DAY);
+mysql> SELECT DATE_ADD('2018-12-31 23:59:59', INTERVAL 1 DAY);
 +-------------------------------------------------+
 | date_add(2018-12-31 23:59:59, interval(1, day)) |
 +-------------------------------------------------+
@@ -89,7 +89,7 @@ We permits any punctuation delimiter in the expr format. Those shown in the tabl
 +-------------------------------------------------+
 1 row in set (0.00 sec)
 
-> SELECT DATE_ADD('2100-12-31 23:59:59', INTERVAL '1:1' MINUTE_SECOND);
+mysql> SELECT DATE_ADD('2100-12-31 23:59:59', INTERVAL '1:1' MINUTE_SECOND);
 +-------------------------------------------------------------+
 | date_add(2100-12-31 23:59:59, interval(1:1, minute_second)) |
 +-------------------------------------------------------------+
@@ -97,7 +97,7 @@ We permits any punctuation delimiter in the expr format. Those shown in the tabl
 +-------------------------------------------------------------+
 1 row in set (0.00 sec)
 
-> SELECT DATE_SUB('2025-01-01 00:00:00', INTERVAL '1 1:1:1' DAY_SECOND);
+mysql> SELECT DATE_SUB('2025-01-01 00:00:00', INTERVAL '1 1:1:1' DAY_SECOND);
 +--------------------------------------------------------------+
 | date_sub(2025-01-01 00:00:00, interval(1 1:1:1, day_second)) |
 +--------------------------------------------------------------+
@@ -105,7 +105,7 @@ We permits any punctuation delimiter in the expr format. Those shown in the tabl
 +--------------------------------------------------------------+
 1 row in set (0.00 sec)
 
-> SELECT DATE_ADD('1900-01-01 00:00:00', INTERVAL '-1 10' DAY_HOUR);
+mysql> SELECT DATE_ADD('1900-01-01 00:00:00', INTERVAL '-1 10' DAY_HOUR);
 +----------------------------------------------------------+
 | date_add(1900-01-01 00:00:00, interval(-1 10, day_hour)) |
 +----------------------------------------------------------+
@@ -113,7 +113,7 @@ We permits any punctuation delimiter in the expr format. Those shown in the tabl
 +----------------------------------------------------------+
 1 row in set (0.00 sec)
 
-> SELECT DATE_SUB('1998-01-02', INTERVAL 31 DAY);
+mysql> SELECT DATE_SUB('1998-01-02', INTERVAL 31 DAY);
 +-----------------------------------------+
 | date_sub(1998-01-02, interval(31, day)) |
 +-----------------------------------------+
@@ -121,7 +121,7 @@ We permits any punctuation delimiter in the expr format. Those shown in the tabl
 +-----------------------------------------+
 1 row in set (0.00 sec)
 
-> SELECT DATE_ADD('1992-12-31 23:59:59.000002', INTERVAL '1.999999' SECOND_MICROSECOND);
+mysql> SELECT DATE_ADD('1992-12-31 23:59:59.000002', INTERVAL '1.999999' SECOND_MICROSECOND);
 +------------------------------------------------------------------------------+
 | date_add(1992-12-31 23:59:59.000002, interval(1.999999, second_microsecond)) |
 +------------------------------------------------------------------------------+
@@ -135,7 +135,7 @@ We permits any punctuation delimiter in the expr format. Those shown in the tabl
 - Using INTERVAL together with the `+` or `-` operator
 
 ```sql
-> SELECT '2018-12-31 23:59:59' + INTERVAL 1 SECOND;
+mysql> SELECT '2018-12-31 23:59:59' + INTERVAL 1 SECOND;
 +-------------------------------------------+
 | 2018-12-31 23:59:59 + interval(1, second) |
 +-------------------------------------------+
@@ -143,7 +143,7 @@ We permits any punctuation delimiter in the expr format. Those shown in the tabl
 +-------------------------------------------+
 1 row in set (0.00 sec)
 
-> SELECT INTERVAL 1 DAY + '2018-12-31';
+mysql> SELECT INTERVAL 1 DAY + '2018-12-31';
 +-------------------------------+
 | interval(1, day) + 2018-12-31 |
 +-------------------------------+
@@ -151,7 +151,7 @@ We permits any punctuation delimiter in the expr format. Those shown in the tabl
 +-------------------------------+
 1 row in set (0.00 sec)
 
-> SELECT '2025-01-01' - INTERVAL 1 SECOND;
+mysql> SELECT '2025-01-01' - INTERVAL 1 SECOND;
 +----------------------------------+
 | 2025-01-01 - interval(1, second) |
 +----------------------------------+
@@ -165,7 +165,7 @@ We permits any punctuation delimiter in the expr format. Those shown in the tabl
 If you add to or subtract from a date value something that contains a time part, the result is automatically converted to a datetime value:
 
 ```sql
-> SELECT DATE_ADD('2023-01-01', INTERVAL 1 DAY);
+mysql> SELECT DATE_ADD('2023-01-01', INTERVAL 1 DAY);
 +----------------------------------------+
 | date_add(2023-01-01, interval(1, day)) |
 +----------------------------------------+
@@ -173,7 +173,7 @@ If you add to or subtract from a date value something that contains a time part,
 +----------------------------------------+
 1 row in set (0.00 sec)
 
-> SELECT DATE_ADD('2023-01-01', INTERVAL 1 HOUR);
+mysql> SELECT DATE_ADD('2023-01-01', INTERVAL 1 HOUR);
 +-----------------------------------------+
 | date_add(2023-01-01, interval(1, hour)) |
 +-----------------------------------------+
@@ -187,7 +187,7 @@ If you add to or subtract from a date value something that contains a time part,
 If you add MONTH, YEAR_MONTH, or YEAR and the resulting date has a day that is larger than the maximum day for the new month, the day is adjusted to the maximum days in the new month:
 
 ```sql
-> SELECT DATE_ADD('2019-01-30', INTERVAL 1 MONTH);
+mysql> SELECT DATE_ADD('2019-01-30', INTERVAL 1 MONTH);
 +------------------------------------------+
 | date_add(2019-01-30, interval(1, month)) |
 +------------------------------------------+
@@ -201,7 +201,7 @@ If you add MONTH, YEAR_MONTH, or YEAR and the resulting date has a day that is l
 Date arithmetic operations require complete dates and do not work with incomplete dates such as '2016-07-00' or badly malformed dates:
 
 ```sql
-> SELECT DATE_ADD('2016-07-00', INTERVAL 1 DAY);
+mysql> SELECT DATE_ADD('2016-07-00', INTERVAL 1 DAY);
 +----------------------------------------+
 | date_add(2016-07-00, interval(1, day)) |
 +----------------------------------------+
@@ -209,7 +209,7 @@ Date arithmetic operations require complete dates and do not work with incomplet
 +----------------------------------------+
 1 row in set (0.00 sec)
 
-> SELECT '2005-03-32' + INTERVAL 1 MONTH;
+mysql> SELECT '2005-03-32' + INTERVAL 1 MONTH;
 +---------------------------------+
 | 2005-03-32 + interval(1, month) |
 +---------------------------------+

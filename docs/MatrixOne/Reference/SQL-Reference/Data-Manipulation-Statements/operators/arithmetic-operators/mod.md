@@ -13,7 +13,7 @@ The `%,MOD` operator is used for modulo operation. Returns the remainder of N di
 ## **Examples**
 
 ```sql
-> select 12 mod 5;
+mysql> select 12 mod 5;
 +--------+
 | 12 % 5 |
 +--------+
@@ -23,10 +23,11 @@ The `%,MOD` operator is used for modulo operation. Returns the remainder of N di
 ```
 
 ```sql
-> create table t2(c1 int, c2 int);
-> insert into t2 values (-3, 2);
-> insert into t2 values (1, 2);
-> select c1 mod 2 from t2;
+create table t2(c1 int, c2 int);
+insert into t2 values (-3, 2);
+insert into t2 values (1, 2);
+
+mysql> select c1 mod 2 from t2;
 +--------+
 | c1 % 2 |
 +--------+
@@ -34,7 +35,8 @@ The `%,MOD` operator is used for modulo operation. Returns the remainder of N di
 |      1 |
 +--------+
 2 rows in set (0.01 sec)
-> select c1 mod c2 from t2;
+
+mysql> select c1 mod c2 from t2;
 +---------+
 | c1 % c2 |
 +---------+

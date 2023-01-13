@@ -19,7 +19,7 @@ If either operand has a non-integer type, the operands are converted to `DECIMAL
 ## **Examples**
 
 ```sql
-> SELECT 5 DIV 2, -5 DIV 2, 5 DIV -2, -5 DIV -2;
+mysql> SELECT 5 DIV 2, -5 DIV 2, 5 DIV -2, -5 DIV -2;
 +---------+----------+----------+-----------+
 | 5 div 2 | -5 div 2 | 5 div -2 | -5 div -2 |
 +---------+----------+----------+-----------+
@@ -29,10 +29,11 @@ If either operand has a non-integer type, the operands are converted to `DECIMAL
 ```
 
 ```sql
-> create table t2(c1 int, c2 int);
-> insert into t2 values (-3, 2);
-> insert into t2 values (1, 2);
-> select c1 DIV 3 from t2;
+create table t2(c1 int, c2 int);
+insert into t2 values (-3, 2);
+insert into t2 values (1, 2);
+
+mysql> select c1 DIV 3 from t2;
 +----------+
 | c1 div 3 |
 +----------+
@@ -40,7 +41,8 @@ If either operand has a non-integer type, the operands are converted to `DECIMAL
 |        0 |
 +----------+
 2 rows in set (0.00 sec)
-> select c1 DIV c2 from t2;
+
+mysql> select c1 DIV c2 from t2;
 +-----------+
 | c1 div c2 |
 +-----------+
