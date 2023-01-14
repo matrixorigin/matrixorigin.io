@@ -96,6 +96,7 @@ Make sure you have already [Deployed standalone MatrixOne](../../Get-Started/ins
                         L_COMMENT      VARCHAR(44) NOT NULL,
                         PRIMARY KEY (L_ORDERKEY, L_LINENUMBER));
     ```
+    
 3. Load data into the created tables:
 
     ```sql
