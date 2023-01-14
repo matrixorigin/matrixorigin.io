@@ -54,60 +54,148 @@ Make sure you have already [Deployed standalone MatrixOne](../../Get-Started/ins
 
 ### Preparation
 
-```sql
-drop table if exists t1;
-create table t1 (id int,ti tinyint unsigned,si smallint,bi bigint unsigned,fl float,dl double,de decimal,ch char(20),vch varchar(20),dd date,dt datetime);
-insert into t1 values(1,1,4,3,1113.32,111332,1113.32,'hello','subquery','2022-04-28','2022-04-28 22:40:11');
-insert into t1 values(2,2,5,2,2252.05,225205,2252.05,'bye','sub query','2022-04-28','2022-04-28 22:40:11');
-insert into t1 values(3,6,6,3,3663.21,366321,3663.21,'hi','subquery','2022-04-28','2022-04-28 22:40:11');
-insert into t1 values(4,7,1,5,4715.22,471522,4715.22,'good morning','my subquery','2022-04-28','2022-04-28 22:40:11');
-insert into t1 values(5,1,2,6,51.26,5126,51.26,'byebye',' is subquery?','2022-04-28','2022-04-28 22:40:11');
-insert into t1 values(6,3,2,1,632.1,6321,632.11,'good night','maybe subquery','2022-04-28','2022-04-28 22:40:11');
-insert into t1 values(7,4,4,3,7443.11,744311,7443.11,'yes','subquery','2022-04-28','2022-04-28 22:40:11');
-insert into t1 values(8,7,5,8,8758.00,875800,8758.11,'nice to meet','just subquery','2022-04-28','2022-04-28 22:40:11');
-insert into t1 values(9,8,4,9,9849.312,9849312,9849.312,'see you','subquery','2022-04-28','2022-04-28 22:40:11');
+1. Download the dataset:
 
-drop table if exists t2;
-create table t2 (id int,ti tinyint unsigned,si smallint,bi bigint unsigned,fl float,dl double,de decimal,ch char(20),vch varchar(20),dd date,dt datetime);
-insert into t2 values(1,1,4,3,1113.32,111332,1113.32,'hello','subquery','2022-04-28','2022-04-28 22:40:11');
-insert into t2 values(2,2,5,2,2252.05,225205,2252.05,'bye','sub query','2022-04-28','2022-04-28 22:40:11');
-insert into t2 values(3,6,6,3,3663.21,366321,3663.21,'hi','subquery','2022-04-28','2022-04-28 22:40:11');
-insert into t2 values(4,7,1,5,4715.22,471522,4715.22,'good morning','my subquery','2022-04-28','2022-04-28 22:40:11');
-insert into t2 values(5,1,2,6,51.26,5126,51.26,'byebye',' is subquery?','2022-04-28','2022-04-28 22:40:11');
-insert into t2 values(6,3,2,1,632.1,6321,632.11,'good night','maybe subquery','2022-04-28','2022-04-28 22:40:11');
-insert into t2 values(7,4,4,3,7443.11,744311,7443.11,'yes','subquery','2022-04-28','2022-04-28 22:40:11');
-insert into t2 values(8,7,5,8,8758.00,875800,8758.11,'nice to meet','just subquery','2022-04-28','2022-04-28 22:40:11');
-insert into t2 values(9,8,4,9,9849.312,9849312,9849.312,'see you','subquery','2022-04-28','2022-04-28 22:40:11');
-```
+    ```
+    https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/tpch/tpch-1g.zip
+    ```
+
+2. Create the database and tables:
+
+    ```sql
+    create database d1;
+    use d1;
+    CREATE TABLE NATION  ( N_NATIONKEY  INTEGER NOT NULL,
+                       N_NAME       CHAR(25) NOT NULL,
+                       N_REGIONKEY  INTEGER NOT NULL,
+                       N_COMMENT    VARCHAR(152),
+                       PRIMARY KEY (N_NATIONKEY));
+
+    CREATE TABLE REGION  ( R_REGIONKEY  INTEGER NOT NULL,
+                       R_NAME       CHAR(25) NOT NULL,
+                       R_COMMENT    VARCHAR(152),
+                       PRIMARY KEY (R_REGIONKEY));
+
+    CREATE TABLE PART  ( P_PARTKEY     INTEGER NOT NULL,
+                     P_NAME        VARCHAR(55) NOT NULL,
+                     P_MFGR        CHAR(25) NOT NULL,
+                     P_BRAND       CHAR(10) NOT NULL,
+                     P_TYPE        VARCHAR(25) NOT NULL,
+                     P_SIZE        INTEGER NOT NULL,
+                     P_CONTAINER   CHAR(10) NOT NULL,
+                     P_RETAILPRICE DECIMAL(15,2) NOT NULL,
+                     P_COMMENT     VARCHAR(23) NOT NULL,
+                     PRIMARY KEY (P_PARTKEY));
+
+    CREATE TABLE SUPPLIER ( S_SUPPKEY     INTEGER NOT NULL,
+                        S_NAME        CHAR(25) NOT NULL,
+                        S_ADDRESS     VARCHAR(40) NOT NULL,
+                        S_NATIONKEY   INTEGER NOT NULL,
+                        S_PHONE       CHAR(15) NOT NULL,
+                        S_ACCTBAL     DECIMAL(15,2) NOT NULL,
+                        S_COMMENT     VARCHAR(101) NOT NULL,
+                        PRIMARY KEY (S_SUPPKEY));
+
+    CREATE TABLE PARTSUPP ( PS_PARTKEY     INTEGER NOT NULL,
+                        PS_SUPPKEY     INTEGER NOT NULL,
+                        PS_AVAILQTY    INTEGER NOT NULL,
+                        PS_SUPPLYCOST  DECIMAL(15,2)  NOT NULL,
+                        PS_COMMENT     VARCHAR(199) NOT NULL,
+                        PRIMARY KEY (PS_PARTKEY, PS_SUPPKEY));
+
+    CREATE TABLE CUSTOMER ( C_CUSTKEY     INTEGER NOT NULL,
+                        C_NAME        VARCHAR(25) NOT NULL,
+                        C_ADDRESS     VARCHAR(40) NOT NULL,
+                        C_NATIONKEY   INTEGER NOT NULL,
+                        C_PHONE       CHAR(15) NOT NULL,
+                        C_ACCTBAL     DECIMAL(15,2)   NOT NULL,
+                        C_MKTSEGMENT  CHAR(10) NOT NULL,
+                        C_COMMENT     VARCHAR(117) NOT NULL,
+                        PRIMARY KEY (C_CUSTKEY));
+
+    CREATE TABLE ORDERS  ( O_ORDERKEY       BIGINT NOT NULL,
+                       O_CUSTKEY        INTEGER NOT NULL,
+                       O_ORDERSTATUS    CHAR(1) NOT NULL,
+                       O_TOTALPRICE     DECIMAL(15,2) NOT NULL,
+                       O_ORDERDATE      DATE NOT NULL,
+                       O_ORDERPRIORITY  CHAR(15) NOT NULL,
+                       O_CLERK          CHAR(15) NOT NULL,
+                       O_SHIPPRIORITY   INTEGER NOT NULL,
+                       O_COMMENT        VARCHAR(79) NOT NULL,
+                       PRIMARY KEY (O_ORDERKEY));
+
+    CREATE TABLE LINEITEM ( L_ORDERKEY    BIGINT NOT NULL,
+                        L_PARTKEY     INTEGER NOT NULL,
+                        L_SUPPKEY     INTEGER NOT NULL,
+                        L_LINENUMBER  INTEGER NOT NULL,
+                        L_QUANTITY    DECIMAL(15,2) NOT NULL,
+                        L_EXTENDEDPRICE  DECIMAL(15,2) NOT NULL,
+                        L_DISCOUNT    DECIMAL(15,2) NOT NULL,
+                        L_TAX         DECIMAL(15,2) NOT NULL,
+                        L_RETURNFLAG  CHAR(1) NOT NULL,
+                        L_LINESTATUS  CHAR(1) NOT NULL,
+                        L_SHIPDATE    DATE NOT NULL,
+                        L_COMMITDATE  DATE NOT NULL,
+                        L_RECEIPTDATE DATE NOT NULL,
+                        L_SHIPINSTRUCT CHAR(25) NOT NULL,
+                        L_SHIPMODE     CHAR(10) NOT NULL,
+                        L_COMMENT      VARCHAR(44) NOT NULL,
+                        PRIMARY KEY (L_ORDERKEY, L_LINENUMBER));
+    ```
+3. Load data into the created tables:
+
+    ```sql
+    load data infile '/YOUR_TPCH_DATA_PATH/nation.tbl' into table NATION FIELDS TERMINATED BY '|' OPTIONALLY ENCLOSED BY '"' LINES TERMINATED BY '\n';
+
+    load data infile '/YOUR_TPCH_DATA_PATH/region.tbl' into table REGION FIELDS TERMINATED BY '|' OPTIONALLY ENCLOSED BY '"' LINES TERMINATED BY '\n';
+
+    load data infile '/YOUR_TPCH_DATA_PATH/part.tbl' into table PART FIELDS TERMINATED BY '|' OPTIONALLY ENCLOSED BY '"' LINES TERMINATED BY '\n';
+
+    load data infile '/YOUR_TPCH_DATA_PATH/supplier.tbl' into table SUPPLIER FIELDS TERMINATED BY '|' OPTIONALLY ENCLOSED BY '"' LINES TERMINATED BY '\n';
+
+    load data infile '/YOUR_TPCH_DATA_PATH/partsupp.tbl' into table PARTSUPP FIELDS TERMINATED BY '|' OPTIONALLY ENCLOSED BY '"' LINES TERMINATED BY '\n';
+
+    load data infile '/YOUR_TPCH_DATA_PATH/orders.tbl' into table ORDERS FIELDS TERMINATED BY '|' OPTIONALLY ENCLOSED BY '"' LINES TERMINATED BY '\n';
+
+    load data infile '/YOUR_TPCH_DATA_PATH/customer.tbl' into table CUSTOMER FIELDS TERMINATED BY '|' OPTIONALLY ENCLOSED BY '"' LINES TERMINATED BY '\n';
+
+    load data infile '/YOUR_TPCH_DATA_PATH/lineitem.tbl' into table LINEITEM FIELDS TERMINATED BY '|' OPTIONALLY ENCLOSED BY '"' LINES TERMINATED BY '\n';
+    ```
+
+Then you can query data in MatrixOne with the created table.
 
 #### Self-contained subquery
 
 For a self-contained subquery that uses subquery as operand of comparison operators (`>`, `>=`, `<`, `<=`, `=` , or `! =`), the inner subquery queries only once, and MatrixOne rewrites it as a constant during the execution plan phase.
 
 ```sql
-mysql> select * from t1 where t1.id in (select t2.id from t2 where t2.id>=3);
+mysql> select p.p_name from (select * from part where p_brand='Brand#21' and p_retailprice between 1100 and 1200)  p, partsupp ps where p.p_partkey=ps.ps_partkey and p.p_name like '%pink%' limit 10;
 ```
 
 The inner subquery is executed before MatrixOne executes the above query:
 
 ```sql
-mysql> select t2.id from t2 where t2.id>=3;
+mysql> select * from part where p_brand='Brand#21' and p_retailprice between 1100 and 1200
 ```
 
 Result is as below:
 
 ```sql
-+------+------+------+------+----------+---------+------+--------------+----------------+------------+---------------------+
-| id   | ti   | si   | bi   | fl       | dl      | de   | ch           | vch            | dd         | dt                  |
-+------+------+------+------+----------+---------+------+--------------+----------------+------------+---------------------+
-|    3 |    6 |    6 |    3 |  3663.21 |  366321 | 3663 | hi           | subquery       | 2022-04-28 | 2022-04-28 22:40:11 |
-|    4 |    7 |    1 |    5 |  4715.22 |  471522 | 4715 | good morning | my subquery    | 2022-04-28 | 2022-04-28 22:40:11 |
-|    5 |    1 |    2 |    6 |    51.26 |    5126 |   51 | byebye       |  is subquery?  | 2022-04-28 | 2022-04-28 22:40:11 |
-|    6 |    3 |    2 |    1 |    632.1 |    6321 |  632 | good night   | maybe subquery | 2022-04-28 | 2022-04-28 22:40:11 |
-|    7 |    4 |    4 |    3 |  7443.11 |  744311 | 7443 | yes          | subquery       | 2022-04-28 | 2022-04-28 22:40:11 |
-|    8 |    7 |    5 |    8 |     8758 |  875800 | 8758 | nice to meet | just subquery  | 2022-04-28 | 2022-04-28 22:40:11 |
-|    9 |    8 |    4 |    9 | 9849.312 | 9849312 | 9849 | see you      | subquery       | 2022-04-28 | 2022-04-28 22:40:11 |
-+------+------+------+------+----------+---------+------+--------------+----------------+------------+---------------------+
++-----------------------------------+
+| p_name                            |
++-----------------------------------+
+| olive chartreuse smoke pink tan   |
+| olive chartreuse smoke pink tan   |
+| olive chartreuse smoke pink tan   |
+| olive chartreuse smoke pink tan   |
+| pink sienna dark bisque turquoise |
+| pink sienna dark bisque turquoise |
+| pink sienna dark bisque turquoise |
+| pink sienna dark bisque turquoise |
+| honeydew orchid cyan magenta pink |
+| honeydew orchid cyan magenta pink |
++-----------------------------------+
+10 rows in set (0.06 sec)
 ```
 
 For self-contained subqueries such as Existential Test and Quantified Comparison, MatrixOne rewrites and replaces them with equivalent queries for better performance.
@@ -119,13 +207,27 @@ For correlated subquery, because the inner subquery references the columns from 
 Therefore, in the process of processing, MatrixOne will try to Decorrelate of Correlated Subquery to improve the query efficiency at the execution plan level.
 
 ```sql
-mysql> SELECT * FROM t1 WHERE id in ( SELECT id FROM t2 WHERE t1.ti = t2.ti and t2.id>=4);
+mysql> select p_name from part where P_PARTKEY in (select PS_PARTKEY from PARTSUPP where PS_SUPPLYCOST>=500) and p_name like '%pink%' limit 10;
 ```
 
-Rewrites it to an equivalent join query:
+Result is as below:
 
 ```sql
-mysql> select t1.* from t1 join t2 on t1.id=t2.id where t2.id>=4;
++------------------------------------+
+| p_name                             |
++------------------------------------+
+| papaya red almond hot pink         |
+| turquoise hot smoke green pink     |
+| purple cornsilk red pink floral    |
+| pink cyan purple white burnished   |
+| sandy dark pink indian cream       |
+| powder cornsilk chiffon slate pink |
+| rosy light black pink orange       |
+| pink white goldenrod ivory steel   |
+| cornsilk dim pink tan sienna       |
+| lavender navajo steel sandy pink   |
++------------------------------------+
+10 rows in set (0.23 sec)
 ```
 
 As a best practice, in actual development, it is recommended to avoid querying through a correlated subquery if you can write another equivalent query with better performance.
