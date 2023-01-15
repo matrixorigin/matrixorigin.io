@@ -84,8 +84,8 @@ __Tips__: When using MatrixOne source code to build MatrixOne, there is no much 
 
          ```
          git clone https://github.com/matrixorigin/matrixone.git
+         cd matrixone         
          git checkout 0.6.0
-         cd matrixone
          ```
 
      2. Run `make config` and `make build` to compile the MatrixOne file:
