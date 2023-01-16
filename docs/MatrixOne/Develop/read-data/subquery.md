@@ -211,6 +211,12 @@ Therefore, in the process of processing, MatrixOne will try to Decorrelate of Co
 mysql> select p_name from part where P_PARTKEY in (select PS_PARTKEY from PARTSUPP where PS_SUPPLYCOST>=500) and p_name like '%pink%' limit 10;
 ```
 
+Rewrites it to an equivalent join query:
+
+```
+select p_name from part join partsupp on P_PARTKEY=PS_PARTKEY where PS_SUPPLYCOST>=500 and p_name like '%pink%' limit 10;
+```
+
 Result is as below:
 
 ```sql
