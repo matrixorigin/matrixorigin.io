@@ -14,7 +14,7 @@ Contributions to MatrixOne are not limited to writing code. What follows are dif
 
 | Contribution type                             | Description                                                  |
 | --------------------------------------------- | ------------------------------------------------------------ |
-| Report or fix a technical documentation issue | You can either click *edit the page* directly on the target page of MatrixOne, or [file an issue](https://github.com/matrixorigin/matrixone/issues/new/choose) on MatrixOne repository with detailed information, and, if possible, propose changes by [creating a pull request](https://github.com/matrixorigin/matrixone/pulls). |
+| Report or fix a technical documentation issue | You can either click *edit the page* directly on the target page of MatrixOne, or [file an English document issue](https://github.com/matrixorigin/matrixorigin.io/issues/new/choose)/[file an Chinese document issue](https://github.com/matrixorigin/matrixorigin.io.cn/issues/new/choose) on MatrixOne repository with detailed information, and, if possible, propose changes by [creating an English document pull request](https://github.com/matrixorigin/matrixorigin.io/pulls)/[creating a Chinese document pull request](https://github.com/matrixorigin/matrixorigin.io.cn/pulls). |
 | Contribute a new piece of technical document  | Before contributing a full-length technical document, read [Contribution Documentation](contribute-documentation.md). |
 
 ## **Other Contributions**

@@ -10,13 +10,13 @@ Before you contribute, please take a minute to familiarize yourself with basic [
 
 The MatrixOne documentation is managed in 3 repositories:
 
-* The main project framework and CI&CD settings are in the [matrixorigin.io](https://github.com/matrixorigin/matrixorigin.io) repo.
+* The english markdown contents are in the [matrixorigin.io](https://github.com/matrixorigin/matrixorigin.io) repo.
 
-* The markdown contents are in the docs/en/MatrixOne folder of [matrixone](https://github.com/matrixorigin/matrixone) repo.
+* The chinese markdown contents are in the [matrixorigin.io.cn](https://github.com/matrixorigin/matrixorigin.io.cn) repo.
 
 * The images and unstructured data are located in the [artwork](https://github.com/matrixorigin/artwork) repo.
 
-The `matrixorigin.io` repo contains a submodule that links to `matrixone` repo contents. The images are referred to as web image links from `artwork` repo. The `matrixorigin.io` has implemented a CI&CD project, which will be triggered by a new code merge and manual launch. This CI&CD workflow publishes the documentation to [https://docs.matrixorigin.io/](https://docs.matrixorigin.io/).  
+The images are referred to as web image links from `artwork` repo. The `matrixorigin.io` and `matrixorigin.io.cn` have implemented a CI&CD project, which will be triggered by a new code merge and manual launch. This CI&CD workflow publishes the documentation to [https://docs.matrixorigin.io/](https://docs.matrixorigin.io/).  
 
 The documentation project is based on the [mkdocs-material](https://github.com/squidfunk/mkdocs-material). You can find the corresponding syntax and commands with this project.
 
@@ -24,62 +24,86 @@ The documentation project is based on the [mkdocs-material](https://github.com/s
 
 The MatrixOne documentation content is planned with 6 main modules.  
 
-* **Overview**: MatrixOne's introduction, features, architecture.
+* **Overview**: MatrixOne's introduction, features and architecture.
 
-* **Get Started**: How to quickly deploy and run a MatrixOne in a standalone or a distributed environment.
+* **Getting Started**: How to quickly deploy and run a standalone MatrixOne.
 
-* **Reference**: SQL reference, Configuration parameters, Error Codes.
+* **Developing Guide**: How to develop some applications based on MatrixOne using different programming languages.
+
+* **Deploying**: How to quickly deploy and run MatrixOne cluster.
+
+* **Maintenance**: How to maintain MatrixOne, including backing up and restoring data.
+
+* **Migrating**: How to migrate data from other databases to MatrixOne.
+
+* **Testing**: How to perform a self-test or MatrixOne performance test using the test tool.
+
+* **Troubleshooting**: Introduce common errors and debugging tools
+
+* **Tuning Performance**: how to tune the MatrixOne performance in a stand-alone or distributed environment.
+
+* **Privilege**: Multi-account management, account lifecycle management, and authorization in MatrixOne clusters.
+
+* **Reference**: SQL reference, Configuration parameters.
 
 * **FAQs**: Product, Technical Design, SQL, Deployment FAQs.  
-
-* **Develop**: How to develop some applications based on MatrixOne using different programming languages.
-
-* **Troubleshoot**: Introduce common errors and debugging tools.
 
 * **Release Notes**: Release notes of all versions.
 
 * **Contribution Guide**: How to contribute to MatrixOne project.
 
+* **Glossary**: Table of noun definitions.
+
 ## **Lift a finger**
 
-If you are just correcting a typo or grammatical error, feel free to go ahead and [create a pull request](https://github.com/matrixorigin/matrixone/pulls).
+If you are correcting a typo or grammatical error, feel free to go ahead and [create a pull request for English docs](https://github.com/matrixorigin/matrixorigin.io/pulls) or [create a pull request for Chinese docs](https://github.com/matrixorigin/matrixorigin.io.cn/pulls).
 
 ### **Contribute Workflow**
 
-*1*. [File an issue](https://github.com/matrixorigin/matrixone/issues/new/choose) and assign it to yourself by commenting`/assign`.
+When you need to change the specific content of the document but do not involve the adjustment of the chapter order and structure organization, you need to modify `matrixorigin.io/tree/main/docs/MatrixOne` or `matrixorigin.io.cn/tree/main/docs/MatrixOne ` to operate.
 
-*2*. Fork [matrixorigin.io](https://github.com/matrixorigin/matrixorigin.io) and [matrixone](https://github.com/matrixorigin/matrixone) repos.
-*3*. Clone the [matrixorigin.io](https://github.com/matrixorigin/matrixorigin.io) repo, using `--recursive` to retrieve the submodule of [matrixone](https://github.com/matrixorigin/matrixone) repo.
+If you need to adjust the chapter order and structure organization, you must modify the `matrixorigin.io/blob/main/mkdocs.yml` or `matrixorigin.io.cn/blob/main/mkdocs.yml`.
 
-```
-git clone --recursive git@github.com:yourusername/matrixorigin.io.git
-```
+The following process shows the case of modifying both, and the actual situation can be simplified according to your needs.
 
-Clone the [matrixone](https://github.com/matrixorigin/matrixorigin.io) repo to the other folder in local:
+*1*. [File an English doc issue](https://github.com/matrixorigin/matrixorigin.io/issues/new/choose) or [File an Chinese doc issue](https://github.com/matrixorigin/matrixorigin.io.cn/issues/new/choose) and assign it to yourself by commenting `/assign`.
 
-```
-git clone git@github.com:yourusername/matrixone.git
-```
+*2*. Fork [matrixorigin.io](https://github.com/matrixorigin/matrixorigin.io) and [matrixorigin.io.cn](https://github.com/matrixorigin/matrixorigin.io.cn) repos.
+*3*. Clone the [matrixorigin.io](https://github.com/matrixorigin/matrixorigin.io) and [matrixorigin.io.cn](https://github.com/matrixorigin/matrixorigin.io.cn) repos.
 
-*4*. Add `matrixone` repo as a remote repository in your local matrixone folder with:  
+- Clone [matrixorigin.io](https://github.com/matrixorigin/matrixorigin.io):
 
 ```
-git remote add upstream https://github.com/matrixorigin/matrixone.git
+git clone git@github.com:yourusername/matrixorigin.io.git
 ```
 
-Add `matrixorigin.io` repo as a remote repository in your local matrixorigin.io folder with:  
+- Clone the [matrixorigin.io.cn](https://github.com/matrixorigin/matrixorigin.io.cn):
+
+```
+git clone git@github.com:yourusername/matrixorigin.io.cn.git
+```
+
+*4*. Add *matrixorigin.io* and *matrixorigin.io.cn* repos as the remote repository in your local folder with:  
+
+- Add `matrixorigin.io` repo as a remote repository in your local matrixorigin.io folder with:  
 
 ```
 git remote add upstream https://github.com/matrixorigin/matrixorigin.io.git
 ```
 
-*5*. As the local repo has the full documentation project code, you can run `mkdocs serve` under `matrixorigin.io` folder, and check `http://localhost:8000` to check if this project runs well.  
+- Add `matrixorigin.io.cn` repo as a remote repository in your local matrixorigin.io.cn folder with:  
+
+```
+git remote add upstream https://github.com/matrixorigin/matrixorigin.io.cn.git
+```
+
+*5*. As the local repo has the full documentation project code, you can run `mkdocs serve` under `matrixorigin.io` or `matrixorigin.io.cn` folder, and check `http://localhost:8000` to check if this project runs well.  
 
 ```
 mkdocs serve
 ```
 
-*6*. Make your modification. If the modification concerns the project settings, update the sitemap with new pages, or update the CI&CD workflow code. You can always check `http://localhost:8000` to see if your modification is effective. If your modification is about the markdown contents, after you update the `docs` submodule of `matrixorigin.io`, the same modification should be applied to the `matrixone` repository.
+*6*. Make your modification. If the modification concerns the project settings, update the sitemap with new pages, or update the CI&CD workflow code. You can always check `http://localhost:8000` to see if your modification is effective.
 
 *7*. Push your git commits to your remote Github `matrixorigin.io` and `matrixone` repos. We recommend you push to a new branch using the following commands:
 
@@ -107,7 +131,7 @@ git push --force origin main:main
 ```
 
 !!! note
-    Most processes should be implemented in both `matrixorigin.io` and `matrixone`.  
+    Most processes should be implemented in both `matrixorigin.io` and `matrixorigin.io.cn`.  
 
 ## **Contribute a blog article**
 
