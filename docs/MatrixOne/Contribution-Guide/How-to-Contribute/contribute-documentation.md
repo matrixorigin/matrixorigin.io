@@ -60,7 +60,7 @@ If you are correcting a typo or grammatical error, feel free to go ahead and [cr
 
 ### **Contribute Workflow**
 
-When you need to change the specific content of the document but do not involve the adjustment of the chapter order and structure organization, you need to modify `matrixorigin.io/tree/main/docs/MatrixOne` or `matrixorigin.io.cn/tree/main/docs/MatrixOne ` to operate.
+When you need to change the specific content of the document but do not involve the adjustment of the chapter order and structure organization, you need to modify `matrixorigin.io/tree/main/docs/MatrixOne` or `matrixorigin.io.cn/tree/main/docs/MatrixOne` to operate.
 
 If you need to adjust the chapter order and structure organization, you must modify the `matrixorigin.io/blob/main/mkdocs.yml` or `matrixorigin.io.cn/blob/main/mkdocs.yml`.
 
