@@ -27,7 +27,7 @@ It's necessary to keep a consistent style for code, code comments, commit messag
 
    You can follow the workflow to operate development, and you can see [Make Your First Contribution](../make-your-first-contribution.md) if you are a newcomer and need more detailed instructions about workflow.  
 
-*1.* Fork the [matrixOne ](https://github.com/matrixorigin/matrixone)  repository on GitHub.
+*1.* Fork the [matrixOne ](https://github.com/matrixorigin/matrixone) repository on GitHub.
 
 *2.* Clone your fork to your local machine with:  
 
