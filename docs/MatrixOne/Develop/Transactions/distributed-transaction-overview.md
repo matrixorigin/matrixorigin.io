@@ -21,7 +21,7 @@ The transaction is a program execution unit in the database that accesses and po
 
 ## Isolation level
 
-Standard database isolation levels include **Read Uncommitted**, **Read Committed**, **Repeatable read**, **Serializable**, etc. In MatrixOne 0.6, the supported isolation level is **Snapshot Isolation**.
+Standard database isolation levels include **Read Uncommitted**, **Read Committed**, **Repeatable read**, **Serializable**, and so on. In MatrixOne 0.6, the supported isolation level is **Snapshot Isolation**.
 
 Different from other isolation levels, snapshot isolation has the following characteristics:
 
@@ -50,7 +50,7 @@ According to the start and end of the transaction, the transaction is divided in
 - An explicit transaction starts and ends with `BEGIN...END` or `START TRANSACTIONS...COMMIT/ROLLBACK`.
 - In an explicit transaction, DML and DDL can exist simultaneously, but if the occurrence of DDL will affect the result of DML, such as `drop table` or `alter table`, the DDL will be judged to fail and report an error. Affected statements are committed or rolled back typically.
 - In an explicit transaction, other straightforward transactions cannot be nested. For example, if `START TANSACTIONS` is encountered after `START TANSACTIONS`, all statements between two `START TANSACTIONS` will be forced to commit, regardless of the value of `AUTOCOMMIT` 1 or 0.
-- In an explicit transaction, only DML and DDL can be included, and no parameter configuration or management commands can be modified, such as `set [parameter] = [value]`, `create user`, etc.
+- In an explicit transaction, only DML and DDL can be included, and no parameter configuration or management commands can be modified, such as `set [parameter] = [value]`, `create user`, and so on.
 - In an explicit transaction, if an error occurs in a statement, to ensure the atomicity of the transaction, the error of a single statement at the time of commit will force the entire transaction to be rolled back.
 
 ### Implicit Transaction Rules

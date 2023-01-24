@@ -71,6 +71,6 @@ If you still have some trouble, please refer to [GitHub Docs](https://docs.githu
 
 ## **Code review**
 
-When you open a pull request, you can assign some reviewers, or just leave it blank. And you can add some related labels to make it easier to recognize the PR's type/priority/etc. During the review, reviewers would comment on your code snippet, and you can modify the code on your topic branch locally, commit the changes, and push it to GitHub where the new commits would be attached to the PR automatically.
+When you open a pull request, you can assign some reviewers, or just leave it blank. And you can add some related labels to make it easier to recognize the PR's type/priority/and so on. During the review, reviewers would comment on your code snippet, and you can modify the code on your topic branch locally, commit the changes, and push it to GitHub where the new commits would be attached to the PR automatically.
 
 For detailed code review tips, See [Review a pull request](review-a-pull-request.md) for details.

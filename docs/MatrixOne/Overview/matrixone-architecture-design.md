@@ -49,7 +49,7 @@ In MatrixOne, to achieve the integration of distributed and multi-engine, a vari
 
 ### **File Service**
 
-File Service is the component of MatrixOne responsible for reading and writing all storage media. Storage media include memory, disk, object storage, etc., which provide the following features:
+File Service is the component of MatrixOne responsible for reading and writing all storage media. Storage media include memory, disk, object storage, and so on., which provide the following features:
 
 - File Service provides a unified interface so that reading and writing of different media can use the same interface.
 - The design of the interface follows the concept of immutable data. After the file is written, no further updates are allowed. The update of the data is realized by generating a new file.
