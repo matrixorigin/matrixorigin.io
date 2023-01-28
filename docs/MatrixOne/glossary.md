@@ -32,7 +32,7 @@ MatrixOne relies heavily on the following concepts. Being familiar with them wil
 | F  |  |
 | Fault-Tolerance  | Fault-Tolerance simply means a system's ability to continue operating uninterrupted despite the failure of one or more of its components.  |
 | M  |  |
-| Monolithic Engine  | A monolithic database engine is designed to support hybrid workloads: transactional, analytical, streaming, time-series, machine learning, etc.  |
+| Monolithic Engine  | A monolithic database engine is designed to support hybrid workloads: transactional, analytical, streaming, time-series, machine learning, and so on.  |
 | Materialized View  | A materialized view is a pre-computed data set derived from a query specification (the SELECT in the view definition) and stored for later use. Materialized view is usually used for increasing performance and efficiency. |
 | Metadata  | Metadata is the data that describes the structure and creation method of data in a database. |
 | P  |  |
