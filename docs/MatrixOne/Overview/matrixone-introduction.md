@@ -8,7 +8,7 @@ MatrixOne is a future-oriented hyperconverged cloud & edge native DBMS that supp
 
 * **Monolithic Engine**
 
-     A monolithic database engine is designed to support hybrid workloads: transactional, analytical, streaming, time-series, machine learning, etc.
+     A monolithic database engine is designed to support hybrid workloads: transactional, analytical, streaming, time-series, machine learning, and so on.
 
 * **Built-in Streaming Engine**
 

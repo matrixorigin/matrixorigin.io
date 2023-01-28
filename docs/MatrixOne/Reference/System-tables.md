@@ -29,7 +29,7 @@ As MatrixOne 0.6 has introduced the concept of multi-tenancy, the default `sys` 
 | column         | type            | comments                                                     |
 | -------------- | --------------- | ------------------------------------------------------------ |
 | rel_id         | bigint unsigned | Primary key                                                  |
-| relname        | varchar(100)    | Name of the table, index, view, etc.                         |
+| relname        | varchar(100)    | Name of the table, index, view, and so on.                         |
 | reldatabase    | varchar(100)    | The database that contains this relation. reference mo_database.datname |
 | reldatabase_id | bigint unsigned | The database id that contains this relation. reference mo_database.datid |
 | relpersistence | varchar(100)    | p = permanent table, t = temporary table                     |

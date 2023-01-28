@@ -25,7 +25,7 @@ Elements of a good commit message:
 
 3. **What effect does the commit have? (optional)**
 
-    In addition to the obvious effects, this may include benchmarks, side effects, etc. For short and obvious patches, this part can be omitted.
+    In addition to the obvious effects, this may include benchmarks, side effects, and so on. For short and obvious patches, this part can be omitted.
 
 ## How to write a good commit message
 
@@ -98,7 +98,7 @@ issue #
 **Special notes for your reviewer:**
 
 
-**Additional documentation (e.g. design docs, usage docs, etc.):**
+**Additional documentation (e.g. design docs, usage docs, and so on.):**
 
 ```
 
