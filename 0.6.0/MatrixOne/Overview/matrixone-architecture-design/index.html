@@ -1479,14 +1479,14 @@
       
       
         <label class="md-nav__link" for="__nav_1_5">
-          Deploy
+          Deploying
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Deploy" data-md-level="2">
+      <nav class="md-nav" aria-label="Deploying" data-md-level="2">
         <label class="md-nav__title" for="__nav_1_5">
           <span class="md-nav__icon md-icon"></span>
-          Deploy
+          Deploying
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -1645,6 +1645,32 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_6_2" type="checkbox" id="__nav_1_6_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_6_2">
+          Mount Data
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Mount Data" data-md-level="3">
+        <label class="md-nav__title" for="__nav_1_6_2">
+          <span class="md-nav__icon md-icon"></span>
+          Mount Data
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
       <a href="../../Maintain/mount-data-by-docker/" class="md-nav__link">
         Mount directory to Docker container
@@ -1654,15 +1680,8 @@
 
             
           
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../Maintain/mo-directory-structure/" class="md-nav__link">
-        MatrixOne Directory Structure
-      </a>
+        </ul>
+      </nav>
     </li>
   
 
@@ -1690,14 +1709,14 @@
       
       
         <label class="md-nav__link" for="__nav_1_7">
-          Migration
+          Migrating
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Migration" data-md-level="2">
+      <nav class="md-nav" aria-label="Migrating" data-md-level="2">
         <label class="md-nav__title" for="__nav_1_7">
           <span class="md-nav__icon md-icon"></span>
-          Migration
+          Migrating
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -5868,6 +5887,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Maintain/mo-directory-structure/" class="md-nav__link">
+        MatrixOne Directory Structure
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -6581,7 +6614,7 @@
 <p><img alt="MatrixOne Component" src="https://github.com/matrixorigin/artwork/blob/main/docs/overview/mo-component.png?raw=true" /></p>
 <p>In MatrixOne, to achieve the integration of distributed and multi-engine, a variety of different system components are built to complete the functions of the architecture-related layers:</p>
 <h3 id="file-service"><strong>File Service</strong></h3>
-<p>File Service is the component of MatrixOne responsible for reading and writing all storage media. Storage media include memory, disk, object storage, etc., which provide the following features:</p>
+<p>File Service is the component of MatrixOne responsible for reading and writing all storage media. Storage media include memory, disk, object storage, and so on., which provide the following features:</p>
 <ul>
 <li>File Service provides a unified interface so that reading and writing of different media can use the same interface.</li>
 <li>The design of the interface follows the concept of immutable data. After the file is written, no further updates are allowed. The update of the data is realized by generating a new file.</li>

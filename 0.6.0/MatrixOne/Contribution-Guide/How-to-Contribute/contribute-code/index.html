@@ -1305,14 +1305,14 @@
       
       
         <label class="md-nav__link" for="__nav_1_5">
-          Deploy
+          Deploying
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Deploy" data-md-level="2">
+      <nav class="md-nav" aria-label="Deploying" data-md-level="2">
         <label class="md-nav__title" for="__nav_1_5">
           <span class="md-nav__icon md-icon"></span>
-          Deploy
+          Deploying
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -1471,6 +1471,32 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_6_2" type="checkbox" id="__nav_1_6_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_6_2">
+          Mount Data
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Mount Data" data-md-level="3">
+        <label class="md-nav__title" for="__nav_1_6_2">
+          <span class="md-nav__icon md-icon"></span>
+          Mount Data
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
       <a href="../../../Maintain/mount-data-by-docker/" class="md-nav__link">
         Mount directory to Docker container
@@ -1480,15 +1506,8 @@
 
             
           
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../Maintain/mo-directory-structure/" class="md-nav__link">
-        MatrixOne Directory Structure
-      </a>
+        </ul>
+      </nav>
     </li>
   
 
@@ -1516,14 +1535,14 @@
       
       
         <label class="md-nav__link" for="__nav_1_7">
-          Migration
+          Migrating
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Migration" data-md-level="2">
+      <nav class="md-nav" aria-label="Migrating" data-md-level="2">
         <label class="md-nav__title" for="__nav_1_7">
           <span class="md-nav__icon md-icon"></span>
-          Migration
+          Migrating
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -5694,6 +5713,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Maintain/mo-directory-structure/" class="md-nav__link">
+        MatrixOne Directory Structure
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -6340,13 +6373,11 @@ This document describes the conventions of development workflow, and some styles
 <h2 id="get-familiar-with-the-style"><strong>Get familiar with the style</strong> <a name="get-familiar-with-style"></a></h2>
 <p>It's necessary to keep a consistent style for code, code comments, commit messages, and pull requests when contributing to MatrixOne. When you put together your pull request, we highly recommend you comply with the following style guides which make MatrixOne easy to review, maintain, and develop.</p>
 <ul>
-<li>
-<p><strong>Code Style</strong><br />
-The coding style suggested by the Golang community is used in MatrixOne. See the <a href="https://github.com/golang/go/wiki/CodeReviewComments">style doc</a> for details.</p>
-</li>
-<li>
-<p><strong>Code Comment Style</strong></p>
-</li>
+<li><strong>Code Style</strong>  </li>
+</ul>
+<p>The coding style suggested by the Golang community is used in MatrixOne. See the <a href="https://github.com/golang/go/wiki/CodeReviewComments">style doc</a> for details.</p>
+<ul>
+<li><strong>Code Comment Style</strong></li>
 </ul>
 <p>See the <a href="../../Code-Style/code-comment-style/">code comment style</a> for details.</p>
 <ul>
@@ -6355,8 +6386,8 @@ The coding style suggested by the Golang community is used in MatrixOne. See the
 <p>See the <a href="../../Code-Style/code-comment-style/">Commit Message &amp; Pull Request Style</a> for details.</p>
 <h2 id="workflow"><strong>Workflow<c name="workflow"></c></strong></h2>
 <p>You can follow the workflow to operate development, and you can see <a href="../../make-your-first-contribution/">Make Your First Contribution</a> if you are a newcomer and need more detailed instructions about workflow.  </p>
-<p><em>1.</em> Fork the <a href="https://github.com/matrixorigin/matrixone">MatrixOne repository</a> on GitHub.
-<em>2.</em> Clone your fork to your local machine with:  </p>
+<p><em>1.</em> Fork the <a href="https://github.com/matrixorigin/matrixone">matrixOne</a> repository on GitHub.</p>
+<p><em>2.</em> Clone your fork to your local machine with:  </p>
 <div class="highlight"><pre><span></span><code>git clone git@github.com:&lt;yourname&gt;/matrixone.git
 </code></pre></div>
 <p>And add MatrixOne repo as a remote repository with:</p>
@@ -6378,7 +6409,7 @@ The coding style suggested by the Golang community is used in MatrixOne. See the
 </code></pre></div>
 <p>If you still have some trouble, please refer to <a href="https://docs.github.com/en">GitHub Docs</a> for help.</p>
 <h2 id="code-review"><strong>Code review</strong></h2>
-<p>When you open a pull request, you can assign some reviewers, or just leave it blank. And you can add some related labels to make it easier to recognize the PR's type/priority/etc. During the review, reviewers would comment on your code snippet, and you can modify the code on your topic branch locally, commit the changes, and push it to GitHub where the new commits would be attached to the PR automatically.</p>
+<p>When you open a pull request, you can assign some reviewers, or just leave it blank. And you can add some related labels to make it easier to recognize the PR's type/priority/and so on. During the review, reviewers would comment on your code snippet, and you can modify the code on your topic branch locally, commit the changes, and push it to GitHub where the new commits would be attached to the PR automatically.</p>
 <p>For detailed code review tips, See <a href="../review-a-pull-request/">Review a pull request</a> for details.</p>
 
               

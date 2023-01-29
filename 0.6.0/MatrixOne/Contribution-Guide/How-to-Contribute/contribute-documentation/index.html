@@ -1305,14 +1305,14 @@
       
       
         <label class="md-nav__link" for="__nav_1_5">
-          Deploy
+          Deploying
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Deploy" data-md-level="2">
+      <nav class="md-nav" aria-label="Deploying" data-md-level="2">
         <label class="md-nav__title" for="__nav_1_5">
           <span class="md-nav__icon md-icon"></span>
-          Deploy
+          Deploying
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -1471,6 +1471,32 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_6_2" type="checkbox" id="__nav_1_6_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_6_2">
+          Mount Data
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Mount Data" data-md-level="3">
+        <label class="md-nav__title" for="__nav_1_6_2">
+          <span class="md-nav__icon md-icon"></span>
+          Mount Data
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
       <a href="../../../Maintain/mount-data-by-docker/" class="md-nav__link">
         Mount directory to Docker container
@@ -1480,15 +1506,8 @@
 
             
           
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../Maintain/mo-directory-structure/" class="md-nav__link">
-        MatrixOne Directory Structure
-      </a>
+        </ul>
+      </nav>
     </li>
   
 
@@ -1516,14 +1535,14 @@
       
       
         <label class="md-nav__link" for="__nav_1_7">
-          Migration
+          Migrating
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Migration" data-md-level="2">
+      <nav class="md-nav" aria-label="Migrating" data-md-level="2">
         <label class="md-nav__title" for="__nav_1_7">
           <span class="md-nav__icon md-icon"></span>
-          Migration
+          Migrating
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -5694,6 +5713,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Maintain/mo-directory-structure/" class="md-nav__link">
+        MatrixOne Directory Structure
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -6380,37 +6413,55 @@
 <p>The MatrixOne documentation is managed in 3 repositories:</p>
 <ul>
 <li>
-<p>The main project framework and CI&amp;CD settings are in the <a href="https://github.com/matrixorigin/matrixorigin.io">matrixorigin.io</a> repo.</p>
+<p>The english markdown contents are in the <a href="https://github.com/matrixorigin/matrixorigin.io">matrixorigin.io</a> repo.</p>
 </li>
 <li>
-<p>The markdown contents are in the docs/en/MatrixOne folder of <a href="https://github.com/matrixorigin/matrixone">matrixone</a> repo.</p>
+<p>The chinese markdown contents are in the <a href="https://github.com/matrixorigin/matrixorigin.io.cn">matrixorigin.io.cn</a> repo.</p>
 </li>
 <li>
 <p>The images and unstructured data are located in the <a href="https://github.com/matrixorigin/artwork">artwork</a> repo.</p>
 </li>
 </ul>
-<p>The <code>matrixorigin.io</code> repo contains a submodule that links to <code>matrixone</code> repo contents. The images are referred to as web image links from <code>artwork</code> repo. The <code>matrixorigin.io</code> has implemented a CI&amp;CD project, which will be triggered by a new code merge and manual launch. This CI&amp;CD workflow publishes the documentation to <a href="https://docs.matrixorigin.io/">https://docs.matrixorigin.io/</a>.  </p>
+<p>The images are referred to as web image links from <code>artwork</code> repo. The <code>matrixorigin.io</code> and <code>matrixorigin.io.cn</code> have implemented a CI&amp;CD project, which will be triggered by a new code merge and manual launch. This CI&amp;CD workflow publishes the documentation to <a href="https://docs.matrixorigin.io/">https://docs.matrixorigin.io/</a>.  </p>
 <p>The documentation project is based on the <a href="https://github.com/squidfunk/mkdocs-material">mkdocs-material</a>. You can find the corresponding syntax and commands with this project.</p>
 <h2 id="matrixone-documentation-structure"><strong>MatrixOne Documentation Structure</strong></h2>
 <p>The MatrixOne documentation content is planned with 6 main modules.  </p>
 <ul>
 <li>
-<p><strong>Overview</strong>: MatrixOne's introduction, features, architecture.</p>
+<p><strong>Overview</strong>: MatrixOne's introduction, features and architecture.</p>
 </li>
 <li>
-<p><strong>Get Started</strong>: How to quickly deploy and run a MatrixOne in a standalone or a distributed environment.</p>
+<p><strong>Getting Started</strong>: How to quickly deploy and run a standalone MatrixOne.</p>
 </li>
 <li>
-<p><strong>Reference</strong>: SQL reference, Configuration parameters, Error Codes.</p>
+<p><strong>Developing Guide</strong>: How to develop some applications based on MatrixOne using different programming languages.</p>
+</li>
+<li>
+<p><strong>Deploying</strong>: How to quickly deploy and run MatrixOne cluster.</p>
+</li>
+<li>
+<p><strong>Maintenance</strong>: How to maintain MatrixOne, including backing up and restoring data.</p>
+</li>
+<li>
+<p><strong>Migrating</strong>: How to migrate data from other databases to MatrixOne.</p>
+</li>
+<li>
+<p><strong>Testing</strong>: How to perform a self-test or MatrixOne performance test using the test tool.</p>
+</li>
+<li>
+<p><strong>Troubleshooting</strong>: Introduce common errors and debugging tools</p>
+</li>
+<li>
+<p><strong>Tuning Performance</strong>: how to tune the MatrixOne performance in a stand-alone or distributed environment.</p>
+</li>
+<li>
+<p><strong>Privilege</strong>: Multi-account management, account lifecycle management, and authorization in MatrixOne clusters.</p>
+</li>
+<li>
+<p><strong>Reference</strong>: SQL reference, Configuration parameters.</p>
 </li>
 <li>
 <p><strong>FAQs</strong>: Product, Technical Design, SQL, Deployment FAQs.  </p>
-</li>
-<li>
-<p><strong>Develop</strong>: How to develop some applications based on MatrixOne using different programming languages.</p>
-</li>
-<li>
-<p><strong>Troubleshoot</strong>: Introduce common errors and debugging tools.</p>
 </li>
 <li>
 <p><strong>Release Notes</strong>: Release notes of all versions.</p>
@@ -6418,28 +6469,44 @@
 <li>
 <p><strong>Contribution Guide</strong>: How to contribute to MatrixOne project.</p>
 </li>
+<li>
+<p><strong>Glossary</strong>: Table of noun definitions.</p>
+</li>
 </ul>
 <h2 id="lift-a-finger"><strong>Lift a finger</strong></h2>
-<p>If you are just correcting a typo or grammatical error, feel free to go ahead and <a href="https://github.com/matrixorigin/matrixone/pulls">create a pull request</a>.</p>
+<p>If you are correcting a typo or grammatical error, feel free to go ahead and <a href="https://github.com/matrixorigin/matrixorigin.io/pulls">create a pull request for English docs</a> or <a href="https://github.com/matrixorigin/matrixorigin.io.cn/pulls">create a pull request for Chinese docs</a>.</p>
 <h3 id="contribute-workflow"><strong>Contribute Workflow</strong></h3>
-<p><em>1</em>. <a href="https://github.com/matrixorigin/matrixone/issues/new/choose">File an issue</a> and assign it to yourself by commenting<code>/assign</code>.</p>
-<p><em>2</em>. Fork <a href="https://github.com/matrixorigin/matrixorigin.io">matrixorigin.io</a> and <a href="https://github.com/matrixorigin/matrixone">matrixone</a> repos.
-<em>3</em>. Clone the <a href="https://github.com/matrixorigin/matrixorigin.io">matrixorigin.io</a> repo, using <code>--recursive</code> to retrieve the submodule of <a href="https://github.com/matrixorigin/matrixone">matrixone</a> repo.</p>
-<div class="highlight"><pre><span></span><code>git clone --recursive git@github.com:yourusername/matrixorigin.io.git
+<p>When you need to change the specific content of the document but do not involve the adjustment of the chapter order and structure organization, you need to modify <code>matrixorigin.io/tree/main/docs/MatrixOne</code> or <code>matrixorigin.io.cn/tree/main/docs/MatrixOne</code> to operate.</p>
+<p>If you need to adjust the chapter order and structure organization, you must modify the <code>matrixorigin.io/blob/main/mkdocs.yml</code> or <code>matrixorigin.io.cn/blob/main/mkdocs.yml</code>.</p>
+<p>The following process shows the case of modifying both, and the actual situation can be simplified according to your needs.</p>
+<p><em>1</em>. <a href="https://github.com/matrixorigin/matrixorigin.io/issues/new/choose">File an English doc issue</a> or <a href="https://github.com/matrixorigin/matrixorigin.io.cn/issues/new/choose">File an Chinese doc issue</a> and assign it to yourself by commenting <code>/assign</code>.</p>
+<p><em>2</em>. Fork <a href="https://github.com/matrixorigin/matrixorigin.io">matrixorigin.io</a> and <a href="https://github.com/matrixorigin/matrixorigin.io.cn">matrixorigin.io.cn</a> repos.
+<em>3</em>. Clone the <a href="https://github.com/matrixorigin/matrixorigin.io">matrixorigin.io</a> and <a href="https://github.com/matrixorigin/matrixorigin.io.cn">matrixorigin.io.cn</a> repos.</p>
+<ul>
+<li>Clone <a href="https://github.com/matrixorigin/matrixorigin.io">matrixorigin.io</a>:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>git clone git@github.com:yourusername/matrixorigin.io.git
 </code></pre></div>
-<p>Clone the <a href="https://github.com/matrixorigin/matrixorigin.io">matrixone</a> repo to the other folder in local:</p>
-<div class="highlight"><pre><span></span><code>git clone git@github.com:yourusername/matrixone.git
+<ul>
+<li>Clone the <a href="https://github.com/matrixorigin/matrixorigin.io.cn">matrixorigin.io.cn</a>:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>git clone git@github.com:yourusername/matrixorigin.io.cn.git
 </code></pre></div>
-<p><em>4</em>. Add <code>matrixone</code> repo as a remote repository in your local matrixone folder with:  </p>
-<div class="highlight"><pre><span></span><code>git remote add upstream https://github.com/matrixorigin/matrixone.git
-</code></pre></div>
-<p>Add <code>matrixorigin.io</code> repo as a remote repository in your local matrixorigin.io folder with:  </p>
+<p><em>4</em>. Add <em>matrixorigin.io</em> and <em>matrixorigin.io.cn</em> repos as the remote repository in your local folder with:  </p>
+<ul>
+<li>Add <code>matrixorigin.io</code> repo as a remote repository in your local matrixorigin.io folder with:  </li>
+</ul>
 <div class="highlight"><pre><span></span><code>git remote add upstream https://github.com/matrixorigin/matrixorigin.io.git
 </code></pre></div>
-<p><em>5</em>. As the local repo has the full documentation project code, you can run <code>mkdocs serve</code> under <code>matrixorigin.io</code> folder, and check <code>http://localhost:8000</code> to check if this project runs well.  </p>
+<ul>
+<li>Add <code>matrixorigin.io.cn</code> repo as a remote repository in your local matrixorigin.io.cn folder with:  </li>
+</ul>
+<div class="highlight"><pre><span></span><code>git remote add upstream https://github.com/matrixorigin/matrixorigin.io.cn.git
+</code></pre></div>
+<p><em>5</em>. As the local repo has the full documentation project code, you can run <code>mkdocs serve</code> under <code>matrixorigin.io</code> or <code>matrixorigin.io.cn</code> folder, and check <code>http://localhost:8000</code> to check if this project runs well.  </p>
 <div class="highlight"><pre><span></span><code>mkdocs serve
 </code></pre></div>
-<p><em>6</em>. Make your modification. If the modification concerns the project settings, update the sitemap with new pages, or update the CI&amp;CD workflow code. You can always check <code>http://localhost:8000</code> to see if your modification is effective. If your modification is about the markdown contents, after you update the <code>docs</code> submodule of <code>matrixorigin.io</code>, the same modification should be applied to the <code>matrixone</code> repository.</p>
+<p><em>6</em>. Make your modification. If the modification concerns the project settings, update the sitemap with new pages, or update the CI&amp;CD workflow code. You can always check <code>http://localhost:8000</code> to see if your modification is effective.</p>
 <p><em>7</em>. Push your git commits to your remote Github <code>matrixorigin.io</code> and <code>matrixone</code> repos. We recommend you push to a new branch using the following commands:</p>
 <div class="highlight"><pre><span></span><code>git push origin main:NEW_BRANCH
 </code></pre></div>
@@ -6457,7 +6524,7 @@
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Most processes should be implemented in both <code>matrixorigin.io</code> and <code>matrixone</code>.  </p>
+<p>Most processes should be implemented in both <code>matrixorigin.io</code> and <code>matrixorigin.io.cn</code>.  </p>
 </div>
 <h2 id="contribute-a-blog-article"><strong>Contribute a blog article</strong></h2>
 <p>If you would like to write an article for our blog, please <a href="https://github.com/matrixorigin/matrixone/issues/new/choose">file an issue</a> or send it to <a href="mailto:dengnan@matrixorigin.io">dengnan@matrixorigin.io</a>. Feel free to submit either a completed draft or any article ideas. All submissions will be reviewed as quickly as possible. If your article or idea seems like a good fit for the blog, we will reach out to you directly.</p>

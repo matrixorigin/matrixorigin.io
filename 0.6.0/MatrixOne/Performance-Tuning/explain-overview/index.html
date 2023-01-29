@@ -1305,14 +1305,14 @@
       
       
         <label class="md-nav__link" for="__nav_1_5">
-          Deploy
+          Deploying
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Deploy" data-md-level="2">
+      <nav class="md-nav" aria-label="Deploying" data-md-level="2">
         <label class="md-nav__title" for="__nav_1_5">
           <span class="md-nav__icon md-icon"></span>
-          Deploy
+          Deploying
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -1471,6 +1471,32 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_6_2" type="checkbox" id="__nav_1_6_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_6_2">
+          Mount Data
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Mount Data" data-md-level="3">
+        <label class="md-nav__title" for="__nav_1_6_2">
+          <span class="md-nav__icon md-icon"></span>
+          Mount Data
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
       <a href="../../Maintain/mount-data-by-docker/" class="md-nav__link">
         Mount directory to Docker container
@@ -1480,15 +1506,8 @@
 
             
           
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../Maintain/mo-directory-structure/" class="md-nav__link">
-        MatrixOne Directory Structure
-      </a>
+        </ul>
+      </nav>
     </li>
   
 
@@ -1516,14 +1535,14 @@
       
       
         <label class="md-nav__link" for="__nav_1_7">
-          Migration
+          Migrating
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Migration" data-md-level="2">
+      <nav class="md-nav" aria-label="Migrating" data-md-level="2">
         <label class="md-nav__title" for="__nav_1_7">
           <span class="md-nav__icon md-icon"></span>
-          Migration
+          Migrating
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -1900,6 +1919,20 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-query-execution-plan" class="md-nav__link">
+    What is Query Execution Plan?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#use-explain-to-query-the-execution-plan" class="md-nav__link">
+    Use EXPLAIN to query the execution plan
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#explain-example" class="md-nav__link">
@@ -5739,6 +5772,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Maintain/mo-directory-structure/" class="md-nav__link">
+        MatrixOne Directory Structure
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -6266,6 +6313,20 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#what-is-query-execution-plan" class="md-nav__link">
+    What is Query Execution Plan?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#use-explain-to-query-the-execution-plan" class="md-nav__link">
+    Use EXPLAIN to query the execution plan
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#explain-example" class="md-nav__link">
     EXPLAIN Example
   </a>
@@ -6291,12 +6352,19 @@
 
 
 <h1 id="matrixone-query-execution-plan-overview">MatrixOne Query Execution Plan Overview</h1>
-<p>The <code>EXPLAIN</code> statement shows the MatrixOne execution plan for the SQL statement.</p>
+<h2 id="what-is-query-execution-plan">What is Query Execution Plan?</h2>
+<p>Execution plan is the specific steps for the database to execute SQL statements, such as accessing data in the table through index or full table scan, connection query implementation method and connection sequence, etc.; the execution plan is based on The details of your tables, columns, indexes, and conditions in the <code>WHERE</code> clause can tell you how the query will be executed or how it has been executed, which can be performed without reading all rows. Huge Queries of tables; joins involving multiple tables can be performed without comparing every combination of rows. . If the performance of a SQL statement is not satisfactory, the first thing you should look at is its execution plan. Like most mature database products, MatrixOne database also provides the function of analyzing query statement performance.</p>
+<p>The MatrixOne query optimizer selects the most efficient execution plan by "calculating" the input SQL statement, and this execution plan is the execution plan.</p>
+<h2 id="use-explain-to-query-the-execution-plan">Use <code>EXPLAIN</code> to query the execution plan</h2>
+<p>The <code>EXPLAIN</code> statement shows the MatrixOne query execution plan for the SQL statement.</p>
+<p><code>EXPLAIN</code> works with <code>SELECT</code>, <code>DELETE</code>, <code>INSERT</code>, <code>REPLACE</code>, and <code>UPDATE</code> statements.</p>
+<p>When <code>EXPLAIN</code> is used with an explainable statement, MatrixOne displays information from the optimizer about the statement execution plan. That is, MatrixOne explains how it would process the statement, including information about how tables are joined and in which order.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>When you use the MySQL client to connect to MatrixOne, to read the output result in a clearer way without line wrapping, you can use the <code>pager less -S</code> command. Then, after the <code>EXPLAIN</code> result is output, you can press the right arrow <strong>→</strong> button on your keyboard to horizontally scroll through the output.</p>
+<p>When you use the MatrixOne client to connect to MatrixOne, to read the output result in a clearer way without line wrapping, you can use the <code>pager less -S</code> command. Then, after the <code>EXPLAIN</code> result is output, you can press the right arrow <strong>→</strong> button on your keyboard to horizontally scroll through the output.</p>
 </div>
 <h2 id="explain-example">EXPLAIN Example</h2>
+<p>You can see the <code>EXPLAIN</code> example to understand the query execution plan:</p>
 <p><strong>Data preparation</strong>：</p>
 <div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="n">auto_increment</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"> </span><span class="n">pad1</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">),</span><span class="w"> </span><span class="k">INDEX</span><span class="p">(</span><span class="n">a</span><span class="p">));</span>
 <span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;aaa&#39;</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;bbb&#39;</span><span class="p">);</span>

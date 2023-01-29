@@ -1359,14 +1359,14 @@
       
       
         <label class="md-nav__link" for="__nav_1_5">
-          Deploy
+          Deploying
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Deploy" data-md-level="2">
+      <nav class="md-nav" aria-label="Deploying" data-md-level="2">
         <label class="md-nav__title" for="__nav_1_5">
           <span class="md-nav__icon md-icon"></span>
-          Deploy
+          Deploying
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -1525,6 +1525,32 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_6_2" type="checkbox" id="__nav_1_6_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_6_2">
+          Mount Data
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Mount Data" data-md-level="3">
+        <label class="md-nav__title" for="__nav_1_6_2">
+          <span class="md-nav__icon md-icon"></span>
+          Mount Data
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
       <a href="../../../../Maintain/mount-data-by-docker/" class="md-nav__link">
         Mount directory to Docker container
@@ -1534,15 +1560,8 @@
 
             
           
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../Maintain/mo-directory-structure/" class="md-nav__link">
-        MatrixOne Directory Structure
-      </a>
+        </ul>
+      </nav>
     </li>
   
 
@@ -1570,14 +1589,14 @@
       
       
         <label class="md-nav__link" for="__nav_1_7">
-          Migration
+          Migrating
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Migration" data-md-level="2">
+      <nav class="md-nav" aria-label="Migrating" data-md-level="2">
         <label class="md-nav__title" for="__nav_1_7">
           <span class="md-nav__icon md-icon"></span>
-          Migration
+          Migrating
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -5748,6 +5767,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Maintain/mo-directory-structure/" class="md-nav__link">
+        MatrixOne Directory Structure
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -6313,7 +6346,7 @@
 <li>An explicit transaction starts and ends with <code>BEGIN...END</code> or <code>START TRANSACTIONS...COMMIT</code> or <code>ROLLBACK</code>.</li>
 <li>In explicit transactions, DML (Data Manipulation Language) and DDL (Data Definition Language) can exist at the same time. DDL is limited to <code>CREATE</code>, and all others cannot be supported.</li>
 <li>In an explicit transaction, other explicit transactions cannot be nested. For example, if <code>START TANSACTIONS</code> is encountered after <code>START TANSACTIONS</code>, all statements between two <code>START TANSACTIONS</code> will be forced to commit, regardless of the value of <code>AUTOCOMMIT</code> 1 or 0.</li>
-<li>In an explicit transaction, only DML and DDL can be included and cannot contain modification parameter configuration or management commands, such as <code>set [parameter] = [value]</code>, <code>create user,</code> etc.</li>
+<li>In an explicit transaction, only DML and DDL can be included and cannot contain modification parameter configuration or management commands, such as <code>set [parameter] = [value]</code>, <code>create user,</code> and so on.</li>
 <li>In an explicit transaction, if a write-write conflict occurs when a new transaction is started without an explicit commit or rollback, the previously uncommitted transaction will be rolled back, and an error will be reported.</li>
 </ul>
 <h2 id="example">Example</h2>

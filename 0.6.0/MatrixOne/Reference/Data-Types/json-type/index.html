@@ -1305,14 +1305,14 @@
       
       
         <label class="md-nav__link" for="__nav_1_5">
-          Deploy
+          Deploying
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Deploy" data-md-level="2">
+      <nav class="md-nav" aria-label="Deploying" data-md-level="2">
         <label class="md-nav__title" for="__nav_1_5">
           <span class="md-nav__icon md-icon"></span>
-          Deploy
+          Deploying
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -1471,6 +1471,32 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_6_2" type="checkbox" id="__nav_1_6_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_6_2">
+          Mount Data
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Mount Data" data-md-level="3">
+        <label class="md-nav__title" for="__nav_1_6_2">
+          <span class="md-nav__icon md-icon"></span>
+          Mount Data
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
       <a href="../../../Maintain/mount-data-by-docker/" class="md-nav__link">
         Mount directory to Docker container
@@ -1480,15 +1506,8 @@
 
             
           
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../Maintain/mo-directory-structure/" class="md-nav__link">
-        MatrixOne Directory Structure
-      </a>
+        </ul>
+      </nav>
     </li>
   
 
@@ -1516,14 +1535,14 @@
       
       
         <label class="md-nav__link" for="__nav_1_7">
-          Migration
+          Migrating
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Migration" data-md-level="2">
+      <nav class="md-nav" aria-label="Migrating" data-md-level="2">
         <label class="md-nav__title" for="__nav_1_7">
           <span class="md-nav__icon md-icon"></span>
-          Migration
+          Migrating
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -4665,8 +4684,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#creating-json-values" class="md-nav__link">
-    Creating JSON Values
+  <a href="#json-types" class="md-nav__link">
+    JSON Types
   </a>
   
 </li>
@@ -4679,8 +4698,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#searching-and-modifying-json-values" class="md-nav__link">
-    Searching and Modifying JSON Values
+  <a href="#json-extract" class="md-nav__link">
+    JSON EXTRACT
   </a>
   
 </li>
@@ -5753,6 +5772,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Maintain/mo-directory-structure/" class="md-nav__link">
+        MatrixOne Directory Structure
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -6280,8 +6313,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#creating-json-values" class="md-nav__link">
-    Creating JSON Values
+  <a href="#json-types" class="md-nav__link">
+    JSON Types
   </a>
   
 </li>
@@ -6294,8 +6327,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#searching-and-modifying-json-values" class="md-nav__link">
-    Searching and Modifying JSON Values
+  <a href="#json-extract" class="md-nav__link">
+    JSON EXTRACT
   </a>
   
 </li>
@@ -6321,13 +6354,18 @@
 <h1 id="the-json-data-type">The JSON Data Type</h1>
 <p>MatrixOne supports a native JSON data type defined by RFC 7159 that enables efficient access to data in JSON (JavaScript Object Notation) documents. The JSON data type provides these advantages over storing JSON-format strings in a string column:</p>
 <p>Automatic validation of JSON documents stored in JSON columns. Invalid documents produce an error.</p>
-<p>Optimized storage format. JSON documents stored in JSON columns are converted to an internal format that permits quick read access to document elements. When the server later must read a JSON value stored in this binary format, the value need not be parsed from a text representation. The binary format is structured to enable the server to look up subobjects or nested values directly by key or array index without reading all values before or after them in the document.</p>
-<p>The space required to store a JSON document is roughly the same as for <code>LONGBLOB</code> or <code>LONGTEXT</code>.</p>
-<h2 id="creating-json-values">Creating JSON Values</h2>
-<p>A JSON array contains a list of values separated by commas and enclosed within [ and ] characters:</p>
+<p>Automatically optimize storage format. JSON documents stored in JSON columns are converted to an internal format that permits quick read access to document elements. When the server later must read a JSON value stored in this binary format, the value need not be parsed from a text representation. The binary format is structured to enable the server to look up subobjects or nested values directly by key or array index without reading all values before or after them in the document.</p>
+<p>The space required to store a JSON document is roughly the same as for <code>BLOB</code> or <code>TEXT</code>.</p>
+<h2 id="json-types">JSON Types</h2>
+<p>JSON types contain JSON array and JSON object.</p>
+<ul>
+<li>A JSON array contains a list of values separated by commas and enclosed within [ and ] characters:</li>
+</ul>
 <div class="highlight"><pre><span></span><code>[&quot;abc&quot;, 10, null, true, false]
 </code></pre></div>
-<p>A JSON object contains a set of key-value pairs separated by commas and enclosed within { and } characters:</p>
+<ul>
+<li>A JSON object contains a set of key-value pairs separated by commas and enclosed within { and } characters:</li>
+</ul>
 <div class="highlight"><pre><span></span><code>{&quot;k1&quot;: &quot;value&quot;, &quot;k2&quot;: 10}
 </code></pre></div>
 <p>As the examples illustrate, JSON arrays and objects can contain scalar values that are strings or numbers, the JSON null literal, or the JSON boolean true or false literals. Keys in JSON objects must be strings. Temporal (date,  datetime) scalar values are also permitted:</p>
@@ -6340,11 +6378,12 @@
 <h2 id="normalization-of-json-values">Normalization of JSON Values</h2>
 <p>When a string is parsed and found to be a valid JSON document, it is also normalized. This means that members with keys that duplicate a key found later in the document, reading from left to right, are discarded.</p>
 <p>Normalization is performed when values are inserted into JSON columns, as shown here:</p>
-<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">c1</span><span class="w"> </span><span class="n">JSON</span><span class="p">);</span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">VALUES</span>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">c1</span><span class="w"> </span><span class="n">JSON</span><span class="p">);</span>
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">VALUES</span>
 <span class="w">     </span><span class="p">(</span><span class="s1">&#39;{&quot;x&quot;: 17, &quot;x&quot;: &quot;red&quot;}&#39;</span><span class="p">),</span>
 <span class="w">     </span><span class="p">(</span><span class="s1">&#39;{&quot;x&quot;: 17, &quot;x&quot;: &quot;red&quot;, &quot;x&quot;: [3, 5, 7]}&#39;</span><span class="p">);</span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">c1</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
+
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">c1</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">------------------+</span>
 <span class="o">|</span><span class="w"> </span><span class="n">c1</span><span class="w">               </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">------------------+</span>
@@ -6352,10 +6391,10 @@
 <span class="o">|</span><span class="w"> </span><span class="err">{</span><span class="ss">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">]</span><span class="err">}</span><span class="w"> </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">------------------+</span>
 </code></pre></div>
-<h2 id="searching-and-modifying-json-values">Searching and Modifying JSON Values</h2>
+<h2 id="json-extract">JSON EXTRACT</h2>
 <p>A JSON path expression selects a value within a JSON document.</p>
 <p>Path expressions are useful with functions that extract parts of or modify a JSON document, to specify where within that document to operate. For example, the following query extracts from a JSON document the value of the member with the name key:</p>
-<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">JSON_EXTRACT</span><span class="p">(</span><span class="s1">&#39;{&quot;id&quot;: 14, &quot;name&quot;: &quot;Aztalan&quot;}&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;$.name&#39;</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">JSON_EXTRACT</span><span class="p">(</span><span class="s1">&#39;{&quot;id&quot;: 14, &quot;name&quot;: &quot;Aztalan&quot;}&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;$.name&#39;</span><span class="p">);</span>
 <span class="o">+</span><span class="c1">---------------------------------------------------------+</span>
 <span class="o">|</span><span class="w"> </span><span class="n">JSON_EXTRACT</span><span class="p">(</span><span class="s1">&#39;{&quot;id&quot;: 14, &quot;name&quot;: &quot;Aztalan&quot;}&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;$.name&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">---------------------------------------------------------+</span>
@@ -6368,7 +6407,7 @@
 <p>A period followed by a key name names the member in an object with the given key. The key name must be specified within double quotation marks if the name without quotes is not legal within path expressions (for example, if it contains a space).</p>
 </li>
 <li>
-<p>[N] appended to a <em>path</em> that selects an array names the value at position <code>N</code> within the array. Array positions are integers beginning with zero.</p>
+<p>[N] appended to a <em>path</em> that selects an array names the value at position <code>N</code> within the array. Array positions are integers beginning with zero. If the array is negative, an error is generated.</p>
 </li>
 <li>
 <p>Paths can contain * or ** wildcards:</p>
@@ -6431,14 +6470,14 @@
 </li>
 </ul>
 <p>Paths that use wildcards evaluate to an array that can contain multiple values:</p>
-<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">JSON_EXTRACT</span><span class="p">(</span><span class="s1">&#39;{&quot;a&quot;: 1, &quot;b&quot;: 2, &quot;c&quot;: [3, 4, 5]}&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;$.*&#39;</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">JSON_EXTRACT</span><span class="p">(</span><span class="s1">&#39;{&quot;a&quot;: 1, &quot;b&quot;: 2, &quot;c&quot;: [3, 4, 5]}&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;$.*&#39;</span><span class="p">);</span>
 <span class="o">+</span><span class="c1">---------------------------------------------------------+</span>
 <span class="o">|</span><span class="w"> </span><span class="n">JSON_EXTRACT</span><span class="p">(</span><span class="s1">&#39;{&quot;a&quot;: 1, &quot;b&quot;: 2, &quot;c&quot;: [3, 4, 5]}&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;$.*&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">---------------------------------------------------------+</span>
 <span class="o">|</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">]]</span><span class="w">                                       </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">---------------------------------------------------------+</span>
 
-<span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">JSON_EXTRACT</span><span class="p">(</span><span class="s1">&#39;{&quot;a&quot;: 1, &quot;b&quot;: 2, &quot;c&quot;: [3, 4, 5]}&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;$.c[*]&#39;</span><span class="p">);</span>
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">JSON_EXTRACT</span><span class="p">(</span><span class="s1">&#39;{&quot;a&quot;: 1, &quot;b&quot;: 2, &quot;c&quot;: [3, 4, 5]}&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;$.c[*]&#39;</span><span class="p">);</span>
 <span class="o">+</span><span class="c1">------------------------------------------------------------+</span>
 <span class="o">|</span><span class="w"> </span><span class="n">JSON_EXTRACT</span><span class="p">(</span><span class="s1">&#39;{&quot;a&quot;: 1, &quot;b&quot;: 2, &quot;c&quot;: [3, 4, 5]}&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;$.c[*]&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">------------------------------------------------------------+</span>
@@ -6446,7 +6485,7 @@
 <span class="o">+</span><span class="c1">------------------------------------------------------------+</span>
 </code></pre></div>
 <p>In the following example, the path $**.b evaluates to multiple paths ($.a.b and $.c.b) and produces an array of the matching path values:</p>
-<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">JSON_EXTRACT</span><span class="p">(</span><span class="s1">&#39;{&quot;a&quot;: {&quot;b&quot;: 1}, &quot;c&quot;: {&quot;b&quot;: 2}}&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;$**.b&#39;</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">JSON_EXTRACT</span><span class="p">(</span><span class="s1">&#39;{&quot;a&quot;: {&quot;b&quot;: 1}, &quot;c&quot;: {&quot;b&quot;: 2}}&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;$**.b&#39;</span><span class="p">);</span>
 <span class="o">+</span><span class="c1">---------------------------------------------------------+</span>
 <span class="o">|</span><span class="w"> </span><span class="n">JSON_EXTRACT</span><span class="p">(</span><span class="s1">&#39;{&quot;a&quot;: {&quot;b&quot;: 1}, &quot;c&quot;: {&quot;b&quot;: 2}}&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;$**.b&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">---------------------------------------------------------+</span>
@@ -6454,9 +6493,10 @@
 <span class="o">+</span><span class="c1">---------------------------------------------------------+</span>
 </code></pre></div>
 <p>In the following example, showes the querying JSON values from columns:</p>
-<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="n">json</span><span class="p">,</span><span class="n">b</span><span class="w"> </span><span class="nb">int</span><span class="p">);</span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;{&quot;a&quot;:1,&quot;b&quot;:2,&quot;c&quot;:3}&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">json_extract</span><span class="p">(</span><span class="n">t1</span><span class="p">.</span><span class="n">a</span><span class="p">,</span><span class="s1">&#39;$.a&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">t1</span><span class="p">.</span><span class="n">b</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="n">json</span><span class="p">,</span><span class="n">b</span><span class="w"> </span><span class="nb">int</span><span class="p">);</span>
+<span class="k">INSERT</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;{&quot;a&quot;:1,&quot;b&quot;:2,&quot;c&quot;:3}&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">json_extract</span><span class="p">(</span><span class="n">t1</span><span class="p">.</span><span class="n">a</span><span class="p">,</span><span class="s1">&#39;$.a&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">t1</span><span class="p">.</span><span class="n">b</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">-------------------------+</span>
 <span class="o">|</span><span class="w"> </span><span class="n">json_extract</span><span class="p">(</span><span class="n">t1</span><span class="p">.</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="err">$</span><span class="p">.</span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">-------------------------+</span>
@@ -6464,8 +6504,9 @@
 <span class="o">+</span><span class="c1">-------------------------+</span>
 <span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 
-<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;{&quot;a&quot;:4,&quot;b&quot;:5,&quot;c&quot;:6}&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">json_extract</span><span class="p">(</span><span class="n">t1</span><span class="p">.</span><span class="n">a</span><span class="p">,</span><span class="s1">&#39;$.b&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">t1</span><span class="p">.</span><span class="n">b</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span>
+<span class="k">INSERT</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;{&quot;a&quot;:4,&quot;b&quot;:5,&quot;c&quot;:6}&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">json_extract</span><span class="p">(</span><span class="n">t1</span><span class="p">.</span><span class="n">a</span><span class="p">,</span><span class="s1">&#39;$.b&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">t1</span><span class="p">.</span><span class="n">b</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">-------------------------+</span>
 <span class="o">|</span><span class="w"> </span><span class="n">json_extract</span><span class="p">(</span><span class="n">t1</span><span class="p">.</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="err">$</span><span class="p">.</span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">-------------------------+</span>
@@ -6473,7 +6514,7 @@
 <span class="o">+</span><span class="c1">-------------------------+</span>
 <span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 
-<span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">json_extract</span><span class="p">(</span><span class="n">t1</span><span class="p">.</span><span class="n">a</span><span class="p">,</span><span class="s1">&#39;$.a&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">json_extract</span><span class="p">(</span><span class="n">t1</span><span class="p">.</span><span class="n">a</span><span class="p">,</span><span class="s1">&#39;$.a&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">-------------------------+</span>
 <span class="o">|</span><span class="w"> </span><span class="n">json_extract</span><span class="p">(</span><span class="n">t1</span><span class="p">.</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="err">$</span><span class="p">.</span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">-------------------------+</span>
@@ -6482,8 +6523,9 @@
 <span class="o">+</span><span class="c1">-------------------------+</span>
 <span class="mi">2</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 
-<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;{&quot;a&quot;:{&quot;q&quot;:[1,2,3]}}&#39;</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">json_extract</span><span class="p">(</span><span class="n">t1</span><span class="p">.</span><span class="n">a</span><span class="p">,</span><span class="s1">&#39;$.a.q[1]&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">t1</span><span class="p">.</span><span class="n">b</span><span class="o">=</span><span class="mi">3</span><span class="p">;</span>
+<span class="k">INSERT</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;{&quot;a&quot;:{&quot;q&quot;:[1,2,3]}}&#39;</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">json_extract</span><span class="p">(</span><span class="n">t1</span><span class="p">.</span><span class="n">a</span><span class="p">,</span><span class="s1">&#39;$.a.q[1]&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">t1</span><span class="p">.</span><span class="n">b</span><span class="o">=</span><span class="mi">3</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">------------------------------+</span>
 <span class="o">|</span><span class="w"> </span><span class="n">json_extract</span><span class="p">(</span><span class="n">t1</span><span class="p">.</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="err">$</span><span class="p">.</span><span class="n">a</span><span class="p">.</span><span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="w"> </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">------------------------------+</span>
@@ -6491,8 +6533,9 @@
 <span class="o">+</span><span class="c1">------------------------------+</span>
 <span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 
-<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;[{&quot;a&quot;:1,&quot;b&quot;:2,&quot;c&quot;:3},{&quot;a&quot;:4,&quot;b&quot;:5,&quot;c&quot;:6}]&#39;</span><span class="p">,</span><span class="mi">4</span><span class="p">);</span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">json_extract</span><span class="p">(</span><span class="n">t1</span><span class="p">.</span><span class="n">a</span><span class="p">,</span><span class="s1">&#39;$[1].a&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">t1</span><span class="p">.</span><span class="n">b</span><span class="o">=</span><span class="mi">4</span><span class="p">;</span>
+<span class="k">INSERT</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;[{&quot;a&quot;:1,&quot;b&quot;:2,&quot;c&quot;:3},{&quot;a&quot;:4,&quot;b&quot;:5,&quot;c&quot;:6}]&#39;</span><span class="p">,</span><span class="mi">4</span><span class="p">);</span>
+
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">json_extract</span><span class="p">(</span><span class="n">t1</span><span class="p">.</span><span class="n">a</span><span class="p">,</span><span class="s1">&#39;$[1].a&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">t1</span><span class="p">.</span><span class="n">b</span><span class="o">=</span><span class="mi">4</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">----------------------------+</span>
 <span class="o">|</span><span class="w"> </span><span class="n">json_extract</span><span class="p">(</span><span class="n">t1</span><span class="p">.</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="err">$</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">----------------------------+</span>

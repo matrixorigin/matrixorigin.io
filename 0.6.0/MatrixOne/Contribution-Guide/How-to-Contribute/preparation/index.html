@@ -1305,14 +1305,14 @@
       
       
         <label class="md-nav__link" for="__nav_1_5">
-          Deploy
+          Deploying
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Deploy" data-md-level="2">
+      <nav class="md-nav" aria-label="Deploying" data-md-level="2">
         <label class="md-nav__title" for="__nav_1_5">
           <span class="md-nav__icon md-icon"></span>
-          Deploy
+          Deploying
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -1471,6 +1471,32 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_6_2" type="checkbox" id="__nav_1_6_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_6_2">
+          Mount Data
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Mount Data" data-md-level="3">
+        <label class="md-nav__title" for="__nav_1_6_2">
+          <span class="md-nav__icon md-icon"></span>
+          Mount Data
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
       <a href="../../../Maintain/mount-data-by-docker/" class="md-nav__link">
         Mount directory to Docker container
@@ -1480,15 +1506,8 @@
 
             
           
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../Maintain/mo-directory-structure/" class="md-nav__link">
-        MatrixOne Directory Structure
-      </a>
+        </ul>
+      </nav>
     </li>
   
 
@@ -1516,14 +1535,14 @@
       
       
         <label class="md-nav__link" for="__nav_1_7">
-          Migration
+          Migrating
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Migration" data-md-level="2">
+      <nav class="md-nav" aria-label="Migrating" data-md-level="2">
         <label class="md-nav__title" for="__nav_1_7">
           <span class="md-nav__icon md-icon"></span>
-          Migration
+          Migrating
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -5694,6 +5713,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Maintain/mo-directory-structure/" class="md-nav__link">
+        MatrixOne Directory Structure
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -6432,7 +6465,7 @@
 <h2 id="what-is-matrixone"><strong>What is MatrixOne</strong></h2>
 <h3 id="basic-information">Basic Information</h3>
 <p>You can see <a href="../../../Overview/matrixone-introduction/">MatrixOne Introduction</a> for key features of MatrixOne, <a href="../../../Overview/matrixone-architecture-design/">MatrixOne Architecture</a> for MatrixOne architecture, and operational logic.</p>
-<p>Besides, you can browse <a href="../../../Reference/SQL-Reference/Data-Definition-Statements/create-database/">SQL Reference</a> and <a href="../../../Reference/Builtin-Functions/Datetime/year/">Custom Functions</a> to know more about our interactive details.</p>
+<p>Besides, you can browse <a href="../../../Reference/SQL-Reference/Data-Definition-Statements/create-database/">SQL Reference</a> and <a href="../../../Reference/Builtin-Functions/Mathematical/abs/">Custom Functions</a> to know more about our interactive details.</p>
 <p>These introductions will help you go through you the key concepts and user details to understand the project.</p>
 <h3 id="roadmap">Roadmap</h3>
 <p>MatrixOne v0.6.0 has been released, you can see <a href="../../../Release-Notes/v0.6.0/">Release Notes</a> know more information.</p>
@@ -6487,12 +6520,12 @@
 <td>SQL Frontend</td>
 </tr>
 <tr>
-<td><strong>sql/parser</strong></td>
-<td>SQL Parser</td>
-</tr>
-<tr>
 <td><strong>sql/</strong></td>
 <td>MPP SQL Execution</td>
+</tr>
+<tr>
+<td><strong>sql/parser</strong></td>
+<td>SQL Parser</td>
 </tr>
 <tr>
 <td><strong>sql/vectorize</strong></td>
@@ -6520,7 +6553,7 @@
 </tr>
 </tbody>
 </table>
-<p>For contributing documentation, <a href="https://github.com/matrixorigin/matrixone">matrixone</a>, <a href="https://github.com/matrixorigin/matrixorigin.io">matrixorigin.io</a> and <a href="https://github.com/matrixorigin/artwork">artwork</a> are all the main repositories you'll be working on. For more details, please refer to <a href="../contribute-documentation/">Contribute Documentation</a>.</p>
+<p>For contributing documentation, <a href="https://github.com/matrixorigin/matrixorigin.io">matrixorigin.io</a> , <a href="https://github.com/matrixorigin/matrixorigin.io.cn">matrixorigin.io.cn</a> and <a href="https://github.com/matrixorigin/artwork">artwork</a> are all the main repositories you'll be working on. For more details, please refer to <a href="../contribute-documentation/">Contribute Documentation</a>.</p>
 <table>
 <thead>
 <tr>
@@ -6530,16 +6563,24 @@
 </thead>
 <tbody>
 <tr>
-<td><strong>matrixone/docs/en/MatrixOne</strong></td>
-<td>The content files of MatrixOne documentation website</td>
-</tr>
-<tr>
 <td><strong>matrixone/docs/rfcs</strong></td>
 <td>The design docs of MatrixOne project</td>
 </tr>
 <tr>
+<td><strong>matrixorigin.io/docs/MatrixOne</strong></td>
+<td>The content files of the English MatrixOne documentation website</td>
+</tr>
+<tr>
+<td><strong>matrixorigin.io.cn/docs/MatrixOne</strong></td>
+<td>The content files of the Chinese MatrixOne documentation website</td>
+</tr>
+<tr>
 <td><strong>matrixorigin.io/mkdocs.yml</strong></td>
-<td>The configuration file of the documentation website</td>
+<td>The configuration file of the English documentation website</td>
+</tr>
+<tr>
+<td><strong>matrixorigin.io。cn/mkdocs.yml</strong></td>
+<td>The configuration file of the Chinese documentation website</td>
 </tr>
 <tr>
 <td><strong>artwork/docs</strong></td>
@@ -6551,7 +6592,7 @@
 <h3 id="go-environment"><strong>Go Environment</strong></h3>
 <p>MatrixOne is written in Go. Before you start contributing code to MatrixOne, you need to set up your GO development environment.</p>
 <ol>
-<li>Install <code>Go</code> version <strong>1.18</strong>. You can see <a href="http://golang.org/doc/code.html">How to Write Go Code</a> for more information.  </li>
+<li>Install <code>Go</code> version <strong>1.19</strong>. You can see <a href="http://golang.org/doc/code.html">How to Write Go Code</a> for more information.  </li>
 <li>Define <code>GOPATH</code> environment variable and modify <code>PATH</code> to access your Go binaries. A common setup is as follows. You could always specify it based on your own flavor.</li>
 </ol>
 <div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">GOPATH</span><span class="o">=</span><span class="nv">$HOME</span>/go<span class="w">  </span>

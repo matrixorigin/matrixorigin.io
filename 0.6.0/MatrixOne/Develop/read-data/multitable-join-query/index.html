@@ -950,22 +950,22 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#left-join" class="md-nav__link">
-    LEFT JOIN
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#right-join" class="md-nav__link">
-    RIGHT JOIN
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#inner-join" class="md-nav__link">
     INNER JOIN
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#left-join-and-right-join" class="md-nav__link">
+    LEFT JOIN and RIGHT JOIN
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#full-join" class="md-nav__link">
+    FULL JOIN
   </a>
   
 </li>
@@ -1404,14 +1404,14 @@
       
       
         <label class="md-nav__link" for="__nav_1_5">
-          Deploy
+          Deploying
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Deploy" data-md-level="2">
+      <nav class="md-nav" aria-label="Deploying" data-md-level="2">
         <label class="md-nav__title" for="__nav_1_5">
           <span class="md-nav__icon md-icon"></span>
-          Deploy
+          Deploying
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -1570,6 +1570,32 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_6_2" type="checkbox" id="__nav_1_6_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_6_2">
+          Mount Data
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Mount Data" data-md-level="3">
+        <label class="md-nav__title" for="__nav_1_6_2">
+          <span class="md-nav__icon md-icon"></span>
+          Mount Data
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
       <a href="../../../Maintain/mount-data-by-docker/" class="md-nav__link">
         Mount directory to Docker container
@@ -1579,15 +1605,8 @@
 
             
           
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../Maintain/mo-directory-structure/" class="md-nav__link">
-        MatrixOne Directory Structure
-      </a>
+        </ul>
+      </nav>
     </li>
   
 
@@ -1615,14 +1634,14 @@
       
       
         <label class="md-nav__link" for="__nav_1_7">
-          Migration
+          Migrating
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Migration" data-md-level="2">
+      <nav class="md-nav" aria-label="Migrating" data-md-level="2">
         <label class="md-nav__title" for="__nav_1_7">
           <span class="md-nav__icon md-icon"></span>
-          Migration
+          Migrating
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -5793,6 +5812,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Maintain/mo-directory-structure/" class="md-nav__link">
+        MatrixOne Directory Structure
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -6348,22 +6381,22 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#left-join" class="md-nav__link">
-    LEFT JOIN
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#right-join" class="md-nav__link">
-    RIGHT JOIN
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#inner-join" class="md-nav__link">
     INNER JOIN
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#left-join-and-right-join" class="md-nav__link">
+    LEFT JOIN and RIGHT JOIN
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#full-join" class="md-nav__link">
+    FULL JOIN
   </a>
   
 </li>
@@ -6403,83 +6436,205 @@
 <h2 id="before-you-start">Before you start</h2>
 <p>Make sure you have already <a href="../../../Get-Started/install-standalone-matrixone/">Deployed standalone MatrixOne</a>.</p>
 <h3 id="preparation">Preparation</h3>
-<p>Create two tables to prepare for using the <code>JOIN</code> statement:</p>
-<div class="highlight"><pre><span></span><code><span class="k">drop</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
-<span class="k">drop</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="n">t2</span><span class="p">;</span>
-<span class="k">drop</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="n">t3</span><span class="p">;</span>
-<span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">libname1</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">21</span><span class="p">)</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="w"> </span><span class="k">primary</span><span class="w"> </span><span class="k">key</span><span class="p">,</span><span class="w"> </span><span class="n">city</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">20</span><span class="p">));</span>
-<span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="p">(</span><span class="n">isbn2</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">21</span><span class="p">)</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="w"> </span><span class="k">primary</span><span class="w"> </span><span class="k">key</span><span class="p">,</span><span class="w"> </span><span class="n">author</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span><span class="w"> </span><span class="n">title</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">60</span><span class="p">));</span>
-<span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t3</span><span class="w"> </span><span class="p">(</span><span class="n">isbn3</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">21</span><span class="p">)</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">,</span><span class="w"> </span><span class="n">libname3</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">21</span><span class="p">)</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">,</span><span class="w"> </span><span class="n">quantity</span><span class="w"> </span><span class="nb">int</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;001&#39;</span><span class="p">,</span><span class="s1">&#39;Daffy&#39;</span><span class="p">,</span><span class="s1">&#39;Aducklife&#39;</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;002&#39;</span><span class="p">,</span><span class="s1">&#39;Bugs&#39;</span><span class="p">,</span><span class="s1">&#39;Arabbitlife&#39;</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;003&#39;</span><span class="p">,</span><span class="s1">&#39;Cowboy&#39;</span><span class="p">,</span><span class="s1">&#39;Lifeontherange&#39;</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;000&#39;</span><span class="p">,</span><span class="s1">&#39;Anonymous&#39;</span><span class="p">,</span><span class="s1">&#39;Wannabuythisbook?&#39;</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;004&#39;</span><span class="p">,</span><span class="s1">&#39;BestSeller&#39;</span><span class="p">,</span><span class="s1">&#39;OneHeckuvabook&#39;</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;005&#39;</span><span class="p">,</span><span class="s1">&#39;EveryoneBuys&#39;</span><span class="p">,</span><span class="s1">&#39;Thisverybook&#39;</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;006&#39;</span><span class="p">,</span><span class="s1">&#39;SanFran&#39;</span><span class="p">,</span><span class="s1">&#39;Itisasanfranlifestyle&#39;</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;007&#39;</span><span class="p">,</span><span class="s1">&#39;BerkAuthor&#39;</span><span class="p">,</span><span class="s1">&#39;Cool.Berkley.the.book&#39;</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t3</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;000&#39;</span><span class="p">,</span><span class="s1">&#39;NewYorkPublicLibra&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t3</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;001&#39;</span><span class="p">,</span><span class="s1">&#39;NewYorkPublicLibra&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t3</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;002&#39;</span><span class="p">,</span><span class="s1">&#39;NewYorkPublicLibra&#39;</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t3</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;003&#39;</span><span class="p">,</span><span class="s1">&#39;NewYorkPublicLibra&#39;</span><span class="p">,</span><span class="mi">4</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t3</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;004&#39;</span><span class="p">,</span><span class="s1">&#39;NewYorkPublicLibra&#39;</span><span class="p">,</span><span class="mi">5</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t3</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;005&#39;</span><span class="p">,</span><span class="s1">&#39;NewYorkPublicLibra&#39;</span><span class="p">,</span><span class="mi">6</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t3</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;006&#39;</span><span class="p">,</span><span class="s1">&#39;SanFransiscoPublic&#39;</span><span class="p">,</span><span class="mi">5</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t3</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;007&#39;</span><span class="p">,</span><span class="s1">&#39;BerkeleyPublic1&#39;</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t3</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;007&#39;</span><span class="p">,</span><span class="s1">&#39;BerkeleyPublic2&#39;</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t3</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;001&#39;</span><span class="p">,</span><span class="s1">&#39;NYC Lib&#39;</span><span class="p">,</span><span class="mi">8</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;NewYorkPublicLibra&#39;</span><span class="p">,</span><span class="s1">&#39;NewYork&#39;</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;SanFransiscoPublic&#39;</span><span class="p">,</span><span class="s1">&#39;SanFran&#39;</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;BerkeleyPublic1&#39;</span><span class="p">,</span><span class="s1">&#39;Berkeley&#39;</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;BerkeleyPublic2&#39;</span><span class="p">,</span><span class="s1">&#39;Berkeley&#39;</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;NYCLib&#39;</span><span class="p">,</span><span class="s1">&#39;NewYork&#39;</span><span class="p">);</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">--------------------+----------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">libname1</span><span class="w">           </span><span class="o">|</span><span class="w"> </span><span class="n">city</span><span class="w">     </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------------------+----------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">NewYorkPublicLibra</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">NewYork</span><span class="w">  </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">SanFransiscoPublic</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">SanFran</span><span class="w">  </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">BerkeleyPublic1</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="n">Berkeley</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">BerkeleyPublic2</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="n">Berkeley</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">NYCLib</span><span class="w">             </span><span class="o">|</span><span class="w"> </span><span class="n">NewYork</span><span class="w">  </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------------------+----------+</span>
-<span class="mi">5</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t2</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">-------+--------------+-----------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">isbn2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">author</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="n">title</span><span class="w">                 </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+--------------+-----------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">000</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">Anonymous</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="n">Wannabuythisbook</span><span class="o">?</span><span class="w">     </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">001</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">Daffy</span><span class="w">        </span><span class="o">|</span><span class="w"> </span><span class="n">Aducklife</span><span class="w">             </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">002</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">Bugs</span><span class="w">         </span><span class="o">|</span><span class="w"> </span><span class="n">Arabbitlife</span><span class="w">           </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">003</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">Cowboy</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="n">Lifeontherange</span><span class="w">        </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">004</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">BestSeller</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">OneHeckuvabook</span><span class="w">        </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">005</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">EveryoneBuys</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Thisverybook</span><span class="w">          </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">006</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">SanFran</span><span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="n">Itisasanfranlifestyle</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">007</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">BerkAuthor</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">Cool</span><span class="p">.</span><span class="n">Berkley</span><span class="p">.</span><span class="n">the</span><span class="p">.</span><span class="n">book</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+--------------+-----------------------+</span>
-<span class="mi">8</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t3</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">-------+--------------------+----------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">isbn3</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">libname3</span><span class="w">           </span><span class="o">|</span><span class="w"> </span><span class="n">quantity</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+--------------------+----------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">000</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">NewYorkPublicLibra</span><span class="w"> </span><span class="o">|</span><span class="w">        </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">001</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">NewYorkPublicLibra</span><span class="w"> </span><span class="o">|</span><span class="w">        </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">002</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">NewYorkPublicLibra</span><span class="w"> </span><span class="o">|</span><span class="w">        </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">003</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">NewYorkPublicLibra</span><span class="w"> </span><span class="o">|</span><span class="w">        </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">004</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">NewYorkPublicLibra</span><span class="w"> </span><span class="o">|</span><span class="w">        </span><span class="mi">5</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">005</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">NewYorkPublicLibra</span><span class="w"> </span><span class="o">|</span><span class="w">        </span><span class="mi">6</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">006</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">SanFransiscoPublic</span><span class="w"> </span><span class="o">|</span><span class="w">        </span><span class="mi">5</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">007</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">BerkeleyPublic1</span><span class="w">    </span><span class="o">|</span><span class="w">        </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">007</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">BerkeleyPublic2</span><span class="w">    </span><span class="o">|</span><span class="w">        </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">001</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">NYC</span><span class="w"> </span><span class="n">Lib</span><span class="w">            </span><span class="o">|</span><span class="w">        </span><span class="mi">8</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+--------------------+----------+</span>
-<span class="mi">10</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+<ol>
+<li>
+<p>Download the dataset:</p>
+<div class="highlight"><pre><span></span><code>https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/tpch/tpch-1g.zip
 </code></pre></div>
+</li>
+<li>
+<p>Create the database and tables:</p>
+<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n">d1</span><span class="p">;</span>
+<span class="n">use</span><span class="w"> </span><span class="n">d1</span><span class="p">;</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">NATION</span><span class="w">  </span><span class="p">(</span><span class="w"> </span><span class="n">N_NATIONKEY</span><span class="w">  </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                   </span><span class="n">N_NAME</span><span class="w">       </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">25</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                   </span><span class="n">N_REGIONKEY</span><span class="w">  </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                   </span><span class="n">N_COMMENT</span><span class="w">    </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">152</span><span class="p">),</span>
+<span class="w">                   </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">N_NATIONKEY</span><span class="p">));</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">REGION</span><span class="w">  </span><span class="p">(</span><span class="w"> </span><span class="n">R_REGIONKEY</span><span class="w">  </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                   </span><span class="n">R_NAME</span><span class="w">       </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">25</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                   </span><span class="n">R_COMMENT</span><span class="w">    </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">152</span><span class="p">),</span>
+<span class="w">                   </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">R_REGIONKEY</span><span class="p">));</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">PART</span><span class="w">  </span><span class="p">(</span><span class="w"> </span><span class="n">P_PARTKEY</span><span class="w">     </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                 </span><span class="n">P_NAME</span><span class="w">        </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">55</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                 </span><span class="n">P_MFGR</span><span class="w">        </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">25</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                 </span><span class="n">P_BRAND</span><span class="w">       </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                 </span><span class="n">P_TYPE</span><span class="w">        </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">25</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                 </span><span class="n">P_SIZE</span><span class="w">        </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                 </span><span class="n">P_CONTAINER</span><span class="w">   </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                 </span><span class="n">P_RETAILPRICE</span><span class="w"> </span><span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                 </span><span class="n">P_COMMENT</span><span class="w">     </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">23</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                 </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">P_PARTKEY</span><span class="p">));</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">SUPPLIER</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">S_SUPPKEY</span><span class="w">     </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">S_NAME</span><span class="w">        </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">25</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">S_ADDRESS</span><span class="w">     </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">S_NATIONKEY</span><span class="w">   </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">S_PHONE</span><span class="w">       </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">S_ACCTBAL</span><span class="w">     </span><span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">S_COMMENT</span><span class="w">     </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">101</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">S_SUPPKEY</span><span class="p">));</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">PARTSUPP</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">PS_PARTKEY</span><span class="w">     </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">PS_SUPPKEY</span><span class="w">     </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">PS_AVAILQTY</span><span class="w">    </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">PS_SUPPLYCOST</span><span class="w">  </span><span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w">  </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">PS_COMMENT</span><span class="w">     </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">199</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">PS_PARTKEY</span><span class="p">,</span><span class="w"> </span><span class="n">PS_SUPPKEY</span><span class="p">));</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">CUSTOMER</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">C_CUSTKEY</span><span class="w">     </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">C_NAME</span><span class="w">        </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">25</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">C_ADDRESS</span><span class="w">     </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">C_NATIONKEY</span><span class="w">   </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">C_PHONE</span><span class="w">       </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">C_ACCTBAL</span><span class="w">     </span><span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w">   </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">C_MKTSEGMENT</span><span class="w">  </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">C_COMMENT</span><span class="w">     </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">117</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">C_CUSTKEY</span><span class="p">));</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">ORDERS</span><span class="w">  </span><span class="p">(</span><span class="w"> </span><span class="n">O_ORDERKEY</span><span class="w">       </span><span class="nb">BIGINT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                   </span><span class="n">O_CUSTKEY</span><span class="w">        </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                   </span><span class="n">O_ORDERSTATUS</span><span class="w">    </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                   </span><span class="n">O_TOTALPRICE</span><span class="w">     </span><span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                   </span><span class="n">O_ORDERDATE</span><span class="w">      </span><span class="nb">DATE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                   </span><span class="n">O_ORDERPRIORITY</span><span class="w">  </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                   </span><span class="n">O_CLERK</span><span class="w">          </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                   </span><span class="n">O_SHIPPRIORITY</span><span class="w">   </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                   </span><span class="n">O_COMMENT</span><span class="w">        </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">79</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                   </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">O_ORDERKEY</span><span class="p">));</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">LINEITEM</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">L_ORDERKEY</span><span class="w">    </span><span class="nb">BIGINT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">L_PARTKEY</span><span class="w">     </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">L_SUPPKEY</span><span class="w">     </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">L_LINENUMBER</span><span class="w">  </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">L_QUANTITY</span><span class="w">    </span><span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">L_EXTENDEDPRICE</span><span class="w">  </span><span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">L_DISCOUNT</span><span class="w">    </span><span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">L_TAX</span><span class="w">         </span><span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">L_RETURNFLAG</span><span class="w">  </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">L_LINESTATUS</span><span class="w">  </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">L_SHIPDATE</span><span class="w">    </span><span class="nb">DATE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">L_COMMITDATE</span><span class="w">  </span><span class="nb">DATE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">L_RECEIPTDATE</span><span class="w"> </span><span class="nb">DATE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">L_SHIPINSTRUCT</span><span class="w"> </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">25</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">L_SHIPMODE</span><span class="w">     </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">L_COMMENT</span><span class="w">      </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">44</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">L_ORDERKEY</span><span class="p">,</span><span class="w"> </span><span class="n">L_LINENUMBER</span><span class="p">));</span>
+</code></pre></div>
+</li>
+<li>
+<p>Load data into the created tables:</p>
+<div class="highlight"><pre><span></span><code><span class="k">load</span><span class="w"> </span><span class="k">data</span><span class="w"> </span><span class="n">infile</span><span class="w"> </span><span class="s1">&#39;/YOUR_TPCH_DATA_PATH/nation.tbl&#39;</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">NATION</span><span class="w"> </span><span class="n">FIELDS</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;|&#39;</span><span class="w"> </span><span class="n">OPTIONALLY</span><span class="w"> </span><span class="n">ENCLOSED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;&quot;&#39;</span><span class="w"> </span><span class="n">LINES</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;\n&#39;</span><span class="p">;</span>
+
+<span class="k">load</span><span class="w"> </span><span class="k">data</span><span class="w"> </span><span class="n">infile</span><span class="w"> </span><span class="s1">&#39;/YOUR_TPCH_DATA_PATH/region.tbl&#39;</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">REGION</span><span class="w"> </span><span class="n">FIELDS</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;|&#39;</span><span class="w"> </span><span class="n">OPTIONALLY</span><span class="w"> </span><span class="n">ENCLOSED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;&quot;&#39;</span><span class="w"> </span><span class="n">LINES</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;\n&#39;</span><span class="p">;</span>
+
+<span class="k">load</span><span class="w"> </span><span class="k">data</span><span class="w"> </span><span class="n">infile</span><span class="w"> </span><span class="s1">&#39;/YOUR_TPCH_DATA_PATH/part.tbl&#39;</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">PART</span><span class="w"> </span><span class="n">FIELDS</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;|&#39;</span><span class="w"> </span><span class="n">OPTIONALLY</span><span class="w"> </span><span class="n">ENCLOSED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;&quot;&#39;</span><span class="w"> </span><span class="n">LINES</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;\n&#39;</span><span class="p">;</span>
+
+<span class="k">load</span><span class="w"> </span><span class="k">data</span><span class="w"> </span><span class="n">infile</span><span class="w"> </span><span class="s1">&#39;/YOUR_TPCH_DATA_PATH/supplier.tbl&#39;</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">SUPPLIER</span><span class="w"> </span><span class="n">FIELDS</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;|&#39;</span><span class="w"> </span><span class="n">OPTIONALLY</span><span class="w"> </span><span class="n">ENCLOSED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;&quot;&#39;</span><span class="w"> </span><span class="n">LINES</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;\n&#39;</span><span class="p">;</span>
+
+<span class="k">load</span><span class="w"> </span><span class="k">data</span><span class="w"> </span><span class="n">infile</span><span class="w"> </span><span class="s1">&#39;/YOUR_TPCH_DATA_PATH/partsupp.tbl&#39;</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">PARTSUPP</span><span class="w"> </span><span class="n">FIELDS</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;|&#39;</span><span class="w"> </span><span class="n">OPTIONALLY</span><span class="w"> </span><span class="n">ENCLOSED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;&quot;&#39;</span><span class="w"> </span><span class="n">LINES</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;\n&#39;</span><span class="p">;</span>
+
+<span class="k">load</span><span class="w"> </span><span class="k">data</span><span class="w"> </span><span class="n">infile</span><span class="w"> </span><span class="s1">&#39;/YOUR_TPCH_DATA_PATH/orders.tbl&#39;</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">ORDERS</span><span class="w"> </span><span class="n">FIELDS</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;|&#39;</span><span class="w"> </span><span class="n">OPTIONALLY</span><span class="w"> </span><span class="n">ENCLOSED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;&quot;&#39;</span><span class="w"> </span><span class="n">LINES</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;\n&#39;</span><span class="p">;</span>
+
+<span class="k">load</span><span class="w"> </span><span class="k">data</span><span class="w"> </span><span class="n">infile</span><span class="w"> </span><span class="s1">&#39;/YOUR_TPCH_DATA_PATH/customer.tbl&#39;</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">CUSTOMER</span><span class="w"> </span><span class="n">FIELDS</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;|&#39;</span><span class="w"> </span><span class="n">OPTIONALLY</span><span class="w"> </span><span class="n">ENCLOSED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;&quot;&#39;</span><span class="w"> </span><span class="n">LINES</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;\n&#39;</span><span class="p">;</span>
+
+<span class="k">load</span><span class="w"> </span><span class="k">data</span><span class="w"> </span><span class="n">infile</span><span class="w"> </span><span class="s1">&#39;/YOUR_TPCH_DATA_PATH/lineitem.tbl&#39;</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">LINEITEM</span><span class="w"> </span><span class="n">FIELDS</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;|&#39;</span><span class="w"> </span><span class="n">OPTIONALLY</span><span class="w"> </span><span class="n">ENCLOSED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;&quot;&#39;</span><span class="w"> </span><span class="n">LINES</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;\n&#39;</span><span class="p">;</span>
+</code></pre></div>
+</li>
+</ol>
+<p>Then you can query data in MatrixOne with the created table.</p>
 <h2 id="join-types">Join Types</h2>
-<h3 id="left-join"><code>LEFT JOIN</code></h3>
+<h3 id="inner-join"><code>INNER JOIN</code></h3>
+<p>The join result of an inner join returns only rows that match the join condition.</p>
+<table>
+<thead>
+<tr>
+<th>Statement</th>
+<th>Image</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SELECT /<select_list> FROM TableA A INNER JOIN TableB B ON A.Key=B.Key</td>
+<td><img alt="innerjoin" src="https://github.com/matrixorigin/artwork/blob/main/docs/reference/inner_join.png?raw=true" /></td>
+</tr>
+</tbody>
+</table>
+<p>There are two ways of writing an <code>inner join</code> that are completely equivalent in results:</p>
+<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w">   </span>
+<span class="w">    </span><span class="n">l_orderkey</span><span class="p">,</span>
+<span class="w">    </span><span class="k">SUM</span><span class="p">(</span><span class="n">l_extendedprice</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">l_discount</span><span class="p">))</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">revenue</span><span class="p">,</span>
+<span class="w">    </span><span class="n">o_orderdate</span><span class="p">,</span>
+<span class="w">    </span><span class="n">o_shippriority</span>
+<span class="k">FROM</span>
+<span class="w">    </span><span class="n">CUSTOMER</span><span class="p">,</span>
+<span class="w">    </span><span class="n">ORDERS</span><span class="p">,</span>
+<span class="w">    </span><span class="n">LINEITEM</span>
+<span class="k">WHERE</span>
+<span class="w">    </span><span class="n">c_mktsegment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;BUILDING&#39;</span>
+<span class="w">        </span><span class="k">AND</span><span class="w"> </span><span class="n">c_custkey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">o_custkey</span>
+<span class="w">        </span><span class="k">AND</span><span class="w"> </span><span class="n">l_orderkey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">o_orderkey</span>
+<span class="w">        </span><span class="k">AND</span><span class="w"> </span><span class="n">o_orderdate</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nb">DATE</span><span class="w"> </span><span class="s1">&#39;1995-03-15&#39;</span>
+<span class="w">        </span><span class="k">AND</span><span class="w"> </span><span class="n">l_shipdate</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nb">DATE</span><span class="w"> </span><span class="s1">&#39;1995-03-15&#39;</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">l_orderkey</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">o_orderdate</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">o_shippriority</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">revenue</span><span class="w"> </span><span class="k">DESC</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">o_orderdate</span>
+<span class="k">LIMIT</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="o">+</span><span class="c1">------------+---------------------+-------------+----------------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">l_orderkey</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">revenue</span><span class="w">             </span><span class="o">|</span><span class="w"> </span><span class="n">o_orderdate</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">o_shippriority</span><span class="w"> </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">------------+---------------------+-------------+----------------+</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">2456423</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">406181</span><span class="p">.</span><span class="mi">011100000000</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">1995</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">05</span><span class="w">  </span><span class="o">|</span><span class="w">              </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">3459808</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">405838</span><span class="p">.</span><span class="mi">698900000000</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">1995</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">04</span><span class="w">  </span><span class="o">|</span><span class="w">              </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">     </span><span class="mi">492164</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">390324</span><span class="p">.</span><span class="mi">061000000000</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">1995</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">19</span><span class="w">  </span><span class="o">|</span><span class="w">              </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">1188320</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">384537</span><span class="p">.</span><span class="mi">935900000000</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">1995</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">09</span><span class="w">  </span><span class="o">|</span><span class="w">              </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">2435712</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">378673</span><span class="p">.</span><span class="mi">055800000000</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">1995</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">26</span><span class="w">  </span><span class="o">|</span><span class="w">              </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">4878020</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">378376</span><span class="p">.</span><span class="mi">795200000000</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">1995</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">12</span><span class="w">  </span><span class="o">|</span><span class="w">              </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">5521732</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">375153</span><span class="p">.</span><span class="mi">921500000000</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">1995</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">13</span><span class="w">  </span><span class="o">|</span><span class="w">              </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">2628192</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">373133</span><span class="p">.</span><span class="mi">309400000000</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">1995</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">22</span><span class="w">  </span><span class="o">|</span><span class="w">              </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">     </span><span class="mi">993600</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">371407</span><span class="p">.</span><span class="mi">459500000000</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">1995</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">05</span><span class="w">  </span><span class="o">|</span><span class="w">              </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">2300070</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">367371</span><span class="p">.</span><span class="mi">145200000000</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">1995</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">13</span><span class="w">  </span><span class="o">|</span><span class="w">              </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">------------+---------------------+-------------+----------------+</span>
+<span class="mi">10</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">20</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+</code></pre></div>
+<p>Write as <code>Join</code>, the syntax is as follows:</p>
+<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w">   </span>
+<span class="w">    </span><span class="n">l_orderkey</span><span class="p">,</span>
+<span class="w">    </span><span class="k">SUM</span><span class="p">(</span><span class="n">l_extendedprice</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">l_discount</span><span class="p">))</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">revenue</span><span class="p">,</span>
+<span class="w">    </span><span class="n">o_orderdate</span><span class="p">,</span>
+<span class="w">    </span><span class="n">o_shippriority</span>
+<span class="k">FROM</span>
+<span class="w">    </span><span class="n">CUSTOMER</span>
+<span class="w">    </span><span class="k">join</span><span class="w"> </span><span class="n">ORDERS</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">c_custkey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">o_custkey</span>
+<span class="w">    </span><span class="k">join</span><span class="w"> </span><span class="n">LINEITEM</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">l_orderkey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">o_orderkey</span>
+<span class="k">WHERE</span>
+<span class="w">    </span><span class="n">c_mktsegment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;BUILDING&#39;</span>
+<span class="w">        </span><span class="k">AND</span><span class="w"> </span><span class="n">o_orderdate</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nb">DATE</span><span class="w"> </span><span class="s1">&#39;1995-03-15&#39;</span>
+<span class="w">        </span><span class="k">AND</span><span class="w"> </span><span class="n">l_shipdate</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nb">DATE</span><span class="w"> </span><span class="s1">&#39;1995-03-15&#39;</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">l_orderkey</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">o_orderdate</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">o_shippriority</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">revenue</span><span class="w"> </span><span class="k">DESC</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">o_orderdate</span>
+<span class="k">LIMIT</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="o">+</span><span class="c1">------------+---------------------+-------------+----------------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">l_orderkey</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">revenue</span><span class="w">             </span><span class="o">|</span><span class="w"> </span><span class="n">o_orderdate</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">o_shippriority</span><span class="w"> </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">------------+---------------------+-------------+----------------+</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">2456423</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">406181</span><span class="p">.</span><span class="mi">011100000000</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">1995</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">05</span><span class="w">  </span><span class="o">|</span><span class="w">              </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">3459808</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">405838</span><span class="p">.</span><span class="mi">698900000000</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">1995</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">04</span><span class="w">  </span><span class="o">|</span><span class="w">              </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">     </span><span class="mi">492164</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">390324</span><span class="p">.</span><span class="mi">061000000000</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">1995</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">19</span><span class="w">  </span><span class="o">|</span><span class="w">              </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">1188320</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">384537</span><span class="p">.</span><span class="mi">935900000000</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">1995</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">09</span><span class="w">  </span><span class="o">|</span><span class="w">              </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">2435712</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">378673</span><span class="p">.</span><span class="mi">055800000000</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">1995</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">26</span><span class="w">  </span><span class="o">|</span><span class="w">              </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">4878020</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">378376</span><span class="p">.</span><span class="mi">795200000000</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">1995</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">12</span><span class="w">  </span><span class="o">|</span><span class="w">              </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">5521732</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">375153</span><span class="p">.</span><span class="mi">921500000000</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">1995</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">13</span><span class="w">  </span><span class="o">|</span><span class="w">              </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">2628192</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">373133</span><span class="p">.</span><span class="mi">309400000000</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">1995</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">22</span><span class="w">  </span><span class="o">|</span><span class="w">              </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">     </span><span class="mi">993600</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">371407</span><span class="p">.</span><span class="mi">459500000000</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">1995</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">05</span><span class="w">  </span><span class="o">|</span><span class="w">              </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">2300070</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">367371</span><span class="p">.</span><span class="mi">145200000000</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">1995</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">13</span><span class="w">  </span><span class="o">|</span><span class="w">              </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">------------+---------------------+-------------+----------------+</span>
+<span class="mi">10</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">20</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="left-join-and-right-join"><code>LEFT JOIN</code> and <code>RIGHT JOIN</code></h3>
+<p>Outer joins are further divided into <strong>left join</strong> and <strong>right join</strong>, and equivalent semantics can be achieved between the two:</p>
+<ul>
+<li><code>LEFT JOIN</code></li>
+</ul>
 <p>The <code>LEFT JOIN</code> returns all the rows in the left table and the values ​​in the right table that match the join condition. If no rows are matched in the right table, it will be filled with NULL.</p>
 <table>
 <thead>
@@ -6499,55 +6654,9 @@
 </tr>
 </tbody>
 </table>
-<p><strong>Example</strong>：</p>
-<p>Based on the data prepared above, here is an example to explain the left join statement.</p>
-<p>Query the <code>city</code> column, <code>libname1</code> column, and the  aggregate functions <code>count(t1.libname1)</code>.</p>
-<p>The query procedure is as below:</p>
-<ol>
-<li>
-<p>Left join from table t3 to table t1. The constraint is that the columns in table t1 are the same as those in table t3, that is, <code>libname1=libname3;</code></p>
-</li>
-<li>
-<p>Inner join from the result of <em>Step 1</em> to table t2. The constraint condition is that the columns in table t3 are the same as those in table t2, that is, <code>isbn3=isbn2;</code>.</p>
-</li>
-<li>
-<p>Aggregate groups according to columns<code>city</code> and <code>libname1</code> in table t1.</p>
-</li>
-</ol>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">city</span><span class="p">,</span><span class="n">libname1</span><span class="p">,</span><span class="k">count</span><span class="p">(</span><span class="n">libname1</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t3</span><span class="w"> </span><span class="k">left</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">libname1</span><span class="o">=</span><span class="n">libname3</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">isbn3</span><span class="o">=</span><span class="n">isbn2</span><span class="w"> </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">city</span><span class="p">,</span><span class="n">libname1</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">----------+--------------------+------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">city</span><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="n">libname1</span><span class="w">           </span><span class="o">|</span><span class="w"> </span><span class="n">a</span><span class="w">    </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------+--------------------+------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">NewYork</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">NewYorkPublicLibra</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">6</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">SanFran</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">SanFransiscoPublic</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">Berkeley</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">BerkeleyPublic1</span><span class="w">    </span><span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">Berkeley</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">BerkeleyPublic2</span><span class="w">    </span><span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w">               </span><span class="o">|</span><span class="w">    </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------+--------------------+------+</span>
-<span class="mi">5</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
-<p>For details about SQL execution, refer to the following code. The following examples of <strong>RIGHT JOIN</strong> and <strong>INNER JOIN</strong> will not describe the execution details:</p>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">explain</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">city</span><span class="p">,</span><span class="n">libname1</span><span class="p">,</span><span class="k">count</span><span class="p">(</span><span class="n">libname1</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t3</span><span class="w"> </span><span class="k">left</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">libname1</span><span class="o">=</span><span class="n">libname3</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">isbn3</span><span class="o">=</span><span class="n">isbn2</span><span class="w"> </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">city</span><span class="p">,</span><span class="n">libname1</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">QUERY</span><span class="w"> </span><span class="n">PLAN</span><span class="w">                                                 </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">Project</span><span class="w">                                                    </span><span class="o">|</span>
-<span class="o">|</span><span class="w">   </span><span class="o">-&gt;</span><span class="w">  </span><span class="k">Aggregate</span><span class="w">                                            </span><span class="o">|</span>
-<span class="o">|</span><span class="w">         </span><span class="k">Group</span><span class="w"> </span><span class="k">Key</span><span class="p">:</span><span class="w"> </span><span class="n">t1</span><span class="p">.</span><span class="n">city</span><span class="p">,</span><span class="w"> </span><span class="n">t1</span><span class="p">.</span><span class="n">libname1</span><span class="w">                    </span><span class="o">|</span>
-<span class="o">|</span><span class="w">         </span><span class="k">Aggregate</span><span class="w"> </span><span class="n">Functions</span><span class="p">:</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="n">t1</span><span class="p">.</span><span class="n">libname1</span><span class="p">)</span><span class="w">            </span><span class="o">|</span>
-<span class="o">|</span><span class="w">         </span><span class="o">-&gt;</span><span class="w">  </span><span class="k">Join</span><span class="w">                                           </span><span class="o">|</span>
-<span class="o">|</span><span class="w">               </span><span class="k">Join</span><span class="w"> </span><span class="k">Type</span><span class="p">:</span><span class="w"> </span><span class="k">INNER</span><span class="w">                             </span><span class="o">|</span>
-<span class="o">|</span><span class="w">               </span><span class="k">Join</span><span class="w"> </span><span class="n">Cond</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="n">t3</span><span class="p">.</span><span class="n">isbn3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t2</span><span class="p">.</span><span class="n">isbn2</span><span class="p">)</span><span class="w">             </span><span class="o">|</span>
-<span class="o">|</span><span class="w">               </span><span class="o">-&gt;</span><span class="w">  </span><span class="k">Join</span><span class="w">                                     </span><span class="o">|</span>
-<span class="o">|</span><span class="w">                     </span><span class="k">Join</span><span class="w"> </span><span class="k">Type</span><span class="p">:</span><span class="w"> </span><span class="k">LEFT</span><span class="w">                        </span><span class="o">|</span>
-<span class="o">|</span><span class="w">                     </span><span class="k">Join</span><span class="w"> </span><span class="n">Cond</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="n">t1</span><span class="p">.</span><span class="n">libname1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t3</span><span class="p">.</span><span class="n">libname3</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">                     </span><span class="o">-&gt;</span><span class="w">  </span><span class="k">Table</span><span class="w"> </span><span class="n">Scan</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">db1</span><span class="p">.</span><span class="n">t3</span><span class="w">               </span><span class="o">|</span>
-<span class="o">|</span><span class="w">                     </span><span class="o">-&gt;</span><span class="w">  </span><span class="k">Table</span><span class="w"> </span><span class="n">Scan</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">db1</span><span class="p">.</span><span class="n">t1</span><span class="w">               </span><span class="o">|</span>
-<span class="o">|</span><span class="w">               </span><span class="o">-&gt;</span><span class="w">  </span><span class="k">Table</span><span class="w"> </span><span class="n">Scan</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">db1</span><span class="p">.</span><span class="n">t2</span><span class="w">                     </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------------------------------------------------+</span>
-<span class="mi">13</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
-<h3 id="right-join"><code>RIGHT JOIN</code></h3>
+<ul>
+<li><code>RIGHT JOIN</code></li>
+</ul>
 <p>A <code>RIGHT JOIN</code> returns all the records in the right table and the values ​​in the left table that match the join condition. If there is no matching value, it is filled with NULL.</p>
 <table>
 <thead>
@@ -6567,73 +6676,116 @@
 </tr>
 </tbody>
 </table>
-<p><strong>Example</strong>：</p>
-<p>Based on the data prepared above, here is an example to explain the right join statement.</p>
-<p>Query the <code>city</code> column, <code>libname1</code> column, and the  aggregate functions <code>count(t1.libname1)</code>.</p>
-<p>The query procedure is as below:</p>
-<ol>
-<li>
-<p>Right join from table t3 to table t1. The constraint is that the columns in table t1 are the same as those in table t3, that is, <code>libname1=libname3;</code></p>
-</li>
-<li>
-<p>Inner join from the result of <em>Step 1</em> to table t2. The constraint condition is that the columns in table t3 are the same as those in table t2, that is, <code>isbn3=isbn2;</code>.</p>
-</li>
-<li>
-<p>Aggregate groups according to columns<code>city</code> and <code>libname1</code> in table t1.</p>
-</li>
-</ol>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">city</span><span class="p">,</span><span class="n">libname1</span><span class="p">,</span><span class="k">count</span><span class="p">(</span><span class="n">libname1</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t3</span><span class="w"> </span><span class="k">right</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">libname1</span><span class="o">=</span><span class="n">libname3</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">isbn3</span><span class="o">=</span><span class="n">isbn2</span><span class="w"> </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">city</span><span class="p">,</span><span class="n">libname1</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">----------+--------------------+------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">city</span><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="n">libname1</span><span class="w">           </span><span class="o">|</span><span class="w"> </span><span class="n">a</span><span class="w">    </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------+--------------------+------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">Berkeley</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">BerkeleyPublic1</span><span class="w">    </span><span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">Berkeley</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">BerkeleyPublic2</span><span class="w">    </span><span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">NewYork</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">NewYorkPublicLibra</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">6</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">SanFran</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">SanFransiscoPublic</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------+--------------------+------+</span>
-<span class="mi">4</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">03</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+<p>The example is as below:</p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span>
+<span class="w">        </span><span class="n">c_custkey</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="n">o_orderkey</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">c_count</span>
+<span class="w">    </span><span class="k">FROM</span>
+<span class="w">        </span><span class="n">CUSTOMER</span>
+<span class="w">    </span><span class="k">LEFT</span><span class="w"> </span><span class="k">OUTER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">ORDERS</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="p">(</span><span class="n">c_custkey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">o_custkey</span>
+<span class="w">        </span><span class="k">AND</span><span class="w"> </span><span class="n">o_comment</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;%special%requests%&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">c_custkey</span><span class="w"> </span><span class="k">limit</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+
+<span class="o">+</span><span class="c1">-----------+---------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">c_custkey</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">c_count</span><span class="w"> </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">-----------+---------+</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">147457</span><span class="w"> </span><span class="o">|</span><span class="w">      </span><span class="mi">16</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">147458</span><span class="w"> </span><span class="o">|</span><span class="w">       </span><span class="mi">7</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">147459</span><span class="w"> </span><span class="o">|</span><span class="w">       </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">147460</span><span class="w"> </span><span class="o">|</span><span class="w">      </span><span class="mi">16</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">147461</span><span class="w"> </span><span class="o">|</span><span class="w">       </span><span class="mi">7</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">147462</span><span class="w"> </span><span class="o">|</span><span class="w">       </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">147463</span><span class="w"> </span><span class="o">|</span><span class="w">      </span><span class="mi">14</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">147464</span><span class="w"> </span><span class="o">|</span><span class="w">      </span><span class="mi">11</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">147465</span><span class="w"> </span><span class="o">|</span><span class="w">       </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">147466</span><span class="w"> </span><span class="o">|</span><span class="w">      </span><span class="mi">17</span><span class="w"> </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">-----------+---------+</span>
+<span class="mi">10</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">93</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="inner-join"><code>INNER JOIN</code></h3>
-<p>The join result of an inner join returns only rows that match the join condition.</p>
-<table>
-<thead>
-<tr>
-<th>Statement</th>
-<th>Image</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>SELECT /<select_list> FROM TableA A INNER JOIN TableB B ON A.Key=B.Key</td>
-<td><img alt="innerjoin" src="https://github.com/matrixorigin/artwork/blob/main/docs/reference/inner_join.png?raw=true" /></td>
-</tr>
-</tbody>
-</table>
-<p><strong>Example</strong>：</p>
-<p>Based on the data prepared above, here is an example to explain the inner join statement.</p>
-<p>Query the <code>city</code> column, <code>libname1</code> column, and the  aggregate functions <code>count(t1.libname1)</code>.</p>
-<p>The query procedure is as below:</p>
-<ol>
-<li>
-<p>Inner join from table t3 to table t1. The constraint is that the columns in table t1 are the same as those in table t3, that is, <code>libname1=libname3;</code></p>
-</li>
-<li>
-<p>Inner join from the result of <em>Step 1</em> to table t2. The constraint condition is that the columns in table t3 are the same as those in table t2, that is, <code>isbn3=isbn2;</code>.</p>
-</li>
-<li>
-<p>Aggregate groups according to columns<code>city</code> and <code>libname1</code> in table t1.</p>
-</li>
-</ol>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">city</span><span class="p">,</span><span class="n">libname1</span><span class="p">,</span><span class="k">count</span><span class="p">(</span><span class="n">libname1</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t3</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">libname1</span><span class="o">=</span><span class="n">libname3</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">isbn3</span><span class="o">=</span><span class="n">isbn2</span><span class="w"> </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">city</span><span class="p">,</span><span class="n">libname1</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">----------+--------------------+------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">city</span><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="n">libname1</span><span class="w">           </span><span class="o">|</span><span class="w"> </span><span class="n">a</span><span class="w">    </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------+--------------------+------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">NewYork</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">NewYorkPublicLibra</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">6</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">SanFran</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">SanFransiscoPublic</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">Berkeley</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">BerkeleyPublic1</span><span class="w">    </span><span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">Berkeley</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">BerkeleyPublic2</span><span class="w">    </span><span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------+--------------------+------+</span>
-<span class="mi">4</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+<p>Or:</p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span>
+<span class="w">        </span><span class="n">c_custkey</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="n">o_orderkey</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">c_count</span>
+<span class="w">    </span><span class="k">FROM</span>
+<span class="w">        </span><span class="n">ORDERS</span>
+<span class="w">    </span><span class="k">RIGHT</span><span class="w"> </span><span class="k">OUTER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">CUSTOMER</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="p">(</span><span class="n">c_custkey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">o_custkey</span>
+<span class="w">        </span><span class="k">AND</span><span class="w"> </span><span class="n">o_comment</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;%special%requests%&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">c_custkey</span><span class="w"> </span><span class="k">limit</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+
+<span class="o">+</span><span class="c1">-----------+---------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">c_custkey</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">c_count</span><span class="w"> </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">-----------+---------+</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">147457</span><span class="w"> </span><span class="o">|</span><span class="w">      </span><span class="mi">16</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">147458</span><span class="w"> </span><span class="o">|</span><span class="w">       </span><span class="mi">7</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">147459</span><span class="w"> </span><span class="o">|</span><span class="w">       </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">147460</span><span class="w"> </span><span class="o">|</span><span class="w">      </span><span class="mi">16</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">147461</span><span class="w"> </span><span class="o">|</span><span class="w">       </span><span class="mi">7</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">147462</span><span class="w"> </span><span class="o">|</span><span class="w">       </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">147463</span><span class="w"> </span><span class="o">|</span><span class="w">      </span><span class="mi">14</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">147464</span><span class="w"> </span><span class="o">|</span><span class="w">      </span><span class="mi">11</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">147465</span><span class="w"> </span><span class="o">|</span><span class="w">       </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">147466</span><span class="w"> </span><span class="o">|</span><span class="w">      </span><span class="mi">17</span><span class="w"> </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">-----------+---------+</span>
+<span class="mi">10</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">93</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="full-join"><code>FULL JOIN</code></h3>
+<p>A <code>full join</code> is the union of left and right outer joins. The join table contains all records from the joined tables or is filled with <code>NULL</code> if a matching record is missing.</p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span>
+<span class="w">        </span><span class="n">c_custkey</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="n">o_orderkey</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">c_count</span>
+<span class="w">    </span><span class="k">FROM</span>
+<span class="w">        </span><span class="n">CUSTOMER</span>
+<span class="w">    </span><span class="k">FULL</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">ORDERS</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="p">(</span><span class="n">c_custkey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">o_custkey</span>
+<span class="w">        </span><span class="k">AND</span><span class="w"> </span><span class="n">o_comment</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;%special%requests%&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">c_custkey</span><span class="w"> </span><span class="k">limit</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+
+<span class="o">+</span><span class="c1">-----------+---------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">c_custkey</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">c_count</span><span class="w"> </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">-----------+---------+</span>
+<span class="o">|</span><span class="w">         </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w">       </span><span class="mi">6</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">         </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w">       </span><span class="mi">7</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">         </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span><span class="w">      </span><span class="mi">20</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">         </span><span class="mi">5</span><span class="w"> </span><span class="o">|</span><span class="w">       </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">         </span><span class="mi">7</span><span class="w"> </span><span class="o">|</span><span class="w">      </span><span class="mi">16</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">         </span><span class="mi">8</span><span class="w"> </span><span class="o">|</span><span class="w">      </span><span class="mi">13</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">        </span><span class="mi">10</span><span class="w"> </span><span class="o">|</span><span class="w">      </span><span class="mi">20</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">        </span><span class="mi">11</span><span class="w"> </span><span class="o">|</span><span class="w">      </span><span class="mi">13</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">        </span><span class="mi">13</span><span class="w"> </span><span class="o">|</span><span class="w">      </span><span class="mi">18</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">        </span><span class="mi">14</span><span class="w"> </span><span class="o">|</span><span class="w">       </span><span class="mi">9</span><span class="w"> </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">-----------+---------+</span>
+<span class="mi">10</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">77</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+</code></pre></div>
+<p>The <code>full join</code> can also be rewritten to obtain the same semantics:</p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span>
+<span class="w">        </span><span class="n">c_custkey</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="n">o_orderkey</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">c_count</span>
+<span class="w">    </span><span class="k">FROM</span>
+<span class="w">        </span><span class="n">CUSTOMER</span>
+<span class="w">    </span><span class="k">LEFT</span><span class="w"> </span><span class="k">OUTER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">ORDERS</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="p">(</span><span class="n">c_custkey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">o_custkey</span>
+<span class="w">        </span><span class="k">AND</span><span class="w"> </span><span class="n">o_comment</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;%special%requests%&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">c_custkey</span>
+<span class="k">UNION</span>
+<span class="k">SELECT</span>
+<span class="w">        </span><span class="n">c_custkey</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="n">o_orderkey</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">c_count</span>
+<span class="w">    </span><span class="k">FROM</span>
+<span class="w">        </span><span class="n">CUSTOMER</span>
+<span class="w">    </span><span class="k">LEFT</span><span class="w"> </span><span class="k">OUTER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">ORDERS</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="p">(</span><span class="n">c_custkey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">o_custkey</span>
+<span class="w">        </span><span class="k">AND</span><span class="w"> </span><span class="n">o_comment</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;%special%requests%&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="k">WHERE</span><span class="w"> </span><span class="n">c_custkey</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NULL</span>
+<span class="w">    </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">c_custkey</span>
+<span class="k">limit</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+
+<span class="o">+</span><span class="c1">-----------+---------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">c_custkey</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">c_count</span><span class="w"> </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">-----------+---------+</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">147457</span><span class="w"> </span><span class="o">|</span><span class="w">      </span><span class="mi">16</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">147458</span><span class="w"> </span><span class="o">|</span><span class="w">       </span><span class="mi">7</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">147459</span><span class="w"> </span><span class="o">|</span><span class="w">       </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">147460</span><span class="w"> </span><span class="o">|</span><span class="w">      </span><span class="mi">16</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">147461</span><span class="w"> </span><span class="o">|</span><span class="w">       </span><span class="mi">7</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">147462</span><span class="w"> </span><span class="o">|</span><span class="w">       </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">147463</span><span class="w"> </span><span class="o">|</span><span class="w">      </span><span class="mi">14</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">147464</span><span class="w"> </span><span class="o">|</span><span class="w">      </span><span class="mi">11</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">147465</span><span class="w"> </span><span class="o">|</span><span class="w">       </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">147466</span><span class="w"> </span><span class="o">|</span><span class="w">      </span><span class="mi">17</span><span class="w"> </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">-----------+---------+</span>
+<span class="mi">10</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">.</span><span class="mi">09</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 </code></pre></div>
 <h2 id="implicit-join">Implicit join</h2>
 <p>Before the <code>JOIN</code> statement that explicitly declared a join was added to the SQL standard, it was possible to join two or more tables in a SQL statement using the <code>FROM t1, t2</code> clause, and specify the conditions for the join using the <code>WHERE t1.id = t2.id</code> clause. You can understand it as an implicit join, which uses the inner join to join tables.</p>

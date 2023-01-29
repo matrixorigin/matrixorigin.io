@@ -1301,14 +1301,14 @@
       
       
         <label class="md-nav__link" for="__nav_1_5">
-          Deploy
+          Deploying
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Deploy" data-md-level="2">
+      <nav class="md-nav" aria-label="Deploying" data-md-level="2">
         <label class="md-nav__title" for="__nav_1_5">
           <span class="md-nav__icon md-icon"></span>
-          Deploy
+          Deploying
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -1467,6 +1467,32 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_6_2" type="checkbox" id="__nav_1_6_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_6_2">
+          Mount Data
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Mount Data" data-md-level="3">
+        <label class="md-nav__title" for="__nav_1_6_2">
+          <span class="md-nav__icon md-icon"></span>
+          Mount Data
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
       <a href="../../../Maintain/mount-data-by-docker/" class="md-nav__link">
         Mount directory to Docker container
@@ -1476,15 +1502,8 @@
 
             
           
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../Maintain/mo-directory-structure/" class="md-nav__link">
-        MatrixOne Directory Structure
-      </a>
+        </ul>
+      </nav>
     </li>
   
 
@@ -1512,14 +1531,14 @@
       
       
         <label class="md-nav__link" for="__nav_1_7">
-          Migration
+          Migrating
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Migration" data-md-level="2">
+      <nav class="md-nav" aria-label="Migrating" data-md-level="2">
         <label class="md-nav__title" for="__nav_1_7">
           <span class="md-nav__icon md-icon"></span>
-          Migration
+          Migrating
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -5690,6 +5709,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Maintain/mo-directory-structure/" class="md-nav__link">
+        MatrixOne Directory Structure
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -6309,7 +6342,7 @@
    Transaction durability means that when a transaction is committed in the database, its changes to the data are permanent, regardless of whether the database software is restarted.</li>
 </ul>
 <h2 id="isolation-level">Isolation level</h2>
-<p>Standard database isolation levels include <strong>Read Uncommitted</strong>, <strong>Read Committed</strong>, <strong>Repeatable read</strong>, <strong>Serializable</strong>, etc. In MatrixOne 0.6, the supported isolation level is <strong>Snapshot Isolation</strong>.</p>
+<p>Standard database isolation levels include <strong>Read Uncommitted</strong>, <strong>Read Committed</strong>, <strong>Repeatable read</strong>, <strong>Serializable</strong>, and so on. In MatrixOne 0.6, the supported isolation level is <strong>Snapshot Isolation</strong>.</p>
 <p>Different from other isolation levels, snapshot isolation has the following characteristics:</p>
 <ul>
 <li>Snapshot isolation does not reflect changes made to data by other synchronized transactions for data read within a specified transaction. Specifies that the transaction uses the rows of data read at the beginning of this transaction.</li>
@@ -6332,7 +6365,7 @@
 <li>An explicit transaction starts and ends with <code>BEGIN...END</code> or <code>START TRANSACTIONS...COMMIT/ROLLBACK</code>.</li>
 <li>In an explicit transaction, DML and DDL can exist simultaneously, but if the occurrence of DDL will affect the result of DML, such as <code>drop table</code> or <code>alter table</code>, the DDL will be judged to fail and report an error. Affected statements are committed or rolled back typically.</li>
 <li>In an explicit transaction, other straightforward transactions cannot be nested. For example, if <code>START TANSACTIONS</code> is encountered after <code>START TANSACTIONS</code>, all statements between two <code>START TANSACTIONS</code> will be forced to commit, regardless of the value of <code>AUTOCOMMIT</code> 1 or 0.</li>
-<li>In an explicit transaction, only DML and DDL can be included, and no parameter configuration or management commands can be modified, such as <code>set [parameter] = [value]</code>, <code>create user</code>, etc.</li>
+<li>In an explicit transaction, only DML and DDL can be included, and no parameter configuration or management commands can be modified, such as <code>set [parameter] = [value]</code>, <code>create user</code>, and so on.</li>
 <li>In an explicit transaction, if an error occurs in a statement, to ensure the atomicity of the transaction, the error of a single statement at the time of commit will force the entire transaction to be rolled back.</li>
 </ul>
 <h3 id="implicit-transaction-rules">Implicit Transaction Rules</h3>
