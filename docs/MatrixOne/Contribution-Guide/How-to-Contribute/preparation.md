@@ -10,7 +10,7 @@ Thanks for understanding that this repository uses English as a shared language.
 
 You can see [MatrixOne Introduction](../../Overview/matrixone-introduction.md) for key features of MatrixOne, [MatrixOne Architecture](../../Overview/matrixone-architecture-design.md) for MatrixOne architecture, and operational logic.
 
-Besides, you can browse [SQL Reference](../../Reference/SQL-Reference/Data-Definition-Statements/create-database.md) and [Custom Functions](../../Reference/Builtin-Functions/Datetime/year.md) to know more about our interactive details.
+Besides, you can browse [SQL Reference](../../Reference/SQL-Reference/Data-Definition-Statements/create-database.md) and [Custom Functions](../../Reference/Builtin-Functions/Mathematical/abs.md) to know more about our interactive details.
 
 These introductions will help you go through you the key concepts and user details to understand the project.
 
@@ -46,8 +46,8 @@ For different technical modules, a code structure under `/pkg` is as shown in th
 | Directory              | Modules                                                 |
 | ------------------------------ | ------------------------------------------------------------ |
 | **frontend/** | SQL Frontend |
-| **sql/parser** | SQL Parser  |
 | **sql/** | MPP SQL Execution  |
+| **sql/parser** | SQL Parser  |
 | **sql/vectorize** | Vectorization of SQL Execution   |
 | **catalog/** | Catalog for storing metadata  |
 | **vm/engine** | Storage engine  |
@@ -55,13 +55,15 @@ For different technical modules, a code structure under `/pkg` is as shown in th
 | **vm/engine/tpe** |  Transaction Processing Engine  |
 | **buildin/** |  System builtin functions  |
 
-For contributing documentation, [matrixone](https://github.com/matrixorigin/matrixone), [matrixorigin.io](https://github.com/matrixorigin/matrixorigin.io) and [artwork](https://github.com/matrixorigin/artwork) are all the main repositories you'll be working on. For more details, please refer to [Contribute Documentation](contribute-documentation.md).
+For contributing documentation, [matrixorigin.io](https://github.com/matrixorigin/matrixorigin.io) , [matrixorigin.io.cn](https://github.com/matrixorigin/matrixorigin.io.cn) and [artwork](https://github.com/matrixorigin/artwork) are all the main repositories you'll be working on. For more details, please refer to [Contribute Documentation](contribute-documentation.md).
 
 | Directory              | Working Files                                                  |
 | ------------------------------ | ------------------------------------------------------------ |
-| **matrixone/docs/en/MatrixOne** | The content files of MatrixOne documentation website  |
 | **matrixone/docs/rfcs** | The design docs of MatrixOne project |
-| **matrixorigin.io/mkdocs.yml** | The configuration file of the documentation website |
+| **matrixorigin.io/docs/MatrixOne** | The content files of the English MatrixOne documentation website  |
+| **matrixorigin.io.cn/docs/MatrixOne** | The content files of the Chinese MatrixOne documentation website  |
+| **matrixorigin.io/mkdocs.yml** | The configuration file of the English documentation website |
+| **matrixorigin.io。cn/mkdocs.yml** | The configuration file of the Chinese documentation website |
 | **artwork/docs** | The images, screenshots and diagrams of documentation webstie |
 
 ## **Set up your Development Environment**  
@@ -70,7 +72,7 @@ For contributing documentation, [matrixone](https://github.com/matrixorigin/matr
 
 MatrixOne is written in Go. Before you start contributing code to MatrixOne, you need to set up your GO development environment.
 
-1. Install `Go` version **1.18**. You can see [How to Write Go Code](http://golang.org/doc/code.html) for more information.  
+1. Install `Go` version **1.19**. You can see [How to Write Go Code](http://golang.org/doc/code.html) for more information.  
 2. Define `GOPATH` environment variable and modify `PATH` to access your Go binaries. A common setup is as follows. You could always specify it based on your own flavor.
 
 ```sh

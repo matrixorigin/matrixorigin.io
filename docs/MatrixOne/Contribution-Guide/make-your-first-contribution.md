@@ -107,7 +107,7 @@ git push origin main:NEW_BRANCH
 
 `NEW_BRANCH` is the name of the new branch you created and push to. Also, you can replace it with another name you want.
 
-### **Step 7 Create a pull request**
+### **Step 7: Create a pull request**
 
 Having pushed your changes, you can visit your folk at `https://github.com/$user/matrixone`, and click the **Compare & Pull Request** button to create a pull request in `NEW_BRANCH` for your modification to the MatrixOne repository.
 
@@ -119,7 +119,7 @@ Having pushed your changes, you can visit your folk at `https://github.com/$user
 
 Once your PR is opened, it will be assigned to reviewers. These reviewers will check your contribution and do a detailed review according to the correctness, bugs, style, sand so on.
 
-### **Step 8 After merging, Keep your repo in sync**
+### **Step 8: After merging, Keep your repo in sync**
 
 Congratulations that your contributions are accepted and merged into the project!  
 And there are some operations left to do, which help keep project committing history clean and keep your local and remote repo synchronized with MatrixOne repo.  

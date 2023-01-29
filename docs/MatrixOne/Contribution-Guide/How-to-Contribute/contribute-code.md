@@ -12,7 +12,8 @@ Before you start developing, make sure you have read [Preparation](preparation.m
 It's necessary to keep a consistent style for code, code comments, commit messages, and pull requests when contributing to MatrixOne. When you put together your pull request, we highly recommend you comply with the following style guides which make MatrixOne easy to review, maintain, and develop.
 
 * **Code Style**  
-The coding style suggested by the Golang community is used in MatrixOne. See the [style doc](https://github.com/golang/go/wiki/CodeReviewComments) for details.
+
+   The coding style suggested by the Golang community is used in MatrixOne. See the [style doc](https://github.com/golang/go/wiki/CodeReviewComments) for details.
 
 * **Code Comment Style**
 
@@ -24,9 +25,10 @@ The coding style suggested by the Golang community is used in MatrixOne. See the
 
 ## **Workflow<c name="workflow"></c>**
 
-You can follow the workflow to operate development, and you can see [Make Your First Contribution](../make-your-first-contribution.md) if you are a newcomer and need more detailed instructions about workflow.  
+   You can follow the workflow to operate development, and you can see [Make Your First Contribution](../make-your-first-contribution.md) if you are a newcomer and need more detailed instructions about workflow.  
 
-*1.* Fork the [MatrixOne repository](https://github.com/matrixorigin/matrixone) on GitHub.
+*1.* Fork the [matrixOne](https://github.com/matrixorigin/matrixone) repository on GitHub.
+
 *2.* Clone your fork to your local machine with:  
 
 ```

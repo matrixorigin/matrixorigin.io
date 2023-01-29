@@ -93,7 +93,7 @@ nav:
         - Build a CRUD demo with SpringBoot and MyBatis: MatrixOne/Tutorial/springboot-mybatis-crud-demo.md
         - Build a simple Python+SQLAlchemy CRUD demo: MatrixOne/Tutorial/sqlalchemy-python-crud-demo.md
         - Build a simple Python CRUD demo: MatrixOne/Tutorial/develop-python-crud-demo.md
-    - Deploy:
+    - Deploying:
       - Software and Hardware Recommendations: MatrixOne/Deploy/check-before-deployment.md
       - Deploy MatrixOne Cluster on Kubernetes:
         - Deploy MatrixOne Cluster on Kubernetes Overview: MatrixOne/Deploy/install-and-launch-in-k8s.md
@@ -102,9 +102,9 @@ nav:
         - Configure shared memory for MatrixOne: MatrixOne/Deploy/mo-in-kubernetes/configure-shared-memory.md
     - Maintenance:
       - Backup and Restore: MatrixOne/Maintain/backup-restore.md
-      - Mount directory to Docker container: MatrixOne/Maintain/mount-data-by-docker.md
-      - MatrixOne Directory Structure: MatrixOne/Maintain/mo-directory-structure.md
-    - Migration:
+      - Mount Data:
+        - Mount directory to Docker container: MatrixOne/Maintain/mount-data-by-docker.md
+    - Migrating:
       - From MySQL to MatrixOne: MatrixOne/Migrate/migrate-from-mysql-to-matrixone.md
     - Testing:
       - Performance Testing:
@@ -119,7 +119,7 @@ nav:
       - Common statistic data query: MatrixOne/Troubleshooting/common-statistics-query.md
       - Audit: MatrixOne/Troubleshooting/audit.md
       - Error Code: MatrixOne/Troubleshooting/error-code.md
-    - Performance Tuning:
+    - Tuning Performance:
       - Understanding the Query Execution Plan:
         - Query Execution Plan Overview: MatrixOne/Performance-Tuning/explain-overview.md
         - Using EXPLAIN to learn the execution plan: MatrixOne/Performance-Tuning/explain-walkthrough.md
@@ -347,6 +347,7 @@ nav:
       - Limitations:
         - JDBC supported features list: MatrixOne/Reference/Limitations/mo-jdbc-feature-list.md
         - Partitioning supported features list: MatrixOne/Reference/Limitations/mo-partition-support.md
+      - MatrixOne Directory Structure: MatrixOne/Maintain/mo-directory-structure.md
     - FAQs:
       - Product FAQs: MatrixOne/FAQs/product-faqs.md
       - Deployment FAQs: MatrixOne/FAQs/deployment-faqs.md
