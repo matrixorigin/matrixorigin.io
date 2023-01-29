@@ -2,11 +2,9 @@
 
 ## What is Query Execution Plan?
 
+Execution plan is the specific steps for the database to execute SQL statements, such as accessing data in the table through index or full table scan, connection query implementation method and connection sequence, etc.; the execution plan is based on The details of your tables, columns, indexes, and conditions in the `WHERE` clause can tell you how the query will be executed or how it has been executed, which can be performed without reading all rows. Huge Queries of tables; joins involving multiple tables can be performed without comparing every combination of rows. . If the performance of a SQL statement is not satisfactory, the first thing you should look at is its execution plan. Like most mature database products, MatrixOne database also provides the function of analyzing query statement performance.
+
 The MatrixOne query optimizer selects the most efficient execution plan by "calculating" the input SQL statement, and this execution plan is the execution plan.
-
-Depending on the details of your tables, columns, indexes, and the conditions in your WHERE clause, the MatrixOne optimizer considers many techniques to efficiently perform the lookups involved in an SQL query. A query on a huge table can be performed without reading all the rows; a join involving several tables can be performed without comparing every combination of rows.
-
-The execution plan can tell you how the query will be executed or how it has been executed, and you can see the inefficient places in the SQL code through the execution plan.
 
 ## Use `EXPLAIN` to query the execution plan
 

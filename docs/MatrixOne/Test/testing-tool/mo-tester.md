@@ -39,7 +39,7 @@ The Cases and Results are 1-1 correspondence, and they are actually `git submodu
 
 ## 2. Configure `mo-tester`
 
-* In `mo.yml` file, configure the server address, default database name, username, and password, etc. MO-tester is based on java, so these parameters are required for the JDBC(JDBC，Java Database Connectivity) driver. Below is a default example for a local standalone version MatrixOne.
+* In `mo.yml` file, configure the server address, default database name, username, and password, and so on. MO-tester is based on java, so these parameters are required for the JDBC(JDBC，Java Database Connectivity) driver. Below is a default example for a local standalone version MatrixOne.
 
   ```
   #jdbc

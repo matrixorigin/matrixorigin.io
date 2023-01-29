@@ -10,7 +10,7 @@ Make sure you have already [Deployed standalone MatrixOne](../../Get-Started/ins
 
 ## **1. Compile TPCH dbgen**
 
-The tpch dbgen utility generates, by default, a set of flat files suitable for loading into the tpch schema with the size based on the “Scale Factor” argument. A scale factor of 1 produces a complete data set of approximately 1 GB, a scale factor of 10 produces a data set of approximately 10 GB etc.
+The tpch dbgen utility generates, by default, a set of flat files suitable for loading into the tpch schema with the size based on the “Scale Factor” argument. A scale factor of 1 produces a complete data set of approximately 1 GB, a scale factor of 10 produces a data set of approximately 10 GB and so on.
 
 ```
 git clone https://github.com/electrum/tpch-dbgen.git

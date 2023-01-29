@@ -31,7 +31,7 @@ explain select city,libname1,count(libname1) as a from t3 join t1 on libname1=li
 13 rows in set (0.00 sec)
 ```
 
-EXPLAIN outputs a tree structure, named as `Execution Plan Tree`. Every leaf node includes the information of node type, affected objects and other properties such as `cost`, `rowsize` etc. We can simplify the above example only with node type information. It visualizes the whole process of a SQL query,  shows which operation nodes it goes through and what are their cost  estimation.
+EXPLAIN outputs a tree structure, named as `Execution Plan Tree`. Every leaf node includes the information of node type, affected objects and other properties such as `cost`, `rowsize` and so on. We can simplify the above example only with node type information. It visualizes the whole process of a SQL query,  shows which operation nodes it goes through and what are their cost  estimation.
 
 ```
 Project

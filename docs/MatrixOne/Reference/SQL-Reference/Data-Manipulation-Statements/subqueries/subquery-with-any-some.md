@@ -2,7 +2,7 @@
 
 ## **Description**
 
-Comparison operators (=, >, < , etc.) are used only on subqueries that return one row. SQL Subqueries with `ANY`, you can make comparisons on subqueries that return multiple rows. `ANY` evaluate whether any or all of the values returned by a subquery match the left-hand expression.
+Comparison operators (=, >, < , and so on.) are used only on subqueries that return one row. SQL Subqueries with `ANY`, you can make comparisons on subqueries that return multiple rows. `ANY` evaluate whether any or all of the values returned by a subquery match the left-hand expression.
 
 Subqueries that use the `ANY` keyword return true when any value retrieved in the subquery matches the value of the left-hand expression.
 
