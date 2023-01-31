@@ -16,7 +16,6 @@ This document will guide you build standalone MatrixOne using source code.
 
 ## Step 2: Install GCC as necessary dependency
 
-
 1. To verify whether the GCC is installed:
 
     ```
