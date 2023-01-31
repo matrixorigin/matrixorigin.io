@@ -37,6 +37,9 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.tabbed:
       alternate_style: true
+  - def_list
+  - pymdownx.tasklist:
+      custom_checkbox: true
 nav:
   - MatrixOne:
     - Home: README.md
@@ -47,7 +50,16 @@ nav:
       - MySQL Compatibility: MatrixOne/Overview/mysql-compatibility.md
       - What's New: MatrixOne/Overview/whats-new.md
     - Getting Started:
-      - Deploy standalone MatrixOne: MatrixOne/Get-Started/install-standalone-matrixone.md
+      - Deploy standalone MatrixOne: 
+        - Overview: MatrixOne/Get-Started/install-standalone-matrixone.md
+        - Deploy on macOS:
+          - Building from source code: MatrixOne/Get-Started/install-on-macos/install-on-macos-method1.md
+          - Using binary package: MatrixOne/Get-Started/install-on-macos/install-on-macos-method2.md
+          - Using Docker: MatrixOne/Get-Started/install-on-macos/install-on-macos-method3.md
+        - Deploy on Linux :
+          - Building from source code: MatrixOne/Get-Started/install-on-linux/install-on-linux-method1.md
+          - Using binary package: MatrixOne/Get-Started/install-on-linux/install-on-linux-method2.md
+          - Using Docker: MatrixOne/Get-Started/install-on-linux/install-on-linux-method3.md
       - Basic SQL: MatrixOne/Get-Started/basic-sql.md
     - Developing Guide:
       - Schema Design:
