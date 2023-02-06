@@ -32,19 +32,21 @@ The MatrixOne documentation content is planned with 6 main modules.
 
 * **Deploying**: How to quickly deploy and run MatrixOne cluster.
 
+* **Tutorials**: Examples of developing application demos.
+
 * **Maintenance**: How to maintain MatrixOne, including backing up and restoring data.
 
 * **Migrating**: How to migrate data from other databases to MatrixOne.
 
 * **Testing**: How to perform a self-test or MatrixOne performance test using the test tool.
 
-* **Troubleshooting**: Introduce common errors and debugging tools
-
-* **Tuning Performance**: how to tune the MatrixOne performance in a stand-alone or distributed environment.
+* **Tuning Performance**: How to tune the MatrixOne performance in a stand-alone or distributed environment.
 
 * **Privilege**: Multi-account management, account lifecycle management, and authorization in MatrixOne clusters.
 
 * **Reference**: SQL reference, Configuration parameters.
+
+* **Troubleshooting**: Introduce common errors and debugging tools.
 
 * **FAQs**: Product, Technical Design, SQL, Deployment FAQs.  
 

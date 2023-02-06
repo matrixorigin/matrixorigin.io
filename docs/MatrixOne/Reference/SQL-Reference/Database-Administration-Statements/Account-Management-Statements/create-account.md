@@ -24,10 +24,6 @@ auth_option: {
 
 Specifies the default account name and authorization mode of the tenant, `auth_string` specifies the password explicitly.
 
-#### status_option
-
-Specifies the initial state of a vstore after it is created.
-
 ## **Examples**
 
 ```sql

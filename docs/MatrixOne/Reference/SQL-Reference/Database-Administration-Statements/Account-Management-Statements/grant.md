@@ -6,7 +6,7 @@ The `GRANT` statement assigns privileges and roles to MatrixOne users and roles.
 
 ### GRANT Overview
 
-System permissions are those of the initial system *root*. The system *root* can create and delete other *accounts*, and manage *accounts*. A system *root* cannot manage other resources of other *accounts*.
+System permissions are those of the initial System account administrator ( The corresponding user is the *root*). The System account administrator can create and delete other *accounts*, and manage *accounts*. A System account administrator cannot manage other resources of other *accounts*.
 
 To use `GRANT` to GRANT permissions to other users or roles, you must first have the `WITH GRANT OPTION` permissions and the permissions you are granting. Use the' SHOW GRANTS' statement to find out the grant status of your current or another role. For more information, see [SHOW GRANTS](show-grants.md).
 
@@ -60,20 +60,6 @@ The `GRANT` statement enables *account* to grant privileges and roles, which can
    + It is permitted to assign both privileges and roles to an account, but you must use separate GRANT statements, each with syntax appropriate to what is to be granted.
 
 To grant a privilege with `GRANT`, you must have the `GRANT OPTION` privilege, and you must have the privileges that you are granting.
-
-#### Object Quoting Guidelines
-
-Several objects within `GRANT` statements are subject to quoting, although quoting is optional in many cases: Account, role, database, table names.  
-
-`user_name` or `host_name` value in the account name are consecutive lowercase letters, you can use no quotes. If the name is case-sensitive or spaced, you need to use quotes. Wildcards are not allowed.
-
-For an example as below:
-
-```
-GRANT ALL ON db1.* TO 'user1'@'localhost';
-```
-
-The host name part of the user or role name, if omitted, defaults to '%'.
 
 #### Database Privileges
 

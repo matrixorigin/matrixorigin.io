@@ -33,15 +33,15 @@ It is possible to write the `INSERT INTO` statement in several ways:
 Below is a selection from the "Customers" table in the Northwind sample database:
 
 ```
-CREATE TABLE Customer (
-  CustomerID INT AUTO_INCREMENT NOT NULL
-  ,CustomerName VARCHAR(40) NOT NULL
-  ,ContactName VARCHAR(30) NULL
-  ,Address VARCHAR(60) NULL
-  ,City VARCHAR(15) NULL
-  ,PostalCode VARCHAR(10) NULL
-  ,Country VARCHAR(15) NULL
-  ,PRIMARY KEY (CustomerID)
+CREATE TABLE Customers (
+  CustomerID INT AUTO_INCREMENT NOT NULL,
+  CustomerName VARCHAR(40) NOT NULL,
+  ContactName VARCHAR(30) NULL,
+  Address VARCHAR(60) NULL,
+  City VARCHAR(15) NULL,
+  PostalCode VARCHAR(10) NULL,
+  Country VARCHAR(15) NULL,
+  PRIMARY KEY (CustomerID)
   );
 ```
 
@@ -121,25 +121,25 @@ WHERE *condition*;
 In this tutorial we will use the Northwind sample database.
 
 ```
-CREATE TABLE Customer (
-  CustomerID INT AUTO_INCREMENT NOT NULL
-  ,CustomerName VARCHAR(40) NOT NULL
-  ,ContactName VARCHAR(30) NULL
-  ,Address VARCHAR(60) NULL
-  ,City VARCHAR(15) NULL
-  ,PostalCode VARCHAR(10) NULL
-  ,Country VARCHAR(15) NULL
-  ,PRIMARY KEY (CustomerID)
+CREATE TABLE Customers (
+  CustomerID INT AUTO_INCREMENT NOT NULL,
+  CustomerName VARCHAR(40) NOT NULL,
+  ContactName VARCHAR(30) NULL,
+  Address VARCHAR(60) NULL,
+  City VARCHAR(15) NULL,
+  PostalCode VARCHAR(10) NULL,
+  Country VARCHAR(15) NULL,
+  PRIMARY KEY (CustomerID)
   );
-CREATE TABLE Supplier (
-  SupplierID INT AUTO_INCREMENT NOT NULL
-  ,SupplierName VARCHAR(40) NOT NULL
-  ,ContactName VARCHAR(30) NULL
-  ,Address VARCHAR(60) NULL
-  ,City VARCHAR(15) NULL
-  ,PostalCode VARCHAR(10) NULL
-  ,Country VARCHAR(15) NULL
-  ,PRIMARY KEY (SupplierID)
+CREATE TABLE Suppliers (
+  SupplierID INT AUTO_INCREMENT NOT NULL,
+  SupplierName VARCHAR(40) NOT NULL,
+  ContactName VARCHAR(30) NULL,
+  Address VARCHAR(60) NULL,
+  City VARCHAR(15) NULL,
+  PostalCode VARCHAR(10) NULL,
+  Country VARCHAR(15) NULL,
+  PRIMARY KEY (SupplierID)
   );
 ```
 

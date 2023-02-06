@@ -4,7 +4,7 @@
 
 Use the `SHOW GRANTS` statement to display all grant information for a user. This would display privileges that were assigned to the user using the `GRANT` command.
 
-`SHOW GRANTS` requires the `SELECT` privilege for the MatrixOne system schema, except to display privileges and roles for the current user.
+`SHOW GRANTS` requires the `SELECT` privilege privileges to query all tables in the *mo_catalog* database, except to display privileges and roles for the current user.
 
 To name the account or role for `SHOW GRANTS`, use the same format as for the `GRANT` statement, for example:
 
