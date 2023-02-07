@@ -11,5 +11,5 @@ If you find documentation issues, feel free to create an Issue to let us know or
 |  Overview   | Get Started  |  Reference   
 |  ----  | ----  |  ----  
 | [MatrixOne Introduction](MatrixOne/Overview/matrixone-introduction.md)  | [Install MatrixOne](MatrixOne/Get-Started/install-standalone-matrixone.md) | 	[SQL Reference](MatrixOne/Reference/SQL-Reference/Data-Definition-Statements/create-database.md)
-| [MatrixOne Architecture](MatrixOne/Overview/matrixone-architecture-design.md)  | [Connect to MatrixOne Server](MatrixOne/Get-Started/connect-to-matrixone-server.md) | [v0.6.0 Release Notes](MatrixOne/Release-Notes/v0.6.0.md)
+| [MatrixOne Architecture](MatrixOne/Overview/matrixone-architecture-design.md)  | [Basic SQL](MatrixOne/Get-Started/basic-sql.md) | [v0.6.0 Release Notes](MatrixOne/Release-Notes/v0.6.0.md)
 | [Mysql Compatibility](MatrixOne/Overview/mysql-compatibility.md)  | [SSB Test with MatrixOne](MatrixOne/Test/performance-testing/SSB-test-with-matrixone.md)
