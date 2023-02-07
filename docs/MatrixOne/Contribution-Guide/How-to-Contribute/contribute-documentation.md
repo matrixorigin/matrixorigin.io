@@ -40,7 +40,7 @@ The MatrixOne documentation content is planned with 6 main modules.
 
 * **Testing**: How to perform a self-test or MatrixOne performance test using the test tool.
 
-* **Tuning Performance**: How to tune the MatrixOne performance in a stand-alone or distributed environment.
+* **Performance Tuning**: How to tune the MatrixOne performance in a stand-alone or distributed environment.
 
 * **Privilege**: Multi-account management, account lifecycle management, and authorization in MatrixOne clusters.
 
