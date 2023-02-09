@@ -26,7 +26,7 @@ The `CREATE TABLE` statement usually takes the following form:
 CREATE TABLE {table_name} ({elements});
 ```
 
-For more information on `CREATE TABLE` statement, see [CREATE TABLE](../../Reference/SQL-Reference/Data-Definition-Statements/create-table.md).
+For more information on `CREATE TABLE` statement, see [CREATE TABLE](../../Reference/SQL-Reference/Data-Definition-Language/create-table.md).
 
 **Parameter description**
 

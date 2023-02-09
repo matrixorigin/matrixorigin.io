@@ -7,7 +7,7 @@
 * **How do I export data from MatrixOne to a file?**
 
   You can use `SELECT INTO OUTFILE` command to export data from MatrixOne to a **csv** file (only to the server host, not to the remote client).  
-  For this command, you can see [SELECT Reference](../Reference/SQL-Reference/Data-Manipulation-Statements/select.md).  
+  For this command, you can see [SELECT Reference](../Reference/SQL-Reference/Data-Query-Language/select.md).  
 
 * **What is the size limit of a transaction in MatrixOne?**
 

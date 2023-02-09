@@ -14,7 +14,7 @@ In most cases, there are five types of subqueries:
 - Quantified Comparison, such as `WHERE t1.a = ANY(SELECT ... FROM t2)`, `WHERE t1.a = ANY(SELECT ... FROM t2)`.
 - Subquery as a comparison operator operand, such as `WHERE t1.a > (SELECT ... FROM t2)`.
 
-For more information on SQL statement, see [SUBQUERY](../../Reference/SQL-Reference/Data-Manipulation-Statements/subquery.md).
+For more information on SQL statement, see [SUBQUERY](../../Reference/SQL-Reference/Data-Query-Language/subqueries/subquery.md).
 
 In addition, from the execution of SQL statements, subquery generally has the following two types:
 

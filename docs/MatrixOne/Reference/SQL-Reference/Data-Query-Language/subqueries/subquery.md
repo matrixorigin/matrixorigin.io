@@ -26,12 +26,12 @@ A subquery may occur in:
 
 For more information, see the reference below:
 
-- [Derived Tables](subqueries/derived-tables.md)
-- [Comparisons Using Subqueries](subqueries/comparisons-using-subqueries.md)
-- [SUBQUERY WITH ANY or SOME](subqueries/subquery-with-any-some.md)
-- [SUBQUERY WITH ALL](subqueries/subquery-with-all.md)
-- [SUBQUERY WITH EXISTS](subqueries/subquery-with-exists.md)
-- [SUBQUERY WITH IN](subqueries/subquery-with-in.md)
+- [Derived Tables](derived-tables.md)
+- [Comparisons Using Subqueries](comparisons-using-subqueries.md)
+- [SUBQUERY WITH ANY or SOME](subquery-with-any-some.md)
+- [SUBQUERY WITH ALL](subquery-with-all.md)
+- [SUBQUERY WITH EXISTS](subquery-with-exists.md)
+- [SUBQUERY WITH IN](subquery-with-in.md)
 
 ## **Constraints**
 

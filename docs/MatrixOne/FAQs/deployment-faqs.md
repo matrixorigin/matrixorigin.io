@@ -43,7 +43,7 @@ The Macbook M1/M2 with ARM architecture is also a good fit for a development env
 
 * **What settings do I need to change for installation?**
 
-Normally you don't need to change anything for installation. A default setting of `launch.toml` is enough to run MatrixOne directly. But if you want to customize your listening port, ip address, stored data files path, you may modify the corresponding records of [`cn.toml`](https://github.com/matrixorigin/matrixone/blob/main/etc/launch-tae-CN-tae-DN/cn.toml), [`dn.toml`](https://github.com/matrixorigin/matrixone/blob/main/etc/launch-tae-CN-tae-DN/dn.toml) or [`log.toml`](https://github.com/matrixorigin/matrixone/blob/main/etc/launch-tae-CN-tae-DN/log.toml), for more details about parameter configuration in these files, see [Boot Parameters for standalone installation](.. /Reference/System-Parameters/configuration-settings.md).
+Normally you don't need to change anything for installation. A default setting of `launch.toml` is enough to run MatrixOne directly. But if you want to customize your listening port, ip address, stored data files path, you may modify the corresponding records of [`cn.toml`](https://github.com/matrixorigin/matrixone/blob/main/etc/launch-tae-CN-tae-DN/cn.toml), [`dn.toml`](https://github.com/matrixorigin/matrixone/blob/main/etc/launch-tae-CN-tae-DN/dn.toml) or [`log.toml`](https://github.com/matrixorigin/matrixone/blob/main/etc/launch-tae-CN-tae-DN/log.toml), for more details about parameter configuration in these files, see [Boot Parameters for standalone installation](../Reference/System-Parameters/configuration-settings.md).
 
 * **After the MySQL client is installed, I open the terminal and run `mysql`, I got an error of `command not found: mysql`.**
 
