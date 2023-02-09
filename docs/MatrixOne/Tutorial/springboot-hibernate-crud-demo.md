@@ -159,7 +159,7 @@ spring.jpa.hibernate.ddl-auto = validate
 
 ### 4. Create table and insert some data in MatrixOne
 
-Connect to MatrixOne with MySQL client and execute the following SQL statements. You can save these SQL statements in a *book.sql* under */resource/database/*. 
+Connect to MatrixOne with MySQL client and execute the following SQL statements. You can save these SQL statements in a *book.sql* under */resource/database/*.
 
 ```
 mysql> USE test;

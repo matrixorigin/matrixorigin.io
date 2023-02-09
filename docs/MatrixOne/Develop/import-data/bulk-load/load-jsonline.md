@@ -182,7 +182,7 @@ In this tutorial, we will guide you through loading two jsonline files with obje
     ```
 
 !!! note
-    If you use Docker to launch MatrixOne, when you try to import the jsonline file, please make sure that you have a data directory mounted to the container. You can check on the [load csv tutorial](load-csv.md) about the loading with docker installation. 
+    If you use Docker to launch MatrixOne, when you try to import the jsonline file, please make sure that you have a data directory mounted to the container. You can check on the [load csv tutorial](load-csv.md) about the loading with docker installation.
 
 ## Constraints
 

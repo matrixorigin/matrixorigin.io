@@ -15,7 +15,7 @@ For more information on the required operating system versions for deploying Mat
 
 ## **Deploy on macOS**
 
-You can install and connect to MatrixOne on macOS in one of three ways that work best for you: 
+You can install and connect to MatrixOne on macOS in one of three ways that work best for you:
 
 - [Building from source code](install-on-macos/install-on-macos-method1.md)
 - [Using binary package](install-on-macos/install-on-macos-method2.md)

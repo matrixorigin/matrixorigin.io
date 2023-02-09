@@ -10,8 +10,8 @@ Regardless of the specifics, we suggest you stay friendly first:
 
 * **Be respectful**  
 Be respectful to every pull request author and other reviewers. Code review is a part of community activities so you should follow the community requirements.
-* **Be careful with tone**    
-Try to frame your comments as suggestions or questions instead of commands. If the tone is softer, your reviews will be easier to accept.   
+* **Be careful with tone**
+Try to frame your comments as suggestions or questions instead of commands. If the tone is softer, your reviews will be easier to accept.
 * **Be generous with your compliments**  
 We recommend you offer encouragement and appreciation to the authors for their good practices in the code segments. In many cases, telling the authors what they did is right is even more valuable than telling them what they did is wrong.
 
