@@ -37,6 +37,9 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.tabbed:
       alternate_style: true
+  - def_list
+  - pymdownx.tasklist:
+      custom_checkbox: true
 nav:
   - MatrixOne:
     - Home: README.md
@@ -47,9 +50,22 @@ nav:
       - MySQL Compatibility: MatrixOne/Overview/mysql-compatibility.md
       - What's New: MatrixOne/Overview/whats-new.md
     - Getting Started:
-      - Deploy standalone MatrixOne: MatrixOne/Get-Started/install-standalone-matrixone.md
+      - Deploy standalone MatrixOne: 
+        - Overview: MatrixOne/Get-Started/install-standalone-matrixone.md
+        - Deploy on macOS:
+          - Building from source code: MatrixOne/Get-Started/install-on-macos/install-on-macos-method1.md
+          - Using binary package: MatrixOne/Get-Started/install-on-macos/install-on-macos-method2.md
+          - Using Docker: MatrixOne/Get-Started/install-on-macos/install-on-macos-method3.md
+        - Deploy on Linux :
+          - Building from source code: MatrixOne/Get-Started/install-on-linux/install-on-linux-method1.md
+          - Using binary package: MatrixOne/Get-Started/install-on-linux/install-on-linux-method2.md
+          - Using Docker: MatrixOne/Get-Started/install-on-linux/install-on-linux-method3.md
       - Basic SQL: MatrixOne/Get-Started/basic-sql.md
     - Developing Guide:
+      - Schema Design:
+        - Overview: MatrixOne/Develop/schema-design/overview.md
+        - Create Database: MatrixOne/Develop/schema-design/create-database.md
+        - Create Table: MatrixOne/Develop/schema-design/create-table.md
       - Connect to MatrixOne:
         - MatrixOne SSL connection: MatrixOne/Develop/connect-mo/configure-mo-ssl-connection.md
         - Connecting to MatrixOne with Database Client Tool: MatrixOne/Develop/connect-mo/database-client-tools.md
@@ -57,10 +73,6 @@ nav:
           - Connect MatrixOne with JDBC: MatrixOne/Develop/connect-mo/java-connect-to-matrixone/connect-mo-with-jdbc.md
           - Connect MatrixOne with Java ORMs: MatrixOne/Develop/connect-mo/java-connect-to-matrixone/connect-mo-with-orm.md
         - Python connect to MatrixOne: MatrixOne/Develop/connect-mo/python-connect-to-matrixone.md
-      - Schema Design:
-        - Overview: MatrixOne/Develop/schema-design/overview.md
-        - Create Database: MatrixOne/Develop/schema-design/create-database.md
-        - Create Table: MatrixOne/Develop/schema-design/create-table.md
       - Import Data:
         - Insert: MatrixOne/Develop/import-data/insert-data.md
         - Bulk Load:
@@ -68,15 +80,15 @@ nav:
           - Import .csv format data: MatrixOne/Develop/import-data/bulk-load/load-csv.md
           - Import jsonlines format data: MatrixOne/Develop/import-data/bulk-load/load-jsonline.md
           - Import data from S3: MatrixOne/Develop/import-data/bulk-load/load-s3.md
+      - Export Data:
+        - Export data by SELECT INTO...OUTFILE: MatrixOne/Develop/export-data/select-into-outfile.md
+        - Export data by modump: MatrixOne/Develop/export-data/modump.md
       - Read Data:
         - Query Data from a Single Table: MatrixOne/Develop/read-data/query-data-single-table.md
         - Multi-table Join Queries: MatrixOne/Develop/read-data/multitable-join-query.md
         - Subquery: MatrixOne/Develop/read-data/subquery.md
         - Views: MatrixOne/Develop/read-data/views.md
         - Common Table Expression: MatrixOne/Develop/read-data/cte.md
-      - Export Data:
-        - Export data by SELECT INTO...OUTFILE: MatrixOne/Develop/export-data/select-into-outfile.md
-        - Export data by modump: MatrixOne/Develop/export-data/modump.md
       - Transactions:
         - General Transaction Overview: MatrixOne/Develop/Transactions/common-transaction-overview.md
         - Transaction by MatrixOne Server:
@@ -87,12 +99,6 @@ nav:
           - Isolation Level: MatrixOne/Develop/Transactions/matrixone-transaction-overview/snapshot-isolation.md
           - MVCC: MatrixOne/Develop/Transactions/matrixone-transaction-overview/mvcc.md
           - Transaction Scenario: MatrixOne/Develop/Transactions/matrixone-transaction-overview/scenario.md
-      - Example Application:
-        - Build a Java CRUD demo: MatrixOne/Tutorial/develop-java-crud-demo.md
-        - Build a CRUD demo with SpringBoot and Spring JPA: MatrixOne/Tutorial/springboot-hibernate-crud-demo.md
-        - Build a CRUD demo with SpringBoot and MyBatis: MatrixOne/Tutorial/springboot-mybatis-crud-demo.md
-        - Build a simple Python+SQLAlchemy CRUD demo: MatrixOne/Tutorial/sqlalchemy-python-crud-demo.md
-        - Build a simple Python CRUD demo: MatrixOne/Tutorial/develop-python-crud-demo.md
     - Deploying:
       - Software and Hardware Recommendations: MatrixOne/Deploy/check-before-deployment.md
       - Deploy MatrixOne Cluster on Kubernetes:
@@ -100,9 +106,15 @@ nav:
         - What is MatrixOne Operator: MatrixOne/Deploy/mo-in-kubernetes/whats-mo-operator.md
         - Using MatrixOne Operator deploy MatrixOne Cluster: MatrixOne/Deploy/mo-in-kubernetes/get-started.md
         - Configure shared memory for MatrixOne: MatrixOne/Deploy/mo-in-kubernetes/configure-shared-memory.md
+    - Tutorials:
+      - Build a Java CRUD demo: MatrixOne/Tutorial/develop-java-crud-demo.md
+      - Build a CRUD demo with SpringBoot and Spring JPA: MatrixOne/Tutorial/springboot-hibernate-crud-demo.md
+      - Build a CRUD demo with SpringBoot and MyBatis: MatrixOne/Tutorial/springboot-mybatis-crud-demo.md
+      - Build a simple Python+SQLAlchemy CRUD demo: MatrixOne/Tutorial/sqlalchemy-python-crud-demo.md
+      - Build a simple Python CRUD demo: MatrixOne/Tutorial/develop-python-crud-demo.md
     - Maintenance:
       - Backup and Restore: MatrixOne/Maintain/backup-restore.md
-      - Mount Data:
+      - Mount Data: 
         - Mount directory to Docker container: MatrixOne/Maintain/mount-data-by-docker.md
     - Migrating:
       - From MySQL to MatrixOne: MatrixOne/Migrate/migrate-from-mysql-to-matrixone.md
@@ -114,11 +126,6 @@ nav:
       - Testing Tool:
         - MO-Tester: MatrixOne/Test/testing-tool/mo-tester.md
         - MO-Tester Specification: MatrixOne/Test/testing-tool/mo-tester-reference.md
-    - Troubleshooting:
-      - Slow Queries: MatrixOne/Troubleshooting/slow-queries.md
-      - Common statistic data query: MatrixOne/Troubleshooting/common-statistics-query.md
-      - Audit: MatrixOne/Troubleshooting/audit.md
-      - Error Code: MatrixOne/Troubleshooting/error-code.md
     - Performance Tuning:
       - Understanding the Query Execution Plan:
         - Query Execution Plan Overview: MatrixOne/Performance-Tuning/explain-overview.md
@@ -348,6 +355,11 @@ nav:
         - JDBC supported features list: MatrixOne/Reference/Limitations/mo-jdbc-feature-list.md
         - Partitioning supported features list: MatrixOne/Reference/Limitations/mo-partition-support.md
       - MatrixOne Directory Structure: MatrixOne/Maintain/mo-directory-structure.md
+    - Troubleshooting:
+      - Slow Queries: MatrixOne/Troubleshooting/slow-queries.md
+      - Common statistic data query: MatrixOne/Troubleshooting/common-statistics-query.md
+      - Audit: MatrixOne/Troubleshooting/audit.md
+      - Error Code: MatrixOne/Troubleshooting/error-code.md
     - FAQs:
       - Product FAQs: MatrixOne/FAQs/product-faqs.md
       - Deployment FAQs: MatrixOne/FAQs/deployment-faqs.md
