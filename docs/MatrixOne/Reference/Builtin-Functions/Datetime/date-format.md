@@ -58,7 +58,7 @@ Formats the date value according to the format string. If either argument is NUL
 | %Y | Year, numeric, four digits |
 | %y | Year, numeric (two digits) |
 | %% | A literal % character |
-| %x | x, for any “x” not listed above |
+| %x | x, for any "x" not listed above |
 
 ## **Examples**
 

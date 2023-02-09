@@ -147,13 +147,13 @@ As MatrixOne 0.6 has introduced the concept of multi-tenancy, the default `sys` 
 
 `system_metrics` tables have more or less same column types, fields in these tables are described as follows:
 
-* collecttime：Collection time
+* collecttime:Collection time
 * value:  the value of the collecting metric
 
 - node: the MatrixOne node uuid
 - role: the MatrixOne node role, can be CN, DN or LOG.  
 - account: default as "sys", the account who fires the SQL request.
-- type：SQL type, can be `select`, `insert`, `update`, `delete`, `other` types.
+- type:SQL type, can be `select`, `insert`, `update`, `delete`, `other` types.
 
 ### `metric` table
 

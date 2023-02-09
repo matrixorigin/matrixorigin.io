@@ -63,7 +63,7 @@ For contributing documentation, [matrixorigin.io](https://github.com/matrixorigi
 | **matrixorigin.io/docs/MatrixOne** | The content files of the English MatrixOne documentation website  |
 | **matrixorigin.io.cn/docs/MatrixOne** | The content files of the Chinese MatrixOne documentation website  |
 | **matrixorigin.io/mkdocs.yml** | The configuration file of the English documentation website |
-| **matrixorigin.io。cn/mkdocs.yml** | The configuration file of the Chinese documentation website |
+| **matrixorigin.io.cn/mkdocs.yml** | The configuration file of the Chinese documentation website |
 | **artwork/docs** | The images, screenshots and diagrams of documentation webstie |
 
 ## **Set up your Development Environment**  

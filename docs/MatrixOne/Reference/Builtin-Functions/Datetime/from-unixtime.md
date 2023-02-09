@@ -2,7 +2,7 @@
 
 ## **Description**
 
-The ``FROM_UNIXTIME()`` function returns a representation of ``unix_timestamp`` as a datetime or character string value. The value returned is expressed using the session time zone. For example, the return value is in ‘YYYYY-MM-DD HH:MM:SS’ format or YYYYMMDDHHMMSS. ``unix_timestamp`` is an internal timestamp value representing seconds since *1970-01-01 00:00:00* UTC, such as produced by the ``UNIX_TIMESTAMP()`` function.
+The ``FROM_UNIXTIME()`` function returns a representation of ``unix_timestamp`` as a datetime or character string value. The value returned is expressed using the session time zone. For example, the return value is in 'YYYYY-MM-DD HH:MM:SS' format or YYYYMMDDHHMMSS. ``unix_timestamp`` is an internal timestamp value representing seconds since *1970-01-01 00:00:00* UTC, such as produced by the ``UNIX_TIMESTAMP()`` function.
 
 ## **Syntax**
 

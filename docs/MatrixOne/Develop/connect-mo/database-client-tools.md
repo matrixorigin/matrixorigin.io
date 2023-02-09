@@ -12,7 +12,7 @@ Make sure you have already [installed and launched MatrixOne](../../Get-Started/
 
 ## Connect to the MatrixOne Server through MySQL Client
 
-1. Download and install [MySQL Client](https://dev.mysql.com/downloads/installer/)。
+1. Download and install [MySQL Client](https://dev.mysql.com/downloads/installer/).
 
 2. Connect to the MatrixOne server.
 
@@ -76,7 +76,7 @@ For more information on deployment, see [Deployment FAQs](../../FAQs/deployment-
     - **Port**: 6001
     - **User Name**: dump
     - **Password**: 111
-    - **Save password**：Yes
+    - **Save password**:Yes
 
 4. Click **Save**, save the configuration.
 

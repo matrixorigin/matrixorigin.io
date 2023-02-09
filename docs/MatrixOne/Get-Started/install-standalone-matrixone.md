@@ -9,7 +9,7 @@ MatrixOne supports **Linux** and **MacOS**. For quick start, we recommend the fo
 | Operating System    | Operating System Version | CPU   |Memory|
 | :------ | :----- | :-------------- |  :------|
 |CentOS| 7.3 and later| x86 CPU; 4 Cores | 32 GB |
-|macOS| Monterey 12.3 and later | - x86 CPU；4 Cores<br>- ARM；4 Cores | 32 GB |
+|macOS| Monterey 12.3 and later | - x86 CPU;4 Cores<br>- ARM;4 Cores | 32 GB |
 
 For more information on the required operating system versions for deploying MatrixOne, see [Hardware and Operating system requirements](../FAQs/deployment-faqs.md).
 
@@ -37,6 +37,6 @@ You can install and connect to MatrixOne on Linux in one of three ways that work
     + [Connecting to MatrixOne with JDBC](../Develop/connect-mo/java-connect-to-matrixone/connect-mo-with-jdbc.md)
     + [Connecting to MatrixOne with Python](../Develop/connect-mo/python-connect-to-matrixone.md).
 
-- For more information on the questions of deployment，see [Deployment FAQs](../FAQs/deployment-faqs.md).
+- For more information on the questions of deployment,see [Deployment FAQs](../FAQs/deployment-faqs.md).
 
 - For more information on distributed installation, see [Deploy MatrixOne Cluster on Kubernetes Overview](../Deploy/install-and-launch-in-k8s.md).

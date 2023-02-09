@@ -39,7 +39,7 @@ The Cases and Results are 1-1 correspondence, and they are actually `git submodu
 
 ## 2. Configure `mo-tester`
 
-* In `mo.yml` file, configure the server address, default database name, username, and password, and so on. MO-tester is based on java, so these parameters are required for the JDBC(JDBC，Java Database Connectivity) driver. Below is a default example for a local standalone version MatrixOne.
+* In `mo.yml` file, configure the server address, default database name, username, and password, and so on. MO-tester is based on java, so these parameters are required for the JDBC(JDBC,Java Database Connectivity) driver. Below is a default example for a local standalone version MatrixOne.
 
   ```
   #jdbc
@@ -254,7 +254,7 @@ c	d
       ./run.sh -p {path_name}/matrixone/test/cases/local_test/new_test.sql
       ```
 
-3. Check the result file in the *test/cases、result/* path of the *matrixone* repository.
+3. Check the result file in the *test/cases,result/* path of the *matrixone* repository.
 
 4. Check the result reports in the *error.txt* file, *report.txt* file, and *success.txt* file in the *mo-tester/report/* path. The example of the expected *report.txt* looks like this:
 
