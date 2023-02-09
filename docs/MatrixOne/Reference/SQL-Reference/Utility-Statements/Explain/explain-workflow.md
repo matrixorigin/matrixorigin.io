@@ -45,12 +45,12 @@ Project
 
 ## Node types
 
-In 0.5.0 version, the following node types are supported.
+MatrixOne supports the following node types:
 
 | Node Type       | Name in Explain |
 | --------------- | --------------- |
-| Node_VALUE_SCAN | Values Scan     |
 | Node_TABLE_SCAN | Table Scan      |
+| Node_VALUE_SCAN | Values Scan     |
 | Node_PROJECT    | Project         |
 | Node_AGG        | Aggregate       |
 | Node_FILTER     | Filter          |

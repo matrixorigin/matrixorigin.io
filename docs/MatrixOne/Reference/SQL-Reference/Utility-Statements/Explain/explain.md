@@ -13,8 +13,6 @@ where option can be one of:
     FORMAT { TEXT | JSON }
 ```
 
-For 0.5.1, only `TEXT` format is supported.
-
 ## Description
 
 This command displays the execution plan that the MatrixOne planner generates for the supplied statement. The execution plan shows how the table(s) referenced by the statement will be scanned — by plain sequential scan, index scan, and so on. — and if multiple tables are referenced, what join algorithms will be used to bring together the required rows from each input table.
