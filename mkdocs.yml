@@ -66,6 +66,12 @@ nav:
         - Overview: MatrixOne/Develop/schema-design/overview.md
         - Create Database: MatrixOne/Develop/schema-design/create-database.md
         - Create Table: MatrixOne/Develop/schema-design/create-table.md
+      - Data Integrity:
+        - Data Integrity Constraints Overview: MatrixOne/Develop/schema-design/data-integrity/overview-of-integrity-constraint-types.md
+        - NOT NULL Constraints: MatrixOne/Develop/schema-design/data-integrity/not-null-constraints.md
+        - UNIQUE KEY Constraints: MatrixOne/Develop/schema-design/data-integrity/unique-key-constraints.md
+        - PRIMARY KEY Constraints: MatrixOne/Develop/schema-design/data-integrity/primary-key-constraints.md
+        - FOREIGN KEY Constraints: MatrixOne/Develop/schema-design/data-integrity/foreign-key-constraints.md
       - Connect to MatrixOne:
         - MatrixOne SSL connection: MatrixOne/Develop/connect-mo/configure-mo-ssl-connection.md
         - Connecting to MatrixOne with Database Client Tool: MatrixOne/Develop/connect-mo/database-client-tools.md
@@ -163,60 +169,60 @@ nav:
           - LOAD DATA: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/load-data.md
           - INTERVAL: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/interval.md
           - OPERATORS:
-              - OPERATORS Overview: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/operators.md
-              - OPERATORS Precedence: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/operator-precedence.md
-              - Arithmetic Operators:
-                - Arithmetic Operators Overview: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/arithmetic-operators/arithmetic-operators-overview.md
-                - '%,MOD': MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/arithmetic-operators/mod.md
-                - '*': MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/arithmetic-operators/multiplication.md
-                - +: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/arithmetic-operators/addition.md
-                - -: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/arithmetic-operators/minus.md
-                - -: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/arithmetic-operators/unary-minus.md
-                - /: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/arithmetic-operators/division.md
-                - DIV: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/arithmetic-operators/div.md
-              - Assignment Operators:
-                - Assignment Operators Overview: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/assignment-operators/assignment-operators-overview.md
-                - =: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/assignment-operators/equal.md
-              - Bit Functions and Operators:
-                - Bit Functions and Operators Overview: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/bit-functions-and-operators/bit-functions-and-operators-overview.md
-                - '&': MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/bit-functions-and-operators/bitwise-and.md
-                - '>>': MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/bit-functions-and-operators/right-shift.md
-                - '<<': MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/bit-functions-and-operators/left-shift.md
-                - '^': MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/bit-functions-and-operators/bitwise-xor.md
-                - '|': MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/bit-functions-and-operators/bitwise-or.md
-                - '~': MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/bit-functions-and-operators/bitwise-inversion.md
-              - Cast Functions and Operators:
-                - Cast Functions and Operators Overview: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/cast-functions-and-operators/cast-functions-and-operators-overview.md
-                - CAST: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/cast-functions-and-operators/cast.md
-                - CONVERT: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/cast-functions-and-operators/convert.md
-              - Comparison Functions and Operators:
-                - Comparison Functions and Operators Overview: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/comparison-functions-and-operators-overview.md
-                - '>': MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/greater-than.md
-                - '>=': MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/greater-than-or-equal.md
-                - <: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/less-than.md
-                - <>,!=: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/not-equal.md
-                - <=: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/less-than-or-equal.md
-                - =: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/assign-equal.md
-                - BETWEEN ... AND ...: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/between.md
-                - IN: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/in.md
-                - IS: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/is.md
-                - IS NOT: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/is-not.md
-                - IS NOT NULL: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/is-not-null.md
-                - IS NULL: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/is-null.md
-                - LIKE: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/like.md
-                - NOT BETWEEN ... AND ...: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/not-between.md
-                - NOT LIKE: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/not-like.md
-                - COALESCE: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/coalesce.md
-              - Flow Control Functions:
-                - Flow Control Functions Overview: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/flow-control-functions/flow-control-functions-overview.md
-                - CASE WHEN: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/flow-control-functions/case-when.md
-                - IF: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/flow-control-functions/function_if.md
-              - Logical Operators:
-                - Logical Operators Overview: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/logical-operators/logical-operators-overview.md
-                - AND,&&: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/logical-operators/and.md
-                - NOT,!: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/logical-operators/not.md
-                - OR: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/logical-operators/or.md
-                - XOR: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/logical-operators/xor.md
+            - OPERATORS Overview: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/operators.md
+            - OPERATORS Precedence: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/operator-precedence.md
+            - Arithmetic Operators:
+              - Arithmetic Operators Overview: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/arithmetic-operators/arithmetic-operators-overview.md
+              - '%,MOD': MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/arithmetic-operators/mod.md
+              - '*': MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/arithmetic-operators/multiplication.md
+              - +: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/arithmetic-operators/addition.md
+              - -: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/arithmetic-operators/minus.md
+              - -: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/arithmetic-operators/unary-minus.md
+              - /: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/arithmetic-operators/division.md
+              - DIV: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/arithmetic-operators/div.md
+            - Assignment Operators:
+              - Assignment Operators Overview: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/assignment-operators/assignment-operators-overview.md
+              - =: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/assignment-operators/equal.md
+            - Bit Functions and Operators:
+              - Bit Functions and Operators Overview: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/bit-functions-and-operators/bit-functions-and-operators-overview.md
+              - '&': MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/bit-functions-and-operators/bitwise-and.md
+              - '>>': MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/bit-functions-and-operators/right-shift.md
+              - '<<': MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/bit-functions-and-operators/left-shift.md
+              - '^': MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/bit-functions-and-operators/bitwise-xor.md
+              - '|': MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/bit-functions-and-operators/bitwise-or.md
+              - '~': MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/bit-functions-and-operators/bitwise-inversion.md
+            - Cast Functions and Operators:
+              - Cast Functions and Operators Overview: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/cast-functions-and-operators/cast-functions-and-operators-overview.md
+              - CAST: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/cast-functions-and-operators/cast.md
+              - CONVERT: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/cast-functions-and-operators/convert.md
+            - Comparison Functions and Operators:
+              - Comparison Functions and Operators Overview: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/comparison-functions-and-operators-overview.md
+              - '>': MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/greater-than.md
+              - '>=': MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/greater-than-or-equal.md
+              - <: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/less-than.md
+              - <>,!=: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/not-equal.md
+              - <=: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/less-than-or-equal.md
+              - =: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/assign-equal.md
+              - BETWEEN ... AND ...: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/between.md
+              - IN: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/in.md
+              - IS: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/is.md
+              - IS NOT: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/is-not.md
+              - IS NOT NULL: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/is-not-null.md
+              - IS NULL: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/is-null.md
+              - LIKE: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/like.md
+              - NOT BETWEEN ... AND ...: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/not-between.md
+              - NOT LIKE: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/not-like.md
+              - COALESCE: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/coalesce.md
+            - Flow Control Functions:
+              - Flow Control Functions Overview: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/flow-control-functions/flow-control-functions-overview.md
+              - CASE WHEN: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/flow-control-functions/case-when.md
+              - IF: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/flow-control-functions/function_if.md
+            - Logical Operators:
+              - Logical Operators Overview: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/logical-operators/logical-operators-overview.md
+              - AND,&&: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/logical-operators/and.md
+              - NOT,!: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/logical-operators/not.md
+              - OR: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/logical-operators/or.md
+              - XOR: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/operators/logical-operators/xor.md
         - Data Query Language:
           - SELECT: MatrixOne/Reference/SQL-Reference/Data-Query-Language/select.md
           - SUBQUERY:
