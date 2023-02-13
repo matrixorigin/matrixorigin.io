@@ -22,7 +22,7 @@ Operator precedences are shown in the following list, from highest precedence to
 | 16 | OR, \|\| |
 |17|= (assignment)|
 
-<!--:= 位于assignment后，暂时不支持-->
+<!--:= 位于assignment后,暂时不支持-->
 
 The precedence of = depends on whether it is used as a comparison operator (=) or as an assignment operator (=). When used as a comparison operator, it has the same precedence as <!--<=>-->, >=, >, <=, <, <>, !=, IS, LIKE, and IN().
 

@@ -63,7 +63,7 @@ For contributing documentation, [matrixorigin.io](https://github.com/matrixorigi
 | **matrixorigin.io/docs/MatrixOne** | The content files of the English MatrixOne documentation website  |
 | **matrixorigin.io.cn/docs/MatrixOne** | The content files of the Chinese MatrixOne documentation website  |
 | **matrixorigin.io/mkdocs.yml** | The configuration file of the English documentation website |
-| **matrixorigin.io。cn/mkdocs.yml** | The configuration file of the Chinese documentation website |
+| **matrixorigin.io.cn/mkdocs.yml** | The configuration file of the Chinese documentation website |
 | **artwork/docs** | The images, screenshots and diagrams of documentation webstie |
 
 ## **Set up your Development Environment**  
@@ -85,7 +85,7 @@ export PATH=$PATH:$GOPATH/bin
 
 ### **Github & Git**
 
-MatrixOne is an open-source project built on Github, providing project maintainers and contributors with a platform to work together. Thus, in order to start working with MatrixOne repository, you will need a **GitHub** account and learn basic **git** commands.   
+MatrixOne is an open-source project built on Github, providing project maintainers and contributors with a platform to work together. Thus, in order to start working with MatrixOne repository, you will need a **GitHub** account and learn basic **git** commands.
 If you don't have a Github account, please register at [https://github.com](https://github.com). In case you do not have [SSH](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/about-ssh) keys, you should generate them and then upload them on GitHub. It is required for sending over your patches. It is also possible to use the same SSH keys that you use with any other SSH servers - probably you already have those.  
 For detailed information about Github, you can see [Github Docs](https://docs.github.com/en).  
 

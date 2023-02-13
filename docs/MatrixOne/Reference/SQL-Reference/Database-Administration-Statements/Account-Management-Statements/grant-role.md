@@ -4,7 +4,7 @@
 
 Assigns a role to a user or another role:
 
-- Granting a role to another role creates a “parent-child” relationship between the roles (also referred to as a role hierarchy).
+- Granting a role to another role creates a "parent-child" relationship between the roles (also referred to as a role hierarchy).
 
 - Granting a role to a user enables the user to perform all operations allowed by the role (through the access privileges granted to the role).
 

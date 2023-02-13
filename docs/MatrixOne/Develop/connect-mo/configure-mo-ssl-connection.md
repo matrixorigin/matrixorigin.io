@@ -10,9 +10,9 @@ This document describes how to configure your MatrixOne server to use SSL for da
 
 To create the directory that will contain the SSL keys, perform the following steps:
 
-1. Log into your server via SSH. Check if you have the `mysql_ssl_rsa_setup` tool in place. Usually if you have installed MySQL, the `mysql_ssl_rsa_setup` binary will also be installed. 
+1. Log into your server via SSH. Check if you have the `mysql_ssl_rsa_setup` tool in place. Usually if you have installed MySQL, the `mysql_ssl_rsa_setup` binary will also be installed.
 
-    If you try to execute this command `mysql_ssl_rsa_setup` and you see this following message, it means you have installed it. If not, please [install MySQL](https://dev.mysql.com/doc/mysql-getting-started/en/) first, and this `mysql_ssl_rsa_setup` will be installed along. You can also check the path of `mysql_ssl_rsa_setup` binary file with `whereis mysql_ssl_rsa_setup`. 
+    If you try to execute this command `mysql_ssl_rsa_setup` and you see this following message, it means you have installed it. If not, please [install MySQL](https://dev.mysql.com/doc/mysql-getting-started/en/) first, and this `mysql_ssl_rsa_setup` will be installed along. You can also check the path of `mysql_ssl_rsa_setup` binary file with `whereis mysql_ssl_rsa_setup`.
 
     ```
     [pcusername@VM-0-12-centos matrixone]$ mysql_ssl_rsa_setup

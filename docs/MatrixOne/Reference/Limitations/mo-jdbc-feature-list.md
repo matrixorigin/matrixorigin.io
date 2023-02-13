@@ -17,7 +17,7 @@ Using JDBC to develop applications, MatrixOne supports the following classes and
     - Commit the transaction: void commit()  
     - Rollback the transaction: void rollback()  
 
-| Methon of the connection interface | Supported（Y）/Not support（N） |
+| Methon of the connection interface | Supported(Y)/Not support(N) |
 |---|---|
 | createStatement() | Y |
 | prepareStatement(String sql) | Y |
@@ -74,7 +74,7 @@ Using JDBC to develop applications, MatrixOne supports the following classes and
 
 ## 2. Method of the Statement class
 
-|Method of the Statement class| Supported（Y）/Not support（N） |
+|Method of the Statement class| Supported(Y)/Not support(N) |
 |---|---|
 | executeQuery(String sql) | Y |
 | executeUpdate(String sql) | Y |
@@ -121,7 +121,7 @@ Using JDBC to develop applications, MatrixOne supports the following classes and
 
 ## 3. Method of the ResultSet class
 
-|Method of the ResultSet class| Supported（Y）/Not support（N）|
+|Method of the ResultSet class| Supported(Y)/Not support(N)|
 |---|---|
 | next() | Y |
 | close() | Y |
@@ -175,7 +175,7 @@ Using JDBC to develop applications, MatrixOne supports the following classes and
 
 ## 4. Method of the ResultSetMetaData
 
-| Method of the ResultSetMetaData| Supported（Y）/Not support（N） |
+| Method of the ResultSetMetaData| Supported(Y)/Not support(N) |
 |---|---|
 | getColumnCount() | Y |
 | isAutoIncrement() | Y |
