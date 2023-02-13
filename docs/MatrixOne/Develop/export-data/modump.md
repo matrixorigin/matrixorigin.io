@@ -56,7 +56,7 @@ __Tips:__ Same as MatrixOne `mo-dump` is written by Golang, building it will req
 
 `mo-dump` is easy to use with the command line. Here are the steps to take to export a complete database in the form of SQL commands:
 
-Open up a command line or terminal window on your computer, then verify that from this terminal you can connect to your MatrixOne instance, enter this command:
+Open up a command line or terminal window on your computer, then verify that from this terminal you can connect to your MatrixOne instance, enter this command to export the database:
 
 ```
 ./mo-dump -u username -p password -h host_ip_address -P port -db database > exporteddb.sql
