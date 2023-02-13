@@ -30,8 +30,8 @@ Now you can execute commands step by step as the following descriptions.
 
 ### 1. Configure the *props.mo* file
 
-After the mo-tpch repository is cloned, open the *mo-tpcc* directory, and modify the configuration items of the *props.mo* file. The number of warehouses 
-can be configurable by the `warehouse=XX` row in this file. 
+After the mo-tpch repository is cloned, open the *mo-tpcc* directory, and modify the configuration items of the *props.mo* file. The number of warehouses
+can be configurable by the `warehouse=XX` row in this file.
 
 ```
 db=mo
@@ -205,7 +205,7 @@ primary key (s_w_id, s_i_id)
 ) PARTITION BY KEY(s_w_id);
 ```
 
-### 3. Generate TPCC data 
+### 3. Generate TPCC data
 
 To generate the TPCC data execute the following command:
 
@@ -269,7 +269,7 @@ warehouse.csv
 
 ### 4. Load TPCC data to MatrixOne
 
-Use MySQL client to connect to MatrixOne and execute the following statements to load the csv files into MatrixOne. 
+Use MySQL client to connect to MatrixOne and execute the following statements to load the csv files into MatrixOne.
 
 ```
 mysql> load data infile '/yourpath/config.csv' INTO TABLE bmsql_config FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"' LINES TERMINATED BY "\r\n";
@@ -377,4 +377,4 @@ Term-00, Running Average tpmTOTAL: 60000.00    Current tpmTOTAL: 12    Memory Us
 2022-12-22 21:16:42 INFO  jTPCC:710 - Term-00, Session finished!
 ```
 
-The value of tpmC(transactions per minute) is given in the result. 
+The value of tpmC(transactions per minute) is given in the result.

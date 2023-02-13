@@ -4,7 +4,7 @@ MatrixOne SQL syntax conforms with MySQL 8.0.23 version.
 
 |  SQL Type   | SQL Syntax  |  Compability with MySQL8.0.23   |
 |  ----  | ----  |  ----  |
-| Data Definition Language（DDL)  | CREATE DATABASE | A database with Chinese name is not supported. |
+| Data Definition Language(DDL)  | CREATE DATABASE | A database with Chinese name is not supported. |
 |   |   | Names with Latins support limitedly.  |
 |   |   | `CHARSET`, `COLLATE`, `ENCRYPTION` can be used but don't work. |
 |   |  CREATE TABLE | Partition tables are not supported.  |
@@ -60,6 +60,6 @@ MatrixOne SQL syntax conforms with MySQL 8.0.23 version.
 |   | CAST | Supported with different conversion rules. |
 | Functions |  MAX, MIN, COUNT, AVG, SUM | Same as MySQL. |
 ||any_value | Any_value is an aggregate function in MatrixOne. Cannot be used in group by or filter condition. |
-||`REGEXP_INSTR()`，`REGEXP_LIKE()`，`REGEXP_REPLACE()`，`REGEXP_SUBSTR()`|The third parameter is not supported yet|
+||`REGEXP_INSTR()`,`REGEXP_LIKE()`,`REGEXP_REPLACE()`,`REGEXP_SUBSTR()`|The third parameter is not supported yet|
 ||to_date|Only constants are supported for date entries|
 |System command|SHOW GRANTS FOR USERS| Only the permissions of directly authorized roles can be displayed. The rights of inherited roles cannot be shown. |

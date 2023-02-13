@@ -7,7 +7,7 @@ MatrixOne is compatible with MySQL, you can use MySQL statements directly in mos
 
 The Structured Query Language (SQL) is used to manage a relational database management system (RDBMS). The scope of SQL includes data insertion, query, update, and delete, database schema creation and modification, and data access control.
 
-## How many types SQL does MatrixOne have？
+## How many types SQL does MatrixOne have?
 
 SQL is divided into the following 4 types according to their functions in MatrixOne:
 

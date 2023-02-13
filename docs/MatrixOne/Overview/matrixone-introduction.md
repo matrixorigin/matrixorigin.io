@@ -36,7 +36,7 @@ MatrixOne is a future-oriented hyperconverged cloud & edge native DBMS that supp
 
 * **High Scalability**
 
-     Seamless and non-disruptive scaling by disaggregated storage and compute.   
+     Seamless and non-disruptive scaling by disaggregated storage and compute.
 
 ## **User Values**
 
