@@ -131,3 +131,7 @@ from mo_catalog.mo_user mu, mo_catalog.mo_role mr1, mo_catalog.mo_role mr2,mo_ca
 where mu.user_id=mrg.operation_user_id and mr1.role_id=mrg.grantee_id and mr2.role_id=mrg.granted_id
 order by mr1.role_name,mr2.role_name asc;
 ```
+
+## Reference
+
+MatrixOne system database and tables are where MatrixOne stores system information, so if you want to see more information on the system, refer [MatrixOne System Database and Tables](../Reference/System-tables.md).
