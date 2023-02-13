@@ -4,9 +4,9 @@ This document describes how to migrate data from MySQL to MatrixOne.
 
 ### 1. Dump MySQL data
 
-We suppose you have full access to your MySQL instances. 
+We suppose you have full access to your MySQL instances.
 
-Firstly, we use `mysqldump` to dump MySQL table structures and data to a single file with the following command. You can take a look at this wonderful [tutorial](https://simplebackups.com/blog/the-complete-mysqldump-guide-with-examples/) if you are not familiar with `mysqldump`. The syntax is as below: 
+Firstly, we use `mysqldump` to dump MySQL table structures and data to a single file with the following command. You can take a look at this wonderful [tutorial](https://simplebackups.com/blog/the-complete-mysqldump-guide-with-examples/) if you are not familiar with `mysqldump`. The syntax is as below:
 
 ```
 mysqldump -h IP_ADDRESS -uUSERNAME -pPASSWORD -d DB_NAME1 DB_NAME2 ... OUTPUT_FILE_NAME.SQL

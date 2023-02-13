@@ -118,7 +118,7 @@ A user is granted multiple roles to perform different types of data services.
 
 **Secondary role**: In addition to the main role, the set of other roles owned by the user is called the **secondary role**.
 
-By default, if a user wants to execute SQL with another role's privilege, he needs to switch roles first （Use SQL as `set role <role>`). In addition, to be compatible with the privilege behavior of classic databases, MatrixOne also supports the function of *using secondary roles*: use `set secondary role all`; after executing this SQL, the user can have the privileges of all his roles at the same time, execute `set secondary role none` to turn off this feature.
+By default, if a user wants to execute SQL with another role's privilege, he needs to switch roles first (Use SQL as `set role <role>`). In addition, to be compatible with the privilege behavior of classic databases, MatrixOne also supports the function of *using secondary roles*: use `set secondary role all`; after executing this SQL, the user can have the privileges of all his roles at the same time, execute `set secondary role none` to turn off this feature.
 
 ## Application scenarios
 
@@ -138,7 +138,7 @@ For the specific operation of resource isolation, please refer to [Quick Start: 
 
 ### Introduction to User Creation and Authorization Scenarios
 
-Still using the above scenario example, *Tom* gives the account account *BusinessAccount* to the company’s data administrator *Robert*, and asks *Robert* to assign new user accounts and privileges to other R&D colleagues.
+Still using the above scenario example, *Tom* gives the account account *BusinessAccount* to the company's data administrator *Robert*, and asks *Robert* to assign new user accounts and privileges to other R&D colleagues.
 
 R&D colleague *Joe* is the application developer of this company. A project *BusinessApp*, *Joe* has a development task, and *Joe* needs to use all the data in the database. Then *Robert* will help *Joe* open an account and authorize *Joe*:
 

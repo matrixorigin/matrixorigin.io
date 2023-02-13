@@ -366,7 +366,7 @@ You can checkout the full implmetation at [variance.go](https://github.com/matri
       }
 ```
 
-* `Add` function   
+* `Add` function
 
 ```go
 
@@ -388,7 +388,7 @@ You can checkout the full implmetation at [variance.go](https://github.com/matri
 
 ```
 
-* `Mul` function   
+* `Mul` function
 
 ```go
 

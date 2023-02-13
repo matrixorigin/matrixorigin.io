@@ -6,7 +6,7 @@ This document describes how to use views in MatrixOne.
 
 A view acts as a virtual table, whose schema is defined by the `SELECT` statement that creates the view.
 
-**Key Feature**：
+**Key Feature**:
 
 - *Simplified user action*: The view mechanism allows users to focus on the data they care about. If the data is not directly from the base table, you can define views to make the database look simple and simplify the user's data query operation.
 
