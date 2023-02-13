@@ -34,7 +34,7 @@ Prerequisite to understand Java Database Connectivity with MatrixOne, make sure 
     ![JDBC project structure](https://github.com/matrixorigin/artwork/blob/main/docs/develop/JDBC_connect/JDBC-project-structure.png?raw=true)
 
     ![JDBC add library](
-https://github.com/matrixorigin/artwork/blob/main/docs/develop/JDBC_connect/JDBC-from-maven.png?raw=true)
+<https://github.com/matrixorigin/artwork/blob/main/docs/develop/JDBC_connect/JDBC-from-maven.png?raw=true>)
 
 4. Search library with **mysql-connector-java**,  select **mysql:mysql-connector-java:8.0.30**, apply it to this project.
 

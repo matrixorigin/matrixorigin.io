@@ -70,14 +70,14 @@ You need to store some of the given parameters inside the `application.propertie
 - `spring.datasource.password`: Database password.
 - `spring.jpa.properties.hibernate.dialect` : The SQL dialect makes Hibernate generate better SQL for the chosen database. MatrixOne only supports `org.hibernate.dialect.MySQLDialect`.
 
-* `spring.jpa.hibernate.ddl-auto`：This property takes an enum that controls the schema generation in a more controlled way. The possible options and effects are in the following table. MatrixOne only supports `none` and `validate`.
+* `spring.jpa.hibernate.ddl-auto`:This property takes an enum that controls the schema generation in a more controlled way. The possible options and effects are in the following table. MatrixOne only supports `none` and `validate`.
 
 | Option      | Effect                                                       |
 | ----------- | ------------------------------------------------------------ |
 | none        | No database Schema initialization                            |
 | create      | Drops and creates the schema at the application startup. With this option, all your data will be gone on each startup. |
 | create-drop | Creates schema at the startup and destroys the schema on context closure. Useful for unit tests. |
-| validate    | Only checks if the Schema matches the Entities. If the schema doesn’t match, then the application startup will fail. Makes no changes to the database. |
+| validate    | Only checks if the Schema matches the Entities. If the schema doesn't match, then the application startup will fail. Makes no changes to the database. |
 | update      | Updates the schema only if necessary. For example, If a new field was added in an entity, then it will simply alter the table for a new column without destroying the data. |
 
 MatrixOne's recommended configuration is as below:

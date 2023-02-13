@@ -40,7 +40,7 @@ In addition, from the execution of SQL statements, subquery generally has the fo
 
     For example: ``select * from tableA where tableA.column = (select tableB.column from tableB)``
 
-**Key Feature**：
+**Key Feature**:
 
 - Subqueries allow structured queries so that each part of a query statement can be separated.
 

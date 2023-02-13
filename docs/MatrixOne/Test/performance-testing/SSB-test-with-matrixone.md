@@ -1,6 +1,6 @@
 # **Complete a SSB Test with MatrixOne**
 
-The Star Schema Benchmark（SSB）Test is a popular scenario for OLAP database performance test. By going through this tutorial, you’ll learn how to complete a SSB Test with MatrixOne.
+The Star Schema Benchmark(SSB)Test is a popular scenario for OLAP database performance test. By going through this tutorial, you'll learn how to complete a SSB Test with MatrixOne.
 
 ## **Before you start**
 
@@ -194,7 +194,7 @@ load data infile '/ssb-dbgen-path/lineorder_flat.tbl' into table lineorder_flat 
 ## **5. Run SSB Queries**
 
 !!! note
-    `GROUP BY` does not support using the alias name for now。
+    `GROUP BY` does not support using the alias name for now.
 
 ### **Flat table queries**
 

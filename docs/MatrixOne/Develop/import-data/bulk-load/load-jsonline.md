@@ -4,11 +4,11 @@ This document will guide you on how to import JSONLines (that is *.jl* or *.json
 
 ## About JSONLines format
 
-JSON(JavaScript Object Notation) is a popular file format for about two decades, nowadays became de-facto of data exchange format standard, replacing XML, that was a huge buzzword in the early 2000’s. If you are not familiar with JSON format, please help yourself to know about it with this [official documentation](https://www.json.org/json-en.html).
+JSON(JavaScript Object Notation) is a popular file format for about two decades, nowadays became de-facto of data exchange format standard, replacing XML, that was a huge buzzword in the early 2000's. If you are not familiar with JSON format, please help yourself to know about it with this [official documentation](https://www.json.org/json-en.html).
 
 [JSONLines](https://jsonlines.org/) text format, also called newline-delimited JSON, is a convenient format for storing structured data that may be processed one record at a time. Basically, JSONL is a file format that allows one JSON object per line with lines delimited by a newline character `\n`.  Each line of the file is independent, so commas are not required at the beginning or ending of lines.  Nor does the entire contents of the file need to be enclosed in square or curly braces.
 
-JSONLines is appealing format for data streaming. Since every new line means a separate entry makes the JSON Lines formatted file streamable. It doesn’t require custom parsers. Just read a line, parse as JSON, read a line, parse as JSON… and so on.
+JSONLines is appealing format for data streaming. Since every new line means a separate entry makes the JSON Lines formatted file streamable. It doesn't require custom parsers. Just read a line, parse as JSON, read a line, parse as JSON… and so on.
 
 The JSON Lines format has three requirements:
 
@@ -125,8 +125,8 @@ In this tutorial, we will guide you through loading two jsonline files with obje
 
 1. Prepare the data files. You can also download and use the *.jl* file we prepared. The data directory needs to be with in the same machine as MatrixOne server. The following steps are illustrated with sample data.
 
-    - Example data file 1：*[jsonline_object.jl](https://github.com/matrixorigin/matrixone/blob/main/test/distributed/resources/load_data/jsonline_object.jl)*
-    - Example data file  2：*[jsonline_array.jl](https://github.com/matrixorigin/matrixone/blob/main/test/distributed/resources/load_data/jsonline_array.jl)*
+    - Example data file 1:*[jsonline_object.jl](https://github.com/matrixorigin/matrixone/blob/main/test/distributed/resources/load_data/jsonline_object.jl)*
+    - Example data file  2:*[jsonline_array.jl](https://github.com/matrixorigin/matrixone/blob/main/test/distributed/resources/load_data/jsonline_array.jl)*
 
 2. Open your terminal, enter into the directory where the *.jl* file resides, and run the following command line to display the contents of the file:
 
@@ -182,7 +182,7 @@ In this tutorial, we will guide you through loading two jsonline files with obje
     ```
 
 !!! note
-    If you use Docker to launch MatrixOne, when you try to import the jsonline file, please make sure that you have a data directory mounted to the container. You can check on the [load csv tutorial](load-csv.md) about the loading with docker installation. 
+    If you use Docker to launch MatrixOne, when you try to import the jsonline file, please make sure that you have a data directory mounted to the container. You can check on the [load csv tutorial](load-csv.md) about the loading with docker installation.
 
 ## Constraints
 

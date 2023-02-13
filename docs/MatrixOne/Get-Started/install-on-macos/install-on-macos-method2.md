@@ -21,7 +21,7 @@ __Tips__: It is recommended that you download and install one of these two tools
      The successful installation results (only part of the code is displayed) are as follows:
 
      ```
-     GNU Wget 1.21.3 在 darwin21.3.0 上编译。
+     GNU Wget 1.21.3 在 darwin21.3.0 上编译.
      ...
      Copyright © 2015 Free Software Foundation, Inc.
      ...

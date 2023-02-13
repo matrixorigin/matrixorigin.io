@@ -10,4 +10,4 @@ LN(X) returns the natural logarithm of X. This function is synonymous with LOG(X
 > LN(X)
 ```
 
-Reference to [LOG(X)](log.md). 
+Reference to [LOG(X)](log.md).

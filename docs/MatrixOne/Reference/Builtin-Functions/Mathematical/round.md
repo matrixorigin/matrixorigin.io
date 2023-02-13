@@ -3,7 +3,7 @@
 ## **Description**
 
 The ROUND() function rounds a number to a specified number of decimal places.  
-The function returns the nearest number of the specified order. In case when given number has equal distance to surrounding numbers, the function uses banker’s rounding for float number types and rounds away from zero for the other number types (Decimal).
+The function returns the nearest number of the specified order. In case when given number has equal distance to surrounding numbers, the function uses banker's rounding for float number types and rounds away from zero for the other number types (Decimal).
 
 ## **Syntax**
 

@@ -2,7 +2,7 @@
 
 ## **Description**
 
-Returns a Universal Unique Identifier (UUID) generated according to [RFC 4122](http://www.ietf.org/rfc/rfc4122.txt), “A Universally Unique IDentifier (UUID) URN Namespace”.
+Returns a Universal Unique Identifier (UUID) generated according to [RFC 4122](http://www.ietf.org/rfc/rfc4122.txt), "A Universally Unique IDentifier (UUID) URN Namespace".
 
 A UUID is designed as a number that is globally unique in space and time. Two calls to UUID() are expected to generate two different values, even if these calls are performed on two separate devices not connected to each other.
 

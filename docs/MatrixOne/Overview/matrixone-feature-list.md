@@ -4,7 +4,7 @@ This document lists the features supported by MatrixOne for the latest version.
 
 ## Data definition language (DDL)
 
-| Data definition Language(DDL) | Supported（Y）/Not supported (N)  |
+| Data definition Language(DDL) | Supported(Y)/Not supported (N)  |
 | ----------------------------- | ---- |
 | CREATE DATABASE               | Y    |
 | RENAME DATABASE               | N    |
@@ -25,7 +25,7 @@ This document lists the features supported by MatrixOne for the latest version.
 
 ## SQL statements
 
-| SQL Statement                       | Supported（Y）/Not supported (N)  |
+| SQL Statement                       | Supported(Y)/Not supported (N)  |
 | ----------------------------------- | ---- |
 | SELECT                              | Y    |
 | INSERT                              | Y    |
@@ -51,7 +51,7 @@ This document lists the features supported by MatrixOne for the latest version.
 
 ## Data types
 
-| Data type categories | Data types        | Supported（Y）/Not supported (N)  |
+| Data type categories | Data types        | Supported(Y)/Not supported (N)  |
 | -------------------- | ----------------- | ---- |
 | Integer Numbers      | TINYINT           | Y    |
 |                      | SMALLINT          | Y    |
@@ -83,7 +83,7 @@ This document lists the features supported by MatrixOne for the latest version.
 
 ## Indexing and constraints
 
-| Indexing and constraints             | Supported（Y）/Not supported (N)  |
+| Indexing and constraints             | Supported(Y)/Not supported (N)  |
 | ------------------------------------ | ---- |
 | PRIMARY KEY                          | Y    |
 | Composite PRIMARY KEY                | Y    |
@@ -96,7 +96,7 @@ This document lists the features supported by MatrixOne for the latest version.
 
 ## Transactions
 
-| Transactions             | Supported（Y）/Not supported (N)  |
+| Transactions             | Supported(Y)/Not supported (N)  |
 | ------------------------ | ---- |
 | 1PC                      | Y    |
 | Pessimistic transactions | N    |

@@ -44,7 +44,7 @@ Next, move to the working directory you expect in local and launch your terminal
 git clone <content you just copied>
 ```  
 
-For example:    
+For example:
 
 ```
 git clone git@github.com:<yourname>/matrixone.git
