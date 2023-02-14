@@ -101,7 +101,7 @@ A comment is generally required for:
 - When used for description, comments should be **descriptive** rather than **imperative**
 
     - Opens the file   (Right)
-    - Open the file    (Wrong)       
+    - Open the file    (Wrong)
 
 - Use "this" instead of "the" to refer to the current thing
 

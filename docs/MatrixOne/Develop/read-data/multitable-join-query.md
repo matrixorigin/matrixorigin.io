@@ -96,7 +96,7 @@ Make sure you have already [Deployed standalone MatrixOne](../../Get-Started/ins
                         L_COMMENT      VARCHAR(44) NOT NULL,
                         PRIMARY KEY (L_ORDERKEY, L_LINENUMBER));
     ```
-    
+
 3. Load data into the created tables:
 
     ```sql
@@ -127,7 +127,7 @@ The join result of an inner join returns only rows that match the join condition
 
 |Statement| Image |
 |---|---|
-|SELECT /<select_list> FROM TableA A INNER JOIN TableB B ON A.Key=B.Key|![innerjoin](https://github.com/matrixorigin/artwork/blob/main/docs/reference/inner_join.png?raw=true)|
+|SELECT <select_list> FROM TableA A INNER JOIN TableB B ON A.Key=B.Key|![innerjoin](https://github.com/matrixorigin/artwork/blob/main/docs/reference/inner_join.png?raw=true)|
 
 There are two ways of writing an `inner join` that are completely equivalent in results:
 
@@ -213,8 +213,8 @@ The `LEFT JOIN` returns all the rows in the left table and the values ​​in t
 
 |Statement| Image |
 |---|---|
-|SELECT /<select_list> FROM TableA A LEFT JOIN TableB B ON A.Key=B.Key|![leftjoin](https://github.com/matrixorigin/artwork/blob/main/docs/reference/left_join.png?raw=true)|
-|SELECT /<select_list> FROM TableA A LEFT JOIN TableB B ON A.Key=B.Key WHERE B.Key IS NULL|![leftjoinwhere](https://github.com/matrixorigin/artwork/blob/main/docs/reference/left_join_where.png?raw=true)|
+|SELECT <select_list> FROM TableA A LEFT JOIN TableB B ON A.Key=B.Key|![leftjoin](https://github.com/matrixorigin/artwork/blob/main/docs/reference/left_join.png?raw=true)|
+|SELECT <select_list> FROM TableA A LEFT JOIN TableB B ON A.Key=B.Key WHERE B.Key IS NULL|![leftjoinwhere](https://github.com/matrixorigin/artwork/blob/main/docs/reference/left_join_where.png?raw=true)|
 
 - `RIGHT JOIN`
 
@@ -222,8 +222,8 @@ A `RIGHT JOIN` returns all the records in the right table and the values ​​i
 
 |Statement| Image |
 |---|---|
-|SELECT /<select_list> FROM TableA A RIGHT JOIN TableB B ON A.Key=B.Key|![leftjoinwhere](https://github.com/matrixorigin/artwork/blob/main/docs/reference/right_join.png?raw=true)|
-|SELECT /<select_list> FROM TableA A RIGHT JOIN TableB B ON A.Key=B.Key WHERE A.Key IS NULL|![leftjoinwhere](https://github.com/matrixorigin/artwork/blob/main/docs/reference/right_join_where.png?raw=true)|
+|SELECT <select_list> FROM TableA A RIGHT JOIN TableB B ON A.Key=B.Key|![leftjoinwhere](https://github.com/matrixorigin/artwork/blob/main/docs/reference/right_join.png?raw=true)|
+|SELECT <select_list> FROM TableA A RIGHT JOIN TableB B ON A.Key=B.Key WHERE A.Key IS NULL|![leftjoinwhere](https://github.com/matrixorigin/artwork/blob/main/docs/reference/right_join_where.png?raw=true)|
 
 The example is as below:
 

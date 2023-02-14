@@ -9,7 +9,7 @@ This document will introduce about how to export data with `mo-dump`.
 
 ## What is `mo-dump`
 
-Like `mysqldump`, MatrixOne has a client utility tool called `mo-dump` that can perform backups of a MatrixOne database by exporting a “.sql” file type that contains SQL statements can be executed to recreate the original database.
+Like `mysqldump`, MatrixOne has a client utility tool called `mo-dump` that can perform backups of a MatrixOne database by exporting a ".sql" file type that contains SQL statements can be executed to recreate the original database.
 
 To use the `mo-dump` tool, you must have access to a server running an instance of MatrixOne. You must also have user credentials with the required privileges for the database you want to export.
 
@@ -56,13 +56,13 @@ __Tips:__ Same as MatrixOne `mo-dump` is written by Golang, building it will req
 
 `mo-dump` is easy to use with the command line. Here are the steps to take to export a complete database in the form of SQL commands:
 
-Open up a command line or terminal window on your computer, then verify that from this terminal you can connect to your MatrixOne instance, enter this command:
+Open up a command line or terminal window on your computer, then verify that from this terminal you can connect to your MatrixOne instance, enter this command to export the database:
 
 ```
 ./mo-dump -u username -p password -h host_ip_address -P port -db database > exporteddb.sql
 ```
 
-For example, if you are launching the terminal in the same server as the MatrixOne instance, and you want to generate the backup of the single database, run the following command. The command will generate the backup of the “**t**” database with structure and data in the `t.sql` file. The `t.sql` file will be located in the same directory as your `mo-dump` executable.
+For example, if you are launching the terminal in the same server as the MatrixOne instance, and you want to generate the backup of the single database, run the following command. The command will generate the backup of the "**t**" database with structure and data in the `t.sql` file. The `t.sql` file will be located in the same directory as your `mo-dump` executable.
 
 ```
 ./mo-dump -u dump -p 111 -h 127.0.0.1 -P 6001 -db t > t.sql

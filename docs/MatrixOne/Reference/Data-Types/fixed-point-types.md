@@ -1,6 +1,6 @@
 # Fixed-Point Types (Exact Value) - DECIMAL
 
-The DECIMAL type store exact numeric data values. These types are used when it is important to preserve exact precision, for example with monetary data, or with scientific calculations. 
+The DECIMAL type store exact numeric data values. These types are used when it is important to preserve exact precision, for example with monetary data, or with scientific calculations.
 
 In a DECIMAL column declaration, the precision and scale can be (and usually is) specified. For example:
 
@@ -34,7 +34,7 @@ D is the number of digits to the right of the decimal point (the scale). It has 
 
 If D is omitted, the default is 0. If M is omitted, the default is 10.
 
-The maximum value of 38 for M means that calculations on DECIMAL values are accurate up to 38 digits. 
+The maximum value of 38 for M means that calculations on DECIMAL values are accurate up to 38 digits.
 
 Values for DECIMAL columns are stored using a binary format that packs decimal digits into 8 bytes or 16 bytes. The storage required for remaining digits is given by the following table.
 

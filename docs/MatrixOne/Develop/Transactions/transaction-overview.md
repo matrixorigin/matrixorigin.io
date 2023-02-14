@@ -8,7 +8,7 @@ This document introduces commonly used transaction-related statements, explicit 
 
 ### SQL statements
 
-The following SQL statements control transactions：
+The following SQL statements control transactions:
 
 - `START TRANSACTION` or `BEGIN` start a new transaction.
 - `COMMIT` commits the current transaction, making its changes permanent.
@@ -184,7 +184,7 @@ The SQL-92 standard defines four levels of transaction isolation: Read Uncommitt
 
 MatrixOne implements Snapshot Isolation (SI) consistency, this level of isolation is between `REPEATABLE READ` and `SERIALIZABLE` for SQL-92 standard.
 
-In a snapshot isolated system, each transaction appears to operate on an independent, consistent snapshot of the database. Its changes are visible only to that transaction until commit time, when all changes become visible atomically to any transaction which begins at a later time.If transaction T1 has modified an object *x*, and another transaction T2 committed a write to *x* after T1’s snapshot began, and before T1’s commit, then T1 must abort.
+In a snapshot isolated system, each transaction appears to operate on an independent, consistent snapshot of the database. Its changes are visible only to that transaction until commit time, when all changes become visible atomically to any transaction which begins at a later time.If transaction T1 has modified an object *x*, and another transaction T2 committed a write to *x* after T1's snapshot began, and before T1's commit, then T1 must abort.
 
 If we look at the isolation levels with the possible anomalies allowed proposed by [A Critique of ANSI SQL Isolation Levels](https://arxiv.org/ftp/cs/papers/0701/0701157.pdf), we can conclude MatrixOne's isolation level with such a following table, which is slightly different with the Snapshot Isolation in the article.
 

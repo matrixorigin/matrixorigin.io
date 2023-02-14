@@ -38,7 +38,7 @@ You can find the `modump` executable file in the MatrixOne folder.
 
 ## Generate the backup of a single database
 
-For example, we have a database “**t**” which is created by the following SQL.
+For example, we have a database "**t**" which is created by the following SQL.
 
 ```
 DROP DATABASE IF EXISTS `t`;
@@ -70,7 +70,7 @@ create table t1
 insert into t1 values (1, 1, 1, 1, 1, 1, 1, 1, 1, 1, '2019-01-01', '2019-01-01 00:00:00', '2019-01-01 00:00:00', 'a', 'a', '{"a":1}','1212.1212', 'a', 'aza', '00000000-0000-0000-0000-000000000000');
 ```
 
-If you want to generate the backup of the single database, run the following command. The command will generate the backup of the “**t**” database with structure and data in the`t.sql` file.
+If you want to generate the backup of the single database, run the following command. The command will generate the backup of the "**t**" database with structure and data in the`t.sql` file.
 
 ```
 ./mo-dump -u dump -p 111 -h 127.0.0.1 -P 6001 -db t > t.sql
