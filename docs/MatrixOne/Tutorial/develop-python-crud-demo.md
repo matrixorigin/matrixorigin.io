@@ -233,7 +233,7 @@ with SQL_CONNECTION.cursor() as cursor:
 Executing this code will update the record with id `1`, then we verify in mysql client to check if the record is updated.
 
 ```
-> python3 read.py
+> python3 update.py
 1
 Record Updated
 ```

@@ -21,7 +21,7 @@ When `EXPLAIN` is used with an explainable statement, MatrixOne displays informa
 
 You can see the `EXPLAIN` example to understand the query execution plan:
 
-**Data preparation**：
+**Data preparation**:
 
 ```sql
 CREATE TABLE t (id INT NOT NULL PRIMARY KEY auto_increment, a INT NOT NULL, pad1 VARCHAR(255), INDEX(a));
@@ -29,7 +29,7 @@ INSERT INTO t VALUES (1, 1, 'aaa'),(2,2, 'bbb');
 EXPLAIN SELECT * FROM t WHERE a = 1;
 ```
 
-**Return result**：
+**Return result**:
 
 ```sql
 +------------------------------------------------+
@@ -47,8 +47,8 @@ EXPLAIN SELECT * FROM t WHERE a = 1;
 
 - QUERY PLAN: the name of an operator.
 
-   + Filter Cond：Filter conditions
-   + Table Scan：scans the table
+   + Filter Cond:Filter conditions
+   + Table Scan:scans the table
 
 - **Project** is the parent node of the executive order in the query process. The structure of the Project is tree-like, and the child node "flows into" the parent node after the calculation is completed. The parent, child, and sibling nodes may execute parts of the query in parallel.
 

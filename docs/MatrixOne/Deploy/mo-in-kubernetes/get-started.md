@@ -2,14 +2,14 @@
 
 This document will describe how to use [MatrixOne Operator](whats-mo-operator.md) to deploy a simple MatrixOne Cluster.
 
-**Main Steps**：
+**Main Steps**:
 
 <p><a href="#create_k8s">1. Create Kubernetes cluster</a></p>
 <p><a href="#deploy_mo_operator">2. Deploy MatrixOne Operator</a></p>
 <p><a href="#create_mo_cluster">3. Create MatrixOne cluster</a></p>
 <p><a href="#connect_mo_cluster">4. Connect to MatrixOne cluster</a></p>
 
-**Other Step**：
+**Other Step**:
 
 <p><a href="#delete_mo_cluster">Delete MatrixOne cluster</a></p>
 

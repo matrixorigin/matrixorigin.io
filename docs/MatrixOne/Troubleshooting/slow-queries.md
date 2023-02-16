@@ -36,7 +36,7 @@ For all queries longer than 1 second, execute the following SQL statement to vie
 
 - `select * from mo_ts.slow_query;`: slow query without plan.
 
-- `select * from mo_ts.slow_query_with_plan;`: slow query with plan.。
+- `select * from mo_ts.slow_query_with_plan;`: slow query with plan..
 
 ## Error Log
 

@@ -2,7 +2,7 @@
 
 ## Overview
 
-S3 (Simple Storage Service) object storage refers to Amazon’s Simple Storage Service. You can also store almost any type and size of data with S3-compatible object storage, including data lakes, cloud-native applications, and mobile apps. If you are unfamiliar with S3 object service, you may look up some basic introductions in [AWS](https://docs.aws.amazon.com/s3/index.html).
+S3 (Simple Storage Service) object storage refers to Amazon's Simple Storage Service. You can also store almost any type and size of data with S3-compatible object storage, including data lakes, cloud-native applications, and mobile apps. If you are unfamiliar with S3 object service, you may look up some basic introductions in [AWS](https://docs.aws.amazon.com/s3/index.html).
 
 AWS S3 has been remarkably successful for over a decade, so it became the de facto standard for object storage. Thus almost every mainstream public cloud vendors provide an S3-compatible object storage service.
 
@@ -43,7 +43,7 @@ LOAD DATA
 
 The other paramaters are identical to a ordinary LOAD DATA, see [LOAD DATA](../../../Reference/SQL-Reference/Data-Manipulation-Statements/load-data.md) for more details.
 
-**Statement Examples**：
+**Statement Examples**:
 
 ```sql
 # LOAD a csv file from AWS S3 us-east-1 region, test-load-mo bucket, without compression
@@ -160,7 +160,7 @@ The other paramaters are identical to a ordinary LOAD DATA, see [LOAD DATA](../.
 
 For more information about External Table, see [CREATE EXTERNAL TABLE](../../../Reference/SQL-Reference/Data-Definition-Statements/create-external-table.md).
 
-**Statement Examples**：
+**Statement Examples**:
 
 ```sql
 ## Create a external table for a .csv file from AWS S3

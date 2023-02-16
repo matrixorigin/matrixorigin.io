@@ -2,7 +2,7 @@
 
 ## **Description**
 
-The word `ALL`, which must follow a comparison operator, means “return `TRUE` if the comparison is `TRUE` for `ALL` of the values in the column that the subquery returns.”:
+The word `ALL`, which must follow a comparison operator, means "return `TRUE` if the comparison is `TRUE` for `ALL` of the values in the column that the subquery returns.":
 
 ```
 operand comparison_operator ALL (subquery)
@@ -34,7 +34,7 @@ In addition, the following expression is NULL when table t2 is empty:
 SELECT * FROM t1 WHERE 1 > ALL (SELECT MAX(s1) FROM t2);
 ```
 
-In general, tables containing `NULL` values and empty tables are “edge cases.” When writing subqueries, always consider whether you have taken those two possibilities into account.
+In general, tables containing `NULL` values and empty tables are "edge cases." When writing subqueries, always consider whether you have taken those two possibilities into account.
 
 ## **Syntax**
 

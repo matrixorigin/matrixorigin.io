@@ -47,7 +47,7 @@ Execute the following SQL statement in a MySQL client:
 mysql> SELECT id, token FROM token_count;
 ```
 
-Result is as below：
+Result is as below:
 
 ```
 +------+----------------------------------+
@@ -75,7 +75,7 @@ To filter query results, you can use the `WHERE` statement.
 mysql> SELECT * FROM token_count WHERE id = 25;
 ```
 
-Result is as below：
+Result is as below:
 
 ```
 +------+----------------------------------+-------+------+-------+---------------------+
@@ -95,7 +95,7 @@ For example, the following SQL statement can be used to sort the data in the *to
 mysql> SELECT id, token, times FROM token_count ORDER BY times DESC;
 ```
 
-Result is as below：
+Result is as below:
 
 ```
 +------+----------------------------------+---------------------+
@@ -123,7 +123,7 @@ To limit the number of query results, you can use the `LIMIT` statement.
 mysql> SELECT id, token, times FROM token_count ORDER BY times DESC LIMIT 5;
 ```
 
-Result is as below：
+Result is as below:
 
 ```
 +------+----------------------------------+---------------------+
@@ -147,7 +147,7 @@ For example, you can group basic information by `id`, `count`, and `times` colum
 mysql> SELECT id, count, times FROM token_count GROUP BY id, count, times ORDER BY times DESC LIMIT 5;
 ```
 
-Result is as below：
+Result is as below:
 
 ```
 +------+-------+---------------------+

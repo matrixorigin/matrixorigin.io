@@ -16,7 +16,7 @@ __Tips:__ Where *query1* and *query2* are queries that can use any of the featur
 
 `MINUS` returns all rows in the result of *query1* but not in *query2*. (This is sometimes called the difference between two queries.) Again, duplicates are eliminated unless `MINUS ALL` is used.
 
-To calculate the union, intersection, or difference of two queries, the two queries must be “union compatible”, which means that they return the same number of columns and the corresponding columns have compatible data types.
+To calculate the union, intersection, or difference of two queries, the two queries must be "union compatible", which means that they return the same number of columns and the corresponding columns have compatible data types.
 
 Set operations can be combined, for example:
 

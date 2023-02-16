@@ -59,5 +59,5 @@ When this parameter is set to OFF or 0, it is not automatically committed. All S
 
 ```
 insert into t1 values(1,2,3);
-COMMIT；  //Manual submission is required here
+COMMIT;  //Manual submission is required here
 ```
