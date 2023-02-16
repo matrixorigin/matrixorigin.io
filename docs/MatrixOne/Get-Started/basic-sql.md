@@ -9,7 +9,7 @@ The Structured Query Language (SQL) is used to manage a relational database mana
 
 ## How many types SQL does MatrixOne have?
 
-SQL is divided into the following 4 types according to their functions in MatrixOne:
+SQL is divided into the following 6 types according to their functions in MatrixOne:
 
 - DDL (Data Definition Language): It is used to define database objects, including databases, tables, and views. Such as `CREATE`, `ALTER`, and `DROP`.
 
@@ -17,7 +17,11 @@ SQL is divided into the following 4 types according to their functions in Matrix
 
 - DQL (Data Query Language): It is used to query the records after conditional filtering. Such as `SELECT...FROM...[WHERE]`.
 
-- DCL (Data Control Language): It is used to define access privileges and security levels. Such as `COMMIT`, `ROLLBACK`, and `SET TRANSACTION`.
+- TCL (Transaction Control Language): It is used to manage transactions. Such as `COMMIT`，`ROLLBACK`，或 `SET TRANSACTION`.
+
+- DCL (Data Control Language): It is used to define access privileges and security levels. Such as `CREATET ACCOUNT`, `DROP ACCOUNT`, and `GRANT`.
+
+- Other: Other types of management languages ​​in MatrixOne are not directly related to data and are a general term for the acquisition and modification of database parameters and resource allocation. Such as `SHOW`, `SET variable`, and `KILL`.
 
 ## Basic SQL about SHOW, CREATE and DROP a database
 
