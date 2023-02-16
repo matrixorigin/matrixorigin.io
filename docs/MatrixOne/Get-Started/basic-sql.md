@@ -17,7 +17,7 @@ SQL is divided into the following 6 types according to their functions in Matrix
 
 - DQL (Data Query Language): It is used to query the records after conditional filtering. Such as `SELECT...FROM...[WHERE]`.
 
-- TCL (Transaction Control Language): It is used to manage transactions. Such as `COMMIT`，`ROLLBACK`，或 `SET TRANSACTION`.
+- TCL (Transaction Control Language): It is used to manage transactions. Such as `COMMIT`,`ROLLBACK`, or `SET TRANSACTION`.
 
 - DCL (Data Control Language): It is used to define access privileges and security levels. Such as `CREATET ACCOUNT`, `DROP ACCOUNT`, and `GRANT`.
 
