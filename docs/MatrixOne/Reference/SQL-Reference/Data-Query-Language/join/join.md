@@ -31,9 +31,9 @@ The following figure shows seven usages of ``LEFT JOIN``, ``RIGHT JOIN``, ``INNE
 
 For more information, see the reference below:
 
-- [LEFT JOIN](join/left-join.md)
-- [RIGHT JOIN](join/right-join.md)
-- [INNER JOIN](join/inner-join.md)
-- [FULL JOIN](join/full-join.md)
-- [OUTER JOIN](join/outer-join.md)
-- [NATURAL JOIN](join/natural-join.md)
+- [LEFT JOIN](left-join.md)
+- [RIGHT JOIN](right-join.md)
+- [INNER JOIN](inner-join.md)
+- [FULL JOIN](full-join.md)
+- [OUTER JOIN](outer-join.md)
+- [NATURAL JOIN](natural-join.md)
