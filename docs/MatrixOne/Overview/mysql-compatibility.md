@@ -12,7 +12,6 @@ MatrixOne SQL syntax conforms with MySQL 8.0.23 version.
 |   |   | All column level constraints are not supported now. |
 |   |   | KEY(column) is not supported yet.|
 | | | AUTO_INCREMENT is supported limitedly. The custom starting value is not supported yet.|
-|   | CREATE other projects | CREATE/DROP INDEX is not supported. |
 |   | ALTER | Not supported now.  |
 |   |DROP DATABASE| 	Same as MySQL.|
 |   |DROP TABLE	| Same as MySQL.|
@@ -30,7 +29,7 @@ MatrixOne SQL syntax conforms with MySQL 8.0.23 version.
 |   |   | Distinct is limitedly support.  |
 |   |   | SELECT...FOR UPDATE clause is not supported now.  |
 |   |   | INTO OUTFILE is limitedly support. |
-|   | LOAD DATA | Only csv files can be loaded currently.  |
+|   | LOAD DATA | csv or jsonline files can be loaded currently.  |
 |   |   | The enclosed character should be "".  |
 |   |   | FIELDS TERMINATED BY should be "," or "|
 |   |   | LINES TERMINATED BY should be "\n". |

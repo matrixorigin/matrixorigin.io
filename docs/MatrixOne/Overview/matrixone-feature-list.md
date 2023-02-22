@@ -7,18 +7,21 @@ This document lists the features supported by MatrixOne for the latest version.
 | Data definition Language(DDL) | Supported(Y)/Not supported (N)  |
 | ----------------------------- | ---- |
 | CREATE DATABASE               | Y    |
-| RENAME DATABASE               | N    |
 | DROP DATABASE                 | Y    |
+| RENAME DATABASE               | N    |
 | CREATE TABLE                  | Y    |
 | ALTER TABLE                   | N    |
-| MODIFY COLUMN                 | N    |
 | RENAME TABLE                  | N    |
+| DROP TABLE                    | Y    |
+| CREATE INDEX                  | Y    |
+| DROP INDEX                    | Y    |
+| MODIFY COLUMN                 | N    |
 | PRIMARY KEY                   | Y    |
 | CREATE VIEW                   | Y    |
-| ALTER VIEW                    | N    |
-| CREATE OR REPLACE VIEW        | N    |
+| ALTER VIEW                    | Y    |
 | DROP VIEW                     | Y    |
-| TRUNCATE                      | Y    |
+| CREATE OR REPLACE VIEW        | N    |
+| TRUNCATE                      | N    |
 | SEQUENCE                      | N    |
 | AUTO_INCREMENT                | Y    |
 | Temporary tables              | Y    |
@@ -47,7 +50,7 @@ This document lists the features supported by MatrixOne for the latest version.
 | Trigger                             | N    |
 | Event Scheduler                     | N    |
 | PARTITION BY                        | Y    |
-| LOCK TABLE                          | Y    |
+| LOCK TABLE                          | N    |
 
 ## Data types
 
@@ -89,7 +92,7 @@ This document lists the features supported by MatrixOne for the latest version.
 | Composite PRIMARY KEY                | Y    |
 | UNIQUE KEY                           | Y   |
 | Secondary KEY                        | Y, Syntax only implementation  |
-| FOREIGN KEY                          | N    |
+| FOREIGN KEY                          | Y    |
 | Enforced Constraints on Invalid Data | Y    |
 | ENUM and SET Constraints             | N    |
 | NOT NULL Constraint                  | Y    |
@@ -108,16 +111,19 @@ This document lists the features supported by MatrixOne for the latest version.
 
 | Functions and Operators Categories | Name                |
 | ---------------------------------- | ------------------- |
-| Aggregate functions                | SUM()               |
-|                                    | COUNT()             |
+| Aggregate functions                | AVG()                |
 |                                    | MAX()               |
 |                                    | MIN()               |
-|                                    | AVG()               |
-|                                    | STD()               |
-|                                    | VARIANCE()          |
+|                                    | Median()            |
+|                                    | SUM()               |
+|                                    | ANY_VALUE()         |
 |                                    | BIT_OR()            |
 |                                    | BIT_AND()           |
 |                                    | BIT_XOR()           |
+|                                    | STD()               |
+|                                    | VARIANCE()          |
+|                                    | GROUP_CONCAT()      |
+|                                    | SLEEP()             |
 | Mathematical functions             | ABS()               |
 |                                    | SIN()               |
 |                                    | COS()               |
@@ -133,12 +139,14 @@ This document lists the features supported by MatrixOne for the latest version.
 |                                    | PI()                |
 |                                    | LOG()               |
 |                                    | LN()                |
+|                                    | UUID()              |
 |                                    | EXP()               |
 | Datetime functions                 | DATE_FORMAT()       |
 |                                    | YEAR()              |
 |                                    | MONTH()             |
 |                                    | DATE()              |
 |                                    | WEEKDAY()           |
+|                                    | TIMESTAMP()         |
 |                                    | DAYOFYEAR()         |
 |                                    | EXTRACT()           |
 |                                    | DATE_ADD()          |
@@ -152,15 +160,22 @@ This document lists the features supported by MatrixOne for the latest version.
 |                                    | CURRENT_TIMESTAMP() |
 |                                    | DATEDIFF()          |
 |                                    | TIMEDIFF()          |
+|                                    | CURDATE()           |
 | String functions                   | BIN()               |
+|                                    | BIT_LENGTH()        |
+|                                    | HEX()               |
 |                                    | CONCAT()            |
 |                                    | CONCAT_WS()         |
 |                                    | FIND_IN_SET()       |
+|                                    | FORMAT()            |
 |                                    | OCT()               |
 |                                    | EMPTY()             |
 |                                    | LENGTH()            |
+|                                    | BIT_LENGTH()        |
+|                                    | LENGTHUTF8()        |
 |                                    | CHAR_LENGTH()       |
 |                                    | LEFT()              |
+|                                    | TRIM()              |
 |                                    | LTRIM()             |
 |                                    | RTRIM()             |
 |                                    | LPAD()              |
@@ -169,30 +184,42 @@ This document lists the features supported by MatrixOne for the latest version.
 |                                    | ENDSWITH()          |
 |                                    | SUBSTRING()         |
 |                                    | SPACE()             |
-|                                    | TRIM                |
+|                                    | TRIM()              |
 |                                    | REVERSE()           |
-|                                    | UUID()              |
-| Other functions                    | COALESCE()          |
-|                                    | ANY_VALUE()         |
+|                                    | SUBSTRING_INDEX()   |
+|                                    | FIELD()             |
+| Operators                          | %, MOD              |
+|                                    | +                   |
+|                                    | -                   |
+|                                    | /                   |
+|                                    | Div                 |
+|                                    | =                   |
+|                                    | &                   |
+|                                    | >>                  |
+|                                    | <<                  |
+|                                    | ^                   |
+|                                    | \|                  |
+|                                    | ~                   |
 |                                    | CAST()              |
-| Operators                          | =                   |
-|                                    | <>                  |
+|                                    | CONVERT()           |
 |                                    | >                   |
 |                                    | >=                  |
 |                                    | <                   |
+|                                    | <>, !=              |
 |                                    | <=                  |
+|                                    | =                   |
 |                                    | LIKE                |
-|                                    | +                   |
-|                                    | -                   |
-|                                    | *                   |
-|                                    | /                   |
-|                                    | Div                 |
-|                                    | %                   |
+|                                    | BETWEEN ... AND ... |
+|                                    | IN()                |
+|                                    | IS/IS NOT           |
+|                                    | IS/IS NOT NULL      |
+|                                    | NOT BETWEEN ... AND ... |
+|                                    | LIKE                |
+|                                    | NOT LIKE            |
+|                                    | COALESCE()          |
+|                                    | CASE...WHEN         |
+|                                    | IF                  |
 |                                    | AND                 |
 |                                    | OR                  |
 |                                    | XOR                 |
 |                                    | NOT                 |
-|                                    | CASE...WHEN         |
-|                                    | IF                  |
-|                                    | IS/IS NOT           |
-|                                    | IS/IS NOT NULL      |

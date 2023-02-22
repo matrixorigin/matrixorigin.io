@@ -2,6 +2,18 @@
 
 FOREIGN KEY constraints can keep related data consistent when cross-referencing associated data across tables.
 
+When defining FOREIGN KEY, the following rules need to be followed:
+
+- The parent table must already exist in the database or be a table currently being created. In the latter case, the parent table and the slave table are the same table, such a table is called a self-referential table, and this structure is called self-referential integrity.
+
+- A primary key must be defined for the parent table.
+
+- Specify the column name or combination of column names after the table name of the parent table. This column or combination of columns must be the primary or candidate key of the primary table. Currently, MatrixOne only supports single-column foreign key constraints.
+
+- The number of columns in the foreign key must be the same as the number of columns in the primary key of the parent table.
+
+- The data type of the column in the foreign key must be the same as the data type of the corresponding column in the primary key of the parent table.
+
 ## **Syntax**
 
 ```
