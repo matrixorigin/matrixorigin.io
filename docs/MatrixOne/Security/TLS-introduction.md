@@ -108,7 +108,7 @@ After completing the configuration of these two main steps, a TLS secure connect
     Current pager:          stdout
     Using outfile:          ''
     Using delimiter:        ;
-    Server version:         0.6.0 MatrixOne
+    Server version:         0.7.0 MatrixOne
     Protocol version:       10
     Connection:             127.0.0.1 via TCP/IP
     ERROR 20101 (HY000): internal error: the system variable does not exist
@@ -133,7 +133,7 @@ After completing the configuration of these two main steps, a TLS secure connect
     Current pager:		stdout
     Using outfile:		''
     Using delimiter:	;
-    Server version:		8.0.30-MatrixOne-v0.6.0 MatrixOne
+    Server version:		8.0.30-MatrixOne-v0.7.0 MatrixOne
     Protocol version:	10
     Connection:		127.0.0.1 via TCP/IP
     Server characterset:	utf8mb4
