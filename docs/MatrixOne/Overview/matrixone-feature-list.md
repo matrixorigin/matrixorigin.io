@@ -184,7 +184,6 @@ This document lists the features supported by MatrixOne for the latest version.
 |                                    | ENDSWITH()          |
 |                                    | SUBSTRING()         |
 |                                    | SPACE()             |
-|                                    | TRIM()              |
 |                                    | REVERSE()           |
 |                                    | SUBSTRING_INDEX()   |
 |                                    | FIELD()             |
