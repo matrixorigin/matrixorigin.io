@@ -52,20 +52,20 @@ __Tips__: It is recommended that you download and install one of these two tools
 === "**Downloading method 1: Using `wget` to install binary packages**"
 
      ```bash
-     wget https://github.com/matrixorigin/matrixone/releases/download/v0.6.0/mo-v0.6.0-darwin-x86_64.zip
-     unzip mo-v0.6.0-darwin-x86_64.zip
+     wget https://github.com/matrixorigin/matrixone/releases/download/v0.7.0/mo-v0.7.0-darwin-x86_64.zip
+     unzip mo-v0.7.0-darwin-x86_64.zip
      ```
 
 === "**Downloading method 2: Using `curl` to install binary packages**"
 
      ```bash
-     curl -OL https://github.com/matrixorigin/matrixone/releases/download/v0.6.0/mo-v0.6.0-darwin-x86_64.zip
-     unzip mo-v0.6.0-darwin-x86_64.zip
+     curl -OL https://github.com/matrixorigin/matrixone/releases/download/v0.7.0/mo-v0.7.0-darwin-x86_64.zip
+     unzip mo-v0.7.0-darwin-x86_64.zip
      ```
 
 === "**Downloading method 3: Go to the page and download**"
 
-     If you want a more intuitive way to download the page, go to the [version 0.6.0](https://github.com/matrixorigin/matrixone/releases/tag/v0.6.0), pull down to find the **Assets** column, and click the installation package *mo-v0.6.0-darwin-x86_64.zip* can be downloaded.
+     If you want a more intuitive way to download the page, go to the [version 0.7.0](https://github.com/matrixorigin/matrixone/releases/tag/v0.7.0), pull down to find the **Assets** column, and click the installation package *mo-v0.7.0-darwin-x86_64.zip* can be downloaded.
 
 !!! info
     MatrixOne only supports installation on ARM chipset with source code build; if you are using MacOS M1 and above, for more information on using source code build to install MatrixOne, see [Building from source code](install-on-macos-method1.md). Using release binary files from X86 chipset will lead to unknown problems.
@@ -81,13 +81,15 @@ __Tips__: It is recommended that you download and install one of these two tools
       ./mo-service -launch ./etc/quickstart/launch.toml
       ```
 
+      When you finish launching MatrixOne in the frontend, many logs are generated in startup mode. Then you can start a new terminal and connect to MatrixOne.
+
 === "**Launch in the backend**"
 
       This launch method will put the `mo-service` process running in the backend, the system log will be redirected to the `test.log` file. If you'd like to stop MatrixOne server, you need to find out its `PID` by and kill it by the following commands. Below is a full example of the whole process.
 
       ```
       # Start mo-service in the backend
-      nohup ./mo-service -launch ./etc/quickstart/launch.toml &> test.log &
+      ./mo-service --daemon --launch ./etc/quickstart/launch.toml &> test.log &
 
       # Find mo-service PID
       ps aux | grep mo-service
@@ -102,7 +104,7 @@ __Tips__: It is recommended that you download and install one of these two tools
 
       __Tips__: As shown in the above example, use the command `ps aux | grep mo-service` to find out that the process number running on MatrixOne is `15277`, and `kill -9 15277` means to stop MatrixOne with the process number `15277`.
 
-When you finish installing and launching MatrixOne, many logs are generated in startup mode. Then you can start a new terminal and connect to MatrixOne.
+      Next you can take the next step - Connect to standalone MatrixOne.
 
 ## Step 4: Connect to standalone MatrixOne
 
