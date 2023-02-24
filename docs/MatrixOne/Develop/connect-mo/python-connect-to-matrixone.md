@@ -1,6 +1,6 @@
 # Connecting to MatrixOne with Python
 
-MatrixOne supports Python connection, in 0.6.0 release, `pymysql` and `sqlalchemy` drivers are supported. This tutorial will walk you through how to connect MatrixOne by these two python drivers.
+MatrixOne supports Python connection, in 0.7.0 release, `pymysql` and `sqlalchemy` drivers are supported. This tutorial will walk you through how to connect MatrixOne by these two python drivers.
 
 ## Before you start
 
@@ -69,7 +69,7 @@ The PyMySQL is a pure-Python MySQL client library.
 
     ```
     > python3 pymysql_connect_matrixone.py
-    Database version : 8.0.30-MatrixOne-v0.6.0
+    Database version : 8.0.30-MatrixOne-v0.7.0
     ```
 
 ## Using sqlalchemy connect to MatrixOne

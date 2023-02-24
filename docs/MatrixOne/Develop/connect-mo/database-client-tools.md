@@ -38,7 +38,7 @@ Make sure you have already [installed and launched MatrixOne](../../Get-Started/
 
     ```
     Welcome to the MySQL monitor. Commands end with ; or \g. Your MySQL connection id is 1031
-    Server version: 0.6.0 MatrixOne
+    Server version: 8.0.30-MatrixOne-v0.7.0 MatrixOne
     Copyright (c) 2000, 2022, Oracle and/or its affiliates.
 
     Oracle is a registered trademark of Oracle Corporation and/or its affiliates. Other names may be trademarks of their respective owners.
@@ -49,7 +49,7 @@ For more information on deployment, see [Deployment FAQs](../../FAQs/deployment-
 
 ## Connect to the MatrixOne Server through Navicat
 
-1. As MatrixOne 0.6 is not fully compatible with MySQL 8.0, we reset the MatrixOne server version to 0.6.0 for adapting Navicat connection.
+1. As MatrixOne 0.7 is not fully compatible with MySQL 8.0, we reset the MatrixOne server version to 0.7.0 for adapting Navicat connection.
 
     Before launch MatrixOne, insert the following lines in the `[cn.frontend]` section of the *etc/launch-tae-CN-tae-DN/cn.toml* file in MatrixOne folder, then launch MatrixOne.
 
