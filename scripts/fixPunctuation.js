@@ -56,7 +56,11 @@ const PUNCTUATION_MAP = [
   [/…{1, 2}/g, '...'],
 ]
 
-/** Checker pattern */
+/**
+ * Checker pattern.
+ * @example  
+ * `/，|、|。|？|：|；|‘|’|“|”|（|）|【|】|《|》|…{1, 2}/`
+ */
 const CHECKER_PATTERN = new RegExp(
   PUNCTUATION_MAP.map(([k]) => k.source).join('|')
 )
@@ -94,6 +98,8 @@ function iterateFiles(relPaths, processer, fix) {
   let errFlag = false
   /** The total number of files with error(s). */
   let errFileCount = 0
+  /** The total number of error(s). */
+  let errCount = 0
   for (const relPath of relPaths) {
     const absPath = resolveAbsPath(relPath)
     const fileContent = readFileSync(absPath, { encoding: 'utf8' })
@@ -111,7 +117,13 @@ function iterateFiles(relPaths, processer, fix) {
       errFlag = true
       errFileCount++
 
+      const coordinates = coordinatesOfChars(CHECKER_PATTERN, fileContent)
+      errCount += coordinates.length
+
       console.log(`[start] ${relPath} ❌`)
+      for (const [lineNumber, colNumber, char] of coordinates) {
+        console.log(`       📌 ${relPath}:${lineNumber}:${colNumber}\t${char}`)
+      }
     }
   }
 
@@ -120,7 +132,7 @@ function iterateFiles(relPaths, processer, fix) {
 
   if (!fix) {
     if (errFlag) {
-      console.log(`Summary: ${errFileCount} error(s) found. Please check the log above.\n`)
+      console.log(`Summary: ${errCount} error(s) in ${errFileCount} file(s) found. Please check the log above.\n`)
 
       exit(1)
     } else {
@@ -153,6 +165,28 @@ function fixPunctuation(content) {
   for (const [k, v] of PUNCTUATION_MAP) {
     result = result.replace(k, v)
   }
+  return result
+}
+
+/**
+ * Get coordinates of chars satisfying the given pattern from body of text.
+ * @param {RegExp} pattern The pattern which the char matches.
+ * @param {string} text Body of the text.
+ * @returns A tuple of line number, column number and the char.
+ */
+function coordinatesOfChars(pattern, text) {
+  const result = []
+  const globalPattern = new RegExp(pattern.source, 'g')
+  const matches = text.matchAll(globalPattern)
+
+  for (const match of matches) {
+    const anchor = match.index
+    const lines = text.substring(0, anchor + 1).split('\n')
+    const lineNumber = lines.length
+    const colNumber = lines.at(-1).length + 1
+    result.push([lineNumber, colNumber, text[anchor]])
+  }
+
   return result
 }
 

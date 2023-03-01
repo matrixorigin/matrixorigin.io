@@ -21,7 +21,7 @@ To create a database, you can use the `CREATE DATABASE` statement.
 CREATE DATABASE IF NOT EXISTS `modatabase`;
 ```
 
-For more information on `CREATE DATABASE` statement, see [CREATE DATABASE](../../Reference/SQL-Reference/Data-Definition-Statements/create-database.md).
+For more information on `CREATE DATABASE` statement, see [CREATE DATABASE](../../Reference/SQL-Reference/Data-Definition-Language/create-database.md).
 
 ## View databases
 
