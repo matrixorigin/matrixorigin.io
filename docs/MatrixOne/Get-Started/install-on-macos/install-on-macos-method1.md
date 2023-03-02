@@ -63,12 +63,12 @@ Depending on your needs, choose whether you want to keep your code up to date, o
 
 === "Get the MatrixOne(Stable Version) code to build"
 
-     1. If you want to get the latest stable version code released by MatrixOne, please switch to the branch of version **0.6.0** first.
+     1. If you want to get the latest stable version code released by MatrixOne, please switch to the branch of version **0.7.0** first.
 
          ```
          git clone https://github.com/matrixorigin/matrixone.git
          cd matrixone         
-         git checkout 0.6.0
+         git checkout 0.7.0
          ```
 
      2. Run `make config` and `make build` to compile the MatrixOne file:
@@ -94,13 +94,15 @@ Depending on your needs, choose whether you want to keep your code up to date, o
       ./mo-service -launch ./etc/quickstart/launch.toml
       ```
 
+      When you finish launching MatrixOne in the frontend, many logs are generated in startup mode. Then you can start a new terminal and connect to MatrixOne.
+
 === "**Launch in the backend**"
 
       This launch method will put the `mo-service` process running in the backend, the system log will be redirected to the `test.log` file. If you'd like to stop MatrixOne server, you need to find out its `PID` by and kill it by the following commands. Below is a full example of the whole process.
 
       ```
       # Start mo-service in the backend
-      nohup ./mo-service -launch ./etc/quickstart/launch.toml &> test.log &
+      ./mo-service --daemon --launch ./etc/quickstart/launch.toml &> test.log &
 
       # Find mo-service PID
       ps aux | grep mo-service
@@ -115,7 +117,7 @@ Depending on your needs, choose whether you want to keep your code up to date, o
 
       __Tips__: As shown in the above example, use the command `ps aux | grep mo-service` to find out that the process number running on MatrixOne is `15277`, and `kill -9 15277` means to stop MatrixOne with the process number `15277`.
 
-When you finish installing and launching MatrixOne, many logs are generated in startup mode. Then you can start a new terminal and connect to MatrixOne.
+      Next you can take the next step - Connect to standalone MatrixOne.
 
 ## Step 5: Connect to standalone MatrixOne
 

@@ -10,15 +10,15 @@ Thanks for understanding that this repository uses English as a shared language.
 
 You can see [MatrixOne Introduction](../../Overview/matrixone-introduction.md) for key features of MatrixOne, [MatrixOne Architecture](../../Overview/matrixone-architecture-design.md) for MatrixOne architecture, and operational logic.
 
-Besides, you can browse [SQL Reference](../../Reference/SQL-Reference/Data-Definition-Statements/create-database.md) and [Custom Functions](../../Reference/Builtin-Functions/Mathematical/abs.md) to know more about our interactive details.
+Besides, you can browse [SQL Reference](../../Reference/SQL-Reference/Data-Definition-Language/create-database.md) and [Custom Functions](../../Reference/Builtin-Functions/Mathematical/abs.md) to know more about our interactive details.
 
 These introductions will help you go through you the key concepts and user details to understand the project.
 
 ### Roadmap
 
-MatrixOne v0.6.0 has been released, you can see [Release Notes](../../Release-Notes/v0.6.0.md) know more information.
+MatrixOne v0.7.0 has been released, you can see [Release Notes](../../Release-Notes/v0.7.0.md) know more information.
 
-Currently, we are working on v0.7.0 releases, the job tasks of these releases are listed in the Github milestones [0.7.0](https://github.com/matrixorigin/matrixone/milestone/9).
+Currently, we are working on v0.8.0 releases, the job tasks of these releases are listed in the Github milestones [0.8.0](https://github.com/matrixorigin/matrixone/milestone/10).
 
 For the long-term project roadmap, please refer to [MatrixOne roadmap](https://github.com/matrixorigin/matrixone/issues/613) for a more general overview.
 
