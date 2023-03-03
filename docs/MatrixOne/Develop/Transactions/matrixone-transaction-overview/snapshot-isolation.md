@@ -1,6 +1,6 @@
 # Snapshot Isolation in MatrixOne
 
-In MatrixOne, the supported isolation level is snapshot isolation. The isolation implementation principle of this level is as follows:
+In MatrixOne, the supported isolation level is Snapshot Isolation, which is also known as REPEATABLE READS to maintain consistency with the isolation level in MySQL. The isolation implementation principle of this level is as follows:
 
 ## Snapshot isolation principle
 
