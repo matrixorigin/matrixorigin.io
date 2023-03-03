@@ -91,7 +91,7 @@ docker run -d \
   swr.cn-east-2.myhuaweicloud.com/kuboard/kuboard-spray:latest-amd64
 ```
 
-After executing the command, open the Kuboard Spray web interface by entering http://192.168.56.9 (jump server IP address) in a web browser, then log in to the Kuboard Spray interface using the username `admin` and the default password `Kuboard123`, as shown below:
+After executing the command, open the Kuboard Spray web interface by entering `http://192.168.56.9` (jump server IP address) in a web browser, then log in to the Kuboard Spray interface using the username `admin` and the default password `Kuboard123`, as shown below:
 
 ![](https://github.com/matrixorigin/artwork/blob/main/docs/security/deploy-mo-cluster-1.png?raw=true)
 
