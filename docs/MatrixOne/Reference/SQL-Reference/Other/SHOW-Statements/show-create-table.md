@@ -2,7 +2,7 @@
 
 ## **Description**
 
-`SHOW CREATE TABLE` shows the `CREATE TABLE` statement that creates the named table. 
+This statement shows the `CREATE TABLE` statement that creates the named table.
 
 ## **Syntax**
 
