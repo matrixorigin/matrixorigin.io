@@ -227,7 +227,7 @@ __Note:__ All the commands in this section should be executed on the master0 nod
 
     __Note:__ After installation, this storageClass will provide storage services in the "/opt/local-path-provisioner" directory on the worker node. You can modify it to another path.
 
-3. Set the default `storageClass`：
+3. Set the default `storageClass`:
 
     ```
     kubectl patch storageclass local-path -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
