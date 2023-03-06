@@ -39,4 +39,4 @@ You can install and connect to MatrixOne on Linux in one of three ways that work
 
 - For more information on the questions of deployment,see [Deployment FAQs](../FAQs/deployment-faqs.md).
 
-- For more information on distributed installation, see [Deploy MatrixOne Cluster on Kubernetes Overview](../Deploy/install-and-launch-in-k8s.md).
+- For more information on distributed installation, see [MatrixOne Distributed Cluster Deployment](../Deploy/deploy-MatrixOne-cluster.md).

@@ -2,6 +2,46 @@
 
 This document will guide you on how to import large amounts of *.csv* format data to MatrixOne.
 
+## Syntax
+
+- Scenario 1: The data file is in the same machine with the MatrixOne server.
+
+```
+LOAD DATA
+INFILE 'file_name'
+INTO TABLE tbl_name
+[{FIELDS | COLUMNS}
+[TERMINATED BY 'string']
+[[OPTIONALLY] ENCLOSED BY 'char']
+[ESCAPED BY 'char']
+]
+[LINES
+[STARTING BY 'string']
+[TERMINATED BY 'string']
+]
+[IGNORE number {LINES | ROWS}]
+[PARALLEL {'TRUE' | 'FALSE'}]
+```
+
+- Scenario 2: The data file is in separate machines with the MatrixOne server.
+
+```
+LOAD DATA LOCAL
+INFILE 'file_name'
+INTO TABLE tbl_name
+[{FIELDS | COLUMNS}
+[TERMINATED BY 'string']
+[[OPTIONALLY] ENCLOSED BY 'char']
+[ESCAPED BY 'char']
+]
+[LINES
+[STARTING BY 'string']
+[TERMINATED BY 'string']
+]
+[IGNORE number {LINES | ROWS}]
+[PARALLEL {'TRUE' | 'FALSE'}]
+```
+
 ## Before you start
 
 Make sure you have already [Deployed and Launched standalone MatrixOne](../../../Get-Started/install-standalone-matrixone.md).
@@ -13,6 +53,10 @@ You can use `Load Data` to import data from big data files.
 This section will describe how to import a *.csv* file.
 
 __Note__: A `csv`(comma-separated values) file is a delimited text file that uses a comma to separate values.
+
+### Steps
+
+#### The data file is in the same machine with the MatrixOne server
 
 1. Before executing `Load Data` in MatrixOne, the table needs to be created in advance. For now, the data file is required to be at the same machine with MatrixOne server, a file transfer is necessary if they are in separate machines.
 
@@ -30,10 +74,28 @@ __Note__: A `csv`(comma-separated values) file is a delimited text file that use
     FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"' LINES TERMINATED BY "\r\n";
     ```
 
+#### The data file is in separate machines with the MatrixOne server
+
+1. Before executing `LOAD DATA LOCAL` in MatrixOne, the table needs to be created in advance.
+
+2. Launch the MySQL Client in the MatrixOne local server for accessing the local file system.
+
+    ```
+    mysql -h <mo-host-ip> -P 6001 -udump -p111 --local-infile
+    ```
+
+3. Execute `LOAD DATA LOCAL` with the corresponding file path in MySQL client.
+
+    ```
+    mysql> LOAD DATA LOCAL INFILE '/tmp/xxx.csv'
+    INTO TABLE table_name
+    FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"' LINES TERMINATED BY "\r\n";
+    ```
+
 ### Example using `Load data` with `docker` version
 
 If you install MatrixOne by `docker`, the file system is inside the docker image by default. To work with local directory, you need to bind a local directory to the container. In the following example, the local file system path `~/tmp/docker_loaddata_demo/` is binded to the MatrixOne docker image, with a mapping to the `/ssb-dbgen-path` path inside the docker.
-We will walk you through the whole process of loading data with MatrixOne 0.7.0 docker version in this example.
+We will walk you through the whole process of loading data with MatrixOne 0.6.0 docker version in this example.
 
 1. Download the dataset file and store the data in *~/tmp/docker_loaddata_demo/*:
 
@@ -51,7 +113,7 @@ We will walk you through the whole process of loading data with MatrixOne 0.7.0 
 3. Use Docker to launch MatrixOne, and mount the directory *~/tmp/docker_loaddata_demo/* that stores data files to a directory in the container. The container directory is */sb-dbgen-path* as an example:
 
     ```
-    sudo docker run --name matrixone --privileged -d -p 6001:6001 -v ~/tmp/docker_loaddata_demo/:/ssb-dbgen-path:rw matrixorigin/matrixone:0.7.0
+    sudo docker run --name matrixone --privileged -d -p 6001:6001 -v ~/tmp/docker_loaddata_demo/:/ssb-dbgen-path:rw matrixorigin/matrixone:0.6.0
     ```
 
 4. Connect to MatrixOne server:
@@ -59,6 +121,8 @@ We will walk you through the whole process of loading data with MatrixOne 0.7.0 
     ```
     mysql -h 127.0.0.1 -P 6001 -udump -p111
     ```
+
+    __Note:__ If your data file is on a different machine from the MatrixOne server, that is, the data file is on the client machine you are using, then you need to use the command line to connect to the MatrixOne service host: `mysql -h <mo-host -ip> -P 6001 -udump -p111 --local-infile`; and the imported command line needs to use `LOAD DATA LOCAL INFILE` syntax.
 
 5. Create *lineorder_flat* tables in MatrixOne, and import the dataset into MatriOne:
 
@@ -122,3 +186,10 @@ We will walk you through the whole process of loading data with MatrixOne 0.7.0 
     | 10272594 |
     +----------+
     ```
+
+## Constraints
+
+The loaded csv file format supports JSON. However, you need to ensure that the JSON does not contain field termination symbols. If the JSON does contain field termination symbols, wrap the JSON with double quotation marks. For example:
+
+- Right csv file example: `"{"a":1, "b":2}", 2`
+- Wrong csv file example: `{"a":1, "b":2}, 2`

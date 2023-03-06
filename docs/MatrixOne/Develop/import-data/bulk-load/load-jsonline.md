@@ -56,9 +56,18 @@ Invalid array JSONLines example (Data type and column numbers don't match):
 
 ## Syntax
 
+- Scenario 1: The data file is in the same machine with the MatrixOne server.
+
 ```
 LOAD DATA INFILE
-    {'filepath'='FILEPATH', 'compression'='COMPRESSION_FORMAT', 'format'='FILE_FORMAT', 'jsondata'='object'/'array'} INTO TABLE table_name [IGNORE x LINES/ROWS];
+    {'filepath'='FILEPATH', 'compression'='COMPRESSION_FORMAT', 'format'='FILE_FORMAT', 'jsondata'='object'/'array'} INTO TABLE table_name [IGNORE x LINES/ROWS] [PARALLEL {'TRUE' | 'FALSE'}];
+```
+
+- Scenario 2: The data file is in separate machines with the MatrixOne server.
+
+```
+LOAD DATA LOCAL INFILE
+    {'filepath'='FILEPATH', 'compression'='COMPRESSION_FORMAT', 'format'='FILE_FORMAT', 'jsondata'='object'/'array'} INTO TABLE table_name [IGNORE x LINES/ROWS] [PARALLEL {'TRUE' | 'FALSE'}];
 ```
 
 **Parameter Description**
@@ -86,9 +95,9 @@ Before load JSONLines data into MatrixOne, we need to firstly create a table. As
 |Number| INT (with interger numbers)|
 |Number| FLOAT or DOUBLE (with floating numbers) |
 |Boolean| BOOL(true/false)|
-|Object| Not supported|
-|Array| Not supported|
-|Null| Not supported|
+|Object|JSON type|
+|Array| JSON type|
+|Null| All types have been supported.|
 
 For example, We can create a MatrixOne table with such a DDL for a JSONLines format file as below.
 
@@ -148,6 +157,8 @@ In this tutorial, we will guide you through loading two jsonline files with obje
     mysql -h 127.0.0.1 -P 6001 -udump -p111
     ```
 
+    __Note:__ If your data file is on a different machine from the MatrixOne server, that is, the data file is on the client machine you are using, then you need to use the command line to connect to the MatrixOne service host: `mysql -h <mo-host -ip> -P 6001 -udump -p111 --local-infile`; and the imported command line needs to use `LOAD DATA LOCAL INFILE` syntax.
+
 4. Create tables in MatrixOne:
 
     ```sql
@@ -183,9 +194,3 @@ In this tutorial, we will guide you through loading two jsonline files with obje
 
 !!! note
     If you use Docker to launch MatrixOne, when you try to import the jsonline file, please make sure that you have a data directory mounted to the container. You can check on the [load csv tutorial](load-csv.md) about the loading with docker installation.
-
-## Constraints
-
-1. `Load data` doesn't support JSON type in schema.
-2. JSONLine files with nested structure data(object, array) cannot be loaded in MatrixOne.
-3. Null type data cannot be loaded in MatrixOne.
