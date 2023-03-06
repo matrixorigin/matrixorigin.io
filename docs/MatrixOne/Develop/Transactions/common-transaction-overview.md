@@ -156,7 +156,7 @@ ANSI/ISO SQL defines four standard isolation levels:
 
 - **READ COMMITTED**: At the READ COMMITTED level, the DBMS based on lock mechanism concurrency control needs to keep the write lock on the selected object until the end of the transaction, but the read lock is released immediately after the SELECT operation is completed. Like the previous isolation level, "scope locks" are not required.
 
-- **REPEATABLE READS**: At the REPEATABLE READS isolation level, the DBMS based on the lock mechanism concurrency control needs to keep the read locks (read locks) and write locks (write locks) of the selected objects until the transaction end but does not require a "range lock", so a "phantom read" may occur.
+- **REPEATABLE READS**: At the REPEATABLE READS isolation level, the DBMS based on the lock mechanism concurrency control needs to keep the read locks (read locks) and write locks (write locks) of the selected objects until the transaction end but does not require a "range lock", so a "phantom read" may occur. MatrixOne has implemented **Snapshot Isolation** and it is also known as **REPEATABLE READS** to maintain consistency with the isolation level in MySQL.
 
 - **SERIALIZABLE**: SERIALIZABLE is the highest isolation level. On lock-based concurrency control DBMSs, serializability requires that read and write locks on selected objects be released at the end of the transaction. Using a "WHERE" clause in a SELECT query to describe a range should acquire a "range-locks".
 
