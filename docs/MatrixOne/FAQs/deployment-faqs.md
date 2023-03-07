@@ -97,6 +97,12 @@ go env -w GOPROXY=https://goproxy.cn,direct
 
 Then the `make build` should be fast enough to finish.
 
+* **When I want to save the MatrixOne data directory to my specified file directory, how should I do it?**
+
+- When you use Docker to start MatrixOne, you can mount the data directory you specify to the Docker container, see [Mount directory to Docker container](../Maintain/mount-data-by-docker.md).
+
+- When you use the source code or binary package to compile and start MatrixOne, you can modify the default data directory path in the configuration file: open the MatrixOne source file directory `matrixone/etc/launch-tae-CN-tae-DN`, modify the configuration parameter `data-dir = "./mo-data"` in the three files of `cn.toml`, `dn.toml` and `log.toml` is `data-dir = "your_local_path"`, save and restart MatrixOne It will take effect.
+
 * **When I was testing MatrixOne with MO-tester, I got an error of `too many open files`?**
 
 MO-tester will open and close many SQL files in a high speed to test MatrixOne, this kind of usage will easily reach the maximum open file limit of Linux and macOS, which is the reason for the `too many open files` error.
