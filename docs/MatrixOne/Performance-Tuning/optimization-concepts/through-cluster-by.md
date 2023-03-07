@@ -6,8 +6,6 @@
 
 `Cluster by` is a command used to optimize the physical arrangement of a table. When `Cluster by` is used during table creation, tables without primary keys can be physically sorted according to a specified column. The data rows will be rearranged in the same order as the values of that column. This physical sorting helps improve query performance.
 
-It should be noted that `Cluster by` cannot coexist with a primary key because it already specifies the sorting order. Otherwise, it will result in a syntax error. Additionally, `Cluster by` can only be specified during table creation and does not support dynamic creation.
-
 The following are some considerations when using `Cluster by`:
 
 `Cluster by` cannot coexist with a primary key because the primary key already specifies the sorting order. Otherwise, it will result in a syntax error.
