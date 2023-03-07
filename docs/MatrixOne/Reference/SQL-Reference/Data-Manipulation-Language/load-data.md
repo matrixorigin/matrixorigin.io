@@ -7,7 +7,7 @@ The LOAD DATA statement reads rows from a text file into a table at a very high 
 ## **Syntax**
 
 ```
-> LOAD DATA
+> LOAD DATA [LOCAL]
     INFILE 'file_name'
     INTO TABLE tbl_name
     [{FIELDS | COLUMNS}
@@ -20,11 +20,14 @@ The LOAD DATA statement reads rows from a text file into a table at a very high 
         [TERMINATED BY 'string']
     ]
     [IGNORE number {LINES | ROWS}]
+    [PARALLEL {'TRUE' | 'FALSE'}]
 ```
 
 ### Input File Location
 
-Currently MatrixOne only supports to load data on server host, and the `file_name` must be an absolute path name for MatrixOne to locate it.
+- `LOAD DATA INFILE 'file_name'`: Indicates that the data file to be loaded is on the same machine as the MatrixOne host server. `file_name` can be the relative path name of the storage location of the file, or it can be the absolute path name.
+
+- `LOAD DATA LOCAL INFILE 'file_name'`: indicates that the data file to be loaded is not on the same machine as the MatrixOne host server; that is, the data file is on the client server. `file_name` can be the relative path name of the storage location of the file, or it can be the absolute path name.
 
 ### IGNORE LINES
 
@@ -130,6 +133,27 @@ something xxx"def",2
 ```
 
 The resulting rows are ("abc",1) and ("def",2). The third row in the file is skipped because it does not contain the prefix.
+
+### PARALLEL
+
+For a sizeable well-formed file, such as a *JSOLLines* file or a *CSV* file with no line breaks in a line of data, you can use `PARALLEL` to load the file in parallel to speed up the loading.
+
+For example, for a large file of 2 G, use two threads to load; the second thread first splits and locates the 1G position, then reads and loads backward. In this way, two threads can read large files at the same time, and each thread can read 1G of data.
+
+**Enable/Disable Parallel Loading Command Line Example**:
+
+```
+// Enable Parallel Loading
+load data infile 'file_name' into table tbl_name FIELDS TERMINATED BY '|' ENCLOSED BY '\"' LINES TERMINATED BY '\n' IGNORE 1 LINES PARALLEL 'TRUE';
+
+// Disable Parallel Loading
+load data infile 'file_name' into table tbl_name FIELDS TERMINATED BY '|' ENCLOSED BY '\"' LINES TERMINATED BY '\n' IGNORE 1 LINES PARALLEL 'FALSE';
+
+// Parallel loading is disabled by default
+load data infile 'file_name' into table tbl_name FIELDS TERMINATED BY '|' ENCLOSED BY '\"' LINES TERMINATED BY '\n' IGNORE 1 LINES;
+```
+
+__Note:__ If the `PARALLEL` field is not added in the `LOAD` statement, for *CSV* files, parallel loading is disabled by default; for *JSOLLines* files, parallel loading is enabled by default. If there is a line terminator in the *CSV* file, such as '\n', otherwise it may cause data errors when the file is loaded. If the file is too large, manually splitting the file from the '\n' as the starting and ending point is recommended, then enabling parallel loading.
 
 ## Supported file formats
 
@@ -331,7 +355,9 @@ For more information on loding *JSONLines*, see [Import the JSONLines data](../.
 
 ## **Constraints**
 
-1. `LOAD DATA` doesn't support to load files on the client host yet.
-2. The `REPLACE` and `IGNORE` modifiers control handling of new (input) rows that duplicate existing table rows on unique key values (`PRIMARY KEY` or `UNIQUE index` values) are not supported in MatrixOne yet.
-3. Only absolute file path is supported.
-4. Input pre-pressing with `SET` is supported very limitedly. Only `SET columns_name=nullif(expr1,expr2)` is supported.
+1. The `REPLACE` and `IGNORE` modifiers control handling of new (input) rows that duplicate existing table rows on unique key values (`PRIMARY KEY` or `UNIQUE index` values) are not supported in MatrixOne yet.
+2. Input pre-pressing with `SET` is supported very limitedly. Only `SET columns_name=nullif(expr1,expr2)` is supported.
+3. When enabling the parallel loading, it must be ensured that each row of data in the file does not contain the specified line terminator, such as '\n'; otherwise, it will cause data errors during file loading.
+4. The parallel loading of files requires that the files be in uncompressed format, and parallel loading of files in compressed form is not currently supported.
+5. The `load data local` dose not support parallel loading now.
+6. When you use `load data local`, you need to use the command line to connect to the MatrixOne service host: `mysql -h <mo-host -ip> -P 6001 -udump -p111 --local-infile`.

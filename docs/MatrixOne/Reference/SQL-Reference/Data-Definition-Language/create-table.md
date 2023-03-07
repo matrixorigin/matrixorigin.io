@@ -9,7 +9,7 @@ Create a new table.
 ```
 > CREATE [TEMPORARY] TABLE [IF NOT EXISTS] [db.]table_name [comment = "comment of table"];
 (
-    name1 type1 [comment 'comment of column'] [AUTO_INCREMENT] [[PRIMARY] KEY],
+    name1 type1 [comment 'comment of column'] [AUTO_INCREMENT] [[PRIMARY] KEY] [[FOREIGN] KEY],
     name2 type2 [comment 'comment of column'],
     ...
 )
@@ -61,6 +61,64 @@ The following SQL creates a PRIMARY KEY on the "ID" column when the "Persons" ta
     PRIMARY KEY (ID)
 );
 ```
+
+#### FOREIGN KEY
+
+The FOREIGN KEY constraint is used to prevent actions that would destroy links between tables.
+
+A FOREIGN KEY is a field (or collection of fields) in one table, that refers to the PRIMARY KEY in another table.
+
+The table with the foreign key is called the child table, and the table with the primary key is called the referenced or parent table.
+
+The FOREIGN KEY constraint prevents invalid data from being inserted into the foreign key column, because it has to be one of the values contained in the parent table.
+
+When defining FOREIGN KEY, the following rules need to be followed:
+
+- The parent table must already exist in the database or be a table currently being created. In the latter case, the parent table and the slave table are the same table, such a table is called a self-referential table, and this structure is called self-referential integrity.
+
+- A primary key must be defined for the parent table.
+
+- Specify the column name or combination of column names after the table name of the parent table. This column or combination of columns must be the primary or candidate key of the primary table. Currently, MatrixOne only supports single-column foreign key constraints.
+
+- The number of columns in the foreign key must be the same as the number of columns in the primary key of the parent table.
+
+- The data type of the column in the foreign key must be the same as the data type of the corresponding column in the primary key of the parent table.
+
+The following is an example to illustrate the association of parent and child tables through FOREIGN KEY and PRIMARY KEY:
+
+First, create a parent table with field a as the primary key:
+
+```sql
+create table t1(a int primary key,b varchar(5));
+insert into t1 values(101,'abc'),(102,'def');
+mysql> select * from t1;
++------+------+
+| a    | b    |
++------+------+
+|  101 | abc  |
+|  102 | def  |
++------+------+
+2 rows in set (0.00 sec)
+```
+
+Then create a child table with field c as the foreign key, associated with parent table field a:
+
+```sql
+create table t2(a int ,b varchar(5),c int, foreign key(c) references t1(a));
+insert into t2 values(1,'zs1',101),(2,'zs2',102);
+insert into t2 values(3,'xyz',null);
+mysql> select * from t2;
++------+------+------+
+| a    | b    | c    |
++------+------+------+
+|    1 | zs1  |  101 |
+|    2 | zs2  |  102 |
+|    3 | xyz  | NULL |
++------+------+------+
+3 rows in set (0.00 sec)
+```
+
+For more information on data integrity constraints, see [Data Integrity Constraints Overview](../../../Develop/schema-design/data-integrity/overview-of-integrity-constraint-types.md).
 
 #### Table PARTITION and PARTITIONS
 

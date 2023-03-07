@@ -21,7 +21,7 @@ This document lists the features supported by MatrixOne for the latest version.
 | ALTER VIEW                    | Y    |
 | DROP VIEW                     | Y    |
 | CREATE OR REPLACE VIEW        | N    |
-| TRUNCATE                      | N    |
+| TRUNCATE                      | Y    |
 | SEQUENCE                      | N    |
 | AUTO_INCREMENT                | Y    |
 | Temporary tables              | Y    |

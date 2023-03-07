@@ -27,6 +27,7 @@ LOAD DATA
         [ESCAPED BY 'char']
     ]
     [IGNORE number {LINES | ROWS}]
+    [PARALLEL {'TRUE' | 'FALSE'}]
 ```
 
 **Parameter Description**
@@ -248,8 +249,3 @@ This tutorial will walk you through the whole process of creating an external ta
     ```sql
     insert into t2 select * from t1;
     ```
-
-## Constraints
-
-1. MatrixOne only supports loading *.csv* format files from S3-compatible object storage.
-2. To load many files with a regex path, MatrixOne still has some bugs in loading `*.csv` without a parent directory. You can only load files as `/test/*.csv`.
