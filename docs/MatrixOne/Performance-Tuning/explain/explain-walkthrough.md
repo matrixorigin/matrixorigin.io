@@ -89,4 +89,4 @@ So using EXPLAIN ANALYZE is analyzing query execution.
 
 The example query above takes 0.00 seconds to execute, which is an ideal performance. Also, because the query we executed in this example is simple, it meets the high execution performance.
 
-For more information, see [EXPLAIN ANALYZE](../Reference/SQL-Reference/Other/Explain/explain-analyze.md).
+For more information, see [EXPLAIN ANALYZE](../../Reference/SQL-Reference/Other/Explain/explain-analyze.md).
