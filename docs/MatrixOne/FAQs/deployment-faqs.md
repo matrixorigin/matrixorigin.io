@@ -101,7 +101,7 @@ Then the `make build` should be fast enough to finish.
 
 - When you use Docker to start MatrixOne, you can mount the data directory you specify to the Docker container, see [Mount directory to Docker container](../Maintain/mount-data-by-docker.md).
 
-- When you use the source code or binary package to compile and start MatrixOne, you can modify the default data directory path in the configuration file: open the MatrixOne source file directory `matrixone/etc/launch-tae-CN-tae-DN`, modify `cn The configuration parameter `data-dir = "./mo-data"` in the three files of .toml`, `dn.toml` and `log.toml` is `data-dir = "your_local_path"`, save and restart MatrixOne It will take effect.
+- When you use the source code or binary package to compile and start MatrixOne, you can modify the default data directory path in the configuration file: open the MatrixOne source file directory `matrixone/etc/launch-tae-CN-tae-DN`, modify the configuration parameter `data-dir = "./mo-data"` in the three files of `cn.toml`, `dn.toml` and `log.toml` is `data-dir = "your_local_path"`, save and restart MatrixOne It will take effect.
 
 * **When I was testing MatrixOne with MO-tester, I got an error of `too many open files`?**
 
