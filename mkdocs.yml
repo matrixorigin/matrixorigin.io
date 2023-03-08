@@ -129,13 +129,16 @@ nav:
         - MO-Tester: MatrixOne/Test/testing-tool/mo-tester.md
         - MO-Tester Specification: MatrixOne/Test/testing-tool/mo-tester-reference.md
     - Performance Tuning:
+      - SQL Performance Tuning Methods Overview: MatrixOne/Performance-Tuning/performance-tuning-overview.md
       - Understanding the Query Execution Plan:
-        - Query Execution Plan Overview: MatrixOne/Performance-Tuning/explain-overview.md
-        - Using EXPLAIN to learn the execution plan: MatrixOne/Performance-Tuning/explain-walkthrough.md
-        - Explain Statements Using JOIN: MatrixOne/Performance-Tuning/explain-joins.md
-        - Explain Statements Using Subqueries: MatrixOne/Performance-Tuning/explain-subqueries.md
-        - Explain Statements Using Aggregation: MatrixOne/Performance-Tuning/explain-aggregation.md
-        - EXPLAIN Statements Using Views: MatrixOne/Performance-Tuning/explain-views.md
+        - Query Execution Plan Overview: MatrixOne/Performance-Tuning/explain/explain-overview.md
+        - Using EXPLAIN to learn the execution plan: MatrixOne/Performance-Tuning/explain/explain-walkthrough.md
+        - Explain Statements Using JOIN: MatrixOne/Performance-Tuning/explain/explain-joins.md
+        - Explain Statements Using Subqueries: MatrixOne/Performance-Tuning/explain/explain-subqueries.md
+        - Explain Statements Using Aggregation: MatrixOne/Performance-Tuning/explain/explain-aggregation.md
+        - EXPLAIN Statements Using Views: MatrixOne/Performance-Tuning/explain/explain-views.md
+      - Performance tuning best practices:
+        - Using Cluster by for performance tuning: MatrixOne/Performance-Tuning/optimization-concepts/through-cluster-by.md
     - Privilege:
       - TLS Introduction: MatrixOne/Security/TLS-introduction.md
       - What is MatrixOne Privilege Management:
