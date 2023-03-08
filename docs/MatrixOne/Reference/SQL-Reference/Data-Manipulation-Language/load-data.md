@@ -160,7 +160,7 @@ By setting the parameter, you can use `SET column_name=nullif(column_name,"null"
     CREATE TABLE `user` (`id` int(11) ,`user_name` varchar(255) ,`sex` varchar(255));
     ```
 
-3. Load `test.txt` into the table `user`：
+3. Load `test.txt` into the table `user`:
 
     ```sql
     LOAD DATA INFILE '/tmp/test.txt' INTO TABLE user SET id=nullif(id,"null");
