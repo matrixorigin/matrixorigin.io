@@ -13,6 +13,7 @@ Create a new table.
     name2 type2 [comment 'comment of column'],
     ...
 )
+    [cluster by (column_name1, column_name2, ...);]
     [partition_options]
 ```
 
@@ -119,6 +120,17 @@ mysql> select * from t2;
 ```
 
 For more information on data integrity constraints, see [Data Integrity Constraints Overview](../../../Develop/schema-design/data-integrity/overview-of-integrity-constraint-types.md).
+
+#### Cluster by
+
+`Cluster by` is a command used to optimize the physical arrangement of a table. When creating a table, the `Cluster by` command can physically sort the table based on a specified column for tables without a primary key. It will rearrange the data rows to match the order of values in that column. Using `Cluster by` improves query performance.
+
+- The syntax for a single column is: `create table() cluster by col;`
+- The syntax for multiple columns is: `create table() cluster by (col1, col2);`
+
+__Note:__ `Cluster by` cannot coexist with a primary key, or a syntax error will occur. `Cluster by` can only be specified when creating a table and does not support dynamic creation.
+
+For more information on using `Cluster by` for performing tuning, see [Using `Cluster by` for performance tuning](../../../../../../Performance-Tuning/optimization-concepts/through-cluster-by.md).
 
 #### Table PARTITION and PARTITIONS
 
