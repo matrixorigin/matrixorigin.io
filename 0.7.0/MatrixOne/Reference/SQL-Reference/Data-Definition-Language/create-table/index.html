@@ -119,13 +119,13 @@
             <ul class="md-select__list">
               
                 <li class="md-select__item">
-                  <a href="https://docs.matrixorigin.io" hreflang="en" class="md-select__link">
+                  <a href="/en/" hreflang="en" class="md-select__link">
                     English
                   </a>
                 </li>
                 
                 <li class="md-select__item">
-                  <a href="https://docs.matrixorigin.io/cn/" hreflang="cn" class="md-select__link">
+                  <a href="/" hreflang="zh" class="md-select__link">
                     中文简体
                   </a>
                 </li>
@@ -1978,22 +1978,36 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../../../../Performance-Tuning/performance-tuning-overview/" class="md-nav__link">
+        SQL Performance Tuning Methods Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
     
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_10_1" type="checkbox" id="__nav_1_10_1" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_10_2" type="checkbox" id="__nav_1_10_2" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_10_1">
+        <label class="md-nav__link" for="__nav_1_10_2">
           Understanding the Query Execution Plan
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Understanding the Query Execution Plan" data-md-level="3">
-        <label class="md-nav__title" for="__nav_1_10_1">
+        <label class="md-nav__title" for="__nav_1_10_2">
           <span class="md-nav__icon md-icon"></span>
           Understanding the Query Execution Plan
         </label>
@@ -2005,7 +2019,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Performance-Tuning/explain-overview/" class="md-nav__link">
+      <a href="../../../../Performance-Tuning/explain/explain-overview/" class="md-nav__link">
         Query Execution Plan Overview
       </a>
     </li>
@@ -2019,7 +2033,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Performance-Tuning/explain-walkthrough/" class="md-nav__link">
+      <a href="../../../../Performance-Tuning/explain/explain-walkthrough/" class="md-nav__link">
         Using EXPLAIN to learn the execution plan
       </a>
     </li>
@@ -2033,7 +2047,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Performance-Tuning/explain-joins/" class="md-nav__link">
+      <a href="../../../../Performance-Tuning/explain/explain-joins/" class="md-nav__link">
         Explain Statements Using JOIN
       </a>
     </li>
@@ -2047,7 +2061,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Performance-Tuning/explain-subqueries/" class="md-nav__link">
+      <a href="../../../../Performance-Tuning/explain/explain-subqueries/" class="md-nav__link">
         Explain Statements Using Subqueries
       </a>
     </li>
@@ -2061,7 +2075,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Performance-Tuning/explain-aggregation/" class="md-nav__link">
+      <a href="../../../../Performance-Tuning/explain/explain-aggregation/" class="md-nav__link">
         Explain Statements Using Aggregation
       </a>
     </li>
@@ -2075,8 +2089,55 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Performance-Tuning/explain-views/" class="md-nav__link">
+      <a href="../../../../Performance-Tuning/explain/explain-views/" class="md-nav__link">
         EXPLAIN Statements Using Views
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_10_3" type="checkbox" id="__nav_1_10_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_10_3">
+          Performance tuning best practices
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Performance tuning best practices" data-md-level="3">
+        <label class="md-nav__title" for="__nav_1_10_3">
+          <span class="md-nav__icon md-icon"></span>
+          Performance tuning best practices
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Performance-Tuning/optimization-concepts/through-cluster-by/" class="md-nav__link">
+        Using Cluster by for performance tuning
       </a>
     </li>
   
@@ -2579,6 +2640,13 @@
           <li class="md-nav__item">
   <a href="#foreign-key" class="md-nav__link">
     FOREIGN KEY
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cluster-by" class="md-nav__link">
+    Cluster by
   </a>
   
 </li>
@@ -7101,6 +7169,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#cluster-by" class="md-nav__link">
+    Cluster by
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#table-partition-and-partitions" class="md-nav__link">
     Table PARTITION and PARTITIONS
   </a>
@@ -7159,6 +7234,7 @@
     name2 type2 [comment &#39;comment of column&#39;],
     ...
 )
+    [cluster by (column_name1, column_name2, ...);]
     [partition_options]
 </code></pre></div>
 <h3 id="explanations">Explanations</h3>
@@ -7242,6 +7318,14 @@
 <span class="mi">3</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 </code></pre></div>
 <p>For more information on data integrity constraints, see <a href="../../../../Develop/schema-design/data-integrity/overview-of-integrity-constraint-types/">Data Integrity Constraints Overview</a>.</p>
+<h4 id="cluster-by">Cluster by</h4>
+<p><code>Cluster by</code> is a command used to optimize the physical arrangement of a table. When creating a table, the <code>Cluster by</code> command can physically sort the table based on a specified column for tables without a primary key. It will rearrange the data rows to match the order of values in that column. Using <code>Cluster by</code> improves query performance.</p>
+<ul>
+<li>The syntax for a single column is: <code>create table() cluster by col;</code></li>
+<li>The syntax for multiple columns is: <code>create table() cluster by (col1, col2);</code></li>
+</ul>
+<p><strong>Note:</strong> <code>Cluster by</code> cannot coexist with a primary key, or a syntax error will occur. <code>Cluster by</code> can only be specified when creating a table and does not support dynamic creation.</p>
+<p>For more information on using <code>Cluster by</code> for performing tuning, see <a href="../../../../../../Performance-Tuning/optimization-concepts/through-cluster-by.md">Using <code>Cluster by</code> for performance tuning</a>.</p>
 <h4 id="table-partition-and-partitions">Table PARTITION and PARTITIONS</h4>
 <div class="highlight"><pre><span></span><code>partition_options:
  PARTITION BY

@@ -8,19 +8,19 @@
       
       
       
-      <link rel="icon" href="../../../assets/images/favicon.png">
+      <link rel="icon" href="../../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.2.8">
     
     
       
-        <title>EXPLAIN Statements Using Views - MatrixOne Docs</title>
+        <title>Using EXPLAIN to learn the execution plan - MatrixOne Docs</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.644de097.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.644de097.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.e6a45f82.min.css">
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.e6a45f82.min.css">
         
       
     
@@ -35,9 +35,9 @@
       
     
     
-      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("../../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -61,7 +61,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#explain-statements-using-views" class="md-skip">
+        <a href="#using-explain-to-learn-the-execution-plan" class="md-skip">
           Skip to content
         </a>
       
@@ -85,7 +85,7 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="https://www.matrixorigin.io" title="MatrixOne Docs" class="md-header__button md-logo" aria-label="MatrixOne Docs" data-md-component="logo">
       
-  <img src="../../../assets/new-logo.png" alt="logo">
+  <img src="../../../../assets/new-logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -101,7 +101,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              EXPLAIN Statements Using Views
+              Using EXPLAIN to learn the execution plan
             
           </span>
         </div>
@@ -119,13 +119,13 @@
             <ul class="md-select__list">
               
                 <li class="md-select__item">
-                  <a href="https://docs.matrixorigin.io" hreflang="en" class="md-select__link">
+                  <a href="/en/" hreflang="en" class="md-select__link">
                     English
                   </a>
                 </li>
                 
                 <li class="md-select__item">
-                  <a href="https://docs.matrixorigin.io/cn/" hreflang="cn" class="md-select__link">
+                  <a href="/" hreflang="zh" class="md-select__link">
                     中文简体
                   </a>
                 </li>
@@ -201,7 +201,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../.." class="md-tabs__link md-tabs__link--active">
+      <a href="../../../.." class="md-tabs__link md-tabs__link--active">
         MatrixOne
       </a>
     </li>
@@ -237,7 +237,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href="https://www.matrixorigin.io" title="MatrixOne Docs" class="md-nav__button md-logo" aria-label="MatrixOne Docs" data-md-component="logo">
       
-  <img src="../../../assets/new-logo.png" alt="logo">
+  <img src="../../../../assets/new-logo.png" alt="logo">
 
     </a>
     MatrixOne Docs
@@ -293,7 +293,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../.." class="md-nav__link">
+      <a href="../../../.." class="md-nav__link">
         Home
       </a>
     </li>
@@ -333,7 +333,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Overview/matrixone-introduction/" class="md-nav__link">
+      <a href="../../../Overview/matrixone-introduction/" class="md-nav__link">
         MatrixOne Introduction
       </a>
     </li>
@@ -347,7 +347,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Overview/matrixone-feature-list/" class="md-nav__link">
+      <a href="../../../Overview/matrixone-feature-list/" class="md-nav__link">
         MatrixOne Feature List
       </a>
     </li>
@@ -361,7 +361,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Overview/matrixone-architecture-design/" class="md-nav__link">
+      <a href="../../../Overview/matrixone-architecture-design/" class="md-nav__link">
         MatrixOne Architecture Design
       </a>
     </li>
@@ -375,7 +375,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Overview/mysql-compatibility/" class="md-nav__link">
+      <a href="../../../Overview/mysql-compatibility/" class="md-nav__link">
         MySQL Compatibility
       </a>
     </li>
@@ -389,7 +389,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Overview/whats-new/" class="md-nav__link">
+      <a href="../../../Overview/whats-new/" class="md-nav__link">
         What's New
       </a>
     </li>
@@ -462,7 +462,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Get-Started/install-standalone-matrixone/" class="md-nav__link">
+      <a href="../../../Get-Started/install-standalone-matrixone/" class="md-nav__link">
         Overview
       </a>
     </li>
@@ -502,7 +502,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Get-Started/install-on-macos/install-on-macos-method1/" class="md-nav__link">
+      <a href="../../../Get-Started/install-on-macos/install-on-macos-method1/" class="md-nav__link">
         Building from source code
       </a>
     </li>
@@ -516,7 +516,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Get-Started/install-on-macos/install-on-macos-method2/" class="md-nav__link">
+      <a href="../../../Get-Started/install-on-macos/install-on-macos-method2/" class="md-nav__link">
         Using binary package
       </a>
     </li>
@@ -530,7 +530,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Get-Started/install-on-macos/install-on-macos-method3/" class="md-nav__link">
+      <a href="../../../Get-Started/install-on-macos/install-on-macos-method3/" class="md-nav__link">
         Using Docker
       </a>
     </li>
@@ -577,7 +577,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Get-Started/install-on-linux/install-on-linux-method1/" class="md-nav__link">
+      <a href="../../../Get-Started/install-on-linux/install-on-linux-method1/" class="md-nav__link">
         Building from source code
       </a>
     </li>
@@ -591,7 +591,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Get-Started/install-on-linux/install-on-linux-method2/" class="md-nav__link">
+      <a href="../../../Get-Started/install-on-linux/install-on-linux-method2/" class="md-nav__link">
         Using binary package
       </a>
     </li>
@@ -605,7 +605,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Get-Started/install-on-linux/install-on-linux-method3/" class="md-nav__link">
+      <a href="../../../Get-Started/install-on-linux/install-on-linux-method3/" class="md-nav__link">
         Using Docker
       </a>
     </li>
@@ -633,7 +633,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Get-Started/basic-sql/" class="md-nav__link">
+      <a href="../../../Get-Started/basic-sql/" class="md-nav__link">
         Basic SQL
       </a>
     </li>
@@ -706,7 +706,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/schema-design/overview/" class="md-nav__link">
+      <a href="../../../Develop/schema-design/overview/" class="md-nav__link">
         Overview
       </a>
     </li>
@@ -720,7 +720,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/schema-design/create-database/" class="md-nav__link">
+      <a href="../../../Develop/schema-design/create-database/" class="md-nav__link">
         Create Database
       </a>
     </li>
@@ -734,7 +734,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/schema-design/create-table/" class="md-nav__link">
+      <a href="../../../Develop/schema-design/create-table/" class="md-nav__link">
         Create Table
       </a>
     </li>
@@ -774,7 +774,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/schema-design/data-integrity/overview-of-integrity-constraint-types/" class="md-nav__link">
+      <a href="../../../Develop/schema-design/data-integrity/overview-of-integrity-constraint-types/" class="md-nav__link">
         Data Integrity Constraints Overview
       </a>
     </li>
@@ -788,7 +788,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/schema-design/data-integrity/not-null-constraints/" class="md-nav__link">
+      <a href="../../../Develop/schema-design/data-integrity/not-null-constraints/" class="md-nav__link">
         NOT NULL Constraints
       </a>
     </li>
@@ -802,7 +802,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/schema-design/data-integrity/unique-key-constraints/" class="md-nav__link">
+      <a href="../../../Develop/schema-design/data-integrity/unique-key-constraints/" class="md-nav__link">
         UNIQUE KEY Constraints
       </a>
     </li>
@@ -816,7 +816,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/schema-design/data-integrity/primary-key-constraints/" class="md-nav__link">
+      <a href="../../../Develop/schema-design/data-integrity/primary-key-constraints/" class="md-nav__link">
         PRIMARY KEY Constraints
       </a>
     </li>
@@ -830,7 +830,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/schema-design/data-integrity/foreign-key-constraints/" class="md-nav__link">
+      <a href="../../../Develop/schema-design/data-integrity/foreign-key-constraints/" class="md-nav__link">
         FOREIGN KEY Constraints
       </a>
     </li>
@@ -884,7 +884,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/connect-mo/configure-mo-ssl-connection/" class="md-nav__link">
+      <a href="../../../Develop/connect-mo/configure-mo-ssl-connection/" class="md-nav__link">
         MatrixOne SSL connection
       </a>
     </li>
@@ -898,7 +898,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/connect-mo/database-client-tools/" class="md-nav__link">
+      <a href="../../../Develop/connect-mo/database-client-tools/" class="md-nav__link">
         Connecting to MatrixOne with Database Client Tool
       </a>
     </li>
@@ -938,7 +938,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/connect-mo/java-connect-to-matrixone/connect-mo-with-jdbc/" class="md-nav__link">
+      <a href="../../../Develop/connect-mo/java-connect-to-matrixone/connect-mo-with-jdbc/" class="md-nav__link">
         Connect MatrixOne with JDBC
       </a>
     </li>
@@ -952,7 +952,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/connect-mo/java-connect-to-matrixone/connect-mo-with-orm/" class="md-nav__link">
+      <a href="../../../Develop/connect-mo/java-connect-to-matrixone/connect-mo-with-orm/" class="md-nav__link">
         Connect MatrixOne with Java ORMs
       </a>
     </li>
@@ -973,7 +973,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/connect-mo/python-connect-to-matrixone/" class="md-nav__link">
+      <a href="../../../Develop/connect-mo/python-connect-to-matrixone/" class="md-nav__link">
         Python connect to MatrixOne
       </a>
     </li>
@@ -1020,7 +1020,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/import-data/insert-data/" class="md-nav__link">
+      <a href="../../../Develop/import-data/insert-data/" class="md-nav__link">
         Insert
       </a>
     </li>
@@ -1060,7 +1060,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/import-data/bulk-load/bulk-load-overview/" class="md-nav__link">
+      <a href="../../../Develop/import-data/bulk-load/bulk-load-overview/" class="md-nav__link">
         Bulk Load Overview
       </a>
     </li>
@@ -1074,7 +1074,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/import-data/bulk-load/load-csv/" class="md-nav__link">
+      <a href="../../../Develop/import-data/bulk-load/load-csv/" class="md-nav__link">
         Import .csv format data
       </a>
     </li>
@@ -1088,7 +1088,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/import-data/bulk-load/load-jsonline/" class="md-nav__link">
+      <a href="../../../Develop/import-data/bulk-load/load-jsonline/" class="md-nav__link">
         Import jsonlines format data
       </a>
     </li>
@@ -1102,7 +1102,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/import-data/bulk-load/load-s3/" class="md-nav__link">
+      <a href="../../../Develop/import-data/bulk-load/load-s3/" class="md-nav__link">
         Import data from S3
       </a>
     </li>
@@ -1156,7 +1156,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/export-data/select-into-outfile/" class="md-nav__link">
+      <a href="../../../Develop/export-data/select-into-outfile/" class="md-nav__link">
         Export data by SELECT INTO...OUTFILE
       </a>
     </li>
@@ -1170,7 +1170,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/export-data/modump/" class="md-nav__link">
+      <a href="../../../Develop/export-data/modump/" class="md-nav__link">
         Export data by modump
       </a>
     </li>
@@ -1217,7 +1217,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/read-data/query-data-single-table/" class="md-nav__link">
+      <a href="../../../Develop/read-data/query-data-single-table/" class="md-nav__link">
         Query Data from a Single Table
       </a>
     </li>
@@ -1231,7 +1231,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/read-data/multitable-join-query/" class="md-nav__link">
+      <a href="../../../Develop/read-data/multitable-join-query/" class="md-nav__link">
         Multi-table Join Queries
       </a>
     </li>
@@ -1245,7 +1245,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/read-data/subquery/" class="md-nav__link">
+      <a href="../../../Develop/read-data/subquery/" class="md-nav__link">
         Subquery
       </a>
     </li>
@@ -1259,7 +1259,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/read-data/views/" class="md-nav__link">
+      <a href="../../../Develop/read-data/views/" class="md-nav__link">
         Views
       </a>
     </li>
@@ -1273,7 +1273,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/read-data/cte/" class="md-nav__link">
+      <a href="../../../Develop/read-data/cte/" class="md-nav__link">
         Common Table Expression
       </a>
     </li>
@@ -1320,7 +1320,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/Transactions/common-transaction-overview/" class="md-nav__link">
+      <a href="../../../Develop/Transactions/common-transaction-overview/" class="md-nav__link">
         General Transaction Overview
       </a>
     </li>
@@ -1360,7 +1360,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/Transactions/matrixone-transaction-overview/overview/" class="md-nav__link">
+      <a href="../../../Develop/Transactions/matrixone-transaction-overview/overview/" class="md-nav__link">
         Transaction Overview
       </a>
     </li>
@@ -1374,7 +1374,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/Transactions/matrixone-transaction-overview/explicit-transaction/" class="md-nav__link">
+      <a href="../../../Develop/Transactions/matrixone-transaction-overview/explicit-transaction/" class="md-nav__link">
         Explicit Transaction
       </a>
     </li>
@@ -1388,7 +1388,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/Transactions/matrixone-transaction-overview/implicit-transaction/" class="md-nav__link">
+      <a href="../../../Develop/Transactions/matrixone-transaction-overview/implicit-transaction/" class="md-nav__link">
         Implicit Transaction
       </a>
     </li>
@@ -1402,7 +1402,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/Transactions/matrixone-transaction-overview/optimistic-transaction/" class="md-nav__link">
+      <a href="../../../Develop/Transactions/matrixone-transaction-overview/optimistic-transaction/" class="md-nav__link">
         Optimistic Transaction
       </a>
     </li>
@@ -1416,7 +1416,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/Transactions/matrixone-transaction-overview/how-to-use/" class="md-nav__link">
+      <a href="../../../Develop/Transactions/matrixone-transaction-overview/how-to-use/" class="md-nav__link">
         How to use transaction
       </a>
     </li>
@@ -1430,7 +1430,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/Transactions/matrixone-transaction-overview/snapshot-isolation/" class="md-nav__link">
+      <a href="../../../Develop/Transactions/matrixone-transaction-overview/snapshot-isolation/" class="md-nav__link">
         Isolation Level
       </a>
     </li>
@@ -1444,7 +1444,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/Transactions/matrixone-transaction-overview/mvcc/" class="md-nav__link">
+      <a href="../../../Develop/Transactions/matrixone-transaction-overview/mvcc/" class="md-nav__link">
         MVCC
       </a>
     </li>
@@ -1458,7 +1458,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/Transactions/matrixone-transaction-overview/scenario/" class="md-nav__link">
+      <a href="../../../Develop/Transactions/matrixone-transaction-overview/scenario/" class="md-nav__link">
         Transaction Scenario
       </a>
     </li>
@@ -1519,7 +1519,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Deploy/deploy-MatrixOne-cluster/" class="md-nav__link">
+      <a href="../../../Deploy/deploy-MatrixOne-cluster/" class="md-nav__link">
         MatrixOne distributed cluster deployment
       </a>
     </li>
@@ -1566,7 +1566,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Tutorial/develop-java-crud-demo/" class="md-nav__link">
+      <a href="../../../Tutorial/develop-java-crud-demo/" class="md-nav__link">
         Build a Java CRUD demo
       </a>
     </li>
@@ -1580,7 +1580,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Tutorial/springboot-hibernate-crud-demo/" class="md-nav__link">
+      <a href="../../../Tutorial/springboot-hibernate-crud-demo/" class="md-nav__link">
         Build a CRUD demo with SpringBoot and Spring JPA
       </a>
     </li>
@@ -1594,7 +1594,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Tutorial/springboot-mybatis-crud-demo/" class="md-nav__link">
+      <a href="../../../Tutorial/springboot-mybatis-crud-demo/" class="md-nav__link">
         Build a CRUD demo with SpringBoot and MyBatis
       </a>
     </li>
@@ -1608,7 +1608,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Tutorial/sqlalchemy-python-crud-demo/" class="md-nav__link">
+      <a href="../../../Tutorial/sqlalchemy-python-crud-demo/" class="md-nav__link">
         Build a simple Python+SQLAlchemy CRUD demo
       </a>
     </li>
@@ -1622,7 +1622,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Tutorial/develop-python-crud-demo/" class="md-nav__link">
+      <a href="../../../Tutorial/develop-python-crud-demo/" class="md-nav__link">
         Build a simple Python CRUD demo
       </a>
     </li>
@@ -1669,7 +1669,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Maintain/backup-restore/" class="md-nav__link">
+      <a href="../../../Maintain/backup-restore/" class="md-nav__link">
         Backup and Restore
       </a>
     </li>
@@ -1709,7 +1709,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Maintain/mount-data-by-docker/" class="md-nav__link">
+      <a href="../../../Maintain/mount-data-by-docker/" class="md-nav__link">
         Mount directory to Docker container
       </a>
     </li>
@@ -1763,7 +1763,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Migrate/migrate-from-mysql-to-matrixone/" class="md-nav__link">
+      <a href="../../../Migrate/migrate-from-mysql-to-matrixone/" class="md-nav__link">
         From MySQL to MatrixOne
       </a>
     </li>
@@ -1836,7 +1836,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Test/performance-testing/SSB-test-with-matrixone/" class="md-nav__link">
+      <a href="../../../Test/performance-testing/SSB-test-with-matrixone/" class="md-nav__link">
         SSB Test with MatrixOne
       </a>
     </li>
@@ -1850,7 +1850,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Test/performance-testing/TPCH-test-with-matrixone/" class="md-nav__link">
+      <a href="../../../Test/performance-testing/TPCH-test-with-matrixone/" class="md-nav__link">
         TPCH Test with MatrixOne
       </a>
     </li>
@@ -1864,7 +1864,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Test/performance-testing/TPCC-test-with-matrixone/" class="md-nav__link">
+      <a href="../../../Test/performance-testing/TPCC-test-with-matrixone/" class="md-nav__link">
         TPCC Test with MatrixOne
       </a>
     </li>
@@ -1911,7 +1911,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Test/testing-tool/mo-tester/" class="md-nav__link">
+      <a href="../../../Test/testing-tool/mo-tester/" class="md-nav__link">
         MO-Tester
       </a>
     </li>
@@ -1925,7 +1925,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Test/testing-tool/mo-tester-reference/" class="md-nav__link">
+      <a href="../../../Test/testing-tool/mo-tester-reference/" class="md-nav__link">
         MO-Tester Specification
       </a>
     </li>
@@ -1979,6 +1979,20 @@
               
   
   
+  
+    <li class="md-nav__item">
+      <a href="../../performance-tuning-overview/" class="md-nav__link">
+        SQL Performance Tuning Methods Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
     
   
   
@@ -1986,18 +2000,18 @@
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_10_1" type="checkbox" id="__nav_1_10_1" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_10_2" type="checkbox" id="__nav_1_10_2" checked>
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_10_1">
+        <label class="md-nav__link" for="__nav_1_10_2">
           Understanding the Query Execution Plan
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Understanding the Query Execution Plan" data-md-level="3">
-        <label class="md-nav__title" for="__nav_1_10_1">
+        <label class="md-nav__title" for="__nav_1_10_2">
           <span class="md-nav__icon md-icon"></span>
           Understanding the Query Execution Plan
         </label>
@@ -2021,11 +2035,85 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../explain-walkthrough/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Using EXPLAIN to learn the execution plan
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Using EXPLAIN to learn the execution plan
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+    <nav class="md-nav" aria-label="Example">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#assess-the-current-performance" class="md-nav__link">
+    Assess the current performance
+  </a>
+  
+    <nav class="md-nav" aria-label="Assess the current performance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-is-explain-analyze" class="md-nav__link">
+    What is EXPLAIN ANALYZE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-use-explain-analyze" class="md-nav__link">
+    How to use EXPLAIN ANALYZE?
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -2077,52 +2165,58 @@
               
   
   
+  
+    <li class="md-nav__item">
+      <a href="../explain-views/" class="md-nav__link">
+        EXPLAIN Statements Using Views
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
     
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_10_3" type="checkbox" id="__nav_1_10_3" >
       
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          EXPLAIN Statements Using Views
+      
+      
+        <label class="md-nav__link" for="__nav_1_10_3">
+          Performance tuning best practices
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <a href="./" class="md-nav__link md-nav__link--active">
-        EXPLAIN Statements Using Views
+      <nav class="md-nav" aria-label="Performance tuning best practices" data-md-level="3">
+        <label class="md-nav__title" for="__nav_1_10_3">
+          <span class="md-nav__icon md-icon"></span>
+          Performance tuning best practices
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../optimization-concepts/through-cluster-by/" class="md-nav__link">
+        Using Cluster by for performance tuning
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
-    Example
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -2174,7 +2268,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Security/TLS-introduction/" class="md-nav__link">
+      <a href="../../../Security/TLS-introduction/" class="md-nav__link">
         TLS Introduction
       </a>
     </li>
@@ -2214,7 +2308,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Security/about-privilege-management/" class="md-nav__link">
+      <a href="../../../Security/about-privilege-management/" class="md-nav__link">
         About MatrixOne Privilege Management
       </a>
     </li>
@@ -2228,7 +2322,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Security/best-practice/" class="md-nav__link">
+      <a href="../../../Security/best-practice/" class="md-nav__link">
         Best Practices
       </a>
     </li>
@@ -2301,7 +2395,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Security/how-tos/quick-start-create-account/" class="md-nav__link">
+      <a href="../../../Security/how-tos/quick-start-create-account/" class="md-nav__link">
         Create accounts, Verify Resource Isolation
       </a>
     </li>
@@ -2315,7 +2409,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Security/how-tos/quick-start-create-user/" class="md-nav__link">
+      <a href="../../../Security/how-tos/quick-start-create-user/" class="md-nav__link">
         Use the new account to creates users, roles, grant the privilege
       </a>
     </li>
@@ -2336,7 +2430,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Security/how-tos/user-guide/" class="md-nav__link">
+      <a href="../../../Security/how-tos/user-guide/" class="md-nav__link">
         Privileges Management User guide
       </a>
     </li>
@@ -2357,7 +2451,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Security/app-scenarios/" class="md-nav__link">
+      <a href="../../../Security/app-scenarios/" class="md-nav__link">
         Application Scenario
       </a>
     </li>
@@ -2430,7 +2524,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Language-Structure/keywords/" class="md-nav__link">
+      <a href="../../../Reference/Language-Structure/keywords/" class="md-nav__link">
         Keywords
       </a>
     </li>
@@ -2503,7 +2597,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Definition-Language/create-database/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Language/create-database/" class="md-nav__link">
         CREATE DATABASE
       </a>
     </li>
@@ -2517,7 +2611,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Definition-Language/create-index/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Language/create-index/" class="md-nav__link">
         CREATE INDEX
       </a>
     </li>
@@ -2531,7 +2625,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Definition-Language/create-table/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Language/create-table/" class="md-nav__link">
         CREATE TABLE
       </a>
     </li>
@@ -2545,7 +2639,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Definition-Language/create-external-table/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Language/create-external-table/" class="md-nav__link">
         CREATE EXTERNAL TABLE
       </a>
     </li>
@@ -2559,7 +2653,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Definition-Language/create-view/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Language/create-view/" class="md-nav__link">
         CREATE VIEW
       </a>
     </li>
@@ -2573,7 +2667,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Definition-Language/alter-view/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Language/alter-view/" class="md-nav__link">
         ALTER VIEW
       </a>
     </li>
@@ -2587,7 +2681,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Definition-Language/drop-database/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Language/drop-database/" class="md-nav__link">
         DROP DATABASE
       </a>
     </li>
@@ -2601,7 +2695,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Definition-Language/drop-index/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Language/drop-index/" class="md-nav__link">
         DROP INDEX
       </a>
     </li>
@@ -2615,7 +2709,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Definition-Language/drop-table/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Language/drop-table/" class="md-nav__link">
         DROP TABLE
       </a>
     </li>
@@ -2629,7 +2723,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Definition-Language/drop-view/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Language/drop-view/" class="md-nav__link">
         DROP VIEW
       </a>
     </li>
@@ -2643,7 +2737,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Definition-Language/truncate-table/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Language/truncate-table/" class="md-nav__link">
         TRUNCATE TABLE
       </a>
     </li>
@@ -2690,7 +2784,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/insert/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/insert/" class="md-nav__link">
         INSERT
       </a>
     </li>
@@ -2704,7 +2798,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/insert-into-select/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/insert-into-select/" class="md-nav__link">
         INSERT INTO SELECT
       </a>
     </li>
@@ -2718,7 +2812,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/delete/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/delete/" class="md-nav__link">
         DELETE
       </a>
     </li>
@@ -2732,7 +2826,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/update/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/update/" class="md-nav__link">
         UPDATE
       </a>
     </li>
@@ -2746,7 +2840,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/load-data/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/load-data/" class="md-nav__link">
         LOAD DATA
       </a>
     </li>
@@ -2760,7 +2854,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/interval/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/interval/" class="md-nav__link">
         INTERVAL
       </a>
     </li>
@@ -2800,7 +2894,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/information-functions/last-query-id/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/information-functions/last-query-id/" class="md-nav__link">
         LAST_QUERY_ID()
       </a>
     </li>
@@ -2814,7 +2908,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/information-functions/last-insert-id/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/information-functions/last-insert-id/" class="md-nav__link">
         LAST_INSERT_ID()
       </a>
     </li>
@@ -2861,7 +2955,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/operators/operators/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/operators/" class="md-nav__link">
         OPERATORS Overview
       </a>
     </li>
@@ -2875,7 +2969,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/operators/operator-precedence/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/operator-precedence/" class="md-nav__link">
         OPERATORS Precedence
       </a>
     </li>
@@ -2915,7 +3009,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/operators/arithmetic-operators/arithmetic-operators-overview/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/arithmetic-operators/arithmetic-operators-overview/" class="md-nav__link">
         Arithmetic Operators Overview
       </a>
     </li>
@@ -2929,7 +3023,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/operators/arithmetic-operators/mod/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/arithmetic-operators/mod/" class="md-nav__link">
         %,MOD
       </a>
     </li>
@@ -2943,7 +3037,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/operators/arithmetic-operators/multiplication/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/arithmetic-operators/multiplication/" class="md-nav__link">
         *
       </a>
     </li>
@@ -2957,7 +3051,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/operators/arithmetic-operators/addition/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/arithmetic-operators/addition/" class="md-nav__link">
         +
       </a>
     </li>
@@ -2971,7 +3065,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/operators/arithmetic-operators/minus/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/arithmetic-operators/minus/" class="md-nav__link">
         -
       </a>
     </li>
@@ -2985,7 +3079,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/operators/arithmetic-operators/unary-minus/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/arithmetic-operators/unary-minus/" class="md-nav__link">
         -
       </a>
     </li>
@@ -2999,7 +3093,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/operators/arithmetic-operators/division/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/arithmetic-operators/division/" class="md-nav__link">
         /
       </a>
     </li>
@@ -3013,7 +3107,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/operators/arithmetic-operators/div/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/arithmetic-operators/div/" class="md-nav__link">
         DIV
       </a>
     </li>
@@ -3060,7 +3154,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/operators/assignment-operators/assignment-operators-overview/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/assignment-operators/assignment-operators-overview/" class="md-nav__link">
         Assignment Operators Overview
       </a>
     </li>
@@ -3074,7 +3168,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/operators/assignment-operators/equal/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/assignment-operators/equal/" class="md-nav__link">
         =
       </a>
     </li>
@@ -3121,7 +3215,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/operators/bit-functions-and-operators/bit-functions-and-operators-overview/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/bit-functions-and-operators/bit-functions-and-operators-overview/" class="md-nav__link">
         Bit Functions and Operators Overview
       </a>
     </li>
@@ -3135,7 +3229,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/operators/bit-functions-and-operators/bitwise-and/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/bit-functions-and-operators/bitwise-and/" class="md-nav__link">
         &
       </a>
     </li>
@@ -3149,7 +3243,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/operators/bit-functions-and-operators/right-shift/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/bit-functions-and-operators/right-shift/" class="md-nav__link">
         >>
       </a>
     </li>
@@ -3163,7 +3257,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/operators/bit-functions-and-operators/left-shift/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/bit-functions-and-operators/left-shift/" class="md-nav__link">
         <<
       </a>
     </li>
@@ -3177,7 +3271,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/operators/bit-functions-and-operators/bitwise-xor/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/bit-functions-and-operators/bitwise-xor/" class="md-nav__link">
         ^
       </a>
     </li>
@@ -3191,7 +3285,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/operators/bit-functions-and-operators/bitwise-or/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/bit-functions-and-operators/bitwise-or/" class="md-nav__link">
         |
       </a>
     </li>
@@ -3205,7 +3299,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/operators/bit-functions-and-operators/bitwise-inversion/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/bit-functions-and-operators/bitwise-inversion/" class="md-nav__link">
         ~
       </a>
     </li>
@@ -3252,7 +3346,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/operators/cast-functions-and-operators/cast-functions-and-operators-overview/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/cast-functions-and-operators/cast-functions-and-operators-overview/" class="md-nav__link">
         Cast Functions and Operators Overview
       </a>
     </li>
@@ -3266,7 +3360,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/operators/cast-functions-and-operators/cast/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/cast-functions-and-operators/cast/" class="md-nav__link">
         CAST
       </a>
     </li>
@@ -3280,7 +3374,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/operators/cast-functions-and-operators/convert/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/cast-functions-and-operators/convert/" class="md-nav__link">
         CONVERT
       </a>
     </li>
@@ -3327,7 +3421,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/comparison-functions-and-operators-overview/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/comparison-functions-and-operators-overview/" class="md-nav__link">
         Comparison Functions and Operators Overview
       </a>
     </li>
@@ -3341,7 +3435,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/greater-than/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/greater-than/" class="md-nav__link">
         >
       </a>
     </li>
@@ -3355,7 +3449,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/greater-than-or-equal/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/greater-than-or-equal/" class="md-nav__link">
         >=
       </a>
     </li>
@@ -3369,7 +3463,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/less-than/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/less-than/" class="md-nav__link">
         <
       </a>
     </li>
@@ -3383,7 +3477,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/not-equal/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/not-equal/" class="md-nav__link">
         <>,!=
       </a>
     </li>
@@ -3397,7 +3491,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/less-than-or-equal/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/less-than-or-equal/" class="md-nav__link">
         <=
       </a>
     </li>
@@ -3411,7 +3505,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/assign-equal/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/assign-equal/" class="md-nav__link">
         =
       </a>
     </li>
@@ -3425,7 +3519,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/between/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/between/" class="md-nav__link">
         BETWEEN ... AND ...
       </a>
     </li>
@@ -3439,7 +3533,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/in/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/in/" class="md-nav__link">
         IN
       </a>
     </li>
@@ -3453,7 +3547,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/is/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/is/" class="md-nav__link">
         IS
       </a>
     </li>
@@ -3467,7 +3561,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/is-not/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/is-not/" class="md-nav__link">
         IS NOT
       </a>
     </li>
@@ -3481,7 +3575,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/is-not-null/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/is-not-null/" class="md-nav__link">
         IS NOT NULL
       </a>
     </li>
@@ -3495,7 +3589,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/is-null/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/is-null/" class="md-nav__link">
         IS NULL
       </a>
     </li>
@@ -3509,7 +3603,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/like/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/like/" class="md-nav__link">
         LIKE
       </a>
     </li>
@@ -3523,7 +3617,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/not-between/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/not-between/" class="md-nav__link">
         NOT BETWEEN ... AND ...
       </a>
     </li>
@@ -3537,7 +3631,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/not-like/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/not-like/" class="md-nav__link">
         NOT LIKE
       </a>
     </li>
@@ -3551,7 +3645,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/coalesce/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/coalesce/" class="md-nav__link">
         COALESCE
       </a>
     </li>
@@ -3598,7 +3692,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/operators/flow-control-functions/flow-control-functions-overview/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/flow-control-functions/flow-control-functions-overview/" class="md-nav__link">
         Flow Control Functions Overview
       </a>
     </li>
@@ -3612,7 +3706,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/operators/flow-control-functions/case-when/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/flow-control-functions/case-when/" class="md-nav__link">
         CASE WHEN
       </a>
     </li>
@@ -3626,7 +3720,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/operators/flow-control-functions/function_if/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/flow-control-functions/function_if/" class="md-nav__link">
         IF
       </a>
     </li>
@@ -3673,7 +3767,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/operators/logical-operators/logical-operators-overview/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/logical-operators/logical-operators-overview/" class="md-nav__link">
         Logical Operators Overview
       </a>
     </li>
@@ -3687,7 +3781,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/operators/logical-operators/and/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/logical-operators/and/" class="md-nav__link">
         AND,&&
       </a>
     </li>
@@ -3701,7 +3795,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/operators/logical-operators/not/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/logical-operators/not/" class="md-nav__link">
         NOT,!
       </a>
     </li>
@@ -3715,7 +3809,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/operators/logical-operators/or/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/logical-operators/or/" class="md-nav__link">
         OR
       </a>
     </li>
@@ -3729,7 +3823,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/operators/logical-operators/xor/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/logical-operators/xor/" class="md-nav__link">
         XOR
       </a>
     </li>
@@ -3790,7 +3884,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Query-Language/select/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Query-Language/select/" class="md-nav__link">
         SELECT
       </a>
     </li>
@@ -3830,7 +3924,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Query-Language/subqueries/subquery/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Query-Language/subqueries/subquery/" class="md-nav__link">
         SUBQUERY Overview
       </a>
     </li>
@@ -3844,7 +3938,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Query-Language/subqueries/derived-tables/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Query-Language/subqueries/derived-tables/" class="md-nav__link">
         Derived Tables
       </a>
     </li>
@@ -3858,7 +3952,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Query-Language/subqueries/comparisons-using-subqueries/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Query-Language/subqueries/comparisons-using-subqueries/" class="md-nav__link">
         Comparisons Using Subqueries
       </a>
     </li>
@@ -3872,7 +3966,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Query-Language/subqueries/subquery-with-any-some/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Query-Language/subqueries/subquery-with-any-some/" class="md-nav__link">
         SUBQUERY with ANY or SOME
       </a>
     </li>
@@ -3886,7 +3980,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Query-Language/subqueries/subquery-with-all/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Query-Language/subqueries/subquery-with-all/" class="md-nav__link">
         SUBQUERY with ALL
       </a>
     </li>
@@ -3900,7 +3994,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Query-Language/subqueries/subquery-with-exists/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Query-Language/subqueries/subquery-with-exists/" class="md-nav__link">
         SUBQUERY with EXISTS
       </a>
     </li>
@@ -3914,7 +4008,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Query-Language/subqueries/subquery-with-in/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Query-Language/subqueries/subquery-with-in/" class="md-nav__link">
         SUBQUERY with IN
       </a>
     </li>
@@ -3961,7 +4055,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Query-Language/join/join/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Query-Language/join/join/" class="md-nav__link">
         JOIN Overview
       </a>
     </li>
@@ -3975,7 +4069,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Query-Language/join/inner-join/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Query-Language/join/inner-join/" class="md-nav__link">
         INNER JOIN
       </a>
     </li>
@@ -3989,7 +4083,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Query-Language/join/left-join/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Query-Language/join/left-join/" class="md-nav__link">
         LEFT JOIN
       </a>
     </li>
@@ -4003,7 +4097,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Query-Language/join/right-join/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Query-Language/join/right-join/" class="md-nav__link">
         RIGHT JOIN
       </a>
     </li>
@@ -4017,7 +4111,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Query-Language/join/full-join/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Query-Language/join/full-join/" class="md-nav__link">
         FULL JOIN
       </a>
     </li>
@@ -4031,7 +4125,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Query-Language/join/outer-join/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Query-Language/join/outer-join/" class="md-nav__link">
         OUTER JOIN
       </a>
     </li>
@@ -4045,7 +4139,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Query-Language/join/natural-join/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Query-Language/join/natural-join/" class="md-nav__link">
         NATURAL JOIN
       </a>
     </li>
@@ -4066,7 +4160,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Query-Language/with-cte/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Query-Language/with-cte/" class="md-nav__link">
         With CTE
       </a>
     </li>
@@ -4106,7 +4200,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Query-Language/union-intersect-minus-overview/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Query-Language/union-intersect-minus-overview/" class="md-nav__link">
         Combining Queries Overview
       </a>
     </li>
@@ -4120,7 +4214,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Query-Language/union/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Query-Language/union/" class="md-nav__link">
         UNION
       </a>
     </li>
@@ -4134,7 +4228,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Query-Language/intersect/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Query-Language/intersect/" class="md-nav__link">
         INTERSECT
       </a>
     </li>
@@ -4148,7 +4242,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Query-Language/minus/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Query-Language/minus/" class="md-nav__link">
         MINUS
       </a>
     </li>
@@ -4202,7 +4296,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Control-Language/create-account/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Control-Language/create-account/" class="md-nav__link">
         CREATE ACCOUNT
       </a>
     </li>
@@ -4216,7 +4310,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Control-Language/alter-account/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Control-Language/alter-account/" class="md-nav__link">
         ALTER ACCOUNT
       </a>
     </li>
@@ -4230,7 +4324,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Control-Language/create-role/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Control-Language/create-role/" class="md-nav__link">
         CREATE ROLE
       </a>
     </li>
@@ -4244,7 +4338,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Control-Language/create-user/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Control-Language/create-user/" class="md-nav__link">
         CREATE USER
       </a>
     </li>
@@ -4258,7 +4352,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Control-Language/drop-account/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Control-Language/drop-account/" class="md-nav__link">
         DROP ACCOUNT
       </a>
     </li>
@@ -4272,7 +4366,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Control-Language/drop-user/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Control-Language/drop-user/" class="md-nav__link">
         DROP USER
       </a>
     </li>
@@ -4286,7 +4380,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Control-Language/drop-role/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Control-Language/drop-role/" class="md-nav__link">
         DROP ROLE
       </a>
     </li>
@@ -4300,7 +4394,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Control-Language/grant/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Control-Language/grant/" class="md-nav__link">
         GRANT
       </a>
     </li>
@@ -4314,7 +4408,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Control-Language/revoke/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Control-Language/revoke/" class="md-nav__link">
         REVOKE
       </a>
     </li>
@@ -4387,7 +4481,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Other/SHOW-Statements/show-account/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Other/SHOW-Statements/show-account/" class="md-nav__link">
         SHOW ACCOUNTS
       </a>
     </li>
@@ -4401,7 +4495,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Other/SHOW-Statements/show-databases/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Other/SHOW-Statements/show-databases/" class="md-nav__link">
         SHOW DATABASES
       </a>
     </li>
@@ -4415,7 +4509,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Other/SHOW-Statements/show-create-table/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Other/SHOW-Statements/show-create-table/" class="md-nav__link">
         SHOW CREATE TABLE
       </a>
     </li>
@@ -4429,7 +4523,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Other/SHOW-Statements/show-create-view/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Other/SHOW-Statements/show-create-view/" class="md-nav__link">
         SHOW CREATE VIEW
       </a>
     </li>
@@ -4443,7 +4537,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Other/SHOW-Statements/show-tables/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Other/SHOW-Statements/show-tables/" class="md-nav__link">
         SHOW TABLES
       </a>
     </li>
@@ -4457,7 +4551,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Other/SHOW-Statements/show-index/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Other/SHOW-Statements/show-index/" class="md-nav__link">
         SHOW INDEX
       </a>
     </li>
@@ -4471,7 +4565,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Other/SHOW-Statements/show-collation/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Other/SHOW-Statements/show-collation/" class="md-nav__link">
         SHOW COLLATION
       </a>
     </li>
@@ -4485,7 +4579,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Other/SHOW-Statements/show-columns/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Other/SHOW-Statements/show-columns/" class="md-nav__link">
         SHOW COLUMNS
       </a>
     </li>
@@ -4499,7 +4593,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Other/SHOW-Statements/show-grants/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Other/SHOW-Statements/show-grants/" class="md-nav__link">
         SHOW GRANT
       </a>
     </li>
@@ -4513,7 +4607,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Other/SHOW-Statements/show-variables/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Other/SHOW-Statements/show-variables/" class="md-nav__link">
         SHOW VARIABLES
       </a>
     </li>
@@ -4560,7 +4654,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Other/Set/set-role/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Other/Set/set-role/" class="md-nav__link">
         SET ROLE
       </a>
     </li>
@@ -4607,7 +4701,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Other/use-database/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Other/use-database/" class="md-nav__link">
         USE DATABASE
       </a>
     </li>
@@ -4654,7 +4748,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Other/Prepared-Statements/prepared-statements-overview/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Other/Prepared-Statements/prepared-statements-overview/" class="md-nav__link">
         Prepared Statements Overview
       </a>
     </li>
@@ -4668,7 +4762,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Other/Prepared-Statements/prepare/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Other/Prepared-Statements/prepare/" class="md-nav__link">
         PREPARE
       </a>
     </li>
@@ -4682,7 +4776,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Other/Prepared-Statements/execute/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Other/Prepared-Statements/execute/" class="md-nav__link">
         EXECUTE
       </a>
     </li>
@@ -4696,7 +4790,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Other/Prepared-Statements/deallocate/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Other/Prepared-Statements/deallocate/" class="md-nav__link">
         DEALLOCATE
       </a>
     </li>
@@ -4743,7 +4837,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Other/Explain/explain/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Other/Explain/explain/" class="md-nav__link">
         EXPLAIN
       </a>
     </li>
@@ -4757,7 +4851,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Other/Explain/explain-workflow/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Other/Explain/explain-workflow/" class="md-nav__link">
         EXPLAIN Output Format
       </a>
     </li>
@@ -4771,7 +4865,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Other/Explain/explain-analyze/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Other/Explain/explain-analyze/" class="md-nav__link">
         Explain Analyze
       </a>
     </li>
@@ -4825,7 +4919,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Aggregate-Functions/any-value/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Aggregate-Functions/any-value/" class="md-nav__link">
         ANY_VALUE
       </a>
     </li>
@@ -4839,7 +4933,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Aggregate-Functions/avg/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Aggregate-Functions/avg/" class="md-nav__link">
         AVG
       </a>
     </li>
@@ -4853,7 +4947,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Aggregate-Functions/bit_and/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Aggregate-Functions/bit_and/" class="md-nav__link">
         BIT_AND
       </a>
     </li>
@@ -4867,7 +4961,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Aggregate-Functions/bit_or/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Aggregate-Functions/bit_or/" class="md-nav__link">
         BIT_OR
       </a>
     </li>
@@ -4881,7 +4975,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Aggregate-Functions/bit_xor/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Aggregate-Functions/bit_xor/" class="md-nav__link">
         BIT_XOR
       </a>
     </li>
@@ -4895,7 +4989,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Aggregate-Functions/count/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Aggregate-Functions/count/" class="md-nav__link">
         COUNT
       </a>
     </li>
@@ -4909,7 +5003,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Aggregate-Functions/group-concat/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Aggregate-Functions/group-concat/" class="md-nav__link">
         GROUP_CONCAT
       </a>
     </li>
@@ -4923,7 +5017,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Aggregate-Functions/max/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Aggregate-Functions/max/" class="md-nav__link">
         MAX
       </a>
     </li>
@@ -4937,7 +5031,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Aggregate-Functions/median/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Aggregate-Functions/median/" class="md-nav__link">
         MEDIAN
       </a>
     </li>
@@ -4951,7 +5045,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Aggregate-Functions/min/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Aggregate-Functions/min/" class="md-nav__link">
         MIN
       </a>
     </li>
@@ -4965,7 +5059,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Aggregate-Functions/sleep/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Aggregate-Functions/sleep/" class="md-nav__link">
         SLEEP
       </a>
     </li>
@@ -4979,7 +5073,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Aggregate-Functions/stddev_pop/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Aggregate-Functions/stddev_pop/" class="md-nav__link">
         STDDEV_POP
       </a>
     </li>
@@ -4993,7 +5087,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Aggregate-Functions/sum/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Aggregate-Functions/sum/" class="md-nav__link">
         SUM
       </a>
     </li>
@@ -5040,7 +5134,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Variable/custom-variable/" class="md-nav__link">
+      <a href="../../../Reference/Variable/custom-variable/" class="md-nav__link">
         Custom variable
       </a>
     </li>
@@ -5094,7 +5188,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Data-Types/data-types/" class="md-nav__link">
+      <a href="../../../Reference/Data-Types/data-types/" class="md-nav__link">
         Data Types Overview
       </a>
     </li>
@@ -5108,7 +5202,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Data-Types/data-type-conversion/" class="md-nav__link">
+      <a href="../../../Reference/Data-Types/data-type-conversion/" class="md-nav__link">
         Data Type Conversion
       </a>
     </li>
@@ -5122,7 +5216,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Data-Types/timestamp-initialization/" class="md-nav__link">
+      <a href="../../../Reference/Data-Types/timestamp-initialization/" class="md-nav__link">
         Timestamp Initialization
       </a>
     </li>
@@ -5136,7 +5230,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Data-Types/json-type/" class="md-nav__link">
+      <a href="../../../Reference/Data-Types/json-type/" class="md-nav__link">
         JSON Data Type
       </a>
     </li>
@@ -5150,7 +5244,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Data-Types/blob-text-type/" class="md-nav__link">
+      <a href="../../../Reference/Data-Types/blob-text-type/" class="md-nav__link">
         BLOB and TEXT Type
       </a>
     </li>
@@ -5164,7 +5258,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Data-Types/fixed-point-types/" class="md-nav__link">
+      <a href="../../../Reference/Data-Types/fixed-point-types/" class="md-nav__link">
         Fixed-Point Types (Exact Value) - DECIMAL
       </a>
     </li>
@@ -5237,7 +5331,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/Mathematical/abs/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Mathematical/abs/" class="md-nav__link">
         ABS()
       </a>
     </li>
@@ -5251,7 +5345,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/Mathematical/acos/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Mathematical/acos/" class="md-nav__link">
         ACOS()
       </a>
     </li>
@@ -5265,7 +5359,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/Mathematical/atan/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Mathematical/atan/" class="md-nav__link">
         ATAN()
       </a>
     </li>
@@ -5279,7 +5373,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/Mathematical/ceil/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Mathematical/ceil/" class="md-nav__link">
         CEIL()
       </a>
     </li>
@@ -5293,7 +5387,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/Mathematical/cos/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Mathematical/cos/" class="md-nav__link">
         COS()
       </a>
     </li>
@@ -5307,7 +5401,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/Mathematical/cot/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Mathematical/cot/" class="md-nav__link">
         COT()
       </a>
     </li>
@@ -5321,7 +5415,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/Mathematical/exp/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Mathematical/exp/" class="md-nav__link">
         EXP()
       </a>
     </li>
@@ -5335,7 +5429,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/Mathematical/floor/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Mathematical/floor/" class="md-nav__link">
         FLOOR()
       </a>
     </li>
@@ -5349,7 +5443,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/Mathematical/ln/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Mathematical/ln/" class="md-nav__link">
         LN()
       </a>
     </li>
@@ -5363,7 +5457,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/Mathematical/log/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Mathematical/log/" class="md-nav__link">
         LOG()
       </a>
     </li>
@@ -5377,7 +5471,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/Mathematical/pi/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Mathematical/pi/" class="md-nav__link">
         PI()
       </a>
     </li>
@@ -5391,7 +5485,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/Mathematical/power/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Mathematical/power/" class="md-nav__link">
         POWER()
       </a>
     </li>
@@ -5405,7 +5499,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/Mathematical/round/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Mathematical/round/" class="md-nav__link">
         ROUND()
       </a>
     </li>
@@ -5419,7 +5513,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/Mathematical/sin/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Mathematical/sin/" class="md-nav__link">
         SIN()
       </a>
     </li>
@@ -5433,7 +5527,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/Mathematical/sinh/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Mathematical/sinh/" class="md-nav__link">
         SINH()
       </a>
     </li>
@@ -5447,7 +5541,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/Mathematical/tan/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Mathematical/tan/" class="md-nav__link">
         TAN()
       </a>
     </li>
@@ -5461,7 +5555,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/Mathematical/uuid/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Mathematical/uuid/" class="md-nav__link">
         UUID()
       </a>
     </li>
@@ -5508,7 +5602,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/Datetime/curdate/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Datetime/curdate/" class="md-nav__link">
         CURDATE()
       </a>
     </li>
@@ -5522,7 +5616,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/Datetime/current-timestamp/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Datetime/current-timestamp/" class="md-nav__link">
         CURRENT_TIMESTAMP()
       </a>
     </li>
@@ -5536,7 +5630,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/Datetime/date/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Datetime/date/" class="md-nav__link">
         DATE()
       </a>
     </li>
@@ -5550,7 +5644,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/Datetime/date-add/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Datetime/date-add/" class="md-nav__link">
         DATE_ADD()
       </a>
     </li>
@@ -5564,7 +5658,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/Datetime/date-format/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Datetime/date-format/" class="md-nav__link">
         DATE_FORMAT()
       </a>
     </li>
@@ -5578,7 +5672,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/Datetime/date-sub/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Datetime/date-sub/" class="md-nav__link">
         DATE_SUB()
       </a>
     </li>
@@ -5592,7 +5686,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/Datetime/date" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Datetime/date" class="md-nav__link">
         DATEDIFF()
       </a>
     </li>
@@ -5606,7 +5700,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/Datetime/day/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Datetime/day/" class="md-nav__link">
         DAY()
       </a>
     </li>
@@ -5620,7 +5714,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/Datetime/dayofyear/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Datetime/dayofyear/" class="md-nav__link">
         DAYOFYEAR()
       </a>
     </li>
@@ -5634,7 +5728,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/Datetime/extract/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Datetime/extract/" class="md-nav__link">
         EXTRACT()
       </a>
     </li>
@@ -5648,7 +5742,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/Datetime/from-unixtime/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Datetime/from-unixtime/" class="md-nav__link">
         FROM_UNIXTIME
       </a>
     </li>
@@ -5662,7 +5756,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/Datetime/month/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Datetime/month/" class="md-nav__link">
         MONTH()
       </a>
     </li>
@@ -5676,7 +5770,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/Datetime/timediff/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Datetime/timediff/" class="md-nav__link">
         TIMEDIFF()
       </a>
     </li>
@@ -5690,7 +5784,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/Datetime/timestamp/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Datetime/timestamp/" class="md-nav__link">
         TIMESTAMP()
       </a>
     </li>
@@ -5704,7 +5798,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/Datetime/to-date/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Datetime/to-date/" class="md-nav__link">
         TO_DATE()
       </a>
     </li>
@@ -5718,7 +5812,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/Datetime/unix-timestamp/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Datetime/unix-timestamp/" class="md-nav__link">
         UNIX_TIMESTAMP
       </a>
     </li>
@@ -5732,7 +5826,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/Datetime/utc-timestamp/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Datetime/utc-timestamp/" class="md-nav__link">
         UTC_TIMESTAMP()
       </a>
     </li>
@@ -5746,7 +5840,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/Datetime/weekday/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Datetime/weekday/" class="md-nav__link">
         WEEKDAY()
       </a>
     </li>
@@ -5760,7 +5854,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/Datetime/year/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Datetime/year/" class="md-nav__link">
         YEAR()
       </a>
     </li>
@@ -5807,7 +5901,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/String/bin/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/String/bin/" class="md-nav__link">
         BIN()
       </a>
     </li>
@@ -5821,7 +5915,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/String/bit-length/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/String/bit-length/" class="md-nav__link">
         BIT_LENGTH()
       </a>
     </li>
@@ -5835,7 +5929,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/String/char-length/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/String/char-length/" class="md-nav__link">
         CHAR_LENGTH()
       </a>
     </li>
@@ -5849,7 +5943,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/String/concat-ws/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/String/concat-ws/" class="md-nav__link">
         CONCAT()
       </a>
     </li>
@@ -5863,7 +5957,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/String/concat-ws/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/String/concat-ws/" class="md-nav__link">
         CONCAT_WS()
       </a>
     </li>
@@ -5877,7 +5971,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/String/empty/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/String/empty/" class="md-nav__link">
         EMPTY()
       </a>
     </li>
@@ -5891,7 +5985,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/String/endswith/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/String/endswith/" class="md-nav__link">
         ENDSWITH()
       </a>
     </li>
@@ -5905,7 +5999,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/String/field/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/String/field/" class="md-nav__link">
         FIELD()
       </a>
     </li>
@@ -5919,7 +6013,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/String/find-in-set/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/String/find-in-set/" class="md-nav__link">
         FIND_IN_SET()
       </a>
     </li>
@@ -5933,7 +6027,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/String/format/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/String/format/" class="md-nav__link">
         FORMAT()
       </a>
     </li>
@@ -5947,7 +6041,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/String/hex/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/String/hex/" class="md-nav__link">
         HEX()
       </a>
     </li>
@@ -5961,7 +6055,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/String/left/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/String/left/" class="md-nav__link">
         LEFT()
       </a>
     </li>
@@ -5975,7 +6069,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/String/length/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/String/length/" class="md-nav__link">
         LENGTH()
       </a>
     </li>
@@ -5989,7 +6083,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/String/lpad/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/String/lpad/" class="md-nav__link">
         LPAD()
       </a>
     </li>
@@ -6003,7 +6097,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/String/ltrim/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/String/ltrim/" class="md-nav__link">
         LTRIM()
       </a>
     </li>
@@ -6017,7 +6111,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/String/oct/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/String/oct/" class="md-nav__link">
         OCT()
       </a>
     </li>
@@ -6031,7 +6125,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/String/reverse/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/String/reverse/" class="md-nav__link">
         REVERSE()
       </a>
     </li>
@@ -6045,7 +6139,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/String/rpad/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/String/rpad/" class="md-nav__link">
         RPAD()
       </a>
     </li>
@@ -6059,7 +6153,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/String/rtrim/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/String/rtrim/" class="md-nav__link">
         RTRIM()
       </a>
     </li>
@@ -6073,7 +6167,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/String/space/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/String/space/" class="md-nav__link">
         SPACE()
       </a>
     </li>
@@ -6087,7 +6181,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/String/startswith/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/String/startswith/" class="md-nav__link">
         STARTSWITH()
       </a>
     </li>
@@ -6101,7 +6195,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/String/substring/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/String/substring/" class="md-nav__link">
         SUBSTRING()
       </a>
     </li>
@@ -6115,7 +6209,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/String/substring-index/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/String/substring-index/" class="md-nav__link">
         SUBSTRING_INDEX()
       </a>
     </li>
@@ -6129,7 +6223,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/String/trim/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/String/trim/" class="md-nav__link">
         TRIM()
       </a>
     </li>
@@ -6183,7 +6277,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/System-Parameters/configuration-settings/" class="md-nav__link">
+      <a href="../../../Reference/System-Parameters/configuration-settings/" class="md-nav__link">
         Boot Parameters for standalone installation
       </a>
     </li>
@@ -6197,7 +6291,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/System-Parameters/timezone/" class="md-nav__link">
+      <a href="../../../Reference/System-Parameters/timezone/" class="md-nav__link">
         Time Zone Support
       </a>
     </li>
@@ -6218,7 +6312,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/System-tables/" class="md-nav__link">
+      <a href="../../../Reference/System-tables/" class="md-nav__link">
         MatrixOne Catalog
       </a>
     </li>
@@ -6232,7 +6326,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/access-control-type/" class="md-nav__link">
+      <a href="../../../Reference/access-control-type/" class="md-nav__link">
         Privilege Control Types
       </a>
     </li>
@@ -6272,7 +6366,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Limitations/mo-jdbc-feature-list/" class="md-nav__link">
+      <a href="../../../Reference/Limitations/mo-jdbc-feature-list/" class="md-nav__link">
         JDBC supported features list
       </a>
     </li>
@@ -6286,7 +6380,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Limitations/mo-partition-support/" class="md-nav__link">
+      <a href="../../../Reference/Limitations/mo-partition-support/" class="md-nav__link">
         Partitioning supported features list
       </a>
     </li>
@@ -6307,7 +6401,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Maintain/mo-directory-structure/" class="md-nav__link">
+      <a href="../../../Maintain/mo-directory-structure/" class="md-nav__link">
         MatrixOne Directory Structure
       </a>
     </li>
@@ -6354,7 +6448,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Troubleshooting/slow-queries/" class="md-nav__link">
+      <a href="../../../Troubleshooting/slow-queries/" class="md-nav__link">
         Slow Queries
       </a>
     </li>
@@ -6368,7 +6462,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Troubleshooting/common-statistics-query/" class="md-nav__link">
+      <a href="../../../Troubleshooting/common-statistics-query/" class="md-nav__link">
         Common statistic data query
       </a>
     </li>
@@ -6382,7 +6476,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Troubleshooting/query-table-statistics/" class="md-nav__link">
+      <a href="../../../Troubleshooting/query-table-statistics/" class="md-nav__link">
         Database statistics
       </a>
     </li>
@@ -6396,7 +6490,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Troubleshooting/audit/" class="md-nav__link">
+      <a href="../../../Troubleshooting/audit/" class="md-nav__link">
         Audit
       </a>
     </li>
@@ -6410,7 +6504,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Troubleshooting/error-code/" class="md-nav__link">
+      <a href="../../../Troubleshooting/error-code/" class="md-nav__link">
         Error Code
       </a>
     </li>
@@ -6457,7 +6551,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../FAQs/product-faqs/" class="md-nav__link">
+      <a href="../../../FAQs/product-faqs/" class="md-nav__link">
         Product FAQs
       </a>
     </li>
@@ -6471,7 +6565,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../FAQs/deployment-faqs/" class="md-nav__link">
+      <a href="../../../FAQs/deployment-faqs/" class="md-nav__link">
         Deployment FAQs
       </a>
     </li>
@@ -6485,7 +6579,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../FAQs/sql-faqs/" class="md-nav__link">
+      <a href="../../../FAQs/sql-faqs/" class="md-nav__link">
         SQL FAQs
       </a>
     </li>
@@ -6532,7 +6626,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Release-Notes/release-timeline/" class="md-nav__link">
+      <a href="../../../Release-Notes/release-timeline/" class="md-nav__link">
         Release Timeline
       </a>
     </li>
@@ -6546,7 +6640,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Release-Notes/v0.7.0/" class="md-nav__link">
+      <a href="../../../Release-Notes/v0.7.0/" class="md-nav__link">
         v0.7.0
       </a>
     </li>
@@ -6560,7 +6654,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Release-Notes/v0.6.0/" class="md-nav__link">
+      <a href="../../../Release-Notes/v0.6.0/" class="md-nav__link">
         v0.6.0
       </a>
     </li>
@@ -6574,7 +6668,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Release-Notes/v0.5.1/" class="md-nav__link">
+      <a href="../../../Release-Notes/v0.5.1/" class="md-nav__link">
         v0.5.1
       </a>
     </li>
@@ -6588,7 +6682,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Release-Notes/v0.5.0/" class="md-nav__link">
+      <a href="../../../Release-Notes/v0.5.0/" class="md-nav__link">
         v0.5.0
       </a>
     </li>
@@ -6602,7 +6696,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Release-Notes/v0.4.0/" class="md-nav__link">
+      <a href="../../../Release-Notes/v0.4.0/" class="md-nav__link">
         v0.4.0
       </a>
     </li>
@@ -6616,7 +6710,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Release-Notes/v0.3.0/" class="md-nav__link">
+      <a href="../../../Release-Notes/v0.3.0/" class="md-nav__link">
         v0.3.0
       </a>
     </li>
@@ -6630,7 +6724,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Release-Notes/v0.2.0/" class="md-nav__link">
+      <a href="../../../Release-Notes/v0.2.0/" class="md-nav__link">
         v0.2.0
       </a>
     </li>
@@ -6644,7 +6738,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Release-Notes/v0.1.0/" class="md-nav__link">
+      <a href="../../../Release-Notes/v0.1.0/" class="md-nav__link">
         v0.1.0
       </a>
     </li>
@@ -6665,7 +6759,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../glossary/" class="md-nav__link">
+      <a href="../../../glossary/" class="md-nav__link">
         Glossary
       </a>
     </li>
@@ -6705,7 +6799,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Contribution-Guide/make-your-first-contribution/" class="md-nav__link">
+      <a href="../../../Contribution-Guide/make-your-first-contribution/" class="md-nav__link">
         Make Your First Contribution
       </a>
     </li>
@@ -6745,7 +6839,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Contribution-Guide/How-to-Contribute/types-of-contributions/" class="md-nav__link">
+      <a href="../../../Contribution-Guide/How-to-Contribute/types-of-contributions/" class="md-nav__link">
         Types of Contributions
       </a>
     </li>
@@ -6759,7 +6853,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Contribution-Guide/How-to-Contribute/preparation/" class="md-nav__link">
+      <a href="../../../Contribution-Guide/How-to-Contribute/preparation/" class="md-nav__link">
         Preparation
       </a>
     </li>
@@ -6773,7 +6867,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Contribution-Guide/How-to-Contribute/report-an-issue/" class="md-nav__link">
+      <a href="../../../Contribution-Guide/How-to-Contribute/report-an-issue/" class="md-nav__link">
         Report an Issue
       </a>
     </li>
@@ -6787,7 +6881,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Contribution-Guide/How-to-Contribute/contribute-code/" class="md-nav__link">
+      <a href="../../../Contribution-Guide/How-to-Contribute/contribute-code/" class="md-nav__link">
         Contribute Code
       </a>
     </li>
@@ -6801,7 +6895,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Contribution-Guide/How-to-Contribute/review-a-pull-request/" class="md-nav__link">
+      <a href="../../../Contribution-Guide/How-to-Contribute/review-a-pull-request/" class="md-nav__link">
         Review a Pull Request
       </a>
     </li>
@@ -6815,7 +6909,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Contribution-Guide/How-to-Contribute/contribute-documentation/" class="md-nav__link">
+      <a href="../../../Contribution-Guide/How-to-Contribute/contribute-documentation/" class="md-nav__link">
         Contribute Documentation
       </a>
     </li>
@@ -6829,7 +6923,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Contribution-Guide/How-to-Contribute/make-a-design/" class="md-nav__link">
+      <a href="../../../Contribution-Guide/How-to-Contribute/make-a-design/" class="md-nav__link">
         Make a Design
       </a>
     </li>
@@ -6876,7 +6970,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Contribution-Guide/Code-Style/code-of-conduct/" class="md-nav__link">
+      <a href="../../../Contribution-Guide/Code-Style/code-of-conduct/" class="md-nav__link">
         Code of Conduct
       </a>
     </li>
@@ -6890,7 +6984,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Contribution-Guide/Code-Style/code-comment-style/" class="md-nav__link">
+      <a href="../../../Contribution-Guide/Code-Style/code-comment-style/" class="md-nav__link">
         Code Comment Style
       </a>
     </li>
@@ -6904,7 +6998,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Contribution-Guide/Code-Style/commit-pr-style/" class="md-nav__link">
+      <a href="../../../Contribution-Guide/Code-Style/commit-pr-style/" class="md-nav__link">
         Commit & Pull Request Style
       </a>
     </li>
@@ -6963,6 +7057,39 @@
     Example
   </a>
   
+    <nav class="md-nav" aria-label="Example">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#assess-the-current-performance" class="md-nav__link">
+    Assess the current performance
+  </a>
+  
+    <nav class="md-nav" aria-label="Assess the current performance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-is-explain-analyze" class="md-nav__link">
+    What is EXPLAIN ANALYZE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-use-explain-analyze" class="md-nav__link">
+    How to use EXPLAIN ANALYZE?
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -6977,87 +7104,93 @@
             <article class="md-content__inner md-typeset">
               
                 
-<a href="https://github.com/matrixorigin/matrixorigin.io/edit/main/docs/MatrixOne/Performance-Tuning/explain-views.md" title="Edit this page" class="md-content__button md-icon">
+<a href="https://github.com/matrixorigin/matrixorigin.io/edit/main/docs/MatrixOne/Performance-Tuning/explain/explain-walkthrough.md" title="Edit this page" class="md-content__button md-icon">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
 </a>
 
 
 
-<h1 id="explain-statements-using-views">EXPLAIN Statements Using Views</h1>
-<p><code>EXPLAIN</code> displays the tables that a view references, not the name of the view itself. This is because views are only virtual tables and do not store any data themselves. The definition of the view and the rest of the statement are merged together during SQL optimization.</p>
+<h1 id="using-explain-to-learn-the-execution-plan">Using EXPLAIN to learn the execution plan</h1>
+<p>Because SQL is a declarative language, you cannot automatically tell whether a query is executed efficiently. You must first use the <code>EXPLAIN</code> statement to learn the current execution plan.</p>
 <h2 id="example">Example</h2>
-<p>We have prepared a simple example to help you understand the execution plan for interpreting the <code>VIEW</code> using <code>EXPLAIN</code>.</p>
-<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="k">drop</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="n">ti</span><span class="w"> </span><span class="n">tinyint</span><span class="w"> </span><span class="n">unsigned</span><span class="p">,</span><span class="n">si</span><span class="w"> </span><span class="nb">smallint</span><span class="p">,</span><span class="n">bi</span><span class="w"> </span><span class="nb">bigint</span><span class="w"> </span><span class="n">unsigned</span><span class="p">,</span><span class="n">fl</span><span class="w"> </span><span class="nb">float</span><span class="p">,</span><span class="n">dl</span><span class="w"> </span><span class="n">double</span><span class="p">,</span><span class="n">de</span><span class="w"> </span><span class="nb">decimal</span><span class="p">,</span><span class="n">ch</span><span class="w"> </span><span class="nb">char</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span><span class="n">vch</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span><span class="n">dd</span><span class="w"> </span><span class="nb">date</span><span class="p">,</span><span class="n">dt</span><span class="w"> </span><span class="n">datetime</span><span class="p">);</span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1113</span><span class="p">.</span><span class="mi">32</span><span class="p">,</span><span class="mi">111332</span><span class="p">,</span><span class="mi">1113</span><span class="p">.</span><span class="mi">32</span><span class="p">,</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span><span class="s1">&#39;subquery&#39;</span><span class="p">,</span><span class="s1">&#39;2022-04-28&#39;</span><span class="p">,</span><span class="s1">&#39;2022-04-28 22:40:11&#39;</span><span class="p">);</span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2252</span><span class="p">.</span><span class="mi">05</span><span class="p">,</span><span class="mi">225205</span><span class="p">,</span><span class="mi">2252</span><span class="p">.</span><span class="mi">05</span><span class="p">,</span><span class="s1">&#39;bye&#39;</span><span class="p">,</span><span class="s1">&#39;sub query&#39;</span><span class="p">,</span><span class="s1">&#39;2022-04-28&#39;</span><span class="p">,</span><span class="s1">&#39;2022-04-28 22:40:11&#39;</span><span class="p">);</span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3663</span><span class="p">.</span><span class="mi">21</span><span class="p">,</span><span class="mi">366321</span><span class="p">,</span><span class="mi">3663</span><span class="p">.</span><span class="mi">21</span><span class="p">,</span><span class="s1">&#39;hi&#39;</span><span class="p">,</span><span class="s1">&#39;subquery&#39;</span><span class="p">,</span><span class="s1">&#39;2022-04-28&#39;</span><span class="p">,</span><span class="s1">&#39;2022-04-28 22:40:11&#39;</span><span class="p">);</span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">4715</span><span class="p">.</span><span class="mi">22</span><span class="p">,</span><span class="mi">471522</span><span class="p">,</span><span class="mi">4715</span><span class="p">.</span><span class="mi">22</span><span class="p">,</span><span class="s1">&#39;good morning&#39;</span><span class="p">,</span><span class="s1">&#39;my subquery&#39;</span><span class="p">,</span><span class="s1">&#39;2022-04-28&#39;</span><span class="p">,</span><span class="s1">&#39;2022-04-28 22:40:11&#39;</span><span class="p">);</span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">51</span><span class="p">.</span><span class="mi">26</span><span class="p">,</span><span class="mi">5126</span><span class="p">,</span><span class="mi">51</span><span class="p">.</span><span class="mi">26</span><span class="p">,</span><span class="s1">&#39;byebye&#39;</span><span class="p">,</span><span class="s1">&#39; is subquery?&#39;</span><span class="p">,</span><span class="s1">&#39;2022-04-28&#39;</span><span class="p">,</span><span class="s1">&#39;2022-04-28 22:40:11&#39;</span><span class="p">);</span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">632</span><span class="p">.</span><span class="mi">1</span><span class="p">,</span><span class="mi">6321</span><span class="p">,</span><span class="mi">632</span><span class="p">.</span><span class="mi">11</span><span class="p">,</span><span class="s1">&#39;good night&#39;</span><span class="p">,</span><span class="s1">&#39;maybe subquery&#39;</span><span class="p">,</span><span class="s1">&#39;2022-04-28&#39;</span><span class="p">,</span><span class="s1">&#39;2022-04-28 22:40:11&#39;</span><span class="p">);</span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">7443</span><span class="p">.</span><span class="mi">11</span><span class="p">,</span><span class="mi">744311</span><span class="p">,</span><span class="mi">7443</span><span class="p">.</span><span class="mi">11</span><span class="p">,</span><span class="s1">&#39;yes&#39;</span><span class="p">,</span><span class="s1">&#39;subquery&#39;</span><span class="p">,</span><span class="s1">&#39;2022-04-28&#39;</span><span class="p">,</span><span class="s1">&#39;2022-04-28 22:40:11&#39;</span><span class="p">);</span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">8758</span><span class="p">.</span><span class="mi">00</span><span class="p">,</span><span class="mi">875800</span><span class="p">,</span><span class="mi">8758</span><span class="p">.</span><span class="mi">11</span><span class="p">,</span><span class="s1">&#39;nice to meet&#39;</span><span class="p">,</span><span class="s1">&#39;just subquery&#39;</span><span class="p">,</span><span class="s1">&#39;2022-04-28&#39;</span><span class="p">,</span><span class="s1">&#39;2022-04-28 22:40:11&#39;</span><span class="p">);</span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">9849</span><span class="p">.</span><span class="mi">312</span><span class="p">,</span><span class="mi">9849312</span><span class="p">,</span><span class="mi">9849</span><span class="p">.</span><span class="mi">312</span><span class="p">,</span><span class="s1">&#39;see you&#39;</span><span class="p">,</span><span class="s1">&#39;subquery&#39;</span><span class="p">,</span><span class="s1">&#39;2022-04-28&#39;</span><span class="p">,</span><span class="s1">&#39;2022-04-28 22:40:11&#39;</span><span class="p">);</span>
+<p>We have prepared a simple example to help you understand how to interpret an execution plan using <code>EXPLAIN</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="k">drop</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="n">a</span><span class="p">;</span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">int</span><span class="p">);</span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">1</span><span class="p">),(</span><span class="mi">2</span><span class="p">),(</span><span class="mi">3</span><span class="p">),(</span><span class="mi">4</span><span class="p">),(</span><span class="mi">5</span><span class="p">),(</span><span class="mi">6</span><span class="p">),(</span><span class="mi">7</span><span class="p">),(</span><span class="mi">8</span><span class="p">);</span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">a</span><span class="o">&gt;=</span><span class="mi">2</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">a</span><span class="o">&lt;=</span><span class="mi">8</span><span class="p">;</span>
+<span class="o">+</span><span class="c1">----------+</span>
+<span class="o">|</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">----------+</span>
+<span class="o">|</span><span class="w">        </span><span class="mi">7</span><span class="w"> </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">----------+</span>
+<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 
-<span class="o">&gt;</span><span class="w"> </span><span class="k">drop</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="n">t2</span><span class="p">;</span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="n">ti</span><span class="w"> </span><span class="n">tinyint</span><span class="w"> </span><span class="n">unsigned</span><span class="p">,</span><span class="n">si</span><span class="w"> </span><span class="nb">smallint</span><span class="p">,</span><span class="n">bi</span><span class="w"> </span><span class="nb">bigint</span><span class="w"> </span><span class="n">unsigned</span><span class="p">,</span><span class="n">fl</span><span class="w"> </span><span class="nb">float</span><span class="p">,</span><span class="n">dl</span><span class="w"> </span><span class="n">double</span><span class="p">,</span><span class="n">de</span><span class="w"> </span><span class="nb">decimal</span><span class="p">,</span><span class="n">ch</span><span class="w"> </span><span class="nb">char</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span><span class="n">vch</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span><span class="n">dd</span><span class="w"> </span><span class="nb">date</span><span class="p">,</span><span class="n">dt</span><span class="w"> </span><span class="n">datetime</span><span class="p">);</span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1113</span><span class="p">.</span><span class="mi">32</span><span class="p">,</span><span class="mi">111332</span><span class="p">,</span><span class="mi">1113</span><span class="p">.</span><span class="mi">32</span><span class="p">,</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span><span class="s1">&#39;subquery&#39;</span><span class="p">,</span><span class="s1">&#39;2022-04-28&#39;</span><span class="p">,</span><span class="s1">&#39;2022-04-28 22:40:11&#39;</span><span class="p">);</span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2252</span><span class="p">.</span><span class="mi">05</span><span class="p">,</span><span class="mi">225205</span><span class="p">,</span><span class="mi">2252</span><span class="p">.</span><span class="mi">05</span><span class="p">,</span><span class="s1">&#39;bye&#39;</span><span class="p">,</span><span class="s1">&#39;sub query&#39;</span><span class="p">,</span><span class="s1">&#39;2022-04-28&#39;</span><span class="p">,</span><span class="s1">&#39;2022-04-28 22:40:11&#39;</span><span class="p">);</span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3663</span><span class="p">.</span><span class="mi">21</span><span class="p">,</span><span class="mi">366321</span><span class="p">,</span><span class="mi">3663</span><span class="p">.</span><span class="mi">21</span><span class="p">,</span><span class="s1">&#39;hi&#39;</span><span class="p">,</span><span class="s1">&#39;subquery&#39;</span><span class="p">,</span><span class="s1">&#39;2022-04-28&#39;</span><span class="p">,</span><span class="s1">&#39;2022-04-28 22:40:11&#39;</span><span class="p">);</span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">4715</span><span class="p">.</span><span class="mi">22</span><span class="p">,</span><span class="mi">471522</span><span class="p">,</span><span class="mi">4715</span><span class="p">.</span><span class="mi">22</span><span class="p">,</span><span class="s1">&#39;good morning&#39;</span><span class="p">,</span><span class="s1">&#39;my subquery&#39;</span><span class="p">,</span><span class="s1">&#39;2022-04-28&#39;</span><span class="p">,</span><span class="s1">&#39;2022-04-28 22:40:11&#39;</span><span class="p">);</span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">51</span><span class="p">.</span><span class="mi">26</span><span class="p">,</span><span class="mi">5126</span><span class="p">,</span><span class="mi">51</span><span class="p">.</span><span class="mi">26</span><span class="p">,</span><span class="s1">&#39;byebye&#39;</span><span class="p">,</span><span class="s1">&#39; is subquery?&#39;</span><span class="p">,</span><span class="s1">&#39;2022-04-28&#39;</span><span class="p">,</span><span class="s1">&#39;2022-04-28 22:40:11&#39;</span><span class="p">);</span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">632</span><span class="p">.</span><span class="mi">1</span><span class="p">,</span><span class="mi">6321</span><span class="p">,</span><span class="mi">632</span><span class="p">.</span><span class="mi">11</span><span class="p">,</span><span class="s1">&#39;good night&#39;</span><span class="p">,</span><span class="s1">&#39;maybe subquery&#39;</span><span class="p">,</span><span class="s1">&#39;2022-04-28&#39;</span><span class="p">,</span><span class="s1">&#39;2022-04-28 22:40:11&#39;</span><span class="p">);</span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">7443</span><span class="p">.</span><span class="mi">11</span><span class="p">,</span><span class="mi">744311</span><span class="p">,</span><span class="mi">7443</span><span class="p">.</span><span class="mi">11</span><span class="p">,</span><span class="s1">&#39;yes&#39;</span><span class="p">,</span><span class="s1">&#39;subquery&#39;</span><span class="p">,</span><span class="s1">&#39;2022-04-28&#39;</span><span class="p">,</span><span class="s1">&#39;2022-04-28 22:40:11&#39;</span><span class="p">);</span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">8758</span><span class="p">.</span><span class="mi">00</span><span class="p">,</span><span class="mi">875800</span><span class="p">,</span><span class="mi">8758</span><span class="p">.</span><span class="mi">11</span><span class="p">,</span><span class="s1">&#39;nice to meet&#39;</span><span class="p">,</span><span class="s1">&#39;just subquery&#39;</span><span class="p">,</span><span class="s1">&#39;2022-04-28&#39;</span><span class="p">,</span><span class="s1">&#39;2022-04-28 22:40:11&#39;</span><span class="p">);</span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">9849</span><span class="p">.</span><span class="mi">312</span><span class="p">,</span><span class="mi">9849312</span><span class="p">,</span><span class="mi">9849</span><span class="p">.</span><span class="mi">312</span><span class="p">,</span><span class="s1">&#39;see you&#39;</span><span class="p">,</span><span class="s1">&#39;subquery&#39;</span><span class="p">,</span><span class="s1">&#39;2022-04-28&#39;</span><span class="p">,</span><span class="s1">&#39;2022-04-28 22:40:11&#39;</span><span class="p">);</span>
-
-<span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">view</span><span class="w"> </span><span class="n">v1</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="p">)</span><span class="w"> </span><span class="n">sub</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">v1</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------+------+------+------+----------+---------+------+--------------+----------------+------------+---------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">id</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">ti</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">si</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">bi</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">fl</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="n">dl</span><span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="n">de</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">ch</span><span class="w">           </span><span class="o">|</span><span class="w"> </span><span class="n">vch</span><span class="w">            </span><span class="o">|</span><span class="w"> </span><span class="n">dd</span><span class="w">         </span><span class="o">|</span><span class="w"> </span><span class="n">dt</span><span class="w">                  </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+------+------+------+----------+---------+------+--------------+----------------+------------+---------------------+</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">5</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">6</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">51</span><span class="p">.</span><span class="mi">26</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">5126</span><span class="w"> </span><span class="o">|</span><span class="w">   </span><span class="mi">51</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">byebye</span><span class="w">       </span><span class="o">|</span><span class="w">  </span><span class="k">is</span><span class="w"> </span><span class="n">subquery</span><span class="o">?</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="mi">2022</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">28</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2022</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">28</span><span class="w"> </span><span class="mi">22</span><span class="p">:</span><span class="mi">40</span><span class="p">:</span><span class="mi">11</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">6</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">632</span><span class="p">.</span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">6321</span><span class="w"> </span><span class="o">|</span><span class="w">  </span><span class="mi">632</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">good</span><span class="w"> </span><span class="n">night</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">maybe</span><span class="w"> </span><span class="n">subquery</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2022</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">28</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2022</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">28</span><span class="w"> </span><span class="mi">22</span><span class="p">:</span><span class="mi">40</span><span class="p">:</span><span class="mi">11</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">7</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w">  </span><span class="mi">7443</span><span class="p">.</span><span class="mi">11</span><span class="w"> </span><span class="o">|</span><span class="w">  </span><span class="mi">744311</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">7443</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">yes</span><span class="w">          </span><span class="o">|</span><span class="w"> </span><span class="n">subquery</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="mi">2022</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">28</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2022</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">28</span><span class="w"> </span><span class="mi">22</span><span class="p">:</span><span class="mi">40</span><span class="p">:</span><span class="mi">11</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">8</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">7</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">5</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">8</span><span class="w"> </span><span class="o">|</span><span class="w">     </span><span class="mi">8758</span><span class="w"> </span><span class="o">|</span><span class="w">  </span><span class="mi">875800</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">8758</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">nice</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">meet</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">just</span><span class="w"> </span><span class="n">subquery</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="mi">2022</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">28</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2022</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">28</span><span class="w"> </span><span class="mi">22</span><span class="p">:</span><span class="mi">40</span><span class="p">:</span><span class="mi">11</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">9</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">8</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">9</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">9849</span><span class="p">.</span><span class="mi">312</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">9849312</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">9849</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">see</span><span class="w"> </span><span class="n">you</span><span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="n">subquery</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="mi">2022</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">28</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2022</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">28</span><span class="w"> </span><span class="mi">22</span><span class="p">:</span><span class="mi">40</span><span class="p">:</span><span class="mi">11</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+------+------+------+----------+---------+------+--------------+----------------+------------+---------------------+</span>
-<span class="mi">5</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
-<p>As shown in the above example, a new VIEW named <em>v1</em> is created, then query the result of <em>v1</em>. So let's learn the query plan in this <code>VIEW</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="k">explain</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">v1</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">--------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">QUERY</span><span class="w"> </span><span class="n">PLAN</span><span class="w">                                                   </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">Project</span><span class="w">                                                      </span><span class="o">|</span>
-<span class="o">|</span><span class="w">   </span><span class="o">-&gt;</span><span class="w">  </span><span class="n">Project</span><span class="w">                                                </span><span class="o">|</span>
-<span class="o">|</span><span class="w">         </span><span class="o">-&gt;</span><span class="w">  </span><span class="n">Project</span><span class="w">                                          </span><span class="o">|</span>
-<span class="o">|</span><span class="w">               </span><span class="o">-&gt;</span><span class="w">  </span><span class="k">Table</span><span class="w"> </span><span class="n">Scan</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">db1</span><span class="p">.</span><span class="n">t1</span><span class="w">                       </span><span class="o">|</span>
-<span class="o">|</span><span class="w">                     </span><span class="n">Filter</span><span class="w"> </span><span class="n">Cond</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="k">CAST</span><span class="p">(</span><span class="n">t1</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="nb">BIGINT</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------------------------------------------------------------+</span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">explain</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">a</span><span class="o">&gt;=</span><span class="mi">2</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">a</span><span class="o">&lt;=</span><span class="mi">8</span><span class="p">;</span>
+<span class="o">+</span><span class="c1">-----------------------------------------------------------------------------------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">QUERY</span><span class="w"> </span><span class="n">PLAN</span><span class="w">                                                                        </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">-----------------------------------------------------------------------------------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">Project</span><span class="w">                                                                           </span><span class="o">|</span>
+<span class="o">|</span><span class="w">   </span><span class="o">-&gt;</span><span class="w">  </span><span class="k">Aggregate</span><span class="w">                                                                   </span><span class="o">|</span>
+<span class="o">|</span><span class="w">         </span><span class="k">Aggregate</span><span class="w"> </span><span class="n">Functions</span><span class="p">:</span><span class="w"> </span><span class="n">starcount</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w">                                         </span><span class="o">|</span>
+<span class="o">|</span><span class="w">         </span><span class="o">-&gt;</span><span class="w">  </span><span class="k">Table</span><span class="w"> </span><span class="n">Scan</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">aab</span><span class="p">.</span><span class="n">a</span><span class="w">                                                   </span><span class="o">|</span>
+<span class="o">|</span><span class="w">               </span><span class="n">Filter</span><span class="w"> </span><span class="n">Cond</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="k">CAST</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">a</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="nb">BIGINT</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="k">CAST</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">a</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="nb">BIGINT</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">8</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">-----------------------------------------------------------------------------------+</span>
 <span class="mi">5</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 </code></pre></div>
-<p>You can see that <em>Project</em> is the parent node in the execution order of this query. It starts from the most indented child node, then "flows into" its upper parent node, and finally "flow into" the <em>Project</em> parent node.</p>
-<p>To execute firstly:</p>
-<ul>
-<li>Filter Cond: the filter condition</li>
-</ul>
-<p>To execute secondly:</p>
-<ul>
-<li>Table Scan: scans all tables</li>
-</ul>
-<p>The following query is executed similarly to the above:</p>
-<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="k">explain</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="p">)</span><span class="w"> </span><span class="n">sub</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">--------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">QUERY</span><span class="w"> </span><span class="n">PLAN</span><span class="w">                                             </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">Project</span><span class="w">                                                </span><span class="o">|</span>
-<span class="o">|</span><span class="w">   </span><span class="o">-&gt;</span><span class="w">  </span><span class="n">Project</span><span class="w">                                          </span><span class="o">|</span>
-<span class="o">|</span><span class="w">         </span><span class="o">-&gt;</span><span class="w">  </span><span class="k">Table</span><span class="w"> </span><span class="n">Scan</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">db1</span><span class="p">.</span><span class="n">t1</span><span class="w">                       </span><span class="o">|</span>
-<span class="o">|</span><span class="w">               </span><span class="n">Filter</span><span class="w"> </span><span class="n">Cond</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="k">CAST</span><span class="p">(</span><span class="n">t1</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="nb">BIGINT</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------------------------------------------------------+</span>
-<span class="mi">4</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">03</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+<p>Above are the execution plan results for this query. Starting from the <code>Filter Cond</code> operator, the execution process of the query is as follows:</p>
+<ol>
+<li>
+<p>Execute the Filter condition <code>Filter Cond</code> first: the integer whose data type is <code>BIGINT</code> and is greater than or equal to 2 and less than or equal to 8 is filtered out. According to the calculation reasoning, it should be <code>(2)</code>,<code>(3)</code>,<code>(4)</code>,<code>(5)</code>,<code>(6)</code>,<code>(7)</code>,<code>(8)</code>.</p>
+</li>
+<li>
+<p>Scan Table in database <em>aab</em>.</p>
+</li>
+<li>
+<p>The number of integers is 7.</p>
+</li>
+</ol>
+<p>In the end, the query result is 7, which means <code>count(*)</code> = 7.</p>
+<h3 id="assess-the-current-performance">Assess the current performance</h3>
+<p><code>EXPLAIN</code> only returns the query execution plan but does not execute the query.</p>
+<h4 id="what-is-explain-analyze">What is EXPLAIN ANALYZE</h4>
+<p>EXPLAIN ANALYZE is a profiling tool for your queries that will show you where SQL spends time on your query and why. It will plan the query, instrument it and execute it while counting rows and measuring time spent at various points in the execution plan. When execution finishes, EXPLAIN ANALYZE will print the plan and the measurements instead of the query result.</p>
+<p>n addition to the query plan and estimated costs, which a normal EXPLAIN will print, EXPLAIN ANALYZE also prints the actual costs of individual iterators in the execution plan.</p>
+<h4 id="how-to-use-explain-analyze">How to use EXPLAIN ANALYZE?</h4>
+<p>With the above example, to get the actual execution time, you can either execute the query or use <code>EXPLAIN ANALYZE</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="k">explain</span><span class="w"> </span><span class="k">analyze</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">a</span><span class="o">&gt;=</span><span class="mi">2</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">a</span><span class="o">&lt;=</span><span class="mi">8</span><span class="p">;</span>
+<span class="o">+</span><span class="c1">-------------------------------------------------------------------------------------------------------------------------------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">QUERY</span><span class="w"> </span><span class="n">PLAN</span><span class="w">                                                                                                                    </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">-------------------------------------------------------------------------------------------------------------------------------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">Project</span><span class="w">                                                                                                                       </span><span class="o">|</span>
+<span class="o">|</span><span class="w">   </span><span class="k">Analyze</span><span class="p">:</span><span class="w"> </span><span class="n">timeConsumed</span><span class="o">=</span><span class="mi">0</span><span class="n">us</span><span class="w"> </span><span class="n">inputRows</span><span class="o">=</span><span class="mi">1</span><span class="w"> </span><span class="n">outputRows</span><span class="o">=</span><span class="mi">1</span><span class="w"> </span><span class="n">inputSize</span><span class="o">=</span><span class="mi">8</span><span class="n">bytes</span><span class="w"> </span><span class="n">outputSize</span><span class="o">=</span><span class="mi">8</span><span class="n">bytes</span><span class="w"> </span><span class="n">memorySize</span><span class="o">=</span><span class="mi">8</span><span class="n">bytes</span><span class="w">                     </span><span class="o">|</span>
+<span class="o">|</span><span class="w">   </span><span class="o">-&gt;</span><span class="w">  </span><span class="k">Aggregate</span><span class="w">                                                                                                               </span><span class="o">|</span>
+<span class="o">|</span><span class="w">         </span><span class="k">Analyze</span><span class="p">:</span><span class="w"> </span><span class="n">timeConsumed</span><span class="o">=</span><span class="mi">3317</span><span class="n">us</span><span class="w"> </span><span class="n">inputRows</span><span class="o">=</span><span class="mi">2</span><span class="w"> </span><span class="n">outputRows</span><span class="o">=</span><span class="mi">2</span><span class="w"> </span><span class="n">inputSize</span><span class="o">=</span><span class="mi">8</span><span class="n">bytes</span><span class="w"> </span><span class="n">outputSize</span><span class="o">=</span><span class="mi">16</span><span class="n">bytes</span><span class="w"> </span><span class="n">memorySize</span><span class="o">=</span><span class="mi">16</span><span class="n">bytes</span><span class="w">          </span><span class="o">|</span>
+<span class="o">|</span><span class="w">         </span><span class="k">Aggregate</span><span class="w"> </span><span class="n">Functions</span><span class="p">:</span><span class="w"> </span><span class="n">starcount</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w">                                                                                     </span><span class="o">|</span>
+<span class="o">|</span><span class="w">         </span><span class="o">-&gt;</span><span class="w">  </span><span class="k">Table</span><span class="w"> </span><span class="n">Scan</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">aab</span><span class="p">.</span><span class="n">a</span><span class="w">                                                                                               </span><span class="o">|</span>
+<span class="o">|</span><span class="w">               </span><span class="k">Analyze</span><span class="p">:</span><span class="w"> </span><span class="n">timeConsumed</span><span class="o">=</span><span class="mi">6643</span><span class="n">us</span><span class="w"> </span><span class="n">inputRows</span><span class="o">=</span><span class="mi">31</span><span class="w"> </span><span class="n">outputRows</span><span class="o">=</span><span class="mi">24</span><span class="w"> </span><span class="n">inputSize</span><span class="o">=</span><span class="mi">96</span><span class="n">bytes</span><span class="w"> </span><span class="n">outputSize</span><span class="o">=</span><span class="mi">64</span><span class="n">bytes</span><span class="w"> </span><span class="n">memorySize</span><span class="o">=</span><span class="mi">64</span><span class="n">bytes</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">               </span><span class="n">Filter</span><span class="w"> </span><span class="n">Cond</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="k">CAST</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">a</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="nb">BIGINT</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="k">CAST</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">a</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="nb">BIGINT</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">8</span><span class="p">)</span><span class="w">                                             </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">-------------------------------------------------------------------------------------------------------------------------------+</span>
+<span class="mi">8</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 </code></pre></div>
+<p>Judging from the printed execution results, when performing aggregate calculations and scanning tables respectively, the following measurements are obtained, which can be used as reference items:</p>
+<ul>
+<li>total time consumed: timeConsumed</li>
+<li>inputRows/outputRows</li>
+<li>inputSize/outputSize</li>
+<li>memorySize</li>
+</ul>
+<p>With this information, you can analyze queries and understand why they behave the way they do, which can be explored in the following ways:</p>
+<ul>
+<li>
+<p>How long do these queries take to execute? You'll be able to view the <code>timeConsumed</code>.</p>
+</li>
+<li>
+<p>Why execute the current query plan instead of other execution plans? You can look at the row counter. When there is a significant difference (i.e., several orders of magnitude or more) between the estimated and actual number of rows, it means that the optimizer chooses a plan based on the estimate, but looking at the actual execution can give you a good idea of ​​which execution plan is better.</p>
+</li>
+</ul>
+<p>So using EXPLAIN ANALYZE is analyzing query execution.</p>
+<p>The example query above takes 0.00 seconds to execute, which is an ideal performance. Also, because the query we executed in this example is simple, it meets the high execution performance.</p>
+<p>For more information, see <a href="../../../Reference/SQL-Reference/Other/Explain/explain-analyze/">EXPLAIN ANALYZE</a>.</p>
 
               
             </article>
@@ -7071,7 +7204,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../explain-aggregation/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Explain Statements Using Aggregation" rel="prev">
+        <a href="../explain-overview/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Query Execution Plan Overview" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -7080,20 +7213,20 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              Explain Statements Using Aggregation
+              Query Execution Plan Overview
             </div>
           </div>
         </a>
       
       
         
-        <a href="../../Security/TLS-introduction/" class="md-footer__link md-footer__link--next" aria-label="Next: TLS Introduction" rel="next">
+        <a href="../explain-joins/" class="md-footer__link md-footer__link--next" aria-label="Next: Explain Statements Using JOIN" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              TLS Introduction
+              Explain Statements Using JOIN
             </div>
           </div>
           <div class="md-footer__button md-icon">
@@ -7123,10 +7256,10 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky"], "search": "../../../assets/javascripts/workers/search.5e67fbfe.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky"], "search": "../../../../assets/javascripts/workers/search.5e67fbfe.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.c44cc438.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.c44cc438.min.js"></script>
       
     
   </body>
