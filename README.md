@@ -2,7 +2,7 @@
 
 Welcome to MatrixOne documentation!
 
-This repository stores all the source files of MatrixOne document website. You can visit our documents via [matrixorigin docs](http://docs.matrixorigin.io)
+This repository stores all the source files of MatrixOne document website. You can visit our documents via [matrixorigin docs](https://docs.matrixorigin.cn/en/)
 
 MatrixOne is a future-oriented hyperconverged cloud & edge native DBMS that supports transactional, analytical, and streaming workload with a simplified and distributed database engine, across multiple datacenters, clouds, edges and other heterogenous infrastructures.
 

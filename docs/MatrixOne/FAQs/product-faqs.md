@@ -36,4 +36,4 @@
 
 * **In addition to the MatrixOne documentation, are there any other ways to acquire MatrixOne knowledge?**
 
-  Currently, [MatrixOne documentation](https://docs.matrixorigin.io/) is the most important and timely way to get MatrixOne related knowledge. In addition, we also have some technical communication groups in Slack and WeChat. If you have any needs, contact [opensource@matrixorigin.io](mailto:opensource@matrixorigin.io).
+  Currently, [MatrixOne documentation](https://docs.matrixorigin.cn/en/) is the most important and timely way to get MatrixOne related knowledge. In addition, we also have some technical communication groups in Slack and WeChat. If you have any needs, contact [opensource@matrixorigin.io](mailto:opensource@matrixorigin.io).
