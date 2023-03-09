@@ -16,7 +16,7 @@ The MatrixOne documentation is managed in 3 repositories:
 
 * The images and unstructured data are located in the [artwork](https://github.com/matrixorigin/artwork) repo.
 
-The images are referred to as web image links from `artwork` repo. The `matrixorigin.io` and `matrixorigin.io.cn` have implemented a CI&CD project, which will be triggered by a new code merge and manual launch. This CI&CD workflow publishes the documentation to [https://docs.matrixorigin.io/](https://docs.matrixorigin.io/).  
+The images are referred to as web image links from `artwork` repo. The `matrixorigin.io` and `matrixorigin.io.cn` have implemented a CI&CD project, which will be triggered by a new code merge and manual launch. This CI&CD workflow publishes the documentation to [https://docs.matrixorigin.cn/en/](https://docs.matrixorigin.cn/en/).  
 
 The documentation project is based on the [mkdocs-material](https://github.com/squidfunk/mkdocs-material). You can find the corresponding syntax and commands with this project.
 

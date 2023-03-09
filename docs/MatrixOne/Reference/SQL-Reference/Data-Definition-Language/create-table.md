@@ -130,7 +130,7 @@ For more information on data integrity constraints, see [Data Integrity Constrai
 
 __Note:__ `Cluster by` cannot coexist with a primary key, or a syntax error will occur. `Cluster by` can only be specified when creating a table and does not support dynamic creation.
 
-For more information on using `Cluster by` for performing tuning, see [Using `Cluster by` for performance tuning](../../../../../../Performance-Tuning/optimization-concepts/through-cluster-by.md).
+For more information on using `Cluster by` for performing tuning, see [Using `Cluster by` for performance tuning](../../../Performance-Tuning/optimization-concepts/through-cluster-by.md).
 
 #### Table PARTITION and PARTITIONS
 
