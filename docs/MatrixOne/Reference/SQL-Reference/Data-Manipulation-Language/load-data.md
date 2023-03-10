@@ -20,6 +20,7 @@ The LOAD DATA statement reads rows from a text file into a table at a very high 
         [TERMINATED BY 'string']
     ]
     [IGNORE number {LINES | ROWS}]
+    [SET column_name_1=nullif(column_name_1, expr1), column_name_2=nullif(column_name_2, expr2)...]
     [PARALLEL {'TRUE' | 'FALSE'}]
 ```
 
@@ -133,6 +134,50 @@ something xxx"def",2
 ```
 
 The resulting rows are ("abc",1) and ("def",2). The third row in the file is skipped because it does not contain the prefix.
+
+### SET
+
+MatrixOne only supports `SET column_name=nullif(column_name,expr)`. That is, when `column_name = expr`, it returns `NULL`; otherwise, it returns the original value of `column_name`. For example, `SET a=nullif(a,1)`, if a=1, returns `NULL`; otherwise, it returns the original value of column a.
+
+By setting the parameter, you can use `SET column_name=nullif(column_name,"null")` to return the `NULL` value in the column when loading the file.
+
+**Example**
+
+1. The details of the local file `test.txt` are as follows:
+
+    ```
+    id,user_name,sex
+    1,"weder","man"
+    2,"tom","man"
+    null,wederTom,"man"
+    ```
+
+2. Create a table named `user` in MatrixOne:
+
+    ```sql
+    create database aaa;
+    use aaa;
+    CREATE TABLE `user` (`id` int(11) ,`user_name` varchar(255) ,`sex` varchar(255));
+    ```
+
+3. Load `test.txt` into the table `user`:
+
+    ```sql
+    LOAD DATA INFILE '/tmp/test.txt' INTO TABLE user SET id=nullif(id,"null");
+    ```
+
+4. The result of the talbe is as below:
+
+    ```sql
+    select * from user;
+    +------+-----------+------+
+    | id   | user_name | sex  |
+    +------+-----------+------+
+    |    1 | weder     | man  |
+    |    2 | tom       | man  |
+    | null | wederTom  | man  |
+    +------+-----------+------+
+    ```
 
 ### PARALLEL
 
