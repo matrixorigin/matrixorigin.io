@@ -80,7 +80,7 @@ Before asking a question, make sure you have:
 - Searched open and closed [GitHub issues](https://github.com/matrixorigin/matrixone/issues)
 - Read the documentation:
   - [MatrixOne Readme](https://github.com/matrixorigin/matrixone)
-  - [MatrixOne Doc](https://docs.matrixorigin.io/)
+  - [MatrixOne Doc](https://docs.matrixorigin.cn/en/)
 
 ## **Issue Labels**
 
