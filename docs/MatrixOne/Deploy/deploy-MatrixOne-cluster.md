@@ -93,7 +93,7 @@ docker run -d \
 
 After executing the command, open the Kuboard Spray web interface by entering `http://192.168.56.9` (jump server IP address) in a web browser, then log in to the Kuboard Spray interface using the username `admin` and the default password `Kuboard123`, as shown below:
 
-![](https://github.com/matrixorigin/artwork/blob/main/docs/security/deploy-mo-cluster-1.png?raw=true)
+![](https://github.com/matrixorigin/artwork/blob/main/docs/deploy/deploy-mo-cluster-1.png?raw=true)
 
 After logging in, the Kubernetes cluster deployment can be started.
 
@@ -109,19 +109,19 @@ The installation interface will download the Kubernetes cluster's corresponding 
 
     Download `spray-v2.19.0c_Kubernetes-v1.24.10_v2.9-amd64` 版本
 
-    ![](https://github.com/matrixorigin/artwork/blob/main/docs/security/deploy-mo-cluster-2.png?raw=true)
+    ![](https://github.com/matrixorigin/artwork/blob/main/docs/deploy/deploy-mo-cluster-2.png?raw=true)
 
 2. Click **Import > Load Resource Package**, select the appropriate download source, and wait for the resource package to finish downloading.
 
-    ![](https://github.com/matrixorigin/artwork/blob/main/docs/security/deploy-mo-cluster-3.png?raw=true)
+    ![](https://github.com/matrixorigin/artwork/blob/main/docs/deploy/deploy-mo-cluster-3.png?raw=true)
 
 3. This will `pull` the related image dependencies:
 
-    ![](https://github.com/matrixorigin/artwork/blob/main/docs/security/deploy-mo-cluster-4.png?raw=true)
+    ![](https://github.com/matrixorigin/artwork/blob/main/docs/deploy/deploy-mo-cluster-4.png?raw=true)
 
 4. After the image resource package is successfully pulled, return to the Kuboard-Spray web interface. You can see that the corresponding version of the resource package has been imported.
 
-    ![](https://github.com/matrixorigin/artwork/blob/main/docs/security/deploy-mo-cluster-5.png?raw=true)
+    ![](https://github.com/matrixorigin/artwork/blob/main/docs/deploy/deploy-mo-cluster-5.png?raw=true)
 
 #### **Installing a Kubernetes Cluster**
 
@@ -129,11 +129,11 @@ This chapter will guide you through the installation of a Kubernetes cluster.
 
 1. Select **Cluster Management** and choose **Add Cluster Installation Plan**:
 
-    ![](https://github.com/matrixorigin/artwork/blob/main/docs/security/deploy-mo-cluster-6.png?raw=true)
+    ![](https://github.com/matrixorigin/artwork/blob/main/docs/deploy/deploy-mo-cluster-6.png?raw=true)
 
 2. In the pop-up dialog box, define the name of the cluster, select the version of the resource package that was just imported, and click **OK**, as shown in the following figure:
 
-    ![](https://github.com/matrixorigin/artwork/blob/main/docs/security/deploy-mo-cluster-7.png?raw=true)
+    ![](https://github.com/matrixorigin/artwork/blob/main/docs/deploy/deploy-mo-cluster-7.png?raw=true)
 
 ##### **Cluster Planning**
 
@@ -143,14 +143,14 @@ After defining the cluster name and selecting the resource package version, clic
 
 1. Select the corresponding node roles and names:
 
-    ![](https://github.com/matrixorigin/artwork/blob/main/docs/security/deploy-mo-cluster-8.png?raw=true)
+    ![](https://github.com/matrixorigin/artwork/blob/main/docs/deploy/deploy-mo-cluster-8.png?raw=true)
 
     - Master node: select the ETCD and control nodes, and fill in the name as master0.
     - Worker node: select only the worker node, and fill in the name as node0.
 
 2. After filling in the roles and node names for each node, please fill in the corresponding connection information on the right, as shown in the following figure:
 
-    ![](https://github.com/matrixorigin/artwork/blob/main/docs/security/deploy-mo-cluster-9.png?raw=true)
+    ![](https://github.com/matrixorigin/artwork/blob/main/docs/deploy/deploy-mo-cluster-9.png?raw=true)
 
 3. After filling in all the roles, click **Save**. You can now prepare to install the Kubernetes cluster.
 
@@ -160,7 +160,7 @@ After completing all roles and saving in the previous step, click **Execute** to
 
 1. Click **OK** as shown in the figure below to start installing the Kubernetes cluster:
 
-    ![](https://github.com/matrixorigin/artwork/blob/main/docs/security/deploy-mo-cluster-10.png?raw=true)
+    ![](https://github.com/matrixorigin/artwork/blob/main/docs/deploy/deploy-mo-cluster-10.png?raw=true)
 
 2. When installing the Kubernetes cluster, the `ansible` script will be executed on the corresponding node to install the Kubernetes cluster. The overall installation time will vary depending on the machine configuration and network. Generally, it takes 5 to 10 minutes.
 
@@ -168,7 +168,7 @@ After completing all roles and saving in the previous step, click **Execute** to
 
 3. After the installation is complete, execute `kubectl get node` on the master node of the Kubernetes cluster:
 
-    ![](https://github.com/matrixorigin/artwork/blob/main/docs/security/deploy-mo-cluster-11.png?raw=true)
+    ![](https://github.com/matrixorigin/artwork/blob/main/docs/deploy/deploy-mo-cluster-11.png?raw=true)
 
 4. The command result shown in the figure above indicates that the Kubernetes cluster has been successfully installed.
 
@@ -263,21 +263,27 @@ __Note:__ All the commands in this section should be executed on the master0 nod
 
 2. After a successful installation and start, the command line should display as follows:
 
-    ![](https://github.com/matrixorigin/artwork/blob/main/docs/security/deploy-mo-cluster-12.png?raw=true)
+    ![](https://github.com/matrixorigin/artwork/blob/main/docs/deploy/deploy-mo-cluster-12.png?raw=true)
+
+    Then, execute the following command line to connect mo-log to port 9000:
+
+    ```
+    nohup kubectl port-forward --address 0.0.0.0 pod-name -n most storage 9000:9000 &
+    ```
 
 3. After starting, you can log in to the MinIO page using the IP address of any machine in the Kubernetes cluster and port 32001. As shown in the following figure, the account password is the `rootUser` and `rootPassword` set in the previous step, i.e., `--set rootUser=rootuser,rootPassword=rootpass123`:
 
-    ![](https://github.com/matrixorigin/artwork/blob/main/docs/security/deploy-mo-cluster-13.png?raw=true)
+    ![](https://github.com/matrixorigin/artwork/blob/main/docs/deploy/deploy-mo-cluster-13.png?raw=true)
 
 4. After logging in, you need to create object storage related information:
 
     a. Fill in the **Bucket Name** with **minio-mo** under **Bucket > Create Bucket**. After filling it in, click the **Create Bucket** button at the bottom right.
 
-    ![](https://github.com/matrixorigin/artwork/blob/main/docs/security/deploy-mo-cluster-14.png?raw=true)
+    ![](https://github.com/matrixorigin/artwork/blob/main/docs/deploy/deploy-mo-cluster-14.png?raw=true)
 
     b. In the current **minio-mo** bucket, click **Choose or create a new path**, and fill in the name **test** in the **New Folder Path** field. After filling it in, click **Create** to complete the creation.
 
-    ![](https://github.com/matrixorigin/artwork/blob/main/docs/security/deploy-mo-cluster-15.png?raw=true)
+    ![](https://github.com/matrixorigin/artwork/blob/main/docs/deploy/deploy-mo-cluster-15.png?raw=true)
 
 ## **5. Deploying a MatrixOne Cluster**
 
@@ -290,9 +296,9 @@ __Note:__ All steps in this section are performed on the master0 node.
 Use the following command to install the matrixone-operator:
 
 ```
-wget https://github.com/matrixorigin/matrixone-operator/archive/refs/tags/0.7.0.zip
-unzip 0.7.0.zip
-cd matrixone-operator-0.7.0/charts/matrixone-operator
+wget https://github.com/matrixorigin/matrixone-operator/releases/download/0.7.0-alpha.1/matrixone-operator-0.7.0-alpha.1.tgz
+tar -xvf matrixone-operator-0.7.0-alpha.1.tgz
+cd /root/matrixone-operator/
 helm install --create-namespace --namespace mo-hn matrixone-operator ./ --dependency-update
 ```
 
