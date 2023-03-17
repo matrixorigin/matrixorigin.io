@@ -20,9 +20,13 @@ The parameters contained in each configuration file are explained as follows:
 |name = "LOCAL"|fileservice storage type, local storage|
 |backend = "DISK"|fileservice backend, disk|
 |[[fileservice]]||
-|name = "S3" |fileservice storage type, S3|
+|name = "SHARED" |fileservice storage type, S3|
 |backend = "DISK"|fileservice backend, disk|
 |data-dir = "mo-data/s3"|s3 storage data directory|
+|[fileservice.cache]||
+|memory-capacity = "512MB"|cache memory size used by fileservice|
+|disk-capacity = "8GB"|cache disk size used by fileservice|
+|disk-path = "mo-data/file-service-cache"|fileservice disk cache path|
 |[[fileservice]]||
 |name = "ETL"|fileservice storage type, ETL|
 |backend = "DISK-ETL"|fileservice backend, DISK-ETL|
@@ -50,9 +54,13 @@ The parameters contained in each configuration file are explained as follows:
 |name = "LOCAL"|fileservice storage type, local storage|
 |backend = "DISK"|fileservice backend, disk|
 |[[fileservice]]||
-|name = "S3" |fileservice storage type, S3|
+|name = "SHARED" |fileservice storage type, S3|
 |backend = "DISK"|fileservice backend, disk|
 |data-dir = "mo-data/s3"|s3 storage data directory|
+|[fileservice.cache]||
+|memory-capacity = "512MB"|cache memory size used by fileservice|
+|disk-capacity = "8GB"|cache disk size used by fileservice|
+|disk-path = "mo-data/file-service-cache"|fileservice disk cache path|
 |[[fileservice]]||
 |name = "ETL"|fileservice storage type, ETL|
 |backend = "DISK-ETL"|fileservice backend, DISK-ETL|
@@ -66,7 +74,16 @@ The parameters contained in each configuration file are explained as follows:
 |min-count = 100 |Minimum number of checkpoints|
 |scan-interval = "5s"|internal scan interval|
 |incremental-interval = "180s"|checkpoint increment interval|
-|global-interval = "100000s" |Global checkpoint interval|
+|global-min-count = 60 |The global minimum number of dn checkpoints|
+|[dn.LogtailServer]||
+|listen-address = "0.0.0.0:32003"|logtail listening port|
+|service-address = "127.0.0.1:32003"|logtail internal access address|
+|rpc-max-message-size = "16KiB"|maximum rpc message size used by logtail|
+|rpc-payload-copy-buffer-size = "16KiB"|rpc copy buffer size|
+|rpc-enable-checksum = true|whether to enable rpc checksum|
+|logtail-collect-interval = "2ms"|logtail statistics collection interval|
+|logtail-response-send-timeout = "10s"|logtail sending timeout|
+|max-logtail-fetch-failure = 5|The maximum number of failures allowed by fetching logtail|
 
 ## log.toml
 
@@ -78,10 +95,17 @@ The parameters contained in each configuration file are explained as follows:
 |level = "info" |Log level, can be modified to `info/debug/error/faltal`|
 |format = "console" |Log format|
 |max-size = 512|Log default length|
+|[[fileservice]] |fileservice configuration, not recommended to change|
+|name = "LOCAL"|fileservice storage type, local storage|
+|backend = "DISK"|fileservice backend media, disk|
 |[[fileservice]]||
-|name = "S3" |fileservice storage type, S3|
+|name = "SHARED" |fileservice storage type, S3|
 |backend = "DISK"|fileservice backend, disk|
 |data-dir = "mo-data/s3"|s3 storage data directory|
+|[fileservice.cache]||
+|memory-capacity = "512MB"|cache memory size used by fileservice|
+|disk-capacity = "8GB"|cache disk size used by fileservice|
+|disk-path = "mo-data/file-service-cache"|fileservice disk cache path|
 |[[fileservice]]||
 |name = "ETL"|fileservice storage type, ETL|
 |backend = "DISK-ETL"|fileservice backend, DISK-ETL|
@@ -96,8 +120,7 @@ The parameters contained in each configuration file are explained as follows:
 |raft-address = "127.0.0.1:32000"|The address of the raft protocol|
 |logservice-address = "127.0.0.1:32001"|logservice address|
 |gossip-address = "127.0.0.1:32002" |The address of the gossip protocol|
-|gossip-seed-addresses = [<br>"127.0.0.1:32002",<br>]|
-The root node address of the gossip protocol|
+|gossip-seed-addresses = [<br>"127.0.0.1:32002",<br>]|The root node address of the gossip protocol|
 |gossip-allow-self-as-seed = true|Whether to allow the gossip protocol to use this node as a root node|
 |[logservice.BootstrapConfig]|Bootstrap parameters, cannot be modified|
 |bootstrap-cluster = true|Whether bootstrap cluster launchs|
