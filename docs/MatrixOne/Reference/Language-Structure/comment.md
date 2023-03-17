@@ -61,30 +61,6 @@ MatrixOne supports three comment styles:
 The same as MySQL, MatrixOne supports a variant of C comment style:
 
 ```sql
-mysql> select 100-99;   // This comment continues to the end of line
-+----------+
-| 100 - 99 |
-+----------+
-|        1 |
-+----------+
-1 row in set (0.03 sec)
-```
-
-Or:
-
-```sql
-mysql> // This comment continues to the line
-    -> select 100-99;
-+----------+
-| 100 - 99 |
-+----------+
-|        1 |
-+----------+
-```
-
-Or:
-
-```sql
 mysql> select 100 /*! Specific code */ -99;
 +----------+
 | 100 - 99 |
@@ -104,6 +80,32 @@ mysql> select 100 /*!50110 Specific code */ -99;
 |        1 |
 +----------+
 1 row in set (0.02 sec)
+```
+
+## MatrixOne specific comment syntax
+
+MatrixOne supports a variant of C comment style:
+
+```sql
+mysql> select 100-99;   // This comment continues to the end of line
++----------+
+| 100 - 99 |
++----------+
+|        1 |
++----------+
+1 row in set (0.03 sec)
+```
+
+Or:
+
+```sql
+mysql> // This comment continues to the line
+    -> select 100-99;
++----------+
+| 100 - 99 |
++----------+
+|        1 |
++----------+
 ```
 
 ## Constraints
