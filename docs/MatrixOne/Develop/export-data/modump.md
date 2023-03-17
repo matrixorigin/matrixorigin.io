@@ -16,7 +16,7 @@ To use the `mo-dump` tool, you must have access to a server running an instance 
 ### Syntax
 
 ```
-./mo-dump -u ${user} -p ${password} -h ${host} -P ${port} -db ${database} [-tbl ${table}...] > {dumpfilename.sql}
+./mo-dump -u ${user} -p ${password} -h ${host} -P ${port} -db ${database} [-tbl ${table}...]  -net-buffer-length ${net-buffer-length}> {dumpfilename.sql}
 ```
 
 The parameters are as following:
@@ -29,7 +29,9 @@ The parameters are as following:
 
 - **-P [port]**: The port of MatrixOne server. Default value: 6001
 
-- **-db [database name]**: Required paratemer. Name of the database that you want to take backup.
+- **-db [database name]**: Required parameter. Name of the database that you want to take backup.
+
+- **-net-buffer-length [packet size]**: Packet size, the total size of the characters in the SQL statement. The data packet is the basic unit of SQL exported data. If no parameter is set, the default is 1048576 Byte (1M), and the maximum can be set to 16777216 Byte (16M). If the parameter here is set to 16777216 Byte (16M), then when the data larger than 16M is to be exported, the data will be split into multiple 16M data packets, except for the last data packet, the size of other data packets is 16M.
 
 - **-tbl [table name]**: Optional parameter. If the parameter is empty, the whole database will be exported. If you want to take the backup specific tables, then you can specify multiple `-tbl` and table names in the command.
 
