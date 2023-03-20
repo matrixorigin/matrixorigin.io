@@ -9,7 +9,7 @@ The system can only modify system databases and tables, and users can only read 
 
 `mo_catalog` stores the metadata of MatrixOne objects: databases, tables, columns, system variables, accounts, users, and roles.
 
-As MatrixOne 0.6 has introduced the concept of multi-tenancy, the default `sys` account and other accounts have slightly different behaviors. The system table `mo_account`, which serves the multi-tenancy management, is only visible for the `sys` account; the other accounts don't see this table.
+Start with MatrixOne 0.6 has introduced the concept of multi-account, the default `sys` account and other accounts have slightly different behaviors. The system table `mo_account`, which serves the multi-tenancy management, is only visible for the `sys` account; the other accounts don't see this table.
 
 ### mo_database table
 
