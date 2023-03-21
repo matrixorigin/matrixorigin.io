@@ -82,7 +82,7 @@ The metadata information is as follows:
 | statement | text | SQL statement executed |
 | account_id | uint32 | account ID |
 | role_id | uint32 | role ID |
-| result_path | text | The path to save the query results, the default is the `mo-data/s3` path of the matrixone service folder, if you want to modify the default path, you need to modify `data-dir = "mo-data/s3"` in the configuration file . For a description of configuration file parameters, see [Common Parameter Configuration](../../System-Parameters/configuration-settings.md) |
+| result_path | text | The path to save the query results, the default is the `mo-data/s3` path of the matrixone folder, if you want to modify the default path, you need to modify `data-dir = "mo-data/s3"` in the configuration file . For a description of configuration file parameters, see [Common Parameter Configuration](../../System-Parameters/configuration-settings.md) |
 | created_time | timestamp | creation time |
 | result_size | float | Result size in MB. |
 | tables | text | tables used by SQL |
@@ -107,7 +107,13 @@ MODUMP QUERY_RESULT query_id INTO s3_path
 
 - query_id: A string of UUID.
 
-- s3_path: the path where the query result file is saved. The default is the mo-data/s3 path under the matrixone service folder. If you need to modify the default path, you must modify `data-dir = "mo-data/s3"` in the configuration file. For more information about configuration file parameters, see [Common Parameter Configuration](../../System-Parameters/configuration-settings.md)
+- s3_path: the path where the query result file is saved. The default is the mo-data/s3 path in the matrixone folder. If you need to modify the default path, you must modify `data-dir = "mo-data/s3"` in the configuration file. For more information about configuration file parameters, see [Common Parameter Configuration](../../System-Parameters/configuration-settings.md)
+
+   ```
+   root@rootMacBook-Pro 02matrixone % cd matrixone/mo-data
+   root@rootMacBook-Pro mo-data % ls
+   dn-data         etl             local           logservice-data s3
+   ```
 
    __Note:__ If you need to export the `csv` file. The path needs to start with `etl:`.
 
@@ -167,7 +173,7 @@ mysql> select * from meta_scan('c187873e-c25d-11ed-aa5a-acde48001122') as t;
 1 row in set (0.00 sec)
 
 -- Save query results locally
-MODUMP QUERY_RESULT c187873e-c25d-11ed-aa5a-acde48001122 INTO 'your_local_path';
+MODUMP QUERY_RESULT c187873e-c25d-11ed-aa5a-acde48001122 INTO 'etl:your_local_path';
 ```
 
 ## Constraints
