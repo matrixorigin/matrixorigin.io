@@ -164,7 +164,7 @@ The following are the standard modes of `sql_mode`, which are also the default m
 
    Note that enabling strict mode may cause problems for some old applications as they may assume that MatrixOne does not perform mandatory constraint checks. If you encounter problems when updating or migrating applications, consider disabling strict mode or modifying the application to comply with strict mode requirements.
 
-- `TIME_TRUNCATE_FRACTIONAL`: `TIME_TRUNCATE_FRACTIONAL` is known as "truncate fractional part of time" mode in MatrixOne SQL mode. In `TIME_TRUNCATE_FRACTIONAL` mode, MatrixOne truncates the fractional part of data of the `TIME`, `DATETIME`, and `TIMESTAMP` types, retaining only the integer part. This means that if you insert time data with a fractional part into a column of the `TIME`,` DATETIME`, or `TIMESTAMP` type, MatrixOne will truncate the fractional part and set it to 0.
+- `TIME_TRUNCATE_FRACTIONAL`: `TIME_TRUNCATE_FRACTIONAL` is known as "truncate fractional part of time" mode in MatrixOne SQL mode. In `TIME_TRUNCATE_FRACTIONAL` mode, MatrixOne truncates the fractional part of data of the `TIME`, `DATETIME`, and `TIMESTAMP` types, retaining only the integer part. This means that if you insert time data with a fractional part into a column of the `TIME`,`DATETIME`, or `TIMESTAMP` type, MatrixOne will truncate the fractional part and set it to 0.
 
    Note that enabling the `TIME_TRUNCATE_FRACTIONAL` mode may cause some loss of data precision, as truncating the fractional part may lose some critical time information. If you need to store and manipulate accurate time data, it is recommended not to use the `TIME_TRUNCATE_FRACTIONAL` mode.
 
