@@ -64,7 +64,7 @@ __Note:__ The `LIKE` operator is used for fuzzy matching query strings, with % r
 
 ## System Veariable Reference
 
-| Variable_name | Cmd-Line(Y/N) | Option File(Y/N) | Variable Type | System Var(Y/N) | Var Scope(Global、Both/ Session) | Dynamic(Y/N) | Default Value | Optional value |
+| Variable_name | Cmd-Line(Y/N) | Option File(Y/N) | Variable Type | System Var(Y/N) | Var Scope(Global/Both/Session) | Dynamic(Y/N) | Default Value | Optional value |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | auto_increment_increment | Y | N | int | Y | Both | Y | 1 | 1-65535 |
 | auto_increment_offset | Y | N | int | Y | Both | Y | 1 | 1-65535 |
