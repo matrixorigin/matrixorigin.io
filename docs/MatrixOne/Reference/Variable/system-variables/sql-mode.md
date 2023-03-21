@@ -10,7 +10,7 @@
 
 The following are the standard modes of `sql_mode`, which are also the default modes in MatrixOne:
 
-- `ONLY_FULL_GROUP_BY`: The `GROUP BY` clause is used to group query results and perform aggregate calculations on each group, such as `COUNT`, `SUM`, `AVG`, etc. In the `GROUP BY` clause, the specified columns are the grouping columns. Other columns can be identified in the `SELECT` list, including aggregate or non-aggregate function columns. Without the `ONLY_FULL_GROUP_BY` mode, if a non-aggregate function column is set in the `SELECT` list, MatrixOne will select any value that matches the GROUP BY column use it to calculate the aggregate function by default.
+- `ONLY_FULL_GROUP_BY`: The `GROUP BY` clause is used to group query results and perform aggregate calculations on each group, such as `COUNT`, `SUM`, `AVG`, etc. In the `GROUP BY` clause, the specified columns are the grouping columns. Other columns can be identified in the `SELECT` list, including aggregate or non-aggregate function columns. Without the `ONLY_FULL_GROUP_BY` mode, if a non-aggregate function column is set in the `SELECT` list, MatrixOne will select any value that matches the `GROUP BY` column use it to calculate the aggregate function by default.
 
    !!! note
        If your table structure is complex and for ease of querying, you can disable the `ONLY_FULL_GROUP_BY` mode.
@@ -23,7 +23,7 @@ The following are the standard modes of `sql_mode`, which are also the default m
 
 - `ERROR_FOR_DIVISION_BY_ZERO`: This mode throws an error when dividing by zero.
 
-- `NO_ENGINE_SUBSTITUTION`: This mode throws an error when executing ALTER TABLE or CREATE TABLE statements. The purpose of this mode is to force the use of the specified storage engine, preventing data inconsistencies or performance issues. The specified storage engine is unavailable or does not exist instead of automatically substituting it with another available storage engine. If automatic substitution of storage engines is desired, this mode can be removed from the sql_mode or set to other supported sql_mode methods. It is important to note that this mode only applies to ALTER TABLE or CREATE TABLE statements and does not affect the storage engine of existing tables.
+- `NO_ENGINE_SUBSTITUTION`: This mode throws an error when executing `ALTER TABLE` or `CREATE TABLE` statements. The purpose of this mode is to force the use of the specified storage engine, preventing data inconsistencies or performance issues. The specified storage engine is unavailable or does not exist instead of automatically substituting it with another available storage engine. If automatic substitution of storage engines is desired, this mode can be removed from the sql_mode or set to other supported sql_mode methods. It is important to note that this mode only applies to `ALTER TABLE` or `CREATE TABLE` statements and does not affect the storage engine of existing tables.
 
 ## Optional modes for sql_mode
 
@@ -88,7 +88,7 @@ The following are the standard modes of `sql_mode`, which are also the default m
 
    If you use the `NO_BACKSLASH_ESCAPES` mode, you must use other ways to escape special characters, which may make SQL statements more complex and difficult to understand. Therefore, it's necessary to consider when using this mode carefully.
 
-- `NO_DIR_IN_CREATE`: known as "no directory in create" mode in MatrixOne SQL mode, prohibits directory paths in CREATE TABLE statements. In the `NO_DIR_IN_CREATE` mode, MatrixOne will report an error when a directory path is used in the column definition of a `CREATE TABLE` statement, which includes a way that contains a file name. For example:
+- `NO_DIR_IN_CREATE`: known as "no directory in create" mode in MatrixOne SQL mode, prohibits directory paths in `CREATE TABLE` statements. In the `NO_DIR_IN_CREATE` mode, MatrixOne will report an error when a directory path is used in the column definition of a `CREATE TABLE` statement, which includes a way that contains a file name. For example:
 
    ```sql
    CREATE TABLE my_table (
@@ -110,7 +110,7 @@ The following are the standard modes of `sql_mode`, which are also the default m
    ) DATA DIRECTORY '/var/lib/MatrixOne/' INDEX DIRECTORY '/var/lib/MatrixOne/';
    ```
 
-   The data file column in the SQL statement above only defines the file name. In contrast, the file path is defined separately in the `DATA DIRECTORY` and `INDEX DIRECTORY` clauses of the CREATE TABLE statement.
+   The data file column in the SQL statement above only defines the file name. In contrast, the file path is defined separately in the `DATA DIRECTORY` and `INDEX DIRECTORY` clauses of the `CREATE TABLE` statement.
 
    It should be noted that the `NO_DIR_IN_CREATE` mode does not affect column definitions in already created tables but only affects column definitions in `CREATE TABLE` statements. Therefore, when using this mode, you'll need careful consideration to ensure your SQL statements meet its requirements.
 
@@ -131,7 +131,7 @@ The following are the standard modes of `sql_mode`, which are also the default m
 
    In the `PAD_CHAR_TO_FULL_LENGTH` mode, MatrixOne uses the maximum character length of the character set to pad the column of `CHAR` type to ensure that the length it occupies matches the defined size. This can avoid the problem of length calculation errors when using multi-byte character sets, but it also increases the use of storage space.
 
-   It should be noted that the `PAD_CHAR_TO_FULL_LENGTH` mode only affects columns of `CHAR` type and does not affect columns of other varieties. If you need to use `CHAR` type columns in MatrixOne and correctly calculate the length of column values in a multi-byte character set, you can consider using the PAD_CHAR_TO_FULL_LENGTH mode.
+   It should be noted that the `PAD_CHAR_TO_FULL_LENGTH` mode only affects columns of `CHAR` type and does not affect columns of other varieties. If you need to use `CHAR` type columns in MatrixOne and correctly calculate the length of column values in a multi-byte character set, you can consider using the `PAD_CHAR_TO_FULL_LENGTH` mode.
 
 - `PIPES_AS_CONCAT`: `PIPES_AS_CONCAT` is called the "pipes as concatenation" mode in MatrixOne SQL mode. In the `PIPES_AS_CONCAT` mode, MatrixOne treats the vertical bar symbol (|) as a string concatenation rather than a bitwise operator. If you use the standing bar symbol to concatenate two strings, MatrixOne will treat them as one string instead of interpreting them as a binary bit operation.
 
@@ -143,9 +143,10 @@ The following are the standard modes of `sql_mode`, which are also the default m
 
    However, if the SQL mode is set to `PIPES_AS_CONCAT`, the above SQL statement will return the string 'abcdef'.
 
-   Note that if your SQL statement contains the vertical bar symbol and it should be treated as a bitwise operator, do not use the PIPES_AS_CONCAT mode. Conversely, if you need to treat the vertical bar symbol as a string concatenation operator, use the `PIPES_AS_CONCAT` mode.
+   Note that if your SQL statement contains the vertical bar symbol and it should be treated as a bitwise operator, do not use the `PIPES_AS_CONCAT` mode. Conversely, if you need to treat the vertical bar symbol as a string concatenation operator, use the `PIPES_AS_CONCAT` mode.
 
 - `REAL_AS_FLOAT`: `REAL_AS_FLOAT` is known as "treat REAL type as FLOAT type" mode in MatrixOne SQL mode.
+
    In `REAL_AS_FLOAT` mode, MatrixOne treats data of the `REAL` type as data of the `FLOAT` type. This means that MatrixOne uses the storage format of the `FLOAT` type to store data of the `REAL` type, rather than the more precise but also more space-consuming `DOUBLE` type storage format.
 
    Note that since the storage format of `FLOAT` type data occupies less space than DOUBLE type data, treating data of the `REAL` type as data of the `FLOAT` type can save storage space in some cases. However, doing so will also reduce the precision of the data, as `FLOAT` type data can only provide about 7 significant digits of precision, while `DOUBLE` type data can provide about 15 significant digits of precision.
@@ -159,7 +160,7 @@ The following are the standard modes of `sql_mode`, which are also the default m
    c. Rejects values outside the allowed range from being inserted into any column.
    d. Rejects strings from being inserted into numeric type columns.
    e. Rejects date or time strings from being inserted into non-date or time type columns.
-   f. Rejects values that exceed the length defined for CHAR, VARCHAR, and TEXT type columns from being inserted.
+   f. Rejects values that exceed the length defined for `CHAR`, `VARCHAR`, and `TEXT` type columns from being inserted.
    g. Rejects values with mismatched data types from being inserted into foreign key columns.
 
    Note that enabling strict mode may cause problems for some old applications as they may assume that MatrixOne does not perform mandatory constraint checks. If you encounter problems when updating or migrating applications, consider disabling strict mode or modifying the application to comply with strict mode requirements.
@@ -191,7 +192,7 @@ SET sql_mode='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,ONLY_FULL_GROUP_BY';
 The sql_mode can also be set in the configuration file of MatrixOne, for example:
 
 ```sql
-sql_mode=STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,ONLY_FULL_GROUP_BY
+sql_mode=STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,ONLY_FULL_GROUP_BY;
 ```
 
 In the example settings above, MatrixOne will use the `STRICT_TRANS_TABLES`, `NO_ZERO_IN_DATE`, and `ONLY_FULL_GROUP_BY` modes.
