@@ -21,7 +21,7 @@ The transaction is a program execution unit in the database that accesses and po
 
 ## Isolation level
 
-Standard database isolation levels include **Read Uncommitted**, **Read Committed**, **Repeatable read**, **Serializable**, and so on. In MatrixOne 0.6, the supported isolation level is **Snapshot Isolation**.
+Standard database isolation levels include **Read Uncommitted**, **Read Committed**, **Repeatable read**, **Serializable**, and so on. Start with MatrixOne 0.6, the supported isolation level is **Snapshot Isolation**.
 
 Different from other isolation levels, snapshot isolation has the following characteristics:
 
