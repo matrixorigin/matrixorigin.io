@@ -382,3 +382,4 @@ For more information on loding *JSONLines*, see [Import the JSONLines data](../.
 4. The parallel loading of files requires that the files be in uncompressed format, and parallel loading of files in compressed form is not currently supported.
 5. The `load data local` dose not support parallel loading now.
 6. When you use `load data local`, you need to use the command line to connect to the MatrixOne service host: `mysql -h <mo-host -ip> -P 6001 -udump -p111 --local-infile`.
+7. MatrixOne does not support `ESCAPED BY` currently. Writing or reading special characters differs from MySQL to some extent.
