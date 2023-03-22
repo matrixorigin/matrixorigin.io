@@ -14,7 +14,7 @@ TPC-C has five transaction types: NewOrder, Payment, OrderStatus, Delivery, and 
 
 Make sure you have already [Deployed standalone MatrixOne](../../Get-Started/install-standalone-matrixone.md).
 
-### Clone mo-tpch repository
+### Clone mo-tpcc repository
 
 ```
 git clone https://github.com/matrixorigin/mo-tpcc.git
@@ -297,7 +297,7 @@ The following is an example of the command output:
 
 ```
 .:./lib/*
-2022-12-22 21:15:35 INFO  jTPCC:78 - Term-00, 
+2022-12-22 21:15:35 INFO  jTPCC:78 - Term-00,
 2022-12-22 21:15:35 INFO  jTPCC:79 - Term-00, +-------------------------------------------------------------+
 2022-12-22 21:15:35 INFO  jTPCC:80 - Term-00,      BenchmarkSQL v5.0
 2022-12-22 21:15:35 INFO  jTPCC:81 - Term-00, +-------------------------------------------------------------+
@@ -305,27 +305,27 @@ The following is an example of the command output:
 2022-12-22 21:15:35 INFO  jTPCC:83 - Term-00,  (c) 2004-2016, Denis Lussier
 2022-12-22 21:15:35 INFO  jTPCC:84 - Term-00,  (c) 2016, Jan Wieck
 2022-12-22 21:15:35 INFO  jTPCC:85 - Term-00, +-------------------------------------------------------------+
-2022-12-22 21:15:35 INFO  jTPCC:86 - Term-00, 
+2022-12-22 21:15:35 INFO  jTPCC:86 - Term-00,
 2022-12-22 21:15:35 INFO  jTPCC:63 - Term-00, db=mo
 2022-12-22 21:15:35 INFO  jTPCC:63 - Term-00, driver=com.mysql.cj.jdbc.Driver
 2022-12-22 21:15:35 INFO  jTPCC:63 - Term-00, conn=jdbc:mysql://127.0.0.1:6001/tpcc?characterSetResults=utf8&continueBatchOnError=false&useServerPrepStmts=true&alwaysSendSetIsolation=false&useLocalSessionState=true&zeroDateTimeBehavior=CONVERT_TO_NULL&failoverReadOnly=false&serverTimezone=Asia/Shanghai&enabledTLSProtocols=TLSv1.2&useSSL=false
 2022-12-22 21:15:35 INFO  jTPCC:63 - Term-00, user=dump
-2022-12-22 21:15:35 INFO  jTPCC:93 - Term-00, 
+2022-12-22 21:15:35 INFO  jTPCC:93 - Term-00,
 2022-12-22 21:15:35 INFO  jTPCC:63 - Term-00, warehouses=10
 2022-12-22 21:15:35 INFO  jTPCC:63 - Term-00, terminals=1
 2022-12-22 21:15:35 INFO  jTPCC:100 - Term-00, runMins=1
 2022-12-22 21:15:35 INFO  jTPCC:63 - Term-00, limitTxnsPerMin=0
 2022-12-22 21:15:35 INFO  jTPCC:63 - Term-00, terminalWarehouseFixed=false
-2022-12-22 21:15:35 INFO  jTPCC:108 - Term-00, 
+2022-12-22 21:15:35 INFO  jTPCC:108 - Term-00,
 2022-12-22 21:15:35 INFO  jTPCC:63 - Term-00, newOrderWeight=45
 2022-12-22 21:15:35 INFO  jTPCC:63 - Term-00, paymentWeight=43
 2022-12-22 21:15:35 INFO  jTPCC:63 - Term-00, orderStatusWeight=4
 2022-12-22 21:15:35 INFO  jTPCC:63 - Term-00, deliveryWeight=4
 2022-12-22 21:15:35 INFO  jTPCC:63 - Term-00, stockLevelWeight=4
-2022-12-22 21:15:35 INFO  jTPCC:115 - Term-00, 
+2022-12-22 21:15:35 INFO  jTPCC:115 - Term-00,
 2022-12-22 21:15:35 INFO  jTPCC:63 - Term-00, resultDirectory=my_result_%tY-%tm-%td_%tH%tM%tS
 2022-12-22 21:15:35 INFO  jTPCC:63 - Term-00, osCollectorScript=null
-2022-12-22 21:15:35 INFO  jTPCC:119 - Term-00, 
+2022-12-22 21:15:35 INFO  jTPCC:119 - Term-00,
 2022-12-22 21:15:35 INFO  jTPCC:710 - Term-00, Loading database driver: 'com.mysql.cj.jdbc.Driver'...
 2022-12-22 21:15:35 INFO  jTPCC:219 - Term-00, copied props.mo to my_result_2022-12-22_211535/run.properties
 2022-12-22 21:15:35 INFO  jTPCC:239 - Term-00, created my_result_2022-12-22_211535/data/runInfo.csv for runID 1
@@ -333,7 +333,7 @@ The following is an example of the command output:
 2022-12-22 21:15:35 INFO  jTPCC:268 - Term-00,
 2022-12-22 21:15:36 INFO  jTPCC:324 - Term-00, C value for C_LAST during load: 28
 2022-12-22 21:15:36 INFO  jTPCC:325 - Term-00, C value for C_LAST this run:    132
-2022-12-22 21:15:36 INFO  jTPCC:326 - Term-00, 
+2022-12-22 21:15:36 INFO  jTPCC:326 - Term-00,
 2022-12-22 21:15:36 INFO  jTPCC:710 - Term-00, Session started!   Memory Usage: 17MB / 245MB          
 2022-12-22 21:15:36 INFO  jTPCC:710 - Term-00, Creating 1 terminal(s) with -1 transaction(s) per terminal...
 2022-12-22 21:15:36 INFO  jTPCC:710 - Term-00, Terminal Warehouse is NOT fixed
@@ -354,18 +354,18 @@ The following is an example of the command output:
 Term-00, Running Average tpmTOTAL: 60000.00    Current tpmTOTAL: 12    Memory Usage: 19MB / 245MB   2022-12-22 21:15:36 INFO  jTPCCTerminal:350 - Term-01, Executing for a limited time...
 2022-12-22 21:16:42 INFO  jTPCC:710 - Term-00, The time limit has been reached.: 21MB / 245MB          
 2022-12-22 21:16:42 INFO  jTPCC:710 - Term-00, Signalling all terminals to stop...
-2022-12-22 21:16:42 INFO  jTPCCTerminal:350 - Term-01, 
+2022-12-22 21:16:42 INFO  jTPCCTerminal:350 - Term-01,
 2022-12-22 21:16:42 INFO  jTPCCTerminal:350 - Term-01, Terminal received stop signal!
 2022-12-22 21:16:42 INFO  jTPCCTerminal:350 - Term-01, Finishing current transaction before exit...
 2022-12-22 21:16:42 INFO  jTPCC:710 - Term-00, Waiting for all active transactions to end...
 2022-12-22 21:16:42 INFO  jTPCCTerminal:350 - Term-01, OTAL: 24    Memory Usage: 22MB / 245MB          
 2022-12-22 21:16:42 INFO  jTPCCTerminal:350 - Term-01, Closing statement and connection...
-2022-12-22 21:16:42 INFO  jTPCCTerminal:350 - Term-01, 
+2022-12-22 21:16:42 INFO  jTPCCTerminal:350 - Term-01,
 2022-12-22 21:16:42 INFO  jTPCCTerminal:350 - Term-01, Terminal 'Term-01' finished after 0 transaction(s).
 2022-12-22 21:16:42 INFO  jTPCC:710 - Term-00, All terminals finished executing 2022-12-22 21:16:42
 
-2022-12-22 21:16:42 INFO  jTPCC:694 - Term-00, 
-2022-12-22 21:16:42 INFO  jTPCC:695 - Term-00, 
+2022-12-22 21:16:42 INFO  jTPCC:694 - Term-00,
+2022-12-22 21:16:42 INFO  jTPCC:695 - Term-00,
 2022-12-22 21:16:42 INFO  jTPCC:696 - Term-00, Measured tpmC (NewOrders) = 2.74
 2022-12-22 21:16:42 INFO  jTPCC:697 - Term-00, Measured tpmTOTAL = 3.66
 2022-12-22 21:16:42 INFO  jTPCC:698 - Term-00, Measured tpmE (ErrorCount) = 0.0
