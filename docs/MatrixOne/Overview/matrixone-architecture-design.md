@@ -88,7 +88,7 @@ The streaming engine is a new component to ease the ETL process from OLTP to OLA
 
 ## **MatrixOne Features**
 
-In MatrixOne version 0.6, it has the following features to make you more efficient in the process of using MatrixOne:
+In MatrixOne, it has the following features to make you more efficient in the process of using MatrixOne:
 
 ### **Distributed Architecture**
 

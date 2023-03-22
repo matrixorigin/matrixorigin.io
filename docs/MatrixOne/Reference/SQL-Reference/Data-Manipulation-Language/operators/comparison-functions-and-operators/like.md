@@ -20,24 +20,30 @@ WHERE columnN LIKE pattern;
 ## **Examples**
 
 ```sql
+-- The following SQL statement selects all customers with a CustomerName starting with "a"
 mysql> SELECT * FROM Customers
-WHERE CustomerName LIKE 'a%'; //The following SQL statement selects all customers with a CustomerName starting with "a"
+WHERE CustomerName LIKE 'a%';
+
+-- The following SQL statement selects all customers with a CustomerName ending with "a"
+mysql> SELECT * FROM Customers
+WHERE CustomerName LIKE '%a';
+
+-- The following SQL statement selects all customers with a CustomerName that have "or" in any position
+mysql> SELECT * FROM Customers
+WHERE CustomerName LIKE '%or%';
+
+-- The following SQL statement selects all customers with a CustomerName that have "r" in the second position
+mysql> SELECT * FROM Customers
+WHERE CustomerName LIKE '_r%';
+
+-- The following SQL statement selects all customers with a CustomerName that starts with "a" and are at least 3 characters in length
+mysql> SELECT * FROM Customers
+WHERE CustomerName LIKE 'a__%';
 
 mysql> SELECT * FROM Customers
-WHERE CustomerName LIKE '%a'; //The following SQL statement selects all customers with a CustomerName ending with "a"
+WHERE ContactName LIKE 'a%o'; -- The following SQL statement selects all customers with a ContactName that starts with "a" and ends with "o"
 
+-- The following SQL statement selects all customers with a CustomerName that does NOT start with "a"
 mysql> SELECT * FROM Customers
-WHERE CustomerName LIKE '%or%'; //The following SQL statement selects all customers with a CustomerName that have "or" in any position
-
-mysql> SELECT * FROM Customers
-WHERE CustomerName LIKE '_r%'; //The following SQL statement selects all customers with a CustomerName that have "r" in the second position
-
-mysql> SELECT * FROM Customers
-WHERE CustomerName LIKE 'a__%'; //The following SQL statement selects all customers with a CustomerName that starts with "a" and are at least 3 characters in length
-
-mysql> SELECT * FROM Customers
-WHERE ContactName LIKE 'a%o'; //The following SQL statement selects all customers with a ContactName that starts with "a" and ends with "o"
-
-mysql> SELECT * FROM Customers
-WHERE CustomerName NOT LIKE 'a%'; //The following SQL statement selects all customers with a CustomerName that does NOT start with "a"
+WHERE CustomerName NOT LIKE 'a%';
 ```
