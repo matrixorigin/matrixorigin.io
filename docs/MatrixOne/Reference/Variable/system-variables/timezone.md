@@ -50,9 +50,9 @@ The session time zone setting does not affect values displayed by functions such
 +-------------+-------------+--------------------+
 | @@time_zone | @@time_zone | @@system_time_zone |
 +-------------+-------------+--------------------+
-| SYSTEM      | SYSTEM      |                    |
+| SYSTEM      | SYSTEM      | CST                |
 +-------------+-------------+--------------------+
-1 row in set (0.01 sec)
+1 row in set (0.00 sec)
 
 > create table t (ts timestamp, dt datetime);
 Query OK, 0 rows affected (0.02 sec)
@@ -120,5 +120,4 @@ set time_zone = '+08:00';
 
 ## Constraints
 
-1. The `system_time_zone` value doesn't appear yet.
-2. Only `(+/-)HH:MM` form and `UTC` is supported for setting `time_zone` values.  
+Only `(+/-)HH:MM` form and `UTC` is supported for setting `time_zone` values.  
