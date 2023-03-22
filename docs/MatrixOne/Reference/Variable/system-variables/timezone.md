@@ -25,9 +25,9 @@ You can use the following statement to view the current values of the global, cl
 +-------------+-------------+--------------------+
 | @@time_zone | @@time_zone | @@system_time_zone |
 +-------------+-------------+--------------------+
-| timezone    | +08:00      |                    |
+| timezone    | +08:00      | CST                |
 +-------------+-------------+--------------------+
-1 row in set (0.00 sec)
+1 row in set (0.01 sec)
 ```
 
 To set the format of the value of the time_zone:
@@ -93,12 +93,11 @@ In this example, no matter how you adjust the value of the time zone, the value 
 +----------------------------+
 1 row in set (0.00 sec)
 
-
 > show variables like "%time_zone%";
 +------------------+--------+
 | Variable_name    | Value  |
 +------------------+--------+
-| system_time_zone |        |
+| system_time_zone | CST    |
 | time_zone        | SYSTEM |
 +------------------+--------+
 2 rows in set (0.00 sec)
