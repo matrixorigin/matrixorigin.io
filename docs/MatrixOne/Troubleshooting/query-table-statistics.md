@@ -26,7 +26,7 @@ mysql> show table_number from mo_catalog;
 |                             11 |
 +--------------------------------+
 
-//Verify which tables in mo_catalog
+-- Verify which tables in mo_catalog
 mysql> use mo_catalog;
 mysql> show tables;
 +----------------------------+
@@ -52,12 +52,12 @@ mysql> show tables;
 ```
 create database demo_1;
 use demo_1;
-//Create three new tables
+-- Create three new tables
 CREATE TABLE t1(a bigint, b varchar(10), c varchar(10));
 CREATE TABLE t2(a bigint, b int);
 CREATE TABLE t3(a int, b varchar(10), c varchar(10));
 
-//Query out that there are three tables in the database demo_1
+-- Query out that there are three tables in the database demo_1
 mysql> show table_number from demo_1;
 +----------------------------+
 | Number of tables in demo_1 |
@@ -89,7 +89,7 @@ mysql> show column_number from mo_user;
 |                           11 |
 +------------------------------+
 
-//Or use the following command
+-- Or use the following command
 mysql> show column_number from mo_catalog.mo_user;
 +------------------------------+
 | Number of columns in mo_user |
@@ -97,7 +97,7 @@ mysql> show column_number from mo_catalog.mo_user;
 |                           11 |
 +------------------------------+
 
-//Verify which columns in the table
+-- Verify which columns in the table
 mysql> desc mo_catalog.mo_user;
 +-----------------------+--------------+------+------+---------+-------+---------+
 | Field                 | Type         | Null | Key  | Default | Extra | Comment |
@@ -160,7 +160,7 @@ SELECT MO_TABLE_ROWS({DATABASE_NAME},{TABLE_NAME})
 ### Example
 
 ```sql
-//Query the total number of rows of mo_tables in mo_catalog
+-- Query the total number of rows of mo_tables in mo_catalog
 mysql> select mo_table_rows('mo_catalog','mo_tables');
 +--------------------------------------+
 | mo_table_rows(mo_catalog, mo_tables) |
@@ -182,7 +182,7 @@ SELECT MO_TABLE_SIZE({DATABASE_NAME},{TABLE_NAME})
 ### Example
 
 ```sql
-//Query the storage space occupied by the table mo_tables in the database mo_catalog
+-- Query the storage space occupied by the table mo_tables in the database mo_catalog
 mysql> select mo_table_size('mo_catalog','mo_tables');
 +--------------------------------------+
 | mo_table_size(mo_catalog, mo_tables) |
