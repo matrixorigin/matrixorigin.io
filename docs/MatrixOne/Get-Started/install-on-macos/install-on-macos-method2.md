@@ -105,7 +105,7 @@ __Tips__: It is recommended that you download and install one of these two tools
       __Tips__: As shown in the above example, use the command `ps aux | grep mo-service` to find out that the process number running on MatrixOne is `15277`, and `kill -9 15277` means to stop MatrixOne with the process number `15277`.
 
       Next you can take the next step - Connect to standalone MatrixOne.
-      
+
 !!! info
     If you need to switch branches and launch it again after building on a specific branch, a panic will appear after running, and you will need to clean up the data file directory. See [Installation and Deployment Frequently Asked Questions](../../FAQs/deployment-faqs.md) for solutions.
 
