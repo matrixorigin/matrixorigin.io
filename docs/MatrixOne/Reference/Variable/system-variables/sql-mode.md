@@ -199,4 +199,4 @@ In the example settings above, MatrixOne will use the `STRICT_TRANS_TABLES`, `NO
 
 ## Constraints
 
-To maintain compatibility with MySQL, MatrixOne currently only implements syntax support for all modes of sql_mode.
+MatrixOne is compatible with MySQL, except the `ONLY_FULL_GROUP_BY` mode; other modes of sql_mode only implement syntax support.
