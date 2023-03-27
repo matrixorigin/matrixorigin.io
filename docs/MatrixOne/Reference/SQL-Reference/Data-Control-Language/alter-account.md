@@ -63,16 +63,16 @@ mysql> desc mo_catalog.mo_account;
 - Example 1: Modify the information of account
 
 ```sql
-//Create a account named "root1" with password "111"
+-- Create a account named "root1" with password "111"
 mysql> create account acc1 admin_name "root1" identified by "111";
 Query OK, 0 rows affected (0.42 sec)
-//Change the initial password "111" to "1234"
+-- Change the initial password "111" to "1234"
 mysql> alter account acc1 admin_name "root1" identified by "1234";
 Query OK, 0 rows affected (0.01 sec)
-//修Modify the comment for account "root1"
+-- Modify the comment for account "root1"
 mysql> alter account acc1 comment "new accout";
 Query OK, 0 rows affected (0.02 sec)
-//Check to verify that the "new account" comment has been added to the account "root1"
+-- Check to verify that the "new account" comment has been added to the account "root1"
 mysql> show accounts;
 +--------------+------------+---------------------+--------+----------------+----------+-------------+-----------+-------+----------------+
 | account_name | admin_name | created             | status | suspended_time | db_count | table_count | row_count | size  | comment        |
@@ -86,13 +86,13 @@ mysql> show accounts;
 - Example 2: Modify the status of account
 
 ```sql
-//Create a account named "root1" with password "111"
+-- Create a account named "root1" with password "111"
 mysql> create account accx admin_name "root1" identified by "111";
 Query OK, 0 rows affected (0.27 sec)
-//Modify the account status to "suspend", that is, suspend user access to MatrixOne.
+-- Modify the account status to "suspend", that is, suspend user access to MatrixOne.
 mysql> alter account accx suspend;
 Query OK, 0 rows affected (0.01 sec)
-//Check if the modification status is successful.
+-- Check if the modification status is successful.
 mysql> show accounts;
 +--------------+------------+---------------------+---------+---------------------+----------+-------------+-----------+-------+----------------+
 | account_name | admin_name | created             | status  | suspended_time      | db_count | table_count | row_count | size  | comment        |

@@ -163,14 +163,14 @@ For example, for a large file of 2 G, use two threads to load; the second thread
 
 **Enable/Disable Parallel Loading Command Line Example**:
 
-```
-// Enable Parallel Loading
+```sql
+--  Enable Parallel Loading
 load data infile 'file_name' into table tbl_name FIELDS TERMINATED BY '|' ENCLOSED BY '\"' LINES TERMINATED BY '\n' IGNORE 1 LINES PARALLEL 'TRUE';
 
-// Disable Parallel Loading
+--  Disable Parallel Loading
 load data infile 'file_name' into table tbl_name FIELDS TERMINATED BY '|' ENCLOSED BY '\"' LINES TERMINATED BY '\n' IGNORE 1 LINES PARALLEL 'FALSE';
 
-// Parallel loading is disabled by default
+--  Parallel loading is disabled by default
 load data infile 'file_name' into table tbl_name FIELDS TERMINATED BY '|' ENCLOSED BY '\"' LINES TERMINATED BY '\n' IGNORE 1 LINES;
 ```
 
