@@ -31,11 +31,11 @@ MatrixOne SQL syntax conforms with MySQL 8.0.23 version.
 |   |   | INTO OUTFILE is limitedly support. |
 |   | LOAD DATA | csv or jsonline files can be loaded currently.  |
 |   |   | The enclosed character should be "".  |
-|   |   | FIELDS TERMINATED BY should be "," or "|
-|   |   | LINES TERMINATED BY should be "\n". |
-|   |   | SET is supported limitedly. Only `SET columns_name=nullif(expr1,expr2)` is supported. |
+|   |   | `FIELDS TERMINATED BY` should be "," or "|
+|   |   | `LINES TERMINATED BY` should be "\n". |
+|   |   | `SET` is supported limitedly. Only `SET columns_name=nullif(expr1,expr2)` is supported. |
 |   |   | Local key word is not supported now. |
-|   |   | Relative path is limited supported now. Only based on mo-server file can be supported. |
+|   |   | `ESCAPED BY` is not supported now. |
 ||JOIN|Same as MySQL.|
 | | SUBQUERY | Non-scalar subquery is supported limitedly. |
 | Database Administration Statements  | SHOW | `SHOW` statement is supported limitedly.  |
