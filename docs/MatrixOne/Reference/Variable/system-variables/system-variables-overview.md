@@ -4,9 +4,9 @@ MatrixOne server system variables are variables used to control or configure the
 
 System variables can be divided into two categories: **Global variables** and **Session variables**.
 
-- **Global variables**: Global variables apply to all connected instances of the MatrixOne server. Their values are set when the MatrixOne server starts and remain unchanged until the server is shut down. Global variables are typically used to control the behavior of the MatrixOne server, such as specifying default backup and restore locations, the default language environment, and so on.
+- **Global variables**: Global variables apply to all connected sessions of the MatrixOne server. Their values are set when the MatrixOne server starts and remain unchanged until the server is shut down. Global variables are typically used to control the behavior of the MatrixOne server, such as specifying default backup and restore locations, the default language environment, and so on.
 
-- **Session variables**: Session variables apply only to the currently connected user's instance of the MatrixOne server. Their values can be changed anytime during the user's connection and are automatically cleared when the user disconnects. Session variables are typically used to control session behavior, such as how to print the information displayed and specify transaction isolation levels.
+- **Session variables**: Session variables apply only to the currently connected user's session of the MatrixOne server. Their values can be changed anytime during the user's connection and are automatically cleared when the user disconnects. Session variables are typically used to control session behavior, such as how to print the information displayed and specify transaction isolation levels.
 
 ## How to query system variables?
 
