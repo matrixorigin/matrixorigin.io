@@ -41,11 +41,11 @@ The Macbook M1/M2 with ARM architecture is also a good fit for a development env
 
 ## Installation and deployment
 
-* **What settings do I need to change for installation?**
+### **What settings do I need to change for installation?**
 
 Normally you don't need to change anything for installation. A default setting of `launch.toml` is enough to run MatrixOne directly. But if you want to customize your listening port, ip address, stored data files path, you may modify the corresponding records of [`cn.toml`](https://github.com/matrixorigin/matrixone/blob/main/etc/launch-tae-CN-tae-DN/cn.toml), [`dn.toml`](https://github.com/matrixorigin/matrixone/blob/main/etc/launch-tae-CN-tae-DN/dn.toml) or [`log.toml`](https://github.com/matrixorigin/matrixone/blob/main/etc/launch-tae-CN-tae-DN/log.toml), for more details about parameter configuration in these files, see [Boot Parameters for standalone installation](../Reference/System-Parameters/configuration-settings.md).
 
-* **After the MySQL client is installed, I open the terminal and run `mysql`, I got an error of `command not found: mysql`.**
+### **After the MySQL client is installed, I open the terminal and run `mysql`, I got an error of `command not found: mysql`.**
 
 To solve the error, you need to set the environment variable. Open a new terminal window, run the following command:
 
@@ -85,7 +85,7 @@ To solve the error, you need to set the environment variable. Open a new termina
 
      Click *esc* on the keyboard to exit the insert status and type `:wq` at the bottom to save and exit. Continue typing `source. bash_profile` and press **Enter** to run the environment variable.
 
-* **When I install MatrixOne by building from source, I got an error of the following and the build failed, how can I proceed?**
+### **When I install MatrixOne by building from source, I got an error of the following and the build failed, how can I proceed?**
 
 Error: `Get "https://proxy.golang.org/........": dial tcp 142.251.43.17:443: i/o timeout`
 
@@ -97,13 +97,13 @@ go env -w GOPROXY=https://goproxy.cn,direct
 
 Then the `make build` should be fast enough to finish.
 
-* **When I want to save the MatrixOne data directory to my specified file directory, how should I do it?**
+### **When I want to save the MatrixOne data directory to my specified file directory, how should I do it?**
 
 - When you use Docker to start MatrixOne, you can mount the data directory you specify to the Docker container, see [Mount directory to Docker container](../Maintain/mount-data-by-docker.md).
 
 - When you use the source code or binary package to compile and start MatrixOne, you can modify the default data directory path in the configuration file: open the MatrixOne source file directory `matrixone/etc/launch-tae-CN-tae-DN`, modify the configuration parameter `data-dir = "./mo-data"` in the three files of `cn.toml`, `dn.toml` and `log.toml` is `data-dir = "your_local_path"`, save and restart MatrixOne It will take effect.
 
-* **When I was testing MatrixOne with MO-tester, I got an error of `too many open files`?**
+### **When I was testing MatrixOne with MO-tester, I got an error of `too many open files`?**
 
 MO-tester will open and close many SQL files in a high speed to test MatrixOne, this kind of usage will easily reach the maximum open file limit of Linux and macOS, which is the reason for the `too many open files` error.
 
@@ -117,7 +117,7 @@ ulimit -n 65536
 
 After setting this value, there will be no more `too many open files` error.
 
-* **Ssb-dbgen cannot be compiled on a PC with M1 chip**
+### **Ssb-dbgen cannot be compiled on a PC with M1 chip**
 
 To complete the following configuration, then compiling 'SSB-DBgen' for a PC with M1 chip:
 
@@ -164,3 +164,20 @@ To complete the following configuration, then compiling 'SSB-DBgen' for a PC wit
     ```
 
 7. Check the *ssb-dbgen* directory, when the the *dbgen* file is generated, indicating that the compilation is successful.
+
+### **I built MatrixOne in the main branch initially, but encountered panic when switching to other versions for building**
+
+If you use `make build` to compile and build MatrixOne with a specific code version, the directory for data files, mo-data, will be generated. Suppose you must switch to another version (i.e., `git checkout version-name`). In that case, you must clean up mo-data first (i.e., `rm -rf mo-data`) due to version incompatibility before building MatrixOne again. Here's an example of the code:
+
+```
+[root ~]# cd matrixone  // Go to the matrixone directory
+[root ~]# git branch // Check the current branch
+* main
+[root ~]# make build // Build matrixone
+...    // The build process code is omitted here. If you want to switch to another version, such as version 0.7.0,
+[root ~]# git checkout 0.7.0 // Switch to version 0.7.0
+[root ~]# rm -rf mo-data // Clean up the data directory
+[root ~]# make build // Build matrixone again
+...    // The build process code is omitted here
+[root ~]# ./mo-service --daemon --launch ./etc/quickstart/launch.toml &> test.log &   // Start MatrixOne service in the terminal backend
+```
