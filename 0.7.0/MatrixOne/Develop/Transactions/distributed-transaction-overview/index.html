@@ -5604,7 +5604,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Reference/Builtin-Functions/Datetime/date" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Datetime/datediff/" class="md-nav__link">
         DATEDIFF()
       </a>
     </li>
@@ -5861,7 +5861,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Reference/Builtin-Functions/String/concat-ws/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/String/concat/" class="md-nav__link">
         CONCAT()
       </a>
     </li>
@@ -7063,7 +7063,7 @@
    Transaction durability means that when a transaction is committed in the database, its changes to the data are permanent, regardless of whether the database software is restarted.</li>
 </ul>
 <h2 id="isolation-level">Isolation level</h2>
-<p>Standard database isolation levels include <strong>Read Uncommitted</strong>, <strong>Read Committed</strong>, <strong>Repeatable read</strong>, <strong>Serializable</strong>, and so on. In MatrixOne 0.6, the supported isolation level is <strong>Snapshot Isolation</strong>.</p>
+<p>Standard database isolation levels include <strong>Read Uncommitted</strong>, <strong>Read Committed</strong>, <strong>Repeatable read</strong>, <strong>Serializable</strong>, and so on. Start with MatrixOne 0.6, the supported isolation level is <strong>Snapshot Isolation</strong>.</p>
 <p>Different from other isolation levels, snapshot isolation has the following characteristics:</p>
 <ul>
 <li>Snapshot isolation does not reflect changes made to data by other synchronized transactions for data read within a specified transaction. Specifies that the transaction uses the rows of data read at the beginning of this transaction.</li>

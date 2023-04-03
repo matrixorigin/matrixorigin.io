@@ -5608,7 +5608,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/Datetime/date" class="md-nav__link">
+      <a href="../../Reference/Builtin-Functions/Datetime/datediff/" class="md-nav__link">
         DATEDIFF()
       </a>
     </li>
@@ -5865,7 +5865,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/String/concat-ws/" class="md-nav__link">
+      <a href="../../Reference/Builtin-Functions/String/concat/" class="md-nav__link">
         CONCAT()
       </a>
     </li>
@@ -7247,7 +7247,7 @@
 <span class="o">|</span><span class="w">                             </span><span class="mi">11</span><span class="w"> </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">--------------------------------+</span>
 
-<span class="o">//</span><span class="n">Verify</span><span class="w"> </span><span class="n">which</span><span class="w"> </span><span class="n">tables</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">mo_catalog</span>
+<span class="c1">-- Verify which tables in mo_catalog</span>
 <span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="n">use</span><span class="w"> </span><span class="n">mo_catalog</span><span class="p">;</span>
 <span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="n">tables</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">----------------------------+</span>
@@ -7272,12 +7272,12 @@
 </ul>
 <div class="highlight"><pre><span></span><code>create database demo_1;
 use demo_1;
-//Create three new tables
+-- Create three new tables
 CREATE TABLE t1(a bigint, b varchar(10), c varchar(10));
 CREATE TABLE t2(a bigint, b int);
 CREATE TABLE t3(a int, b varchar(10), c varchar(10));
 
-//Query out that there are three tables in the database demo_1
+-- Query out that there are three tables in the database demo_1
 mysql&gt; show table_number from demo_1;
 +----------------------------+
 | Number of tables in demo_1 |
@@ -7301,7 +7301,7 @@ mysql&gt; show table_number from demo_1;
 <span class="o">|</span><span class="w">                           </span><span class="mi">11</span><span class="w"> </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">------------------------------+</span>
 
-<span class="o">//</span><span class="k">Or</span><span class="w"> </span><span class="n">use</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">following</span><span class="w"> </span><span class="n">command</span>
+<span class="c1">-- Or use the following command</span>
 <span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="n">column_number</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">mo_catalog</span><span class="p">.</span><span class="n">mo_user</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">------------------------------+</span>
 <span class="o">|</span><span class="w"> </span><span class="nb">Number</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">columns</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">mo_user</span><span class="w"> </span><span class="o">|</span>
@@ -7309,7 +7309,7 @@ mysql&gt; show table_number from demo_1;
 <span class="o">|</span><span class="w">                           </span><span class="mi">11</span><span class="w"> </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">------------------------------+</span>
 
-<span class="o">//</span><span class="n">Verify</span><span class="w"> </span><span class="n">which</span><span class="w"> </span><span class="n">columns</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">table</span>
+<span class="c1">-- Verify which columns in the table</span>
 <span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">desc</span><span class="w"> </span><span class="n">mo_catalog</span><span class="p">.</span><span class="n">mo_user</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">-----------------------+--------------+------+------+---------+-------+---------+</span>
 <span class="o">|</span><span class="w"> </span><span class="n">Field</span><span class="w">                 </span><span class="o">|</span><span class="w"> </span><span class="k">Type</span><span class="w">         </span><span class="o">|</span><span class="w"> </span><span class="k">Null</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">Key</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="k">Default</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Extra</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">Comment</span><span class="w"> </span><span class="o">|</span>
@@ -7355,7 +7355,7 @@ mysql&gt; show table_number from demo_1;
 <div class="highlight"><pre><span></span><code>SELECT MO_TABLE_ROWS({DATABASE_NAME},{TABLE_NAME})
 </code></pre></div>
 <h3 id="example_3">Example</h3>
-<div class="highlight"><pre><span></span><code><span class="o">//</span><span class="n">Query</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">total</span><span class="w"> </span><span class="nb">number</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">mo_tables</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">mo_catalog</span>
+<div class="highlight"><pre><span></span><code><span class="c1">-- Query the total number of rows of mo_tables in mo_catalog</span>
 <span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">mo_table_rows</span><span class="p">(</span><span class="s1">&#39;mo_catalog&#39;</span><span class="p">,</span><span class="s1">&#39;mo_tables&#39;</span><span class="p">);</span>
 <span class="o">+</span><span class="c1">--------------------------------------+</span>
 <span class="o">|</span><span class="w"> </span><span class="n">mo_table_rows</span><span class="p">(</span><span class="n">mo_catalog</span><span class="p">,</span><span class="w"> </span><span class="n">mo_tables</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
@@ -7369,7 +7369,7 @@ mysql&gt; show table_number from demo_1;
 <div class="highlight"><pre><span></span><code>SELECT MO_TABLE_SIZE({DATABASE_NAME},{TABLE_NAME})
 </code></pre></div>
 <h3 id="example_4">Example</h3>
-<div class="highlight"><pre><span></span><code><span class="o">//</span><span class="n">Query</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">storage</span><span class="w"> </span><span class="k">space</span><span class="w"> </span><span class="n">occupied</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">mo_tables</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n">mo_catalog</span>
+<div class="highlight"><pre><span></span><code><span class="c1">-- Query the storage space occupied by the table mo_tables in the database mo_catalog</span>
 <span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">mo_table_size</span><span class="p">(</span><span class="s1">&#39;mo_catalog&#39;</span><span class="p">,</span><span class="s1">&#39;mo_tables&#39;</span><span class="p">);</span>
 <span class="o">+</span><span class="c1">--------------------------------------+</span>
 <span class="o">|</span><span class="w"> </span><span class="n">mo_table_size</span><span class="p">(</span><span class="n">mo_catalog</span><span class="p">,</span><span class="w"> </span><span class="n">mo_tables</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>

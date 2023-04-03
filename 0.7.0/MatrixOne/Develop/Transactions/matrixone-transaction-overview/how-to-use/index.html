@@ -5676,7 +5676,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Builtin-Functions/Datetime/date" class="md-nav__link">
+      <a href="../../../../Reference/Builtin-Functions/Datetime/datediff/" class="md-nav__link">
         DATEDIFF()
       </a>
     </li>
@@ -5933,7 +5933,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Builtin-Functions/String/concat-ws/" class="md-nav__link">
+      <a href="../../../../Reference/Builtin-Functions/String/concat/" class="md-nav__link">
         CONCAT()
       </a>
     </li>
@@ -7114,15 +7114,18 @@ rollback;
 </code></pre></div>
 <h2 id="autocommit">Autocommit</h2>
 <p>In MatrixOne, there is a parameter <code>AUTOCOMMIT</code>, which determines whether there is no single SQL statement to be automatically committed as an independent transaction without <code>START TRANSACTION</code> or <code>BEGIN</code>. The syntax is as follows:</p>
-<div class="highlight"><pre><span></span><code>SET AUTOCOMMIT={on|off|0|1}  //Set the value of this parameter
-SHOW VARIABLES LIKE &#39;AUTOCOMMIT&#39;;
+<div class="highlight"><pre><span></span><code><span class="c1">-- Set the value of this parameter</span>
+<span class="k">SET</span><span class="w"> </span><span class="n">AUTOCOMMIT</span><span class="o">=</span><span class="err">{</span><span class="k">on</span><span class="o">|</span><span class="k">off</span><span class="o">|</span><span class="mi">0</span><span class="o">|</span><span class="mi">1</span><span class="err">}</span><span class="w">  </span>
+<span class="k">SHOW</span><span class="w"> </span><span class="n">VARIABLES</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;AUTOCOMMIT&#39;</span><span class="p">;</span>
 </code></pre></div>
 <p>When this parameter is set to ON or 1, it means automatic submission. All single SQL statements not in <code>START TRANSACTION</code> or <code>BEGIN</code> will be automatically submitted when executed.</p>
-<div class="highlight"><pre><span></span><code>insert into t1 values(1,2,3);   //Autocommit
+<div class="highlight"><pre><span></span><code><span class="c1">-- Autocommit</span>
+<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span><span class="w">   </span>
 </code></pre></div>
 <p>When this parameter is set to OFF or 0, it is not automatically committed. All SQL statements not in <code>START TRANSACTION</code> or <code>BEGIN</code> need to use <code>COMMIT</code> or <code>ROLLBACK</code> to perform commit or rollback.</p>
-<div class="highlight"><pre><span></span><code>insert into t1 values(1,2,3);
-COMMIT;  //Manual submission is required here
+<div class="highlight"><pre><span></span><code><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+<span class="c1">-- Manual submission is required here</span>
+<span class="k">COMMIT</span><span class="p">;</span><span class="w">  </span>
 </code></pre></div>
 
               

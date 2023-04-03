@@ -2838,6 +2838,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#set" class="md-nav__link">
+    SET
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#parallel" class="md-nav__link">
     PARALLEL
   </a>
@@ -5777,7 +5784,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Builtin-Functions/Datetime/date" class="md-nav__link">
+      <a href="../../../Builtin-Functions/Datetime/datediff/" class="md-nav__link">
         DATEDIFF()
       </a>
     </li>
@@ -6034,7 +6041,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Builtin-Functions/String/concat-ws/" class="md-nav__link">
+      <a href="../../../Builtin-Functions/String/concat/" class="md-nav__link">
         CONCAT()
       </a>
     </li>
@@ -7180,6 +7187,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#set" class="md-nav__link">
+    SET
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#parallel" class="md-nav__link">
     PARALLEL
   </a>
@@ -7300,13 +7314,13 @@
     [{FIELDS | COLUMNS}
         [TERMINATED BY &#39;string&#39;]
         [[OPTIONALLY] ENCLOSED BY &#39;char&#39;]
-        [ESCAPED BY &#39;char&#39;]
     ]
     [LINES
         [STARTING BY &#39;string&#39;]
         [TERMINATED BY &#39;string&#39;]
     ]
     [IGNORE number {LINES | ROWS}]
+    [SET column_name_1=nullif(column_name_1, expr1), column_name_2=nullif(column_name_2, expr2)...]
     [PARALLEL {&#39;TRUE&#39; | &#39;FALSE&#39;}]
 </code></pre></div>
 <h3 id="input-file-location">Input File Location</h3>
@@ -7324,7 +7338,7 @@
 </code></pre></div>
 <h3 id="field-and-line-handling">Field and Line Handling</h3>
 <p>For both the LOAD DATA and <code>SELECT ... INTO OUTFILE</code> statements, the syntax of the FIELDS and LINES clauses is the same. Both clauses are optional, but FIELDS must precede LINES if both are specified.</p>
-<p>If you specify a <code>FIELDS</code> clause, each of its subclauses (<code>TERMINATED BY</code>, <code>[OPTIONALLY] ENCLOSED BY</code>, and <code>ESCAPED BY</code>) is also optional, except that you must specify at least one of them. Arguments to these clauses are permitted to contain only ASCII characters.</p>
+<p>If you specify a <code>FIELDS</code> clause, each of its subclauses (<code>TERMINATED BY</code>, <code>[OPTIONALLY] ENCLOSED BY</code>) is also optional, except that you must specify at least one of them. Arguments to these clauses are permitted to contain only ASCII characters.</p>
 <p>If you specify no <code>FIELDS</code> or <code>LINES</code> clause, the defaults are the same as if you had written this:</p>
 <div class="highlight"><pre><span></span><code>FIELDS TERMINATED BY &#39;,&#39; ENCLOSED BY &#39;&quot;&#39; LINES TERMINATED BY &#39;\n&#39;
 </code></pre></div>
@@ -7345,51 +7359,6 @@
 <div class="highlight"><pre><span></span><code>LOAD DATA INFILE &#39;data.txt&#39; INTO TABLE table1
   FIELDS TERMINATED BY &#39;,&#39; OPTIONALLY ENCLOSED BY &#39;&quot;&#39;;
 </code></pre></div>
-<p><strong>FIELDS ESCAPED BY</strong></p>
-<p><code>ESCAPE BY</code> option controls how to read or write special characters. <code>FIELDS ESCAPED BY</code> values must be a single character.</p>
-<p>For input, if the <code>FIELDS ESCAPED BY</code> character is not empty, occurrences of that character are stripped and the following character is taken literally as part of a field value. Some two-character sequences that are exceptions, where the first character is the escape character. These sequences are shown in the following table (using \ for the escape character). The rules for <code>NULL</code> handling are described later in this section. If the <code>FIELDS ESCAPED BY</code> character is empty, escape-sequence interpretation does not occur.</p>
-<table>
-<thead>
-<tr>
-<th>Character</th>
-<th>Escape Sequence</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>\0</td>
-<td>An ASCII NUL (X'00') character</td>
-</tr>
-<tr>
-<td>\b</td>
-<td>A backspace character</td>
-</tr>
-<tr>
-<td>\n</td>
-<td>A newline (linefeed) character</td>
-</tr>
-<tr>
-<td>\r</td>
-<td>A carriage return character</td>
-</tr>
-<tr>
-<td>\t</td>
-<td>A tab character.</td>
-</tr>
-<tr>
-<td>\Z</td>
-<td>ASCII 26 (Control+Z)</td>
-</tr>
-<tr>
-<td>\N</td>
-<td>NULL</td>
-</tr>
-</tbody>
-</table>
-<p>For example, if some input values are special character <code>\</code>, you can use <code>escape by</code> as:</p>
-<div class="highlight"><pre><span></span><code>LOAD DATA INFILE &#39;data.txt&#39; INTO TABLE table1
-  FIELDS TERMINATED BY &#39;,&#39; OPTIONALLY ENCLOSED BY &#39;&quot;&#39; ESCAPED BY &#39;\\&#39;;
-</code></pre></div>
 <p><strong>LINES TERMINATED BY</strong></p>
 <p><code>LINES TERMINATED BY</code> specifies the delimiter for the a line. The <code>LINES TERMINATED BY</code> values can be more than one character.</p>
 <p>For example, if the lines in a csv file are terminated by carriage return/newline pairs, you can load it with <code>LINES TERMINATED BY '\r\n'</code>:</p>
@@ -7408,18 +7377,56 @@ something xxx&quot;def&quot;,2
 &quot;ghi&quot;,3
 </code></pre></div>
 <p>The resulting rows are ("abc",1) and ("def",2). The third row in the file is skipped because it does not contain the prefix.</p>
+<h3 id="set">SET</h3>
+<p>MatrixOne only supports <code>SET column_name=nullif(column_name,expr)</code>. That is, when <code>column_name = expr</code>, it returns <code>NULL</code>; otherwise, it returns the original value of <code>column_name</code>. For example, <code>SET a=nullif(a,1)</code>, if a=1, returns <code>NULL</code>; otherwise, it returns the original value of column a.</p>
+<p>By setting the parameter, you can use <code>SET column_name=nullif(column_name,"null")</code> to return the <code>NULL</code> value in the column when loading the file.</p>
+<p><strong>Example</strong></p>
+<ol>
+<li>
+<p>The details of the local file <code>test.txt</code> are as follows:</p>
+<div class="highlight"><pre><span></span><code>id,user_name,sex
+1,&quot;weder&quot;,&quot;man&quot;
+2,&quot;tom&quot;,&quot;man&quot;
+null,wederTom,&quot;man&quot;
+</code></pre></div>
+</li>
+<li>
+<p>Create a table named <code>user</code> in MatrixOne:</p>
+<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n">aaa</span><span class="p">;</span>
+<span class="n">use</span><span class="w"> </span><span class="n">aaa</span><span class="p">;</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="o">`</span><span class="k">user</span><span class="o">`</span><span class="w"> </span><span class="p">(</span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span><span class="w"> </span><span class="p">,</span><span class="o">`</span><span class="n">user_name</span><span class="o">`</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="w"> </span><span class="p">,</span><span class="o">`</span><span class="n">sex</span><span class="o">`</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">255</span><span class="p">));</span>
+</code></pre></div>
+</li>
+<li>
+<p>Load <code>test.txt</code> into the table <code>user</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">LOAD</span><span class="w"> </span><span class="k">DATA</span><span class="w"> </span><span class="n">INFILE</span><span class="w"> </span><span class="s1">&#39;/tmp/test.txt&#39;</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">id</span><span class="o">=</span><span class="k">nullif</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="ss">&quot;null&quot;</span><span class="p">);</span>
+</code></pre></div>
+</li>
+<li>
+<p>The result of the talbe is as below:</p>
+<div class="highlight"><pre><span></span><code><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="k">user</span><span class="p">;</span>
+<span class="o">+</span><span class="c1">------+-----------+------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">id</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">user_name</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">sex</span><span class="w">  </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">------+-----------+------+</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">weder</span><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="n">man</span><span class="w">  </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">tom</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="n">man</span><span class="w">  </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="k">null</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">wederTom</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">man</span><span class="w">  </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">------+-----------+------+</span>
+</code></pre></div>
+</li>
+</ol>
 <h3 id="parallel">PARALLEL</h3>
 <p>For a sizeable well-formed file, such as a <em>JSOLLines</em> file or a <em>CSV</em> file with no line breaks in a line of data, you can use <code>PARALLEL</code> to load the file in parallel to speed up the loading.</p>
 <p>For example, for a large file of 2 G, use two threads to load; the second thread first splits and locates the 1G position, then reads and loads backward. In this way, two threads can read large files at the same time, and each thread can read 1G of data.</p>
 <p><strong>Enable/Disable Parallel Loading Command Line Example</strong>:</p>
-<div class="highlight"><pre><span></span><code>// Enable Parallel Loading
-load data infile &#39;file_name&#39; into table tbl_name FIELDS TERMINATED BY &#39;|&#39; ENCLOSED BY &#39;\&quot;&#39; LINES TERMINATED BY &#39;\n&#39; IGNORE 1 LINES PARALLEL &#39;TRUE&#39;;
+<div class="highlight"><pre><span></span><code><span class="c1">--  Enable Parallel Loading</span>
+<span class="k">load</span><span class="w"> </span><span class="k">data</span><span class="w"> </span><span class="n">infile</span><span class="w"> </span><span class="s1">&#39;file_name&#39;</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">tbl_name</span><span class="w"> </span><span class="n">FIELDS</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;|&#39;</span><span class="w"> </span><span class="n">ENCLOSED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;\&quot;&#39;</span><span class="w"> </span><span class="n">LINES</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;\n&#39;</span><span class="w"> </span><span class="k">IGNORE</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">LINES</span><span class="w"> </span><span class="n">PARALLEL</span><span class="w"> </span><span class="s1">&#39;TRUE&#39;</span><span class="p">;</span>
 
-// Disable Parallel Loading
-load data infile &#39;file_name&#39; into table tbl_name FIELDS TERMINATED BY &#39;|&#39; ENCLOSED BY &#39;\&quot;&#39; LINES TERMINATED BY &#39;\n&#39; IGNORE 1 LINES PARALLEL &#39;FALSE&#39;;
+<span class="c1">--  Disable Parallel Loading</span>
+<span class="k">load</span><span class="w"> </span><span class="k">data</span><span class="w"> </span><span class="n">infile</span><span class="w"> </span><span class="s1">&#39;file_name&#39;</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">tbl_name</span><span class="w"> </span><span class="n">FIELDS</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;|&#39;</span><span class="w"> </span><span class="n">ENCLOSED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;\&quot;&#39;</span><span class="w"> </span><span class="n">LINES</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;\n&#39;</span><span class="w"> </span><span class="k">IGNORE</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">LINES</span><span class="w"> </span><span class="n">PARALLEL</span><span class="w"> </span><span class="s1">&#39;FALSE&#39;</span><span class="p">;</span>
 
-// Parallel loading is disabled by default
-load data infile &#39;file_name&#39; into table tbl_name FIELDS TERMINATED BY &#39;|&#39; ENCLOSED BY &#39;\&quot;&#39; LINES TERMINATED BY &#39;\n&#39; IGNORE 1 LINES;
+<span class="c1">--  Parallel loading is disabled by default</span>
+<span class="k">load</span><span class="w"> </span><span class="k">data</span><span class="w"> </span><span class="n">infile</span><span class="w"> </span><span class="s1">&#39;file_name&#39;</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">tbl_name</span><span class="w"> </span><span class="n">FIELDS</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;|&#39;</span><span class="w"> </span><span class="n">ENCLOSED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;\&quot;&#39;</span><span class="w"> </span><span class="n">LINES</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;\n&#39;</span><span class="w"> </span><span class="k">IGNORE</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">LINES</span><span class="p">;</span>
 </code></pre></div>
 <p><strong>Note:</strong> If the <code>PARALLEL</code> field is not added in the <code>LOAD</code> statement, for <em>CSV</em> files, parallel loading is disabled by default; for <em>JSOLLines</em> files, parallel loading is enabled by default. If there is a line terminator in the <em>CSV</em> file, such as '\n', otherwise it may cause data errors when the file is loaded. If the file is too large, manually splitting the file from the '\n' as the starting and ending point is recommended, then enabling parallel loading.</p>
 <h2 id="supported-file-formats">Supported file formats</h2>
@@ -7574,6 +7581,7 @@ load data infile {&#39;filepath&#39;=&#39;&lt;your-local-file-path&gt;/jsonline_
 <li>The parallel loading of files requires that the files be in uncompressed format, and parallel loading of files in compressed form is not currently supported.</li>
 <li>The <code>load data local</code> dose not support parallel loading now.</li>
 <li>When you use <code>load data local</code>, you need to use the command line to connect to the MatrixOne service host: <code>mysql -h &lt;mo-host -ip&gt; -P 6001 -udump -p111 --local-infile</code>.</li>
+<li>MatrixOne does not support <code>ESCAPED BY</code> currently. Writing or reading special characters differs from MySQL to some extent.</li>
 </ol>
 
               

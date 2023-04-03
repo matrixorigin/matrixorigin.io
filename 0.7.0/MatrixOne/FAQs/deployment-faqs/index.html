@@ -5608,7 +5608,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/Datetime/date" class="md-nav__link">
+      <a href="../../Reference/Builtin-Functions/Datetime/datediff/" class="md-nav__link">
         DATEDIFF()
       </a>
     </li>
@@ -5865,7 +5865,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Builtin-Functions/String/concat-ws/" class="md-nav__link">
+      <a href="../../Reference/Builtin-Functions/String/concat/" class="md-nav__link">
         CONCAT()
       </a>
     </li>
@@ -6541,6 +6541,61 @@
     Installation and deployment
   </a>
   
+    <nav class="md-nav" aria-label="Installation and deployment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-settings-do-i-need-to-change-for-installation" class="md-nav__link">
+    What settings do I need to change for installation?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#after-the-mysql-client-is-installed-i-open-the-terminal-and-run-mysql-i-got-an-error-of-command-not-found-mysql" class="md-nav__link">
+    After the MySQL client is installed, I open the terminal and run mysql, I got an error of command not found: mysql.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-i-install-matrixone-by-building-from-source-i-got-an-error-of-the-following-and-the-build-failed-how-can-i-proceed" class="md-nav__link">
+    When I install MatrixOne by building from source, I got an error of the following and the build failed, how can I proceed?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-i-want-to-save-the-matrixone-data-directory-to-my-specified-file-directory-how-should-i-do-it" class="md-nav__link">
+    When I want to save the MatrixOne data directory to my specified file directory, how should I do it?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-i-was-testing-matrixone-with-mo-tester-i-got-an-error-of-too-many-open-files" class="md-nav__link">
+    When I was testing MatrixOne with MO-tester, I got an error of too many open files?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssb-dbgen-cannot-be-compiled-on-a-pc-with-m1-chip" class="md-nav__link">
+    Ssb-dbgen cannot be compiled on a PC with M1 chip
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#i-built-matrixone-in-the-main-branch-initially-but-encountered-panic-when-switching-to-other-versions-for-building" class="md-nav__link">
+    I built MatrixOne in the main branch initially, but encountered panic when switching to other versions for building
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -7050,6 +7105,61 @@
     Installation and deployment
   </a>
   
+    <nav class="md-nav" aria-label="Installation and deployment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-settings-do-i-need-to-change-for-installation" class="md-nav__link">
+    What settings do I need to change for installation?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#after-the-mysql-client-is-installed-i-open-the-terminal-and-run-mysql-i-got-an-error-of-command-not-found-mysql" class="md-nav__link">
+    After the MySQL client is installed, I open the terminal and run mysql, I got an error of command not found: mysql.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-i-install-matrixone-by-building-from-source-i-got-an-error-of-the-following-and-the-build-failed-how-can-i-proceed" class="md-nav__link">
+    When I install MatrixOne by building from source, I got an error of the following and the build failed, how can I proceed?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-i-want-to-save-the-matrixone-data-directory-to-my-specified-file-directory-how-should-i-do-it" class="md-nav__link">
+    When I want to save the MatrixOne data directory to my specified file directory, how should I do it?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-i-was-testing-matrixone-with-mo-tester-i-got-an-error-of-too-many-open-files" class="md-nav__link">
+    When I was testing MatrixOne with MO-tester, I got an error of too many open files?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssb-dbgen-cannot-be-compiled-on-a-pc-with-m1-chip" class="md-nav__link">
+    Ssb-dbgen cannot be compiled on a PC with M1 chip
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#i-built-matrixone-in-the-main-branch-initially-but-encountered-panic-when-switching-to-other-versions-for-building" class="md-nav__link">
+    I built MatrixOne in the main branch initially, but encountered panic when switching to other versions for building
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -7162,13 +7272,9 @@
 </tbody>
 </table>
 <h2 id="installation-and-deployment">Installation and deployment</h2>
-<ul>
-<li><strong>What settings do I need to change for installation?</strong></li>
-</ul>
+<h3 id="what-settings-do-i-need-to-change-for-installation"><strong>What settings do I need to change for installation?</strong></h3>
 <p>Normally you don't need to change anything for installation. A default setting of <code>launch.toml</code> is enough to run MatrixOne directly. But if you want to customize your listening port, ip address, stored data files path, you may modify the corresponding records of <a href="https://github.com/matrixorigin/matrixone/blob/main/etc/launch-tae-CN-tae-DN/cn.toml"><code>cn.toml</code></a>, <a href="https://github.com/matrixorigin/matrixone/blob/main/etc/launch-tae-CN-tae-DN/dn.toml"><code>dn.toml</code></a> or <a href="https://github.com/matrixorigin/matrixone/blob/main/etc/launch-tae-CN-tae-DN/log.toml"><code>log.toml</code></a>, for more details about parameter configuration in these files, see <a href="../../Reference/System-Parameters/configuration-settings/">Boot Parameters for standalone installation</a>.</p>
-<ul>
-<li><strong>After the MySQL client is installed, I open the terminal and run <code>mysql</code>, I got an error of <code>command not found: mysql</code>.</strong></li>
-</ul>
+<h3 id="after-the-mysql-client-is-installed-i-open-the-terminal-and-run-mysql-i-got-an-error-of-command-not-found-mysql"><strong>After the MySQL client is installed, I open the terminal and run <code>mysql</code>, I got an error of <code>command not found: mysql</code>.</strong></h3>
 <p>To solve the error, you need to set the environment variable. Open a new terminal window, run the following command:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1"><strong>Linux Environment</strong></label><label for="__tabbed_1_2"><strong>MacOS Environment</strong></label></div>
 <div class="tabbed-content">
@@ -7196,28 +7302,22 @@ Password:
 </div>
 </div>
 </div>
-<ul>
-<li><strong>When I install MatrixOne by building from source, I got an error of the following and the build failed, how can I proceed?</strong></li>
-</ul>
+<h3 id="when-i-install-matrixone-by-building-from-source-i-got-an-error-of-the-following-and-the-build-failed-how-can-i-proceed"><strong>When I install MatrixOne by building from source, I got an error of the following and the build failed, how can I proceed?</strong></h3>
 <p>Error: <code>Get "https://proxy.golang.org/........": dial tcp 142.251.43.17:443: i/o timeout</code></p>
 <p>As MatrixOne needs many go libraries as dependency, it downloads them at the time of building it. This is an error of downloading timeout, it's mostly a networking issue. If you are using a Chinese mainland network, you need to set your go environment to a Chinese image site to accelerate the go library downloading. If you check your go environment by <code>go env</code>, you may see  <code>GOPROXY="https://proxy.golang.org,direct"</code>, you need to set it by</p>
 <div class="highlight"><pre><span></span><code>go env -w GOPROXY=https://goproxy.cn,direct
 </code></pre></div>
 <p>Then the <code>make build</code> should be fast enough to finish.</p>
+<h3 id="when-i-want-to-save-the-matrixone-data-directory-to-my-specified-file-directory-how-should-i-do-it"><strong>When I want to save the MatrixOne data directory to my specified file directory, how should I do it?</strong></h3>
 <ul>
-<li>
-<p><strong>When I want to save the MatrixOne data directory to my specified file directory, how should I do it?</strong></p>
-</li>
 <li>
 <p>When you use Docker to start MatrixOne, you can mount the data directory you specify to the Docker container, see <a href="../../Maintain/mount-data-by-docker/">Mount directory to Docker container</a>.</p>
 </li>
 <li>
 <p>When you use the source code or binary package to compile and start MatrixOne, you can modify the default data directory path in the configuration file: open the MatrixOne source file directory <code>matrixone/etc/launch-tae-CN-tae-DN</code>, modify the configuration parameter <code>data-dir = "./mo-data"</code> in the three files of <code>cn.toml</code>, <code>dn.toml</code> and <code>log.toml</code> is <code>data-dir = "your_local_path"</code>, save and restart MatrixOne It will take effect.</p>
 </li>
-<li>
-<p><strong>When I was testing MatrixOne with MO-tester, I got an error of <code>too many open files</code>?</strong></p>
-</li>
 </ul>
+<h3 id="when-i-was-testing-matrixone-with-mo-tester-i-got-an-error-of-too-many-open-files"><strong>When I was testing MatrixOne with MO-tester, I got an error of <code>too many open files</code>?</strong></h3>
 <p>MO-tester will open and close many SQL files in a high speed to test MatrixOne, this kind of usage will easily reach the maximum open file limit of Linux and macOS, which is the reason for the <code>too many open files</code> error.</p>
 <ul>
 <li>For MacOS, you can just set the open file limit by a simple command:</li>
@@ -7228,9 +7328,7 @@ Password:
 <li>For Linux, please refer to this detailed <a href="https://www.linuxtechi.com/set-ulimit-file-descriptors-limit-linux-servers/">guide</a> to set the ulimit to 100000.</li>
 </ul>
 <p>After setting this value, there will be no more <code>too many open files</code> error.</p>
-<ul>
-<li><strong>Ssb-dbgen cannot be compiled on a PC with M1 chip</strong></li>
-</ul>
+<h3 id="ssb-dbgen-cannot-be-compiled-on-a-pc-with-m1-chip"><strong>Ssb-dbgen cannot be compiled on a PC with M1 chip</strong></h3>
 <p>To complete the following configuration, then compiling 'SSB-DBgen' for a PC with M1 chip:</p>
 <ol>
 <li>
@@ -7284,6 +7382,19 @@ make
 <p>Check the <em>ssb-dbgen</em> directory, when the the <em>dbgen</em> file is generated, indicating that the compilation is successful.</p>
 </li>
 </ol>
+<h3 id="i-built-matrixone-in-the-main-branch-initially-but-encountered-panic-when-switching-to-other-versions-for-building"><strong>I built MatrixOne in the main branch initially, but encountered panic when switching to other versions for building</strong></h3>
+<p>If you use <code>make build</code> to compile and build MatrixOne with a specific code version, the directory for data files, mo-data, will be generated. Suppose you must switch to another version (i.e., <code>git checkout version-name</code>). In that case, you must clean up mo-data first (i.e., <code>rm -rf mo-data</code>) due to version incompatibility before building MatrixOne again. Here's an example of the code:</p>
+<div class="highlight"><pre><span></span><code>[root ~]# cd matrixone  // Go to the matrixone directory
+[root ~]# git branch // Check the current branch
+* main
+[root ~]# make build // Build matrixone
+...    // The build process code is omitted here. If you want to switch to another version, such as version 0.7.0,
+[root ~]# git checkout 0.7.0 // Switch to version 0.7.0
+[root ~]# rm -rf mo-data // Clean up the data directory
+[root ~]# make build // Build matrixone again
+...    // The build process code is omitted here
+[root ~]# ./mo-service --daemon --launch ./etc/quickstart/launch.toml &amp;&gt; test.log &amp;   // Start MatrixOne service in the terminal backend
+</code></pre></div>
 
               
             </article>

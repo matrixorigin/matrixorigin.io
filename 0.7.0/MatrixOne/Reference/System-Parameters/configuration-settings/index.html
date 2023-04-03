@@ -5610,7 +5610,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Builtin-Functions/Datetime/date" class="md-nav__link">
+      <a href="../../Builtin-Functions/Datetime/datediff/" class="md-nav__link">
         DATEDIFF()
       </a>
     </li>
@@ -5867,7 +5867,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Builtin-Functions/String/concat-ws/" class="md-nav__link">
+      <a href="../../Builtin-Functions/String/concat/" class="md-nav__link">
         CONCAT()
       </a>
     </li>
@@ -7133,7 +7133,7 @@
 <td></td>
 </tr>
 <tr>
-<td>name = "S3"</td>
+<td>name = "SHARED"</td>
 <td>fileservice storage type, S3</td>
 </tr>
 <tr>
@@ -7143,6 +7143,22 @@
 <tr>
 <td>data-dir = "mo-data/s3"</td>
 <td>s3 storage data directory</td>
+</tr>
+<tr>
+<td>[fileservice.cache]</td>
+<td></td>
+</tr>
+<tr>
+<td>memory-capacity = "512MB"</td>
+<td>cache memory size used by fileservice</td>
+</tr>
+<tr>
+<td>disk-capacity = "8GB"</td>
+<td>cache disk size used by fileservice</td>
+</tr>
+<tr>
+<td>disk-path = "mo-data/file-service-cache"</td>
+<td>fileservice disk cache path</td>
 </tr>
 <tr>
 <td>[[fileservice]]</td>
@@ -7244,7 +7260,7 @@
 <td></td>
 </tr>
 <tr>
-<td>name = "S3"</td>
+<td>name = "SHARED"</td>
 <td>fileservice storage type, S3</td>
 </tr>
 <tr>
@@ -7254,6 +7270,22 @@
 <tr>
 <td>data-dir = "mo-data/s3"</td>
 <td>s3 storage data directory</td>
+</tr>
+<tr>
+<td>[fileservice.cache]</td>
+<td></td>
+</tr>
+<tr>
+<td>memory-capacity = "512MB"</td>
+<td>cache memory size used by fileservice</td>
+</tr>
+<tr>
+<td>disk-capacity = "8GB"</td>
+<td>cache disk size used by fileservice</td>
+</tr>
+<tr>
+<td>disk-path = "mo-data/file-service-cache"</td>
+<td>fileservice disk cache path</td>
 </tr>
 <tr>
 <td>[[fileservice]]</td>
@@ -7308,8 +7340,44 @@
 <td>checkpoint increment interval</td>
 </tr>
 <tr>
-<td>global-interval = "100000s"</td>
-<td>Global checkpoint interval</td>
+<td>global-min-count = 60</td>
+<td>The global minimum number of dn checkpoints</td>
+</tr>
+<tr>
+<td>[dn.LogtailServer]</td>
+<td></td>
+</tr>
+<tr>
+<td>listen-address = "0.0.0.0:32003"</td>
+<td>logtail listening port</td>
+</tr>
+<tr>
+<td>service-address = "127.0.0.1:32003"</td>
+<td>logtail internal access address</td>
+</tr>
+<tr>
+<td>rpc-max-message-size = "16KiB"</td>
+<td>maximum rpc message size used by logtail</td>
+</tr>
+<tr>
+<td>rpc-payload-copy-buffer-size = "16KiB"</td>
+<td>rpc copy buffer size</td>
+</tr>
+<tr>
+<td>rpc-enable-checksum = true</td>
+<td>whether to enable rpc checksum</td>
+</tr>
+<tr>
+<td>logtail-collect-interval = "2ms"</td>
+<td>logtail statistics collection interval</td>
+</tr>
+<tr>
+<td>logtail-response-send-timeout = "10s"</td>
+<td>logtail sending timeout</td>
+</tr>
+<tr>
+<td>max-logtail-fetch-failure = 5</td>
+<td>The maximum number of failures allowed by fetching logtail</td>
 </tr>
 </tbody>
 </table>
@@ -7348,10 +7416,22 @@
 </tr>
 <tr>
 <td>[[fileservice]]</td>
+<td>fileservice configuration, not recommended to change</td>
+</tr>
+<tr>
+<td>name = "LOCAL"</td>
+<td>fileservice storage type, local storage</td>
+</tr>
+<tr>
+<td>backend = "DISK"</td>
+<td>fileservice backend media, disk</td>
+</tr>
+<tr>
+<td>[[fileservice]]</td>
 <td></td>
 </tr>
 <tr>
-<td>name = "S3"</td>
+<td>name = "SHARED"</td>
 <td>fileservice storage type, S3</td>
 </tr>
 <tr>
@@ -7361,6 +7441,22 @@
 <tr>
 <td>data-dir = "mo-data/s3"</td>
 <td>s3 storage data directory</td>
+</tr>
+<tr>
+<td>[fileservice.cache]</td>
+<td></td>
+</tr>
+<tr>
+<td>memory-capacity = "512MB"</td>
+<td>cache memory size used by fileservice</td>
+</tr>
+<tr>
+<td>disk-capacity = "8GB"</td>
+<td>cache disk size used by fileservice</td>
+</tr>
+<tr>
+<td>disk-path = "mo-data/file-service-cache"</td>
+<td>fileservice disk cache path</td>
 </tr>
 <tr>
 <td>[[fileservice]]</td>
@@ -7420,11 +7516,7 @@
 </tr>
 <tr>
 <td>gossip-seed-addresses = [<br>"127.0.0.1:32002",<br>]</td>
-<td></td>
-</tr>
-<tr>
 <td>The root node address of the gossip protocol</td>
-<td></td>
 </tr>
 <tr>
 <td>gossip-allow-self-as-seed = true</td>
