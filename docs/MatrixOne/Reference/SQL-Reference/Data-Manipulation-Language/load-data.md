@@ -292,8 +292,8 @@ The *CSV* format loaded by MatrixOne conforms to the RFC4180 standard, and the *
 6. Fields containing line breaks (CRLF), double quotes, and commas should be enclosed in double-quotes. For example:
 
     ```
-    "aaa"，"b CRLF
-    bb"，"ccc" CRLF
+    "aaa","b CRLF
+    bb","ccc" CRLF
     zzz,yyy,xxx
     ```
 
