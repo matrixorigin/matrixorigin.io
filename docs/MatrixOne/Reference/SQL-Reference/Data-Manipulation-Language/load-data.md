@@ -13,7 +13,6 @@ The LOAD DATA statement reads rows from a text file into a table at a very high 
     [{FIELDS | COLUMNS}
         [TERMINATED BY 'string']
         [[OPTIONALLY] ENCLOSED BY 'char']
-        [ESCAPED BY 'char']
     ]
     [LINES
         [STARTING BY 'string']
@@ -42,7 +41,7 @@ LOAD DATA INFILE '/tmp/test.txt' INTO TABLE table1 IGNORE 1 LINES;
 
 For both the LOAD DATA and `SELECT ... INTO OUTFILE` statements, the syntax of the FIELDS and LINES clauses is the same. Both clauses are optional, but FIELDS must precede LINES if both are specified.
 
-If you specify a `FIELDS` clause, each of its subclauses (`TERMINATED BY`, `[OPTIONALLY] ENCLOSED BY`, and `ESCAPED BY`) is also optional, except that you must specify at least one of them. Arguments to these clauses are permitted to contain only ASCII characters.
+If you specify a `FIELDS` clause, each of its subclauses (`TERMINATED BY`, `[OPTIONALLY] ENCLOSED BY`) is also optional, except that you must specify at least one of them. Arguments to these clauses are permitted to contain only ASCII characters.
 
 If you specify no `FIELDS` or `LINES` clause, the defaults are the same as if you had written this:
 
@@ -79,29 +78,6 @@ For example, if some input values are enclosed within quotation marks, some are 
 ```
 LOAD DATA INFILE 'data.txt' INTO TABLE table1
   FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"';
-```
-
-**FIELDS ESCAPED BY**
-
-`ESCAPE BY` option controls how to read or write special characters. `FIELDS ESCAPED BY` values must be a single character.
-
-For input, if the `FIELDS ESCAPED BY` character is not empty, occurrences of that character are stripped and the following character is taken literally as part of a field value. Some two-character sequences that are exceptions, where the first character is the escape character. These sequences are shown in the following table (using \ for the escape character). The rules for `NULL` handling are described later in this section. If the `FIELDS ESCAPED BY` character is empty, escape-sequence interpretation does not occur.
-
-|  Character   | Escape Sequence  |
-|  ----  | ----  |
-| \0 | 	An ASCII NUL (X'00') character |
-| \b | 	A backspace character |
-| \n | 	A newline (linefeed) character |
-| \r | 	A carriage return character |
-| \t | 	A tab character. |
-| \Z | 	ASCII 26 (Control+Z) |
-| \N | 	NULL |
-
-For example, if some input values are special character `\`, you can use `escape by` as:
-
-```
-LOAD DATA INFILE 'data.txt' INTO TABLE table1
-  FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"' ESCAPED BY '\\';
 ```
 
 **LINES TERMINATED BY**
@@ -187,14 +163,14 @@ For example, for a large file of 2 G, use two threads to load; the second thread
 
 **Enable/Disable Parallel Loading Command Line Example**:
 
-```
-// Enable Parallel Loading
+```sql
+--  Enable Parallel Loading
 load data infile 'file_name' into table tbl_name FIELDS TERMINATED BY '|' ENCLOSED BY '\"' LINES TERMINATED BY '\n' IGNORE 1 LINES PARALLEL 'TRUE';
 
-// Disable Parallel Loading
+--  Disable Parallel Loading
 load data infile 'file_name' into table tbl_name FIELDS TERMINATED BY '|' ENCLOSED BY '\"' LINES TERMINATED BY '\n' IGNORE 1 LINES PARALLEL 'FALSE';
 
-// Parallel loading is disabled by default
+--  Parallel loading is disabled by default
 load data infile 'file_name' into table tbl_name FIELDS TERMINATED BY '|' ENCLOSED BY '\"' LINES TERMINATED BY '\n' IGNORE 1 LINES;
 ```
 
@@ -406,3 +382,4 @@ For more information on loding *JSONLines*, see [Import the JSONLines data](../.
 4. The parallel loading of files requires that the files be in uncompressed format, and parallel loading of files in compressed form is not currently supported.
 5. The `load data local` dose not support parallel loading now.
 6. When you use `load data local`, you need to use the command line to connect to the MatrixOne service host: `mysql -h <mo-host -ip> -P 6001 -udump -p111 --local-infile`.
+7. MatrixOne does not support `ESCAPED BY` currently. Writing or reading special characters differs from MySQL to some extent.

@@ -15,13 +15,13 @@ In MatrixOne's Implicit transactions also obey the following rules:
 
 For example, after the [Explicit Transactions](explicit-transaction.md) ends, continue to insert data (4,5,6) to *t1*, which becomes an implicit transaction. Whether the implicit transaction is committed immediately depends on the value of the `AUTOCOMMIT` parameter:
 
-```
+```sql
 CREATE TABLE t1(a bigint, b varchar(10), c varchar(10));
 START TRANSACTION;
 INSERT INTO t1 values(1,2,3);
 COMMIT;
 
-//Check the AUTOCOMMIT parameters
+-- Check the AUTOCOMMIT parameters
 mysql> SHOW VARIABLES LIKE 'AUTOCOMMIT';
 +---------------+-------+
 | Variable_name | Value |
@@ -29,10 +29,10 @@ mysql> SHOW VARIABLES LIKE 'AUTOCOMMIT';
 | autocommit    | 1     |
 +---------------+-------+
 1 row in set (0.00 sec)
-//Here an implicit transaction begins, with each DML committed immediately after execution with AUTOCOMMIT=.1
+-- Here an implicit transaction begins, with each DML committed immediately after execution with AUTOCOMMIT=.1
 insert into t1 values(4,5,6);
 
-//Implicit transaction is committed automatically, and the table structure is shown below
+-- Implicit transaction is committed automatically, and the table structure is shown below
 mysql> select * from t1;
 +------+------+------+
 | a    | b    | c    |

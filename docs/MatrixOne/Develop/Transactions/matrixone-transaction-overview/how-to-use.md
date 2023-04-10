@@ -44,20 +44,23 @@ rollback;
 
 In MatrixOne, there is a parameter `AUTOCOMMIT`, which determines whether there is no single SQL statement to be automatically committed as an independent transaction without `START TRANSACTION` or `BEGIN`. The syntax is as follows:
 
-```
-SET AUTOCOMMIT={on|off|0|1}  //Set the value of this parameter
+```sql
+-- Set the value of this parameter
+SET AUTOCOMMIT={on|off|0|1}  
 SHOW VARIABLES LIKE 'AUTOCOMMIT';
 ```
 
 When this parameter is set to ON or 1, it means automatic submission. All single SQL statements not in `START TRANSACTION` or `BEGIN` will be automatically submitted when executed.
 
-```
-insert into t1 values(1,2,3);   //Autocommit
+```sql
+-- Autocommit
+insert into t1 values(1,2,3);   
 ```
 
 When this parameter is set to OFF or 0, it is not automatically committed. All SQL statements not in `START TRANSACTION` or `BEGIN` need to use `COMMIT` or `ROLLBACK` to perform commit or rollback.
 
-```
+```sql
 insert into t1 values(1,2,3);
-COMMIT;  //Manual submission is required here
+-- Manual submission is required here
+COMMIT;  
 ```
