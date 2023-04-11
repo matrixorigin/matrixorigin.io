@@ -10,7 +10,7 @@ MatrixOne defaults to the **Read Committed** isolation level and its characteris
 ### Read Committed Principles
 
 - When a transaction starts, the database generates a unique transaction ID.
-- When generating the timestamp of the transaction ID, TAE（Transactional Analytic Engine) automatically detects whether there is an updated timestamp in the corresponding table every time the data is added, deleted, modified, or checked. If so, the updated timestamp is the latest.
+- When generating the timestamp of the transaction ID, TAE (Transactional Analytic Engine) automatically detects whether there is an updated timestamp in the corresponding table every time the data is added, deleted, modified, or checked. If so, the updated timestamp is the latest.
 - When operating on data, TAE caches the user data in memory. When committing a transaction, TAE writes the data in memory to the disk (the S3 path where the data is stored or the local disk path).
 
 ### Read Committed Examples
@@ -90,14 +90,14 @@ SELECT * FROM t1;
 
 After session 2 submits its data, then query session 1, you will find that the content of session 1 has become the data after session two submits:
 
-- Session 2：
+- Session 2:
 
 ```sql
 -- Submit data in session 2:
 COMMIT;
 ```
 
-- Session 1：
+- Session 1:
 
 ```sql
 -- Query whether the content of session 1 has become the data submitted by session 2:
