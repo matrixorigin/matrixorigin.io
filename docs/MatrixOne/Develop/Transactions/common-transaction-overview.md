@@ -131,7 +131,7 @@ Optimistic transactions and pessimistic transactions have the following advantag
 
 For more information on optimistic transactions in MatrixOne, see [Optimistic Transaction](matrixone-transaction-overview/optimistic-transaction.md).
 
-MatrixOne does not yet support pessimistic transactions.
+For more information on optimistic transactions in MatrixOne, see [Pessimistic Transaction](matrixone-transaction-overview/pessimistic-transaction.md).
 
 ## Transaction Isolation
 
@@ -163,4 +163,4 @@ ANSI/ISO SQL defines four standard isolation levels:
 Higher levels provide stronger isolation by requiring more restrictions than lower isolation levels. The standard allows transactions to run at a stronger transaction isolation level.
 
 !!! note
-    MatrixOne's transaction isolation is slightly different from the general isolation definition and isolation level division; see [Snapshot Isolation](matrixone-transaction-overview/snapshot-isolation.md).
+    MatrixOne's transaction isolation is slightly different from the general isolation definition and isolation level division; see [Isolation level in MatrixOne](matrixone-transaction-overview/isolation-level.md).

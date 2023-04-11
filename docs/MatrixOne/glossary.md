@@ -14,6 +14,10 @@ It's helpful to understand a few terms before reading our architecture documenta
   | Explicit Transactions| Explicit Transaction has the beginning, ending and rollback of transactions with the command Begin Transaction, Commit Transaction and Rollback Transaction. |
   |I|  |
   | Implicit Transactions| Implicit Transaction is the auto commit. There is no beginning or ending of the transaction. |
+  |O||
+  |Optimistic transaction| Optimistic transaction, the optimistic transaction means that when the transaction starts, no conflict detection or lock will be performed, the current relevant data will be cached in the corresponding memory area, and the data will be added, deleted, or modified. |
+  |P||
+  |Pessimistic transaction|Pessimistic transaction, the default transaction mode of MatrixOne, that is, when the transaction starts, it will assume that the transaction-related tables are in a state where write conflicts will occur and lock the corresponding data table or a data row in advance to complete the locking action Finally, the insertion, modification, or deletion of data is cached in memory. After committing or rolling back, the data is placed on the disk, and the lock is released. |
   | S  |  |
   | Snapshot Isolation (SI) | Snapshot Isolation is a multi-version concurrency control approach that is widely used in practice. MatrixOne supports distributed transaction of snapshot isolation level. |
 
@@ -44,5 +48,6 @@ MatrixOne relies heavily on the following concepts. Being familiar with them wil
   | SIMD instruction | SIMD is short for Single Instruction/Multiple Data, while the term SIMD operations refers to a computing method that enables processing of multiple data with a single instruction. |
 | T  |  |
 | Transaction | A set of operations performed on your database that satisfy the requirements of ACID semantics. |
+|TAE| Transactional Analytic Engine. The storage engine is the main public interface of the storage layer, which can support both row and column storage and transaction processing capabilities. |
 | V  |  |
 | Vectorized Execution  | Vectorized data processing helps with developing faster analytical query engines by making efficient utilization of CPU cache. Arrow's columnar format allows to use lightweight schemes like dictionary encoding, bit packing, and run length encoding, which favor query performance over compression ratio. |

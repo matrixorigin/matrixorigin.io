@@ -18,7 +18,7 @@ In an optimistic concurrency model, an error occurs if you receive a value from 
 
 ### Example
 
-The following is an example of optimistic concurrency, showing you how MatrixOne resolves concurrency conflicts.
+The following is an example of optimistic concurrency, showing how MatrixOne resolves concurrency conflicts.
 
 1. At 1:00 PM, User 1 reads a row from the database with the following value:
 
