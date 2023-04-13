@@ -13,8 +13,6 @@ In MatrixOne, transactions, like general transactions, are also divided into the
 
 The classification of these two types of transactions is not limited by each other. An explicit transaction can be an optimistic or pessimistic transaction, and a pessimistic transaction can be either an explicit or an implicit transaction.
 
-__Note__: MatrixOne does not support pessimistic transactions.
-
 ## [Explicit Transaction](explicit-transaction.md)
 
 In MatrixOne, a transaction explicitly declared with `START TRANSACTION` becomes explicit.
@@ -27,7 +25,24 @@ In MatrixOne, if a transaction is not explicitly declared by `START TRANSACTION`
 
 At the beginning of an optimistic transaction, it is assumed that the transaction-related tables are in a state where no write conflicts will occur. The insertion, modification, or deletion of data is cached in memory. At this stage, the data will not be locked, but in the data Lock the corresponding data table or data row when submitting, and unlock it after submitting.
 
-## [Snapshot Isolation in MatrixOne](snapshot-isolation.md)
+## [Pessimistic Transaction](pessimistic-transaction.md)
+
+MatrixOne defaults to pessimistic transactions. At the beginning of a pessimistic transaction, it is assumed that the transaction-related table is in a state where write conflicts may occur, and the corresponding data table or data row is locked in advance. After the locking action is completed, the data's insertion, modification, or deletion is cached in In memory; after committing or rolling back, the data is completed, and the lock is released.
+
+## Transaction isolation level of MatrixOne
+
+MatrixOne supports two isolation levels: **Read Committed** and **Snapshot Isolation**. The default isolation level is **Read Committed**.
+
+### Read Committed
+
+Read Committed is the default isolation level of MatrixOne after version 0.8, and it is also one of the four isolation levels in the SQL standard. Its most notable features are:
+
+- Between different transactions, only the data submitted by other transactions can be read, and the uncommitted data cannot be viewed.
+- The read-committed isolation level can effectively prevent dirty writes and dirty reads but cannot avoid non-repeatable reads and phantom reads.
+
+|Isolation Level|P0 Dirty Write|P1 Dirty Read|P4C Cursor Lost Update|P4 Lost Update|
+|---|---|---|---|---|
+|READ COMMITTED|Not Possible|Not Possible|Possible|Possible|
 
 ### Snapshot Isolation
 
