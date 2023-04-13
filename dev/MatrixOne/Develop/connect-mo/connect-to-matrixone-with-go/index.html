@@ -8,19 +8,19 @@
       
       
       
-      <link rel="icon" href="../../../../../assets/images/favicon.png">
+      <link rel="icon" href="../../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.2.8">
     
     
       
-        <title>Isolation Level - MatrixOne Docs</title>
+        <title>Connecting to MatrixOne with Golang - MatrixOne Docs</title>
       
     
     
-      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.644de097.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.644de097.min.css">
       
         
-        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.e6a45f82.min.css">
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.e6a45f82.min.css">
         
       
     
@@ -35,9 +35,9 @@
       
     
     
-      <link rel="stylesheet" href="../../../../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("../../../../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -61,7 +61,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#snapshot-isolation-in-matrixone" class="md-skip">
+        <a href="#connecting-to-matrixone-with-golang" class="md-skip">
           Skip to content
         </a>
       
@@ -85,7 +85,7 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="https://www.matrixorigin.io" title="MatrixOne Docs" class="md-header__button md-logo" aria-label="MatrixOne Docs" data-md-component="logo">
       
-  <img src="../../../../../assets/new-logo.png" alt="logo">
+  <img src="../../../../assets/new-logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -101,7 +101,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Isolation Level
+              Connecting to MatrixOne with Golang
             
           </span>
         </div>
@@ -201,7 +201,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../../.." class="md-tabs__link md-tabs__link--active">
+      <a href="../../../.." class="md-tabs__link md-tabs__link--active">
         MatrixOne
       </a>
     </li>
@@ -237,7 +237,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href="https://www.matrixorigin.io" title="MatrixOne Docs" class="md-nav__button md-logo" aria-label="MatrixOne Docs" data-md-component="logo">
       
-  <img src="../../../../../assets/new-logo.png" alt="logo">
+  <img src="../../../../assets/new-logo.png" alt="logo">
 
     </a>
     MatrixOne Docs
@@ -293,7 +293,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../.." class="md-nav__link">
+      <a href="../../../.." class="md-nav__link">
         Home
       </a>
     </li>
@@ -333,7 +333,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Overview/matrixone-introduction/" class="md-nav__link">
+      <a href="../../../Overview/matrixone-introduction/" class="md-nav__link">
         MatrixOne Introduction
       </a>
     </li>
@@ -347,7 +347,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Overview/matrixone-feature-list/" class="md-nav__link">
+      <a href="../../../Overview/matrixone-feature-list/" class="md-nav__link">
         MatrixOne Feature List
       </a>
     </li>
@@ -361,7 +361,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Overview/matrixone-architecture-design/" class="md-nav__link">
+      <a href="../../../Overview/matrixone-architecture-design/" class="md-nav__link">
         MatrixOne Architecture Design
       </a>
     </li>
@@ -375,7 +375,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Overview/mysql-compatibility/" class="md-nav__link">
+      <a href="../../../Overview/mysql-compatibility/" class="md-nav__link">
         MySQL Compatibility
       </a>
     </li>
@@ -389,7 +389,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Overview/whats-new/" class="md-nav__link">
+      <a href="../../../Overview/whats-new/" class="md-nav__link">
         What's New
       </a>
     </li>
@@ -462,7 +462,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Get-Started/install-standalone-matrixone/" class="md-nav__link">
+      <a href="../../../Get-Started/install-standalone-matrixone/" class="md-nav__link">
         Overview
       </a>
     </li>
@@ -502,7 +502,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Get-Started/install-on-macos/install-on-macos-method1/" class="md-nav__link">
+      <a href="../../../Get-Started/install-on-macos/install-on-macos-method1/" class="md-nav__link">
         Building from source code
       </a>
     </li>
@@ -516,7 +516,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Get-Started/install-on-macos/install-on-macos-method2/" class="md-nav__link">
+      <a href="../../../Get-Started/install-on-macos/install-on-macos-method2/" class="md-nav__link">
         Using binary package
       </a>
     </li>
@@ -530,7 +530,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Get-Started/install-on-macos/install-on-macos-method3/" class="md-nav__link">
+      <a href="../../../Get-Started/install-on-macos/install-on-macos-method3/" class="md-nav__link">
         Using Docker
       </a>
     </li>
@@ -577,7 +577,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Get-Started/install-on-linux/install-on-linux-method1/" class="md-nav__link">
+      <a href="../../../Get-Started/install-on-linux/install-on-linux-method1/" class="md-nav__link">
         Building from source code
       </a>
     </li>
@@ -591,7 +591,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Get-Started/install-on-linux/install-on-linux-method2/" class="md-nav__link">
+      <a href="../../../Get-Started/install-on-linux/install-on-linux-method2/" class="md-nav__link">
         Using binary package
       </a>
     </li>
@@ -605,7 +605,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Get-Started/install-on-linux/install-on-linux-method3/" class="md-nav__link">
+      <a href="../../../Get-Started/install-on-linux/install-on-linux-method3/" class="md-nav__link">
         Using Docker
       </a>
     </li>
@@ -633,7 +633,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Get-Started/basic-sql/" class="md-nav__link">
+      <a href="../../../Get-Started/basic-sql/" class="md-nav__link">
         Basic SQL
       </a>
     </li>
@@ -708,7 +708,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../schema-design/overview/" class="md-nav__link">
+      <a href="../../schema-design/overview/" class="md-nav__link">
         Overview
       </a>
     </li>
@@ -722,7 +722,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../schema-design/create-database/" class="md-nav__link">
+      <a href="../../schema-design/create-database/" class="md-nav__link">
         Create Database
       </a>
     </li>
@@ -736,7 +736,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../schema-design/create-table/" class="md-nav__link">
+      <a href="../../schema-design/create-table/" class="md-nav__link">
         Create Table
       </a>
     </li>
@@ -776,7 +776,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../schema-design/data-integrity/overview-of-integrity-constraint-types/" class="md-nav__link">
+      <a href="../../schema-design/data-integrity/overview-of-integrity-constraint-types/" class="md-nav__link">
         Data Integrity Constraints Overview
       </a>
     </li>
@@ -790,7 +790,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../schema-design/data-integrity/not-null-constraints/" class="md-nav__link">
+      <a href="../../schema-design/data-integrity/not-null-constraints/" class="md-nav__link">
         NOT NULL Constraints
       </a>
     </li>
@@ -804,7 +804,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../schema-design/data-integrity/unique-key-constraints/" class="md-nav__link">
+      <a href="../../schema-design/data-integrity/unique-key-constraints/" class="md-nav__link">
         UNIQUE KEY Constraints
       </a>
     </li>
@@ -818,7 +818,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../schema-design/data-integrity/primary-key-constraints/" class="md-nav__link">
+      <a href="../../schema-design/data-integrity/primary-key-constraints/" class="md-nav__link">
         PRIMARY KEY Constraints
       </a>
     </li>
@@ -832,7 +832,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../schema-design/data-integrity/foreign-key-constraints/" class="md-nav__link">
+      <a href="../../schema-design/data-integrity/foreign-key-constraints/" class="md-nav__link">
         FOREIGN KEY Constraints
       </a>
     </li>
@@ -858,12 +858,14 @@
               
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4_2" type="checkbox" id="__nav_1_4_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4_2" type="checkbox" id="__nav_1_4_2" checked>
       
       
       
@@ -886,7 +888,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../connect-mo/configure-mo-ssl-connection/" class="md-nav__link">
+      <a href="../configure-mo-ssl-connection/" class="md-nav__link">
         MatrixOne SSL connection
       </a>
     </li>
@@ -900,7 +902,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../connect-mo/database-client-tools/" class="md-nav__link">
+      <a href="../database-client-tools/" class="md-nav__link">
         Connecting to MatrixOne with Database Client Tool
       </a>
     </li>
@@ -940,7 +942,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../connect-mo/java-connect-to-matrixone/connect-mo-with-jdbc/" class="md-nav__link">
+      <a href="../java-connect-to-matrixone/connect-mo-with-jdbc/" class="md-nav__link">
         Connect MatrixOne with JDBC
       </a>
     </li>
@@ -954,7 +956,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../connect-mo/java-connect-to-matrixone/connect-mo-with-orm/" class="md-nav__link">
+      <a href="../java-connect-to-matrixone/connect-mo-with-orm/" class="md-nav__link">
         Connect MatrixOne with Java ORMs
       </a>
     </li>
@@ -975,9 +977,78 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../connect-mo/python-connect-to-matrixone/" class="md-nav__link">
+      <a href="../python-connect-to-matrixone/" class="md-nav__link">
         Python connect to MatrixOne
       </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Connecting to MatrixOne with Golang
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Connecting to MatrixOne with Golang
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#before-you-start" class="md-nav__link">
+    Before you start
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-golang-to-connect-to-matrixone" class="md-nav__link">
+    Using Golang to connect to MatrixOne
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference" class="md-nav__link">
+    Reference
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1022,7 +1093,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../import-data/insert-data/" class="md-nav__link">
+      <a href="../../import-data/insert-data/" class="md-nav__link">
         Insert
       </a>
     </li>
@@ -1062,7 +1133,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../import-data/bulk-load/bulk-load-overview/" class="md-nav__link">
+      <a href="../../import-data/bulk-load/bulk-load-overview/" class="md-nav__link">
         Bulk Load Overview
       </a>
     </li>
@@ -1076,7 +1147,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../import-data/bulk-load/load-csv/" class="md-nav__link">
+      <a href="../../import-data/bulk-load/load-csv/" class="md-nav__link">
         Import .csv format data
       </a>
     </li>
@@ -1090,7 +1161,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../import-data/bulk-load/load-jsonline/" class="md-nav__link">
+      <a href="../../import-data/bulk-load/load-jsonline/" class="md-nav__link">
         Import jsonlines format data
       </a>
     </li>
@@ -1104,7 +1175,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../import-data/bulk-load/load-s3/" class="md-nav__link">
+      <a href="../../import-data/bulk-load/load-s3/" class="md-nav__link">
         Import data from S3
       </a>
     </li>
@@ -1158,7 +1229,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../export-data/select-into-outfile/" class="md-nav__link">
+      <a href="../../export-data/select-into-outfile/" class="md-nav__link">
         Export data by SELECT INTO...OUTFILE
       </a>
     </li>
@@ -1172,7 +1243,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../export-data/modump/" class="md-nav__link">
+      <a href="../../export-data/modump/" class="md-nav__link">
         Export data by modump
       </a>
     </li>
@@ -1219,7 +1290,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../read-data/query-data-single-table/" class="md-nav__link">
+      <a href="../../read-data/query-data-single-table/" class="md-nav__link">
         Query Data from a Single Table
       </a>
     </li>
@@ -1233,7 +1304,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../read-data/multitable-join-query/" class="md-nav__link">
+      <a href="../../read-data/multitable-join-query/" class="md-nav__link">
         Multi-table Join Queries
       </a>
     </li>
@@ -1247,7 +1318,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../read-data/subquery/" class="md-nav__link">
+      <a href="../../read-data/subquery/" class="md-nav__link">
         Subquery
       </a>
     </li>
@@ -1261,7 +1332,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../read-data/views/" class="md-nav__link">
+      <a href="../../read-data/views/" class="md-nav__link">
         Views
       </a>
     </li>
@@ -1275,7 +1346,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../read-data/cte/" class="md-nav__link">
+      <a href="../../read-data/cte/" class="md-nav__link">
         Common Table Expression
       </a>
     </li>
@@ -1294,14 +1365,12 @@
               
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4_6" type="checkbox" id="__nav_1_4_6" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4_6" type="checkbox" id="__nav_1_4_6" >
       
       
       
@@ -1324,7 +1393,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../common-transaction-overview/" class="md-nav__link">
+      <a href="../../Transactions/common-transaction-overview/" class="md-nav__link">
         General Transaction Overview
       </a>
     </li>
@@ -1336,14 +1405,12 @@
               
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4_6_2" type="checkbox" id="__nav_1_4_6_2" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4_6_2" type="checkbox" id="__nav_1_4_6_2" >
       
       
       
@@ -1366,7 +1433,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../overview/" class="md-nav__link">
+      <a href="../../Transactions/matrixone-transaction-overview/overview/" class="md-nav__link">
         Transaction Overview
       </a>
     </li>
@@ -1380,7 +1447,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../explicit-transaction/" class="md-nav__link">
+      <a href="../../Transactions/matrixone-transaction-overview/explicit-transaction/" class="md-nav__link">
         Explicit Transaction
       </a>
     </li>
@@ -1394,7 +1461,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../implicit-transaction/" class="md-nav__link">
+      <a href="../../Transactions/matrixone-transaction-overview/implicit-transaction/" class="md-nav__link">
         Implicit Transaction
       </a>
     </li>
@@ -1408,7 +1475,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../optimistic-transaction/" class="md-nav__link">
+      <a href="../../Transactions/matrixone-transaction-overview/optimistic-transaction/" class="md-nav__link">
         Optimistic Transaction
       </a>
     </li>
@@ -1422,7 +1489,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../how-to-use/" class="md-nav__link">
+      <a href="../../Transactions/matrixone-transaction-overview/how-to-use/" class="md-nav__link">
         How to use transaction
       </a>
     </li>
@@ -1434,59 +1501,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Isolation Level
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../Transactions/matrixone-transaction-overview/snapshot-isolation.md" class="md-nav__link">
         Isolation Level
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#snapshot-isolation-principle" class="md-nav__link">
-    Snapshot isolation principle
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#snapshot-isolation-example" class="md-nav__link">
-    Snapshot Isolation Example
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1498,7 +1517,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../mvcc/" class="md-nav__link">
+      <a href="../../Transactions/matrixone-transaction-overview/mvcc/" class="md-nav__link">
         MVCC
       </a>
     </li>
@@ -1512,7 +1531,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../scenario/" class="md-nav__link">
+      <a href="../../Transactions/matrixone-transaction-overview/scenario/" class="md-nav__link">
         Transaction Scenario
       </a>
     </li>
@@ -1573,7 +1592,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Deploy/deploy-MatrixOne-cluster/" class="md-nav__link">
+      <a href="../../../Deploy/deploy-MatrixOne-cluster/" class="md-nav__link">
         MatrixOne distributed cluster deployment
       </a>
     </li>
@@ -1620,7 +1639,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Tutorial/develop-java-crud-demo/" class="md-nav__link">
+      <a href="../../../Tutorial/develop-java-crud-demo/" class="md-nav__link">
         Build a Java CRUD demo
       </a>
     </li>
@@ -1634,7 +1653,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Tutorial/springboot-hibernate-crud-demo/" class="md-nav__link">
+      <a href="../../../Tutorial/springboot-hibernate-crud-demo/" class="md-nav__link">
         Build a CRUD demo with SpringBoot and Spring JPA
       </a>
     </li>
@@ -1648,7 +1667,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Tutorial/springboot-mybatis-crud-demo/" class="md-nav__link">
+      <a href="../../../Tutorial/springboot-mybatis-crud-demo/" class="md-nav__link">
         Build a CRUD demo with SpringBoot and MyBatis
       </a>
     </li>
@@ -1662,7 +1681,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Tutorial/sqlalchemy-python-crud-demo/" class="md-nav__link">
+      <a href="../../../Tutorial/sqlalchemy-python-crud-demo/" class="md-nav__link">
         Build a simple Python+SQLAlchemy CRUD demo
       </a>
     </li>
@@ -1676,8 +1695,22 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Tutorial/develop-python-crud-demo/" class="md-nav__link">
+      <a href="../../../Tutorial/develop-python-crud-demo/" class="md-nav__link">
         Build a simple Python CRUD demo
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tutorial/develop-golang-crud-demo/" class="md-nav__link">
+        Build a simple Golang CRUD demo
       </a>
     </li>
   
@@ -1723,7 +1756,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Maintain/backup-restore/" class="md-nav__link">
+      <a href="../../../Maintain/backup-restore/" class="md-nav__link">
         Backup and Restore
       </a>
     </li>
@@ -1763,7 +1796,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Maintain/mount-data-by-docker/" class="md-nav__link">
+      <a href="../../../Maintain/mount-data-by-docker/" class="md-nav__link">
         Mount directory to Docker container
       </a>
     </li>
@@ -1817,7 +1850,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Migrate/migrate-from-mysql-to-matrixone/" class="md-nav__link">
+      <a href="../../../Migrate/migrate-from-mysql-to-matrixone/" class="md-nav__link">
         From MySQL to MatrixOne
       </a>
     </li>
@@ -1890,7 +1923,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Test/performance-testing/SSB-test-with-matrixone/" class="md-nav__link">
+      <a href="../../../Test/performance-testing/SSB-test-with-matrixone/" class="md-nav__link">
         SSB Test with MatrixOne
       </a>
     </li>
@@ -1904,7 +1937,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Test/performance-testing/TPCH-test-with-matrixone/" class="md-nav__link">
+      <a href="../../../Test/performance-testing/TPCH-test-with-matrixone/" class="md-nav__link">
         TPCH Test with MatrixOne
       </a>
     </li>
@@ -1918,7 +1951,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Test/performance-testing/TPCC-test-with-matrixone/" class="md-nav__link">
+      <a href="../../../Test/performance-testing/TPCC-test-with-matrixone/" class="md-nav__link">
         TPCC Test with MatrixOne
       </a>
     </li>
@@ -1965,7 +1998,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Test/testing-tool/mo-tester/" class="md-nav__link">
+      <a href="../../../Test/testing-tool/mo-tester/" class="md-nav__link">
         MO-Tester
       </a>
     </li>
@@ -1979,7 +2012,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Test/testing-tool/mo-tester-reference/" class="md-nav__link">
+      <a href="../../../Test/testing-tool/mo-tester-reference/" class="md-nav__link">
         MO-Tester Specification
       </a>
     </li>
@@ -2033,7 +2066,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Performance-Tuning/performance-tuning-overview/" class="md-nav__link">
+      <a href="../../../Performance-Tuning/performance-tuning-overview/" class="md-nav__link">
         SQL Performance Tuning Methods Overview
       </a>
     </li>
@@ -2073,7 +2106,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Performance-Tuning/explain/explain-overview/" class="md-nav__link">
+      <a href="../../../Performance-Tuning/explain/explain-overview/" class="md-nav__link">
         Query Execution Plan Overview
       </a>
     </li>
@@ -2087,7 +2120,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Performance-Tuning/explain/explain-walkthrough/" class="md-nav__link">
+      <a href="../../../Performance-Tuning/explain/explain-walkthrough/" class="md-nav__link">
         Using EXPLAIN to learn the execution plan
       </a>
     </li>
@@ -2101,7 +2134,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Performance-Tuning/explain/explain-joins/" class="md-nav__link">
+      <a href="../../../Performance-Tuning/explain/explain-joins/" class="md-nav__link">
         Explain Statements Using JOIN
       </a>
     </li>
@@ -2115,7 +2148,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Performance-Tuning/explain/explain-subqueries/" class="md-nav__link">
+      <a href="../../../Performance-Tuning/explain/explain-subqueries/" class="md-nav__link">
         Explain Statements Using Subqueries
       </a>
     </li>
@@ -2129,7 +2162,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Performance-Tuning/explain/explain-aggregation/" class="md-nav__link">
+      <a href="../../../Performance-Tuning/explain/explain-aggregation/" class="md-nav__link">
         Explain Statements Using Aggregation
       </a>
     </li>
@@ -2143,7 +2176,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Performance-Tuning/explain/explain-views/" class="md-nav__link">
+      <a href="../../../Performance-Tuning/explain/explain-views/" class="md-nav__link">
         EXPLAIN Statements Using Views
       </a>
     </li>
@@ -2190,7 +2223,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Performance-Tuning/optimization-concepts/through-cluster-by/" class="md-nav__link">
+      <a href="../../../Performance-Tuning/optimization-concepts/through-cluster-by/" class="md-nav__link">
         Using Cluster by for performance tuning
       </a>
     </li>
@@ -2244,7 +2277,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Security/TLS-introduction/" class="md-nav__link">
+      <a href="../../../Security/TLS-introduction/" class="md-nav__link">
         TLS Introduction
       </a>
     </li>
@@ -2284,7 +2317,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Security/about-privilege-management/" class="md-nav__link">
+      <a href="../../../Security/about-privilege-management/" class="md-nav__link">
         About MatrixOne Privilege Management
       </a>
     </li>
@@ -2298,7 +2331,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Security/best-practice/" class="md-nav__link">
+      <a href="../../../Security/best-practice/" class="md-nav__link">
         Best Practices
       </a>
     </li>
@@ -2371,7 +2404,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Security/how-tos/quick-start-create-account/" class="md-nav__link">
+      <a href="../../../Security/how-tos/quick-start-create-account/" class="md-nav__link">
         Create accounts, Verify Resource Isolation
       </a>
     </li>
@@ -2385,7 +2418,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Security/how-tos/quick-start-create-user/" class="md-nav__link">
+      <a href="../../../Security/how-tos/quick-start-create-user/" class="md-nav__link">
         Use the new account to creates users, roles, grant the privilege
       </a>
     </li>
@@ -2406,7 +2439,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Security/how-tos/user-guide/" class="md-nav__link">
+      <a href="../../../Security/how-tos/user-guide/" class="md-nav__link">
         Privileges Management User guide
       </a>
     </li>
@@ -2427,7 +2460,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Security/app-scenarios/" class="md-nav__link">
+      <a href="../../../Security/app-scenarios/" class="md-nav__link">
         Application Scenario
       </a>
     </li>
@@ -2483,14 +2516,14 @@
       
       
         <label class="md-nav__link" for="__nav_1_12_1">
-          Language Structure
+          System Variables
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Language Structure" data-md-level="3">
+      <nav class="md-nav" aria-label="System Variables" data-md-level="3">
         <label class="md-nav__title" for="__nav_1_12_1">
           <span class="md-nav__icon md-icon"></span>
-          Language Structure
+          System Variables
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -2500,8 +2533,97 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Language-Structure/keywords/" class="md-nav__link">
-        Keywords
+      <a href="../../../Reference/Variable/system-variables/system-variables-overview/" class="md-nav__link">
+        System Variables Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_1_2" type="checkbox" id="__nav_1_12_1_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_12_1_2">
+          System Variables parameters
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="System Variables parameters" data-md-level="4">
+        <label class="md-nav__title" for="__nav_1_12_1_2">
+          <span class="md-nav__icon md-icon"></span>
+          System Variables parameters
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/Variable/system-variables/sql-mode/" class="md-nav__link">
+        SQL Mode
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/Variable/system-variables/save_query_result/" class="md-nav__link">
+        Save query result support
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/Variable/system-variables/timezone/" class="md-nav__link">
+        Timezone support
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/Variable/custom-variable/" class="md-nav__link">
+        Custom variable
       </a>
     </li>
   
@@ -2530,12 +2652,73 @@
       
       
         <label class="md-nav__link" for="__nav_1_12_2">
+          SQL Language Structure
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="SQL Language Structure" data-md-level="3">
+        <label class="md-nav__title" for="__nav_1_12_2">
+          <span class="md-nav__icon md-icon"></span>
+          SQL Language Structure
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/Language-Structure/keywords/" class="md-nav__link">
+        Keywords
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/Language-Structure/comment/" class="md-nav__link">
+        Comments
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_3" type="checkbox" id="__nav_1_12_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_12_3">
           SQL Reference
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="SQL Reference" data-md-level="3">
-        <label class="md-nav__title" for="__nav_1_12_2">
+        <label class="md-nav__title" for="__nav_1_12_3">
           <span class="md-nav__icon md-icon"></span>
           SQL Reference
         </label>
@@ -2550,18 +2733,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_2_1" type="checkbox" id="__nav_1_12_2_1" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_3_1" type="checkbox" id="__nav_1_12_3_1" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_2_1">
+        <label class="md-nav__link" for="__nav_1_12_3_1">
           Data Definition Language
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Data Definition Language" data-md-level="4">
-        <label class="md-nav__title" for="__nav_1_12_2_1">
+        <label class="md-nav__title" for="__nav_1_12_3_1">
           <span class="md-nav__icon md-icon"></span>
           Data Definition Language
         </label>
@@ -2573,7 +2756,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Definition-Language/create-database/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Language/create-database/" class="md-nav__link">
         CREATE DATABASE
       </a>
     </li>
@@ -2587,7 +2770,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Definition-Language/create-index/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Language/create-index/" class="md-nav__link">
         CREATE INDEX
       </a>
     </li>
@@ -2601,7 +2784,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Definition-Language/create-table/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Language/create-table/" class="md-nav__link">
         CREATE TABLE
       </a>
     </li>
@@ -2615,7 +2798,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Definition-Language/create-external-table/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Language/create-external-table/" class="md-nav__link">
         CREATE EXTERNAL TABLE
       </a>
     </li>
@@ -2629,7 +2812,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Definition-Language/create-view/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Language/create-view/" class="md-nav__link">
         CREATE VIEW
       </a>
     </li>
@@ -2643,7 +2826,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Definition-Language/alter-view/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Language/alter-view/" class="md-nav__link">
         ALTER VIEW
       </a>
     </li>
@@ -2657,7 +2840,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Definition-Language/drop-database/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Language/drop-database/" class="md-nav__link">
         DROP DATABASE
       </a>
     </li>
@@ -2671,7 +2854,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Definition-Language/drop-index/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Language/drop-index/" class="md-nav__link">
         DROP INDEX
       </a>
     </li>
@@ -2685,7 +2868,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Definition-Language/drop-table/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Language/drop-table/" class="md-nav__link">
         DROP TABLE
       </a>
     </li>
@@ -2699,7 +2882,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Definition-Language/drop-view/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Language/drop-view/" class="md-nav__link">
         DROP VIEW
       </a>
     </li>
@@ -2713,7 +2896,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Definition-Language/truncate-table/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Language/truncate-table/" class="md-nav__link">
         TRUNCATE TABLE
       </a>
     </li>
@@ -2737,18 +2920,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_2_2" type="checkbox" id="__nav_1_12_2_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_3_2" type="checkbox" id="__nav_1_12_3_2" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_2_2">
+        <label class="md-nav__link" for="__nav_1_12_3_2">
           Data Manipulation Language
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Data Manipulation Language" data-md-level="4">
-        <label class="md-nav__title" for="__nav_1_12_2_2">
+        <label class="md-nav__title" for="__nav_1_12_3_2">
           <span class="md-nav__icon md-icon"></span>
           Data Manipulation Language
         </label>
@@ -2760,7 +2943,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Manipulation-Language/insert/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/insert/" class="md-nav__link">
         INSERT
       </a>
     </li>
@@ -2774,7 +2957,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Manipulation-Language/insert-into-select/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/insert-into-select/" class="md-nav__link">
         INSERT INTO SELECT
       </a>
     </li>
@@ -2788,7 +2971,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Manipulation-Language/delete/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/delete/" class="md-nav__link">
         DELETE
       </a>
     </li>
@@ -2802,7 +2985,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Manipulation-Language/update/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/update/" class="md-nav__link">
         UPDATE
       </a>
     </li>
@@ -2816,7 +2999,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Manipulation-Language/load-data/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/load-data/" class="md-nav__link">
         LOAD DATA
       </a>
     </li>
@@ -2830,7 +3013,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Manipulation-Language/interval/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/interval/" class="md-nav__link">
         INTERVAL
       </a>
     </li>
@@ -2847,18 +3030,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_2_2_7" type="checkbox" id="__nav_1_12_2_2_7" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_3_2_7" type="checkbox" id="__nav_1_12_3_2_7" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_2_2_7">
+        <label class="md-nav__link" for="__nav_1_12_3_2_7">
           Information Functions
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Information Functions" data-md-level="5">
-        <label class="md-nav__title" for="__nav_1_12_2_2_7">
+        <label class="md-nav__title" for="__nav_1_12_3_2_7">
           <span class="md-nav__icon md-icon"></span>
           Information Functions
         </label>
@@ -2870,7 +3053,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Manipulation-Language/information-functions/last-query-id/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/information-functions/last-query-id/" class="md-nav__link">
         LAST_QUERY_ID()
       </a>
     </li>
@@ -2884,7 +3067,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Manipulation-Language/information-functions/last-insert-id/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/information-functions/last-insert-id/" class="md-nav__link">
         LAST_INSERT_ID()
       </a>
     </li>
@@ -2908,18 +3091,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_2_2_8" type="checkbox" id="__nav_1_12_2_2_8" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_3_2_8" type="checkbox" id="__nav_1_12_3_2_8" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_2_2_8">
+        <label class="md-nav__link" for="__nav_1_12_3_2_8">
           OPERATORS
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="OPERATORS" data-md-level="5">
-        <label class="md-nav__title" for="__nav_1_12_2_2_8">
+        <label class="md-nav__title" for="__nav_1_12_3_2_8">
           <span class="md-nav__icon md-icon"></span>
           OPERATORS
         </label>
@@ -2931,7 +3114,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/operators/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/operators/" class="md-nav__link">
         OPERATORS Overview
       </a>
     </li>
@@ -2945,7 +3128,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/operator-precedence/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/operator-precedence/" class="md-nav__link">
         OPERATORS Precedence
       </a>
     </li>
@@ -2962,18 +3145,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_2_2_8_3" type="checkbox" id="__nav_1_12_2_2_8_3" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_3_2_8_3" type="checkbox" id="__nav_1_12_3_2_8_3" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_2_2_8_3">
+        <label class="md-nav__link" for="__nav_1_12_3_2_8_3">
           Arithmetic Operators
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Arithmetic Operators" data-md-level="6">
-        <label class="md-nav__title" for="__nav_1_12_2_2_8_3">
+        <label class="md-nav__title" for="__nav_1_12_3_2_8_3">
           <span class="md-nav__icon md-icon"></span>
           Arithmetic Operators
         </label>
@@ -2985,7 +3168,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/arithmetic-operators/arithmetic-operators-overview/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/arithmetic-operators/arithmetic-operators-overview/" class="md-nav__link">
         Arithmetic Operators Overview
       </a>
     </li>
@@ -2999,7 +3182,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/arithmetic-operators/mod/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/arithmetic-operators/mod/" class="md-nav__link">
         %,MOD
       </a>
     </li>
@@ -3013,7 +3196,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/arithmetic-operators/multiplication/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/arithmetic-operators/multiplication/" class="md-nav__link">
         *
       </a>
     </li>
@@ -3027,7 +3210,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/arithmetic-operators/addition/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/arithmetic-operators/addition/" class="md-nav__link">
         +
       </a>
     </li>
@@ -3041,7 +3224,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/arithmetic-operators/minus/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/arithmetic-operators/minus/" class="md-nav__link">
         -
       </a>
     </li>
@@ -3055,7 +3238,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/arithmetic-operators/unary-minus/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/arithmetic-operators/unary-minus/" class="md-nav__link">
         -
       </a>
     </li>
@@ -3069,7 +3252,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/arithmetic-operators/division/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/arithmetic-operators/division/" class="md-nav__link">
         /
       </a>
     </li>
@@ -3083,7 +3266,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/arithmetic-operators/div/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/arithmetic-operators/div/" class="md-nav__link">
         DIV
       </a>
     </li>
@@ -3107,18 +3290,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_2_2_8_4" type="checkbox" id="__nav_1_12_2_2_8_4" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_3_2_8_4" type="checkbox" id="__nav_1_12_3_2_8_4" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_2_2_8_4">
+        <label class="md-nav__link" for="__nav_1_12_3_2_8_4">
           Assignment Operators
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Assignment Operators" data-md-level="6">
-        <label class="md-nav__title" for="__nav_1_12_2_2_8_4">
+        <label class="md-nav__title" for="__nav_1_12_3_2_8_4">
           <span class="md-nav__icon md-icon"></span>
           Assignment Operators
         </label>
@@ -3130,7 +3313,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/assignment-operators/assignment-operators-overview/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/assignment-operators/assignment-operators-overview/" class="md-nav__link">
         Assignment Operators Overview
       </a>
     </li>
@@ -3144,7 +3327,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/assignment-operators/equal/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/assignment-operators/equal/" class="md-nav__link">
         =
       </a>
     </li>
@@ -3168,18 +3351,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_2_2_8_5" type="checkbox" id="__nav_1_12_2_2_8_5" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_3_2_8_5" type="checkbox" id="__nav_1_12_3_2_8_5" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_2_2_8_5">
+        <label class="md-nav__link" for="__nav_1_12_3_2_8_5">
           Bit Functions and Operators
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Bit Functions and Operators" data-md-level="6">
-        <label class="md-nav__title" for="__nav_1_12_2_2_8_5">
+        <label class="md-nav__title" for="__nav_1_12_3_2_8_5">
           <span class="md-nav__icon md-icon"></span>
           Bit Functions and Operators
         </label>
@@ -3191,7 +3374,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/bit-functions-and-operators/bit-functions-and-operators-overview/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/bit-functions-and-operators/bit-functions-and-operators-overview/" class="md-nav__link">
         Bit Functions and Operators Overview
       </a>
     </li>
@@ -3205,7 +3388,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/bit-functions-and-operators/bitwise-and/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/bit-functions-and-operators/bitwise-and/" class="md-nav__link">
         &
       </a>
     </li>
@@ -3219,7 +3402,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/bit-functions-and-operators/right-shift/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/bit-functions-and-operators/right-shift/" class="md-nav__link">
         >>
       </a>
     </li>
@@ -3233,7 +3416,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/bit-functions-and-operators/left-shift/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/bit-functions-and-operators/left-shift/" class="md-nav__link">
         <<
       </a>
     </li>
@@ -3247,7 +3430,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/bit-functions-and-operators/bitwise-xor/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/bit-functions-and-operators/bitwise-xor/" class="md-nav__link">
         ^
       </a>
     </li>
@@ -3261,7 +3444,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/bit-functions-and-operators/bitwise-or/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/bit-functions-and-operators/bitwise-or/" class="md-nav__link">
         |
       </a>
     </li>
@@ -3275,7 +3458,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/bit-functions-and-operators/bitwise-inversion/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/bit-functions-and-operators/bitwise-inversion/" class="md-nav__link">
         ~
       </a>
     </li>
@@ -3299,18 +3482,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_2_2_8_6" type="checkbox" id="__nav_1_12_2_2_8_6" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_3_2_8_6" type="checkbox" id="__nav_1_12_3_2_8_6" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_2_2_8_6">
+        <label class="md-nav__link" for="__nav_1_12_3_2_8_6">
           Cast Functions and Operators
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Cast Functions and Operators" data-md-level="6">
-        <label class="md-nav__title" for="__nav_1_12_2_2_8_6">
+        <label class="md-nav__title" for="__nav_1_12_3_2_8_6">
           <span class="md-nav__icon md-icon"></span>
           Cast Functions and Operators
         </label>
@@ -3322,7 +3505,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/cast-functions-and-operators/cast-functions-and-operators-overview/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/cast-functions-and-operators/cast-functions-and-operators-overview/" class="md-nav__link">
         Cast Functions and Operators Overview
       </a>
     </li>
@@ -3336,7 +3519,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/cast-functions-and-operators/cast/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/cast-functions-and-operators/cast/" class="md-nav__link">
         CAST
       </a>
     </li>
@@ -3350,7 +3533,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/cast-functions-and-operators/convert/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/cast-functions-and-operators/convert/" class="md-nav__link">
         CONVERT
       </a>
     </li>
@@ -3374,18 +3557,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_2_2_8_7" type="checkbox" id="__nav_1_12_2_2_8_7" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_3_2_8_7" type="checkbox" id="__nav_1_12_3_2_8_7" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_2_2_8_7">
+        <label class="md-nav__link" for="__nav_1_12_3_2_8_7">
           Comparison Functions and Operators
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Comparison Functions and Operators" data-md-level="6">
-        <label class="md-nav__title" for="__nav_1_12_2_2_8_7">
+        <label class="md-nav__title" for="__nav_1_12_3_2_8_7">
           <span class="md-nav__icon md-icon"></span>
           Comparison Functions and Operators
         </label>
@@ -3397,7 +3580,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/comparison-functions-and-operators-overview/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/comparison-functions-and-operators-overview/" class="md-nav__link">
         Comparison Functions and Operators Overview
       </a>
     </li>
@@ -3411,7 +3594,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/greater-than/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/greater-than/" class="md-nav__link">
         >
       </a>
     </li>
@@ -3425,7 +3608,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/greater-than-or-equal/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/greater-than-or-equal/" class="md-nav__link">
         >=
       </a>
     </li>
@@ -3439,7 +3622,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/less-than/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/less-than/" class="md-nav__link">
         <
       </a>
     </li>
@@ -3453,7 +3636,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/not-equal/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/not-equal/" class="md-nav__link">
         <>,!=
       </a>
     </li>
@@ -3467,7 +3650,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/less-than-or-equal/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/less-than-or-equal/" class="md-nav__link">
         <=
       </a>
     </li>
@@ -3481,7 +3664,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/assign-equal/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/assign-equal/" class="md-nav__link">
         =
       </a>
     </li>
@@ -3495,7 +3678,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/between/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/between/" class="md-nav__link">
         BETWEEN ... AND ...
       </a>
     </li>
@@ -3509,7 +3692,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/in/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/in/" class="md-nav__link">
         IN
       </a>
     </li>
@@ -3523,7 +3706,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/is/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/is/" class="md-nav__link">
         IS
       </a>
     </li>
@@ -3537,7 +3720,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/is-not/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/is-not/" class="md-nav__link">
         IS NOT
       </a>
     </li>
@@ -3551,7 +3734,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/is-not-null/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/is-not-null/" class="md-nav__link">
         IS NOT NULL
       </a>
     </li>
@@ -3565,7 +3748,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/is-null/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/is-null/" class="md-nav__link">
         IS NULL
       </a>
     </li>
@@ -3579,7 +3762,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/like/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/like/" class="md-nav__link">
         LIKE
       </a>
     </li>
@@ -3593,7 +3776,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/not-between/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/not-between/" class="md-nav__link">
         NOT BETWEEN ... AND ...
       </a>
     </li>
@@ -3607,7 +3790,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/not-like/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/not-like/" class="md-nav__link">
         NOT LIKE
       </a>
     </li>
@@ -3621,7 +3804,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/coalesce/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/comparison-functions-and-operators/coalesce/" class="md-nav__link">
         COALESCE
       </a>
     </li>
@@ -3645,18 +3828,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_2_2_8_8" type="checkbox" id="__nav_1_12_2_2_8_8" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_3_2_8_8" type="checkbox" id="__nav_1_12_3_2_8_8" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_2_2_8_8">
+        <label class="md-nav__link" for="__nav_1_12_3_2_8_8">
           Flow Control Functions
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Flow Control Functions" data-md-level="6">
-        <label class="md-nav__title" for="__nav_1_12_2_2_8_8">
+        <label class="md-nav__title" for="__nav_1_12_3_2_8_8">
           <span class="md-nav__icon md-icon"></span>
           Flow Control Functions
         </label>
@@ -3668,7 +3851,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/flow-control-functions/flow-control-functions-overview/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/flow-control-functions/flow-control-functions-overview/" class="md-nav__link">
         Flow Control Functions Overview
       </a>
     </li>
@@ -3682,7 +3865,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/flow-control-functions/case-when/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/flow-control-functions/case-when/" class="md-nav__link">
         CASE WHEN
       </a>
     </li>
@@ -3696,7 +3879,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/flow-control-functions/function_if/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/flow-control-functions/function_if/" class="md-nav__link">
         IF
       </a>
     </li>
@@ -3720,18 +3903,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_2_2_8_9" type="checkbox" id="__nav_1_12_2_2_8_9" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_3_2_8_9" type="checkbox" id="__nav_1_12_3_2_8_9" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_2_2_8_9">
+        <label class="md-nav__link" for="__nav_1_12_3_2_8_9">
           Logical Operators
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Logical Operators" data-md-level="6">
-        <label class="md-nav__title" for="__nav_1_12_2_2_8_9">
+        <label class="md-nav__title" for="__nav_1_12_3_2_8_9">
           <span class="md-nav__icon md-icon"></span>
           Logical Operators
         </label>
@@ -3743,7 +3926,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/logical-operators/logical-operators-overview/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/logical-operators/logical-operators-overview/" class="md-nav__link">
         Logical Operators Overview
       </a>
     </li>
@@ -3757,7 +3940,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/logical-operators/and/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/logical-operators/and/" class="md-nav__link">
         AND,&&
       </a>
     </li>
@@ -3771,7 +3954,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/logical-operators/not/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/logical-operators/not/" class="md-nav__link">
         NOT,!
       </a>
     </li>
@@ -3785,7 +3968,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/logical-operators/or/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/logical-operators/or/" class="md-nav__link">
         OR
       </a>
     </li>
@@ -3799,7 +3982,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/logical-operators/xor/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/operators/logical-operators/xor/" class="md-nav__link">
         XOR
       </a>
     </li>
@@ -3837,18 +4020,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_2_3" type="checkbox" id="__nav_1_12_2_3" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_3_3" type="checkbox" id="__nav_1_12_3_3" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_2_3">
+        <label class="md-nav__link" for="__nav_1_12_3_3">
           Data Query Language
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Data Query Language" data-md-level="4">
-        <label class="md-nav__title" for="__nav_1_12_2_3">
+        <label class="md-nav__title" for="__nav_1_12_3_3">
           <span class="md-nav__icon md-icon"></span>
           Data Query Language
         </label>
@@ -3860,7 +4043,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Query-Language/select/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Query-Language/select/" class="md-nav__link">
         SELECT
       </a>
     </li>
@@ -3877,18 +4060,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_2_3_2" type="checkbox" id="__nav_1_12_2_3_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_3_3_2" type="checkbox" id="__nav_1_12_3_3_2" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_2_3_2">
+        <label class="md-nav__link" for="__nav_1_12_3_3_2">
           SUBQUERY
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="SUBQUERY" data-md-level="5">
-        <label class="md-nav__title" for="__nav_1_12_2_3_2">
+        <label class="md-nav__title" for="__nav_1_12_3_3_2">
           <span class="md-nav__icon md-icon"></span>
           SUBQUERY
         </label>
@@ -3900,7 +4083,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Query-Language/subqueries/subquery/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Query-Language/subqueries/subquery/" class="md-nav__link">
         SUBQUERY Overview
       </a>
     </li>
@@ -3914,7 +4097,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Query-Language/subqueries/derived-tables/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Query-Language/subqueries/derived-tables/" class="md-nav__link">
         Derived Tables
       </a>
     </li>
@@ -3928,7 +4111,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Query-Language/subqueries/comparisons-using-subqueries/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Query-Language/subqueries/comparisons-using-subqueries/" class="md-nav__link">
         Comparisons Using Subqueries
       </a>
     </li>
@@ -3942,7 +4125,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Query-Language/subqueries/subquery-with-any-some/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Query-Language/subqueries/subquery-with-any-some/" class="md-nav__link">
         SUBQUERY with ANY or SOME
       </a>
     </li>
@@ -3956,7 +4139,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Query-Language/subqueries/subquery-with-all/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Query-Language/subqueries/subquery-with-all/" class="md-nav__link">
         SUBQUERY with ALL
       </a>
     </li>
@@ -3970,7 +4153,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Query-Language/subqueries/subquery-with-exists/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Query-Language/subqueries/subquery-with-exists/" class="md-nav__link">
         SUBQUERY with EXISTS
       </a>
     </li>
@@ -3984,7 +4167,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Query-Language/subqueries/subquery-with-in/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Query-Language/subqueries/subquery-with-in/" class="md-nav__link">
         SUBQUERY with IN
       </a>
     </li>
@@ -4008,18 +4191,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_2_3_3" type="checkbox" id="__nav_1_12_2_3_3" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_3_3_3" type="checkbox" id="__nav_1_12_3_3_3" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_2_3_3">
+        <label class="md-nav__link" for="__nav_1_12_3_3_3">
           JOIN
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="JOIN" data-md-level="5">
-        <label class="md-nav__title" for="__nav_1_12_2_3_3">
+        <label class="md-nav__title" for="__nav_1_12_3_3_3">
           <span class="md-nav__icon md-icon"></span>
           JOIN
         </label>
@@ -4031,7 +4214,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Query-Language/join/join/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Query-Language/join/join/" class="md-nav__link">
         JOIN Overview
       </a>
     </li>
@@ -4045,7 +4228,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Query-Language/join/inner-join/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Query-Language/join/inner-join/" class="md-nav__link">
         INNER JOIN
       </a>
     </li>
@@ -4059,7 +4242,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Query-Language/join/left-join/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Query-Language/join/left-join/" class="md-nav__link">
         LEFT JOIN
       </a>
     </li>
@@ -4073,7 +4256,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Query-Language/join/right-join/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Query-Language/join/right-join/" class="md-nav__link">
         RIGHT JOIN
       </a>
     </li>
@@ -4087,7 +4270,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Query-Language/join/full-join/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Query-Language/join/full-join/" class="md-nav__link">
         FULL JOIN
       </a>
     </li>
@@ -4101,7 +4284,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Query-Language/join/outer-join/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Query-Language/join/outer-join/" class="md-nav__link">
         OUTER JOIN
       </a>
     </li>
@@ -4115,7 +4298,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Query-Language/join/natural-join/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Query-Language/join/natural-join/" class="md-nav__link">
         NATURAL JOIN
       </a>
     </li>
@@ -4136,7 +4319,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Query-Language/with-cte/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Query-Language/with-cte/" class="md-nav__link">
         With CTE
       </a>
     </li>
@@ -4153,18 +4336,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_2_3_5" type="checkbox" id="__nav_1_12_2_3_5" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_3_3_5" type="checkbox" id="__nav_1_12_3_3_5" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_2_3_5">
+        <label class="md-nav__link" for="__nav_1_12_3_3_5">
           Combining Queries
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Combining Queries" data-md-level="5">
-        <label class="md-nav__title" for="__nav_1_12_2_3_5">
+        <label class="md-nav__title" for="__nav_1_12_3_3_5">
           <span class="md-nav__icon md-icon"></span>
           Combining Queries
         </label>
@@ -4176,7 +4359,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Query-Language/union-intersect-minus-overview/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Query-Language/union-intersect-minus-overview/" class="md-nav__link">
         Combining Queries Overview
       </a>
     </li>
@@ -4190,7 +4373,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Query-Language/union/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Query-Language/union/" class="md-nav__link">
         UNION
       </a>
     </li>
@@ -4204,7 +4387,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Query-Language/intersect/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Query-Language/intersect/" class="md-nav__link">
         INTERSECT
       </a>
     </li>
@@ -4218,7 +4401,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Query-Language/minus/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Query-Language/minus/" class="md-nav__link">
         MINUS
       </a>
     </li>
@@ -4249,18 +4432,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_2_4" type="checkbox" id="__nav_1_12_2_4" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_3_4" type="checkbox" id="__nav_1_12_3_4" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_2_4">
+        <label class="md-nav__link" for="__nav_1_12_3_4">
           Data Control Language
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Data Control Language" data-md-level="4">
-        <label class="md-nav__title" for="__nav_1_12_2_4">
+        <label class="md-nav__title" for="__nav_1_12_3_4">
           <span class="md-nav__icon md-icon"></span>
           Data Control Language
         </label>
@@ -4272,7 +4455,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Control-Language/create-account/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Control-Language/create-account/" class="md-nav__link">
         CREATE ACCOUNT
       </a>
     </li>
@@ -4286,7 +4469,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Control-Language/alter-account/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Control-Language/alter-account/" class="md-nav__link">
         ALTER ACCOUNT
       </a>
     </li>
@@ -4300,7 +4483,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Control-Language/create-role/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Control-Language/create-role/" class="md-nav__link">
         CREATE ROLE
       </a>
     </li>
@@ -4314,7 +4497,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Control-Language/create-user/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Control-Language/create-user/" class="md-nav__link">
         CREATE USER
       </a>
     </li>
@@ -4328,7 +4511,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Control-Language/drop-account/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Control-Language/drop-account/" class="md-nav__link">
         DROP ACCOUNT
       </a>
     </li>
@@ -4342,7 +4525,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Control-Language/drop-user/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Control-Language/drop-user/" class="md-nav__link">
         DROP USER
       </a>
     </li>
@@ -4356,7 +4539,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Control-Language/drop-role/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Control-Language/drop-role/" class="md-nav__link">
         DROP ROLE
       </a>
     </li>
@@ -4370,7 +4553,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Control-Language/grant/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Control-Language/grant/" class="md-nav__link">
         GRANT
       </a>
     </li>
@@ -4384,7 +4567,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Control-Language/revoke/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Control-Language/revoke/" class="md-nav__link">
         REVOKE
       </a>
     </li>
@@ -4408,18 +4591,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_2_5" type="checkbox" id="__nav_1_12_2_5" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_3_5" type="checkbox" id="__nav_1_12_3_5" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_2_5">
+        <label class="md-nav__link" for="__nav_1_12_3_5">
           Other
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Other" data-md-level="4">
-        <label class="md-nav__title" for="__nav_1_12_2_5">
+        <label class="md-nav__title" for="__nav_1_12_3_5">
           <span class="md-nav__icon md-icon"></span>
           Other
         </label>
@@ -4434,18 +4617,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_2_5_1" type="checkbox" id="__nav_1_12_2_5_1" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_3_5_1" type="checkbox" id="__nav_1_12_3_5_1" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_2_5_1">
+        <label class="md-nav__link" for="__nav_1_12_3_5_1">
           SHOW
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="SHOW" data-md-level="5">
-        <label class="md-nav__title" for="__nav_1_12_2_5_1">
+        <label class="md-nav__title" for="__nav_1_12_3_5_1">
           <span class="md-nav__icon md-icon"></span>
           SHOW
         </label>
@@ -4457,7 +4640,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Other/SHOW-Statements/show-account/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Other/SHOW-Statements/show-account/" class="md-nav__link">
         SHOW ACCOUNTS
       </a>
     </li>
@@ -4471,7 +4654,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Other/SHOW-Statements/show-databases/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Other/SHOW-Statements/show-databases/" class="md-nav__link">
         SHOW DATABASES
       </a>
     </li>
@@ -4485,7 +4668,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Other/SHOW-Statements/show-create-table/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Other/SHOW-Statements/show-create-table/" class="md-nav__link">
         SHOW CREATE TABLE
       </a>
     </li>
@@ -4499,7 +4682,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Other/SHOW-Statements/show-create-view/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Other/SHOW-Statements/show-create-view/" class="md-nav__link">
         SHOW CREATE VIEW
       </a>
     </li>
@@ -4513,7 +4696,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Other/SHOW-Statements/show-tables/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Other/SHOW-Statements/show-tables/" class="md-nav__link">
         SHOW TABLES
       </a>
     </li>
@@ -4527,7 +4710,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Other/SHOW-Statements/show-index/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Other/SHOW-Statements/show-index/" class="md-nav__link">
         SHOW INDEX
       </a>
     </li>
@@ -4541,7 +4724,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Other/SHOW-Statements/show-collation/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Other/SHOW-Statements/show-collation/" class="md-nav__link">
         SHOW COLLATION
       </a>
     </li>
@@ -4555,7 +4738,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Other/SHOW-Statements/show-columns/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Other/SHOW-Statements/show-columns/" class="md-nav__link">
         SHOW COLUMNS
       </a>
     </li>
@@ -4569,7 +4752,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Other/SHOW-Statements/show-grants/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Other/SHOW-Statements/show-grants/" class="md-nav__link">
         SHOW GRANT
       </a>
     </li>
@@ -4583,7 +4766,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Other/SHOW-Statements/show-variables/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Other/SHOW-Statements/show-variables/" class="md-nav__link">
         SHOW VARIABLES
       </a>
     </li>
@@ -4607,18 +4790,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_2_5_2" type="checkbox" id="__nav_1_12_2_5_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_3_5_2" type="checkbox" id="__nav_1_12_3_5_2" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_2_5_2">
+        <label class="md-nav__link" for="__nav_1_12_3_5_2">
           SET
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="SET" data-md-level="5">
-        <label class="md-nav__title" for="__nav_1_12_2_5_2">
+        <label class="md-nav__title" for="__nav_1_12_3_5_2">
           <span class="md-nav__icon md-icon"></span>
           SET
         </label>
@@ -4630,7 +4813,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Other/Set/set-role/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Other/Set/set-role/" class="md-nav__link">
         SET ROLE
       </a>
     </li>
@@ -4654,18 +4837,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_2_5_3" type="checkbox" id="__nav_1_12_2_5_3" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_3_5_3" type="checkbox" id="__nav_1_12_3_5_3" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_2_5_3">
+        <label class="md-nav__link" for="__nav_1_12_3_5_3">
           USE
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="USE" data-md-level="5">
-        <label class="md-nav__title" for="__nav_1_12_2_5_3">
+        <label class="md-nav__title" for="__nav_1_12_3_5_3">
           <span class="md-nav__icon md-icon"></span>
           USE
         </label>
@@ -4677,7 +4860,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Other/use-database/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Other/use-database/" class="md-nav__link">
         USE DATABASE
       </a>
     </li>
@@ -4697,22 +4880,36 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../../../Reference/SQL-Reference/Other/kill/" class="md-nav__link">
+        KILL
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
     
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_2_5_4" type="checkbox" id="__nav_1_12_2_5_4" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_3_5_5" type="checkbox" id="__nav_1_12_3_5_5" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_2_5_4">
+        <label class="md-nav__link" for="__nav_1_12_3_5_5">
           Prepared Statements
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Prepared Statements" data-md-level="5">
-        <label class="md-nav__title" for="__nav_1_12_2_5_4">
+        <label class="md-nav__title" for="__nav_1_12_3_5_5">
           <span class="md-nav__icon md-icon"></span>
           Prepared Statements
         </label>
@@ -4724,7 +4921,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Other/Prepared-Statements/prepared-statements-overview/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Other/Prepared-Statements/prepared-statements-overview/" class="md-nav__link">
         Prepared Statements Overview
       </a>
     </li>
@@ -4738,7 +4935,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Other/Prepared-Statements/prepare/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Other/Prepared-Statements/prepare/" class="md-nav__link">
         PREPARE
       </a>
     </li>
@@ -4752,7 +4949,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Other/Prepared-Statements/execute/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Other/Prepared-Statements/execute/" class="md-nav__link">
         EXECUTE
       </a>
     </li>
@@ -4766,7 +4963,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Other/Prepared-Statements/deallocate/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Other/Prepared-Statements/deallocate/" class="md-nav__link">
         DEALLOCATE
       </a>
     </li>
@@ -4790,18 +4987,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_2_5_5" type="checkbox" id="__nav_1_12_2_5_5" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_3_5_6" type="checkbox" id="__nav_1_12_3_5_6" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_2_5_5">
+        <label class="md-nav__link" for="__nav_1_12_3_5_6">
           Explain
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Explain" data-md-level="5">
-        <label class="md-nav__title" for="__nav_1_12_2_5_5">
+        <label class="md-nav__title" for="__nav_1_12_3_5_6">
           <span class="md-nav__icon md-icon"></span>
           Explain
         </label>
@@ -4813,7 +5010,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Other/Explain/explain/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Other/Explain/explain/" class="md-nav__link">
         EXPLAIN
       </a>
     </li>
@@ -4827,7 +5024,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Other/Explain/explain-workflow/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Other/Explain/explain-workflow/" class="md-nav__link">
         EXPLAIN Output Format
       </a>
     </li>
@@ -4841,7 +5038,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Other/Explain/explain-analyze/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Other/Explain/explain-analyze/" class="md-nav__link">
         Explain Analyze
       </a>
     </li>
@@ -4872,18 +5069,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_2_6" type="checkbox" id="__nav_1_12_2_6" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_3_6" type="checkbox" id="__nav_1_12_3_6" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_2_6">
+        <label class="md-nav__link" for="__nav_1_12_3_6">
           Aggregate Functions
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Aggregate Functions" data-md-level="4">
-        <label class="md-nav__title" for="__nav_1_12_2_6">
+        <label class="md-nav__title" for="__nav_1_12_3_6">
           <span class="md-nav__icon md-icon"></span>
           Aggregate Functions
         </label>
@@ -4895,7 +5092,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Aggregate-Functions/any-value/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Aggregate-Functions/any-value/" class="md-nav__link">
         ANY_VALUE
       </a>
     </li>
@@ -4909,7 +5106,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Aggregate-Functions/avg/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Aggregate-Functions/avg/" class="md-nav__link">
         AVG
       </a>
     </li>
@@ -4923,7 +5120,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Aggregate-Functions/bit_and/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Aggregate-Functions/bit_and/" class="md-nav__link">
         BIT_AND
       </a>
     </li>
@@ -4937,7 +5134,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Aggregate-Functions/bit_or/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Aggregate-Functions/bit_or/" class="md-nav__link">
         BIT_OR
       </a>
     </li>
@@ -4951,7 +5148,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Aggregate-Functions/bit_xor/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Aggregate-Functions/bit_xor/" class="md-nav__link">
         BIT_XOR
       </a>
     </li>
@@ -4965,7 +5162,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Aggregate-Functions/count/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Aggregate-Functions/count/" class="md-nav__link">
         COUNT
       </a>
     </li>
@@ -4979,7 +5176,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Aggregate-Functions/group-concat/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Aggregate-Functions/group-concat/" class="md-nav__link">
         GROUP_CONCAT
       </a>
     </li>
@@ -4993,7 +5190,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Aggregate-Functions/max/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Aggregate-Functions/max/" class="md-nav__link">
         MAX
       </a>
     </li>
@@ -5007,7 +5204,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Aggregate-Functions/median/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Aggregate-Functions/median/" class="md-nav__link">
         MEDIAN
       </a>
     </li>
@@ -5021,7 +5218,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Aggregate-Functions/min/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Aggregate-Functions/min/" class="md-nav__link">
         MIN
       </a>
     </li>
@@ -5035,7 +5232,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Aggregate-Functions/sleep/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Aggregate-Functions/sleep/" class="md-nav__link">
         SLEEP
       </a>
     </li>
@@ -5049,7 +5246,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Aggregate-Functions/stddev_pop/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Aggregate-Functions/stddev_pop/" class="md-nav__link">
         STDDEV_POP
       </a>
     </li>
@@ -5063,7 +5260,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Aggregate-Functions/sum/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Aggregate-Functions/sum/" class="md-nav__link">
         SUM
       </a>
     </li>
@@ -5073,170 +5270,6 @@
           
         </ul>
       </nav>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_2_7" type="checkbox" id="__nav_1_12_2_7" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_1_12_2_7">
-          System variable
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="System variable" data-md-level="4">
-        <label class="md-nav__title" for="__nav_1_12_2_7">
-          <span class="md-nav__icon md-icon"></span>
-          System variable
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../Reference/Variable/custom-variable/" class="md-nav__link">
-        Custom variable
-      </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_3" type="checkbox" id="__nav_1_12_3" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_1_12_3">
-          Data Types
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Data Types" data-md-level="3">
-        <label class="md-nav__title" for="__nav_1_12_3">
-          <span class="md-nav__icon md-icon"></span>
-          Data Types
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../Reference/Data-Types/data-types/" class="md-nav__link">
-        Data Types Overview
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../Reference/Data-Types/data-type-conversion/" class="md-nav__link">
-        Data Type Conversion
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../Reference/Data-Types/timestamp-initialization/" class="md-nav__link">
-        Timestamp Initialization
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../Reference/Data-Types/json-type/" class="md-nav__link">
-        JSON Data Type
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../Reference/Data-Types/blob-text-type/" class="md-nav__link">
-        BLOB and TEXT Type
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../Reference/Data-Types/fixed-point-types/" class="md-nav__link">
-        Fixed-Point Types (Exact Value) - DECIMAL
-      </a>
     </li>
   
 
@@ -5264,12 +5297,129 @@
       
       
         <label class="md-nav__link" for="__nav_1_12_4">
+          Data Types
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Data Types" data-md-level="3">
+        <label class="md-nav__title" for="__nav_1_12_4">
+          <span class="md-nav__icon md-icon"></span>
+          Data Types
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/Data-Types/data-types/" class="md-nav__link">
+        Data Types Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/Data-Types/data-type-conversion/" class="md-nav__link">
+        Data Type Conversion
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/Data-Types/timestamp-initialization/" class="md-nav__link">
+        Timestamp Initialization
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/Data-Types/json-type/" class="md-nav__link">
+        JSON Data Type
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/Data-Types/blob-text-type/" class="md-nav__link">
+        BLOB and TEXT Type
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/Data-Types/fixed-point-types/" class="md-nav__link">
+        Fixed-Point Types (Exact Value) - DECIMAL
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_5" type="checkbox" id="__nav_1_12_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_12_5">
           Builtin Functions
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Builtin Functions" data-md-level="3">
-        <label class="md-nav__title" for="__nav_1_12_4">
+        <label class="md-nav__title" for="__nav_1_12_5">
           <span class="md-nav__icon md-icon"></span>
           Builtin Functions
         </label>
@@ -5284,18 +5434,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_4_1" type="checkbox" id="__nav_1_12_4_1" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_5_1" type="checkbox" id="__nav_1_12_5_1" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_4_1">
+        <label class="md-nav__link" for="__nav_1_12_5_1">
           Mathematical
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Mathematical" data-md-level="4">
-        <label class="md-nav__title" for="__nav_1_12_4_1">
+        <label class="md-nav__title" for="__nav_1_12_5_1">
           <span class="md-nav__icon md-icon"></span>
           Mathematical
         </label>
@@ -5307,7 +5457,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Builtin-Functions/Mathematical/abs/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Mathematical/abs/" class="md-nav__link">
         ABS()
       </a>
     </li>
@@ -5321,7 +5471,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Builtin-Functions/Mathematical/acos/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Mathematical/acos/" class="md-nav__link">
         ACOS()
       </a>
     </li>
@@ -5335,7 +5485,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Builtin-Functions/Mathematical/atan/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Mathematical/atan/" class="md-nav__link">
         ATAN()
       </a>
     </li>
@@ -5349,7 +5499,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Builtin-Functions/Mathematical/ceil/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Mathematical/ceil/" class="md-nav__link">
         CEIL()
       </a>
     </li>
@@ -5363,7 +5513,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Builtin-Functions/Mathematical/cos/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Mathematical/cos/" class="md-nav__link">
         COS()
       </a>
     </li>
@@ -5377,7 +5527,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Builtin-Functions/Mathematical/cot/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Mathematical/cot/" class="md-nav__link">
         COT()
       </a>
     </li>
@@ -5391,7 +5541,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Builtin-Functions/Mathematical/exp/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Mathematical/exp/" class="md-nav__link">
         EXP()
       </a>
     </li>
@@ -5405,7 +5555,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Builtin-Functions/Mathematical/floor/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Mathematical/floor/" class="md-nav__link">
         FLOOR()
       </a>
     </li>
@@ -5419,7 +5569,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Builtin-Functions/Mathematical/ln/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Mathematical/ln/" class="md-nav__link">
         LN()
       </a>
     </li>
@@ -5433,7 +5583,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Builtin-Functions/Mathematical/log/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Mathematical/log/" class="md-nav__link">
         LOG()
       </a>
     </li>
@@ -5447,7 +5597,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Builtin-Functions/Mathematical/pi/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Mathematical/pi/" class="md-nav__link">
         PI()
       </a>
     </li>
@@ -5461,7 +5611,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Builtin-Functions/Mathematical/power/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Mathematical/power/" class="md-nav__link">
         POWER()
       </a>
     </li>
@@ -5475,7 +5625,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Builtin-Functions/Mathematical/round/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Mathematical/round/" class="md-nav__link">
         ROUND()
       </a>
     </li>
@@ -5489,7 +5639,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Builtin-Functions/Mathematical/sin/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Mathematical/sin/" class="md-nav__link">
         SIN()
       </a>
     </li>
@@ -5503,7 +5653,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Builtin-Functions/Mathematical/sinh/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Mathematical/sinh/" class="md-nav__link">
         SINH()
       </a>
     </li>
@@ -5517,7 +5667,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Builtin-Functions/Mathematical/tan/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Mathematical/tan/" class="md-nav__link">
         TAN()
       </a>
     </li>
@@ -5531,7 +5681,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Builtin-Functions/Mathematical/uuid/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Mathematical/uuid/" class="md-nav__link">
         UUID()
       </a>
     </li>
@@ -5555,18 +5705,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_4_2" type="checkbox" id="__nav_1_12_4_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_5_2" type="checkbox" id="__nav_1_12_5_2" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_4_2">
+        <label class="md-nav__link" for="__nav_1_12_5_2">
           Datetime
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Datetime" data-md-level="4">
-        <label class="md-nav__title" for="__nav_1_12_4_2">
+        <label class="md-nav__title" for="__nav_1_12_5_2">
           <span class="md-nav__icon md-icon"></span>
           Datetime
         </label>
@@ -5578,7 +5728,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Builtin-Functions/Datetime/curdate/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Datetime/curdate/" class="md-nav__link">
         CURDATE()
       </a>
     </li>
@@ -5592,7 +5742,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Builtin-Functions/Datetime/current-timestamp/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Datetime/current-timestamp/" class="md-nav__link">
         CURRENT_TIMESTAMP()
       </a>
     </li>
@@ -5606,7 +5756,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Builtin-Functions/Datetime/date/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Datetime/date/" class="md-nav__link">
         DATE()
       </a>
     </li>
@@ -5620,7 +5770,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Builtin-Functions/Datetime/date-add/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Datetime/date-add/" class="md-nav__link">
         DATE_ADD()
       </a>
     </li>
@@ -5634,7 +5784,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Builtin-Functions/Datetime/date-format/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Datetime/date-format/" class="md-nav__link">
         DATE_FORMAT()
       </a>
     </li>
@@ -5648,7 +5798,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Builtin-Functions/Datetime/date-sub/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Datetime/date-sub/" class="md-nav__link">
         DATE_SUB()
       </a>
     </li>
@@ -5662,7 +5812,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Builtin-Functions/Datetime/date" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Datetime/datediff/" class="md-nav__link">
         DATEDIFF()
       </a>
     </li>
@@ -5676,7 +5826,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Builtin-Functions/Datetime/day/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Datetime/day/" class="md-nav__link">
         DAY()
       </a>
     </li>
@@ -5690,7 +5840,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Builtin-Functions/Datetime/dayofyear/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Datetime/dayofyear/" class="md-nav__link">
         DAYOFYEAR()
       </a>
     </li>
@@ -5704,7 +5854,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Builtin-Functions/Datetime/extract/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Datetime/extract/" class="md-nav__link">
         EXTRACT()
       </a>
     </li>
@@ -5718,7 +5868,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Builtin-Functions/Datetime/from-unixtime/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Datetime/from-unixtime/" class="md-nav__link">
         FROM_UNIXTIME
       </a>
     </li>
@@ -5732,7 +5882,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Builtin-Functions/Datetime/month/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Datetime/month/" class="md-nav__link">
         MONTH()
       </a>
     </li>
@@ -5746,7 +5896,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Builtin-Functions/Datetime/timediff/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Datetime/timediff/" class="md-nav__link">
         TIMEDIFF()
       </a>
     </li>
@@ -5760,7 +5910,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Builtin-Functions/Datetime/timestamp/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Datetime/timestamp/" class="md-nav__link">
         TIMESTAMP()
       </a>
     </li>
@@ -5774,7 +5924,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Builtin-Functions/Datetime/to-date/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Datetime/to-date/" class="md-nav__link">
         TO_DATE()
       </a>
     </li>
@@ -5788,7 +5938,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Builtin-Functions/Datetime/unix-timestamp/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Datetime/unix-timestamp/" class="md-nav__link">
         UNIX_TIMESTAMP
       </a>
     </li>
@@ -5802,7 +5952,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Builtin-Functions/Datetime/utc-timestamp/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Datetime/utc-timestamp/" class="md-nav__link">
         UTC_TIMESTAMP()
       </a>
     </li>
@@ -5816,7 +5966,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Builtin-Functions/Datetime/weekday/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Datetime/weekday/" class="md-nav__link">
         WEEKDAY()
       </a>
     </li>
@@ -5830,7 +5980,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Builtin-Functions/Datetime/year/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/Datetime/year/" class="md-nav__link">
         YEAR()
       </a>
     </li>
@@ -5854,18 +6004,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_4_3" type="checkbox" id="__nav_1_12_4_3" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_5_3" type="checkbox" id="__nav_1_12_5_3" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_4_3">
+        <label class="md-nav__link" for="__nav_1_12_5_3">
           String
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="String" data-md-level="4">
-        <label class="md-nav__title" for="__nav_1_12_4_3">
+        <label class="md-nav__title" for="__nav_1_12_5_3">
           <span class="md-nav__icon md-icon"></span>
           String
         </label>
@@ -5877,7 +6027,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Builtin-Functions/String/bin/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/String/bin/" class="md-nav__link">
         BIN()
       </a>
     </li>
@@ -5891,7 +6041,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Builtin-Functions/String/bit-length/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/String/bit-length/" class="md-nav__link">
         BIT_LENGTH()
       </a>
     </li>
@@ -5905,7 +6055,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Builtin-Functions/String/char-length/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/String/char-length/" class="md-nav__link">
         CHAR_LENGTH()
       </a>
     </li>
@@ -5919,7 +6069,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Builtin-Functions/String/concat-ws/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/String/concat/" class="md-nav__link">
         CONCAT()
       </a>
     </li>
@@ -5933,7 +6083,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Builtin-Functions/String/concat-ws/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/String/concat-ws/" class="md-nav__link">
         CONCAT_WS()
       </a>
     </li>
@@ -5947,7 +6097,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Builtin-Functions/String/empty/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/String/empty/" class="md-nav__link">
         EMPTY()
       </a>
     </li>
@@ -5961,7 +6111,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Builtin-Functions/String/endswith/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/String/endswith/" class="md-nav__link">
         ENDSWITH()
       </a>
     </li>
@@ -5975,7 +6125,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Builtin-Functions/String/field/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/String/field/" class="md-nav__link">
         FIELD()
       </a>
     </li>
@@ -5989,7 +6139,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Builtin-Functions/String/find-in-set/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/String/find-in-set/" class="md-nav__link">
         FIND_IN_SET()
       </a>
     </li>
@@ -6003,7 +6153,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Builtin-Functions/String/format/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/String/format/" class="md-nav__link">
         FORMAT()
       </a>
     </li>
@@ -6017,7 +6167,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Builtin-Functions/String/hex/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/String/hex/" class="md-nav__link">
         HEX()
       </a>
     </li>
@@ -6031,7 +6181,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Builtin-Functions/String/left/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/String/left/" class="md-nav__link">
         LEFT()
       </a>
     </li>
@@ -6045,7 +6195,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Builtin-Functions/String/length/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/String/length/" class="md-nav__link">
         LENGTH()
       </a>
     </li>
@@ -6059,7 +6209,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Builtin-Functions/String/lpad/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/String/lpad/" class="md-nav__link">
         LPAD()
       </a>
     </li>
@@ -6073,7 +6223,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Builtin-Functions/String/ltrim/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/String/ltrim/" class="md-nav__link">
         LTRIM()
       </a>
     </li>
@@ -6087,7 +6237,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Builtin-Functions/String/oct/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/String/oct/" class="md-nav__link">
         OCT()
       </a>
     </li>
@@ -6101,7 +6251,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Builtin-Functions/String/reverse/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/String/reverse/" class="md-nav__link">
         REVERSE()
       </a>
     </li>
@@ -6115,7 +6265,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Builtin-Functions/String/rpad/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/String/rpad/" class="md-nav__link">
         RPAD()
       </a>
     </li>
@@ -6129,7 +6279,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Builtin-Functions/String/rtrim/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/String/rtrim/" class="md-nav__link">
         RTRIM()
       </a>
     </li>
@@ -6143,7 +6293,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Builtin-Functions/String/space/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/String/space/" class="md-nav__link">
         SPACE()
       </a>
     </li>
@@ -6157,7 +6307,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Builtin-Functions/String/startswith/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/String/startswith/" class="md-nav__link">
         STARTSWITH()
       </a>
     </li>
@@ -6171,7 +6321,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Builtin-Functions/String/substring/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/String/substring/" class="md-nav__link">
         SUBSTRING()
       </a>
     </li>
@@ -6185,7 +6335,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Builtin-Functions/String/substring-index/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/String/substring-index/" class="md-nav__link">
         SUBSTRING_INDEX()
       </a>
     </li>
@@ -6199,7 +6349,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Builtin-Functions/String/trim/" class="md-nav__link">
+      <a href="../../../Reference/Builtin-Functions/String/trim/" class="md-nav__link">
         TRIM()
       </a>
     </li>
@@ -6230,18 +6380,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_5" type="checkbox" id="__nav_1_12_5" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_6" type="checkbox" id="__nav_1_12_6" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_5">
+        <label class="md-nav__link" for="__nav_1_12_6">
           System Paramaters
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="System Paramaters" data-md-level="3">
-        <label class="md-nav__title" for="__nav_1_12_5">
+        <label class="md-nav__title" for="__nav_1_12_6">
           <span class="md-nav__icon md-icon"></span>
           System Paramaters
         </label>
@@ -6253,22 +6403,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/System-Parameters/configuration-settings/" class="md-nav__link">
+      <a href="../../../Reference/System-Parameters/configuration-settings/" class="md-nav__link">
         Boot Parameters for standalone installation
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../Reference/System-Parameters/timezone/" class="md-nav__link">
-        Time Zone Support
       </a>
     </li>
   
@@ -6288,7 +6424,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/System-tables/" class="md-nav__link">
+      <a href="../../../Reference/System-tables/" class="md-nav__link">
         MatrixOne Catalog
       </a>
     </li>
@@ -6302,7 +6438,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/access-control-type/" class="md-nav__link">
+      <a href="../../../Reference/access-control-type/" class="md-nav__link">
         Privilege Control Types
       </a>
     </li>
@@ -6319,18 +6455,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_8" type="checkbox" id="__nav_1_12_8" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_12_9" type="checkbox" id="__nav_1_12_9" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_8">
+        <label class="md-nav__link" for="__nav_1_12_9">
           Limitations
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Limitations" data-md-level="3">
-        <label class="md-nav__title" for="__nav_1_12_8">
+        <label class="md-nav__title" for="__nav_1_12_9">
           <span class="md-nav__icon md-icon"></span>
           Limitations
         </label>
@@ -6342,7 +6478,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Limitations/mo-jdbc-feature-list/" class="md-nav__link">
+      <a href="../../../Reference/Limitations/mo-jdbc-feature-list/" class="md-nav__link">
         JDBC supported features list
       </a>
     </li>
@@ -6356,7 +6492,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Limitations/mo-partition-support/" class="md-nav__link">
+      <a href="../../../Reference/Limitations/mo-partition-support/" class="md-nav__link">
         Partitioning supported features list
       </a>
     </li>
@@ -6377,7 +6513,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Maintain/mo-directory-structure/" class="md-nav__link">
+      <a href="../../../Maintain/mo-directory-structure/" class="md-nav__link">
         MatrixOne Directory Structure
       </a>
     </li>
@@ -6424,7 +6560,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Troubleshooting/slow-queries/" class="md-nav__link">
+      <a href="../../../Troubleshooting/slow-queries/" class="md-nav__link">
         Slow Queries
       </a>
     </li>
@@ -6438,7 +6574,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Troubleshooting/common-statistics-query/" class="md-nav__link">
+      <a href="../../../Troubleshooting/common-statistics-query/" class="md-nav__link">
         Common statistic data query
       </a>
     </li>
@@ -6452,7 +6588,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Troubleshooting/query-table-statistics/" class="md-nav__link">
+      <a href="../../../Troubleshooting/query-table-statistics/" class="md-nav__link">
         Database statistics
       </a>
     </li>
@@ -6466,7 +6602,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Troubleshooting/audit/" class="md-nav__link">
+      <a href="../../../Troubleshooting/audit/" class="md-nav__link">
         Audit
       </a>
     </li>
@@ -6480,7 +6616,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Troubleshooting/error-code/" class="md-nav__link">
+      <a href="../../../Troubleshooting/error-code/" class="md-nav__link">
         Error Code
       </a>
     </li>
@@ -6527,7 +6663,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../FAQs/product-faqs/" class="md-nav__link">
+      <a href="../../../FAQs/product-faqs/" class="md-nav__link">
         Product FAQs
       </a>
     </li>
@@ -6541,7 +6677,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../FAQs/deployment-faqs/" class="md-nav__link">
+      <a href="../../../FAQs/deployment-faqs/" class="md-nav__link">
         Deployment FAQs
       </a>
     </li>
@@ -6555,7 +6691,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../FAQs/sql-faqs/" class="md-nav__link">
+      <a href="../../../FAQs/sql-faqs/" class="md-nav__link">
         SQL FAQs
       </a>
     </li>
@@ -6602,7 +6738,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Release-Notes/release-timeline/" class="md-nav__link">
+      <a href="../../../Release-Notes/release-timeline/" class="md-nav__link">
         Release Timeline
       </a>
     </li>
@@ -6616,7 +6752,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Release-Notes/v0.7.0/" class="md-nav__link">
+      <a href="../../../Release-Notes/v0.7.0/" class="md-nav__link">
         v0.7.0
       </a>
     </li>
@@ -6630,7 +6766,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Release-Notes/v0.6.0/" class="md-nav__link">
+      <a href="../../../Release-Notes/v0.6.0/" class="md-nav__link">
         v0.6.0
       </a>
     </li>
@@ -6644,7 +6780,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Release-Notes/v0.5.1/" class="md-nav__link">
+      <a href="../../../Release-Notes/v0.5.1/" class="md-nav__link">
         v0.5.1
       </a>
     </li>
@@ -6658,7 +6794,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Release-Notes/v0.5.0/" class="md-nav__link">
+      <a href="../../../Release-Notes/v0.5.0/" class="md-nav__link">
         v0.5.0
       </a>
     </li>
@@ -6672,7 +6808,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Release-Notes/v0.4.0/" class="md-nav__link">
+      <a href="../../../Release-Notes/v0.4.0/" class="md-nav__link">
         v0.4.0
       </a>
     </li>
@@ -6686,7 +6822,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Release-Notes/v0.3.0/" class="md-nav__link">
+      <a href="../../../Release-Notes/v0.3.0/" class="md-nav__link">
         v0.3.0
       </a>
     </li>
@@ -6700,7 +6836,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Release-Notes/v0.2.0/" class="md-nav__link">
+      <a href="../../../Release-Notes/v0.2.0/" class="md-nav__link">
         v0.2.0
       </a>
     </li>
@@ -6714,7 +6850,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Release-Notes/v0.1.0/" class="md-nav__link">
+      <a href="../../../Release-Notes/v0.1.0/" class="md-nav__link">
         v0.1.0
       </a>
     </li>
@@ -6735,7 +6871,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../glossary/" class="md-nav__link">
+      <a href="../../../glossary/" class="md-nav__link">
         Glossary
       </a>
     </li>
@@ -6775,7 +6911,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Contribution-Guide/make-your-first-contribution/" class="md-nav__link">
+      <a href="../../../Contribution-Guide/make-your-first-contribution/" class="md-nav__link">
         Make Your First Contribution
       </a>
     </li>
@@ -6815,7 +6951,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Contribution-Guide/How-to-Contribute/types-of-contributions/" class="md-nav__link">
+      <a href="../../../Contribution-Guide/How-to-Contribute/types-of-contributions/" class="md-nav__link">
         Types of Contributions
       </a>
     </li>
@@ -6829,7 +6965,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Contribution-Guide/How-to-Contribute/preparation/" class="md-nav__link">
+      <a href="../../../Contribution-Guide/How-to-Contribute/preparation/" class="md-nav__link">
         Preparation
       </a>
     </li>
@@ -6843,7 +6979,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Contribution-Guide/How-to-Contribute/report-an-issue/" class="md-nav__link">
+      <a href="../../../Contribution-Guide/How-to-Contribute/report-an-issue/" class="md-nav__link">
         Report an Issue
       </a>
     </li>
@@ -6857,7 +6993,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Contribution-Guide/How-to-Contribute/contribute-code/" class="md-nav__link">
+      <a href="../../../Contribution-Guide/How-to-Contribute/contribute-code/" class="md-nav__link">
         Contribute Code
       </a>
     </li>
@@ -6871,7 +7007,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Contribution-Guide/How-to-Contribute/review-a-pull-request/" class="md-nav__link">
+      <a href="../../../Contribution-Guide/How-to-Contribute/review-a-pull-request/" class="md-nav__link">
         Review a Pull Request
       </a>
     </li>
@@ -6885,7 +7021,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Contribution-Guide/How-to-Contribute/contribute-documentation/" class="md-nav__link">
+      <a href="../../../Contribution-Guide/How-to-Contribute/contribute-documentation/" class="md-nav__link">
         Contribute Documentation
       </a>
     </li>
@@ -6899,7 +7035,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Contribution-Guide/How-to-Contribute/make-a-design/" class="md-nav__link">
+      <a href="../../../Contribution-Guide/How-to-Contribute/make-a-design/" class="md-nav__link">
         Make a Design
       </a>
     </li>
@@ -6946,7 +7082,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Contribution-Guide/Code-Style/code-of-conduct/" class="md-nav__link">
+      <a href="../../../Contribution-Guide/Code-Style/code-of-conduct/" class="md-nav__link">
         Code of Conduct
       </a>
     </li>
@@ -6960,7 +7096,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Contribution-Guide/Code-Style/code-comment-style/" class="md-nav__link">
+      <a href="../../../Contribution-Guide/Code-Style/code-comment-style/" class="md-nav__link">
         Code Comment Style
       </a>
     </li>
@@ -6974,7 +7110,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Contribution-Guide/Code-Style/commit-pr-style/" class="md-nav__link">
+      <a href="../../../Contribution-Guide/Code-Style/commit-pr-style/" class="md-nav__link">
         Commit & Pull Request Style
       </a>
     </li>
@@ -7029,15 +7165,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#snapshot-isolation-principle" class="md-nav__link">
-    Snapshot isolation principle
+  <a href="#before-you-start" class="md-nav__link">
+    Before you start
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#snapshot-isolation-example" class="md-nav__link">
-    Snapshot Isolation Example
+  <a href="#using-golang-to-connect-to-matrixone" class="md-nav__link">
+    Using Golang to connect to MatrixOne
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference" class="md-nav__link">
+    Reference
   </a>
   
 </li>
@@ -7054,70 +7197,71 @@
             <article class="md-content__inner md-typeset">
               
                 
-<a href="https://github.com/matrixorigin/matrixorigin.io/edit/main/docs/MatrixOne/Develop/Transactions/matrixone-transaction-overview/snapshot-isolation.md" title="Edit this page" class="md-content__button md-icon">
+<a href="https://github.com/matrixorigin/matrixorigin.io/edit/main/docs/MatrixOne/Develop/connect-mo/connect-to-matrixone-with-go.md" title="Edit this page" class="md-content__button md-icon">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
 </a>
 
 
 
-<h1 id="snapshot-isolation-in-matrixone">Snapshot Isolation in MatrixOne</h1>
-<p>In MatrixOne, the supported isolation level is Snapshot Isolation, which is also known as REPEATABLE READS to maintain consistency with the isolation level in MySQL. The isolation implementation principle of this level is as follows:</p>
-<h2 id="snapshot-isolation-principle">Snapshot isolation principle</h2>
-<ul>
-<li>When a transaction starts, the database generates a transaction ID for the transaction, which is a unique ID.</li>
-<li>At the timestamp when the transaction ID is generated, a snapshot of the corresponding data is generated, and all transaction operations are performed based on the snapshot.</li>
-<li>After the transaction commits to modify the data, release the transaction ID and data snapshot.</li>
-</ul>
-<h2 id="snapshot-isolation-example">Snapshot Isolation Example</h2>
-<p>You can take the example below to help understand snapshot isolation.</p>
-<p>First in MatrixOne, we create a database <em>test</em> and table <em>t1</em>:</p>
-<div class="highlight"><pre><span></span><code>create database test;
-use test;
-CREATE TABLE t1
-(
-tid INT NOT NULL primary key,
-tname VARCHAR(50) NOT NULL
-);
-INSERT INTO t1 VALUES(1,&#39;version1&#39;);
-INSERT INTO t1 VALUES(2,&#39;version2&#39;);
+<h1 id="connecting-to-matrixone-with-golang">Connecting to MatrixOne with Golang</h1>
+<p>MatrixOne supports Golang application connection, <a href="https://github.com/go-sql-driver/mysql"><code>Go-MySQL-Driver</code></a> is supported. This tutorial will walk you through how to connect MatrixOne with Golang.</p>
+<h2 id="before-you-start">Before you start</h2>
+<ol>
+<li>Make sure you have already <a href="../../../Get-Started/install-standalone-matrixone/">installed and launched MatrixOne</a>.</li>
+<li>Make sure you have already installed <a href="https://go.dev/dl/">Golang 1.18 and plus</a>.  </li>
+</ol>
+<div class="highlight"><pre><span></span><code>#To check with Golang installation and its version
+go version
 </code></pre></div>
-<p>In session 1, start a transaction:</p>
-<div class="highlight"><pre><span></span><code>use test;
-begin;
-UPDATE t1 SET tname=&#39;version3&#39; WHERE tid=2;
-SELECT * FROM t1;
+<ol>
+<li>Make sure you have already installed MySQL client.</li>
+</ol>
+<h2 id="using-golang-to-connect-to-matrixone">Using Golang to connect to MatrixOne</h2>
+<p><code>Go-MySQL-Driver</code> is a MySQL driver for Go's (golang) database/sql package.</p>
+<ol>
+<li>
+<p>Install <code>go-mysql-driver</code> tool. Simple install the package to your <a href="https://github.com/golang/go/wiki/GOPATH">$GOPATH</a> with the <a href="https://golang.org/cmd/go/">go tool</a> from shell. Make sure <a href="https://git-scm.com/downloads">Git is installed</a> on your machine and in your system's <code>PATH</code>.</p>
+<div class="highlight"><pre><span></span><code>&gt; go get -u github.com/go-sql-driver/mysql
 </code></pre></div>
-<p>In session 1, the results are as follows, the modification results based on the snapshot data:</p>
-<div class="highlight"><pre><span></span><code>+------+----------+
-| tid  | tname    |
-+------+----------+
-|    2 | version3 |
-|    1 | version1 |
-+------+----------+
+</li>
+<li>
+<p>Connect to MatrixOne by MySQL client. Create a new database named <em>test</em>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n">test</span><span class="p">;</span>
 </code></pre></div>
-<p>At this time, open session 2 to query <em>t1</em>:</p>
-<div class="highlight"><pre><span></span><code>use test;
-SELECT * FROM t1;
+</li>
+<li>
+<p>Create a plain text file <code>golang_connect_matrixone.go</code> and put the code below.</p>
+<div class="highlight"><pre><span></span><code><span class="n">package</span> <span class="n">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s2">&quot;database/sql&quot;</span>
+    <span class="s2">&quot;fmt&quot;</span>
+    <span class="n">_</span> <span class="s2">&quot;github.com/go-sql-driver/mysql&quot;</span>
+<span class="p">)</span>
+
+<span class="n">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="o">//</span><span class="s2">&quot;username:password@[protocol](address:port)/database&quot;</span>
+    <span class="n">db</span><span class="p">,</span> <span class="n">_</span> <span class="o">:=</span> <span class="n">sql</span><span class="o">.</span><span class="n">Open</span><span class="p">(</span><span class="s2">&quot;mysql&quot;</span><span class="p">,</span> <span class="s2">&quot;dump:111@tcp(127.0.0.1:6001)/test&quot;</span><span class="p">)</span> <span class="o">//</span> <span class="n">Set</span> <span class="n">database</span> <span class="n">connection</span>
+    <span class="n">defer</span> <span class="n">db</span><span class="o">.</span><span class="n">Close</span><span class="p">()</span>                                            <span class="o">//</span><span class="n">Close</span> <span class="n">DB</span>
+    <span class="n">err</span> <span class="o">:=</span> <span class="n">db</span><span class="o">.</span><span class="n">Ping</span><span class="p">()</span>                                            <span class="o">//</span><span class="n">Connect</span> <span class="n">to</span> <span class="n">DB</span>
+    <span class="k">if</span> <span class="n">err</span> <span class="o">!=</span> <span class="n">nil</span> <span class="p">{</span>
+        <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s2">&quot;Database Connection Failed&quot;</span><span class="p">)</span>               <span class="o">//</span><span class="n">Connection</span> <span class="n">failed</span>
+        <span class="k">return</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s2">&quot;Database Connection Succeed&quot;</span><span class="p">)</span>              <span class="o">//</span><span class="n">Connection</span> <span class="n">succeed</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div>
-<p>The result is still the original data:</p>
-<div class="highlight"><pre><span></span><code>+------+----------+
-| tid  | tname    |
-+------+----------+
-|    1 | version1 |
-|    2 | version2 |
-+------+----------+
+</li>
+<li>
+<p>Execute this golang file in the command line terminal.</p>
+<div class="highlight"><pre><span></span><code>&gt; go run golang_connect_matrixone.go
+Database Connection Succeed
 </code></pre></div>
-<p>Commit the transaction in session 1:</p>
-<div class="highlight"><pre><span></span><code>COMMIT;
-</code></pre></div>
-<p>At this point, the result of <em>t1</em> in session 2 becomes the submitted data:</p>
-<div class="highlight"><pre><span></span><code>+------+----------+
-| tid  | tname    |
-+------+----------+
-|    1 | version1 |
-|    2 | version3 |
-+------+----------+
-</code></pre></div>
+</li>
+</ol>
+<h2 id="reference">Reference</h2>
+<p>For the example about using Golang to build a simple CRUD with MatrixOne, see <a href="../../../Tutorial/develop-golang-crud-demo/">Build a simple Golang CRUD demo with MatrixOne</a>.</p>
 
               
             </article>
@@ -7131,7 +7275,7 @@ SELECT * FROM t1;
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../how-to-use/" class="md-footer__link md-footer__link--prev" aria-label="Previous: How to use transaction" rel="prev">
+        <a href="../python-connect-to-matrixone/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Python connect to MatrixOne" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -7140,20 +7284,20 @@ SELECT * FROM t1;
               <span class="md-footer__direction">
                 Previous
               </span>
-              How to use transaction
+              Python connect to MatrixOne
             </div>
           </div>
         </a>
       
       
         
-        <a href="../mvcc/" class="md-footer__link md-footer__link--next" aria-label="Next: MVCC" rel="next">
+        <a href="../../import-data/insert-data/" class="md-footer__link md-footer__link--next" aria-label="Next: Insert" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              MVCC
+              Insert
             </div>
           </div>
           <div class="md-footer__button md-icon">
@@ -7183,10 +7327,10 @@ SELECT * FROM t1;
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../../../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky"], "search": "../../../../../assets/javascripts/workers/search.5e67fbfe.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky"], "search": "../../../../assets/javascripts/workers/search.5e67fbfe.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../../../../assets/javascripts/bundle.c44cc438.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.c44cc438.min.js"></script>
       
     
   </body>
