@@ -181,6 +181,157 @@ __Note:__ If the `PARALLEL` field is not added in the `LOAD` statement, for *CSV
 In MatrixOne's current release, `LOAD DATA` supports CSV(comma-separated values) format and JSONLines format file.
 See full tutorials for loading [csv](../../../Develop/import-data/bulk-load/load-csv.md) and [jsonline](../../../Develop/import-data/bulk-load/load-jsonline.md).
 
+### *CSV* format standard description
+
+The *CSV* format loaded by MatrixOne conforms to the RFC4180 standard, and the *CSV* format is specified as follows:
+
+1. Each record is on a separate line, separated by a newline character (CRLF):
+
+    ```
+    aaa,bbb,ccc CRLF
+    zzz,yyy,xxx CRLF
+    ```
+
+    Imported into the table as follows:
+
+    +---------+---------+---------+
+    | col1    | col2    | col3    |
+    +---------+---------+---------+
+    | aaa     | b bb    | ccc     |
+    | zzz     | yyy     | xxx     |
+    +---------+---------+---------+
+
+2. The last record in the file can have a terminating newline or no terminating newline (CRLF):
+
+    ```
+    aaa,bbb,ccc CRLF
+    zzz,yyy,xxx
+    ```
+
+    Imported into the table as follows:
+
+    +---------+---------+---------+
+    | col1    | col2    | col3    |
+    +---------+---------+---------+
+    | aaa     | b bb    | ccc     |
+    | zzz     | yyy     | xxx     |
+    +---------+---------+---------+
+
+3. An optional header line appears as the first line of the file and has the same format as a standard record line. For example:
+
+    ```
+    field_name,field_name,field_name CRLF
+    aaa,bbb,ccc CRLF
+    zzz,yyy,xxx CRLF
+    ```
+
+    Imported into the table as follows:
+
+    +------------+------------+------------+
+    | field_name | field_name | field_name |
+    +------------+------------+------------+
+    | aaa        | bbb        | ccc        |
+    | zzz        | yyy        | xxx        |
+    +------------+------------+------------+
+
+4. In the header and each record, there may be one or more fields separated by commas. Whitespace within a field is part of the field and should not be ignored. A comma cannot follow the last field in each record. For example:
+
+    ```
+    aaa,bbb,ccc
+    ```
+
+    Or:
+
+    ```
+    a aa, bbb,cc c
+    ```
+
+    Both examples are correct.
+
+    Imported into the table as follows:
+
+    +---------+---------+---------+
+    | col1    | col2    | col3    |
+    +---------+---------+---------+
+    | aaa     | bbb     | ccc     |
+    +---------+---------+---------+
+
+    Or:
+
+    +---------+---------+---------+
+    | col1    | col2    | col3    |
+    +---------+---------+---------+
+    | a aa    |  bbb    | cc c    |
+    +---------+---------+---------+
+
+5. Each field can be enclosed in double quotes or not. Double quotes cannot appear inside a field if the field is not enclosed in double-quotes. For example:
+
+    ```
+    "aaa","bbb","ccc" CRLF
+    zzz,yyy,xxx
+    ```
+
+    Or:
+
+    ```
+    "aaa","bbb",ccc CRLF
+    zzz,yyy,xxx
+    ```
+
+    Both examples are correct.
+
+    Imported into the table as follows:
+
+    +---------+---------+---------+
+    | col1    | col2    | col3    |
+    +---------+---------+---------+
+    | aaa     | bbb     | ccc     |
+    | zzz     | yyy     | xxx     |
+    +---------+---------+---------+
+
+6. Fields containing line breaks (CRLF), double quotes, and commas should be enclosed in double-quotes. For example:
+
+    ```
+    "aaa","b CRLF
+    bb","ccc" CRLF
+    zzz,yyy,xxx
+    ```
+
+    Imported into the table as follows:
+
+    +---------+---------+---------+
+    | col1    | col2    | col3    |
+    +---------+---------+---------+
+    | aaa     | b bb    | ccc     |
+    | zzz     | yyy     | xxx     |
+    +---------+---------+---------+
+
+7. If double quotation marks are used to enclose the field, then multiple double quotation marks appearing in the field must also be enclosed in double quotation marks; otherwise, the first quotation mark of two double quotation marks in the field will be parsed as an escape character, thus keep a single, double quote. For example:
+
+    ```
+    "aaa","b","bb","ccc"
+    ```
+
+    The above *CSV* will parse `"b""bb"` into `b"bb`; if the correct field is `b""bb`, then it should be written as:
+
+    ```
+    "aaa","b""""bb","ccc"
+    ```
+
+    Or:
+
+    ```
+    "aaa",b""bb,"ccc"
+    ```
+
+    Imported into the table as follows:
+
+    +---------+---------+---------+
+    | col1    | col2    | col3    |
+    +---------+---------+---------+
+    | aaa     | b""bb   | ccc     |
+    +---------+---------+---------+
+
 ## **Examples**
 
 The SSB Test is an example of LOAD DATA syntax. [Complete a SSB Test with MatrixOne](../../../Test/performance-testing/SSB-test-with-matrixone.md)

@@ -79,6 +79,7 @@ nav:
           - Connect MatrixOne with JDBC: MatrixOne/Develop/connect-mo/java-connect-to-matrixone/connect-mo-with-jdbc.md
           - Connect MatrixOne with Java ORMs: MatrixOne/Develop/connect-mo/java-connect-to-matrixone/connect-mo-with-orm.md
         - Python connect to MatrixOne: MatrixOne/Develop/connect-mo/python-connect-to-matrixone.md
+        - Connecting to MatrixOne with Golang: MatrixOne/Develop/connect-mo/connect-to-matrixone-with-go.md
       - Import Data:
         - Insert: MatrixOne/Develop/import-data/insert-data.md
         - Bulk Load:
@@ -114,6 +115,7 @@ nav:
       - Build a CRUD demo with SpringBoot and MyBatis: MatrixOne/Tutorial/springboot-mybatis-crud-demo.md
       - Build a simple Python+SQLAlchemy CRUD demo: MatrixOne/Tutorial/sqlalchemy-python-crud-demo.md
       - Build a simple Python CRUD demo: MatrixOne/Tutorial/develop-python-crud-demo.md
+      - Build a simple Golang CRUD demo: MatrixOne/Tutorial/develop-golang-crud-demo.md
     - Maintenance:
       - Backup and Restore: MatrixOne/Maintain/backup-restore.md
       - Mount Data:
@@ -151,8 +153,16 @@ nav:
         - Privileges Management User guide: MatrixOne/Security/how-tos/user-guide.md
       - Application Scenario: MatrixOne/Security/app-scenarios.md
     - Reference:
-      - Language Structure:
+      - System Variables:
+        - System Variables Overview: MatrixOne/Reference/Variable/system-variables/system-variables-overview.md
+        - System Variables parameters:
+          - SQL Mode: MatrixOne/Reference/Variable/system-variables/sql-mode.md
+          - Save query result support: MatrixOne/Reference/Variable/system-variables/save_query_result.md
+          - Timezone support: MatrixOne/Reference/Variable/system-variables/timezone.md
+        - Custom variable: MatrixOne/Reference/Variable/custom-variable.md
+      - SQL Language Structure:
         - Keywords: MatrixOne/Reference/Language-Structure/keywords.md
+        - Comments: MatrixOne/Reference/Language-Structure/comment.md
       - SQL Reference:
         - Data Definition Language:
           - CREATE DATABASE: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-database.md
@@ -281,6 +291,7 @@ nav:
             - SET ROLE: MatrixOne/Reference/SQL-Reference/Other/Set/set-role.md
           - USE:
             - USE DATABASE: MatrixOne/Reference/SQL-Reference/Other/use-database.md
+          - KILL: MatrixOne/Reference/SQL-Reference/Other/kill.md
           - Prepared Statements:
             - Prepared Statements Overview: MatrixOne/Reference/SQL-Reference/Other/Prepared-Statements/prepared-statements-overview.md
             - PREPARE: MatrixOne/Reference/SQL-Reference/Other/Prepared-Statements/prepare.md
@@ -304,8 +315,6 @@ nav:
           - SLEEP: MatrixOne/Reference/SQL-Reference/Aggregate-Functions/sleep.md
           - STDDEV_POP: MatrixOne/Reference/SQL-Reference/Aggregate-Functions/stddev_pop.md
           - SUM: MatrixOne/Reference/SQL-Reference/Aggregate-Functions/sum.md
-        - System variable:
-          - Custom variable: MatrixOne/Reference/Variable/custom-variable.md
       - Data Types:
           - Data Types Overview: MatrixOne/Reference/Data-Types/data-types.md
           - Data Type Conversion: MatrixOne/Reference/Data-Types/data-type-conversion.md
@@ -379,7 +388,6 @@ nav:
           - TRIM(): MatrixOne/Reference/Builtin-Functions/String/trim.md
       - System Paramaters:
         - Boot Parameters for standalone installation: MatrixOne/Reference/System-Parameters/configuration-settings.md
-        - Time Zone Support: MatrixOne/Reference/System-Parameters/timezone.md
       - MatrixOne Catalog: MatrixOne/Reference/System-tables.md
       - Privilege Control Types: MatrixOne/Reference/access-control-type.md
       - Limitations:
