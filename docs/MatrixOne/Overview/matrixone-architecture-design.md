@@ -35,7 +35,9 @@ As MatrixOne's Single Source of Truth, data is considered as persistently stored
 
 ## **Storage Layer**
 
-The storage layer transforms the incoming data from the Log Layer into an efficient form for future processing and storage. This includes cache maintenance for fast accessing data that has already been written to S3. In MatrixOne, TAE (Transactional Analytic Engine) is the primary interface exposed by the Storage Layer, which can support both row and columnar storage together with transaction capabilities. Besides, the Storage Layer includes other internally used storage capabilities as well, e.g. the intermediate storage for streaming.
+The storage layer transforms the incoming data from the Log Layer into an efficient form for future processing and storage. This includes cache maintenance for fast accessing data that has already been written to S3.
+
+In MatrixOne, **TAE (Transactional Analytic Engine)** is the primary interface exposed by the Storage Layer, which can support both row and columnar storage together with transaction capabilities. Besides, the Storage Layer includes other internally used storage capabilities as well, e.g. the intermediate storage for streaming.
 
 ## **Storage Provision Layer**
 
