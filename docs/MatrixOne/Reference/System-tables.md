@@ -361,7 +361,7 @@ The description of columns in the `TABLES` table is as follows:
 - `ROW_FORMAT`: The row format. The value is currently `Compact`.
 - `TABLE_ROWS`: The number of rows in the table in statistics.
 - `AVG_ROW_LENGTH`: The average row length of the table. `AVG_ROW_LENGTH` = `DATA_LENGTH` / `TABLE_ROWS`.
-- `DATA_LENGTH`: Data length. `DATA_LENGTH` = `TABLE_ROWS` * the sum of storage lengths of the columns in the tuple. The replicas of TiKV are not taken into account.
+- `DATA_LENGTH`: Data length. `DATA_LENGTH` = `TABLE_ROWS` * the sum of storage lengths of the columns in the tuple.
 - `MAX_DATA_LENGTH`: The maximum data length. The value is currently `0`, which means the data length has no upper limit.
 - `INDEX_LENGTH`: The index length. `INDEX_LENGTH` = `TABLE_ROWS` * the sum of lengths of the columns in the index tuple.
 - `DATA_FREE`: Data fragment. The value is currently `0`.
