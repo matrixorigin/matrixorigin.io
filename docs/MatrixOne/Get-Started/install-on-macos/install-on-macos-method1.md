@@ -119,6 +119,9 @@ Depending on your needs, choose whether you want to keep your code up to date, o
 
       Next you can take the next step - Connect to standalone MatrixOne.
 
+!!! info
+    If you need to switch branches and launch it again after building on a specific branch, a panic will appear after running, and you will need to clean up the data file directory. See [Installation and Deployment Frequently Asked Questions](../../FAQs/deployment-faqs.md) for solutions.
+
 ## Step 5: Connect to standalone MatrixOne
 
 ### Install and configure MySQL Client
