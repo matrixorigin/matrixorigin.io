@@ -13,7 +13,6 @@ The LOAD DATA statement reads rows from a text file into a table at a very high 
     [{FIELDS | COLUMNS}
         [TERMINATED BY 'string']
         [[OPTIONALLY] ENCLOSED BY 'char']
-        [ESCAPED BY 'char']
     ]
     [LINES
         [STARTING BY 'string']
@@ -42,7 +41,7 @@ LOAD DATA INFILE '/tmp/test.txt' INTO TABLE table1 IGNORE 1 LINES;
 
 For both the LOAD DATA and `SELECT ... INTO OUTFILE` statements, the syntax of the FIELDS and LINES clauses is the same. Both clauses are optional, but FIELDS must precede LINES if both are specified.
 
-If you specify a `FIELDS` clause, each of its subclauses (`TERMINATED BY`, `[OPTIONALLY] ENCLOSED BY`, and `ESCAPED BY`) is also optional, except that you must specify at least one of them. Arguments to these clauses are permitted to contain only ASCII characters.
+If you specify a `FIELDS` clause, each of its subclauses (`TERMINATED BY`, `[OPTIONALLY] ENCLOSED BY`) is also optional, except that you must specify at least one of them. Arguments to these clauses are permitted to contain only ASCII characters.
 
 If you specify no `FIELDS` or `LINES` clause, the defaults are the same as if you had written this:
 
@@ -79,29 +78,6 @@ For example, if some input values are enclosed within quotation marks, some are 
 ```
 LOAD DATA INFILE 'data.txt' INTO TABLE table1
   FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"';
-```
-
-**FIELDS ESCAPED BY**
-
-`ESCAPE BY` option controls how to read or write special characters. `FIELDS ESCAPED BY` values must be a single character.
-
-For input, if the `FIELDS ESCAPED BY` character is not empty, occurrences of that character are stripped and the following character is taken literally as part of a field value. Some two-character sequences that are exceptions, where the first character is the escape character. These sequences are shown in the following table (using \ for the escape character). The rules for `NULL` handling are described later in this section. If the `FIELDS ESCAPED BY` character is empty, escape-sequence interpretation does not occur.
-
-|  Character   | Escape Sequence  |
-|  ----  | ----  |
-| \0 | 	An ASCII NUL (X'00') character |
-| \b | 	A backspace character |
-| \n | 	A newline (linefeed) character |
-| \r | 	A carriage return character |
-| \t | 	A tab character. |
-| \Z | 	ASCII 26 (Control+Z) |
-| \N | 	NULL |
-
-For example, if some input values are special character `\`, you can use `escape by` as:
-
-```
-LOAD DATA INFILE 'data.txt' INTO TABLE table1
-  FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"' ESCAPED BY '\\';
 ```
 
 **LINES TERMINATED BY**
@@ -204,6 +180,157 @@ __Note:__ If the `PARALLEL` field is not added in the `LOAD` statement, for *CSV
 
 In MatrixOne's current release, `LOAD DATA` supports CSV(comma-separated values) format and JSONLines format file.
 See full tutorials for loading [csv](../../../Develop/import-data/bulk-load/load-csv.md) and [jsonline](../../../Develop/import-data/bulk-load/load-jsonline.md).
+
+### *CSV* format standard description
+
+The *CSV* format loaded by MatrixOne conforms to the RFC4180 standard, and the *CSV* format is specified as follows:
+
+1. Each record is on a separate line, separated by a newline character (CRLF):
+
+    ```
+    aaa,bbb,ccc CRLF
+    zzz,yyy,xxx CRLF
+    ```
+
+    Imported into the table as follows:
+
+    +---------+---------+---------+
+    | col1    | col2    | col3    |
+    +---------+---------+---------+
+    | aaa     | b bb    | ccc     |
+    | zzz     | yyy     | xxx     |
+    +---------+---------+---------+
+
+2. The last record in the file can have a terminating newline or no terminating newline (CRLF):
+
+    ```
+    aaa,bbb,ccc CRLF
+    zzz,yyy,xxx
+    ```
+
+    Imported into the table as follows:
+
+    +---------+---------+---------+
+    | col1    | col2    | col3    |
+    +---------+---------+---------+
+    | aaa     | b bb    | ccc     |
+    | zzz     | yyy     | xxx     |
+    +---------+---------+---------+
+
+3. An optional header line appears as the first line of the file and has the same format as a standard record line. For example:
+
+    ```
+    field_name,field_name,field_name CRLF
+    aaa,bbb,ccc CRLF
+    zzz,yyy,xxx CRLF
+    ```
+
+    Imported into the table as follows:
+
+    +------------+------------+------------+
+    | field_name | field_name | field_name |
+    +------------+------------+------------+
+    | aaa        | bbb        | ccc        |
+    | zzz        | yyy        | xxx        |
+    +------------+------------+------------+
+
+4. In the header and each record, there may be one or more fields separated by commas. Whitespace within a field is part of the field and should not be ignored. A comma cannot follow the last field in each record. For example:
+
+    ```
+    aaa,bbb,ccc
+    ```
+
+    Or:
+
+    ```
+    a aa, bbb,cc c
+    ```
+
+    Both examples are correct.
+
+    Imported into the table as follows:
+
+    +---------+---------+---------+
+    | col1    | col2    | col3    |
+    +---------+---------+---------+
+    | aaa     | bbb     | ccc     |
+    +---------+---------+---------+
+
+    Or:
+
+    +---------+---------+---------+
+    | col1    | col2    | col3    |
+    +---------+---------+---------+
+    | a aa    |  bbb    | cc c    |
+    +---------+---------+---------+
+
+5. Each field can be enclosed in double quotes or not. Double quotes cannot appear inside a field if the field is not enclosed in double-quotes. For example:
+
+    ```
+    "aaa","bbb","ccc" CRLF
+    zzz,yyy,xxx
+    ```
+
+    Or:
+
+    ```
+    "aaa","bbb",ccc CRLF
+    zzz,yyy,xxx
+    ```
+
+    Both examples are correct.
+
+    Imported into the table as follows:
+
+    +---------+---------+---------+
+    | col1    | col2    | col3    |
+    +---------+---------+---------+
+    | aaa     | bbb     | ccc     |
+    | zzz     | yyy     | xxx     |
+    +---------+---------+---------+
+
+6. Fields containing line breaks (CRLF), double quotes, and commas should be enclosed in double-quotes. For example:
+
+    ```
+    "aaa","b CRLF
+    bb","ccc" CRLF
+    zzz,yyy,xxx
+    ```
+
+    Imported into the table as follows:
+
+    +---------+---------+---------+
+    | col1    | col2    | col3    |
+    +---------+---------+---------+
+    | aaa     | b bb    | ccc     |
+    | zzz     | yyy     | xxx     |
+    +---------+---------+---------+
+
+7. If double quotation marks are used to enclose the field, then multiple double quotation marks appearing in the field must also be enclosed in double quotation marks; otherwise, the first quotation mark of two double quotation marks in the field will be parsed as an escape character, thus keep a single, double quote. For example:
+
+    ```
+    "aaa","b","bb","ccc"
+    ```
+
+    The above *CSV* will parse `"b""bb"` into `b"bb`; if the correct field is `b""bb`, then it should be written as:
+
+    ```
+    "aaa","b""""bb","ccc"
+    ```
+
+    Or:
+
+    ```
+    "aaa",b""bb,"ccc"
+    ```
+
+    Imported into the table as follows:
+
+    +---------+---------+---------+
+    | col1    | col2    | col3    |
+    +---------+---------+---------+
+    | aaa     | b""bb   | ccc     |
+    +---------+---------+---------+
 
 ## **Examples**
 
@@ -406,3 +533,4 @@ For more information on loding *JSONLines*, see [Import the JSONLines data](../.
 4. The parallel loading of files requires that the files be in uncompressed format, and parallel loading of files in compressed form is not currently supported.
 5. The `load data local` dose not support parallel loading now.
 6. When you use `load data local`, you need to use the command line to connect to the MatrixOne service host: `mysql -h <mo-host -ip> -P 6001 -udump -p111 --local-infile`.
+7. MatrixOne does not support `ESCAPED BY` currently. Writing or reading special characters differs from MySQL to some extent.
