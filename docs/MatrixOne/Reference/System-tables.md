@@ -91,7 +91,7 @@ Start with MatrixOne 0.6 has introduced the concept of multi-account, the defaul
 | created_time | timestamp    | create time                   |
 | comments     | text         | comment                       |
 
-### **mo_user** table
+### mo_user table
 
 | column                | type         | comments            |
 | --------------------- | ------------ | ------------------- |
@@ -141,6 +141,70 @@ Start with MatrixOne 0.6 has introduced the concept of multi-account, the defaul
 | operation_user_id | int unsigned    | operation user id                             |
 | granted_time      | timestamp       | granted time                                    |
 | with_grant_option | bool            | If permission granting is permitted |
+
+### mo_user_defined_function table
+
+| column            | type            | comments                            |
+| -----------------| --------------- | ----------------- |
+| function_id | INT(32) | ID of the function, primary key |
+| name | VARCHAR(100) | the name of the function |
+| creator | INT UNSIGNED(32) | ID of the user who created the function |
+| args | TEXT(0) | Argument list for the function |
+| rettype | VARCHAR(20) | return type of the function |
+| body | TEXT(0) | function body |
+| language | VARCHAR(20) | language used by the function |
+| db | VARCHAR(100) | database where the function is located |
+| definer | VARCHAR(50) | name of the user who defined the function |
+| modified_time | TIMESTAMP(0) | time when the function was last modified |
+| created_time | TIMESTAMP(0) | creation time of the function |
+| type | VARCHAR(10) | type of function, default FUNCTION |
+| security_type | VARCHAR(10) | security processing method, uniform value DEFINER |
+| comment | VARCHAR(5000) | Create a comment for the function |
+| character_set_client | VARCHAR(64) | Client character set: utf8mb4 |
+| collation_connection | VARCHAR(64) | Connection sort: utf8mb4_0900_ai_ci |
+| database_collation | VARCHAR(64) | Database connection collation: utf8mb4_0900_ai_ci |
+
+### mo_mysql_compatbility_mode table
+
+| column            | type            | comments                            |
+| -----------------| --------------- | ----------------- |
+| configuration_id | INT(32) | Configuration item id, an auto-increment column, used as a primary key to distinguish different configurations |
+| account_name | VARCHAR(300) | The name of the tenant where the configuration is located |
+| dat_name | VARCHAR(5000) | The name of the database where the configuration is located |
+| configuration | JSON(0) | Configuration content, saved in JSON format |
+
+### mo_pubs table
+
+| column            | type            | comments                            |
+| -----------------| --------------- | ----------------- |
+| pub_name | VARCHAR(64) | publication name|
+| database_name | VARCHAR(5000) | The name of the published data |
+| database_id | BIGINT UNSIGNED(64) | ID of the publishing database, corresponding to dat_id in the mo_database table |
+| all_table | BOOL(0) | Whether the publishing library contains all tables in the database corresponding to database_id |
+| all_account | BOOL(0) | Whether all accounts can subscribe to the library |
+| table_list | TEXT(0) | When it is not all table, publish the list of tables contained in the library, and the table name corresponds to the table under the database corresponding to database_id|
+| account_list | TEXT(0) |Account list that is allowed to subscribe to the publishing library when it is not all accounts|
+| created_time | TIMESTAMP(0) | Time when the release repository was created |
+| owner | INT UNSIGNED(32) | The role ID corresponding to the creation of the release library |
+| creator | INT UNSIGNED(32) | The ID of the user who created the release library |
+| comment | TEXT(0) | Remarks for creating a release library |
+
+### mo_indexes table
+
+| column            | type            | comments                            |
+| -----------------| --------------- | ----------------- |
+| id | BIGINT UNSIGNED(64) | index ID |
+| table_id | BIGINT UNSIGNED(64) | ID of the table where the index resides |
+| database_id | BIGINT UNSIGNED(64) | ID of the database where the index resides |
+| name | VARCHAR(64) | name of the index |
+| type | VARCHAR(11) | The type of index, including primary key index (PRIMARY), unique index (UNIQUE), secondary index (MULTIPLE) |
+| is_visible | TINYINT(8) | Whether the index is visible, 1 means visible, 0 means invisible (currently all MatrixOne indexes are visible indexes) |
+| hidden | TINYINT(8) | Whether the index is hidden, 1 is a hidden index, 0 is a non-hidden index|
+| comment | VARCHAR(2048) | Comment information for the index |
+| column_name | VARCHAR(256) | The column name of the constituent columns of the index |
+| ordinal_position | INT UNSIGNED(32) | Column ordinal in index, starting from 1 |
+| options | TEXT(0) | options option information for index |
+| index_table_name | VARCHAR(5000) | The table name of the index table corresponding to the index, currently only the unique index contains the index table |
 
 ## `system_metrics` database
 
@@ -223,6 +287,7 @@ It records user and system SQL statement with detailed information.
 | query_type            | VARCHAR(1024) | query type, val in [DQL, DDL, DML, DCL, TCL]                                |
 | role_id               | BIGINT        | role id                                                                     |
 | sql_source_type       | TEXT          | Type of SQL source internally generated by MatrixOne                                                   |
+| result_count          | BIGINT(64)    | the number of rows of sql execution results    |  
 
 ### `rawlog` table
 
@@ -272,6 +337,11 @@ Many `INFORMATION_SCHEMA` tables have a corresponding `SHOW` command. The benefi
 | TABLES           | Provides a list of tables that the current user has visibility of. Similar to `SHOW TABLES`. |
 | TRIGGERS         | Provides similar information to `SHOW TRIGGERS`.             |
 | USER_PRIVILEGES  | Summarizes the privileges associated with the current user.  |
+| PROFILING | Provides some profiling information during SQL statement execution. |
+| ROUTINES | Provides some information about stored procedures. |
+The | PARAMETERS| table provides information about stored procedures' parameters and return values ​​. |
+| VIEWS | Provides information about views in the database. |
+| KEYWORDS | Provide information about keywords in the database; see [Keywords](Language-Structure/keywords.md) for details. |
 
 ### `CHARACTER_SETS` table
 
@@ -355,11 +425,11 @@ The description of columns in the `TABLES` table is as follows:
 - `TABLE_CATALOG`: The name of the catalog which the table belongs to. The value is always `def`.
 - `TABLE_SCHEMA`: The name of the schema which the table belongs to.
 - `TABLE_NAME`: The name of the table.
-- `TABLE_TYPE`: The type of the table.
+- `TABLE_TYPE`: The type of the table. The base table type is `BASE TABLE`, the view table type is `VIEW`, and the `INFORMATION_SCHEMA` table type is `SYSTEM VIEW`.
 - `ENGINE`: The type of the storage engine.
 - `VERSION`: Version. The value is `10` by default.
-- `ROW_FORMAT`: The row format. The value is currently `Compact`.
-- `TABLE_ROWS`: The number of rows in the table in statistics.
+- `ROW_FORMAT`: The row format. The value is `Compact`, `Fixed`, `Dynamic`, `Compressed`, `Redundant`.
+- `TABLE_ROWS`: The number of rows in the table in statistics. For `INFORMATION_SCHEMA` tables, `TABLE_ROWS` is `NULL`.
 - `AVG_ROW_LENGTH`: The average row length of the table. `AVG_ROW_LENGTH` = `DATA_LENGTH` / `TABLE_ROWS`.
 - `DATA_LENGTH`: Data length. `DATA_LENGTH` = `TABLE_ROWS` * the sum of storage lengths of the columns in the tuple.
 - `MAX_DATA_LENGTH`: The maximum data length. The value is currently `0`, which means the data length has no upper limit.
@@ -384,6 +454,19 @@ Fields in the `USER_PRIVILEGES` table are described as follows:
 - `TABLE_CATALOG`: The name of the catalog to which the table belongs. This value is always `def`.
 - `PRIVILEGE_TYPE`: The privilege type to be granted. Only one privilege type is shown in each row.
 - `IS_GRANTABLE`: If you have the `GRANT OPTION` privilege, the value is `YES`; otherwise, the value is `NO`.
+
+### `VIEW` table
+
+- `TABLE_CATALOG`: The name of the catalog the view belongs to. The value is `def`.
+- `TABLE_SCHEMA`: The name of the database to which the view belongs.
+- `TABLE_NAME`: The name of the view.
+- `VIEW_DEFINITION`: The `SELECT` statement that provides the view definition. It contains most of what you see in the "Create Table" column generated by `SHOW Create VIEW`.
+- `CHECK_OPTION`: The value of the `CHECK_OPTION` property. Values ​​are `NONE`, `CASCADE`, or `LOCAL`.
+- `IS_UPDATABLE`: Set a flag called the view updatable flag when `CREATE VIEW`; if UPDATE and DELETE (and similar operations) are legal for the view, the flag is set to `YES(true)`. Otherwise, the flag is set to `NO(false)`.
+- `DEFINER`: The account of the user who created the view, in the format `username@hostname`.
+- `SECURITY_TYPE`: View the `SQL SECURITY` attribute. Values ​​are `DEFINER` or `INVOKER`.
+- `CHARACTER_SET_CLIENT`: The session value of the `character_set_client` system variable when the view was created.
+- `COLLATION_CONNECTION`: The session value of the `collation_connection` system variable when the view was created.
 
 ## `mysql` database
 

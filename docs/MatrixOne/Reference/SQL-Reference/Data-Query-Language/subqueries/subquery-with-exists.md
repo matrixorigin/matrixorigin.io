@@ -43,7 +43,3 @@ mysql> select * from t3 where not exists (select * from t2 where t2.b=t3.a);
 +------+
 2 rows in set (0.00 sec)
 ```
-
-## **Constraints**
-
-MatrixOne does not support selecting multiple columns for the subquery.

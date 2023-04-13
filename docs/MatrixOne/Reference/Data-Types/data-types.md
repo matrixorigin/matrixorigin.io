@@ -2,7 +2,7 @@
 
 MatrixOne Data types conforms with MySQL Data types definition.
 
-Reference: <https:-- dev.mysql.com/doc/refman/8.0/en/data-types.html>
+Reference: <https://dev.mysql.com/doc/refman/8.0/en/data-types.html>
 
 ## **Integer Numbers**
 
@@ -100,35 +100,49 @@ mysql> select * from inttable;
 
 ## **Real Numbers**
 
-|  Data Type   | Size  |  Precision   | Syntax |
-|  ----  | ----  |  ----  | ----  |
-| FLOAT32  | 4 bytes | 	23 bits  | FLOAT |
-| FLOAT64  | 8 bytes |  53 bits  | DOUBLE |
+|  Data Type   | Size  |  Precision   |  Min Value   | Max Value  | Syntax |
+|  ----  | ----  |  ----  | ----  | ---|---|
+| FLOAT32  | 4 bytes | 	23 bits  |-3.40282e+038|3.40282e+038 |FLOAT(M, D) <br>M represents the maximum length and D represents the number of decimal places displayed. The value range of M is (1=< M <=255). <br> The value range of D is (1=< D <=30), and M >= D. <br> Float numbers with precision show the number of bits with the required precision, and a trailing zero is added when the number of bits falls short. |
+| FLOAT64  | 8 bytes |  53 bits  |-1.79769e+308|1.79769e+308|DOUBLE(M, D) <br>M represents the maximum length and D represents the number of decimal places displayed. The value range of M is (1=< M <=255). <br> The value range of D is (1=< D <=30), and M >= D. <br> Float numbers with precision show the number of bits with the required precision, and a trailing zero is added when the number of bits falls short. |
 
 ### **Examples**
 
 ```sql
+-- Create a table named "floatt1" with precision, a trailing zero is added when the number of bits falls short
+create table floatt1(a float(5, 2));
+insert into floatt1 values(1), (2.5), (3.56), (4.678);
+mysql> select * from floatt1;
++------+
+| a    |
++------+
+| 1.00 |
+| 2.50 |
+| 3.56 |
+| 4.68 |
++------+
+4 rows in set (0.00 sec)
+
 -- Create a table named "floattable" with 1 attributes of a "float"
 create table floattable ( a float not null default 1, big float(20,5) primary key);
 insert into floattable (big) values (-1),(12345678.901234567),(92233720368547.75807);
 
 mysql> select * from floattable order by a desc, big asc;
-+------+----------------+
-| a    | big            |
-+------+----------------+
-|    1 |             -1 |
-|    1 |       12345679 |
-|    1 | 92233720000000 |
-+------+----------------+
++------+----------------------+
+| a    | big                  |
++------+----------------------+
+|    1 |             -1.00000 |
+|    1 |       12345679.00000 |
+|    1 | 92233718038528.00000 |
++------+----------------------+
 3 rows in set (0.01 sec)
 
 mysql> select min(big),max(big),max(big)-1 from floattable;
-+----------+----------------+----------------+
-| min(big) | max(big)       | max(big) - 1   |
-+----------+----------------+----------------+
-|       -1 | 92233720000000 | 92233718038527 |
-+----------+----------------+----------------+
-1 row in set (0.01 sec)
++----------+----------------------+----------------+
+| min(big) | max(big)             | max(big) - 1   |
++----------+----------------------+----------------+
+| -1.00000 | 92233718038528.00000 | 92233718038527 |
++----------+----------------------+----------------+
+1 row in set (0.05 sec)
 ```
 
 ## **String Types**
@@ -137,8 +151,11 @@ mysql> select min(big),max(big),max(big)-1 from floattable;
 |  ----  | ----  |  ---  | ----  | ---- |
 | char      | 24 bytes| 0 ~ 4294967295 |CHAR| Fixed length string |
 | varchar   | 24 bytes| 0 ~ 4294967295 |VARCHAR| Variable length string|
+| binary     |255 bytes| 0 ~ 65535  |BINARY(M)| Similar to CHAR, binary string |
+| varbinary  | 255 bytes| 0 ~ 65535  |VARBINARY(M)| Similar to VARCHAR, binary string|
 | text      | 1 GB|other types mapping |TEXT |Long text data, TINY TEXT, MEDIUM TEXT, and LONG TEXT are not distinguished|
 | blob      | 1 GB| other types mapping|BLOB |Long text data in binary form, TINY BLOB, MEDIUM BLOB, and LONG BLOB are not distinguished|
+| enum  | 1 byte or 2 bytes | 0 ~ 65535 | enum  | An enumeration. A string object that can have only one value, chosen from the list of values 'value1', 'value2', ..., NULL or the special '' error value. ENUM values are represented internally as integers. |
 
 ### **Examples**
 
@@ -162,6 +179,28 @@ mysql> select name,age from names;
 | Dora  | 29   |
 +-------+------+
 4 rows in set (0.00 sec)
+```
+
+- BINARY and VARBINARY
+
+```sql
+-- Create a table named "names" with 2 attributes of a "varchar" and a "char"
+create table names(name varbinary(255),age binary(255));
+insert into names(name, age) values('Abby', '24');
+insert into names(name, age) values("Bob", '25');
+insert into names(name, age) values('Carol', "23");
+insert into names(name, age) values("Dora", "29");
+
+mysql> select name,age from names;
++--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| name         | age                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
++--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 0x41626279   | 0x323400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 |
+| 0x426F62     | 0x323500000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 |
+| 0x4361726F6C | 0x323300000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 |
+| 0x446F7261   | 0x323900000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 |
++--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+4 rows in set (0.01 sec)
 ```
 
 - TEXT
@@ -343,12 +382,12 @@ mysql> select * from booltest;
 5 rows in set (0.00 sec)
 ```
 
-## **Decimal Types(Beta)**
+## **Decimal Types**
 
 |  Data Type   | Size  |  Precision   | Syntax |
 |  ----  | ----  |  ----  | ----  |
-| Decimal  | 8 bytes | 	19 digits  | Decimal(N,S) <br> N is the total number of digits, the range is(1 ~ 18). The decimal point and (for negative numbers) the - sign are not counted in N. <br>S is the number of digits after the decimal point (the scale), the range is(0 ~ N)<br> If S is 0, values have no decimal point or fractional part. If S is omitted, the default is 0. If N is omitted, the default is 1. <br>For example, Decimal(10,8) represents a number with a total length of 10 and a decimal place of 8. |
-| Decimal  | 16 bytes | 	38 digits  |  Decimal(N,S) <br> N is the total number of digits, the range is(18 ~ 38). The decimal point and (for negative numbers) the - sign are not counted in N. <br>S is the number of digits after the decimal point (the scale), the range is(0 ~ N)<br> If S is 0, values have no decimal point or fractional part. If S is omitted, the default is 0. If N is omitted, the default is 18. <br>For example, Decimal(20,9) represents a number with a total length of 20 and a decimal place of 9.  |
+| Decimal64  | 8 bytes | 	18 digits  | Decimal(N,S) <br> N is the total number of digits, the range is(1 ~ 18). The decimal point and (for negative numbers) the - sign are not counted in N.<br>If N is omitted, the default value of N should be the largest; that is, the value is 18. <br>S is the number of digits after the decimal point (the scale), the range is(0 ~ N)<br> If S is 0, values have no decimal point or fractional part. If S is omitted, the default is 0, for example, Decimal(10) is equivalent to Decimal(10, 0). <br>For example, Decimal(10,8) represents a number with a total length of 10 and a decimal place of 8. |
+| Decimal128  | 16 bytes | 	38 digits  |  Decimal(N,S) <br> N is the total number of digits, the range is(18 ~ 38). The decimal point and (for negative numbers) the - sign are not counted in N.<br>If N is omitted, the default value of N should be the largest; that is, the value is 38. <br>S is the number of digits after the decimal point (the scale), the range is(0 ~ N)<br> If S is 0, values have no decimal point or fractional part. If S is omitted, the default is 0, for example, Decimal(20) is equivalent to Decimal(20, 0).<br>For example, Decimal(20,9) represents a number with a total length of 20 and a decimal place of 9.  |
 
 ### **Examples**
 

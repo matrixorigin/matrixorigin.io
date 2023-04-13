@@ -81,7 +81,3 @@ mysql> select * from (select city,libname1,count(libname1) as a from t3 join t1 
 +----------+--------------------+------+
 4 rows in set (0.00 sec)
 ```
-
-## **Constraints**
-
-MatrixOne does not support selecting multiple columns for the subquery.

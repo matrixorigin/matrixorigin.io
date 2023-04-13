@@ -2,7 +2,7 @@
 
 ## **Description**
 
-Comparison operators (=, >, < , and so on.) are used only on subqueries that return one row. SQL Subqueries with `ANY`, you can make comparisons on subqueries that return multiple rows. `ANY` evaluate whether any or all of the values returned by a subquery match the left-hand expression.
+Comparison operators (=, >, < , etc.) are used only on subqueries that return one row. SQL Subqueries with `ANY`, you can make comparisons on subqueries that return multiple rows. `ANY` evaluate whether any or all of the values returned by a subquery match the left-hand expression.
 
 Subqueries that use the `ANY` keyword return true when any value retrieved in the subquery matches the value of the left-hand expression.
 
@@ -68,7 +68,3 @@ mysql> select * from t3 where a = any (select b from t2);
 mysql> select a,b from t6 where a >  any ( select a ,b from t4 where a>3);
 ERROR 1105 (HY000): subquery should return 1 column
 ```
-
-## **Constraints**
-
-MatrixOne does not support selecting multiple columns for the subquery.

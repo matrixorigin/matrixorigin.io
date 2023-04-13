@@ -36,8 +36,14 @@ show grants for 'root'@'localhost';
 | GRANT drop table ON database *.* `user1`@`localhost`   |
 +--------------------------------------------------------+
 4 rows in set (0.00 sec)
+
+mysql> show grants for ROLE role1;
++--------------------------------------------+
+| Grants for role1                           |
++--------------------------------------------+
+| GRANT table all ON table *.* `role1`       |
+| GRANT create table ON database *.* `role1` |
+| GRANT drop table ON database *.* `role1`   |
++--------------------------------------------+
+3 rows in set (0.00 sec)
 ```
-
-## **Constraints**
-
-MatrixOne does not support on `SHOW GRANTS FOR {rolename}` for now.

@@ -98,7 +98,3 @@ insert into t6 values (10,7),(null,7);
 mysql> select a,b from t6 where (a,b) in ( select a,b from t4 where a>3);
 Empty set (0.02 sec)
 ```
-
-## **Constraints**
-
-MatrixOne does not support selecting multiple columns for the subquery.
