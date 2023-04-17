@@ -91,3 +91,30 @@ Objects with *Table Routine Level Permission* can have the following permissions
 |Permissions|Description|
 |---|---|
 |EXECUTE|Permission to execute a function or stored procedure|
+
+### Publish and subscribe permission
+
+In MatrixOne, publish-subscribe is data-sharing access to the specified database.
+
+__Note:__ Currently, only *moadmin* and *accountadmin* roles are supported in MatrixOne to perform publish and subscribe operations.
+
+- **publisher**
+
+The publisher is the party that publishes the data that needs to be shared and synchronized.
+
+|Permissions|Description|
+|---|---|
+|CREATE PUBLICATION|Create Publication|
+|ALTER PUBLICATION|Modify Publication|
+|DROP PUBLICATION|Delete a publication|
+|SHOW PUBLICATION|View Publication|
+|SHOW CREATE PUBLICATION|View create publication statement|
+
+- **Subscriber**
+
+The subscriber is the party that obtains the shared and synchronized data.
+
+|Permissions|Description|
+|---|---|
+|CREATE DATABASE db_name FROM account_name PUBLICATION|CREATE SUBSCRIPTION|
+|SHOW SUBSCRIPTIONS|View Subscriptions|

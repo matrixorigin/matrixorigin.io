@@ -45,7 +45,3 @@ mysql> select * from t3 where a = (select distinct b from t2);
 mysql> select a,b from t4 where a > ( select a ,b from t2 where a>1);
 ERROR 1105 (HY000): Internal error: Unknow type TUPLE
 ```
-
-## **Constraints**
-
-MatrixOne does not support selecting multiple columns for the subquery.<!--0.7 all constrains of subquery docs need to remove-->

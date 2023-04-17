@@ -26,7 +26,7 @@ Currently, `cast` can support following conversion:
 * Time type (including Date, Datetime, Timestamp, and Time) is converted to INT type, with decimal point rounding
 * Time types (including Date, Datetime, Timestamp, and Time) are converted to fixed-point types with decimal places
 
- A detailed data type conversion rule can be refered to [Data Conversion Rule](../../../../Data-Types/data-type-conversion.md).
+ A detailed data type conversion rule can be refered to [Data Conversion Rule](../../../Data-Types/data-type-conversion.md).
 
 ## **Examples**
 

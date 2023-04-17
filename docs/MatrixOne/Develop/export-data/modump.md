@@ -16,7 +16,7 @@ To use the `mo-dump` tool, you must have access to a server running an instance 
 ### Syntax
 
 ```
-./mo-dump -u ${user} -p ${password} -h ${host} -P ${port} -db ${database} [-tbl ${table}...]  -net-buffer-length ${net-buffer-length}> {dumpfilename.sql}
+./mo-dump -u ${user} -p ${password} -h ${host} -P ${port} -db ${database} [--local-infile=true] [-csv] [-tbl ${table}...] -net-buffer-length ${net-buffer-length} > {dumpfilename.sql}
 ```
 
 The parameters are as following:
@@ -32,6 +32,10 @@ The parameters are as following:
 - **-db [database name]**: Required parameter. Name of the database that you want to take backup.
 
 - **-net-buffer-length [packet size]**: Packet size, the total size of the characters in the SQL statement. The data packet is the basic unit of SQL exported data. If no parameter is set, the default is 1048576 Byte (1M), and the maximum can be set to 16777216 Byte (16M). If the parameter here is set to 16777216 Byte (16M), then when the data larger than 16M is to be exported, the data will be split into multiple 16M data packets, except for the last data packet, the size of other data packets is 16M.
+
+- **-csv**: The default value is false. The exported data is in *CSV* format when set to true.
+
+- **--local-infile**: The default value is true and only takes effect when the parameter **-csv** is set to true. Indicates support for native export of *CSV* files.
 
 - **-tbl [table name]**: Optional parameter. If the parameter is empty, the whole database will be exported. If you want to take the backup specific tables, then you can specify multiple `-tbl` and table names in the command.
 
@@ -68,6 +72,12 @@ For example, if you are launching the terminal in the same server as the MatrixO
 
 ```
 ./mo-dump -u dump -p 111 -h 127.0.0.1 -P 6001 -db t > t.sql
+```
+
+If you want to export the tables in the database *t* to *CSV* format, refer to the following command:
+
+```
+./mo-dump -u dump -p 111 -db t -csv --local-infile=false > ttt.sql
 ```
 
 If you want to generate the backup of a single table in a database, run the following command. The command will generate the backup of the `t1` table of  `t` database with structure and data in the `t.sql` file.

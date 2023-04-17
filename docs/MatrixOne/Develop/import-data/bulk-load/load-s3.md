@@ -56,6 +56,9 @@ LOAD DATA URL s3option{"endpoint"='oss-cn-shanghai.aliyuncs.com', "access_key_id
 LOAD DATA URL s3option{"endpoint"='cos.ap-shanghai.myqcloud.com', "access_key_id"='XXXXXX', "secret_access_key"='XXXXXX', "bucket"='test-1252279971', "filepath"='test.csv.bz2', "region"='ap-shanghai', "compression"='bz2'} INTO TABLE t1 FIELDS TERMINATED BY ',' ENCLOSED BY '\"' LINES TERMINATED BY '\n';
 ```
 
+!!! note
+    MatrixOne provides security assurance for S3 authentication information, such as `access_key_id` and `secret_access_key` sensitive information will be hidden in the system table (statement_info) records to ensure your account security.
+
 ### Tutorial: Load a file from AWS S3
 
 In this tutorial, we will walk you through the process of loading a **.csv** file from AWS S3; we assume that you already have an AWS account and already have your data file ready in your S3 service. If you do not already have that, please sign up and upload your data file first; you may check on the AWS S3 [official tutorial](https://docs.aws.amazon.com/AmazonS3/latest/userguide/GetStartedWithS3.html). The process for Alibaba Cloud OSS and Tencent Cloud COS is similar to AWS S3.
