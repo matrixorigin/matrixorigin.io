@@ -15,9 +15,9 @@ According to the introduction in [MatrixOne Distributed Cluster Deployment](depl
 1. Execute the following command on the terminal on the master0 node to enter the interface for dynamically modifying the `yaml` configuration file the operator uses.
 
     ```
-    mo_ns="mo-hn" #matrixone集群的namespace
-    mo_cluster_name="mo" # matrixone 的集群名称，一般为 mo，根据部署时 matrixonecluster 对象的 yaml 文件中的 name 指定，也可以通过 kubectl get matrixonecluster -n${mo_ns} 来确认
-    # mo-hn 及 mo 已在安装部署的 mo.yaml 文件中设置
+    mo_ns="mo-hn" #the namespace of matrixone cluster
+    mo_cluster_name="mo" # The cluster name of matrixone, generally mo, is specified according to the name in the YAML file of the matrixonecluster object during deployment or can be confirmed by kubectl get matrixonecluster -n${mo_ns}
+    # mo-hn and mo have been set in the mo.yaml file of the installation and deployment
     kubectl edit matrixonecluster ${mo_cluster_name} -n${mo_ns}
     ```
 
