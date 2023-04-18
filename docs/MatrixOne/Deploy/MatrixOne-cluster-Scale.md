@@ -133,6 +133,7 @@ You can use the `kubectl top` command to complete it. For detailed commands, ple
     ![img](https://wdcdn.qpic.cn/MTY4ODg1NzQyNDQ2MjA3NQ_868871_vHRDl2Xto4ZMN6S4_1681273933?w=1372&h=594)
 
 3. Use the following command to view the resource usage of all components of MatrixOne:
+
     ```
     kubectl top pod -n${NS}
     ```
