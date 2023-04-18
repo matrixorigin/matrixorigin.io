@@ -37,7 +37,7 @@ As MatrixOne's distributed deployment relies on a Kubernetes cluster, we need to
 To prepare the cluster environment, you need to do the following:
 
 - Have three VirtualBox virtual machines
-- Use Ubuntu 20.04 as the operating system (by default, it does not allow root account remote login, so you need to modify the configuration file for sshd in advance to enable remote login for root). Two machines will be used for deploying Kubernetes and other dependencies for MatrixOne, while the third will act as a jump host to set up the Kubernetes cluster.
+- Use CentOS 7.9 as the operating system (by default, it does allow root account remote login). Two machines will be used for deploying Kubernetes and other dependencies for MatrixOne, while the third will act as a jump host to set up the Kubernetes cluster.
 
 The specific distribution of the machines is shown below:
 
@@ -58,7 +58,9 @@ Kuboard Spray is a tool used for visualizing the deployment of Kubernetes cluste
 Since Docker will be used, the environment must have Docker installed. Use the following command to install and start Docker on the jump server:
 
 ```
-sudo apt-get update && sudo apt-get install -y docker.io
+curl -sSL https://get.docker.io/ | sh
+#You can use the following domestic mirror address if the trained network is limited.
+curl -sSL https://get.daocloud.io/docker | sh
 ```
 
 Once the environment is prepared, Kuboard Spray can be deployed.
@@ -69,12 +71,12 @@ Execute the following command to install Kuboard Spray:
 
 ```
 docker run -d \
-  --privileged \
-  --restart=unless-stopped \
-  --name=kuboard-spray \
-  -p 80:80/tcp \
-  -v /var/run/docker.sock:/var/run/docker.sock \
-  -v ~/kuboard-spray-data:/data \
+  --privileged \
+  --restart=unless-stopped \
+  --name=kuboard-spray \
+  -p 80:80/tcp \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  -v ~/kuboard-spray-data:/data \
   eipwork/kuboard-spray:v1.2.2-amd64
 ```
 
@@ -82,12 +84,12 @@ If the image pull fails due to network issues, use the backup address below:
 
 ```
 docker run -d \
-  --privileged \
-  --restart=unless-stopped \
-  --name=kuboard-spray \
-  -p 80:80/tcp \
-  -v /var/run/docker.sock:/var/run/docker.sock \
-  -v ~/kuboard-spray-data:/data \
+  --privileged \
+  --restart=unless-stopped \
+  --name=kuboard-spray \
+  -p 80:80/tcp \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  -v ~/kuboard-spray-data:/data \
   swr.cn-east-2.myhuaweicloud.com/kuboard/kuboard-spray:latest-amd64
 ```
 
@@ -181,7 +183,9 @@ __Note:__ All operations in this section are performed on the master0 node.
 1. Download the Helm installation package:
 
     ```
-    wget https://get.helm.sh/helm-v3.10.2-linux-amd64.tar.gz
+    wget https://get.helm.sh/helm-v3.10.2-linux-amd64.tar.gz
+    #You can use the following domestic mirror address if the trained network is limited.
+    wget https://mirrors.huaweicloud.com/helm/v3.10.2/helm-v3.10.2-linux-amd64.tar.gz
     ```
 
     If the download is slow due to network issues, you can download the latest binary installation package from the official website and upload it to the server.
@@ -258,32 +262,30 @@ __Note:__ All the commands in this section should be executed on the master0 nod
 
     !!! note
          - `--set resources.requests.memory=512Mi` sets the minimum memory consumption of MinIO
-         - `--set persistence.size=1G` sets the storage size of MinIO to 1G
-         - `--set rootUser=rootuser,rootPassword=rootpass123` the parameters set for rootUser and rootPassword are required for creating the secrets file for the Kubernetes cluster later, so use something that you can remember.
+
+            - `--set persistence.size=1G` sets the storage size of MinIO to 1G
+            - `--set rootUser=rootuser,rootPassword=rootpass123` the parameters set for rootUser and rootPassword are required for creating the secrets file for the Kubernetes cluster later, so use something that you can remember.
 
 2. After a successful installation and start, the command line should display as follows:
 
     ![](https://github.com/matrixorigin/artwork/blob/main/docs/deploy/deploy-mo-cluster-12.png?raw=true)
 
-    Then, execute the following command line to connect mo-log to port 9000:
+    Then, run the following command line to set the POD_NAME variable and connect mostorage to port 9000:
 
     ```
+    export POD_NAME=$(kubectl get pods --namespace mostorage -l "release=minio" -o jsonpath="{.items[0].metadata.name}")
     nohup kubectl port-forward --address 0.0.0.0 pod-name -n most storage 9000:9000 &
     ```
 
-3. After starting, you can log in to the MinIO page using the IP address of any machine in the Kubernetes cluster and port 32001. As shown in the following figure, the account password is the `rootUser` and `rootPassword` set in the previous step, i.e., `--set rootUser=rootuser,rootPassword=rootpass123`:
+3. After startup, use <http://192.168.56.10:32001> to log in to the MinIO page and create object storage information. As shown in the figure below, the account password is the rootUser and rootPassword set by `--set rootUser=rootuser,rootPassword=rootpass123` in the above steps:
 
     ![](https://github.com/matrixorigin/artwork/blob/main/docs/deploy/deploy-mo-cluster-13.png?raw=true)
 
 4. After logging in, you need to create object storage related information:
 
-    a. Fill in the **Bucket Name** with **minio-mo** under **Bucket > Create Bucket**. After filling it in, click the **Create Bucket** button at the bottom right.
+    Fill in the **Bucket Name** with **minio-mo** under **Bucket > Create Bucket**. After filling it in, click the **Create Bucket** button at the bottom right.
 
     ![](https://github.com/matrixorigin/artwork/blob/main/docs/deploy/deploy-mo-cluster-14.png?raw=true)
-
-    b. In the current **minio-mo** bucket, click **Choose or create a new path**, and fill in the name **test** in the **New Folder Path** field. After filling it in, click **Create** to complete the creation.
-
-    ![](https://github.com/matrixorigin/artwork/blob/main/docs/deploy/deploy-mo-cluster-15.png?raw=true)
 
 ## **5. Deploying a MatrixOne Cluster**
 
@@ -291,13 +293,15 @@ This section will guide you through the process of deploying a MatrixOne cluster
 
 __Note:__ All steps in this section are performed on the master0 node.
 
-### **Installing the matrixone-operator**
+### **Installing the MatrixOne-Operator**
 
-Use the following command to install the matrixone-operator:
+[MatrixOne Operator](https://github.com/matrixorigin/matrixone-operator) is an independent software tool for deploying and managing MatrixOne clusters on Kubernetes. In the [Releases](https://github.com/matrixorigin/matrixone-operator/releases) of the project, you need always select the latest operator release package for installation.
+
+Use the following command to install the matrixone-operator at node master0 :
 
 ```
-wget https://github.com/matrixorigin/matrixone-operator/releases/download/0.7.0-alpha.1/matrixone-operator-0.7.0-alpha.1.tgz
-tar -xvf matrixone-operator-0.7.0-alpha.1.tgz
+wget https://github.com/matrixorigin/matrixone-operator/releases/download/0.7.0-alpha.4/matrixone-operator-0.7.0-alpha.4.tgz
+tar -xvf matrixone-operator-0.7.0-alpha.4.tgz
 cd /root/matrixone-operator/
 helm install --create-namespace --namespace mo-hn matrixone-operator ./ --dependency-update
 ```
@@ -346,7 +350,7 @@ Customize the `yaml` file of the MatrixOne cluster; the example is as follows:
         sharedStorage:
           s3:
             type: minio
-            path: minio
+            path: minio #The path of the minio storage bucket defined above
             endpoint: http://minio.mostorage:9000
             secretRef:
               name: minio
@@ -360,6 +364,7 @@ Customize the `yaml` file of the MatrixOne cluster; the example is as follows:
           max-size = 512
       tp:
         serviceType: NodePort
+        nodePort: 31474 #Forward to a fixed port on the external network; the K8s default port range is within 30000-32767
         config: |
           [cn.Engine]
           type = "distributed-tae"
@@ -367,8 +372,8 @@ Customize the `yaml` file of the MatrixOne cluster; the example is as follows:
           level = "debug"
           format = "json"
           max-size = 512
-        replicas: 1
-      version: nightly-556de418
+        replicas: 1 #Number of CN
+      version: 0.7.0 #MatrixOne mirror version, derived from the mirror number on Dockerhub
       imageRepository: matrixorigin/matrixone
       imagePullPolicy: Always
     ```
