@@ -6,7 +6,7 @@ The upgraded environment introduced in this document will be based on the enviro
 
 ## Scaling Kubernetes
 
-Kubernetes manages and allocates essential hardware resources in the distributed MatrixOne cluster. Kubernetes can expand or contract the hardware nodes in the cluster using the kuboard spray graphical management page. For more information on tutorials, see [kuboard spray official documents](https://kuboard-spray.cn/guide/maintain/add-replace-node.html #%E5%B7%A5%E4%BD%9C%E8%8A%82%E7%82%B9).
+Kubernetes manages and allocates essential hardware resources in the distributed MatrixOne cluster. Kubernetes can expand or contract the hardware nodes in the cluster using the kuboard spray graphical management page. For more information on tutorials, see [kuboard spray official documents](https://kuboard-spray.cn/guide/maintain/add-replace-node.html).
 
 ## Scaling MatrixOne Services
 
