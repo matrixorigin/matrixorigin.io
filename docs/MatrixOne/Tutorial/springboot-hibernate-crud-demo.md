@@ -562,10 +562,10 @@ Build and test this project.
 
 ![image-20221027110133726](https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/hibernate/image-20221027110133726.png?raw=true)
 
-When you see the following messages, the application is well launched, we can call REST endpoints by using POSTMAN.
+When you see the following example messages, the application is well launched; we can call REST endpoints using POSTMAN.
 
 ```
-2022-10-27 11:16:16.793  INFO 93488 --- [           main] com.example.jpademo.JpademoApplication   : Starting JpademoApplication on nandeng-macbookpro.local with PID 93488 (/Users/nandeng/IdeaProjects/jpademo/target/classes started by nandeng in /Users/nandeng/IdeaProjects/jpademo)
+2022-10-27 11:16:16.793  INFO 93488 --- [           main] com.example.jpademo.JpademoApplication   : Starting JpademoApplication on username-macbookpro.local with PID 93488 (/Users/username/IdeaProjects/jpademo/target/classes started by username in /Users/username/IdeaProjects/jpademo)
 2022-10-27 11:16:16.796  INFO 93488 --- [           main] com.example.jpademo.JpademoApplication   : No active profile set, falling back to default profiles: default
 2022-10-27 11:16:18.022  INFO 93488 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
 2022-10-27 11:16:18.093  INFO 93488 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 50ms. Found 0 JPA repository interfaces.

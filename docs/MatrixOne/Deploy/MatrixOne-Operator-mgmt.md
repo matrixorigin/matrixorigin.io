@@ -18,7 +18,7 @@ MatrixOne Operator provides users with declarative cluster management capabiliti
 
 A MatrixOneCluster cluster consists of components such as Compute Node (CN), Database Node (DN), and Log Service, which correspond to sub-resources such as CNSet, DNSet, and LogSet. Therefore, the controller of the MatrixOneCluster resource orchestrates these sub-resources and relies on the controllers of these sub-resources to complete their orchestration.
 
-![image-operator](/Users/nandeng/工作/MO工作/文档/0.7版本文档/image-operator.png)
+![image-operator](https://github.com/matrixorigin/artwork/blob/main/docs/deploy/image-operator.png?raw=true)
 
 ## Deployment, Operation, Maintenance
 
