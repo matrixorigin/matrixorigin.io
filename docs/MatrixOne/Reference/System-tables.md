@@ -43,7 +43,7 @@ Start with MatrixOne 0.6 has introduced the concept of multi-account, the defaul
 | account_id     | int unsigned    | Account id                                                    |
 | partitioned    | blob            | Partition by statement                                       |
 | partition_info    | blob            | the information of partition         |
-| viewdef            | blob                    | View definition statement                       | 
+| viewdef            | blob                    | View definition statement                       |
 | constraint        | varchar(5000)            | Table related constraints                      |
 
 ### mo_columns table
