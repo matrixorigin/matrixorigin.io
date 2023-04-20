@@ -113,6 +113,7 @@ nav:
       - MatrixOne Operator Management: MatrixOne/Deploy/MatrixOne-Operator-mgmt.md
       - Maintenance:
         - Updating: MatrixOne/Deploy/update-MatrixOne-cluster.md
+        - Starting and stopping: MatrixOne/Deploy/MatrixOne-start-stop.md
         - Scaling: MatrixOne/Deploy/MatrixOne-cluster-Scale.md
     - Tutorials:
       - Build a Java CRUD demo: MatrixOne/Tutorial/develop-java-crud-demo.md
@@ -200,6 +201,8 @@ nav:
             - UPDATE: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/update.md
             - LOAD DATA: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/load-data.md
             - Information Functions:
+              - CURRENT_USER(): MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/information-functions/current_user.md
+              - CURRENT_ROLE(): MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/information-functions/current_role.md
               - LAST_QUERY_ID(): MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/information-functions/last-query-id.md
               - LAST_INSERT_ID(): MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/information-functions/last-insert-id.md
         - Data Query Language:
@@ -248,6 +251,7 @@ nav:
             - SHOW COLUMNS: MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-columns.md
             - SHOW FUNCTION STATUS: MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-function-status.md
             - SHOW GRANT: MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-grants.md
+            - SHOW ROLES: MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-roles.md
             - SHOW SEQUENCES: MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-sequences.md
             - SHOW VARIABLES: MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-variables.md
           - SET:
