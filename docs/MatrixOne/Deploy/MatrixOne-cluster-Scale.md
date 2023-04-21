@@ -1,4 +1,4 @@
-# Scaling MatrixOne Clusters
+# Scaling MatrixOne Cluster
 
 This document will introduce how to scale the MatrixOne cluster, including the Kubernetes cluster and scaling of individual MatrixOne services.
 
@@ -104,7 +104,7 @@ You can use the `kubectl top` command to complete it. For detailed commands, ple
     kubectl top node ${NODE}
     ```
 
-    ![img](https://wdcdn.qpic.cn/MTY4ODg1NzQyNDQ2MjA3NQ_26882_o0_zGd-Bas_79VSn_1681273662?w=1136&h=424)
+    ![](https://github.com/matrixorigin/artwork/blob/main/docs/deploy/scale-1.png?raw=true)
 
 3. View the resource usage of all nodes in the MatrixOne cluster:
 
@@ -112,7 +112,7 @@ You can use the `kubectl top` command to complete it. For detailed commands, ple
     kubectl top node
     ```
 
-    ![img](https://wdcdn.qpic.cn/MTY4ODg1NzQyNDQ2MjA3NQ_262920_-FbamlYNvfA3MZ_Q_1681274050?w=1222&h=176)
+    ![](https://github.com/matrixorigin/artwork/blob/main/docs/deploy/scale-2.png?raw=true)
 
 ### Pod Monitoring
 
@@ -130,7 +130,7 @@ You can use the `kubectl top` command to complete it. For detailed commands, ple
     kubectl top pod ${POD} -n ${NS}
     ```
 
-    ![img](https://wdcdn.qpic.cn/MTY4ODg1NzQyNDQ2MjA3NQ_868871_vHRDl2Xto4ZMN6S4_1681273933?w=1372&h=594)
+    ![](https://github.com/matrixorigin/artwork/blob/main/docs/deploy/scale-3.png?raw=true)
 
 3. Use the following command to view the resource usage of all components of MatrixOne:
 
@@ -138,4 +138,4 @@ You can use the `kubectl top` command to complete it. For detailed commands, ple
     kubectl top pod -n${NS}
     ```
 
-    ![img](https://wdcdn.qpic.cn/MTY4ODg1NzQyNDQ2MjA3NQ_855850_Otf-sCx5KPZhaprO_1681274035?w=1274&h=384)
+    ![](https://github.com/matrixorigin/artwork/blob/main/docs/deploy/scale-4.png?raw=true)
