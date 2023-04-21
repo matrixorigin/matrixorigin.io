@@ -174,6 +174,9 @@ load data infile 'file_name' into table tbl_name FIELDS TERMINATED BY '|' ENCLOS
 load data infile 'file_name' into table tbl_name FIELDS TERMINATED BY '|' ENCLOSED BY '\"' LINES TERMINATED BY '\n' IGNORE 1 LINES;
 ```
 
+!!! note
+    `[PARALLEL {'TRUE' | 'FALSE'}]` currently only support `TRUE` or `FALSE` and are not case-sensitive.
+
 __Note:__ If the `PARALLEL` field is not added in the `LOAD` statement, for *CSV* files, parallel loading is disabled by default; for *JSOLLines* files, parallel loading is enabled by default. If there is a line terminator in the *CSV* file, such as '\n', otherwise it may cause data errors when the file is loaded. If the file is too large, manually splitting the file from the '\n' as the starting and ending point is recommended, then enabling parallel loading.
 
 ## Supported file formats
