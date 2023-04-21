@@ -1,6 +1,6 @@
 # **SHOW INDEX**
 
-## **语法说明**
+## **Description**
 
 `SHOW INDEX` returns table index information.
 
@@ -23,7 +23,7 @@
 |Visible|Whether the index is visible to the optimizer.|
 |Expression|For a nonfunctional key part, Column_name indicates the column indexed by the key part and Expression is NULL.<br>For a functional key part, Column_name column is NULL and Expression indicates the expression for the key part.|
 
-## **语法结构**
+## **Syntax**
 
 ```
 > SHOW {INDEX | INDEXES}
@@ -35,7 +35,7 @@
 
 An alternative to tbl_name FROM db_name syntax is db_name.tbl_name.
 
-## **示例**
+## **Examples**
 
 ```sql
 CREATE TABLE show_01(sname varchar(30),id int);
