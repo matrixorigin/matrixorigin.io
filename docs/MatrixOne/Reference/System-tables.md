@@ -15,20 +15,21 @@ Start with MatrixOne 0.6 has introduced the concept of multi-account, the defaul
 
 | column           | type            | comments                                |
 | ---------------- | --------------- | --------------------------------------- |
-| dat_id           | bigint unsigned | Primary key                             |
+| dat_id           | bigint unsigned | Primary key ID                          |
 | datname          | varchar(100)    | Database name                           |
 | dat_catalog_name | varchar(100)    | Database catalog name, default as `def` |
 | dat_createsql    | varchar(100)    | Database creation SQL statement         |
 | owner            | int unsigned    | Role id                                 |
 | creator          | int unsigned    | User id                                 |
 | created_time     | timestamp       | Create time                             |
-| account_id       | int unsigned    | Account id                               |
+| account_id       | int unsigned    | Account id                              |
+| dat_type         | varchar(23)     | Database type, common library or subscription library                 |
 
 ### mo_tables table
 
 | column         | type            | comments                                                     |
 | -------------- | --------------- | ------------------------------------------------------------ |
-| rel_id         | bigint unsigned | Primary key                                                  |
+| rel_id         | bigint unsigned | Primary key, table ID                  |
 | relname        | varchar(100)    | Name of the table, index, view, and so on.                         |
 | reldatabase    | varchar(100)    | The database that contains this relation. reference mo_database.datname |
 | reldatabase_id | bigint unsigned | The database id that contains this relation. reference mo_database.datid |
@@ -41,7 +42,9 @@ Start with MatrixOne 0.6 has introduced the concept of multi-account, the defaul
 | owner          | int unsigned    | Creator's default role id                                    |
 | account_id     | int unsigned    | Account id                                                    |
 | partitioned    | blob            | Partition by statement                                       |
-| viewdef        | blob            | View definition statement                                    |
+| partition_info    | blob            | the information of partition         |
+| viewdef            | blob                    | View definition statement                       |
+| constraint        | varchar(5000)            | Table related constraints                      |
 
 ### mo_columns table
 
@@ -68,23 +71,25 @@ Start with MatrixOne 0.6 has introduced the concept of multi-account, the defaul
 | att_is_hidden         | tinyint(1)      | hidden or not                                                |
 | attr_has_update       | tinyint(1)      | This columns has update expression                           |
 | attr_update           | varchar(1024)   | update expression                                            |
+| attr_is_clusterby     | tinyint(1)      | Whether this column is used as the cluster by keyword to create the table   |
 
 ### mo_account table (Only visible for `sys` account)
 
 | column       | type         | comments     |
 | ------------ | ------------ | ------------ |
-| account_id   | int unsigned | account id  |
+| account_id   | int unsigned | account id, primary key  |
 | account_name | varchar(100) | account name  |
 | status       | varchar(100) | open/suspend |
 | created_time | timestamp    | create time  |
 | comments     | varchar(256) | comment      |
 | suspended_time | TIMESTAMP   | Time of the account's status is changed |
+| version | bigint unsigned    | the version status of the current account|
 
 ### mo_role table
 
 | column       | type         | comments                      |
 | ------------ | ------------ | ----------------------------- |
-| role_id      | int unsigned | role id                   |
+| role_id      | int unsigned | role id, primary key                   |
 | role_name    | varchar(100) | role name                     |
 | creator      | int unsigned | user_id                       |
 | owner        | int unsigned | MOADMIN/ACCOUNTADMIN  ownerid |
@@ -95,7 +100,7 @@ Start with MatrixOne 0.6 has introduced the concept of multi-account, the defaul
 
 | column                | type         | comments            |
 | --------------------- | ------------ | ------------------- |
-| user_id               | int | user id                |
+| user_id               | int | user id, primary key                 |
 | user_host             | varchar(100) |  user host address                   |
 | user_name             | varchar(100) |  user name                   |
 | authentication_string | varchar(100) |  authentication string encrypted with password                   |
@@ -111,33 +116,33 @@ Start with MatrixOne 0.6 has introduced the concept of multi-account, the defaul
 
 | column            | type         | comments                            |
 | ----------------- | ------------ | ----------------------------------- |
-| role_id           | int unsigned | role id                        |
-| user_id           | int unsigned | user id                |
+| role_id           | int unsigned | ID of the authorized role, associated primary key       |
+| user_id           | int unsigned | Obtain the user ID of the authorized role and associate the primary key   |
 | granted_time      | timestamp    | granted time                        |
-| with_grant_option | bool         | If permission granting is permitted |
+| with_grant_option | bool         | Whether to allow an authorized user to license to another user or role |
 
 ### mo_role_grant table
 
 | column            | type         | comments                            |
 | ----------------- | ------------ | ----------------------------------- |
-| granted_id        | int  | the role id being granted              |
-| grantee_id        | int  | the role id to grant others             |
+| granted_id        | int  | the role id being granted, associated primary key              |
+| grantee_id        | int  | the role id to grant others, associated primary key            |
 | operation_role_id | int  | operation role id                   |
 | operation_user_id | int  | operation user id                   |
 | granted_time      | timestamp    | granted time                        |
-| with_grant_option | bool         | If permission granting is permitted |
+| with_grant_option | bool         | Whether to allow an authorized role to be authorized to another user or role|
 
 ### mo_role_privs table
 
 | column            | type            | comments                            |
 | ----------------- | --------------- | ----------------------------------- |
-| role_id           | int     | role id                        |
+| role_id           | int     | role id, associated primary key                        |
 | role_name         | varchar(100)    | role name: accountadmin/public                           |
-| obj_type          | varchar(16)     | object type: account/database/table                         |
-| obj_id            | bigint unsigned | object id                         |
-| privilege_id      | int             | privilege id                      |
+| obj_type          | varchar(16)     | object type: account/database/table, associated primary key                         |
+| obj_id            | bigint unsigned | object id, associated primary key                         |
+| privilege_id      | int             | privilege id, associated primary key                      |
 | privilege_name    | varchar(100)    | privilege name: the list of privileges                                   |
-| privilege_level   | varchar(100)    | level of privileges                                    |
+| privilege_level   | varchar(100)    | level of privileges, associated primary key                                    |
 | operation_user_id | int unsigned    | operation user id                             |
 | granted_time      | timestamp       | granted time                                    |
 | with_grant_option | bool            | If permission granting is permitted |
@@ -461,7 +466,7 @@ Fields in the `USER_PRIVILEGES` table are described as follows:
 - `TABLE_SCHEMA`: The name of the database to which the view belongs.
 - `TABLE_NAME`: The name of the view.
 - `VIEW_DEFINITION`: The `SELECT` statement that provides the view definition. It contains most of what you see in the "Create Table" column generated by `SHOW Create VIEW`.
-- `CHECK_OPTION`: The value of the `CHECK_OPTION` property. Values ​​are `NONE`, `CASCADE`, or `LOCAL`.
+- `CHECK_OPTION`: The value of the `CHECK_OPTION` property. Values are `NONE`, `CASCADE`, or `LOCAL`.
 - `IS_UPDATABLE`: Set a flag called the view updatable flag when `CREATE VIEW`; if UPDATE and DELETE (and similar operations) are legal for the view, the flag is set to `YES(true)`. Otherwise, the flag is set to `NO(false)`.
 - `DEFINER`: The account of the user who created the view, in the format `username@hostname`.
 - `SECURITY_TYPE`: View the `SQL SECURITY` attribute. Values ​​are `DEFINER` or `INVOKER`.
