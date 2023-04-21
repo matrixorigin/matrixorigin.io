@@ -467,10 +467,10 @@ Build and launch this project.
 
 ![image-20221026161226923](https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/mybatis/image-20221026161226923.png?raw=true)
 
-When you see the following messages, the application is well launched and you can open your browser and send HTTP request.
+When you see the following example messages, the application is well-launched, and you can open your browser and send HTTP requests.
 
 ```
-2022-10-26 16:13:24.030  INFO 60253 --- [           main] c.e.mybatisdemo.MyBatisDemoApplication   : Starting MyBatisDemoApplication on nandeng-macbookpro.local with PID 60253 (/Users/nandeng/IdeaProjects/MyBatisDemo/target/classes started by nandeng in /Users/nandeng/IdeaProjects/MyBatisDemo)
+2022-10-26 16:13:24.030  INFO 60253 --- [           main] c.e.mybatisdemo.MyBatisDemoApplication   : Starting MyBatisDemoApplication on username-macbookpro.local with PID 60253 (/Users/username/IdeaProjects/MyBatisDemo/target/classes started by username in /Users/username/IdeaProjects/MyBatisDemo)
 2022-10-26 16:13:24.035  INFO 60253 --- [           main] c.e.mybatisdemo.MyBatisDemoApplication   : No active profile set, falling back to default profiles: default
 2022-10-26 16:13:25.415  INFO 60253 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
 2022-10-26 16:13:25.421  INFO 60253 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
