@@ -22,11 +22,11 @@ Each table consists of rows and columns. Each value in a row belongs to a specif
 
 ## Index
 
-An index is a data structure used to find data in database tables quickly. It can be seen as a “table of contents” that contains pointers to the data of each row in the table, making it possible for queries to locate data that meets specific conditions more quickly.
+An index is a data structure used to find data in database tables quickly. It can be seen as a 'table of contents' that contains pointers to the data of each row in the table, making it possible for queries to locate data that meets specific conditions more quickly.
 
 The indexes commonly used in databases include primary key indexes, secondary indexes, etc. Among them, unique indexes are used to ensure the uniqueness of specific columns or combinations of columns, ordinary indexes are used to improve query performance, and full-text indexes are used for full-text search in text data.
 
-There are two common types of indexes, namely：
+There are two common types of indexes, namely:
 
 - **Primary Key**: Primary key index, that is, the index that identifies the primary key column. The primary key index uniquely identifies each row of data in the table.
 - **Secondary index**: Secondary index is the index identified on the non-primary key. The secondary index, also called a non-clustered index, is used to improve query performance and speed up data retrieval.
