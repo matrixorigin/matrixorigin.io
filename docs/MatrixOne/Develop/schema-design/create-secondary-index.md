@@ -22,13 +22,13 @@ The syntax structure is`'CREATE INDEX index_name on table_name (column_name);`
 
 `index_name` is the name of the index, `table_name` is the name of the table on which the index is to be created, and `column_name` is the name of the column used to create the index.
 
-For example, if you want to create a secondary index on the `last_name` column of a table named `employees`, you can use the following SQL statement：
+For example, if you want to create a secondary index on the `last_name` column of a table named `employees`, you can use the following SQL statement:
 
 ```sql
 CREATE INDEX idx_lastname ON employees (last_name);
 ```
 
-Use a secondary index: You can use a secondary index in a query statement to locate data rows. The SQL query optimizer will automatically select the appropriate index to perform the query operation for the best performance. Such as：
+Use a secondary index: You can use a secondary index in a query statement to locate data rows. The SQL query optimizer will automatically select the appropriate index to perform the query operation for the best performance. Such as:
 
 ```sql
 SELECT * FROM employees WHERE last_name = 'Smith';
@@ -52,7 +52,7 @@ CREATE INDEX idx_users_name ON users(name);
 INSERT INTO users VALUES ('1', 'John', '30', 'john@gmail.com');
 INSERT INTO users VALUES ('2', 'Tommy', '50', 'tom@gmail.com');
 INSERT INTO users VALUES ('3', 'Ann', '33', 'ann@gmail.com');
--- Perform the following query, the database can use the secondary index to quickly find all users with the name “John” without having to scan the entire table
+-- Perform the following query, the database can use the secondary index to quickly find all users with the name 'John' without having to scan the entire table
 mysql> SELECT * FROM users WHERE name = 'John';
 +------+------+------+----------------+
 | id   | name | age  | email          |
