@@ -1,4 +1,4 @@
-# Expanding CN for performance tuning
+# Scaling CN for better performance
 
 MatrixOne is a distributed database; its most distinctive feature is that it can improve the system's overall performance through node expansion. In MatrixOne's storage-computing separation architecture, CN is a stateless computing node, and the rapid expansion of CN nodes is the core of the performance improvement of the entire cluster.
 
