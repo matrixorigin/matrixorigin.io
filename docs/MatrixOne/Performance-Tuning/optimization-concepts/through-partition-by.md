@@ -188,7 +188,7 @@ CREATE TABLE rcx (
      );
 ```
 
-List composite partitions allow users to define partitions in the same way that multiple columns can be combined, such as：
+List composite partitions allow users to define partitions in the same way that multiple columns can be combined, such as:
 
 ```sql
 CREATE TABLE t1 (
@@ -208,7 +208,7 @@ PARTITION BY LIST COLUMNS(a,floor(b),c) (
 
 ## Constraints
 
-The partition table does not support the following partitions for the time being：
+The partition table does not support the following partitions for the time being:
 
 - Range partition: Only supports integer and date (date/datetime).
 - List partition: Only supports integers.
