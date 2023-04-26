@@ -10,7 +10,7 @@ This document lists the features supported by MatrixOne for the latest version.
 | DROP DATABASE                 | Y    |
 | RENAME DATABASE               | N    |
 | CREATE TABLE                  | Y    |
-| ALTER TABLE                   | N    |
+| ALTER TABLE                   | Y    |
 | RENAME TABLE                  | N    |
 | DROP TABLE                    | Y    |
 | CREATE INDEX                  | Y    |
@@ -20,9 +20,10 @@ This document lists the features supported by MatrixOne for the latest version.
 | CREATE VIEW                   | Y    |
 | ALTER VIEW                    | Y    |
 | DROP VIEW                     | Y    |
-| CREATE OR REPLACE VIEW        | N    |
+| CREATE                        | Y    |
+| REPLACE VIEW                  | N    |
 | TRUNCATE                      | Y    |
-| SEQUENCE                      | N    |
+| SEQUENCE                      | Y    |
 | AUTO_INCREMENT                | Y    |
 | Temporary tables              | Y    |
 
@@ -35,7 +36,7 @@ This document lists the features supported by MatrixOne for the latest version.
 | UPDATE                              | Y    |
 | DELETE                              | Y    |
 | REPLACE                             | N    |
-| INSERT ON DUPLICATE KEY             | N    |
+| INSERT ON DUPLICATE KEY             | Y    |
 | LOAD DATA INFILE                    | Y    |
 | SELECT INTO OUTFILE                 | Y    |
 | INNER/LEFT/RIGHT/OUTER JOIN         | Y    |
@@ -68,10 +69,13 @@ This document lists the features supported by MatrixOne for the latest version.
 |                      | DOUBLE            | Y    |
 | String Types         | CHAR              | Y    |
 |                      | VARCHAR           | Y    |
+|                      | BINARY            | Y    |
+|                      | VARBINARY         | Y    |
 |                      | TINYTEXT          | Y    |
 |                      | TEXT              | Y    |
 |                      | MEDIUMTEXT        | Y    |
 |                      | LONGTEXT          | Y    |
+|                      | ENUM              | Y    |
 | Binary Types         | TINYBLOB          | Y    |
 |                      | BLOB              | Y    |
 |                      | MEDIUMBLOB        | Y    |
@@ -102,7 +106,7 @@ This document lists the features supported by MatrixOne for the latest version.
 | Transactions             | Supported(Y)/Not supported (N)  |
 | ------------------------ | ---- |
 | 1PC                      | Y    |
-| Pessimistic transactions | N    |
+| Pessimistic transactions | Y    |
 | Optimistic transactions  | Y    |
 | Distributed Transaction  | Y    |
 | Snapshot Isolation       | Y    |
@@ -111,82 +115,81 @@ This document lists the features supported by MatrixOne for the latest version.
 
 | Functions and Operators Categories | Name                |
 | ---------------------------------- | ------------------- |
-| Aggregate functions                | AVG()                |
-|                                    | MAX()               |
-|                                    | MIN()               |
-|                                    | Median()            |
-|                                    | SUM()               |
-|                                    | ANY_VALUE()         |
-|                                    | BIT_OR()            |
+| Aggregate functions                | ANY_VALUE()         |
+|                                    | AVG()               |
 |                                    | BIT_AND()           |
+|                                    | BIT_OR()            |
 |                                    | BIT_XOR()           |
-|                                    | STD()               |
-|                                    | VARIANCE()          |
+|                                    | COUNT()             |
 |                                    | GROUP_CONCAT()      |
+|                                    | MAX()               |
+|                                    | MEDIAN()            |
+|                                    | MIN()               |
 |                                    | SLEEP()             |
+|                                    | STD()               |
+|                                    | SUM()               |
 | Mathematical functions             | ABS()               |
-|                                    | SIN()               |
-|                                    | COS()               |
-|                                    | TAN()               |
-|                                    | COT()               |
 |                                    | ACOS()              |
 |                                    | ATAN()              |
-|                                    | SINH()              |
-|                                    | FLOOR()             |
-|                                    | ROUND()             |
 |                                    | CEIL()              |
-|                                    | POWER()             |
-|                                    | PI()                |
-|                                    | LOG()               |
-|                                    | LN()                |
-|                                    | UUID()              |
+|                                    | COS()               |
+|                                    | COT()               |
 |                                    | EXP()               |
-| Datetime functions                 | DATE_FORMAT()       |
-|                                    | YEAR()              |
-|                                    | MONTH()             |
+|                                    | FLOOR()             |
+|                                    | LN()                |
+|                                    | LOG()               |
+|                                    | PI()                |
+|                                    | POWER()             |
+|                                    | ROUND()             |
+|                                    | SIN()               |
+|                                    | SINH()              |
+|                                    | TAN()               |
+|                                    | UUID()              |
+| Datetime functions                 | CURDATE()           |
+|                                    | CURRENT_TIMESTAMP() |
 |                                    | DATE()              |
-|                                    | WEEKDAY()           |
-|                                    | TIMESTAMP()         |
+|                                    | DATE_ADD()          |
+|                                    | DATE_FORMAT()       |
+|                                    | DATE_SUB()          |
+|                                    | DATEDIFF()          |
+|                                    | DAY()               |
 |                                    | DAYOFYEAR()         |
 |                                    | EXTRACT()           |
-|                                    | DATE_ADD()          |
-|                                    | DATE_SUB()          |
-|                                    | TO_DATE()           |
-|                                    | DAY()               |
-|                                    | UNIX_TIMESTAMP()    |
 |                                    | FROM_UNIXTIME()     |
-|                                    | UTC_TIMESTAMP()     |
+|                                    | MONTH()             |
 |                                    | NOW()               |
-|                                    | CURRENT_TIMESTAMP() |
-|                                    | DATEDIFF()          |
 |                                    | TIMEDIFF()          |
-|                                    | CURDATE()           |
+|                                    | TIMESTAMP()         |
+|                                    | TO_DATE()           |
+|                                    | UNIX_TIMESTAMP()    |
+|                                    | UTC_TIMESTAMP()     |
+|                                    | WEEKDAY()           |
+|                                    | YEAR()              |
 | String functions                   | BIN()               |
 |                                    | BIT_LENGTH()        |
-|                                    | HEX()               |
+|                                    | CHAR_LENGTH()       |
 |                                    | CONCAT()            |
 |                                    | CONCAT_WS()         |
+|                                    | EMPTY()             |
+|                                    | ENDSWITH()          |
+|                                    | FIELD()             |
 |                                    | FIND_IN_SET()       |
 |                                    | FORMAT()            |
-|                                    | OCT()               |
-|                                    | EMPTY()             |
-|                                    | LENGTH()            |
-|                                    | BIT_LENGTH()        |
-|                                    | LENGTHUTF8()        |
-|                                    | CHAR_LENGTH()       |
+|                                    | HEX()               |
 |                                    | LEFT()              |
-|                                    | TRIM()              |
-|                                    | LTRIM()             |
-|                                    | RTRIM()             |
+|                                    | LENGTH()            |
+|                                    | LENGTHUTF8()        |
 |                                    | LPAD()              |
-|                                    | RPAD()              |
-|                                    | STARTSWITH()        |
-|                                    | ENDSWITH()          |
-|                                    | SUBSTRING()         |
-|                                    | SPACE()             |
+|                                    | LTRIM()             |
+|                                    | OCT()               |
 |                                    | REVERSE()           |
+|                                    | RPAD()              |
+|                                    | RTRIM()             |
+|                                    | SPACE()             |
+|                                    | STARTSWITH()        |
+|                                    | SUBSTRING()         |
 |                                    | SUBSTRING_INDEX()   |
-|                                    | FIELD()             |
+|                                    | TRIM()              |
 | Operators                          | %, MOD              |
 |                                    | +                   |
 |                                    | -                   |
