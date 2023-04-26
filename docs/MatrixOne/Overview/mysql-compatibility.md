@@ -50,7 +50,7 @@ MatrixOne SQL syntax conforms with MySQL 8.0.23 version.
 ||DROP USER|Same as MySQL.|
 ||GRANT|The syntax is the same as that of MySQL, authorization logic is different from MySQL|
 ||ROVOKE|The syntax is the same as that of MySQL, the logic of revoke permissions is different from MySQL. |
-| Database Administration Statements  | SHOW | `SHOW` statement is supported limitedly, currently only supports `SHOW ACCOUNTS`、`SHOW DATABASES`、`SHOW CREATE TABLE`、`SHOW CREATE VIEW`、`SHOW TABLES`、`SHOW INDEX`、`SHOW COLLATION`、`SHOW COLUMNS`、`SHOW FUNCTION STATUS`、`SHOW GRANT`、`SHOW ROLES`、`SHOW SEQUENCE`、`SHOW VARIABLES`、`SHOW NODE LIST` |
+| Database Administration Statements  | SHOW | `SHOW` statement is supported limitedly, currently only supports `SHOW ACCOUNTS`/`SHOW DATABASES`/`SHOW CREATE TABLE`/`SHOW CREATE VIEW`/`SHOW TABLES`/`SHOW INDEX`/`SHOW COLLATION`/`SHOW COLUMNS`/`SHOW FUNCTION STATUS`/`SHOW GRANT`/`SHOW ROLES`/`SHOW SEQUENCE`/`SHOW VARIABLES`/`SHOW NODE LIST` |
 ||SHOW GRANTS FOR USERS| Only the permissions of directly authorized roles can be seen, and the permissions of inherited roles cannot be displayed|
 | Utility Statements  | Explain | The result of explain a SQL is different with MySQL. |
 |||`json` output is not supported yet.|
