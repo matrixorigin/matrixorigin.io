@@ -8,6 +8,11 @@ You can't see the index; the index can only be used to speed up the search/query
 
 Updating a table with an index takes longer than updating a table without an index because the index also needs to be updated. Therefore, the ideal approach is to create indexes only on frequently searched columns (and tables).
 
+There are two common types of indexes, namely:
+
+- Primary Key: The primary key index, that is, the index identified on the primary key column.
+- Secondary Index: the secondary index, that is, the index identified on the non-primary key.
+
 ## **Syntax**
 
 ```
