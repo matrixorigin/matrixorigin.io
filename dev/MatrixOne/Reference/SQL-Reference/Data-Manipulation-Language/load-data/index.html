@@ -9,7 +9,7 @@
       
       
       <link rel="icon" href="../../../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.2.8">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-8.2.8">
     
     
       
@@ -1550,6 +1550,95 @@
       <a href="../../../../Deploy/deploy-MatrixOne-cluster/" class="md-nav__link">
         MatrixOne distributed cluster deployment
       </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Deploy/MatrixOne-Operator-mgmt/" class="md-nav__link">
+        MatrixOne Operator Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_5_3" type="checkbox" id="__nav_1_5_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_5_3">
+          Maintenance
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Maintenance" data-md-level="3">
+        <label class="md-nav__title" for="__nav_1_5_3">
+          <span class="md-nav__icon md-icon"></span>
+          Maintenance
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Deploy/update-MatrixOne-cluster/" class="md-nav__link">
+        Updating
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Deploy/MatrixOne-start-stop/" class="md-nav__link">
+        Starting and stopping
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Deploy/MatrixOne-cluster-Scale/" class="md-nav__link">
+        Scaling
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -3370,6 +3459,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../information-functions/current_user/" class="md-nav__link">
+        CURRENT_USER()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../information-functions/current_role/" class="md-nav__link">
+        CURRENT_ROLE()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../information-functions/last-query-id/" class="md-nav__link">
         LAST_QUERY_ID()
       </a>
@@ -4163,6 +4280,20 @@
     <li class="md-nav__item">
       <a href="../../Other/SHOW-Statements/show-grants/" class="md-nav__link">
         SHOW GRANT
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Other/SHOW-Statements/show-roles/" class="md-nav__link">
+        SHOW ROLES
       </a>
     </li>
   
@@ -7777,6 +7908,10 @@ null,wederTom,&quot;man&quot;
 <span class="c1">--  Parallel loading is disabled by default</span>
 <span class="k">load</span><span class="w"> </span><span class="k">data</span><span class="w"> </span><span class="n">infile</span><span class="w"> </span><span class="s1">&#39;file_name&#39;</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">tbl_name</span><span class="w"> </span><span class="n">FIELDS</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;|&#39;</span><span class="w"> </span><span class="n">ENCLOSED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;\&quot;&#39;</span><span class="w"> </span><span class="n">LINES</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;\n&#39;</span><span class="w"> </span><span class="k">IGNORE</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">LINES</span><span class="p">;</span>
 </code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>[PARALLEL {'TRUE' | 'FALSE'}]</code> currently only support <code>TRUE</code> or <code>FALSE</code> and are not case-sensitive.</p>
+</div>
 <p><strong>Note:</strong> If the <code>PARALLEL</code> field is not added in the <code>LOAD</code> statement, for <em>CSV</em> files, parallel loading is disabled by default; for <em>JSOLLines</em> files, parallel loading is enabled by default. If there is a line terminator in the <em>CSV</em> file, such as '\n', otherwise it may cause data errors when the file is loaded. If the file is too large, manually splitting the file from the '\n' as the starting and ending point is recommended, then enabling parallel loading.</p>
 <h2 id="supported-file-formats">Supported file formats</h2>
 <p>In MatrixOne's current release, <code>LOAD DATA</code> supports CSV(comma-separated values) format and JSONLines format file.
@@ -8075,13 +8210,13 @@ load data infile {&#39;filepath&#39;=&#39;&lt;your-local-file-path&gt;/jsonline_
       
       
         
-        <a href="../information-functions/last-query-id/" class="md-footer__link md-footer__link--next" aria-label="Next: LAST_QUERY_ID()" rel="next">
+        <a href="../information-functions/current_user/" class="md-footer__link md-footer__link--next" aria-label="Next: CURRENT_USER()" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              LAST_QUERY_ID()
+              CURRENT_USER()
             </div>
           </div>
           <div class="md-footer__button md-icon">

@@ -9,7 +9,7 @@
       
       
       <link rel="icon" href="../../../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.2.8">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-8.2.8">
     
     
       
@@ -1550,6 +1550,95 @@
       <a href="../../../../Deploy/deploy-MatrixOne-cluster/" class="md-nav__link">
         MatrixOne distributed cluster deployment
       </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Deploy/MatrixOne-Operator-mgmt/" class="md-nav__link">
+        MatrixOne Operator Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_5_3" type="checkbox" id="__nav_1_5_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_5_3">
+          Maintenance
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Maintenance" data-md-level="3">
+        <label class="md-nav__title" for="__nav_1_5_3">
+          <span class="md-nav__icon md-icon"></span>
+          Maintenance
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Deploy/update-MatrixOne-cluster/" class="md-nav__link">
+        Updating
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Deploy/MatrixOne-start-stop/" class="md-nav__link">
+        Starting and stopping
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Deploy/MatrixOne-cluster-Scale/" class="md-nav__link">
+        Scaling
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -3268,6 +3357,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../Data-Manipulation-Language/information-functions/current_user/" class="md-nav__link">
+        CURRENT_USER()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Data-Manipulation-Language/information-functions/current_role/" class="md-nav__link">
+        CURRENT_ROLE()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../Data-Manipulation-Language/information-functions/last-query-id/" class="md-nav__link">
         LAST_QUERY_ID()
       </a>
@@ -4061,6 +4178,20 @@
     <li class="md-nav__item">
       <a href="../../Other/SHOW-Statements/show-grants/" class="md-nav__link">
         SHOW GRANT
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Other/SHOW-Statements/show-roles/" class="md-nav__link">
+        SHOW ROLES
       </a>
     </li>
   
@@ -7454,6 +7585,11 @@
 <p>Create indexes on tables to query data more quickly and efficiently.</p>
 <p>You can't see the index; the index can only be used to speed up the search/query.</p>
 <p>Updating a table with an index takes longer than updating a table without an index because the index also needs to be updated. Therefore, the ideal approach is to create indexes only on frequently searched columns (and tables).</p>
+<p>There are two common types of indexes, namely:</p>
+<ul>
+<li>Primary Key: The primary key index, that is, the index identified on the primary key column.</li>
+<li>Secondary Index: the secondary index, that is, the index identified on the non-primary key.</li>
+</ul>
 <h2 id="syntax"><strong>Syntax</strong></h2>
 <div class="highlight"><pre><span></span><code>&gt; CREATE [UNIQUE] INDEX index_name
 ON tbl_name (key_part,...)

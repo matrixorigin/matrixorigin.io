@@ -9,7 +9,7 @@
       
       
       <link rel="icon" href="../../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.2.8">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-8.2.8">
     
     
       
@@ -760,6 +760,13 @@
         <li class="md-nav__item">
   <a href="#table" class="md-nav__link">
     Table
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#index" class="md-nav__link">
+    Index
   </a>
   
 </li>
@@ -1664,6 +1671,95 @@
       <a href="../../../Deploy/deploy-MatrixOne-cluster/" class="md-nav__link">
         MatrixOne distributed cluster deployment
       </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Deploy/MatrixOne-Operator-mgmt/" class="md-nav__link">
+        MatrixOne Operator Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_5_3" type="checkbox" id="__nav_1_5_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_5_3">
+          Maintenance
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Maintenance" data-md-level="3">
+        <label class="md-nav__title" for="__nav_1_5_3">
+          <span class="md-nav__icon md-icon"></span>
+          Maintenance
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Deploy/update-MatrixOne-cluster/" class="md-nav__link">
+        Updating
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Deploy/MatrixOne-start-stop/" class="md-nav__link">
+        Starting and stopping
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Deploy/MatrixOne-cluster-Scale/" class="md-nav__link">
+        Scaling
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -3295,6 +3391,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/information-functions/current_user/" class="md-nav__link">
+        CURRENT_USER()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/information-functions/current_role/" class="md-nav__link">
+        CURRENT_ROLE()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/information-functions/last-query-id/" class="md-nav__link">
         LAST_QUERY_ID()
       </a>
@@ -4088,6 +4212,20 @@
     <li class="md-nav__item">
       <a href="../../../Reference/SQL-Reference/Other/SHOW-Statements/show-grants/" class="md-nav__link">
         SHOW GRANT
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/SQL-Reference/Other/SHOW-Statements/show-roles/" class="md-nav__link">
+        SHOW ROLES
       </a>
     </li>
   
@@ -7433,6 +7571,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#index" class="md-nav__link">
+    Index
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#other-supported-logical-objects" class="md-nav__link">
     Other supported logical objects
   </a>
@@ -7516,6 +7661,14 @@
 <h2 id="table">Table</h2>
 <p>A table is a collection of related data in a database.</p>
 <p>Each table consists of rows and columns. Each value in a row belongs to a specific column. Each column allows only a single data type. To further qualify columns, you can add some constraints.</p>
+<h2 id="index">Index</h2>
+<p>An index is a data structure used to find data in database tables quickly. It can be seen as a 'table of contents' that contains pointers to the data of each row in the table, making it possible for queries to locate data that meets specific conditions more quickly.</p>
+<p>The indexes commonly used in databases include primary key indexes, secondary indexes, etc. Among them, unique indexes are used to ensure the uniqueness of specific columns or combinations of columns, ordinary indexes are used to improve query performance, and full-text indexes are used for full-text search in text data.</p>
+<p>There are two common types of indexes, namely:</p>
+<ul>
+<li><strong>Primary Key</strong>: Primary key index, that is, the index that identifies the primary key column. The primary key index uniquely identifies each row of data in the table.</li>
+<li><strong>Secondary index</strong>: Secondary index is the index identified on the non-primary key. The secondary index, also called a non-clustered index, is used to improve query performance and speed up data retrieval.</li>
+</ul>
 <h2 id="other-supported-logical-objects">Other supported logical objects</h2>
 <p>MatrixOne supports the following logical objects at the same level as table:</p>
 <ul>

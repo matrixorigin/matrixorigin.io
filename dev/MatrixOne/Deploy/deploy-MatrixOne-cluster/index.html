@@ -9,7 +9,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.2.8">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-8.2.8">
     
     
       
@@ -1734,7 +1734,7 @@
         
           <li class="md-nav__item">
   <a href="#installing-the-matrixone-operator" class="md-nav__link">
-    Installing the matrixone-operator
+    Installing the MatrixOne-Operator
   </a>
   
 </li>
@@ -1762,6 +1762,95 @@
   
 </nav>
       
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MatrixOne-Operator-mgmt/" class="md-nav__link">
+        MatrixOne Operator Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_5_3" type="checkbox" id="__nav_1_5_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_5_3">
+          Maintenance
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Maintenance" data-md-level="3">
+        <label class="md-nav__title" for="__nav_1_5_3">
+          <span class="md-nav__icon md-icon"></span>
+          Maintenance
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../update-MatrixOne-cluster/" class="md-nav__link">
+        Updating
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MatrixOne-start-stop/" class="md-nav__link">
+        Starting and stopping
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MatrixOne-cluster-Scale/" class="md-nav__link">
+        Scaling
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -3393,6 +3482,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/information-functions/current_user/" class="md-nav__link">
+        CURRENT_USER()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/information-functions/current_role/" class="md-nav__link">
+        CURRENT_ROLE()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/information-functions/last-query-id/" class="md-nav__link">
         LAST_QUERY_ID()
       </a>
@@ -4186,6 +4303,20 @@
     <li class="md-nav__item">
       <a href="../../Reference/SQL-Reference/Other/SHOW-Statements/show-grants/" class="md-nav__link">
         SHOW GRANT
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Reference/SQL-Reference/Other/SHOW-Statements/show-roles/" class="md-nav__link">
+        SHOW ROLES
       </a>
     </li>
   
@@ -7661,7 +7792,7 @@
         
           <li class="md-nav__item">
   <a href="#installing-the-matrixone-operator" class="md-nav__link">
-    Installing the matrixone-operator
+    Installing the MatrixOne-Operator
   </a>
   
 </li>
@@ -7735,7 +7866,7 @@
 <p>To prepare the cluster environment, you need to do the following:</p>
 <ul>
 <li>Have three VirtualBox virtual machines</li>
-<li>Use Ubuntu 20.04 as the operating system (by default, it does not allow root account remote login, so you need to modify the configuration file for sshd in advance to enable remote login for root). Two machines will be used for deploying Kubernetes and other dependencies for MatrixOne, while the third will act as a jump host to set up the Kubernetes cluster.</li>
+<li>Use CentOS 7.9 as the operating system (by default, it does allow root account remote login). Two machines will be used for deploying Kubernetes and other dependencies for MatrixOne, while the third will act as a jump host to set up the Kubernetes cluster.</li>
 </ul>
 <p>The specific distribution of the machines is shown below:</p>
 <table>
@@ -7783,28 +7914,30 @@
 <li>Installing Docker</li>
 </ul>
 <p>Since Docker will be used, the environment must have Docker installed. Use the following command to install and start Docker on the jump server:</p>
-<div class="highlight"><pre><span></span><code>sudo apt-get update &amp;&amp; sudo apt-get install -y docker.io
+<div class="highlight"><pre><span></span><code>curl -sSL https://get.docker.io/ | sh
+#You can use the following domestic mirror address if the trained network is limited.
+curl -sSL https://get.daocloud.io/docker | sh
 </code></pre></div>
 <p>Once the environment is prepared, Kuboard Spray can be deployed.</p>
 <h4 id="deploying-kuboard-spray"><strong>Deploying Kuboard Spray</strong></h4>
 <p>Execute the following command to install Kuboard Spray:</p>
 <div class="highlight"><pre><span></span><code>docker run -d \
-  --privileged \
-  --restart=unless-stopped \
-  --name=kuboard-spray \
-  -p 80:80/tcp \
-  -v /var/run/docker.sock:/var/run/docker.sock \
-  -v ~/kuboard-spray-data:/data \
+  --privileged \
+  --restart=unless-stopped \
+  --name=kuboard-spray \
+  -p 80:80/tcp \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  -v ~/kuboard-spray-data:/data \
   eipwork/kuboard-spray:v1.2.2-amd64
 </code></pre></div>
 <p>If the image pull fails due to network issues, use the backup address below:</p>
 <div class="highlight"><pre><span></span><code>docker run -d \
-  --privileged \
-  --restart=unless-stopped \
-  --name=kuboard-spray \
-  -p 80:80/tcp \
-  -v /var/run/docker.sock:/var/run/docker.sock \
-  -v ~/kuboard-spray-data:/data \
+  --privileged \
+  --restart=unless-stopped \
+  --name=kuboard-spray \
+  -p 80:80/tcp \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  -v ~/kuboard-spray-data:/data \
   swr.cn-east-2.myhuaweicloud.com/kuboard/kuboard-spray:latest-amd64
 </code></pre></div>
 <p>After executing the command, open the Kuboard Spray web interface by entering <code>http://192.168.56.9</code> (jump server IP address) in a web browser, then log in to the Kuboard Spray interface using the username <code>admin</code> and the default password <code>Kuboard123</code>, as shown below:</p>
@@ -7890,7 +8023,9 @@
 <ol>
 <li>
 <p>Download the Helm installation package:</p>
-<div class="highlight"><pre><span></span><code>wget https://get.helm.sh/helm-v3.10.2-linux-amd64.tar.gz
+<div class="highlight"><pre><span></span><code>wget https://get.helm.sh/helm-v3.10.2-linux-amd64.tar.gz
+#You can use the following domestic mirror address if the trained network is limited.
+wget https://mirrors.huaweicloud.com/helm/v3.10.2/helm-v3.10.2-linux-amd64.tar.gz
 </code></pre></div>
 <p>If the download is slow due to network issues, you can download the latest binary installation package from the official website and upload it to the server.</p>
 </li>
@@ -7954,38 +8089,42 @@ helm install --create-namespace --namespace mostorage --set resources.requests.m
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <ul>
-<li><code>--set resources.requests.memory=512Mi</code> sets the minimum memory consumption of MinIO</li>
+<li>
+<p><code>--set resources.requests.memory=512Mi</code> sets the minimum memory consumption of MinIO</p>
+<ul>
 <li><code>--set persistence.size=1G</code> sets the storage size of MinIO to 1G</li>
 <li><code>--set rootUser=rootuser,rootPassword=rootpass123</code> the parameters set for rootUser and rootPassword are required for creating the secrets file for the Kubernetes cluster later, so use something that you can remember.</li>
+</ul>
+</li>
 </ul>
 </div>
 </li>
 <li>
 <p>After a successful installation and start, the command line should display as follows:</p>
 <p><img alt="" src="https://github.com/matrixorigin/artwork/blob/main/docs/deploy/deploy-mo-cluster-12.png?raw=true" /></p>
-<p>Then, execute the following command line to connect mo-log to port 9000:</p>
-<div class="highlight"><pre><span></span><code>nohup kubectl port-forward --address 0.0.0.0 pod-name -n most storage 9000:9000 &amp;
+<p>Then, run the following command line to set the POD_NAME variable and connect mostorage to port 9000:</p>
+<div class="highlight"><pre><span></span><code>export POD_NAME=$(kubectl get pods --namespace mostorage -l &quot;release=minio&quot; -o jsonpath=&quot;{.items[0].metadata.name}&quot;)
+nohup kubectl port-forward --address 0.0.0.0 pod-name -n most storage 9000:9000 &amp;
 </code></pre></div>
 </li>
 <li>
-<p>After starting, you can log in to the MinIO page using the IP address of any machine in the Kubernetes cluster and port 32001. As shown in the following figure, the account password is the <code>rootUser</code> and <code>rootPassword</code> set in the previous step, i.e., <code>--set rootUser=rootuser,rootPassword=rootpass123</code>:</p>
+<p>After startup, use <a href="http://192.168.56.10:32001">http://192.168.56.10:32001</a> to log in to the MinIO page and create object storage information. As shown in the figure below, the account password is the rootUser and rootPassword set by <code>--set rootUser=rootuser,rootPassword=rootpass123</code> in the above steps:</p>
 <p><img alt="" src="https://github.com/matrixorigin/artwork/blob/main/docs/deploy/deploy-mo-cluster-13.png?raw=true" /></p>
 </li>
 <li>
 <p>After logging in, you need to create object storage related information:</p>
-<p>a. Fill in the <strong>Bucket Name</strong> with <strong>minio-mo</strong> under <strong>Bucket &gt; Create Bucket</strong>. After filling it in, click the <strong>Create Bucket</strong> button at the bottom right.</p>
+<p>Fill in the <strong>Bucket Name</strong> with <strong>minio-mo</strong> under <strong>Bucket &gt; Create Bucket</strong>. After filling it in, click the <strong>Create Bucket</strong> button at the bottom right.</p>
 <p><img alt="" src="https://github.com/matrixorigin/artwork/blob/main/docs/deploy/deploy-mo-cluster-14.png?raw=true" /></p>
-<p>b. In the current <strong>minio-mo</strong> bucket, click <strong>Choose or create a new path</strong>, and fill in the name <strong>test</strong> in the <strong>New Folder Path</strong> field. After filling it in, click <strong>Create</strong> to complete the creation.</p>
-<p><img alt="" src="https://github.com/matrixorigin/artwork/blob/main/docs/deploy/deploy-mo-cluster-15.png?raw=true" /></p>
 </li>
 </ol>
 <h2 id="5-deploying-a-matrixone-cluster"><strong>5. Deploying a MatrixOne Cluster</strong></h2>
 <p>This section will guide you through the process of deploying a MatrixOne cluster.</p>
 <p><strong>Note:</strong> All steps in this section are performed on the master0 node.</p>
-<h3 id="installing-the-matrixone-operator"><strong>Installing the matrixone-operator</strong></h3>
-<p>Use the following command to install the matrixone-operator:</p>
-<div class="highlight"><pre><span></span><code>wget https://github.com/matrixorigin/matrixone-operator/releases/download/0.7.0-alpha.1/matrixone-operator-0.7.0-alpha.1.tgz
-tar -xvf matrixone-operator-0.7.0-alpha.1.tgz
+<h3 id="installing-the-matrixone-operator"><strong>Installing the MatrixOne-Operator</strong></h3>
+<p><a href="https://github.com/matrixorigin/matrixone-operator">MatrixOne Operator</a> is an independent software tool for deploying and managing MatrixOne clusters on Kubernetes. In the <a href="https://github.com/matrixorigin/matrixone-operator/releases">Releases</a> of the project, you need always select the latest operator release package for installation.</p>
+<p>Use the following command to install the matrixone-operator at node master0 :</p>
+<div class="highlight"><pre><span></span><code>wget https://github.com/matrixorigin/matrixone-operator/releases/download/0.7.0-alpha.4/matrixone-operator-0.7.0-alpha.4.tgz
+tar -xvf matrixone-operator-0.7.0-alpha.4.tgz
 cd /root/matrixone-operator/
 helm install --create-namespace --namespace mo-hn matrixone-operator ./ --dependency-update
 </code></pre></div>
@@ -8027,7 +8166,7 @@ spec:
     sharedStorage:
       s3:
         type: minio
-        path: minio
+        path: minio #The path of the minio storage bucket defined above
         endpoint: http://minio.mostorage:9000
         secretRef:
           name: minio
@@ -8041,6 +8180,7 @@ spec:
       max-size = 512
   tp:
     serviceType: NodePort
+    nodePort: 31474 #Forward to a fixed port on the external network; the K8s default port range is within 30000-32767
     config: |
       [cn.Engine]
       type = &quot;distributed-tae&quot;
@@ -8048,8 +8188,8 @@ spec:
       level = &quot;debug&quot;
       format = &quot;json&quot;
       max-size = 512
-    replicas: 1
-  version: nightly-556de418
+    replicas: 1 #Number of CN
+  version: 0.7.0 #MatrixOne mirror version, derived from the mirror number on Dockerhub
   imageRepository: matrixorigin/matrixone
   imagePullPolicy: Always
 </code></pre></div>
@@ -8137,13 +8277,13 @@ mysql&gt;
       
       
         
-        <a href="../../Tutorial/develop-java-crud-demo/" class="md-footer__link md-footer__link--next" aria-label="Next: Build a Java CRUD demo" rel="next">
+        <a href="../MatrixOne-Operator-mgmt/" class="md-footer__link md-footer__link--next" aria-label="Next: MatrixOne Operator Management" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Build a Java CRUD demo
+              MatrixOne Operator Management
             </div>
           </div>
           <div class="md-footer__button md-icon">

@@ -9,7 +9,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.2.8">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-8.2.8">
     
     
       
@@ -1550,6 +1550,95 @@
       <a href="../../Deploy/deploy-MatrixOne-cluster/" class="md-nav__link">
         MatrixOne distributed cluster deployment
       </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deploy/MatrixOne-Operator-mgmt/" class="md-nav__link">
+        MatrixOne Operator Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_5_3" type="checkbox" id="__nav_1_5_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_5_3">
+          Maintenance
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Maintenance" data-md-level="3">
+        <label class="md-nav__title" for="__nav_1_5_3">
+          <span class="md-nav__icon md-icon"></span>
+          Maintenance
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deploy/update-MatrixOne-cluster/" class="md-nav__link">
+        Updating
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deploy/MatrixOne-start-stop/" class="md-nav__link">
+        Starting and stopping
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deploy/MatrixOne-cluster-Scale/" class="md-nav__link">
+        Scaling
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -3183,6 +3272,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../SQL-Reference/Data-Manipulation-Language/information-functions/current_user/" class="md-nav__link">
+        CURRENT_USER()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SQL-Reference/Data-Manipulation-Language/information-functions/current_role/" class="md-nav__link">
+        CURRENT_ROLE()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../SQL-Reference/Data-Manipulation-Language/information-functions/last-query-id/" class="md-nav__link">
         LAST_QUERY_ID()
       </a>
@@ -3976,6 +4093,20 @@
     <li class="md-nav__item">
       <a href="../SQL-Reference/Other/SHOW-Statements/show-grants/" class="md-nav__link">
         SHOW GRANT
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SQL-Reference/Other/SHOW-Statements/show-roles/" class="md-nav__link">
+        SHOW ROLES
       </a>
     </li>
   
@@ -7865,7 +7996,7 @@ The other system databases and table functions are described in this document.</
 <tr>
 <td>dat_id</td>
 <td>bigint unsigned</td>
-<td>Primary key</td>
+<td>Primary key ID</td>
 </tr>
 <tr>
 <td>datname</td>
@@ -7902,6 +8033,11 @@ The other system databases and table functions are described in this document.</
 <td>int unsigned</td>
 <td>Account id</td>
 </tr>
+<tr>
+<td>dat_type</td>
+<td>varchar(23)</td>
+<td>Database type, common library or subscription library</td>
+</tr>
 </tbody>
 </table>
 <h3 id="mo_tables-table">mo_tables table</h3>
@@ -7917,7 +8053,7 @@ The other system databases and table functions are described in this document.</
 <tr>
 <td>rel_id</td>
 <td>bigint unsigned</td>
-<td>Primary key</td>
+<td>Primary key, table ID</td>
 </tr>
 <tr>
 <td>relname</td>
@@ -7980,9 +8116,19 @@ The other system databases and table functions are described in this document.</
 <td>Partition by statement</td>
 </tr>
 <tr>
+<td>partition_info</td>
+<td>blob</td>
+<td>the information of partition</td>
+</tr>
+<tr>
 <td>viewdef</td>
 <td>blob</td>
 <td>View definition statement</td>
+</tr>
+<tr>
+<td>constraint</td>
+<td>varchar(5000)</td>
+<td>Table related constraints</td>
 </tr>
 </tbody>
 </table>
@@ -8101,6 +8247,11 @@ The other system databases and table functions are described in this document.</
 <td>varchar(1024)</td>
 <td>update expression</td>
 </tr>
+<tr>
+<td>attr_is_clusterby</td>
+<td>tinyint(1)</td>
+<td>Whether this column is used as the cluster by keyword to create the table</td>
+</tr>
 </tbody>
 </table>
 <h3 id="mo_account-table-only-visible-for-sys-account">mo_account table (Only visible for <code>sys</code> account)</h3>
@@ -8116,7 +8267,7 @@ The other system databases and table functions are described in this document.</
 <tr>
 <td>account_id</td>
 <td>int unsigned</td>
-<td>account id</td>
+<td>account id, primary key</td>
 </tr>
 <tr>
 <td>account_name</td>
@@ -8143,6 +8294,11 @@ The other system databases and table functions are described in this document.</
 <td>TIMESTAMP</td>
 <td>Time of the account's status is changed</td>
 </tr>
+<tr>
+<td>version</td>
+<td>bigint unsigned</td>
+<td>the version status of the current account</td>
+</tr>
 </tbody>
 </table>
 <h3 id="mo_role-table">mo_role table</h3>
@@ -8158,7 +8314,7 @@ The other system databases and table functions are described in this document.</
 <tr>
 <td>role_id</td>
 <td>int unsigned</td>
-<td>role id</td>
+<td>role id, primary key</td>
 </tr>
 <tr>
 <td>role_name</td>
@@ -8200,7 +8356,7 @@ The other system databases and table functions are described in this document.</
 <tr>
 <td>user_id</td>
 <td>int</td>
-<td>user id</td>
+<td>user id, primary key</td>
 </tr>
 <tr>
 <td>user_host</td>
@@ -8267,12 +8423,12 @@ The other system databases and table functions are described in this document.</
 <tr>
 <td>role_id</td>
 <td>int unsigned</td>
-<td>role id</td>
+<td>ID of the authorized role, associated primary key</td>
 </tr>
 <tr>
 <td>user_id</td>
 <td>int unsigned</td>
-<td>user id</td>
+<td>Obtain the user ID of the authorized role and associate the primary key</td>
 </tr>
 <tr>
 <td>granted_time</td>
@@ -8282,7 +8438,7 @@ The other system databases and table functions are described in this document.</
 <tr>
 <td>with_grant_option</td>
 <td>bool</td>
-<td>If permission granting is permitted</td>
+<td>Whether to allow an authorized user to license to another user or role</td>
 </tr>
 </tbody>
 </table>
@@ -8299,12 +8455,12 @@ The other system databases and table functions are described in this document.</
 <tr>
 <td>granted_id</td>
 <td>int</td>
-<td>the role id being granted</td>
+<td>the role id being granted, associated primary key</td>
 </tr>
 <tr>
 <td>grantee_id</td>
 <td>int</td>
-<td>the role id to grant others</td>
+<td>the role id to grant others, associated primary key</td>
 </tr>
 <tr>
 <td>operation_role_id</td>
@@ -8324,7 +8480,7 @@ The other system databases and table functions are described in this document.</
 <tr>
 <td>with_grant_option</td>
 <td>bool</td>
-<td>If permission granting is permitted</td>
+<td>Whether to allow an authorized role to be authorized to another user or role</td>
 </tr>
 </tbody>
 </table>
@@ -8341,7 +8497,7 @@ The other system databases and table functions are described in this document.</
 <tr>
 <td>role_id</td>
 <td>int</td>
-<td>role id</td>
+<td>role id, associated primary key</td>
 </tr>
 <tr>
 <td>role_name</td>
@@ -8351,17 +8507,17 @@ The other system databases and table functions are described in this document.</
 <tr>
 <td>obj_type</td>
 <td>varchar(16)</td>
-<td>object type: account/database/table</td>
+<td>object type: account/database/table, associated primary key</td>
 </tr>
 <tr>
 <td>obj_id</td>
 <td>bigint unsigned</td>
-<td>object id</td>
+<td>object id, associated primary key</td>
 </tr>
 <tr>
 <td>privilege_id</td>
 <td>int</td>
-<td>privilege id</td>
+<td>privilege id, associated primary key</td>
 </tr>
 <tr>
 <td>privilege_name</td>
@@ -8371,7 +8527,7 @@ The other system databases and table functions are described in this document.</
 <tr>
 <td>privilege_level</td>
 <td>varchar(100)</td>
-<td>level of privileges</td>
+<td>level of privileges, associated primary key</td>
 </tr>
 <tr>
 <td>operation_user_id</td>
@@ -9183,7 +9339,7 @@ The other system databases and table functions are described in this document.</
 <li><code>TABLE_SCHEMA</code>: The name of the database to which the view belongs.</li>
 <li><code>TABLE_NAME</code>: The name of the view.</li>
 <li><code>VIEW_DEFINITION</code>: The <code>SELECT</code> statement that provides the view definition. It contains most of what you see in the "Create Table" column generated by <code>SHOW Create VIEW</code>.</li>
-<li><code>CHECK_OPTION</code>: The value of the <code>CHECK_OPTION</code> property. Values ​​are <code>NONE</code>, <code>CASCADE</code>, or <code>LOCAL</code>.</li>
+<li><code>CHECK_OPTION</code>: The value of the <code>CHECK_OPTION</code> property. Values are <code>NONE</code>, <code>CASCADE</code>, or <code>LOCAL</code>.</li>
 <li><code>IS_UPDATABLE</code>: Set a flag called the view updatable flag when <code>CREATE VIEW</code>; if UPDATE and DELETE (and similar operations) are legal for the view, the flag is set to <code>YES(true)</code>. Otherwise, the flag is set to <code>NO(false)</code>.</li>
 <li><code>DEFINER</code>: The account of the user who created the view, in the format <code>username@hostname</code>.</li>
 <li><code>SECURITY_TYPE</code>: View the <code>SQL SECURITY</code> attribute. Values ​​are <code>DEFINER</code> or <code>INVOKER</code>.</li>

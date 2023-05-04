@@ -9,7 +9,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.2.8">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-8.2.8">
     
     
       
@@ -1562,6 +1562,95 @@
       <a href="../../Deploy/deploy-MatrixOne-cluster/" class="md-nav__link">
         MatrixOne distributed cluster deployment
       </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deploy/MatrixOne-Operator-mgmt/" class="md-nav__link">
+        MatrixOne Operator Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_5_3" type="checkbox" id="__nav_1_5_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_5_3">
+          Maintenance
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Maintenance" data-md-level="3">
+        <label class="md-nav__title" for="__nav_1_5_3">
+          <span class="md-nav__icon md-icon"></span>
+          Maintenance
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deploy/update-MatrixOne-cluster/" class="md-nav__link">
+        Updating
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deploy/MatrixOne-start-stop/" class="md-nav__link">
+        Starting and stopping
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deploy/MatrixOne-cluster-Scale/" class="md-nav__link">
+        Scaling
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -3193,6 +3282,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/information-functions/current_user/" class="md-nav__link">
+        CURRENT_USER()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/information-functions/current_role/" class="md-nav__link">
+        CURRENT_ROLE()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/information-functions/last-query-id/" class="md-nav__link">
         LAST_QUERY_ID()
       </a>
@@ -3986,6 +4103,20 @@
     <li class="md-nav__item">
       <a href="../../Reference/SQL-Reference/Other/SHOW-Statements/show-grants/" class="md-nav__link">
         SHOW GRANT
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Reference/SQL-Reference/Other/SHOW-Statements/show-roles/" class="md-nav__link">
+        SHOW ROLES
       </a>
     </li>
   
@@ -7373,7 +7504,7 @@
 <tr>
 <td></td>
 <td>ALTER</td>
-<td>Not supported now.</td>
+<td><code>ALTER TABLE</code> is only partially supported</td>
 </tr>
 <tr>
 <td></td>
@@ -7389,6 +7520,21 @@
 <td></td>
 <td>CREAT VIEW</td>
 <td>The <code>with check option</code> clause is not supported yet.</td>
+</tr>
+<tr>
+<td></td>
+<td>DROP VIEW</td>
+<td>Same as MySQL.</td>
+</tr>
+<tr>
+<td></td>
+<td>CREAT SEQUENCE</td>
+<td>Same as MySQL.</td>
+</tr>
+<tr>
+<td></td>
+<td>DROP SEQUENCE</td>
+<td>Same as MySQL.</td>
 </tr>
 <tr>
 <td>Data Manipulation Language (DML)</td>
@@ -7418,11 +7564,6 @@
 <tr>
 <td></td>
 <td></td>
-<td>ON DUPLICATE KEY UPDATE is not supported  now.</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
 <td>DELAYED is not supported now.</td>
 </tr>
 <tr>
@@ -7443,7 +7584,7 @@
 <tr>
 <td></td>
 <td></td>
-<td>Distinct is limitedly support.</td>
+<td>Distinct is limitedly supported.</td>
 </tr>
 <tr>
 <td></td>
@@ -7501,9 +7642,64 @@
 <td>Non-scalar subquery is supported limitedly.</td>
 </tr>
 <tr>
+<td>Data Control Language</td>
+<td>CREATE ACCOUNT</td>
+<td>MatrixOne creates a cluster account, the syntax is the same as MySQL, and the account resource isolation logic is different from MySQL</td>
+</tr>
+<tr>
+<td></td>
+<td>CREATE ROLE</td>
+<td>Same as MySQL.</td>
+</tr>
+<tr>
+<td></td>
+<td>CREATE USER</td>
+<td>Same as MySQL.L</td>
+</tr>
+<tr>
+<td></td>
+<td>ALTER ACCOUNT</td>
+<td>The syntax is the same as that of MySQL, currently only supports changing passwords and pausing and restoring account operations</td>
+</tr>
+<tr>
+<td></td>
+<td>ALTER USER</td>
+<td>Same as MySQL. Currently only account administrators or system administrators are supported to modify user passwords, and only one user's password can be modified at a time.</td>
+</tr>
+<tr>
+<td></td>
+<td>DROP ACCOUNT</td>
+<td>Same as MySQL.</td>
+</tr>
+<tr>
+<td></td>
+<td>DROP ROLE</td>
+<td>Same as MySQL.</td>
+</tr>
+<tr>
+<td></td>
+<td>DROP USER</td>
+<td>Same as MySQL.</td>
+</tr>
+<tr>
+<td></td>
+<td>GRANT</td>
+<td>The syntax is the same as that of MySQL, authorization logic is different from MySQL</td>
+</tr>
+<tr>
+<td></td>
+<td>ROVOKE</td>
+<td>The syntax is the same as that of MySQL, the logic of revoke permissions is different from MySQL.</td>
+</tr>
+<tr>
 <td>Database Administration Statements</td>
 <td>SHOW</td>
-<td><code>SHOW</code> statement is supported limitedly.</td>
+<td><code>SHOW</code> statement is supported limitedly, currently only supports <code>SHOW ACCOUNTS</code>/<code>SHOW DATABASES</code>/<code>SHOW CREATE TABLE</code>/<code>SHOW CREATE VIEW</code>/<code>SHOW TABLES</code>/<code>SHOW INDEX</code>/<code>SHOW COLLATION</code>/<code>SHOW COLUMNS</code>/<code>SHOW FUNCTION STATUS</code>/<code>SHOW GRANT</code>/<code>SHOW ROLES</code>/<code>SHOW SEQUENCE</code>/<code>SHOW VARIABLES</code>/<code>SHOW NODE LIST</code></td>
+</tr>
+<tr>
+<td></td>
+<td>SHOW GRANTS FOR USERS</td>
+<td>Only the permissions of directly authorized roles can be seen, and the permissions of inherited roles cannot be displayed</td>
 </tr>
 <tr>
 <td>Utility Statements</td>
@@ -7517,27 +7713,32 @@
 </tr>
 <tr>
 <td></td>
+<td>PREPARED</td>
+<td>Support <code>PREPARE</code>/<code>EXCUTE</code>/<code>DEALLOCATE</code></td>
+</tr>
+<tr>
+<td></td>
 <td>Other statements</td>
 <td>Not supported now.</td>
 </tr>
 <tr>
 <td>Data Types</td>
-<td>Boolean</td>
+<td>BOOLEAN</td>
 <td>Different from MySQL's boolean which is the same as int , MatrixOne's boolean is a new type, its value can only be true or false.</td>
 </tr>
 <tr>
 <td></td>
-<td>Int/Bigint/Smallint/Tinyint</td>
+<td>INT/BIGINT/SMALLINT/TINYINT/INT UNSIGNED/BIGINT UNSIGNED</td>
 <td>Same as MySQL.</td>
 </tr>
 <tr>
 <td></td>
-<td>char/varchar</td>
+<td>CHAR/VARCHAR/BINARY/VARBINARY/TEXT/BLOB/ENUM</td>
 <td>Same as MySQL.</td>
 </tr>
 <tr>
 <td></td>
-<td>Float/double</td>
+<td>FLOAT/DOUBLE</td>
 <td>The precision is a bit different with MySQL.</td>
 </tr>
 <tr>
@@ -7547,17 +7748,22 @@
 </tr>
 <tr>
 <td></td>
-<td>Date</td>
+<td>DATE</td>
 <td>Only 'YYYY-MM-DD' and 'YYYYMMDD' formats are supported.</td>
 </tr>
 <tr>
 <td></td>
-<td>Datetime</td>
+<td>DATETIME</td>
 <td>Only 'YYYY-MM-DD HH:MM:SS' and 'YYYYMMDD HH:MM:SS' formats are supported.</td>
 </tr>
 <tr>
 <td></td>
-<td>Timestamp</td>
+<td>TIMESTAMP</td>
+<td>Same as MySQL.</td>
+</tr>
+<tr>
+<td></td>
+<td>JSON</td>
 <td>Same as MySQL.</td>
 </tr>
 <tr>
@@ -7602,8 +7808,8 @@
 </tr>
 <tr>
 <td></td>
-<td>any_value</td>
-<td>Any_value is an aggregate function in MatrixOne. Cannot be used in group by or filter condition.</td>
+<td>ANY_VALUE</td>
+<td>ANY_VALUE is an aggregate function in MatrixOne. Cannot be used in group by or filter condition.</td>
 </tr>
 <tr>
 <td></td>
@@ -7612,7 +7818,7 @@
 </tr>
 <tr>
 <td></td>
-<td>to_date</td>
+<td>TO_DATE</td>
 <td>Only constants are supported for date entries</td>
 </tr>
 <tr>
