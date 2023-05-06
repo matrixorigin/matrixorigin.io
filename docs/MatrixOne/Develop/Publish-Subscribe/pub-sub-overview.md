@@ -35,8 +35,8 @@ This chapter will give an example to introduce that there are currently three ac
 2. **Subscriber**: both *acc1* and *acc2* create a subscription database *syssub1*, and thus get the shared table *t1*:
 
     ```sql
-    -- The SQL statements for *acc1* and *acc2* to create the subscription library are the same, so there won’t repeat them
-    create database syssub1 from *sys* publication pub1;
+    -- The SQL statements for acc1 and acc2 to create the subscription library are the same, so there will not repeat them
+    create database syssub1 from sys publication pub1;
     use syssub1;
     show tables;
     mysql> show tables;
@@ -105,7 +105,7 @@ This chapter will give an example to introduce that there are currently three ac
     alter publication pub2 account all;
     ```
 
-8. **Subscriber**: Both *acc2* successfully created the subscription database *syssub2*, and got the shared data table *t1*:
+8. **Subscriber**: *acc2* successfully created the subscription database *syssub2*, and got the shared data table *t1*:
 
     ```sql
     create database syssub2 from sys publication pub2;
