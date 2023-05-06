@@ -88,6 +88,14 @@ The computing node (CN) is a component of Matrixone that accesses user requests 
 
 The streaming engine is a new component to ease the ETL process from OLTP to OLAP. It is planned in the MatrixOne roadmap but not implemented yet.
 
+### **Proxy**
+
+The Proxy component is a powerful tool mainly used for load balancing and SQL routing. It has the following functions:
+
+- Through SQL routing, resource isolation between different tenants is realized, ensuring that the CNs of different tenants will not affect each other.
+- Through SQL routing, users can do a second split in the resource group of the same tenant, improving resource utilization.
+- The load balancing between different CNs is realized in the second split resource group, making the system more stable and efficient.
+
 ## **MatrixOne Features**
 
 In MatrixOne, it has the following features to make you more efficient in the process of using MatrixOne:
@@ -105,6 +113,26 @@ Optimistic transactions can achieve better performance in a distributed architec
 ### **Cloud Native**
 
 MatrixOne is a cloud-native database. From the storage layer, it adapts to various storage methods such as local disks, AWS S3, and NFS and realizes non-aware management of multiple types of storage through File service. MatrixOne clusters can run stably in a variety of infrastructure environments, can adapt to private enterprise clouds, and provide services in different public cloud vendor environments.
+
+### **Load Balancing**
+
+Under the distributed database architecture, load differences inevitably exist between different nodes, which may lead to performance bottlenecks in specific business scenarios or idle computing resources. Therefore, to ensure that other nodes are kept as close as possible in resource allocation, MatrixOne implements the load-balancing function of computing resources.
+
+### **SQL Routing**
+
+SQL routing is often used in early sub-database and sub-table database scenarios. It determines which instance/library/table to send the request to according to the data distribution after receiving an SQL request.
+
+In MatrixOne, although the capacity of the storage engine no longer limits the size of the database, under the multi-CN architecture, there are still scenarios for load balancing between multiple CNs and resource isolation between different tenants. Therefore, in MatrixOne, SQL routing is implemented to send SQL requests to other CN nodes for execution according to predefined rules. This solves the situation that a database instance cannot load many data access requirements.
+
+### **Allowlist**
+
+Allowlist is a security policy that controls access to restricted resources, systems, or networks. It is based on a core idea that only authorized and trusted entities are allowed to access, while other unauthorized access attempts are denied. These authorized entities may include specific users, IP addresses, programs, or others. The opposite of an allowlist is a blocklist, a policy that specifies a list of prohibited entities that will be prevented from accessing a restricted resource, system, or network. Under the blocklist policy, entities outside the blocklist can access.
+
+The allowlist has the following characteristics:
+
+- Only users or systems on the pre-defined list are allowed to access; other users or systems not included in the allowlist are denied access.
+- Using an allowlist policy can improve security but may limit access for legitimate users. Therefore, a trade-off exists between security and user convenience when implementing an allowlist policy.
+- In the database system, the allowlist is mainly used to restrict user access, only allowing specific users to access the database of a particular server or network segment, thereby improving the security of the database.
 
 ## **Learn More**
 
