@@ -8,7 +8,7 @@ This article will guide you on importing CSV files using local Minio. And the en
 
 ### Import Data
 
-You can log in to the Minio GUI by visiting http://192.168.56.10:32001. For the account and password, refer the rootUser and rootPassword created during the installation and deployment of Minio in [MatrixOne Distributed Cluster Deployment](deploy-MatrixOne-cluster.md). After logging in, you need to create a dedicated bucket `load-from-minio`, and upload the corresponding CSV file into the bucket.
+You can log in to the Minio GUI by visiting <http://192.168.56.10:32001>. For the account and password, refer the rootUser and rootPassword created during the installation and deployment of Minio in [MatrixOne Distributed Cluster Deployment](deploy-MatrixOne-cluster.md). After logging in, you need to create a dedicated bucket `load-from-minio`, and upload the corresponding CSV file into the bucket.
 
 ![Create Bucket](https://github.com/matrixorigin/artwork/blob/main/docs/deploy/import/minio-create-bucket.png?raw=true)
 
