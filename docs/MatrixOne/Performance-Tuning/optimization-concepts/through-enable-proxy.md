@@ -10,7 +10,7 @@ After configuring Proxy, you don't need to consider the cluster architecture and
 
 The local configuration configures and starts the Proxy service on the local environment.
 
-All *cn.toml* configuration files in MatrixOne’s local file directory *etc/launch-with-proxy* have been configured with the following parameters:
+All *cn.toml* configuration files in MatrixOne's local file directory *etc/launch-with-proxy* have been configured with the following parameters:
 
     ```
     [cn.frontend]
