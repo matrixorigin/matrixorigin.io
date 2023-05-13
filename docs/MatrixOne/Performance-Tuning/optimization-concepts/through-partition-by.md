@@ -208,9 +208,11 @@ PARTITION BY LIST COLUMNS(a,floor(b),c) (
 
 ## Constraints
 
-The partition table does not support the following partitions for the time being:
+1. The partition table does not support the following partitions for the time being:
 
-- Range partition: Only supports integer and date (date/datetime).
-- List partition: Only supports integers.
-- Hash partition: The HASH function only supports integers .
-- Composite partition: Only supports integers, dates, and strings.
+    - Range partition: Only supports integer and date (date/datetime).
+    - List partition: Only supports integers.
+    - Hash partition: The HASH function only supports integers .
+    - Composite partition: Only supports integers, dates, and strings.
+
+2. The partition table cannot be used for acceleration for now.
