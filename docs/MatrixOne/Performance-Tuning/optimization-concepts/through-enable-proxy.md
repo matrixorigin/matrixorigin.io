@@ -1,6 +1,6 @@
 # Configuring Proxy for implementing SQL distribution
 
-This document will guide you through configuring a Proxy to implement SQL distribution quickly.
+This document will guide you through how to quickly configure a Proxy for SQL distribution in MatrixOne distributed cluster scenarios.
 
 After configuring Proxy, you don't need to consider the cluster architecture and the number of nodes. As a component of MatrixOne, Proxy is responsible for load balancing and SQL request distribution when calculating large amounts of data to realize the session-level SQL routing function and adapt to various scenarios.
 
@@ -10,7 +10,7 @@ After configuring Proxy, you don't need to consider the cluster architecture and
 
 The local configuration configures and starts the Proxy service on the local environment.
 
-All *cn.toml* configuration files in MatrixOne's local file directory *etc/launch-with-proxy* have been configured with the following parameters:
+All *cn.toml* configuration files in MatrixOne's config file directory *etc/launch-with-proxy* have been configured with the following parameters:
 
     ```
     [cn.frontend]
