@@ -1,11 +1,10 @@
 # HTAP of MatrixOne
 
-MatrixOne HSTAP database redefines the concept of HTAP database and aims to provide users with all the needs of Transaction Processing (TP) and Analytical Processing (AP) within a single database.
+MatrixOne database redefines the concept of HTAP database and aims to provide users with all the needs of Transaction Processing (TP) and Analytical Processing (AP) within a single database.
 
 ## Functional advantages
 
 - **One-stop experience**: Meet all the needs of transaction processing (TP) and analytical processing (AP) in a single database, and users can get a one-stop experience covering the entire TP and AP scenarios.
-- **Data stream processing capability**: HSTAP has a built-in data stream processing capability for connecting TP and AP tables, providing users with a database that can be as flexible as a big data platform.
 - **Simplified integration work**: Users only need a small amount of integration work to use MatrixOne to realize comprehensive TP and AP scenarios.
 - **Get rid of restrictions**: Users can eliminate the bloated architecture and various limits of traditional big data platforms and improve data processing efficiency and flexibility.
 
@@ -61,7 +60,7 @@ In addition to MatrixOne's columnar storage engine TAE, the distributed computin
 
 Different SQL requests can be assigned to other CN Label groups by configuring CN Label, thereby completely isolating AP and TP requests from the computing resource level. By configuring policies, resources can be dynamically divided in the future, and computing resources can be allocated to the most needed business scenarios.
 
-#### Streams and Materialized Views
+#### Materialized Views
 
 The MatrixOne engine has two data storage methods: base table (Base Table) and materialized view (Materialized View).
 
@@ -70,8 +69,6 @@ The MatrixOne engine has two data storage methods: base table (Base Table) and m
 The base table is a table that stores data in a relational database. It is the source of data and the basis of other tables. The base table includes multiple rows of records, each row represents an entity or object, and each column represents an attribute of the entity. The base table is the most basic data storage structure in the database.
 
 Unlike ordinary views, a materialized view is an actual table that contains a snapshot of the base table data rather than query results based on the base table. In contrast, a materialized view is a calculated and stored view in the database that includes data from one or more base tables. Materialized views can improve query performance while reducing access pressure on base tables by avoiding the need to recalculate each query.
-
-Using MatrixOne's built-in streaming engine, materialized views can be updated periodically to keep in sync with base table data. This improves query performance while decoupling TP (transaction processing) and AP (analytical processing) request completion for base tables.
 
 ## Scenarios
 
