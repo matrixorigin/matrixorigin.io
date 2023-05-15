@@ -1,8 +1,8 @@
 # Configuring Proxy for implementing SQL distribution
 
-This document will guide you through how to quickly configure a Proxy for SQL distribution in MatrixOne distributed cluster scenarios.
+This document introduces how to quickly configure a Proxy to implement SQL distribution, which is suitable for enabling multiple CNs in the MatrixOne distributed cluster scenario.
 
-After configuring Proxy, you don't need to consider the cluster architecture and the number of nodes. As a component of MatrixOne, Proxy is responsible for load balancing and SQL request distribution when calculating large amounts of data to realize the session-level SQL routing function and adapt to various scenarios.
+After configuring Proxy, you don't need to pay attention to the cluster architecture and number of nodes. As a component of MatrixOne, Proxy can realize load balancing and SQL request distribution when processing large amounts of data and provide session-level SQL routing functions to meet the needs of various scenarios.
 
 ## steps
 
