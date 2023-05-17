@@ -23,9 +23,9 @@ create account <account_name> admin_name='<user_name>' identified by '<password>
 
 |Parameter|Description|
 |---|---|
-|<account_name>| account name|
-|<user_name>|The administrator username of the newly created account, which will be automatically granted the highest privilege role of the account, namely `ACCOUNTADMIN`|
-|<password>|Newly created account administrator password|
+|account_name| account name|
+|user_name|The administrator username of the newly created account, which will be automatically granted the highest privilege role of the account, namely `ACCOUNTADMIN`|
+|password|Newly created account administrator password|
 
 For more information, see [CREATE ACCOUNT](../../Reference/SQL-Reference/Data-Control-Language/create-account.md).
 
@@ -49,7 +49,7 @@ drop account if exists <account_name>;
 
 |Parameter|Description|
 |---|---|
-|<account_name>|The name of the account to be deleted|
+|account_name|The name of the account to be deleted|
 
 !!! note
     After the account is deleted, it cannot be restored, including all data under the account account. Please use it with caution.
@@ -76,8 +76,8 @@ create user <user_name> identified by '<password>';
 
 |Parameter|Description|
 |---|---|
-|<user_name>|The name of a new user|
-|<password>|The password of a new user|
+|user_name|The name of a new user|
+|password|The password of a new user|
 
 For more information, see [CREATE USER](../../Reference/SQL-Reference/Data-Control-Language/create-user.md).
 
@@ -113,7 +113,7 @@ drop user if exist <user_name>;
 
 |Parameter|Description|
 |---|---|
-|<user_name>|The name of the user to be deleted|
+|user_name|The name of the user to be deleted|
 
 !!! note
     When deleting a user, you need to stop the user's current session first, otherwise the deletion will fail.
@@ -140,7 +140,7 @@ create role <role_name>;
 
 |Parameter|Description|
 |---|---|
-|<role_name>|The name of a new role|
+|role_name|The name of a new role|
 
 For more information, see [CREATE ROLE](../../Reference/SQL-Reference/Data-Control-Language/create-role.md).
 
@@ -174,7 +174,7 @@ set role <role_name>;
 
 |Parameter|Description|
 |---|---|
-|<role_name>|The name of the role to be switched|
+|role_name|The name of the role to be switched|
 
 For more information, see [SET ROLE](../../Reference/SQL-Reference/Other/Set/set-role.md).
 
@@ -196,7 +196,7 @@ drop role if exists <role_name>;
 
 |Parameter|Description|
 |---|---|
-|<role_name>|The name of the role to be deleted|
+|role_name|The name of the role to be deleted|
 
 !!! note
     When deleting a specified role, the roles of authorized users will be recovered simultaneously.
@@ -223,10 +223,10 @@ grant <privilege> on <object_type> <object_name> to <role_name>
 
 |Parameter|Description|
 |---|---|
-|<privilege>|Privilege Name|
-|<object_type>|The type of object|
-|<object_name>|The name of object|
-|<role_name>|The name of the role which is granted|
+|privilege|Privilege Name|
+|object_type|The type of object|
+|object_name|The name of object|
+|role_name|The name of the role which is granted|
 
 For more information, see [DRANT](../../Reference/SQL-Reference/Data-Control-Language/grant.md).
 
@@ -249,8 +249,8 @@ grant <privilege> on table *.* to <role_name>;
 
 |Parameter|Description|
 |---|---|
-|<privilege>|Privilege Name|
-|<role_name>|The name of the role which is granted|
+|privilege|Privilege Name|
+|role_name|The name of the role which is granted|
 
 !!! note
     Although this operation is relatively simple when authorizing multiple objects of the same category, it is also prone to permission leakage, so please use it with caution.
@@ -275,8 +275,8 @@ grant <role_name> to <user_name>;
 
 |Parameter|Description|
 |---|---|
-|<role_name>|The name of the role which is granted|
-|<user_name>|The name of the user which is granted|
+|role_name|The name of the role which is granted|
+|user_name|The name of the user which is granted|
 
 For more information, see [DRANT](../../Reference/SQL-Reference/Data-Control-Language/grant.md).
 
@@ -317,7 +317,7 @@ show grants for <user_name>@<localhost>
 
 |Parameter|Description|
 |---|---|
-|<user_name>|The name of user which is granted.|
+|user_name|The name of user which is granted.|
 
 For more information, see [SHOW GRANTS](../../Reference/SQL-Reference/Other/SHOW-Statements/show-grants.md).
 
@@ -339,8 +339,8 @@ revoke <role_name> from <user_name>
 
 |Parameter|Description|
 |---|---|
-|<role_name>|The name of role which is granted.|
-|<user_name>|The name of user which is granted.|
+|role_name|The name of role which is granted.|
+|user_name|The name of user which is granted.|
 
 For more information, see [REVOKE](../../Reference/SQL-Reference/Data-Control-Language/revoke.md).
 
@@ -362,9 +362,9 @@ revoke <privilege> on <object_type> <object_name> to <role_name>;
 
 |Parameter|Description|
 |---|---|
-|<privilege>|Privilege|
-|<object_type>|The type of the object|
-|<object_name>|The name of the object|
-|<role_name>|A role that needs to be granted|
+|privilege|Privilege|
+|object_type|The type of the object|
+|object_name|The name of the object|
+|role_name|A role that needs to be granted|
 
 For more information, see [REVOKE](../../Reference/SQL-Reference/Data-Control-Language/revoke.md).
