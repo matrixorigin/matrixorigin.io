@@ -6,7 +6,34 @@ MatrixOne is a future-oriented hyperconverged cloud & edge native DBMS that supp
 
 As a redefinition of the HTAP database, HSTAP aims to meet all the needs of Transactional Processing (TP) and Analytical Processing (AP) within a single database. Compared with the traditional HTAP, HSTAP emphasizes its built-in streaming capability used for connecting TP and AP tables. This provides users with an experience that a database can be used just like a Big Data platform, with which many users are already familiar thanks to the Big Data boom. With minimal integration efforts, MatrixOne frees users from the limitations of Big Data and provides one-stop coverage for all TP and AP scenarios for enterprises.
 
-## **MatrixOne Architecture**
+## **MatrixOne Architecture Layers**
+
+MatrixOne implements three independent layers, each with its object units and responsibilities. Different nodes can freely scale, no longer constrained by other layers. These three layers are:
+
+![](https://github.com/matrixorigin/artwork/blob/main/docs/overview/architecture/architecture-1.png?raw=true)
+
+- Compute Layer: Based on Compute Nodes (CNs), MatrixOne enables serverless computing and transaction processing with its cache, which is capable of random restarts and scaling.
+- Transaction Layer: Based on Database Nodes and Log Services, MatrixOne provides complete logging services and metadata information, with built-in Logtail for recent data storage.
+- Storage Layer: Full data is stored in object storage, represented by S3, implementing a low-cost, infinitely scalable storage method. A unified File Service enables seamless operations on underlying storage by different nodes.
+
+![](https://github.com/matrixorigin/artwork/blob/main/docs/overview/architecture/architecture-2.png?raw=true)
+
+After deciding on TAE as the sole storage engine, multiple design adjustments were made to the fused TAE engine, resulting in the TAE storage engine. This engine has the following advantages:
+
+- Columnar Storage Management: Uniform columnar storage and compression methods provide inherent performance advantages for OLAP businesses.
+- Transaction Processing: Shared logs and DN nodes jointly support transaction processing for compute nodes.
+- Hot and Cold Separation: Using S3 object storage as the target for File Service, each compute node has its cache.
+
+![](https://github.com/matrixorigin/artwork/blob/main/docs/overview/architecture/architecture-3.png?raw=true)
+
+The compute engine is based on the fundamental goal of being compatible with MySQL, with higher requirements for node scheduling, execution plans, and SQL capabilities. The high-performance compute engine has both MPP (massively parallel processing) and experimental architecture:
+
+- MySQL Compatible: Supports MySQL protocol and syntax.
+Fused Engine: Rebuilds execution plans based on DAG, capable of executing both TP and AP.
+- Node Scheduling: Future support for adaptive intra-node and inter-node scheduling, meeting both concurrency and parallelism requirements.
+- Comprehensive SQL Capability: Supports subqueries, window functions, CTE, and spill memory overflow processing.
+
+## **MatrixOne Architecture Design**
 
 The MatrixOne architecture is as follows:
 
@@ -92,52 +119,14 @@ The streaming engine is a new component to ease the ETL process from OLTP to OLA
 
 The Proxy component is a powerful tool mainly used for load balancing and SQL routing. It has the following functions:
 
-- Through SQL routing, resource isolation between different tenants is realized, ensuring that the CNs of different tenants will not affect each other.
-- Through SQL routing, users can do a second split in the resource group of the same tenant, improving resource utilization.
+- Through SQL routing, resource isolation between different accounts is realized, ensuring that the CNs of different accounts will not affect each other.
+- Through SQL routing, users can do a second split in the resource group of the same account, improving resource utilization.
 - The load balancing between different CNs is realized in the second split resource group, making the system more stable and efficient.
-
-## **MatrixOne Features**
-
-In MatrixOne, it has the following features to make you more efficient in the process of using MatrixOne:
-
-### **Distributed Architecture**
-
-In MatrixOne, the distributed storage and computing separation architecture is adopted. The separation of the storage, data, and computing layers enables MatrixOne to flexibly realize node expansion when encountering system resource bottlenecks. At the same time, resources can be allocated more efficiently under the multi-node architecture, avoiding hotspots and resource requisition to a certain extent.
-
-### **Transactions and Isolation**
-
-In MatrixOne, transactions are isolated using optimistic transactions and snapshots.
-
-Optimistic transactions can achieve better performance in a distributed architecture with fewer conflicts. At the same time, snapshot isolation with a higher isolation level can be achieved in terms of implementation. In order to ensure the ACID four elements of the transaction, MatrixOne currently supports and only supports one snapshot isolation level. Compared with the ordinary read-committed isolation level, this is stricter, which can effectively prevent dirty reads and better adapt to distributed optimistic transactions.
-
-### **Cloud Native**
-
-MatrixOne is a cloud-native database. From the storage layer, it adapts to various storage methods such as local disks, AWS S3, and NFS and realizes non-aware management of multiple types of storage through File service. MatrixOne clusters can run stably in a variety of infrastructure environments, can adapt to private enterprise clouds, and provide services in different public cloud vendor environments.
-
-### **Load Balancing**
-
-Under the distributed database architecture, load differences inevitably exist between different nodes, which may lead to performance bottlenecks in specific business scenarios or idle computing resources. Therefore, to ensure that other nodes are kept as close as possible in resource allocation, MatrixOne implements the load-balancing function of computing resources.
-
-### **SQL Routing**
-
-SQL routing is often used in early sub-database and sub-table database scenarios. It determines which instance/library/table to send the request to according to the data distribution after receiving an SQL request.
-
-In MatrixOne, although the capacity of the storage engine no longer limits the size of the database, under the multi-CN architecture, there are still scenarios for load balancing between multiple CNs and resource isolation between different tenants. Therefore, in MatrixOne, SQL routing is implemented to send SQL requests to other CN nodes for execution according to predefined rules. This solves the situation that a database instance cannot load many data access requirements.
-
-### **Allowlist**
-
-Allowlist is a security policy that controls access to restricted resources, systems, or networks. It is based on a core idea that only authorized and trusted entities are allowed to access, while other unauthorized access attempts are denied. These authorized entities may include specific users, IP addresses, programs, or others. The opposite of an allowlist is a blocklist, a policy that specifies a list of prohibited entities that will be prevented from accessing a restricted resource, system, or network. Under the blocklist policy, entities outside the blocklist can access.
-
-The allowlist has the following characteristics:
-
-- Only users or systems on the pre-defined list are allowed to access; other users or systems not included in the allowlist are denied access.
-- Using an allowlist policy can improve security but may limit access for legitimate users. Therefore, a trade-off exists between security and user convenience when implementing an allowlist policy.
-- In the database system, the allowlist is mainly used to restrict user access, only allowing specific users to access the database of a particular server or network segment, thereby improving the security of the database.
 
 ## **Learn More**
 
 This page outlines the overall architecture design of MatrixOne. For information on other options that are available when trying out MatrixOne, see the following:
 
-* [Install MatrixOne](../Get-Started/install-standalone-matrixone.md)
-* [MySQL Compatibility](mysql-compatibility.md)
-* [What's New](whats-new.md)
+* [Install MatrixOne](../../Get-Started/install-standalone-matrixone.md)
+* [MySQL Compatibility](../feature/mysql-compatibility.md)
+* [What's New](../whats-new.md)
