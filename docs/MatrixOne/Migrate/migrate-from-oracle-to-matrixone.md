@@ -197,7 +197,7 @@ For more operation examples of `LOAD DATA`, see [Bulk Load Overview](../Develop/
 
 The `INSERT` statement needs to use DBeaver to export the logical statement first and then import it into MatrixOne:
 
-1. Use DBeaver to export data: Open DBeaver, select the table to be migrated from Oracle, right-click, and select **Export Data > SQL**. To ensure that MatrixOne directly writes to S3 when inserting, it is recommended to insert parameters in batches** The number of data rows** per statement is set to 5000:
+1. Use DBeaver to export data: Open DBeaver, select the table to be migrated from Oracle, right-click, and select **Export Data > SQL**. To ensure that MatrixOne directly writes to S3 when inserting, it is recommended to insert parameters in batches **The number of data rows** per statement is set to 5000:
 
     ![](https://github.com/matrixorigin/artwork/blob/main/docs/migrate/mysql-10.png?raw=true)
 
