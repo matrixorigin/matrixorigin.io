@@ -1,27 +1,31 @@
 # **UNNEST()**
 
-The `UNNEST` function takes an `ARRAY` and returns a table with a row for each element in the `ARRAY`.
+## **Description**
 
-Empty arrays and `NULL` as an input returns an empty table. An array containing `NULL` values will produce a row of `NULL` values.
+The `UNNEST` function is used to unroll a column or parameter of array type into a table. It splits the elements in the array into individual rows, allowing array elements to be processed individually or joined with other tables.
+
+When given an empty array, the `UNNEST` function returns an empty list because there are no additional elements.
+
+When a `NULL` value is entered, the `UNNEST` function returns an empty table because `NULL` is not a valid array.
 
 ## **Syntax**
 
 ```
-> UNNEST(ARRAY) [WITH OFFSET]
+> UNNEST(array_expression)
 ```
 
 ## **Arguments**
 
 |  Arguments   | Description  |
 |  ----  | ----  |
-| ARRAY | Required. `ARRAY` as an input but can return a table of any structure. |
-|WITH OFFSET |Optional. `WITH OFFSET` clause provides an additional column containing the position of each element in the array (starting at zero) for each row produced by `UNNEST`.|
+| array_expression | Required. It is an array expression that can be an array column, an array constant, or the return value of an array function. |
 
 ## **Examples**
 
 - Example 1:
 
 ```sql
+-- Expand a string array containing JSON objects, '{"a":1}' is a string array containing a single element. This element is a string representing a JSON object.
 > select * from unnest('{"a":1}') u;
 +----------------+------+------+------+-------+-------+----------+
 | col            | seq  | key  | path | index | value | this     |
@@ -30,6 +34,7 @@ Empty arrays and `NULL` as an input returns an empty table. An array containing 
 +----------------+------+------+------+-------+-------+----------+
 1 row in set (0.00 sec)
 
+-- Expand a string array '[1,2,3]' containing integers, and use the alias u to represent the expanded columns.
 > select * from unnest('[1,2,3]') u;
 +----------------+------+------+------+-------+-------+-----------+
 | col            | seq  | key  | path | index | value | this      |
@@ -40,16 +45,7 @@ Empty arrays and `NULL` as an input returns an empty table. An array containing 
 +----------------+------+------+------+-------+-------+-----------+
 3 rows in set (0.00 sec)
 
-> select * from unnest('[1,2,3]','$') u;
-+----------------+------+------+------+-------+-------+-----------+
-| col            | seq  | key  | path | index | value | this      |
-+----------------+------+------+------+-------+-------+-----------+
-| UNNEST_DEFAULT |    0 | NULL | $[0] |     0 | 1     | [1, 2, 3] |
-| UNNEST_DEFAULT |    0 | NULL | $[1] |     1 | 2     | [1, 2, 3] |
-| UNNEST_DEFAULT |    0 | NULL | $[2] |     2 | 3     | [1, 2, 3] |
-+----------------+------+------+------+-------+-------+-----------+
-3 rows in set (0.01 sec)
-
+-- Expands a string array '[1,2,3]' containing integers and selects the first element of the array to return as part of the result set. '$[0]' is a path expression specifying the array elements to select, and true is a boolean indicating whether to return a path and uses the alias u for expanded columns.
 > select * from unnest('[1,2,3]','$[0]',true) u;
 +----------------+------+------+------+-------+-------+------+
 | col            | seq  | key  | path | index | value | this |
@@ -62,9 +58,9 @@ Empty arrays and `NULL` as an input returns an empty table. An array containing 
 - Example 2:
 
 ```sql
-> create table t1 (a json,b int);
-> insert into t1 values ('{"a":1,"b":[{"c":2,"d":3},false,4],"e":{"f":true,"g":[null,true,1.1]}}',1);
-> insert into t1 values ('[1,true,false,null,"aaa",1.1,{"t":false}]',2);
+create table t1 (a json,b int);
+insert into t1 values ('{"a":1,"b":[{"c":2,"d":3},false,4],"e":{"f":true,"g":[null,true,1.1]}}',1);
+insert into t1 values ('[1,true,false,null,"aaa",1.1,{"t":false}]',2);
 > select * from t1;
 +---------------------------------------------------------------------------------------+------+
 | a                                                                                     | b    |
@@ -74,38 +70,13 @@ Empty arrays and `NULL` as an input returns an empty table. An array containing 
 +---------------------------------------------------------------------------------------+------+
 2 rows in set (0.00 sec)
 
-> select * from unnest(t1.a) as f;
-+------+------+------+------+-------+-------------------------------------+---------------------------------------------------------------------------------------+
-| col  | seq  | key  | path | index | value                               | this                                                                                  |
-+------+------+------+------+-------+-------------------------------------+---------------------------------------------------------------------------------------+
-| a    |    0 | a    | $.a  |  NULL | 1                                   | {"a": 1, "b": [{"c": 2, "d": 3}, false, 4], "e": {"f": true, "g": [null, true, 1.1]}} |
-| a    |    0 | b    | $.b  |  NULL | [{"c": 2, "d": 3}, false, 4]        | {"a": 1, "b": [{"c": 2, "d": 3}, false, 4], "e": {"f": true, "g": [null, true, 1.1]}} |
-| a    |    0 | e    | $.e  |  NULL | {"f": true, "g": [null, true, 1.1]} | {"a": 1, "b": [{"c": 2, "d": 3}, false, 4], "e": {"f": true, "g": [null, true, 1.1]}} |
-| a    |    1 | NULL | $[0] |     0 | 1                                   | [1, true, false, null, "aaa", 1.1, {"t": false}]                                      |
-| a    |    1 | NULL | $[1] |     1 | true                                | [1, true, false, null, "aaa", 1.1, {"t": false}]                                      |
-| a    |    1 | NULL | $[2] |     2 | false                               | [1, true, false, null, "aaa", 1.1, {"t": false}]                                      |
-| a    |    1 | NULL | $[3] |     3 | null                                | [1, true, false, null, "aaa", 1.1, {"t": false}]                                      |
-| a    |    1 | NULL | $[4] |     4 | "aaa"                               | [1, true, false, null, "aaa", 1.1, {"t": false}]                                      |
-| a    |    1 | NULL | $[5] |     5 | 1.1                                 | [1, true, false, null, "aaa", 1.1, {"t": false}]                                      |
-| a    |    1 | NULL | $[6] |     6 | {"t": false}                        | [1, true, false, null, "aaa", 1.1, {"t": false}]                                      |
-+------+------+------+------+-------+-------------------------------------+---------------------------------------------------------------------------------------+
-10 rows in set (0.01 sec)
-
-> select * from unnest(t1.a, "$.b") as f;
-+------+------+------+--------+-------+------------------+------------------------------+
-| col  | seq  | key  | path   | index | value            | this                         |
-+------+------+------+--------+-------+------------------+------------------------------+
-| a    |    0 | NULL | $.b[0] |     0 | {"c": 2, "d": 3} | [{"c": 2, "d": 3}, false, 4] |
-| a    |    0 | NULL | $.b[1] |     1 | false            | [{"c": 2, "d": 3}, false, 4] |
-| a    |    0 | NULL | $.b[2] |     2 | 4                | [{"c": 2, "d": 3}, false, 4] |
-+------+------+------+--------+-------+------------------+------------------------------+
-3 rows in set (0.00 sec)
-
-> select * from unnest(t1.a, "$.a", true) as f;
+-- Expand the elements of array t1.a from table t1 and select the expanded elements to return as part of the result set. "$a" is a path expression specifying the array elements to select; true is a Boolean value indicating whether to return the path; use f.* to select all columns after expansion; f is an alias for the UNNEST function, representing expanded the result of.
+mysql> select f.* from t1,unnest(t1.a, "$.a", true) as f;
 +------+------+------+------+-------+-------+------+
 | col  | seq  | key  | path | index | value | this |
 +------+------+------+------+-------+-------+------+
-| a    |    0 | NULL | $.a  |  NULL | NULL  | 1    |
+| t1.a |    0 | NULL | $.a  |  NULL | NULL  | 1    |
+| t1.a |    0 | NULL | $.a  |  NULL | NULL  | 1    |
 +------+------+------+------+-------+-------+------+
-1 row in set (0.00 sec)
+2 rows in set (0.00 sec)
 ```
