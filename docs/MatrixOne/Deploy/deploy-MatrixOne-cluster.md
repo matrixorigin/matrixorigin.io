@@ -236,7 +236,7 @@ After defining the cluster name and selecting the resource package version, clic
 
 2. After filling in the roles and node names for each node, please fill in the corresponding connection information on the right, as shown in the following figure:
 
-    ![](https://github.com/matrixorigin/artwork/blob/main/docs/deploy/deploy-mo-cluster-9.png?raw=true
+    ![](https://github.com/matrixorigin/artwork/blob/main/docs/deploy/deploy-mo-cluster-9.png?raw=true)
 
     ![](https://github.com/matrixorigin/artwork/blob/main/docs/deploy/deploy-mo-cluster-9-1.png?raw=true)
 
@@ -451,7 +451,6 @@ __Note:__ All steps in this section are performed on the master0 node.
 
 Follow the steps below to install MatrixOne Operator on master0. We will create a separate namespace, `matrixone-operator` for the Operator.
 
-
 1. Download the latest MatrixOne Operator installation package:
 
     ```
@@ -484,7 +483,6 @@ Follow the steps below to install MatrixOne Operator on master0. We will create 
     ```
 
     Ensure all pods have a running status in the above command output.
-
 
     ```
     [root@master0 matrixone-operator]# kubectl get pod -n matrixone-operator
