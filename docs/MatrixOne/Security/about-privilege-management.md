@@ -101,7 +101,7 @@ In MatrixOne, the behavior details of roles are as follows:
 - A role can be granted to multiple users.
 - A role can pass its privileges to another role.
 
-   + Use all the privileges of a role to another role; for example, pass all the privileges of role1 to role2, then role2 inherits the privileges of role1,
+    + Use all the privileges of a role to another role; for example, pass all the privileges of role1 to role2, then role2 inherits the privileges of role1,
 
 - Roles and users only take effect within their respective Account, including the Sys Account.
 

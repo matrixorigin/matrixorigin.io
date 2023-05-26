@@ -378,10 +378,10 @@ The description of columns in the `COLUMNS` table is as follows:
 - `COLLATION_NAME`: The name of the collation of a string column.
 - `COLUMN_TYPE`: The column type.
 - `COLUMN_KEY`: Whether this column is indexed. This field might have the following values:
-  - `Empty`: This column is not indexed, or this column is indexed and is the second column in a multi-column non-unique index.
-  - `PRI`: This column is the primary key or one of multiple primary keys.
-  - `UNI`: This column is the first column of the unique index.
-  - `MUL`: The column is the first column of a non-unique index, in which a given value is allowed to occur for multiple times.
+    - `Empty`: This column is not indexed, or this column is indexed and is the second column in a multi-column non-unique index.
+    - `PRI`: This column is the primary key or one of multiple primary keys.
+    - `UNI`: This column is the first column of the unique index.
+    - `MUL`: The column is the first column of a non-unique index, in which a given value is allowed to occur for multiple times.
 - `EXTRA`: Any additional information of the given column.
 - `PRIVILEGES`: The privilege that the current user has on this column.
 - `COLUMN_COMMENT`: Comments contained in the column definition.
