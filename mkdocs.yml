@@ -87,9 +87,10 @@ nav:
         - Insert: MatrixOne/Develop/import-data/insert-data.md
         - Bulk Load:
           - Bulk Load Overview: MatrixOne/Develop/import-data/bulk-load/bulk-load-overview.md
-          - Import .csv format data: MatrixOne/Develop/import-data/bulk-load/load-csv.md
+          - Import csv format data: MatrixOne/Develop/import-data/bulk-load/load-csv.md
           - Import jsonlines format data: MatrixOne/Develop/import-data/bulk-load/load-jsonline.md
           - Import data from S3: MatrixOne/Develop/import-data/bulk-load/load-s3.md
+          - Import data by using the `source` command: MatrixOne/Develop/import-data/bulk-load/using-source.md
       - Export Data:
         - Export data by SELECT INTO...OUTFILE: MatrixOne/Develop/export-data/select-into-outfile.md
         - Export data by modump: MatrixOne/Develop/export-data/modump.md
@@ -134,9 +135,7 @@ nav:
         - Mount directory to Docker container: MatrixOne/Maintain/mount-data-by-docker.md
     - Migrating:
       - Migrate data to MatrixOne Overview: MatrixOne/Migrate/migrate-overview.md
-      - Migrate data from MySQL to MatrixOne:
-        - Tutorials: MatrixOne/Migrate/migrate-from-mysql-to-matrixone.md
-        - Demo: MatrixOne/Migrate/migrate-from-mysql-to-matrixone-by-command.md
+      - Migrate data from MySQL to MatrixOne: MatrixOne/Migrate/migrate-from-mysql-to-matrixone.md
       - Migrate data from SQL Server to MatrixOne: MatrixOne/Migrate/migrate-from-oracle-to-matrixone.md
       - Migrate data from SQL Server to MatrixOne: MatrixOne/Migrate/migrate-from-sqlserver-to-matrixone.md
     - Testing:
