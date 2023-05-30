@@ -80,9 +80,6 @@ Depending on your needs, choose whether you want to keep your code up to date, o
 
          __Tips__: You can also run `make debug`, `make clean`, or anything else our `Makefile` offers, `make debug` can be used to debug the build process, and `make clean` can be used to clean up the build process. If you get an error like `Get "https://proxy.golang.org/........": dial tcp 142.251.43.17:443: i/o timeout` while running `make build`, see [Deployment FAQs](../../FAQs/deployment-faqs.md).
 
-!!! info
-    MatrixOne only supports installation on ARM chipset with source code build; if you are using MacOS M1 and above, refer to this document to install and deploy the MatrixOne.
-
 ## Step 4: Launch MatrixOne server
 
 === "**Launch in the frontend**"
