@@ -221,7 +221,7 @@ c	d
    [{path_name}/matrixone/test/cases/transaction/atomicity.sql] COST : 0.56s, TOTAL :66, SUCCESS :66, FAILED :0, IGNORED :0, ABNORAML :0, SUCCESS RATE : 100%
    ```
 
-#### <h4><a name="new_test_scenario">Example 4</a></h4>
+#### <a name="new_test_scenario">Example 4</a>
 
 **Example Description**:
 
