@@ -8,13 +8,13 @@ Here are some of the standard tools and functions:
 
 ### LOAD DATA
 
-Like MySQL, MatrixOne provides the LOAD DATA function, allowing users to quickly and parallelly import external CSV files or JSON files into tables that match the table structure.
+Like MySQL, MatrixOne provides the `LOAD DATA` function, allowing users to quickly and parallelly import external CSV files or JSON files into tables that match the table structure.
 
-For more information, see [Bulk Load Overview](../Develop/import-data/bulk-load/bulk-load-overview.md) for details.
+### SOURCE
 
-### CN directly writes to S3
+In MatrixOne, you can also use the `SOURCE` command to migrate data and table structures to the target database.
 
-In MatrixOne, when the transaction size exceeds a certain threshold (about 10MB), the data in the transaction will no longer be written to the write-ahead log and directly to S3, thus significantly improving data writing performance. When data is migrated to MatrixOne, users can use this feature to complete data writing quickly. This feature will also be reflected in subsequent migrations.
+For more information on bulk import using `LOAD DATA` or `SOURCE`, see [Bulk Load Overview](../Develop/import-data/bulk-load/bulk-load-overview.md).
 
 ## Reference
 
