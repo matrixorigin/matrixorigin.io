@@ -1,8 +1,26 @@
-# Migrate data from MySQL to MatrixOne Demo
+# Import data by using the `source` command
 
-This document describes how to migrate data from MySQL to MatrixOne.
+This document will guide you to use the `source` command to import data into MatrixOne in batches.
 
-### 1. Dump MySQL data
+## Syntax
+
+```
+SOURCE /path/to/your/sql_script.sql;
+```
+
+`/path/to/your/sql_script.sql` is the absolute path to the SQL script file. When executing this command, the client will read the specified SQL script file and execute all its SQL statements.
+
+## Tutorial
+
+This tutorial will guide you on migrating data from MySQL to MatrixOne using the `source` command.
+
+### Before you start
+
+Make sure you have already [Deployed and Launched standalone MatrixOne](../../../Get-Started/install-standalone-matrixone.md).
+
+### Steps
+
+#### 1. Dump MySQL data
 
 We suppose you have full access to your MySQL instances.
 
@@ -18,7 +36,7 @@ For example, this following command dumps all table structures and data of the d
 mysqldump -h 127.0.0.1 -uroot -proot -d test > a.sql
 ```
 
-### 2. Modify SQL file
+#### 2. Modify SQL file
 
 The SQL file dumped from MySQL is not fully compatible with MatrixOne yet. We'll need to remove and modify several elements to adapt the SQL file to MatrixOne's format.
 
@@ -59,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `tool` (
 ) COMMENT='tool table';
 ```
 
-### 3. Import into MatrixOne
+#### 3. Import into MatrixOne
 
 Once your dumped SQL file was ready, you can import the whole table structures and data into MatrixOne.
 
@@ -74,4 +92,12 @@ If your SQL file is big, you can use the following command to run the import tas
 
 ```
 nohup mysql -h 127.0.0.1 -P 6001 -udump -p111 -e 'source /YOUR_PATH/a.sql' &
+```
+
+#### 4. Check data
+
+After the import is successful, you can run the following SQL statement to check the import results:
+
+```sql
+select * from tool;
 ```
