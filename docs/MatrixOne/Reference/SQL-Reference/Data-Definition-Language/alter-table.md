@@ -22,15 +22,11 @@ alter_option: {
   | ADD [CONSTRAINT] FOREIGN KEY
         [index_name] (col_name,...)
         reference_definition
-  | ALTER [COLUMN] col_name {
-        SET DEFAULT {literal | (expr)}
-      | DROP DEFAULT
     }
   | ALTER INDEX index_name {VISIBLE | INVISIBLE}
   | DROP [COLUMN] col_name
   | DROP {INDEX | KEY} index_name
   | DROP FOREIGN KEY fk_symbol
-   | ORDER BY col_name [, col_name] ...
   | RENAME [TO | AS] new_tbl_name
 }
 
@@ -57,12 +53,10 @@ The explanations of each parameter are as the following:
     - `ADD {[INDEX | KEY] [index_name] [index_option] ...`: Adds an index, specifying the index name and index options (such as comments).
     - `ADD [CONSTRAINT] UNIQUE [INDEX | KEY] [index_name][index_option] ...`: Adds a UNIQUE constraint or UNIQUE index.
     - `ADD [CONSTRAINT] FOREIGN KEY [index_name] (col_name, ...) reference_definition`: Adds a FOREIGN KEY constraint.
-    - `ALTER [COLUMN] col_name {SET DEFAULT {literal | (expr)} | DROP DEFAULT}`: Changes the default value of a column or removes the default value.
     - `ALTER INDEX index_name {VISIBLE | INVISIBLE}`: Changes the visibility of an index.
     - `DROP [COLUMN] col_name`: Drops a column.
     - `DROP {INDEX | KEY} index_name`: Drops an index.
     - `DROP FOREIGN KEY fk_symbol`: Drops a FOREIGN KEY constraint.
-    - `ORDER BY col_name [, col_name] ...`: Reorders the rows in the table by the specified columns.
     - `RENAME [TO | AS] new_tbl_name`: Renames the table.
 
 3. `key_part`: Represents the components of an index, which can be column names (when creating an index on a text column, you might specify a length for the index to only consider a certain number of characters in that column. If you create an index using a column name without specifying a length, the index will use the entire column value as an index component. In some cases, this may result in reduced performance, especially when dealing with large text or binary data columns. Specifying a length is usually unnecessary for smaller data types, such as integers or dates.).
@@ -110,4 +104,4 @@ mysql> select ca, cb from c1 order by ca;
 
 ## Constraints
 
-MatrixOne currently only supports the `ORDER BY col_name [, col_name] ...` syntax and does not change the actual order of the table.
+MatrixOne currently only supports the `ALTER INDEX index_name {VISIBLE | INVISIBLE}` syntax.
