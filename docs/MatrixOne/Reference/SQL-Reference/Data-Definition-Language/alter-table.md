@@ -31,7 +31,6 @@ alter_option: {
   | DROP {INDEX | KEY} index_name
   | DROP FOREIGN KEY fk_symbol
    | ORDER BY col_name [, col_name] ...
-  | RENAME {INDEX | KEY} old_index_name TO new_index_name
   | RENAME [TO | AS] new_tbl_name
 }
 
@@ -64,10 +63,9 @@ The explanations of each parameter are as the following:
     - `DROP {INDEX | KEY} index_name`: Drops an index.
     - `DROP FOREIGN KEY fk_symbol`: Drops a FOREIGN KEY constraint.
     - `ORDER BY col_name [, col_name] ...`: Reorders the rows in the table by the specified columns.
-    - `RENAME {INDEX | KEY} old_index_name TO new_index_name`: Renames an index.
     - `RENAME [TO | AS] new_tbl_name`: Renames the table.
 
-3. `key_part`: Represents the components of an index, which can be column names (with optional lengths) or expressions and optional ascending (ASC) or descending (DESC) sorting.
+3. `key_part`: Represents the components of an index, which can be column names (when creating an index on a text column, you might specify a length for the index to only consider a certain number of characters in that column.).
 4. `index_option`: Represents index options, such as comments (COMMENT).
 5. `table_options`: Represents table options, such as table comments (COMMENT).
 6. `table_option`: Specific table options, such as comments (COMMENT).
