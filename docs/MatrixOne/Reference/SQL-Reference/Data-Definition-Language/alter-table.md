@@ -65,7 +65,7 @@ The explanations of each parameter are as the following:
     - `ORDER BY col_name [, col_name] ...`: Reorders the rows in the table by the specified columns.
     - `RENAME [TO | AS] new_tbl_name`: Renames the table.
 
-3. `key_part`: Represents the components of an index, which can be column names (when creating an index on a text column, you might specify a length for the index to only consider a certain number of characters in that column.).
+3. `key_part`: Represents the components of an index, which can be column names (when creating an index on a text column, you might specify a length for the index to only consider a certain number of characters in that column. If you create an index using a column name without specifying a length, the index will use the entire column value as an index component. In some cases, this may result in reduced performance, especially when dealing with large text or binary data columns. Specifying a length is usually unnecessary for smaller data types, such as integers or dates.).
 4. `index_option`: Represents index options, such as comments (COMMENT).
 5. `table_options`: Represents table options, such as table comments (COMMENT).
 6. `table_option`: Specific table options, such as comments (COMMENT).
