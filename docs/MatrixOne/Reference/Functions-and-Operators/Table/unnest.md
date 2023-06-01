@@ -2,7 +2,7 @@
 
 ## **Description**
 
-The `UNNEST` function is used to unroll a column or parameter of array type into a table. It splits the elements in the array into individual rows, allowing array elements to be processed individually or joined with other tables.
+The `UNNEST` function is used to expand the column or parameter of the array type in the JSON type data into a table. It splits the elements in the array in the JSON-type data into individual rows so that the array elements can be processed individually or joined with other tables.
 
 When given an empty array, the `UNNEST` function returns an empty list because there are no additional elements.
 
