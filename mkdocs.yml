@@ -46,7 +46,9 @@ nav:
     - Overview:
       - MatrixOne Introduction: MatrixOne/Overview/matrixone-introduction.md
       - MatrixOne Feature List: MatrixOne/Overview/matrixone-feature-list.md
-      - MatrixOne Architecture Design: MatrixOne/Overview/matrixone-architecture-design.md
+      - MatrixOne Architecture Design: 
+        - Architecture Design Overview: MatrixOne/Overview/matrixone-architecture-design.md
+        - Feature List: MatrixOne/Overview/architecture-details.md
       - MySQL Compatibility: MatrixOne/Overview/mysql-compatibility.md
       - What's New: MatrixOne/Overview/whats-new.md
     - Getting Started:
@@ -66,6 +68,7 @@ nav:
         - Overview: MatrixOne/Develop/schema-design/overview.md
         - Create Database: MatrixOne/Develop/schema-design/create-database.md
         - Create Table: MatrixOne/Develop/schema-design/create-table.md
+        - Create Secondary Index: MatrixOne/Develop/schema-design/create-secondary-index.md
         - Data Integrity:
           - Data Integrity Constraints Overview: MatrixOne/Develop/schema-design/data-integrity/overview-of-integrity-constraint-types.md
           - NOT NULL Constraints: MatrixOne/Develop/schema-design/data-integrity/not-null-constraints.md
@@ -96,6 +99,7 @@ nav:
         - Subquery: MatrixOne/Develop/read-data/subquery.md
         - Views: MatrixOne/Develop/read-data/views.md
         - Common Table Expression: MatrixOne/Develop/read-data/cte.md
+      - Publish-Subscribe: MatrixOne/Develop/Publish-Subscribe/pub-sub-overview.md
       - Transactions:
         - General Transaction Overview: MatrixOne/Develop/Transactions/common-transaction-overview.md
         - Transaction by MatrixOne Server:
@@ -115,6 +119,7 @@ nav:
         - Updating: MatrixOne/Deploy/update-MatrixOne-cluster.md
         - Starting and stopping: MatrixOne/Deploy/MatrixOne-start-stop.md
         - Scaling: MatrixOne/Deploy/MatrixOne-cluster-Scale.md
+        - Import data from local Minio to MatrixOne: MatrixOne/Deploy/import-data-from-minio-to-mo.md
     - Tutorials:
       - Build a Java CRUD demo: MatrixOne/Tutorial/develop-java-crud-demo.md
       - Build a CRUD demo with SpringBoot and Spring JPA: MatrixOne/Tutorial/springboot-hibernate-crud-demo.md
@@ -147,6 +152,10 @@ nav:
         - EXPLAIN Statements Using Views: MatrixOne/Performance-Tuning/explain/explain-views.md
       - Performance tuning best practices:
         - Using Cluster by for performance tuning: MatrixOne/Performance-Tuning/optimization-concepts/through-cluster-by.md
+        - Scaling CN for better performance: MatrixOne/Performance-Tuning/optimization-concepts/through-CN-extensions.md
+        - Using PARTITION BY for performance tuning: MatrixOne/Performance-Tuning/optimization-concepts/through-partition-by.md
+        - Configuring Proxy for implementing SQL distribution: MatrixOne/Performance-Tuning/optimization-concepts/through-enable-proxy.md
+        - Optimizer Hints: MatrixOne/Performance-Tuning/control-execution-plan/optimizer-hints.md
     - Privilege:
       - TLS Introduction: MatrixOne/Security/TLS-introduction.md
       - What is MatrixOne Privilege Management:
@@ -184,12 +193,16 @@ nav:
           - CREATE INDEX: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-index.md
           - CREATE TABLE: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-table.md
           - CREATE EXTERNAL TABLE: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-external-table.md
+          - CREATE PUBLICATION: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-publication.md
           - CREATE SEQUENCE: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-sequence.md
+          - CREATE...FROM...PUBLICATION...: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-subscription.md
           - CREATE VIEW: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-view.md
+          - ALTER PUBLICATION: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/alter-publication.md
           - ALTER VIEW: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/alter-view.md
           - DROP DATABASE: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/drop-database.md
           - DROP INDEX: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/drop-index.md
           - DROP TABLE: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/drop-table.md
+          - DROP PUBLICATION: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/drop-publication.md
           - DROP SEQUENCE: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/drop-sequence.md
           - DROP VIEW: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/drop-view.md
           - TRUNCATE TABLE: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/truncate-table.md
@@ -234,6 +247,7 @@ nav:
           - ALTER ACCOUNT: MatrixOne/Reference/SQL-Reference/Data-Control-Language/alter-account.md
           - CREATE ROLE: MatrixOne/Reference/SQL-Reference/Data-Control-Language/create-role.md
           - CREATE USER: MatrixOne/Reference/SQL-Reference/Data-Control-Language/create-user.md
+          - ALTER USER: MatrixOne/Reference/SQL-Reference/Data-Control-Language/alter-user.md
           - DROP ACCOUNT: MatrixOne/Reference/SQL-Reference/Data-Control-Language/drop-account.md
           - DROP USER: MatrixOne/Reference/SQL-Reference/Data-Control-Language/drop-user.md
           - DROP ROLE: MatrixOne/Reference/SQL-Reference/Data-Control-Language/drop-role.md
@@ -245,14 +259,17 @@ nav:
             - SHOW DATABASES: MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-databases.md
             - SHOW CREATE TABLE: MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-create-table.md
             - SHOW CREATE VIEW: MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-create-view.md
+            - SHOW CREATE PUBLICATION: MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-create-publication.md
             - SHOW TABLES: MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-tables.md
             - SHOW INDEX: MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-index.md
             - SHOW COLLATION: MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-collation.md
             - SHOW COLUMNS: MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-columns.md
             - SHOW FUNCTION STATUS: MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-function-status.md
             - SHOW GRANT: MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-grants.md
+            - SHOW PUBLICATIONS: MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-publications.md
             - SHOW ROLES: MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-roles.md
             - SHOW SEQUENCES: MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-sequences.md
+            - SHOW SUBSCRIPTIONS: MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-subscriptions.md
             - SHOW VARIABLES: MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-variables.md
           - SET:
             - SET ROLE: MatrixOne/Reference/SQL-Reference/Other/Set/set-role.md
