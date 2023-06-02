@@ -12,7 +12,7 @@
 * **Is MatrixOne based on MySQL or some other database?**
 
   MatrixOne is a completely redesigned database. It's compatible with part of MySQL syntax and semantics. We are currently working to support more database semantics such as PostgreSQL, Hive, Clickhouse, since we intend to develop MatrixOne as a hyperconverged database.  
-  To learn more about the compatibility with MySQL, you can visit [MySQL-Compatibility](../Overview/mysql-compatibility.md).
+  To learn more about the compatibility with MySQL, you can visit [MySQL-Compatibility](../Overview/feature/mysql-compatibility.md).
 
 * **Which programming language is MatrixOne developed with?**
 
