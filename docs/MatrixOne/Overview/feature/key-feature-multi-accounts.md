@@ -1,4 +1,4 @@
-# Multi-Account
+# Multi-Account of MatrixOne
 
 MatrixOne is designed in a single-cluster multi-account approach. In this design, account (Account) is a logical concept as a unit of resource allocation and database management. MatrixOne's multi-account mode can provide independent database instances for different accounts and adopts an analytical isolation method to ensure the security and independence of each account's data, effectively preventing the risk of data leakage and tampering.
 
@@ -98,5 +98,5 @@ The multi-account capability of MatrixOne can well solve the database sharing/is
 
 For more information on multi-account, see:
 
-- [Multi-Account Application Scenario](../Security/app-scenarios.md)
-- [Quick Start: Create accounts, Verify Resource Isolation](../Security/how-tos/quick-start-create-account.md)
+- [Multi-Account Application Scenario](../../Security/app-scenarios.md)
+- [Quick Start: Create accounts, Verify Resource Isolation](../../Security/how-tos/quick-start-create-account.md)
