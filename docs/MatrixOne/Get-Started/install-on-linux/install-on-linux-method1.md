@@ -6,12 +6,12 @@ This document will guide you build standalone MatrixOne using source code.
 
 1. Click <a href="https://go.dev/doc/install" target="_blank">Go Download and install</a> to enter its official documentation, and follow the installation steps to complete the **Go** installation.
 
-    __Note__: Go version 1.19 is required.
+    __Note__: Go version 1.20 is required.
 
 2. To verify whether **Go** is installed, please execute the code `go version`. When **Go** is installed successfully, the example code line is as follows:  
 
     ```
-    go version go1.19.4 linux/amd64
+    go version go1.20.4 linux/amd64
     ```
 
 ## Step 2: Install GCC as necessary dependency

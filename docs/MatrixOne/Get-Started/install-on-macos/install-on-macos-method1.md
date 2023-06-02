@@ -6,12 +6,12 @@ This document will guide you build standalone MatrixOne using source code.
 
 1. Click <a href="https://go.dev/doc/install" target="_blank">Go Download and install</a> to enter its official documentation, and follow the installation steps to complete the **Go** installation.
 
-    __Note__: Go version 1.19 is required.
+    __Note__: Go version 1.20 is required.
 
 2. To verify whether **Go** is installed, please execute the code `go version`. When **Go** is installed successfully, the example code line is as follows:
 
     ```
-    go version go1.19 darwin/arm64
+    go version go1.20 darwin/arm64
     ```
 
 ## Step 2: Install GCC as necessary dependency
@@ -79,9 +79,6 @@ Depending on your needs, choose whether you want to keep your code up to date, o
          ```
 
          __Tips__: You can also run `make debug`, `make clean`, or anything else our `Makefile` offers, `make debug` can be used to debug the build process, and `make clean` can be used to clean up the build process. If you get an error like `Get "https://proxy.golang.org/........": dial tcp 142.251.43.17:443: i/o timeout` while running `make build`, see [Deployment FAQs](../../FAQs/deployment-faqs.md).
-
-!!! info
-    MatrixOne only supports installation on ARM chipset with source code build; if you are using MacOS M1 and above, refer to this document to install and deploy the MatrixOne.
 
 ## Step 4: Launch MatrixOne server
 
