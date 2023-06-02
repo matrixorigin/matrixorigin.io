@@ -8,7 +8,7 @@ Thanks for understanding that this repository uses English as a shared language.
 
 ### Basic Information
 
-You can see [MatrixOne Introduction](../../Overview/matrixone-introduction.md) for key features of MatrixOne, [MatrixOne Architecture](../../Overview/matrixone-architecture-design.md) for MatrixOne architecture, and operational logic.
+You can see [MatrixOne Introduction](../../Overview/matrixone-introduction.md) for key features of MatrixOne, [MatrixOne Architecture](../../Overview/architecture/matrixone-architecture-design.md) for MatrixOne architecture, and operational logic.
 
 Besides, you can browse [SQL Reference](../../Reference/SQL-Reference/Data-Definition-Language/create-database.md) and [Custom Functions](../../Reference/Functions-and-Operators/Mathematical/abs.md) to know more about our interactive details.
 
