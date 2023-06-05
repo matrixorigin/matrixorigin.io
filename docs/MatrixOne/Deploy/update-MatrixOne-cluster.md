@@ -37,7 +37,15 @@ According to the introduction in [MatrixOne Distributed Cluster Deployment](depl
     watch -e "kubectl get pod -n${mo_ns}"
     ```
 
-    ![image-20230407094943685](https://github.com/matrixorigin/artwork/blob/main/docs/deploy/image-20230407094943685.png?raw=true)
+    ```
+    NAME                                 READY   STATUS    RESTARTS      AGE
+    matrixone-operator-f8496ff5c-fp6zm   1/1     Running   0             24h
+    mo-dn-0                              1/1     Running   1 (51s ago)   18h
+    mo-log-0                             1/1     Running   0             18h
+    mo-log-1                             1/1     Running   1 (5s ago)    18h
+    mo-log-2                             1/1     Running   1 (53s ago)   18h
+    mo-tp-cn-0                           1/1     Running   1 (53s ago)   18h
+    ```
 
     If an error, crashbackoff, etc., occurs, you can further troubleshoot the problem by viewing the component log.
 
@@ -76,6 +84,14 @@ According to the introduction in [MatrixOne Distributed Cluster Deployment](depl
 
 5. The rolling update may be suspended due to incorrect configuration (such as specifying a non-existing version when upgrading). At this point, you can re-modify the dynamic configuration of the operator, reset the version number, roll back the changes, and the failed Pods will be re-updated.
 
+6. You can check the version number of the current MatrixOne deployment with the following command:
+
+    ```
+    [root@master0 matrixone-operator]# kubectl get matrixoneclusters -n mo-hn -o yaml | grep version
+            {"apiVersion":"core.matrixorigin.io/v1alpha1","kind":"MatrixOneCluster","metadata":{"annotations":{},"name":"mo","namespace":"mo-hn"},"spec":{"dn":{"cacheVolume":{"size":"5Gi","storageClassName":"local-path"},"config":"[dn.Txn.Storage]\nbackend = \"TAE\"\nlog-backend = \"logservice\"\n[dn.Ckp]\nflush-interval = \"60s\"\nmin-count = 100\nscan-interval = \"5s\"\nincremental-interval = \"60s\"\nglobal-interval = \"100000s\"\n[log]\nlevel = \"error\"\nformat = \"json\"\nmax-size = 512\n","replicas":1,"resources":{"limits":{"cpu":"200m","memory":"1Gi"},"requests":{"cpu":"100m","memory":"500Mi"}}},"imagePullPolicy":"IfNotPresent","imageRepository":"matrixorigin/matrixone","logService":{"config":"[log]\nlevel = \"error\"\nformat = \"json\"\nmax-size = 512\n","pvcRetentionPolicy":"Retain","replicas":3,"resources":{"limits":{"cpu":"200m","memory":"1Gi"},"requests":{"cpu":"100m","memory":"500Mi"}},"sharedStorage":{"s3":{"endpoint":"http://minio.mostorage:9000","path":"minio-mo","secretRef":{"name":"minio"},"type":"minio"}},"volume":{"size":"1Gi"}},"tp":{"cacheVolume":{"size":"5Gi","storageClassName":"local-path"},"config":"[cn.Engine]\ntype = \"distributed-tae\"\n[log]\nlevel = \"debug\"\nformat = \"json\"\nmax-size = 512\n","nodePort":31429,"replicas":1,"resources":{"limits":{"cpu":"200m","memory":"2Gi"},"requests":{"cpu":"100m","memory":"500Mi"}},"serviceType":"NodePort"},"version":"nightly-54b5e8c"}}
+        version: nightly-54b5e8c
+    ```
+
 ## Reinstall and upgrade
 
 Reinstalling and upgrading mean all MatrixOne clusters will be deleted and the data discarded and reinstalled.
@@ -96,7 +112,7 @@ In master0, the old version cluster can be deleted in any of the following ways:
 
 ```
 # Method 1: Delete through the YAML file of the mo cluster during deployment, for example:
-kubectl delete -f /root/deploy/mo-796d73d6.yaml
+kubectl delete -f /root/deploy/mo.yaml
 # Method 2: By deleting the matrixonecluster object, where mo is the name
 kubectl delete matrixonecluster.core.matrixorigin.io mo -nmo-hn
 ```
