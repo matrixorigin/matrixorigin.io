@@ -45,11 +45,14 @@ nav:
     - Home: README.md
     - Overview:
       - MatrixOne Introduction: MatrixOne/Overview/matrixone-introduction.md
-      - MatrixOne Feature List: MatrixOne/Overview/matrixone-feature-list.md
+      - MatrixOne Feature Overview:
+        - MatrixOne Features: MatrixOne/Overview/feature/feature-overview.md
+        - HTAP of MatrixOne: MatrixOne/Overview/feature/key-feature-htap.md
+        - Multi-Account of MatrixOne: MatrixOne/Overview/feature/key-feature-multi-accounts.md
+        - Feature List: MatrixOne/Overview/feature/matrixone-feature-list.md
+        - MySQL Compatibility: MatrixOne/Overview/feature/mysql-compatibility.md
       - MatrixOne Architecture Design:
-        - Architecture Design Overview: MatrixOne/Overview/matrixone-architecture-design.md
-        - Feature List: MatrixOne/Overview/architecture-details.md
-      - MySQL Compatibility: MatrixOne/Overview/mysql-compatibility.md
+        - Architecture Design Overview: MatrixOne/Overview/architecture/matrixone-architecture-design.md
       - What's New: MatrixOne/Overview/whats-new.md
     - Getting Started:
       - Deploy standalone MatrixOne:
@@ -159,7 +162,6 @@ nav:
         - Using Cluster by for performance tuning: MatrixOne/Performance-Tuning/optimization-concepts/through-cluster-by.md
         - Scaling CN for better performance: MatrixOne/Performance-Tuning/optimization-concepts/through-CN-extensions.md
         - Using PARTITION BY for performance tuning: MatrixOne/Performance-Tuning/optimization-concepts/through-partition-by.md
-        - Configuring Proxy for implementing SQL distribution: MatrixOne/Performance-Tuning/optimization-concepts/through-enable-proxy.md
         - Optimizer Hints: MatrixOne/Performance-Tuning/control-execution-plan/optimizer-hints.md
     - Privilege:
       - TLS Introduction: MatrixOne/Security/TLS-introduction.md
