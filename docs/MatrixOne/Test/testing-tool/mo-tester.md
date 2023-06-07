@@ -1,8 +1,8 @@
+# What's in MO-Tester?
+
 From the 0.5.0 version, MatrixOne introduces an automatic testing framework [MO-Tester](https://github.com/matrixorigin/mo-tester).
 
 This tester is designed to test MatrixOne or other database functionalities with SQL.
-
-# What's in MO-Tester?
 
 MO-Tester is a java-based tester suite for MatrixOne. It has built a whole toolchain to run automatic SQL tests. It contains the test cases and results. Once launched, MO-Tester runs all SQL test cases with MatrixOne, and compares all output SQL results with expected results. All successful and failed cases will be logged into reports.
 
@@ -17,9 +17,9 @@ MO-Tester content locations:
 The Cases and Results are 1-1 correspondence, and they are actually `git submodules` from MatrixOne repository. Adding new cases and results should be in MatrixOne repo: <https://github.com/matrixorigin/matrixone/tree/main/test>
 <!--这个submodules我好像还没设置-sudong-->
 
-# How to use MO-Tester?
+## How to use MO-Tester?
 
-## 1. Prepare the testing environment
+### 1. Prepare the testing environment
 
 * Make sure you have installed jdk8.
 
@@ -37,7 +37,7 @@ The Cases and Results are 1-1 correspondence, and they are actually `git submodu
    git clone https://github.com/matrixorigin/matrixone.git
    ```
 
-## 2. Configure `mo-tester`
+### 2. Configure `mo-tester`
 
 * In `mo.yml` file, configure the server address, default database name, username, and password, and so on. MO-tester is based on java, so these parameters are required for the JDBC(JDBC,Java Database Connectivity) driver. Below is a default example for a local standalone version MatrixOne.
 
@@ -65,7 +65,7 @@ The Cases and Results are 1-1 correspondence, and they are actually `git submodu
     passwrod: "111"
   ```
 
-## 3. Run mo-tester
+### 3. Run mo-tester
 
 * With the simple below command, all the SQL test cases will automatically run and generate reports and error messages to *report/report.txt* and *report/error.txt*.
 
@@ -98,7 +98,7 @@ If you want to automatically generate SQL results for the new SQL cases, you can
 !!! note
     Every time running `run.sh` will overwrite the report of the  *error.txt* file, *report.txt* file, and *success.txt* file in the  *mo-tester* repository.
 
-## 4. Check the report
+### 4. Check the report
 
 * Once the test is finished, *mo-tester* generates *error.txt* file, *report.txt* file and *success.txt* file reports.
 
@@ -136,9 +136,9 @@ c	d
 1	1
 ```
 
-## 5. Test Examples
+### 5. Test Examples
 
-### Example 1
+#### Example 1
 
 **Example Description**: Run all test cases in the */cases* path of the *matrixone* repository.
 
@@ -160,7 +160,7 @@ c	d
 
 3. Check the result reports in the *error.txt* file, *report.txt* file, and *success.txt* file in the *mo-tester/report/* path.
 
-### Example 2
+#### Example 2
 
 **Example Description**: Run the test cases in the */cases/transaction/* path of the *matrixone* repository.
 
@@ -194,7 +194,7 @@ c	d
    [{path_name}/matrixone/test/cases/transaction/isolation_1.sql] COST : 1.512s, TOTAL :217, SUCCESS :217, FAILED :0, IGNORED :0, ABNORAML :0, SUCCESS RATE : 100%
    ```
 
-### Example 3
+#### Example 3
 
 **Example Description**: Run the single test case *cases/transaction/atomicity.sql*.
 
@@ -221,7 +221,7 @@ c	d
    [{path_name}/matrixone/test/cases/transaction/atomicity.sql] COST : 0.56s, TOTAL :66, SUCCESS :66, FAILED :0, IGNORED :0, ABNORAML :0, SUCCESS RATE : 100%
    ```
 
-### <h3><a name="new_test_scenario">Example 4</a></h3>
+#### <a name="new_test_scenario">Example 4</a>
 
 **Example Description**:
 

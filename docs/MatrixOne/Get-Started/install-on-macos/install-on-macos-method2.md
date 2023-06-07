@@ -67,9 +67,6 @@ __Tips__: It is recommended that you download and install one of these two tools
 
      If you want a more intuitive way to download the page, go to the [version 0.7.0](https://github.com/matrixorigin/matrixone/releases/tag/v0.7.0), pull down to find the **Assets** column, and click the installation package *mo-v0.7.0-darwin-x86_64.zip* can be downloaded.
 
-!!! info
-    MatrixOne only supports installation on ARM chipset with source code build; if you are using MacOS M1 and above, for more information on using source code build to install MatrixOne, see [Building from source code](install-on-macos-method1.md). Using release binary files from X86 chipset will lead to unknown problems.
-
 ## Step 3: Launch MatrixOne server
 
 === "**Launch in the frontend**"
