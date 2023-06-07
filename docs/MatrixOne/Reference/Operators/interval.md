@@ -8,13 +8,13 @@
 
 - Temporal arithmetic also can be performed in expressions using INTERVAL together with the `+` or `-` operator:
 
-```
-date + INTERVAL expr unit
-date - INTERVAL expr unit
-```
+    ```
+    date + INTERVAL expr unit
+    date - INTERVAL expr unit
+    ```
 
-  + INTERVAL expr unit is permitted on either side of the `+` operator if the expression on the other side is a date or datetime value.
-  + For the `-` operator, INTERVAL expr unit is permitted only on the right side, because it makes no sense to subtract a date or datetime value from an interval.
+    + INTERVAL expr unit is permitted on either side of the `+` operator if the expression on the other side is a date or datetime value.
+    + For the `-` operator, INTERVAL expr unit is permitted only on the right side, because it makes no sense to subtract a date or datetime value from an interval.
 
 ## **Syntax**
 

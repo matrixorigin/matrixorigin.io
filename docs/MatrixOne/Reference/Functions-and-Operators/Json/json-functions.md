@@ -31,11 +31,11 @@ Path syntax uses a leading $ character to represent the JSON document under cons
 
 - Paths can contain * or ** wildcards:
 
-   + .[*] evaluates to the values of all members in a JSON object.
+    + .[*] evaluates to the values of all members in a JSON object.
 
-   + [*] evaluates to the values of all elements in a JSON array.
+    + [*] evaluates to the values of all elements in a JSON array.
 
-   + prefix**suffix evaluates to all paths that begin with the named prefix and end with the named suffix.
+    + prefix**suffix evaluates to all paths that begin with the named prefix and end with the named suffix.
 
 - A path that does not exist in the document (evaluates to nonexistent data) evaluates to NULL.
 
