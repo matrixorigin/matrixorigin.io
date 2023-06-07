@@ -45,11 +45,14 @@ nav:
     - Home: README.md
     - Overview:
       - MatrixOne Introduction: MatrixOne/Overview/matrixone-introduction.md
-      - MatrixOne Feature List: MatrixOne/Overview/matrixone-feature-list.md
-      - MatrixOne Architecture Design: 
-        - Architecture Design Overview: MatrixOne/Overview/matrixone-architecture-design.md
-        - Feature List: MatrixOne/Overview/architecture-details.md
-      - MySQL Compatibility: MatrixOne/Overview/mysql-compatibility.md
+      - MatrixOne Feature Overview:
+        - MatrixOne Features: MatrixOne/Overview/feature/feature-overview.md
+        - HTAP of MatrixOne: MatrixOne/Overview/feature/key-feature-htap.md
+        - Multi-Account of MatrixOne: MatrixOne/Overview/feature/key-feature-multi-accounts.md
+        - Feature List: MatrixOne/Overview/feature/matrixone-feature-list.md
+        - MySQL Compatibility: MatrixOne/Overview/feature/mysql-compatibility.md
+      - MatrixOne Architecture Design:
+        - Architecture Design Overview: MatrixOne/Overview/architecture/matrixone-architecture-design.md
       - What's New: MatrixOne/Overview/whats-new.md
     - Getting Started:
       - Deploy standalone MatrixOne:
@@ -87,9 +90,10 @@ nav:
         - Insert: MatrixOne/Develop/import-data/insert-data.md
         - Bulk Load:
           - Bulk Load Overview: MatrixOne/Develop/import-data/bulk-load/bulk-load-overview.md
-          - Import .csv format data: MatrixOne/Develop/import-data/bulk-load/load-csv.md
+          - Import csv format data: MatrixOne/Develop/import-data/bulk-load/load-csv.md
           - Import jsonlines format data: MatrixOne/Develop/import-data/bulk-load/load-jsonline.md
           - Import data from S3: MatrixOne/Develop/import-data/bulk-load/load-s3.md
+          - Import data by using the `source` command: MatrixOne/Develop/import-data/bulk-load/using-source.md
       - Export Data:
         - Export data by SELECT INTO...OUTFILE: MatrixOne/Develop/export-data/select-into-outfile.md
         - Export data by modump: MatrixOne/Develop/export-data/modump.md
@@ -119,6 +123,7 @@ nav:
         - Updating: MatrixOne/Deploy/update-MatrixOne-cluster.md
         - Starting and stopping: MatrixOne/Deploy/MatrixOne-start-stop.md
         - Scaling: MatrixOne/Deploy/MatrixOne-cluster-Scale.md
+        - Health check and resource monitoring: MatrixOne/Deploy/health-check-resource-monitoring.md
         - Import data from local Minio to MatrixOne: MatrixOne/Deploy/import-data-from-minio-to-mo.md
     - Tutorials:
       - Build a Java CRUD demo: MatrixOne/Tutorial/develop-java-crud-demo.md
@@ -132,7 +137,10 @@ nav:
       - Mount Data:
         - Mount directory to Docker container: MatrixOne/Maintain/mount-data-by-docker.md
     - Migrating:
-      - From MySQL to MatrixOne: MatrixOne/Migrate/migrate-from-mysql-to-matrixone.md
+      - Migrate data to MatrixOne Overview: MatrixOne/Migrate/migrate-overview.md
+      - Migrate data from MySQL to MatrixOne: MatrixOne/Migrate/migrate-from-mysql-to-matrixone.md
+      - Migrate data from SQL Server to MatrixOne: MatrixOne/Migrate/migrate-from-oracle-to-matrixone.md
+      - Migrate data from SQL Server to MatrixOne: MatrixOne/Migrate/migrate-from-sqlserver-to-matrixone.md
     - Testing:
       - Performance Testing:
         - SSB Test with MatrixOne: MatrixOne/Test/performance-testing/SSB-test-with-matrixone.md
@@ -154,7 +162,6 @@ nav:
         - Using Cluster by for performance tuning: MatrixOne/Performance-Tuning/optimization-concepts/through-cluster-by.md
         - Scaling CN for better performance: MatrixOne/Performance-Tuning/optimization-concepts/through-CN-extensions.md
         - Using PARTITION BY for performance tuning: MatrixOne/Performance-Tuning/optimization-concepts/through-partition-by.md
-        - Configuring Proxy for implementing SQL distribution: MatrixOne/Performance-Tuning/optimization-concepts/through-enable-proxy.md
         - Optimizer Hints: MatrixOne/Performance-Tuning/control-execution-plan/optimizer-hints.md
     - Privilege:
       - TLS Introduction: MatrixOne/Security/TLS-introduction.md
@@ -197,6 +204,7 @@ nav:
           - CREATE SEQUENCE: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-sequence.md
           - CREATE...FROM...PUBLICATION...: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-subscription.md
           - CREATE VIEW: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-view.md
+          - ALTER TABLE: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/alter-table.md
           - ALTER PUBLICATION: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/alter-publication.md
           - ALTER VIEW: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/alter-view.md
           - DROP DATABASE: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/drop-database.md
@@ -421,6 +429,8 @@ nav:
             - SUBSTRING(): MatrixOne/Reference/Functions-and-Operators/String/substring.md
             - SUBSTRING_INDEX(): MatrixOne/Reference/Functions-and-Operators/String/substring-index.md
             - TRIM(): MatrixOne/Reference/Functions-and-Operators/String/trim.md
+          - Table:
+            - UNNEST(): MatrixOne/Reference/Functions-and-Operators/Table/unnest.md
           - JSON Functions: MatrixOne/Reference/Functions-and-Operators/Json/json-functions.md
       - System Paramaters:
         - Boot Parameters for standalone installation: MatrixOne/Reference/System-Parameters/configuration-settings.md

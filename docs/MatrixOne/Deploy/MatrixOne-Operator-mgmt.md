@@ -35,30 +35,29 @@ Please look at the MatrixOne-Operator deployment chapter of [MatrixOne Distribut
 We use the Helm tool to deploy MatrixOne Operator. [Helm](https://helm.sh/zh/docs/intro/using_helm/) is a Kubernetes application package management tool for managing charts, pre-configured installation package resources, similar to Ubuntu's APT and CentOS YUM. You can use the `helm list` command to check the deployment status of the Operator.
 
 ```
-NAME                    NAMESPACE       REVISION        UPDATED                                 STATUS          CHART                                   APP VERSION
-matrixone-operator      mo-hn           1               2023-04-04 16:37:10.517301608 +0800 CST deployed        matrixone-operator-0.7.0-alpha.1        0.1.0 
+[root@master0 ~]# NS="matrixone-operator"
+[root@master0 ~]# helm list -n${NS}
+NAME                    NAMESPACE               REVISION        UPDATED                                 STATUS          CHART                                   APP VERSION
+matrixone-operator      matrixone-operator      1               2023-05-09 15:19:38.363683192 +0800 CST deployed        matrixone-operator-0.8.0-alpha.2        0.1.0
 ```
 
 ### Update
 
-The MatrixOne-Operator project is a long-term maintenance and update project; please update to the latest version. You can download the new version of Operator on [Github](https://github.com/matrixorigin/matrixone-operator/releases), for example: `matrixone-operator-0.7.0-alpha.4`.
+The MatrixOne-Operator project is a long-term maintenance and update project; please update to the latest version. You can download the new version of Operator on [Github](https://github.com/matrixorigin/matrixone-operator/releases), for example: `matrixone-operator-0.8.0-alpha.2`.
 
 Unzip the file with the following command:
 
 ```
-tar xvf ./matrixone-operator-0.7.0-alpha.4.tgz
+tar xvf ./matrixone-operator-0.8.0-alpha.2.tgz
 cd matrixone-operator
 ```
 
-You can use the `helm upgrade` command to upgrade Matrixone-Operator, but you need to specify the operator image's version. You can get the mirror version with the following command:
+You can use the `helm upgrade` command to upgrade Matrixone-Operator. You can get the mirror version with the following command:
 
 ```
-#Get the mirror version
-kubectl get pod -nmo-hn `kubectl get pod -nmo-hn | grep operator | head -1 | awk '{print $1}'` -ojsonpath='{.spec.containers[0].image}'
-matrixorigin/matrixone-operator:sha-eea8d16
-# Specify to set the image version
-IMAGE_TAG="sha-65d111e"
-helm upgrade -n mo-hn matrixone-operator ./ --dependency-update --set image.tag=sha-65d111e
+cd matrixone-operator
+NS="matrixone-operator"
+helm upgrade -n "${NS}" matrixone-operator ./ --dependency-update
 ```
 
 After the upgrade is successful, the code display is as follows:
@@ -66,17 +65,36 @@ After the upgrade is successful, the code display is as follows:
 ```
 Release "matrixone-operator" has been upgraded. Happy Helming!
 NAME: matrixone-operator
-LAST DEPLOYED: Thu Apr 6 18:02:08 2023
-NAMESPACE: mo-hn
+LAST DEPLOYED: Tue May  9 17:59:06 2023
+NAMESPACE: matrixone-operator
 STATUS: deployed
-REVISION: 3
+REVISION: 2
 TEST SUITE: None
 ```
 
-After upgrading Matrixone-Operator, a new Pod of `matrixone-operator-xxxx-xxx` will be regenerated under the `mo-hn` namespace, and then the old Pod will be deleted.
+After the upgrade is complete, you can view the current version with the following command:
+
+```
+#Get mirror version
+NS="matrixone-operator"
+kubectl get pod -n${NS} `kubectl get pod -n${NS}  | grep operator | head -1 | awk '{print $1}'` -ojsonpath='{.spec.containers[0].image}'
+matrixorigin/matrixone-operator:0.8.0-alpha.2
+```
+
+After upgrading Matrixone-Operator, a new Pod of `matrixone-operator-xxxx-xxx` will be regenerated under the `matrixone-operator` namespace, and then the old Pod will be deleted.
 
 !!! note
     After the upgrade is complete, if the changes brought about by the Matrixone-Operator upgrade will also update the default `.spec`, then it is possible to roll over the related services or configurations of the MatrixOne cluster so that the MatrixOne service may be restarted. You can monitor the upgrade process with the command: `watch -e "kubectl get pod -nmo-hn -owide"`.
+
+    ```
+    NS="matrixone-operator"
+    watch -e "kubectl get pod -n${NS} -owide"
+    ```
+
+    ```
+    NAME                                 READY   STATUS    RESTARTS   AGE    IP              NODE    NOMINATED NODE   READINESS GATES
+    matrixone-operator-f8496ff5c-s2lr6   1/1     Running   0          164m   10.234.168.43   node1   <none>           <none>
+    ```
 
 ### Scaling
 
@@ -85,25 +103,23 @@ Since Operators often use limited resources, there are relatively few scenarios 
 Before scaling up, we can use the following command to view the number of Operators:
 
 ```
-watch -e "kubectl get pod -nmo-hn -owide"
-NAME                                  READY   STATUS    RESTARTS      AGE    IP              NODE     NOMINATED NODE   READINESS GATES
-matrixone-operator-5bdf6f8db6-7dwtj   1/1     Running   0             6m2s   10.234.60.101   node0    <none>           <none>
-mo-dn-0                               1/1     Running   0             40h    10.234.60.93    node0    <none>           2/2
-mo-log-0                              1/1     Running   0             40h    10.234.60.95    node0    <none>           2/2
-mo-log-1                              1/1     Running   0             40h    10.234.60.92    node0    <none>           2/2
-mo-log-2                              1/1     Running   0             40h    10.234.60.88    node0    <none>           2/2
-mo-tp-cn-0                            1/1     Running   0             39h    10.234.60.97    node0    <none>           2/2
-mo-tp-cn-1                            1/1     Running   3 (19h ago)   39h    10.234.60.96    node0    <none>           2/2
-mo-tp-cn-2                            1/1     Running   2 (19h ago)   39h    10.234.60.98    node0    <none>           2/2
+NS="matrixone-operator"
+watch -e "kubectl get pod -n${NS} -owide"
+```
+
+```
+NAME                                 READY   STATUS    RESTARTS   AGE    IP              NODE    NOMINATED NODE   READINESS GATES
+matrixone-operator-f8496ff5c-s2lr6   1/1     Running   0          164m   10.234.168.43   node1   <none>           <none>
 ```
 
 - **Expansion**: Use the following command line to expand capacity:
 
 ```
 # number of replicas
-NUM=2
 cd matrixone-operator
-helm upgrade -n mo-hn matrixone-operator ./ --dependency-update --set image.tag=sha-65d111e --set replicaCount=${NUM}
+NUM=2
+NS="matrixone-operator"
+helm upgrade -n${NS} matrixone-operator ./ --dependency-update --set replicaCount=${NUM}
 ```
 
 The expansion is successful, and the printing code example is as follows:
@@ -111,10 +127,10 @@ The expansion is successful, and the printing code example is as follows:
 ```
 Release "matrixone-operator" has been upgraded. Happy Helming!
 NAME: matrixone-operator
-LAST DEPLOYED: Thu Apr 6 18:42:45 2023
-NAMESPACE: mo-hn
+LAST DEPLOYED: Tue May  9 18:07:03 2023
+NAMESPACE: matrixone-operator
 STATUS: deployed
-REVISION: 4
+REVISION: 3
 TEST SUITE: None
 ```
 
@@ -122,16 +138,9 @@ You can continue to observe the number of operators with the following command:
 
 ```
 watch -e "kubectl get pod -nmo-hn -owide"
-NAME                                  READY   STATUS    RESTARTS      AGE     IP              NODE     NOMINATED NODE   READINESS GATES
-matrixone-operator-5bdf6f8db6-7dwtj   1/1     Running   0             11m     10.234.60.101   node0    <none>           <none>
-matrixone-operator-5bdf6f8db6-82mh2   1/1     Running   0             6m55s   10.234.60.106   node0    <none>           <none>
-mo-dn-0                               1/1     Running   0             40h     10.234.60.93    node0    <none>           2/2
-mo-log-0                              1/1     Running   0             40h     10.234.60.95    node0    <none>           2/2
-mo-log-1                              1/1     Running   0             40h     10.234.60.92    node0    <none>           2/2
-mo-log-2                              1/1     Running   0             40h     10.234.60.88    node0    <none>           2/2
-mo-tp-cn-0                            1/1     Running   0             40h     10.234.60.97    node0    <none>           2/2
-mo-tp-cn-1                            1/1     Running   3 (19h ago)   40h     10.234.60.96    node0    <none>           2/2
-mo-tp-cn-2                            1/1     Running   2 (19h ago)   39h     10.234.60.98    node0    <none>           2/2
+NAME                                 READY   STATUS    RESTARTS   AGE    IP              NODE    NOMINATED NODE   READINESS GATES
+matrixone-operator-f8496ff5c-nt8qs   1/1     Running   0          9s     10.234.60.126   node0   <none>           <none>
+matrixone-operator-f8496ff5c-s2lr6   1/1     Running   0          167m   10.234.168.43   node1   <none>           <none>
 ```
 
 If you need to scale down horizontally, you can use `helm upgrade` to reduce the number of `replicaCount` to complete the reduction of the number of replicas of the operator.
