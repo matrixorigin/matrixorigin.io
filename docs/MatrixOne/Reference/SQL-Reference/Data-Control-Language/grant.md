@@ -53,11 +53,11 @@ The `GRANT` statement enables *account* to grant privileges and roles, which can
 
 - The `ON` clause distinguishes whether the statement grants privileges or roles:
 
-   + With `ON`, the statement grants privileges.
+    + With `ON`, the statement grants privileges.
 
-   + Without `ON`, the statement grants roles.
+    + Without `ON`, the statement grants roles.
 
-   + It is permitted to assign both privileges and roles to an account, but you must use separate GRANT statements, each with syntax appropriate to what is to be granted.
+    + It is permitted to assign both privileges and roles to an account, but you must use separate GRANT statements, each with syntax appropriate to what is to be granted.
 
 To grant a privilege with `GRANT`, you must have the `GRANT OPTION` privilege, and you must have the privileges that you are granting.
 

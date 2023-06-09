@@ -23,29 +23,29 @@ SLEEP(duration)
 
 - When SLEEP() returns 1 (with interruption or time out), the query returns no error.
 
-   For example:
+    For example:
 
-   1. In session 1, execute the following command to query the current connection_id and execute the `SLEEP()` function:
+    1. In session 1, execute the following command to query the current connection_id and execute the `SLEEP()` function:
 
-       ```sql
-       mysql> select connection_id();
-       +-----------------+
-       | connection_id() |
-       +-----------------+
-       |            1476 |
-       +-----------------+
-       1 row in set (0.03 sec)
-       mysql> select sleep(200);
-       ```
+        ```sql
+        mysql> select connection_id();
+        +-----------------+
+        | connection_id() |
+        +-----------------+
+        |            1476 |
+        +-----------------+
+        1 row in set (0.03 sec)
+        mysql> select sleep(200);
+        ```
 
-   2. At this point, open a new session, interrupt session 1, and run the following command.
+    2. At this point, open a new session, interrupt session 1, and run the following command.
 
-       ```sql
-       mysql> kill 1463;
-       Query OK, 0 rows affected (0.00 sec)
-       ```
+        ```sql
+        mysql> kill 1463;
+        Query OK, 0 rows affected (0.00 sec)
+        ```
 
-    3. Checke the query result of session 1:
+    3. Check the query result of session 1:
 
         ```
         mysql> select sleep(200);
@@ -59,10 +59,10 @@ SLEEP(duration)
 
 - When SLEEP() returns an error (part of a query is uninterrupted). For example:
 
-   ```sql
-   mysql> SELECT 1 FROM t1 WHERE SLEEP(1000);
-   ERROR 20101 (HY000): internal error: pipeline closed unexpectedly
-   ```
+    ```sql
+    mysql> SELECT 1 FROM t1 WHERE SLEEP(1000);
+    ERROR 20101 (HY000): internal error: pipeline closed unexpectedly
+    ```
 
 ## **Examples**
 
