@@ -172,7 +172,7 @@ In this chapter, assuming that account load isolation needs to be implemented fo
     mysql> create account acc2 admin_name 'admin' identified by '123456';
     ```
 
-2. 修改 MatrixOne 集群的 `mo.yaml` 文件，将两个 CN 组分别打上了 `account:acc1` 及 `account:acc2` 的标签，分别对应名为 `acc1` 和 `acc2` 的租户：
+2. Modify the `mo.yaml` file of the MatrixOne cluster, and label the two CN groups with `account:acc1` and `account:acc2` respectively, corresponding to tenants named `acc1` and `acc2` respectively:
 
     ```
     metadata:
