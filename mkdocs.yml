@@ -49,10 +49,14 @@ nav:
         - MatrixOne Features: MatrixOne/Overview/feature/feature-overview.md
         - HTAP of MatrixOne: MatrixOne/Overview/feature/key-feature-htap.md
         - Multi-Account of MatrixOne: MatrixOne/Overview/feature/key-feature-multi-accounts.md
+        - Cost-Effective: MatrixOne/Overview/feature/cost-effective.md
         - Feature List: MatrixOne/Overview/feature/matrixone-feature-list.md
         - MySQL Compatibility: MatrixOne/Overview/feature/mysql-compatibility.md
       - MatrixOne Architecture Design:
         - Architecture Design Overview: MatrixOne/Overview/architecture/matrixone-architecture-design.md
+        - Detailed Logservice Architecture: MatrixOne/Overview/architecture/architecture-logservice.md
+        - Detailed Proxy Architecture: MatrixOne/Overview/architecture/architecture-proxy.md
+        - Detailed Caching and Hot-Cold Data Separation Architecture: MatrixOne/Overview/architecture/architecture-cold-hot-data-separation.md
       - What's New: MatrixOne/Overview/whats-new.md
     - Getting Started:
       - Deploy standalone MatrixOne:
@@ -117,12 +121,17 @@ nav:
           - MVCC: MatrixOne/Develop/Transactions/matrixone-transaction-overview/mvcc.md
           - Transaction Scenario: MatrixOne/Develop/Transactions/matrixone-transaction-overview/scenario.md
     - Deploying:
+      - Plan MatrixOne Cluster Topology:
+        - Experience Environment Deployment Plan: MatrixOne/Deploy/deployment-topology/experience-deployment-topology.md
+        - Minimum Production Environment Deployment Plan: MatrixOne/Deploy/deployment-topology/minimal-deployment-topology.md
+        - Recommended Production Environment Deployment Plan: MatrixOne/Deploy/deployment-topology/recommended-prd-deployment-topology.md
       - MatrixOne distributed cluster deployment: MatrixOne/Deploy/deploy-MatrixOne-cluster.md
       - MatrixOne Operator Management: MatrixOne/Deploy/MatrixOne-Operator-mgmt.md
       - Maintenance:
         - Updating: MatrixOne/Deploy/update-MatrixOne-cluster.md
         - Starting and stopping: MatrixOne/Deploy/MatrixOne-start-stop.md
         - Scaling: MatrixOne/Deploy/MatrixOne-cluster-Scale.md
+        - Managing CN Groups with Proxy: MatrixOne/Deploy/mgmt-cn-group-using-proxy.md
         - Health check and resource monitoring: MatrixOne/Deploy/health-check-resource-monitoring.md
         - Import data from local Minio to MatrixOne: MatrixOne/Deploy/import-data-from-minio-to-mo.md
     - Tutorials:
