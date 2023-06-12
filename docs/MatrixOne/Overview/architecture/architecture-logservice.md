@@ -97,7 +97,6 @@ In Logservice, the general process for a read-write request is as follows:
 Reading data can be divided into two scenarios:
 
 - Reading data from the state machine.
-
    * The client initiates a read request, and when the request reaches the leader node, the current commit index is recorded.
    * The leader node sends heartbeat requests to all nodes to confirm its leader status. Once most nodes respond and confirm it as the leader, it can respond to the read request.
    * Wait for the apply index to be greater than or equal to the commit index.
@@ -106,7 +105,6 @@ Reading data can be divided into two scenarios:
 ![](https://github.com/matrixorigin/artwork/blob/main/docs/overview/logservice/read.png?raw=true)
 
 - Reading log entries from the log database (log db).
-
    * This process typically occurs during cluster restart.
    * During restart, replicas first need to recover the state machine data from the snapshot, then start reading log entries from the log database based on the index position recorded in the snapshot and apply them to the state machine.
    * After this operation is completed, replicas can participate in leader elections.
