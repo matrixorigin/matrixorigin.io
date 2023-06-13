@@ -118,6 +118,7 @@ Depending on your needs, choose whether you want to keep your code up to date, o
 
 !!! info
     If you need to switch branches and launch it again after building on a specific branch, a panic will appear after running, and you will need to clean up the data file directory. See [Installation and Deployment Frequently Asked Questions](../../FAQs/deployment-faqs.md) for solutions.
+    The MatrixOne version 0.8.0 is compatible with the storage format of older versions. If you use version 0.8.0 or a higher version, there is no need to clean the data file directory when switching to other branches and buildings.
 
 ## Step 5: Connect to standalone MatrixOne
 

@@ -181,3 +181,6 @@ If you use `make build` to compile and build MatrixOne with a specific code vers
 ...    // The build process code is omitted here
 [root ~]# ./mo-service --daemon --launch ./etc/quickstart/launch.toml &> test.log &   // Start MatrixOne service in the terminal backend
 ```
+
+!!! note
+    The MatrixOne version 0.8.0 is compatible with the storage format of older versions. If you use version 0.8.0 or a higher version, there is no need to clean the data file directory when switching to other branches and buildings.
