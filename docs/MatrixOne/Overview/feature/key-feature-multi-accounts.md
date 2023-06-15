@@ -2,7 +2,11 @@
 
 MatrixOne is designed in a single-cluster multi-account approach. In this design, account (Account) is a logical concept as a unit of resource allocation and database management. MatrixOne's multi-account mode can provide independent database instances for different accounts and adopts an analytical isolation method to ensure the security and independence of each account's data, effectively preventing the risk of data leakage and tampering.
 
-## Advantages of MatrixOne multi-account
+## Business Requirements
+
+As an enterprise's business scales up and data volume continues to grow, alongside the increase in business departments or project teams, the enterprise can perform flexible tenant management according to its individual business needs and scale. This satisfies the independence requirements of different business departments or project teams. Under the multi-tenant mode of MatrixOne, enterprises can easily manage the data resources of each tenant, making the business processes such as data analysis and reporting smoother and more accurate. At the same time, this approach also helps the enterprise improve business efficiency, reduce management costs, and maximize enterprise resource utilization.
+
+## Advantages
 
 - **Reduce operating costs**: Multiple users can share a database cluster, avoiding deploying and managing multiple sets of clusters, thereby reducing the investment cost of hardware and software.
 
@@ -16,7 +20,7 @@ MatrixOne is designed in a single-cluster multi-account approach. In this design
 
 - **Cross-Regional Deployment**: When some services span many regions, accounts must associate with areas to provide nearby services. MatrixOne supports different accounts under the same cluster to be distributed in other areas to serve the business nearby.
 
-## Multi-account Architecture
+## Architecture
 
 The MatrixOne system contains two accounts: system (sys) and common accounts. The system account is built into the MatrixOne cluster, and the system will log in to this account by default after the cluster starts. The primary responsibilities of this account include:
 
@@ -31,7 +35,7 @@ In contrast, common accounts are created by system accounts. A common account ca
 - Has independent system variables.
 - Possess other characteristics that a database instance should have.
 
-## Multi-account resource isolation
+### Multi-account resource isolation
 
 MatrixOne's distributed cluster adopts a Proxy module and CN resource group technology architecture to realize multi-account resource isolation.
 
@@ -41,11 +45,11 @@ The architecture diagram is as follows:
 
 ![MatrixOne Architecture](https://github.com/matrixorigin/artwork/blob/main/docs/overview/multi-account-proxy.png?raw=true)
 
-## Application scenarios
+## Scenarios
 
 The multi-account capability of MatrixOne can show advantages in the following application scenarios.
 
-### Multi-account SaaS application
+### Multi-account SaaS
 
 Multi-account model design is critical in a SaaS application that serves many enterprise customers.
 
