@@ -13,6 +13,7 @@ For example:
 ```sql
 SELECT INSTR(BINARY 'abc', 'A') AS Match;
 ```
+
 The above query will return 0 because, in binary format, 'A' and 'a' are considered different characters.
 
 ## **Syntax**
