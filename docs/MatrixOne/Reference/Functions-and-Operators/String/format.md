@@ -77,3 +77,7 @@ mysql> SELECT FORMAT("-.12334.2","2", "de_CH");
 +-----------------------------+
 1 row in set (0.01 sec)
 ```
+
+## **Constraints**
+
+The parameter `[,locale]` of `FORMAT(X,D[,locale])` currently only supports the locale parameter `en_US`; other locale parameters are not supported yet.
