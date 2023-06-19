@@ -42,7 +42,7 @@ mysql> select * from t1;
 +------+------+
 ```
 
-- - **Multiple-table Examples**
+- **Multiple-table Examples**
 
 ```sql
 drop table if exists t1;

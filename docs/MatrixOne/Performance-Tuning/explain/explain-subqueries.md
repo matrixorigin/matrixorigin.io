@@ -6,23 +6,23 @@ From the execution of SQL statements, subquery generally has the following two t
 
 - **Self-contained Subquery**: In a database nested query, the inner query is entirely independent of the outer query.
 
-     For example: ``select * from t1 where t1.id in (select t2.id from t2 where t2.id>=3);``, the execution sequence is as follows:
+    For example: ``select * from t1 where t1.id in (select t2.id from t2 where t2.id>=3);``, the execution sequence is as follows:
 
-     + Execute the inner query first: `(select t2.id from t2 where t2.id>=3)`.
+    + Execute the inner query first: `(select t2.id from t2 where t2.id>=3)`.
 
-     + The result of the inner query is carried into the outer layer, and then the outer query is executed.
+    + The result of the inner query is carried into the outer layer, and then the outer query is executed.
 
 - **Correlated Subquery**: In Correlated Subquery nested in databases, the inner and outer queries would not be independent, and the inner queries would depend on the outer queries.
 
-     For example: ``SELECT * FROM t1 WHERE id in (SELECT id FROM t2 WHERE t1.ti = t2.ti and t2.id>=4);``, generally, the execution sequence is as follows:
+    For example: ``SELECT * FROM t1 WHERE id in (SELECT id FROM t2 WHERE t1.ti = t2.ti and t2.id>=4);``, generally, the execution sequence is as follows:
 
-     + Queries a record from the outer query: `SELECT * FROM t1 WHERE id`.
+    + Queries a record from the outer query: `SELECT * FROM t1 WHERE id`.
 
-     + Put the queried records into the inner query, then put the records that meet the conditions into the outer query.
+    + Put the queried records into the inner query, then put the records that meet the conditions into the outer query.
 
-     + Repeat the above steps.
+    + Repeat the above steps.
 
-     However, MatrixOne will rewrite the SQL statement as an equivalent `JOIN` statement: `select t1.* from t1 join t2 on t1.id=t2.id where t2.id>=4;`
+    However, MatrixOne will rewrite the SQL statement as an equivalent `JOIN` statement: `select t1.* from t1 join t2 on t1.id=t2.id where t2.id>=4;`
 
 ## Example
 
