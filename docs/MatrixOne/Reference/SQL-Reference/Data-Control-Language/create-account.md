@@ -27,6 +27,6 @@ Specifies the default account name and authorization mode of the account, `auth_
 ## **Examples**
 
 ```sql
-> create account tenant_test admin_name = 'root' identified by '111' open comment 'tenant_test';
+> create account tenant_test admin_name = 'root' identified by '111' comment 'tenant_test';
 Query OK, 0 rows affected (0.08 sec)
 ```
