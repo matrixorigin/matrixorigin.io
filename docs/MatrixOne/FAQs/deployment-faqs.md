@@ -165,17 +165,21 @@ To complete the following configuration, then compiling 'SSB-DBgen' for a PC wit
 
 7. Check the *ssb-dbgen* directory, when the the *dbgen* file is generated, indicating that the compilation is successful.
 
-### **I built MatrixOne in the main branch initially, but encountered panic when switching to other versions for building**
+### **I built MatrixOne in the main branch initially but encountered panic when switching to other versions for building**
 
-If you use `make build` to compile and build MatrixOne with a specific code version, the directory for data files, mo-data, will be generated. Suppose you must switch to another version (i.e., `git checkout version-name`). In that case, you must clean up mo-data first (i.e., `rm -rf mo-data`) due to version incompatibility before building MatrixOne again. Here's an example of the code:
+The storage formats between MatrixOne version 0.7.0 and its earlier versions are not compatible with each other. This means that when executing `make build`, the system will automatically generate a data directory file named *mo-data* to store data.
+
+In the future, if you need to switch to another branch and re-execute `make build` to build MatrixOne, it may cause a panic situation to occur. In this case, you need first to clean the *mo-data* data directory (that is, execute the `rm -rf mo-data` command), and then rebuild MatrixOne.
+
+Reference code example:
 
 ```
 [root ~]# cd matrixone  // Go to the matrixone directory
 [root ~]# git branch // Check the current branch
-* main
+* 0.7.0
 [root ~]# make build // Build matrixone
-...    // The build process code is omitted here. If you want to switch to another version, such as version 0.7.0,
-[root ~]# git checkout 0.7.0 // Switch to version 0.7.0
+...    // The build process code is omitted here. If you want to switch to another version, such as version 0.6.0,
+[root ~]# git checkout 0.6.0 // Switch to version 0.6.0
 [root ~]# rm -rf mo-data // Clean up the data directory
 [root ~]# make build // Build matrixone again
 ...    // The build process code is omitted here
