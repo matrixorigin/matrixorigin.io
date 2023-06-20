@@ -75,7 +75,7 @@ This document lists the features supported by MatrixOne for the latest version.
 |                      | TEXT              | Y    |
 |                      | MEDIUMTEXT        | Y    |
 |                      | LONGTEXT          | Y    |
-|                      | ENUM              | Y    |
+|                      | ENUM              | N    |
 | Binary Types         | TINYBLOB          | Y    |
 |                      | BLOB              | Y    |
 |                      | MEDIUMBLOB        | Y    |
