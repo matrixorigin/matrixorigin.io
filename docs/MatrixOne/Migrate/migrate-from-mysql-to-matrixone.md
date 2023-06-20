@@ -168,4 +168,4 @@ After the migration is complete, the data can be inspected as follows:
 
 #### Reference example
 
-If you are a novice and want to migrate a small amount of data, see [Migrate data from MySQL to MatrixOne Demo](migrate-from-mysql-to-matrixone-by-command.md).
+If you are a novice and want to migrate a small amount of data, see [Import data by using the `source` command](../Develop/import-data/bulk-load/using-source.md).
