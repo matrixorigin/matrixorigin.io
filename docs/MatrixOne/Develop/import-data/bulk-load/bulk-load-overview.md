@@ -29,4 +29,4 @@ MatrixOne supports using the `SOURCE` command to import the entire database stru
 ## More import capabilities
 
 - MatrixOne supports the parallel loading of data files: when the data file is large, to improve the loading speed, MatrixOne also supports parallel loading, see the `LOAD DATA` parameter description for importing data.
-- In a MatrixOne distributed cluster, in addition to importing data locally and from the public cloud object storage S3 to MatrixOne, you can also import data through the local Minio component. For details, see [Import data from local Minio to MatrixOne](../ ../../Deploy/import-data-from-minio-to-mo.md)
+- In a MatrixOne distributed cluster, in addition to importing data locally and from the public cloud object storage S3 to MatrixOne, you can also import data through the local Minio component. For details, see [Import data from local Minio to MatrixOne](../../../Deploy/import-data-from-minio-to-mo.md)
