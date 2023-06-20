@@ -2,7 +2,7 @@
 
 ## **Description**
 
-SUBSTR() is a synonym of SUBSTRING().
+`SUBSTR()` and `MID()` are both synonyms of `SUBSTRING()`.
 The forms without a len argument return a substring from string str starting at position pos. The forms with a len argument return a substring len characters long from string str, starting at position pos.
 
 ## **Syntax**
@@ -33,7 +33,7 @@ no_of_branch int NOT NULL DEFAULT 0,
 estd date NOT NULL DEFAULT '2000-01-01'
 );
 
-> INSERT INTO t3 (pub_id, pub_name, pub_city, country, country_office, no_of_branch, estd) VALUES
+> INSERT INTO t1 (pub_id, pub_name, pub_city, country, country_office, no_of_branch, estd) VALUES
 ('P001', 'Jex Max Publication', 'New York', 'USA', 'New York', 15, '1969-12-25'),
 ('P002', 'BPP Publication', 'Mumbai', 'India', 'New Delhi', 10, '1985-10-01'),
 ('P003', 'New Harrold Publication', 'Adelaide', 'Australia', 'Sydney', 6, '1975-09-05'),
@@ -63,7 +63,3 @@ estd date NOT NULL DEFAULT '2000-01-01'
 +--------------------------+----------------------+
 3 rows in set (0.03 sec)
 ```
-
-## Constraints
-
-* Currently, Substring() doesn't support FROM and FOR clauses.
