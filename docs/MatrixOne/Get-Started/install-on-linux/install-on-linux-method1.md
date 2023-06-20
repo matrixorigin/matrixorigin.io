@@ -79,6 +79,8 @@ Depending on your needs, choose whether you want to keep your code up to date, o
          make build
          ```
 
+         __Tips__: You can also run `make debug`, `make clean`, or anything else our `Makefile` offers, `make debug` can be used to debug the build process, and `make clean` can be used to clean up the build process. If you get an error like `Get "https://proxy.golang.org/........": dial tcp 142.251.43.17:443: i/o timeout` while running `make build`, see [Deployment FAQs](../../FAQs/deployment-faqs.md).
+
 ## Step 4: Launch MatrixOne server
 
 === "**Launch in the frontend**"
@@ -114,10 +116,6 @@ Depending on your needs, choose whether you want to keep your code up to date, o
       __Tips__: As shown in the above example, use the command `ps aux | grep mo-service` to find out that the process number running on MatrixOne is `15277`, and `kill -9 15277` means to stop MatrixOne with the process number `15277`.
 
       Next you can take the next step - Connect to standalone MatrixOne.
-
-!!! info
-    If you need to switch branches and launch it again after building on a specific branch, a panic will appear after running, and you will need to clean up the data file directory. See [Installation and Deployment Frequently Asked Questions](../../FAQs/deployment-faqs.md) for solutions.
-    The MatrixOne version 0.8.0 is compatible with the storage format of older versions. If you use version 0.8.0 or a higher version, there is no need to clean the data file directory when switching to other branches and buildings.
 
 ## Step 5: Connect to standalone MatrixOne
 
