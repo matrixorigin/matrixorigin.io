@@ -19,6 +19,7 @@ SELECT
     [ORDER BY {col_name | expr | position}
       [ASC | DESC]] [ NULLS { FIRST | LAST } ]
     [LIMIT {[offset,] row_count | row_count OFFSET offset}]
+    [FOR {UPDATE}]
 ```
 
 ### Explanations
@@ -72,6 +73,34 @@ To sort in reverse order, add the DESC (descending) keyword to the name of the c
 #### `LIMIT`
 
 The `LIMIT` clause can be used to constrain the number of rows returned by the SELECT statement.
+
+#### `FOR UPDATE`
+
+`SELECT...FOR UPDATE` is mainly used to lock a set of data rows in transaction processing to prevent them from being modified by other concurrent transactions. This statement is most commonly used in "read-modify-write" scenarios. That is, when you need to read a data set, make changes to it, and then write the results back to the database, you don't want other transactions to modify this data set.
+
+Using `SELECT FOR UPDATE` in a transaction can lock the selected rows until the transaction ends (either by commit or rollback) and the locks are released. This way, other transactions attempting to modify these rows are blocked until the first transaction is complete.
+
+See the example below:
+
+```sql
+START TRANSACTION;
+
+SELECT * FROM Orders
+WHERE OrderID = 1
+FOR UPDATE;
+```
+
+In the above transaction, the `SELECT FOR UPDATE` statement selects and locks the row with `OrderID` 1 in the `Orders` table. Other transactions cannot modify this row before the transaction ends. After you have finished modifying this row, you can commit the transaction to release the lock:
+
+```sql
+UPDATE Orders
+SET Quantity = Quantity - 1
+WHERE OrderID = 1;
+
+COMMIT;
+```
+
+The above `UPDATE` statement modifies the `Quantity` value of the selected row, and then the `COMMIT` statement commits the transaction and releases the lock. At this point, other blocked transactions can continue. If you decide not to make any changes, you can use the `ROLLBACK` statement to end the transaction and release the lock.
 
 ## **Examples**
 
@@ -133,5 +162,5 @@ mysql> select * from t1 order by spID asc nulls last;
 ## **Constraints**
 
 1. Table alias is not supported in GROUP BY.
-2. SELECT...FOR UPDATE clause is not supported now.
+2. `SELECT...FOR UPDATE` currently only supports single-table queries.
 3. INTO OUTFILE is limitedly support.
