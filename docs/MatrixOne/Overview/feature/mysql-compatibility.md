@@ -58,7 +58,7 @@ MatrixOne SQL syntax conforms with MySQL 8.0.23 version.
 |   | Other statements | Not supported now.  |
 | Data Types | BOOLEAN | Different from MySQL's boolean which is the same as int , MatrixOne's boolean is a new type, its value can only be true or false. |
 ||INT/BIGINT/SMALLINT/TINYINT/INT UNSIGNED/BIGINT UNSIGNED|Same as MySQL.|
-||CHAR/VARCHAR/BINARY/VARBINARY/TEXT/BLOB/ENUM |Same as MySQL.|
+||CHAR/VARCHAR/BINARY/VARBINARY/TEXT/BLOB |Same as MySQL.|
 |   | FLOAT/DOUBLE | The precision is a bit different with MySQL.  |
 | | DECIMAL | The max precision is 38 digits. |
 |   | DATE | Only 'YYYY-MM-DD' and 'YYYYMMDD' formats are supported.  |
