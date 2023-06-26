@@ -18,7 +18,7 @@
 
 - `pos`: The position in expr at which to start the search. If omitted, the default is 1.
 
-- `occurrence`: Which occurrence of a match to replace. If omitted, the default is 0 (which means “replace all occurrences”).
+- `occurrence`: Which occurrence of a match to replace. If omitted, the default is 0 (which means *replace all occurrences*).
 
 - `return_option`: This is an optional parameter specifying whether the returned position is where the pattern starts or ends. If 0 or omitted, the function returns the position at which the pattern begins. If 1, the function returns the position after the position where the pattern ends.
 
