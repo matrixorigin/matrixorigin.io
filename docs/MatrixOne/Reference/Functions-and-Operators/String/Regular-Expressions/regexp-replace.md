@@ -20,7 +20,7 @@
 
 - `pos`: The position in expr at which to start the search. If omitted, the default is 1.
 
-- `occurrence`: Which occurrence of a match to replace. If omitted, the default is 0 (which means “replace all occurrences”).
+- `occurrence`: Which occurrence of a match to replace. If omitted, the default is 0 (which means *replace all occurrences*).
 
 - `match_type`: The optional `match_type` argument is a string that may contain any or all the following characters specifying how to perform matching:
 
