@@ -28,6 +28,7 @@ Regular expressions can perform complex string matching and manipulation. Here a
     SELECT REGEXP_REPLACE(name, '[^a-zA-Z]', '')
     FROM users;
     ```
+    
     This SQL will return the result of all non-alphabetical characters in the name field being replaced.
 
 - **Text Analysis**: If you are conducting text analysis, regular expressions can help you find specific words or phrases in the text and can even be used for certain forms of natural language processing.
