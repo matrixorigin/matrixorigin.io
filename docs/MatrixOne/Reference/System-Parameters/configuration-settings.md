@@ -16,6 +16,8 @@ The parameters contained in each configuration file are explained as follows:
 |max-size = 512|Log default length|
 |[hakeeper-client]|HAkeeper default address and port, not recommended to change|
 |service-addresses = [<br>  "127.0.0.1:32001",<br>]||
+|[metacache]|Metadata Cache|
+|memory-capacity = "512MB"|Set the cache size for metadata, default is 512MB. The data caching feature results in slower first-time queries, but subsequent queries will be faster.|
 |[[fileservice]] |fileservice, not recommended to change|
 |name = "LOCAL"|fileservice storage type, local storage|
 |backend = "DISK"|fileservice backend, disk|
@@ -27,6 +29,8 @@ The parameters contained in each configuration file are explained as follows:
 |memory-capacity = "512MB"|cache memory size used by fileservice|
 |disk-capacity = "8GB"|cache disk size used by fileservice|
 |disk-path = "mo-data/file-service-cache"|fileservice disk cache path|
+|disk-min-evict-interval = "7m"|Interval for disk cache recovery, in seconds (s) or minutes (m)|
+|disk-evict-target = 0.8|Target capacity for disk cache recovery, parameter is the ratio of template capacity to total capacity|
 |[[fileservice]]||
 |name = "ETL"|fileservice storage type, ETL|
 |backend = "DISK-ETL"|fileservice backend, DISK-ETL|
@@ -37,6 +41,9 @@ The parameters contained in each configuration file are explained as follows:
 |uuid = "dd1dccb4-4d3c-41f8-b482-5251dc7a41bf"||
 |[cn.Engine]|Storage engine of the cn node, distributed tae, cannot be modified|
 |type = "distributed-tae"||
+|[cn.txn]||
+|enable-sacrificing-freshness = false| When set to true and push mode, this parameter does not guarantee that a transaction can see the latest committed data. Instead, it uses the latest Logtail commit timestamp received by the current CN as the transaction start time. This setting ensures that a transaction on the same database connection can see the data written by its previously committed transactions.|
+|enable-cn-based-consistency = false|When the above parameter is set to true, it ensures external consistency on the same CN. When a transaction starts, it can see the data written by previously committed transactions.|
 
 ## dn.toml
 
@@ -50,6 +57,8 @@ The parameters contained in each configuration file are explained as follows:
 |max-size = 512|Log default length|
 |[hakeeper-client]|HAkeeper default address and port, not recommended to change|
 |service-addresses = [<br>  "127.0.0.1:32001",<br>]||
+|[metacache]|Metadata Cache|
+|memory-capacity = "512MB"|Set the cache size for metadata, default is 512MB. The data caching feature results in slower first-time queries, but subsequent queries will be faster.|
 |[[fileservice]] |fileservice, not recommended to change|
 |name = "LOCAL"|fileservice storage type, local storage|
 |backend = "DISK"|fileservice backend, disk|
@@ -61,6 +70,8 @@ The parameters contained in each configuration file are explained as follows:
 |memory-capacity = "512MB"|cache memory size used by fileservice|
 |disk-capacity = "8GB"|cache disk size used by fileservice|
 |disk-path = "mo-data/file-service-cache"|fileservice disk cache path|
+|disk-min-evict-interval = "7m"|Interval for disk cache recovery, in seconds (s) or minutes (m)|
+|disk-evict-target = 0.8|Target capacity for disk cache recovery, parameter is the ratio of template capacity to total capacity|
 |[[fileservice]]||
 |name = "ETL"|fileservice storage type, ETL|
 |backend = "DISK-ETL"|fileservice backend, DISK-ETL|
@@ -69,6 +80,8 @@ The parameters contained in each configuration file are explained as follows:
 |[dn.Txn.Storage]|The storage engine of the dn transaction backend, cannot be modified|
 |backend = "TAE" ||
 |log-backend = "logservice"||
+|[dn.Txn]||
+|incremental-dedup = false|If set to false, DN initiates deduplication for all data. If set to true, DN will only deduplicate primary key data after the snapshot timestamp.|
 |[dn.Ckp]|the checkpoint related parameters of dn, not recommended to change|
 |flush-interval = "60s" |internal refresh interval|
 |min-count = 100 |Minimum number of checkpoints|
@@ -106,6 +119,8 @@ The parameters contained in each configuration file are explained as follows:
 |memory-capacity = "512MB"|cache memory size used by fileservice|
 |disk-capacity = "8GB"|cache disk size used by fileservice|
 |disk-path = "mo-data/file-service-cache"|fileservice disk cache path|
+|disk-min-evict-interval = "7m"|Interval for disk cache recovery, in seconds (s) or minutes (m)|
+|disk-evict-target = 0.8|Target capacity for disk cache recovery, parameter is the ratio of template capacity to total capacity|
 |[[fileservice]]||
 |name = "ETL"|fileservice storage type, ETL|
 |backend = "DISK-ETL"|fileservice backend, DISK-ETL|

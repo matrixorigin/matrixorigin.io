@@ -16,7 +16,7 @@ Formats the number X to a format like '#,###,###.##', rounded to D decimal place
 |  ----  | ----  |
 | X | Required. X is the number need to format. If X is NULL, the function returns NULL. |
 | D | Required. D is the number of decimal places to round. <br>If D is 0, the result has no decimal point or fractional part. <br>If D is NULL, the function returns NULL.|
-| [,locale] |  Optional. The optional parameter enables a locale to be specified to be used for the result number's decimal point, thousands separator, and grouping between separators. If the locale is NULL or not specified, the default locale is 'en_US'.|
+| [,locale] |  Optional. The optional parameter enables a locale to be specified to be used for the result number's decimal point, thousands separator, and grouping between separators. If the locale is NULL or not specified, the default locale is 'en_US'. `[,locale]` supports locale parameters consistent with MySQL; see [MySQL Server Locale Support](https://dev.mysql.com/doc/refman/8.0/en/locale-support.html).|
 
 ## **Examples**
 
