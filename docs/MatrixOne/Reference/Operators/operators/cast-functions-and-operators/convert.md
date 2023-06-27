@@ -27,9 +27,9 @@ Or:
 
 Currently, `convert` can support following conversion:
 
- * Conversion between numeric types, mainly including SIGNED, UNSIGNED, FLOAT, and DOUBLE type.
- * Numeric types to character CHAR type.
- * Numeric character types to numerical types(negative into SIGNED).
+* Conversion between numeric types, mainly including SIGNED, UNSIGNED, FLOAT, and DOUBLE type.
+* Numeric types to character CHAR type.
+* Numeric character types to numerical types(negative into SIGNED).
 
 ## **Examples**
 

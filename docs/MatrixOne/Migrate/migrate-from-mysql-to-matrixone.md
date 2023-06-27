@@ -1,77 +1,171 @@
 # Migrate data from MySQL to MatrixOne
 
-This document describes how to migrate data from MySQL to MatrixOne.
+This document will guide you on how to migrate data from MySQL to MatrixOne.
 
-### 1. Dump MySQL data
+MatrixOne maintains a high degree of compatibility with MySQL syntax, so the syntax adjustments that need to be made during the migration process are minimal. Nevertheless, there are still some differences between MatrixOne and MySQL in terms of data types and data objects, which requires some adjustments in the migration process.
 
-We suppose you have full access to your MySQL instances.
+## Data type difference
 
-Firstly, we use `mysqldump` to dump MySQL table structures and data to a single file with the following command. You can take a look at this wonderful [tutorial](https://simplebackups.com/blog/the-complete-mysqldump-guide-with-examples/) if you are not familiar with `mysqldump`. The syntax is as below:
+In MatrixOne, while maintaining the same name as MySQL, there are slight differences in accuracy and range between data types and MySQL. For more information, see [Data Types](../Reference/Data-Types/data-types.md).
 
-```
-mysqldump -h IP_ADDRESS -uUSERNAME -pPASSWORD -d DB_NAME1 DB_NAME2 ... OUTPUT_FILE_NAME.SQL
-```
+## Online Migration
 
-For example, this following command dumps all table structures and data of the database `test` to a single file named `a.sql`.
+This chapter will guide you to use third-party tools to migrate data from MySQL to MatrixOne.
 
-```
-mysqldump -h 127.0.0.1 -uroot -proot -d test > a.sql
-```
+- Applicable scenarios: scenarios where the amount of data is small (recommended less than 1GB), and the migration speed is not sensitive.
 
-### 2. Modify SQL file
+### Preparation
 
-The SQL file dumped from MySQL is not fully compatible with MatrixOne yet. We'll need to remove and modify several elements to adapt the SQL file to MatrixOne's format.
+- Springboard machine with a graphical interface: it can connect to the source of MySQL and the target of MatrixOne.
+- Data Migration Tool: [Download DBeaver](https://dbeaver.io/download/) on the springboard machine.
 
-* Unsupported syntax or features need to be removed:  CHARACTER SET/CHARSET, COLLATE, ROW_FORMAT, USING BTREE, LOCK TABLE, SET SYSTEM_VARIABLE, ENGINE.
-* Unsupported data type: If you use BINARY type, you can modify them to BLOB type.
+### Step 1: Migrate table structure
 
-We take a typical `mysqldump` table as an example:
+Here we take the TPCH dataset as an example and migrate the 8 tables of the TPCH dataset from MySQL to MatrixOne.
 
-```
-DROP TABLE IF EXISTS `tool`;
-CREATE TABLE IF NOT EXISTS `tool` (
-  `id` bigint NOT NULL AUTO_INCREMENT,
-  `tool_id` bigint DEFAULT NULL COMMENT 'id',
-  `operation_type` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'type',
-  `remark` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'remark',
-  `create_user` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'create user',
-  `create_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT 'create time',
-  PRIMARY KEY (`id`) USING BTREE,
-  KEY `tool_id_IDX` (`tool_id`) USING BTREE,
-  KEY `operation_type_IDX` (`operation_type`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=1913 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC COMMENT='tool table';
-```
+1. Open DBeaver, select the table to be migrated from MySQL, right-click and select **Generate SQL > DDL** Click **Copy**, first copy this SQL to a text editor for text editing Name the filer as *tpch_ddl.sql* and save it locally on the springboard machine.
 
-To be able to successfully create this table in MatrixOne, it will be modifed as:
+    ![](https://github.com/matrixorigin/artwork/blob/main/docs/migrate/mysql-1.png?raw=true)
 
-```
-DROP TABLE IF EXISTS `tool`;
-CREATE TABLE IF NOT EXISTS `tool` (
-  `id` bigint NOT NULL AUTO_INCREMENT,
-  `tool_id` bigint DEFAULT NULL COMMENT 'id',
-  `operation_type` varchar(50) DEFAULT NULL COMMENT 'type',
-  `remark` varchar(100) DEFAULT NULL COMMENT 'remark',
-  `create_user` varchar(20) DEFAULT NULL COMMENT 'create user',
-  `create_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT 'create time',
-  PRIMARY KEY (`id`),
-  KEY `tool_id_IDX` (`tool_id`),
-  KEY `operation_type_IDX` (`operation_type`)
-) COMMENT='tool table';
-```
+2. Use the following command to replace keywords not supported by MatrixOne in the *tpch_ddl.sql* file:
 
-### 3. Import into MatrixOne
+    ```
+    # The commands executed by the Linux system are as follows:
+    sed -i 's/ ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci//g' /YOUR_PATH/tpch_ddl.sql
 
-Once your dumped SQL file was ready, you can import the whole table structures and data into MatrixOne.
+    # The commands executed by the MacOS system are as follows:
+    sed -i '' 's/ ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci//g' /YOUR_PATH/tpch_ddl.sql
+    ```
 
-1. Open a MySQL terminal and connect to MatrixOne.
-2. Import the SQL file into MatrixOne by the `source` command.
+3. Connect to MatrixOne and create a new database and table in MatrixOne:
 
-```
-mysql> source '/YOUR_PATH/a.sql'
-```
+    ```sql
+    create database tpch;
+    use tpch;
+    source '/YOUR_PATH/tpch_ddl.sql'
+    ```
 
-If your SQL file is big, you can use the following command to run the import task in the background. For example:
+### Step 2: Migrate data
 
-```
-nohup mysql -h 127.0.0.1 -P 6001 -udump -p111 -e 'source /YOUR_PATH/a.sql' &
-```
+1. Open DBeaver, select the table to be migrated from MySQL, right-click and select **Export Data**:
+
+    ![](https://github.com/matrixorigin/artwork/blob/main/docs/migrate/mysql-2.png?raw=true)
+
+2. In the **Conversion Target > Export Target** window, select **Database**, click **Next**; in the **Table Mapping** window, select **Target Container**, and select the MatrixOne database for the target container *tpch*:
+
+    ![](https://github.com/matrixorigin/artwork/blob/main/docs/migrate/mysql-3.png?raw=true)
+
+    ![](https://github.com/matrixorigin/artwork/blob/main/docs/migrate/mysql-4.png?raw=true)
+
+3. In the **Extraction Settings** and **Data Loading Settings** windows, set the number of selected extractions and inserts. To trigger MatrixOne's direct write S3 strategy, it is recommended to fill in 5000:
+
+    ![](https://github.com/matrixorigin/artwork/blob/main/docs/migrate/mysql-5.png?raw=true)
+
+    ![](https://github.com/matrixorigin/artwork/blob/main/docs/migrate/mysql-6.png?raw=true)
+
+4. After completing the settings, DBeaver starts to migrate the data, and after completion, DBeaver will prompt that the migration is successful.
+
+### Step 3: Check the data
+
+After the migration is complete, the data can be inspected as follows:
+
+- Use `select count(*) from <table_name>` to confirm whether the data volume of the source database and target databases' data volume is consistent.
+
+- Compare the results through related queries; you can also refer to the [Complete TPCH testing](../Test/performance-testing/TPCH-test-with-matrixone.md) query example to compare the results.
+
+## Offline Migration
+
+This chapter will guide you through importing to MatrixOne through offline files.
+
+- Applicable scenarios: scenarios with a large amount of data (more significant than 1GB) and sensitive to migration speed.
+
+### Preparation
+
+- Springboard machine with a graphical interface: it can be connected to the source end of MySQL and the target end of MatrixOne.
+- Data Migration Tool: [Download DBeaver](https://dbeaver.io/download/) to the springboard machine.
+- Install `mysqldump`. If you are not familiar with how to use `mysqldump`, see [mysqldump tutorial](https://simplebackups.com/blog/the-complete-mysqldump-guide-with-examples/)
+
+### Step 1: Migrate table structure
+
+Here we take the TPCH dataset as an example and migrate the 8 tables of the TPCH dataset from MySQL to MatrixOne.
+
+1. Open DBeaver, select the table to be migrated from MySQL, right-click and select **Generate SQL > DDL > Copy**, first copy this SQL to a text editor, and name the text editor *tpch_ddl.sql*, saved locally on the springboard machine.
+
+    ![](https://github.com/matrixorigin/artwork/blob/main/docs/migrate/mysql-1.png?raw=true)
+
+2. Use the following command to replace keywords that MatrixOne does not support in the *tpch_ddl.sql* file:
+
+    ```
+    # The commands executed by the Linux system are as follows:
+    $ sed -i 's/ ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci//g' /YOUR_PATH/tpch_ddl.sql
+
+    # The commands executed by the MacOS system are as follows:
+    sed -i '' 's/ ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci//g' /YOUR_PATH/tpch_ddl.sql
+    ```
+
+3. Connect to MatrixOne and create a new database and table in MatrixOne:
+
+    ```sql
+    create database tpch;
+    use tpch;
+    source '/YOUR_PATH/tpch_ddl.sql'
+    ```
+
+### Step 2: Migrate data
+
+MatrixOne has two data migration methods to choose from: `INSERT` and `LOAD DATA`. When the amount of data is greater than 1GB, it is recommended to use `LOAD DATA` first, followed by `INSERT`.
+
+#### LOAD DATA
+
+Use `LOAD DATA` to export the MySQL data table to CSV format first, and use MatrixOne's parallel LOAD function to migrate the data to MatrixOne:
+
+1. Use `mysqldump` to export the MySQL data table as a CSV format file. Make sure you have write access to the file path and check the `secure_file_priv` configuration:
+
+    ```sql
+    mysqldump -u root -p -t -T /{filepath} tpch --fields-terminated-by='|'
+    ```
+
+2. Connect to MatrixOne and import the exported CSV data into MatrixOne:
+
+    ```sql
+    mysql> load data infile '/{filepath}/lineitem.txt' INTO TABLE lineitem FIELDS TERMINATED BY '|' lines TERMINATED BY '\n' parallel 'true';
+    mysql> load data infile '/{filepath}/nation.txt' INTO TABLE nation FIELDS TERMINATED BY '|' lines TERMINATED BY '\n' parallel 'true';
+    mysql> load data infile '/{filepath}/part.txt' INTO TABLE part FIELDS TERMINATED BY '|' lines TERMINATED BY '\n' parallel 'true';
+    mysql> load data infile '/{filepath}/customer.txt' INTO TABLE customer FIELDS TERMINATED BY '|' lines TERMINATED BY '\n' parallel 'true';
+    mysql> load data infile '/{filepath}/orders.txt' INTO TABLE orders FIELDS TERMINATED BY '|' lines TERMINATED BY '\n' parallel 'true';
+    mysql> load data infile '/{filepath}/supplier.txt' INTO TABLE supplier FIELDS TERMINATED BY '|' lines TERMINATED BY '\n' parallel 'true';
+    mysql> load data infile '/{filepath}/region.txt' INTO TABLE region FIELDS TERMINATED BY '|' lines TERMINATED BY '\n' parallel 'true';
+    mysql> load data infile '/{filepath}/partsupp.txt' INTO TABLE partsupp FIELDS TERMINATED BY '|' lines TERMINATED BY '\n' parallel 'true';
+    ```
+
+For more operation examples of `LOAD DATA`, see [Bulk Load Overview](../Develop/import-data/bulk-load/bulk-load-overview.md).
+
+#### INSERT
+
+The `INSERT` statement needs to use `mysqldump` to export the logical statement first and then import it into MatrixOne:
+
+1. Use `mysqldump` to export data. To ensure that MatrixOne directly writes to S3 when inserting, inserting as large a batch as possible is recommended. The `net_buffer_length` parameter should start at 10MB:
+
+    ```sql
+    mysqldump -t tpch -uroot -p --net_buffer_length=10m > tpch_data.sql
+    ```
+
+2. On the MatrixOne side, execute the SQL file, there will be an error message during the process, but it will not affect the data insertion:
+
+    ```
+    source '/YOUR_PATH/tpch_data.sql'
+    ```
+
+For more examples of `INSERT` operations, see [Insert Data](../Develop/import-data/insert-data.md).
+
+### Step 3: Check the data
+
+After the migration is complete, the data can be inspected as follows:
+
+- Use `select count(*) from <table_name>` to confirm whether the data volume of the source database and target databases' data volume is consistent.
+
+- Compare the results through related queries; you can also refer to the [Complete a TPCH Test with MatrixOne](../Test/performance-testing/TPCH-test-with-matrixone.md) query example to compare the results.
+
+#### Reference example
+
+If you are a novice and want to migrate a small amount of data, see [Import data by using the `source` command](../Develop/import-data/bulk-load/using-source.md).
