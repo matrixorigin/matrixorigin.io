@@ -14,12 +14,16 @@
 
 |  Arguments   | Description  |
 |  ----  | ----  |
-| str | Required. The value to search for in the list.|
-| str1,str2,str3,... | Required. A list of values to search for. |
+| str | Required. The value to search for in the list, case insensitive.|
+| str1,str2,str3,... | Required. A list of values to search for, case insensitive.|
 
 ## **Returned Value**
 
-- If all arguments to `FIELD()` are strings, all arguments are compared as strings. If all arguments are numbers, they are compared as numbers. Otherwise, the arguments are compared as double.
+If all arguments to `FIELD()` are strings, all arguments are compared as strings. If all arguments are numbers, they are compared as numbers. Otherwise, the arguments are compared as double.
+
+- The `FIELD()` function returns the corresponding position index if the specified value is found in the list. Indexes returned by the `FIELD()` function start at 1.
+
+- If more than one specified value is found in the list, the `FIELD()` function returns only the index of the first one.
 
 - Returns 0 if str is not found.
 
