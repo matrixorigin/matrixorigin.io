@@ -10,7 +10,7 @@ When defining FOREIGN KEY, the following rules need to be followed:
 
 - Primary keys cannot contain null values, but null values are allowed in foreign keys. In other words, as long as every non-null value in the foreign key appears in the specified primary key, the content of the foreign key is correct.
 
-- Specify the column name or combination of column names after the table name of the parent table. This column or combination of columns must be the primary or candidate key of the primary table. Currently, MatrixOne only supports single-column foreign key constraints.
+- Specify the column name or combination of column names after the table name of the parent table. This column or combination of columns must be the primary or candidate key of the primary table.
 
 - The number of columns in the foreign key must be the same as the number of columns in the primary key of the parent table.
 
