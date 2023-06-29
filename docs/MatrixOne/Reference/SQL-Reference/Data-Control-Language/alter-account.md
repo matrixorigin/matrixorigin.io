@@ -5,7 +5,9 @@
 Modify account information.
 
 !!! note
-    Only cluster administrators (sysaccount users) authorized to the moadmin role can perform **SUSPEND** ​​and **OPEN** account operations.
+    1. The cluster administrator (i.e., the root user) can modify the password of the account it creates.
+    2. Accounts themselves can modify their own passwords.
+    2. Only the cluster administrator (i.e., the root user) can perform **SUSPEND** ​​and **RECOVER (OPEN)** account operations.
 
 ## **Syntax**
 
