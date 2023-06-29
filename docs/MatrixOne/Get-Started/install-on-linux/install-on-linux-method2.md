@@ -52,20 +52,20 @@ __Tips__: It is recommended that you download and install one of these two tools
 === "**Downloading method 1: Using `wget` to install binary packages**"
 
      ```bash
-     wget https://github.com/matrixorigin/matrixone/releases/download/v0.7.0/mo-v0.7.0-linux-amd64.zip
-     unzip mo-v0.7.0-linux-amd64.zip
+     wget https://github.com/matrixorigin/matrixone/releases/download/v0.8.0/mo-v0.8.0-linux-amd64.zip
+     unzip mo-v0.8.0-linux-amd64.zip
      ```
 
 === "**Downloading method 2: Using `curl` to install binary packages**"
 
      ```bash
-     curl -OL https://github.com/matrixorigin/matrixone/releases/download/v0.7.0/mo-v0.7.0-linux-amd64.zip
-     unzip mo-v0.7.0-linux-amd64.zip
+     curl -OL https://github.com/matrixorigin/matrixone/releases/download/v0.8.0/mo-v0.8.0-linux-amd64.zip
+     unzip mo-v0.8.0-linux-amd64.zip
      ```
 
 === "**Downloading method 3: Go to the page and download**"
 
-     If you want a more intuitive way to download the page, go to the [version 0.7.0](https://github.com/matrixorigin/matrixone/releases/tag/v0.7.0), pull down to find the **Assets** column, and click the installation package *mo-v0.7.0-linux-amd64.zip* can be downloaded.
+     If you want a more intuitive way to download the page, go to the [version 0.8.0](https://github.com/matrixorigin/matrixone/releases/tag/v0.8.0), pull down to find the **Assets** column, and click the installation package *mo-v0.8.0-linux-amd64.zip* can be downloaded.
 
 ## Step 3: Launch MatrixOne server
 

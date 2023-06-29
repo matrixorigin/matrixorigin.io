@@ -24,11 +24,11 @@ This document will guide you build standalone MatrixOne using Docker.
 
 It will pull the image from Docker Hub if not exists. You can choose to pull the stable version image or the develop version image.
 
-=== "Stable Version Image(0.7.0 version)"
+=== "Stable Version Image(0.8.0 version)"
 
       ```bash
-      docker pull matrixorigin/matrixone:0.7.0
-      docker run -d -p 6001:6001 --name matrixone matrixorigin/matrixone:0.7.0
+      docker pull matrixorigin/matrixone:0.8.0
+      docker run -d -p 6001:6001 --name matrixone matrixorigin/matrixone:0.8.0
       ```
 
 === "Develop Version Image"

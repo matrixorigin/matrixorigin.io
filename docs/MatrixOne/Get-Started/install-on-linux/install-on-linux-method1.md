@@ -64,12 +64,12 @@ Depending on your needs, choose whether you want to keep your code up to date, o
 
 === "Get the MatrixOne(Stable Version) code to build"
 
-     1. If you want to get the latest stable version code released by MatrixOne, please switch to the branch of version **0.7.0** first.
+     1. If you want to get the latest stable version code released by MatrixOne, please switch to the branch of version **0.8.0** first.
 
          ```
          git clone https://github.com/matrixorigin/matrixone.git
          cd matrixone         
-         git checkout 0.7.0
+         git checkout 0.8.0
          ```
 
      2. Run `make config` and `make build` to compile the MatrixOne file:
