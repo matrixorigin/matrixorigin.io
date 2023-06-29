@@ -1,4 +1,4 @@
-# High Scalability
+# Ultimate Scalability
 
 MatrixOne is a superior integration of heterogeneous cloud-native databases. Its structure is based on a storage, computing, and transaction separation architecture, which boasts impressive elastic scalability that quickly adapts to user workload changes. As data volumes and businesses expand, enterprises' demand for database scalability is ever-increasing.
 
