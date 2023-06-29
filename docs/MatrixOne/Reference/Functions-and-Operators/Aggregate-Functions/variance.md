@@ -2,12 +2,12 @@
 
 ## **Description**
 
-The VAR(expr) function returns the population standard variance of expr. Variance is an essential concept in statistics, which is used to measure the degree of dispersion of a set of data values, that is, the difference between the data value and its mean value. If the variance value is large, the difference between the data values ​​is large; conversely, if the variance value is small, the difference between the data values ​​is slight.
+The VARIANCE(expr) function returns the population standard variance of expr. Variance is an essential concept in statistics, which is used to measure the degree of dispersion of a set of data values, that is, the difference between the data value and its mean value. If the variance value is large, the difference between the data values ​​is large; conversely, if the variance value is small, the difference between the data values ​​is slight.
 
 ## **Syntax**
 
 ```
-> VAR(expr)
+> VARIANCE(expr)
 ```
 
 ## **Arguments**
