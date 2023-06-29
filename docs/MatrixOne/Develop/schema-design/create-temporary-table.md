@@ -43,7 +43,8 @@ CREATE TEMPORARY TABLE temp_table_name (column_list);
 You can use the same table name for temporary and regular tables without conflicts because they are in different namespaces. However, two temporary tables cannot share the same name in the session.
 
 !!! note
-    Even though temporary tables can have the same name as permanent tables, it is not recommended as this may result in unexpected data loss. For example, if the connection to the database server is lost and you automatically reconnect to the server, you cannot distinguish between temporary and permanent tables. Then, you issue a `DROP TABLE` statement. This time, the permanent table may be deleted instead of the temporary table. This result is unpredictable.
+    1. Even though temporary tables can have the same name as permanent tables, it is not recommended as this may result in unexpected data loss. For example, if the connection to the database server is lost and you automatically reconnect to the server, you cannot distinguish between temporary and permanent tables. Then, you issue a `DROP TABLE` statement. This time, the permanent table may be deleted instead of the temporary table. This result is unpredictable.
+    2. When you use the 'SHOW TABLES' command to display a list of data tables, you cannot see a list of temporary tables either.
 
 ## Example
 
