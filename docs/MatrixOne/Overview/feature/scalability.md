@@ -34,20 +34,3 @@ From the technical architecture perspective, the unparalleled scalability of Mat
 They can be easily added or deleted to cope with different load requirements. This design makes MatrixOne extremely scalable and flexible when dealing with large-scale concurrent requests. (The current 0.8 version DN node does not yet have expansion capabilities, but the DN mainly handles transaction submission information, and the load is lower, so a single DN is enough to take a large-scale cluster, and subsequent versions will improve DN's scalability.)
 
 * **Independent Expansion of Different Loads and Accounts**: MatrixOne can manage multiple computing nodes (CN) into groups through the Proxy module to form a CN Set and implement independent expansion of each CN Set through tags. Users can assign different CN Sets to accounts, allowing load isolation and independent expansion between accounts. Different CN Sets can also be specified for different loads, such as read and write or transactional and analytical loads, to achieve their isolation and independent expansion.
-
-## Performance Scalability
-
-To demonstrate the performance scalability of the product, we used a relatively high system configuration for testing.
-
-The specific distribution of machine configurations is as follows:
-
-| Name  | **Host**     | CPU    | Memory | System Disk | Data Disk | **Role**                    |
-| ----- | ------------ | ------ | ------ | ----------- | --------- | ---------------------------|
-| Node0 | 10.206.32.16 | 2 Core | 4GB    | 50GB        | N/A       | k8s master                  |
-| Node1 | 10.206.32.5  | 8 Core | 64GB   | 50GB        | 500GB*3   | k8s node, Minio, MO Proxy   |
-| Node2 | 10.206.32.6  | 8 Core | 64GB   | 50GB        | 100GB*2   | K8s node, MO Logservice, CN |
-| Node3 | 10.206.32.7  | 8 Core | 64GB   | 50GB        | 100GB*2   | K8s node, MO Logservice, CN |
-| Node4 | 10.206.32.9  | 8 Core | 64GB   | 50GB        | 100GB*2   | K8s node, MO Logservice, CN |
-| Node5 | 10.206.32.13 | 8 Core | 64GB   | 50GB        | 100GB     | K8s node, MO CN             |
-| Node6 | 10.206.32.14 | 8 Core | 64GB   | 50GB        | 100GB     | K8s node, MO CN             |
-| Node7 | 10.206.32.17 | 8 Core | 64GB   | 50GB        | 100GB     | K8s node, MO DN             |
