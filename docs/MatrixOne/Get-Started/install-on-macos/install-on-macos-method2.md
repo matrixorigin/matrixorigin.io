@@ -58,7 +58,7 @@ __Tips__: It is recommended that you download and install one of these two tools
      unzip mo-v0.8.0-darwin-x86_64.zip
      ```
 
-     Binary for ARM systems:
+     Binary for ARM system:
 
      ```bash
      wget https://github.com/matrixorigin/matrixone/releases/download/v0.8.0/mo-v0.8.0-darwin-x86_64.zip
@@ -74,7 +74,7 @@ __Tips__: It is recommended that you download and install one of these two tools
      unzip mo-v0.8.0-darwin-x86_64.zip
      ```
 
-     Binary for ARM systems:
+     Binary for ARM system:
 
      ```bash
      curl -OL https://github.com/matrixorigin/matrixone/releases/download/v0.8.0/mo-v0.8.0-darwin-x86_64.zip
