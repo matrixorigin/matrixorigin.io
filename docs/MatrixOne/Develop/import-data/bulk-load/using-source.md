@@ -91,8 +91,11 @@ mysql> source /YOUR_PATH/a.sql
 If your SQL file is big, you can use the following command to run the import task in the background. For example:
 
 ```
-nohup mysql -h 127.0.0.1 -P 6001 -udump -p111 -e 'source /YOUR_PATH/a.sql' &
+nohup mysql -h 127.0.0.1 -P 6001 -uroot -p111 -e 'source /YOUR_PATH/a.sql' &
 ```
+
+!!! info
+    The login account in the above code snippet is the initial account; please change the initial password after logging in to MatrixOne; see [Password Management](../../../Security/password-mgmt.md).
 
 #### 4. Check data
 
