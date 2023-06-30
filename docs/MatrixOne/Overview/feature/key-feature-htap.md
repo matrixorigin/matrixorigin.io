@@ -1,4 +1,4 @@
-# Hybrid Transaction Analytical Processing (HTAP) Features of MatrixOne
+# HTAP
 
 MatrixOne is a database capable of supporting Hybrid Transaction Analytical Processing (HTAP), aiming to provide a solution that fulfills all the requirements for transaction processing (TP) and analytical processing (AP) within a single database. With its decoupled architecture for storage and transaction computations, MatrixOne can support online transactions and real-time statistical analysis in the same data engine while providing an efficient resource isolation mechanism. This design dramatically preserves data freshness, eliminating the need for building real-time data warehouses in many business scenarios, thus helping customers realize their business value.
 

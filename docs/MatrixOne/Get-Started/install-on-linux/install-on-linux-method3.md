@@ -124,14 +124,17 @@ __Tips__: Currently, MatrixOne is only compatible with the Oracle MySQL client. 
 
     After you enter the preceding command, the terminal will prompt you to provide the username and password. You can use our built-in account:
 
-    + user: dump
+    + user: root
     + password: 111
 
 - You can also use the following command line on the MySQL client to connect to the MatrixOne service:
 
        ```
-       mysql -h 127.0.0.1 -P 6001 -udump -p
+       mysql -h 127.0.0.1 -P 6001 -uroot -p
        Enter password:
        ```
 
 Currently, MatrixOne only supports the TCP listener.
+
+!!! info
+    The login account in the above code snippet is the initial account; please change the initial password after logging in to MatrixOne; see [Password Management](../../Security/password-mgmt.md).
