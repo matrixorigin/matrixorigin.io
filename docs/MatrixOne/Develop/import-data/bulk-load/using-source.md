@@ -85,7 +85,7 @@ Once your dumped SQL file was ready, you can import the whole table structures a
 2. Import the SQL file into MatrixOne by the `source` command.
 
 ```
-mysql> source '/YOUR_PATH/a.sql'
+mysql> source /YOUR_PATH/a.sql
 ```
 
 If your SQL file is big, you can use the following command to run the import task in the background. For example:
