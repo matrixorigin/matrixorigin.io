@@ -5,7 +5,8 @@
 Modify the attributes and passwords of database users.
 
 !!! note
-    Only the tenant administrator or the user can modify the password, and only one user's password can be modified at a time. The modified password will take effect the next time you log in, and the current session will not be interrupted.
+    1. Accounts can modify the passwords of the users they create and only modify the passwords of one user at a time. The modified passwords will take effect on the next login, and the current session will not be interrupted.
+    2. Users can modify their own passwords, and the modified passwords will take effect on the next login, and the current session will not be interrupted.
 
 ## **Syntax**
 
