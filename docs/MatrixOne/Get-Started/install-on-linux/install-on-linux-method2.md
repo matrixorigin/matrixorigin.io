@@ -58,7 +58,7 @@ __Tips__: It is recommended that you download and install one of these two tools
      unzip mo-v0.8.0-linux-amd64.zip
      ```
 
-     Binary for arm systems:
+     Binary for ARM systems:
 
      ```bash
      wget https://github.com/matrixorigin/matrixone/releases/download/v0.8.0/mo-v0.8.0-linux-amd64.zip
@@ -74,7 +74,7 @@ __Tips__: It is recommended that you download and install one of these two tools
      unzip mo-v0.8.0-linux-amd64.zip
      ```
 
-     Binary for arm systems:
+     Binary for ARM systems:
 
      ```bash
      curl -OL https://github.com/matrixorigin/matrixone/releases/download/v0.8.0/mo-v0.8.0-linux-amd64.zip
