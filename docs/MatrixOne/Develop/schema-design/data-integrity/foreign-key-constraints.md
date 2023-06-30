@@ -2,6 +2,8 @@
 
 FOREIGN KEY constraints can keep related data consistent when cross-referencing associated data across tables.
 
+**Rules**
+
 When defining FOREIGN KEY, the following rules need to be followed:
 
 - The parent table must already exist in the database or be a table currently being created. In the latter case, the parent table and the slave table are the same table, such a table is called a self-referential table, and this structure is called self-referential integrity.
@@ -10,7 +12,7 @@ When defining FOREIGN KEY, the following rules need to be followed:
 
 - Primary keys cannot contain null values, but null values are allowed in foreign keys. In other words, as long as every non-null value in the foreign key appears in the specified primary key, the content of the foreign key is correct.
 
-- Specify the column name or combination of column names after the table name of the parent table. This column or combination of columns must be the primary or candidate key of the primary table. Currently, MatrixOne only supports single-column foreign key constraints.
+- Specify the column name or combination of column names after the table name of the parent table. This column or combination of columns must be the primary or candidate key of the primary table.
 
 - The number of columns in the foreign key must be the same as the number of columns in the primary key of the parent table.
 
@@ -18,13 +20,35 @@ When defining FOREIGN KEY, the following rules need to be followed:
 
 - The foreign key's value must be consistent with the primary key's value in the main table.
 
+**Foreign Key Characteristics**
+
+- Multi-column foreign key: This type of foreign key is when two or more columns in a table jointly reference another table's primary key. In other words, these columns together define the reference to another table. They must exist in the form of a group and need to meet the foreign key constraint simultaneously.
+
+- Multi-level foreign key: This situation usually involves three or more tables, and they have a dependency relationship. A table's foreign key can be another table's primary key, and this table's foreign key can be the primary key of a third table, forming a multi-level foreign key situation.
+
 ## **Syntax**
+
+Foreign keys are defined in the child table, and the primary foreign key constraint syntax is as follows:
 
 ```
 > column_name data_type FOREIGN KEY;
+> CREATE TABLE table_name (
+    column1 datatype [NOT NULL],
+    column2 datatype [NOT NULL],
+    ...
+    FOREIGN KEY (column1, column2, ... column_n)
+    REFERENCES parent_table (column1, column2, ... column_n)
+);
 ```
 
+**Explanation**
+
+- `FOREIGN KEY (column1, column2, ... column_n)`: Defines the columns to be used as the foreign key.
+- `REFERENCES parent_table (column1, column2, ... column_n)`: `REFERENCES` defines the parent table being referenced and the columns in the parent table.
+
 ## **Examples**
+
+### Example 1
 
 ```sql
 -- Create a table named t1, containing two columns: a and b. The column a is of type int and is set as the primary key, while the column b is of type varchar with a length of 5.
@@ -53,6 +77,62 @@ ERROR 20101 (HY000): internal error: Cannot add or update a child row: a foreign
 
 **Example Explanation**: In the above example, column c of t2 can only refer to the value or null value of column a in t1, so the operation of inserting row 1 and row 2 of t1 can be successfully inserted, but row 3 103 in the row is not a value in column a of t1, which violates the foreign key constraint, so the insert fails.
 
-## **Constraints**
+### Example 2 - Multi-column foreign key
 
-MatrixOne does not currently support `alter table`, so it does not support deleting `FOREIGN KEY` constraints.
+```sql
+-- Creating a "Student" table to store student information
+CREATE TABLE Student (
+    StudentID INT, -- Student ID field, integer
+    Name VARCHAR(100), -- Student name field, string with a maximum length of 100
+    PRIMARY KEY (StudentID) -- Setting the StudentID as the primary key of this table
+);
+
+-- Creating a "Course" table to store course information
+CREATE TABLE Course (
+    CourseID INT, -- Course ID field, integer
+    CourseName VARCHAR(100), -- Course name field, string with a maximum length of 100
+    PRIMARY KEY (CourseID) -- Setting the CourseID as the primary key of this table
+);
+
+-- Creating a "StudentCourse" table to store student course selection information
+CREATE TABLE StudentCourse (
+    StudentID INT, -- Student ID field, integer, corresponds to the StudentID field in the Student table.
+    CourseID INT, -- Course ID field, integer, corresponds to the CourseID field in the Course table.
+    PRIMARY KEY (StudentID, CourseID), -- Setting the combination of StudentID and CourseID as the primary key of this table
+    FOREIGN KEY (StudentID) REFERENCES Student(StudentID), -- Setting the StudentID field as the foreign key, referencing the StudentID field in the Student table
+    FOREIGN KEY (CourseID) REFERENCES Course(CourseID) -- Setting the CourseID field as the foreign key, referencing the CourseID field in the Course table
+);
+```
+
+**Example Explanation**: In the above example, there are three tables: the `Student` table, the `Course` table, and the `StudentCourse` table for recording which students have chosen which courses. In this case, the `Student ID` and `Course ID` in the course selection table can serve as foreign keys, jointly referencing the primary keys of the student table and the course table.
+
+### Example 3 - Multi-level foreign key
+
+```sql
+-- Creating a "Country" table to store country information
+CREATE TABLE Country (
+    CountryID INT, -- Country ID field, integer
+    CountryName VARCHAR(100), -- Country name field, string with a maximum length of 100
+    PRIMARY KEY (CountryID) -- Setting the CountryID as the primary key of this table
+);
+
+-- Creating a "State" table to store state/province information
+CREATE TABLE State (
+    StateID INT, -- State/province ID field, integer
+    StateName VARCHAR(100), -- State/province name field, string with a maximum length of 100
+    CountryID INT, -- Country ID field, integer, corresponds to the CountryID field in the Country table.
+    PRIMARY KEY (StateID), -- Setting the StateID as the primary key of this table
+    FOREIGN KEY (CountryID) REFERENCES Country(CountryID) -- Setting the CountryID field as the foreign key, referencing the CountryID field in the Country table
+);
+
+-- Creating a "City" table to store city information
+CREATE TABLE City (
+    CityID INT, -- City ID field, integer
+    CityName VARCHAR(100), -- City name field, string with a maximum length of 100
+    StateID INT, -- State/province ID field, integer, corresponds to the StateID field in the State table
+    PRIMARY KEY (CityID), -- Setting the CityID as the primary key of this table
+    FOREIGN KEY (StateID) REFERENCES State(StateID) -- Setting the StateID field as the foreign key, referencing the StateID field in the State table
+);
+```
+
+**Example Explanation**: In the above example, there are three tables: the `Country` table, the `State` table, and the `City` table. The `State` table has a field, `CountryID`, which is the primary key of the `Country` table and is also the foreign key of the `State` table. The `City` table has a field, `StateID`, which is the `State` table's primary key and the `City` table's foreign key. This forms a multi-level foreign key situation.
