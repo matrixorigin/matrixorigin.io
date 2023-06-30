@@ -26,13 +26,16 @@ Make sure you have already [installed and launched MatrixOne](../../Get-Started/
 
     Use the built-in test account for example:
 
-    - user: dump
+    - user: root
     - password: 111
 
     ```
-    mysql -h 127.0.0.1 -P 6001 -udump -p
+    mysql -h 127.0.0.1 -P 6001 -uroot -p
     Enter password:
     ```
+
+    !!! info
+        The login account in the above code snippet is the initial account; please change the initial password after logging in to MatrixOne; see [Password Management](../../Security/password-mgmt.md).
 
     The successful result is as below:
 

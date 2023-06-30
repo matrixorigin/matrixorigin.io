@@ -5,7 +5,9 @@
 Modify account information.
 
 !!! note
-    Only cluster administrators (sysaccount users) authorized to the moadmin role can perform **SUSPEND** ​​and **OPEN** account operations.
+    1. The cluster administrator (i.e., the root user) can modify the password of the account it creates.
+    2. Accounts themselves can modify their own passwords.
+    2. Only the cluster administrator (i.e., the root user) can perform **SUSPEND** ​​and **RECOVER (OPEN)** account operations.
 
 ## **Syntax**
 
@@ -60,30 +62,30 @@ mysql> desc mo_catalog.mo_account;
 
 ## **Examples**
 
-- Example 1: Modify the information of account
+- Example 1: Modify the information on the account
 
 ```sql
 -- Create a account named "root1" with password "111"
 mysql> create account acc1 admin_name "root1" identified by "111";
 Query OK, 0 rows affected (0.42 sec)
--- Change the initial password "111" to "1234"
-mysql> alter account acc1 admin_name "root1" identified by "1234";
+-- Change the initial password "111" to "Abcd_1234@1234"
+mysql> alter account acc1 admin_name "root1" identified by "Abcd_1234@1234";
 Query OK, 0 rows affected (0.01 sec)
 -- Modify the comment for account "root1"
-mysql> alter account acc1 comment "new accout";
+mysql> alter account acc1 comment "new account";
 Query OK, 0 rows affected (0.02 sec)
 -- Check to verify that the "new account" comment has been added to the account "root1"
 mysql> show accounts;
 +--------------+------------+---------------------+--------+----------------+----------+-------------+-----------+-------+----------------+
 | account_name | admin_name | created             | status | suspended_time | db_count | table_count | row_count | size  | comment        |
 +--------------+------------+---------------------+--------+----------------+----------+-------------+-----------+-------+----------------+
-| acc1         | root1      | 2023-02-15 06:26:51 | open   | NULL           |        5 |          34 |       787 | 0.036 | new accout     |
+| acc1         | root1      | 2023-02-15 06:26:51 | open   | NULL           |        5 |          34 |       787 | 0.036 | new account    |
 | sys          | root       | 2023-02-14 06:58:15 | open   | NULL           |        8 |          57 |      3767 | 0.599 | system account |
 +--------------+------------+---------------------+--------+----------------+----------+-------------+-----------+-------+----------------+
 3 rows in set (0.19 sec)
 ```
 
-- Example 2: Modify the status of account
+- Example 2: Modify the status of the account
 
 ```sql
 -- Create a account named "root1" with password "111"
