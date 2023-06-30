@@ -61,8 +61,11 @@ __Note__: A `csv`(comma-separated values) file is a delimited text file that use
 2. Launch the MySQL Client in the MatrixOne local server for accessing the local file system.
 
     ```
-    mysql -h 127.0.0.1 -P 6001 -udump -p111
+    mysql -h 127.0.0.1 -P 6001 -uroot -p111
     ```
+
+    !!! info
+        The login account in the above code snippet is the initial account; please change the initial password after logging in to MatrixOne; see [Password Management](../../../Security/password-mgmt.md).
 
 3. Execute `LOAD DATA` with the corresponding file path in MySQL client.
 
@@ -117,7 +120,7 @@ We will walk you through the whole process of loading data with MatrixOne 0.6.0 
 4. Connect to MatrixOne server:
 
     ```
-    mysql -h 127.0.0.1 -P 6001 -udump -p111
+    mysql -h 127.0.0.1 -P 6001 -uroot -p111
     ```
 
     __Note:__ If your data file is on a different machine from the MatrixOne server, that is, the data file is on the client machine you are using, then you need to use the command line to connect to the MatrixOne service host: `mysql -h <mo-host -ip> -P 6001 -udump -p111 --local-infile`; and the imported command line needs to use `LOAD DATA LOCAL INFILE` syntax.
