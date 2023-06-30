@@ -6,8 +6,10 @@ To protect the security of user passwords, MatrixOne supports password managemen
 
 ## Password Complexity Strategy
 
-- Complexity: Uppercase letters, lowercase letters, numbers, and special symbols.
-- Length: 12 characters or less.
+MatrixOne recommends that users set complex passwords to ensure account security.
+
+- Suggested complexity: uppercase letters, lowercase letters, numbers, and special symbols.
+- Recommended length: no less than 12 characters.
 
 ## Modify Password Permissions
 
