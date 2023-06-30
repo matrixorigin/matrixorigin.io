@@ -51,14 +51,14 @@ __Tips__: It is recommended that you download and install one of these two tools
 
 === "**Downloading method 1: Using `wget` to install binary packages**"
 
-     Common binary:
+     Binary for x86 architecture system:
 
      ```bash
      wget https://github.com/matrixorigin/matrixone/releases/download/v0.8.0/mo-v0.8.0-darwin-x86_64.zip
      unzip mo-v0.8.0-darwin-x86_64.zip
      ```
 
-     Binary for ARM system:
+     Binary for ARM architecture system:
 
      ```bash
      wget https://github.com/matrixorigin/matrixone/releases/download/v0.8.0/mo-v0.8.0-darwin-x86_64.zip
@@ -67,14 +67,14 @@ __Tips__: It is recommended that you download and install one of these two tools
 
 === "**Downloading method 2: Using `curl` to install binary packages**"
 
-     Common binary:
+     Binary for x86 architecture system:
 
      ```bash
      curl -OL https://github.com/matrixorigin/matrixone/releases/download/v0.8.0/mo-v0.8.0-darwin-x86_64.zip
      unzip mo-v0.8.0-darwin-x86_64.zip
      ```
 
-     Binary for ARM system:
+     Binary for ARM architecture system:
 
      ```bash
      curl -OL https://github.com/matrixorigin/matrixone/releases/download/v0.8.0/mo-v0.8.0-darwin-x86_64.zip
