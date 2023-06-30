@@ -12,14 +12,14 @@ Select one of the articles below to begin your MatrixOne journey. If you ...
 
 - Are Want to jump to the quickstart to build a standalone MatrixOne and learn the basic knowledge of SQL, start with **Getting Started**.
 
-- Are applicators, and want to try out MatrixOne as basic database, select **Developing Guide** for the tutorial and developing guide.
+- Are applicators and want to try out MatrixOne as a basic database, select **Developing Guide** for the tutorial and developing guide.
 
-- An experienced MatrixOne coder looking for SQL statements, data types functions or catalog, go to **Reference**.
+- An experienced MatrixOne coder looking for SQL statements, data types functions, or catalog, go to **Reference**.
 
 |  Overview   | Get Started  | Developing Guide | Reference   |
 |  ----  | ----  |  ----  | ----  |
-| [MatrixOne Introduction](MatrixOne/Overview/matrixone-introduction.md)  | [Install MatrixOne](MatrixOne/Get-Started/install-standalone-matrixone.md) | [Tutorials](MatrixOne/Tutorial/develop-java-crud-demo.md)	|[SQL Reference](MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-database.md)|
-| [MatrixOne Architecture](MatrixOne/Overview/matrixone-architecture-design.md)  | [Basic SQL](MatrixOne/Get-Started/basic-sql.md) |[Developing Guide]( MatrixOne/Develop/schema-design/overview.md)|[MatrixOne Catalog](MatrixOne/Reference/System-tables.md)|
+| [MatrixOne Introduction](MatrixOne/Overview/matrixone-introduction.md)  | [Install MatrixOne](MatrixOne/Get-Started/install-standalone-matrixone.md) | [Java CRUD demo](MatrixOne/Tutorial/develop-java-crud-demo.md)	|[SQL Reference](MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-database.md)|
+| [MatrixOne Architecture](MatrixOne/Overview/matrixone-architecture-design.md)  | [Basic SQL](MatrixOne/Get-Started/basic-sql.md) |[Python CRUD demo](MatrixOne/Tutorial/develop-python-crud-demo.md)|[Data Types](MatrixOne/Reference/Data-Types/data-types.md)|
 
 ## **Continuous Improvement**
 
