@@ -1,4 +1,4 @@
-# Build a simple Python CRUD demo with MatrixOne
+# Python CRUD demo
 
 ## Before you start
 

@@ -1,4 +1,4 @@
-# Import the *.csv* data
+# Load csv format data
 
 This document will guide you on how to import large amounts of *.csv* format data to MatrixOne.
 

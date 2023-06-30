@@ -2,21 +2,21 @@
 
 Welcome to the MatrixOne documentation center!
 
-This center holds a variety of topics, tutorials, guides, and reference material to help you work with MatrixOne.
+This center holds related concepts and technical architecture introductions, product features, user guides, and reference manuals to help you work with MatrixOne.
 
 ## **Recommended articles**
 
 Select one of the articles below to begin your MatrixOne journey. If you ...
 
-- Are new to MatrixOne, start with **Overview** to learn about key features and architecture.
+- Are new to MatrixOne, start with **Overview** to learn about basic concepts, key features and architecture.
 
-- Want to jump to the quickstart to build a standalone MatrixOne and complete the SSB test, start with **Get Started**.
+- Are Want to jump to the quickstart to build a standalone MatrixOne and learn the basic knowledge of SQL, start with **Getting Started**.
 
-- Want to try out MatrixOne, select **How To** for the tutorial and developing guide.
+- Are applicators, and want to try out MatrixOne as basic database, select **Developing Guide** for the tutorial and developing guide.
 
-- An experienced MatrixOne coder looking for SQL or catalog, go to **Reference**.
+- An experienced MatrixOne coder looking for SQL statements, data types functions or catalog, go to **Reference**.
 
-|  Overview   | Get Started  | How to | Reference   |
+|  Overview   | Get Started  | Developing Guide | Reference   |
 |  ----  | ----  |  ----  | ----  |
 | [MatrixOne Introduction](MatrixOne/Overview/matrixone-introduction.md)  | [Install MatrixOne](MatrixOne/Get-Started/install-standalone-matrixone.md) | [Tutorials](MatrixOne/Tutorial/develop-java-crud-demo.md)	|[SQL Reference](MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-database.md)|
 | [MatrixOne Architecture](MatrixOne/Overview/matrixone-architecture-design.md)  | [Basic SQL](MatrixOne/Get-Started/basic-sql.md) |[Developing Guide]( MatrixOne/Develop/schema-design/overview.md)|[MatrixOne Catalog](MatrixOne/Reference/System-tables.md)|
@@ -38,4 +38,4 @@ If you encounter any documentation issues, please feel free to create an Issue t
 
 The MatrixOne community on [GitHub](https://github.com/matrixorigin/matrixone) is dynamic, enthusiastic, and well-informed. Engage in discussions, express your viewpoints, propose features, and delve into the code.
 
-A similarly passionate community awaits you in the [MatrixOne Slack](https://matrixoneworkspace.slack.com/) channel.
+A similarly passionate community awaits you in the [MatrixOne Slack](https://matrixoneworkspace.slack.com/) and [MatrixOne](https://www.matrixorigin.cn/tutorials) channel.

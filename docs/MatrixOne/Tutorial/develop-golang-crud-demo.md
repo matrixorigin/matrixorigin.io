@@ -1,4 +1,4 @@
-# Build a simple Golang CRUD demo with MatrixOne
+# Golang CRUD demo
 
 ## Setup your environment
 
