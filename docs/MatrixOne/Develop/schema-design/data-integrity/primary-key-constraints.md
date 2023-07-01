@@ -37,4 +37,4 @@ Query OK, 1 row affected (0.01 sec)
 
 ## **Constraints**
 
-MatrixOne does not currently support `alter table`, so it does not support deleting `PRIMARY KEY` constraints.
+MatrixOne does not currently support deleting `PRIMARY KEY` constraints.

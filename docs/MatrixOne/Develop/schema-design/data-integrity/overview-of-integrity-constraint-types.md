@@ -21,5 +21,3 @@ There are various constraints in MatrixOne, and different constraints have diffe
 - [FOREIGN KEY integrity constraints](foreign-key-constraints.md)
 
    A foreign key constraint means that a column or columns in another table reference a column or a combination of columns stored in one table. The referenced table is usually called the parent table, and the referenced table is called the child table. The child table refers to the data of the corresponding column of the parent table, which can only be the data or null value of the parent table. This kind of constraint is called a foreign key constraint.
-
-   MatrixOne only supports single-column foreign key constraints now.

@@ -154,10 +154,13 @@ In this tutorial, we will guide you through loading two jsonline files with obje
 3. Install and Launch MatrixOne in the same machine, launch MySQL Client to connect to MatrixOne.
 
     ```
-    mysql -h 127.0.0.1 -P 6001 -udump -p111
+    mysql -h 127.0.0.1 -P 6001 -uroot -p111
     ```
 
     __Note:__ If your data file is on a different machine from the MatrixOne server, that is, the data file is on the client machine you are using, then you need to use the command line to connect to the MatrixOne service host: `mysql -h <mo-host -ip> -P 6001 -udump -p111 --local-infile`; and the imported command line needs to use `LOAD DATA LOCAL INFILE` syntax.
+
+    !!! info
+        The login account in the above code snippet is the initial account; please change the initial password after logging in to MatrixOne; see [Password Management](../../../Security/password-mgmt.md).
 
 4. Create tables in MatrixOne:
 

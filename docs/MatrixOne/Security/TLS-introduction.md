@@ -88,7 +88,7 @@ After completing the configuration of these two main steps, a TLS secure connect
     ① Use the MySQL client to connect to MatrixOne:
 
     ```
-    mysql -h 127.0.0.1 -P 6001 -udump -p111
+    mysql -h 127.0.0.1 -P 6001 -uroot -p111
 
     Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
     ```
@@ -108,7 +108,7 @@ After completing the configuration of these two main steps, a TLS secure connect
     Current pager:          stdout
     Using outfile:          ''
     Using delimiter:        ;
-    Server version:         8.0.30-MatrixOne-v0.7.0 MatrixOne
+    Server version:         8.0.30-MatrixOne-v0.8.0 MatrixOne
     Protocol version:       10
     Connection:             127.0.0.1 via TCP/IP
     Server characterset:    utf8mb4
@@ -133,7 +133,7 @@ After completing the configuration of these two main steps, a TLS secure connect
     Current pager:		stdout
     Using outfile:		''
     Using delimiter:	;
-    Server version:		8.0.30-MatrixOne-v0.7.0 MatrixOne
+    Server version:		8.0.30-MatrixOne-v0.8.0 MatrixOne
     Protocol version:	10
     Connection:		127.0.0.1 via TCP/IP
     Server characterset:	utf8mb4
@@ -152,8 +152,11 @@ After completing the above steps, MatrixOne's TLS is enabled.
 When a MySQL client connects to Matrix One Server, the encrypted connection behavior needs to be specified by the `--ssl-mode` parameter, such as:
 
 ```sql
-mysql -h 127.0.0.1 -P 6001 -udump -p111 --ssl-mode=PREFFERED
+mysql -h 127.0.0.1 -P 6001 -uroot -p111 --ssl-mode=PREFFERED
 ```
+
+!!! info
+    The login account in the above code snippet is the initial account; please change the initial password after logging in to MatrixOne; see [Password Management](../../Security/password-mgmt.md).
 
 The value types of `ssl mode` are as follows:
 
