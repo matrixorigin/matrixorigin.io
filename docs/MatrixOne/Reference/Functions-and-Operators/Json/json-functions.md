@@ -4,11 +4,11 @@ MatrixOne supports the following JSON functions:
 
 |Name|Description|
 |---|---|
-|JSON_EXTREACT()|Return data from JSON document|
+|JSON_EXTRACT()|Return data from JSON document|
 |JSON_QUOTE()	|	Quote JSON document|
 |JSON_UNQUOTE()	|Unquote JSON value|
 
-## `JSON_EXTREACT()`
+## `JSON_EXTRACT()`
 
 A JSON path expression selects a value within a JSON document.
 
