@@ -1,4 +1,4 @@
-# Build a SpringBoot+MyBatis CRUD demo with MatrixOne
+# SpringBoot and MyBatis CRUD demo
 
 This tutorial completes a simple Demo based on **SpringBoot+Mybatis+MatrixOne+Intellij IDEA** , and realizes the basic CRUD function.
 

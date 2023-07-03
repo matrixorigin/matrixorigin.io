@@ -1,4 +1,4 @@
-# Export data by `mo-dump`
+# Export data by MODUMP
 
 There are two methods to export data with MatrixOne:
 

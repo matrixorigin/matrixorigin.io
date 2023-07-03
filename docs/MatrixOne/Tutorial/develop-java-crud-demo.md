@@ -1,4 +1,4 @@
-# Build a simple Java CRUD demo with MatrixOne
+# Java CRUD demo
 
 !!! note
     The source code of this demo can be downloaded at [Java CRUD Example](https://github.com/matrixorigin/matrixone_java_crud_example).  

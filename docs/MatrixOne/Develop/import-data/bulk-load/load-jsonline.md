@@ -1,4 +1,4 @@
-# Import the JSONLines data
+# Load jsonlines format data
 
 This document will guide you on how to import JSONLines (that is *.jl* or *.jsonl* file) data to MatrixOne.
 

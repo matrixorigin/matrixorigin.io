@@ -1,4 +1,4 @@
-# Export data by `SELECT INTO...OUTFILE`
+# Export data by SELECT INTO
 
 There are two methods to export data with MatrixOne:
 
