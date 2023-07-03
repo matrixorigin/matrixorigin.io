@@ -93,7 +93,7 @@ __Tips__: It is recommended that you download and install one of these two tools
 
       ```
       # Start mo-service in the frontend
-      ./mo-service -launch ./etc/quickstart/launch.toml
+      ./mo-service -launch ./etc/launch-tae-CN-tae-DN/launch.toml
       ```
 
       When you finish launching MatrixOne in the frontend, many logs are generated in startup mode. Then you can start a new terminal and connect to MatrixOne.
@@ -104,7 +104,7 @@ __Tips__: It is recommended that you download and install one of these two tools
 
       ```
       # Start mo-service in the backend
-      ./mo-service --daemon --launch ./etc/quickstart/launch.toml &> test.log &
+      ./mo-service --daemon --launch ./etc/launch-tae-CN-tae-DN/launch.toml &> test.log &
 
       # Find mo-service PID
       ps aux | grep mo-service
@@ -120,6 +120,9 @@ __Tips__: It is recommended that you download and install one of these two tools
       __Tips__: As shown in the above example, use the command `ps aux | grep mo-service` to find out that the process number running on MatrixOne is `15277`, and `kill -9 15277` means to stop MatrixOne with the process number `15277`.
 
       Next you can take the next step - Connect to standalone MatrixOne.
+
+!!! note
+    The initial startup of MatrixOne approximately takes 20 to 30 seconds. After a brief wait, you can connect to MatrixOne using the MySQL client.
 
 ## Step 4: Connect to standalone MatrixOne
 
