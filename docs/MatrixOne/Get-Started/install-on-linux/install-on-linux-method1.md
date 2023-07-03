@@ -117,6 +117,9 @@ Depending on your needs, choose whether you want to keep your code up to date, o
 
       Next you can take the next step - Connect to standalone MatrixOne.
 
+!!! note
+    The initial startup of MatrixOne approximately takes 20 to 30 seconds. After a brief wait, you can connect to MatrixOne using the MySQL client.
+
 ## Step 5: Connect to standalone MatrixOne
 
 ### Install and configure MySQL Client

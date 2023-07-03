@@ -30,7 +30,7 @@ It will pull the image from Docker Hub if not exists. You can choose to pull the
       docker pull matrixorigin/matrixone:0.8.0
       docker run -d -p 6001:6001 --name matrixone matrixorigin/matrixone:0.8.0
       ```
-      
+
       If you are using the network in mainland China, you can pull the MatrixOne stable version image on Alibaba Cloud:
 
       ```bash
@@ -48,13 +48,16 @@ It will pull the image from Docker Hub if not exists. You can choose to pull the
       ```
 
       If you are using the network in mainland China, you can pull the MatrixOne develop version image on Alibaba Cloud:
-      
+
       ```bash
       docker pull registry.cn-shanghai.aliyuncs.com/matrixorigin/matrixone:nightly-commitnumber
       docker run -d -p 6001:6001 --name matrixone registry.cn-shanghai.aliyuncs.com/matrixorigin/matrixone:nightly-commitnumber
       ```
 
       __Note__: The *nightly* version is updated once a day.
+
+!!! note
+    The initial startup of MatrixOne approximately takes 20 to 30 seconds. After a brief wait, you can connect to MatrixOne using the MySQL client.
 
 If you need to mount data directories or customize configure files, see [Mount the directory to Docker container](../../Maintain/mount-data-by-docker.md).
 
