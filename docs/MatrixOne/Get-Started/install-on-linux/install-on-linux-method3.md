@@ -73,6 +73,9 @@ It will pull the image from Docker Hub if not exists. You can choose to pull the
 
       __Note__: The *nightly* version is updated once a day.
 
+!!! note
+    The initial startup of MatrixOne approximately takes 20 to 30 seconds. After a brief wait, you can connect to MatrixOne using the MySQL client.
+
 If you need to mount data directories or customize configure files, see [Mount the directory to Docker container](../../Maintain/mount-data-by-docker.md).
 
 ## Step 3: Connect to standalone MatrixOne
