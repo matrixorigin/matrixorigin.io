@@ -1,4 +1,4 @@
-# Import the data from S3 Compatible object storage
+# Load data from S3
 
 ## Overview
 

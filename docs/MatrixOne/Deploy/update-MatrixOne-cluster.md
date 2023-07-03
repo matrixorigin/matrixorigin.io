@@ -59,10 +59,17 @@ According to the introduction in [MatrixOne Distributed Cluster Deployment](depl
 4. After the `Restart` of the components in the MatrixOne cluster is completed, you can use the MySQL Client to connect to the cluster. The upgrade is successful if the connection is successful and the user data is complete.
 
     ```
-    root@master0 ~]# mysql -h $(kubectl get svc/mo-tp-cn -n mo-hn -o jsonpath='{.spec.clusterIP}') -P 6001 -udump -p111
+    # Connect to the MySQL server using the 'mysql' command line tool
+    # Use 'kubectl get svc/mo-tp-cn -n mo-hn -o jsonpath='{.spec.clusterIP}' ' to get the cluster IP address of the service in the Kubernetes cluster
+    # The '-h' parameter specifies the hostname or IP address of the MySQL service
+    # The '-P' parameter specifies the port number of the MySQL service, here is 6001
+    # '-uroot' means log in with root user
+    # '-p111' means the initial password is 111
+    mysql -h $(kubectl get svc/mo-tp-cn -n mo-hn -o jsonpath='{.spec.clusterIP}') -P 6001 -uroot -p111
+    root@master0 ~]# mysql -h $(kubectl get svc/mo-tp-cn -n mo-hn -o jsonpath='{.spec.clusterIP}') -P 6001 -uroot -p111
     Welcome to the MariaDB monitor.  Commands end with ; or \g.
     Your MySQL connection id is 1005
-    Server version: 8.0.30-MatrixOne-v0.7.0 MatrixOne
+    Server version: 8.0.30-MatrixOne-v0.8.0 MatrixOne
 
     Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
 
@@ -81,6 +88,9 @@ According to the introduction in [MatrixOne Distributed Cluster Deployment](depl
     +--------------------+
     7 rows in set (0.01 sec)
     ```
+
+    !!! info
+        The login account in the above code snippet is the initial account; please change the initial password after logging in to MatrixOne; see [Password Management](../Security/password-mgmt.md).
 
 5. The rolling update may be suspended due to incorrect configuration (such as specifying a non-existing version when upgrading). At this point, you can re-modify the dynamic configuration of the operator, reset the version number, roll back the changes, and the failed Pods will be re-updated.
 

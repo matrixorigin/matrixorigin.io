@@ -21,7 +21,3 @@ ERROR 20307 (HY000): Duplicate entry '1' for key '__mo_index_idx_col'
 ```
 
 **Example Explanation**: In the above example, there are two unique key constraints in column a and columns (b,c). When inserting data, the second insert statement violates the unique constraint of (b,c) and duplicates the value of the first insert, so the insert fails. The third insert statement violates the constraint on column a, so the insert fails.
-
-## **Constraints**
-
-MatrixOne does not currently support `alter table`, so it does not support deleting `UNIQUE KEY` constraints.

@@ -51,21 +51,39 @@ __Tips__: It is recommended that you download and install one of these two tools
 
 === "**Downloading method 1: Using `wget` to install binary packages**"
 
+     Binary for x86 architecture system:
+
      ```bash
-     wget https://github.com/matrixorigin/matrixone/releases/download/v0.7.0/mo-v0.7.0-darwin-x86_64.zip
-     unzip mo-v0.7.0-darwin-x86_64.zip
+     wget https://github.com/matrixorigin/matrixone/releases/download/v0.8.0/mo-v0.8.0-darwin-x86_64.zip
+     unzip mo-v0.8.0-darwin-x86_64.zip
+     ```
+
+     Binary for ARM architecture system:
+
+     ```bash
+     wget https://github.com/matrixorigin/matrixone/releases/download/v0.8.0/mo-v0.8.0-darwin-x86_64.zip
+     unzip mo-v0.8.0-darwin-arm64.zip
      ```
 
 === "**Downloading method 2: Using `curl` to install binary packages**"
 
+     Binary for x86 architecture system:
+
      ```bash
-     curl -OL https://github.com/matrixorigin/matrixone/releases/download/v0.7.0/mo-v0.7.0-darwin-x86_64.zip
-     unzip mo-v0.7.0-darwin-x86_64.zip
+     curl -OL https://github.com/matrixorigin/matrixone/releases/download/v0.8.0/mo-v0.8.0-darwin-x86_64.zip
+     unzip mo-v0.8.0-darwin-x86_64.zip
+     ```
+
+     Binary for ARM architecture system:
+
+     ```bash
+     curl -OL https://github.com/matrixorigin/matrixone/releases/download/v0.8.0/mo-v0.8.0-darwin-x86_64.zip
+     unzip mo-v0.8.0-darwin-arm64.zip
      ```
 
 === "**Downloading method 3: Go to the page and download**"
 
-     If you want a more intuitive way to download the page, go to the [version 0.7.0](https://github.com/matrixorigin/matrixone/releases/tag/v0.7.0), pull down to find the **Assets** column, and click the installation package *mo-v0.7.0-darwin-x86_64.zip* can be downloaded.
+     If you want a more intuitive way to download the page, go to the [version 0.8.0](https://github.com/matrixorigin/matrixone/releases/tag/v0.8.0), pull down to find the **Assets** column, and click the installation package *mo-v0.8.0-darwin-x86_64.zip* or *mo-v0.8.0-darwin-arm64.zip* can be downloaded.
 
 ## Step 3: Launch MatrixOne server
 
@@ -152,14 +170,17 @@ __Tips__: Currently, MatrixOne is only compatible with the Oracle MySQL client. 
 
     After you enter the preceding command, the terminal will prompt you to provide the username and password. You can use our built-in account:
 
-    + user: dump
+    + user: root
     + password: 111
 
 - You can also use the following command line on the MySQL client to connect to the MatrixOne service:
 
        ```
-       mysql -h 127.0.0.1 -P 6001 -udump -p
+       mysql -h 127.0.0.1 -P 6001 -uroot -p
        Enter password:
        ```
 
 Currently, MatrixOne only supports the TCP listener.
+
+!!! info
+    The login account in the above code snippet is the initial account; please change the initial password after logging in to MatrixOne; see [Password Management](../../Security/password-mgmt.md).
