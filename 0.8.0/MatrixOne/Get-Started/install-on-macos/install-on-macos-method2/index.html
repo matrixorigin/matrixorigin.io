@@ -2864,34 +2864,6 @@
 
             
           
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../Performance-Tuning/optimization-concepts/through-partition-by/" class="md-nav__link">
-        Using PARTITION BY for performance tuning
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../Performance-Tuning/control-execution-plan/optimizer-hints/" class="md-nav__link">
-        Optimizer Hints
-      </a>
-    </li>
-  
-
-            
-          
         </ul>
       </nav>
     </li>
@@ -8660,14 +8632,14 @@ unzip<span class="w"> </span>mo-v0.8.0-darwin-arm64.zip
 <div class="tabbed-block">
 <p>This launch method will keep the <code>mo-service</code> process running in the frontend, the system log will be printed in real time. If you'd like to stop MatrixOne server, just make a CTRL+C or close your current terminal.</p>
 <div class="highlight"><pre><span></span><code># Start mo-service in the frontend
-./mo-service -launch ./etc/quickstart/launch.toml
+./mo-service -launch ./etc/launch-tae-CN-tae-DN/launch.toml
 </code></pre></div>
 <p>When you finish launching MatrixOne in the frontend, many logs are generated in startup mode. Then you can start a new terminal and connect to MatrixOne.</p>
 </div>
 <div class="tabbed-block">
 <p>This launch method will put the <code>mo-service</code> process running in the backend, the system log will be redirected to the <code>test.log</code> file. If you'd like to stop MatrixOne server, you need to find out its <code>PID</code> by and kill it by the following commands. Below is a full example of the whole process.</p>
 <div class="highlight"><pre><span></span><code># Start mo-service in the backend
-./mo-service --daemon --launch ./etc/quickstart/launch.toml &amp;&gt; test.log &amp;
+./mo-service --daemon --launch ./etc/launch-tae-CN-tae-DN/launch.toml &amp;&gt; test.log &amp;
 
 # Find mo-service PID
 ps aux | grep mo-service
@@ -8683,6 +8655,10 @@ kill -9 15277
 <p>Next you can take the next step - Connect to standalone MatrixOne.</p>
 </div>
 </div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The initial startup of MatrixOne approximately takes 20 to 30 seconds. After a brief wait, you can connect to MatrixOne using the MySQL client.</p>
 </div>
 <h2 id="step-4-connect-to-standalone-matrixone">Step 4: Connect to standalone MatrixOne</h2>
 <h3 id="install-and-configure-mysql-client">Install and configure MySQL Client</h3>
