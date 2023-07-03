@@ -1,4 +1,4 @@
-# Build a simple Python+SQLAlchemy CRUD demo with MatrixOne
+# SQLAlchemy CRUD demo
 
 This tutorial shows you how to build a simple Python+SQLAlchemy CRUD(Create, Read, Update, Delete) application with MatrixOne. SQLAlchemy is one of the most popular ORM tools in python language.
 

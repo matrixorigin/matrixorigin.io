@@ -23,7 +23,3 @@ ERROR 3819 (HY000): constraint violation: Column 'a' cannot be null
 ```
 
 **Example Explanation**: In the above example, because there is a non-null constraint in column a, the execution of the first insert statement will fail, the second statement satisfies the non-null constraint in column a, and there is no non-null constraint in column b so that it can be inserted successfully. The update statement fails because it triggers the non-null constraint of column a.
-
-## **Constraints**
-
-MatrixOne does not currently support `alter table`, so it does not support deleting `NOT NULL` constraints.

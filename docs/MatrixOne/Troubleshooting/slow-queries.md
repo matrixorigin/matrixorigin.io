@@ -8,7 +8,7 @@ Currently, the slow queries on a MatrixOne are longer than 1000 milliseconds and
 
 The slow query log is disabled by default. To use the slow query log function, you must first enable the slow query log function.
 
-MatrixOne slow query feature is available in version 0.7.0 with the following basic information:
+MatrixOne slow query feature is available with the following basic information:
 
 - `statement`: indicates the SQL text that provides the complete SQL statement.
 - `request_at`: indicates the start time of the SQL statement.

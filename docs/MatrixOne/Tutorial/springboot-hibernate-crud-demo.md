@@ -1,4 +1,4 @@
-# Build a SpringBoot+Spring Data JPA CRUD demo with MatrixOne
+# SpringBoot and JPA CRUD demo
 
 This tutorial completes a simple Demo based on **SpringBoot+Spring Data JPA+MatrixOne+Intellij IDEA** , and realizes the basic CRUD function.
 
