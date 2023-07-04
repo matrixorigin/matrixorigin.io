@@ -18,7 +18,24 @@ The publish-subscribe function has many typical application scenarios:
 
 - **Real-time data processing**: The publish-subscribe function can be used to realize real-time data processing. For example, when a website needs to process data from different users, the publish-subscribe part can be used to transmit data to a processing program for processing, to realize real-time data analysis and decision-making.
 
-## Examples
+## Publication/Subscription Scope Explanation
+
+### Publishable/Subscribable Permissions
+
+- Only ACCOUNTADMIN or MOADMIN role can create publications and subscriptions on the publishing side.
+- Subscribers are controlled by ACCOUNTADMIN or MOADMIN roles to access subscription data permissions.
+
+### Publication/Subscription Data Scope
+
+- A single **Publication** is associated with just one database.
+- Publications and subscriptions only implement at the database level; direct publication and subscription at the table level are not currently supported.
+- On the **Subscription side**, permissions for the **subscribed database** are read-only.
+- If the **publishing side** modifies the scope of its sharing, and a tenant no longer within the new scope has already created a subscription database, access to that **subscribed database** is invalidated.
+- If the **publishing side** tries to delete a **published database**, the deletion fails if this database has been published.
+- If the **publishing side** deletes a **Publication** on the publishing side, the corresponding objects in the subscription database still exist. Still, an error will be reported when the **subscriber** tries to access this object. The **subscriber** needs to delete the **Subscription**.
+- If the **publishing side** deletes a **published object**, the corresponding **subscribed object** in the subscription database still exists. However, an error will be occured when the **subscriber** tries to access this object. The **subscriber** needs to delete the **subscribed object**.
+
+### Examples
 
 ![](https://github.com/matrixorigin/artwork/blob/main/docs/develop/pub-sub/example-en.png?raw=true)
 
@@ -172,8 +189,3 @@ This chapter will give an example to introduce that there are currently three ac
 
 - [CREATE...FROM...PUBLICATION...](../../Reference/SQL-Reference/Data-Definition-Language/create-subscription.md)
 - [SHOW SUBSCRIPTIONS](../../Reference/SQL-Reference/Other/SHOW-Statements/show-subscriptions.md)
-
-## Constraints
-
-- Only ACCOUNTADMIN or MOADMIN role can create publications and subscriptions on the publishing side.
-- Subscribers are controlled by ACCOUNTADMIN or MOADMIN roles to access subscription data permissions.
