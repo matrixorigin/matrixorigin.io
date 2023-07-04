@@ -178,7 +178,7 @@ CREATE TABLE IF NOT EXISTS `tool` (
 
 ## Partition Support
 
-* Only support `KEY`, `HASH`, `RANGE`, `RANGE COLUMNS`, `LIST`, and `LIST COLUMNS` six partition types.
+* Only support `KEY`, `HASH` two partition types.
 * Subpartitions implement only syntax, not functionality.
 
 ## Functions and Operators

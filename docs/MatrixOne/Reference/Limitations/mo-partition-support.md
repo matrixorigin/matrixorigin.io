@@ -6,10 +6,6 @@ MatrixOne DDL statements support six partition types, which are the same as the 
 
 - KEY Partitioning
 - HASH Partitioning
-- RANGE Partitioning
-- RANGE COLUMNS partitioning
-- LIST Partitioning
-- LIST COLUMNS partitioning
 
 Subpartitioning syntax is currently supported, but plan builds are not.
 
@@ -136,85 +132,4 @@ CREATE TABLE t1 (
 )
 PARTITION BY LINEAR HASH( YEAR(col3))
 PARTITIONS 6;
-```
-
-### RANGE Partitioning
-
-RANGE partition will construct a partition expression according to the partition function, the number of partitions, and the definition of the partitioning item. The result of the partition expression is an integer representing the partition number. The standard partition number starts from zero and increases sequentially. The calculation result is -1, indicating that the current data does not belong to any defined partition. According to MySQL syntax, the executor needs to report an error: `Table has no partition for value xxx`.
-
-SQL example is as below:
-
-```sql
-CREATE TABLE employees (
-	id INT NOT NULL,
-	fname VARCHAR(30),
-	lname VARCHAR(30),
-	hired DATE NOT NULL DEFAULT '1970-01-01',
-	separated DATE NOT NULL DEFAULT '9999-12-31',
-	job_code INT NOT NULL,
-	store_id INT NOT NULL
-)
-PARTITION BY RANGE (store_id) (
-	PARTITION p0 VALUES LESS THAN (6),
-	PARTITION p1 VALUES LESS THAN (11),
-	PARTITION p2 VALUES LESS THAN (16),
-	PARTITION p3 VALUES LESS THAN MAXVALUE
-);
-```
-
-### RANGE COLUMNS partitioning
-
-RANGE partition will construct a partition expression according to the key columns, the number of partitions, and the definition of the partitioning item. The result of the partition expression is an integer representing the partition number. The standard partition number starts from zero and increases sequentially. The calculation result is -1, indicating that the current data does not belong to any defined partition. According to MySQL syntax, the executor needs to report an error: `Table has no partition for value xxx`.
-
-SQL example is as below:
-
-```sql
-CREATE TABLE rc (
-	a INT NOT NULL,
-	b INT NOT NULL
-)
-PARTITION BY RANGE COLUMNS(a,b) (
-	PARTITION p0 VALUES LESS THAN (10,5) COMMENT = 'Data for LESS THAN (10,5)',
-	PARTITION p1 VALUES LESS THAN (20,10) COMMENT = 'Data for LESS THAN (20,10)',
-	PARTITION p2 VALUES LESS THAN (50,MAXVALUE) COMMENT = 'Data for LESS THAN (50,MAXVALUE)',
-	PARTITION p3 VALUES LESS THAN (65,MAXVALUE) COMMENT = 'Data for LESS THAN (65,MAXVALUE)',
-	PARTITION p4 VALUES LESS THAN (MAXVALUE,MAXVALUE) COMMENT = 'Data for LESS THAN (MAXVALUE,MAXVALUE)'
-);
-```
-
-### LIST Partitioning
-
-LIST partition will construct a partition expression according to the partition key, the number of partitions, and the definition of the partitioning item. The result of the partition expression is an integer representing the partition number. The standard partition number starts from zero and increases sequentially. The calculation result is -1, indicating that the current data does not belong to any defined partition. According to MySQL syntax, the executor needs to report an error: `Table has no partition for value xxx`.
-
-SQL example is as below:
-
-```sql
-CREATE TABLE client_firms (
-	id   INT,
-	name VARCHAR(35)
-)
-PARTITION BY LIST (id) (
-	PARTITION r0 VALUES IN (1, 5, 9, 13, 17, 21),
-	PARTITION r1 VALUES IN (2, 6, 10, 14, 18, 22),
-	PARTITION r2 VALUES IN (3, 7, 11, 15, 19, 23),
-	PARTITION r3 VALUES IN (4, 8, 12, 16, 20, 24)
-);
-```
-
-### LIST COLUMNS partitioning
-
-LIST partition will construct a partition expression according to the list of partitioning keys, the number of partitions, and the definition of the partitioning item. The result of the partition expression is an integer representing the partition number. The standard partition number starts from zero and increases sequentially. The calculation result is -1, indicating that the current data does not belong to any defined partition. According to MySQL syntax, the executor needs to report an error: `Table has no partition for value xxx`.
-
-SQL example is as below:
-
-```sql
-CREATE TABLE lc (
-	a INT NULL,
-	b INT NULL
-)
-PARTITION BY LIST COLUMNS(a,b) (
-	PARTITION p0 VALUES IN( (0,0), (NULL,NULL) ),
-	PARTITION p1 VALUES IN( (0,1), (0,2) ),
-	PARTITION p2 VALUES IN( (1,0), (2,0) )
-);
 ```
