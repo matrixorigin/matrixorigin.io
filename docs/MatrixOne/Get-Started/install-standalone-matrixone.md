@@ -8,9 +8,9 @@ MatrixOne supports **Linux** and **MacOS**. For quick start, we recommend the fo
 
 | Operating System    | Operating System Version | CPU   |Memory|
 | :------ | :----- | :-------------- |  :------|
-|Debian| 11 and later | x86 / ARM CPU；4 Cores | 16 GB |
-|Ubuntu| 20.04 and later | x86 / ARM CPU；4 Cores | 16 GB |
-|macOS| Monterey 12.3 and later | x86 / ARM CPU；4 Cores | 16 GB |
+|Debian| 11 and later | x86 / ARM CPU; 4 Cores | 16 GB |
+|Ubuntu| 20.04 and later | x86 / ARM CPU; 4 Cores | 16 GB |
+|macOS| Monterey 12.3 and later | x86 / ARM CPU; 4 Cores | 16 GB |
 
 For more information on the required operating system versions for deploying MatrixOne, see [Hardware and Operating system requirements](../FAQs/deployment-faqs.md).
 
