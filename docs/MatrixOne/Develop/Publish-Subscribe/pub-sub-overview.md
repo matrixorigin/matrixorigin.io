@@ -18,22 +18,41 @@ The publish-subscribe function has many typical application scenarios:
 
 - **Real-time data processing**: The publish-subscribe function can be used to realize real-time data processing. For example, when a website needs to process data from different users, the publish-subscribe part can be used to transmit data to a processing program for processing, to realize real-time data analysis and decision-making.
 
+## Concepts
+
+- **Publication**: In a database, a publication often refers to the process of setting a database object to be accessible by other accounts. It is a crucial step in data sharing and replication, where the published objects can be subscribed to by other accounts, and their data can be accessed.
+
+- **Subscription**: A subscription refers to a database choosing to receive and replicate the data of a published database object.
+
+- **Publisher (Pub)**: The Publisher is the database that performs the publishing operation. The Publisher is responsible for creating and managing the published objects, as well as managing the access permissions of databases subscribing to these published objects.
+
+- **Subscriber (Sub)**: The Subscriber is the account that subscribes to the published objects.
+
+- **Published Object**: A published object is a database created by the Publisher and made available for publication, namely a database. The data of these objects can be accessed and replicated by the Subscriber.
+
+- **Subscribed Object**: A subscribed object is a published object replicated and stored on the Subscriber. The data of the subscribed object is updated according to the data on the Publisher.
+
 ## Publication/Subscription Scope Explanation
+
+### Publish/Subscribe Application Scope
+
+Both **Publisher** and **Subscriber** are accounts of MatrixOne.
 
 ### Publishable/Subscribable Permissions
 
-- Only ACCOUNTADMIN or MOADMIN role can create publications and subscriptions on the publishing side.
+- Only ACCOUNTADMIN or MOADMIN role can create publications and subscriptions on the Publisher.
 - Subscribers are controlled by ACCOUNTADMIN or MOADMIN roles to access subscription data permissions.
 
 ### Publication/Subscription Data Scope
 
-- A single **Publication** is associated with just one database.
-- Publications and subscriptions only implement at the database level; direct publication and subscription at the table level are not currently supported.
-- On the **Subscription side**, permissions for the **subscribed database** are read-only.
-- If the **publishing side** modifies the scope of its sharing, and a tenant no longer within the new scope has already created a subscription database, access to that **subscribed database** is invalidated.
-- If the **publishing side** tries to delete a **published database**, the deletion fails if this database has been published.
-- If the **publishing side** deletes a **Publication** on the publishing side, the corresponding objects in the subscription database still exist. Still, an error will be reported when the **subscriber** tries to access this object. The **subscriber** needs to delete the **Subscription**.
-- If the **publishing side** deletes a **published object**, the corresponding **subscribed object** in the subscription database still exists. However, an error will be occured when the **subscriber** tries to access this object. The **subscriber** needs to delete the **subscribed object**.
+- - A single **Publication** can only be associated with one database.
+- Publications and subscriptions are only implemented at the database level, with no current support for direct publication and subscription at the table level.
+- The **Subscriber** only has read access to the **Subscribed database**.
+
+- If the **Publisher** adjusts the sharing scope of the publication, those accounts that are no longer within the new scope and have already created a subscribed database will find that their access to the **Subscribed database** is invalid.
+- If the **Publisher** attempts to delete a database that has been published, the deletion will fail.
+- If the **Publisher** deletes a **Publication**, but the corresponding object still exists in the subscribed database, an error will be triggered when the **Subscriber** attempts to access this object. The **Subscriber** will need to delete the corresponding **Subscription**.
+- If the **Publisher** deletes a **Published object**, but the corresponding object still exists in the subscribed database, an error will be triggered when the **Subscriber** attempts to access this object. The **Subscriber** must delete the corresponding **Subscribed object**.
 
 ### Examples
 
