@@ -2,16 +2,16 @@
 
 ## Operating system requirements
 
-* **What are the required operating system versions for deploying MatrixOne?**
+### **What are the required operating system versions for deploying MatrixOne?**
 
-For standalone installation, MatrixOne supports the following operating system:
+MatrixOne supports the following operating system:
 
 | Linux OS                 | Version                   |
 | :----------------------- | :------------------------ |
-| Red Hat Enterprise Linux | 7.3 or later 7.x releases |
-| CentOS                   | 7.3 or later 7.x releases |
-| Oracle Enterprise Linux  | 7.3 or later 7.x releases |
-| Ubuntu LTS               | 22.04 or later            |
+| Debian              | 11.0 or later            |
+| Ubuntu LTS               | 20.04 or later            |
+| Red Hat Enterprise Linux | 9.0 or later releases |
+| Oracle Enterprise Linux  | 9.0 or later releases |
 
 MatrixOne also supports macOS operating system, but it's only recommended to run as a test and development environment.
 
@@ -21,9 +21,9 @@ MatrixOne also supports macOS operating system, but it's only recommended to run
 
 ## Hardware requirements
 
-* **What are the required hardware for deploying MatrixOne?**
+### **What are the required hardware for deploying MatrixOne?**
 
-For standalone installation, MatrixOne can be running on the 64-bit generic hardware server platform in the Intel x86-64 architecture. The requirements and recommendations about server hardware configuration for development, testing and production environments are as follows:
+For standalone installation, MatrixOne can be running on the 64-bit generic hardware server platform in the Intel x86-64 and ARM architecture. The requirements and recommendations about server hardware configuration for development, testing and production environments are as follows:
 
 * Development and testing environments
 
@@ -38,6 +38,8 @@ The Macbook M1/M2 with ARM architecture is also a good fit for a development env
 | CPU      | Memory | Local Storage   |
 | :------- | :----- | :-------------- |
 | 16 core+ | 64 GB+ | SSD/HDD 500 GB+ |
+
+For comprehensive details on deploying MatrixOne in a distributed setting, see [Distributed Deployment Topology Documentation](../Deploy/deployment-topology/experience-deployment-topology.md). This guide includes specific server hardware configuration requirements and recommendations tailored for development, testing, and production environments.
 
 ## Installation and deployment
 
@@ -167,7 +169,7 @@ To complete the following configuration, then compiling 'SSB-DBgen' for a PC wit
 
 ### **I built MatrixOne in the main branch initially but encountered panic when switching to other versions for building**
 
-The storage formats between MatrixOne version 0.7.0 and its earlier versions are not compatible with each other. This means that when executing `make build`, the system will automatically generate a data directory file named *mo-data* to store data.
+The storage formats between MatrixOne version 0.8.0 and its earlier versions are not compatible with each other. This means that when executing `make build`, the system will automatically generate a data directory file named *mo-data* to store data.
 
 In the future, if you need to switch to another branch and re-execute `make build` to build MatrixOne, it may cause a panic situation to occur. In this case, you need first to clean the *mo-data* data directory (that is, execute the `rm -rf mo-data` command), and then rebuild MatrixOne.
 
@@ -176,10 +178,10 @@ Reference code example:
 ```
 [root ~]# cd matrixone  // Go to the matrixone directory
 [root ~]# git branch // Check the current branch
-* 0.7.0
+* 0.8.0
 [root ~]# make build // Build matrixone
-...    // The build process code is omitted here. If you want to switch to another version, such as version 0.6.0,
-[root ~]# git checkout 0.6.0 // Switch to version 0.6.0
+...    // The build process code is omitted here. If you want to switch to another version, such as version 0.7.0,
+[root ~]# git checkout 0.7.0 // Switch to version 0.7.0
 [root ~]# rm -rf mo-data // Clean up the data directory
 [root ~]# make build // Build matrixone again
 ...    // The build process code is omitted here
