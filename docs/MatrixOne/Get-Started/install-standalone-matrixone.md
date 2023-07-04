@@ -1,6 +1,6 @@
 # **Deploy standalone MatrixOne**
 
-The applicable scenario of the standalone MatrixOne is to use a single server, experience the smallest MatrixOne with the complete topology, and simulate the production deployment steps.
+The applicable scenario of the standalone version of MatrixOne is to use a single development machine to deploy MatrixOne and experience the essential functions of MatrixOne, which is the same as using MySQL for the standalone version.
 
 **Recommended operating system**
 
@@ -8,8 +8,9 @@ MatrixOne supports **Linux** and **MacOS**. For quick start, we recommend the fo
 
 | Operating System    | Operating System Version | CPU   |Memory|
 | :------ | :----- | :-------------- |  :------|
-|CentOS| 7.3 and later| x86 CPU; 4 Cores | 32 GB |
-|macOS| Monterey 12.3 and later | - x86 CPU;4 Cores<br>- ARM;4 Cores | 32 GB |
+|Debian| 11 and later | x86 / ARM CPU; 4 Cores | 16 GB |
+|Ubuntu| 20.04 and later | x86 / ARM CPU; 4 Cores | 16 GB |
+|macOS| Monterey 12.3 and later | x86 / ARM CPU; 4 Cores | 16 GB |
 
 For more information on the required operating system versions for deploying MatrixOne, see [Hardware and Operating system requirements](../FAQs/deployment-faqs.md).
 
