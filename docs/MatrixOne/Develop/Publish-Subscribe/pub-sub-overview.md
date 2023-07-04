@@ -45,10 +45,9 @@ Both **Publisher** and **Subscriber** are accounts of MatrixOne.
 
 ### Publication/Subscription Data Scope
 
-- - A single **Publication** can only be associated with one database.
+- A single **Publication** can only be associated with one database.
 - Publications and subscriptions are only implemented at the database level, with no current support for direct publication and subscription at the table level.
 - The **Subscriber** only has read access to the **Subscribed database**.
-
 - If the **Publisher** adjusts the sharing scope of the publication, those accounts that are no longer within the new scope and have already created a subscribed database will find that their access to the **Subscribed database** is invalid.
 - If the **Publisher** attempts to delete a database that has been published, the deletion will fail.
 - If the **Publisher** deletes a **Publication**, but the corresponding object still exists in the subscribed database, an error will be triggered when the **Subscriber** attempts to access this object. The **Subscriber** will need to delete the corresponding **Subscription**.
