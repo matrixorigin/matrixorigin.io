@@ -397,6 +397,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#advanced-sql-features" class="md-nav__link">
+    Advanced SQL Features
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#data-types" class="md-nav__link">
     Data types
   </a>
@@ -420,6 +427,48 @@
         <li class="md-nav__item">
   <a href="#functions-and-operators" class="md-nav__link">
     Functions and Operators
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#partition" class="md-nav__link">
+    PARTITION
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#import-and-export" class="md-nav__link">
+    Import and Export
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-and-access-control" class="md-nav__link">
+    Security and Access Control
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backup-and-restore" class="md-nav__link">
+    Backup and Restore
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#management-tool" class="md-nav__link">
+    Management Tool
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deployment-method" class="md-nav__link">
+    Deployment Method
   </a>
   
 </li>
@@ -458,20 +507,6 @@
           MatrixOne Feature
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../feature/feature-overview/" class="md-nav__link">
-        MatrixOne Features Overview
-      </a>
-    </li>
-  
-
-            
           
             
               
@@ -8504,6 +8539,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#advanced-sql-features" class="md-nav__link">
+    Advanced SQL Features
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#data-types" class="md-nav__link">
     Data types
   </a>
@@ -8531,6 +8573,48 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#partition" class="md-nav__link">
+    PARTITION
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#import-and-export" class="md-nav__link">
+    Import and Export
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-and-access-control" class="md-nav__link">
+    Security and Access Control
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backup-and-restore" class="md-nav__link">
+    Backup and Restore
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#management-tool" class="md-nav__link">
+    Management Tool
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deployment-method" class="md-nav__link">
+    Deployment Method
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -8550,13 +8634,13 @@
 
 
 <h1 id="matrixone-features">MatrixOne Features</h1>
-<p>This document lists the features supported by MatrixOne for the latest version.</p>
+<p>This document lists the features supported by the latest version of MatrixOne and features that are common and in MatrixOne's roadmap but not currently supported.</p>
 <h2 id="data-definition-language-ddl">Data definition language (DDL)</h2>
 <table>
 <thead>
 <tr>
 <th>Data definition Language(DDL)</th>
-<th>Supported(Y)/Not supported (N)</th>
+<th>Supported(Y)/Not supported (N) /Experimental (E)</th>
 </tr>
 </thead>
 <tbody>
@@ -8569,7 +8653,7 @@
 <td>Y</td>
 </tr>
 <tr>
-<td>RENAME DATABASE</td>
+<td>ALTER DATABASE</td>
 <td>N</td>
 </tr>
 <tr>
@@ -8578,11 +8662,11 @@
 </tr>
 <tr>
 <td>ALTER TABLE</td>
-<td>Y</td>
+<td>E, Support modification of table name, addition and deletion of columns, does not support modification of columns</td>
 </tr>
 <tr>
 <td>RENAME TABLE</td>
-<td>N</td>
+<td>N, Can be replaced by <code>ALTER TABLE tbl RENAME TO new_tbl</code></td>
 </tr>
 <tr>
 <td>DROP TABLE</td>
@@ -8590,7 +8674,7 @@
 </tr>
 <tr>
 <td>CREATE INDEX</td>
-<td>Y</td>
+<td>Y, Secondary indexes have no speedup</td>
 </tr>
 <tr>
 <td>DROP INDEX</td>
@@ -8617,19 +8701,7 @@
 <td>Y</td>
 </tr>
 <tr>
-<td>CREATE</td>
-<td>Y</td>
-</tr>
-<tr>
-<td>REPLACE VIEW</td>
-<td>N</td>
-</tr>
-<tr>
-<td>TRUNCATE</td>
-<td>Y</td>
-</tr>
-<tr>
-<td>SEQUENCE</td>
+<td>TRUNCATE TABLE</td>
 <td>Y</td>
 </tr>
 <tr>
@@ -8637,8 +8709,24 @@
 <td>Y</td>
 </tr>
 <tr>
-<td>Temporary tables</td>
+<td>SEQUENCE</td>
 <td>Y</td>
+</tr>
+<tr>
+<td>TEMPORARY TABLE</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>CREATE STREAM</td>
+<td>N</td>
+</tr>
+<tr>
+<td>PARTITION BY</td>
+<td>E, Only some types are supported</td>
+</tr>
+<tr>
+<td>CHARSET, COLLATION</td>
+<td>N, Only UTF8 is supported by default</td>
 </tr>
 </tbody>
 </table>
@@ -8647,7 +8735,7 @@
 <thead>
 <tr>
 <th>SQL Statement</th>
-<th>Supported(Y)/Not supported (N)</th>
+<th>Supported(Y)/Not supported (N) /Experimental (E)</th>
 </tr>
 </thead>
 <tbody>
@@ -8672,15 +8760,15 @@
 <td>N</td>
 </tr>
 <tr>
-<td>INSERT ON DUPLICATE KEY</td>
+<td>INSERT ON DUPLICATE KEY UPDATE</td>
 <td>Y</td>
 </tr>
 <tr>
-<td>LOAD DATA INFILE</td>
+<td>LOAD DATA</td>
 <td>Y</td>
 </tr>
 <tr>
-<td>SELECT INTO OUTFILE</td>
+<td>SELECT INTO</td>
 <td>Y</td>
 </tr>
 <tr>
@@ -8700,11 +8788,19 @@
 <td>Y</td>
 </tr>
 <tr>
-<td>Common Table Expressions(CTE)</td>
+<td>CLUSTER BY</td>
 <td>Y</td>
 </tr>
 <tr>
-<td>START TRANSACTION, COMMIT, ROLLBACK</td>
+<td>SUBQUERY</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>(Common Table Expressions, CTE)</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>BEGIN/START TRANSACTION, COMMIT, ROLLBACK</td>
 <td>Y</td>
 </tr>
 <tr>
@@ -8716,23 +8812,46 @@
 <td>Y</td>
 </tr>
 <tr>
-<td>Stored Procedure</td>
+<td>LOCK/UNLOCK TABLE</td>
 <td>N</td>
 </tr>
 <tr>
-<td>Trigger</td>
-<td>N</td>
+<td>User-defined Variables</td>
+<td>Y</td>
 </tr>
+</tbody>
+</table>
+<h2 id="advanced-sql-features">Advanced SQL Features</h2>
+<table>
+<thead>
 <tr>
-<td>Event Scheduler</td>
-<td>N</td>
+<th>Advanced SQL Features</th>
+<th>Supported(Y)/Not supported (N) /Experimental (E)</th>
 </tr>
+</thead>
+<tbody>
 <tr>
-<td>PARTITION BY</td>
+<td>PREPARE</td>
 <td>Y</td>
 </tr>
 <tr>
-<td>LOCK TABLE</td>
+<td>STORED PROCEDURE</td>
+<td>N</td>
+</tr>
+<tr>
+<td>TRIGGER</td>
+<td>N</td>
+</tr>
+<tr>
+<td>EVENT SCHEDULER</td>
+<td>N</td>
+</tr>
+<tr>
+<td>UDF</td>
+<td>N</td>
+</tr>
+<tr>
+<td>Materialized VIEW</td>
 <td>N</td>
 </tr>
 </tbody>
@@ -8743,49 +8862,19 @@
 <tr>
 <th>Data type categories</th>
 <th>Data types</th>
-<th>Supported(Y)/Not supported (N)</th>
+<th>Supported(Y)/Not supported (N) /Experimental (E)</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Integer Numbers</td>
-<td>TINYINT</td>
+<td>TINYINT/SMALLINT/INT/BIGINT (UNSIGNED)</td>
 <td>Y</td>
 </tr>
 <tr>
 <td></td>
-<td>SMALLINT</td>
-<td>Y</td>
-</tr>
-<tr>
-<td></td>
-<td>INT</td>
-<td>Y</td>
-</tr>
-<tr>
-<td></td>
-<td>BIGINT</td>
-<td>Y</td>
-</tr>
-<tr>
-<td></td>
-<td>TINYINT UNSIGNED</td>
-<td>Y</td>
-</tr>
-<tr>
-<td></td>
-<td>SMALLINT UNSIGNED</td>
-<td>Y</td>
-</tr>
-<tr>
-<td></td>
-<td>INT UNSIGNED</td>
-<td>Y</td>
-</tr>
-<tr>
-<td></td>
-<td>BIGINT UNSIGNED</td>
-<td>Y</td>
+<td>BIT</td>
+<td>N</td>
 </tr>
 <tr>
 <td>Real Numbers</td>
@@ -8819,83 +8908,73 @@
 </tr>
 <tr>
 <td></td>
-<td>TINYTEXT</td>
-<td>Y</td>
-</tr>
-<tr>
-<td></td>
-<td>TEXT</td>
-<td>Y</td>
-</tr>
-<tr>
-<td></td>
-<td>MEDIUMTEXT</td>
-<td>Y</td>
-</tr>
-<tr>
-<td></td>
-<td>LONGTEXT</td>
+<td>TINYTEXT/TEXT/MEDIUMTEXT/LONGTEXT</td>
 <td>Y</td>
 </tr>
 <tr>
 <td></td>
 <td>ENUM</td>
+<td>N, Can be replaced by <code>VARCHAR</code></td>
+</tr>
+<tr>
+<td></td>
+<td>SET</td>
 <td>N</td>
 </tr>
 <tr>
 <td>Binary Types</td>
-<td>TINYBLOB</td>
-<td>Y</td>
-</tr>
-<tr>
-<td></td>
-<td>BLOB</td>
-<td>Y</td>
-</tr>
-<tr>
-<td></td>
-<td>MEDIUMBLOB</td>
-<td>Y</td>
-</tr>
-<tr>
-<td></td>
-<td>LONGBLOB</td>
+<td>TINYBLOB/BLOB/MEDIUMBLOB/LONGBLOB</td>
 <td>Y</td>
 </tr>
 <tr>
 <td>Time and Date Types</td>
-<td>Date</td>
+<td>DATE</td>
 <td>Y</td>
 </tr>
 <tr>
 <td></td>
-<td>Time</td>
+<td>TIME</td>
 <td>Y</td>
 </tr>
 <tr>
 <td></td>
-<td>DateTime</td>
+<td>DATETIME</td>
 <td>Y</td>
 </tr>
 <tr>
 <td></td>
-<td>Timestamp</td>
+<td>TIMESTAMP</td>
 <td>Y</td>
 </tr>
 <tr>
-<td>Boolean Type</td>
+<td></td>
+<td>YEAR</td>
+<td>N</td>
+</tr>
+<tr>
+<td>Boolean</td>
 <td>BOOL</td>
 <td>Y</td>
 </tr>
 <tr>
-<td>Decimal Type</td>
+<td>Decimal Types</td>
 <td>DECIMAL</td>
+<td>Y, up to 38 digits</td>
+</tr>
+<tr>
+<td>JSON Types</td>
+<td>JSON</td>
 <td>Y</td>
 </tr>
 <tr>
-<td>JSON Type</td>
-<td>JSON</td>
-<td>Y</td>
+<td>vector type</td>
+<td>VECTOR</td>
+<td>N</td>
+</tr>
+<tr>
+<td>Spatial Type</td>
+<td>SPATIAL</td>
+<td>N</td>
 </tr>
 </tbody>
 </table>
@@ -8904,7 +8983,7 @@
 <thead>
 <tr>
 <th>Indexing and constraints</th>
-<th>Supported(Y)/Not supported (N)</th>
+<th>Supported(Y)/Not supported (N) /Experimental (E)</th>
 </tr>
 </thead>
 <tbody>
@@ -8940,6 +9019,10 @@
 <td>NOT NULL Constraint</td>
 <td>Y</td>
 </tr>
+<tr>
+<td>AUTO INCREMENT Constraint</td>
+<td>Y</td>
+</tr>
 </tbody>
 </table>
 <h2 id="transactions">Transactions</h2>
@@ -8947,17 +9030,13 @@
 <thead>
 <tr>
 <th>Transactions</th>
-<th>Supported(Y)/Not supported (N)</th>
+<th>Supported(Y)/Not supported (N) /Experimental (E)</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>1PC</td>
-<td>Y</td>
-</tr>
-<tr>
 <td>Pessimistic transactions</td>
-<td>Y</td>
+<td>E</td>
 </tr>
 <tr>
 <td>Optimistic transactions</td>
@@ -8971,6 +9050,10 @@
 <td>Snapshot Isolation</td>
 <td>Y</td>
 </tr>
+<tr>
+<td>READ COMMITTED</td>
+<td>E</td>
+</tr>
 </tbody>
 </table>
 <h2 id="functions-and-operators">Functions and Operators</h2>
@@ -8978,449 +9061,243 @@
 <thead>
 <tr>
 <th>Functions and Operators Categories</th>
-<th>Name</th>
+<th>Supported(Y)/Not supported (N) /Experimental (E)</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Aggregate functions</td>
-<td>ANY_VALUE()</td>
+<td>Aggregate Functions</td>
+<td>Y</td>
 </tr>
 <tr>
-<td></td>
-<td>AVG()</td>
+<td>Mathematical</td>
+<td>Y</td>
 </tr>
 <tr>
-<td></td>
-<td>BIT_AND()</td>
+<td>Datetime</td>
+<td>Y</td>
 </tr>
 <tr>
-<td></td>
-<td>BIT_OR()</td>
+<td>String</td>
+<td>Y</td>
 </tr>
 <tr>
-<td></td>
-<td>BIT_XOR()</td>
+<td>CAST</td>
+<td>Y</td>
 </tr>
 <tr>
-<td></td>
-<td>COUNT()</td>
+<td>Flow Control Functions</td>
+<td>E</td>
 </tr>
 <tr>
-<td></td>
-<td>GROUP_CONCAT()</td>
+<td>Window Functions</td>
+<td>Y</td>
 </tr>
 <tr>
-<td></td>
-<td>MAX()</td>
+<td>JSON Functions</td>
+<td>Y</td>
 </tr>
 <tr>
-<td></td>
-<td>MEDIAN()</td>
-</tr>
-<tr>
-<td></td>
-<td>MIN()</td>
-</tr>
-<tr>
-<td></td>
-<td>SLEEP()</td>
-</tr>
-<tr>
-<td></td>
-<td>STD()</td>
-</tr>
-<tr>
-<td></td>
-<td>SUM()</td>
-</tr>
-<tr>
-<td>Mathematical functions</td>
-<td>ABS()</td>
-</tr>
-<tr>
-<td></td>
-<td>ACOS()</td>
-</tr>
-<tr>
-<td></td>
-<td>ATAN()</td>
-</tr>
-<tr>
-<td></td>
-<td>CEIL()</td>
-</tr>
-<tr>
-<td></td>
-<td>COS()</td>
-</tr>
-<tr>
-<td></td>
-<td>COT()</td>
-</tr>
-<tr>
-<td></td>
-<td>EXP()</td>
-</tr>
-<tr>
-<td></td>
-<td>FLOOR()</td>
-</tr>
-<tr>
-<td></td>
-<td>LN()</td>
-</tr>
-<tr>
-<td></td>
-<td>LOG()</td>
-</tr>
-<tr>
-<td></td>
-<td>PI()</td>
-</tr>
-<tr>
-<td></td>
-<td>POWER()</td>
-</tr>
-<tr>
-<td></td>
-<td>ROUND()</td>
-</tr>
-<tr>
-<td></td>
-<td>SIN()</td>
-</tr>
-<tr>
-<td></td>
-<td>SINH()</td>
-</tr>
-<tr>
-<td></td>
-<td>TAN()</td>
-</tr>
-<tr>
-<td></td>
-<td>UUID()</td>
-</tr>
-<tr>
-<td>Datetime functions</td>
-<td>CURDATE()</td>
-</tr>
-<tr>
-<td></td>
-<td>CURRENT_TIMESTAMP()</td>
-</tr>
-<tr>
-<td></td>
-<td>DATE()</td>
-</tr>
-<tr>
-<td></td>
-<td>DATE_ADD()</td>
-</tr>
-<tr>
-<td></td>
-<td>DATE_FORMAT()</td>
-</tr>
-<tr>
-<td></td>
-<td>DATE_SUB()</td>
-</tr>
-<tr>
-<td></td>
-<td>DATEDIFF()</td>
-</tr>
-<tr>
-<td></td>
-<td>DAY()</td>
-</tr>
-<tr>
-<td></td>
-<td>DAYOFYEAR()</td>
-</tr>
-<tr>
-<td></td>
-<td>EXTRACT()</td>
-</tr>
-<tr>
-<td></td>
-<td>FROM_UNIXTIME()</td>
-</tr>
-<tr>
-<td></td>
-<td>MONTH()</td>
-</tr>
-<tr>
-<td></td>
-<td>NOW()</td>
-</tr>
-<tr>
-<td></td>
-<td>TIMEDIFF()</td>
-</tr>
-<tr>
-<td></td>
-<td>TIMESTAMP()</td>
-</tr>
-<tr>
-<td></td>
-<td>TO_DATE()</td>
-</tr>
-<tr>
-<td></td>
-<td>UNIX_TIMESTAMP()</td>
-</tr>
-<tr>
-<td></td>
-<td>UTC_TIMESTAMP()</td>
-</tr>
-<tr>
-<td></td>
-<td>WEEKDAY()</td>
-</tr>
-<tr>
-<td></td>
-<td>YEAR()</td>
-</tr>
-<tr>
-<td>String functions</td>
-<td>BIN()</td>
-</tr>
-<tr>
-<td></td>
-<td>BIT_LENGTH()</td>
-</tr>
-<tr>
-<td></td>
-<td>CHAR_LENGTH()</td>
-</tr>
-<tr>
-<td></td>
-<td>CONCAT()</td>
-</tr>
-<tr>
-<td></td>
-<td>CONCAT_WS()</td>
-</tr>
-<tr>
-<td></td>
-<td>EMPTY()</td>
-</tr>
-<tr>
-<td></td>
-<td>ENDSWITH()</td>
-</tr>
-<tr>
-<td></td>
-<td>FIELD()</td>
-</tr>
-<tr>
-<td></td>
-<td>FIND_IN_SET()</td>
-</tr>
-<tr>
-<td></td>
-<td>FORMAT()</td>
-</tr>
-<tr>
-<td></td>
-<td>HEX()</td>
-</tr>
-<tr>
-<td></td>
-<td>LEFT()</td>
-</tr>
-<tr>
-<td></td>
-<td>LENGTH()</td>
-</tr>
-<tr>
-<td></td>
-<td>LENGTHUTF8()</td>
-</tr>
-<tr>
-<td></td>
-<td>LPAD()</td>
-</tr>
-<tr>
-<td></td>
-<td>LTRIM()</td>
-</tr>
-<tr>
-<td></td>
-<td>OCT()</td>
-</tr>
-<tr>
-<td></td>
-<td>REVERSE()</td>
-</tr>
-<tr>
-<td></td>
-<td>RPAD()</td>
-</tr>
-<tr>
-<td></td>
-<td>RTRIM()</td>
-</tr>
-<tr>
-<td></td>
-<td>SPACE()</td>
-</tr>
-<tr>
-<td></td>
-<td>STARTSWITH()</td>
-</tr>
-<tr>
-<td></td>
-<td>SUBSTRING()</td>
-</tr>
-<tr>
-<td></td>
-<td>SUBSTRING_INDEX()</td>
-</tr>
-<tr>
-<td></td>
-<td>TRIM()</td>
+<td>Other Functions</td>
+<td>Y</td>
 </tr>
 <tr>
 <td>Operators</td>
-<td>%, MOD</td>
+<td>Y</td>
+</tr>
+</tbody>
+</table>
+<h2 id="partition">PARTITION</h2>
+<table>
+<thead>
+<tr>
+<th>PARTITION</th>
+<th>Supported(Y)/Not supported (N) /Experimental (E)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>KEY(column_list)</td>
+<td>E</td>
 </tr>
 <tr>
-<td></td>
-<td>+</td>
+<td>HASH(expr)</td>
+<td>E</td>
 </tr>
 <tr>
-<td></td>
-<td>-</td>
+<td>RANGE(expr)</td>
+<td>N</td>
 </tr>
 <tr>
-<td></td>
-<td>/</td>
+<td>RANGE COLUMNS</td>
+<td>N</td>
 </tr>
 <tr>
-<td></td>
-<td>Div</td>
+<td>LIST</td>
+<td>N</td>
 </tr>
 <tr>
-<td></td>
-<td>=</td>
+<td>LIST COLUMNS</td>
+<td>N</td>
+</tr>
+</tbody>
+</table>
+<h2 id="import-and-export">Import and Export</h2>
+<table>
+<thead>
+<tr>
+<th>Import and Export</th>
+<th>Supported(Y)/Not supported (N) /Experimental (E)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LOAD DATA</td>
+<td>Y</td>
 </tr>
 <tr>
-<td></td>
-<td>&amp;</td>
+<td>SOURCE</td>
+<td>Y</td>
 </tr>
 <tr>
-<td></td>
-<td>&gt;&gt;</td>
+<td>Load data from S3</td>
+<td>Y</td>
 </tr>
 <tr>
-<td></td>
-<td>&lt;&lt;</td>
+<td>modump</td>
+<td>Y</td>
 </tr>
 <tr>
-<td></td>
-<td>^</td>
+<td>mysqldump</td>
+<td>N</td>
+</tr>
+</tbody>
+</table>
+<h2 id="security-and-access-control">Security and Access Control</h2>
+<table>
+<thead>
+<tr>
+<th>Security</th>
+<th>Supported(Y)/Not supported (N) /Experimental (E)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Transport Layer Encryption TLS</td>
+<td>Y</td>
 </tr>
 <tr>
-<td></td>
-<td>|</td>
+<td>Encryption at rest</td>
+<td>Y</td>
 </tr>
 <tr>
-<td></td>
-<td>~</td>
+<td>Import from Object Storage</td>
+<td>Y</td>
 </tr>
 <tr>
-<td></td>
-<td>CAST()</td>
+<td>Role-Based Access Control (RBAC)</td>
+<td>Y</td>
 </tr>
 <tr>
-<td></td>
-<td>CONVERT()</td>
+<td>Multi-Account</td>
+<td>Y</td>
+</tr>
+</tbody>
+</table>
+<h2 id="backup-and-restore">Backup and Restore</h2>
+<table>
+<thead>
+<tr>
+<th>Backup and Restore</th>
+<th>Supported(Y)/Not supported (N) /Experimental (E)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Logical Backup and Restore</td>
+<td>Y, Only the modump tool is supported</td>
 </tr>
 <tr>
-<td></td>
-<td>&gt;</td>
+<td>Physical Backup and Restore</td>
+<td>N</td>
+</tr>
+</tbody>
+</table>
+<h2 id="management-tool">Management Tool</h2>
+<table>
+<thead>
+<tr>
+<th>Management Tool</th>
+<th>Supported(Y)/Not supported (N) /Experimental (E)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Stand-alone mo_ctl deployment management</td>
+<td>Y</td>
 </tr>
 <tr>
-<td></td>
-<td>&gt;=</td>
+<td>Distributed mo_ctl deployment management</td>
+<td>E, Enterprise Edition only</td>
 </tr>
 <tr>
-<td></td>
-<td>&lt;</td>
+<td>Visual management platform</td>
+<td>E, Public cloud version only</td>
 </tr>
 <tr>
-<td></td>
-<td>&lt;&gt;, !=</td>
+<td>System Logging</td>
+<td>Y</td>
 </tr>
 <tr>
-<td></td>
-<td>&lt;=</td>
+<td>System indicator monitoring</td>
+<td>Y</td>
 </tr>
 <tr>
-<td></td>
-<td>=</td>
+<td>Slow query log</td>
+<td>Y</td>
 </tr>
 <tr>
-<td></td>
-<td>LIKE</td>
+<td>SQL record</td>
+<td>Y</td>
 </tr>
 <tr>
-<td></td>
-<td>BETWEEN ... AND ...</td>
+<td>Kubernetes operator</td>
+<td>Y</td>
+</tr>
+</tbody>
+</table>
+<h2 id="deployment-method">Deployment Method</h2>
+<table>
+<thead>
+<tr>
+<th>Deployment Method</th>
+<th>Supported(Y)/Not supported (N) /Experimental (E)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Stand-alone environment privatization deployment</td>
+<td>Y</td>
 </tr>
 <tr>
-<td></td>
-<td>IN()</td>
+<td>Distributed environment privatization deployment</td>
+<td>Y, self-built Kubernetes and minIO object storage</td>
 </tr>
 <tr>
-<td></td>
-<td>IS/IS NOT</td>
+<td>Alibaba Cloud distributed self-built deployment</td>
+<td>Y, ACK+OSS</td>
 </tr>
 <tr>
-<td></td>
-<td>IS/IS NOT NULL</td>
+<td>Tencent Cloud Distributed Self-built Deployment</td>
+<td>Y, TKE+COS</td>
 </tr>
 <tr>
-<td></td>
-<td>NOT BETWEEN ... AND ...</td>
+<td>AWS distributed self-built deployment</td>
+<td>Y, EKS+S3</td>
 </tr>
 <tr>
-<td></td>
-<td>LIKE</td>
-</tr>
-<tr>
-<td></td>
-<td>NOT LIKE</td>
-</tr>
-<tr>
-<td></td>
-<td>COALESCE()</td>
-</tr>
-<tr>
-<td></td>
-<td>CASE...WHEN</td>
-</tr>
-<tr>
-<td></td>
-<td>IF</td>
-</tr>
-<tr>
-<td></td>
-<td>AND</td>
-</tr>
-<tr>
-<td></td>
-<td>OR</td>
-</tr>
-<tr>
-<td></td>
-<td>XOR</td>
-</tr>
-<tr>
-<td></td>
-<td>NOT</td>
+<td>Public Cloud Serverless</td>
+<td>Y, MatrixOne Cloud, Support AWS, Alibaba Cloud</td>
 </tr>
 </tbody>
 </table>
@@ -9453,13 +9330,13 @@
       
       
         
-        <a href="../feature/feature-overview/" class="md-footer__link md-footer__link--next" aria-label="Next: MatrixOne Features Overview" rel="next">
+        <a href="../feature/key-feature-htap/" class="md-footer__link md-footer__link--next" aria-label="Next: HTAP" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              MatrixOne Features Overview
+              HTAP
             </div>
           </div>
           <div class="md-footer__button md-icon">
