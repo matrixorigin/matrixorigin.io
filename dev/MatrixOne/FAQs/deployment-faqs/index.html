@@ -387,20 +387,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Overview/feature/feature-overview/" class="md-nav__link">
-        MatrixOne Features Overview
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../Overview/feature/key-feature-htap/" class="md-nav__link">
         HTAP
       </a>
@@ -7964,12 +7950,38 @@
     Operating system requirements
   </a>
   
+    <nav class="md-nav" aria-label="Operating system requirements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-are-the-required-operating-system-versions-for-deploying-matrixone" class="md-nav__link">
+    What are the required operating system versions for deploying MatrixOne?
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
   <a href="#hardware-requirements" class="md-nav__link">
     Hardware requirements
   </a>
+  
+    <nav class="md-nav" aria-label="Hardware requirements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-are-the-required-hardware-for-deploying-matrixone" class="md-nav__link">
+    What are the required hardware for deploying MatrixOne?
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -8528,12 +8540,38 @@
     Operating system requirements
   </a>
   
+    <nav class="md-nav" aria-label="Operating system requirements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-are-the-required-operating-system-versions-for-deploying-matrixone" class="md-nav__link">
+    What are the required operating system versions for deploying MatrixOne?
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
   <a href="#hardware-requirements" class="md-nav__link">
     Hardware requirements
   </a>
+  
+    <nav class="md-nav" aria-label="Hardware requirements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-are-the-required-hardware-for-deploying-matrixone" class="md-nav__link">
+    What are the required hardware for deploying MatrixOne?
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -8619,10 +8657,8 @@
 
 <h1 id="deployment-faqs">Deployment FAQs</h1>
 <h2 id="operating-system-requirements">Operating system requirements</h2>
-<ul>
-<li><strong>What are the required operating system versions for deploying MatrixOne?</strong></li>
-</ul>
-<p>For standalone installation, MatrixOne supports the following operating system:</p>
+<h3 id="what-are-the-required-operating-system-versions-for-deploying-matrixone"><strong>What are the required operating system versions for deploying MatrixOne?</strong></h3>
+<p>MatrixOne supports the following operating system:</p>
 <table>
 <thead>
 <tr>
@@ -8632,20 +8668,20 @@
 </thead>
 <tbody>
 <tr>
-<td align="left">Red Hat Enterprise Linux</td>
-<td align="left">7.3 or later 7.x releases</td>
-</tr>
-<tr>
-<td align="left">CentOS</td>
-<td align="left">7.3 or later 7.x releases</td>
-</tr>
-<tr>
-<td align="left">Oracle Enterprise Linux</td>
-<td align="left">7.3 or later 7.x releases</td>
+<td align="left">Debian</td>
+<td align="left">11.0 or later</td>
 </tr>
 <tr>
 <td align="left">Ubuntu LTS</td>
-<td align="left">22.04 or later</td>
+<td align="left">20.04 or later</td>
+</tr>
+<tr>
+<td align="left">Red Hat Enterprise Linux</td>
+<td align="left">9.0 or later releases</td>
+</tr>
+<tr>
+<td align="left">Oracle Enterprise Linux</td>
+<td align="left">9.0 or later releases</td>
 </tr>
 </tbody>
 </table>
@@ -8665,10 +8701,8 @@
 </tbody>
 </table>
 <h2 id="hardware-requirements">Hardware requirements</h2>
-<ul>
-<li><strong>What are the required hardware for deploying MatrixOne?</strong></li>
-</ul>
-<p>For standalone installation, MatrixOne can be running on the 64-bit generic hardware server platform in the Intel x86-64 architecture. The requirements and recommendations about server hardware configuration for development, testing and production environments are as follows:</p>
+<h3 id="what-are-the-required-hardware-for-deploying-matrixone"><strong>What are the required hardware for deploying MatrixOne?</strong></h3>
+<p>For standalone installation, MatrixOne can be running on the 64-bit generic hardware server platform in the Intel x86-64 and ARM architecture. The requirements and recommendations about server hardware configuration for development, testing and production environments are as follows:</p>
 <ul>
 <li>Development and testing environments</li>
 </ul>
@@ -8708,6 +8742,7 @@
 </tr>
 </tbody>
 </table>
+<p>For comprehensive details on deploying MatrixOne in a distributed setting, see <a href="../../Deploy/deployment-topology/experience-deployment-topology/">Distributed Deployment Topology Documentation</a>. This guide includes specific server hardware configuration requirements and recommendations tailored for development, testing, and production environments.</p>
 <h2 id="installation-and-deployment">Installation and deployment</h2>
 <h3 id="what-settings-do-i-need-to-change-for-installation"><strong>What settings do I need to change for installation?</strong></h3>
 <p>Normally you don't need to change anything for installation. A default setting of <code>launch.toml</code> is enough to run MatrixOne directly. But if you want to customize your listening port, ip address, stored data files path, you may modify the corresponding records of <a href="https://github.com/matrixorigin/matrixone/blob/main/etc/launch-tae-CN-tae-DN/cn.toml"><code>cn.toml</code></a>, <a href="https://github.com/matrixorigin/matrixone/blob/main/etc/launch-tae-CN-tae-DN/dn.toml"><code>dn.toml</code></a> or <a href="https://github.com/matrixorigin/matrixone/blob/main/etc/launch-tae-CN-tae-DN/log.toml"><code>log.toml</code></a>, for more details about parameter configuration in these files, see <a href="../../Reference/System-Parameters/configuration-settings/">Boot Parameters for standalone installation</a>.</p>
@@ -8820,15 +8855,15 @@ make
 </li>
 </ol>
 <h3 id="i-built-matrixone-in-the-main-branch-initially-but-encountered-panic-when-switching-to-other-versions-for-building"><strong>I built MatrixOne in the main branch initially but encountered panic when switching to other versions for building</strong></h3>
-<p>The storage formats between MatrixOne version 0.7.0 and its earlier versions are not compatible with each other. This means that when executing <code>make build</code>, the system will automatically generate a data directory file named <em>mo-data</em> to store data.</p>
+<p>The storage formats between MatrixOne version 0.8.0 and its earlier versions are not compatible with each other. This means that when executing <code>make build</code>, the system will automatically generate a data directory file named <em>mo-data</em> to store data.</p>
 <p>In the future, if you need to switch to another branch and re-execute <code>make build</code> to build MatrixOne, it may cause a panic situation to occur. In this case, you need first to clean the <em>mo-data</em> data directory (that is, execute the <code>rm -rf mo-data</code> command), and then rebuild MatrixOne.</p>
 <p>Reference code example:</p>
 <div class="highlight"><pre><span></span><code>[root ~]# cd matrixone  // Go to the matrixone directory
 [root ~]# git branch // Check the current branch
-* 0.7.0
+* 0.8.0
 [root ~]# make build // Build matrixone
-...    // The build process code is omitted here. If you want to switch to another version, such as version 0.6.0,
-[root ~]# git checkout 0.6.0 // Switch to version 0.6.0
+...    // The build process code is omitted here. If you want to switch to another version, such as version 0.7.0,
+[root ~]# git checkout 0.7.0 // Switch to version 0.7.0
 [root ~]# rm -rf mo-data // Clean up the data directory
 [root ~]# make build // Build matrixone again
 ...    // The build process code is omitted here
