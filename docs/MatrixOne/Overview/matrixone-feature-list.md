@@ -53,7 +53,6 @@ This document lists the features supported by the latest version of MatrixOne an
 | LOCK/UNLOCK TABLE                           | N                                  |
 | User-defined Variables                    | Y                                  |
 
-
 ## Advanced SQL Features
 
 | Advanced SQL Features         | Supported(Y)/Not supported (N) /Experimental (E) |
@@ -115,7 +114,6 @@ This document lists the features supported by the latest version of MatrixOne an
 | Distributed Transaction  | Y    |
 | Snapshot Isolation       | Y    |
 | READ COMMITTED           | E    |
-
 
 ## Functions and Operators
 
