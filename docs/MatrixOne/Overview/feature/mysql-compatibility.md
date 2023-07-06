@@ -95,6 +95,7 @@ CREATE TABLE IF NOT EXISTS `tool` (
 * The `YEAR` type is not supported.
 * Spatial types are not supported.
 * `BIT`, `ENUM`, and `SET` types are not supported.
+* `MEDIUMINT` type is not supported.
 
 ## DCL Statement
 
