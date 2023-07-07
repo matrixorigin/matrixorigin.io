@@ -12,8 +12,8 @@ The following are the standard modes of `sql_mode`, which are also the default m
 
 - `ONLY_FULL_GROUP_BY`: The `GROUP BY` clause is used to group query results and perform aggregate calculations on each group, such as `COUNT`, `SUM`, `AVG`, etc. In the `GROUP BY` clause, the specified columns are the grouping columns. Other columns can be identified in the `SELECT` list, including aggregate or non-aggregate function columns. Without the `ONLY_FULL_GROUP_BY` mode, if a non-aggregate function column is set in the `SELECT` list, MatrixOne will select any value that matches the `GROUP BY` column use it to calculate the aggregate function by default.
 
-   !!! note
-       If your table structure is complex and for ease of querying, you can disable the `ONLY_FULL_GROUP_BY` mode.
+!!! note
+    If your table structure is complex and for ease of querying, you can disable the `ONLY_FULL_GROUP_BY` mode.
 
 - `STRICT_TRANS_TABLES`: When executing `INSERT` and `UPDATE` statements, an error will be reported if the data does not conform to the rules defined for the table.
 
