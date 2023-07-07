@@ -5,37 +5,24 @@
 `PURGE_LOG()` is used to delete the log.
 
 !!! note
-    Currently, only the sys user (the cluster administrator) has permission to execute the `PURGE_LOG()` function for log deletion operations.
+    Only the root user (cluster administrator with `MOADMIN` privilege) can execute the `PURGE_LOG()` function for log deletion.
 
 ## **Syntax**
 
 ```
-> PURGE_LOG('sys_table_name', 'datetime')
+> PURGE_LOG('sys_table_name', 'date')
 ```
 
 ## **Arguments**
 
 |  Arguments   | Description  |
 |  ----  | ----  |
-| 'sys_table_name' | Currently, there are only three system tables that can be deleted: metric, raw_log, and statement_info. <br>  __Note:__ 'sys_table_name' must be enclosed in single quotes.|
-| 'datetime' | Select a date and delete logs generated before that date. <br>  __Note:__ 'datetime' must be enclosed in single quotes. |
+| 'sys_table_name' | Currently, there are only three system tables that can be deleted: metric, rawlog, and statement_info. <br>  __Note:__ 'sys_table_name' must be enclosed in quotes.|
+| 'date' | Select a date and delete logs generated before that date. <br>  __Note:__ 'date' must be enclosed in single quotes. |
 
 ## **Examples**
 
 - Example 1:
-
-```sql
--- 删除 2023-06-30 这一天之前的 statement_info 类型的日志
-mysql> select purge_log('statement_info', '2023-06-30') a;
-+------+
-| a    |
-+------+
-|    0 |
-+------+
-1 row in set (0.01 sec)
-```
-
-- Example 2:
 
 ```sql
 -- Delete the statement_info type logs before 2023-06-30
