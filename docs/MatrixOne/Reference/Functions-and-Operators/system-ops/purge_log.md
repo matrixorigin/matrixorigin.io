@@ -28,9 +28,9 @@
 -- Delete the statement_info type logs before 2023-06-30
 mysql> select purge_log('statement_info', '2023-06-30') a;
 +------+
-| a |
+| a    |
 +------+
-| 0 |
+| 0    |
 +------+
 1 row in set (0.01 sec)
 ```
@@ -41,29 +41,30 @@ mysql> select purge_log('statement_info', '2023-06-30') a;
 -- Query the time and quantity of metric log collection
 mysql> select date(collecttime), count(1) from system_metrics.metric group by date(collecttime);
 +-------------------+----------+
-| date(collect time) | count(1) |
+| date(collecttime) | count(1) |
 +-------------------+----------+
-| 2023-07-04 | 74991 |
-| 2023-07-03 | 38608 |
-| 2023-07-05 | 378 |
+| 2023-07-07        |    20067 |
+| 2023-07-06        |    30246 |
+| 2023-07-05        |    27759 |
 +-------------------+----------+
-3 rows in set (0.04 sec)
+3 rows in set (0.00 sec)
 
--- Delete rawlog, statement_info, and metric logs before 2023-07-04
-mysql> select purge_log('rawlog, statement_info, metric', '2023-07-04');
-+------------------------------------------------- ----+
-| purge_log(rawlog, statement_info, metric, 2023-07-04) |
-+------------------------------------------------- ----+
-| 0 |
-+------------------------------------------------- ----+
-1 row in set (0.03 sec)
+-- Delete rawlog, statement_info, and metric logs before 2023-07-06
+mysql> select purge_log('rawlog, statement_info, metric', '2023-07-06');
++-------------------------------------------------------+
+| purge_log(rawlog, statement_info, metric, 2023-07-06) |
++-------------------------------------------------------+
+|                                                     0 |
++-------------------------------------------------------+
+1 row in set (0.33 sec)
 
--- Query the number of metric logs for the three days of 2023-07-04, 2023-07-03 and 2023-07-05 again
+-- Query the number of metric logs for the three days of 2023-07-05, 2023-07-06 and 2023-07-07 again
 mysql> select date(collecttime), count(1) from system_metrics.metric group by date(collecttime);
 +-------------------+----------+
 | date(collecttime) | count(1) |
 +-------------------+----------+
-| 2023-07-05        |      598 |
+| 2023-07-06        |    30246 |
+| 2023-07-07        |    20121 |
 +-------------------+----------+
-1 rows in set (0.01 sec)
+2 rows in set (0.01 sec)
 ```
