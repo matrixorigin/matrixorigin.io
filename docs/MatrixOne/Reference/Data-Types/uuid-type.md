@@ -1,6 +1,6 @@
 # UUID Type
 
-A UUID is a universally unique identifier consisting of 32 hexadecimal digits followed by a hyphen. UUIDs are globally unique, not unique in the database, and even performing a UUID call on two unconnected, standalone devices is expected to generate two different values. UUID is often used to generate a random value for the corresponding row to ensure the uniqueness of each record. . UUIDs are suitable as unique identifiers in a cluster environment.
+A UUID is a universally unique identifier consisting of 32 hexadecimal digits followed by 4 hyphens. UUIDs are globally unique, not unique in the database, and even performing a UUID call on two unconnected, standalone devices is expected to generate two different values. UUID is often used to generate a random value for the corresponding row to ensure the uniqueness of each record. . UUIDs are suitable as unique identifiers in a cluster environment.
 
 !!! info
     Although `UUID()` values ​​are unique, they are not guessable or unpredictable. If unpredictability is desired, UUID values ​​should be generated in other ways.
