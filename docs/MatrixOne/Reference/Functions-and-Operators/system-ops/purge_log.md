@@ -2,7 +2,7 @@
 
 ## **Description**
 
-`PURGE_LOG()` is used to delete the log.
+`PURGE_LOG()` deletes logs recorded in MatrixOne database system tables. Returning 0 means the deletion is successful; if the deletion fails, an error message will be returned.
 
 !!! note
     Only the root user (cluster administrator with `MOADMIN` privilege) can execute the `PURGE_LOG()` function for log deletion.
