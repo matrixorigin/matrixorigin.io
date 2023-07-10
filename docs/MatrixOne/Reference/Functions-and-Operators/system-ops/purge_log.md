@@ -20,6 +20,9 @@
 | 'sys_table_name' | Currently, there are only three system tables that can be deleted: metric, rawlog, and statement_info. <br>  __Note:__ 'sys_table_name' must be enclosed in quotes.|
 | 'date' | Select a date and delete logs generated before that date. <br>  __Note:__ 'date' must be enclosed in single quotes. |
 
+!!! note
+    MatrixOne has only three system log tables: metric, rawlog, and statement_info. For more information about these three tables, please refer to [MatrixOne System Database and Tables](../../System-tables.md).
+
 ## **Examples**
 
 - Example 1:
