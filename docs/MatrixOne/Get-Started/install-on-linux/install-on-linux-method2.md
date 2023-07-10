@@ -61,7 +61,7 @@ __Tips__: It is recommended that you download and install one of these two tools
      Binary for ARM architecture system:
 
      ```bash
-     wget https://github.com/matrixorigin/matrixone/releases/download/v0.8.0/mo-v0.8.0-linux-amd64.zip
+     wget https://github.com/matrixorigin/matrixone/releases/download/v0.8.0/mo-v0.8.0-linux-arm64.zip
      unzip mo-v0.8.0-linux-arm64.zip
      ```
 
@@ -77,7 +77,7 @@ __Tips__: It is recommended that you download and install one of these two tools
      Binary for ARM architecture system:
 
      ```bash
-     curl -OL https://github.com/matrixorigin/matrixone/releases/download/v0.8.0/mo-v0.8.0-linux-amd64.zip
+     curl -OL https://github.com/matrixorigin/matrixone/releases/download/v0.8.0/mo-v0.8.0-linux-arm64.zip
      unzip mo-v0.8.0-linux-arm64.zip
      ```
 

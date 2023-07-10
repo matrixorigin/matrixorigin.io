@@ -20,7 +20,7 @@ MatrixOne implements HTAP through modular storage, calculation, transaction arch
 
 The overall technical architecture of MatrixOne adopts a separate architecture of storage and computation. The modular design separates the database's computation, storage, and transaction processing into independent modules, thus forming a database system with independent scalability for each component. As shown in the following figure, MatrixOne is composed of three independent layers:
 
-![](https://github.com/matrixorigin/artwork/blob/main/docs/overview/htap/mp-htap-arch.png?raw=true)
+![](https://github.com/matrixorigin/artwork/blob/main/docs/overview/htap/mo-htap-arch.png?raw=true)
 
 - **Computation layer**, with Compute Node as the unit, realizes serverless computation and transaction processing. It has its Cache, supporting random restarts and scaling; multiple Compute Nodes can calculate parallel to improve query efficiency.
 - **Transaction layer**, composed of Database Node and Log Service, provides complete log service and metadata information, with built-in Logtail for storing recently written new data.
