@@ -4,7 +4,7 @@ In MatrixOne's explicit transactions also obey the following rules:
 
 ## Explicit transaction rules
 
-- An explicit transaction starts and ends with `BEGIN...END` or `START TRANSACTIONS...COMMIT` or `ROLLBACK`.
+- An explicit transaction starts and ends with `BEGIN...END` or `START TRANSACTION...COMMIT` or `ROLLBACK`.
 - In explicit transactions, DML (Data Manipulation Language) and DDL (Data Definition Language) can exist at the same time. All DDLs are supported.
 - In an explicit transaction, other explicit transactions cannot be nested. For example, if `START TANSACTIONS` is encountered after `START TANSACTIONS`, all statements between two `START TANSACTIONS` will be forced to commit, regardless of the value of `AUTOCOMMIT` 1 or 0.
 - In an explicit transaction, only DML and DDL can be included and cannot contain modification parameter configuration or management commands, such as `set [parameter] = [value]`, `create user,` and so on.
