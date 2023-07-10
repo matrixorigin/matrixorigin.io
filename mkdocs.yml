@@ -205,6 +205,7 @@ nav:
         - Timestamp Initialization: MatrixOne/Reference/Data-Types/timestamp-initialization.md
         - JSON Data Type: MatrixOne/Reference/Data-Types/json-type.md
         - BLOB and TEXT Type: MatrixOne/Reference/Data-Types/blob-text-type.md
+        - UUID Type: MatrixOne/Reference/Data-Types/uuid-type.md
         - Fixed-Point Types (Exact Value) - DECIMAL: MatrixOne/Reference/Data-Types/fixed-point-types.md
       - SQL Statements:
         - Data Definition Language:
@@ -417,7 +418,6 @@ nav:
             - SIN(): MatrixOne/Reference/Functions-and-Operators/Mathematical/sin.md
             - SINH(): MatrixOne/Reference/Functions-and-Operators/Mathematical/sinh.md
             - TAN(): MatrixOne/Reference/Functions-and-Operators/Mathematical/tan.md
-            - UUID(): MatrixOne/Reference/Functions-and-Operators/Mathematical/uuid.md
           - String:
             - BIN(): MatrixOne/Reference/Functions-and-Operators/String/bin.md
             - BIT_LENGTH(): MatrixOne/Reference/Functions-and-Operators/String/bit-length.md
@@ -462,6 +462,9 @@ nav:
           - JSON Functions: MatrixOne/Reference/Functions-and-Operators/Json/json-functions.md
           - Other Functions:
             - SLEEP: MatrixOne/Reference/Functions-and-Operators/Other/sleep.md
+            - UUID(): MatrixOne/Reference/Functions-and-Operators/Other/uuid.md
+          - System OPS Functions:
+            - PURGE_LOG(): MatrixOne/Reference/Functions-and-Operators/sys-ops/purge_log.md
       - System Paramaters:
         - Boot Parameters for standalone installation: MatrixOne/Reference/System-Parameters/configuration-settings.md
       - MatrixOne Catalog: MatrixOne/Reference/System-tables.md
@@ -482,6 +485,7 @@ nav:
       - SQL FAQs: MatrixOne/FAQs/sql-faqs.md
     - Release Notes:
       - Release Timeline: MatrixOne/Release-Notes/release-timeline.md
+      - v0.8.0: MatrixOne/Release-Notes/v0.8.0.md
       - v0.7.0: MatrixOne/Release-Notes/v0.7.0.md
       - v0.6.0: MatrixOne/Release-Notes/v0.6.0.md
       - v0.5.1: MatrixOne/Release-Notes/v0.5.1.md
