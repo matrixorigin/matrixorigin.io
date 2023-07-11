@@ -61,7 +61,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#tls-introduction" class="md-skip">
+        <a href="#data-transmission-encryption" class="md-skip">
           Skip to content
         </a>
       
@@ -2851,16 +2851,29 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-to-use" class="md-nav__link">
+    How to Use
+  </a>
+  
+    <nav class="md-nav" aria-label="How to Use">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#step-1-enable-matrixones-tls-support" class="md-nav__link">
     Step 1: Enable MatrixOne's TLS support
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#step-2-configure-the-parameters-of-mysql-client" class="md-nav__link">
     Step 2: Configure the parameters of MySQL client
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -3051,6 +3064,20 @@
           
         </ul>
       </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../audit/" class="md-nav__link">
+        Security Audit
+      </a>
     </li>
   
 
@@ -3404,6 +3431,20 @@
     <li class="md-nav__item">
       <a href="../../Reference/Data-Types/blob-text-type/" class="md-nav__link">
         BLOB and TEXT Type
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Reference/Data-Types/uuid-type/" class="md-nav__link">
+        UUID Type
       </a>
     </li>
   
@@ -6915,20 +6956,6 @@
 
             
           
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Mathematical/uuid/" class="md-nav__link">
-        UUID()
-      </a>
-    </li>
-  
-
-            
-          
         </ul>
       </nav>
     </li>
@@ -7640,6 +7667,67 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Reference/Functions-and-Operators/Other/uuid/" class="md-nav__link">
+        UUID()
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_5_2_9" type="checkbox" id="__nav_1_11_5_2_9" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_11_5_2_9">
+          System OPS Functions
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="System OPS Functions" data-md-level="5">
+        <label class="md-nav__title" for="__nav_1_11_5_2_9">
+          <span class="md-nav__icon md-icon"></span>
+          System OPS Functions
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Reference/Functions-and-Operators/sys-ops/purge_log.md" class="md-nav__link">
+        PURGE_LOG()
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -7892,20 +7980,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Troubleshooting/audit/" class="md-nav__link">
-        Audit
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../Troubleshooting/error-code/" class="md-nav__link">
         Error Code
       </a>
@@ -8030,6 +8104,20 @@
     <li class="md-nav__item">
       <a href="../../Release-Notes/release-timeline/" class="md-nav__link">
         Release Timeline
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Release-Notes/v0.8.0/" class="md-nav__link">
+        v0.8.0
       </a>
     </li>
   
@@ -8462,16 +8550,29 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-to-use" class="md-nav__link">
+    How to Use
+  </a>
+  
+    <nav class="md-nav" aria-label="How to Use">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#step-1-enable-matrixones-tls-support" class="md-nav__link">
     Step 1: Enable MatrixOne's TLS support
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#step-2-configure-the-parameters-of-mysql-client" class="md-nav__link">
     Step 2: Configure the parameters of MySQL client
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -8493,19 +8594,16 @@
 
 
 
-<h1 id="tls-introduction">TLS Introduction</h1>
+<h1 id="data-transmission-encryption">Data Transmission Encryption</h1>
+<p>This document will introduce MatrixOne's support for data transmission encryption and how to enable encrypted transmission.</p>
 <h2 id="overview">Overview</h2>
-<p>Transport Layer Security (TLS) is a widely adopted security protocol designed to promote privacy and data security for Internet communications.</p>
-<p>MatrixOne uses non-encrypted connections by default and supports enabling encrypted connections based on the TLS protocol. The supported protocol versions are TLS 1.0, TLS 1.1, and TLS 1.2.</p>
+<p>MatrixOne uses non-encrypted transmission by default and supports encrypted transmission based on TLS protocol. Encrypted transmission can reduce the risk of leakage of sensitive information in the database. Encrypted transmission is the process of encrypting and decrypting information using keys, which can effectively protect data security.</p>
+<p>Transport Layer Security (TLS) is a widely adopted security protocol. The protocol versions supported by MatrixOne include TLS 1.0, TLS 1.1, and TLS 1.2.</p>
 <ul>
-<li>
-<p>Disable TLS encrypted connection (default): Use the username and password to connect to MatrixOne directly.</p>
-</li>
-<li>
-<p>Enable TLS encrypted connection: Encrypted connection support needs to be enabled on the MatrixOne server, and encrypted connection should be specified on the client side. You can follow the instructions below to enable a TLS secure connection.</p>
-</li>
+<li>Do not enable TLS encrypted transmission (default): Use the username and password to connect to MatrixOne directly.</li>
+<li>Use encrypted transmission: It is necessary to enable encrypted transmission support on the MatrixOne server and specify the use of encrypted transmission on the client side. You can follow the instructions in this article to enable TLS secure connections.</li>
 </ul>
-<p>This document will guide you how to enable TLS secure connection.</p>
+<h2 id="how-to-use">How to Use</h2>
 <p><strong>Main steps of TLS secure connection configuration</strong>:</p>
 <ol>
 <li>
@@ -8515,8 +8613,8 @@
 <p>Then, configure the MySQL client security connection parameters.</p>
 </li>
 </ol>
-<p>After completing the configuration of these two main steps, a TLS secure connection can be established, as detailed below:</p>
-<h2 id="step-1-enable-matrixones-tls-support">Step 1: Enable MatrixOne's TLS support</h2>
+<p>After completing the configuration of these two main steps, a TLS secure connection can be established.</p>
+<h3 id="step-1-enable-matrixones-tls-support">Step 1: Enable MatrixOne's TLS support</h3>
 <ol>
 <li>
 <p>Generate certificate and key: MatrixOne does not yet support loading a private key protected by a password, so a private key file without a password must be provided. Certificates and keys can be issued and generated using OpenSSL. It is recommended to use the tool <code>mysql_ssl_rsa_setup</code> that comes with MySQL to generate quickly:</p>
@@ -8643,7 +8741,7 @@ Binary data as:     Hexadecimal
 </li>
 </ol>
 <p>After completing the above steps, MatrixOne's TLS is enabled.</p>
-<h2 id="step-2-configure-the-parameters-of-mysql-client">Step 2: Configure the parameters of MySQL client</h2>
+<h3 id="step-2-configure-the-parameters-of-mysql-client">Step 2: Configure the parameters of MySQL client</h3>
 <p>When a MySQL client connects to Matrix One Server, the encrypted connection behavior needs to be specified by the <code>--ssl-mode</code> parameter, such as:</p>
 <div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="w"> </span><span class="o">-</span><span class="n">h</span><span class="w"> </span><span class="mi">127</span><span class="p">.</span><span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="p">.</span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="n">P</span><span class="w"> </span><span class="mi">6001</span><span class="w"> </span><span class="o">-</span><span class="n">uroot</span><span class="w"> </span><span class="o">-</span><span class="n">p111</span><span class="w"> </span><span class="c1">--ssl-mode=PREFFERED</span>
 </code></pre></div>
