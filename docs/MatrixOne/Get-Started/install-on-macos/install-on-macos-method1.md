@@ -103,7 +103,7 @@ git version 2.40.0
      The successful installation results (only part of the code is displayed) are as follows:
 
      ```
-     GNU Wget 1.21.3 在 darwin21.3.0 上编译。
+     GNU Wget 1.21.3 在 darwin21.3.0 上编译
      ...
      Copyright © 2015 Free Software Foundation, Inc.
      ...
