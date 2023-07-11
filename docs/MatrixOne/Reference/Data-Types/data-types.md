@@ -403,3 +403,37 @@ mysql> select * from decimalTest;
 +---------+---------------------------+
 1 row in set (0.01 sec)
 ```
+
+## **UUID Type**
+
+|UUID type | Explanation |
+|---|---|
+|[UUID](uuid-type.md) | A UUID value consists of 32 hexadecimal digits and 4 hyphens '-', in the form of 8-4-4-4-12, a standard UUID example: `a0eebc99 -9c0b-4ef8-bb6d-6bb9bd380a11`. |
+
+### **Example**
+
+```sql
+-- Create a new table named 't1' and set the 'a' column as UUID type, and set the 'a' column as the primary key
+create table t1(a uuid primary key);
+
+-- Insert a new UUID value into column 'a' of table 't1'
+insert into t1 values ​​(uuid());
+
+-- Query the length of the value of the 'a' column in the 't1' table converted to a string
+mysql> select length(cast(a as varchar)) from t1;
++----------------------------+
+|length(cast(a as varchar))|
++----------------------------+
+| 36 |
++----------------------------+
+1 row in set (0.01 sec)
+
+-- Query all records in the t1 table, whose value is a UUID
+mysql> select * from t1;
++----------------------------------------+
+| a |
++----------------------------------------+
+| 948d8e4e-1b00-11ee-b656-5ad2460dea50 |
++----------------------------------------+
+1 row in set (0.00 sec)
+```

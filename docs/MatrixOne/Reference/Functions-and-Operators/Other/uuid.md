@@ -17,6 +17,8 @@ A UUID is designed as a number that is globally unique in space and time. Two ca
 
 - The fifth number is an IEEE 802 node number that provides spatial uniqueness. A random number is substituted if the latter is not available (for example, because the host device has no Ethernet card, or it is unknown how to find the hardware address of an interface on the host operating system). In this case, spatial uniqueness cannot be guaranteed. Nevertheless, a collision should have very low probability.
 
+UUID is both a data type and a function. For more information on UUID data types, see [UUID Type](../../Data-Types/uuid-type.md).
+
 ## **Syntax**
 
 ```
