@@ -11,7 +11,7 @@ To install and use the stand-alone MatrixOne through source code, you need to de
 | Dependent software | Version |
 | ------------ | ----------------------------- |
 | golang | 1.20 or later |
-| gcc/clang | gcc8.5 or later, clang13.0 or later |
+| gcc | gcc8.5 or later|
 | git | 2.20 or later |
 | MySQL Client | 8.0 or later |
 
@@ -27,7 +27,7 @@ To install and use the stand-alone MatrixOne through source code, you need to de
     go version go1.20.4 linux/amd64
     ```
 
-### 2. Install GCC/Clang
+### 2. Install GCC
 
 1. Debian 11.1 generally comes with GCC version 9.0 or above. To verify whether the GCC is installed:
 
@@ -36,11 +36,11 @@ To install and use the stand-alone MatrixOne through source code, you need to de
     bash: gcc: command not found
     ```
 
-    As shown in the code, the version of GCC is not displayed, the **GCC/Clang** environment needs to be installed.
+    As shown in the code, the version of GCC is not displayed, the **GCC** environment needs to be installed.
 
 2. Click <a href="https://gcc.gnu.org/install/" target="_blank">GCC Download and install</a> to enter its official documentation, and follow the installation steps to complete the **GCC** installation.
 
-3. To verify whether **GCC/Clang** is installed, execute the code `gcc -v`. When **GCC/Clang** is installed successfully, the example code line is as follows (only part of the code is displayed):
+3. To verify whether **GCC** is installed, execute the code `gcc -v`. When **GCC** is installed successfully, the example code line is as follows (only part of the code is displayed):
 
     ```
     Using built-in specs.
