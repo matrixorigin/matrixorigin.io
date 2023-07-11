@@ -277,5 +277,3 @@ Usage           : mo_ctl ddl_convert [options] [src_file] [tgt_file] # convert a
  [tgt_file]     : target file of converted output, will use env DDL_TGT_FILE from conf file by default
   e.g.          : mo_ctl ddl_convert mysql_to_mo /tmp/mysql.sql /tmp/mo.sql
 ```
-
-<!--ddl_convert 的详细转换规则请参考[该文档]()。-->
