@@ -112,7 +112,7 @@ A table can be created without a primary key or with a non-integer primary key.
 
 To set a default value on a column, use the `DEFAULT` constraint. The default value allows you to insert data without specifying a value for each column.
 
-You can use `DEFAULT` together with supported SQL functions to move the calculation of defaults out of the application layer, thus saving resources of the application layer. The resources consumed by the calculation do not disappear and are moved to the MatrixOne cluster. Commonly, you can insert data with the default time. The following exemplifies setting the default value in the *t1* table:
+You can use `DEFAULT` together with supported SQL functions to move the calculation of defaults out of the application layer, thus saving resources of the application layer. The resources consumed by the calculation do not disappear and are moved to the MatrixOne cluster. The following exemplifies setting the default value in the *t1* table:
 
 ```sql
 create table t1(a int default (1), b int);
@@ -128,6 +128,34 @@ insert into t1(b) values(1), (1);
 ```
 
 The default value of a is 1.
+
+You can also set the default value to the time when the value was inserted; see the simple example below:
+
+```sql
+-- Create the table and set the default value to the current time
+CREATE TABLE t2 (
+    id INT PRIMARY KEY,
+    name VARCHAR(50),
+    created_at DATETIME DEFAULT NOW()
+);
+
+INSERT INTO t2 (id, name) VALUES
+(1, 'John'),
+(2, 'Jane'),
+(3, 'Mike');
+
+> SELECT * FROM t2;
++------+------+---------------------+
+| id | name | created_at |
++------+------+---------------------+
+| 1 | John | 2023-07-10 11:57:27 |
+| 2 | Jane | 2023-07-10 11:57:27 |
+| 3 | Mike | 2023-07-10 11:57:27 |
++------+------+---------------------+
+3 rows in set (0.00 sec)
+```
+
+After executing the above insert statement, each row's `created_at` column will be automatically set to the current time.
 
 ### Prevent duplicate values
 
