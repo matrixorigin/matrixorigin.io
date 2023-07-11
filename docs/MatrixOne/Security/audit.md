@@ -2,11 +2,13 @@
 
 ## Overview
 
-The audit function records user behaviors and major internal events in the database. After logging in to the database, it registers all users' database operations and major internal events. It is also one of the essential features of many enterprise databases. To facilitate users obtaining the required information, you can use this document to enable this function.
+The audit function records user behaviors and major internal events in the database. After logging in to the database, it registers all users' database operations and major internal events. It is also one of the essential features of many enterprise databases.
 
 In daily database operation and maintenance, an audit is a very effective means to ensure that all behaviors of database users comply with the law. When important events occur in the database, such as start and stop, node breakdown, and so on., the audit content can be very convenient for tracing the behavior of the protective device library before and after the period.
 
 It is necessary to enable database audit when you need to effectively and completely monitor necessary service information tables or system configuration tables. For example, it monitors all user A's behaviors in the database to discover the source of data modification or deletion promptly. For the monitoring of major internal events in the database, the fault can be rectified immediately, and the root cause of the accident can be traced back.
+
+MatrixOne supports auditing user behavior, operation logs, and SQL statements. The audit data of MatrixOne is stored in the database table, and the audit data can be queried directly through SQL interaction.
 
 ## Enable Audit
 
