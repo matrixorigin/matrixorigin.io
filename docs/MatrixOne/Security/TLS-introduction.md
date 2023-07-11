@@ -157,7 +157,7 @@ mysql -h 127.0.0.1 -P 6001 -uroot -p111 --ssl-mode=PREFFERED
 ```
 
 !!! info
-    The login account in the above code snippet is the initial account; please change the initial password after logging in to MatrixOne; see [Password Management](../../Security/password-mgmt.md).
+    The login account in the above code snippet is the initial account; please change the initial password after logging in to MatrixOne; see [Password Management](password-mgmt.md).
 
 The value types of `ssl mode` are as follows:
 

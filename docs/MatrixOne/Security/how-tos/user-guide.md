@@ -1,4 +1,4 @@
-# Privileges Management User guide
+# Privileges Management Overview
 
 ## Manage Account
 
@@ -228,7 +228,7 @@ grant <privilege> on <object_type> <object_name> to <role_name>
 |object_name|The name of object|
 |role_name|The name of the role which is granted|
 
-For more information, see [DRANT](../../Reference/SQL-Reference/Data-Control-Language/grant.md).
+For more information, see [GRANT](../../Reference/SQL-Reference/Data-Control-Language/grant.md).
 
 ### Grant certain kind of object privileges to a role
 
@@ -255,7 +255,7 @@ grant <privilege> on table *.* to <role_name>;
 !!! note
     Although this operation is relatively simple when authorizing multiple objects of the same category, it is also prone to permission leakage, so please use it with caution.
 
-For more information, see [DRANT](../../Reference/SQL-Reference/Data-Control-Language/grant.md).
+For more information, see [GRANT](../../Reference/SQL-Reference/Data-Control-Language/grant.md).
 
 ### Grant a role to a user
 
@@ -278,7 +278,7 @@ grant <role_name> to <user_name>;
 |role_name|The name of the role which is granted|
 |user_name|The name of the user which is granted|
 
-For more information, see [DRANT](../../Reference/SQL-Reference/Data-Control-Language/grant.md).
+For more information, see [GRANT](../../Reference/SQL-Reference/Data-Control-Language/grant.md).
 
 ### One role inherit the privileges of another role
 
@@ -297,7 +297,7 @@ grant <role_a> to <role_b>;
 !!! note
     The permissions are inherited dynamically. If the permissions of role_a change, the permissions inherited by role_b will also change dynamically. MatrixOne does not allow role ring inheritance; that is, role1 inherits role2, role2 inherits role3, but  role3 can not inherits role1.
 
-For more information, see [DRANT](../../Reference/SQL-Reference/Data-Control-Language/grant.md).
+For more information, see [GRANT ROLE](../../Reference/SQL-Reference/Data-Control-Language/grant.md).
 
 ### Show the privilege of user
 
