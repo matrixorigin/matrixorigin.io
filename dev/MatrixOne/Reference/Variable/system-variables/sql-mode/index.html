@@ -3005,6 +3005,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../Security/audit/" class="md-nav__link">
+        Security Audit
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../Security/app-scenarios/" class="md-nav__link">
         Application Scenario
       </a>
@@ -3422,6 +3436,20 @@
     <li class="md-nav__item">
       <a href="../../../Data-Types/blob-text-type/" class="md-nav__link">
         BLOB and TEXT Type
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Data-Types/uuid-type/" class="md-nav__link">
+        UUID Type
       </a>
     </li>
   
@@ -6933,20 +6961,6 @@
 
             
           
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../Functions-and-Operators/Mathematical/uuid/" class="md-nav__link">
-        UUID()
-      </a>
-    </li>
-  
-
-            
-          
         </ul>
       </nav>
     </li>
@@ -7658,6 +7672,67 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Functions-and-Operators/Other/uuid/" class="md-nav__link">
+        UUID()
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_5_2_9" type="checkbox" id="__nav_1_11_5_2_9" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_11_5_2_9">
+          System OPS Functions
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="System OPS Functions" data-md-level="5">
+        <label class="md-nav__title" for="__nav_1_11_5_2_9">
+          <span class="md-nav__icon md-icon"></span>
+          System OPS Functions
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Functions-and-Operators/sys-ops/purge_log.md" class="md-nav__link">
+        PURGE_LOG()
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -7910,20 +7985,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Troubleshooting/audit/" class="md-nav__link">
-        Audit
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../../Troubleshooting/error-code/" class="md-nav__link">
         Error Code
       </a>
@@ -8048,6 +8109,20 @@
     <li class="md-nav__item">
       <a href="../../../../Release-Notes/release-timeline/" class="md-nav__link">
         Release Timeline
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Release-Notes/v0.8.0/" class="md-nav__link">
+        v0.8.0
       </a>
     </li>
   
@@ -8534,8 +8609,10 @@
 <ul>
 <li><code>ONLY_FULL_GROUP_BY</code>: The <code>GROUP BY</code> clause is used to group query results and perform aggregate calculations on each group, such as <code>COUNT</code>, <code>SUM</code>, <code>AVG</code>, etc. In the <code>GROUP BY</code> clause, the specified columns are the grouping columns. Other columns can be identified in the <code>SELECT</code> list, including aggregate or non-aggregate function columns. Without the <code>ONLY_FULL_GROUP_BY</code> mode, if a non-aggregate function column is set in the <code>SELECT</code> list, MatrixOne will select any value that matches the <code>GROUP BY</code> column use it to calculate the aggregate function by default.</li>
 </ul>
-<p>!!! note
-       If your table structure is complex and for ease of querying, you can disable the <code>ONLY_FULL_GROUP_BY</code> mode.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If your table structure is complex and for ease of querying, you can disable the <code>ONLY_FULL_GROUP_BY</code> mode.</p>
+</div>
 <ul>
 <li>
 <p><code>STRICT_TRANS_TABLES</code>: When executing <code>INSERT</code> and <code>UPDATE</code> statements, an error will be reported if the data does not conform to the rules defined for the table.</p>

@@ -3059,6 +3059,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../Security/audit/" class="md-nav__link">
+        Security Audit
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../Security/app-scenarios/" class="md-nav__link">
         Application Scenario
       </a>
@@ -3401,6 +3415,20 @@
     <li class="md-nav__item">
       <a href="../../../../Reference/Data-Types/blob-text-type/" class="md-nav__link">
         BLOB and TEXT Type
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Reference/Data-Types/uuid-type/" class="md-nav__link">
+        UUID Type
       </a>
     </li>
   
@@ -6912,20 +6940,6 @@
 
             
           
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../Reference/Functions-and-Operators/Mathematical/uuid/" class="md-nav__link">
-        UUID()
-      </a>
-    </li>
-  
-
-            
-          
         </ul>
       </nav>
     </li>
@@ -7637,6 +7651,67 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Reference/Functions-and-Operators/Other/uuid/" class="md-nav__link">
+        UUID()
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_5_2_9" type="checkbox" id="__nav_1_11_5_2_9" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_11_5_2_9">
+          System OPS Functions
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="System OPS Functions" data-md-level="5">
+        <label class="md-nav__title" for="__nav_1_11_5_2_9">
+          <span class="md-nav__icon md-icon"></span>
+          System OPS Functions
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Reference/Functions-and-Operators/sys-ops/purge_log.md" class="md-nav__link">
+        PURGE_LOG()
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -7889,20 +7964,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Troubleshooting/audit/" class="md-nav__link">
-        Audit
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../../Troubleshooting/error-code/" class="md-nav__link">
         Error Code
       </a>
@@ -8027,6 +8088,20 @@
     <li class="md-nav__item">
       <a href="../../../../Release-Notes/release-timeline/" class="md-nav__link">
         Release Timeline
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Release-Notes/v0.8.0/" class="md-nav__link">
+        v0.8.0
       </a>
     </li>
   
@@ -8487,7 +8562,7 @@
 <p>In MatrixOne's explicit transactions also obey the following rules:</p>
 <h2 id="explicit-transaction-rules">Explicit transaction rules</h2>
 <ul>
-<li>An explicit transaction starts and ends with <code>BEGIN...END</code> or <code>START TRANSACTIONS...COMMIT</code> or <code>ROLLBACK</code>.</li>
+<li>An explicit transaction starts and ends with <code>BEGIN...END</code> or <code>START TRANSACTION...COMMIT</code> or <code>ROLLBACK</code>.</li>
 <li>In explicit transactions, DML (Data Manipulation Language) and DDL (Data Definition Language) can exist at the same time. All DDLs are supported.</li>
 <li>In an explicit transaction, other explicit transactions cannot be nested. For example, if <code>START TANSACTIONS</code> is encountered after <code>START TANSACTIONS</code>, all statements between two <code>START TANSACTIONS</code> will be forced to commit, regardless of the value of <code>AUTOCOMMIT</code> 1 or 0.</li>
 <li>In an explicit transaction, only DML and DDL can be included and cannot contain modification parameter configuration or management commands, such as <code>set [parameter] = [value]</code>, <code>create user,</code> and so on.</li>

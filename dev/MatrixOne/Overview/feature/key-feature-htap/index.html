@@ -3165,6 +3165,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../Security/audit/" class="md-nav__link">
+        Security Audit
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../Security/app-scenarios/" class="md-nav__link">
         Application Scenario
       </a>
@@ -3507,6 +3521,20 @@
     <li class="md-nav__item">
       <a href="../../../Reference/Data-Types/blob-text-type/" class="md-nav__link">
         BLOB and TEXT Type
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/Data-Types/uuid-type/" class="md-nav__link">
+        UUID Type
       </a>
     </li>
   
@@ -7018,20 +7046,6 @@
 
             
           
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../Reference/Functions-and-Operators/Mathematical/uuid/" class="md-nav__link">
-        UUID()
-      </a>
-    </li>
-  
-
-            
-          
         </ul>
       </nav>
     </li>
@@ -7743,6 +7757,67 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/Functions-and-Operators/Other/uuid/" class="md-nav__link">
+        UUID()
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_11_5_2_9" type="checkbox" id="__nav_1_11_5_2_9" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_11_5_2_9">
+          System OPS Functions
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="System OPS Functions" data-md-level="5">
+        <label class="md-nav__title" for="__nav_1_11_5_2_9">
+          <span class="md-nav__icon md-icon"></span>
+          System OPS Functions
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/Functions-and-Operators/sys-ops/purge_log.md" class="md-nav__link">
+        PURGE_LOG()
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -7995,20 +8070,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Troubleshooting/audit/" class="md-nav__link">
-        Audit
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../Troubleshooting/error-code/" class="md-nav__link">
         Error Code
       </a>
@@ -8133,6 +8194,20 @@
     <li class="md-nav__item">
       <a href="../../../Release-Notes/release-timeline/" class="md-nav__link">
         Release Timeline
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Release-Notes/v0.8.0/" class="md-nav__link">
+        v0.8.0
       </a>
     </li>
   
@@ -8711,7 +8786,7 @@
 <p>MatrixOne implements HTAP through modular storage, calculation, transaction architecture, a multi-level storage system, and load processing link isolation mode.</p>
 <h3 id="modular-separation-of-storage-computation-and-transaction">Modular Separation of Storage, Computation, and Transaction</h3>
 <p>The overall technical architecture of MatrixOne adopts a separate architecture of storage and computation. The modular design separates the database's computation, storage, and transaction processing into independent modules, thus forming a database system with independent scalability for each component. As shown in the following figure, MatrixOne is composed of three independent layers:</p>
-<p><img alt="" src="https://github.com/matrixorigin/artwork/blob/main/docs/overview/htap/mp-htap-arch.png?raw=true" /></p>
+<p><img alt="" src="https://github.com/matrixorigin/artwork/blob/main/docs/overview/htap/mo-htap-arch.png?raw=true" /></p>
 <ul>
 <li><strong>Computation layer</strong>, with Compute Node as the unit, realizes serverless computation and transaction processing. It has its Cache, supporting random restarts and scaling; multiple Compute Nodes can calculate parallel to improve query efficiency.</li>
 <li><strong>Transaction layer</strong>, composed of Database Node and Log Service, provides complete log service and metadata information, with built-in Logtail for storing recently written new data.</li>
