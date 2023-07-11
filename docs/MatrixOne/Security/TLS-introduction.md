@@ -1,16 +1,17 @@
-# TLS Introduction
+# Data Transmission Encryption
+
+This document will introduce MatrixOne's support for data transmission encryption and how to enable encrypted transmission.
 
 ## Overview
 
-Transport Layer Security (TLS) is a widely adopted security protocol designed to promote privacy and data security for Internet communications.
+MatrixOne uses non-encrypted transmission by default and supports encrypted transmission based on TLS protocol. Encrypted transmission can reduce the risk of leakage of sensitive information in the database. Encrypted transmission is the process of encrypting and decrypting information using keys, which can effectively protect data security.
 
-MatrixOne uses non-encrypted connections by default and supports enabling encrypted connections based on the TLS protocol. The supported protocol versions are TLS 1.0, TLS 1.1, and TLS 1.2.
+Transport Layer Security (TLS) is a widely adopted security protocol. The protocol versions supported by MatrixOne include TLS 1.0, TLS 1.1, and TLS 1.2.
 
-- Disable TLS encrypted connection (default): Use the username and password to connect to MatrixOne directly.
+- Do not enable TLS encrypted transmission (default): Use the username and password to connect to MatrixOne directly.
+- Use encrypted transmission: It is necessary to enable encrypted transmission support on the MatrixOne server and specify the use of encrypted transmission on the client side. You can follow the instructions in this article to enable TLS secure connections.
 
-- Enable TLS encrypted connection: Encrypted connection support needs to be enabled on the MatrixOne server, and encrypted connection should be specified on the client side. You can follow the instructions below to enable a TLS secure connection.
-
-This document will guide you how to enable TLS secure connection.
+## How to Use
 
 **Main steps of TLS secure connection configuration**:
 
@@ -18,9 +19,9 @@ This document will guide you how to enable TLS secure connection.
 
 2. Then, configure the MySQL client security connection parameters.
 
-After completing the configuration of these two main steps, a TLS secure connection can be established, as detailed below:
+After completing the configuration of these two main steps, a TLS secure connection can be established.
 
-## Step 1: Enable MatrixOne's TLS support
+### Step 1: Enable MatrixOne's TLS support
 
 1. Generate certificate and key: MatrixOne does not yet support loading a private key protected by a password, so a private key file without a password must be provided. Certificates and keys can be issued and generated using OpenSSL. It is recommended to use the tool `mysql_ssl_rsa_setup` that comes with MySQL to generate quickly:
 
@@ -147,7 +148,7 @@ After completing the configuration of these two main steps, a TLS secure connect
 
 After completing the above steps, MatrixOne's TLS is enabled.
 
-## Step 2: Configure the parameters of MySQL client
+### Step 2: Configure the parameters of MySQL client
 
 When a MySQL client connects to Matrix One Server, the encrypted connection behavior needs to be specified by the `--ssl-mode` parameter, such as:
 

@@ -50,6 +50,9 @@ Make sure you have already [installed and launched MatrixOne](../../Get-Started/
 
 For more information on deployment, see [Deployment FAQs](../../FAQs/deployment-faqs.md).
 
+!!! note
+    MatrixOne and the client use non-encrypted transmission by default. Refer to [Data Transmission Encryption](../../Security/TLS-introduction.md) to enable encrypted transmission.
+
 ## Connect to the MatrixOne Server through Navicat
 
 1. Open a new terminal and enter into the following command:
