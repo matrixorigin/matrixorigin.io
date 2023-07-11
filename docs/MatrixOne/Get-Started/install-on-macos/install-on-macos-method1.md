@@ -1,131 +1,69 @@
-# **Building from source code**
+# **Building from source code in macOS**
 
-This document will guide you build standalone MatrixOne using source code.
+This document will guide you to deploy a standalone version of MatrixOne in a macOS environment using source code. You can use the [mo_ctl](https://github.com/matrixorigin/mo_ctl_standalone) tool to help you deploy and manage MatrixOne.
 
-## Step 1: Install Go as necessary dependency
+MatrixOne supports x86 and ARM macOS systems. This article uses the Macbook M1 ARM version as an example to show the entire deployment process.
+
+## Pre-dependency Reference
+
+To install and use the stand-alone MatrixOne through source code, you need to depend on the following software packages.
+
+| Dependent software | Version |
+| ------------ | ----------------------------- |
+| golang | 1.20 or later |
+| gcc/clang | gcc8.5 or later, clang13.0 or later |
+| git | 2.20 or later |
+| MySQL Client | 8.0 or later |
+
+## Step 1: Install Dependency
+
+### 1. Install Go
 
 1. Click <a href="https://go.dev/doc/install" target="_blank">Go Download and install</a> to enter its official documentation, and follow the installation steps to complete the **Go** installation.
-
-    __Note__: Go version 1.20 is required.
 
 2. To verify whether **Go** is installed, please execute the code `go version`. When **Go** is installed successfully, the example code line is as follows:
 
     ```
-    go version go1.20 darwin/arm64
+    > go version
+    go version go1.20.5 darwin/arm64
     ```
 
-## Step 2: Install GCC as necessary dependency
+### 2. Install GCC/Clang
 
-1. To verify whether the GCC is installed:
+1. macOS generally has its own Clang compiler, which plays the same role as GCC. To verify whether the GCC is installed:
 
     ```
     gcc -v
     bash: gcc: command not found
     ```
 
-    As shown in the code, the version of GCC is not displayed, the **GCC** environment needs to be installed.
+    As shown in the code, the version of GCC is not displayed, the **GCC/Clang** environment needs to be installed.
 
-2. Click <a href="https://gcc.gnu.org/install/" target="_blank">GCC Download and install</a> to enter its official documentation, and follow the installation steps to complete the **GCC** installation.
+2. Click <a href="https://gcc.gnu.org/install/" target="_blank">GCC Download and install</a> to enter its official documentation, and follow the installation steps to complete the **GCC** installation. Or you can install Clang through Apple's official [Xcode](https://www.ics.uci.edu/~pattis/common/handouts/macclion/clang.html).
 
-    __Note__: GCC version 8.5 is required.
-
-3. To verify whether **GCC** is installed, please execute the code `gcc -v`. When **GCC** is installed successfully, the example code line is as follows:
+3. To verify whether **GCC/Clang** is installed, please execute the code `gcc -v`. When **GCC** is installed successfully, the example code line is as follows:
 
     ```
-    Apple clang version 14.0.0 (clang-1400.0.29.202)
-    Target: arm64-apple-darwin22.2.0
+    Apple clang version 14.0.3 (clang-1403.0.22.14.1)
+    Target: arm64-apple-darwin22.5.0
     Thread model: posix
     InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
     ```
 
-## Step 3: Get MatrixOne code
+### 3. Install Git
 
-Depending on your needs, choose whether you want to keep your code up to date, or if you want to get the latest stable version of the code.
+Install Git via the [Official Documentation](https://git-scm.com/download/mac).
 
-=== "Get the MatrixOne(Develop Version) code to build"
+Use the command `git version` to check whether the installation is successful. The code example of a successful installation is as follows:
 
-     The **main** branch is the default branch, the code on the main branch is always up-to-date but not stable enough.
+```
+> git version
+git version 2.40.0
+```
 
-     1. Get the MatrixOne(Develop Version) code:
-
-         ```
-         git clone https://github.com/matrixorigin/matrixone.git
-         cd matrixone
-         ```
-
-     2. Run `make build` to compile the MatrixOne file:
-
-         ```
-         make build
-         ```
-
-         __Tips__: You can also run `make debug`, `make clean`, or anything else our `Makefile` offers, `make debug` can be used to debug the build process, and `make clean` can be used to clean up the build process. If you get an error like `Get "https://proxy.golang.org/........": dial tcp 142.251.43.17:443: i/o timeout` while running `make build`, see [Deployment FAQs](../../FAQs/deployment-faqs.md).
-
-=== "Get the MatrixOne(Stable Version) code to build"
-
-     1. If you want to get the latest stable version code released by MatrixOne, please switch to the branch of version **0.8.0** first.
-
-         ```
-         git clone https://github.com/matrixorigin/matrixone.git
-         cd matrixone         
-         git checkout 0.8.0
-         ```
-
-     2. Run `make config` and `make build` to compile the MatrixOne file:
-
-         ```
-         make config
-         make build
-         ```
-
-         __Tips__: You can also run `make debug`, `make clean`, or anything else our `Makefile` offers, `make debug` can be used to debug the build process, and `make clean` can be used to clean up the build process. If you get an error like `Get "https://proxy.golang.org/........": dial tcp 142.251.43.17:443: i/o timeout` while running `make build`, see [Deployment FAQs](../../FAQs/deployment-faqs.md).
-
-## Step 4: Launch MatrixOne server
-
-=== "**Launch in the frontend**"
-
-      This launch method will keep the `mo-service` process running in the frontend, the system log will be printed in real time. If you'd like to stop MatrixOne server, just make a CTRL+C or close your current terminal.
-
-      ```
-      # Start mo-service in the frontend
-      ./mo-service -launch ./etc/quickstart/launch.toml
-      ```
-
-      When you finish launching MatrixOne in the frontend, many logs are generated in startup mode. Then you can start a new terminal and connect to MatrixOne.
-
-=== "**Launch in the backend**"
-
-      This launch method will put the `mo-service` process running in the backend, the system log will be redirected to the `test.log` file. If you'd like to stop MatrixOne server, you need to find out its `PID` by and kill it by the following commands. Below is a full example of the whole process.
-
-      ```
-      # Start mo-service in the backend
-      ./mo-service --daemon --launch ./etc/quickstart/launch.toml &> test.log &
-
-      # Find mo-service PID
-      ps aux | grep mo-service
-
-      [root ~]# ps aux | grep mo-service
-      root       15277  2.8 16.6 8870276 5338016 ?     Sl   Nov25 156:59 ./mo-service -launch ./etc/quickstart/launch.toml
-      root      836740  0.0  0.0  12136  1040 pts/0    S+   10:39   0:00 grep --color=auto mo-service
-
-      # Kill the mo-service process
-      kill -9 15277
-      ```
-
-      __Tips__: As shown in the above example, use the command `ps aux | grep mo-service` to find out that the process number running on MatrixOne is `15277`, and `kill -9 15277` means to stop MatrixOne with the process number `15277`.
-
-      Next you can take the next step - Connect to standalone MatrixOne.
-
-!!! note
-    The initial startup of MatrixOne approximately takes 20 to 30 seconds. After a brief wait, you can connect to MatrixOne using the MySQL client.
-
-## Step 5: Connect to standalone MatrixOne
-
-### Install and configure MySQL Client
+### 4. Install and configure MySQL Client
 
 1. Click <a href="https://dev.mysql.com/downloads/mysql" target="_blank">MySQL Community Downloads</a> to enter into the MySQL client download and installation page. According to your operating system and hardware environment, drop down to select **Select Operating System > macOS**, then drop down to select **Select OS Version**, and select the download installation package to install as needed.
-
-    __Note__: MySQL client version 8.0.30 or later is recommended.
 
 2. Configure the MySQL client environment variables:
 
@@ -144,41 +82,165 @@ Depending on your needs, choose whether you want to keep your code up to date, o
         export PATH=${PATH}:/usr/local/mysql/bin
         ```
 
-     4. After the input is completed, click **esc** on the keyboard to exit the insert state, and enter `:wq` at the bottom to save and exit.
+3. After the input is completed, click **esc** on the keyboard to exit the insert state, and enter `:wq` at the bottom to save and exit.
 
-     5. Enter the command `source .bash_profile`, press **Enter** to execute, and run the environment variable.
+4. Enter the command `source .bash_profile`, press **Enter** to execute, and run the environment variable.
 
-     6. To test whether MySQL is available:
+5. To test whether MySQL is available:
 
-         - Method 1: Enter `mysql -u root -p`, press **Enter** to execute, the root user password is required, if `mysql>` is displayed, it means that the MySQL client is enabled.
+    Run the command `mysql --version`, if MySQL client is installed successfully, the example code line is as follows: `mysql  Ver 8.0.31 for macos12 on arm64 (MySQL Community Server - GPL)`
 
-         - Method 2: Run the command `mysql --version`, if MySQL client is installed successfully, the example code line is as follows: `mysql  Ver 8.0.31 for macos12 on arm64 (MySQL Community Server - GPL)`
+## Step 2: Install the mo_ctl tool
 
-     7. If MySQL is available, close the current terminal and browse the next chapter **Connect to MatrixOne Server**.
+[mo_ctl](https://github.com/matrixorigin/mo_ctl_standalone) is a command-line tool for deploying, installing, and managing MatrixOne. It is very convenient to perform various operations on MatrixOne. See [mo_ctl Tool](../../Maintain/mo_ctl.md) for complete usage details.
 
-__Tips__: Currently, MatrixOne is only compatible with the Oracle MySQL client. This means that some features might not work with the MariaDB client or Percona client.
+1. First, install the `wget` download tool: Go to the <a href="https://brew.sh/" target="_blank">Homebrew</a> page and follow the steps to install **Homebrew** first, then install `wget`. To verify whether `wget` is installed successfully, you can use the following command line:
 
-### Connect to MatrixOne
+     ```
+     wget -V
+     ```
 
-- You can use the MySQL command-line client to connect to MatrixOne server. Open a new terminal window and enter the following command:
+     The successful installation results (only part of the code is displayed) are as follows:
+
+     ```
+     GNU Wget 1.21.3 在 darwin21.3.0 上编译。
+     ...
+     Copyright © 2015 Free Software Foundation, Inc.
+     ...
+     ```
+
+2. The mo_ctl tool can be installed through the following command:
 
     ```
-    mysql -h IP -P PORT -uUsername -p
+    wget https://raw.githubusercontent.com/matrixorigin/mo_ctl_standalone/main/install.sh && sudo -u $(whoami) bash +x ./install.sh
     ```
 
-    After you enter the preceding command, the terminal will prompt you to provide the username and password. You can use our built-in account:
+3. After the installation is complete, verify whether the installation is successful through the `mo_ctl` command:
 
-    + user: root
-    + password: 111
+    ```
+    > mo_ctl
+    Usage             : mo_ctl [option_1] [option_2]
 
-- You can also use the following command line on the MySQL client to connect to the MatrixOne service:
+    [option_1]        : available: help | precheck | deploy | status | start | stop | restart | connect | get_cid | set_conf | get_conf | pprof | ddl_convert
+      0) help         : print help information
+      1) precheck     : check pre-requisites for mo_ctl
+      2) deploy       : deploy mo onto the path configured
+      3) status       : check if there's any mo process running on this machine
+      4) start        : start mo-service from the path configured
+      5) stop         : stop all mo-service processes found on this machine
+      6) restart      : start mo-service from the path configured
+      7) connect      : connect to mo via mysql client using connection info configured
+      8) get_cid      : print mo commit id from the path configured
+      9) pprof        : collect pprof information
+      10) set_conf    : set configurations
+      11) get_conf    : get configurations
+      12) ddl_convert : convert ddl file to mo format from other types of database
+      e.g.            : mo_ctl status
 
-       ```
-       mysql -h 127.0.0.1 -P 6001 -uroot -p
-       Enter password:
-       ```
+    [option_2]        : Use " mo_ctl [option_1] help " to get more info
+      e.g.            : mo_ctl deploy help
+    ```
 
-Currently, MatrixOne only supports the TCP listener.
+### Set mo_ctl parameters (Optional)
 
-!!! info
-    The login account in the above code snippet is the initial account; please change the initial password after logging in to MatrixOne; see [Password Management](../../Security/password-mgmt.md).
+Some parameters in the mo_ctl tool need to be set and you can view all current parameters through `mo_ctl get_conf`.
+
+```
+> mo_ctl get_conf
+2023-07-07_15:31:24    [INFO]    Below are all configurations set in conf file /Users/username/mo_ctl/conf/env.sh
+MO_PATH="/Users/username/mo/matrixone"
+MO_LOG_PATH="${MO_PATH}/matrixone/logs"
+MO_HOST="127.0.0.1"
+MO_PORT="6001"
+MO_USER="root"
+MO_PW="111"
+CHECK_LIST=("go" "gcc" "git" "mysql")
+GCC_VERSION="8.5.0"
+GO_VERSION="1.20"
+MO_GIT_URL="https://github.com/matrixorigin/matrixone.git"
+MO_DEFAULT_VERSION="0.8.0"
+GOPROXY="https://goproxy.cn,direct"
+STOP_INTERVAL="5"
+START_INTERVAL="2"
+MO_DEBUG_PORT="9876"
+MO_CONF_FILE="${MO_PATH}/matrixone/etc/launch-tae-CN-tae-DN/launch.toml"
+RESTART_INTERVAL="2"
+PPROF_OUT_PATH="/tmp/pprof-test/"
+PPROF_PROFILE_DURATION="30"
+```
+
+Generally, the parameters that may need to be adjusted are as follows:
+
+```
+mo_ctl set_conf MO_PATH="/Users/username/mo/matrixone" # Set custom MatrixOne download path
+mo_ctl set_conf MO_PATH="https://ghproxy.com/https://github.com/matrixorigin/matrixone.git" ## For the problem of slow downloading from the original GitHub address, set the proxy download address
+mo_ctl set_conf MO_DEFAULT_VERSION="0.8.0" # Set the version of MatrixOne downloaded
+```
+
+## Step 3: Get MatrixOne code
+
+Depending on your needs, choose whether you want to keep your code up to date, or if you want to get the latest stable version of the code.
+
+=== "Get the MatrixOne(Develop Version) code to build"
+
+     The **main** branch is the default branch, the code on the main branch is always up-to-date but not stable enough.
+
+     ```
+     mo_ctl deploy main
+     ```
+
+=== "Get the MatrixOne(Stable Version) code to build"
+
+     ```
+     mo_ctl deploy 0.8.0
+     ```
+
+## Step 4: Launch MatrixOne server
+
+Launch the MatrixOne service through the `mo_ctl start` command.
+
+If the operation is regular, the following log will appear. The relevant operation logs of MatrixOne will be in `/data/mo/logs/`.
+
+```
+> mo_ctl start
+2023-07-07_15:33:45    [INFO]    No mo-service is running
+2023-07-07_15:33:45    [INFO]    Starting mo-service: cd /Users/username/mo/matrixone/matrixone/ && /Users/username/mo/matrixone/matrixone/mo-service -daemon -debug-http :9876 -launch /Users/username/mo/matrixone/matrixone/etc/launch-tae-CN-tae-DN/launch.toml >/Users/username/mo/matrixone/matrixone/logs/stdout-20230707_153345.log 2>/Users/username/mo/matrixone/matrixone/logs/stderr-20230707_153345.log
+2023-07-07_15:33:45    [INFO]    Wait for 2 seconds
+2023-07-07_15:33:48    [INFO]    At least one mo-service is running. Process info:
+2023-07-07_15:33:48    [INFO]      501 66932     1   0  3:33PM ??         0:00.27 /Users/username/mo/matrixone/matrixone/mo-service -daemon -debug-http :9876 -launch /Users/username/mo/matrixone/matrixone/etc/launch-tae-CN-tae-DN/launch.toml
+2023-07-07_15:33:48    [INFO]    Pids:
+2023-07-07_15:33:48    [INFO]    66932
+2023-07-07_15:33:48    [INFO]    Start succeeded
+```
+
+!!! note
+    The initial startup of MatrixOne approximately takes 20 to 30 seconds. After a brief wait, you can connect to MatrixOne using the MySQL client.
+
+## Step 5: Connect to MatrixOne
+
+One-click connection to MatrixOne service through `mo_ctl connect` command.
+
+This command will invoke the MySQL Client tool to connect to the MatrixOne service automatically.
+
+```
+> mo_ctl connect
+2023-07-07_10:30:20    [INFO]    Checking connectivity
+2023-07-07_10:30:20    [INFO]    Ok, connecting for user ...
+mysql: [Warning] Using a password on the command line interface can be insecure.
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 15
+Server version: 8.0.30-MatrixOne-v0.8.0 MatrixOne
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql>
+```
+
+!!! note
+    The above connection and login account is the initial accounts `root` and the password `111`; please change the initial password after logging in to MatrixOne; see [MatrixOne Password Management](../../Security/password-mgmt/). After changing the login username or password, you must set a new username and password through `mo_ctl set_conf`. For details, please refer to [mo_ctl Tool](../../Maintain/mo_ctl.md).
