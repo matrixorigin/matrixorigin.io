@@ -1,4 +1,4 @@
-# Quick Start: Create accounts, Verify Resource Isolation
+# Create accounts, Verify Resource Isolation
 
 When initializing access to the MatrixOne cluster, the system will automatically generate a default cluster administrator. The cluster administrator is automatically granted the authority to manage accounts by default, but cannot manage resources under the account.
 

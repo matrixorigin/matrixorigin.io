@@ -1,6 +1,4 @@
-# About MatrixOne Privilege Management
-
-## MatrixOne Privilege Management Overview
+# Privilege Management Overview
 
 MatrixOne privilege management helps you manage accounts and users' life cycles, assign users complementary roles, and control access rights to resources in MatrixOne. When there are multiple users in a database or cluster unit, privilege management ensures that users only access authorized help, and granting users the principle of least authority can reduce enterprise information security risks.
 MatrixOne can also implement multi-account solutions through rights management. In MatrixOne, the data or resources owned by each account in the cluster are safely isolated, and users across cluster units cannot access the help of other cluster units. Only users authorized to access resources in the cluster have the right to access this A resource within a cluster unit.
@@ -23,7 +21,7 @@ MatrixOne's privilege management is designed and implemented by combining two se
 
 In MatrixOne, the privileges are encapsulated in an entity, which is **object**to facilitate the management of multiple operation privileges.
 
-For example, operation privileges such as `Select`, `Insert`, and `Update` is encapsulated in the Table object. For more information about object privileges, please refer to [MatrixOne Privilege Control Types](../Reference/access-control-type.md).
+For example, operation privileges such as `Select`, `Insert`, and `Update` is encapsulated in the Table object. For more information about object privileges, please refer to [MatrixOne Privilege Control Types](../../Reference/access-control-type.md).
 
 #### Relationship between objects
 
@@ -134,7 +132,7 @@ After completing the deployment of the MatrixOne cluster, *Tom* of the R&D depar
     - The data resources within *BusinessAccount* are mainly used to develop the application *BusinessApp*.
     - Data resources within *ElseAccount* may be used for other business purposes.
 
-For the specific operation of resource isolation, please refer to [Quick Start: Create accounts, Verify Resource Isolation](how-tos/quick-start-create-account.md).
+For the specific operation of resource isolation, please refer to [Quick Start: Create accounts, Verify Resource Isolation](../how-tos/quick-start-create-account.md).
 
 ### Introduction to User Creation and Authorization Scenarios
 
@@ -147,7 +145,7 @@ R&D colleague *Joe* is the application developer of this company. A project *Bus
 3. *Robert* grants the *ALL ON DATABASE* permission to the role *Appdeveloper*.
 4. *Joe* can use the account *Joe_G* to log in to MatrixOne, and has full authority to operate the database for development.
 
-For specific user creation and authorization operations, see [Quick start: Create a new account, use the new account, creates users, create roles, and grant the privilege](how-tos/quick-start-create-user.md).
+For specific user creation and authorization operations, see [Quick start: Create a new account, use the new account, creates users, create roles, and grant the privilege](../how-tos/quick-start-create-user.md).
 
 ## Initialize Access
 
@@ -162,6 +160,6 @@ After initializing the cluster or account, the system will automatically generat
 
 ## Quick Start
 
-- [Quick Start: Create accounts, Verify Resource Isolation](how-tos/quick-start-create-account.md)
-- [Quick start: Create a new account, use the new account, creates users, create roles, and grant the privilege](how-tos/quick-start-create-user.md)
+- [Quick Start: Create accounts, Verify Resource Isolation](../how-tos/quick-start-create-account.md)
+- [Quick start: Create a new account, use the new account, creates users, create roles, and grant the privilege](../how-tos/quick-start-create-user.md)
 - Typical [Application Scenarios](app-scenarios.md)
