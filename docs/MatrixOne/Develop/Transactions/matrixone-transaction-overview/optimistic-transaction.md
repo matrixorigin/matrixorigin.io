@@ -2,7 +2,7 @@
 
 ## Optimistic Transaction principle
 
-Optimistic transaction When the transaction starts, no conflict detection or lock will be performed, and the relevant data will be cached in the corresponding memory area. The data will be added, deleted, or modified.
+When the transaction starts, no conflict detection or lock will be performed, and the relevant data will be cached in the corresponding memory area. The data will be added, deleted, or modified.
 
 After completing the modification, when entering the submission stage, it will be submitted in two steps:
 

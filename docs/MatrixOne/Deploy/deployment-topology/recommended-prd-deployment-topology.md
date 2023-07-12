@@ -1,6 +1,6 @@
 # Recommended Production Environment Deployment Plan
 
-The recommended production configuration of the MatrixOne distributed cluster described in this document is suitable for production environments and possesses robust performance and reliability. This configuration can support billions of data with thousands of concurrent OLTP operations or handle OLAP operations with tens of TB data volume.
+The recommended configuration of the MatrixOne distributed cluster described in this document is suitable for production environments and possesses robust performance and reliability. This configuration can support billions of data with thousands of concurrent OLTP operations or handle OLAP operations with tens of TB data volume.
 
 This configuration provides a high degree of availability guarantee. Whether it is Kubernetes, Minio, or MatrixOne, the system can operate normally when a node goes offline. This means the system has strong fault tolerance and can maintain business continuity in node failure.
 

@@ -2,7 +2,7 @@
 
 ## Pessimistic Transactions principle
 
-Pessimistic transaction When a transaction starts, conflict detection or lock operation must be performed. When no conflict or lock is detected, a column in the data to be written will be regarded as the primary key column, the column will be locked, and a timestamp will be created. Writes to related rows after this timestamp are judged as write conflicts.
+When a transaction starts, conflict detection or lock operation must be performed. When no conflict or lock is detected, a column in the data to be written will be regarded as the primary key column, the column will be locked, and a timestamp will be created. Writes to related rows after this timestamp are judged as write conflicts.
 
 Cache the current relevant data to the corresponding memory area, and add, delete, and modify the data. If there is a lock on the current table, it will enter the waiting state. When the waiting timeout occurs, the waiting transaction will be canceled.
 
