@@ -44,7 +44,7 @@ If you need to modify the configuration file. In that case, it would be best to 
 2. To launch MatrixOne MatrixOne has not been running in Docker, execute the following command:
 
     ```
-    docker run -d -p 6001:6001 --name matrixone matrixorigin/matrixone:0.8.0
+    docker run -d -p 6001:6001 --name matrixone --privileged=true matrixorigin/matrixone:0.8.0
     ```
 
 3. Check the containerID that MatrixOne has been running in Docker, and copy the configuration file directory to the local directory:
