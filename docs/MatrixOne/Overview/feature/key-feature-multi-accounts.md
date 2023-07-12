@@ -102,5 +102,5 @@ The multi-account capability of MatrixOne can well solve the database sharing/is
 
 For more information on multi-account, see:
 
-- [Multi-Account Application Scenario](../../Security/app-scenarios.md)
+- [Multi-Account Application Scenario](../../Security/role-priviledge-management/app-scenarios.md)
 - [Quick Start: Create accounts, Verify Resource Isolation](../../Security/how-tos/quick-start-create-account.md)
