@@ -1,8 +1,51 @@
-# **Using binary package**
+# **Using binary package in macOS**
 
-This document will guide you build standalone MatrixOne using binary package.
+This document will guide you to deploy a stand-alone version of MatrixOne in a macOS environment using binary packages. This installation solution does not need to install pre-dependencies and compile source packages. You can use the [mo_ctl](https://github.com/matrixorigin/mo_ctl_standalone) tool to help you deploy and manage MatrixOne.
 
-## Step 1: Install `wget` or `curl`
+MatrixOne supports x86 and ARM macOS systems. This article uses the Macbook M1 ARM version as an example to show the entire deployment process.
+
+## Pre-dependency Reference
+
+Only the MySQL Client tool must be installed to deploy and install MatrixOne through the binary package.
+
+| Dependent software | Version |
+| ------------ | ----------------------------- |
+| MySQL Client | 8.0 or later |
+
+## Step 1: Install Dependency
+
+### Install and configure MySQL Client
+
+1. Click <a href="https://dev.mysql.com/downloads/mysql" target="_blank">MySQL Community Downloads</a> to enter into the MySQL client download and installation page. According to your operating system and hardware environment, drop down to select **Select Operating System > macOS**, then drop down to select **Select OS Version**, and select the download installation package to install as needed.
+
+2. Configure the MySQL client environment variables:
+
+     1. Open a new terminal window and enter the following command:
+
+         ```
+         cd ~
+         sudo vim .bash_profile
+         ```
+
+     2. After pressing **Enter** on the keyboard to execute the above command, you need to enter the root user password, which is the root password you set in the installation window when you installed the MySQL client. If no password has been set, press **Enter** to skip the password.
+
+     3. After entering/skiping the root password, you will enter *.bash_profile*, click **i** on the keyboard to enter the insert state, and you can enter the following command at the bottom of the file:
+
+        ```
+        export PATH=${PATH}:/usr/local/mysql/bin
+        ```
+
+3. After the input is completed, click **esc** on the keyboard to exit the insert state, and enter `:wq` at the bottom to save and exit.
+
+4. Enter the command `source .bash_profile`, press **Enter** to execute, and run the environment variable.
+
+5. To test whether MySQL is available:
+
+    Run the command `mysql --version`, if MySQL client is installed successfully, the example code line is as follows: `mysql  Ver 8.0.31 for macos12 on arm64 (MySQL Community Server - GPL)`
+
+## Step 2: Download binary packages and decompress
+
+### 1. Install `wget` or `curl`
 
 We'll provide a method of **Using binary package** to install MatrixOne. If you prefer to use the command line, you can pre-install `wget` or `curl`.
 
@@ -45,7 +88,7 @@ __Tips__: It is recommended that you download and install one of these two tools
      ...
      ```
 
-## Step 2: Download binary packages and decompress
+### 2. Download binary packages and decompress
 
 **Download Method 1** and **Download Method 2** need to install the download tools `wget` or `curl` first.
 
@@ -54,15 +97,17 @@ __Tips__: It is recommended that you download and install one of these two tools
      Binary for x86 architecture system:
 
      ```bash
+     mkdir /User/username/mo/matrixone & cd /User/username/mo
      wget https://github.com/matrixorigin/matrixone/releases/download/v0.8.0/mo-v0.8.0-darwin-x86_64.zip
-     unzip mo-v0.8.0-darwin-x86_64.zip
+     unzip -d matrixone/ mo-v0.8.0-darwin-x86_64.zip
      ```
 
      Binary for ARM architecture system:
 
      ```bash
+     mkdir /User/username/mo/matrixone & cd /User/username/mo
      wget https://github.com/matrixorigin/matrixone/releases/download/v0.8.0/mo-v0.8.0-darwin-arm64.zip
-     unzip mo-v0.8.0-darwin-arm64.zip
+     unzip -d matrixone/ mo-v0.8.0-darwin-arm64.zip
      ```
 
 === "**Downloading method 2: Using `curl` to install binary packages**"
@@ -70,120 +115,89 @@ __Tips__: It is recommended that you download and install one of these two tools
      Binary for x86 architecture system:
 
      ```bash
+     mkdir /User/username/mo/matrixone & cd /User/username/mo
      curl -OL https://github.com/matrixorigin/matrixone/releases/download/v0.8.0/mo-v0.8.0-darwin-x86_64.zip
-     unzip mo-v0.8.0-darwin-x86_64.zip
+     unzip -d matrixone/ mo-v0.8.0-darwin-x86_64.zip
      ```
 
      Binary for ARM architecture system:
 
      ```bash
+     mkdir /User/username/mo/matrixone & cd /User/username/mo
      curl -OL https://github.com/matrixorigin/matrixone/releases/download/v0.8.0/mo-v0.8.0-darwin-arm64.zip
-     unzip mo-v0.8.0-darwin-arm64.zip
+     unzip -d matrixone/ mo-v0.8.0-darwin-arm64.zip
      ```
 
 === "**Downloading method 3: Go to the page and download**"
 
      If you want a more intuitive way to download the page, go to the [version 0.8.0](https://github.com/matrixorigin/matrixone/releases/tag/v0.8.0), pull down to find the **Assets** column, and click the installation package *mo-v0.8.0-darwin-x86_64.zip* or *mo-v0.8.0-darwin-arm64.zip* can be downloaded.
 
-## Step 3: Launch MatrixOne server
+## Step 3: Install the mo_ctl tool
 
-=== "**Launch in the frontend**"
+[mo_ctl](https://github.com/matrixorigin/mo_ctl_standalone) is a command-line tool for deploying, installing, and managing MatrixOne. It is very convenient to perform various operations on MatrixOne. See [mo_ctl Tool](../../Maintain/mo_ctl.md) for complete usage details.
 
-      This launch method will keep the `mo-service` process running in the frontend, the system log will be printed in real time. If you'd like to stop MatrixOne server, just make a CTRL+C or close your current terminal.
+### 1. Install the mo_ctl tool
 
-      ```
-      # Start mo-service in the frontend
-      ./mo-service -launch ./etc/launch-tae-CN-tae-DN/launch.toml
-      ```
+The mo_ctl tool can be installed through the following command:
 
-      When you finish launching MatrixOne in the frontend, many logs are generated in startup mode. Then you can start a new terminal and connect to MatrixOne.
+```
+wget https://raw.githubusercontent.com/matrixorigin/mo_ctl_standalone/main/install.sh && sudo -u $(whoami) bash +x ./install.sh
+```
 
-=== "**Launch in the backend**"
+### 2. Set mo_ctl parameters
 
-      This launch method will put the `mo-service` process running in the backend, the system log will be redirected to the `test.log` file. If you'd like to stop MatrixOne server, you need to find out its `PID` by and kill it by the following commands. Below is a full example of the whole process.
+Using the following command sets the MatrixOne binary decompression file directory to the `MO_PATH` parameter of mo_ctl. mo_ctl will automatically look for the `matrixone` folder in `MO_PATH`.
 
-      ```
-      # Start mo-service in the backend
-      ./mo-service --daemon --launch ./etc/launch-tae-CN-tae-DN/launch.toml &> test.log &
+```
+mo_ctl set_conf MO_PATH="/User/username/mo/"
+```
 
-      # Find mo-service PID
-      ps aux | grep mo-service
+## Step 4: Launch MatrixOne server
 
-      [root ~]# ps aux | grep mo-service
-      root       15277  2.8 16.6 8870276 5338016 ?     Sl   Nov25 156:59 ./mo-service -launch ./etc/quickstart/launch.toml
-      root      836740  0.0  0.0  12136  1040 pts/0    S+   10:39   0:00 grep --color=auto mo-service
+Launch the MatrixOne service through the `mo_ctl start` command.
 
-      # Kill the mo-service process
-      kill -9 15277
-      ```
+If the operation is regular, the following log will appear. The relevant operation logs of MatrixOne will be in `/data/mo/logs/`.
 
-      __Tips__: As shown in the above example, use the command `ps aux | grep mo-service` to find out that the process number running on MatrixOne is `15277`, and `kill -9 15277` means to stop MatrixOne with the process number `15277`.
-
-      Next you can take the next step - Connect to standalone MatrixOne.
+```
+> mo_ctl start
+2023-07-07_15:33:45    [INFO]    No mo-service is running
+2023-07-07_15:33:45    [INFO]    Starting mo-service: cd /Users/username/mo/matrixone/matrixone/ && /Users/username/mo/matrixone/matrixone/mo-service -daemon -debug-http :9876 -launch /Users/username/mo/matrixone/matrixone/etc/launch-tae-CN-tae-DN/launch.toml >/Users/username/mo/matrixone/matrixone/logs/stdout-20230707_153345.log 2>/Users/username/mo/matrixone/matrixone/logs/stderr-20230707_153345.log
+2023-07-07_15:33:45    [INFO]    Wait for 2 seconds
+2023-07-07_15:33:48    [INFO]    At least one mo-service is running. Process info:
+2023-07-07_15:33:48    [INFO]      501 66932     1   0  3:33PM ??         0:00.27 /Users/username/mo/matrixone/matrixone/mo-service -daemon -debug-http :9876 -launch /Users/username/mo/matrixone/matrixone/etc/launch-tae-CN-tae-DN/launch.toml
+2023-07-07_15:33:48    [INFO]    Pids:
+2023-07-07_15:33:48    [INFO]    66932
+2023-07-07_15:33:48    [INFO]    Start succeeded
+```
 
 !!! note
     The initial startup of MatrixOne approximately takes 20 to 30 seconds. After a brief wait, you can connect to MatrixOne using the MySQL client.
 
-## Step 4: Connect to standalone MatrixOne
+## Step 5: Connect to MatrixOne
 
-### Install and configure MySQL Client
+One-click connection to MatrixOne service through `mo_ctl connect` command.
 
-1. Click <a href="https://dev.mysql.com/downloads/mysql" target="_blank">MySQL Community Downloads</a> to enter into the MySQL client download and installation page. According to your operating system and hardware environment, drop down to select **Select Operating System > macOS**, then drop down to select **Select OS Version**, and select the download installation package to install as needed.
+This command will invoke the MySQL Client tool to connect to the MatrixOne service automatically.
 
-    __Note__: MySQL client version 8.0.30 or later is recommended.
+```
+> mo_ctl connect
+2023-07-07_10:30:20    [INFO]    Checking connectivity
+2023-07-07_10:30:20    [INFO]    Ok, connecting for user ...
+mysql: [Warning] Using a password on the command line interface can be insecure.
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 15
+Server version: 8.0.30-MatrixOne-v0.8.0 MatrixOne
 
-2. Configure the MySQL client environment variables:
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
 
-     1. Open a new terminal window and enter the following command:
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
 
-         ```
-         cd ~
-         sudo vim .bash_profile
-         ```
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 
-     2. After pressing **Enter** on the keyboard to execute the above command, you need to enter the root user password, which is the root password you set in the installation window when you installed the MySQL client. If no password has been set, press **Enter** to skip the password.
+mysql>
+```
 
-     3. After entering/skiping the root password, you will enter *.bash_profile*, click **i** on the keyboard to enter the insert state, and you can enter the following command at the bottom of the file:
-
-        ```
-        export PATH=${PATH}:/usr/local/mysql/bin
-        ```
-
-     4. After the input is completed, click **esc** on the keyboard to exit the insert state, and enter `:wq` at the bottom to save and exit.
-
-     5. Enter the command `source .bash_profile`, press **Enter** to execute, and run the environment variable.
-
-     6. To test whether MySQL is available:
-
-         - Method 1: Enter `mysql -u root -p`, press **Enter** to execute, the root user password is required, if `mysql>` is displayed, it means that the MySQL client is enabled.
-
-         - Method 2: Run the command `mysql --version`, if MySQL client is installed successfully, the example code line is as follows: `mysql  Ver 8.0.31 for macos12 on arm64 (MySQL Community Server - GPL)`
-
-     7. If MySQL is available, close the current terminal and browse the next chapter **Connect to MatrixOne Server**.
-
-__Tips__: Currently, MatrixOne is only compatible with the Oracle MySQL client. This means that some features might not work with the MariaDB client or Percona client.
-
-### Connect to MatrixOne
-
-- You can use the MySQL command-line client to connect to MatrixOne server. Open a new terminal window and enter the following command:
-
-    ```
-    mysql -h IP -P PORT -uUsername -p
-    ```
-
-    After you enter the preceding command, the terminal will prompt you to provide the username and password. You can use our built-in account:
-
-    + user: root
-    + password: 111
-
-- You can also use the following command line on the MySQL client to connect to the MatrixOne service:
-
-       ```
-       mysql -h 127.0.0.1 -P 6001 -uroot -p
-       Enter password:
-       ```
-
-Currently, MatrixOne only supports the TCP listener.
-
-!!! info
-    The login account in the above code snippet is the initial account; please change the initial password after logging in to MatrixOne; see [Password Management](../../Security/password-mgmt.md).
+!!! note
+    The above connection and login account is the initial accounts `root` and the password `111`; please change the initial password after logging in to MatrixOne; see [MatrixOne Password Management](../../Security/password-mgmt.md). After changing the login username or password, you must set a new username and password through `mo_ctl set_conf`. For details, please refer to [mo_ctl Tool](../../Maintain/mo_ctl.md).

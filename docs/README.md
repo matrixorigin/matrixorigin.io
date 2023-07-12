@@ -19,7 +19,7 @@ Select one of the articles below to begin your MatrixOne journey. If you ...
 |  Overview   | Get Started  | Developing Guide | Reference   |
 |  ----  | ----  |  ----  | ----  |
 | [MatrixOne Introduction](MatrixOne/Overview/matrixone-introduction.md)  | [Install MatrixOne](MatrixOne/Get-Started/install-standalone-matrixone.md) | [Java CRUD demo](MatrixOne/Tutorial/develop-java-crud-demo.md)	|[SQL Reference](MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-database.md)|
-| [MatrixOne Architecture](MatrixOne/Overview/matrixone-architecture-design.md)  | [Basic SQL](MatrixOne/Get-Started/basic-sql.md) |[Python CRUD demo](MatrixOne/Tutorial/develop-python-crud-demo.md)|[Data Types](MatrixOne/Reference/Data-Types/data-types.md)|
+| [MatrixOne Architecture](MatrixOne/Overview/architecture/matrixone-architecture-design.md)  | [Basic SQL](MatrixOne/Get-Started/basic-sql.md) |[Python CRUD demo](MatrixOne/Tutorial/develop-python-crud-demo.md)|[Data Types](MatrixOne/Reference/Data-Types/data-types.md)|
 
 ## **Continuous Improvement**
 

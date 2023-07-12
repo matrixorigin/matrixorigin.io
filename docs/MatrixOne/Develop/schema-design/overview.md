@@ -41,7 +41,7 @@ MatrixOne supports the following logical objects at the same level as table:
 
 ## Access Control
 
-MatrixOne supports both user-based and role-based access control. To allow users to view, modify, or delete data, for more information, see [Access control in MatrixOne](../../Security/about-privilege-management.md).
+MatrixOne supports both user-based and role-based access control. To allow users to view, modify, or delete data, for more information, see [Access control in MatrixOne](../../Security/role-priviledge-management/about-privilege-management.md).
 
 ## Object limitations
 

@@ -243,4 +243,4 @@ You have successfully granted the permission of `create table` in the database t
 DROP USER mouser;
 ```
 
-Privilege management is a huge but very useful function. For more information, see [Privilege Management](../Security/about-privilege-management.md).
+Privilege management is a huge but very useful function. For more information, see [Privilege Management](../Security/role-priviledge-management/about-privilege-management.md).
