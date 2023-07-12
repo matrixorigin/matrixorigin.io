@@ -63,5 +63,4 @@ mysql> select * from user;
 
 ## **Constraints**
 
-1. `INSERT ... ON DUPLICATE KEY UPDATE` only supports 1 unique constraint and does not support multiple unique constraints.
-2. Unique key are not currently supported with `INSERT ... ON DUPLICATE KEY UPDATE`, and since unique key can be null, some unknown errors can occur.
+Unique key are not currently supported with `INSERT ... ON DUPLICATE KEY UPDATE`, and since unique key can be null, some unknown errors can occur.
