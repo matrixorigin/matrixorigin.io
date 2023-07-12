@@ -122,7 +122,7 @@ In MatrixOne, the supported isolation level is Snapshot Isolation, which is also
 
 ### Snapshot Isolation Example
 
-You can take the example below to help understand snapshot isolation.
+See the example below to help you understand snapshot isolation.
 
 First in MatrixOne, we create a database *test* and table *t1*:
 
