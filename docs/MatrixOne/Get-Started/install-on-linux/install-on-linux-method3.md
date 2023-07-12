@@ -45,14 +45,14 @@ It will pull the image from Docker Hub if not exists. You can choose to pull the
 
       ```bash
       docker pull matrixorigin/matrixone:0.8.0
-      docker run -d -p 6001:6001 --name matrixone matrixorigin/matrixone:0.8.0
+      docker run -d -p 6001:6001 --name matrixone --privileged=true matrixorigin/matrixone:0.8.0
       ```
 
       If you are using the network in mainland China, you can pull the MatrixOne stable version image on Alibaba Cloud:
 
       ```bash
       docker pull registry.cn-shanghai.aliyuncs.com/matrixorigin/matrixone:0.8.0
-      docker run -d -p 6001:6001 --name matrixone registry.cn-shanghai.aliyuncs.com/matrixorigin/matrixone:0.8.0
+      docker run -d -p 6001:6001 --name matrixone --privileged=true registry.cn-shanghai.aliyuncs.com/matrixorigin/matrixone:0.8.0
       ```
 
 === "Develop Version Image"
@@ -61,14 +61,14 @@ It will pull the image from Docker Hub if not exists. You can choose to pull the
 
       ```bash
       docker pull matrixorigin/matrixone:nightly-commitnumber
-      docker run -d -p 6001:6001 --name matrixone matrixorigin/matrixone:nightly-commitnumber
+      docker run -d -p 6001:6001 --name matrixone --privileged=true matrixorigin/matrixone:nightly-commitnumber
       ```
 
       If you are using the network in mainland China, you can pull the MatrixOne develop version image on Alibaba Cloud:
 
       ```bash
       docker pull registry.cn-shanghai.aliyuncs.com/matrixorigin/matrixone:nightly-commitnumber
-      docker run -d -p 6001:6001 --name matrixone registry.cn-shanghai.aliyuncs.com/matrixorigin/matrixone:nightly-commitnumber
+      docker run -d -p 6001:6001 --name matrixone --privileged=true registry.cn-shanghai.aliyuncs.com/matrixorigin/matrixone:nightly-commitnumber
       ```
 
       __Note__: The *nightly* version is updated once a day.
