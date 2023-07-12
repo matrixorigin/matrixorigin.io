@@ -152,7 +152,7 @@ For how to achieve account isolation and load isolation, continue to the followi
 
 #### Implementing account Isolation
 
-MatrixOne 0.7 version supports [About MatrixOne Privilege Management](../Security/about-privilege-management.md) data isolation. If account load isolation is to be implemented, it must be done by configuring Proxy and CN groups.
+MatrixOne 0.7 version supports [About MatrixOne Privilege Management](../Security/role-priviledge-management/about-privilege-management.md) data isolation. If account load isolation is to be implemented, it must be done by configuring Proxy and CN groups.
 
 ##### Ordinary accounts
 

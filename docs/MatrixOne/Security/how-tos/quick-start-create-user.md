@@ -1,4 +1,4 @@
-# Quick start: Create a new account, use the new account, creates users, create roles, and grant the privilege
+# Create a new account, use the new account, creates users, create roles, and grant the privilege
 
 When initializing access to the MatrixOne cluster, the system will automatically generate a default account, which is the cluster administrator. The default user name of the cluster administrator is *root*. *root* is both a cluster administrator and a system account administrator. *root* can create and manage other common accounts (non-system account administrators).
 
@@ -28,7 +28,7 @@ This document will guide you through creating a new account, switching to the ne
     Check all accounts information in the cluster (only root can view):
 
     ```
-    mysql> select *from mo_account;
+    mysql> select * from mo_catalog.mo_account;
     +------------+--------------+--------+---------------------+----------------+----------------+
     | account_id | account_name | status | created_time        | comments       | suspended_time |
     +------------+--------------+--------+---------------------+----------------+----------------+
@@ -74,7 +74,7 @@ This document will guide you through creating a new account, switching to the ne
     In addition, you can also view the privilege sets of these default roles in the system table:
 
     ```
-    mysql> select * from mo_role_privs;
+    mysql> select * from mo_catalog.mo_role_privs;
     +---------+--------------+----------+--------+--------------+--------------------+-----------------+-------------------+---------------------+-------------------+
     | role_id | role_name    | obj_type | obj_id | privilege_id | privilege_name     | privilege_level | operation_user_id | granted_time        | with_grant_option |
     +---------+--------------+----------+--------+--------------+--------------------+-----------------+-------------------+---------------------+-------------------+
