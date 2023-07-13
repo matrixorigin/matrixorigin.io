@@ -102,6 +102,7 @@ nav:
             - Load jsonlines format data: MatrixOne/Develop/import-data/bulk-load/load-jsonline.md
             - Load data from S3: MatrixOne/Develop/import-data/bulk-load/load-s3.md
             - Load data by using the `source`: MatrixOne/Develop/import-data/bulk-load/using-source.md
+            - Prepared: MatrixOne/Develop/import-data/bulk-load/prepared.md
       - Export Data:
         - Export data by SELECT INTO: MatrixOne/Develop/export-data/select-into-outfile.md
         - Export data by MODUMP: MatrixOne/Develop/export-data/modump.md
@@ -111,6 +112,7 @@ nav:
         - Subquery: MatrixOne/Develop/read-data/subquery.md
         - Views: MatrixOne/Develop/read-data/views.md
         - Common Table Expression: MatrixOne/Develop/read-data/cte.md
+        - Window Function.: MatrixOne/Develop/read-data/window-function.md
       - Account Design:
         - Publish-Subscribe: MatrixOne/Develop/Publish-Subscribe/pub-sub-overview.md
       - Transactions:
@@ -301,7 +303,6 @@ nav:
             - USE DATABASE: MatrixOne/Reference/SQL-Reference/Other/use-database.md
           - KILL: MatrixOne/Reference/SQL-Reference/Other/kill.md
           - Prepared Statements:
-            - Prepared Statements Overview: MatrixOne/Reference/SQL-Reference/Other/Prepared-Statements/prepared-statements-overview.md
             - PREPARE: MatrixOne/Reference/SQL-Reference/Other/Prepared-Statements/prepare.md
             - EXECUTE: MatrixOne/Reference/SQL-Reference/Other/Prepared-Statements/execute.md
             - DEALLOCATE: MatrixOne/Reference/SQL-Reference/Other/Prepared-Statements/deallocate.md
@@ -457,7 +458,6 @@ nav:
           - Table:
             - UNNEST(): MatrixOne/Reference/Functions-and-Operators/Table/unnest.md
           - Window Functions:
-            - Window Functions Overview: MatrixOne/Reference/Functions-and-Operators/Window-Functions/window-functions-overview.md
             - DENSE_RANK(): MatrixOne/Reference/Functions-and-Operators/Window-Functions/dense_rank.md
             - RANK(): MatrixOne/Reference/Functions-and-Operators/Window-Functions/rank.md
             - ROW_NUMBER(): MatrixOne/Reference/Functions-and-Operators/Window-Functions/row_number.md
