@@ -1,4 +1,4 @@
-# Window Function Overview
+# Window Function
 
 Window Function (Window Function) is a unique function that can perform calculation operations on a specific window (Window) of the query result set. Window functions can be used to group, sort, and aggregate the result set and calculate the relevant value of each row of data within each window without changing the number of rows in the result set. That is, the result set can be flexibly analyzed and processed through the window function without introducing additional subqueries or join operations.
 
@@ -14,19 +14,19 @@ SQL window functions have a wide range of applications in various business scena
 
 - Most aggregate functions can also be used as window functions, for example, `SUM()`, `AVG()`, and `COUNT()`. These aggregate functions can be used with window functions to calculate the value of a column within a window Sum, average, or count. For aggregate functions and reference documents supported by MatrixOne that can be used as window functions, see:
 
-    * [AVG](../Aggregate-Functions/avg.md)
-    * [COUNT](../Aggregate-Functions/count.md)
-    * [MAX](../Aggregate-Functions/max.md)
-    * [SUM](../Aggregate-Functions/sum.md)
-    * [MIN](../Aggregate-Functions/min.md)
+    * [AVG](../../Reference/Functions-and-Operators/Aggregate-Functions/avg.md)
+    * [COUNT](../../Reference/Functions-and-Operators/Aggregate-Functions/count.md)
+    * [MAX](../../Reference/Functions-and-Operators/Aggregate-Functions/max.md)
+    * [SUM](../../Reference/Functions-and-Operators/Aggregate-Functions/sum.md)
+    * [MIN](../../Reference/Functions-and-Operators/Aggregate-Functions/min.md)
 
 - See the table below for other window functions:
 
 |Function name|description|
 |---|---|
-|[DENSE_RANK()](dense_rank.md)| Used to assign ranks to rows in a dataset, always assigning consecutive ranks to the next value, even if previous values ​​have the same rank. |
-|[RANK()](rank.md)|Assigns a rank value to each row in the query result set, rows with the same value will have the same rank, and the next rank value will skip the same number of rows. |
-|[ROW_NUMBER()](row_number.md)|Assigns a unique integer value to each row in the query result set, ordered according to the specified collation. |
+|[DENSE_RANK()](../../Reference/Functions-and-Operators/Window-Functions/dense_rank.md)| Used to assign ranks to rows in a dataset, always assigning consecutive ranks to the next value, even if previous values ​​have the same rank. |
+|[RANK()](../../Reference/Functions-and-Operators/Window-Functions/rank.md)|Assigns a rank value to each row in the query result set, rows with the same value will have the same rank, and the next rank value will skip the same number of rows. |
+|[ROW_NUMBER()](../../Reference/Functions-and-Operators/Window-Functions/row_number.md)|Assigns a unique integer value to each row in the query result set, ordered according to the specified collation. |
 
 ## How to use window functions
 
