@@ -13,16 +13,16 @@ There are two ways to update data: `UPDATE` and `INSERT ON DUPLICATE KEY UPDATE`
 The differences between the two are as follows:
 
 - **[`UPDATE`](../../Reference/SQL-Reference/Data-Manipulation-Language/update.md)**:
-  - The UPDATE statement is used to update existing rows of data directly.
-  - You need to specify the target table, columns to be updated, their corresponding new values, and the update conditions.
-  - If the update conditions are met, the data of the existing rows will be modified.
-  - No changes will be made if the update conditions are not met.
+    - The UPDATE statement is used to update existing rows of data directly.
+    - You need to specify the target table, columns to be updated, their corresponding new values, and the update conditions.
+    - If the update conditions are met, the data of the existing rows will be modified.
+    - No changes will be made if the update conditions are not met.
 
 - **[`INSERT ON DUPLICATE KEY UPDATE`](../../Reference/SQL-Reference/Data-Manipulation-Language/insert-on-duplicate.md)**:
-  - INSERT ON DUPLICATE KEY UPDATE is an extension of the INSERT statement, used to handle duplicate keys when inserting new rows.
-  - When there are duplicate keys in the inserted data, i.e., when the values of specific column(s) or combination of columns are the same as existing rows' key values, an UPDATE operation will be performed instead of inserting a new row.
-  - You can specify the data to be inserted and the update operations to be performed when duplicate key conflicts occur in a single statement.
-  - The specified update operations will update the corresponding columns for rows with duplicate keys.
+    - INSERT ON DUPLICATE KEY UPDATE is an extension of the INSERT statement, used to handle duplicate keys when inserting new rows.
+    - When there are duplicate keys in the inserted data, i.e., when the values of specific column(s) or combination of columns are the same as existing rows' key values, an UPDATE operation will be performed instead of inserting a new row.
+    - You can specify the data to be inserted and the update operations to be performed when duplicate key conflicts occur in a single statement.
+    - The specified update operations will update the corresponding columns for rows with duplicate keys.
 
 Key Differences:
 
