@@ -97,7 +97,7 @@ __Tips__: It is recommended that you download and install one of these two tools
      Binary for x86 architecture system:
 
      ```bash
-     mkdir /User/username/mo/matrixone & cd /User/username/mo
+     mkdir -p /User/username/mo/matrixone & cd /User/username/mo
      wget https://github.com/matrixorigin/matrixone/releases/download/v0.8.0/mo-v0.8.0-darwin-x86_64.zip
      unzip -d matrixone/ mo-v0.8.0-darwin-x86_64.zip
      ```
@@ -105,7 +105,7 @@ __Tips__: It is recommended that you download and install one of these two tools
      Binary for ARM architecture system:
 
      ```bash
-     mkdir /User/username/mo/matrixone & cd /User/username/mo
+     mkdir -p /User/username/mo/matrixone & cd /User/username/mo
      wget https://github.com/matrixorigin/matrixone/releases/download/v0.8.0/mo-v0.8.0-darwin-arm64.zip
      unzip -d matrixone/ mo-v0.8.0-darwin-arm64.zip
      ```
@@ -115,7 +115,7 @@ __Tips__: It is recommended that you download and install one of these two tools
      Binary for x86 architecture system:
 
      ```bash
-     mkdir /User/username/mo/matrixone & cd /User/username/mo
+     mkdir -p /User/username/mo/matrixone & cd /User/username/mo
      curl -OL https://github.com/matrixorigin/matrixone/releases/download/v0.8.0/mo-v0.8.0-darwin-x86_64.zip
      unzip -d matrixone/ mo-v0.8.0-darwin-x86_64.zip
      ```
@@ -123,7 +123,7 @@ __Tips__: It is recommended that you download and install one of these two tools
      Binary for ARM architecture system:
 
      ```bash
-     mkdir /User/username/mo/matrixone & cd /User/username/mo
+     mkdir -p /User/username/mo/matrixone & cd /User/username/mo
      curl -OL https://github.com/matrixorigin/matrixone/releases/download/v0.8.0/mo-v0.8.0-darwin-arm64.zip
      unzip -d matrixone/ mo-v0.8.0-darwin-arm64.zip
      ```

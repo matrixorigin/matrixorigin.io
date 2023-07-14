@@ -95,7 +95,7 @@ The Debian11.1 version does not have MySQL Client installed by default, so it ne
      Binary for x86 architecture system:
 
      ```bash
-     mkdir /root/matrixone & cd /root/
+     mkdir -p /root/matrixone & cd /root/
      wget https://github.com/matrixorigin/matrixone/releases/download/v0.8.0/mo-v0.8.0-linux-amd64.zip
      unzip -d matrixone/ mo-v0.8.0-linux-amd64.zip
      ```
@@ -103,7 +103,7 @@ The Debian11.1 version does not have MySQL Client installed by default, so it ne
      Binary for ARM architecture system:
 
      ```bash
-     mkdir /root/matrixone & cd /root/
+     mkdir -p /root/matrixone & cd /root/
      wget https://github.com/matrixorigin/matrixone/releases/download/v0.8.0/mo-v0.8.0-linux-arm64.zip
      unzip -d matrixone/ mo-v0.8.0-linux-arm64.zip
      ```
@@ -113,7 +113,7 @@ The Debian11.1 version does not have MySQL Client installed by default, so it ne
      Binary for x86 architecture system:
 
      ```bash
-     mkdir /root/matrixone & cd /root/
+     mkdir -p /root/matrixone & cd /root/
      curl -OL https://github.com/matrixorigin/matrixone/releases/download/v0.8.0/mo-v0.8.0-linux-amd64.zip
      unzip -d matrixone/ mo-v0.8.0-linux-amd64.zip
      ```
@@ -121,7 +121,7 @@ The Debian11.1 version does not have MySQL Client installed by default, so it ne
      Binary for ARM architecture system:
 
      ```bash
-     mkdir /root/matrixone & cd /root/
+     mkdir -p /root/matrixone & cd /root/
      curl -OL https://github.com/matrixorigin/matrixone/releases/download/v0.8.0/mo-v0.8.0-linux-arm64.zip
      unzip -d matrixone/ mo-v0.8.0-linux-arm64.zip
      ```
