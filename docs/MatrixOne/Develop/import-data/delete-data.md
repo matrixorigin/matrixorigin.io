@@ -53,6 +53,7 @@ DROP TABLE [IF EXISTS] [db.]name
 ```
 
 The `DROP TABLE` statement completely removes a table, including its structure and data, from the database.
+
 - `[IF EXISTS]` (optional) is a keyword that performs the deletion only if the table exists. An error will occur if omitted, and the table to be dropped does not exist.
 - `[db.]` (optional) specifies the database name where the table resides. If no database name is provided, the current database is assumed.
 - `name` is the name of the table to be dropped.
