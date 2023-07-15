@@ -356,5 +356,3 @@ Usage           : mo_ctl watchdog [options]   # setup a watchdog crontab task fo
                 : mo_ctl watchdog status      # check if watchdog is enabled or disabled
                 : mo_ctl watchdog             # same as mo_ctl watchdog status
 ```
-
-<!--ddl_convert 的详细转换规则请参考[该文档]()。-->
