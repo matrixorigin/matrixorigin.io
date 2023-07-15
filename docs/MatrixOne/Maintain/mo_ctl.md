@@ -177,6 +177,7 @@ Usage : mo_ctl stop [force] # stop all mo-service processes found on this machin
 ### restart - restart MatrixOne
 
 Use `mo_ctl restart [force]` to stop all MatrixOne services on this machine and restart the MatrixOne services located in the path of `MO_PATH`.
+
 ```
 mo_ctl restart help
 Usage         : mo_ctl restart [force] # a combination operation of stop and start
