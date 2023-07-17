@@ -24,7 +24,7 @@ mysql> select current_role();
 -- Create a role and switch to the new role
 create role use_role_1;
 grant all on database * to use_role_1;
-grant use_role_1 to dump;
+grant use_role_1 to root;
 set role use_role_1;
 mysql> select current_role();
 +----------------+

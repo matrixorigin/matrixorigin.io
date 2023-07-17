@@ -534,5 +534,5 @@ For more information on loding *JSONLines*, see [Import the JSONLines data](../.
 2. Input pre-pressing with `SET` is supported very limitedly. Only `SET columns_name=nullif(expr1,expr2)` is supported.
 3. When enabling the parallel loading, it must be ensured that each row of data in the file does not contain the specified line terminator, such as '\n'; otherwise, it will cause data errors during file loading.
 4. The parallel loading of files requires that the files be in uncompressed format, and parallel loading of files in compressed form is not currently supported.
-5. When you use `load data local`, you need to use the command line to connect to the MatrixOne service host: `mysql -h <mo-host -ip> -P 6001 -udump -p111 --local-infile`.
+5. When you use `load data local`, you need to use the command line to connect to the MatrixOne service host: `mysql -h <mo-host -ip> -P 6001 -uroot -p111 --local-infile`.
 6. MatrixOne does not support `ESCAPED BY` currently. Writing or reading special characters differs from MySQL to some extent.

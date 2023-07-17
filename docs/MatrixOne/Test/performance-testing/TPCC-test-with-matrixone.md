@@ -37,7 +37,7 @@ can be configurable by the `warehouse=XX` row in this file.
 db=mo
 driver=com.mysql.cj.jdbc.Driver
 conn=jdbc:mysql://127.0.0.1:6001/tpcc?characterSetResults=utf8&continueBatchOnError=false&useServerPrepStmts=true&alwaysSendSetIsolation=false&useLocalSessionState=true&zeroDateTimeBehavior=CONVERT_TO_NULL&failoverReadOnly=false&serverTimezone=Asia/Shanghai&enabledTLSProtocols=TLSv1.2&useSSL=false
-user=dump
+user=root
 password=111
 
 //the number of warehouse
@@ -221,7 +221,7 @@ Starting BenchmarkSQL LoadData
 props.mo
 driver=com.mysql.cj.jdbc.Driver
 conn=jdbc:mysql://127.0.0.1:6001/tpcc?characterSetResults=utf8&continueBatchOnError=false&useServerPrepStmts=true&alwaysSendSetIsolation=false&useLocalSessionState=true&zeroDateTimeBehavior=CONVERT_TO_NULL&failoverReadOnly=false&serverTimezone=Asia/Shanghai&enabledTLSProtocols=TLSv1.2&useSSL=false
-user=dump
+user=root
 password=***********
 warehouses=10
 loadWorkers=4
@@ -309,7 +309,7 @@ The following is an example of the command output:
 2022-12-22 21:15:35 INFO  jTPCC:63 - Term-00, db=mo
 2022-12-22 21:15:35 INFO  jTPCC:63 - Term-00, driver=com.mysql.cj.jdbc.Driver
 2022-12-22 21:15:35 INFO  jTPCC:63 - Term-00, conn=jdbc:mysql://127.0.0.1:6001/tpcc?characterSetResults=utf8&continueBatchOnError=false&useServerPrepStmts=true&alwaysSendSetIsolation=false&useLocalSessionState=true&zeroDateTimeBehavior=CONVERT_TO_NULL&failoverReadOnly=false&serverTimezone=Asia/Shanghai&enabledTLSProtocols=TLSv1.2&useSSL=false
-2022-12-22 21:15:35 INFO  jTPCC:63 - Term-00, user=dump
+2022-12-22 21:15:35 INFO  jTPCC:63 - Term-00, user=root
 2022-12-22 21:15:35 INFO  jTPCC:93 - Term-00,
 2022-12-22 21:15:35 INFO  jTPCC:63 - Term-00, warehouses=10
 2022-12-22 21:15:35 INFO  jTPCC:63 - Term-00, terminals=1

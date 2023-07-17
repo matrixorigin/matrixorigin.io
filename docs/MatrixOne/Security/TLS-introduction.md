@@ -104,7 +104,7 @@ After completing the configuration of these two main steps, a TLS secure connect
 
     Connection id:          1001
     Current database:
-    Current user:           dump@0.0.0.0
+    Current user:           root@0.0.0.0
     SSL:                    Cipher in use is TLS_AES_128_GCM_SHA256
     Current pager:          stdout
     Using outfile:          ''
