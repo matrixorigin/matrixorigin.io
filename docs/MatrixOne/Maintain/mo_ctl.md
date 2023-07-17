@@ -22,12 +22,17 @@ The current function list of `mo_ctl` is shown in the table below.
 | `mo_ctl start` | Start MatrixOne service |
 | `mo_ctl status` | Check if the MatrixOne service is running |
 | `mo_ctl stop` | Stop all MatrixOne service processes |
-| `mo_ctl start` | Restart MatrixOne service |
+| `mo_ctl restart` | Restart MatrixOne service |
 | `mo_ctl connect` | Call MySQL Client to connect to MatrixOne service |
+| `mo_ctl upgrade`     | Upgrade/downgrade MatrixOne from the current version to a release version or commit id version        |
 | `mo_ctl set_conf` | Set various usage parameters |
 | `mo_ctl get_conf` | View current parameters |
+| `mo_ctl uninstall` | Uninstall MatrixOne from MO_PATH path |
+| `mo_ctl watchdog` | Set a scheduled task to ensure the availability of MatrixOne service, check the status of MatrixOne every minute, and automatically pull up the service if the service is found to be suspended |
+| `mo_ctl sql` | Execute SQL directly through commands or a text file composed of SQL |
 | `mo_ctl ddl_convert` | A tool to convert MySQL DDL statements into MatrixOne statements |
 | `mo_ctl get_cid` | View the source version of the current MatrixOne download repository |
+| `mo_ctl get_branch`     | View the branch version of the current MatrixOne download repository                 |
 | `mo_ctl pprof` | Used to collect MatrixOne profiling data |
 
 ## Install mo_ctl
@@ -94,23 +99,28 @@ You can quickly install and deploy the stand-alone version of MatrixOne through 
 mo_ctl help
 Usage             : mo_ctl [option_1] [option_2]
 
-[option_1]        : available: help | precheck | deploy | status | start | stop | restart | connect | get_cid | set_conf | get_conf | pprof | ddl_convert
-  0) help         : print help information
-  1) precheck     : check pre-requisites for mo_ctl
-  2) deploy       : deploy mo onto the path configured
-  3) status       : check if there's any mo process running on this machine
-  4) start        : start mo-service from the path configured
-  5) stop         : stop all mo-service processes found on this machine
-  6) restart      : start mo-service from the path configured
-  7) connect      : connect to mo via mysql client using connection info configured
-  8) get_cid      : print mo commit id from the path configured
-  9) pprof        : collect pprof information
-  10) set_conf    : set configurations
-  11) get_conf    : get configurations
-  12) ddl_convert : convert ddl file from to mo format from other types of database
+[option_1]      : available: connect | ddl_connect | deploy | get_branch | get_cid | get_conf | help | pprof | precheck | query | restart | set_conf | sql | start | status | stop | uninstall | upgrade | watchdog
+  1) connect      : connect to mo via mysql client using connection info configured
+  2) ddl_convert  : convert ddl file to mo format from other types of database
+  3) deploy       : deploy mo onto the path configured
+  4) get_branch   : upgrade or downgrade mo from current version to a target commit id or stable version
+  5) get_cid      : print mo git commit id from the path configured
+  6) get_conf     : get configurations
+  7) help         : print help information
+  8) pprof        : collect pprof information
+  9) precheck     : check pre-requisites for mo_ctl
+  10) restart     : a combination operation of stop and start
+  11) set_conf    : set configurations
+  12) sql         : execute sql from string, or a file or a path containg multiple files
+  13) start       : start mo-service from the path configured
+  14) status      : check if there's any mo process running on this machine
+  15) stop        : stop all mo-service processes found on this machine
+  16) uninstall   : uninstall mo from path MO_PATH=/data/mo/20230712_1228//matrixone
+  17) upgrade     : upgrade or downgrade mo from current version to a target commit id or stable version
+  18) watchdog    : setup a watchdog crontab task for mo-service to keep it alive
   e.g.            : mo_ctl status
 
-[option_2]        : Use " mo_ctl [option_1] help " to get more info
+  [option_2]      : Use " mo_ctl [option_1] help " to get more info
   e.g.            : mo_ctl deploy help
 ```
 
@@ -185,6 +195,15 @@ mo_ctl connect help
 Usage         : mo_ctl connect # connect to mo via mysql client using connection info configured
 ```
 
+### status - Check the status of MatrixOne
+
+Use `mo_ctl status` to check whether MatrixOne is running or not.
+
+```
+mo_ctl status help
+Usage         : mo_ctl status # check if there's any mo process running on this machine
+```
+
 ### get_cid - print MatrixOne code commit id
 
 Use `mo_ctl get_cid` to print the MatrixOne repository commit id under the current `MO_PATH` path.
@@ -192,6 +211,15 @@ Use `mo_ctl get_cid` to print the MatrixOne repository commit id under the curre
 ```
 mo_ctl get_cid help
 Usage : mo_ctl get_cid # print mo commit id from the path configured
+```
+
+### get_branch - print MatrixOne code commit id
+
+Use `mo_ctl get_branch` to print the MatrixOne codebase branch under the current `MO_PATH` path.
+
+```
+mo_ctl get_branch help
+Usage           : mo_ctl get_branch        # print which git branch mo is currently on
 ```
 
 ### pprof - Collect performance information
@@ -276,4 +304,55 @@ Usage           : mo_ctl ddl_convert [options] [src_file] [tgt_file] # convert a
  [src_file]     : source file to be converted, will use env DDL_SRC_FILE from conf file by default
  [tgt_file]     : target file of converted output, will use env DDL_TGT_FILE from conf file by default
   e.g.          : mo_ctl ddl_convert mysql_to_mo /tmp/mysql.sql /tmp/mo.sql
+```
+
+### sql - Execute SQL
+
+Use `mo_ctl sql [sql]` to execute SQL text or SQL files.
+
+```
+mo_ctl sql help
+Usage           : mo_ctl sql [sql]                 # execute sql from string, or a file or a path containg multiple files
+  [sql]         : a string quote by "", or a file, or a path
+  e.g.          : mo_ctl sql "use test;select 1;"  # execute sql "use test;select 1"
+                : mo_ctl sql /data/q1.sql          # execute sql in file /data/q1.sql
+                : mo_ctl sql /data/                # execute all sql files with .sql postfix in /data/
+```
+
+### uninstall - Uninstall MatrixOne
+
+Use `mo_ctl uninstall` to uninstall MatrixOne from MO_PATH.
+
+```
+mo_ctl uninstall help
+Usage           : mo_ctl uninstall        # uninstall mo from path MO_PATH=/data/mo//matrixone
+                                          # note: you will need to input 'Yes/No' to confirm before uninstalling
+```
+
+### upgrade - upgrade/downgrade MatrixOne version
+
+Use `mo_ctl upgrade version` or `mo_ctl upgrade commitid` to upgrade or downgrade MatrixOne from the current version to a stable version or a commit id version.
+
+```
+mo_ctl upgrade help
+Usage           : mo_ctl upgrade [version_commitid]   # upgrade or downgrade mo from current version to a target commit id or stable version
+ [commitid]     : a commit id such as '38888f7', or a stable version such as '0.8.0'
+                : use 'latest' to upgrade to latest commit on main branch if you don't know the id
+  e.g.          : mo_ctl upgrade 38888f7              # upgrade/downgrade to commit id 38888f7 on main branch
+                : mo_ctl upgrade latest               # upgrade/downgrade to latest commit on main branch
+                : mo_ctl upgrade 0.8.0                # upgrade/downgrade to stable version 0.8.0
+```
+
+### watchdog - Keep Alive MatrixOne
+
+Use `mo_ctl watchdog [options]` to set a scheduled task to ensure the availability of MatrixOne service, check the status of MatrixOne every minute, and automatically pull up the service if it finds that the service is suspended.
+
+```
+mo_ctl watchdog help
+Usage           : mo_ctl watchdog [options]   # setup a watchdog crontab task for mo-service to keep it alive
+ [options]      : available: enable | disable | status
+  e.g.          : mo_ctl watchdog enable      # enable watchdog service for mo, by default it will check if mo-servie is alive and pull it up if it's dead every one minute
+                : mo_ctl watchdog disable     # disable watchdog
+                : mo_ctl watchdog status      # check if watchdog is enabled or disabled
+                : mo_ctl watchdog             # same as mo_ctl watchdog status
 ```
