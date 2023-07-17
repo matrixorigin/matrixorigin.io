@@ -62,7 +62,7 @@ The `DROP TABLE` statement completely removes a table, including its structure a
 
 By default, MatrixOne does not immediately delete data from the disk after running `DELETE`, `DROP`, or `TRUNCATE` statements. Instead, it marks the data as deletable. Then, the GC (Garbage Collection) mechanism periodically scans and cleans up the no longer-needed old data.
 
-In the default configuration, the garbage collection mechanism scans and cleans up the disk space every 1 hour to free up storage. Therefore, it's important to note that executing `DELETE`, `DROP`, or `TRUNCATE` statements do not immediately reduce disk usage. Only during garbage collection will the data marked as deletable be cleaned up and the space released.
+By default, the garbage collection mechanism scans every 30 minutes. During each scan, it identifies data deleted through SQL statements for over 1 hour and starts the cleanup process to release disk space. The most extended cycle to complete all deletions is 90 minutes. Therefore, it is essential to note that executing `DELETE`, `DROP`, or `TRUNCATE` statements do not immediately reduce disk usage. Only data marked as deletable during the garbage collection will be cleaned up, and disk space will be freed.
 
 ## Examples
 
