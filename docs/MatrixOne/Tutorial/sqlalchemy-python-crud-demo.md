@@ -67,7 +67,7 @@ from sqlalchemy.orm import sessionmaker
 
 faker = Factory.create()
 
-engine = create_engine('mysql+pymysql://dump:111@127.0.0.1:6001/test')
+engine = create_engine('mysql+pymysql://root:111@127.0.0.1:6001/test')
 
 Session = sessionmaker(bind=engine)
 session = Session()
@@ -172,7 +172,7 @@ from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-engine = create_engine('mysql+pymysql://dump:111@127.0.0.1:6001/test')
+engine = create_engine('mysql+pymysql://root:111@127.0.0.1:6001/test')
 
 Session = sessionmaker(bind=engine)
 session = Session()
@@ -269,7 +269,7 @@ from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-engine = create_engine('mysql+pymysql://dump:111@127.0.0.1:6001/test')
+engine = create_engine('mysql+pymysql://root:111@127.0.0.1:6001/test')
 
 Session = sessionmaker(bind=engine)
 session = Session()
@@ -362,7 +362,7 @@ from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-engine = create_engine('mysql+pymysql://dump:111@127.0.0.1:6001/test')
+engine = create_engine('mysql+pymysql://root:111@127.0.0.1:6001/test')
 
 Session = sessionmaker(bind=engine)
 session = Session()
