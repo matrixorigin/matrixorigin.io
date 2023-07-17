@@ -1208,6 +1208,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Develop/schema-design/data-integrity/auto-increment-integrity/" class="md-nav__link">
+        AUTO INCREMENT Constraints
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -1398,6 +1412,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Develop/import-data/bulk-load/prepared/" class="md-nav__link">
+        Prepared
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -1562,6 +1590,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Develop/read-data/window-function/" class="md-nav__link">
+        Window Function.
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -1594,6 +1636,20 @@
           Account Design
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Develop/Publish-Subscribe/pub-sub-overview/" class="md-nav__link">
+        Multi-Account Overview
+      </a>
+    </li>
+  
+
+            
           
             
               
@@ -5144,20 +5200,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Other/Prepared-Statements/prepared-statements-overview/" class="md-nav__link">
-        Prepared Statements Overview
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../Other/Prepared-Statements/prepare/" class="md-nav__link">
         PREPARE
       </a>
@@ -7689,20 +7731,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Functions-and-Operators/Window-Functions/window-functions-overview/" class="md-nav__link">
-        Window Functions Overview
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../Functions-and-Operators/Window-Functions/dense_rank/" class="md-nav__link">
         DENSE_RANK()
       </a>
@@ -9233,7 +9261,7 @@ aa&quot;aa|bb&quot;bb|cc&quot;cc|dd&quot;dd
 </code></pre></div>
 <p>As you can see, the query result ignores the first line and
 and ignores the common prefix aa.</p>
-<p>For more information on loding <em>csv</em>, see <a href="../../../../Develop/import-data/bulk-load/load-jsonline/">Import the <em>.csv</em> data</a>.</p>
+<p>For more information on loding <em>csv</em>, see <a href="../../../../Develop/import-data/bulk-load/load-csv/">Import the <em>.csv</em> data</a>.</p>
 <h3 id="example-2-load-jsonlines">Example 2: LOAD JSONLines</h3>
 <h4 id="simple-example_1">Simple example</h4>
 <p>The data in the file locally named <em>jsonline_array.jl</em> is as follows:</p>
@@ -9282,7 +9310,7 @@ load data infile {&#39;filepath&#39;=&#39;&lt;your-local-file-path&gt;/jsonline_
 <li>Input pre-pressing with <code>SET</code> is supported very limitedly. Only <code>SET columns_name=nullif(expr1,expr2)</code> is supported.</li>
 <li>When enabling the parallel loading, it must be ensured that each row of data in the file does not contain the specified line terminator, such as '\n'; otherwise, it will cause data errors during file loading.</li>
 <li>The parallel loading of files requires that the files be in uncompressed format, and parallel loading of files in compressed form is not currently supported.</li>
-<li>When you use <code>load data local</code>, you need to use the command line to connect to the MatrixOne service host: <code>mysql -h &lt;mo-host -ip&gt; -P 6001 -udump -p111 --local-infile</code>.</li>
+<li>When you use <code>load data local</code>, you need to use the command line to connect to the MatrixOne service host: <code>mysql -h &lt;mo-host -ip&gt; -P 6001 -uroot -p111 --local-infile</code>.</li>
 <li>MatrixOne does not support <code>ESCAPED BY</code> currently. Writing or reading special characters differs from MySQL to some extent.</li>
 </ol>
 

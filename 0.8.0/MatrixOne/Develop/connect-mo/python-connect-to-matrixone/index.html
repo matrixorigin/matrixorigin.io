@@ -1274,6 +1274,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../schema-design/data-integrity/auto-increment-integrity/" class="md-nav__link">
+        AUTO INCREMENT Constraints
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -1464,6 +1478,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../import-data/bulk-load/prepared/" class="md-nav__link">
+        Prepared
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -1628,6 +1656,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../read-data/window-function/" class="md-nav__link">
+        Window Function.
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -1660,6 +1702,20 @@
           Account Design
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Publish-Subscribe/pub-sub-overview/" class="md-nav__link">
+        Multi-Account Overview
+      </a>
+    </li>
+  
+
+            
           
             
               
@@ -5021,20 +5077,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Reference/SQL-Reference/Other/Prepared-Statements/prepared-statements-overview/" class="md-nav__link">
-        Prepared Statements Overview
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../Reference/SQL-Reference/Other/Prepared-Statements/prepare/" class="md-nav__link">
         PREPARE
       </a>
@@ -7566,20 +7608,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Reference/Functions-and-Operators/Window-Functions/window-functions-overview/" class="md-nav__link">
-        Window Functions Overview
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../Reference/Functions-and-Operators/Window-Functions/dense_rank/" class="md-nav__link">
         DENSE_RANK()
       </a>
@@ -8686,7 +8714,7 @@ pip3 install cryptography -i https://pypi.tuna.tsinghua.edu.cn/simple
 <span class="n">db</span> <span class="o">=</span> <span class="n">pymysql</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
         <span class="n">host</span><span class="o">=</span><span class="s1">&#39;127.0.0.1&#39;</span><span class="p">,</span>
         <span class="n">port</span><span class="o">=</span><span class="mi">6001</span><span class="p">,</span>
-        <span class="n">user</span><span class="o">=</span><span class="s1">&#39;dump&#39;</span><span class="p">,</span>
+        <span class="n">user</span><span class="o">=</span><span class="s1">&#39;root&#39;</span><span class="p">,</span>
         <span class="n">password</span> <span class="o">=</span> <span class="s2">&quot;111&quot;</span><span class="p">,</span>
         <span class="n">db</span><span class="o">=</span><span class="s1">&#39;test&#39;</span><span class="p">,</span>
         <span class="p">)</span>
@@ -8736,7 +8764,7 @@ pip3 install sqlalchemy -i https://pypi.tuna.tsinghua.edu.cn/simple
 <span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span><span class="p">,</span> <span class="n">text</span>
 
 <span class="c1"># Open database connection</span>
-<span class="n">my_conn</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s2">&quot;mysql+mysqldb://dump:111@127.0.0.1:6001/test&quot;</span><span class="p">)</span>
+<span class="n">my_conn</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s2">&quot;mysql+mysqldb://root:111@127.0.0.1:6001/test&quot;</span><span class="p">)</span>
 
 <span class="c1"># execute SQL query using execute() method.</span>
 <span class="n">query</span><span class="o">=</span><span class="n">text</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM student LIMIT 0,10&quot;</span><span class="p">)</span>

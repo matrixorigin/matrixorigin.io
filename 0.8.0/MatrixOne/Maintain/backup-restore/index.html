@@ -1208,6 +1208,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Develop/schema-design/data-integrity/auto-increment-integrity/" class="md-nav__link">
+        AUTO INCREMENT Constraints
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -1398,6 +1412,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Develop/import-data/bulk-load/prepared/" class="md-nav__link">
+        Prepared
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -1562,6 +1590,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Develop/read-data/window-function/" class="md-nav__link">
+        Window Function.
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -1594,6 +1636,20 @@
           Account Design
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Develop/Publish-Subscribe/pub-sub-overview/" class="md-nav__link">
+        Multi-Account Overview
+      </a>
+    </li>
+  
+
+            
           
             
               
@@ -5025,20 +5081,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Other/Prepared-Statements/prepared-statements-overview/" class="md-nav__link">
-        Prepared Statements Overview
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../Reference/SQL-Reference/Other/Prepared-Statements/prepare/" class="md-nav__link">
         PREPARE
       </a>
@@ -7570,20 +7612,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Window-Functions/window-functions-overview/" class="md-nav__link">
-        Window Functions Overview
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../Reference/Functions-and-Operators/Window-Functions/dense_rank/" class="md-nav__link">
         DENSE_RANK()
       </a>
@@ -8694,10 +8722,10 @@ create table t1
 insert into t1 values (1, 1, 1, 1, 1, 1, 1, 1, 1, 1, &#39;2019-01-01&#39;, &#39;2019-01-01 00:00:00&#39;, &#39;2019-01-01 00:00:00&#39;, &#39;a&#39;, &#39;a&#39;, &#39;{&quot;a&quot;:1}&#39;,&#39;1212.1212&#39;, &#39;a&#39;, &#39;aza&#39;, &#39;00000000-0000-0000-0000-000000000000&#39;);
 </code></pre></div>
 <p>If you want to generate the backup of the single database, run the following command. The command will generate the backup of the <strong>t</strong> database with structure and data in the <code>t.sql</code> file.</p>
-<div class="highlight"><pre><span></span><code>./modump -u dump -p 111 -h 127.0.0.1 -P 6001 -db t &gt; t.sql
+<div class="highlight"><pre><span></span><code>./modump -u root -p 111 -h 127.0.0.1 -P 6001 -db t &gt; t.sql
 </code></pre></div>
 <p>If you want to generate the backup of a single table in a database, run the following command. The command will generate the backup of the <code>t1</code> table of  <code>t</code> database with structure and data in the <code>t.sql</code> file.</p>
-<div class="highlight"><pre><span></span><code>./modump -u dump -p 111 -db t -tbl t1 &gt; t1.sql
+<div class="highlight"><pre><span></span><code>./modump -u root -p 111 -db t -tbl t1 &gt; t1.sql
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
