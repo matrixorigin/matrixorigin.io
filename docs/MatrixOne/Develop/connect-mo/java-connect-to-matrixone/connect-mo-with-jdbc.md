@@ -57,7 +57,7 @@ Prerequisite to understand Java Database Connectivity with MatrixOne, make sure 
 
 
         private static String jdbcURL = "jdbc:mysql://127.0.0.1:6001/test";
-        private static String jdbcUsername = "dump";
+        private static String jdbcUsername = "root";
         private static String jdbcPassword = "111";
 
         public static void main(String[] args) {
