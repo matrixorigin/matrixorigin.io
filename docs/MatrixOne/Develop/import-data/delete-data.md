@@ -58,6 +58,12 @@ The `DROP TABLE` statement completely removes a table, including its structure a
 - `[db.]` (optional) specifies the database name where the table resides. If no database name is provided, the current database is assumed.
 - `name` is the name of the table to be dropped.
 
+## Garbage Collection
+
+By default, MatrixOne does not immediately delete data from the disk after running `DELETE`, `DROP`, or `TRUNCATE` statements. Instead, it marks the data as deletable. Then, the GC (Garbage Collection) mechanism periodically scans and cleans up the no longer-needed old data.
+
+In the default configuration, the garbage collection mechanism scans and cleans up the disk space every 1 hour to free up storage. Therefore, it's important to note that executing `DELETE`, `DROP`, or `TRUNCATE` statements do not immediately reduce disk usage. Only during garbage collection will the data marked as deletable be cleaned up and the space released.
+
 ## Examples
 
 - Example 1
