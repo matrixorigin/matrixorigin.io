@@ -66,7 +66,7 @@ To test the SSL configuration, perform the following steps:
 2. Connect to MatrixOne service by MySQL client:
 
     ```
-    mysql -h IP_ADDRESS -P 6001 -udump -p111
+    mysql -h IP_ADDRESS -P 6001 -uroot -p111
     ```
 
 3. After you connect, run the `status` command. The output will resemble the following example:
@@ -78,7 +78,7 @@ To test the SSL configuration, perform the following steps:
 
     Connection id:		1001
     Current database:
-    Current user:		dump@0.0.0.0
+    Current user:		root@0.0.0.0
     SSL:			Cipher in use is TLS_AES_128_GCM_SHA256
     Current pager:		stdout
     Using outfile:		''
