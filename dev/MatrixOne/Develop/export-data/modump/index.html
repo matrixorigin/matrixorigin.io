@@ -1210,6 +1210,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../schema-design/data-integrity/auto-increment-integrity/" class="md-nav__link">
+        AUTO INCREMENT Constraints
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -1395,6 +1409,20 @@
           
         </ul>
       </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../import-data/bulk-load/prepared/" class="md-nav__link">
+        Prepared
+      </a>
     </li>
   
 
@@ -1641,6 +1669,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../read-data/window-function/" class="md-nav__link">
+        Window Function.
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -1673,6 +1715,20 @@
           Account Design
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Publish-Subscribe/pub-sub-overview/" class="md-nav__link">
+        Multi-Account Overview
+      </a>
+    </li>
+  
+
+            
           
             
               
@@ -5034,20 +5090,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Reference/SQL-Reference/Other/Prepared-Statements/prepared-statements-overview/" class="md-nav__link">
-        Prepared Statements Overview
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../Reference/SQL-Reference/Other/Prepared-Statements/prepare/" class="md-nav__link">
         PREPARE
       </a>
@@ -7579,20 +7621,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Reference/Functions-and-Operators/Window-Functions/window-functions-overview/" class="md-nav__link">
-        Window Functions Overview
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../Reference/Functions-and-Operators/Window-Functions/dense_rank/" class="md-nav__link">
         DENSE_RANK()
       </a>
@@ -8739,13 +8767,13 @@ make build modump
 <div class="highlight"><pre><span></span><code>./mo-dump -u username -p password -h host_ip_address -P port -db database &gt; exporteddb.sql
 </code></pre></div>
 <p>For example, if you are launching the terminal in the same server as the MatrixOne instance, and you want to generate the backup of the single database, run the following command. The command will generate the backup of the "<strong>t</strong>" database with structure and data in the <code>t.sql</code> file. The <code>t.sql</code> file will be located in the same directory as your <code>mo-dump</code> executable.</p>
-<div class="highlight"><pre><span></span><code>./mo-dump -u dump -p 111 -h 127.0.0.1 -P 6001 -db t &gt; t.sql
+<div class="highlight"><pre><span></span><code>./mo-dump -u root -p 111 -h 127.0.0.1 -P 6001 -db t &gt; t.sql
 </code></pre></div>
 <p>If you want to export the tables in the database <em>t</em> to <em>CSV</em> format, refer to the following command:</p>
-<div class="highlight"><pre><span></span><code>./mo-dump -u dump -p 111 -db t -csv --local-infile=false &gt; ttt.sql
+<div class="highlight"><pre><span></span><code>./mo-dump -u root -p 111 -db t -csv --local-infile=false &gt; ttt.sql
 </code></pre></div>
 <p>If you want to generate the backup of a single table in a database, run the following command. The command will generate the backup of the <code>t1</code> table of  <code>t</code> database with structure and data in the <code>t.sql</code> file.</p>
-<div class="highlight"><pre><span></span><code>./mo-dump -u dump -p 111 -db t -tbl t1 &gt; t1.sql
+<div class="highlight"><pre><span></span><code>./mo-dump -u root -p 111 -db t -tbl t1 &gt; t1.sql
 </code></pre></div>
 <h2 id="constraints">Constraints</h2>
 <ul>

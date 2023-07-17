@@ -1210,6 +1210,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../schema-design/data-integrity/auto-increment-integrity/" class="md-nav__link">
+        AUTO INCREMENT Constraints
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -1468,6 +1482,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../prepared/" class="md-nav__link">
+        Prepared
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -1632,6 +1660,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../read-data/window-function/" class="md-nav__link">
+        Window Function.
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -1664,6 +1706,20 @@
           Account Design
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Publish-Subscribe/pub-sub-overview/" class="md-nav__link">
+        Multi-Account Overview
+      </a>
+    </li>
+  
+
+            
           
             
               
@@ -5025,20 +5081,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Other/Prepared-Statements/prepared-statements-overview/" class="md-nav__link">
-        Prepared Statements Overview
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../../Reference/SQL-Reference/Other/Prepared-Statements/prepare/" class="md-nav__link">
         PREPARE
       </a>
@@ -7570,20 +7612,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/Functions-and-Operators/Window-Functions/window-functions-overview/" class="md-nav__link">
-        Window Functions Overview
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../../Reference/Functions-and-Operators/Window-Functions/dense_rank/" class="md-nav__link">
         DENSE_RANK()
       </a>
@@ -8856,7 +8884,7 @@ load data infile {&#39;filepath&#39;=&#39;data.jl.gz&#39;, &#39;compression&#39;
 <p>Install and Launch MatrixOne in the same machine, launch MySQL Client to connect to MatrixOne.</p>
 <div class="highlight"><pre><span></span><code>mysql -h 127.0.0.1 -P 6001 -uroot -p111
 </code></pre></div>
-<p><strong>Note:</strong> If your data file is on a different machine from the MatrixOne server, that is, the data file is on the client machine you are using, then you need to use the command line to connect to the MatrixOne service host: <code>mysql -h &lt;mo-host -ip&gt; -P 6001 -udump -p111 --local-infile</code>; and the imported command line needs to use <code>LOAD DATA LOCAL INFILE</code> syntax.</p>
+<p><strong>Note:</strong> If your data file is on a different machine from the MatrixOne server, that is, the data file is on the client machine you are using, then you need to use the command line to connect to the MatrixOne service host: <code>mysql -h &lt;mo-host -ip&gt; -P 6001 -uroot -p111 --local-infile</code>; and the imported command line needs to use <code>LOAD DATA LOCAL INFILE</code> syntax.</p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
 <p>The login account in the above code snippet is the initial account; please change the initial password after logging in to MatrixOne; see <a href="../../../../Security/password-mgmt/">Password Management</a>.</p>
