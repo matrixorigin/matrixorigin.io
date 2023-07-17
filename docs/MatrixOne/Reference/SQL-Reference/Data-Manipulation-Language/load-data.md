@@ -461,7 +461,7 @@ mysql> select * from t1;
 As you can see, the query result ignores the first line and
 and ignores the common prefix aa.
 
-For more information on loding *csv*, see [Import the *.csv* data](../../../Develop/import-data/bulk-load/load-jsonline.md).
+For more information on loding *csv*, see [Import the *.csv* data](../../../Develop/import-data/bulk-load/load-csv.md).
 
 ### Example 2: LOAD JSONLines
 
