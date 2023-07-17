@@ -21,3 +21,7 @@ There are various constraints in MatrixOne, and different constraints have diffe
 - [FOREIGN KEY integrity constraints](foreign-key-constraints.md)
 
    A foreign key constraint means that a column or columns in another table reference a column or a combination of columns stored in one table. The referenced table is usually called the parent table, and the referenced table is called the child table. The child table refers to the data of the corresponding column of the parent table, which can only be the data or null value of the parent table. This kind of constraint is called a foreign key constraint.
+
+- [AUTO INCREMENT constraint](auto-increment-integrity.md)
+
+   An auto-increment constraint is a feature that automatically generates a unique identifying value for a column in a table. It allows you to automatically generate an incremental unique value for a specified auto-increment column when a new row is inserted.
