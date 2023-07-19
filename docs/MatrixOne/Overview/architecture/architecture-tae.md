@@ -2,11 +2,11 @@
 
 MatrixOne's storage engine is called the Transactional Analytical Engine (TAE).
 
-![](https://github.com/matrixorigin/artwork/blob/main/docs/overview/tae/tae-arch.png?raw=true)
+![](https://github.com/matrixorigin/artwork/blob/main/docs/tae/tae-arch.png?raw=true)
 
 ## Storage Engine Architecture
 
-![](https://github.com/matrixorigin/artwork/blob/main/docs/overview/tae/tae-storage.png?raw=true)
+![](https://github.com/matrixorigin/artwork/blob/main/docs/tae/tae-storage.png?raw=true)
 
 The Transactional Analytical Engine (TAE) organizes data into column blocks, the minor IO units. Currently, these blocks are organized with a fixed number of rows. For columns of the Blob type, special handling is performed.
 
@@ -35,7 +35,7 @@ From an indexing granularity perspective, TAE can be divided into table-level in
 
 In segment-level indexing, there are two segments: append-only and non-dependable. For non-appendable segments, the segment-level index is a two-tier structure consisting of a Bloom filter and a Zone map. Dependable segments are composed of at least one dependable block and multiple non-appendable blocks. The index of the dependable block is an ART-tree (Adaptive Radix Tree) structure and a Zonemap, which reside in memory. The non-appendable blocks contain a Bloom filter and a Zone map.
 
-![](https://github.com/matrixorigin/artwork/blob/main/docs/overview/tae/index-metadata.png?raw=true)
+![](https://github.com/matrixorigin/artwork/blob/main/docs/tae/index-metadata.png?raw=true)
 
 ## Buffer Management
 
@@ -91,13 +91,13 @@ In TAE's architecture, a table consists of multiple segments, each resulting fro
 
 Background asynchronous tasks handle the generation and transformation of segments. To ensure data consistency during data reading, TAE incorporates these asynchronous tasks into the transaction processing framework, as shown in the example below:
 
-![](https://github.com/matrixorigin/artwork/blob/main/docs/overview/tae/segment.png?raw=true)
+![](https://github.com/matrixorigin/artwork/blob/main/docs/tae/segment.png?raw=true)
 
 Block `$Block1 {L0}$` in layer L0 is created at time `$t1$` and contains data from `$Txn1$`, `$Txn2$`, `$Txn3$`, and `$Txn4$`. Block `$Block1 {L0}$` starts sorting at `$t11$`; its read view is the baseline plus one uncommitted update node. Sorting and persisting blocks may take a long time. Before the committed sorted block `$Block2 {L1}$` is flushed, there are two committed transactions `$Txn5$`, `$Txn6$`, and one uncommitted transaction `$Txn7$`. When `$Txn7$` is committed at `$t16$`, it fails because `$Block1 {L0}$` has already been terminated. The update nodes `$Txn5$` and `$Txn6$` committed during the period `$(t11, t16)$` will be merged into a new update node, which will be committed together with `$Block2 {L1}$` at `$t16
 
 $`.
 
-![](https://github.com/matrixorigin/artwork/blob/main/docs/overview/tae/compaction.png?raw=true)
+![](https://github.com/matrixorigin/artwork/blob/main/docs/tae/compaction.png?raw=true)
 
 The compaction process terminates a series of blocks or segments and atomically creates a new block or segment (or builds an index). Unlike regular transactions, this process often takes longer, and we do not want to block, update, or delete transactions involving the blocks or segments in question. Therefore, we extend the read view to include the metadata of blocks and segments. During the execution of a transaction, each write operation checks for write-write conflicts. If a conflict occurs, the transaction is terminated prematurely.
 
@@ -115,6 +115,6 @@ Each of the above solutions has characteristics that impact its performance in O
 
 TAE currently chooses a variant of the third solution:
 
-![](https://github.com/matrixorigin/artwork/blob/main/docs/overview/tae/mvcc.png?raw=true)
+![](https://github.com/matrixorigin/artwork/blob/main/docs/tae/mvcc.png?raw=true)
 
 In heavy updates, the old version data of LSM tree structures can lead to significant read amplification. The cache manager maintains the version chain in TAE, and when it needs to be replaced, it is merged with the primary table data to generate new blocks. Thus, it is semantically in-place updates but implemented as copy-on-write, which is necessary for cloud storage. The newly generated blocks have less read amplification, which is advantageous for frequent AP queries after updates.
