@@ -71,19 +71,19 @@ Open up a command line or terminal window on your computer, then verify that fro
 For example, if you are launching the terminal in the same server as the MatrixOne instance, and you want to generate the backup of the single database, run the following command. The command will generate the backup of the "**t**" database with structure and data in the `t.sql` file. The `t.sql` file will be located in the same directory as your `mo-dump` executable.
 
 ```
-./mo-dump -u dump -p 111 -h 127.0.0.1 -P 6001 -db t > t.sql
+./mo-dump -u root -p 111 -h 127.0.0.1 -P 6001 -db t > t.sql
 ```
 
 If you want to export the tables in the database *t* to *CSV* format, refer to the following command:
 
 ```
-./mo-dump -u dump -p 111 -db t -csv --local-infile=false > ttt.sql
+./mo-dump -u root -p 111 -db t -csv --local-infile=false > ttt.sql
 ```
 
 If you want to generate the backup of a single table in a database, run the following command. The command will generate the backup of the `t1` table of  `t` database with structure and data in the `t.sql` file.
 
 ```
-./mo-dump -u dump -p 111 -db t -tbl t1 > t1.sql
+./mo-dump -u root -p 111 -db t -tbl t1 > t1.sql
 ```
 
 ## Constraints

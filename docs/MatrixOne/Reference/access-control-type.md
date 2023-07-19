@@ -4,7 +4,7 @@ The privilege control of a MatrixOne is classified into **System Permission** an
 
 ## System Permission
 
-System permissions are the permissions of the initial system account. The system account is the cluster system administrator *root* or *dump*, also called the cluster administrator. The system root can create and delete other accounts, and manage accounts. A system root cannot manage other resources of other accounts.
+System permissions are the permissions of the initial system account. The system account is the cluster system administrator *root*, also called the cluster administrator. The system root can create and delete other accounts, and manage accounts. A system root cannot manage other resources of other accounts.
 
 |Permissions|Description|
 |---|---|

@@ -69,7 +69,7 @@ For more information on deployment, see [Deployment FAQs](../../FAQs/deployment-
     - **Connction Name**: MatrixOne
     - **Host**: 127.0.0.1
     - **Port**: 6001
-    - **User Name**: dump
+    - **User Name**: root
     - **Password**: 111
     - **Save password**:Yes
 
@@ -100,7 +100,7 @@ For more information on deployment, see [Deployment FAQs](../../FAQs/deployment-
     - **Host**: 127.0.0.1
     - **Port**: 6001
     - **Database**: MatrixOne
-    - **User Name**: dump
+    - **User Name**: root
     - **Password**: 111
     - **Save password locally**: Yes
 

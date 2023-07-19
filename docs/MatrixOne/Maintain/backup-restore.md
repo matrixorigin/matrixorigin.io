@@ -51,13 +51,13 @@ insert into t1 values (1, 1, 1, 1, 1, 1, 1, 1, 1, 1, '2019-01-01', '2019-01-01 0
 If you want to generate the backup of the single database, run the following command. The command will generate the backup of the **t** database with structure and data in the `t.sql` file.
 
 ```
-./modump -u dump -p 111 -h 127.0.0.1 -P 6001 -db t > t.sql
+./modump -u root -p 111 -h 127.0.0.1 -P 6001 -db t > t.sql
 ```
 
 If you want to generate the backup of a single table in a database, run the following command. The command will generate the backup of the `t1` table of  `t` database with structure and data in the `t.sql` file.
 
 ```
-./modump -u dump -p 111 -db t -tbl t1 > t1.sql
+./modump -u root -p 111 -db t -tbl t1 > t1.sql
 ```
 
 !!! note
