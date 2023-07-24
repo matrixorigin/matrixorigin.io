@@ -161,6 +161,5 @@ mysql> select * from t1 order by spID asc nulls last;
 
 ## **Constraints**
 
-1. Table alias is not supported in GROUP BY.
-2. `SELECT...FOR UPDATE` currently only supports single-table queries.
-3. INTO OUTFILE is limitedly support.
+1. `SELECT...FOR UPDATE` currently only supports single-table queries.
+2. `INTO OUTFILE` is limitedly support.
