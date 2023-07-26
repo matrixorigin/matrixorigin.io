@@ -1418,7 +1418,35 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Develop/import-data/bulk-load/prepared/" class="md-nav__link">
+      <a href="../../../../Develop/import-data/update-data/" class="md-nav__link">
+        Update Data
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Develop/import-data/delete-data/" class="md-nav__link">
+        Delete Data
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Develop/import-data/prepared/" class="md-nav__link">
         Prepared
       </a>
     </li>
@@ -8877,6 +8905,15 @@
 <p>The <code>WHERE</code> clause, if given, indicates the condition or conditions that rows must satisfy to be selected. <code>where_condition</code> is an expression that evaluates to true for each row to be selected. The statement selects all rows if there is no <code>WHERE</code> clause.</p>
 <h4 id="group-by"><code>GROUP BY</code></h4>
 <p>Columns selected for output can be referred to in ORDER BY and GROUP BY clauses using column names, column aliases, or column positions.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul>
+<li>In the <code>GROUP BY</code> or <code>HAVING</code> clauses, it is not allowed to use an alias to define another alias.</li>
+<li>In the <code>GROUP BY</code> or <code>HAVING</code> clauses, the SQL engine first attempts to group or filter by column names. If the corresponding column names are not found in these clauses, it checks if aliases match and use the matched aliases as a fallback.</li>
+<li>It is recommended to avoid ambiguous column references when using aliases in the <code>GROUP BY</code> or <code>HAVING</code> clauses. In such cases, the SQL engine looks for matching columns based on the aliases, and if multiple matches are found, it will raise an error.</li>
+<li>In the <code>ORDER BY</code> clause, sorting is first attempted using aliases. If aliases are not found, the SQL engine attempts sorting using column names.</li>
+</ul>
+</div>
 <h4 id="having"><code>HAVING</code></h4>
 <p>The <code>HAVING</code> clause, like the <code>WHERE</code> clause, specifies selection conditions.</p>
 <h4 id="order-by"><code>ORDER BY</code></h4>
@@ -8957,9 +8994,8 @@
 </code></pre></div>
 <h2 id="constraints"><strong>Constraints</strong></h2>
 <ol>
-<li>Table alias is not supported in GROUP BY.</li>
 <li><code>SELECT...FOR UPDATE</code> currently only supports single-table queries.</li>
-<li>INTO OUTFILE is limitedly support.</li>
+<li><code>INTO OUTFILE</code> is limitedly support.</li>
 </ol>
 
               
@@ -9030,6 +9066,8 @@
     
     
       <script src="../../../../../assets/javascripts/bundle.c44cc438.min.js"></script>
+      
+        <script src="../../../../../javascripts/extra.js"></script>
       
     
   </body>

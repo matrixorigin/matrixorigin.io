@@ -1547,7 +1547,35 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Develop/import-data/bulk-load/prepared/" class="md-nav__link">
+      <a href="../../../Develop/import-data/update-data/" class="md-nav__link">
+        Update Data
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Develop/import-data/delete-data/" class="md-nav__link">
+        Delete Data
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Develop/import-data/prepared/" class="md-nav__link">
         Prepared
       </a>
     </li>
@@ -8974,7 +9002,7 @@ PPROF_PROFILE_DURATION=&quot;30&quot;
 </code></pre></div>
 <p>Generally, the parameters that may need to be adjusted are as follows:</p>
 <div class="highlight"><pre><span></span><code>mo_ctl set_conf MO_PATH=&quot;/Users/username/mo/matrixone&quot; # Set custom MatrixOne download path
-mo_ctl set_conf MO_PATH=&quot;https://ghproxy.com/https://github.com/matrixorigin/matrixone.git&quot; ## For the problem of slow downloading from the original GitHub address, set the proxy download address
+mo_ctl set_conf MO_GIT_URL=&quot;https://ghproxy.com/https://github.com/matrixorigin/matrixone.git&quot; ## For the problem of slow downloading from the original GitHub address, set the proxy download address
 mo_ctl set_conf MO_DEFAULT_VERSION=&quot;0.8.0&quot; # Set the version of MatrixOne downloaded
 </code></pre></div>
 <h2 id="step-3-get-matrixone-code">Step 3: Get MatrixOne code</h2>
@@ -9103,6 +9131,8 @@ mysql&gt;
     
     
       <script src="../../../../assets/javascripts/bundle.c44cc438.min.js"></script>
+      
+        <script src="../../../../javascripts/extra.js"></script>
       
     
   </body>
