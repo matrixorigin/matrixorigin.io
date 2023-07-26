@@ -173,7 +173,7 @@ Generally, the parameters that may need to be adjusted are as follows:
 
 ```
 mo_ctl set_conf MO_PATH="/Users/username/mo/matrixone" # Set custom MatrixOne download path
-mo_ctl set_conf MO_PATH="https://ghproxy.com/https://github.com/matrixorigin/matrixone.git" ## For the problem of slow downloading from the original GitHub address, set the proxy download address
+mo_ctl set_conf MO_GIT_URL="https://ghproxy.com/https://github.com/matrixorigin/matrixone.git" ## For the problem of slow downloading from the original GitHub address, set the proxy download address
 mo_ctl set_conf MO_DEFAULT_VERSION="0.8.0" # Set the version of MatrixOne downloaded
 ```
 
