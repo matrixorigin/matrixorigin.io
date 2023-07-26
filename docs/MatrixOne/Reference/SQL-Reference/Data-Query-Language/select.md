@@ -62,6 +62,12 @@ The `WHERE` clause, if given, indicates the condition or conditions that rows mu
 
 Columns selected for output can be referred to in ORDER BY and GROUP BY clauses using column names, column aliases, or column positions.
 
+!!! note
+    - In the `GROUP BY` or `HAVING` clauses, it is not allowed to use an alias to define another alias.
+    - In the `GROUP BY` or `HAVING` clauses, the SQL engine first attempts to group or filter by column names. If the corresponding column names are not found in these clauses, it checks if aliases match and use the matched aliases as a fallback.
+    - It is recommended to avoid ambiguous column references when using aliases in the `GROUP BY` or `HAVING` clauses. In such cases, the SQL engine looks for matching columns based on the aliases, and if multiple matches are found, it will raise an error.
+    - In the `ORDER BY` clause, sorting is first attempted using aliases. If aliases are not found, the SQL engine attempts sorting using column names.
+
 #### `HAVING`
 
 The `HAVING` clause, like the `WHERE` clause, specifies selection conditions.
