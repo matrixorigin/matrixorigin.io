@@ -7,7 +7,7 @@ This document will guide you to use the cluster administrator to create two new 
 ## Before you start
 
 - MatrixOne cluster has been depolyed and connected.
-- You have obtained the cluster administrator user name and password (the user name is usually root, and the password can be obtained from MatrixOne's product manager or sales representative).
+- You have obtained the cluster administrator user name and password (The default user name and password are root and 111 respectively).
 
 ## Steps
 

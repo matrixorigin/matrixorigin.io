@@ -49,6 +49,11 @@ If you specify no `FIELDS` or `LINES` clause, the defaults are the same as if yo
 FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\n'
 ```
 
+!!! note
+    - `FIELDS TERMINATED BY ','`: with and only `,`, `|` or `\t` as delimiters.
+    - `ENCLOSED BY '"'`: with and only `"` as the included character.
+    - `LINES TERMINATED BY '\n'`: Use and only use `\n` or `\r\n` as the line separator.
+
 **FIELDS TERMINATED BY**
 
 `FIELDS TERMINATED BY` specifies the delimiter for a field. The `FIELDS TERMINATED BY` values can be more than one character.

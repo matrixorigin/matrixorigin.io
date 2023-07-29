@@ -359,7 +359,7 @@ __Note:__ All the commands in this section should be executed on the master0 nod
     mkdir minio_ins && cd minio_ins
     helm fetch minio/minio
     ls -lth
-    tar minio-5.0.9.tgz # This version may change; the actual download shall prevail
+    tar -zxvf minio-5.0.9.tgz # This version may change; the actual download shall prevail
     cd ./minio/
 
     kubectl create ns mostorage
