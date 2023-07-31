@@ -79,7 +79,7 @@ Start with MatrixOne 0.6 has introduced the concept of multi-account, the defaul
 | ------------ | ------------ | ------------ |
 | account_id   | int unsigned | account id, primary key  |
 | account_name | varchar(100) | account name  |
-| status       | varchar(100) | open/suspend |
+| status       | varchar(100) | open/suspend/restricted |
 | created_time | timestamp    | create time  |
 | comments     | varchar(256) | comment      |
 | suspended_time | TIMESTAMP   | Time of the account's status is changed |

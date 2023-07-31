@@ -23,6 +23,7 @@ IDENTIFIED BY 'auth_string'
 status_option: {
 OPEN
 | SUSPEND
+| RESTRICTED
 }
 ```
 
@@ -38,6 +39,9 @@ Set the state of the account. They are stored as VARCHAR in the mo_account table
 
 - SUSPEND: Suspend the account's service; that is, the account can no longer access MatrixOne after the suspension; users who are accessing the account can continue to access, and after closing the session, they will no longer be able to access MatrixOne.
 - OPEN: Resume a suspended account, after which the account will usually access MatrixOne.
+- RESTRICTED: Allows the user to access and perform limited actions. After the `RESTRICTED` state is enabled for this tenant, this tenant can only perform `SHOW`/`DELETE`/`SELECT`/`USE` operations on the database, and other operations cannot be used.
+    * When the `RESTRICTED` state is enabled for the tenant, access behavior will be restricted even if the tenant is accessing.
+    * To lift the restrictions on the user, switch the status to `OPEN` to remove the restrictions.
 
 ### comment
 
