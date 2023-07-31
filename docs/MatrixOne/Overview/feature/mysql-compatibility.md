@@ -206,7 +206,7 @@ CREATE TABLE IF NOT EXISTS `tool` (
 
 ### System Management functions
 
-- `CURRENT_ROLE_NAME()`, `CURRENT_ROLE()`, `CURRENT_USER_NAME()`, ``CURRENT_USER()`, `PURGE_LOG()` are supported.
+- `CURRENT_ROLE_NAME()`, `CURRENT_ROLE()`, `CURRENT_USER_NAME()`, `CURRENT_USER()`, `PURGE_LOG()` are supported.
 
 ## TAE Storage Engine
 
