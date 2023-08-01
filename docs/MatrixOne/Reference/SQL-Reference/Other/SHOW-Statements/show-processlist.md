@@ -4,18 +4,24 @@
 
 `SHOW PROCESSLIST` is used to view a list of currently executing threads (also known as a process list), providing information about all active connections and executing queries on the MatrixOne server.
 
+`SHOW PROCESSLIST` is used to monitor and manage activities in the database, identify potential issues, help diagnose query performance problems, and aid in decision-making to optimize database operations:
+
+- Monitoring Database Activity: By executing `SHOW PROCESSLIST`, you can view the queries and operations currently running in the database in real time. This is useful for monitoring database activity and promptly identifying potential performance issues. You can see which queries are running, their status, and whether there are long-running or blocked queries, as well as information about locks, deadlocks, or resource contention.
+
+- Terminating Queries: By examining the process list, you can identify the query ID of a specific query that needs to be terminated and then use the `KILL` command to stop that particular query. This is beneficial for controlling long-running queries or resolving deadlock situations.
+
 ## **Syntax**
 
 ```
-> SHOW PROCESSLIST
+> SHOW PROCESSLIST;
 ```
 
 The explanations for the queried table structure are as follows:
 
-| Column Name    | Data Type | Constraints | Remarks                                                       |
-|----------------|-----------|-----------|---------------------------------------------------------------|
-| node_id        | varchar   | not null  | Node ID                                                       |
-| conn_id        | uint32    | not null  | Connection ID                                                 |
+| Column Name | Data Type | Constraint | Remarks |
+|-------------|-----------|------------|---------|
+| node_id | varchar | not null | Node ID uniquely identifies different nodes in the database cluster. In MatrixOne, a node corresponds to a CN (Compute Node). <br> __Note:__ <br> - In the single-node version of MatrixOne, there is usually only one node and all processes run on this node, so all processes have the same node_id. <br> - In the distributed version of MatrixOne, each node has a unique node_id. System tenants can view the node_id corresponding to the nodes where all executing threads run. In contrast, non-system tenants can only see the node_id corresponding to the nodes where threads executing for their tenant are running. |
+| conn_id | uint32 | not null | Connection ID used to identify different database connections. To terminate a specific database connection, use the `KILL CONNECTION conn_id;` command. Each connection in the database is assigned a unique conn_id for identification. <br> __Note:__ System tenants can view all conn_id, while non-system tenants can only see conn_id for their tenant. |
 | session_id     | varchar   | not null  | Session ID                                                    |
 | account        | varchar   | not null  | account <br>__Note:__ Under the system, account, sessions, and account names can be viewed. Non-system accounts can only view sessions and account names of their accounts.    |
 | user           | varchar   | not null  | User                                                          |
