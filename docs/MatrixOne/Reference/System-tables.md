@@ -153,7 +153,7 @@ Start with MatrixOne 0.6 has introduced the concept of multi-account, the defaul
 | -----------------| --------------- | ----------------- |
 | function_id | INT(32) | ID of the function, primary key |
 | name | VARCHAR(100) | the name of the function |
-| creator | INT UNSIGNED(32) | ID of the user who created the function |
+| owner | INT UNSIGNED(32) | ID of the role who created the function |
 | args | TEXT(0) | Argument list for the function |
 | rettype | VARCHAR(20) | return type of the function |
 | body | TEXT(0) | function body |
