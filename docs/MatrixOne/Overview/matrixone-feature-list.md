@@ -136,10 +136,10 @@ This document lists the features supported by the latest version of MatrixOne an
 | ----------------- | ---------------------------------- |
 | KEY(column_list)  | E                                  |
 | HASH(expr)        | E                                  |
-| RANGE(expr)       | N                                  |
-| RANGE COLUMNS     | N                                  |
-| LIST              | N                                  |
-| LIST COLUMNS      | N                                  |
+| RANGE(expr)       | E                                  |
+| RANGE COLUMNS     | E                                  |
+| LIST              | E                                  |
+| LIST COLUMNS      | E                                  |
 
 ## Import and Export
 
