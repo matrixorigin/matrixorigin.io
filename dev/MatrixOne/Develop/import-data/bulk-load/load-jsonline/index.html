@@ -9,7 +9,7 @@
       
       
       <link rel="icon" href="../../../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-8.2.8">
+      <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-8.2.8">
     
     
       
@@ -506,6 +506,20 @@
     <li class="md-nav__item">
       <a href="../../../../Overview/architecture/matrixone-architecture-design/" class="md-nav__link">
         Architecture Design Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Overview/architecture/architecture-tae/" class="md-nav__link">
+        Transactional Analytical Engine Architecture
       </a>
     </li>
   
@@ -1741,7 +1755,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Publish-Subscribe/pub-sub-overview/" class="md-nav__link">
+      <a href="../../../Publish-Subscribe/multi-account-overview/" class="md-nav__link">
         Multi-Account Overview
       </a>
     </li>
@@ -8764,48 +8778,48 @@
 <table>
 <thead>
 <tr>
-<th align="center">Parameter</th>
-<th align="center">Value</th>
-<th align="center">Required/Optional</th>
-<th align="center">Description</th>
+<th style="text-align: center;">Parameter</th>
+<th style="text-align: center;">Value</th>
+<th style="text-align: center;">Required/Optional</th>
+<th style="text-align: center;">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center">filepath</td>
-<td align="center">String</td>
-<td align="center">Required</td>
-<td align="center">The file path.</td>
+<td style="text-align: center;">filepath</td>
+<td style="text-align: center;">String</td>
+<td style="text-align: center;">Required</td>
+<td style="text-align: center;">The file path.</td>
 </tr>
 <tr>
-<td align="center">compression</td>
-<td align="center">auto/none/bz2/gzip/lz4</td>
-<td align="center">Optional</td>
-<td align="center">Compression algorithm format.</td>
+<td style="text-align: center;">compression</td>
+<td style="text-align: center;">auto/none/bz2/gzip/lz4</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">Compression algorithm format.</td>
 </tr>
 <tr>
-<td align="center">format</td>
-<td align="center">csv/jsonline</td>
-<td align="center">Optional</td>
-<td align="center">the loading file format. default is csv.</td>
+<td style="text-align: center;">format</td>
+<td style="text-align: center;">csv/jsonline</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">the loading file format. default is csv.</td>
 </tr>
 <tr>
-<td align="center">jsondata</td>
-<td align="center">object/array</td>
-<td align="center">Optional</td>
-<td align="center">jsonline format. If <code>format</code> is <em>jsonline</em>, must specify <em>jsondata</em>.</td>
+<td style="text-align: center;">jsondata</td>
+<td style="text-align: center;">object/array</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">jsonline format. If <code>format</code> is <em>jsonline</em>, must specify <em>jsondata</em>.</td>
 </tr>
 <tr>
-<td align="center">table_name</td>
-<td align="center">String</td>
-<td align="center">Required</td>
-<td align="center">table name to load into</td>
+<td style="text-align: center;">table_name</td>
+<td style="text-align: center;">String</td>
+<td style="text-align: center;">Required</td>
+<td style="text-align: center;">table name to load into</td>
 </tr>
 <tr>
-<td align="center">x</td>
-<td align="center">Number</td>
-<td align="center">Optional</td>
-<td align="center">lines to be ignored while loading</td>
+<td style="text-align: center;">x</td>
+<td style="text-align: center;">Number</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">lines to be ignored while loading</td>
 </tr>
 </tbody>
 </table>
@@ -8814,54 +8828,54 @@
 <table>
 <thead>
 <tr>
-<th align="center">JSON Type</th>
-<th align="center">MatrixOne Type</th>
+<th style="text-align: center;">JSON Type</th>
+<th style="text-align: center;">MatrixOne Type</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center">String</td>
-<td align="center">VARCHAR (with a certain length limit)</td>
+<td style="text-align: center;">String</td>
+<td style="text-align: center;">VARCHAR (with a certain length limit)</td>
 </tr>
 <tr>
-<td align="center">String</td>
-<td align="center">TEXT (without knowing the limit of this string)</td>
+<td style="text-align: center;">String</td>
+<td style="text-align: center;">TEXT (without knowing the limit of this string)</td>
 </tr>
 <tr>
-<td align="center">String</td>
-<td align="center">DATETIME or TIMESTAMP (with format as "YYYY-MM-DD HH:MM:SS.XXXXXX")</td>
+<td style="text-align: center;">String</td>
+<td style="text-align: center;">DATETIME or TIMESTAMP (with format as "YYYY-MM-DD HH:MM:SS.XXXXXX")</td>
 </tr>
 <tr>
-<td align="center">String</td>
-<td align="center">DATE (with format as "YYYY-MM-DD")</td>
+<td style="text-align: center;">String</td>
+<td style="text-align: center;">DATE (with format as "YYYY-MM-DD")</td>
 </tr>
 <tr>
-<td align="center">String</td>
-<td align="center">TIME (with format as "HH-MM-SS.XXXXXX")</td>
+<td style="text-align: center;">String</td>
+<td style="text-align: center;">TIME (with format as "HH-MM-SS.XXXXXX")</td>
 </tr>
 <tr>
-<td align="center">Number</td>
-<td align="center">INT (with interger numbers)</td>
+<td style="text-align: center;">Number</td>
+<td style="text-align: center;">INT (with interger numbers)</td>
 </tr>
 <tr>
-<td align="center">Number</td>
-<td align="center">FLOAT or DOUBLE (with floating numbers)</td>
+<td style="text-align: center;">Number</td>
+<td style="text-align: center;">FLOAT or DOUBLE (with floating numbers)</td>
 </tr>
 <tr>
-<td align="center">Boolean</td>
-<td align="center">BOOL(true/false)</td>
+<td style="text-align: center;">Boolean</td>
+<td style="text-align: center;">BOOL(true/false)</td>
 </tr>
 <tr>
-<td align="center">Object</td>
-<td align="center">JSON type</td>
+<td style="text-align: center;">Object</td>
+<td style="text-align: center;">JSON type</td>
 </tr>
 <tr>
-<td align="center">Array</td>
-<td align="center">JSON type</td>
+<td style="text-align: center;">Array</td>
+<td style="text-align: center;">JSON type</td>
 </tr>
 <tr>
-<td align="center">Null</td>
-<td align="center">All types have been supported.</td>
+<td style="text-align: center;">Null</td>
+<td style="text-align: center;">All types have been supported.</td>
 </tr>
 </tbody>
 </table>
