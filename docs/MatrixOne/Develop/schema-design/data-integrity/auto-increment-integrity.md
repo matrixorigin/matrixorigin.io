@@ -65,4 +65,4 @@ mysql> SELECT * FROM employees;
 ## Constraints
 
 1. MatrixOne currently does not support modifying auto-increment values' starting and increment steps using the `ALTER TABLE` statement.
-2. In MatrixOne, although the syntax supports `set @@auto_increment_increment=n` to set the incremental step size, it does not take effect; currently, it supports setting the initial value `AUTO_INCREMENT=n` of the auto-increment column, but the step size Still defaults to 1.
+2. In MatrixOne, only syntax supports using `set @@auto_increment_increment=n` to set the incremental step size, and only syntax supports using `set @@auto_increment_offset=n` to set the default initial value of the auto-increment column, but it does not take effect; currently, Support to set the initial value `AUTO_INCRMENT=n` of the auto-increment column, but the step size is still 1 by default.
