@@ -63,6 +63,72 @@ SELECT ... FROM <query_name>;
 
 - `SELECT ... FROM <query_name>`: Use the name of the recursive CTE to query the recursive CTE.
 
+#### Guidelines for Using Recursive CTEs
+
+##### Anchor and Recursive Members
+
+A recursive common table expression (CTE) must consist of at least two query definitions: an anchor member and a recursive member. The anchor member should come before the first recursive member, and you can define multiple anchor and recursive members. All CTE query definitions are considered anchor members unless they reference the CTE itself.
+
+Suppose you have a table named `Employee` that contains employee information, including fields like `EmployeeID`, `Name`, and `ManagerID`, representing the employee's ID, name, and ID of their manager. You can use a recursive CTE to query the hierarchical relationship between employees and subordinates.
+
+Assuming the table data is as follows:
+
+| EmployeeID | Name    | ManagerID |
+|------------|---------|-----------|
+| 1          | Alice   | NULL      |
+| 2          | Bob     | 1         |
+| 3          | Charlie | 1         |
+| 4          | David   | 2         |
+| 5          | Eve     | 2         |
+| 6          | Frank   | 3         |
+
+Here's an example of using a recursive CTE to query the hierarchical relationship between employees and their subordinates:
+
+```sql
+WITH RECURSIVE EmployeeHierarchy AS (
+    -- Anchor member: Find top-level employees
+    SELECT EmployeeID, Name, ManagerID, 0 AS Level
+    FROM Employee
+    WHERE ManagerID IS NULL
+
+    UNION ALL
+
+    -- Recursive member: Recursively query subordinate employees
+    SELECT e.EmployeeID, e.Name, e.ManagerID, eh.Level + 1
+    FROM Employee AS e
+    JOIN EmployeeHierarchy AS eh ON e.ManagerID = eh.EmployeeID
+)
+SELECT Name, Level
+FROM EmployeeHierarchy;
+```
+
+In the above example:
+
+- The anchor member selects top-level employees (with `ManagerID` as NULL) and sets their level (`Level`) to 0.
+- The recursive member queries subordinate employees based on the previous round's results (`EmployeeHierarchy`), incrementing the level.
+- The final query uses `SELECT` to retrieve employee names and levels from the recursive CTE.
+
+Executing this query will provide information about the hierarchical relationship between employees and their subordinates. Both anchor and recursive members together form the structure of a recursive query. On the other hand, a non-recursive CTE is used to create a temporary result set with a single query definition, and you only need to reference this CTE in your query without concerning anchor and recursive members.
+
+##### Operators and Statement Requirements
+
+- **Set Operators**: Anchor members must be combined using set operators (such as `UNION ALL`, `UNION`, `INTERSECT`, or `EXCEPT`). Only `UNION ALL` is allowed between the last anchor member and the first recursive member, as well as when combining multiple recursive members.
+
+- **Column Matching**: The number of columns in anchor and recursive members must be the same.
+
+- **Data Types**: Columns in the recursive member must have the same data types as the corresponding columns in the anchor member.
+
+- **FROM Clause**: The FROM clause of a recursive member can only reference the CTE expression_name once.
+
+- **Unsupported Features**: Certain features are not allowed in the CTE_query_definition of a recursive member, including:
+
+    + Using the `SELECT DISTINCT` keyword for distinct queries.
+    + Using `GROUP BY` to group results.
+    + Using `HAVING` to filter results after grouping.
+    + Scalar aggregation applies an aggregate function (like `SUM`, `AVG`, etc.) to a set of rows and returns a single value.
+    + Outer join operations like `LEFT`, `RIGHT`, and `OUTER JOIN` (though `INNER JOIN` is allowed).
+    + Subqueries.
+
 ## **Examples**
 
 - Non-recursive CTE example:
