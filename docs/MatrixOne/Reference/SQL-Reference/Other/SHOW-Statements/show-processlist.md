@@ -25,7 +25,7 @@ The explanations for the queried table structure are as follows:
 | session_id     | varchar   | not null  | Session ID                                                    |
 | account        | varchar   | not null  | account <br>__Note:__ Under the system, account, sessions, and account names can be viewed. Non-system accounts can only view sessions and account names of their accounts.    |
 | user           | varchar   | not null  | User                                                          |
-| host           | varchar   | not null  | Hostname or IP Address                                        |
+| host           | varchar   | not null  | Hostname of client-server                                        |
 | db             | varchar   |           | Database name                                                 |
 | session_start  | varchar   |           | Session start time                                            |
 | command        | varchar   | not null  | Command type, e.g., COM_QUERY                                 |
