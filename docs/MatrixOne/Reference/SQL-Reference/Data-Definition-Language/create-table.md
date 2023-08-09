@@ -7,17 +7,110 @@ Create a new table.
 ## **Syntax**
 
 ```
-> CREATE [TEMPORARY] TABLE [IF NOT EXISTS] [db.]table_name [comment = "comment of table"];
-(
-    name1 type1 [comment 'comment of column'] [AUTO_INCREMENT] [[PRIMARY] KEY] [[FOREIGN] KEY],
-    name2 type2 [comment 'comment of column'],
-    ...
-)
-    [cluster by (column_name1, column_name2, ...);]
+> CREATE [TEMPORARY] TABLE [IF NOT EXISTS] tbl_name
+    (create_definition,...)
+    [table_options]
     [partition_options]
+
+create_definition: {
+    col_name column_definition
+  | [CONSTRAINT [symbol]] PRIMARY KEY
+      [index_type] (key_part,...)
+      [index_option] ...
+  | [CONSTRAINT [symbol]] FOREIGN KEY
+      [index_name] (col_name,...)
+      reference_definition
+}
+
+column_definition: {
+    data_type [NOT NULL | NULL] [DEFAULT {literal | (expr)} ]
+      [AUTO_INCREMENT] [UNIQUE [KEY]] [[PRIMARY] KEY]
+      [COMMENT 'string']
+      [reference_definition]
+  | data_type
+      [[PRIMARY] KEY]
+      [COMMENT 'string']
+      [reference_definition]
+}
+
+reference_definition:
+    REFERENCES tbl_name (key_part,...)
+      [ON DELETE reference_option]
+      [ON UPDATE reference_option]
+
+reference_option:
+    RESTRICT | CASCADE | SET NULL | NO ACTION
+
+table_options:
+    table_option [[,] table_option] ...
+
+table_option: {
+  | AUTO_INCREMENT [=] value
+  | COMMENT [=] 'string'
+  | START TRANSACTION
+}
+
+partition_options:
+    PARTITION BY
+        { [LINEAR] HASH(expr)
+        | [LINEAR] KEY [ALGORITHM={1 | 2}] (column_list)}
+    [PARTITIONS num]
+    [(partition_definition [, partition_definition] ...)]
+
+partition_definition:
+ PARTITION partition_name
+     [VALUES
+         {LESS THAN {(expr | value_list) | MAXVALUE}
+         |
+         IN (value_list)}]
+     [COMMENT [=] 'string' ]
 ```
 
 ### Explanations
+
+Various parameters and options that can be used when creating a table, including table creation, column definition, constraints, options, and partitioning, are explained below:
+
+- `CREATE [TEMPORARY] TABLE [IF NOT EXISTS] tbl_name`: This is the primary table syntax. The `TEMPORARY` keyword indicates creating a temporary table, `IF NOT EXISTS` ensures creation only if the table doesn't exist, and `tbl_name` is the name of the table to be created.
+
+- `(create_definition,...)`: This is the section for column definitions, used to define the table's columns and their attributes.
+
+- `[table_options]`: This is for table-level options where you can set parameters like storage engine, character set, etc.
+
+- `[partition_options]`: This is used for partitioned tables and defining partitioning methods and keys.
+
+The `create_definition` section is used to define attributes for each column, and it can contain the following:
+
+- `col_name column_definition`: This defines the column name and its attributes, including data type, whether it can be null, default value, etc.
+
+- `[CONSTRAINT [symbol]] PRIMARY KEY`: This defines a primary key constraint and can set a constraint name and the columns that make up the primary key.
+
+- `[CONSTRAINT [symbol]] FOREIGN KEY`: This defines a foreign key constraint and can set a constraint name, columns for the foreign key, and the referenced table.
+
+The `column_definition` section is used to define attributes for specific columns and can include the following:
+
+- `data_type [NOT NULL | NULL] [DEFAULT {literal | (expr)} ]`: This defines the data type of the column, whether it can be null, and its default value.
+
+- `[AUTO_INCREMENT] [UNIQUE [KEY]] [[PRIMARY] KEY]`: This sets options like auto-increment, uniqueness, and primary key constraint.
+
+- `[COMMENT 'string']`: This sets a comment for the column.
+
+- `[reference_definition]`: This is an optional reference definition used to define foreign key constraints.
+
+The `reference_definition` section is used to define references for foreign keys and includes the following:
+
+- `REFERENCES tbl_name (key_part,...)`: This specifies the referenced table and columns for the foreign key.
+
+- `[ON DELETE reference_option]`: This sets the action to be taken when a referenced row is deleted.
+
+- `[ON UPDATE reference_option]`: This sets the action to be taken when a referenced row is updated.
+
+`reference_option` represents the options for foreign key actions, including `RESTRICT`, `CASCADE`, `SET NULL`, and `NO ACTION`.
+
+The `table_options` section sets table-level options, including initial auto-increment value, table comments, etc.
+
+The `partition_options` section defines options for partitioned tables, including partitioning methods, partition keys, and the number of partitions.
+
+For more detailed syntax explanations, see the following content.
 
 #### Temporary Tables
 
@@ -118,6 +211,40 @@ mysql> select * from t2;
 +------+------+------+
 3 rows in set (0.00 sec)
 ```
+
+In addition, `[ON DELETE reference_option]` and `[ON UPDATE reference_option]` are used when defining a foreign key relationship to specify actions to be taken when records in the parent table are deleted or updated. These two parameters are primarily used to maintain data integrity and consistency:
+
+- `ON DELETE reference_option`: This parameter specifies how to handle associated foreign key data when data in the referenced table is deleted. Common options include:
+
+    + `RESTRICT`: If related foreign key data exists in the referenced table, deletion of data in the table is not allowed. This prevents accidental deletion of related data, ensuring data consistency.
+
+    + `CASCADE`: When data in the referenced table is deleted, associated foreign key data is also deleted. This is used for cascading deletion of related data to maintain data integrity.
+
+    + `SET NULL`: When data in the referenced table is deleted, the value of the foreign key column is set to NULL. This is used to retain foreign key data while disconnecting it from the referenced data upon deletion.
+
+    + `NO ACTION`: Indicates no action is taken; it only checks for the existence of associated data. This is similar to `RESTRICT` but may have minor differences in some databases.
+
+- `ON UPDATE reference_option`: This parameter specifies how to handle associated foreign key data when data in the referenced table is updated. Common options are similar to those of `ON DELETE reference_option`, and their usage is identical, but they apply to data update operations.
+
+See the example below:
+
+Suppose there are two tables, `Orders` and `Customers`, where the `Orders` table has a foreign key column `customer_id` referencing the `id` column in the `Customers` table. If, when a customer is deleted from the `Customers` table, you also want to delete the associated order data, you can use `ON DELETE CASCADE`.
+
+```sql
+CREATE TABLE Customers (
+    id INT PRIMARY KEY,
+    name VARCHAR(50)
+);
+
+CREATE TABLE Orders (
+    id INT PRIMARY KEY,
+    order_number VARCHAR(10),
+    customer_id INT,
+    FOREIGN KEY (customer_id) REFERENCES Customers(id) ON DELETE CASCADE
+);
+```
+
+In the above example, when a customer is deleted from the `Customers` table, the associated order data will also be deleted through cascading, maintaining data integrity. Similarly, the `ON UPDATE` parameter can handle update operations.
 
 For more information on data integrity constraints, see [Data Integrity Constraints Overview](../../../Develop/schema-design/data-integrity/overview-of-integrity-constraint-types.md).
 
