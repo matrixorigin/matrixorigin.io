@@ -86,6 +86,21 @@ INSERT INTO enumtable (id) VALUES ('05');
 -- Here, the first enumeration member `red` will be assigned as the default value for the column with id 05
 ```
 
+## Features that are different from MySQL
+
+Unlike MySQL, MatrixOne's ENUM type can only be compared with the string type in the WHERE condition.
+
+You can see this example:
+
+```sql
+update orders set status= 2 where status='Processing';`
+```
+
+In this example, you must update the `status` to 2 for the row whose `status` is `Processing`. Due to the nature of the ENUM type, MatrixOne implicitly converts 2 to the string `2` in the WHERE condition, which is then compared with `Processing`.
+
+!!! note
+    The following sections, **Filter ENUM Values** and **Sort ENUM Values**, are MySQL ENUM features that MatrixOne does not support.
+
 ### Filter ENUM values
 
 When querying data, you can use enumeration constants or integer values ​​to filter data. For example:
