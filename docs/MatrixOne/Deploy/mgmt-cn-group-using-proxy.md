@@ -14,6 +14,16 @@ To ensure the high availability of Proxy, at least 2 replicas should be set up i
 
 ![proxy-cn-group](https://github.com/matrixorigin/artwork/blob/main/docs/deploy/proxy-cn-group.png?raw=true)
 
+When performing CN (Compute Node) downsizing, Proxy behaves as follows in the YAML file:
+
+- Session Migration with the Same Label: When the number of CN replicas decreases, sessions with the same label will be migrated to other downsized CN nodes. This ensures the continuity and availability of sessions associated with specific labels.
+
+- Session Migration with Different Labels: If a CN replica with a particular label is set to 0 or removed, based on label matching rules, sessions associated with that label will be migrated to idle labels in future sessions.
+
+- Label Cancellation without Matching Labels: If a label is cancelled and no matching label exists, related sessions will be closed because there are no target CNs to receive these sessions.
+
+Proxy manages session migration and closure during CN downsizing to ensure the isolation between workloads and tenants, as well as the continuity of business operations.
+
 ## Steps
 
 The environment discussed in this document for managing CN groups using Proxy is based on the environment of [MatrixOne Distributed Cluster Deployment](deploy-MatrixOne-cluster.md).
@@ -92,7 +102,7 @@ If multiple CNs exist in the entire cluster, Proxy will automatically implement 
 
 ### Step Two: Set Up CN Groups
 
-In the `mo.yaml` file of the MatrixOne cluster, you need to configure CN groups by setting the `cnGroups` field and configure the `cnLabels` field in each `cnGroups` to set the labels of all CNs in the CN group. The Proxy will route and forward according to the connection labels. For example, you have set up two CN groups named `cnSet1` and `cnSet2` in the following example. Each CN group can have an independent number of replicas, log levels, CN parameter configurations, and CN labels.
+In the `mo.yaml` file of the MatrixOne cluster, you need to configure CN groups by setting the `cnGroups` field and configure the `cnLabels` field in each `cnGroups` to set the labels of all CNs in the CN group. The Proxy will route and forward according to the connection labels. For example, you have set up two CN groups named `cn-set1` and `cn-set2` in the following example. Each CN group can have an independent number of replicas, log levels, CN parameter configurations, and CN labels.
 
 The labels of CN groups adopt one-to-many groups of Key/value formats, in which there is a one-to-many relationship between each group of Key and value, i.e., each Key can have multiple values.
 
