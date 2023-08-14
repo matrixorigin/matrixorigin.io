@@ -147,6 +147,18 @@ Start with MatrixOne 0.6 has introduced the concept of multi-account, the defaul
 | granted_time      | timestamp       | granted time                                    |
 | with_grant_option | bool            | If permission granting is permitted |
 
+### mo_stages table
+
+| column            | type            | comments         |
+| -----------------| ---------------- | ----------------- |
+| stage_id         | INT UNSIGNED(32) | data stage ID |
+| stage_name       | VARCHAR(64)      | data stage name |
+| url              | TEXT(0)          | Path to object storage (without authentication), path to file system |
+| stage_credentials| TEXT(0)          | Authentication information, encrypted and saved |
+| stage_status     | VARCHAR(64)      | ENABLED/DISABLED Default: DISABLED |
+| created_time     | TIMESTAMP(0)     | creation time |
+| comment          | TEXT(0)          | comment |
+
 ### mo_user_defined_function table
 
 | column            | type            | comments                            |
