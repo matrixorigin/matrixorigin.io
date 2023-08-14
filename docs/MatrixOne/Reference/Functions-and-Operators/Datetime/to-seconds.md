@@ -14,7 +14,7 @@ The `TO_SECONDS(expr)` function is used to calculate the number of seconds betwe
     ERROR 20301 (HY000): invalid input: invalid datetime value 0000-01-01
     ```
 
-Similar to the `TO_DAYS()` function, for example, when querying `SELECT TO_SECONDS('08-10-07');`, MatrixOne automatically fills the year 08 to 0008, which is different from MySQL. For more information, see [Two-Digit Years in Dates](../../Data-Types/date-time-data-types/two-digit-years-in-dates.md).
+Similar to the `TO_DAYS()` function, for example, when querying `SELECT TO_SECONDS('08-10-07');`, MatrixOne automatically fills the year 08 to 0008, which is different from MySQL. For more information, see [Two-Digit Years in Dates](../../Data-Types/date-time-data-types/year-type.md).
 
 ## **Syntax**
 
