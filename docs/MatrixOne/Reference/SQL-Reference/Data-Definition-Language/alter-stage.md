@@ -91,4 +91,11 @@ Query OK, 0 rows affected (0.00 sec)
 -- Try to export the data of the user table to the data stage named 'stage1:/user.csv', but stage1 has been disabled, so it is no longer available, and an error is reported
 mysql> SELECT * FROM user INTO OUTFILE 'stage1:/user.csv';
 ERROR 20101 (HY000): internal error: stage 'stage1' is invalid, please check
+
+-- Re-enable with a data stage named 'stage1'
+mysql> ALTER STAGE stage1 SET ENABLE = TRUE;
+Query OK, 0 rows affected (0.00 sec)
+
+-- The export can be executed successfully again
+mysql> SELECT * FROM user INTO OUTFILE 'stage1:/user.csv';
 ```
