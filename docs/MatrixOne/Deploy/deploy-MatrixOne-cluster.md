@@ -265,10 +265,10 @@ After completing all roles and saving in the previous step, click **Execute** to
 
 4. The command result shown in the figure above indicates that the Kubernetes cluster has been successfully installed.
 
-5. Adjust the DNS routing table on each node in Kubernetes. Please execute the following command on each machine to find the nameserver containing `169.254.25.10` and delete the record. (This record may affect the communication efficiency between Pods)
+5. Adjust the DNS routing table on each node in Kubernetes. Please execute the following command on each machine to find the nameserver containing `169.254.25.10` and delete the record. (This record may affect the communication efficiency between Pods, if this record does not exist, there is no need to change it)
 
     ```
-    vim
+    vim /etc/resolve.conf
     ```
 
     ![](https://github.com/matrixorigin/artwork/blob/main/docs/deploy/deploy-mo-cluster-10-1.png?raw=true)
