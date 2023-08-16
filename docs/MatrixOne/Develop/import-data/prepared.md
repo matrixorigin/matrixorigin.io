@@ -10,11 +10,11 @@ Protection against SQL injection attacks. The parameter values can contain unesc
 
 SQL syntax for prepared statements is based on three SQL statements:
 
-- [PREPARE](../../../Reference/SQL-Reference/Other/Prepared-Statements/prepare.md) prepares a statement for execution.
+- [PREPARE](../../Reference/SQL-Reference/Other/Prepared-Statements/prepare.md) prepares a statement for execution.
 
-- [EXECUTE](../../../Reference/SQL-Reference/Other/Prepared-Statements/execute.md) executes a prepared statement.
+- [EXECUTE](../../Reference/SQL-Reference/Other/Prepared-Statements/execute.md) executes a prepared statement.
 
-- [DEALLOCATE PREPARE](../../../Reference/SQL-Reference/Other/Prepared-Statements/deallocate.md) releases a prepared statement.
+- [DEALLOCATE PREPARE](../../Reference/SQL-Reference/Other/Prepared-Statements/deallocate.md) releases a prepared statement.
 
 ### Create a prepared statement
 
