@@ -212,3 +212,5 @@ Assuming in your MatrixOne's `mo.yaml` configuration file, the configuration for
 ```
 
 When connecting to the MySQL Client using the root user with a CN label, you can use the following command example: `mysql -u root?workload=bk -p111 -h 10.206.16.10 -P 31429`. In this command, `workload=bk` represents the CN label, connected using `=` as a separator.
+
+Similarly, you can export data using the `mo-dump` tool; refer to the following command example: `mo-dump -u "dump?workload=bk" -h 10.206.16.10 -P 31429 -db tpch_10g > /tmp /aron/tpch_10g.sql`.
