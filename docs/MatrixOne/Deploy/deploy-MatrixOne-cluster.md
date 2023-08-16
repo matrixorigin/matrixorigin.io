@@ -536,7 +536,7 @@ As shown in the above line of code, the status of the corresponding Pods is norm
           level = "error"
           format = "json"
           max-size = 512
-        replicas: 1 # Number of dn replicas
+        replicas: 1 # The number of copies of dn, which cannot be modified. The current version only supports a setting of 1.
       # 2. Configuration for logservice
       logService:
         replicas: 3 # Number of logservice replicas
@@ -554,7 +554,7 @@ As shown in the above line of code, the status of the corresponding Pods is norm
             endpoint: http://minio.mostorage:9000 # The svc address and port of the minio service
             secretRef: # Configuration for accessing minio, the secret name is minio
               name: minio
-        pvcRetentionPolicy: Retain # Configuration for the lifecycle policy of the S3 bucket after the cluster is destroyed, Retain means to keep, Delete means to delete
+        pvcRetentionPolicy: Retain # Configuration for the lifecycle policy of the pvc bucket after the cluster is destroyed, Retain means to keep, Delete means to delete
         volume:
           size: 1Gi # Configuration for the size of S3 object storage, modify according to actual disk size and requirements
         config: | # Configuration for logservice
