@@ -265,10 +265,10 @@ After completing all roles and saving in the previous step, click **Execute** to
 
 4. The command result shown in the figure above indicates that the Kubernetes cluster has been successfully installed.
 
-5. Adjust the DNS routing table on each node in Kubernetes. Please execute the following command on each machine to find the nameserver containing `169.254.25.10` and delete the record. (This record may affect the communication efficiency between Pods)
+5. Adjust the DNS routing table on each node in Kubernetes. Please execute the following command on each machine to find the nameserver containing `169.254.25.10` and delete the record. (This record may affect the communication efficiency between Pods, if this record does not exist, there is no need to change it)
 
     ```
-    vim
+    vim /etc/resolve.conf
     ```
 
     ![](https://github.com/matrixorigin/artwork/blob/main/docs/deploy/deploy-mo-cluster-10-1.png?raw=true)
@@ -536,7 +536,7 @@ As shown in the above line of code, the status of the corresponding Pods is norm
           level = "error"
           format = "json"
           max-size = 512
-        replicas: 1 # Number of dn replicas
+        replicas: 1 # The number of copies of dn, which cannot be modified. The current version only supports a setting of 1.
       # 2. Configuration for logservice
       logService:
         replicas: 3 # Number of logservice replicas
@@ -554,7 +554,7 @@ As shown in the above line of code, the status of the corresponding Pods is norm
             endpoint: http://minio.mostorage:9000 # The svc address and port of the minio service
             secretRef: # Configuration for accessing minio, the secret name is minio
               name: minio
-        pvcRetentionPolicy: Retain # Configuration for the lifecycle policy of the S3 bucket after the cluster is destroyed, Retain means to keep, Delete means to delete
+        pvcRetentionPolicy: Retain # Configuration for the lifecycle policy of the pvc bucket after the cluster is destroyed, Retain means to keep, Delete means to delete
         volume:
           size: 1Gi # Configuration for the size of S3 object storage, modify according to actual disk size and requirements
         config: | # Configuration for logservice
