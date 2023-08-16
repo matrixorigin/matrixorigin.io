@@ -191,13 +191,13 @@ Reference code example:
 !!! note
     The MatrixOne version 0.8.0 is compatible with the storage format of older versions. If you use version 0.8.0 or a higher version, there is no need to clean the data file directory when switching to other branches and buildings.
 
-### **Password Validation Error When Connecting to MatrixOne Cluster Using root User with CN Label**
+### **Password authentication error when connecting to the MatrixOne cluster via proxy with CN label**
 
-- **Issue Cause**: Incorrectly formatted connection string.
+- **Issue Reason**: Incorrect connection string formatting. Support for extending the username field is available when connecting to the MatrixOne cluster through the MySQL client. You can add a `?` after the username and follow it with CN group labels. CN group labels consist of key-value pairs separated by `=` and multiple key-value pairs are separated by commas `,`.
 
-- **Solution**: Please refer to the example below.
+- **Solution**: Please refer to the following example.
 
-Assuming in your MatrixOne's `mo.yaml` configuration file, the configuration for the CN group is as shown below:
+Assuming the configuration for the CN group in your MatrixOne's `mo.yaml` configuration file is as shown below:
 
 ```yaml
 ## Displaying partial code only
@@ -211,6 +211,6 @@ Assuming in your MatrixOne's `mo.yaml` configuration file, the configuration for
 ...
 ```
 
-When connecting to the MySQL Client using the root user with a CN label, you can use the following command example: `mysql -u root?workload=bk -p111 -h 10.206.16.10 -P 31429`. In this command, `workload=bk` represents the CN label, connected using `=` as a separator.
+When connecting to the MatrixOne cluster through the MySQL client, you can use the following command example: `mysql -u root?workload=bk -p111 -h 10.206.16.10 -P 31429`. In this command, `workload=bk` is the CN label, connected using `=`.
 
-Similarly, you can export data using the `mo-dump` tool; refer to the following command example: `mo-dump -u "dump?workload=bk" -h 10.206.16.10 -P 31429 -db tpch_10g > /tmp /aron/tpch_10g.sql`.
+Similarly, when using the `mo-dump` tool to export data, refer to the following command example: `mo-dump -u "dump?workload=bk" -h 10.206.16.10 -P 31429 -db tpch_10g > /tmp/mo/tpch_10g.sql`.
