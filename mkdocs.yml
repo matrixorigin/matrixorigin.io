@@ -4,10 +4,6 @@ repo_url: https://github.com/matrixorigin/matrixorigin.io
 theme:
   name: material
   logo: assets/new-logo.png
-  icon:
-    admonition:
-      note: fontawesome/solid/sticky-note
-      info: fontawesome/solid/info-circle
   features:
     - navigation.instant
     - navigation.tracking
@@ -17,6 +13,9 @@ theme:
     scheme: mo
   font:
     text: Ubuntu
+plugins:
+  - search:
+      separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
 edit_uri: edit/main/docs/
 extra_css:
   - stylesheets/extra.css
@@ -246,6 +245,7 @@ nav:
             - DELETE: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/delete.md
             - UPDATE: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/update.md
             - LOAD DATA: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/load-data.md
+            - REPLACE: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/replace.md
             - Information Functions:
               - CURRENT_USER(): MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/information-functions/current_user.md
               - CURRENT_ROLE(): MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/information-functions/current_role.md
@@ -446,6 +446,7 @@ nav:
             - LPAD(): MatrixOne/Reference/Functions-and-Operators/String/lpad.md
             - LTRIM(): MatrixOne/Reference/Functions-and-Operators/String/ltrim.md
             - OCT(): MatrixOne/Reference/Functions-and-Operators/String/oct.md
+            - REPEAT(): MatrixOne/Reference/Functions-and-Operators/String/repeat.md
             - REVERSE(): MatrixOne/Reference/Functions-and-Operators/String/reverse.md
             - RPAD(): MatrixOne/Reference/Functions-and-Operators/String/rpad.md
             - RTRIM(): MatrixOne/Reference/Functions-and-Operators/String/rtrim.md
@@ -473,6 +474,10 @@ nav:
             - SLEEP: MatrixOne/Reference/Functions-and-Operators/Other/sleep.md
             - UUID(): MatrixOne/Reference/Functions-and-Operators/Other/uuid.md
           - System OPS Functions:
+            - CURRENT_ROLE_NAME(): MatrixOne/Reference/Functions-and-Operators/system-ops/current_role_name.md
+            - CURRENT_ROLE(): MatrixOne/Reference/Functions-and-Operators/system-ops/current_role.md
+            - CURRENT_USER_NAME(): MatrixOne/Reference/Functions-and-Operators/system-ops/current_user_name.md
+            - CURRENT_USER(): MatrixOne/Reference/Functions-and-Operators/system-ops/current_user.md
             - PURGE_LOG(): MatrixOne/Reference/Functions-and-Operators/system-ops/purge_log.md
       - System Paramaters:
         - Boot Parameters for standalone installation: MatrixOne/Reference/System-Parameters/configuration-settings.md
