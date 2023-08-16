@@ -7,7 +7,7 @@ Returns the current user account; the returned account format is username@hostna
 ## **Syntax**
 
 ```
-SELECT CURRENT_ROLE();
+SELECT CURRENT_USER();
 ```
 
 ## **Examples**
