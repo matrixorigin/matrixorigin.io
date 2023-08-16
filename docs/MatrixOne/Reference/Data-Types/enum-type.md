@@ -121,4 +121,5 @@ If you need to sort by an enumerated column, define the enumerated values to be 
 
 ## Constraints
 
-Modifying ENUM enumeration members requires rebuilding the table using the `ALTER TABLE` statement.
+1. Modifying ENUM enumeration members requires rebuilding the table using the `ALTER TABLE` statement.
+2. MatrixOne does not support **Filtering ENUM values** and **Sorting ENUM values**.
