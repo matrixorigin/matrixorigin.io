@@ -190,3 +190,25 @@ Reference code example:
 
 !!! note
     The MatrixOne version 0.8.0 is compatible with the storage format of older versions. If you use version 0.8.0 or a higher version, there is no need to clean the data file directory when switching to other branches and buildings.
+
+### **Password Validation Error When Connecting to MatrixOne Cluster Using root User with CN Label**
+
+- **Issue Cause**: Incorrectly formatted connection string.
+
+- **Solution**: Please refer to the example below.
+
+Assuming in your MatrixOne's `mo.yaml` configuration file, the configuration for the CN group is as shown below:
+
+```yaml
+## Displaying partial code only
+...
+- cacheVolume:
+    size: 100Gi
+  cnLabels:
+  - key: workload
+    values:
+    - bk
+...
+```
+
+When connecting to the MySQL Client using the root user with a CN label, you can use the following command example: `mysql -u root?workload=bk -p111 -h 10.206.16.10 -P 31429`. In this command, `workload=bk` represents the CN label, connected using `=` as a separator.
