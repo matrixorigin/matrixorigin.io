@@ -15,6 +15,7 @@
 | [IS NOT NULL](is-not-null.md) | NOT NULL value test |
 | [IS NULL](is-null.md) | NULL value test |
 | [LIKE](like.md) | Simple pattern matching |
+| [ILIKE](ilike.md) | Simple pattern matching. Same as LIKE. But it is not case sensitive. |
 | [NOT BETWEEN ... AND ...](not-between.md) | Whether a value is not within a range of values |
 | [NOT LIKE](not-like.md) | Negation of simple pattern matching |
 | [COALESCE](coalesce.md)|Return the first non-null value in a list|

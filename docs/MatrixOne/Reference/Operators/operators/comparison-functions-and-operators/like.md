@@ -2,13 +2,21 @@
 
 ## **Description**
 
-The `LIKE` operator is used in a WHERE clause to search for a specified pattern in a column.
+The `LIKE` operator is used in a `WHERE` clause to search for a specified pattern in a column.
 
-There are two wildcards often used in conjunction with the LIKE operator:
+There are two wildcards often used in conjunction with the `LIKE` operator:
 
-* The percent sign (%) represents zero, one, or multiple characters
-* The underscore sign (_) represents one, single character
+- The percent sign `%` wildcard: means to match any sequence of characters (including empty character sequences).
 
+    + %text: matches a string ending with "text".
+    + text%: matches a string starting with "text".
+    + %text%: Matches a string containing "text".
+
+- Underscore `_` wildcard: means match a single character.
+
+    + `te_t`: can match "text", "test", etc.
+
+- Other characters: The `LIKE` operator is case-sensitive for other characters.
 ## **Syntax**
 
 ```
@@ -20,30 +28,16 @@ WHERE columnN LIKE pattern;
 ## **Examples**
 
 ```sql
--- The following SQL statement selects all customers with a CustomerName starting with "a"
-mysql> SELECT * FROM Customers
-WHERE CustomerName LIKE 'a%';
+drop table t1;
+create table t1(a varchar(20));
+insert into t1 values ('abc'), ('ABC'), ('abC');
+select * from t1 where a ilike '%abC%';
 
--- The following SQL statement selects all customers with a CustomerName ending with "a"
-mysql> SELECT * FROM Customers
-WHERE CustomerName LIKE '%a';
-
--- The following SQL statement selects all customers with a CustomerName that have "or" in any position
-mysql> SELECT * FROM Customers
-WHERE CustomerName LIKE '%or%';
-
--- The following SQL statement selects all customers with a CustomerName that have "r" in the second position
-mysql> SELECT * FROM Customers
-WHERE CustomerName LIKE '_r%';
-
--- The following SQL statement selects all customers with a CustomerName that starts with "a" and are at least 3 characters in length
-mysql> SELECT * FROM Customers
-WHERE CustomerName LIKE 'a__%';
-
-mysql> SELECT * FROM Customers
-WHERE ContactName LIKE 'a%o'; -- The following SQL statement selects all customers with a ContactName that starts with "a" and ends with "o"
-
--- The following SQL statement selects all customers with a CustomerName that does NOT start with "a"
-mysql> SELECT * FROM Customers
-WHERE CustomerName NOT LIKE 'a%';
+mysql> select * from t1 where a like '%abC%';
++------+
+| a    |
++------+
+| abC  |
++------+
+1 row in set (0.00 sec)
 ```
