@@ -17,7 +17,7 @@ There are two wildcards often used in conjunction with the `LIKE` operator:
     + `te_t`: can match "text", "test", etc.
 
 - Other characters: The `LIKE` operator is case-sensitive for other characters.
-- 
+
 ## **Syntax**
 
 ```
