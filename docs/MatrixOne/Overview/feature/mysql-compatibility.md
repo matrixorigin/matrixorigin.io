@@ -204,6 +204,10 @@ CREATE TABLE IF NOT EXISTS `tool` (
 
 * Only `JSON_UNQUOTE`, `JSON_QUOTE`, `JSON_EXTRACT` are supported.
 
+### System Management functions
+
+- `CURRENT_ROLE_NAME()`, `CURRENT_ROLE()`, `CURRENT_USER_NAME()`, `CURRENT_USER()`, `PURGE_LOG()` are supported.
+
 ## TAE Storage Engine
 
 * MatrixOne's TAE storage engine is independently developed and does not support MySQL's InnoDB, MyISAM, or other engines.

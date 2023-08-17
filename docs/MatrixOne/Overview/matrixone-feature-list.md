@@ -10,7 +10,7 @@ This document lists the features supported by the latest version of MatrixOne an
 | DROP DATABASE            | Y                                            |
 | ALTER DATABASE           | N                                            |
 | CREATE TABLE             | Y                                            |
-| ALTER TABLE              | E, Support modification of table name, addition and deletion of columns, does not support modification of columns        |
+| ALTER TABLE              | E, The clauses: `CHANGE [COLUMN]`, `MODIFY [COLUMN]`, `RENAME COLUMN`, `ADD [CONSTRAINT [symbol]] PRIMARY KEY`, `DROP PRIMARY KEY`, and `ALTER COLUMN ORDER BY` can be used in ALTER It can be freely combined in the TABLE statement. Still, it is not supported to be used with other clauses for the time being.       |
 | RENAME TABLE             | N, Can be replaced by `ALTER TABLE tbl RENAME TO new_tbl`  |
 | DROP TABLE               | Y                                            |
 | CREATE INDEX             | Y, Secondary indexes have no speedup         |
