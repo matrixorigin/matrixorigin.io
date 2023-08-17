@@ -8,7 +8,6 @@ The main difference between the `ILIKE` operator and the `LIKE` operator is case
 
 ## **Syntax**
 
-
 ```
 > SELECT column1, column2, ...
 FROM table_name
