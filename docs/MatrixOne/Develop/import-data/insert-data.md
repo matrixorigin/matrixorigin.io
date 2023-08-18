@@ -178,7 +178,3 @@ The selection from the "Customers" table will now look like this:
 | 4          | Exotic Liquid                      | null           | null                          | Londona     | null       | UK      |
 | 5          | New Orleans Cajun Delights         | null           | null                          | New Orleans | null       | USA     |
 | 6          | Grandma Kelly's Homestead          | null           | null                          | Ann Arbor   | null       | USA     |
-
-## Constraints
-
-MatrixOne doesn't support  `INSERT ... ON DUPLICATE KEY UPDATE` statement yet. You can need to perform this operation with `UPDATE`.
