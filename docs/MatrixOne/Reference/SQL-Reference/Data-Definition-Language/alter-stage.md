@@ -16,10 +16,10 @@
    [ COMMENT = '<string_literal>' ]
 
 StageParams (for Amazon S3) :
-URL =  "endpoint"='<string>' CREDENTIALS = {"access_key_id"='<string>', "secret_access_key"='<string>', "bucket"='<string>', "role_arn"='xxxx', "external_id"='yyy', "filepath"='<string>', "region"='<string>', "compression"='<string>'}
+URL =  "endpoint"='<string>' CREDENTIALS = {"access_key_id"='<string>', "secret_access_key"='<string>'}
 
 StageParams (for Aliyun OSS) :
-URL =  "endpoint"='<string>' CREDENTIALS = {"access_key_id"='<string>', "secret_access_key"='<string>', "bucket"='<string>', "role_arn"='xxxx', "external_id"='yyy', "filepath"='<string>', "region"='<string>', "compression"='<string>'}
+URL =  "endpoint"='<string>' CREDENTIALS = {"access_key_id"='<string>', "secret_access_key"='<string>'}
 
 StageParams (for File System) :
 URL= 'filepath'
@@ -38,15 +38,7 @@ ENABLE = { TRUE | FALSE }
 
     - `endpoint`: The connection URL for the stage, indicating the location of the object storage service. This URL's content may vary for object storage services like Amazon S3, Aliyun OSS, or a file system. For example s3.us-west-2.amazonaws.com
 
-    - `CREDENTIALS`: This JSON object contains the credentials required to connect to the object storage service, such as `access_key_id`, `secret_access_key`, `bucket`, etc.
-
-    - `role_arn`, `external_id`: These two parameters are typically related to cross-account access permissions and are used for authorization. __Note:__ MatrixOne does not support these two parameters.
-
-    - `filepath`: Specifies the file's path to loading or unloading. It can support regular expressions, for example, `/files/*.csv`.
-
-    - `region`: The region of the object storage service.
-
-    - `compression`: The compression format of the S3 files, with options like `"auto"`, `"none"`, `"gzip"`, `"bz2"`, `and "lz4"`.
+    - `CREDENTIALS`: This JSON object contains the credentials required to connect to the object storage service, such as `access_key_id`, `secret_access_key`, etc.
 
 - `directoryTableParams`: This parameter group is used to specify the configuration of a directory table associated with the stage.
 
