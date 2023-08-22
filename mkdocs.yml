@@ -4,10 +4,6 @@ repo_url: https://github.com/matrixorigin/matrixorigin.io
 theme:
   name: material
   logo: assets/new-logo.png
-  icon:
-    admonition:
-      note: fontawesome/solid/sticky-note
-      info: fontawesome/solid/info-circle
   features:
     - navigation.instant
     - navigation.tracking
@@ -17,6 +13,9 @@ theme:
     scheme: mo
   font:
     text: Ubuntu
+plugins:
+  - search:
+      separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
 edit_uri: edit/main/docs/
 extra_css:
   - stylesheets/extra.css
@@ -120,7 +119,7 @@ nav:
         - Common Table Expression: MatrixOne/Develop/read-data/cte.md
         - Window Function.: MatrixOne/Develop/read-data/window-function.md
       - Account Design:
-        - Multi-Account Overview: MatrixOne/Develop/Publish-Subscribe/pub-sub-overview.md
+        - Multi-Account Overview: MatrixOne/Develop/Publish-Subscribe/multi-account-overview.md
         - Publish-Subscribe: MatrixOne/Develop/Publish-Subscribe/pub-sub-overview.md
       - Transactions:
         - General Transaction Overview: MatrixOne/Develop/Transactions/common-transaction-overview.md
@@ -214,9 +213,12 @@ nav:
       - Data Types:
         - Data Types Overview: MatrixOne/Reference/Data-Types/data-types.md
         - Data Type Conversion: MatrixOne/Reference/Data-Types/data-type-conversion.md
-        - Timestamp Initialization: MatrixOne/Reference/Data-Types/timestamp-initialization.md
+        - Date and Time Types:
+          - Timestamp Initialization: MatrixOne/Reference/Data-Types/date-time-data-types/timestamp-initialization.md
+          - YEAR Type: MatrixOne/Reference/Data-Types/date-time-data-types/year-type.md
         - JSON Data Type: MatrixOne/Reference/Data-Types/json-type.md
         - BLOB and TEXT Type: MatrixOne/Reference/Data-Types/blob-text-type.md
+        - ENUM Type: MatrixOne/Reference/Data-Types/enum-type.md
         - UUID Type: MatrixOne/Reference/Data-Types/uuid-type.md
         - Fixed-Point Types (Exact Value) - DECIMAL: MatrixOne/Reference/Data-Types/fixed-point-types.md
       - SQL Statements:
@@ -246,9 +248,8 @@ nav:
             - DELETE: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/delete.md
             - UPDATE: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/update.md
             - LOAD DATA: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/load-data.md
+            - REPLACE: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/replace.md
             - Information Functions:
-              - CURRENT_USER(): MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/information-functions/current_user.md
-              - CURRENT_ROLE(): MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/information-functions/current_role.md
               - LAST_QUERY_ID(): MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/information-functions/last-query-id.md
               - LAST_INSERT_ID(): MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/information-functions/last-insert-id.md
         - Data Query Language:
@@ -299,6 +300,7 @@ nav:
             - SHOW COLUMNS: MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-columns.md
             - SHOW FUNCTION STATUS: MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-function-status.md
             - SHOW GRANT: MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-grants.md
+            - SHOW PROCESSLIST: MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-processlist.md
             - SHOW PUBLICATIONS: MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-publications.md
             - SHOW ROLES: MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-roles.md
             - SHOW SEQUENCES: MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-sequences.md
@@ -345,6 +347,7 @@ nav:
               - '~': MatrixOne/Reference/Operators/operators/bit-functions-and-operators/bitwise-inversion.md
             - Cast Functions and Operators:
               - Cast Functions and Operators Overview: MatrixOne/Reference/Operators/operators/cast-functions-and-operators/cast-functions-and-operators-overview.md
+              - BINARY: MatrixOne/Reference/Operators/operators/cast-functions-and-operators/binary.md
               - CAST: MatrixOne/Reference/Operators/operators/cast-functions-and-operators/cast.md
               - CONVERT: MatrixOne/Reference/Operators/operators/cast-functions-and-operators/convert.md
             - Comparison Functions and Operators:
@@ -361,14 +364,18 @@ nav:
               - IS NOT: MatrixOne/Reference/Operators/operators/comparison-functions-and-operators/is-not.md
               - IS NOT NULL: MatrixOne/Reference/Operators/operators/comparison-functions-and-operators/is-not-null.md
               - IS NULL: MatrixOne/Reference/Operators/operators/comparison-functions-and-operators/is-null.md
+              - ISNULL: MatrixOne/Reference/Operators/operators/comparison-functions-and-operators/function_isnull.md
               - LIKE: MatrixOne/Reference/Operators/operators/comparison-functions-and-operators/like.md
               - NOT BETWEEN ... AND ...: MatrixOne/Reference/Operators/operators/comparison-functions-and-operators/not-between.md
+              - NOT IN: MatrixOne/Reference/Operators/operators/comparison-functions-and-operators/not-in.md
               - NOT LIKE: MatrixOne/Reference/Operators/operators/comparison-functions-and-operators/not-like.md
               - COALESCE: MatrixOne/Reference/Operators/operators/comparison-functions-and-operators/coalesce.md
             - Flow Control Functions:
               - Flow Control Functions Overview: MatrixOne/Reference/Operators/operators/flow-control-functions/flow-control-functions-overview.md
               - CASE WHEN: MatrixOne/Reference/Operators/operators/flow-control-functions/case-when.md
               - IF: MatrixOne/Reference/Operators/operators/flow-control-functions/function_if.md
+              - IFNULL: MatrixOne/Reference/Operators/operators/flow-control-functions/function_ifnull.md
+              - NULLIF: MatrixOne/Reference/Operators/operators/flow-control-functions/function_nullif.md
             - Logical Operators:
               - Logical Operators Overview: MatrixOne/Reference/Operators/operators/logical-operators/logical-operators-overview.md
               - AND,&&: MatrixOne/Reference/Operators/operators/logical-operators/and.md
@@ -406,6 +413,8 @@ nav:
             - TIMEDIFF(): MatrixOne/Reference/Functions-and-Operators/Datetime/timediff.md
             - TIMESTAMP(): MatrixOne/Reference/Functions-and-Operators/Datetime/timestamp.md
             - TO_DATE(): MatrixOne/Reference/Functions-and-Operators/Datetime/to-date.md
+            - TO_DAYS(): MatrixOne/Reference/Functions-and-Operators/Datetime/to-seconds.md
+            - TO_SECONDS(): MatrixOne/Reference/Functions-and-Operators/Datetime/to-days.md
             - UNIX_TIMESTAMP: MatrixOne/Reference/Functions-and-Operators/Datetime/unix-timestamp.md
             - UTC_TIMESTAMP(): MatrixOne/Reference/Functions-and-Operators/Datetime/utc-timestamp.md
             - WEEKDAY(): MatrixOne/Reference/Functions-and-Operators/Datetime/weekday.md
@@ -446,6 +455,7 @@ nav:
             - LPAD(): MatrixOne/Reference/Functions-and-Operators/String/lpad.md
             - LTRIM(): MatrixOne/Reference/Functions-and-Operators/String/ltrim.md
             - OCT(): MatrixOne/Reference/Functions-and-Operators/String/oct.md
+            - REPEAT(): MatrixOne/Reference/Functions-and-Operators/String/repeat.md
             - REVERSE(): MatrixOne/Reference/Functions-and-Operators/String/reverse.md
             - RPAD(): MatrixOne/Reference/Functions-and-Operators/String/rpad.md
             - RTRIM(): MatrixOne/Reference/Functions-and-Operators/String/rtrim.md
@@ -473,6 +483,10 @@ nav:
             - SLEEP: MatrixOne/Reference/Functions-and-Operators/Other/sleep.md
             - UUID(): MatrixOne/Reference/Functions-and-Operators/Other/uuid.md
           - System OPS Functions:
+            - CURRENT_ROLE_NAME(): MatrixOne/Reference/Functions-and-Operators/system-ops/current_role_name.md
+            - CURRENT_ROLE(): MatrixOne/Reference/Functions-and-Operators/system-ops/current_role.md
+            - CURRENT_USER_NAME(): MatrixOne/Reference/Functions-and-Operators/system-ops/current_user_name.md
+            - CURRENT_USER(): MatrixOne/Reference/Functions-and-Operators/system-ops/current_user.md
             - PURGE_LOG(): MatrixOne/Reference/Functions-and-Operators/system-ops/purge_log.md
       - System Paramaters:
         - Boot Parameters for standalone installation: MatrixOne/Reference/System-Parameters/configuration-settings.md

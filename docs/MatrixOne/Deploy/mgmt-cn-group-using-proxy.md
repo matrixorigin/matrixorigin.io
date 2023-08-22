@@ -14,6 +14,16 @@ To ensure the high availability of Proxy, at least 2 replicas should be set up i
 
 ![proxy-cn-group](https://github.com/matrixorigin/artwork/blob/main/docs/deploy/proxy-cn-group.png?raw=true)
 
+When performing CN (Compute Node) downsizing, Proxy behaves as follows in the YAML file:
+
+- Session Migration with the Same Label: When the number of CN replicas decreases, sessions with the same label will be migrated to other downsized CN nodes. This ensures the continuity and availability of sessions associated with specific labels.
+
+- Session Migration with Different Labels: If a CN replica with a particular label is set to 0 or removed, based on label matching rules, sessions associated with that label will be migrated to idle labels in future sessions.
+
+- Label Cancellation without Matching Labels: If a label is cancelled and no matching label exists, related sessions will be closed because there are no target CNs to receive these sessions.
+
+Proxy manages session migration and closure during CN downsizing to ensure the isolation between workloads and tenants, as well as the continuity of business operations.
+
 ## Steps
 
 The environment discussed in this document for managing CN groups using Proxy is based on the environment of [MatrixOne Distributed Cluster Deployment](deploy-MatrixOne-cluster.md).
@@ -92,7 +102,7 @@ If multiple CNs exist in the entire cluster, Proxy will automatically implement 
 
 ### Step Two: Set Up CN Groups
 
-In the `mo.yaml` file of the MatrixOne cluster, you need to configure CN groups by setting the `cnGroups` field and configure the `cnLabels` field in each `cnGroups` to set the labels of all CNs in the CN group. The Proxy will route and forward according to the connection labels. For example, you have set up two CN groups named `cnSet1` and `cnSet2` in the following example. Each CN group can have an independent number of replicas, log levels, CN parameter configurations, and CN labels.
+In the `mo.yaml` file of the MatrixOne cluster, you need to configure CN groups by setting the `cnGroups` field and configure the `cnLabels` field in each `cnGroups` to set the labels of all CNs in the CN group. The Proxy will route and forward according to the connection labels. For example, you have set up two CN groups named `cn-set1` and `cn-set2` in the following example. Each CN group can have an independent number of replicas, log levels, CN parameter configurations, and CN labels.
 
 The labels of CN groups adopt one-to-many groups of Key/value formats, in which there is a one-to-many relationship between each group of Key and value, i.e., each Key can have multiple values.
 
@@ -212,11 +222,11 @@ owners.
 Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 -- acc1 checks which CN groups are used for login
 mysql> show backend servers;
-+--------------------------------------+-------------------------------------------------------+------------------------------+
-| UUID                                 | Address                                               | Labels                       |
-+--------------------------------------+-------------------------------------------------------+------------------------------+
-| 32333337-3966-3137-3032-613035306561 | mo-cn-set1-cn-0.mo-cn-set1-cn-headless.mo-hn.svc:6001 | account:acc1;cn-set1:1,high; |
-+--------------------------------------+-------------------------------------------------------+------------------------------+
++--------------------------------------+-------------------------------------------------------+------------+------------------------------+
+| UUID                                 | Address                                               | Work State | Labels                       |
++--------------------------------------+-------------------------------------------------------+------------+------------------------------+
+| 32333337-3966-3137-3032-613035306561 | mo-cn-set1-cn-0.mo-cn-set1-cn-headless.mo-hn.svc:6001 | Working    | account:acc1;cn-set1:1,high; |
++--------------------------------------+-------------------------------------------------------+------------+------------------------------+
 1 row in set (0.00 sec)
 ```
 
@@ -237,11 +247,11 @@ owners.
 Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 -- acc2 checks which CN groups are used for login
 mysql> show backend servers;
-+--------------------------------------+-------------------------------------------------------+--------------------------------+
-| UUID                                 | Address                                               | Labels                         |
-+--------------------------------------+-------------------------------------------------------+--------------------------------+
-| 33663265-3234-3365-3737-333030613535 | mo-cn-set2-cn-0.mo-cn-set2-cn-headless.mo-hn.svc:6001 | account:acc2;cn-set2:2,medium; |
-+--------------------------------------+-------------------------------------------------------+--------------------------------+
++--------------------------------------+-------------------------------------------------------+------------+--------------------------------+
+| UUID                                 | Address                                               | Work State | Labels                         |
++--------------------------------------+-------------------------------------------------------+------------+--------------------------------+
+| 33663265-3234-3365-3737-333030613535 | mo-cn-set2-cn-0.mo-cn-set2-cn-headless.mo-hn.svc:6001 | Working    | account:acc2;cn-set2:2,medium; |
++--------------------------------------+-------------------------------------------------------+------------+--------------------------------+
 1 row in set (0.00 sec)
 ```
 
@@ -286,15 +296,31 @@ spec:
 +  	replicas: 1
 +  	cnLabels:
 +  	- key: "workload"
-# The load label is set to olap
++     # The load label is set to olap
 +  	  values: ["olap"]
 +
 + - name: cn-set2
 +  	replicas: 1
 +  	cnLabels:
 +   - key: "workload"
-# The load label is set to oltp
++     # The load label is set to oltp
 +			values: ["oltp"]
 ```
 
-Connection design for load isolation to be updated...
+After configuring the load of the cluster, you can connect to the cluster for load testing:
+
+1. Connect via JDBC:
+
+    Specify connection attributes in the JDBC connection string, and set the corresponding key and value. A colon separates the key and value `:`, and a comma separates multiple key-values `,`. Examples are as follows:
+
+    ```
+    jdbc:mysql://localhost:6001/test_db1?serverTimezone=UTC&connectionAttributes=workload:olap,another_key:test_value
+    ```
+
+2. Connect via MySQL client:
+
+    Extending the username field makes it possible to connect using the MySQL client. Add `?` after the username, and the following writing method is the same as connectionAttributes in JDBC. Examples are as follows:
+
+     ```
+     mysql -h127.0.0.1 -uuser1?workload:olap,another_key:test_value -P6001 -pxxx
+     ```

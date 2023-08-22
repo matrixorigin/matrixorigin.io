@@ -112,8 +112,8 @@ CREATE TABLE IF NOT EXISTS `tool` (
 ### About SHOW
 
 * MatrixOne does not support performing SHOW operations on certain objects, including `TRIGGER`, `FUNCTION`, `EVENT`, `PROCEDURE`, `ENGINE`, and so on.
-* Due to architectural differences, MatrixOne has implemented some SHOW commands solely for syntactic compatibility; these commands will not produce any output, such as `SHOW STATUS/PROCESSLIST/PRIVILEGES`, etc.
-* Although some commands have the same syntax as MySQL, their results differ significantly from MySQL due to different implementations. These commands include `SHOW GRANTS`, `SHOW ERRORS`, `SHOW VARIABLES`.
+* Due to architectural differences, MatrixOne has implemented some SHOW commands solely for syntactic compatibility; these commands will not produce any output, such as `SHOW STATUS/PRIVILEGES`, etc.
+* Although some commands have the same syntax as MySQL, their results differ significantly from MySQL due to different implementations. These commands include `SHOW GRANTS`, `SHOW ERRORS`, `SHOW PROCESSLIST`, `SHOW VARIABLES`.
 * For the purpose of its own management, MatrixOne offers several unique SHOW commands such as `SHOW BACKEND SERVERS`, `SHOW ACCOUNTS`, `SHOW ROLES`, `SHOW NODE LIST`, and others.
 
 ### About SET
@@ -203,6 +203,10 @@ CREATE TABLE IF NOT EXISTS `tool` (
 ### JSON functions
 
 * Only `JSON_UNQUOTE`, `JSON_QUOTE`, `JSON_EXTRACT` are supported.
+
+### System Management functions
+
+- `CURRENT_ROLE_NAME()`, `CURRENT_ROLE()`, `CURRENT_USER_NAME()`, `CURRENT_USER()`, `PURGE_LOG()` are supported.
 
 ## TAE Storage Engine
 
