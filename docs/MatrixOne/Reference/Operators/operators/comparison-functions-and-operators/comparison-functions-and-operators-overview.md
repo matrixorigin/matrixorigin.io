@@ -9,16 +9,18 @@
 | [<=](less-than-or-equal.md) | Less than or equal operator |
 | [=](assign-equal.md) | Equal operator|
 | [BETWEEN ... AND ...](between.md) | Whether a value is within a range of values |
+| [COALESCE](coalesce.md)|Return the first non-null value in a list|
 | [IN()](in.md) | Whether a value is within a set of values |
 | [IS](is.md) | Test a value against a boolean |
 | [IS NOT](is-not.md) | Test a value against a boolean |
 | [IS NOT NULL](is-not-null.md) | NOT NULL value test |
 | [IS NULL](is-null.md) | NULL value test |
+| [ISNULL](function_isnull.md) | NULL value test |
 | [LIKE](like.md) | Simple pattern matching |
 | [ILIKE](ilike.md) | Simple pattern matching. Same as LIKE. But it is not case sensitive. |
 | [NOT BETWEEN ... AND ...](not-between.md) | Whether a value is not within a range of values |
+| [NOT IN](not-in.md) | shorthand for multiple `XOR` conditions. |
 | [NOT LIKE](not-like.md) | Negation of simple pattern matching |
-| [COALESCE](coalesce.md)|Return the first non-null value in a list|
 
 Comparison operations result in a value of `TRUE`, `FALSE`, or `NULL`. These operations work for both numbers and strings. Strings are automatically converted to numbers and numbers to strings as necessary.
 

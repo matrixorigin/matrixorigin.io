@@ -231,4 +231,6 @@ mysql> select * from t1;
 
 ## Constraints
 
-The clauses: `CHANGE [COLUMN]`, `MODIFY [COLUMN]`, `RENAME COLUMN`, `ADD [CONSTRAINT [symbol]] PRIMARY KEY`, `DROP PRIMARY KEY`, and `ALTER COLUMN ORDER BY` can be used in ALTER It can be freely combined in the TABLE statement. Still, it is not supported to be used with other clauses for the time being.
+1. The clauses: `CHANGE [COLUMN]`, `MODIFY [COLUMN]`, `RENAME COLUMN`, `ADD [CONSTRAINT [symbol]] PRIMARY KEY`, `DROP PRIMARY KEY`, and `ALTER COLUMN ORDER BY` can be used in ALTER It can be freely combined in the TABLE statement. Still, it is not supported to be used with other clauses for the time being.
+2. Temporary tables currently do not support using `ALTER TABLE` to modify the table structure.
+3. Tables created using `CREATE TABLE ... CLUSTER BY...` do not allow modifications to the table structure using `ALTER TABLE`.

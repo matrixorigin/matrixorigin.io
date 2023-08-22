@@ -319,8 +319,8 @@ After configuring the load of the cluster, you can connect to the cluster for lo
 
 2. Connect via MySQL client:
 
-    Extending the username field makes it possible to connect using the MySQL client. Add `?` after the username, and the following writing method is the same as connectionAttributes in JDBC. Examples are as follows:
+     Use the MySQL client to connect by extending the username field. Add `?` after the username (username), and the subsequent writing method follows the connectionAttributes format in JDBC. The difference from the connectionAttributes format in JDBC is that the key and value are separated by `=`, and between multiple key-values, Use commas `,` to separate them; examples are as follows:
 
      ```
-     mysql -h127.0.0.1 -uuser1?workload:olap,another_key:test_value -P6001 -pxxx
+     mysql -h127.0.0.1 -uuser1?workload=olap,another_key=test_value -P6001 -pxxx
      ```

@@ -23,3 +23,4 @@ MatrixOne provides the following documents to help you quickly understand how to
 - [Migrate data from MySQL to MatrixOne](migrate-from-mysql-to-matrixone.md)
 - [Migrate data from Oracle to MatrixOne](migrate-from-oracle-to-matrixone.md)
 - [Migrate data from SQL Server to MatrixOne](migrate-from-sqlserver-to-matrixone.md)
+- [Migrate data from PostgreSQL to MatrixOne](migrate-from-postgresql-to-matrixone.md)
