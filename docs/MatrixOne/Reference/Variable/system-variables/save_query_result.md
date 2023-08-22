@@ -82,7 +82,7 @@ The metadata information is as follows:
 | statement | text | SQL statement executed |
 | account_id | uint32 | account ID |
 | role_id | uint32 | role ID |
-| result_path | text | The path to save the query results, the default is the `mo-data/s3` path of the matrixone folder, if you want to modify the default path, you need to modify `data-dir = "mo-data/s3"` in the configuration file . For a description of configuration file parameters, see [Common Parameter Configuration](../../System-Parameters/configuration-settings.md) |
+| result_path | text | The path to save the query results, the default is the `mo-data/s3` path of the matrixone folder, if you want to modify the default path, you need to modify `data-dir = "mo-data/s3"` in the configuration file . For a description of configuration file parameters, see [Common Parameter Configuration](../../System-Parameters/system-parameter.md) |
 | created_time | timestamp | creation time |
 | result_size | float | Result size in MB. |
 | tables | text | tables used by SQL |
@@ -107,7 +107,7 @@ MODUMP QUERY_RESULT query_id INTO s3_path
 
 - query_id: A string of UUID.
 
-- s3_path: the path where the query result file is saved. The default is the mo-data/s3 path in the matrixone folder. If you need to modify the default path, you must modify `data-dir = "mo-data/s3"` in the configuration file. For more information about configuration file parameters, see [Common Parameter Configuration](../../System-Parameters/configuration-settings.md)
+- s3_path: the path where the query result file is saved. The default is the mo-data/s3 path in the matrixone folder. If you need to modify the default path, you must modify `data-dir = "mo-data/s3"` in the configuration file. For more information about configuration file parameters, see [Common Parameter Configuration](../../System-Parameters/system-parameter.md)
 
    ```
    root@rootMacBook-Pro 02matrixone % cd matrixone/mo-data
