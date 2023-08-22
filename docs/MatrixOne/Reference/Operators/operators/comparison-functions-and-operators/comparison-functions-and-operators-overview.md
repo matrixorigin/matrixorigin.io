@@ -17,6 +17,7 @@
 | [IS NULL](is-null.md) | NULL value test |
 | [ISNULL](function_isnull.md) | NULL value test |
 | [LIKE](like.md) | Simple pattern matching |
+| [ILIKE](ilike.md) | Simple pattern matching. Same as LIKE. But it is not case sensitive. |
 | [NOT BETWEEN ... AND ...](not-between.md) | Whether a value is not within a range of values |
 | [NOT IN](not-in.md) | shorthand for multiple `XOR` conditions. |
 | [NOT LIKE](not-like.md) | Negation of simple pattern matching |

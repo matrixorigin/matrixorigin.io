@@ -55,6 +55,7 @@
 | [IS NULL](comparison-functions-and-operators/is-null.md) | NULL value test |
 | [ISNULL](comparison-functions-and-operators/function_isnull.md) | instead of = to test whether a value is NULL |
 | [LIKE](comparison-functions-and-operators/like.md) | Simple pattern matching |
+| [ILIKE](comparison-functions-and-operators/ilike.md) | Simple pattern matching. Same as LIKE. But it is not case sensitive. |
 | [NOT BETWEEN ... AND ...](comparison-functions-and-operators/not-between.md) | Whether a value is not within a range of values |
 | [NOT IN](comparison-functions-and-operators/not-in.md) | shorthand for multiple `XOR` conditions |
 | [NOT LIKE](comparison-functions-and-operators/not-like.md) | Negation of simple pattern matching |
