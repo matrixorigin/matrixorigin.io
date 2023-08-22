@@ -37,9 +37,24 @@ A comment for a column or a table can be specified with the `COMMENT` option.
 
 The initial `AUTO_INCREMENT` value for the table.
 
-An integer column can have the additional attribute `AUTO_INCREMENT`. When you insert a value of NULL (recommended) or 0 into an indexed AUTO_INCREMENT column, the column is set to the next sequence value. Typically this is value+1, where value is the largest value for the column currently in the table. AUTO_INCREMENT sequences begin with 1.
+An integer column can have the additional attribute `AUTO_INCREMENT`. When you insert a value of NULL (recommended) or 0 into an indexed AUTO_INCREMENT column, the column is set to the next sequence value. Typically this is value+1, where the value is the largest value for the column currently in the table. `AUTO_INCREMENT` sequences begin with 1 default.
 
-There can be only one `AUTO_INCREMENT` column per table, it must be indexed, and it cannot have a DEFAULT value. An `AUTO_INCREMENT` column works properly only if it contains only positive values. Inserting a negative number is regarded as inserting a very large positive number. This is done to avoid precision problems when numbers "wrap" over from positive to negative and also to ensure that you do not accidentally get an `AUTO_INCREMENT` column that contains 0.
+There can be only one `AUTO_INCREMENT` column per table, which must be indexed and cannot have a DEFAULT value. An `AUTO_INCREMENT` column works properly only if it contains only positive values. Inserting a negative number is regarded as inserting a very large positive number. This is done to avoid precision problems when numbers "wrap" over from positive to negative and also to ensure that you do not accidentally get an `AUTO_INCREMENT` column that contains 0.
+
+You can use the `AUTO_INCREMENT` attribute to define the starting value of an auto-increment column. If you want to set the starting value of the auto-increment column to 10, you can use the `AUTO_INCREMENT` keyword when creating the table and specify the starting value later.
+
+For example, to create a table and define an auto-increment column with a starting value of 10, you can use the following SQL statement:
+
+```sql
+-- set up
+create table t1(a int auto_increment primary key) auto_increment = 10;
+```
+
+In this example, the `id` column is an auto-incrementing column with a starting value 10. When a new record is inserted into the table, the value of the `id` column will start from 10 and increment by 1 each time. If the starting value of `AUTO_INCREMENT` is not specified, the default starting value is 1, which is automatically incremented by 1 each time.
+
+!!! note
+    1. MatrixOne currently only supports the default increment step size of 1; regardless of the initial value of the auto-increment column, each auto-increment is 1. Temporarily does not support setting the incremental step size.
+    2. MatrixOne only syntax supports using the system variable `set @@auto_increment_offset=n` to set the initial value of the auto-increment column, but it does not take effect.
 
 #### PRIMARY KEY
 
@@ -519,4 +534,6 @@ mysql> select * from t1 order by a;
 
 ## **Constraints**
 
-Currently, it is not supported to use the `ALTER TABLE table_name DROP PRIMARY KEY` statement to drop the primary key from a table.
+1. Currently, it is not supported to use the `ALTER TABLE table_name DROP PRIMARY KEY` statement to drop the primary key from a table.
+2. The `ALTER TABLE table_name AUTO_INCREMENT = n;` statement is not supported to modify the initial value of the auto-increment column.
+3. In MatrixOne, only syntax supports using the system variable `set @@auto_increment_increment=n` to set the incremental step size, and only syntax supports using the system variable `set @@auto_increment_offset=n` to set the default auto-increment column initial value, but it does not take effect; currently supports setting the initial value `AUTO_INCREMENT=n` of the auto-increment column, but the step size is still 1 by default.
