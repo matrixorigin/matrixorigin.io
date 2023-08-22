@@ -3,6 +3,22 @@
 PRIMARY KEY constraints can be used to ensure that a key value uniquely identifies each data row in a table.
 And at most, one `PRIMARY KEY` constraint can be defined on each database table.
 
+**Rules**
+
+When defining PRIMARY KEY, the following rules need to be followed:
+
+- **Uniqueness:** The value of the primary key column must be unique; each row in the table must have a different primary key value.
+
+- **Non-nullness:** The values ​​of the primary key columns cannot be null, i.e., they cannot contain NULL values.
+
+- **Immutability:** The value of the primary key column cannot be changed or updated after insertion. This is to keep the primary key unique. If you need to change the primary key value, you usually need to delete the original row first and then insert a new one with the new primary key value.
+
+- **Minimality:** The primary key can be composed of a single column or a combination of multiple columns. Composite primary keys can uniquely identify rows, but their composite values ​​must be unique and cannot have repeated combinations.
+
+- **Referential integrity:** The primary key is usually used as a reference for the foreign key (Foreign Key).
+
+- **Automatically create indexes:** Primary key columns will automatically create indexes to improve retrieval performance.
+
 ## **Syntax**
 
 ```
