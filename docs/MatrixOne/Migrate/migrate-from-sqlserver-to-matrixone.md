@@ -26,9 +26,13 @@ There are many differences between MatrixOne and SQL Server's built-in data type
 
 ## Online Migration
 
-This chapter will guide you to use third-party tools to migrate data from SQL Server to MatrixOne.
+This chapter will guide you to use third-party tools - DBeaver to migrate data from SQL Server to MatrixOne.
+
+Through DBeaver, the source data is obtained in batches, and then the data is inserted into the target database as `INSERT`. If an error is reported during the migration process that the heap space is insufficient, please try to adjust the size of each batch of fetched and inserted data.
 
 - Applicable scenarios: scenarios where the amount of data is small (recommended less than 1GB), and the migration speed is not sensitive.
+
+- The recommended configuration of the springboard machine where DBeaver is installed: RAM 16GB or more.
 
 ### Preparation
 
