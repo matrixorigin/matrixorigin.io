@@ -4,7 +4,7 @@ This document will introduce how to scale the MatrixOne cluster, including the K
 
 The environment introduced in this document will be based on the environment of [MatrixOne Distributed Cluster Deployment](deploy-MatrixOne-cluster.md).
 
-### When is it necessary to scale up
+### When is it necessary to scale
 
 To determine whether the MatrixOne service needs to be scaled up or down, users need to monitor the nodes where the MatrixOne cluster resides and the resources used by the Pods corresponding to related components. You can do this with the `kubectl top` command. For more detailed operation steps, please refer to [Health Check and Resource Monitoring](health-check-resource-monitoring.md).
 
@@ -50,6 +50,9 @@ Horizontal scaling refers to the increase or decrease in the number of copies of
         replicas: 2 #Changed from 1 CN to 2 CNs
     #Other content is ignored
     ```
+
+    !!! note
+        You can also refer to the above steps to change the field value of `replicas` for scaling down.
 
 3. After editing the number of `replicas`, saving, and exiting, MatrixOne Operator will automatically start a new CN. You can observe the new CN status with the following command:
 
