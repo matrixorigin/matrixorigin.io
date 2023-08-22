@@ -4,7 +4,7 @@
 
 Lists the meta information of the roles created under your account, including role name, creator, creation time, and comments.
 
-__Note:__ To query the role you are currently using, use the [`select current_role()`](../../Functions-and-Operators/system-ops/current_role.md) statement.
+__Note:__ To query the role you are currently using, use the [`select current_role()`](../../../Functions-and-Operators/system-ops/current_role.md) statement.
 
 ## **Syntax**
 

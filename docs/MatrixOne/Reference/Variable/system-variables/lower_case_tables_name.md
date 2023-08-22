@@ -127,7 +127,7 @@ lowerCaseTableNames = "0" // default is 1
 # 4 stores identifiers with `` as the original strings and case sensitive, while others are converted to lowercase
 ```
 
-When configuring globally, each cn needs to be configured if multiple cns are started. For configuration file parameter instructions, see[Boot Parameters for standalone installation](../../System-Parameters/configuration-settings.md).
+When configuring globally, each cn needs to be configured if multiple cns are started. For configuration file parameter instructions, see[Boot Parameters for standalone installation](../../System-Parameters/system-parameter.md).
 
 !!! note
     Currently, you can only set the parameter to 0 or 1. However, the parameter 2,3 or 4 is not supported.
