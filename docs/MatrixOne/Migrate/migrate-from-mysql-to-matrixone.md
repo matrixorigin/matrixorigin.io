@@ -2,7 +2,7 @@
 
 This document will guide you on how to migrate data from MySQL to MatrixOne.
 
-MatrixOne maintains a high degree of compatibility with MySQL syntax, so the syntax adjustments that need to be made during the migration process are minimal. Nevertheless, there are still some differences between MatrixOne and MySQL in terms of data types and data objects, which requires some adjustments in the migration process.
+MatrixOne maintains a high degree of compatibility with MySQL syntax, so no other operations are required during the migration process to achieve seamless migration.
 
 ## Data type difference
 
@@ -10,7 +10,7 @@ In MatrixOne, while maintaining the same name as MySQL, there are slight differe
 
 ## Online Migration
 
-This chapter will guide you to use third-party tools to migrate data from MySQL to MatrixOne.
+This chapter will guide you to use third-party tools - DBeaver to migrate data from MySQL to MatrixOne.
 
 - Applicable scenarios: scenarios where the amount of data is small (recommended less than 1GB), and the migration speed is not sensitive.
 
@@ -27,17 +27,7 @@ Here we take the TPCH dataset as an example and migrate the 8 tables of the TPCH
 
     ![](https://github.com/matrixorigin/artwork/blob/main/docs/migrate/mysql-1.png?raw=true)
 
-2. Use the following command to replace keywords not supported by MatrixOne in the *tpch_ddl.sql* file:
-
-    ```
-    # The commands executed by the Linux system are as follows:
-    sed -i 's/ ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci//g' /YOUR_PATH/tpch_ddl.sql
-
-    # The commands executed by the MacOS system are as follows:
-    sed -i '' 's/ ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci//g' /YOUR_PATH/tpch_ddl.sql
-    ```
-
-3. Connect to MatrixOne and create a new database and table in MatrixOne:
+2. Connect to MatrixOne and create a new database and table in MatrixOne:
 
     ```sql
     create database tpch;
@@ -83,7 +73,7 @@ This chapter will guide you through importing to MatrixOne through offline files
 
 - Springboard machine with a graphical interface: it can be connected to the source end of MySQL and the target end of MatrixOne.
 - Data Migration Tool: [Download DBeaver](https://dbeaver.io/download/) to the springboard machine.
-- Install `mysqldump`. If you are not familiar with how to use `mysqldump`, see [mysqldump tutorial](https://simplebackups.com/blog/the-complete-mysqldump-guide-with-examples/)
+- Install `mysqldump` in MySQL server. If you are not familiar with how to use `mysqldump`, see [mysqldump tutorial](https://simplebackups.com/blog/the-complete-mysqldump-guide-with-examples/)
 
 ### Step 1: Migrate table structure
 
@@ -93,17 +83,7 @@ Here we take the TPCH dataset as an example and migrate the 8 tables of the TPCH
 
     ![](https://github.com/matrixorigin/artwork/blob/main/docs/migrate/mysql-1.png?raw=true)
 
-2. Use the following command to replace keywords that MatrixOne does not support in the *tpch_ddl.sql* file:
-
-    ```
-    # The commands executed by the Linux system are as follows:
-    $ sed -i 's/ ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci//g' /YOUR_PATH/tpch_ddl.sql
-
-    # The commands executed by the MacOS system are as follows:
-    sed -i '' 's/ ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci//g' /YOUR_PATH/tpch_ddl.sql
-    ```
-
-3. Connect to MatrixOne and create a new database and table in MatrixOne:
+2. Connect to MatrixOne and create a new database and table in MatrixOne:
 
     ```sql
     create database tpch;
@@ -116,8 +96,6 @@ Here we take the TPCH dataset as an example and migrate the 8 tables of the TPCH
 MatrixOne has two data migration methods to choose from: `INSERT` and `LOAD DATA`. When the amount of data is greater than 1GB, it is recommended to use `LOAD DATA` first, followed by `INSERT`.
 
 #### LOAD DATA
-
-Use `LOAD DATA` to export the MySQL data table to CSV format first, and use MatrixOne's parallel LOAD function to migrate the data to MatrixOne:
 
 1. Use `mysqldump` to export the MySQL data table as a CSV format file. Make sure you have write access to the file path and check the `secure_file_priv` configuration:
 

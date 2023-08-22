@@ -190,3 +190,27 @@ Reference code example:
 
 !!! note
     The MatrixOne version 0.8.0 is compatible with the storage format of older versions. If you use version 0.8.0 or a higher version, there is no need to clean the data file directory when switching to other branches and buildings.
+
+### **Password authentication error when connecting to the MatrixOne cluster via proxy with CN label**
+
+- **Issue Reason**: Incorrect connection string formatting. Support for extending the username field is available when connecting to the MatrixOne cluster through the MySQL client. You can add a `?` after the username and follow it with CN group labels. CN group labels consist of key-value pairs separated by `=` and multiple key-value pairs are separated by commas `,`.
+
+- **Solution**: Please refer to the following example.
+
+Assuming the configuration for the CN group in your MatrixOne's `mo.yaml` configuration file is as shown below:
+
+```yaml
+## Displaying partial code only
+...
+- cacheVolume:
+    size: 100Gi
+  cnLabels:
+  - key: workload
+    values:
+    - bk
+...
+```
+
+When connecting to the MatrixOne cluster through the MySQL client, you can use the following command example: `mysql -u root?workload=bk -p111 -h 10.206.16.10 -P 31429`. In this command, `workload=bk` is the CN label, connected using `=`.
+
+Similarly, when using the `mo-dump` tool to export data, refer to the following command example: `mo-dump -u "dump?workload=bk" -h 10.206.16.10 -P 31429 -db tpch_10g > /tmp/mo/tpch_10g.sql`.
