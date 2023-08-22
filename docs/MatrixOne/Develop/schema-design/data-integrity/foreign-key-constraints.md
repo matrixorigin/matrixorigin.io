@@ -31,20 +31,35 @@ When defining FOREIGN KEY, the following rules need to be followed:
 Foreign keys are defined in the child table, and the primary foreign key constraint syntax is as follows:
 
 ```
-> column_name data_type FOREIGN KEY;
-> CREATE TABLE table_name (
-    column1 datatype [NOT NULL],
-    column2 datatype [NOT NULL],
-    ...
-    FOREIGN KEY (column1, column2, ... column_n)
-    REFERENCES parent_table (column1, column2, ... column_n)
+> CREATE TABLE child_table (
+    ...,
+    foreign_key_column data_type,
+    FOREIGN KEY (foreign_key_column) REFERENCES parent_table (parent_key_column)
+    [ON DELETE reference_option]
+    [ON UPDATE reference_option]
 );
+
+reference_option:
+    RESTRICT | CASCADE | SET NULL | NO ACTION
 ```
 
 **Explanation**
 
-- `FOREIGN KEY (column1, column2, ... column_n)`: Defines the columns to be used as the foreign key.
-- `REFERENCES parent_table (column1, column2, ... column_n)`: `REFERENCES` defines the parent table being referenced and the columns in the parent table.
+In the above syntax structure of a foreign key constraint, the following are explanations for each parameter:
+
+- `child_table`: The name of the child table, which contains the foreign key.
+- `foreign_key_column`: The column's name in the child table references the parent table.
+- `data_type`: The data type of the foreign key column.
+- `parent_table`: The name of the referenced parent table.
+- `parent_key_column`: The name of the primary key column in the parent table establishing the relationship.
+- `[ON DELETE reference_option]`: An optional parameter used to specify actions to be taken when records in the parent table are deleted.
+    + `RESTRICT`: If related foreign key data exists in the referenced table, deletion of data in the table is not allowed. This prevents accidental deletion of related data, ensuring data consistency.
+    + `CASCADE`: When data in the referenced table is deleted, associated foreign key data is also deleted. This is used for cascading deletion of related data to maintain data integrity.
+    + `SET NULL`: When data in the referenced table is deleted, the value of the foreign key column is set to NULL. This is used to retain foreign key data while disconnecting it from the referenced data upon deletion.
+    + `NO ACTION`: Indicates no action is taken; it only checks for the existence of associated data. This is similar to `RESTRICT` but may have minor differences in some databases.
+- `[ON UPDATE reference_option]`: An optional parameter used to specify actions to be taken when records in the parent table are updated. Possible values are the same as `[ON DELETE reference_option]`.
+
+These parameters collectively define a foreign key constraint, ensuring the data integrity relationship between the child and parent tables.
 
 ## **Examples**
 
