@@ -155,6 +155,7 @@ mysql> select min(big),max(big),max(big)-1 from floattable;
 | varbinary  | 255 bytes| 0 ~ 65535  |VARBINARY(M)| Similar to VARCHAR, binary string|
 | text      | 1 GB|other types mapping |TEXT |Long text data, TINY TEXT, MEDIUM TEXT, and LONG TEXT are not distinguished|
 | blob      | 1 GB| other types mapping|BLOB |Long text data in binary form, TINY BLOB, MEDIUM BLOB, and LONG BLOB are not distinguished|
+| enum  | 1 byte or 2 bytes | 0 ~ 65535 | enum  | An enumeration. A string object that can have only one value, chosen from the list of values 'value1', 'value2', ..., NULL or the special '' error value. ENUM values are represented internally as integers. |
 
 ### **Examples**
 
@@ -243,6 +244,21 @@ mysql> select * from blobtest where a like 'ab\_def' order by 1 asc;
 +----------------+
 | 0x61625F646566 |
 +----------------+
+1 row in set (0.01 sec)
+```
+
+- ENUM
+
+```sql
+-- Create a table named "enumtest" with 1 attribute of a "enum"
+CREATE TABLE enumtest (color ENUM('red', 'green', 'blue'));
+INSERT INTO enumtest (color) VALUES ('red');
+mysql> SELECT * FROM enumtest WHERE color = 'green';
++-------+
+| color |
++-------+
+| green |
++-------+
 1 row in set (0.01 sec)
 ```
 
