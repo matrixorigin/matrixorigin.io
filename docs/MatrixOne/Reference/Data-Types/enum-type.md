@@ -86,24 +86,19 @@ INSERT INTO enumtable (id) VALUES ('05');
 -- Here, the first enumeration member `red` will be assigned as the default value for the column with id 05
 ```
 
-### Filter ENUM values
+## Features that are different from MySQL
 
-When querying data, you can use enumeration constants or integer values ​​to filter data. For example:
+Unlike MySQL, MatrixOne's ENUM type can only be compared with the string type in the WHERE condition.
+
+You can see this example:
 
 ```sql
-SELECT * FROM enumtable WHERE color = 'green';
-SELECT * FROM enumtable WHERE color = 2;
--- 'green' comes second in the predefined list and corresponds to an integer value of 2
+update orders set status= 2 where status='Processing';`
 ```
 
-### Sort ENUM values
-
-MatrixOne sorts `ENUM` values ​​by index number. Therefore, the order of enumeration members depends on how they are defined in the enumeration list.
-
-It should be noted that type `ENUM` values are represented internally in SQL as integer values, not string values. So when you execute a query, if you use an integer value to filter data, you must match it with the integer value of the enum constant.
-
-If you need to sort by an enumerated column, define the enumerated values to be sorted when creating the column.
+In this example, you must update the `status` to 2 for the row whose `status` is `Processing`. Due to the nature of the ENUM type, MatrixOne implicitly converts 2 to the string `2` in the WHERE condition, which is then compared with `Processing`.
 
 ## Constraints
 
-Modifying ENUM enumeration members requires rebuilding the table using the `ALTER TABLE` statement.
+1. Modifying ENUM enumeration members requires rebuilding the table using the `ALTER TABLE` statement.
+2. MatrixOne does not support **Filtering ENUM values** and **Sorting ENUM values**.
