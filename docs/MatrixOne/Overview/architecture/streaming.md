@@ -1,4 +1,4 @@
-#  Detailed Stream Engine Architecture
+# Detailed Stream Engine Architecture
 
 MatrixOne incorporates a built-in stream engine designed for real-time querying, processing, and enriching data stored in a series of incoming data points, known as data streams. Developers can now use SQL to define and create stream processing pipelines as a real-time data backend service. Furthermore, developers can utilize SQL to query data within streams and establish connections with non-streaming datasets, thereby further simplifying the data stack.
 
