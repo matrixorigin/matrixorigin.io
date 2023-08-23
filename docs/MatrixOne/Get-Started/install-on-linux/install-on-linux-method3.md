@@ -41,18 +41,18 @@ This document will guide you build standalone MatrixOne using Docker.
 
 It will pull the image from Docker Hub if not exists. You can choose to pull the stable version image or the develop version image.
 
-=== "Stable Version Image(0.8.0 version)"
+=== "Stable Version Image(1.0.0-rc1 version)"
 
       ```bash
-      docker pull matrixorigin/matrixone:0.8.0
-      docker run -d -p 6001:6001 --name matrixone --privileged=true matrixorigin/matrixone:0.8.0
+      docker pull matrixorigin/matrixone:1.0.0-rc1
+      docker run -d -p 6001:6001 --name matrixone --privileged=true matrixorigin/matrixone:1.0.0-rc1
       ```
 
       If you are using the network in mainland China, you can pull the MatrixOne stable version image on Alibaba Cloud:
 
       ```bash
-      docker pull registry.cn-shanghai.aliyuncs.com/matrixorigin/matrixone:0.8.0
-      docker run -d -p 6001:6001 --name matrixone --privileged=true registry.cn-shanghai.aliyuncs.com/matrixorigin/matrixone:0.8.0
+      docker pull registry.cn-shanghai.aliyuncs.com/matrixorigin/matrixone:1.0.0-rc1
+      docker run -d -p 6001:6001 --name matrixone --privileged=true registry.cn-shanghai.aliyuncs.com/matrixorigin/matrixone:1.0.0-rc1
       ```
 
 === "Develop Version Image"

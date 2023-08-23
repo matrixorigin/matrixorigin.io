@@ -38,17 +38,17 @@ We use the Helm tool to deploy MatrixOne Operator. [Helm](https://helm.sh/zh/doc
 [root@master0 ~]# NS="matrixone-operator"
 [root@master0 ~]# helm list -n${NS}
 NAME                    NAMESPACE               REVISION        UPDATED                                 STATUS          CHART                                   APP VERSION
-matrixone-operator      matrixone-operator      1               2023-05-09 15:19:38.363683192 +0800 CST deployed        matrixone-operator-0.8.0-alpha.2        0.1.0
+matrixone-operator      matrixone-operator      1               2023-05-09 15:19:38.363683192 +0800 CST deployed        matrixone-operator-1.0.0-rc1-alpha.2        0.1.0
 ```
 
 ### Update
 
-The MatrixOne-Operator project is a long-term maintenance and update project; please update to the latest version. You can download the new version of Operator on [Github](https://github.com/matrixorigin/matrixone-operator/releases), for example: `matrixone-operator-0.8.0-alpha.2`.
+The MatrixOne-Operator project is a long-term maintenance and update project; please update to the latest version. You can download the new version of Operator on [Github](https://github.com/matrixorigin/matrixone-operator/releases), for example: `matrixone-operator-1.0.0-rc1-alpha.2`.
 
 Unzip the file with the following command:
 
 ```
-tar xvf ./matrixone-operator-0.8.0-alpha.2.tgz
+tar xvf ./matrixone-operator-1.0.0-rc1-alpha.2.tgz
 cd matrixone-operator
 ```
 
@@ -78,7 +78,7 @@ After the upgrade is complete, you can view the current version with the followi
 #Get mirror version
 NS="matrixone-operator"
 kubectl get pod -n${NS} `kubectl get pod -n${NS}  | grep operator | head -1 | awk '{print $1}'` -ojsonpath='{.spec.containers[0].image}'
-matrixorigin/matrixone-operator:0.8.0-alpha.2
+matrixorigin/matrixone-operator:1.0.0-rc1-alpha.2
 ```
 
 After upgrading Matrixone-Operator, a new Pod of `matrixone-operator-xxxx-xxx` will be regenerated under the `matrixone-operator` namespace, and then the old Pod will be deleted.

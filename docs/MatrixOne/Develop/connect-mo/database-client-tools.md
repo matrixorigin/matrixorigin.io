@@ -41,7 +41,7 @@ Make sure you have already [installed and launched MatrixOne](../../Get-Started/
 
     ```
     Welcome to the MySQL monitor. Commands end with ; or \g. Your MySQL connection id is 1031
-    Server version: 8.0.30-MatrixOne-v0.8.0 MatrixOne
+    Server version: 8.0.30-MatrixOne-v1.0.0-rc1 MatrixOne
     Copyright (c) 2000, 2022, Oracle and/or its affiliates.
 
     Oracle is a registered trademark of Oracle Corporation and/or its affiliates. Other names may be trademarks of their respective owners.
@@ -59,7 +59,7 @@ For more information on deployment, see [Deployment FAQs](../../FAQs/deployment-
 
     ```
     #Launch MatrixOne (Source code method)
-    ./mo-service -launch ./etc/quickstart/launch.toml
+    ./mo-service -launch ./etc/launch/launch.toml
     ```
 
 2. Download and install [Navicat](https://www.navicat.com/en/products).

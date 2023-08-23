@@ -16,9 +16,7 @@ These introductions will help you go through you the key concepts and user detai
 
 ### Roadmap
 
-MatrixOne v0.8.0 has been released, you can see [Release Notes](../../Release-Notes/v0.8.0.md) know more information.
-
-Currently, we are working on v1.0.0 releases, the job tasks of these releases are listed in the Github milestones [1.0.0](https://github.com/matrixorigin/matrixone/milestone/11).
+MatrixOne v1.0.0-rc1 has been released, you can see [Release Notes](../../Release-Notes/v1.0.0-rc1.md) know more information.
 
 For the long-term project roadmap, please refer to [MatrixOne roadmap](https://github.com/matrixorigin/matrixone/issues/613) for a more general overview.
 
