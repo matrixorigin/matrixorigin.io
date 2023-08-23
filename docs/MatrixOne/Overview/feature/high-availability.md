@@ -38,7 +38,7 @@ The shared log component LogService is the only component in MatrixOne that hold
 
 ### Transaction Layer
 
-The transaction layer component Transaction node is responsible for conflict detection and arbitration of transaction operations. It is a stateless node. If a failure occurs, Kubernetes can pull it up at any time, and it can generally recover in seconds, ensuring continuous availability. The current 0.8 version of Transaction node only supports single-node operation, and subsequent versions will add multiple Transaction node schemes to improve availability further.
+The transaction layer component Transaction node is responsible for conflict detection and arbitration of transaction operations. It is a stateless node. If a failure occurs, Kubernetes can pull it up at any time, and it can generally recover in seconds, ensuring continuous availability. The current version of Transaction node only supports single-node operation, and subsequent versions will add multiple Transaction node schemes to improve availability further.
 
 ### Computation Layer
 
