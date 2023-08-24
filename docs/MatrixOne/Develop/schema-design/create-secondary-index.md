@@ -64,4 +64,4 @@ mysql> SELECT * FROM users WHERE name = 'John';
 
 ## Constraints
 
-Currently MatrixOne only implements secondary indexes syntactically.
+Currently MatrixOne only implements secondary indexes syntactically, and does not achieve performance improvements.
