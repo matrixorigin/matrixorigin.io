@@ -45,7 +45,7 @@ For comprehensive details on deploying MatrixOne in a distributed setting, see [
 
 ### **What settings do I need to change for installation?**
 
-Normally you don't need to change anything for installation. A default setting of `launch.toml` is enough to run MatrixOne directly. But if you want to customize your listening port, ip address, stored data files path, you may modify the corresponding records of [`cn.toml`](https://github.com/matrixorigin/matrixone/blob/main/etc/launch-tae-CN-tae-TN/cn.toml), [`tn.toml`](https://github.com/matrixorigin/matrixone/blob/main/etc/launch-tae-CN-tae-TN/tn.toml) or [`log.toml`](https://github.com/matrixorigin/matrixone/blob/main/etc/launch-tae-CN-tae-TN/log.toml), for more details about parameter configuration in these files, see [Boot Parameters for standalone installation](../Reference/System-Parameters/system-parameter.md).
+Normally you don't need to change anything for installation. A default setting of `launch.toml` is enough to run MatrixOne directly. But if you want to customize your listening port, ip address, stored data files path, you may modify the corresponding records of [`cn.toml`](https://github.com/matrixorigin/matrixone/blob/main/etc /launch-with-proxy/cn.toml), [`tn.toml`](https://github.com/matrixorigin/matrixone/blob/main/etc /launch-with-proxy/tn.toml) or [`log.toml`](https://github.com/matrixorigin/matrixone/blob/main/etc /launch-with-proxy/log.toml), for more details about parameter configuration in these files, see [Boot Parameters for standalone installation](../Reference/System-Parameters/system-parameter.md).
 
 ### **After the MySQL client is installed, I open the terminal and run `mysql`, I got an error of `command not found: mysql`.**
 
@@ -103,7 +103,7 @@ Then the `make build` should be fast enough to finish.
 
 - When you use Docker to start MatrixOne, you can mount the data directory you specify to the Docker container, see [Mount directory to Docker container](../Maintain/mount-data-by-docker.md).
 
-- When you use the source code or binary package to compile and start MatrixOne, you can modify the default data directory path in the configuration file: open the MatrixOne source file directory `matrixone/etc/launch-tae-CN-tae-TN`, modify the configuration parameter `data-dir = "./mo-data"` in the three files of `cn.toml`, `tn.toml` and `log.toml` is `data-dir = "your_local_path"`, save and restart MatrixOne It will take effect.
+- When you use the source code or binary package to compile and start MatrixOne, you can modify the default data directory path in the configuration file: open the MatrixOne source file directory `matrixone/etc /launch-with-proxy`, modify the configuration parameter `data-dir = "./mo-data"` in the three files of `cn.toml`, `tn.toml` and `log.toml` is `data-dir = "your_local_path"`, save and restart MatrixOne It will take effect.
 
 ### **When I was testing MatrixOne with MO-tester, I got an error of `too many open files`?**
 
