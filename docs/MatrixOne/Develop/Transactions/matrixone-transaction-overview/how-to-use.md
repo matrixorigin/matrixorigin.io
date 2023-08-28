@@ -77,6 +77,8 @@ mode = "optimistic"
 isolation = "SI"
 ```
 
+__Note:__ If you only add the transaction mode parameter `mode = "optimistic"`, but do not add `isolation = "SI"`, the system will default to SI isolation in the optimistic transaction mode.
+
 Restart MatrixOne to make the switched transaction mode take effect.
 
 For more information on the configuration parameters, see [Distributed Common Parameters Configuration](../../Reference/System-Parameters/distributed-configuration-settings.md).
