@@ -28,7 +28,7 @@ This document lists the features supported by the latest version of MatrixOne an
 | PARTITION BY             | E, Only some types are supported             |
 | CHARSET, COLLATION       | N, Only UTF8 is supported by default         |
 
-## SQL statements
+## Data manipulation/query language (DML/DQL)
 
 | SQL Statement         | Supported(Y)/Not supported (N) /Experimental (E) |
 | ---------------------- | ------------------------------------ |
@@ -127,6 +127,7 @@ This document lists the features supported by the latest version of MatrixOne an
 | Flow Control Functions   | E                                  |
 | Window Functions       | Y                                  |
 | JSON Functions       | Y                                  |
+| System Functions       | Y                                  |
 | Other Functions       | Y                                  |
 | Operators        | Y                                  |
 
