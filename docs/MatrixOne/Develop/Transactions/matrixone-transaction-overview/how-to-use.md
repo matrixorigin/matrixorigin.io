@@ -64,3 +64,19 @@ insert into t1 values(1,2,3);
 -- Manual submission is required here
 COMMIT;  
 ```
+
+## Switch Transaction Mode
+
+MatrixOne adopts pessimistic transaction and RC isolation level by default. But if you need to switch to optimistic transaction mode, the corresponding isolation level will be changed to snapshot isolation.
+
+Add the following configuration parameters to the configuration file *cn.toml* under the *matrixone/etc/launch-with-proxy/* directory to switch the transaction mode:
+
+```toml
+[cn.Txn]
+mode = "optimistic"
+isolation = "SI"
+```
+
+Restart MatrixOne to make the switched transaction mode take effect.
+
+For more information on the configuration parameters, see [Distributed Common Parameters Configuration](../../Reference/System-Parameters/distributed-configuration-settings.md).
