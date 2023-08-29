@@ -24,11 +24,11 @@ This document lists the features supported by the latest version of MatrixOne an
 | AUTO_INCREMENT           | Y                                            |
 | SEQUENCE                 | Y                                            |
 | TEMPORARY TABLE          | Y                                            |
-| CREATE STREAM            | N                                            |
+| CREATE STREAM            | E, Only some types are supported             |
 | PARTITION BY             | E, Only some types are supported             |
 | CHARSET, COLLATION       | N, Only UTF8 is supported by default         |
 
-## SQL statements
+## Data manipulation/query language (DML/DQL)
 
 | SQL Statement         | Supported(Y)/Not supported (N) /Experimental (E) |
 | ---------------------- | ------------------------------------ |
@@ -36,7 +36,7 @@ This document lists the features supported by the latest version of MatrixOne an
 | INSERT                 | Y                                  |
 | UPDATE                  | Y                                  |
 | DELETE                  | Y                                  |
-| REPLACE                  | N                                  |
+| REPLACE                  | Y                                  |
 | INSERT ON DUPLICATE KEY UPDATE        | Y                                  |
 | LOAD DATA                     | Y                                  |
 | SELECT INTO                  | Y                                  |
@@ -77,14 +77,14 @@ This document lists the features supported by the latest version of MatrixOne an
 |              | BINARY                                 | Y                                  |
 |              | VARBINARY                              | Y                                  |
 |              | TINYTEXT/TEXT/MEDIUMTEXT/LONGTEXT      | Y                                  |
-|              | ENUM                                   | N, Can be replaced by `VARCHAR` |
+|              | ENUM                                   | Y, Not support **Filtering ENUM values** and **Sorting ENUM values** |
 |              | SET                                    | N                                  |
 | Binary Types   | TINYBLOB/BLOB/MEDIUMBLOB/LONGBLOB      | Y                                  |
 | Time and Date Types   | DATE                                   | Y                                  |
 |              | TIME                                   | Y                                  |
 |              | DATETIME                               | Y                                  |
 |              | TIMESTAMP                              | Y                                  |
-|              | YEAR                                   | N                                  |
+|              | YEAR                                   | Y                                  |
 | Boolean      | BOOL                                   | Y                                  |
 | Decimal Types | DECIMAL | Y, up to 38 digits |
 | JSON Types | JSON | Y |
@@ -109,11 +109,11 @@ This document lists the features supported by the latest version of MatrixOne an
 
 | Transactions             | Supported(Y)/Not supported (N) /Experimental (E) |
 | ------------------------ | ---- |
-| Pessimistic transactions | E    |
+| Pessimistic transactions | Y    |
 | Optimistic transactions  | Y    |
 | Distributed Transaction  | Y    |
 | Snapshot Isolation       | Y    |
-| READ COMMITTED           | E    |
+| READ COMMITTED           | Y    |
 
 ## Functions and Operators
 
@@ -127,6 +127,7 @@ This document lists the features supported by the latest version of MatrixOne an
 | Flow Control Functions   | E                                  |
 | Window Functions       | Y                                  |
 | JSON Functions       | Y                                  |
+| System Functions       | Y                                  |
 | Other Functions       | Y                                  |
 | Operators        | Y                                  |
 
@@ -166,7 +167,7 @@ This document lists the features supported by the latest version of MatrixOne an
 | Backup and Restore   | Supported(Y)/Not supported (N) /Experimental (E) |
 | ------------ | ---------------------------------- |
 | Logical Backup and Restore | Y, Only the modump tool is supported                |
-| Physical Backup and Restore | N                                  |
+| Physical Backup and Restore | Y                                  |
 
 ## Management Tool
 

@@ -31,7 +31,7 @@ According to the introduction in [MatrixOne Distributed Cluster Deployment](depl
 
     ![image-20230407094251938](https://github.com/matrixorigin/artwork/blob/main/docs/deploy/image-20230407094251938.png?raw=true)
 
-3. After completing the modification, press `:wq` to save. MatrixOne Operator will automatically pull the new version of the image and restart the component services, including Log Service, DN, and CN. You can also observe its running status through the following commands.
+3. After completing the modification, press `:wq` to save. MatrixOne Operator will automatically pull the new version of the image and restart the component services, including Log Service, TN, and CN. You can also observe its running status through the following commands.
 
     ```
     watch -e "kubectl get pod -n${mo_ns}"
@@ -40,7 +40,7 @@ According to the introduction in [MatrixOne Distributed Cluster Deployment](depl
     ```
     NAME                                 READY   STATUS    RESTARTS      AGE
     matrixone-operator-f8496ff5c-fp6zm   1/1     Running   0             24h
-    mo-dn-0                              1/1     Running   1 (51s ago)   18h
+    mo-tn-0                              1/1     Running   1 (51s ago)   18h
     mo-log-0                             1/1     Running   0             18h
     mo-log-1                             1/1     Running   1 (5s ago)    18h
     mo-log-2                             1/1     Running   1 (53s ago)   18h
@@ -50,10 +50,10 @@ According to the introduction in [MatrixOne Distributed Cluster Deployment](depl
     If an error, crashbackoff, etc., occurs, you can further troubleshoot the problem by viewing the component log.
 
     ```
-    #pod_name is the name of the pod, such as mo-dn-0, mo-tp-cn-0
-    pod_name=mo-dn-0
-    kubectl logs ${pod_name} -nmo-hn > /tmp/dn.log
-    vim /tmp/dn.log
+    #pod_name is the name of the pod, such as mo-tn-0, mo-tp-cn-0
+    pod_name=mo-tn-0
+    kubectl logs ${pod_name} -nmo-hn > /tmp/tn.log
+    vim /tmp/tn.log
     ```
 
 4. After the `Restart` of the components in the MatrixOne cluster is completed, you can use the MySQL Client to connect to the cluster. The upgrade is successful if the connection is successful and the user data is complete.
@@ -98,7 +98,7 @@ According to the introduction in [MatrixOne Distributed Cluster Deployment](depl
 
     ```
     [root@master0 matrixone-operator]# kubectl get matrixoneclusters -n mo-hn -o yaml | grep version
-            {"apiVersion":"core.matrixorigin.io/v1alpha1","kind":"MatrixOneCluster","metadata":{"annotations":{},"name":"mo","namespace":"mo-hn"},"spec":{"dn":{"cacheVolume":{"size":"5Gi","storageClassName":"local-path"},"config":"[dn.Txn.Storage]\nbackend = \"TAE\"\nlog-backend = \"logservice\"\n[dn.Ckp]\nflush-interval = \"60s\"\nmin-count = 100\nscan-interval = \"5s\"\nincremental-interval = \"60s\"\nglobal-interval = \"100000s\"\n[log]\nlevel = \"error\"\nformat = \"json\"\nmax-size = 512\n","replicas":1,"resources":{"limits":{"cpu":"200m","memory":"1Gi"},"requests":{"cpu":"100m","memory":"500Mi"}}},"imagePullPolicy":"IfNotPresent","imageRepository":"matrixorigin/matrixone","logService":{"config":"[log]\nlevel = \"error\"\nformat = \"json\"\nmax-size = 512\n","pvcRetentionPolicy":"Retain","replicas":3,"resources":{"limits":{"cpu":"200m","memory":"1Gi"},"requests":{"cpu":"100m","memory":"500Mi"}},"sharedStorage":{"s3":{"endpoint":"http://minio.mostorage:9000","path":"minio-mo","secretRef":{"name":"minio"},"type":"minio"}},"volume":{"size":"1Gi"}},"tp":{"cacheVolume":{"size":"5Gi","storageClassName":"local-path"},"config":"[cn.Engine]\ntype = \"distributed-tae\"\n[log]\nlevel = \"debug\"\nformat = \"json\"\nmax-size = 512\n","nodePort":31429,"replicas":1,"resources":{"limits":{"cpu":"200m","memory":"2Gi"},"requests":{"cpu":"100m","memory":"500Mi"}},"serviceType":"NodePort"},"version":"nightly-54b5e8c"}}
+            {"apiVersion":"core.matrixorigin.io/v1alpha1","kind":"MatrixOneCluster","metadata":{"annotations":{},"name":"mo","namespace":"mo-hn"},"spec":{"tn":{"cacheVolume":{"size":"5Gi","storageClassName":"local-path"},"config":"[tn.Txn.Storage]\nbackend = \"TAE\"\nlog-backend = \"logservice\"\n[tn.Ckp]\nflush-interval = \"60s\"\nmin-count = 100\nscan-interval = \"5s\"\nincremental-interval = \"60s\"\nglobal-interval = \"100000s\"\n[log]\nlevel = \"error\"\nformat = \"json\"\nmax-size = 512\n","replicas":1,"resources":{"limits":{"cpu":"200m","memory":"1Gi"},"requests":{"cpu":"100m","memory":"500Mi"}}},"imagePullPolicy":"IfNotPresent","imageRepository":"matrixorigin/matrixone","logService":{"config":"[log]\nlevel = \"error\"\nformat = \"json\"\nmax-size = 512\n","pvcRetentionPolicy":"Retain","replicas":3,"resources":{"limits":{"cpu":"200m","memory":"1Gi"},"requests":{"cpu":"100m","memory":"500Mi"}},"sharedStorage":{"s3":{"endpoint":"http://minio.mostorage:9000","path":"minio-mo","secretRef":{"name":"minio"},"type":"minio"}},"volume":{"size":"1Gi"}},"tp":{"cacheVolume":{"size":"5Gi","storageClassName":"local-path"},"config":"[cn.Engine]\ntype = \"distributed-tae\"\n[log]\nlevel = \"debug\"\nformat = \"json\"\nmax-size = 512\n","nodePort":31429,"replicas":1,"resources":{"limits":{"cpu":"200m","memory":"2Gi"},"requests":{"cpu":"100m","memory":"500Mi"}},"serviceType":"NodePort"},"version":"nightly-54b5e8c"}}
         version: nightly-54b5e8c
     ```
 
@@ -175,13 +175,13 @@ kubectl apply -f mo.yaml
 
 Please check if MatrixOne has started successfully with the following command.
 
-As shown in the following code example, when the Log Service, DN, and CN are all running normally, the MatrixOne cluster starts successfully. Connecting through the MySQL Client can also check if the database functions correctly.
+As shown in the following code example, when the Log Service, TN, and CN are all running normally, the MatrixOne cluster starts successfully. Connecting through the MySQL Client can also check if the database functions correctly.
 
 ```
 [root@master0 ~]# kubectl get pods -n mo-hn      
 NAME                                  READY   STATUS    RESTARTS     AGE
 matrixone-operator-6c9c49fbd7-lw2h2   1/1     Running   2 (8h ago)   9h
-mo-dn-0                               1/1     Running   0            2m13s
+mo-tn-0                               1/1     Running   0            2m13s
 mo-log-0                              1/1     Running   0            2m47s
 mo-log-1                              1/1     Running   0            2m47s
 mo-log-2                              1/1     Running   0            2m47s
