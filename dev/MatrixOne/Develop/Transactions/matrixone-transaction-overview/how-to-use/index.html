@@ -2009,6 +2009,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#switch-transaction-mode" class="md-nav__link">
+    Switch Transaction Mode
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -9222,6 +9229,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#switch-transaction-mode" class="md-nav__link">
+    Switch Transaction Mode
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -9279,6 +9293,16 @@ rollback;
 <span class="c1">-- Manual submission is required here</span>
 <span class="k">COMMIT</span><span class="p">;</span><span class="w">  </span>
 </code></pre></div>
+<h2 id="switch-transaction-mode">Switch Transaction Mode</h2>
+<p>MatrixOne adopts pessimistic transaction and RC isolation level by default. But if you need to switch to optimistic transaction mode, the corresponding isolation level will be changed to snapshot isolation.</p>
+<p>Add the following configuration parameters to the configuration file <em>cn.toml</em> under the <em>matrixone/etc/launch-with-proxy/</em> directory to switch the transaction mode:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[cn.Txn]</span>
+<span class="n">mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;optimistic&quot;</span>
+<span class="n">isolation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;SI&quot;</span>
+</code></pre></div>
+<p><strong>Note:</strong> If you only add the transaction mode parameter <code>mode = "optimistic"</code>, but do not add <code>isolation = "SI"</code>, the system will default to SI isolation in the optimistic transaction mode.</p>
+<p>Restart MatrixOne to make the switched transaction mode take effect.</p>
+<p>For more information on the configuration parameters, see <a href="../../Reference/System-Parameters/distributed-configuration-settings.md">Distributed Common Parameters Configuration</a>.</p>
 
 
 

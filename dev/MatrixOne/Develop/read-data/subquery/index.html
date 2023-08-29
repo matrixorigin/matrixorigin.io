@@ -9303,27 +9303,34 @@
 <p>For more information on SQL statement, see <a href="../../../Reference/SQL-Reference/Data-Query-Language/subqueries/subquery/">SUBQUERY</a>.</p>
 <p>In addition, from the execution of SQL statements, subquery generally has the following two types:</p>
 <ul>
-<li>Correlated Subquery: In Correlated Subquery nested in databases, the inner and outer queries would not be independent, and the inner queries would depend on the outer queries.</li>
-</ul>
-<p>The execution sequence is as follows:</p>
-<pre><code>+ Queries a record from the outer query.
-
-+ Put the queried records into the inner query, then put the records that meet the conditions into the outer query.
-
-+ Repeat the above steps
-
-For example: ``select * from tableA where tableA.cloumn &amp;lt; (select column from tableB where tableA.id = tableB.id))``
-</code></pre>
+<li>
+<p>Correlated Subquery: In Correlated Subquery nested in databases, the inner and outer queries would not be independent, and the inner queries would depend on the outer queries.The execution sequence is as follows:</p>
 <ul>
-<li>Self-contained Subquery: In a database nested query, the inner query is entirely independent of the outer query.</li>
+<li>
+<p>Queries a record from the outer query.</p>
+</li>
+<li>
+<p>Put the queried records into the inner query, then put the records that meet the conditions into the outer query.</p>
+</li>
+<li>
+<p>Repeat the above steps</p>
+</li>
 </ul>
-<p>The execution sequence is as follows:</p>
-<pre><code>+ Execute the inner query first.
-
-+ The result of the inner query is carried into the outer layer, and then the outer query is executed.
-
-For example: ``select * from tableA where tableA.column = (select tableB.column from tableB)``
-</code></pre>
+<p>For example: <code>select * from tableA where tableA.cloumn &amp;lt; (select column from tableB where tableA.id = tableB.id))</code></p>
+</li>
+<li>
+<p>Self-contained Subquery: In a database nested query, the inner query is entirely independent of the outer query. The execution sequence is as follows:</p>
+<ul>
+<li>
+<p>Execute the inner query first.</p>
+</li>
+<li>
+<p>The result of the inner query is carried into the outer layer, and then the outer query is executed.</p>
+</li>
+</ul>
+<p>For example: <code>select * from tableA where tableA.column = (select tableB.column from tableB)</code></p>
+</li>
+</ul>
 <p><strong>Key Feature</strong>:</p>
 <ul>
 <li>

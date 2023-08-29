@@ -9370,7 +9370,7 @@
 <div class="highlight"><pre><span></span><code><span class="k">DROP</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">person</span><span class="p">;</span>
 </code></pre></div>
 <h2 id="basic-sql-about-insert-update-and-delete-data">Basic SQL about INSERT, UPDATE, and DELETE data</h2>
-<p>Common DML features are adding, modifying, and deleting table records. The corresponding commands are <code>INSERT</code>, <code>UPDATE</code>, and <code>DELETE</code>.</p>
+<p>Common DML features are adding, modifying, and deleting table records. The corresponding commands are <code>INSERT</code>, <code>UPDATE</code>, <code>REPLACE</code> and <code>DELETE</code>.</p>
 <ul>
 <li>To insert data into a table, use the <code>INSERT</code> statement:</li>
 </ul>
@@ -9387,14 +9387,19 @@
 <div class="highlight"><pre><span></span><code><span class="k">UPDATE</span><span class="w"> </span><span class="n">person</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">birthday</span><span class="o">=</span><span class="s1">&#39;20180808&#39;</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span>
 </code></pre></div>
 <ul>
+<li>To replace some field data of table records in the table, use the <code>UPDATE</code> statement:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="k">REPLACE</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">person</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">birthday</span><span class="o">=</span><span class="s1">&#39;20180809&#39;</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span>
+</code></pre></div>
+<ul>
 <li>To delete the data in a table, use the <code>DELETE</code> statement:</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="k">DELETE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">person</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span>
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-</div>
 <p>The <code>UPDATE</code> and <code>DELETE</code> statements without the <code>WHERE</code> clause as a filter operate on the entire table.</p>
+</div>
 <h2 id="basic-sql-about-query-data">Basic SQL about Query data</h2>
 <p>DQL is used to retrieve the desired data rows from a table or multiple tables.</p>
 <ul>

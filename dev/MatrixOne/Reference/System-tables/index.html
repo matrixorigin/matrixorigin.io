@@ -10677,7 +10677,7 @@ The other system databases and table functions are described in this document.</
 <li>
 <p>node: the MatrixOne node uuid</p>
 </li>
-<li>role: the MatrixOne node role, can be CN, DN or LOG.  </li>
+<li>role: the MatrixOne node role, can be CN, TN or LOG.  </li>
 <li>account: default as "sys", the account who fires the SQL request.</li>
 <li>type:SQL type, can be <code>select</code>, <code>insert</code>, <code>update</code>, <code>delete</code>, <code>other</code> types.</li>
 </ul>
@@ -10818,7 +10818,7 @@ The other system databases and table functions are described in this document.</
 <tr>
 <td>node_type</td>
 <td>VARCHAR(64)</td>
-<td>node type in MO, val in [DN, CN, LOG]</td>
+<td>node type in MO, val in [TN, CN, LOG]</td>
 </tr>
 <tr>
 <td>request_at</td>
@@ -10926,7 +10926,7 @@ The other system databases and table functions are described in this document.</
 <tr>
 <td>node_type</td>
 <td>VARCHAR(64)</td>
-<td>node type in MO, val in [DN, CN, LOG]</td>
+<td>node type in MO, val in [TN, CN, LOG]</td>
 </tr>
 <tr>
 <td>span_id</td>

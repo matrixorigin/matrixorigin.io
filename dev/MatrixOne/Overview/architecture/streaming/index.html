@@ -9,17 +9,13 @@
       
       
       
-        <link rel="prev" href="../architecture-tae/">
-      
-      
-        <link rel="next" href="../architecture-proxy/">
       
       <link rel="icon" href="../../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-9.1.21">
     
     
       
-        <title>Detailed Logservice Architecture - MatrixOne Docs</title>
+        <title>Detailed Stream Engine Architecture - MatrixOne Docs</title>
       
     
     
@@ -69,7 +65,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#detailed-logservice-architecture" class="md-skip">
+        <a href="#detailed-stream-engine-architecture" class="md-skip">
           Skip to content
         </a>
       
@@ -107,7 +103,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Detailed Logservice Architecture
+              Detailed Stream Engine Architecture
             
           </span>
         </div>
@@ -201,15 +197,13 @@
         
   
   
-    
-  
 
 
   
   
   
     <li class="md-tabs__item">
-      <a href="../../../.." class="md-tabs__link md-tabs__link--active">
+      <a href="../../../.." class="md-tabs__link">
         MatrixOne
       </a>
     </li>
@@ -271,16 +265,14 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
       
       
       
@@ -289,7 +281,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_1">
           <span class="md-nav__icon md-icon"></span>
           MatrixOne
@@ -314,16 +306,14 @@
               
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_2" checked>
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_2" >
       
       
       
@@ -332,7 +322,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_2_label" aria-expanded="true">
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_2_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_1_2">
           <span class="md-nav__icon md-icon"></span>
           Overview
@@ -489,16 +479,14 @@
               
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_2_4" checked>
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_2_4" >
       
       
       
@@ -507,7 +495,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_1_2_4_label" aria-expanded="true">
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_1_2_4_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_1_2_4">
           <span class="md-nav__icon md-icon"></span>
           MatrixOne Architecture Design
@@ -546,140 +534,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Detailed Logservice Architecture
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../architecture-logservice/" class="md-nav__link">
         Detailed Logservice Architecture
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#logservice-architecture" class="md-nav__link">
-    Logservice Architecture
-  </a>
-  
-    <nav class="md-nav" aria-label="Logservice Architecture">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#client" class="md-nav__link">
-    Client
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#server" class="md-nav__link">
-    Server
-  </a>
-  
-    <nav class="md-nav" aria-label="Server">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#server-handler" class="md-nav__link">
-    Server Handler
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#bootstrap" class="md-nav__link">
-    Bootstrap
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#heartbeat" class="md-nav__link">
-    Heartbeat
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#replicated-state-machine-rsm" class="md-nav__link">
-    Replicated State Machine (RSM)
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#read-write-process" class="md-nav__link">
-    Read-Write Process
-  </a>
-  
-    <nav class="md-nav" aria-label="Read-Write Process">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#write-process" class="md-nav__link">
-    Write Process
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#read-process" class="md-nav__link">
-    Read Process
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#truncation" class="md-nav__link">
-    Truncation
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -9258,91 +9117,23 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#logservice-architecture" class="md-nav__link">
-    Logservice Architecture
+  <a href="#technical-architecture" class="md-nav__link">
+    Technical Architecture
   </a>
   
-    <nav class="md-nav" aria-label="Logservice Architecture">
+    <nav class="md-nav" aria-label="Technical Architecture">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#client" class="md-nav__link">
-    Client
+  <a href="#connectors" class="md-nav__link">
+    Connectors
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#server" class="md-nav__link">
-    Server
-  </a>
-  
-    <nav class="md-nav" aria-label="Server">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#server-handler" class="md-nav__link">
-    Server Handler
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#bootstrap" class="md-nav__link">
-    Bootstrap
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#heartbeat" class="md-nav__link">
-    Heartbeat
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#replicated-state-machine-rsm" class="md-nav__link">
-    Replicated State Machine (RSM)
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#read-write-process" class="md-nav__link">
-    Read-Write Process
-  </a>
-  
-    <nav class="md-nav" aria-label="Read-Write Process">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#write-process" class="md-nav__link">
-    Write Process
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#read-process" class="md-nav__link">
-    Read Process
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#truncation" class="md-nav__link">
-    Truncation
+  <a href="#streams" class="md-nav__link">
+    Streams
   </a>
   
 </li>
@@ -9370,127 +9161,42 @@
   
 
 
-<h1 id="detailed-logservice-architecture">Detailed Logservice Architecture</h1>
-<p>Logservice plays a vital role in MatrixOne. It is an independent service used by external components through RPC for log management.</p>
-<p>Logservice uses the dragonboat library based on the Raft protocol (a multi-raft group's Go language open source implementation) and usually uses local disks to store logs in multiple copies, similar to the management of WAL (Write-Ahead Log). The transaction commits must only be written to the Logservice without writing the data to S3. Additional components write batches of data to S3 asynchronously. Such a design ensures low latency when the transaction commits, and multiple copies provide high data reliability.</p>
-<h2 id="logservice-architecture">Logservice Architecture</h2>
-<p>The architecture of Logservice consists of two parts: client and server. The server includes modules such as handler, dragonboat, and RSM (Replicated State Machine), while the client includes several key interfaces. The collaborative relationship between them is shown in the figure below:</p>
-<p><img alt="" src="https://github.com/matrixorigin/artwork/blob/main/docs/overview/logservice/logserviece-arch.png?raw=true" /></p>
-<h3 id="client">Client</h3>
-<p>Logservice client is mainly invoked by TN (Transaction node) and provides the following key interfaces:</p>
+<h1 id="detailed-stream-engine-architecture">Detailed Stream Engine Architecture</h1>
+<p>MatrixOne incorporates a built-in stream engine designed for real-time querying, processing, and enriching data stored in a series of incoming data points, known as data streams. Developers can now use SQL to define and create stream processing pipelines as a real-time data backend service. Furthermore, developers can utilize SQL to query data within streams and establish connections with non-streaming datasets, thereby further simplifying the data stack.</p>
+<h2 id="technical-architecture">Technical Architecture</h2>
+<p>The technical architecture of the MatrixOne stream engine is illustrated as follows:</p>
+<p><img alt="" src="https://github.com/matrixorigin/artwork/blob/main/docs/overview/stream-arch.png?raw=true" /></p>
+<p>MatrixOne introduced the ability to create streaming tables and implemented a Kafka connector to fulfill the streaming data ingestion requirements of numerous time-series scenarios.</p>
+<h3 id="connectors">Connectors</h3>
+<p>Connectors facilitate connecting with external data sources, such as the Kafka connector introduced in MatrixOne 1.0.</p>
+<p>MatrixOne supports the use of the following statement to establish a connection between connectors and external data sources:</p>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">SOURCE</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">SINK</span><span class="w"> </span><span class="n">CONNECTOR</span><span class="w"> </span><span class="p">[</span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="p">]</span><span class="w"> </span><span class="n">connector_name</span><span class="w"> </span><span class="n">CONNECTOR_TYPE</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="p">(</span><span class="n">property_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">expression</span><span class="w"> </span><span class="p">[,</span><span class="w"> </span><span class="p">...]);</span>
+</code></pre></div>
+<p>Here, the parameter <code>CONNECTOR_TYPE</code> is used to specify the target.</p>
+<h3 id="streams">Streams</h3>
+<p>A stream represents an append-only data flow akin to an unbounded table with infinite events. Each stream maps to an event group in the storage layer, such as Kafka topics or MatrixOne tables.</p>
 <ul>
-<li><code>Close()</code>: Close the client connection.</li>
-<li><code>Config()</code>: Get client-related configuration.</li>
-<li><code>GetLogRecord()</code>: returns a <code>pb.LogRecord</code> variable containing an 8-byte LSN (log sequence number), a 4-byte record type, and a data field of type <code>[]byte</code>. The data field consists of 4 bytes for <code>pb.UserEntryUpdate</code>, 8 for the replica TN ID, and <code>payload []byte</code>.</li>
-<li><code>Append()</code>: Append <code>pb.LogRecord</code> to Logservice and return LSN. The parameter <code>pb.LogRecord</code> can be reused on the calling side.</li>
-<li><code>Read()</code>: Read logs starting from the specified <code>firstLsn</code> from the Logservice until maxSize is reached. The returned LSN is used as the starting point for the next read.</li>
-<li><code>Truncate()</code>: Delete the logs before the specified LSN to free up disk space.</li>
-<li><code>GetTruncatedLsn()</code>: Returns the LSN of the most recently deleted log.</li>
-<li><code>GetTSOTimestamp()</code>: Request the specified timestamps from TSO (Timestamp Oracle). The caller occupies the scope of <code>[returned value, returned value + count]</code>. This method currently needs to be used.</li>
+<li>External stream: A stream using an external storage layer via connectors.</li>
+<li>Internal stream: A stream that utilizes MatrixOne tables as the event storage.</li>
 </ul>
-<p>The Logservice client sends a request to the Logservice server through MO-RPC, and the server interacts with <code>Raft</code>/<code>dragonboat</code> and returns the result.</p>
-<h3 id="server">Server</h3>
-<h4 id="server-handler">Server Handler</h4>
-<p>The server side of Logservice receives requests from clients and handles them. The entry function is <code>(*Service).handle()</code>, and different requests are processed by calling other methods:</p>
-<ul>
-<li>Append: Appends logs to Logservice, ultimately invoking the <code>(*NodeHost) SyncPropose()</code> method of Dragonboat for synchronous proposal. It waits for the log to be committed and applied before returning, and the return value is the LSN (Log Sequence Number) after a successful log write.</li>
-<li>Read: Reads log entries from the log database. It first calls the <code>(*NodeHost) SyncRead()</code> method to perform a linear read from the state machine up to the current LSN and then calls the <code>(*NodeHost) QueryRaftLog()</code> method to read log entries from the log database based on the LSN.</li>
-<li>Truncate: Truncates logs in the log database to free up disk space. It's important to note that here, only the latest truncatable LSN in the state machine is updated, and the actual truncation operation still needs to be performed.</li>
-<li>Connect: Establishes a connection with the Logservice server and attempts to read and write the state machine for state checking.</li>
-<li>Heartbeat: Includes heartbeats to Logservice, CN, and TN. This request updates the status information of each entity in the HAKeeper's state machine and synchronizes the tick of HAKeeper. When the HAKeeper performs checks, it compares the offline time based on the tick, and if it's offline, it triggers removal or shutdown operations.</li>
-<li>Get XXX: Retrieves relevant information from the state machine.</li>
-</ul>
-<h4 id="bootstrap">Bootstrap</h4>
-<p>Bootstrap is the process that occurs when the logservice server starts, and it is carried out through HAKeeper's shard ID 0. The entry function is <code>(*Service) BootstrapHAKeeper</code>.
-Regardless of how many replicas are configured, each logservice process starts a replica of HAKeeper during startup. Each replica sets up members (replicas) upon startup, and the HAKeeper shard starts Raft with these members as the default replica count.
-After completing the leader election in Raft, it executes setting the initial cluster information (<code>set initial cluster info</code>), sets the shard to count for logs and TNs, and sets the replica count for logs.
-Once the replica count is set, any excess HAKeeper replicas will be stopped.</p>
-<h4 id="heartbeat">Heartbeat</h4>
-<p>This heartbeat is sent from Logservice, CN, and TN to HAKeeper, rather than being a heartbeat between Raft replicas. It serves two primary purposes:</p>
-<ol>
-<li>Sending the status information of each replica to HAKeeper through heartbeats, allowing HAKeeper's state machine to update replica information.</li>
-<li>Retrieving commands that replicas need to execute from HAKeeper upon heartbeat response.</li>
-</ol>
-<p>The heartbeat process in Logservice is illustrated in the following diagram, and the process is similar for CN and TN.</p>
-<p><img alt="" src="https://github.com/matrixorigin/artwork/blob/main/docs/overview/logservice/heartbeat.png?raw=true" /></p>
-<p>By default, the heartbeat is executed once per second, and its mechanism is as follows:</p>
-<ol>
-<li>Generate heartbeat information for all shard replicas on the storage level, including shard ID, node information, term, leader, etc.</li>
-<li>Send the request to the server side of Logservice.</li>
-<li>Upon receiving the request, the server invokes the <code>(*Service) handleLogHeartbeat()</code> method to process it and uses propose to send the heartbeat to Raft.</li>
-<li>Upon receiving the heartbeat, the state machine of HAKeeper calls the <code>(*stateMachine) handleLogHeartbeat()</code> method to process it, primarily performing the following tasks:<ul>
-<li>Updating the LogState in the state machine: Invoking the <code>(*LogState) Update()</code> method to update storage and shard information.</li>
-<li>Retrieving commands from the <code>ScheduleCommands</code> of the state machine and returning them to the initiating end for execution.</li>
-</ul>
-</li>
-</ol>
-<p>The principles of CN and TN sending heartbeats to HAKeeper are also similar.</p>
-<h4 id="replicated-state-machine-rsm">Replicated State Machine (RSM)</h4>
-<p>Logservice and HAKeeper have an in-memory replicated state machine model where all data is stored in memory. They both implement the IStateMachine interface, and the key methods are as follows:</p>
-<ul>
-<li><code>Update()</code>: After completing a propose and commit (i.e., when a majority of replicas have finished writing), the <code>Update()</code> method is called to update the data in the state machine. The user implements the <code>Update()</code> method and must be side-effect free, meaning that the same input must yield the same output. Otherwise, it can lead to an unstable state machine. The results of the <code>Update()</code> method are returned through the Result structure, and if an error occurs, the error field is not empty.</li>
-<li><code>Lookup()</code>: Used to retrieve data from the state machine. The data type to be retrieved is specified through the <code>interface{}</code> parameter, and the result is also of type <code>interface{}</code>. Therefore, users need to define the data in the state machine, pass the corresponding data type, and then perform type assertion. <code>Lookup()</code> is a read-only method and should not modify the data in the state machine.</li>
-<li><code>SaveSnapshot()</code>: Creates a snapshot by writing the data from the state machine to an <code>io.Writer</code> interface, typically a file handle. Thus, the snapshot is ultimately saved to a local disk file. <code>ISnapshotFileCollection</code> represents a list of files outside the state machine's file system (if any), which will also be stored in the snapshot. The third parameter is to notify the snapshot process that the Raft replica has stopped, terminating the snapshot operation.</li>
-<li><code>RecoverFromSnapshot()</code>: Recovers the state machine data by reading the latest snapshot data from an <code>io.Reader</code>. <code>[]SnapshotFile</code> represents an additional list of files directly copied to the state machine's data directory. The third parameter controls the snapshot operation's recovery, stopping it when Raft replica operations are being performed.</li>
-<li><code>Close()</code>: Closes the state machine and performs any necessary cleanup tasks.</li>
-</ul>
-<h3 id="read-write-process">Read-Write Process</h3>
-<p>In Logservice, the general process for a read-write request is as follows:</p>
-<h4 id="write-process">Write Process</h4>
-<ol>
-<li>The request is forwarded to the leader node if the connected node is not the leader. Upon receiving the request, the leader node writes the log entry to its local disk.</li>
-<li>Simultaneously, the request is asynchronously sent to follower nodes. Upon receiving the request, each follower node writes the log entry to its local disk.</li>
-<li>Once most nodes have completed the write, the commit index is updated, and other follower nodes are notified through heartbeat messages.</li>
-<li>The leader node executes the state machine operations (apply) after the write is committed.</li>
-<li>The result is returned to the client after the state machine operations are completed.</li>
-<li>Each follower node independently executes its state machine operations upon receiving the commit index from the leader.</li>
-</ol>
-<p><img alt="" src="https://github.com/matrixorigin/artwork/blob/main/docs/overview/logservice/write.png?raw=true" /></p>
-<h4 id="read-process">Read Process</h4>
-<p>Reading data can be divided into two scenarios:</p>
-<ul>
-<li>
-<p>Reading data from the state machine.</p>
-<ul>
-<li>The client initiates a read request, and when the request reaches the leader node, the current commit index is recorded.</li>
-<li>The leader node sends heartbeat requests to all nodes to confirm its leader status. Once most nodes respond and confirm it as the leader, it can respond to the read request.</li>
-<li>Wait for the apply index to be greater than or equal to the commit index.</li>
-<li>Once the condition is met, the data can be read from the state machine and returned to the client.</li>
-</ul>
-</li>
-</ul>
-<p><img alt="" src="https://github.com/matrixorigin/artwork/blob/main/docs/overview/logservice/read.png?raw=true" /></p>
-<ul>
-<li>
-<p>Reading log entries from the log database (log db).</p>
-<ul>
-<li>This process typically occurs during cluster restart.</li>
-<li>During restart, replicas first need to recover the state machine data from the snapshot, then start reading log entries from the log database based on the index position recorded in the snapshot and apply them to the state machine.</li>
-<li>After this operation is completed, replicas can participate in leader elections.</li>
-<li>When a leader is elected in the cluster, the Transaction nodes (TN) connect to the Logservice cluster and start reading log entries from the last checkpoint position of a replica's log database. These log entries are replayed into the Transaction node's in-memory data.</li>
-</ul>
-</li>
-</ul>
-<p><img alt="" src="https://github.com/matrixorigin/artwork/blob/main/docs/overview/logservice/logdb-read.png?raw=true" /></p>
-<h3 id="truncation">Truncation</h3>
-<p>As the log entries in Logservice's log database continue to grow, it can lead to insufficient disk space. Therefore, regular disk space release is needed, achieved through truncation.</p>
-<p>Logservice uses an in-memory-based state machine that only stores some metadata and status information, such as tick, state, and LSN (Log Sequence Number), without recording user data. User data is recorded by the Transaction nodes (TN) themselves. You can think of it as a master-slave architecture, where the state machines are separate, and the TN and Logservice maintain their respective state machines.</p>
-<p>In this design with separate state machines, a simple snapshot mechanism can cause issues:</p>
-<p><img alt="" src="https://github.com/matrixorigin/artwork/blob/main/docs/overview/logservice/truncation-1.png?raw=true" /></p>
-<ol>
-<li>When a TN sends a truncation request and sets the truncation index to 100, the applied index of the Logservice's state machine is 200. This means that logs before index 200 will be deleted, and a snapshot will be generated at that position. Note: The truncation index is not equal to the applied index.</li>
-<li>The cluster restarts.</li>
-<li>The Logservice's state machine applies the snapshot with index 200, sets the first index to 200 (deleting logs before index 200), and replays logs before providing the service.</li>
-<li>When the TN reads log entries from Logservice, starting from index 100, it fails to read because the logs before index 200 have been deleted, resulting in an error.</li>
-</ol>
-<p>To address the above problem, the current truncation workflow is as follows:</p>
-<p><img alt="" src="https://github.com/matrixorigin/artwork/blob/main/docs/overview/logservice/truncation-2.png?raw=true" /></p>
-<ol>
-<li>The TN sends a truncation request and updates the truncation LSN (truncateLsn) in the Logservice's state machine. Only the value is updated, and no snapshot/truncation operation is executed.</li>
-<li>Each Logservice server internally starts a truncation worker that periodically sends truncation requests (Truncate Request). It's important to note that the Exported parameter in this request is true, indicating that the snapshot is not visible to the system and is only exported to a specified directory.</li>
-<li>The truncation worker also checks the list of currently exported snapshots to see if there are any snapshots with an index greater than the truncation LSN in the Logservice's state machine. If there are, the snapshot closest to the truncation LSN is imported into the system to make it effective and visible to the system.</li>
-<li>All replicas perform the same operations to ensure that the snapshot LSN of both state machines is consistent. This allows reading the corresponding log entries when the cluster restarts.</li>
-</ol>
+<p>MatrixOne supports the use of the following statement to <strong>create streams</strong>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="p">[</span><span class="k">OR</span><span class="w"> </span><span class="k">REPLACE</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="k">EXTERNAL</span><span class="p">]</span><span class="w"> </span><span class="n">STREAM</span><span class="w"> </span><span class="p">[</span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="p">]</span><span class="w"> </span><span class="n">stream_name</span>
+<span class="p">(</span><span class="err">{</span><span class="w"> </span><span class="k">column_name</span><span class="w"> </span><span class="n">data_type</span><span class="w"> </span><span class="p">[</span><span class="k">KEY</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">HEADERS</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">HEADER</span><span class="p">(</span><span class="k">key</span><span class="p">)]</span><span class="w"> </span><span class="err">}</span><span class="w"> </span><span class="p">[,</span><span class="w"> </span><span class="p">...])</span>
+<span class="k">WITH</span><span class="w"> </span><span class="p">(</span><span class="n">property_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">expression</span><span class="w"> </span><span class="p">[,</span><span class="w"> </span><span class="p">...]);</span>
+</code></pre></div>
+<p>For example, you can refer to the following examples:</p>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">EXTERNAL</span><span class="w"> </span><span class="n">STREAM</span><span class="w"> </span><span class="n">STUDENTS</span><span class="w"> </span><span class="p">(</span><span class="n">ID</span><span class="w"> </span><span class="n">STRING</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="w"> </span><span class="n">SCORE</span><span class="w"> </span><span class="nb">INT</span><span class="p">)</span>
+<span class="k">WITH</span><span class="w"> </span><span class="p">(</span><span class="n">kafka_topic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;students_topic&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">value_format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;JSON&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">partitions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span>
+</code></pre></div>
+<p>Or:</p>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="n">STREAM</span><span class="w"> </span><span class="n">STUDENTS</span><span class="w"> </span><span class="p">(</span><span class="n">ID</span><span class="w"> </span><span class="n">STRING</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="w"> </span><span class="n">SCORE</span><span class="w"> </span><span class="nb">INT</span><span class="p">)</span>
+</code></pre></div>
+<p>You can also query streams and connect them with other tables and materialized views, as shown below:</p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">STUDENTS</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">rank</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+</code></pre></div>
+<p>Additionally, you can insert new events, as demonstrated below:</p>
+<div class="highlight"><pre><span></span><code><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">foo</span><span class="w"> </span><span class="p">(</span><span class="n">ROWTIME</span><span class="p">,</span><span class="w"> </span><span class="n">KEY_COL</span><span class="p">,</span><span class="w"> </span><span class="n">COL_A</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">1510923225000</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;key&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;A&#39;</span><span class="p">);</span>
+</code></pre></div>
 
 
 

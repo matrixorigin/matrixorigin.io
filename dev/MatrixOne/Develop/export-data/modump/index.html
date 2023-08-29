@@ -9333,7 +9333,7 @@ make build modump
 <div class="highlight"><pre><span></span><code>./mo-dump -u root -p 111 -h 127.0.0.1 -P 6001 -db t &gt; t.sql
 </code></pre></div>
 <p>If you want to export the tables in the database <em>t</em> to <em>CSV</em> format, refer to the following command:</p>
-<div class="highlight"><pre><span></span><code>./mo-dump -u root -p 111 -db t -csv --local-infile=false &gt; ttt.sql
+<div class="highlight"><pre><span></span><code>./mo-dump -u root -p 111 -db t -csv --local-infile=false &gt; ttt.csv
 </code></pre></div>
 <p>If you want to generate the backup of a single table in a database, run the following command. The command will generate the backup of the <code>t1</code> table of  <code>t</code> database with structure and data in the <code>t.sql</code> file.</p>
 <div class="highlight"><pre><span></span><code>./mo-dump -u root -p 111 -db t -tbl t1 &gt; t1.sql

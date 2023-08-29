@@ -9416,7 +9416,7 @@ spec:
 <p>Run <code>kubectl get pod -nmo-hn</code> to check if the Proxy has started properly:</p>
 <div class="highlight"><pre><span></span><code>root@HOST-10-206-134-16:~# kubectl get pod -nmo-hn
 NAME             READY   STATUS    RESTARTS   AGE
-mo-dn-0          1/1     Running   0          2m51s
+mo-tn-0          1/1     Running   0          2m51s
 mo-log-0         1/1     Running   0          3m25s
 mo-log-1         1/1     Running   0          3m25s
 mo-log-2         1/1     Running   0          3m25s
@@ -9429,7 +9429,7 @@ mo-tp-cn-0       1/1     Running   0          2m25s
 <p>The code example for a successful start is shown above. This completes the start of the minimized Proxy component. You can use <code>kubectl get svc -nmo-hn</code> to connect to the cluster via the Proxy's SVC address.</p>
 <div class="highlight"><pre><span></span><code>root@HOST-10-206-134-16:~# kubectl get svc -nmo-hn
 NAME                TYPE        CLUSTER-IP    EXTERNAL-IP   PORT(S)          AGE
-mo-dn-headless      ClusterIP   None          &lt;none&gt;        &lt;none&gt;           70m
+mo-tn-headless      ClusterIP   None          &lt;none&gt;        &lt;none&gt;           70m
 mo-log-discovery    ClusterIP   10.96.3.186   &lt;none&gt;        32001/TCP        71m
 mo-log-headless     ClusterIP   None          &lt;none&gt;        &lt;none&gt;           71m
 mo-proxy            NodePort    10.96.1.153   &lt;none&gt;        6001:31429/TCP   70m
@@ -9495,7 +9495,7 @@ spec:
 NAME              READY   STATUS    RESTARTS   AGE
 mo-cn-set1-cn-0   1/1     Running   0          6s
 mo-cn-set2-cn-0   1/1     Running   0          6s
-mo-dn-0           1/1     Running   0          97m
+mo-tn-0           1/1     Running   0          97m
 mo-log-0          1/1     Running   0          97m
 mo-log-1          1/1     Running   0          97m
 mo-log-2          1/1     Running   0          97m

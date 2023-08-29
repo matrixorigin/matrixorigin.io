@@ -8373,11 +8373,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#dntoml" class="md-nav__link">
-    dn.toml
+  <a href="#tntoml" class="md-nav__link">
+    tn.toml
   </a>
   
-    <nav class="md-nav" aria-label="dn.toml">
+    <nav class="md-nav" aria-label="tn.toml">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -9298,11 +9298,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#dntoml" class="md-nav__link">
-    dn.toml
+  <a href="#tntoml" class="md-nav__link">
+    tn.toml
   </a>
   
-    <nav class="md-nav" aria-label="dn.toml">
+    <nav class="md-nav" aria-label="tn.toml">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -9397,7 +9397,7 @@
 
 
 <h1 id="distributed-common-parameters-configuration">Distributed Common Parameters Configuration</h1>
-<p>In the <em>matrixone/etc/launch-with-proxy/</em> directory, there are four configuration files: <em>cn.toml</em>, <em>dn.toml</em>, <em>proxy.toml</em>, and <em>log.toml</em>. The parameters contained in these configuration files are explained below:</p>
+<p>In the <em>matrixone/etc/launch-with-proxy/</em> directory, there are four configuration files: <em>cn.toml</em>, <em>tn.toml</em>, <em>proxy.toml</em>, and <em>log.toml</em>. The parameters contained in these configuration files are explained below:</p>
 <h2 id="cntoml">cn.toml</h2>
 <h3 id="default-parameters">Default Parameters</h3>
 <p>The <em>cn.toml</em> file contains the following default parameters:</p>
@@ -9560,8 +9560,8 @@
 </tr>
 <tr>
 <td>mode</td>
-<td>Transaction mode. This parameter configures the transaction mode on the node (cn). The transaction mode defines how operations and concurrency are handled in transactions. Valid values are optimistic and pessimistic, with the default being optimistic.</td>
-<td>mode = "optimistic"</td>
+<td>Transaction mode. This parameter configures the transaction mode on the node (cn). The transaction mode defines how operations and concurrency are handled in transactions. Valid values are optimistic and pessimistic, with the default being pessimistic.</td>
+<td>mode = "pessimistic"</td>
 </tr>
 <tr>
 <td>[fileservice.s3]</td>
@@ -9630,9 +9630,9 @@
 </tr>
 </tbody>
 </table>
-<h2 id="dntoml">dn.toml</h2>
+<h2 id="tntoml">tn.toml</h2>
 <h3 id="default-parameters_1">Default Parameters</h3>
-<p>The <em>dn.toml</em> file contains the following default parameters:</p>
+<p>The <em>tn.toml</em> file contains the following default parameters:</p>
 <table>
 <thead>
 <tr>
@@ -9653,18 +9653,18 @@
 <td>level = "info"</td>
 </tr>
 <tr>
-<td>[dn]</td>
-<td>DN node, not editable</td>
+<td>[tn]</td>
+<td>TN node, not editable</td>
 <td></td>
 </tr>
 <tr>
 <td>uuid</td>
-<td>Unique identifier of DN, not editable</td>
+<td>Unique identifier of TN, not editable</td>
 <td>uuid = "dd4dccb4-4d3c-41f8-b482-5251dc7a41bf"</td>
 </tr>
 <tr>
 <td>port-base</td>
-<td>Starting port number used by "DN". Find an available port for internal services by incrementing from this base port number, continuously checking the next 20 ports</td>
+<td>Starting port number used by "TN". Find an available port for internal services by incrementing from this base port number, continuously checking the next 20 ports</td>
 <td>port-base = 19000</td>
 </tr>
 <tr>
@@ -9690,14 +9690,14 @@
 </tbody>
 </table>
 <h3 id="extended-parameters_1">Extended Parameters</h3>
-<p>In the <em>dn.toml</em> file, you can also customize and add the following configuration parameters:</p>
+<p>In the <em>tn.toml</em> file, you can also customize and add the following configuration parameters:</p>
 <p>| Parameter          |</p>
 <p>Explanation                                | Example                   |
 |-------------------|-------------------------------------------|---------------------------|
 | [log]             | Log configuration section                 |                           |
 | format             | Log save format as JSON or other           | format = "console"        |
 | filename           | Log filename                              | filename = "log1.log"          |
-| [dn.LogtailServer]| Logtail server configuration section      |                           |
+| [tn.LogtailServer]| Logtail server configuration section      |                           |
 | rpc-enable-checksum| Enable RPC checksum                       | rpc-enable-checksum = false|
 | [fileservice.s3]   |                        |                           |
 | endpoint           | S3 endpoint address                      | endpoint = "s3.amazonaws.com"|
@@ -9803,9 +9803,9 @@
 <td>num-of-log-shards = 0</td>
 </tr>
 <tr>
-<td>num-of-dn-shards</td>
+<td>num-of-tn-shards</td>
 <td></td>
-<td>num-of-dn-shards = 0</td>
+<td>num-of-tn-shards = 0</td>
 </tr>
 <tr>
 <td>num-of-log-shard-replicas</td>

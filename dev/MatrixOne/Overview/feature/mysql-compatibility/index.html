@@ -547,13 +547,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#data-types" class="md-nav__link">
-    Data Types
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#dcl-statement" class="md-nav__link">
     DCL Statement
   </a>
@@ -595,11 +588,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#sql-syntax" class="md-nav__link">
-    SQL Syntax
+  <a href="#dml-statements" class="md-nav__link">
+    DML Statements
   </a>
   
-    <nav class="md-nav" aria-label="SQL Syntax">
+    <nav class="md-nav" aria-label="DML Statements">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -673,6 +666,13 @@
         <li class="md-nav__item">
   <a href="#advanced-sql-features" class="md-nav__link">
     Advanced SQL Features
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-types" class="md-nav__link">
+    Data Types
   </a>
   
 </li>
@@ -9494,13 +9494,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#data-types" class="md-nav__link">
-    Data Types
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#dcl-statement" class="md-nav__link">
     DCL Statement
   </a>
@@ -9542,11 +9535,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#sql-syntax" class="md-nav__link">
-    SQL Syntax
+  <a href="#dml-statements" class="md-nav__link">
+    DML Statements
   </a>
   
-    <nav class="md-nav" aria-label="SQL Syntax">
+    <nav class="md-nav" aria-label="DML Statements">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -9620,6 +9613,13 @@
         <li class="md-nav__item">
   <a href="#advanced-sql-features" class="md-nav__link">
     Advanced SQL Features
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-types" class="md-nav__link">
+    Data Types
   </a>
   
 </li>
@@ -9765,10 +9765,10 @@
 <p>MatrixOne is highly compatible with the MySQL 8.0 protocol and commonly used features and syntax of MySQL 8.0. Additionally, MatrixOne provides support for commonly used MySQL-related tools, including Navicat, MySQL Workbench, JDBC, etc. However, due to the different technical architecture of MatrixOne and its ongoing development and improvement, some functionalities are not yet supported. This section will mainly discuss the differences between the MySQL mode of MatrixOne database and the native MySQL database from the following aspects:</p>
 <ul>
 <li>DDL Statements</li>
-<li>Data Types</li>
 <li>DCL Statements</li>
-<li>SQL syntax</li>
+<li>DML Statements</li>
 <li>Advanced SQL Features</li>
+<li>Data Types</li>
 <li>Indexes and Constraints</li>
 <li>Partition</li>
 <li>Functions and Operators</li>
@@ -9784,7 +9784,7 @@
 <h3 id="about-database">About DATABASE</h3>
 <ul>
 <li>A database with a Chinese name is not supported.</li>
-<li><code>CHARSET</code>, <code>COLLATE</code>, <code>ENCRYPTION</code> are currently supported but do not work.</li>
+<li><code>ENCRYPTION</code> are currently supported but do not work.</li>
 <li><code>ALTER DATABASE</code> is not supported.</li>
 <li>Only the <code>utf8mb4</code> character set and <code>utf8mb4_bin</code> collation are supported by default and cannot be changed.</li>
 </ul>
@@ -9793,63 +9793,23 @@
 <li>The <code>CREATE TABLE .. AS SELECT</code> statement is not supported.</li>
 <li>Support <code>AUTO_INCREMENT</code> in the column definition, but not the <code>AUTO_INCREMENT</code> custom start value in a table definition.</li>
 <li><code>CHARACTER SET/CHARSET</code> and <code>COLLATE</code> in column definitions are not supported.</li>
-<li><code>CHARACTER SET/CHARSET</code>, <code>COLLATE</code>, <code>ROW_FORMAT</code>, <code>USING ...</code>, and <code>ENGINE=</code> in the table definition is not supported.</li>
-</ul>
-<p>Take a typical mysqldump DDL statement exported from MySQL as an example:</p>
-<div class="highlight"><pre><span></span><code>-- MySQL DDL Statements
-CREATE TABLE IF NOT EXISTS `tool` (
-  `id` bigint NOT NULL AUTO_INCREMENT,
-  `tool_id` bigint DEFAULT NULL COMMENT &#39;id&#39;,
-  `operation_type` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT &#39;type&#39;,
-  `remark` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT &#39;remark&#39;,
-  `create_user` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT &#39;create user&#39;,
-  `create_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT &#39;create time&#39;,
-  PRIMARY KEY (`id`) USING BTREE,
-  KEY `tool_id_IDX` (`tool_id`) USING BTREE,
-  KEY `operation_type_IDX` (`operation_type`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=1913 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC COMMENT=&#39;tool table&#39;;
-</code></pre></div>
-<p>To successfully create a table in MatrixOne, it is necessary to modify the following program example:</p>
-<div class="highlight"><pre><span></span><code>CREATE TABLE IF NOT EXISTS `tool` (
-  `id` bigint NOT NULL AUTO_INCREMENT,
-  `tool_id` bigint DEFAULT NULL COMMENT &#39;id&#39;,
-  `operation_type` varchar(50) DEFAULT NULL COMMENT &#39;type&#39;,
-  `remark` varchar(100) DEFAULT NULL COMMENT &#39;remark&#39;,
-  `create_user` varchar(20) DEFAULT NULL COMMENT &#39;create user&#39;,
-  `create_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT &#39;create time&#39;,
-  PRIMARY KEY (`id`),
-  KEY `tool_id_IDX` (`tool_id`),
-  KEY `operation_type_IDX` (`operation_type`)
-) COMMENT=&#39;tool table&#39;;
-</code></pre></div>
-<ul>
-<li><code>ALTER TABLE</code> only supports <code>ADD/DROP COLUMN</code> to add and delete columns, <code>RENAME</code> to modify the table name, does not support <code>MODIFY COLUMN</code>, does not support modifying the definition of existing columns and indexes, and does not support dynamic addition and deletion of primary keys.</li>
+<li><code>ENGINE=</code> in the table definition is not supported.</li>
+<li>The clauses: <code>CHANGE [COLUMN]</code>, <code>MODIFY [COLUMN]</code>, <code>RENAME COLUMN</code>, <code>ADD [CONSTRAINT [symbol]] PRIMARY KEY</code>, <code>DROP PRIMARY KEY</code>, and <code>ALTER COLUMN ORDER BY</code> can be freely combined in <code>ALTER TABLE</code>, these are not supported to be used with other clauses for the time being.</li>
+<li>Temporary tables currently do not support using <code>ALTER TABLE</code> to modify the table structure.</li>
+<li>Tables created using <code>CREATE TABLE ... CLUSTER BY...</code> do not allow modifications to the table structure using <code>ALTER TABLE</code>.</li>
 <li><code>ALTER TABLE</code> does not support <code>PARTITION</code> related operations.</li>
 <li>Support defining <code>Cluster by column</code> clauses to pre-sort a column to speed up queries.</li>
 </ul>
 <h3 id="about-view">About VIEW</h3>
 <ul>
 <li><code>CREATE OR REPLACE VIEW</code> is not supported.</li>
-<li>The <code>with check option</code> clause is not supported.</li>
+<li>The <code>with check option</code> clause is not supported, but MatrixOne simply ignores' ENGINE= '.</li>
 <li>The <code>DEFINER</code> and <code>SQL SECURITY</code> clauses are not supported.</li>
 </ul>
 <h3 id="about-sequence">About SEQUENCE</h3>
 <ul>
 <li>MySQL does not support <code>SEQUENCE</code> objects, but MatrixOne can create a sequence through <code>CREATE SEQUENCE</code>, and the syntax of MatrixOne is the same as PostgreSQL.</li>
 <li>When using <code>SEQUENCE</code> in a table, you must pay attention to the <code>auto_increment</code> and <code>sequence</code> cannot be used together; otherwise, an error will be occured.</li>
-</ul>
-<h2 id="data-types">Data Types</h2>
-<ul>
-<li>BOOL: Different from MySQL's Boolean value type, which is int, MatrixOne's <code>Boolean</code> value is a new type whose value can only be <code>True</code> or <code>False</code>.</li>
-<li>DECIMAL: <code>DECIMAL(P, D)</code>, the maximum precision of the effective number P and the number of digits after the decimal point D of MatrixOne is 38 digits, and MySQL is 65 and 30, respectively.</li>
-<li>Float numbers: The usage of <code>Float(M,D)</code> and <code>Double(M,D)</code> is discarded after MySQL 8.0.17, but MatrixOne still retains this usage.</li>
-<li>DATETIME: The maximum value range of MySQL is <code>'1000-01-01 00:00:00'</code> to <code>'9999-12-31 23:59:59'</code>, and the maximum range of MatrixOne is <code>'0001-01 -01 00:00:00'</code> to <code>'9999-12-31 23:59:59'</code>.</li>
-<li>TIMESTAMP: The maximum value range of MySQL is <code>'1970-01-01 00:00:01.000000'</code> UTC to <code>'2038-01-19 03:14:07.999999'</code> UTC, the maximum range of MatrixOne is <code>'0001- 01-01 00:00:00'</code> UTC to <code>'9999-12-31 23:59:59'</code> UTC.</li>
-<li>MatrixOne supports <code>UUID</code> type.</li>
-<li>The <code>YEAR</code> type is not supported.</li>
-<li>Spatial types are not supported.</li>
-<li><code>BIT</code>, <code>ENUM</code>, and <code>SET</code> types are not supported.</li>
-<li><code>MEDIUMINT</code> type is not supported.</li>
 </ul>
 <h2 id="dcl-statement">DCL Statement</h2>
 <h3 id="about-account">About ACCOUNT</h3>
@@ -9876,10 +9836,9 @@ CREATE TABLE IF NOT EXISTS `tool` (
 <ul>
 <li>The system variables in MatrixOne differ significantly from MySQL, with most only providing syntactic compatibility. The parameters that can be set at present include: <code>ROLE</code>, <code>SQL_MODE</code>, and <code>TIME_ZONE</code>.</li>
 </ul>
-<h2 id="sql-syntax">SQL Syntax</h2>
+<h2 id="dml-statements">DML Statements</h2>
 <h3 id="about-select">About SELECT</h3>
 <ul>
-<li>In <code>GROUP BY</code>, MatrixOne does not support table aliases.</li>
 <li><code>SELECT...FOR UPDATE</code> only supports single-table queries.</li>
 </ul>
 <h3 id="about-insert">About INSERT</h3>
@@ -9896,7 +9855,7 @@ CREATE TABLE IF NOT EXISTS `tool` (
 </ul>
 <h3 id="about-subqueries">About Subqueries</h3>
 <ul>
-<li>MatrixOne does not support multi-level associated subqueries in IN.</li>
+<li>MatrixOne does not support multi-level associated subqueries in <code>IN</code>.</li>
 </ul>
 <h3 id="about-load">About LOAD</h3>
 <ul>
@@ -9913,11 +9872,11 @@ CREATE TABLE IF NOT EXISTS `tool` (
 </ul>
 <h3 id="common-table-expressions-ctes">Common Table Expressions (CTEs)</h3>
 <ul>
-<li>Recursive CTE <code>With recursive</code> is not supported.</li>
+<li>Non-recursive CTE and recursive CTE are supported.</li>
 </ul>
 <h3 id="other">other</h3>
 <ul>
-<li>The <code>REPLACE</code> statement is not supported.</li>
+<li>The <code>REPLACE</code> statement does not currently support rows of values ​​inserted using the <code>VALUES row_constructor_list</code> parameter.</li>
 </ul>
 <h2 id="advanced-sql-features">Advanced SQL Features</h2>
 <ul>
@@ -9926,6 +9885,18 @@ CREATE TABLE IF NOT EXISTS `tool` (
 <li>Event dispatchers are not supported.</li>
 <li>Custom functions are not supported.</li>
 <li>Materialized views are not supported.</li>
+</ul>
+<h2 id="data-types">Data Types</h2>
+<ul>
+<li>BOOL: Different from MySQL's Boolean value type, which is int, MatrixOne's <code>Boolean</code> value is a new type whose value can only be <code>True</code> or <code>False</code>.</li>
+<li>DECIMAL: <code>DECIMAL(P, D)</code>, the maximum precision of the effective number P and the number of digits after the decimal point D of MatrixOne is 38 digits, and MySQL is 65 and 30, respectively.</li>
+<li>Float numbers: The usage of <code>Float(M,D)</code> and <code>Double(M,D)</code> is discarded after MySQL 8.0.17, but MatrixOne still retains this usage.</li>
+<li>DATETIME: The maximum value range of MySQL is <code>'1000-01-01 00:00:00'</code> to <code>'9999-12-31 23:59:59'</code>, and the maximum range of MatrixOne is <code>'0001-01 -01 00:00:00'</code> to <code>'9999-12-31 23:59:59'</code>.</li>
+<li>TIMESTAMP: The maximum value range of MySQL is <code>'1970-01-01 00:00:01.000000'</code> UTC to <code>'2038-01-19 03:14:07.999999'</code> UTC, the maximum range of MatrixOne is <code>'0001- 01-01 00:00:00'</code> UTC to <code>'9999-12-31 23:59:59'</code> UTC.</li>
+<li>MatrixOne supports <code>UUID</code> type.</li>
+<li>Spatial types are not supported.</li>
+<li><code>BIT</code> and <code>SET</code> types are not supported.</li>
+<li><code>MEDIUMINT</code> type is not supported.</li>
 </ul>
 <h2 id="indexes-and-constraints">Indexes and Constraints</h2>
 <ul>
@@ -9972,7 +9943,8 @@ CREATE TABLE IF NOT EXISTS `tool` (
 <li>Only using <code>ALTER USER</code> can change the password.</li>
 <li>Does not support modifying the upper limit of user connections.</li>
 <li>Connection IP whitelisting is not supported.</li>
-<li>Does not support <code>LOAD</code> and <code>SELECT INTO</code> file authorization management.</li>
+<li>Does not support <code>LOAD</code> file authorization management.</li>
+<li>Can support <code>SELECT INTO</code> file authorization management through the <code>CREATE STAGE</code> section.</li>
 </ul>
 <h2 id="transaction">Transaction</h2>
 <ul>
@@ -9983,7 +9955,7 @@ CREATE TABLE IF NOT EXISTS `tool` (
 <h2 id="backup-and-restore">Backup and Restore</h2>
 <ul>
 <li>The mysqldump backup tool is not supported; only the modump tool is supported.</li>
-<li>Physical backups are not supported.</li>
+<li>Physical backups are supported.</li>
 <li>Does not support binlog log backup.</li>
 <li>Incremental backups are not supported.</li>
 </ul>

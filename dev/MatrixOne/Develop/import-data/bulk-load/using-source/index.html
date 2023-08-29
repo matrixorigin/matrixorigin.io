@@ -1530,6 +1530,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#constraints" class="md-nav__link">
+    Constraints
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -9288,6 +9295,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#constraints" class="md-nav__link">
+    Constraints
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -9344,6 +9358,9 @@
 <p>After the import is successful, you can run the following SQL statement to check the import results:</p>
 <div class="highlight"><pre><span></span><code><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">tool</span><span class="p">;</span>
 </code></pre></div>
+<h2 id="constraints">Constraints</h2>
+<p>MatrixOne 1.0.0-rc1 version already supports MySQL table creation statements, so you can smoothly migrate MySQL tables to MatrixOne. However, it should be noted that during the migration process, some keywords incompatible with MySQL, such as <code>engine=</code>, will be automatically ignored in MatrixOne and will not affect the migration of the table structure.</p>
+<p>However, it should be noted that although MatrixOne supports MySQL table creation statements, manual modification is still required if the migrated table contains incompatible data types, triggers, functions, or stored procedures. For more detailed compatibility information, see <a href="../../../../Overview/feature/mysql-compatibility/">MySQL Compatibility</a>.</p>
 
 
 

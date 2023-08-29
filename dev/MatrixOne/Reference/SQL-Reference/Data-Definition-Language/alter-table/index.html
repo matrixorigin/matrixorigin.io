@@ -9491,7 +9491,7 @@ table_option: {
 </code></pre></div>
 <h2 id="constraints">Constraints</h2>
 <ol>
-<li>The clauses: <code>CHANGE [COLUMN]</code>, <code>MODIFY [COLUMN]</code>, <code>RENAME COLUMN</code>, <code>ADD [CONSTRAINT [symbol]] PRIMARY KEY</code>, <code>DROP PRIMARY KEY</code>, and <code>ALTER COLUMN ORDER BY</code> can be used in ALTER It can be freely combined in the TABLE statement. Still, it is not supported to be used with other clauses for the time being.</li>
+<li>The clauses: <code>CHANGE [COLUMN]</code>, <code>MODIFY [COLUMN]</code>, <code>RENAME COLUMN</code>, <code>ADD [CONSTRAINT [symbol]] PRIMARY KEY</code>, <code>DROP PRIMARY KEY</code>, and <code>ALTER COLUMN ORDER BY</code> can be freely combined in <code>ALTER TABLE</code>, these are not supported to be used with other clauses for the time being.</li>
 <li>Temporary tables currently do not support using <code>ALTER TABLE</code> to modify the table structure.</li>
 <li>Tables created using <code>CREATE TABLE ... CLUSTER BY...</code> do not allow modifications to the table structure using <code>ALTER TABLE</code>.</li>
 </ol>

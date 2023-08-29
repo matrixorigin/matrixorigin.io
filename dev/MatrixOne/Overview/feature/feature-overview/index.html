@@ -9272,9 +9272,9 @@
 </ul>
 <h3 id="clear-transaction-division-of-labor">Clear Transaction Division of Labor</h3>
 <ul>
-<li>CN is responsible for all calculations and transaction logic, while DN is responsible for storing metadata, log information, and transaction adjudication.</li>
+<li>CN is responsible for all calculations and transaction logic, while TN is responsible for storing metadata, log information, and transaction adjudication.</li>
 <li>The Logtail object is introduced in the logs to save associated data from recent logs. Logtail data is regularly written to S3. When CN scales out, Logtail data can be synchronized to the cache in real-time to achieve partial data sharing.</li>
-<li>Set a threshold for transaction size. Transactions that exceed the threshold are directly written to S3 and logs only record write records. Transactions that do not exceed the threshold are still written by DN, significantly increasing throughput.</li>
+<li>Set a threshold for transaction size. Transactions that exceed the threshold are directly written to S3 and logs only record write records. Transactions that do not exceed the threshold are still written by TN, significantly increasing throughput.</li>
 </ul>
 <h3 id="htap-workload-isolation">HTAP Workload Isolation</h3>
 <p>As an HTAP database, it achieves isolation of different types of workloads:</p>

@@ -1692,24 +1692,11 @@
     Before you start
   </a>
   
-    <nav class="md-nav" aria-label="Before you start">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#preparation" class="md-nav__link">
-    Preparation
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
-  <a href="#cte-example" class="md-nav__link">
-    CTE Example
+  <a href="#examples-of-using-cte-statements" class="md-nav__link">
+    Examples of Using CTE Statements
   </a>
   
 </li>
@@ -9194,24 +9181,11 @@
     Before you start
   </a>
   
-    <nav class="md-nav" aria-label="Before you start">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#preparation" class="md-nav__link">
-    Preparation
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
-  <a href="#cte-example" class="md-nav__link">
-    CTE Example
+  <a href="#examples-of-using-cte-statements" class="md-nav__link">
+    Examples of Using CTE Statements
   </a>
   
 </li>
@@ -9236,35 +9210,105 @@
 
 <h1 id="common-table-expression">Common Table Expression</h1>
 <p>A CTE (Common table expression) is a named temporary result set that exists only within the execution scope of a single SQL statement (such as <code>SELECT</code>, <code>INSERT</code>, <code>UPDATE</code>, or <code>DELETE</code>).</p>
-<p>Like derived tables, CTEs are not stored as objects and persist only for the duration of query execution; Unlike derived tables, CTEs can be self-referenced (recursive Ctes, not currently supported) or referenced multiple times in the same query. In addition, CTEs provide better readability and performance than derived tables.</p>
-<p>The structure of a CTE includes a name, a list of optional columns, and the query that defines the CTE.</p>
-<p>CTE Statement:</p>
+<p>Like derived tables, CTEs are not stored as objects and persist only for the duration of query execution; Unlike derived tables, CTEs can be self-referenced or referenced multiple times in the same query. In addition, CTEs provide better readability and performance than derived tables.</p>
+<p><strong>Use Cases</strong>:</p>
+<ul>
+<li>CTEs can reuse the same subquery in multiple places, avoiding redundant logic.</li>
+<li>They can simplify recursive queries, such as querying tree-structured data.</li>
+<li>Complex queries can be broken down into smaller parts using CTEs, making the query logic clearer and more understandable.</li>
+</ul>
+<p><strong>Common Table Expressions are divided into two types: non-recursive and recursive</strong>:</p>
+<ul>
+<li>Non-recursive CTE refers to an expression in which the CTE does not reference itself. It is used to build a one-time temporary result set and does not involve recursion. Non-recursive CTE Statement:</li>
+</ul>
 <div class="highlight"><pre><span></span><code><span class="k">WITH</span><span class="w"> </span><span class="o">&lt;</span><span class="n">query_name</span><span class="o">&gt;</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="o">&lt;</span><span class="n">query_definition</span><span class="o">&gt;</span>
+<span class="p">)</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="o">&lt;</span><span class="n">query_name</span><span class="o">&gt;</span><span class="p">;</span>
+</code></pre></div>
+<ul>
+<li>Recursive CTE refers to an expression in which the CTE references itself. It handles data with recursive structures, such as trees or graphs. A recursive CTE includes a base query (initial condition) in its definition, then performs recursive operations on the result of that base query until a stop condition is met. Recursive CTE Statement:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="k">WITH</span><span class="w"> </span><span class="k">RECURSIVE</span><span class="w"> </span><span class="o">&lt;</span><span class="n">query_name</span><span class="o">&gt;</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span>
 <span class="w">    </span><span class="o">&lt;</span><span class="n">query_definition</span><span class="o">&gt;</span>
 <span class="p">)</span>
 <span class="k">SELECT</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="o">&lt;</span><span class="n">query_name</span><span class="o">&gt;</span><span class="p">;</span>
 </code></pre></div>
 <h2 id="before-you-start">Before you start</h2>
 <p>Make sure you have already <a href="../../../Get-Started/install-standalone-matrixone/">Deployed standalone MatrixOne</a>.</p>
-<h3 id="preparation">Preparation</h3>
-<p>You can create a simple table and insert some data to help you understand the CTE statements shown later:</p>
-<div class="highlight"><pre><span></span><code><span class="k">drop</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
-<span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="k">c</span><span class="w"> </span><span class="nb">int</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="k">null</span><span class="p">,</span><span class="k">null</span><span class="p">,</span><span class="k">null</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">);</span>
+<h2 id="examples-of-using-cte-statements">Examples of Using CTE Statements</h2>
+<p>Suppose we want to create a table named <code>EMPLOYEES</code> that includes a hierarchical relationship among employees. We will then use non-recursive and recursive Common Table Expressions (CTEs) to query the employee hierarchy.</p>
+<p>First, let's create the <code>EMPLOYEES</code> table and insert some sample data:</p>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">EMPLOYEES</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">EMPLOYEE_ID</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">NAME</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span>
+<span class="w">    </span><span class="n">MANAGER_ID</span><span class="w"> </span><span class="nb">INT</span>
+<span class="p">);</span>
+
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">EMPLOYEES</span><span class="w"> </span><span class="p">(</span><span class="n">EMPLOYEE_ID</span><span class="p">,</span><span class="w"> </span><span class="n">NAME</span><span class="p">,</span><span class="w"> </span><span class="n">MANAGER_ID</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span>
+<span class="w">    </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Alice&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">NULL</span><span class="p">),</span>
+<span class="w">    </span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Bob&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">),</span>
+<span class="w">    </span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Carol&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">),</span>
+<span class="w">    </span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;David&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">),</span>
+<span class="w">    </span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Eve&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">),</span>
+<span class="w">    </span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Frank&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">),</span>
+<span class="w">    </span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Grace&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">),</span>
+<span class="w">    </span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Hannah&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">),</span>
+<span class="w">    </span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Ian&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span>
 </code></pre></div>
-<h2 id="cte-example">CTE Example</h2>
-<p>In the following example, <code>qn</code> is created as a temporary result set and the corresponding query results are cached in MatrixOne. You can perform a formal <code>qn</code> query better than in a non-CTE scenario.</p>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="n">qn</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="p">),</span><span class="w"> </span><span class="n">qn2</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="p">)</span>
-<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">qn</span><span class="p">;</span>
+<p>Next, we'll use a recursive CTE to query the employee hierarchy:</p>
+<div class="highlight"><pre><span></span><code><span class="k">WITH</span><span class="w"> </span><span class="k">RECURSIVE</span><span class="w"> </span><span class="n">EmployeeHierarchy</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">EMPLOYEE_ID</span><span class="p">,</span><span class="w"> </span><span class="n">NAME</span><span class="p">,</span><span class="w"> </span><span class="n">MANAGER_ID</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">LEVEL</span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">EMPLOYEES</span>
+<span class="w">    </span><span class="k">WHERE</span><span class="w"> </span><span class="n">MANAGER_ID</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NULL</span>
+
+<span class="w">    </span><span class="k">UNION</span><span class="w"> </span><span class="k">ALL</span>
+
+<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">EMPLOYEE_ID</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">NAME</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">MANAGER_ID</span><span class="p">,</span><span class="w"> </span><span class="n">eh</span><span class="p">.</span><span class="k">LEVEL</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">EMPLOYEES</span><span class="w"> </span><span class="n">e</span>
+<span class="w">    </span><span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">EmployeeHierarchy</span><span class="w"> </span><span class="n">eh</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">MANAGER_ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">eh</span><span class="p">.</span><span class="n">EMPLOYEE_ID</span>
+<span class="p">)</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">EmployeeHierarchy</span><span class="p">;</span>
+<span class="o">+</span><span class="c1">-------------+--------+------------+-------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">employee_id</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">name</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">manager_id</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">level</span><span class="w"> </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">-------------+--------+------------+-------+</span>
+<span class="o">|</span><span class="w">           </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Alice</span><span class="w">  </span><span class="o">|</span><span class="w">       </span><span class="k">NULL</span><span class="w"> </span><span class="o">|</span><span class="w">     </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">           </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Bob</span><span class="w">    </span><span class="o">|</span><span class="w">          </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w">     </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">           </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Carol</span><span class="w">  </span><span class="o">|</span><span class="w">          </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w">     </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">           </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">David</span><span class="w">  </span><span class="o">|</span><span class="w">          </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w">     </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">           </span><span class="mi">5</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Eve</span><span class="w">    </span><span class="o">|</span><span class="w">          </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w">     </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">           </span><span class="mi">6</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Frank</span><span class="w">  </span><span class="o">|</span><span class="w">          </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w">     </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">           </span><span class="mi">7</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Grace</span><span class="w">  </span><span class="o">|</span><span class="w">          </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w">     </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">           </span><span class="mi">8</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Hannah</span><span class="w"> </span><span class="o">|</span><span class="w">          </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span><span class="w">     </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">           </span><span class="mi">9</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Ian</span><span class="w">    </span><span class="o">|</span><span class="w">          </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span><span class="w">     </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">-------------+--------+------------+-------+</span>
+<span class="mi">9</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 </code></pre></div>
-<p>Result as below:</p>
-<div class="highlight"><pre><span></span><code>+------+
-| a    |
-+------+
-| NULL |
-|    2 |
-+------+
+<p>Then, we'll use a non-recursive CTE to query employee information:</p>
+<div class="highlight"><pre><span></span><code><span class="k">WITH</span><span class="w"> </span><span class="n">EmployeeInfo</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">EMPLOYEE_ID</span><span class="p">,</span><span class="w"> </span><span class="n">NAME</span><span class="p">,</span><span class="w"> </span><span class="n">MANAGER_ID</span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">EMPLOYEES</span>
+<span class="p">)</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">EmployeeInfo</span><span class="p">;</span>
+<span class="o">+</span><span class="c1">-------------+--------+------------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">employee_id</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">name</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">manager_id</span><span class="w"> </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">-------------+--------+------------+</span>
+<span class="o">|</span><span class="w">           </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Alice</span><span class="w">  </span><span class="o">|</span><span class="w">       </span><span class="k">NULL</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">           </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Bob</span><span class="w">    </span><span class="o">|</span><span class="w">          </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">           </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Carol</span><span class="w">  </span><span class="o">|</span><span class="w">          </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">           </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">David</span><span class="w">  </span><span class="o">|</span><span class="w">          </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">           </span><span class="mi">5</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Eve</span><span class="w">    </span><span class="o">|</span><span class="w">          </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">           </span><span class="mi">6</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Frank</span><span class="w">  </span><span class="o">|</span><span class="w">          </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">           </span><span class="mi">7</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Grace</span><span class="w">  </span><span class="o">|</span><span class="w">          </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">           </span><span class="mi">8</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Hannah</span><span class="w"> </span><span class="o">|</span><span class="w">          </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">           </span><span class="mi">9</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Ian</span><span class="w">    </span><span class="o">|</span><span class="w">          </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">-------------+--------+------------+</span>
+<span class="mi">9</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 </code></pre></div>
+<p>We used a recursive CTE named <code>EmployeeHierarchy</code>, which first selects top-level managers (<code>MANAGER_ID IS NULL</code>), and then recursively joins to find each employee's direct subordinates while keeping track of the hierarchy level. This allows us to query the detailed information of the employee hierarchy using the CTE.</p>
+<p>The non-recursive CTE example selects basic information of all employees from the <code>EMPLOYEES</code> table, including <code>EMPLOYEE_ID</code>, <code>NAME</code>, and <code>MANAGER_ID</code>.</p>
+<p>The <code>RECURSIVE</code> keyword is needed to declare a recursive CTE.</p>
+<p>For more information on using CTEs, see <a href=".. //Reference/SQL-Reference/Data-Query-Language/with-cte.md">WITH (Common Table Expressions)</a>.</p>
 
 
 

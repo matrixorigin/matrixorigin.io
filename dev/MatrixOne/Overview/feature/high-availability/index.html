@@ -9348,7 +9348,7 @@
 <h3 id="shared-logs">Shared Logs</h3>
 <p>The shared log component LogService is the only component in MatrixOne that holds distributed transaction status. This is a three-node architecture following the Raft protocol. Even if one node fails, it can still work typically. It is responsible for ensuring the final consistency of services for the entire MatrixOne cluster.</p>
 <h3 id="transaction-layer">Transaction Layer</h3>
-<p>The transaction layer component Data Node is responsible for conflict detection and arbitration of transaction operations. It is a stateless node. If a failure occurs, Kubernetes can pull it up at any time, and it can generally recover in seconds, ensuring continuous availability. The current 0.8 version of Data Node only supports single-node operation, and subsequent versions will add multiple Data Node schemes to improve availability further.</p>
+<p>The transaction layer component Transaction node is responsible for conflict detection and arbitration of transaction operations. It is a stateless node. If a failure occurs, Kubernetes can pull it up at any time, and it can generally recover in seconds, ensuring continuous availability. The current version of Transaction node only supports single-node operation, and subsequent versions will add multiple Transaction node schemes to improve availability further.</p>
 <h3 id="computation-layer">Computation Layer</h3>
 <p>The computation layer component Compute Node is responsible for parsing front-end Queries, generating, and executing execution plans. It is also a stateless node. If a failure occurs, Kubernetes can pull it up at any time and generally recover in seconds, ensuring continuous availability.</p>
 <h3 id="proxy">Proxy</h3>

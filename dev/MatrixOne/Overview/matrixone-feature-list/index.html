@@ -400,8 +400,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#sql-statements" class="md-nav__link">
-    SQL statements
+  <a href="#data-manipulationquery-language-dmldql" class="md-nav__link">
+    Data manipulation/query language (DML/DQL)
   </a>
   
 </li>
@@ -9259,8 +9259,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#sql-statements" class="md-nav__link">
-    SQL statements
+  <a href="#data-manipulationquery-language-dmldql" class="md-nav__link">
+    Data manipulation/query language (DML/DQL)
   </a>
   
 </li>
@@ -9445,7 +9445,7 @@
 </tr>
 <tr>
 <td>CREATE STREAM</td>
-<td>N</td>
+<td>E, Only some types are supported</td>
 </tr>
 <tr>
 <td>PARTITION BY</td>
@@ -9457,7 +9457,7 @@
 </tr>
 </tbody>
 </table>
-<h2 id="sql-statements">SQL statements</h2>
+<h2 id="data-manipulationquery-language-dmldql">Data manipulation/query language (DML/DQL)</h2>
 <table>
 <thead>
 <tr>
@@ -9484,7 +9484,7 @@
 </tr>
 <tr>
 <td>REPLACE</td>
-<td>N</td>
+<td>Y</td>
 </tr>
 <tr>
 <td>INSERT ON DUPLICATE KEY UPDATE</td>
@@ -9641,7 +9641,7 @@
 <tr>
 <td></td>
 <td>ENUM</td>
-<td>N, Can be replaced by <code>VARCHAR</code></td>
+<td>Y, Not support <strong>Filtering ENUM values</strong> and <strong>Sorting ENUM values</strong></td>
 </tr>
 <tr>
 <td></td>
@@ -9676,7 +9676,7 @@
 <tr>
 <td></td>
 <td>YEAR</td>
-<td>N</td>
+<td>Y</td>
 </tr>
 <tr>
 <td>Boolean</td>
@@ -9763,7 +9763,7 @@
 <tbody>
 <tr>
 <td>Pessimistic transactions</td>
-<td>E</td>
+<td>Y</td>
 </tr>
 <tr>
 <td>Optimistic transactions</td>
@@ -9779,7 +9779,7 @@
 </tr>
 <tr>
 <td>READ COMMITTED</td>
-<td>E</td>
+<td>Y</td>
 </tr>
 </tbody>
 </table>
@@ -9822,6 +9822,10 @@
 </tr>
 <tr>
 <td>JSON Functions</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>System Functions</td>
 <td>Y</td>
 </tr>
 <tr>
@@ -9946,7 +9950,7 @@
 </tr>
 <tr>
 <td>Physical Backup and Restore</td>
-<td>N</td>
+<td>Y</td>
 </tr>
 </tbody>
 </table>

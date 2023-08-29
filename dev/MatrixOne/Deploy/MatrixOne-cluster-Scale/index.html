@@ -9377,13 +9377,13 @@
 </tbody>
 </table>
 <h2 id="scaling-matrixone-services">Scaling MatrixOne Services</h2>
-<p>Scaling of services refers to expanding or contracting the core component services within the MatrixOne cluster, such as Log Service, DN, and CN. Based on the architectural characteristics of MatrixOne, the following conditions apply to these service nodes:</p>
+<p>Scaling of services refers to expanding or contracting the core component services within the MatrixOne cluster, such as Log Service, TN, and CN. Based on the architectural characteristics of MatrixOne, the following conditions apply to these service nodes:</p>
 <ul>
 <li>Log Service has only 3 nodes.</li>
-<li>DN has only 1 node.</li>
+<li>TN has only 1 node.</li>
 <li>The number of CN nodes is flexible.</li>
 </ul>
-<p>Therefore, scaling of Log Service and DN nodes is possible only through vertical scaling. However, CN nodes can be scaled both vertically and horizontally.</p>
+<p>Therefore, scaling of Log Service and TN nodes is possible only through vertical scaling. However, CN nodes can be scaled both vertically and horizontally.</p>
 <h3 id="horizontal-scaling">Horizontal scaling</h3>
 <p>Horizontal scaling refers to the increase or decrease in the number of copies of a service. You can change the number of service replicas by modifying the value of the <code>.spec.[component].replicas</code> field in the MatrixOne Operator startup yaml file.</p>
 <ol>
@@ -9408,7 +9408,7 @@
 <div class="highlight"><pre><span></span><code>[root@master0 ~]# kubectl get pods -n mo-hn      
 NAME                                  READY   STATUS    RESTARTS     AGE
 matrixone-operator-6c9c49fbd7-lw2h2   1/1     Running   2 (8h ago)   9h
-mo-dn-0                               1/1     Running   0            11m
+mo-tn-0                               1/1     Running   0            11m
 mo-log-0                              1/1     Running   0            12m
 mo-log-1                              1/1     Running   0            12m
 mo-log-2                              1/1     Running   0            12m
@@ -9507,7 +9507,7 @@ node1   Ready    &lt;none&gt;   7m25s   v1.23.17   beta.kubernetes.io/arch=amd64
 <p>Execute the following command to view the current distribution of Pods on multiple nodes:</p>
 <div class="highlight"><pre><span></span><code>[root@master0 mo]# kubectl get pod -nmo-hn -owide
 NAME         READY   STATUS    RESTARTS   AGE   IP              NODE    NOMINATED NODE   READINESS GATES
-mo-dn-0      1/1     Running   0          34m   10.234.60.120   node0   &lt;none&gt;           2/2
+mo-tn-0      1/1     Running   0          34m   10.234.60.120   node0   &lt;none&gt;           2/2
 mo-log-0     1/1     Running   0          34m   10.234.168.72   node1   &lt;none&gt;           2/2
 mo-log-1     1/1     Running   0          34m   10.234.60.118   node0   &lt;none&gt;           2/2
 mo-log-2     1/1     Running   0          34m   10.234.168.73   node1   &lt;none&gt;           2/2
@@ -9545,7 +9545,7 @@ spec:
 <p>After the change takes effect, execute the following command to check that the two CNs are already on the two nodes:</p>
 <div class="highlight"><pre><span></span><code>[root@master0 ~]# kubectl get pod -nmo-hn -owide      
 NAME         READY   STATUS    RESTARTS        AGE     IP              NODE    NOMINATED NODE   READINESS GATES
-mo-dn-0      1/1     Running   1 (2m53s ago)   3m6s    10.234.168.80   node1   &lt;none&gt;           2/2
+mo-tn-0      1/1     Running   1 (2m53s ago)   3m6s    10.234.168.80   node1   &lt;none&gt;           2/2
 mo-log-0     1/1     Running   0               3m40s   10.234.168.78   node1   &lt;none&gt;           2/2
 mo-log-1     1/1     Running   0               3m40s   10.234.60.122   node0   &lt;none&gt;           2/2
 mo-log-2     1/1     Running   0               3m40s   10.234.168.77   node1   &lt;none&gt;           2/2
