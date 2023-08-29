@@ -288,7 +288,7 @@ Using `mo_ctl get_conf` will print a list of all the parameters used by the curr
 | STOP_INTERVAL          | Interval to wait for service status check after stopping the service | Default: 5 seconds                                           |
 | START_INTERVAL         | Interval to wait for service status check after starting the service | Default: 2 seconds                                           |
 | MO_DEBUG_PORT          | Debug port for MatrixOne, usually used by developers | Default: 9876                                                |
-| MO_CONF_FILE           | Launch configuration file for MatrixOne              | Default: ${MO_PATH}/matrixone/etc/launch-tae-CN-tae-DN/launch.toml |
+| MO_CONF_FILE           | Launch configuration file for MatrixOne              | Default: ${MO_PATH}/matrixone/etc/launch-tae-CN-tae-TN/launch.toml |
 | RESTART_INTERVAL       | Interval to wait for service status check after restarting the service | Default: 2 seconds                                           |
 | PPROF_OUT_PATH         | Output path for collecting golang performance data   | Default: /tmp/pprof-test/                                    |
 | PPROF_PROFILE_DURATION | Duration for collecting golang performance data      | Default: 30 seconds                                          |

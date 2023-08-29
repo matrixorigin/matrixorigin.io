@@ -46,7 +46,7 @@ The environment introduced in this chapter will be based on the environment of [
     load data local infile '/XXX/pe.csv' into table stock.pe fields TERMINATED BY '\t';
     ```
 
-2. Next, perform the corresponding cache configuration. In the cluster yaml settings of MatrixOne, DN, Log Service, and CN all have cache-related settings. However, you only need to focus on the CN cache directly related to the query, and the primary cache size is managed by `memoryCacheSize` and `diskCacheSize`.
+2. Next, perform the corresponding cache configuration. In the cluster yaml settings of MatrixOne, TN, Log Service, and CN all have cache-related settings. However, you only need to focus on the CN cache directly related to the query, and the primary cache size is managed by `memoryCacheSize` and `diskCacheSize`.
 
     ```yaml
     metadata:
