@@ -113,7 +113,7 @@ The computing node (CN) is a component of Matrixone that accesses user requests 
 
 ### **Stream Engine**
 
-The streaming engine is a new component to ease the ETL process from OLTP to OLAP. It is planned in the MatrixOne roadmap but not implemented yet.
+Stream Engine is a new component within MatrixOne, serving as an integrated stream engine designed for real-time querying, processing, and enriching data stored in a series of incoming data points, also known as data streams. With Stream Engine, you can employ SQL to define and create streaming processing pipelines, offering real-time data backend services. Additionally, you can utilize SQL to query data within streams and establish connections with non-streaming datasets, thereby further streamlining the data stack.
 
 ### **Proxy**
 
