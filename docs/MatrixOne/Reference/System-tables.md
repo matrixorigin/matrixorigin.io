@@ -249,7 +249,7 @@ Start with MatrixOne 0.6 has introduced the concept of multi-account, the defaul
 * value:  the value of the collecting metric
 
 - node: the MatrixOne node uuid
-- role: the MatrixOne node role, can be CN, DN or LOG.  
+- role: the MatrixOne node role, can be CN, TN or LOG.  
 - account: default as "sys", the account who fires the SQL request.
 - type:SQL type, can be `select`, `insert`, `update`, `delete`, `other` types.
 
@@ -305,7 +305,7 @@ It records user and system SQL statement with detailed information.
 | statement_tag         | TEXT          | note tag in statement(Reserved)                              |
 | statement_fingerprint | TEXT          | note tag in statement(Reserved)                              |
 | node_uuid             | VARCHAR(36)   | node uuid, which node gen this data                          |
-| node_type             | VARCHAR(64)   | node type in MO, val in [DN, CN, LOG]                        |
+| node_type             | VARCHAR(64)   | node type in MO, val in [TN, CN, LOG]                        |
 | request_at            | DATETIME      | request accept datetime                                      |
 | response_at           | DATETIME      | response send datetime                                       |
 | duration              | BIGINT        | exec time, unit: ns                                          |
@@ -331,7 +331,7 @@ It records very detailed system logs.
 | -------------- | ------------- | ------------------------------------------------------------ |
 | raw_item       | VARCHAR(1024) | raw log item                                                 |
 | node_uuid      | VARCHAR(36)   | node uuid, which node gen this data.                         |
-| node_type      | VARCHAR(64)   | node type in MO, val in [DN, CN, LOG]                        |
+| node_type      | VARCHAR(64)   | node type in MO, val in [TN, CN, LOG]                        |
 | span_id        | VARCHAR(16)   | span unique id                                               |
 | statement_id   | VARCHAR(36)   | statement unique id                                          |
 | logger_name    | VARCHAR(1024) | logger name                                                  |

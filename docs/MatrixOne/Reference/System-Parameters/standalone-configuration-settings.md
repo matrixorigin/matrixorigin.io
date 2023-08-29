@@ -1,6 +1,6 @@
 # Standalone Common Parameters Configuration
 
-Four configuration files are in the *matrixone/etc/launch/* directory: *cn.toml*, *dn.toml*, *proxy.toml*, and *log.toml*, used to configure standard parameters.
+Four configuration files are in the *matrixone/etc/launch/* directory: *cn.toml*, *tn.toml*, *proxy.toml*, and *log.toml*, used to configure standard parameters.
 
 ## cn.toml
 
@@ -52,31 +52,31 @@ In the *cn.toml* file, you can also customize and add the following configuratio
 | disableTrace       | Disable trace collection. If set to true, the system will stop collecting any trace, metric, and log data | disableTrace = false      |
 | longQueryTime      | Log queries that exceed execution time. This parameter defines a threshold in seconds to filter out queries that exceed this threshold in execution time. The execution plans (ExecPlan) of these queries are then logged for later analysis. If set to 0.0, all execution plans of queries will be logged. | longQueryTime = 1.0             |
 
-## dn.toml
+## tn.toml
 
 ### Default Parameters
 
-The *dn.toml* file contains the following default parameters:
+The *tn.toml* file contains the following default parameters:
 
 | Parameter          | Explanation                                | Example                  |
 |-------------------|-------------------------------------------|--------------------------|
 | [log]             | Log configuration section                 |                          |
 | level             | Log level, default is info, can be modified to different levels | level = "info"        |
-| [dn]              | DN node, not editable                     |                        |
-| uuid              | Unique identifier of DN, not editable      | uuid = "dd4dccb4-4d3c-41f8-b482-5251dc7a41bf" |
-| port-base         | Starting port number used by "DN", continuously finding 20 available ports for internal services starting from this port number | port-base = 19000       |
+| [tn]              | TN node, not editable                     |                        |
+| uuid              | Unique identifier of TN, not editable      | uuid = "dd4dccb4-4d3c-41f8-b482-5251dc7a41bf" |
+| port-base         | Starting port number used by "TN", continuously finding 20 available ports for internal services starting from this port number | port-base = 19000       |
 | service-host      | Service connection address used for registration to HAKeeper | service-host = "0.0.0.0" |
 
 ### Extended Parameters
 
-In the *dn.toml* file, you can also customize and add the following configuration parameters:
+In the *tn.toml* file, you can also customize and add the following configuration parameters:
 
 | Parameter          | Explanation                                | Example                   |
 |-------------------|-------------------------------------------|---------------------------|
 | [log]             | Log configuration section                 |                           |
 | format             | Log save format as JSON or other           | format = "console"        |
-| filename           | Log filename                              | filename = "dn.log"          |
-| [dn.LogtailServer] | Logtail Server configuration section      |                           |
+| filename           | Log filename                              | filename = "tn.log"          |
+| [tn.LogtailServer] | Logtail Server configuration section      |                           |
 | rpc-enable-checksum| Enable RPC checksum                       | rpc-enable-checksum = false|
 | [fileservice.cache]| File service cache configuration section |                           |
 | memory-capacity    | Cache memory size                         | memory-capacity = "512MB" |
