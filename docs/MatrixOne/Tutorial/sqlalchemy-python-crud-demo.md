@@ -46,7 +46,7 @@ As we have explained how to connect to MatrixOne by SQLAlchemy in the other [tut
 
 ## Create
 
-As an Object Relational Mapper(ORM) tool, SQLAlchemy allows developers to create python class to map the table in relational database. In the example below, we will create a `Customer` class which is a representation of `Customer` table in MatrixOne, the code which defines `Customer` is equal to a SQL statement as:
+As an Object Relational Mapper(ORM) tool, SQLAlchemy allows developers to create python class to map the table in relational database. In the example below, we will create a `User` class which is a representation of `User` table in MatrixOne, the code which defines `User` is equal to a SQL statement as:
 
 ```
 CREATE TABLE `User` (
