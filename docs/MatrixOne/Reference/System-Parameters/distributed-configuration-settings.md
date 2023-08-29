@@ -44,7 +44,7 @@ In the *cn.toml* file, you can also customize and add the following configuratio
 | lowerCaseTableNames| Case sensitivity of identifiers. The default value is 1, which means case-insensitive | lowerCaseTableNames = 1   |
 | [cn.Txn]           | Transaction configuration section         |                           |
 | isolation          | Transaction isolation level. This parameter configures the isolation level on the node (cn). The isolation level defines how transactions behave when dealing with concurrent operations. By default, if the isolation level (Isolation) is not set and the transaction mode (Mode) is set to optimistic, the isolation level will be set to Serializable Isolation (SI). When the transaction mode is pessimistic, the isolation level will be set to Read Committed Isolation (RC). Default: RC | isolation = "RC"          |
-| mode               | Transaction mode. This parameter configures the transaction mode on the node (cn). The transaction mode defines how operations and concurrency are handled in transactions. Valid values are optimistic and pessimistic, with the default being optimistic. | mode = "optimistic"       |
+| mode               | Transaction mode. This parameter configures the transaction mode on the node (cn). The transaction mode defines how operations and concurrency are handled in transactions. Valid values are optimistic and pessimistic, with the default being pessimistic. | mode = "pessimistic"       |
 | [fileservice.s3]   |                        |                           |
 | endpoint           | S3 endpoint address                      | endpoint = "s3.amazonaws.com"|
 | [fileservice.cache]| File service cache configuration section |                           |
