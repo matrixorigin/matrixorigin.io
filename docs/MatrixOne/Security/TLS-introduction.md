@@ -46,12 +46,12 @@ After completing the configuration of these two main steps, a TLS secure connect
 
     __Note__:  `<yourpath>` in the above code is the local directory path where you need to store the generated certificate and key files.
 
-2. Enter the *cn.toml* configuration file in your local MatrixOne file directory path *matrixone/etc/launch-tae-CN-tae-DN/*:
+2. Enter the *cn.toml* configuration file in your local MatrixOne file directory path *matrixone/etc/launch-tae-CN-tae-TN/*:
 
     You can also use the vim command to open the cn. toml file directly in the terminal
 
     ```
-    vim $matrixone/etc/launch-tae-CN-tae-DN/cn.toml
+    vim $matrixone/etc/launch-tae-CN-tae-TN/cn.toml
     ```
 
     Copy and paste the code below into the configuration file:
