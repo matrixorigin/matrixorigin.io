@@ -147,7 +147,7 @@ wget https://raw.githubusercontent.com/matrixorigin/mo_ctl_standalone/main/insta
 Using the following command sets the MatrixOne binary decompression file directory to the `MO_PATH` parameter of mo_ctl. mo_ctl will automatically look for the `matrixone` folder in `MO_PATH`.
 
 ```
-mo_ctl set_conf MO_PATH="/root/"
+mo_ctl set_conf MO_PATH="/root"
 ```
 
 ## Step 4: Launch MatrixOne server
