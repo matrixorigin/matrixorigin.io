@@ -10,7 +10,7 @@ For significant differences between MatrixOne and MySQL, see [MySQL Compatibilit
 
 ## MatrixOne Transaction Mechanism
 
-MatrixOne supports both **Optimistic Transaction** and **Pessimistic Transaction**. In the current version of MatrixOne, the default is the **optimistic transaction** mode. You can switch to pessimistic transaction mode by modifying the startup configuration file.
+MatrixOne supports both **Optimistic Transaction** and **Pessimistic Transaction**. In the current version of MatrixOne, the default is the **Pessimistic Transaction** mode. You can switch to **Optimistic Transaction** mode by modifying the startup configuration file.
 
 You can start a transaction with `BEGIN`, commit the transaction with `COMMIT`, or roll back the transaction with `ROLLBACK`. MatrixOne ensures the atomicity of all statements from the beginning of `BEGIN` to the end of `COMMIT` or `ROLLBACK`. All statements during this period are either entirely successful or entirely failed, thereby ensuring the data consistency required in application development.
 

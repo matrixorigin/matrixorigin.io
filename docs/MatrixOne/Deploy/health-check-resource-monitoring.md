@@ -10,7 +10,7 @@ The upgraded environment introduced in this document will be based on the enviro
 
 - Physical resource layer: including the three virtual machines' CPU, memory, and disk resources. For a mature solution to monitor these resources, see [Monitoring Solution](https://easywebfixes.com/memory-disk-cpu-usage-linux/).
 
-- Logical resource layer: including the capacity usage of MinIO, the CPU and memory resource usage of each node and Pod of Kubernetes, the overall status of MatrixOne, and the status of each component (such as LogService, CN, DN).
+- Logical resource layer: including the capacity usage of MinIO, the CPU and memory resource usage of each node and Pod of Kubernetes, the overall status of MatrixOne, and the status of each component (such as LogService, CN, TN).
 
 ## Resource monitoring
 
@@ -223,7 +223,7 @@ Non-terminated Pods:          (20 in total)
   kube-system                 nodelocaldns-qkxhv                                           100m (5%)     0 (0%)      70Mi (0%)        170Mi (2%)     14h
   local-path-storage          local-path-storage-local-path-provisioner-d5bb7f8c9-qfp8h    0 (0%)        0 (0%)      0 (0%)           0 (0%)         21h
   mo-hn                       matrixone-operator-f8496ff5c-fp6zm                           0 (0%)        0 (0%)      0 (0%)           0 (0%)         20h
-  mo-hn                       mo-dn-0                                                      0 (0%)        0 (0%)      0 (0%)           0 (0%)         13h
+  mo-hn                       mo-tn-0                                                      0 (0%)        0 (0%)      0 (0%)           0 (0%)         13h
   mo-hn                       mo-log-0                                                     0 (0%)        0 (0%)      0 (0%)           0 (0%)         13h
   mo-hn                       mo-log-1                                                     0 (0%)        0 (0%)      0 (0%)           0 (0%)         13h
   mo-hn                       mo-log-2                                                     0 (0%)        0 (0%)      0 (0%)           0 (0%)         13h
@@ -253,7 +253,7 @@ Events:              <none>
 2. According to the above-returned results, use the following command to view the resource usage of a specific Pod:
 
     ```
-    POD="[pod name to be monitored]" # According to the above results, for example: dn is mo-dn-0, cn is mo-tp-cn-0, mo-tp-cn-1, ..., logservice is mo -log-0, mo-log-1, ...
+    POD="[pod name to be monitored]" # According to the above results, for example: TN is mo-tn-0, cn is mo-tp-cn-0, mo-tp-cn-1, ..., logservice is mo -log-0, mo-log-1, ...
     kubectl top pod ${POD} -n ${NS}
     ```
 
@@ -263,9 +263,9 @@ Events:              <none>
     [root@master0 ~]# kubectl top pod mo-tp-cn-0 -nmo-hn
     NAME         CPU(cores)   MEMORY(bytes)   
     mo-tp-cn-0   20m          214Mi
-    [root@master0 ~]# kubectl top pod mo-dn-0 -nmo-hn     
+    [root@master0 ~]# kubectl top pod mo-tn-0 -nmo-hn     
     NAME      CPU(cores)   MEMORY(bytes)   
-    mo-dn-0   36m          161Mi  
+    mo-tn-0   36m          161Mi  
     ```
 
 3. you can also view the resource declaration of a specific Pod to compare it with the actual resource usage.
@@ -549,7 +549,7 @@ If the status is "Ready", the cluster is healthy. If the status is "NotReady", f
 [root@master0 ~]# MO_NAME="mo"
 [root@master0 ~]# NS="mo-hn"
 [root@master0 ~]# kubectl get matrixonecluster -n${NS} ${MO_NAME}
-NAME   LOG   DN    TP    AP    VERSION            PHASE   AGE
+NAME   LOG   TN    TP    AP    VERSION            PHASE   AGE
 mo     3     1     1           nightly-144f3be4   Ready   13h
 ```
 
@@ -582,7 +582,7 @@ Metadata:
           f:kubectl.kubernetes.io/last-applied-configuration:
       f:spec:
         .:
-        f:dn:
+        f:Tn:
           .:
           f:config:
           f:replicas:
@@ -646,7 +646,7 @@ Metadata:
           f:syncedGroups:
         f:conditions:
         f:credentialRef:
-        f:dn:
+        f:Tn:
           .:
           f:availableStores:
           f:conditions:
@@ -666,20 +666,20 @@ Metadata:
   Resource Version:  72671
   UID:               be2355c0-0c69-4f0f-95bb-9310224200b6
 Spec:
-  Dn:
+  Tn:
     Config:  
-[dn]
+[tn]
 
-[dn.Ckp]
+[tn.Ckp]
 flush-interval = "60s"
 global-interval = "100000s"
 incremental-interval = "60s"
 min-count = 100
 scan-interval = "5s"
 
-[dn.Txn]
+[tn.Txn]
 
-[dn.Txn.Storage]
+[tn.Txn.Storage]
 backend = "TAE"
 log-backend = "logservice"
 
@@ -704,7 +704,7 @@ level = "error"
 max-size = 512
 
     Initial Config:
-      Dn Shards:           1
+      TN Shards:           1
       Log Shard Replicas:  3
       Log Shards:          1
     Pvc Retention Policy:  Retain
@@ -762,11 +762,11 @@ Status:
     Type:                  Ready
   Credential Ref:
     Name:  mo-credential
-  Dn:
+  Tn:
     Available Stores:
       Last Transition:  2023-05-07T13:01:48Z
       Phase:            Up
-      Pod Name:         mo-dn-0
+      Pod Name:         mo-tn-0
     Conditions:
       Last Transition Time:  2023-05-07T13:01:48Z
       Message:               the object is synced
@@ -812,20 +812,20 @@ Events:
 
 ### View component status
 
-The current MatrixOne cluster includes the following components: DN, CN, and Log Service, which correspond to the custom resource types DNSet, CNSet, and LogSet, respectively, and these objects are generated by the MatrixOneCluster controller.
+The current MatrixOne cluster includes the following components: TN, CN, and Log Service, which correspond to the custom resource types TNSet, CNSet, and LogSet, respectively, and these objects are generated by the MatrixOneCluster controller.
 
-To check whether each component is standard, take DN as an example; you can run the following command:
+To check whether each component is standard, take TN as an example; you can run the following command:
 
 ```
-SET_TYPE="dnset"
+SET_TYPE="tnset"
 NS="mo-hn"
 kubectl get ${SET_TYPE} -n ${NS}
 ```
 
-This will display status information for the DN component as follows:
+This will display status information for the TN component as follows:
 
 ```
-[root@master0 ~]# SET_TYPE="dnset"
+[root@master0 ~]# SET_TYPE="tnset"
 [root@master0 ~]# NS="mo-hn"
 [root@master0 ~]# kubectl get ${SET_TYPE} -n${NS}
 NAME   IMAGE                                     REPLICAS   AGE
@@ -856,7 +856,7 @@ This will display status information for the Pod.
 [root@master0 ~]# kubectl get pod -n${NS}
 NAME                                 READY   STATUS    RESTARTS   AGE
 matrixone-operator-f8496ff5c-fp6zm   1/1     Running   0          19h
-mo-dn-0                              1/1     Running   0          13h
+mo-tn-0                              1/1     Running   0          13h
 mo-log-0                             1/1     Running   0          13h
 mo-log-1                             1/1     Running   0          13h
 mo-log-2                             1/1     Running   0          13h

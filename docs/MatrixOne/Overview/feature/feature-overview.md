@@ -55,9 +55,9 @@ MatrixOne chooses AWS S3 as an efficient storage solution, meeting the two core 
 
 ### Clear Transaction Division of Labor
 
-- CN is responsible for all calculations and transaction logic, while DN is responsible for storing metadata, log information, and transaction adjudication.
+- CN is responsible for all calculations and transaction logic, while TN is responsible for storing metadata, log information, and transaction adjudication.
 - The Logtail object is introduced in the logs to save associated data from recent logs. Logtail data is regularly written to S3. When CN scales out, Logtail data can be synchronized to the cache in real-time to achieve partial data sharing.
-- Set a threshold for transaction size. Transactions that exceed the threshold are directly written to S3 and logs only record write records. Transactions that do not exceed the threshold are still written by DN, significantly increasing throughput.
+- Set a threshold for transaction size. Transactions that exceed the threshold are directly written to S3 and logs only record write records. Transactions that do not exceed the threshold are still written by TN, significantly increasing throughput.
 
 ### HTAP Workload Isolation
 
