@@ -13,7 +13,7 @@ MatrixOne implements three independent layers, each with its object units and re
 ![](https://github.com/matrixorigin/artwork/blob/main/docs/overview/architecture/architecture-1.png?raw=true)
 
 - Compute Layer: Based on Compute Nodes (CNs), MatrixOne enables serverless computing and transaction processing with its cache, which is capable of random restarts and scaling.
-- Transaction Layer: Based on Database Nodes and Log Services, MatrixOne provides complete logging services and metadata information, with built-in Logtail for recent data storage.
+- Transaction Layer: Based on Transaction Nodes and Log Services, MatrixOne provides complete logging services and metadata information, with built-in Logtail for recent data storage.
 - Storage Layer: Full data is stored in object storage, represented by S3, implementing a low-cost, infinitely scalable storage method. A unified File Service enables seamless operations on underlying storage by different nodes.
 
 ![](https://github.com/matrixorigin/artwork/blob/main/docs/overview/architecture/architecture-2.png?raw=true)
@@ -21,7 +21,7 @@ MatrixOne implements three independent layers, each with its object units and re
 After deciding on TAE as the sole storage engine, multiple design adjustments were made to the fused TAE engine, resulting in the TAE storage engine. This engine has the following advantages:
 
 - Columnar Storage Management: Uniform columnar storage and compression methods provide inherent performance advantages for OLAP businesses.
-- Transaction Processing: Shared logs and DN nodes jointly support transaction processing for compute nodes.
+- Transaction Processing: Shared logs and TN nodes jointly support transaction processing for compute nodes.
 - Hot and Cold Separation: Using S3 object storage as the target for File Service, each compute node has its cache.
 
 ![](https://github.com/matrixorigin/artwork/blob/main/docs/overview/architecture/architecture-3.png?raw=true)
@@ -94,9 +94,9 @@ Log Service is a component specially used to process transaction logs in MatrixO
 - After the transaction is submitted and placed, truncate the content of the Log Service to control the size of the Log Service. The content that remains in the Log Service after truncation is called Logtail.
 - If multiple Log Service copies are down at the same time, the entire MatrixOne will be down.
 
-### **Database Node**
+### **Transaction Node**
 
-The database node (DN) is the carrier used to run MatrixOne's distributed storage engine TAE, which provides the following features:
+The Transaction Node (TN) is the carrier used to run MatrixOne's distributed storage engine TAE, which provides the following features:
 
 - Manage metadata information in MatrixOne and transaction log content saved in Log Service.
 - Receive distributed transaction requests sent by Computing Node (CN), adjudicate the read and write requests of distributed transactions, push transaction adjudication results to CN, and push transaction content to Log Service to ensure the ACID characteristics of transactions.
@@ -109,11 +109,11 @@ The computing node (CN) is a component of Matrixone that accesses user requests 
 - Frontend, it handles the client SQL protocol, accepts the client's message, parses it to get the executable SQL of MatrixOne, calls other modules to execute the SQL, organizes the query results into a message, and returns it to the client.
 - Plan, parse the SQL processed by Frontend, generate a logical execution plan based on MatrixOne's calculation engine and send it to Pipeline.
 - Pipeline, which parses the logical plan, converts the logical plan into an actual execution plan and then runs the execution plan through Pipeline.
-- Disttae, responsible for specific read and write tasks, including synchronizing Logtail from DN and reading data from S3, and sending the written data to DN.
+- Disttae, responsible for specific read and write tasks, including synchronizing Logtail from TN and reading data from S3, and sending the written data to TN.
 
 ### **Stream Engine**
 
-The streaming engine is a new component to ease the ETL process from OLTP to OLAP. It is planned in the MatrixOne roadmap but not implemented yet.
+Stream Engine is a new component within MatrixOne, serving as an integrated stream engine designed for real-time querying, processing, and enriching data stored in a series of incoming data points, also known as data streams. With Stream Engine, you can employ SQL to define and create streaming processing pipelines, offering real-time data backend services. Additionally, you can utilize SQL to query data within streams and establish connections with non-streaming datasets, thereby further streamlining the data stack.
 
 ### **Proxy**
 
