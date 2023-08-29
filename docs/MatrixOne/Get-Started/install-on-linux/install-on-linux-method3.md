@@ -82,60 +82,34 @@ If you need to mount data directories or customize configure files, see [Mount t
 
 ### Install and configure MySQL Client
 
-1. Click <a href="https://dev.mysql.com/downloads/mysql" target="_blank">MySQL Community Downloads</a> to enter into the MySQL client download and installation page. According to your operating system and hardware environment, drop down to select **Select Operating System**, then drop down to select **Select OS Version**, and select the download installation package to install as needed.
+The Debian11.1 version does not have MySQL Client installed by default, so it needs to be downloaded and installed manually.
 
-    __Note__: MySQL client version 8.0.30 or later is recommended.
+1. Execute the following commands in sequence:
 
-2. Configure the MySQL client environment variables:
+    ```
+    wget https://dev.mysql.com/get/mysql-apt-config_0.8.22-1_all.deb
+    sudo dpkg -i ./mysql-apt-config_0.8.22-1_all.deb
+    sudo apt update
+    sudo apt install mysql-client
+    ```
 
-     1. Open a new terminal window and enter the following command:
+2. Execute the command `mysql --version` to test whether MySQL is available. The result of the successful installation is as follows:
 
-         ```
-         cd ~
-         sudo vim /etc/profile
-         ```
-
-     2. After pressing **Enter** on the keyboard to execute the above command, you need to enter the root user password, which is the root password you set in the installation window when you installed the MySQL client. If no password has been set, press **Enter** to skip the password.
-
-     3. After entering/skiping the root password, you will enter *profile*, click **i** on the keyboard to enter the insert state, and you can enter the following command at the bottom of the file:
-
-        ```
-        export PATH=/software/mysql/bin:$PATH
-        ```
-
-     4. After the input is completed, click **esc** on the keyboard to exit the insert state, and enter `:wq` at the bottom to save and exit.
-
-     5. Enter the command `source  /etc/profile`, press **Enter** to execute, and run the environment variable.
-
-     6. To test whether MySQL is available:
-
-         - Method 1: Enter `mysql -u root -p`, press **Enter** to execute, the root user password is required, if `mysql>` is displayed, it means that the MySQL client is enabled.
-
-         - Method 2: Run the command `mysql --version`, if MySQL client is installed successfully, the example code line is as follows: `mysql  Ver 8.0.31 for Linux on x86_64 (Source distribution)`
-
-     7. If MySQL is available, close the current terminal and browse the next chapter **Connect to MatrixOne Server**.  
+    ```
+    mysql --version
+    mysql Ver 8.0.33 for Linux on x86_64 (MySQL Community Server - GPL)
+    ```
 
 __Tips__: Currently, MatrixOne is only compatible with the Oracle MySQL client. This means that some features might not work with the MariaDB client or Percona client.
 
 ### Connect to MatrixOne
 
-- You can use the MySQL command-line client to connect to MatrixOne server. Open a new terminal window and enter the following command:
+You can use the MySQL command-line client to connect to MatrixOne server. Open a new terminal window and enter the following command:
 
     ```
-    mysql -h IP -P PORT -uUsername -p
+    mysql -h 127.0.0.1 -P 6001 -uroot -p
+    Enter password:  # The default initial password is 111
     ```
-
-    After you enter the preceding command, the terminal will prompt you to provide the username and password. You can use our built-in account:
-
-    + user: root
-    + password: 111
-
-- You can also use the following command line on the MySQL client to connect to the MatrixOne service:
-
-       ```
-       mysql -h 127.0.0.1 -P 6001 -uroot -p
-       Enter password:
-       ```
 
 Currently, MatrixOne only supports the TCP listener.
 
