@@ -45,7 +45,7 @@ To create the SSL keys, perform the following steps:
     ├── server-cert.pem<br>
     └── server-key.pem<br>
 
-2. Insert the following lines in the `[cn.frontend]` section of the `etc/launch-tae-CN-tae-DN/cn.toml` file in MatrixOne folder:
+2. Insert the following lines in the `[cn.frontend]` section of the `etc /launch-with-proxy/cn.toml` file in MatrixOne folder:
 
     ```
     [cn.frontend]
