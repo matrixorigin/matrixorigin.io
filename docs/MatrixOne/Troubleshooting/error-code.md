@@ -89,8 +89,8 @@ For more information on the details of these errors, please refer to the followi
 | 20602 | ErrMissingTxn | missing transaction | Transaction |
 | 20603 | ErrUnresolvedConflict | unresolved conflict | Transaction |
 | 20604 | ErrTxnError  | transaction error | Transaction |
-| 20605 | ErrDNShardNotFound | dn shard not found | Transaction |
-| 20606 | ErrShardNotReported  | dn shard not reported | Transaction |
+| 20605 | ErrDNShardNotFound | TN shard not found | Transaction |
+| 20606 | ErrShardNotReported  | TN shard not reported | Transaction |
 | 20607 | ErrTAEError | tae error | TAE Error |
 | 20608 | ErrTAERead | tae read error | TAE Error |
 | 20609 | ErrRpcError | rpc error | TAE Error |

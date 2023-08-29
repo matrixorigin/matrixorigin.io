@@ -23,7 +23,7 @@ The overall technical architecture of MatrixOne adopts a separate architecture o
 ![](https://github.com/matrixorigin/artwork/blob/main/docs/overview/htap/mo-htap-arch.png?raw=true)
 
 - **Computation layer**, with Compute Node as the unit, realizes serverless computation and transaction processing. It has its Cache, supporting random restarts and scaling; multiple Compute Nodes can calculate parallel to improve query efficiency.
-- **Transaction layer**, composed of Database Node and Log Service, provides complete log service and metadata information, with built-in Logtail for storing recently written new data.
+- **Transaction layer**, composed of Transaction Node and Log Service, provides complete log service and metadata information, with built-in Logtail for storing recently written new data.
 - **Storage layer**, all data are saved in object storage represented by S3, which achieves low-cost, infinitely expandable storage method. Through a unified file operation service named File Service, it realizes the invisible operation of different nodes on the underlying storage.
 
 ### Multi-level Storage System
@@ -31,7 +31,7 @@ The overall technical architecture of MatrixOne adopts a separate architecture o
 As illustrated in the previous section, the storage system of MatrixOne is composed of shared storage for all data, a small number of shared logs, and a stateless cache on the computing nodes.
 
 - All data are stored in object storage, the primary storage for the entire database and the only location for data persistence. Object storage has the characteristics of being low-cost and nearly infinitely scalable.
-- The LogService provides shared log services for saving state information of transactions such as writes/updates across the entire cluster. It is the only component in the entire cluster with a state. Therefore, LogService must ensure high availability through three nodes using the distributed Raft protocol. However, it only retains transaction logs for a certain period, which we call Longtail. After some time, there will be DN to help compress historical logs and store them in S3. Therefore, Logtail can maintain a very slim data size, generally a few GB.
+- The LogService provides shared log services for saving state information of transactions such as writes/updates across the entire cluster. It is the only component in the entire cluster with a state. Therefore, LogService must ensure high availability through three nodes using the distributed Raft protocol. However, it only retains transaction logs for a certain period, which we call Longtail. After some time, there will be TN to help compress historical logs and store them in S3. Therefore, Logtail can maintain a very slim data size, generally a few GB.
 - Each computing node CN has a cache. When a user queries for the first time, it will read related data from object storage and put it into the cache as hot data. When the customer queries the same content again, if the cache is hit, the query result will be returned to the user quickly. The technical feature of cold and hot data separation brought by the cache can refer to [Detailed Explanation of Data Caching and Cold-Hot Data Separation Architecture](../architecture/architecture-cold-hot-data-separation.md). In addition to reading data from object storage, CN nodes will also subscribe to Logtail data from LogService, and new updates in LogService will be pushed to CN immediately.
 
 ### Load Processing Link Isolation
@@ -54,11 +54,11 @@ As shown in the figure, when processing write requests (INSERT/UPDATE/DELETE):
 
 1. CN node will start a transaction and check whether there are primary key conflicts or other transaction-related issues in the write request. If so, it will return an error to the user directly.
 
-2. Next, CN will decide on the operation link based on the data size of the write request. If the data size does not exceed the set threshold (usually 10MB), the CN node will send the data to the DN node. The DN node will perform operations like write conflict detection and transaction arbitration. After confirming no mistakes, these data will be written into LogService as logs to form Longtail.
+2. Next, CN will decide on the operation link based on the data size of the write request. If the data size does not exceed the set threshold (usually 10MB), the CN node will send the data to the TN node. The TN node will perform operations like write conflict detection and transaction arbitration. After confirming no mistakes, these data will be written into LogService as logs to form Longtail.
 
-3. The updated Logtail will be immediately pushed to the CN nodes that have subscribed to Logtail data for queries. If the data size exceeds the threshold, the CN node will directly write the data into object storage and send the commit information to DN. The DN node will perform operations like write conflict detection and transaction arbitration. After confirming no errors, the transaction will be committed.
+3. The updated Logtail will be immediately pushed to the CN nodes that have subscribed to Logtail data for queries. If the data size exceeds the threshold, the CN node will directly write the data into object storage and send the commit information to TN. The TN node will perform operations like write conflict detection and transaction arbitration. After confirming no errors, the transaction will be committed.
 
-From the figure above, it is known that small data volume OLTP-type write requests will go through the processing link from CN to DN and then to LogService, while large data volume write requests, such as Load, etc., will mainly go through CN to S3, and a small amount from CN to DN.
+From the figure above, it is known that small data volume OLTP-type write requests will go through the processing link from CN to TN and then to LogService, while large data volume write requests, such as Load, etc., will mainly go through CN to S3, and a small amount from CN to TN.
 
 ##### Read Request Processing
 
