@@ -20,19 +20,19 @@ Before you start, make sure you have downloaded and installed the following soft
 
 2. Make sure you have already installed [Golang 1.18 (or plus) version](https://go.dev/dl/).
 
-  ```
-  #To check with Golang installation and its version
-  go version
-  ```
+	```
+	#To check with Golang installation and its version
+	go version
+	```
 
 3. Make sure you have already installed MySQL.
 
 4. Use command ```go get``` to install ```gorm.io/gorm``` and ```gorm.io/driver/mysql```.
 
-  ```
-  go get -u gorm.io/gorm
-  go get -u gorm.io/driver/mysql
-  ```
+	```
+	go get -u gorm.io/gorm
+	go get -u gorm.io/driver/mysql
+	```
 
 As we have explained how to connect to MatrixOne by Gorm in the other [tutorial](../Develop/connect-mo/connect-to-matrixone-with-go.md), we will focus on the CRUD(Create, Read, Update, Delete) implementations in this tutorial.
 
@@ -82,7 +82,7 @@ func main() {
 
 ```
 
-To enable the logging of converted SQL output, you can uncomment the following line: Logger: logger.Default.LogMode(logger.Info).
+To enable the logging of converted SQL output, you can uncomment the following line:``` Logger: logger.Default.LogMode(logger.Info)```
 
 To run the Go file, open a terminal and use the following command:
 
@@ -168,7 +168,7 @@ Open your terminal and execute the following command to run the  *go*  file:
 go run gorm_insert.go
 ```
 
-Similarly, the terminal will output SQL statements. You can use a MySQL client to verify if the data has been successfully inserted into the table.
+Similarly, you can use a MySQL client to verify if the data has been successfully inserted into the table.
 
 ```sql
 mysql> select * from users;
@@ -398,4 +398,4 @@ mysql> select * from users;
 1 row in set (0.00 sec)
 ```
 
-The above is just a partial demonstration of CRUD operations in GORM. For more usage and examples, please refer to the official documentation. [GORM Guides](https://gorm.io/docs/index.html)
+The above is just a partial demonstration of CRUD operations in GORM. For more usage and examples, please refer to the [GORM Official Guides](https://gorm.io/docs/index.html). 
