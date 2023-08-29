@@ -25,13 +25,13 @@ You need to add a working node to the cluster, and the overall hardware configur
 
 ## Scaling MatrixOne Services
 
-Scaling of services refers to expanding or contracting the core component services within the MatrixOne cluster, such as Log Service, DN, and CN. Based on the architectural characteristics of MatrixOne, the following conditions apply to these service nodes:
+Scaling of services refers to expanding or contracting the core component services within the MatrixOne cluster, such as Log Service, TN, and CN. Based on the architectural characteristics of MatrixOne, the following conditions apply to these service nodes:
 
 - Log Service has only 3 nodes.
-- DN has only 1 node.
+- TN has only 1 node.
 - The number of CN nodes is flexible.
 
-Therefore, scaling of Log Service and DN nodes is possible only through vertical scaling. However, CN nodes can be scaled both vertically and horizontally.
+Therefore, scaling of Log Service and TN nodes is possible only through vertical scaling. However, CN nodes can be scaled both vertically and horizontally.
 
 ### Horizontal scaling
 
@@ -60,7 +60,7 @@ Horizontal scaling refers to the increase or decrease in the number of copies of
     [root@master0 ~]# kubectl get pods -n mo-hn      
     NAME                                  READY   STATUS    RESTARTS     AGE
     matrixone-operator-6c9c49fbd7-lw2h2   1/1     Running   2 (8h ago)   9h
-    mo-dn-0                               1/1     Running   0            11m
+    mo-tn-0                               1/1     Running   0            11m
     mo-log-0                              1/1     Running   0            12m
     mo-log-1                              1/1     Running   0            12m
     mo-log-2                              1/1     Running   0            12m
@@ -162,7 +162,7 @@ By default, Matrixone-operator does not configure topology rules for each compon
     ```
     [root@master0 mo]# kubectl get pod -nmo-hn -owide
     NAME         READY   STATUS    RESTARTS   AGE   IP              NODE    NOMINATED NODE   READINESS GATES
-    mo-dn-0      1/1     Running   0          34m   10.234.60.120   node0   <none>           2/2
+    mo-tn-0      1/1     Running   0          34m   10.234.60.120   node0   <none>           2/2
     mo-log-0     1/1     Running   0          34m   10.234.168.72   node1   <none>           2/2
     mo-log-1     1/1     Running   0          34m   10.234.60.118   node0   <none>           2/2
     mo-log-2     1/1     Running   0          34m   10.234.168.73   node1   <none>           2/2
@@ -203,7 +203,7 @@ By default, Matrixone-operator does not configure topology rules for each compon
     ```
     [root@master0 ~]# kubectl get pod -nmo-hn -owide      
     NAME         READY   STATUS    RESTARTS        AGE     IP              NODE    NOMINATED NODE   READINESS GATES
-    mo-dn-0      1/1     Running   1 (2m53s ago)   3m6s    10.234.168.80   node1   <none>           2/2
+    mo-tn-0      1/1     Running   1 (2m53s ago)   3m6s    10.234.168.80   node1   <none>           2/2
     mo-log-0     1/1     Running   0               3m40s   10.234.168.78   node1   <none>           2/2
     mo-log-1     1/1     Running   0               3m40s   10.234.60.122   node0   <none>           2/2
     mo-log-2     1/1     Running   0               3m40s   10.234.168.77   node1   <none>           2/2
