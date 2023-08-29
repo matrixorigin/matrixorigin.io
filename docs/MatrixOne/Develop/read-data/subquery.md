@@ -18,9 +18,7 @@ For more information on SQL statement, see [SUBQUERY](../../Reference/SQL-Refere
 
 In addition, from the execution of SQL statements, subquery generally has the following two types:
 
-- Correlated Subquery: In Correlated Subquery nested in databases, the inner and outer queries would not be independent, and the inner queries would depend on the outer queries.
-
-   The execution sequence is as follows:
+- Correlated Subquery: In Correlated Subquery nested in databases, the inner and outer queries would not be independent, and the inner queries would depend on the outer queries.The execution sequence is as follows:
 
     + Queries a record from the outer query.
 
@@ -28,17 +26,15 @@ In addition, from the execution of SQL statements, subquery generally has the fo
 
     + Repeat the above steps
 
-    For example: ``select * from tableA where tableA.cloumn &lt; (select column from tableB where tableA.id = tableB.id))``
+    For example: `select * from tableA where tableA.cloumn &lt; (select column from tableB where tableA.id = tableB.id))`
 
-- Self-contained Subquery: In a database nested query, the inner query is entirely independent of the outer query.
-
-   The execution sequence is as follows:
+- Self-contained Subquery: In a database nested query, the inner query is entirely independent of the outer query. The execution sequence is as follows:
 
     + Execute the inner query first.
 
     + The result of the inner query is carried into the outer layer, and then the outer query is executed.
 
-    For example: ``select * from tableA where tableA.column = (select tableB.column from tableB)``
+    For example: `select * from tableA where tableA.column = (select tableB.column from tableB)`
 
 **Key Feature**:
 
