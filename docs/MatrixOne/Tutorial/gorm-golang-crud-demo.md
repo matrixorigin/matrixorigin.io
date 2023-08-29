@@ -82,7 +82,7 @@ func main() {
 
 ```
 
-To enable the logging of converted SQL output, you can uncomment the following line:` Logger: logger.Default.LogMode(logger.Info)`
+To enable the logging of converted SQL output, you can uncomment the following line:`Logger: logger.Default.LogMode(logger.Info)`
 
 To run the Go file, open a terminal and use the following command:
 
@@ -398,4 +398,4 @@ mysql> select * from users;
 1 row in set (0.00 sec)
 ```
 
-The above is just a partial demonstration of CRUD operations in GORM. For more usage and examples, please refer to the [GORM Official Guides](https://gorm.io/docs/index.html). 
+The above is just a partial demonstration of CRUD operations in GORM. For more usage and examples, please refer to the [GORM Official Guides](https://gorm.io/docs/index.html).

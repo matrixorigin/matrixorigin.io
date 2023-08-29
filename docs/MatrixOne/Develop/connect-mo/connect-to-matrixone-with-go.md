@@ -64,7 +64,7 @@ MatrixOne supports Golang application connection, [`Go-MySQL-Driver`](https://gi
 
 ## Using Gorm to connect to MatrixOne
 
-Gorm is the fantastic ORM library for Golang and aims to be developer-friendly. `gorm.io/gorm` and `gorm.io/driver/mysql` will make Go connect to MYSQL. 
+Gorm is the fantastic ORM library for Golang and aims to be developer-friendly. `gorm.io/gorm` and `gorm.io/driver/mysql` will make Go connect to MYSQL.
 
 1. Use command `go get` to install `gorm.io/gorm` and `gorm.io/driver/mysql`.
 
