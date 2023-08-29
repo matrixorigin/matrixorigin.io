@@ -4,11 +4,11 @@
 
 [MatrixOne Operator](https://github.com/matrixorigin/matrixone-operator) is used to define and manage the resource requirements of MatrixOne clusters in Kubernetes, consisting of a set of Kubernetes custom resources (CustomResourceDefinitions, CRD), a set of Kubernetes controllers and a set of WebHook services:
 
-- **CRD**: In Kubernetes, CRD is an object that registers a new custom resource type into Kubernetes APIServer. The CRDs contained in MatrixOne Operator register various custom resources, including MatrixOneCluster resources used to describe MatrixOne clusters and resources such as CNSet, DNSet, and LogSet used to describe components in the cluster. After the registration, the client can read and write these resources on the Kubernetes APIServer.
+- **CRD**: In Kubernetes, CRD is an object that registers a new custom resource type into Kubernetes APIServer. The CRDs contained in MatrixOne Operator register various custom resources, including MatrixOneCluster resources used to describe MatrixOne clusters and resources such as CNSet, TNSet, and LogSet used to describe components in the cluster. After the registration, the client can read and write these resources on the Kubernetes APIServer.
 
-- **Controller**: The controller is a long-running automation program responsible for monitoring the desired state of resources in Kubernetes, collecting the actual state of these resources, and automatically operating and maintaining them to drive the actual state to the desired state. The controller in matrixone-operator monitors resources such as MatrixOneCluster, CNSet, DNSet, LogSet, etc., and is responsible for realizing the desired state declared by the user through these resources.
+- **Controller**: The controller is a long-running automation program responsible for monitoring the desired state of resources in Kubernetes, collecting the actual state of these resources, and automatically operating and maintaining them to drive the actual state to the desired state. The controller in matrixone-operator monitors resources such as MatrixOneCluster, CNSet, TNSet, LogSet, etc., and is responsible for realizing the desired state declared by the user through these resources.
 
-- **Webhook service**: A webhook service is a long-running HTTP service. When Kubernetes APIServer receives a request from a user to read and write resources such as MatrixOneCluster, CNSet, DNSet, and LogSet, it will forward the request to the Webhook service, and the Webhook service will perform logic such as request verification and default value filling.
+- **Webhook service**: A webhook service is a long-running HTTP service. When Kubernetes APIServer receives a request from a user to read and write resources such as MatrixOneCluster, CNSet, TNSet, and LogSet, it will forward the request to the Webhook service, and the Webhook service will perform logic such as request verification and default value filling.
 
 When using Helm chart to install Matrixone-Operator, it will automatically submit the required CRDs to Kubernetes APIServer, complete the registration of custom resources, and deploy a long-running Matrixone-Operator application. The controller mentioned above, and webhook services are packaged in this application.
 
@@ -16,7 +16,7 @@ When using Helm chart to install Matrixone-Operator, it will automatically submi
 
 MatrixOne Operator provides users with declarative cluster management capabilities through MatrixOneCluster resources. Specifically, when deploying a MatrixOne cluster on Kubernetes, the user can declare a MatrixOneCluster object in YAML format to describe the cluster, and the controller of the operator will realize the orchestration of the cluster according to the description and update the cluster status to the .status of the MatrixOneCluster object field.
 
-A MatrixOneCluster cluster consists of components such as Compute Node (CN), Database Node (DN), and Log Service, which correspond to sub-resources such as CNSet, DNSet, and LogSet. Therefore, the controller of the MatrixOneCluster resource orchestrates these sub-resources and relies on the controllers of these sub-resources to complete their orchestration.
+A MatrixOneCluster cluster consists of components such as Compute Node (CN), Transaction Node (TN), and Log Service, which correspond to sub-resources such as CNSet, TNSet, and LogSet. Therefore, the controller of the MatrixOneCluster resource orchestrates these sub-resources and relies on the controllers of these sub-resources to complete their orchestration.
 
 ![image-operator](https://github.com/matrixorigin/artwork/blob/main/docs/deploy/image-operator.png?raw=true)
 

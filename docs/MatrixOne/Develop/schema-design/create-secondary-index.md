@@ -61,3 +61,7 @@ mysql> SELECT * FROM users WHERE name = 'John';
 +------+------+------+----------------+
 1 row in set (0.00 sec)
 ```
+
+## Constraints
+
+Currently MatrixOne only implements secondary indexes syntactically, and does not achieve performance improvements.

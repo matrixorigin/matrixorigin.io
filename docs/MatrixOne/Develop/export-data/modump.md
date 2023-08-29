@@ -77,7 +77,7 @@ For example, if you are launching the terminal in the same server as the MatrixO
 If you want to export the tables in the database *t* to *CSV* format, refer to the following command:
 
 ```
-./mo-dump -u root -p 111 -db t -csv --local-infile=false > ttt.sql
+./mo-dump -u root -p 111 -db t -csv --local-infile=false > ttt.csv
 ```
 
 If you want to generate the backup of a single table in a database, run the following command. The command will generate the backup of the `t1` table of  `t` database with structure and data in the `t.sql` file.
