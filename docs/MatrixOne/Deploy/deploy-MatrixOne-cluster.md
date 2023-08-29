@@ -46,7 +46,7 @@ As this document involves many Kubernetes-related terms, to help everyone unders
 
 MatrixOne distributed system depends on the following components:
 
-- Kubernetes: As a resource management platform for the entire MatrixOne cluster, components such as Logservice, CN, and DN all run in Pods managed by Kubernetes. In the event of a failure, Kubernetes will cull the failed Pod and start a new one to replace it.
+- Kubernetes: As a resource management platform for the entire MatrixOne cluster, components such as Logservice, CN, and TN all run in Pods managed by Kubernetes. In the event of a failure, Kubernetes will cull the failed Pod and start a new one to replace it.
 
 - Minio: Provides object storage services for the entire MatrixOne cluster, and all MatrixOne data is stored in the object storage provided by Minio.
 
@@ -74,13 +74,13 @@ The overall architecture consists of the following components:
 
 ### Pod and storage architecture of MatrixOne
 
-MatrixOne creates a series of Kubernetes objects according to the rules of the Operator, and these objects are classified according to components and classified into resource groups, namely CNSet, DNSet, and LogSet.
+MatrixOne creates a series of Kubernetes objects according to the rules of the Operator, and these objects are classified according to components and classified into resource groups, namely CNSet, TNSet, and LogSet.
 
 - Service: The services in each resource group must be provided externally through the Service. Service hosts the external connection function to ensure the service can still be provided when the Pod crashes or is replaced. External applications connect through the Service's exposed ports, and the Service forwards connections to the corresponding Pods through internal forwarding rules.
 
 - Pod: A containerized instance of MatrixOne components in which MatrixOne's core kernel code runs.
 
-- PVC: Each Pod declares the storage resources it needs through PVC (Persistent Volume Claim). In our architecture, CN and DN must apply for a storage resource as a cache, and LogService requires corresponding S3 resources. These requirements are declared through PVCs.
+- PVC: Each Pod declares the storage resources it needs through PVC (Persistent Volume Claim). In our architecture, CN and TN must apply for a storage resource as a cache, and LogService requires corresponding S3 resources. These requirements are declared through PVCs.
 
 - PV: PV (Persistent Volume) is an abstract representation of storage media, which can be regarded as a storage unit. After applying for a PVC, create a PV through software that implements the CSI interface and binds it to the PVC used for resources.
 
@@ -510,9 +510,9 @@ As shown in the above line of code, the status of the corresponding Pods is norm
       name: mo
       namespace: mo-hn
     spec:
-      # 1. Configuration for dn
-      dn:
-        cacheVolume: # Disk cache for dn
+      # 1. Configuration for tn
+      Tn:
+        cacheVolume: # Disk cache for tn
           size: 5Gi # Modify according to actual disk size and requirements
           storageClassName: local-path # If not specified, the default storage class of the system will be used
         resources:
@@ -522,11 +522,11 @@ As shown in the above line of code, the status of the corresponding Pods is norm
           limits: # Note that limits should not be lower than requests and should not exceed the capacity of a single node. Generally allocate based on actual circumstances, usually set limits and requests to be consistent.
             cpu: 200m
             memory: 1Gi
-        config: |  # Configuration for dn
-          [dn.Txn.Storage]
+        config: |  # Configuration for tn
+          [tn.Txn.Storage]
           backend = "TAE"
           log-backend = "logservice"
-          [dn.Ckp]
+          [tn.Ckp]
           flush-interval = "60s"
           min-count = 100
           scan-interval = "5s"
@@ -536,7 +536,7 @@ As shown in the above line of code, the status of the corresponding Pods is norm
           level = "error"
           format = "json"
           max-size = 512
-        replicas: 1 # The number of copies of dn, which cannot be modified. The current version only supports a setting of 1.
+        replicas: 1 # The number of copies of TN, which cannot be modified. The current version only supports a setting of 1.
       # 2. Configuration for logservice
       logService:
         replicas: 3 # Number of logservice replicas
@@ -584,7 +584,7 @@ As shown in the above line of code, the status of the corresponding Pods is norm
           format = "json"
           max-size = 512
         replicas: 1
-      version: nightly-54b5e8c # The version of the MO image. You can check it on Docker Hub. Generally, cn, dn, and logservice are packaged in the same image, so the same field can be used to specify it. It also supports specifying separately in each section, but unless there are special circumstances, use a unified image version.
+      version: nightly-54b5e8c # The version of the MO image. You can check it on Docker Hub. Generally, cn, TN, and logservice are packaged in the same image, so the same field can be used to specify it. It also supports specifying separately in each section, but unless there are special circumstances, use a unified image version.
       # https://hub.docker.com/r/matrixorigin/matrixone/tags
       imageRepository: matrixorigin/matrixone # Image repository address. If it is pulled locally and the tag has been modified, you can adjust this configuration item.
       imagePullPolicy: IfNotPresent # Image pull policy, consistent with the configurable values of k8s official.
@@ -609,7 +609,7 @@ As shown in the above line of code, the status of the corresponding Pods is norm
     ```
     [root@master0 mo]# kubectl get pods -n mo-hn      
     NAME                                 READY   STATUS    RESTARTS      AGE
-    mo-dn-0                              1/1     Running   0             74s
+    mo-tn-0                              1/1     Running   0             74s
     mo-log-0                             1/1     Running   1 (25s ago)   2m2s
     mo-log-1                             1/1     Running   1 (24s ago)   2m2s
     mo-log-2                             1/1     Running   1 (22s ago)   2m2s
