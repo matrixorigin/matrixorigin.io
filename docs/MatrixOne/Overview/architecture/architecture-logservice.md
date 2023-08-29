@@ -12,11 +12,11 @@ The architecture of Logservice consists of two parts: client and server. The ser
 
 ### Client
 
-Logservice client is mainly invoked by DN (data node) and provides the following key interfaces:
+Logservice client is mainly invoked by TN (Transaction node) and provides the following key interfaces:
 
 - `Close()`: Close the client connection.
 - `Config()`: Get client-related configuration.
-- `GetLogRecord()`: returns a `pb.LogRecord` variable containing an 8-byte LSN (log sequence number), a 4-byte record type, and a data field of type `[]byte`. The data field consists of 4 bytes for `pb.UserEntryUpdate`, 8 for the replica DN ID, and `payload []byte`.
+- `GetLogRecord()`: returns a `pb.LogRecord` variable containing an 8-byte LSN (log sequence number), a 4-byte record type, and a data field of type `[]byte`. The data field consists of 4 bytes for `pb.UserEntryUpdate`, 8 for the replica TN ID, and `payload []byte`.
 - `Append()`: Append `pb.LogRecord` to Logservice and return LSN. The parameter `pb.LogRecord` can be reused on the calling side.
 - `Read()`: Read logs starting from the specified `firstLsn` from the Logservice until maxSize is reached. The returned LSN is used as the starting point for the next read.
 - `Truncate()`: Delete the logs before the specified LSN to free up disk space.
@@ -35,24 +35,24 @@ The server side of Logservice receives requests from clients and handles them. T
 - Read: Reads log entries from the log database. It first calls the `(*NodeHost) SyncRead()` method to perform a linear read from the state machine up to the current LSN and then calls the `(*NodeHost) QueryRaftLog()` method to read log entries from the log database based on the LSN.
 - Truncate: Truncates logs in the log database to free up disk space. It's important to note that here, only the latest truncatable LSN in the state machine is updated, and the actual truncation operation still needs to be performed.
 - Connect: Establishes a connection with the Logservice server and attempts to read and write the state machine for state checking.
-- Heartbeat: Includes heartbeats to Logservice, CN, and DN. This request updates the status information of each entity in the HAKeeper's state machine and synchronizes the tick of HAKeeper. When the HAKeeper performs checks, it compares the offline time based on the tick, and if it's offline, it triggers removal or shutdown operations.
+- Heartbeat: Includes heartbeats to Logservice, CN, and TN. This request updates the status information of each entity in the HAKeeper's state machine and synchronizes the tick of HAKeeper. When the HAKeeper performs checks, it compares the offline time based on the tick, and if it's offline, it triggers removal or shutdown operations.
 - Get XXX: Retrieves relevant information from the state machine.
 
 #### Bootstrap
 
 Bootstrap is the process that occurs when the logservice server starts, and it is carried out through HAKeeper's shard ID 0. The entry function is `(*Service) BootstrapHAKeeper`.
 Regardless of how many replicas are configured, each logservice process starts a replica of HAKeeper during startup. Each replica sets up members (replicas) upon startup, and the HAKeeper shard starts Raft with these members as the default replica count.
-After completing the leader election in Raft, it executes setting the initial cluster information (`set initial cluster info`), sets the shard to count for logs and DNs, and sets the replica count for logs.
+After completing the leader election in Raft, it executes setting the initial cluster information (`set initial cluster info`), sets the shard to count for logs and TNs, and sets the replica count for logs.
 Once the replica count is set, any excess HAKeeper replicas will be stopped.
 
 #### Heartbeat
 
-This heartbeat is sent from Logservice, CN, and DN to HAKeeper, rather than being a heartbeat between Raft replicas. It serves two primary purposes:
+This heartbeat is sent from Logservice, CN, and TN to HAKeeper, rather than being a heartbeat between Raft replicas. It serves two primary purposes:
 
 1. Sending the status information of each replica to HAKeeper through heartbeats, allowing HAKeeper's state machine to update replica information.
 2. Retrieving commands that replicas need to execute from HAKeeper upon heartbeat response.
 
-The heartbeat process in Logservice is illustrated in the following diagram, and the process is similar for CN and DN.
+The heartbeat process in Logservice is illustrated in the following diagram, and the process is similar for CN and TN.
 
 ![](https://github.com/matrixorigin/artwork/blob/main/docs/overview/logservice/heartbeat.png?raw=true)
 
@@ -65,7 +65,7 @@ By default, the heartbeat is executed once per second, and its mechanism is as f
     - Updating the LogState in the state machine: Invoking the `(*LogState) Update()` method to update storage and shard information.
     - Retrieving commands from the `ScheduleCommands` of the state machine and returning them to the initiating end for execution.
 
-The principles of CN and DN sending heartbeats to HAKeeper are also similar.
+The principles of CN and TN sending heartbeats to HAKeeper are also similar.
 
 #### Replicated State Machine (RSM)
 
@@ -97,7 +97,7 @@ In Logservice, the general process for a read-write request is as follows:
 Reading data can be divided into two scenarios:
 
 - Reading data from the state machine.
-  
+
     * The client initiates a read request, and when the request reaches the leader node, the current commit index is recorded.
     * The leader node sends heartbeat requests to all nodes to confirm its leader status. Once most nodes respond and confirm it as the leader, it can respond to the read request.
     * Wait for the apply index to be greater than or equal to the commit index.
@@ -106,11 +106,11 @@ Reading data can be divided into two scenarios:
 ![](https://github.com/matrixorigin/artwork/blob/main/docs/overview/logservice/read.png?raw=true)
 
 - Reading log entries from the log database (log db).
-  
+
     * This process typically occurs during cluster restart.
     * During restart, replicas first need to recover the state machine data from the snapshot, then start reading log entries from the log database based on the index position recorded in the snapshot and apply them to the state machine.
     * After this operation is completed, replicas can participate in leader elections.
-    * When a leader is elected in the cluster, the data nodes (DN) connect to the Logservice cluster and start reading log entries from the last checkpoint position of a replica's log database. These log entries are replayed into the data node's in-memory data.
+    * When a leader is elected in the cluster, the Transaction nodes (TN) connect to the Logservice cluster and start reading log entries from the last checkpoint position of a replica's log database. These log entries are replayed into the Transaction node's in-memory data.
 
 ![](https://github.com/matrixorigin/artwork/blob/main/docs/overview/logservice/logdb-read.png?raw=true)
 
@@ -118,22 +118,22 @@ Reading data can be divided into two scenarios:
 
 As the log entries in Logservice's log database continue to grow, it can lead to insufficient disk space. Therefore, regular disk space release is needed, achieved through truncation.
 
-Logservice uses an in-memory-based state machine that only stores some metadata and status information, such as tick, state, and LSN (Log Sequence Number), without recording user data. User data is recorded by the data nodes (DN) themselves. You can think of it as a master-slave architecture, where the state machines are separate, and the DN and Logservice maintain their respective state machines.
+Logservice uses an in-memory-based state machine that only stores some metadata and status information, such as tick, state, and LSN (Log Sequence Number), without recording user data. User data is recorded by the Transaction nodes (TN) themselves. You can think of it as a master-slave architecture, where the state machines are separate, and the TN and Logservice maintain their respective state machines.
 
 In this design with separate state machines, a simple snapshot mechanism can cause issues:
 
 ![](https://github.com/matrixorigin/artwork/blob/main/docs/overview/logservice/truncation-1.png?raw=true)
 
-1. When a DN sends a truncation request and sets the truncation index to 100, the applied index of the Logservice's state machine is 200. This means that logs before index 200 will be deleted, and a snapshot will be generated at that position. Note: The truncation index is not equal to the applied index.
+1. When a TN sends a truncation request and sets the truncation index to 100, the applied index of the Logservice's state machine is 200. This means that logs before index 200 will be deleted, and a snapshot will be generated at that position. Note: The truncation index is not equal to the applied index.
 2. The cluster restarts.
 3. The Logservice's state machine applies the snapshot with index 200, sets the first index to 200 (deleting logs before index 200), and replays logs before providing the service.
-4. When the DN reads log entries from Logservice, starting from index 100, it fails to read because the logs before index 200 have been deleted, resulting in an error.
+4. When the TN reads log entries from Logservice, starting from index 100, it fails to read because the logs before index 200 have been deleted, resulting in an error.
 
 To address the above problem, the current truncation workflow is as follows:
 
 ![](https://github.com/matrixorigin/artwork/blob/main/docs/overview/logservice/truncation-2.png?raw=true)
 
-1. The DN sends a truncation request and updates the truncation LSN (truncateLsn) in the Logservice's state machine. Only the value is updated, and no snapshot/truncation operation is executed.
+1. The TN sends a truncation request and updates the truncation LSN (truncateLsn) in the Logservice's state machine. Only the value is updated, and no snapshot/truncation operation is executed.
 2. Each Logservice server internally starts a truncation worker that periodically sends truncation requests (Truncate Request). It's important to note that the Exported parameter in this request is true, indicating that the snapshot is not visible to the system and is only exported to a specified directory.
 3. The truncation worker also checks the list of currently exported snapshots to see if there are any snapshots with an index greater than the truncation LSN in the Logservice's state machine. If there are, the snapshot closest to the truncation LSN is imported into the system to make it effective and visible to the system.
 4. All replicas perform the same operations to ensure that the snapshot LSN of both state machines is consistent. This allows reading the corresponding log entries when the cluster restarts.
