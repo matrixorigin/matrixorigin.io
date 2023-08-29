@@ -34,7 +34,7 @@ MatrixOne is optimally suited for scenarios requiring real-time data input, larg
 
 * **High-Performance Execution Engine**
 
-      The flexible combination of Compute Node and Data Node accommodates point queries and batch processing, delivering peak performance for OLTP and OLAP.
+      The flexible combination of Compute Node and Transaction node accommodates point queries and batch processing, delivering peak performance for OLTP and OLAP.
 
 * **Enterprise-Grade High Availability**
 

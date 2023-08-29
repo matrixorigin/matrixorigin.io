@@ -112,7 +112,7 @@ DROP TABLE person;
 
 ## Basic SQL about INSERT, UPDATE, and DELETE data
 
-Common DML features are adding, modifying, and deleting table records. The corresponding commands are `INSERT`, `UPDATE`, and `DELETE`.
+Common DML features are adding, modifying, and deleting table records. The corresponding commands are `INSERT`, `UPDATE`, `REPLACE` and `DELETE`.
 
 - To insert data into a table, use the `INSERT` statement:
 
@@ -132,14 +132,20 @@ INSERT INTO person(id,name) VALUES('2','bob');
 UPDATE person SET birthday='20180808' WHERE id=2;
 ```
 
+- To replace some field data of table records in the table, use the `UPDATE` statement:
+
+```sql
+REPLACE INTO person SET birthday='20180809' WHERE id=2;
+```
+
 - To delete the data in a table, use the `DELETE` statement:
 
 ```sql
 DELETE FROM person WHERE id=2;
 ```
 
-!!!note
-   The `UPDATE` and `DELETE` statements without the `WHERE` clause as a filter operate on the entire table.
+!!! note
+    The `UPDATE` and `DELETE` statements without the `WHERE` clause as a filter operate on the entire table.
 
 ## Basic SQL about Query data
 
