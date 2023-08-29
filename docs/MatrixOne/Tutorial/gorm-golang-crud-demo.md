@@ -6,7 +6,7 @@ This tutorial shows you how to build a simple GO+Gorm CRUD(Create, Read, Update,
 
 A brief introduction about these softwares concerned:
 
-* Gorm: The fantastic ORM library for Golang aims to be developer friendly.```gorm.io/gorm``` and ```gorm.io/driver/mysql``` will vbe used to make Go connect to MYSQL.
+* Gorm: The fantastic ORM library for Golang aims to be developer friendly. `gorm.io/gorm` and `gorm.io/driver/mysql` will vbe used to make Go connect to MYSQL.
 
 ### Setup your environment
 
@@ -27,7 +27,7 @@ Before you start, make sure you have downloaded and installed the following soft
 
 3. Make sure you have already installed MySQL.
 
-4. Use command ```go get``` to install ```gorm.io/gorm``` and ```gorm.io/driver/mysql```.
+4. Use command `go get` to install `gorm.io/gorm` and `gorm.io/driver/mysql`.
 
 	```
 	go get -u gorm.io/gorm
@@ -82,7 +82,7 @@ func main() {
 
 ```
 
-To enable the logging of converted SQL output, you can uncomment the following line:``` Logger: logger.Default.LogMode(logger.Info)```
+To enable the logging of converted SQL output, you can uncomment the following line:` Logger: logger.Default.LogMode(logger.Info)`
 
 To run the Go file, open a terminal and use the following command:
 
