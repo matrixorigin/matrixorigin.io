@@ -4,7 +4,7 @@ This document will guide you build standalone MatrixOne using Docker.
 
 ## Step 1: Download and install Docker
 
-1. Click <a href="https://docs.docker.com/get-docker/" target="_blank">Get Docker</a>, enter into the Docker's official document page, depending on your operating system, download and install the corresponding Docker.
+1. Click <a href="https://docs.docker.com/get-docker/" target="_blank">Get Docker</a>, enter into the Docker's official document page, depending on your operating system, download and install the corresponding Docker.  It is recommended to choose Docker version 20.10.18 or later and strive to maintain consistency between the Docker client and Docker server versions.
 
 2. After the installation, you can verify the Docker version by using the following lines:
 
@@ -28,14 +28,14 @@ It will pull the image from Docker Hub if not exists. You can choose to pull the
 
       ```bash
       docker pull matrixorigin/matrixone:1.0.0-rc1
-      docker run -d -p 6001:6001 --name matrixone --privileged=true matrixorigin/matrixone:1.0.0-rc1
+      docker run -d -p 6001:6001 --name matrixone matrixorigin/matrixone:1.0.0-rc1
       ```
 
       If you are using the network in mainland China, you can pull the MatrixOne stable version image on Alibaba Cloud:
 
       ```bash
       docker pull registry.cn-shanghai.aliyuncs.com/matrixorigin/matrixone:1.0.0-rc1
-      docker run -d -p 6001:6001 --name matrixone --privileged=true registry.cn-shanghai.aliyuncs.com/matrixorigin/matrixone:1.0.0-rc1
+      docker run -d -p 6001:6001 --name matrixone registry.cn-shanghai.aliyuncs.com/matrixorigin/matrixone:1.0.0-rc1
       ```
 
 === "Develop Version Image"
@@ -44,17 +44,24 @@ It will pull the image from Docker Hub if not exists. You can choose to pull the
 
       ```bash
       docker pull matrixorigin/matrixone:nightly-commitnumber
-      docker run -d -p 6001:6001 --name matrixone --privileged=true matrixorigin/matrixone:nightly-commitnumber
+      docker run -d -p 6001:6001 --name matrixone matrixorigin/matrixone:nightly-commitnumber
       ```
 
       If you are using the network in mainland China, you can pull the MatrixOne develop version image on Alibaba Cloud:
 
       ```bash
       docker pull registry.cn-shanghai.aliyuncs.com/matrixorigin/matrixone:nightly-commitnumber
-      docker run -d -p 6001:6001 --name matrixone --privileged=true registry.cn-shanghai.aliyuncs.com/matrixorigin/matrixone:nightly-commitnumber
+      docker run -d -p 6001:6001 --name matrixone registry.cn-shanghai.aliyuncs.com/matrixorigin/matrixone:nightly-commitnumber
       ```
 
       __Note__: The *nightly* version is updated once a day.
+
+!!! note
+    If your Docker version is lower than 20.10.18 or the Docker client and server versions are inconsistent, upgrading to the latest stable version before attempting is recommended. If you choose to proceed with the current versions, you need to add the parameter `--privileged=true` to the `docker run` command, as shown below:
+    
+    ```bash
+    docker run -d -p 6001:6001 --name matrixone --privileged=true matrixorigin/matrixone:1.0.0-rc1
+    ```
 
 !!! note
     The initial startup of MatrixOne approximately takes 20 to 30 seconds. After a brief wait, you can connect to MatrixOne using the MySQL client.
