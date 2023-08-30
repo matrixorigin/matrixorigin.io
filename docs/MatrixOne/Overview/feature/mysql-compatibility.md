@@ -110,10 +110,6 @@ MatrixOne is highly compatible with the MySQL 8.0 protocol and commonly used fea
 * MatrixOne's `Explain` and `Explain Analyze` printing formats refer to PostgreSQL, which differs from MySQL.
 * JSON-type output is not supported.
 
-### Common Table Expressions (CTEs)
-
-* Non-recursive CTE and recursive CTE are supported.
-
 ### other
 
 * The `REPLACE` statement does not currently support rows of values ​​inserted using the `VALUES row_constructor_list` parameter.
