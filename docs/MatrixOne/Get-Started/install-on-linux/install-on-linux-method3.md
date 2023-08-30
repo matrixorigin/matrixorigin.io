@@ -75,7 +75,7 @@ It will pull the image from Docker Hub if not exists. You can choose to pull the
 
 !!! note
     If your Docker version is lower than 20.10.18 or the Docker client and server versions are inconsistent, upgrading both to the latest stable version before attempting is recommended. If you choose to proceed with the current versions, you need to add the parameter `--privileged=true` to the `docker run` command, as shown below:
-    
+
     ```bash
     docker run -d -p 6001:6001 --name matrixone --privileged=true matrixorigin/matrixone:1.0.0-rc1
     ```
