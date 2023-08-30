@@ -2180,6 +2180,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gorm-golang-crud-demo/" class="md-nav__link">
+        Gorm CRUD demo
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -9318,7 +9332,7 @@ pip3 install faker -i https://pypi.tuna.tsinghua.edu.cn/simple
 </ol>
 <p>As we have explained how to connect to MatrixOne by SQLAlchemy in the other <a href="../../Develop/connect-mo/python-connect-to-matrixone/">tutorial</a>, we will focus on the CRUD(Create, Read, Update, Delete) implementations in this tutorial.</p>
 <h2 id="create">Create</h2>
-<p>As an Object Relational Mapper(ORM) tool, SQLAlchemy allows developers to create python class to map the table in relational database. In the example below, we will create a <code>Customer</code> class which is a representation of <code>Customer</code> table in MatrixOne, the code which defines <code>Customer</code> is equal to a SQL statement as:</p>
+<p>As an Object Relational Mapper(ORM) tool, SQLAlchemy allows developers to create python class to map the table in relational database. In the example below, we will create a <code>User</code> class which is a representation of <code>User</code> table in MatrixOne, the code which defines <code>User</code> is equal to a SQL statement as:</p>
 <div class="highlight"><pre><span></span><code>CREATE TABLE `User` (
 `id` INT NOT NULL AUTO_INCREMENT,
 `cname` VARCHAR(64) DEFAULT NULL,
