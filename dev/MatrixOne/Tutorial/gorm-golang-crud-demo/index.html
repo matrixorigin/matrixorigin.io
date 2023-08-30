@@ -9,17 +9,17 @@
       
       
       
-        <link rel="prev" href="../springboot-hibernate-crud-demo/">
+        <link rel="prev" href="../develop-golang-crud-demo/">
       
       
-        <link rel="next" href="../develop-python-crud-demo/">
+        <link rel="next" href="../../Deploy/deployment-topology/experience-deployment-topology/">
       
       <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-9.1.21">
     
     
       
-        <title>SpringBoot and MyBatis CRUD demo - MatrixOne Docs</title>
+        <title>Gorm CRUD demo - MatrixOne Docs</title>
       
     
     
@@ -69,7 +69,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#springboot-and-mybatis-crud-demo" class="md-skip">
+        <a href="#gorm-crud-demo" class="md-skip">
           Skip to content
         </a>
       
@@ -107,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              SpringBoot and MyBatis CRUD demo
+              Gorm CRUD demo
             
           </span>
         </div>
@@ -2046,189 +2046,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          SpringBoot and MyBatis CRUD demo
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../springboot-mybatis-crud-demo/" class="md-nav__link">
         SpringBoot and MyBatis CRUD demo
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#before-you-start" class="md-nav__link">
-    Before you start
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#set-up-environment" class="md-nav__link">
-    Set up environment
-  </a>
-  
-    <nav class="md-nav" aria-label="Set up environment">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-install-and-launch-matrixone" class="md-nav__link">
-    1. Install and Launch MatrixOne
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-create-a-new-spring-boot-project-using-intellij-idea" class="md-nav__link">
-    2. Create a new Spring Boot Project Using IntelliJ IDEA
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-modify-the-applicationproperties-file" class="md-nav__link">
-    3. Modify the application.properties file
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#write-code" class="md-nav__link">
-    Write Code
-  </a>
-  
-    <nav class="md-nav" aria-label="Write Code">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-usercontrollerjava" class="md-nav__link">
-    1. UserController.java
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-userjava" class="md-nav__link">
-    2. User.java
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-usermapperjava" class="md-nav__link">
-    3. UserMapper.java
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-userservicejava" class="md-nav__link">
-    4. UserService.java
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-mybatisdemoapplicationjava" class="md-nav__link">
-    5. MyBatisDemoApplication.java
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#6-usermapperxml" class="md-nav__link">
-    6. UserMapper.xml
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#test" class="md-nav__link">
-    Test
-  </a>
-  
-    <nav class="md-nav" aria-label="Test">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-test-create-table" class="md-nav__link">
-    1. Test Create Table
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-test-add-user" class="md-nav__link">
-    2. Test Add User
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-test-select-user" class="md-nav__link">
-    3. Test Select User
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-test-update-user" class="md-nav__link">
-    4. Test Update User
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-test-delete-user" class="md-nav__link">
-    5. Test Delete User
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -2280,11 +2102,100 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../gorm-golang-crud-demo/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Gorm CRUD demo
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Gorm CRUD demo
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#before-you-start" class="md-nav__link">
+    Before you start
+  </a>
+  
+    <nav class="md-nav" aria-label="Before you start">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setup-your-environment" class="md-nav__link">
+    Setup your environment
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create" class="md-nav__link">
+    Create
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inserting-data" class="md-nav__link">
+    Inserting Data
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#querying-data" class="md-nav__link">
+    Querying Data
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#updating-data" class="md-nav__link">
+    Updating Data
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deleting-data" class="md-nav__link">
+    Deleting Data
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -9325,33 +9236,12 @@
     Before you start
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#set-up-environment" class="md-nav__link">
-    Set up environment
-  </a>
-  
-    <nav class="md-nav" aria-label="Set up environment">
+    <nav class="md-nav" aria-label="Before you start">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-install-and-launch-matrixone" class="md-nav__link">
-    1. Install and Launch MatrixOne
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-create-a-new-spring-boot-project-using-intellij-idea" class="md-nav__link">
-    2. Create a new Spring Boot Project Using IntelliJ IDEA
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-modify-the-applicationproperties-file" class="md-nav__link">
-    3. Modify the application.properties file
+  <a href="#setup-your-environment" class="md-nav__link">
+    Setup your environment
   </a>
   
 </li>
@@ -9362,105 +9252,37 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#write-code" class="md-nav__link">
-    Write Code
+  <a href="#create" class="md-nav__link">
+    Create
   </a>
-  
-    <nav class="md-nav" aria-label="Write Code">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-usercontrollerjava" class="md-nav__link">
-    1. UserController.java
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-userjava" class="md-nav__link">
-    2. User.java
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-usermapperjava" class="md-nav__link">
-    3. UserMapper.java
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-userservicejava" class="md-nav__link">
-    4. UserService.java
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-mybatisdemoapplicationjava" class="md-nav__link">
-    5. MyBatisDemoApplication.java
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#6-usermapperxml" class="md-nav__link">
-    6. UserMapper.xml
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#test" class="md-nav__link">
-    Test
-  </a>
-  
-    <nav class="md-nav" aria-label="Test">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-test-create-table" class="md-nav__link">
-    1. Test Create Table
+  <a href="#inserting-data" class="md-nav__link">
+    Inserting Data
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#2-test-add-user" class="md-nav__link">
-    2. Test Add User
+      
+        <li class="md-nav__item">
+  <a href="#querying-data" class="md-nav__link">
+    Querying Data
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#3-test-select-user" class="md-nav__link">
-    3. Test Select User
+      
+        <li class="md-nav__item">
+  <a href="#updating-data" class="md-nav__link">
+    Updating Data
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#4-test-update-user" class="md-nav__link">
-    4. Test Update User
+      
+        <li class="md-nav__item">
+  <a href="#deleting-data" class="md-nav__link">
+    Deleting Data
   </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-test-delete-user" class="md-nav__link">
-    5. Test Delete User
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -9482,518 +9304,342 @@
   
 
 
-<h1 id="springboot-and-mybatis-crud-demo">SpringBoot and MyBatis CRUD demo</h1>
-<p>This tutorial completes a simple Demo based on <strong>SpringBoot+Mybatis+MatrixOne+Intellij IDEA</strong> , and realizes the basic CRUD function.</p>
+<h1 id="gorm-crud-demo">Gorm CRUD demo</h1>
+<p>This tutorial shows you how to build a simple GO+Gorm CRUD(Create, Read, Update, Delete) application with MatrixOne. Gorm is one of the most popular ORM tools in GO language.</p>
 <h2 id="before-you-start">Before you start</h2>
 <p>A brief introduction about these softwares concerned:</p>
 <ul>
-<li>MyBatis: It is a popular persistence framework that can customize SQL and support for complex reports and advanced mappings. We only need to focus on the SQL itself in our project.</li>
-<li>Intellij IDEA: IntelliJ IDEA is a popular IDE for Java developers. It has a lot of plugins that can enhance our efficiency.</li>
-<li>Maven: Maven is a powerful management tool in Java that can automatically download and import Jar file according to the configuration in the pom.xml file. This feature reduces the conflicts between different versions of Jar files.</li>
-<li>Spring: Spring is one of the most popular frameworks in Java and more and more enterprise is using the Spring framework to build their project. Spring Boot is built on top of the conventional spring framework. So, it provides all the features of spring and is yet easier to use than spring.</li>
+<li>Gorm: The fantastic ORM library for Golang aims to be developer friendly. <code>gorm.io/gorm</code> and <code>gorm.io/driver/mysql</code> will vbe used to make Go connect to MYSQL.</li>
 </ul>
-<h2 id="set-up-environment">Set up environment</h2>
-<h3 id="1-install-and-launch-matrixone">1. Install and Launch MatrixOne</h3>
-<p>Follow the <a href="../../Get-Started/install-standalone-matrixone/">installation instruction and launch MatrixOne</a>. Create a database <code>test</code> by MySQL client.</p>
+<h3 id="setup-your-environment">Setup your environment</h3>
+<p>Before you start, make sure you have downloaded and installed the following software.</p>
+<ol>
+<li>
+<p>Make sure you have already <a href="../../Get-Started/install-standalone-matrixone/">installed and launched MatrixOne</a>. Connect to MatrixOne and create a database by MySQL client.</p>
 <div class="highlight"><pre><span></span><code>mysql&gt; create database test;
 </code></pre></div>
-<h3 id="2-create-a-new-spring-boot-project-using-intellij-idea">2. Create a new Spring Boot Project Using IntelliJ IDEA</h3>
-<p>Choose <strong>Spring Initializer</strong>, and name the project as you want.</p>
-<p><img alt="image-20221026152318567" src="https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/mybatis/image-20221026152318567.png?raw=true" /></p>
-<p>Choose <strong>Spring Web</strong>, <strong>MyBatis Framework</strong>, <strong>JDBC API</strong> and <strong>MySQL Driver</strong> as dependencies for this project.</p>
-<p><img alt="image-20221026152447954" src="https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/mybatis/image-20221026152447954.png?raw=true" /></p>
-<p>Click <strong>Create</strong>,  the project will be created. The dependencies are listed in the <em>pom.xml</em> file. Usually you don't need to modify anything.</p>
-<div class="highlight"><pre><span></span><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
-         xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
-    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
-    &lt;groupId&gt;com.example&lt;/groupId&gt;
-    &lt;artifactId&gt;mybatis-demo&lt;/artifactId&gt;
-    &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;
-    &lt;name&gt;mybatis-demo&lt;/name&gt;
-    &lt;description&gt;mybatis-demo&lt;/description&gt;
-
-    &lt;properties&gt;
-        &lt;java.version&gt;1.8&lt;/java.version&gt;
-        &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
-        &lt;project.reporting.outputEncoding&gt;UTF-8&lt;/project.reporting.outputEncoding&gt;
-        &lt;spring-boot.version&gt;2.3.7.RELEASE&lt;/spring-boot.version&gt;
-    &lt;/properties&gt;
-
-    &lt;dependencies&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-            &lt;artifactId&gt;spring-boot-starter-jdbc&lt;/artifactId&gt;
-        &lt;/dependency&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-            &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
-        &lt;/dependency&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;org.mybatis.spring.boot&lt;/groupId&gt;
-            &lt;artifactId&gt;mybatis-spring-boot-starter&lt;/artifactId&gt;
-            &lt;version&gt;2.1.4&lt;/version&gt;
-        &lt;/dependency&gt;
-
-        &lt;dependency&gt;
-            &lt;groupId&gt;mysql&lt;/groupId&gt;
-            &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
-            &lt;scope&gt;runtime&lt;/scope&gt;
-        &lt;/dependency&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-            &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
-            &lt;scope&gt;test&lt;/scope&gt;
-            &lt;exclusions&gt;
-                &lt;exclusion&gt;
-                    &lt;groupId&gt;org.junit.vintage&lt;/groupId&gt;
-                    &lt;artifactId&gt;junit-vintage-engine&lt;/artifactId&gt;
-                &lt;/exclusion&gt;
-            &lt;/exclusions&gt;
-        &lt;/dependency&gt;
-    &lt;/dependencies&gt;
-
-    &lt;dependencyManagement&gt;
-        &lt;dependencies&gt;
-            &lt;dependency&gt;
-                &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-                &lt;artifactId&gt;spring-boot-dependencies&lt;/artifactId&gt;
-                &lt;version&gt;${spring-boot.version}&lt;/version&gt;
-                &lt;type&gt;pom&lt;/type&gt;
-                &lt;scope&gt;import&lt;/scope&gt;
-            &lt;/dependency&gt;
-        &lt;/dependencies&gt;
-    &lt;/dependencyManagement&gt;
-
-    &lt;build&gt;
-        &lt;plugins&gt;
-            &lt;plugin&gt;
-                &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
-                &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
-                &lt;version&gt;3.8.1&lt;/version&gt;
-                &lt;configuration&gt;
-                    &lt;source&gt;1.8&lt;/source&gt;
-                    &lt;target&gt;1.8&lt;/target&gt;
-                    &lt;encoding&gt;UTF-8&lt;/encoding&gt;
-                &lt;/configuration&gt;
-            &lt;/plugin&gt;
-            &lt;plugin&gt;
-                &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-                &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;
-                &lt;version&gt;2.3.7.RELEASE&lt;/version&gt;
-                &lt;configuration&gt;
-                    &lt;mainClass&gt;com.example.mybatisdemo.MybatisDemoApplication&lt;/mainClass&gt;
-                &lt;/configuration&gt;
-                &lt;executions&gt;
-                    &lt;execution&gt;
-                        &lt;id&gt;repackage&lt;/id&gt;
-                        &lt;goals&gt;
-                            &lt;goal&gt;repackage&lt;/goal&gt;
-                        &lt;/goals&gt;
-                    &lt;/execution&gt;
-                &lt;/executions&gt;
-            &lt;/plugin&gt;
-        &lt;/plugins&gt;
-    &lt;/build&gt;
-
-&lt;/project&gt;
+</li>
+<li>
+<p>Make sure you have already installed <a href="https://go.dev/dl/">Golang 1.18 (or plus) version</a>.</p>
+<div class="highlight"><pre><span></span><code>#To check with Golang installation and its version
+go version
 </code></pre></div>
-<h3 id="3-modify-the-applicationproperties-file">3. Modify the <em>application.properties</em> file</h3>
-<p>Under <em>resources</em> folder, the MatrixOne connection need to be configured in <em>application.properties</em> file.</p>
-<div class="highlight"><pre><span></span><code># Application Name
-spring.application.name=MyBatisDemo
-# Database driver
-spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
-# Data Source name
-spring.datasource.name=defaultDataSource
-
-# Database connection url, modify to MatrixOne address and port, with paratemers
-spring.datasource.url=jdbc:mysql://127.0.0.1:6001/test?characterSetResults=UTF-8&amp;continueBatchOnError=false&amp;useServerPrepStmts=true&amp;alwaysSendSetIsolation=false&amp;useLocalSessionState=true&amp;zeroDateTimeBehavior=CONVERT_TO_NULL&amp;failoverReadOnly=false&amp;serverTimezone=Asia/Shanghai&amp;socketTimeout=30000
-# Database username and password
-spring.datasource.username=root
-spring.datasource.password=111
-
-# Mybatis mapper location
-mybatis.mapper-locations=classpath:mapping/*xml
-# Mybatis entity package
-mybatis.type-aliases-package=com.example.mybatisdemo.entity
-# Web application port
-server.port=8080
+</li>
+<li>
+<p>Make sure you have already installed MySQL.</p>
+</li>
+<li>
+<p>Use command <code>go get</code> to install <code>gorm.io/gorm</code> and <code>gorm.io/driver/mysql</code>.</p>
+<div class="highlight"><pre><span></span><code>go get -u gorm.io/gorm
+go get -u gorm.io/driver/mysql
 </code></pre></div>
-<h2 id="write-code">Write Code</h2>
-<p>After setting up the environment, we write code to implement a simple CRUD application. After finishing coding, you'll have a project structure as below. You can create these packages and java class in advance. We will code the Create, Update, Insert, Delete, Select operations for this demo application.</p>
-<p><img alt="image-20221026155656694" src="https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/mybatis/image-20221026155656694.png?raw=true" /></p>
-<h3 id="1-usercontrollerjava">1. UserController.java</h3>
-<div class="highlight"><pre><span></span><code>package com.example.mybatisdemo.controller;
+</li>
+</ol>
+<p>As we have explained how to connect to MatrixOne by Gorm in the other <a href="../../Develop/connect-mo/connect-to-matrixone-with-go/">tutorial</a>, we will focus on the CRUD(Create, Read, Update, Delete) implementations in this tutorial.</p>
+<h2 id="create">Create</h2>
+<p>As an Object Relational Mapper(ORM) tool, Gorm allows developers to create go class to map the table in relational database. In the example below, we will create a <code>User</code> class. The class name and the attribute name must starts with a capital letter to make <code>public</code> access.</p>
+<p>Create a go file <code>gorm_create.go</code> and put the code below.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+<span class="kn">import</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="s">&quot;fmt&quot;</span>
 
-import com.example.mybatisdemo.entity.User;
-import com.example.mybatisdemo.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+<span class="w">    </span><span class="s">&quot;gorm.io/driver/mysql&quot;</span>
+<span class="w">    </span><span class="s">&quot;gorm.io/gorm&quot;</span>
+<span class="w">    </span><span class="s">&quot;gorm.io/gorm/logger&quot;</span>
+<span class="p">)</span>
+<span class="c1">// user model</span>
+<span class="kd">type</span><span class="w"> </span><span class="nx">USER</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">ID</span><span class="w">       </span><span class="kt">uint</span><span class="w"> </span><span class="s">`gorm:&quot;primaryKey&quot;`</span>
+<span class="w">    </span><span class="nx">CNAME</span><span class="w">    </span><span class="kt">string</span>
+<span class="w">    </span><span class="nx">CADDRESS</span><span class="w"> </span><span class="kt">string</span>
+<span class="p">}</span>
 
-@RestController
-@RequestMapping(&quot;/test&quot;)
-public class UserController {
+<span class="kd">func</span><span class="w"> </span><span class="nx">getDBConn</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="nx">gorm</span><span class="p">.</span><span class="nx">DB</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">dsn</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="s">&quot;root:111@tcp(127.0.0.1:6001)/test?charset=utf8mb4&amp;parseTime=True&amp;loc=Local&quot;</span><span class="w"> </span><span class="c1">//MO</span>
+<span class="w">    </span><span class="nx">db</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">gorm</span><span class="p">.</span><span class="nx">Open</span><span class="p">(</span><span class="nx">mysql</span><span class="p">.</span><span class="nx">Open</span><span class="p">(</span><span class="nx">dsn</span><span class="p">),</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">gorm</span><span class="p">.</span><span class="nx">Config</span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Logger: logger.Default.LogMode(logger.Info), //print SQL</span>
+<span class="w">  </span><span class="p">})</span>
+<span class="w">    </span><span class="c1">// get connection</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Database Connection Failed&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">//Connection failed</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Database Connection Succeed&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">//Connection succeed</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">db</span>
+<span class="p">}</span>
 
-    String tableName = &quot;user&quot;;
-    @Autowired
-    private UserService userService;
+<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">//get *gorm.DB</span>
+<span class="w">    </span><span class="nx">db</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">getDBConn</span><span class="p">()</span>
 
-    @RequestMapping(value = &quot;/create&quot;, produces = &quot;application/json;charset=UTF-8&quot;, method = RequestMethod.GET)
-    @ResponseBody
-    public String createTable(){
-        return userService.createTable(tableName);
-    }
-
-    @RequestMapping(value = &quot;/selectUserByid&quot;, produces = &quot;application/json;charset=UTF-8&quot;, method = RequestMethod.GET)
-    @ResponseBody
-    public String GetUser(User user){
-        return userService.Sel(user).toString();
-    }
-
-    @RequestMapping(value = &quot;/add&quot;, produces = &quot;application/json;charset=UTF-8&quot;, method = RequestMethod.GET)
-    public String Add(User user){
-        return userService.Add(user);
-    }
-
-    @RequestMapping(value = &quot;/update&quot;, produces = &quot;application/json;charset=UTF-8&quot;, method = RequestMethod.GET)
-    public String Update(User user){
-        return userService.Update(user);
-    }
-
-    @RequestMapping(value = &quot;/delete&quot;, produces = &quot;application/json;charset=UTF-8&quot;, method = RequestMethod.GET)
-    public String Delete(User user){
-        return userService.Delete(user);
-    }
-}
+<span class="w">    </span><span class="c1">// auto create table</span>
+<span class="w">    </span><span class="nx">db</span><span class="p">.</span><span class="nx">AutoMigrate</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">USER</span><span class="p">{})</span>
+<span class="p">}</span>
 </code></pre></div>
-<h3 id="2-userjava">2. User.java</h3>
-<div class="highlight"><pre><span></span><code>package com.example.mybatisdemo.entity;
-
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-
-public class User {
-    private Integer id;
-    private String username;
-    private String password;
-    private String address;
-
-    public User(Integer id, String username, String password, String address) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.address = address;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    @Override
-    public String toString() {
-        return &quot;User{&quot; +
-                &quot;id=&quot; + id +
-                &quot;, username=&#39;&quot; + username + &#39;\&#39;&#39; +
-                &quot;, password=&#39;&quot; + password + &#39;\&#39;&#39; +
-                &quot;, address=&#39;&quot; + address + &#39;\&#39;&#39; +
-                &#39;}&#39;;
-    }
-}
+<p>To enable the logging of converted SQL output, you can uncomment the following line:<code>Logger: logger.Default.LogMode(logger.Info)</code></p>
+<p>To run the Go file, open a terminal and use the following command:</p>
+<div class="highlight"><pre><span></span><code>go run gorm_create.go
 </code></pre></div>
-<h3 id="3-usermapperjava">3. UserMapper.java</h3>
-<div class="highlight"><pre><span></span><code>package com.example.mybatisdemo.mapper;
-
-import com.example.mybatisdemo.entity.User;
-import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Repository;
-
-@Repository
-public interface UserMapper {
-
-    int createTable(@Param(&quot;tableName&quot;) String tableName);
-
-    User Sel(@Param(&quot;user&quot;)User user);
-
-    int Add(@Param(&quot;user&quot;)User user);
-
-    int Update(@Param(&quot;user&quot;)User user);
-
-    int Delete(@Param(&quot;user&quot;)User user);
-
-}
+<p>You can use a MySQL client to verify if the table has been successfully created.</p>
+<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="n">tables</span><span class="p">;</span>
+<span class="o">+</span><span class="c1">----------------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">Tables_in_test</span><span class="w"> </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">----------------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">users</span><span class="w">          </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">----------------+</span>
+<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="4-userservicejava">4. UserService.java</h3>
-<div class="highlight"><pre><span></span><code>package com.example.mybatisdemo.service;
+<h2 id="inserting-data">Inserting Data</h2>
+<p>In the following example, you will be guided on how to insert two records into the users table that was created earlier. The ID column is assumed to be auto-incremented, but you can also specify a fixed value.</p>
+<p>Create a new text file named <code>gorm_insert.go</code> and copy the following code into the file:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+<span class="kn">import</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="s">&quot;fmt&quot;</span>
 
-import com.example.mybatisdemo.entity.User;
-import com.example.mybatisdemo.mapper.UserMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+<span class="w">    </span><span class="s">&quot;gorm.io/driver/mysql&quot;</span>
+<span class="w">    </span><span class="s">&quot;gorm.io/gorm&quot;</span>
+<span class="w">    </span><span class="s">&quot;gorm.io/gorm/logger&quot;</span>
+<span class="p">)</span>
+<span class="c1">// user model</span>
+<span class="kd">type</span><span class="w"> </span><span class="nx">USER</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">ID</span><span class="w">       </span><span class="kt">uint</span><span class="w"> </span><span class="s">`gorm:&quot;primaryKey&quot;`</span>
+<span class="w">    </span><span class="nx">CNAME</span><span class="w">    </span><span class="kt">string</span>
+<span class="w">    </span><span class="nx">CADDRESS</span><span class="w"> </span><span class="kt">string</span>
+<span class="p">}</span>
 
-@Service
-public class UserService {
-    @Autowired
-    UserMapper userMapper;
+<span class="kd">func</span><span class="w"> </span><span class="nx">getDBConn</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="nx">gorm</span><span class="p">.</span><span class="nx">DB</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">dsn</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="s">&quot;root:111@tcp(127.0.0.1:6001)/test?charset=utf8mb4&amp;parseTime=True&amp;loc=Local&quot;</span><span class="w"> </span><span class="c1">//MO</span>
+<span class="w">    </span><span class="nx">db</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">gorm</span><span class="p">.</span><span class="nx">Open</span><span class="p">(</span><span class="nx">mysql</span><span class="p">.</span><span class="nx">Open</span><span class="p">(</span><span class="nx">dsn</span><span class="p">),</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">gorm</span><span class="p">.</span><span class="nx">Config</span><span class="p">{})</span>
+<span class="w">    </span><span class="c1">// get connection</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Database Connection Failed&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">//Connection failed</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Database Connection Succeed&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">//Connection succeed</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">db</span>
+<span class="p">}</span>
 
-    public String createTable(String table){
-        int a = userMapper.createTable(table);
-        if (a == 1) {
-            return &quot;Create table failed&quot;;
-        } else {
-            return &quot;Create table successfully&quot;;
-        }
-    }
+<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">//get *gorm.DB</span>
+<span class="w">    </span><span class="nx">db</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">getDBConn</span><span class="p">()</span>
 
-    public User Sel(User user) {
-        return userMapper.Sel(user);
-    }
+<span class="w">    </span><span class="c1">// auto create table</span>
+<span class="w">    </span><span class="nx">db</span><span class="p">.</span><span class="nx">AutoMigrate</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">USER</span><span class="p">{})</span>
 
-    public String Add(User user) {
-        int a = userMapper.Add(user);
-        if (a == 1) {
-            return &quot;Add user successfully&quot;;
-        } else {
-            return &quot;Add user failed&quot;;
-        }
-    }
+<span class="w">  </span><span class="c1">// **Insert users**</span>
+<span class="w">    </span><span class="nx">users</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="p">[]</span><span class="nx">USER</span><span class="p">{</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// ID: 1, //autoincrement</span>
+<span class="w">            </span><span class="nx">CNAME</span><span class="p">:</span><span class="w">    </span><span class="s">&quot;lili&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">CADDRESS</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Shanghai&quot;</span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">ID</span><span class="p">:</span><span class="w">       </span><span class="mi">111</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">CNAME</span><span class="p">:</span><span class="w">    </span><span class="s">&quot;zhang&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">CADDRESS</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Biejing&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">    </span><span class="p">}</span>
 
-    public String Update(User user) {
-        int a = userMapper.Update(user);
-        if (a == 1) {
-            return &quot;Update user successfully&quot;;
-        } else {
-            return &quot;Update user failed&quot;;
-        }
-    }
+<span class="w">    </span><span class="nx">db</span><span class="p">.</span><span class="nx">Create</span><span class="p">(</span><span class="nx">users</span><span class="p">)</span>
 
-    public String Delete(User user) {
-        int a = userMapper.Delete(user);
-        if (a == 1) {
-            return &quot;Delete user successfully&quot;;
-        } else {
-            return &quot;Delete user failed&quot;;
-        }
-    }
-
-};
+<span class="p">}</span>
 </code></pre></div>
-<h3 id="5-mybatisdemoapplicationjava">5. MyBatisDemoApplication.java</h3>
-<div class="highlight"><pre><span></span><code>package com.example.mybatisdemo;
-
-import org.mybatis.spring.annotation.MapperScan;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-@MapperScan(&quot;com.example.mybatisdemo.mapper&quot;)
-@SpringBootApplication
-public class MyBatisDemoApplication {
-    public static void main(String[] args) {
-        SpringApplication.run(MyBatisDemoApplication.class, args);
-    }
-}
+<p>Open your terminal and execute the following command to run the  <em>go</em>  file:</p>
+<div class="highlight"><pre><span></span><code>go run gorm_insert.go
 </code></pre></div>
-<h3 id="6-usermapperxml">6. UserMapper.xml</h3>
-<div class="highlight"><pre><span></span><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-&lt;!DOCTYPE mapper PUBLIC &quot;-//mybatis.org//DTD Mapper 3.0//EN&quot; &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
+<p>Similarly, you can use a MySQL client to verify if the data has been successfully inserted into the table.</p>
+<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">users</span><span class="p">;</span>
+<span class="o">+</span><span class="c1">------+-------+----------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">id</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">cname</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">caddress</span><span class="w"> </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">------+-------+----------+</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">lili</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">Shanghai</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">  </span><span class="mi">111</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">zhang</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Biejing</span><span class="w">  </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">------+-------+----------+</span>
+<span class="mi">2</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="querying-data">Querying Data</h2>
+<p>In the following example, you will be guided on how to query a subset of data based on a condition, specifically querying data where <code>CNAME=zhang</code> .</p>
+<p>Create a new text file named <code>gorm_query.go</code> and copy the following code into the file:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+<span class="kn">import</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="s">&quot;fmt&quot;</span>
 
-&lt;mapper namespace=&quot;com.example.mybatisdemo.mapper.UserMapper&quot;&gt;
+<span class="w">    </span><span class="s">&quot;gorm.io/driver/mysql&quot;</span>
+<span class="w">    </span><span class="s">&quot;gorm.io/gorm&quot;</span>
+<span class="w">    </span><span class="s">&quot;gorm.io/gorm/logger&quot;</span>
+<span class="p">)</span>
+<span class="c1">// user model</span>
+<span class="kd">type</span><span class="w"> </span><span class="nx">USER</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">ID</span><span class="w">       </span><span class="kt">uint</span><span class="w"> </span><span class="s">`gorm:&quot;primaryKey&quot;`</span>
+<span class="w">    </span><span class="nx">CNAME</span><span class="w">    </span><span class="kt">string</span>
+<span class="w">    </span><span class="nx">CADDRESS</span><span class="w"> </span><span class="kt">string</span>
+<span class="p">}</span>
 
-    &lt;resultMap id=&quot;BaseResultMap&quot; type=&quot;com.example.mybatisdemo.entity.User&quot;&gt;
-        &lt;result column=&quot;id&quot; jdbcType=&quot;INTEGER&quot; property=&quot;id&quot;/&gt;
-        &lt;result column=&quot;userName&quot; jdbcType=&quot;VARCHAR&quot; property=&quot;username&quot;/&gt;
-        &lt;result column=&quot;passWord&quot; jdbcType=&quot;VARCHAR&quot; property=&quot;password&quot;/&gt;
-        &lt;result column=&quot;realName&quot; jdbcType=&quot;VARCHAR&quot; property=&quot;address&quot;/&gt;
-    &lt;/resultMap&gt;
+<span class="kd">func</span><span class="w"> </span><span class="nx">getDBConn</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="nx">gorm</span><span class="p">.</span><span class="nx">DB</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">dsn</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="s">&quot;root:111@tcp(127.0.0.1:6001)/test?charset=utf8mb4&amp;parseTime=True&amp;loc=Local&quot;</span><span class="w"> </span><span class="c1">//MO</span>
+<span class="w">    </span><span class="nx">db</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">gorm</span><span class="p">.</span><span class="nx">Open</span><span class="p">(</span><span class="nx">mysql</span><span class="p">.</span><span class="nx">Open</span><span class="p">(</span><span class="nx">dsn</span><span class="p">),</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">gorm</span><span class="p">.</span><span class="nx">Config</span><span class="p">{})</span>
+<span class="w">    </span><span class="c1">// get connection</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Database Connection Failed&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">//Connection failed</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Database Connection Succeed&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">//Connection succeed</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">db</span>
+<span class="p">}</span>
 
-    &lt;update id=&quot;createTable&quot; parameterType=&quot;string&quot;&gt;
-        CREATE TABLE ${tableName} (
-            `id` int(11) NOT NULL AUTO_INCREMENT,
-            `username` varchar(255) DEFAULT NULL,
-            `password` varchar(255) DEFAULT NULL,
-            `address` varchar(255) DEFAULT NULL,
-            PRIMARY KEY (`id`)
-        );
-    &lt;/update&gt;
+<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">//get *gorm.DB</span>
+<span class="w">    </span><span class="nx">db</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">getDBConn</span><span class="p">()</span>
 
-    &lt;select id=&quot;Sel&quot; resultType=&quot;com.example.mybatisdemo.entity.User&quot;&gt;
-        select * from user where 1=1
-        &lt;if test=&quot;user.id != null&quot;&gt;
-            AND id = #{user.id}
-        &lt;/if&gt;
-    &lt;/select&gt;
+<span class="w">    </span><span class="c1">// auto create table</span>
+<span class="w">    </span><span class="nx">db</span><span class="p">.</span><span class="nx">AutoMigrate</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">USER</span><span class="p">{})</span>
 
-    &lt;insert id=&quot;Add&quot; parameterType=&quot;com.example.mybatisdemo.entity.User&quot;&gt;
-        INSERT INTO user
-        &lt;trim prefix=&quot;(&quot; suffix=&quot;)&quot; suffixOverrides=&quot;,&quot;&gt;
-            &lt;if test=&quot;user.username != null&quot;&gt;
-                username,
-            &lt;/if&gt;
-            &lt;if test=&quot;user.password != null&quot;&gt;
-                password,
-            &lt;/if&gt;
-            &lt;if test=&quot;user.address != null&quot;&gt;
-                address,
-            &lt;/if&gt;
-        &lt;/trim&gt;
-        &lt;trim prefix=&quot;VALUES (&quot; suffix=&quot;)&quot; suffixOverrides=&quot;,&quot;&gt;
-            &lt;if test=&quot;user.username != null&quot;&gt;
-                #{user.username,jdbcType=VARCHAR},
-            &lt;/if&gt;
-            &lt;if test=&quot;user.password != null&quot;&gt;
-                #{user.password,jdbcType=VARCHAR},
-            &lt;/if&gt;
-            &lt;if test=&quot;user.address != null&quot;&gt;
-                #{user.address,jdbcType=VARCHAR},
-            &lt;/if&gt;
-        &lt;/trim&gt;
-    &lt;/insert&gt;
+<span class="w">  </span><span class="c1">// **Query—— String condition** </span>
+<span class="w">    </span><span class="nx">res</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">USER</span><span class="p">{}</span>
+<span class="w">    </span><span class="nx">tx</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">Where</span><span class="p">(</span><span class="s">&quot;CNAME = ? &quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;zhang&quot;</span><span class="p">).</span><span class="nx">Find</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">USER</span><span class="p">{}).</span><span class="nx">Scan</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">res</span><span class="p">)</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">tx</span><span class="p">.</span><span class="nx">Error</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">tx</span><span class="p">.</span><span class="nx">Error</span><span class="p">)</span>
+<span class="w">        </span><span class="k">return</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span>
 
-    &lt;update id=&quot;Update&quot; parameterType=&quot;com.example.mybatisdemo.entity.User&quot;&gt;
-        UPDATE user
-        &lt;set&gt;
-            &lt;if test=&quot;user.username != null&quot;&gt;
-                username = #{user.username},
-            &lt;/if&gt;
-            &lt;if test=&quot;user.password != null&quot;&gt;
-                password = #{user.password},
-            &lt;/if&gt;
-            &lt;if test=&quot;user.address != null&quot;&gt;
-                address = #{user.address},
-            &lt;/if&gt;
-        &lt;/set&gt;
-        WHERE
-        id=#{user.id}
-    &lt;/update&gt;
+<span class="p">}</span>
+</code></pre></div>
+<p>Open your terminal and execute the following command to run the  <em>go</em>  file:</p>
+<div class="highlight"><pre><span></span><code>go run gorm_query.go
+</code></pre></div>
+<p>The output of the terminal will include the following data.</p>
+<div class="highlight"><pre><span></span><code>{111 zhang Biejing}
+</code></pre></div>
+<h2 id="updating-data">Updating Data</h2>
+<p>In the following demonstration, you will be guided on how to update data.
+Create a text file named <code>gorm_update.go</code> and copy-paste the following code into the file:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+<span class="kn">import</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="s">&quot;fmt&quot;</span>
 
-    &lt;delete id=&quot;Delete&quot;  parameterType=&quot;com.example.mybatisdemo.entity.User&quot;&gt;
-        DELETE FROM user WHERE id = #{user.id}
-    &lt;/delete&gt;
+<span class="w">    </span><span class="s">&quot;gorm.io/driver/mysql&quot;</span>
+<span class="w">    </span><span class="s">&quot;gorm.io/gorm&quot;</span>
+<span class="w">    </span><span class="s">&quot;gorm.io/gorm/logger&quot;</span>
+<span class="p">)</span>
+<span class="c1">// user model</span>
+<span class="kd">type</span><span class="w"> </span><span class="nx">USER</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">ID</span><span class="w">       </span><span class="kt">uint</span><span class="w"> </span><span class="s">`gorm:&quot;primaryKey&quot;`</span>
+<span class="w">    </span><span class="nx">CNAME</span><span class="w">    </span><span class="kt">string</span>
+<span class="w">    </span><span class="nx">CADDRESS</span><span class="w"> </span><span class="kt">string</span>
+<span class="p">}</span>
 
-&lt;/mapper&gt;
-</code></pre></div>
-<h2 id="test">Test</h2>
-<p>Build and launch this project.</p>
-<p><img alt="image-20221026161226923" src="https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/mybatis/image-20221026161226923.png?raw=true" /></p>
-<p>When you see the following example messages, the application is well-launched, and you can open your browser and send HTTP requests.</p>
-<div class="highlight"><pre><span></span><code>2022-10-26 16:13:24.030  INFO 60253 --- [           main] c.e.mybatisdemo.MyBatisDemoApplication   : Starting MyBatisDemoApplication on username-macbookpro.local with PID 60253 (/Users/username/IdeaProjects/MyBatisDemo/target/classes started by username in /Users/username/IdeaProjects/MyBatisDemo)
-2022-10-26 16:13:24.035  INFO 60253 --- [           main] c.e.mybatisdemo.MyBatisDemoApplication   : No active profile set, falling back to default profiles: default
-2022-10-26 16:13:25.415  INFO 60253 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2022-10-26 16:13:25.421  INFO 60253 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2022-10-26 16:13:25.421  INFO 60253 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.41]
-2022-10-26 16:13:25.476  INFO 60253 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2022-10-26 16:13:25.477  INFO 60253 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1390 ms
-2022-10-26 16:13:26.020  INFO 60253 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService &#39;applicationTaskExecutor&#39;
-2022-10-26 16:13:26.248  INFO 60253 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path &#39;&#39;
-2022-10-26 16:13:26.272  INFO 60253 --- [           main] c.e.mybatisdemo.MyBatisDemoApplication   : Started MyBatisDemoApplication in 2.669 seconds (JVM running for 3.544)
-</code></pre></div>
-<h3 id="1-test-create-table">1. Test Create Table</h3>
-<p>Launch your browser and type the following url:</p>
-<div class="highlight"><pre><span></span><code>http://localhost:8080/test/create
-</code></pre></div>
-<p><img alt="image-20221026161929338" src="https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/mybatis/image-20221026161929338.png?raw=true" /></p>
-<p>In MySQL client, we can verify if the table has been successfully created.</p>
-<div class="highlight"><pre><span></span><code>mysql&gt; use test;
-Reading table information for completion of table and column names
-You can turn off this feature to get a quicker startup with -A
+<span class="kd">func</span><span class="w"> </span><span class="nx">getDBConn</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="nx">gorm</span><span class="p">.</span><span class="nx">DB</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">dsn</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="s">&quot;root:111@tcp(127.0.0.1:6001)/test?charset=utf8mb4&amp;parseTime=True&amp;loc=Local&quot;</span><span class="w"> </span><span class="c1">//MO</span>
+<span class="w">    </span><span class="nx">db</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">gorm</span><span class="p">.</span><span class="nx">Open</span><span class="p">(</span><span class="nx">mysql</span><span class="p">.</span><span class="nx">Open</span><span class="p">(</span><span class="nx">dsn</span><span class="p">),</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">gorm</span><span class="p">.</span><span class="nx">Config</span><span class="p">{})</span>
+<span class="w">    </span><span class="c1">// get connection</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Database Connection Failed&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">//Connection failed</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Database Connection Succeed&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">//Connection succeed</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">db</span>
+<span class="p">}</span>
 
-Database changed
-mysql&gt; show tables;
-+----------------+
-| tables_in_test |
-+----------------+
-| user           |
-+----------------+
-1 row in set (0.00 sec)
+<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">//get *gorm.DB</span>
+<span class="w">    </span><span class="nx">db</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">getDBConn</span><span class="p">()</span>
 
-mysql&gt; show create table user;
-+-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Table | Create Table                                                                                                                                                                                  |
-+-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| user  | CREATE TABLE `user` (
-`id` INT NOT NULL AUTO_INCREMENT,
-`username` VARCHAR(255) DEFAULT null,
-`password` VARCHAR(255) DEFAULT null,
-`address` VARCHAR(255) DEFAULT null,
-PRIMARY KEY (`id`)
-) |
-+-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-1 row in set (0.01 sec)
+<span class="w">    </span><span class="c1">// auto create table</span>
+<span class="w">    </span><span class="nx">db</span><span class="p">.</span><span class="nx">AutoMigrate</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">USER</span><span class="p">{})</span>
+
+<span class="w">  </span><span class="c1">// **Update** </span>
+<span class="w">    </span><span class="nx">aUser</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">USER</span><span class="p">{}</span>
+<span class="w">    </span><span class="nx">tx</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">Where</span><span class="p">(</span><span class="s">&quot;CNAME = ? &quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;zhang&quot;</span><span class="p">).</span><span class="nx">Find</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">USER</span><span class="p">{}).</span><span class="nx">Scan</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">aUser</span><span class="p">)</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">tx</span><span class="p">.</span><span class="nx">Error</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">tx</span><span class="p">.</span><span class="nx">Error</span><span class="p">)</span>
+<span class="w">        </span><span class="k">return</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nx">res</span><span class="o">:=</span><span class="nx">db</span><span class="p">.</span><span class="nx">Model</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">aUser</span><span class="p">).</span><span class="nx">Update</span><span class="p">(</span><span class="s">&quot;CADDRESS&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;HongKong&quot;</span><span class="p">)</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="nx">res</span><span class="p">.</span><span class="nx">Error</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">tx</span><span class="p">.</span><span class="nx">Error</span><span class="p">)</span>
+<span class="w">        </span><span class="k">return</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="p">}</span>
 </code></pre></div>
-<h3 id="2-test-add-user">2. Test Add User</h3>
-<p>Launch your browser and type the following url:</p>
-<div class="highlight"><pre><span></span><code>http://localhost:8080/test/add?username=tom&amp;password=123456&amp;address=shanghai
+<p>Open your terminal and execute the following command to run the  <em>go</em>  file:</p>
+<div class="highlight"><pre><span></span><code>go run gorm_update.go
 </code></pre></div>
-<p><img alt="image-20221026162317800" src="https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/mybatis/image-20221026162317800.png?raw=true" /></p>
-<p>In MySQL client, we can verify if the record is added.</p>
-<div class="highlight"><pre><span></span><code>mysql&gt; select * from user;
-+------+----------+----------+----------+
-| id   | username | password | address  |
-+------+----------+----------+----------+
-|    1 | tom      | 123456   | shanghai |
-+------+----------+----------+----------+
-1 row in set (0.00 sec)
+<p>You can use the MySQL client to verify if the table has been updated successfully:</p>
+<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">users</span><span class="p">;</span>
+<span class="o">+</span><span class="c1">------+-------+----------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">id</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">cname</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">caddress</span><span class="w"> </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">------+-------+----------+</span>
+<span class="o">|</span><span class="w">  </span><span class="mi">111</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">zhang</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">HongKong</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">lili</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">Shanghai</span><span class="w"> </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">------+-------+----------+</span>
+<span class="mi">2</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="3-test-select-user">3. Test Select User</h3>
-<p>Launch your browser and type the following url:</p>
-<div class="highlight"><pre><span></span><code>http://localhost:8080/test/selectUserByid?id=1
+<h2 id="deleting-data">Deleting Data</h2>
+<p>In the following demonstration, you will be guided on how to delete a single data record. It is important to note that when deleting a single record, you need to specify the primary key, otherwise it may trigger a batch delete.
+Create a text file named <code>gorm_delete.go</code> and copy-paste the following code into the file:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+<span class="kn">import</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="s">&quot;fmt&quot;</span>
+
+<span class="w">    </span><span class="s">&quot;gorm.io/driver/mysql&quot;</span>
+<span class="w">    </span><span class="s">&quot;gorm.io/gorm&quot;</span>
+<span class="w">    </span><span class="s">&quot;gorm.io/gorm/logger&quot;</span>
+<span class="p">)</span>
+<span class="c1">// user model</span>
+<span class="kd">type</span><span class="w"> </span><span class="nx">USER</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">ID</span><span class="w">       </span><span class="kt">uint</span><span class="w"> </span><span class="s">`gorm:&quot;primaryKey&quot;`</span>
+<span class="w">    </span><span class="nx">CNAME</span><span class="w">    </span><span class="kt">string</span>
+<span class="w">    </span><span class="nx">CADDRESS</span><span class="w"> </span><span class="kt">string</span>
+<span class="p">}</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">getDBConn</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="nx">gorm</span><span class="p">.</span><span class="nx">DB</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">dsn</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="s">&quot;root:111@tcp(127.0.0.1:6001)/test?charset=utf8mb4&amp;parseTime=True&amp;loc=Local&quot;</span><span class="w"> </span><span class="c1">//MO</span>
+<span class="w">    </span><span class="nx">db</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">gorm</span><span class="p">.</span><span class="nx">Open</span><span class="p">(</span><span class="nx">mysql</span><span class="p">.</span><span class="nx">Open</span><span class="p">(</span><span class="nx">dsn</span><span class="p">),</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">gorm</span><span class="p">.</span><span class="nx">Config</span><span class="p">{})</span>
+<span class="w">    </span><span class="c1">// get connection</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Database Connection Failed&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">//Connection failed</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Database Connection Succeed&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">//Connection succeed</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">db</span>
+<span class="p">}</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">//get *gorm.DB</span>
+<span class="w">    </span><span class="nx">db</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">getDBConn</span><span class="p">()</span>
+
+<span class="w">    </span><span class="c1">// auto create table</span>
+<span class="w">    </span><span class="nx">db</span><span class="p">.</span><span class="nx">AutoMigrate</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">USER</span><span class="p">{})</span>
+
+<span class="w">  </span><span class="c1">// **Delete** </span>
+<span class="w">    </span><span class="nx">aUser</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">USER</span><span class="p">{}</span>
+<span class="w">    </span><span class="nx">tx</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">Where</span><span class="p">(</span><span class="s">&quot;CNAME = ? &quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;zhang&quot;</span><span class="p">).</span><span class="nx">Find</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">USER</span><span class="p">{}).</span><span class="nx">Scan</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">aUser</span><span class="p">)</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">tx</span><span class="p">.</span><span class="nx">Error</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">tx</span><span class="p">.</span><span class="nx">Error</span><span class="p">)</span>
+<span class="w">        </span><span class="k">return</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nx">res</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">Delete</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">aUser</span><span class="p">)</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">res</span><span class="p">.</span><span class="nx">Error</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">tx</span><span class="p">.</span><span class="nx">Error</span><span class="p">)</span>
+<span class="w">        </span><span class="k">return</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="p">}</span>
 </code></pre></div>
-<p><img alt="image-20221026162455058" src="https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/mybatis/image-20221026162455058.png?raw=true" /></p>
-<p>We can directly get the queried result from the browser.</p>
-<h3 id="4-test-update-user">4. Test Update User</h3>
-<p>Launch your browser and type the following url:</p>
-<div class="highlight"><pre><span></span><code>http://localhost:8080/test/update/username=tom&amp;password=654321&amp;address=beijing
+<p>Open your terminal and execute the following command to run the  <em>go</em>  file:</p>
+<div class="highlight"><pre><span></span><code>go run gorm_delete.go
 </code></pre></div>
-<p><img alt="image-20221026162613066" src="https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/mybatis/image-20221026162613066.png?raw=true" /></p>
-<p>In MySQL client, we can verify if the record is updated.</p>
-<div class="highlight"><pre><span></span><code>mysql&gt; select * from user;
-+------+----------+----------+---------+
-| id   | username | password | address |
-+------+----------+----------+---------+
-|    1 | tom      | 654321   | beijing |
-+------+----------+----------+---------+
-1 row in set (0.00 sec)
+<p>You can use the MySQL client to verify if the table has been deleted successfully:</p>
+<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">users</span><span class="p">;</span>
+<span class="o">+</span><span class="c1">------+-------+----------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">id</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">cname</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">caddress</span><span class="w"> </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">------+-------+----------+</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">lili</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">Shanghai</span><span class="w"> </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">------+-------+----------+</span>
+<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="5-test-delete-user">5. Test Delete User</h3>
-<p>Launch your browser and type the following url:</p>
-<div class="highlight"><pre><span></span><code>http://localhost:8080/test/delete?id=1
-</code></pre></div>
-<p><img alt="image-20221026162756460" src="https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/mybatis/image-20221026162756460.png?raw=true" /></p>
-<p>In MySQL client, we can verify if the record is deleted.</p>
-<div class="highlight"><pre><span></span><code>mysql&gt; select * from user;
-Empty set (0.00 sec)
-</code></pre></div>
+<p>The above is just a partial demonstration of CRUD operations in GORM. For more usage and examples, please refer to the <a href="https://gorm.io/docs/index.html">GORM Official Guides</a>.</p>
 
 
 

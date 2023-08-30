@@ -1058,6 +1058,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#using-gorm-to-connect-to-matrixone" class="md-nav__link">
+    Using Gorm to connect to MatrixOne
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#reference" class="md-nav__link">
     Reference
   </a>
@@ -2147,6 +2154,20 @@
     <li class="md-nav__item">
       <a href="../../../Tutorial/develop-golang-crud-demo/" class="md-nav__link">
         Golang CRUD demo
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tutorial/gorm-golang-crud-demo/" class="md-nav__link">
+        Gorm CRUD demo
       </a>
     </li>
   
@@ -9198,6 +9219,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#using-gorm-to-connect-to-matrixone" class="md-nav__link">
+    Using Gorm to connect to MatrixOne
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#reference" class="md-nav__link">
     Reference
   </a>
@@ -9227,20 +9255,22 @@
 <h2 id="before-you-start">Before you start</h2>
 <ol>
 <li>Make sure you have already <a href="../../../Get-Started/install-standalone-matrixone/">installed and launched MatrixOne</a>.</li>
-<li>Make sure you have already installed <a href="https://go.dev/dl/">Golang 1.18 and plus</a>.  </li>
-</ol>
+<li>
+<p>Make sure you have already installed <a href="https://go.dev/dl/">Golang 1.18 and plus</a>.  </p>
 <div class="highlight"><pre><span></span><code>#To check with Golang installation and its version
 go version
 </code></pre></div>
-<ol>
-<li>Make sure you have already installed MySQL client.</li>
+</li>
+<li>
+<p>Make sure you have already installed MySQL client.</p>
+</li>
 </ol>
 <h2 id="using-golang-to-connect-to-matrixone">Using Golang to connect to MatrixOne</h2>
 <p><code>Go-MySQL-Driver</code> is a MySQL driver for Go's (golang) database/sql package.</p>
 <ol>
 <li>
 <p>Install <code>go-mysql-driver</code> tool. Simple install the package to your <a href="https://github.com/golang/go/wiki/GOPATH">$GOPATH</a> with the <a href="https://golang.org/cmd/go/">go tool</a> from shell. Make sure <a href="https://git-scm.com/downloads">Git is installed</a> on your machine and in your system's <code>PATH</code>.</p>
-<div class="highlight"><pre><span></span><code>&gt; go get -u github.com/go-sql-driver/mysql
+<div class="highlight"><pre><span></span><code>&gt;<span class="w"> </span>go<span class="w"> </span>get<span class="w"> </span>-u<span class="w"> </span>github.com/go-sql-driver/mysql
 </code></pre></div>
 </li>
 <li>
@@ -9274,13 +9304,60 @@ go version
 </li>
 <li>
 <p>Execute this golang file in the command line terminal.</p>
-<div class="highlight"><pre><span></span><code>&gt; go run golang_connect_matrixone.go
-Database Connection Succeed
+<div class="highlight"><pre><span></span><code>&gt;<span class="w"> </span>go<span class="w"> </span>run<span class="w"> </span>golang_connect_matrixone.go
+Database<span class="w"> </span>Connection<span class="w"> </span>Succeed
+</code></pre></div>
+</li>
+</ol>
+<h2 id="using-gorm-to-connect-to-matrixone">Using Gorm to connect to MatrixOne</h2>
+<p>Gorm is the fantastic ORM library for Golang and aims to be developer-friendly. <code>gorm.io/gorm</code> and <code>gorm.io/driver/mysql</code> will make Go connect to MYSQL.</p>
+<ol>
+<li>
+<p>Use command <code>go get</code> to install <code>gorm.io/gorm</code> and <code>gorm.io/driver/mysql</code>.</p>
+<div class="highlight"><pre><span></span><code>go get -u gorm.io/gorm
+go get -u gorm.io/driver/mysql
+</code></pre></div>
+</li>
+<li>
+<p>Connect to MatrixOne by MySQL client. Create a new database named <em>test</em>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n">test</span><span class="p">;</span>
+</code></pre></div>
+</li>
+<li>
+<p>Create a go file <code>golang_gorm_connect_matrixone.go</code> and put the code below.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+<span class="kn">import</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="s">&quot;gorm.io/driver/mysql&quot;</span>
+<span class="w">    </span><span class="s">&quot;gorm.io/gorm&quot;</span>
+<span class="w">    </span><span class="s">&quot;fmt&quot;</span>
+<span class="w">  </span><span class="p">)</span>
+<span class="kd">func</span><span class="w"> </span><span class="nx">getDBConn</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="nx">gorm</span><span class="p">.</span><span class="nx">DB</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">dsn</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="s">&quot;root:111@tcp(127.0.0.1:6001)/test?charset=utf8mb4&amp;parseTime=True&amp;loc=Local&quot;</span><span class="w"> </span><span class="c1">//MO </span>
+<span class="w">    </span><span class="nx">db</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">gorm</span><span class="p">.</span><span class="nx">Open</span><span class="p">(</span><span class="nx">mysql</span><span class="p">.</span><span class="nx">Open</span><span class="p">(</span><span class="nx">dsn</span><span class="p">),</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">gorm</span><span class="p">.</span><span class="nx">Config</span><span class="p">{</span><span class="w"> </span>
+<span class="w">    </span><span class="p">})</span>
+<span class="w">    </span><span class="c1">// get connection</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Database Connection Failed&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">//Connection failed</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Database Connection Succeed&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">//Connection succeed</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">db</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">getDBConn</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div>
+</li>
+<li>
+<p>Execute this go file in the command line terminal.</p>
+<div class="highlight"><pre><span></span><code>&gt;<span class="w"> </span>go<span class="w"> </span>run<span class="w"> </span>golang_gorm_connect_matrixone.go
+Database<span class="w"> </span>Connection<span class="w"> </span>Succeed
 </code></pre></div>
 </li>
 </ol>
 <h2 id="reference">Reference</h2>
 <p>For the example about using Golang to build a simple CRUD with MatrixOne, see <a href="../../../Tutorial/develop-golang-crud-demo/">Build a simple Golang CRUD demo with MatrixOne</a>.</p>
+<p>For the example about using Gorm to build a simple CRUD with MatrixOne, see <a href="../../../Tutorial/gorm-golang-crud-demo/">Build a simple Gorm CRUD demo with MatrixOne</a>.</p>
 
 
 
