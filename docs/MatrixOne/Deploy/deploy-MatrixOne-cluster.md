@@ -454,13 +454,13 @@ Follow the steps below to install MatrixOne Operator on master0. We will create 
 1. Download the latest MatrixOne Operator installation package:
 
     ```
-    wget https://github.com/matrixorigin/matrixone-operator/releases/download/chart-1.0.0-rc1-alpha.2/matrixone-operator-1.0.0-rc1-alpha.2.tgz
+    wget https://github.com/matrixorigin/matrixone-operator/releases/download/chart-0.8.0-alpha.7/matrixone-operator-0.8.0-alpha.7.tgz
     ```
 
 2. Unzip the installation package:
 
     ```
-    tar -xvf matrixone-operator-1.0.0-rc1-alpha.2.tgz
+    tar -xvf matrixone-operator-0.8.0-alpha.7.tgz
     cd /root/matrixone-operator/
     ```
 
