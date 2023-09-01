@@ -39,7 +39,7 @@ The Macbook M1/M2 with ARM architecture is also a good fit for a development env
 | :------- | :----- | :-------------- |
 | 16 core+ | 64 GB+ | SSD/HDD 500 GB+ |
 
-For comprehensive details on deploying MatrixOne in a distributed setting, see [Distributed Deployment Topology Documentation](../Deploy/deployment-topology/experience-deployment-topology.md). This guide includes specific server hardware configuration requirements and recommendations tailored for development, testing, and production environments.
+For comprehensive details on deploying MatrixOne in a distributed setting, see [Cluster Topology Planning Overview](../Deploy/deployment-topology/topology-overview.md). This guide includes specific server hardware configuration requirements and recommendations tailored for development, testing, and production environments.
 
 ## Installation and deployment
 
