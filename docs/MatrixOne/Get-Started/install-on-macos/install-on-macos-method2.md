@@ -98,16 +98,16 @@ __Tips__: It is recommended that you download and install one of these two tools
 
      ```bash
      mkdir -p /User/username/mo/matrixone & cd /User/username/mo
-     wget https://github.com/matrixorigin/matrixone/releases/download/v0.8.0/mo-v0.8.0-darwin-x86_64.zip
-     unzip -d matrixone/ mo-v0.8.0-darwin-x86_64.zip
+     wget https://github.com/matrixorigin/matrixone/releases/download/v1.0.0-rc1/mo-v1.0.0-rc1-darwin-x86_64.zip
+     unzip -d matrixone/ mo-v1.0.0-rc1-darwin-x86_64.zip
      ```
 
      Binary for ARM architecture system:
 
      ```bash
      mkdir -p /User/username/mo/matrixone & cd /User/username/mo
-     wget https://github.com/matrixorigin/matrixone/releases/download/v0.8.0/mo-v0.8.0-darwin-arm64.zip
-     unzip -d matrixone/ mo-v0.8.0-darwin-arm64.zip
+     wget https://github.com/matrixorigin/matrixone/releases/download/v1.0.0-rc1/mo-v1.0.0-rc1-darwin-arm64.zip
+     unzip -d matrixone/ mo-v1.0.0-rc1-darwin-arm64.zip
      ```
 
 === "**Downloading method 2: Using `curl` to install binary packages**"
@@ -116,21 +116,21 @@ __Tips__: It is recommended that you download and install one of these two tools
 
      ```bash
      mkdir -p /User/username/mo/matrixone & cd /User/username/mo
-     curl -OL https://github.com/matrixorigin/matrixone/releases/download/v0.8.0/mo-v0.8.0-darwin-x86_64.zip
-     unzip -d matrixone/ mo-v0.8.0-darwin-x86_64.zip
+     curl -OL https://github.com/matrixorigin/matrixone/releases/download/v1.0.0-rc1/mo-v1.0.0-rc1-darwin-x86_64.zip
+     unzip -d matrixone/ mo-v1.0.0-rc1-darwin-x86_64.zip
      ```
 
      Binary for ARM architecture system:
 
      ```bash
      mkdir -p /User/username/mo/matrixone & cd /User/username/mo
-     curl -OL https://github.com/matrixorigin/matrixone/releases/download/v0.8.0/mo-v0.8.0-darwin-arm64.zip
-     unzip -d matrixone/ mo-v0.8.0-darwin-arm64.zip
+     curl -OL https://github.com/matrixorigin/matrixone/releases/download/v1.0.0-rc1/mo-v1.0.0-rc1-darwin-arm64.zip
+     unzip -d matrixone/ mo-v1.0.0-rc1-darwin-arm64.zip
      ```
 
 === "**Downloading method 3: Go to the page and download**"
 
-     If you want a more intuitive way to download the page, go to the [version 0.8.0](https://github.com/matrixorigin/matrixone/releases/tag/v0.8.0), pull down to find the **Assets** column, and click the installation package *mo-v0.8.0-darwin-x86_64.zip* or *mo-v0.8.0-darwin-arm64.zip* can be downloaded.
+     If you want a more intuitive way to download the page, go to the [version 1.0.0-rc1](https://github.com/matrixorigin/matrixone/releases/tag/v1.0.0-rc1), pull down to find the **Assets** column, and click the installation package *mo-v1.0.0-rc1-darwin-x86_64.zip* or *mo-v1.0.0-rc1-darwin-arm64.zip* can be downloaded.
 
 ## Step 3: Install the mo_ctl tool
 
@@ -149,7 +149,7 @@ wget https://raw.githubusercontent.com/matrixorigin/mo_ctl_standalone/main/insta
 Using the following command sets the MatrixOne binary decompression file directory to the `MO_PATH` parameter of mo_ctl. mo_ctl will automatically look for the `matrixone` folder in `MO_PATH`.
 
 ```
-mo_ctl set_conf MO_PATH="/User/username/mo/"
+mo_ctl set_conf MO_PATH="/User/username/mo"
 ```
 
 ## Step 4: Launch MatrixOne server
@@ -186,7 +186,7 @@ This command will invoke the MySQL Client tool to connect to the MatrixOne servi
 mysql: [Warning] Using a password on the command line interface can be insecure.
 Welcome to the MySQL monitor.  Commands end with ; or \g.
 Your MySQL connection id is 15
-Server version: 8.0.30-MatrixOne-v0.8.0 MatrixOne
+Server version: 8.0.30-MatrixOne-v1.0.0-rc1 MatrixOne
 
 Copyright (c) 2000, 2023, Oracle and/or its affiliates.
 
