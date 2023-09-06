@@ -4,7 +4,7 @@ This document will guide you build standalone MatrixOne using Docker.
 
 ## Step 1: Download and install Docker
 
-1. Click <a href="https://docs.docker.com/get-docker/" target="_blank">Get Docker</a>, enter into the Docker's official document page, depending on your operating system, download and install the corresponding Docker.
+1. Click <a href="https://docs.docker.com/get-docker/" target="_blank">Get Docker</a>, enter into the Docker's official document page, depending on your operating system, download and install the corresponding Docker. It is recommended to choose Docker version 20.10.18 or later and strive to maintain consistency between the Docker client and Docker server versions.
 
 2. After the installation, you can verify the Docker version by using the following lines:
 
@@ -15,7 +15,7 @@ This document will guide you build standalone MatrixOne using Docker.
     The successful installation results are as follows:
 
     ```
-    Docker version 20.10.17, build 100c701
+    Docker version 20.10.18, build 100c701
     ```
 
 3. Execute the following command in your terminal, start Docker and check whether the running status is successfully:
@@ -41,18 +41,18 @@ This document will guide you build standalone MatrixOne using Docker.
 
 It will pull the image from Docker Hub if not exists. You can choose to pull the stable version image or the develop version image.
 
-=== "Stable Version Image(0.8.0 version)"
+=== "Stable Version Image(1.0.0-rc1 version)"
 
       ```bash
-      docker pull matrixorigin/matrixone:0.8.0
-      docker run -d -p 6001:6001 --name matrixone --privileged=true matrixorigin/matrixone:0.8.0
+      docker pull matrixorigin/matrixone:1.0.0-rc1
+      docker run -d -p 6001:6001 --name matrixone matrixorigin/matrixone:1.0.0-rc1
       ```
 
       If you are using the network in mainland China, you can pull the MatrixOne stable version image on Alibaba Cloud:
 
       ```bash
-      docker pull registry.cn-shanghai.aliyuncs.com/matrixorigin/matrixone:0.8.0
-      docker run -d -p 6001:6001 --name matrixone --privileged=true registry.cn-shanghai.aliyuncs.com/matrixorigin/matrixone:0.8.0
+      docker pull registry.cn-shanghai.aliyuncs.com/matrixorigin/matrixone:1.0.0-rc1
+      docker run -d -p 6001:6001 --name matrixone registry.cn-shanghai.aliyuncs.com/matrixorigin/matrixone:1.0.0-rc1
       ```
 
 === "Develop Version Image"
@@ -61,17 +61,24 @@ It will pull the image from Docker Hub if not exists. You can choose to pull the
 
       ```bash
       docker pull matrixorigin/matrixone:nightly-commitnumber
-      docker run -d -p 6001:6001 --name matrixone --privileged=true matrixorigin/matrixone:nightly-commitnumber
+      docker run -d -p 6001:6001 --name matrixone matrixorigin/matrixone:nightly-commitnumber
       ```
 
       If you are using the network in mainland China, you can pull the MatrixOne develop version image on Alibaba Cloud:
 
       ```bash
       docker pull registry.cn-shanghai.aliyuncs.com/matrixorigin/matrixone:nightly-commitnumber
-      docker run -d -p 6001:6001 --name matrixone --privileged=true registry.cn-shanghai.aliyuncs.com/matrixorigin/matrixone:nightly-commitnumber
+      docker run -d -p 6001:6001 --name matrixone registry.cn-shanghai.aliyuncs.com/matrixorigin/matrixone:nightly-commitnumber
       ```
 
       __Note__: The *nightly* version is updated once a day.
+
+!!! note
+    If your Docker version is lower than 20.10.18 or the Docker client and server versions are inconsistent, upgrading to the latest stable version before attempting is recommended. If you choose to proceed with the current versions, you need to add the parameter `--privileged=true` to the `docker run` command, as shown below:
+
+    ```bash
+    docker run -d -p 6001:6001 --name matrixone --privileged=true matrixorigin/matrixone:1.0.0-rc1
+    ```
 
 !!! note
     The initial startup of MatrixOne approximately takes 20 to 30 seconds. After a brief wait, you can connect to MatrixOne using the MySQL client.
@@ -82,60 +89,34 @@ If you need to mount data directories or customize configure files, see [Mount t
 
 ### Install and configure MySQL Client
 
-1. Click <a href="https://dev.mysql.com/downloads/mysql" target="_blank">MySQL Community Downloads</a> to enter into the MySQL client download and installation page. According to your operating system and hardware environment, drop down to select **Select Operating System**, then drop down to select **Select OS Version**, and select the download installation package to install as needed.
+The Debian11.1 version does not have MySQL Client installed by default, so it needs to be downloaded and installed manually.
 
-    __Note__: MySQL client version 8.0.30 or later is recommended.
+1. Execute the following commands in sequence:
 
-2. Configure the MySQL client environment variables:
+    ```
+    wget https://dev.mysql.com/get/mysql-apt-config_0.8.22-1_all.deb
+    sudo dpkg -i ./mysql-apt-config_0.8.22-1_all.deb
+    sudo apt update
+    sudo apt install mysql-client
+    ```
 
-     1. Open a new terminal window and enter the following command:
+2. Execute the command `mysql --version` to test whether MySQL is available. The result of the successful installation is as follows:
 
-         ```
-         cd ~
-         sudo vim /etc/profile
-         ```
+    ```
+    mysql --version
+    mysql Ver 8.0.33 for Linux on x86_64 (MySQL Community Server - GPL)
+    ```
 
-     2. After pressing **Enter** on the keyboard to execute the above command, you need to enter the root user password, which is the root password you set in the installation window when you installed the MySQL client. If no password has been set, press **Enter** to skip the password.
-
-     3. After entering/skiping the root password, you will enter *profile*, click **i** on the keyboard to enter the insert state, and you can enter the following command at the bottom of the file:
-
-        ```
-        export PATH=/software/mysql/bin:$PATH
-        ```
-
-     4. After the input is completed, click **esc** on the keyboard to exit the insert state, and enter `:wq` at the bottom to save and exit.
-
-     5. Enter the command `source  /etc/profile`, press **Enter** to execute, and run the environment variable.
-
-     6. To test whether MySQL is available:
-
-         - Method 1: Enter `mysql -u root -p`, press **Enter** to execute, the root user password is required, if `mysql>` is displayed, it means that the MySQL client is enabled.
-
-         - Method 2: Run the command `mysql --version`, if MySQL client is installed successfully, the example code line is as follows: `mysql  Ver 8.0.31 for Linux on x86_64 (Source distribution)`
-
-     7. If MySQL is available, close the current terminal and browse the next chapter **Connect to MatrixOne Server**.  
-
-__Tips__: Currently, MatrixOne is only compatible with the Oracle MySQL client. This means that some features might not work with the MariaDB client or Percona client.
+__Tips__: Currently, MatrixOne is only compatible with the Oracle MySQL client. This means some features might not work with the MariaDB or Percona clients.
 
 ### Connect to MatrixOne
 
-- You can use the MySQL command-line client to connect to MatrixOne server. Open a new terminal window and enter the following command:
+You can use the MySQL command-line client to connect to MatrixOne server. Open a new terminal window and enter the following command:
 
     ```
-    mysql -h IP -P PORT -uUsername -p
+    mysql -h 127.0.0.1 -P 6001 -uroot -p
+    Enter password:  # The default initial password is 111
     ```
-
-    After you enter the preceding command, the terminal will prompt you to provide the username and password. You can use our built-in account:
-
-    + user: root
-    + password: 111
-
-- You can also use the following command line on the MySQL client to connect to the MatrixOne service:
-
-       ```
-       mysql -h 127.0.0.1 -P 6001 -uroot -p
-       Enter password:
-       ```
 
 Currently, MatrixOne only supports the TCP listener.
 
