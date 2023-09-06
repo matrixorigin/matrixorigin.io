@@ -121,24 +121,28 @@ git version 2.40.0
     > mo_ctl
     Usage             : mo_ctl [option_1] [option_2]
 
-    [option_1]        : available: help | precheck | deploy | status | start | stop | restart | connect | get_cid | set_conf | get_conf | pprof | ddl_convert
-      0) help         : print help information
-      1) precheck     : check pre-requisites for mo_ctl
-      2) deploy       : deploy mo onto the path configured
-      3) status       : check if there's any mo process running on this machine
-      4) start        : start mo-service from the path configured
-      5) stop         : stop all mo-service processes found on this machine
-      6) restart      : start mo-service from the path configured
-      7) connect      : connect to mo via mysql client using connection info configured
-      8) get_cid      : print mo commit id from the path configured
-      9) pprof        : collect pprof information
-      10) set_conf    : set configurations
-      11) get_conf    : get configurations
-      12) ddl_convert : convert ddl file to mo format from other types of database
-      e.g.            : mo_ctl status
-
-    [option_2]        : Use " mo_ctl [option_1] help " to get more info
-      e.g.            : mo_ctl deploy help
+    [option_1]      : available: connect | ddl_connect | deploy | get_branch | get_cid | get_conf | help | pprof | precheck | restart | set_conf | sql | start | status | stop | uninstall | upgrade | watchdog
+    1) connect      : connect to mo via mysql client using connection info configured
+    2) ddl_convert  : convert ddl file to mo format from other types of database
+    3) deploy       : deploy mo onto the path configured
+    4) get_branch   : upgrade or downgrade mo from current version to a target commit id or stable version
+    5) get_cid      : print mo git commit id from the path configured
+    6) get_conf     : get configurations
+    7) help         : print help information
+    8) pprof        : collect pprof information
+    9) precheck     : check pre-requisites for mo_ctl
+    10) restart     : a combination operation of stop and start
+    11) set_conf    : set configurations
+    12) sql         : execute sql from string, or a file or a path containg multiple files
+    13) start       : start mo-service from the path configured
+    14) status      : check if there's any mo process running on this machine
+    15) stop        : stop all mo-service processes found on this machine
+    16) uninstall   : uninstall mo from path MO_PATH=/data/mo//matrixone
+    17) upgrade     : upgrade or downgrade mo from current version to a target commit id or stable version
+    18) watchdog    : setup a watchdog crontab task for mo-service to keep it alive
+    e.g.            : mo_ctl status
+    [option_2]      : Use " mo_ctl [option_1] help " to get more info
+    e.g.            : mo_ctl deploy help
     ```
 
 ### Set mo_ctl parameters (Optional)
@@ -154,11 +158,19 @@ MO_HOST="127.0.0.1"
 MO_PORT="6001"
 MO_USER="root"
 MO_PW="111"
-CHECK_LIST=("go" "gcc" "git" "mysql")
+MO_DEPLOY_MODE="host"
+MO_REPO="matrixorigin/matrixone"
+MO_IMAGE_PREFIX="nightly"
+MO_IMAGE_FULL=""
+MO_CONTAINER_NAME="mo"
+MO_CONTAINER_PORT="6001"
+MO_CONTAINER_DEBUG_PORT="12345"
+CHECK_LIST=("go" "gcc" "git" "mysql" "docker")
 GCC_VERSION="8.5.0"
+CLANG_VERSION="13.0"
 GO_VERSION="1.20"
 MO_GIT_URL="https://github.com/matrixorigin/matrixone.git"
-MO_DEFAULT_VERSION="0.8.0"
+MO_DEFAULT_VERSION="1.0.0-rc1"
 GOPROXY="https://goproxy.cn,direct"
 STOP_INTERVAL="5"
 START_INTERVAL="2"
@@ -174,7 +186,7 @@ Generally, the parameters that may need to be adjusted are as follows:
 ```
 mo_ctl set_conf MO_PATH="/Users/username/mo/matrixone" # Set custom MatrixOne download path
 mo_ctl set_conf MO_GIT_URL="https://ghproxy.com/https://github.com/matrixorigin/matrixone.git" ## For the problem of slow downloading from the original GitHub address, set the proxy download address
-mo_ctl set_conf MO_DEFAULT_VERSION="0.8.0" # Set the version of MatrixOne downloaded
+mo_ctl set_conf MO_DEFAULT_VERSION="1.0.0-rc1" # Set the version of MatrixOne downloaded
 ```
 
 ## Step 3: Get MatrixOne code
@@ -192,7 +204,7 @@ Depending on your needs, choose whether you want to keep your code up to date, o
 === "Get the MatrixOne(Stable Version) code to build"
 
      ```
-     mo_ctl deploy 0.8.0
+     mo_ctl deploy 1.0.0-rc1
      ```
 
 ## Step 4: Launch MatrixOne server
@@ -229,7 +241,7 @@ This command will invoke the MySQL Client tool to connect to the MatrixOne servi
 mysql: [Warning] Using a password on the command line interface can be insecure.
 Welcome to the MySQL monitor.  Commands end with ; or \g.
 Your MySQL connection id is 15
-Server version: 8.0.30-MatrixOne-v0.8.0 MatrixOne
+Server version: 8.0.30-MatrixOne-v1.0.0-rc1 MatrixOne
 
 Copyright (c) 2000, 2023, Oracle and/or its affiliates.
 

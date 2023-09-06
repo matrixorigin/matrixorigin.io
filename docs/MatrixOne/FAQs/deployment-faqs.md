@@ -185,7 +185,7 @@ Reference code example:
 [root ~]# rm -rf mo-data // Clean up the data directory
 [root ~]# make build // Build matrixone again
 ...    // The build process code is omitted here
-[root ~]# ./mo-service --daemon --launch ./etc/quickstart/launch.toml &> test.log &   // Start MatrixOne service in the terminal backend
+[root ~]# ./mo-service --daemon --launch ./etc/launch/launch.toml &> test.log &   // Start MatrixOne service in the terminal backend
 ```
 
 !!! note
