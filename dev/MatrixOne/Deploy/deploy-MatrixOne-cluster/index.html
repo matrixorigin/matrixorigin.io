@@ -580,6 +580,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Overview/architecture/streaming/" class="md-nav__link">
+        Detailed Stream Engine Architecture
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -2177,6 +2191,20 @@
           Plan MatrixOne Cluster Topology
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deployment-topology/topology-overview/" class="md-nav__link">
+        Cluster Topology Planning Overview
+      </a>
+    </li>
+  
+
+            
           
             
               
@@ -8961,6 +8989,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../Release-Notes/v1.0.0-rc1/" class="md-nav__link">
+        v1.0.0-rc1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../Release-Notes/v0.8.0/" class="md-nav__link">
         v0.8.0
       </a>
@@ -10081,12 +10123,12 @@ nohup kubectl port-forward --address 0.0.0.0 $POD_NAME -n mostorage 9000:9000 &a
 <ol>
 <li>
 <p>Download the latest MatrixOne Operator installation package:</p>
-<div class="highlight"><pre><span></span><code>wget https://github.com/matrixorigin/matrixone-operator/releases/download/chart-0.8.0-alpha.2/matrixone-operator-0.8.0-alpha.2.tgz
+<div class="highlight"><pre><span></span><code>wget https://github.com/matrixorigin/matrixone-operator/releases/download/chart-0.8.0-alpha.7/matrixone-operator-0.8.0-alpha.7.tgz
 </code></pre></div>
 </li>
 <li>
 <p>Unzip the installation package:</p>
-<div class="highlight"><pre><span></span><code>tar -xvf matrixone-operator-0.8.0-alpha.2.tgz
+<div class="highlight"><pre><span></span><code>tar -xvf matrixone-operator-0.8.0-alpha.7.tgz
 cd /root/matrixone-operator/
 </code></pre></div>
 </li>
@@ -10254,7 +10296,7 @@ mysql -h $(kubectl get svc/mo-tp-cn -n mo-hn -o jsonpath=&#39;{.spec.clusterIP}&
 mysql: [Warning] Using a password on the command line interface can be insecure.
 Welcome to the MySQL monitor.  Commands end with ; or \g.
 Your MySQL connection id is 163
-Server version: 8.0.30-MatrixOne-v0.8.0 MatrixOne
+Server version: 8.0.30-MatrixOne-v1.0.0-rc1 MatrixOne
 
 Copyright (c) 2000, 2023, Oracle and/or its affiliates.
 

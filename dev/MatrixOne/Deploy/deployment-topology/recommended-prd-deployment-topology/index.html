@@ -580,6 +580,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Overview/architecture/streaming/" class="md-nav__link">
+        Detailed Stream Engine Architecture
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -2179,6 +2193,20 @@
           Plan MatrixOne Cluster Topology
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../topology-overview/" class="md-nav__link">
+        Cluster Topology Planning Overview
+      </a>
+    </li>
+  
+
+            
           
             
               
@@ -8761,6 +8789,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../Release-Notes/v1.0.0-rc1/" class="md-nav__link">
+        v1.0.0-rc1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../Release-Notes/v0.8.0/" class="md-nav__link">
         v0.8.0
       </a>
@@ -9230,72 +9272,86 @@
 <table>
 <thead>
 <tr>
-<th>Module</th>
-<th>Number of Units (Physical and Virtual Machines are acceptable)</th>
-<th>Node Role</th>
-<th>CPU Configuration</th>
-<th>Memory Configuration</th>
-<th>Network Card</th>
-<th>System Disk Configuration</th>
-<th>Kubernetes Disk Configuration</th>
-<th>Data Disk Configuration</th>
+<th style="text-align: center;"><strong>Module</strong></th>
+<th>Kubernetes master</th>
+<th>Minio</th>
+<th>LogService</th>
+<th>TN (mixed proxy and load balancing)</th>
+<th>CN (mixed proxy and load balancing)</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Kubernetes master</td>
-<td>3</td>
-<td>Kubernetes Control</td>
-<td>4 cores or more</td>
-<td>8GB or more</td>
-<td>Dual 10GbE ports, 10GbE network card</td>
-<td>Each node PCIe NVME SSD 3.0 × 1 piece 100GB, Raid 1 recommended</td>
-<td>Each node PCIe NVME SSD 3.0 × 1 piece 100GB, Raid 1 recommended</td>
-<td>N/A</td>
+<td style="text-align: center;"><strong>Number of machines (both physical machines and virtual machines)</strong></td>
+<td>3 machines</td>
+<td>4 machines</td>
+<td>3 machines</td>
+<td>1 machine</td>
+<td>y machines</td>
 </tr>
 <tr>
-<td>Minio</td>
-<td>4</td>
+<td style="text-align: center;"><strong>Node Role</strong></td>
+<td>Kubernetes Management</td>
 <td>Storage Service</td>
-<td>4 cores or more</td>
-<td>8GB or more</td>
-<td>Dual 10GbE ports, 10GbE network card</td>
-<td>As above</td>
-<td>As above</td>
-<td>Each node PCIe NVME SSD 3.0 × 4 pieces × x GB/piece, no raid requirement, physical partitioning recommended, logical partitioning also possible.<br/><br/>Note: x is related to the business data volume, x = business data volume × 2/16</td>
+<td>MatrixOne Work Node</td>
+<td>MatrixOne Work Node</td>
+<td>MatrixOne Work Node</td>
 </tr>
 <tr>
-<td>LogService</td>
-<td>3</td>
-<td>MatrixOne Work Node</td>
-<td>4 cores or more</td>
-<td>8GB or more</td>
-<td>Dual 10GbE ports, 10GbE network card</td>
-<td>As above</td>
-<td>As above</td>
-<td>Each node NVME SSD 3.0/4.0 (1G/s or more read rate) × 1 piece × x GB/piece.<br/><br/>Note: x is related to the business data volume, the closer, the better.</td>
+<td style="text-align: center;"><strong>CPU configuration</strong></td>
+<td>4 cores or above</td>
+<td>4 cores or above</td>
+<td>4 cores or above</td>
+<td>16 cores or above</td>
+<td>16 cores or above</td>
 </tr>
 <tr>
-<td>TN (Mixed Deployment Proxy and Load Balancer)</td>
-<td>1</td>
-<td>MatrixOne Work Node</td>
-<td>16 cores or more</td>
+<td style="text-align: center;"><strong>Memory configuration</strong></td>
+<td>8GB or more</td>
+<td>8GB or more</td>
+<td>8GB or more</td>
 <td>64GB or more</td>
-<td>Dual 10GbE ports, 10GbE network card</td>
-<td>As above</td>
-<td>As above</td>
-<td>NVME SSD 3.0/4.0 × 2 pieces × x GB/piece<br/><br/>Note: x is related to the business data volume, the closer, the better. One of them is for TN/CN fault recovery backup.</td>
+<td>32GB or more</td>
 </tr>
 <tr>
-<td>CN (Mixed Deployment Proxy and Load Balancer)</td>
-<td>y</td>
-<td>MatrixOne Work Node</td>
-<td>16 cores or more</td>
-<td>32GB or more</td>
-<td>Dual 10GbE ports, 10GbE network card</td>
-<td>As above</td>
-<td>As above</td>
-<td>Each node NVME SSD 3.0/4.0 × 2 pieces × x GB/piece.<br/><br/>Note: x is related to the business data volume, the closer the better. One of them is for TN/CN fault recovery backup. y is related to business load.</td>
+<td style="text-align: center;"><strong>Network Card</strong></td>
+<td>Dual 10 Gigabit Ethernet ports, 10 Gigabit Ethernet</td>
+<td>Ditto</td>
+<td>Ditto</td>
+<td>Ditto</td>
+<td>Ditto</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>System disk configuration</strong></td>
+<td>Each node PCIe NVME SSD 3.0 × 1 block 100GB, it is recommended to do Raid 1</td>
+<td>Same as above</td>
+<td>Same as above</td>
+<td>Same as above</td>
+<td>Same as above</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>Kubernetes disk configuration</strong></td>
+<td>PCIe NVME SSD 3.0 × 1 piece of 100GB per node, Raid 1 is recommended</td>
+<td>Same as above</td>
+<td>Same as above</td>
+<td>Same as above</td>
+<td>Same as above</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>Disk Configuration</strong></td>
+<td>N/A</td>
+<td>PCIe NVME SSD 3.0 × 4 x a G/block per node, no requirement for raid, physical partitioning is recommended, logical partitioning is recommended.</td>
+<td>Each node NVME SSD 3.0/4.0 (read rate above 1G/s) × 1 block × b G/block.</td>
+<td>NVME SSD 3.0/4.0 × 2 blocks × c G/block</td>
+<td>NVME SSD 3.0/4.0 × 2 blocks × d G/block per node.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>Remarks</strong></td>
+<td></td>
+<td>a is related to the volume of business data, a = volume of business data × 2/16.</td>
+<td>b is related to the amount of business data; the closer, the better.</td>
+<td>c is related to the amount of business data; the closer, the better. One of them is reserved for TN/CN failure recovery.</td>
+<td>d is related to the amount of business data; the closer, the better. One of them is reserved for TN/CN failure recovery. y is related to the business load.</td>
 </tr>
 </tbody>
 </table>

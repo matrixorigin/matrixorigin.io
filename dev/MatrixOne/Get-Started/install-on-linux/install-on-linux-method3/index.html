@@ -580,6 +580,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Overview/architecture/streaming/" class="md-nav__link">
+        Detailed Stream Engine Architecture
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -2256,6 +2270,20 @@
           Plan MatrixOne Cluster Topology
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Deploy/deployment-topology/topology-overview/" class="md-nav__link">
+        Cluster Topology Planning Overview
+      </a>
+    </li>
+  
+
+            
           
             
               
@@ -8790,6 +8818,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../Release-Notes/v1.0.0-rc1/" class="md-nav__link">
+        v1.0.0-rc1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../Release-Notes/v0.8.0/" class="md-nav__link">
         v0.8.0
       </a>
@@ -9283,14 +9325,14 @@
 <h2 id="step-1-download-and-install-docker">Step 1: Download and install Docker</h2>
 <ol>
 <li>
-<p>Click <a href="https://docs.docker.com/get-docker/" target="_blank">Get Docker</a>, enter into the Docker's official document page, depending on your operating system, download and install the corresponding Docker.</p>
+<p>Click <a href="https://docs.docker.com/get-docker/" target="_blank">Get Docker</a>, enter into the Docker's official document page, depending on your operating system, download and install the corresponding Docker. It is recommended to choose Docker version 20.10.18 or later and strive to maintain consistency between the Docker client and Docker server versions.</p>
 </li>
 <li>
 <p>After the installation, you can verify the Docker version by using the following lines:</p>
 <div class="highlight"><pre><span></span><code>docker --version
 </code></pre></div>
 <p>The successful installation results are as follows:</p>
-<div class="highlight"><pre><span></span><code>Docker version 20.10.17, build 100c701
+<div class="highlight"><pre><span></span><code>Docker version 20.10.18, build 100c701
 </code></pre></div>
 </li>
 <li>
@@ -9311,29 +9353,35 @@ systemctl status docker
 </ol>
 <h2 id="step-2-create-and-run-the-container-of-matrixone">Step 2: Create and run the container of MatrixOne</h2>
 <p>It will pull the image from Docker Hub if not exists. You can choose to pull the stable version image or the develop version image.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Stable Version Image(0.8.0 version)</label><label for="__tabbed_1_2">Develop Version Image</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Stable Version Image(1.0.0-rc1 version)</label><label for="__tabbed_1_2">Develop Version Image</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>pull<span class="w"> </span>matrixorigin/matrixone:0.8.0
-docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">6001</span>:6001<span class="w"> </span>--name<span class="w"> </span>matrixone<span class="w"> </span>--privileged<span class="o">=</span><span class="nb">true</span><span class="w"> </span>matrixorigin/matrixone:0.8.0
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>pull<span class="w"> </span>matrixorigin/matrixone:1.0.0-rc1
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">6001</span>:6001<span class="w"> </span>--name<span class="w"> </span>matrixone<span class="w"> </span>matrixorigin/matrixone:1.0.0-rc1
 </code></pre></div>
 <p>If you are using the network in mainland China, you can pull the MatrixOne stable version image on Alibaba Cloud:</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>pull<span class="w"> </span>registry.cn-shanghai.aliyuncs.com/matrixorigin/matrixone:0.8.0
-docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">6001</span>:6001<span class="w"> </span>--name<span class="w"> </span>matrixone<span class="w"> </span>--privileged<span class="o">=</span><span class="nb">true</span><span class="w"> </span>registry.cn-shanghai.aliyuncs.com/matrixorigin/matrixone:0.8.0
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>pull<span class="w"> </span>registry.cn-shanghai.aliyuncs.com/matrixorigin/matrixone:1.0.0-rc1
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">6001</span>:6001<span class="w"> </span>--name<span class="w"> </span>matrixone<span class="w"> </span>registry.cn-shanghai.aliyuncs.com/matrixorigin/matrixone:1.0.0-rc1
 </code></pre></div>
 </div>
 <div class="tabbed-block">
 <p>If you want to pull the develop version image, see <a href="https://hub.docker.com/r/matrixorigin/matrixone/tags">Docker Hub</a>, get the image tag. An example as below:</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>pull<span class="w"> </span>matrixorigin/matrixone:nightly-commitnumber
-docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">6001</span>:6001<span class="w"> </span>--name<span class="w"> </span>matrixone<span class="w"> </span>--privileged<span class="o">=</span><span class="nb">true</span><span class="w"> </span>matrixorigin/matrixone:nightly-commitnumber
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">6001</span>:6001<span class="w"> </span>--name<span class="w"> </span>matrixone<span class="w"> </span>matrixorigin/matrixone:nightly-commitnumber
 </code></pre></div>
 <p>If you are using the network in mainland China, you can pull the MatrixOne develop version image on Alibaba Cloud:</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>pull<span class="w"> </span>registry.cn-shanghai.aliyuncs.com/matrixorigin/matrixone:nightly-commitnumber
-docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">6001</span>:6001<span class="w"> </span>--name<span class="w"> </span>matrixone<span class="w"> </span>--privileged<span class="o">=</span><span class="nb">true</span><span class="w"> </span>registry.cn-shanghai.aliyuncs.com/matrixorigin/matrixone:nightly-commitnumber
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">6001</span>:6001<span class="w"> </span>--name<span class="w"> </span>matrixone<span class="w"> </span>registry.cn-shanghai.aliyuncs.com/matrixorigin/matrixone:nightly-commitnumber
 </code></pre></div>
 <p><strong>Note</strong>: The <em>nightly</em> version is updated once a day.</p>
 </div>
 </div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If your Docker version is lower than 20.10.18 or the Docker client and server versions are inconsistent, upgrading to the latest stable version before attempting is recommended. If you choose to proceed with the current versions, you need to add the parameter <code>--privileged=true</code> to the <code>docker run</code> command, as shown below:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">6001</span>:6001<span class="w"> </span>--name<span class="w"> </span>matrixone<span class="w"> </span>--privileged<span class="o">=</span><span class="nb">true</span><span class="w"> </span>matrixorigin/matrixone:1.0.0-rc1
+</code></pre></div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -9342,71 +9390,31 @@ docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </sp
 <p>If you need to mount data directories or customize configure files, see <a href="../../../Maintain/mount-data-by-docker/">Mount the directory to Docker container</a>.</p>
 <h2 id="step-3-connect-to-standalone-matrixone">Step 3: Connect to standalone MatrixOne</h2>
 <h3 id="install-and-configure-mysql-client">Install and configure MySQL Client</h3>
+<p>The Debian11.1 version does not have MySQL Client installed by default, so it needs to be downloaded and installed manually.</p>
 <ol>
 <li>
-<p>Click <a href="https://dev.mysql.com/downloads/mysql" target="_blank">MySQL Community Downloads</a> to enter into the MySQL client download and installation page. According to your operating system and hardware environment, drop down to select <strong>Select Operating System</strong>, then drop down to select <strong>Select OS Version</strong>, and select the download installation package to install as needed.</p>
-<p><strong>Note</strong>: MySQL client version 8.0.30 or later is recommended.</p>
-</li>
-<li>
-<p>Configure the MySQL client environment variables:</p>
-<ol>
-<li>
-<p>Open a new terminal window and enter the following command:</p>
-<div class="highlight"><pre><span></span><code>cd ~
-sudo vim /etc/profile
+<p>Execute the following commands in sequence:</p>
+<div class="highlight"><pre><span></span><code>wget https://dev.mysql.com/get/mysql-apt-config_0.8.22-1_all.deb
+sudo dpkg -i ./mysql-apt-config_0.8.22-1_all.deb
+sudo apt update
+sudo apt install mysql-client
 </code></pre></div>
 </li>
 <li>
-<p>After pressing <strong>Enter</strong> on the keyboard to execute the above command, you need to enter the root user password, which is the root password you set in the installation window when you installed the MySQL client. If no password has been set, press <strong>Enter</strong> to skip the password.</p>
-</li>
-<li>
-<p>After entering/skiping the root password, you will enter <em>profile</em>, click <strong>i</strong> on the keyboard to enter the insert state, and you can enter the following command at the bottom of the file:</p>
-<div class="highlight"><pre><span></span><code>export PATH=/software/mysql/bin:$PATH
+<p>Execute the command <code>mysql --version</code> to test whether MySQL is available. The result of the successful installation is as follows:</p>
+<div class="highlight"><pre><span></span><code>mysql --version
+mysql Ver 8.0.33 for Linux on x86_64 (MySQL Community Server - GPL)
 </code></pre></div>
 </li>
-<li>
-<p>After the input is completed, click <strong>esc</strong> on the keyboard to exit the insert state, and enter <code>:wq</code> at the bottom to save and exit.</p>
-</li>
-<li>
-<p>Enter the command <code>source  /etc/profile</code>, press <strong>Enter</strong> to execute, and run the environment variable.</p>
-</li>
-<li>
-<p>To test whether MySQL is available:</p>
-<ul>
-<li>
-<p>Method 1: Enter <code>mysql -u root -p</code>, press <strong>Enter</strong> to execute, the root user password is required, if <code>mysql&gt;</code> is displayed, it means that the MySQL client is enabled.</p>
-</li>
-<li>
-<p>Method 2: Run the command <code>mysql --version</code>, if MySQL client is installed successfully, the example code line is as follows: <code>mysql  Ver 8.0.31 for Linux on x86_64 (Source distribution)</code></p>
-</li>
-</ul>
-</li>
-<li>
-<p>If MySQL is available, close the current terminal and browse the next chapter <strong>Connect to MatrixOne Server</strong>.  </p>
-</li>
 </ol>
-</li>
-</ol>
-<p><strong>Tips</strong>: Currently, MatrixOne is only compatible with the Oracle MySQL client. This means that some features might not work with the MariaDB client or Percona client.</p>
+<p><strong>Tips</strong>: Currently, MatrixOne is only compatible with the Oracle MySQL client. This means some features might not work with the MariaDB or Percona clients.</p>
 <h3 id="connect-to-matrixone">Connect to MatrixOne</h3>
-<ul>
-<li>
 <p>You can use the MySQL command-line client to connect to MatrixOne server. Open a new terminal window and enter the following command:</p>
-<div class="highlight"><pre><span></span><code>mysql -h IP -P PORT -uUsername -p
-</code></pre></div>
-<p>After you enter the preceding command, the terminal will prompt you to provide the username and password. You can use our built-in account:</p>
-<ul>
-<li>user: root</li>
-<li>password: 111</li>
-</ul>
-</li>
-<li>
-<p>You can also use the following command line on the MySQL client to connect to the MatrixOne service:</p>
-<div class="highlight"><pre><span></span><code>mysql -h 127.0.0.1 -P 6001 -uroot -p
-Enter password:
-</code></pre></div>
-</li>
-</ul>
+<pre><code>```
+mysql -h 127.0.0.1 -P 6001 -uroot -p
+Enter password:  # The default initial password is 111
+```
+</code></pre>
 <p>Currently, MatrixOne only supports the TCP listener.</p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
