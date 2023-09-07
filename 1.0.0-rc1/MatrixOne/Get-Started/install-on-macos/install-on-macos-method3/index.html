@@ -580,6 +580,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Overview/architecture/streaming/" class="md-nav__link">
+        Detailed Stream Engine Architecture
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -2256,6 +2270,20 @@
           Plan MatrixOne Cluster Topology
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Deploy/deployment-topology/topology-overview/" class="md-nav__link">
+        Cluster Topology Planning Overview
+      </a>
+    </li>
+  
+
+            
           
             
               
@@ -8790,6 +8818,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../Release-Notes/v1.0.0-rc1/" class="md-nav__link">
+        v1.0.0-rc1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../Release-Notes/v0.8.0/" class="md-nav__link">
         v0.8.0
       </a>
@@ -9283,7 +9325,7 @@
 <h2 id="step-1-download-and-install-docker">Step 1: Download and install Docker</h2>
 <ol>
 <li>
-<p>Click <a href="https://docs.docker.com/get-docker/" target="_blank">Get Docker</a>, enter into the Docker's official document page, depending on your operating system, download and install the corresponding Docker.</p>
+<p>Click <a href="https://docs.docker.com/get-docker/" target="_blank">Get Docker</a>, enter into the Docker's official document page, depending on your operating system, download and install the corresponding Docker.  It is recommended to choose Docker version 20.10.18 or later and strive to maintain consistency between the Docker client and Docker server versions.</p>
 </li>
 <li>
 <p>After the installation, you can verify the Docker version by using the following lines:</p>
@@ -9299,29 +9341,35 @@
 </ol>
 <h2 id="step-2-create-and-run-the-container-of-matrixone">Step 2: Create and run the container of MatrixOne</h2>
 <p>It will pull the image from Docker Hub if not exists. You can choose to pull the stable version image or the develop version image.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Stable Version Image(0.8.0 version)</label><label for="__tabbed_1_2">Develop Version Image</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Stable Version Image(1.0.0-rc1 version)</label><label for="__tabbed_1_2">Develop Version Image</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>pull<span class="w"> </span>matrixorigin/matrixone:0.8.0
-docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">6001</span>:6001<span class="w"> </span>--name<span class="w"> </span>matrixone<span class="w"> </span>--privileged<span class="o">=</span><span class="nb">true</span><span class="w"> </span>matrixorigin/matrixone:0.8.0
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>pull<span class="w"> </span>matrixorigin/matrixone:1.0.0-rc1
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">6001</span>:6001<span class="w"> </span>--name<span class="w"> </span>matrixone<span class="w"> </span>matrixorigin/matrixone:1.0.0-rc1
 </code></pre></div>
 <p>If you are using the network in mainland China, you can pull the MatrixOne stable version image on Alibaba Cloud:</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>pull<span class="w"> </span>registry.cn-shanghai.aliyuncs.com/matrixorigin/matrixone:0.8.0
-docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">6001</span>:6001<span class="w"> </span>--name<span class="w"> </span>matrixone<span class="w"> </span>--privileged<span class="o">=</span><span class="nb">true</span><span class="w"> </span>registry.cn-shanghai.aliyuncs.com/matrixorigin/matrixone:0.8.0
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>pull<span class="w"> </span>registry.cn-shanghai.aliyuncs.com/matrixorigin/matrixone:1.0.0-rc1
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">6001</span>:6001<span class="w"> </span>--name<span class="w"> </span>matrixone<span class="w"> </span>registry.cn-shanghai.aliyuncs.com/matrixorigin/matrixone:1.0.0-rc1
 </code></pre></div>
 </div>
 <div class="tabbed-block">
 <p>If you want to pull the develop version image, see <a href="https://hub.docker.com/r/matrixorigin/matrixone/tags">Docker Hub</a>, get the image tag. An example as below:</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>pull<span class="w"> </span>matrixorigin/matrixone:nightly-commitnumber
-docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">6001</span>:6001<span class="w"> </span>--name<span class="w"> </span>matrixone<span class="w"> </span>--privileged<span class="o">=</span><span class="nb">true</span><span class="w"> </span>matrixorigin/matrixone:nightly-commitnumber
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">6001</span>:6001<span class="w"> </span>--name<span class="w"> </span>matrixone<span class="w"> </span>matrixorigin/matrixone:nightly-commitnumber
 </code></pre></div>
 <p>If you are using the network in mainland China, you can pull the MatrixOne develop version image on Alibaba Cloud:</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>pull<span class="w"> </span>registry.cn-shanghai.aliyuncs.com/matrixorigin/matrixone:nightly-commitnumber
-docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">6001</span>:6001<span class="w"> </span>--name<span class="w"> </span>matrixone<span class="w"> </span>--privileged<span class="o">=</span><span class="nb">true</span><span class="w"> </span>registry.cn-shanghai.aliyuncs.com/matrixorigin/matrixone:nightly-commitnumber
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">6001</span>:6001<span class="w"> </span>--name<span class="w"> </span>matrixone<span class="w"> </span>registry.cn-shanghai.aliyuncs.com/matrixorigin/matrixone:nightly-commitnumber
 </code></pre></div>
 <p><strong>Note</strong>: The <em>nightly</em> version is updated once a day.</p>
 </div>
 </div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If your Docker version is lower than 20.10.18 or the Docker client and server versions are inconsistent, upgrading to the latest stable version before attempting is recommended. If you choose to proceed with the current versions, you need to add the parameter <code>--privileged=true</code> to the <code>docker run</code> command, as shown below:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">6001</span>:6001<span class="w"> </span>--name<span class="w"> </span>matrixone<span class="w"> </span>--privileged<span class="o">=</span><span class="nb">true</span><span class="w"> </span>matrixorigin/matrixone:1.0.0-rc1
+</code></pre></div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -9377,24 +9425,10 @@ sudo vim .bash_profile
 </ol>
 <p><strong>Tips</strong>: Currently, MatrixOne is only compatible with the Oracle MySQL client. This means that some features might not work with the MariaDB client or Percona client.</p>
 <h3 id="connect-to-matrixone">Connect to MatrixOne</h3>
-<ul>
-<li>
 <p>You can use the MySQL command-line client to connect to MatrixOne server. Open a new terminal window and enter the following command:</p>
-<div class="highlight"><pre><span></span><code>mysql -h IP -P PORT -uUsername -p
-</code></pre></div>
-<p>After you enter the preceding command, the terminal will prompt you to provide the username and password. You can use our built-in account:</p>
-<ul>
-<li>user: root</li>
-<li>password: 111</li>
-</ul>
-</li>
-<li>
-<p>You can also use the following command line on the MySQL client to connect to the MatrixOne service:</p>
 <div class="highlight"><pre><span></span><code>mysql -h 127.0.0.1 -P 6001 -uroot -p
-Enter password:
+Enter password: # The default initial password is 111
 </code></pre></div>
-</li>
-</ul>
 <p>Currently, MatrixOne only supports the TCP listener.</p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>

@@ -580,6 +580,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Overview/architecture/streaming/" class="md-nav__link">
+        Detailed Stream Engine Architecture
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -2247,6 +2261,20 @@
           Plan MatrixOne Cluster Topology
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Deploy/deployment-topology/topology-overview/" class="md-nav__link">
+        Cluster Topology Planning Overview
+      </a>
+    </li>
+  
+
+            
           
             
               
@@ -8781,6 +8809,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../Release-Notes/v1.0.0-rc1/" class="md-nav__link">
+        v1.0.0-rc1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../Release-Notes/v0.8.0/" class="md-nav__link">
         v0.8.0
       </a>
@@ -9294,7 +9336,7 @@
 <p class="admonition-title">Note</p>
 <p>If you install MatrixOne by <code>docker</code>, the directory is inside the docker image by default. To work with local directory, you need to bind a local directory to the container. In the following example, the local file system path <code>${local_data_path}/mo-data</code> is binded to the MatrixOne docker image, with a mapping to the <code>/mo-data</code> path. For more information, see <a href="https://www.freecodecamp.org/news/docker-mount-volume-guide-how-to-mount-a-local-directory/">Docker Mount Volume tutorial</a>.</p>
 </div>
-<div class="highlight"><pre><span></span><code>sudo docker run --name &lt;name&gt; --privileged -d -p 6001:6001 -v ${local_data_path}/mo-data:/mo-data:rw matrixorigin/matrixone:0.8.0
+<div class="highlight"><pre><span></span><code>sudo docker run --name &lt;name&gt; --privileged -d -p 6001:6001 -v ${local_data_path}/mo-data:/mo-data:rw matrixorigin/matrixone:1.0.0-rc1
 </code></pre></div>
 <h3 id="steps">Steps</h3>
 <ol>

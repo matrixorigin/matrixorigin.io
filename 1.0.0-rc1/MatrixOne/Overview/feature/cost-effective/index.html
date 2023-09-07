@@ -660,6 +660,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/streaming/" class="md-nav__link">
+        Detailed Stream Engine Architecture
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -2255,6 +2269,20 @@
           Plan MatrixOne Cluster Topology
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Deploy/deployment-topology/topology-overview/" class="md-nav__link">
+        Cluster Topology Planning Overview
+      </a>
+    </li>
+  
+
+            
           
             
               
@@ -8789,6 +8817,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../Release-Notes/v1.0.0-rc1/" class="md-nav__link">
+        v1.0.0-rc1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../Release-Notes/v0.8.0/" class="md-nav__link">
         v0.8.0
       </a>
@@ -9307,7 +9349,7 @@ When CRUD-type business requirements are high, you can allocate more CN nodes to
 <li>Free compression algorithm: Each column is stored separately, and different columns can choose the most suitable compression algorithm for their data structure. These algorithms can use column data characteristics such as duplicate values, ordering, and data type-specific compression techniques to achieve better results. In contrast, the compression algorithms used by traditional row-store databases are often more general and fail to take full advantage of the characteristics of column data.</li>
 <li>High redundancy of intra-column data: Column storage databases store data in the same column together so that similar values ​​will be clustered together, resulting in higher redundancy, allowing the compression algorithm to more effectively identify and compress the same or Similar data items, thus improving the compression ratio.</li>
 </ul>
-<p>The overall data compression rate of MatrixOne can be as low as 10%. The specific compression rate is affected by many factors, such as the data structure of the actual data and the degree of data redundancy.</p>
+<p>The overall data compression rate of MatrixOne can be as low as 1%. The specific compression rate is affected by many factors, such as the data structure of the actual data and the degree of data redundancy.</p>
 <p>MatrixOne's columnar storage method will significantly compress your actual storage space and greatly reduce your storage costs.</p>
 <h2 id="compatibility-with-mysql">Compatibility with MySQL</h2>
 <p>MatrixOne maintains compatibility with MySQL, the most popular open-source database on the market, regarding syntax, protocol, and ecological tools. This allows users familiar with MySQL or who have used MySQL to migrate and learn at a meager cost.</p>

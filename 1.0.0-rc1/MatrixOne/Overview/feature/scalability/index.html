@@ -639,6 +639,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/streaming/" class="md-nav__link">
+        Detailed Stream Engine Architecture
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -2234,6 +2248,20 @@
           Plan MatrixOne Cluster Topology
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Deploy/deployment-topology/topology-overview/" class="md-nav__link">
+        Cluster Topology Planning Overview
+      </a>
+    </li>
+  
+
+            
           
             
               
@@ -8768,6 +8796,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../Release-Notes/v1.0.0-rc1/" class="md-nav__link">
+        v1.0.0-rc1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../Release-Notes/v0.8.0/" class="md-nav__link">
         v0.8.0
       </a>
@@ -9264,9 +9306,9 @@
 <p><strong>Stateless Computing and Transaction Nodes</strong>: MatrixOne's computing nodes (CN) and transaction nodes (TN) are stateless, meaning they can be horizontally expanded anytime. Stateless design means that computing and transaction nodes do not need to store any persistent data</p>
 </li>
 </ul>
-<p>They can be easily added or deleted to cope with different load requirements. This design makes MatrixOne extremely scalable and flexible when dealing with large-scale concurrent requests. (The current 0.8 version TN node does not yet have expansion capabilities, but the TN mainly handles transaction submission information, and the load is lower, so a single TN is enough to take a large-scale cluster, and subsequent versions will improve TN's scalability.)</p>
+<p>They can be easily added or deleted to cope with different load requirements. This design makes MatrixOne extremely scalable and flexible when dealing with large-scale concurrent requests. (The current 1.0 version TN node does not yet have expansion capabilities, but the TN mainly handles transaction submission information, and the load is lower, so a single TN is enough to take a large-scale cluster, and subsequent versions will improve TN's scalability.)</p>
 <ul>
-<li><strong>Independent Scaling for Different Workloads and Tenants</strong>: MatrixOne utilizes the Proxy module to group multiple compute nodes (CN) into managed sets known as CN Sets, achieved through labeling. This enables the independent scaling of each CN Set. Users can assign different CN Sets to distinct tenants, ensuring load isolation and separate scaling between tenants. It's also possible to give various CN Sets to diverse workloads, such as read and write workloads, or transactional and analytical workloads, thereby achieving isolation and separate scaling between them.</li>
+<li><strong>Independent Scaling for Different Workloads and Accounts</strong>: MatrixOne utilizes the Proxy module to group multiple compute nodes (CN) into managed sets known as CN Sets, achieved through labeling. This enables the independent scaling of each CN Set. Users can assign different CN Sets to distinct tenants, ensuring load isolation and separate scaling between tenants. It's also possible to give various CN Sets to diverse workloads, such as read and write workloads, or transactional and analytical workloads, thereby achieving isolation and separate scaling between them.</li>
 </ul>
 
 

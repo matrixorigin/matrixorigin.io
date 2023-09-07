@@ -580,6 +580,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Overview/architecture/streaming/" class="md-nav__link">
+        Detailed Stream Engine Architecture
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -2175,6 +2189,20 @@
           Plan MatrixOne Cluster Topology
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deploy/deployment-topology/topology-overview/" class="md-nav__link">
+        Cluster Topology Planning Overview
+      </a>
+    </li>
+  
+
+            
           
             
               
@@ -8854,6 +8882,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../Release-Notes/v1.0.0-rc1/" class="md-nav__link">
+        v1.0.0-rc1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../Release-Notes/v0.8.0/" class="md-nav__link">
         v0.8.0
       </a>
@@ -9497,7 +9539,7 @@
 </tr>
 </tbody>
 </table>
-<p>For comprehensive details on deploying MatrixOne in a distributed setting, see <a href="../../Deploy/deployment-topology/experience-deployment-topology/">Distributed Deployment Topology Documentation</a>. This guide includes specific server hardware configuration requirements and recommendations tailored for development, testing, and production environments.</p>
+<p>For comprehensive details on deploying MatrixOne in a distributed setting, see <a href="../../Deploy/deployment-topology/topology-overview/">Cluster Topology Planning Overview</a>. This guide includes specific server hardware configuration requirements and recommendations tailored for development, testing, and production environments.</p>
 <h2 id="installation-and-deployment">Installation and deployment</h2>
 <h3 id="what-settings-do-i-need-to-change-for-installation"><strong>What settings do I need to change for installation?</strong></h3>
 <p>Normally you don't need to change anything for installation. A default setting of <code>launch.toml</code> is enough to run MatrixOne directly. But if you want to customize your listening port, ip address, stored data files path, you may modify the corresponding records of <a href="https://github.com/matrixorigin/matrixone/blob/main/etc/launch-with-proxy/cn.toml"><code>cn.toml</code></a>, <a href="https://github.com/matrixorigin/matrixone/blob/main/etc/launch-with-proxy/tn.toml"><code>tn.toml</code></a> or <a href="https://github.com/matrixorigin/matrixone/blob/main/etc/launch-with-proxy/log.toml"><code>log.toml</code></a>, for more details about parameter configuration in these files, see <a href="../../Reference/System-Parameters/system-parameter/">Boot Parameters for standalone installation</a>.</p>
@@ -9506,26 +9548,21 @@
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1"><strong>Linux Environment</strong></label><label for="__tabbed_1_2"><strong>MacOS Environment</strong></label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>cd ~
-sudo vim /etc/profile
-Password:
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;export PATH=&quot;/path/to/mysql/bin:$PATH&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bash_profile
+<span class="nb">source</span><span class="w"> </span>~/.bash_profile
 </code></pre></div>
-<p>After pressing <strong>Enter</strong> on the keyboard to execute the above command, you need to enter the root user password, which is the root password you set in the installation window when you installed the MySQL client. If no password has been set, press <strong>Enter</strong> to skip the password.</p>
-<p>After entering/skiping the root password, you will enter <em>profile</em>, click <strong>i</strong> on the keyboard to enter the insert state, and you can enter the following command at the bottom of the file:</p>
-<div class="highlight"><pre><span></span><code>export PATH=/software/mysql/bin:$PATH
+<p>Replace <code>/path/to/mysql/bin</code> in the above code with the MySQL installation path in your system. Usually, it is <code>/usr/local/mysql/bin</code>; if you are not sure about the installation path of MySQL, you can use the following command to find it:</p>
+<div class="highlight"><pre><span></span><code>whereis<span class="w"> </span>mysql
 </code></pre></div>
-<p>Click <em>esc</em> on the keyboard to exit the insert status and type <code>:wq</code> at the bottom to save and exit. Continue typing <code>source  /etc/profile</code> and press <strong>Enter</strong> to run the environment variable.</p>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>cd ~
-sudo vim .bash_profile
-Password:
+<p>After macOS 10, zsh is used as the default shell. Here, zsh is used as an example. If you use other shells, you can convert it yourself.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span>/path/to/mysql/bin:<span class="nv">$PATH</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.zshrc
+<span class="nb">source</span><span class="w"> </span>~/.zshrc
 </code></pre></div>
-<p>After pressing <strong>Enter</strong> on the keyboard to execute the above command, you need to enter the root user password, which is the root password you set in the installation window when you installed the MySQL client. If no password has been set, press <strong>Enter</strong> to skip the password.</p>
-<p>After entering/skiping the root password, you will enter <em>.bash_profile</em>, click <strong>i</strong> on the keyboard to enter the insert state, and you can enter the following command at the bottom of the file:</p>
-<div class="highlight"><pre><span></span><code>export PATH=${PATH}:/usr/local/mysql/bin
+<p>Replace <code>/path/to/mysql/bin</code> in the above code with the MySQL installation path in your system. Usually, it is <code>/usr/local/mysql/bin</code>; if you are not sure about the installation path of MySQL, you can use the following command to find it:</p>
+<div class="highlight"><pre><span></span><code>whereis<span class="w"> </span>mysql
 </code></pre></div>
-<p>Click <em>esc</em> on the keyboard to exit the insert status and type <code>:wq</code> at the bottom to save and exit. Continue typing <code>source. bash_profile</code> and press <strong>Enter</strong> to run the environment variable.</p>
 </div>
 </div>
 </div>
@@ -9622,7 +9659,7 @@ make
 [root ~]# rm -rf mo-data // Clean up the data directory
 [root ~]# make build // Build matrixone again
 ...    // The build process code is omitted here
-[root ~]# ./mo-service --daemon --launch ./etc/quickstart/launch.toml &amp;&gt; test.log &amp;   // Start MatrixOne service in the terminal backend
+[root ~]# ./mo-service --daemon --launch ./etc/launch/launch.toml &amp;&gt; test.log &amp;   // Start MatrixOne service in the terminal backend
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>

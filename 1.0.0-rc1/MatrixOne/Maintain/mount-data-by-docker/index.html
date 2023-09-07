@@ -580,6 +580,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Overview/architecture/streaming/" class="md-nav__link">
+        Detailed Stream Engine Architecture
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -2175,6 +2189,20 @@
           Plan MatrixOne Cluster Topology
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deploy/deployment-topology/topology-overview/" class="md-nav__link">
+        Cluster Topology Planning Overview
+      </a>
+    </li>
+  
+
+            
           
             
               
@@ -8761,6 +8789,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../Release-Notes/v1.0.0-rc1/" class="md-nav__link">
+        v1.0.0-rc1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../Release-Notes/v0.8.0/" class="md-nav__link">
         v0.8.0
       </a>
@@ -9241,7 +9283,7 @@ docker rm &lt;containerID&gt;
 </li>
 <li>
 <p>Mount the local <strong>empty directory</strong> to the Docker container directory <em>/mo-data</em>, execute the following command:</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>--name<span class="w"> </span>&lt;name&gt;<span class="w"> </span>--privileged<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">6001</span>:6001<span class="w"> </span>-v<span class="w"> </span><span class="si">${</span><span class="nv">local_data_path</span><span class="si">}</span>/mo-data:/mo-data:rw<span class="w"> </span>matrixorigin/matrixone:0.8.0
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>--name<span class="w"> </span>&lt;name&gt;<span class="w"> </span>--privileged<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">6001</span>:6001<span class="w"> </span>-v<span class="w"> </span><span class="si">${</span><span class="nv">local_data_path</span><span class="si">}</span>/mo-data:/mo-data:rw<span class="w"> </span>matrixorigin/matrixone:1.0.0-rc1
 </code></pre></div>
 <table>
 <thead>
@@ -9269,7 +9311,7 @@ docker rm &lt;containerID&gt;
 </li>
 <li>
 <p>To launch MatrixOne MatrixOne has not been running in Docker, execute the following command:</p>
-<div class="highlight"><pre><span></span><code>docker run -d -p 6001:6001 --name matrixone --privileged=true matrixorigin/matrixone:0.8.0
+<div class="highlight"><pre><span></span><code>docker run -d -p 6001:6001 --name matrixone --privileged=true matrixorigin/matrixone:1.0.0-rc1
 </code></pre></div>
 </li>
 <li>
@@ -9289,7 +9331,7 @@ docker rm &lt;containerID&gt;
 </li>
 <li>
 <p>Mount the configuration file to the Docker container directory and launch MatrixOne. Execute the following command:</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>--name<span class="w"> </span>&lt;name&gt;<span class="w"> </span>--privileged<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">6001</span>:6001<span class="w"> </span>-v<span class="w"> </span><span class="si">${</span><span class="nv">local_config_path</span><span class="si">}</span>/etc:/etc:rw<span class="w">  </span>--entrypoint<span class="w"> </span><span class="s2">&quot;/mo-service&quot;</span><span class="w"> </span>matrixorigin/matrixone:0.8.0<span class="w"> </span>-launch<span class="w"> </span>/etc/quickstart/launch.toml
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>--name<span class="w"> </span>&lt;name&gt;<span class="w"> </span>--privileged<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">6001</span>:6001<span class="w"> </span>-v<span class="w"> </span><span class="si">${</span><span class="nv">local_config_path</span><span class="si">}</span>/etc:/etc:rw<span class="w">  </span>--entrypoint<span class="w"> </span><span class="s2">&quot;/mo-service&quot;</span><span class="w"> </span>matrixorigin/matrixone:1.0.0-rc1<span class="w"> </span>-launch<span class="w"> </span>/etc/launch/launch.toml
 </code></pre></div>
 <table>
 <thead>
@@ -9308,7 +9350,7 @@ docker rm &lt;containerID&gt;
 <td>Specifies that the container starts the MatrixOne service</td>
 </tr>
 <tr>
-<td>-launch /etc/quickstart/launch.toml</td>
+<td>-launch /etc/launch/launch.toml</td>
 <td>launch mode in <em>/etc/</em></td>
 </tr>
 </tbody>
