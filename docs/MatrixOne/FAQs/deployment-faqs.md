@@ -39,7 +39,7 @@ The Macbook M1/M2 with ARM architecture is also a good fit for a development env
 | :------- | :----- | :-------------- |
 | 16 core+ | 64 GB+ | SSD/HDD 500 GB+ |
 
-For comprehensive details on deploying MatrixOne in a distributed setting, see [Distributed Deployment Topology Documentation](../Deploy/deployment-topology/experience-deployment-topology.md). This guide includes specific server hardware configuration requirements and recommendations tailored for development, testing, and production environments.
+For comprehensive details on deploying MatrixOne in a distributed setting, see [Cluster Topology Planning Overview](../Deploy/deployment-topology/topology-overview.md). This guide includes specific server hardware configuration requirements and recommendations tailored for development, testing, and production environments.
 
 ## Installation and deployment
 
@@ -53,39 +53,31 @@ To solve the error, you need to set the environment variable. Open a new termina
 
 === "**Linux Environment**"
 
-     ```
-     cd ~
-     sudo vim /etc/profile
-     Password:
-     ```
-
-     After pressing **Enter** on the keyboard to execute the above command, you need to enter the root user password, which is the root password you set in the installation window when you installed the MySQL client. If no password has been set, press **Enter** to skip the password.
-
-     After entering/skiping the root password, you will enter *profile*, click **i** on the keyboard to enter the insert state, and you can enter the following command at the bottom of the file:
-
-     ```
-     export PATH=/software/mysql/bin:$PATH
+     ```bash
+     echo 'export PATH="/path/to/mysql/bin:$PATH"' >> ~/.bash_profile
+     source ~/.bash_profile
      ```
 
-     Click *esc* on the keyboard to exit the insert status and type `:wq` at the bottom to save and exit. Continue typing `source  /etc/profile` and press **Enter** to run the environment variable.
+     Replace `/path/to/mysql/bin` in the above code with the MySQL installation path in your system. Usually, it is `/usr/local/mysql/bin`; if you are not sure about the installation path of MySQL, you can use the following command to find it:
+
+     ```bash
+     whereis mysql
+     ```
 
 === "**MacOS Environment**"
 
-     ```
-     cd ~
-     sudo vim .bash_profile
-     Password:
-     ```
+     After macOS 10, zsh is used as the default shell. Here, zsh is used as an example. If you use other shells, you can convert it yourself.
 
-     After pressing **Enter** on the keyboard to execute the above command, you need to enter the root user password, which is the root password you set in the installation window when you installed the MySQL client. If no password has been set, press **Enter** to skip the password.
-
-     After entering/skiping the root password, you will enter *.bash_profile*, click **i** on the keyboard to enter the insert state, and you can enter the following command at the bottom of the file:
-
-     ```
-     export PATH=${PATH}:/usr/local/mysql/bin
+     ```zsh
+     echo export PATH=/path/to/mysql/bin:$PATH >> ~/.zshrc
+     source ~/.zshrc
      ```
 
-     Click *esc* on the keyboard to exit the insert status and type `:wq` at the bottom to save and exit. Continue typing `source. bash_profile` and press **Enter** to run the environment variable.
+     Replace `/path/to/mysql/bin` in the above code with the MySQL installation path in your system. Usually, it is `/usr/local/mysql/bin`; if you are not sure about the installation path of MySQL, you can use the following command to find it:
+
+     ```bash
+     whereis mysql
+     ```
 
 ### **When I install MatrixOne by building from source, I got an error of the following and the build failed, how can I proceed?**
 
@@ -185,7 +177,7 @@ Reference code example:
 [root ~]# rm -rf mo-data // Clean up the data directory
 [root ~]# make build // Build matrixone again
 ...    // The build process code is omitted here
-[root ~]# ./mo-service --daemon --launch ./etc/quickstart/launch.toml &> test.log &   // Start MatrixOne service in the terminal backend
+[root ~]# ./mo-service --daemon --launch ./etc/launch/launch.toml &> test.log &   // Start MatrixOne service in the terminal backend
 ```
 
 !!! note

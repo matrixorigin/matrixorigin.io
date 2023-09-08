@@ -43,6 +43,17 @@ In the MatrixOne cluster, take the minimum configuration recommended by the offi
 
 In addition, object storage also supports low-cost storage media such as HDD disks. In usage scenarios where the demand for cluster computing performance is not high, and storage is the main focus, it can further reduce the usage cost.
 
+## High data compression ratio brought by column storage
+
+When structured data is stored, the data structure of each column is the same. In the MatrixOne storage layer, data is stored in column format. This feature gives the data better compression characteristics:
+
+- Free compression algorithm: Each column is stored separately, and different columns can choose the most suitable compression algorithm for their data structure. These algorithms can use column data characteristics such as duplicate values, ordering, and data type-specific compression techniques to achieve better results. In contrast, the compression algorithms used by traditional row-store databases are often more general and fail to take full advantage of the characteristics of column data.
+- High redundancy of intra-column data: Column storage databases store data in the same column together so that similar values ​​will be clustered together, resulting in higher redundancy, allowing the compression algorithm to more effectively identify and compress the same or Similar data items, thus improving the compression ratio.
+
+The overall data compression rate of MatrixOne can be as low as 1%. The specific compression rate is affected by many factors, such as the data structure of the actual data and the degree of data redundancy.
+
+MatrixOne's columnar storage method will significantly compress your actual storage space and greatly reduce your storage costs.
+
 ## Compatibility with MySQL
 
 MatrixOne maintains compatibility with MySQL, the most popular open-source database on the market, regarding syntax, protocol, and ecological tools. This allows users familiar with MySQL or who have used MySQL to migrate and learn at a meager cost.

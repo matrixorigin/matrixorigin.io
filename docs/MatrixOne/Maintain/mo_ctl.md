@@ -145,12 +145,12 @@ mo_ctl deploy help
 Usage         : mo_ctl deploy [mo_version] [force] # deploy mo onto the path configured
   [mo_version]: optional, specify an mo version to deploy
   [force]     : optional, if specified will delete all content under MO_PATH and deploy from beginning
-  e.g.        : mo_ctl deploy             # default, same as mo_ctl deploy 0.8.0
+  e.g.        : mo_ctl deploy             # default, same as mo_ctl deploy 1.0.0-rc1
               : mo_ctl deploy main        # deploy development latest version
               : mo_ctl deploy d29764a     # deploy development version d29764a
-              : mo_ctl deploy 0.8.0       # deploy stable verson 0.8.0
-              : mo_ctl deploy force       # delete all under MO_PATH and deploy verson 0.8.0
-              : mo_ctl deploy 0.8.0 force # delete all under MO_PATH and deploy stable verson 0.8.0 from beginning
+              : mo_ctl deploy 1.0.0-rc1       # deploy stable verson 1.0.0-rc1
+              : mo_ctl deploy force       # delete all under MO_PATH and deploy verson 1.0.0-rc1
+              : mo_ctl deploy 1.0.0-rc1 force # delete all under MO_PATH and deploy stable verson 1.0.0-rc1 from beginning
 ```
 
 ### start - launch MatrixOne
@@ -283,12 +283,12 @@ Using `mo_ctl get_conf` will print a list of all the parameters used by the curr
 | GCC_VERSION            | gcc version to be checked in precheck               | Default: 8.5.0                                               |
 | GO_VERSION             | go version to be checked in precheck                | Default: 1.20                                                |
 | MO_GIT_URL             | Repository URL for fetching MatrixOne source code   | Default: <https://github.com/matrixorigin/matrixone.git>      |
-| MO_DEFAULT_VERSION     | Default version of MatrixOne to be fetched          | Default: 0.8.0                                               |
+| MO_DEFAULT_VERSION     | Default version of MatrixOne to be fetched          | Default: 1.0.0-rc1                                               |
 | GOPROXY                | Address of GOPROXY used for faster dependency retrieval in China | Default: <https://goproxy.cn>, direct                          |
 | STOP_INTERVAL          | Interval to wait for service status check after stopping the service | Default: 5 seconds                                           |
 | START_INTERVAL         | Interval to wait for service status check after starting the service | Default: 2 seconds                                           |
 | MO_DEBUG_PORT          | Debug port for MatrixOne, usually used by developers | Default: 9876                                                |
-| MO_CONF_FILE           | Launch configuration file for MatrixOne              | Default: ${MO_PATH}/matrixone/etc/launch-tae-CN-tae-TN/launch.toml |
+| MO_CONF_FILE           | Launch configuration file for MatrixOne              | Default: ${MO_PATH}/matrixone/etc/launch/launch.toml |
 | RESTART_INTERVAL       | Interval to wait for service status check after restarting the service | Default: 2 seconds                                           |
 | PPROF_OUT_PATH         | Output path for collecting golang performance data   | Default: /tmp/pprof-test/                                    |
 | PPROF_PROFILE_DURATION | Duration for collecting golang performance data      | Default: 30 seconds                                          |
@@ -336,11 +336,11 @@ Use `mo_ctl upgrade version` or `mo_ctl upgrade commitid` to upgrade or downgrad
 ```
 mo_ctl upgrade help
 Usage           : mo_ctl upgrade [version_commitid]   # upgrade or downgrade mo from current version to a target commit id or stable version
- [commitid]     : a commit id such as '38888f7', or a stable version such as '0.8.0'
+ [commitid]     : a commit id such as '38888f7', or a stable version such as '1.0.0-rc1'
                 : use 'latest' to upgrade to latest commit on main branch if you don't know the id
   e.g.          : mo_ctl upgrade 38888f7              # upgrade/downgrade to commit id 38888f7 on main branch
                 : mo_ctl upgrade latest               # upgrade/downgrade to latest commit on main branch
-                : mo_ctl upgrade 0.8.0                # upgrade/downgrade to stable version 0.8.0
+                : mo_ctl upgrade 1.0.0-rc1                # upgrade/downgrade to stable version 1.0.0-rc1
 ```
 
 ### watchdog - Keep Alive MatrixOne

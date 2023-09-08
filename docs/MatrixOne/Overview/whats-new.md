@@ -1,5 +1,5 @@
 # **What's New**
 
-The lastest version of MatrixOne is 0.8.0, releases on 30th June, 2023. See the following:
+The lastest version of MatrixOne is 1.0.0-rc1, releases on 24th Aug, 2023. See the following:
 
-* [v0.8.0 Release Notes](../Release-Notes/v0.8.0.md)
+* [v1.0.0-rc1 Release Notes](../Release-Notes/v1.0.0-rc1.md)
