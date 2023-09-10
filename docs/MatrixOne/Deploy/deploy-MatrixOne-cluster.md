@@ -523,10 +523,10 @@ As shown in the above line of code, the status of the corresponding Pods is norm
             cpu: 200m
             memory: 1Gi
         config: |  # Configuration for tn
-          [tn.Txn.Storage]
+          [dn.Txn.Storage]
           backend = "TAE"
           log-backend = "logservice"
-          [tn.Ckp]
+          [dn.Ckp]
           flush-interval = "60s"
           min-count = 100
           scan-interval = "5s"
