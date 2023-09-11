@@ -52,7 +52,10 @@ MatrixOne databases offer various backup tools to meet different scenarios and n
 
 1. **modump**: Used for exporting data and schemas from the database. It generates recoverable SQL scripts for logical backups.
 
-2. **mo-backup**: Used for physical backup and recovery. `mo-backup` is a tool for physical backup and recovery of MatrixOne enterprise services, helping protect your MatrixOne database and perform reliable recovery operations when needed. Contact your MatrixOne account manager to obtain the tool download link.
+2. **mo-backup**: Used for physical backup and recovery. `mo-backup` is a tool for physical backup and recovery of MatrixOne enterprise services, helping protect your MatrixOne database and perform reliable recovery operations when needed. 
+   
+    !!! note
+        **mo-backup** is a physical backup and recovery tool for enterprise-level services. Contact your MatrixOne account manager for the tool download path and user guide.
 
 ### Logical Backup and Recovery
 
