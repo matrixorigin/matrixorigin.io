@@ -1,4 +1,4 @@
-# Backup and Restore
+# Backup and Restore by using mo-dump
 
 It is essential to back up your databases to recover your data and be up and running again in case problems occur, such as system crashes, hardware failures, or users deleting data by mistake. Backups are also essential as a safeguard before upgrading a MatrixOne installation, and they can be used to transfer a MatrixOne building to another system.
 

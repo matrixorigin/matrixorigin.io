@@ -160,7 +160,10 @@ nav:
         - Import data from local Minio to MatrixOne: MatrixOne/Deploy/import-data-from-minio-to-mo.md
         - Operator Management: MatrixOne/Deploy/MatrixOne-Operator-mgmt.md
     - Maintenance:
-      - Backup and Restore: MatrixOne/Maintain/backup-restore.md
+      - Backup and Restore:
+        - MatrixOne Backup and Recovery Overview: MatrixOne/Maintain/backup-restore/backup-restore-overview.md
+        - Backup and Recovery Concepts: MatrixOne/Maintain/backup-restore/key-concepts.md
+        - Backup and Restore by using mo-dump: MatrixOne/Maintain/backup-restore/modump-backup-restore.md
       - Mount Data:
         - Mount directory to Docker container: MatrixOne/Maintain/mount-data-by-docker.md
     - Migrating:
