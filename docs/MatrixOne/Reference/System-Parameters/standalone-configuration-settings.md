@@ -62,7 +62,7 @@ The *tn.toml* file contains the following default parameters:
 |-------------------|-------------------------------------------|--------------------------|
 | [log]             | Log configuration section                 |                          |
 | level             | Log level, default is info, can be modified to different levels | level = "info"        |
-| [tn]              | TN node, not editable                     |                        |
+| [dn]              | TN node, not editable                     |                        |
 | uuid              | Unique identifier of TN, not editable      | uuid = "dd4dccb4-4d3c-41f8-b482-5251dc7a41bf" |
 | port-base         | Starting port number used by "TN", continuously finding 20 available ports for internal services starting from this port number | port-base = 19000       |
 | service-host      | Service connection address used for registration to HAKeeper | service-host = "0.0.0.0" |
@@ -76,7 +76,7 @@ In the *tn.toml* file, you can also customize and add the following configuratio
 | [log]             | Log configuration section                 |                           |
 | format             | Log save format as JSON or other           | format = "console"        |
 | filename           | Log filename                              | filename = "tn.log"          |
-| [tn.LogtailServer] | Logtail Server configuration section      |                           |
+| [dn.LogtailServer] | Logtail Server configuration section      |                           |
 | rpc-enable-checksum| Enable RPC checksum                       | rpc-enable-checksum = false|
 | [fileservice.cache]| File service cache configuration section |                           |
 | memory-capacity    | Cache memory size                         | memory-capacity = "512MB" |
