@@ -199,6 +199,9 @@ The installation interface will download the Kubernetes cluster's corresponding 
 
 2. Click **Import > Load Resource Package**, select the appropriate download source, and wait for the resource package to finish downloading.
 
+    !!! note
+        We recommend choosing Docker as the container engine for your K8s cluster. Once Docker is selected as the container engine for K8s, Kuboard-Spray will automatically utilize Docker to run various components of the K8s cluster, including containers on both Master and Worker nodes.
+
     ![](https://github.com/matrixorigin/artwork/blob/main/docs/deploy/deploy-mo-cluster-3.png?raw=true)
 
 3. This will `pull` the related image dependencies:
