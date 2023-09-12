@@ -2690,10 +2690,72 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_6_1" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_6_1" id="__nav_1_6_1_label" tabindex="0">
+          Backup and Restore
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_1_6_1_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1_6_1">
+          <span class="md-nav__icon md-icon"></span>
+          Backup and Restore
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
-      <a href="../../Maintain/backup-restore/" class="md-nav__link">
-        Backup and Restore
+      <a href="../../Maintain/backup-restore/backup-restore-overview/" class="md-nav__link">
+        MatrixOne Backup and Recovery Overview
       </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Maintain/backup-restore/key-concepts/" class="md-nav__link">
+        Backup and Recovery Concepts
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Maintain/backup-restore/modump-backup-restore/" class="md-nav__link">
+        Backup and Restore by using mo-dump
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -9890,6 +9952,10 @@ May 07 11:48:06 VM-0-6-centos dockerd[5845]: time=&quot;2023-05-07T11:48:06.5692
 </li>
 <li>
 <p>Click <strong>Import &gt; Load Resource Package</strong>, select the appropriate download source, and wait for the resource package to finish downloading.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We recommend choosing Docker as the container engine for your K8s cluster. Once Docker is selected as the container engine for K8s, Kuboard-Spray will automatically utilize Docker to run various components of the K8s cluster, including containers on both Master and Worker nodes.</p>
+</div>
 <p><img alt="" src="https://github.com/matrixorigin/artwork/blob/main/docs/deploy/deploy-mo-cluster-3.png?raw=true" /></p>
 </li>
 <li>
@@ -10183,10 +10249,10 @@ spec:
         cpu: 200m
         memory: 1Gi
     config: |  # Configuration for tn
-      [tn.Txn.Storage]
+      [dn.Txn.Storage]
       backend = &quot;TAE&quot;
       log-backend = &quot;logservice&quot;
-      [tn.Ckp]
+      [dn.Ckp]
       flush-interval = &quot;60s&quot;
       min-count = 100
       scan-interval = &quot;5s&quot;
@@ -10350,7 +10416,7 @@ mysql&gt;
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky"], "search": "../../../assets/javascripts/workers/search.74e28a9f.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["content.code.copy", "navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky"], "search": "../../../assets/javascripts/workers/search.74e28a9f.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.220ee61c.min.js"></script>
