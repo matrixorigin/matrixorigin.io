@@ -9,24 +9,24 @@
       
       
       
-        <link rel="prev" href="../../Deploy/MatrixOne-Operator-mgmt/">
+        <link rel="prev" href="../key-concepts/">
       
       
-        <link rel="next" href="../mount-data-by-docker/">
+        <link rel="next" href="../../mount-data-by-docker/">
       
-      <link rel="icon" href="../../../assets/images/favicon.png">
+      <link rel="icon" href="../../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-9.1.21">
     
     
       
-        <title>Backup and Restore - MatrixOne Docs</title>
+        <title>Backup and Restore by using mo-dump - MatrixOne Docs</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.eebd395e.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.eebd395e.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ecc896b0.min.css">
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ecc896b0.min.css">
       
       
 
@@ -42,9 +42,9 @@
       
     
     
-      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -69,7 +69,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#backup-and-restore" class="md-skip">
+        <a href="#backup-and-restore-by-using-mo-dump" class="md-skip">
           Skip to content
         </a>
       
@@ -91,7 +91,7 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="https://www.matrixorigin.io" title="MatrixOne Docs" class="md-header__button md-logo" aria-label="MatrixOne Docs" data-md-component="logo">
       
-  <img src="../../../assets/new-logo.png" alt="logo">
+  <img src="../../../../assets/new-logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -107,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Backup and Restore
+              Backup and Restore by using mo-dump
             
           </span>
         </div>
@@ -209,7 +209,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../.." class="md-tabs__link md-tabs__link--active">
+      <a href="../../../.." class="md-tabs__link md-tabs__link--active">
         MatrixOne
       </a>
     </li>
@@ -245,7 +245,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href="https://www.matrixorigin.io" title="MatrixOne Docs" class="md-nav__button md-logo" aria-label="MatrixOne Docs" data-md-component="logo">
       
-  <img src="../../../assets/new-logo.png" alt="logo">
+  <img src="../../../../assets/new-logo.png" alt="logo">
 
     </a>
     MatrixOne Docs
@@ -302,7 +302,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../.." class="md-nav__link">
+      <a href="../../../.." class="md-nav__link">
         Home
       </a>
     </li>
@@ -343,7 +343,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Overview/matrixone-introduction/" class="md-nav__link">
+      <a href="../../../Overview/matrixone-introduction/" class="md-nav__link">
         MatrixOne Introduction
       </a>
     </li>
@@ -357,7 +357,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Overview/matrixone-feature-list/" class="md-nav__link">
+      <a href="../../../Overview/matrixone-feature-list/" class="md-nav__link">
         MatrixOne Feature List
       </a>
     </li>
@@ -398,7 +398,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Overview/feature/key-feature-htap/" class="md-nav__link">
+      <a href="../../../Overview/feature/key-feature-htap/" class="md-nav__link">
         HTAP
       </a>
     </li>
@@ -412,7 +412,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Overview/feature/key-feature-multi-accounts/" class="md-nav__link">
+      <a href="../../../Overview/feature/key-feature-multi-accounts/" class="md-nav__link">
         Multi-Account
       </a>
     </li>
@@ -426,7 +426,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Overview/feature/scalability/" class="md-nav__link">
+      <a href="../../../Overview/feature/scalability/" class="md-nav__link">
         Scalability
       </a>
     </li>
@@ -440,7 +440,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Overview/feature/cost-effective/" class="md-nav__link">
+      <a href="../../../Overview/feature/cost-effective/" class="md-nav__link">
         Cost-Effective
       </a>
     </li>
@@ -454,7 +454,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Overview/feature/high-availability/" class="md-nav__link">
+      <a href="../../../Overview/feature/high-availability/" class="md-nav__link">
         High Availability
       </a>
     </li>
@@ -468,7 +468,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Overview/feature/mysql-compatibility/" class="md-nav__link">
+      <a href="../../../Overview/feature/mysql-compatibility/" class="md-nav__link">
         MySQL Compatibility
       </a>
     </li>
@@ -516,7 +516,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Overview/architecture/matrixone-architecture-design/" class="md-nav__link">
+      <a href="../../../Overview/architecture/matrixone-architecture-design/" class="md-nav__link">
         Architecture Design Overview
       </a>
     </li>
@@ -530,7 +530,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Overview/architecture/architecture-tae/" class="md-nav__link">
+      <a href="../../../Overview/architecture/architecture-tae/" class="md-nav__link">
         Transactional Analytical Engine Architecture
       </a>
     </li>
@@ -544,7 +544,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Overview/architecture/architecture-logservice/" class="md-nav__link">
+      <a href="../../../Overview/architecture/architecture-logservice/" class="md-nav__link">
         Detailed Logservice Architecture
       </a>
     </li>
@@ -558,7 +558,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Overview/architecture/architecture-proxy/" class="md-nav__link">
+      <a href="../../../Overview/architecture/architecture-proxy/" class="md-nav__link">
         Detailed Proxy Architecture
       </a>
     </li>
@@ -572,7 +572,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Overview/architecture/architecture-cold-hot-data-separation/" class="md-nav__link">
+      <a href="../../../Overview/architecture/architecture-cold-hot-data-separation/" class="md-nav__link">
         Detailed Caching and Hot-Cold Data Separation Architecture
       </a>
     </li>
@@ -586,7 +586,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Overview/architecture/streaming/" class="md-nav__link">
+      <a href="../../../Overview/architecture/streaming/" class="md-nav__link">
         Detailed Stream Engine Architecture
       </a>
     </li>
@@ -607,7 +607,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Overview/whats-new/" class="md-nav__link">
+      <a href="../../../Overview/whats-new/" class="md-nav__link">
         What's New
       </a>
     </li>
@@ -682,7 +682,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Get-Started/install-standalone-matrixone/" class="md-nav__link">
+      <a href="../../../Get-Started/install-standalone-matrixone/" class="md-nav__link">
         Overview
       </a>
     </li>
@@ -723,7 +723,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Get-Started/install-on-macos/install-on-macos-method1/" class="md-nav__link">
+      <a href="../../../Get-Started/install-on-macos/install-on-macos-method1/" class="md-nav__link">
         Building from source code
       </a>
     </li>
@@ -737,7 +737,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Get-Started/install-on-macos/install-on-macos-method2/" class="md-nav__link">
+      <a href="../../../Get-Started/install-on-macos/install-on-macos-method2/" class="md-nav__link">
         Using binary package
       </a>
     </li>
@@ -751,7 +751,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Get-Started/install-on-macos/install-on-macos-method3/" class="md-nav__link">
+      <a href="../../../Get-Started/install-on-macos/install-on-macos-method3/" class="md-nav__link">
         Using Docker
       </a>
     </li>
@@ -799,7 +799,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Get-Started/install-on-linux/install-on-linux-method1/" class="md-nav__link">
+      <a href="../../../Get-Started/install-on-linux/install-on-linux-method1/" class="md-nav__link">
         Building from source code
       </a>
     </li>
@@ -813,7 +813,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Get-Started/install-on-linux/install-on-linux-method2/" class="md-nav__link">
+      <a href="../../../Get-Started/install-on-linux/install-on-linux-method2/" class="md-nav__link">
         Using binary package
       </a>
     </li>
@@ -827,7 +827,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Get-Started/install-on-linux/install-on-linux-method3/" class="md-nav__link">
+      <a href="../../../Get-Started/install-on-linux/install-on-linux-method3/" class="md-nav__link">
         Using Docker
       </a>
     </li>
@@ -855,7 +855,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Get-Started/basic-sql/" class="md-nav__link">
+      <a href="../../../Get-Started/basic-sql/" class="md-nav__link">
         Basic SQL
       </a>
     </li>
@@ -930,7 +930,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/connect-mo/database-client-tools/" class="md-nav__link">
+      <a href="../../../Develop/connect-mo/database-client-tools/" class="md-nav__link">
         Connecting to MatrixOne with Database Client Tool
       </a>
     </li>
@@ -971,7 +971,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/connect-mo/java-connect-to-matrixone/connect-mo-with-jdbc/" class="md-nav__link">
+      <a href="../../../Develop/connect-mo/java-connect-to-matrixone/connect-mo-with-jdbc/" class="md-nav__link">
         Connect MatrixOne with JDBC
       </a>
     </li>
@@ -985,7 +985,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/connect-mo/java-connect-to-matrixone/connect-mo-with-orm/" class="md-nav__link">
+      <a href="../../../Develop/connect-mo/java-connect-to-matrixone/connect-mo-with-orm/" class="md-nav__link">
         Connect MatrixOne with Java ORMs
       </a>
     </li>
@@ -1006,7 +1006,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/connect-mo/python-connect-to-matrixone/" class="md-nav__link">
+      <a href="../../../Develop/connect-mo/python-connect-to-matrixone/" class="md-nav__link">
         Python connect to MatrixOne
       </a>
     </li>
@@ -1020,7 +1020,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/connect-mo/connect-to-matrixone-with-go/" class="md-nav__link">
+      <a href="../../../Develop/connect-mo/connect-to-matrixone-with-go/" class="md-nav__link">
         Connecting to MatrixOne with Golang
       </a>
     </li>
@@ -1034,7 +1034,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/connect-mo/configure-mo-ssl-connection/" class="md-nav__link">
+      <a href="../../../Develop/connect-mo/configure-mo-ssl-connection/" class="md-nav__link">
         MatrixOne SSL connection
       </a>
     </li>
@@ -1082,7 +1082,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/schema-design/overview/" class="md-nav__link">
+      <a href="../../../Develop/schema-design/overview/" class="md-nav__link">
         Overview
       </a>
     </li>
@@ -1096,7 +1096,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/schema-design/create-database/" class="md-nav__link">
+      <a href="../../../Develop/schema-design/create-database/" class="md-nav__link">
         Create Database
       </a>
     </li>
@@ -1110,7 +1110,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/schema-design/create-table/" class="md-nav__link">
+      <a href="../../../Develop/schema-design/create-table/" class="md-nav__link">
         Create Table
       </a>
     </li>
@@ -1124,7 +1124,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/schema-design/create-view/" class="md-nav__link">
+      <a href="../../../Develop/schema-design/create-view/" class="md-nav__link">
         Create View
       </a>
     </li>
@@ -1138,7 +1138,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/schema-design/create-temporary-table/" class="md-nav__link">
+      <a href="../../../Develop/schema-design/create-temporary-table/" class="md-nav__link">
         Create Temporary Table
       </a>
     </li>
@@ -1152,7 +1152,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/schema-design/create-secondary-index/" class="md-nav__link">
+      <a href="../../../Develop/schema-design/create-secondary-index/" class="md-nav__link">
         Create Secondary Index
       </a>
     </li>
@@ -1193,7 +1193,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/schema-design/data-integrity/overview-of-integrity-constraint-types/" class="md-nav__link">
+      <a href="../../../Develop/schema-design/data-integrity/overview-of-integrity-constraint-types/" class="md-nav__link">
         Data Integrity Constraints Overview
       </a>
     </li>
@@ -1207,7 +1207,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/schema-design/data-integrity/not-null-constraints/" class="md-nav__link">
+      <a href="../../../Develop/schema-design/data-integrity/not-null-constraints/" class="md-nav__link">
         NOT NULL Constraints
       </a>
     </li>
@@ -1221,7 +1221,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/schema-design/data-integrity/unique-key-constraints/" class="md-nav__link">
+      <a href="../../../Develop/schema-design/data-integrity/unique-key-constraints/" class="md-nav__link">
         UNIQUE KEY Constraints
       </a>
     </li>
@@ -1235,7 +1235,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/schema-design/data-integrity/primary-key-constraints/" class="md-nav__link">
+      <a href="../../../Develop/schema-design/data-integrity/primary-key-constraints/" class="md-nav__link">
         PRIMARY KEY Constraints
       </a>
     </li>
@@ -1249,7 +1249,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/schema-design/data-integrity/foreign-key-constraints/" class="md-nav__link">
+      <a href="../../../Develop/schema-design/data-integrity/foreign-key-constraints/" class="md-nav__link">
         FOREIGN KEY Constraints
       </a>
     </li>
@@ -1263,7 +1263,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/schema-design/data-integrity/auto-increment-integrity/" class="md-nav__link">
+      <a href="../../../Develop/schema-design/data-integrity/auto-increment-integrity/" class="md-nav__link">
         AUTO INCREMENT Constraints
       </a>
     </li>
@@ -1345,7 +1345,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/import-data/insert-data/" class="md-nav__link">
+      <a href="../../../Develop/import-data/insert-data/" class="md-nav__link">
         Insert
       </a>
     </li>
@@ -1386,7 +1386,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/import-data/bulk-load/bulk-load-overview/" class="md-nav__link">
+      <a href="../../../Develop/import-data/bulk-load/bulk-load-overview/" class="md-nav__link">
         Bulk Load Overview
       </a>
     </li>
@@ -1400,7 +1400,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/import-data/bulk-load/load-csv/" class="md-nav__link">
+      <a href="../../../Develop/import-data/bulk-load/load-csv/" class="md-nav__link">
         Load csv format data
       </a>
     </li>
@@ -1414,7 +1414,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/import-data/bulk-load/load-jsonline/" class="md-nav__link">
+      <a href="../../../Develop/import-data/bulk-load/load-jsonline/" class="md-nav__link">
         Load jsonlines format data
       </a>
     </li>
@@ -1428,7 +1428,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/import-data/bulk-load/load-s3/" class="md-nav__link">
+      <a href="../../../Develop/import-data/bulk-load/load-s3/" class="md-nav__link">
         Load data from S3
       </a>
     </li>
@@ -1442,7 +1442,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/import-data/bulk-load/using-source/" class="md-nav__link">
+      <a href="../../../Develop/import-data/bulk-load/using-source/" class="md-nav__link">
         Load data by using the `source`
       </a>
     </li>
@@ -1470,7 +1470,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/import-data/update-data/" class="md-nav__link">
+      <a href="../../../Develop/import-data/update-data/" class="md-nav__link">
         Update Data
       </a>
     </li>
@@ -1484,7 +1484,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/import-data/delete-data/" class="md-nav__link">
+      <a href="../../../Develop/import-data/delete-data/" class="md-nav__link">
         Delete Data
       </a>
     </li>
@@ -1498,7 +1498,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/import-data/prepared/" class="md-nav__link">
+      <a href="../../../Develop/import-data/prepared/" class="md-nav__link">
         Prepared
       </a>
     </li>
@@ -1546,7 +1546,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/export-data/select-into-outfile/" class="md-nav__link">
+      <a href="../../../Develop/export-data/select-into-outfile/" class="md-nav__link">
         Export data by SELECT INTO
       </a>
     </li>
@@ -1560,7 +1560,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/export-data/modump/" class="md-nav__link">
+      <a href="../../../Develop/export-data/modump/" class="md-nav__link">
         Export data by MODUMP
       </a>
     </li>
@@ -1608,7 +1608,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/read-data/query-data-single-table/" class="md-nav__link">
+      <a href="../../../Develop/read-data/query-data-single-table/" class="md-nav__link">
         Query Data from a Single Table
       </a>
     </li>
@@ -1622,7 +1622,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/read-data/multitable-join-query/" class="md-nav__link">
+      <a href="../../../Develop/read-data/multitable-join-query/" class="md-nav__link">
         Multi-table Join Queries
       </a>
     </li>
@@ -1636,7 +1636,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/read-data/subquery/" class="md-nav__link">
+      <a href="../../../Develop/read-data/subquery/" class="md-nav__link">
         Subquery
       </a>
     </li>
@@ -1650,7 +1650,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/read-data/views/" class="md-nav__link">
+      <a href="../../../Develop/read-data/views/" class="md-nav__link">
         Views
       </a>
     </li>
@@ -1664,7 +1664,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/read-data/cte/" class="md-nav__link">
+      <a href="../../../Develop/read-data/cte/" class="md-nav__link">
         Common Table Expression
       </a>
     </li>
@@ -1678,7 +1678,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/read-data/window-function/" class="md-nav__link">
+      <a href="../../../Develop/read-data/window-function/" class="md-nav__link">
         Window Function.
       </a>
     </li>
@@ -1726,7 +1726,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/Publish-Subscribe/multi-account-overview/" class="md-nav__link">
+      <a href="../../../Develop/Publish-Subscribe/multi-account-overview/" class="md-nav__link">
         Multi-Account Overview
       </a>
     </li>
@@ -1740,7 +1740,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/Publish-Subscribe/pub-sub-overview/" class="md-nav__link">
+      <a href="../../../Develop/Publish-Subscribe/pub-sub-overview/" class="md-nav__link">
         Publish-Subscribe
       </a>
     </li>
@@ -1788,7 +1788,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/Transactions/common-transaction-overview/" class="md-nav__link">
+      <a href="../../../Develop/Transactions/common-transaction-overview/" class="md-nav__link">
         General Transaction Overview
       </a>
     </li>
@@ -1829,7 +1829,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/Transactions/matrixone-transaction-overview/overview/" class="md-nav__link">
+      <a href="../../../Develop/Transactions/matrixone-transaction-overview/overview/" class="md-nav__link">
         Transaction Overview
       </a>
     </li>
@@ -1843,7 +1843,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/Transactions/matrixone-transaction-overview/explicit-transaction/" class="md-nav__link">
+      <a href="../../../Develop/Transactions/matrixone-transaction-overview/explicit-transaction/" class="md-nav__link">
         Explicit Transaction
       </a>
     </li>
@@ -1857,7 +1857,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/Transactions/matrixone-transaction-overview/implicit-transaction/" class="md-nav__link">
+      <a href="../../../Develop/Transactions/matrixone-transaction-overview/implicit-transaction/" class="md-nav__link">
         Implicit Transaction
       </a>
     </li>
@@ -1871,7 +1871,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/Transactions/matrixone-transaction-overview/pessimistic-transaction/" class="md-nav__link">
+      <a href="../../../Develop/Transactions/matrixone-transaction-overview/pessimistic-transaction/" class="md-nav__link">
         Pessimistic Transaction
       </a>
     </li>
@@ -1885,7 +1885,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/Transactions/matrixone-transaction-overview/optimistic-transaction/" class="md-nav__link">
+      <a href="../../../Develop/Transactions/matrixone-transaction-overview/optimistic-transaction/" class="md-nav__link">
         Optimistic Transaction
       </a>
     </li>
@@ -1899,7 +1899,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/Transactions/matrixone-transaction-overview/isolation-level/" class="md-nav__link">
+      <a href="../../../Develop/Transactions/matrixone-transaction-overview/isolation-level/" class="md-nav__link">
         Isolation Level
       </a>
     </li>
@@ -1913,7 +1913,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/Transactions/matrixone-transaction-overview/mvcc/" class="md-nav__link">
+      <a href="../../../Develop/Transactions/matrixone-transaction-overview/mvcc/" class="md-nav__link">
         MVCC
       </a>
     </li>
@@ -1954,7 +1954,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/Transactions/matrixone-transaction-overview/how-to-use/" class="md-nav__link">
+      <a href="../../../Develop/Transactions/matrixone-transaction-overview/how-to-use/" class="md-nav__link">
         User Guide
       </a>
     </li>
@@ -1968,7 +1968,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Develop/Transactions/matrixone-transaction-overview/scenario/" class="md-nav__link">
+      <a href="../../../Develop/Transactions/matrixone-transaction-overview/scenario/" class="md-nav__link">
         Scenario
       </a>
     </li>
@@ -2030,7 +2030,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Tutorial/develop-java-crud-demo/" class="md-nav__link">
+      <a href="../../../Tutorial/develop-java-crud-demo/" class="md-nav__link">
         Java CRUD demo
       </a>
     </li>
@@ -2044,7 +2044,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Tutorial/springboot-hibernate-crud-demo/" class="md-nav__link">
+      <a href="../../../Tutorial/springboot-hibernate-crud-demo/" class="md-nav__link">
         SpringBoot and JPA CRUD demo
       </a>
     </li>
@@ -2058,7 +2058,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Tutorial/springboot-mybatis-crud-demo/" class="md-nav__link">
+      <a href="../../../Tutorial/springboot-mybatis-crud-demo/" class="md-nav__link">
         SpringBoot and MyBatis CRUD demo
       </a>
     </li>
@@ -2072,7 +2072,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Tutorial/develop-python-crud-demo/" class="md-nav__link">
+      <a href="../../../Tutorial/develop-python-crud-demo/" class="md-nav__link">
         Python CRUD demo
       </a>
     </li>
@@ -2086,7 +2086,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Tutorial/sqlalchemy-python-crud-demo/" class="md-nav__link">
+      <a href="../../../Tutorial/sqlalchemy-python-crud-demo/" class="md-nav__link">
         SQLAlchemy CRUD demo
       </a>
     </li>
@@ -2100,7 +2100,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Tutorial/develop-golang-crud-demo/" class="md-nav__link">
+      <a href="../../../Tutorial/develop-golang-crud-demo/" class="md-nav__link">
         Golang CRUD demo
       </a>
     </li>
@@ -2114,7 +2114,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Tutorial/gorm-golang-crud-demo/" class="md-nav__link">
+      <a href="../../../Tutorial/gorm-golang-crud-demo/" class="md-nav__link">
         Gorm CRUD demo
       </a>
     </li>
@@ -2196,7 +2196,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Deploy/deployment-topology/topology-overview/" class="md-nav__link">
+      <a href="../../../Deploy/deployment-topology/topology-overview/" class="md-nav__link">
         Cluster Topology Planning Overview
       </a>
     </li>
@@ -2210,7 +2210,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Deploy/deployment-topology/experience-deployment-topology/" class="md-nav__link">
+      <a href="../../../Deploy/deployment-topology/experience-deployment-topology/" class="md-nav__link">
         Experience Environment Deployment Plan
       </a>
     </li>
@@ -2224,7 +2224,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Deploy/deployment-topology/minimal-deployment-topology/" class="md-nav__link">
+      <a href="../../../Deploy/deployment-topology/minimal-deployment-topology/" class="md-nav__link">
         Minimum Production Environment Deployment Plan
       </a>
     </li>
@@ -2238,7 +2238,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Deploy/deployment-topology/recommended-prd-deployment-topology/" class="md-nav__link">
+      <a href="../../../Deploy/deployment-topology/recommended-prd-deployment-topology/" class="md-nav__link">
         Recommended Production Environment Deployment Plan
       </a>
     </li>
@@ -2259,7 +2259,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Deploy/deploy-MatrixOne-cluster/" class="md-nav__link">
+      <a href="../../../Deploy/deploy-MatrixOne-cluster/" class="md-nav__link">
         MatrixOne distributed cluster deployment
       </a>
     </li>
@@ -2300,7 +2300,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Deploy/MatrixOne-start-stop/" class="md-nav__link">
+      <a href="../../../Deploy/MatrixOne-start-stop/" class="md-nav__link">
         Starting and stopping
       </a>
     </li>
@@ -2314,7 +2314,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Deploy/update-MatrixOne-cluster/" class="md-nav__link">
+      <a href="../../../Deploy/update-MatrixOne-cluster/" class="md-nav__link">
         Updating
       </a>
     </li>
@@ -2328,7 +2328,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Deploy/health-check-resource-monitoring/" class="md-nav__link">
+      <a href="../../../Deploy/health-check-resource-monitoring/" class="md-nav__link">
         Health check and resource monitoring
       </a>
     </li>
@@ -2342,7 +2342,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Deploy/MatrixOne-cluster-Scale/" class="md-nav__link">
+      <a href="../../../Deploy/MatrixOne-cluster-Scale/" class="md-nav__link">
         Scaling
       </a>
     </li>
@@ -2356,7 +2356,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Deploy/mgmt-cn-group-using-proxy/" class="md-nav__link">
+      <a href="../../../Deploy/mgmt-cn-group-using-proxy/" class="md-nav__link">
         Managing CN Groups with Proxy
       </a>
     </li>
@@ -2370,7 +2370,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Deploy/import-data-from-minio-to-mo/" class="md-nav__link">
+      <a href="../../../Deploy/import-data-from-minio-to-mo/" class="md-nav__link">
         Import data from local Minio to MatrixOne
       </a>
     </li>
@@ -2384,7 +2384,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Deploy/MatrixOne-Operator-mgmt/" class="md-nav__link">
+      <a href="../../../Deploy/MatrixOne-Operator-mgmt/" class="md-nav__link">
         Operator Management
       </a>
     </li>
@@ -2442,6 +2442,63 @@
     
   
   
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_6_1" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_6_1" id="__nav_1_6_1_label" tabindex="0">
+          Backup and Restore
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_1_6_1_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_1_6_1">
+          <span class="md-nav__icon md-icon"></span>
+          Backup and Restore
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../backup-restore-overview/" class="md-nav__link">
+        MatrixOne Backup and Recovery Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../key-concepts/" class="md-nav__link">
+        Backup and Recovery Concepts
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
     <li class="md-nav__item md-nav__item--active">
       
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
@@ -2451,12 +2508,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Backup and Restore
+          Backup and Restore by using mo-dump
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Backup and Restore
+        Backup and Restore by using mo-dump
       </a>
       
         
@@ -2517,6 +2574,13 @@
 
             
           
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
             
               
   
@@ -2550,7 +2614,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../mount-data-by-docker/" class="md-nav__link">
+      <a href="../../mount-data-by-docker/" class="md-nav__link">
         Mount directory to Docker container
       </a>
     </li>
@@ -2605,7 +2669,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Migrate/migrate-overview/" class="md-nav__link">
+      <a href="../../../Migrate/migrate-overview/" class="md-nav__link">
         Migrate data to MatrixOne Overview
       </a>
     </li>
@@ -2619,7 +2683,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Migrate/migrate-from-mysql-to-matrixone/" class="md-nav__link">
+      <a href="../../../Migrate/migrate-from-mysql-to-matrixone/" class="md-nav__link">
         Migrate data from MySQL to MatrixOne
       </a>
     </li>
@@ -2633,7 +2697,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Migrate/migrate-from-oracle-to-matrixone/" class="md-nav__link">
+      <a href="../../../Migrate/migrate-from-oracle-to-matrixone/" class="md-nav__link">
         Migrate data from SQL Server to MatrixOne
       </a>
     </li>
@@ -2647,7 +2711,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Migrate/migrate-from-sqlserver-to-matrixone/" class="md-nav__link">
+      <a href="../../../Migrate/migrate-from-sqlserver-to-matrixone/" class="md-nav__link">
         Migrate data from SQL Server to MatrixOne
       </a>
     </li>
@@ -2661,7 +2725,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Migrate/migrate-from-postgresql-to-matrixone/" class="md-nav__link">
+      <a href="../../../Migrate/migrate-from-postgresql-to-matrixone/" class="md-nav__link">
         Migrate data from PostgreSQL to MatrixOne
       </a>
     </li>
@@ -2736,7 +2800,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Test/performance-testing/SSB-test-with-matrixone/" class="md-nav__link">
+      <a href="../../../Test/performance-testing/SSB-test-with-matrixone/" class="md-nav__link">
         SSB Test with MatrixOne
       </a>
     </li>
@@ -2750,7 +2814,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Test/performance-testing/TPCH-test-with-matrixone/" class="md-nav__link">
+      <a href="../../../Test/performance-testing/TPCH-test-with-matrixone/" class="md-nav__link">
         TPCH Test with MatrixOne
       </a>
     </li>
@@ -2764,7 +2828,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Test/performance-testing/TPCC-test-with-matrixone/" class="md-nav__link">
+      <a href="../../../Test/performance-testing/TPCC-test-with-matrixone/" class="md-nav__link">
         TPCC Test with MatrixOne
       </a>
     </li>
@@ -2812,7 +2876,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Test/testing-tool/mo-tester/" class="md-nav__link">
+      <a href="../../../Test/testing-tool/mo-tester/" class="md-nav__link">
         MO-Tester
       </a>
     </li>
@@ -2826,7 +2890,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Test/testing-tool/mo-tester-reference/" class="md-nav__link">
+      <a href="../../../Test/testing-tool/mo-tester-reference/" class="md-nav__link">
         MO-Tester Specification
       </a>
     </li>
@@ -2881,7 +2945,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Performance-Tuning/performance-tuning-overview/" class="md-nav__link">
+      <a href="../../../Performance-Tuning/performance-tuning-overview/" class="md-nav__link">
         SQL Performance Tuning Methods Overview
       </a>
     </li>
@@ -2922,7 +2986,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Performance-Tuning/explain/explain-overview/" class="md-nav__link">
+      <a href="../../../Performance-Tuning/explain/explain-overview/" class="md-nav__link">
         Query Execution Plan Overview
       </a>
     </li>
@@ -2936,7 +3000,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Performance-Tuning/explain/explain-walkthrough/" class="md-nav__link">
+      <a href="../../../Performance-Tuning/explain/explain-walkthrough/" class="md-nav__link">
         Using EXPLAIN to learn the execution plan
       </a>
     </li>
@@ -2950,7 +3014,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Performance-Tuning/explain/explain-joins/" class="md-nav__link">
+      <a href="../../../Performance-Tuning/explain/explain-joins/" class="md-nav__link">
         Explain Statements Using JOIN
       </a>
     </li>
@@ -2964,7 +3028,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Performance-Tuning/explain/explain-subqueries/" class="md-nav__link">
+      <a href="../../../Performance-Tuning/explain/explain-subqueries/" class="md-nav__link">
         Explain Statements Using Subqueries
       </a>
     </li>
@@ -2978,7 +3042,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Performance-Tuning/explain/explain-aggregation/" class="md-nav__link">
+      <a href="../../../Performance-Tuning/explain/explain-aggregation/" class="md-nav__link">
         Explain Statements Using Aggregation
       </a>
     </li>
@@ -2992,7 +3056,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Performance-Tuning/explain/explain-views/" class="md-nav__link">
+      <a href="../../../Performance-Tuning/explain/explain-views/" class="md-nav__link">
         EXPLAIN Statements Using Views
       </a>
     </li>
@@ -3040,7 +3104,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Performance-Tuning/optimization-concepts/through-cluster-by/" class="md-nav__link">
+      <a href="../../../Performance-Tuning/optimization-concepts/through-cluster-by/" class="md-nav__link">
         Using Cluster by for performance tuning
       </a>
     </li>
@@ -3054,7 +3118,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Performance-Tuning/optimization-concepts/through-CN-extensions/" class="md-nav__link">
+      <a href="../../../Performance-Tuning/optimization-concepts/through-CN-extensions/" class="md-nav__link">
         Scaling CN for better performance
       </a>
     </li>
@@ -3109,7 +3173,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Security/Security-Permission-Overview/" class="md-nav__link">
+      <a href="../../../Security/Security-Permission-Overview/" class="md-nav__link">
         Security and Permissions Overview
       </a>
     </li>
@@ -3123,7 +3187,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Security/Authentication/" class="md-nav__link">
+      <a href="../../../Security/Authentication/" class="md-nav__link">
         Authentication and Authorization
       </a>
     </li>
@@ -3137,7 +3201,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Security/password-mgmt/" class="md-nav__link">
+      <a href="../../../Security/password-mgmt/" class="md-nav__link">
         Password Management
       </a>
     </li>
@@ -3178,7 +3242,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Security/role-priviledge-management/about-privilege-management/" class="md-nav__link">
+      <a href="../../../Security/role-priviledge-management/about-privilege-management/" class="md-nav__link">
         About MatrixOne Privilege Management
       </a>
     </li>
@@ -3192,7 +3256,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Security/role-priviledge-management/app-scenarios/" class="md-nav__link">
+      <a href="../../../Security/role-priviledge-management/app-scenarios/" class="md-nav__link">
         Privilege Management Scenario
       </a>
     </li>
@@ -3206,7 +3270,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Security/role-priviledge-management/best-practice/" class="md-nav__link">
+      <a href="../../../Security/role-priviledge-management/best-practice/" class="md-nav__link">
         Best Practices
       </a>
     </li>
@@ -3254,7 +3318,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Security/how-tos/user-guide/" class="md-nav__link">
+      <a href="../../../Security/how-tos/user-guide/" class="md-nav__link">
         Privileges Management Overview
       </a>
     </li>
@@ -3268,7 +3332,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Security/how-tos/quick-start-create-account/" class="md-nav__link">
+      <a href="../../../Security/how-tos/quick-start-create-account/" class="md-nav__link">
         Create accounts, Verify Resource Isolation
       </a>
     </li>
@@ -3282,7 +3346,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Security/how-tos/quick-start-create-user/" class="md-nav__link">
+      <a href="../../../Security/how-tos/quick-start-create-user/" class="md-nav__link">
         Use the new account to creates users, roles, grant the privilege
       </a>
     </li>
@@ -3303,7 +3367,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Security/TLS-introduction/" class="md-nav__link">
+      <a href="../../../Security/TLS-introduction/" class="md-nav__link">
         Data Transmission Encryption
       </a>
     </li>
@@ -3317,7 +3381,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Security/audit/" class="md-nav__link">
+      <a href="../../../Security/audit/" class="md-nav__link">
         Security Audit
       </a>
     </li>
@@ -3392,7 +3456,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Variable/system-variables/system-variables-overview/" class="md-nav__link">
+      <a href="../../../Reference/Variable/system-variables/system-variables-overview/" class="md-nav__link">
         System Variables Overview
       </a>
     </li>
@@ -3433,7 +3497,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Variable/system-variables/sql-mode/" class="md-nav__link">
+      <a href="../../../Reference/Variable/system-variables/sql-mode/" class="md-nav__link">
         SQL Mode
       </a>
     </li>
@@ -3447,7 +3511,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Variable/system-variables/save_query_result/" class="md-nav__link">
+      <a href="../../../Reference/Variable/system-variables/save_query_result/" class="md-nav__link">
         Save query result support
       </a>
     </li>
@@ -3461,7 +3525,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Variable/system-variables/timezone/" class="md-nav__link">
+      <a href="../../../Reference/Variable/system-variables/timezone/" class="md-nav__link">
         Timezone support
       </a>
     </li>
@@ -3475,7 +3539,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Variable/system-variables/lower_case_tables_name/" class="md-nav__link">
+      <a href="../../../Reference/Variable/system-variables/lower_case_tables_name/" class="md-nav__link">
         Lowercase table names support
       </a>
     </li>
@@ -3496,7 +3560,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Variable/custom-variable/" class="md-nav__link">
+      <a href="../../../Reference/Variable/custom-variable/" class="md-nav__link">
         Custom variable
       </a>
     </li>
@@ -3544,7 +3608,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Language-Structure/keywords/" class="md-nav__link">
+      <a href="../../../Reference/Language-Structure/keywords/" class="md-nav__link">
         Keywords
       </a>
     </li>
@@ -3558,7 +3622,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Language-Structure/comment/" class="md-nav__link">
+      <a href="../../../Reference/Language-Structure/comment/" class="md-nav__link">
         Comments
       </a>
     </li>
@@ -3606,7 +3670,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Data-Types/data-types/" class="md-nav__link">
+      <a href="../../../Reference/Data-Types/data-types/" class="md-nav__link">
         Data Types Overview
       </a>
     </li>
@@ -3620,7 +3684,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Data-Types/data-type-conversion/" class="md-nav__link">
+      <a href="../../../Reference/Data-Types/data-type-conversion/" class="md-nav__link">
         Data Type Conversion
       </a>
     </li>
@@ -3661,7 +3725,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Data-Types/date-time-data-types/timestamp-initialization/" class="md-nav__link">
+      <a href="../../../Reference/Data-Types/date-time-data-types/timestamp-initialization/" class="md-nav__link">
         Timestamp Initialization
       </a>
     </li>
@@ -3675,7 +3739,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Data-Types/date-time-data-types/year-type/" class="md-nav__link">
+      <a href="../../../Reference/Data-Types/date-time-data-types/year-type/" class="md-nav__link">
         YEAR Type
       </a>
     </li>
@@ -3696,7 +3760,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Data-Types/json-type/" class="md-nav__link">
+      <a href="../../../Reference/Data-Types/json-type/" class="md-nav__link">
         JSON Data Type
       </a>
     </li>
@@ -3710,7 +3774,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Data-Types/blob-text-type/" class="md-nav__link">
+      <a href="../../../Reference/Data-Types/blob-text-type/" class="md-nav__link">
         BLOB and TEXT Type
       </a>
     </li>
@@ -3724,7 +3788,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Data-Types/enum-type/" class="md-nav__link">
+      <a href="../../../Reference/Data-Types/enum-type/" class="md-nav__link">
         ENUM Type
       </a>
     </li>
@@ -3738,7 +3802,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Data-Types/uuid-type/" class="md-nav__link">
+      <a href="../../../Reference/Data-Types/uuid-type/" class="md-nav__link">
         UUID Type
       </a>
     </li>
@@ -3752,7 +3816,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Data-Types/fixed-point-types/" class="md-nav__link">
+      <a href="../../../Reference/Data-Types/fixed-point-types/" class="md-nav__link">
         Fixed-Point Types (Exact Value) - DECIMAL
       </a>
     </li>
@@ -3827,7 +3891,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Definition-Language/create-database/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Language/create-database/" class="md-nav__link">
         CREATE DATABASE
       </a>
     </li>
@@ -3841,7 +3905,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Definition-Language/create-index/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Language/create-index/" class="md-nav__link">
         CREATE INDEX
       </a>
     </li>
@@ -3855,7 +3919,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Definition-Language/create-table/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Language/create-table/" class="md-nav__link">
         CREATE TABLE
       </a>
     </li>
@@ -3869,7 +3933,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Definition-Language/create-external-table/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Language/create-external-table/" class="md-nav__link">
         CREATE EXTERNAL TABLE
       </a>
     </li>
@@ -3883,7 +3947,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Definition-Language/create-publication/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Language/create-publication/" class="md-nav__link">
         CREATE PUBLICATION
       </a>
     </li>
@@ -3897,7 +3961,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Definition-Language/create-sequence/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Language/create-sequence/" class="md-nav__link">
         CREATE SEQUENCE
       </a>
     </li>
@@ -3911,7 +3975,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Definition-Language/create-stage/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Language/create-stage/" class="md-nav__link">
         CREATE STAGE
       </a>
     </li>
@@ -3925,7 +3989,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Definition-Language/create-subscription/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Language/create-subscription/" class="md-nav__link">
         CREATE...FROM...PUBLICATION...
       </a>
     </li>
@@ -3939,7 +4003,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Definition-Language/create-view/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Language/create-view/" class="md-nav__link">
         CREATE VIEW
       </a>
     </li>
@@ -3953,7 +4017,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Definition-Language/alter-table/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Language/alter-table/" class="md-nav__link">
         ALTER TABLE
       </a>
     </li>
@@ -3967,7 +4031,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Definition-Language/alter-publication/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Language/alter-publication/" class="md-nav__link">
         ALTER PUBLICATION
       </a>
     </li>
@@ -3981,7 +4045,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Definition-Language/alter-stage/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Language/alter-stage/" class="md-nav__link">
         ALTER STAGE
       </a>
     </li>
@@ -3995,7 +4059,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Definition-Language/alter-view/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Language/alter-view/" class="md-nav__link">
         ALTER VIEW
       </a>
     </li>
@@ -4009,7 +4073,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Definition-Language/drop-database/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Language/drop-database/" class="md-nav__link">
         DROP DATABASE
       </a>
     </li>
@@ -4023,7 +4087,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Definition-Language/drop-index/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Language/drop-index/" class="md-nav__link">
         DROP INDEX
       </a>
     </li>
@@ -4037,7 +4101,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Definition-Language/drop-table/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Language/drop-table/" class="md-nav__link">
         DROP TABLE
       </a>
     </li>
@@ -4051,7 +4115,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Definition-Language/drop-publication/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Language/drop-publication/" class="md-nav__link">
         DROP PUBLICATION
       </a>
     </li>
@@ -4065,7 +4129,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Definition-Language/drop-sequence/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Language/drop-sequence/" class="md-nav__link">
         DROP SEQUENCE
       </a>
     </li>
@@ -4079,7 +4143,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Definition-Language/drop-stage/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Language/drop-stage/" class="md-nav__link">
         DROP STAGE
       </a>
     </li>
@@ -4093,7 +4157,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Definition-Language/drop-view/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Language/drop-view/" class="md-nav__link">
         DROP VIEW
       </a>
     </li>
@@ -4107,7 +4171,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Definition-Language/truncate-table/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Language/truncate-table/" class="md-nav__link">
         TRUNCATE TABLE
       </a>
     </li>
@@ -4155,7 +4219,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/insert/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/insert/" class="md-nav__link">
         INSERT
       </a>
     </li>
@@ -4169,7 +4233,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/insert-into-select/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/insert-into-select/" class="md-nav__link">
         INSERT INTO SELECT
       </a>
     </li>
@@ -4183,7 +4247,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/insert-on-duplicate/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/insert-on-duplicate/" class="md-nav__link">
         INSERT ON DUPLICATE KEY UPDATE
       </a>
     </li>
@@ -4197,7 +4261,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/delete/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/delete/" class="md-nav__link">
         DELETE
       </a>
     </li>
@@ -4211,7 +4275,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/update/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/update/" class="md-nav__link">
         UPDATE
       </a>
     </li>
@@ -4225,7 +4289,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/load-data/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/load-data/" class="md-nav__link">
         LOAD DATA
       </a>
     </li>
@@ -4239,7 +4303,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/replace/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/replace/" class="md-nav__link">
         REPLACE
       </a>
     </li>
@@ -4280,7 +4344,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/information-functions/last-query-id/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/information-functions/last-query-id/" class="md-nav__link">
         LAST_QUERY_ID()
       </a>
     </li>
@@ -4294,7 +4358,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Manipulation-Language/information-functions/last-insert-id/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Language/information-functions/last-insert-id/" class="md-nav__link">
         LAST_INSERT_ID()
       </a>
     </li>
@@ -4349,7 +4413,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Query-Language/select/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Query-Language/select/" class="md-nav__link">
         SELECT
       </a>
     </li>
@@ -4390,7 +4454,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Query-Language/subqueries/subquery/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Query-Language/subqueries/subquery/" class="md-nav__link">
         SUBQUERY Overview
       </a>
     </li>
@@ -4404,7 +4468,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Query-Language/subqueries/derived-tables/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Query-Language/subqueries/derived-tables/" class="md-nav__link">
         Derived Tables
       </a>
     </li>
@@ -4418,7 +4482,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Query-Language/subqueries/comparisons-using-subqueries/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Query-Language/subqueries/comparisons-using-subqueries/" class="md-nav__link">
         Comparisons Using Subqueries
       </a>
     </li>
@@ -4432,7 +4496,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Query-Language/subqueries/subquery-with-any-some/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Query-Language/subqueries/subquery-with-any-some/" class="md-nav__link">
         SUBQUERY with ANY or SOME
       </a>
     </li>
@@ -4446,7 +4510,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Query-Language/subqueries/subquery-with-all/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Query-Language/subqueries/subquery-with-all/" class="md-nav__link">
         SUBQUERY with ALL
       </a>
     </li>
@@ -4460,7 +4524,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Query-Language/subqueries/subquery-with-exists/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Query-Language/subqueries/subquery-with-exists/" class="md-nav__link">
         SUBQUERY with EXISTS
       </a>
     </li>
@@ -4474,7 +4538,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Query-Language/subqueries/subquery-with-in/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Query-Language/subqueries/subquery-with-in/" class="md-nav__link">
         SUBQUERY with IN
       </a>
     </li>
@@ -4522,7 +4586,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Query-Language/join/join/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Query-Language/join/join/" class="md-nav__link">
         JOIN Overview
       </a>
     </li>
@@ -4536,7 +4600,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Query-Language/join/inner-join/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Query-Language/join/inner-join/" class="md-nav__link">
         INNER JOIN
       </a>
     </li>
@@ -4550,7 +4614,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Query-Language/join/left-join/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Query-Language/join/left-join/" class="md-nav__link">
         LEFT JOIN
       </a>
     </li>
@@ -4564,7 +4628,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Query-Language/join/right-join/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Query-Language/join/right-join/" class="md-nav__link">
         RIGHT JOIN
       </a>
     </li>
@@ -4578,7 +4642,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Query-Language/join/full-join/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Query-Language/join/full-join/" class="md-nav__link">
         FULL JOIN
       </a>
     </li>
@@ -4592,7 +4656,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Query-Language/join/outer-join/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Query-Language/join/outer-join/" class="md-nav__link">
         OUTER JOIN
       </a>
     </li>
@@ -4606,7 +4670,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Query-Language/join/natural-join/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Query-Language/join/natural-join/" class="md-nav__link">
         NATURAL JOIN
       </a>
     </li>
@@ -4627,7 +4691,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Query-Language/with-cte/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Query-Language/with-cte/" class="md-nav__link">
         With CTE
       </a>
     </li>
@@ -4668,7 +4732,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Query-Language/union-intersect-minus-overview/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Query-Language/union-intersect-minus-overview/" class="md-nav__link">
         Combining Queries Overview
       </a>
     </li>
@@ -4682,7 +4746,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Query-Language/union/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Query-Language/union/" class="md-nav__link">
         UNION
       </a>
     </li>
@@ -4696,7 +4760,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Query-Language/intersect/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Query-Language/intersect/" class="md-nav__link">
         INTERSECT
       </a>
     </li>
@@ -4710,7 +4774,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Query-Language/minus/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Query-Language/minus/" class="md-nav__link">
         MINUS
       </a>
     </li>
@@ -4765,7 +4829,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Control-Language/create-account/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Control-Language/create-account/" class="md-nav__link">
         CREATE ACCOUNT
       </a>
     </li>
@@ -4779,7 +4843,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Control-Language/alter-account/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Control-Language/alter-account/" class="md-nav__link">
         ALTER ACCOUNT
       </a>
     </li>
@@ -4793,7 +4857,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Control-Language/create-role/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Control-Language/create-role/" class="md-nav__link">
         CREATE ROLE
       </a>
     </li>
@@ -4807,7 +4871,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Control-Language/create-user/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Control-Language/create-user/" class="md-nav__link">
         CREATE USER
       </a>
     </li>
@@ -4821,7 +4885,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Control-Language/alter-user/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Control-Language/alter-user/" class="md-nav__link">
         ALTER USER
       </a>
     </li>
@@ -4835,7 +4899,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Control-Language/drop-account/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Control-Language/drop-account/" class="md-nav__link">
         DROP ACCOUNT
       </a>
     </li>
@@ -4849,7 +4913,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Control-Language/drop-user/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Control-Language/drop-user/" class="md-nav__link">
         DROP USER
       </a>
     </li>
@@ -4863,7 +4927,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Control-Language/drop-role/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Control-Language/drop-role/" class="md-nav__link">
         DROP ROLE
       </a>
     </li>
@@ -4877,7 +4941,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Control-Language/grant/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Control-Language/grant/" class="md-nav__link">
         GRANT
       </a>
     </li>
@@ -4891,7 +4955,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Data-Control-Language/revoke/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Data-Control-Language/revoke/" class="md-nav__link">
         REVOKE
       </a>
     </li>
@@ -4966,7 +5030,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Other/SHOW-Statements/show-account/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Other/SHOW-Statements/show-account/" class="md-nav__link">
         SHOW ACCOUNTS
       </a>
     </li>
@@ -4980,7 +5044,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Other/SHOW-Statements/show-databases/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Other/SHOW-Statements/show-databases/" class="md-nav__link">
         SHOW DATABASES
       </a>
     </li>
@@ -4994,7 +5058,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Other/SHOW-Statements/show-create-table/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Other/SHOW-Statements/show-create-table/" class="md-nav__link">
         SHOW CREATE TABLE
       </a>
     </li>
@@ -5008,7 +5072,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Other/SHOW-Statements/show-create-view/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Other/SHOW-Statements/show-create-view/" class="md-nav__link">
         SHOW CREATE VIEW
       </a>
     </li>
@@ -5022,7 +5086,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Other/SHOW-Statements/show-create-publication/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Other/SHOW-Statements/show-create-publication/" class="md-nav__link">
         SHOW CREATE PUBLICATION
       </a>
     </li>
@@ -5036,7 +5100,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Other/SHOW-Statements/show-tables/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Other/SHOW-Statements/show-tables/" class="md-nav__link">
         SHOW TABLES
       </a>
     </li>
@@ -5050,7 +5114,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Other/SHOW-Statements/show-index/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Other/SHOW-Statements/show-index/" class="md-nav__link">
         SHOW INDEX
       </a>
     </li>
@@ -5064,7 +5128,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Other/SHOW-Statements/show-collation/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Other/SHOW-Statements/show-collation/" class="md-nav__link">
         SHOW COLLATION
       </a>
     </li>
@@ -5078,7 +5142,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Other/SHOW-Statements/show-columns/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Other/SHOW-Statements/show-columns/" class="md-nav__link">
         SHOW COLUMNS
       </a>
     </li>
@@ -5092,7 +5156,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Other/SHOW-Statements/show-function-status/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Other/SHOW-Statements/show-function-status/" class="md-nav__link">
         SHOW FUNCTION STATUS
       </a>
     </li>
@@ -5106,7 +5170,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Other/SHOW-Statements/show-grants/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Other/SHOW-Statements/show-grants/" class="md-nav__link">
         SHOW GRANT
       </a>
     </li>
@@ -5120,7 +5184,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Other/SHOW-Statements/show-processlist/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Other/SHOW-Statements/show-processlist/" class="md-nav__link">
         SHOW PROCESSLIST
       </a>
     </li>
@@ -5134,7 +5198,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Other/SHOW-Statements/show-publications/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Other/SHOW-Statements/show-publications/" class="md-nav__link">
         SHOW PUBLICATIONS
       </a>
     </li>
@@ -5148,7 +5212,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Other/SHOW-Statements/show-roles/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Other/SHOW-Statements/show-roles/" class="md-nav__link">
         SHOW ROLES
       </a>
     </li>
@@ -5162,7 +5226,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Other/SHOW-Statements/show-sequences/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Other/SHOW-Statements/show-sequences/" class="md-nav__link">
         SHOW SEQUENCES
       </a>
     </li>
@@ -5176,7 +5240,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Other/SHOW-Statements/show-stage/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Other/SHOW-Statements/show-stage/" class="md-nav__link">
         SHOW STAGE
       </a>
     </li>
@@ -5190,7 +5254,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Other/SHOW-Statements/show-subscriptions/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Other/SHOW-Statements/show-subscriptions/" class="md-nav__link">
         SHOW SUBSCRIPTIONS
       </a>
     </li>
@@ -5204,7 +5268,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Other/SHOW-Statements/show-variables/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Other/SHOW-Statements/show-variables/" class="md-nav__link">
         SHOW VARIABLES
       </a>
     </li>
@@ -5252,7 +5316,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Other/Set/set-role/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Other/Set/set-role/" class="md-nav__link">
         SET ROLE
       </a>
     </li>
@@ -5300,7 +5364,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Other/use-database/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Other/use-database/" class="md-nav__link">
         USE DATABASE
       </a>
     </li>
@@ -5321,7 +5385,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Other/kill/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Other/kill/" class="md-nav__link">
         KILL
       </a>
     </li>
@@ -5362,7 +5426,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Other/Prepared-Statements/prepare/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Other/Prepared-Statements/prepare/" class="md-nav__link">
         PREPARE
       </a>
     </li>
@@ -5376,7 +5440,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Other/Prepared-Statements/execute/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Other/Prepared-Statements/execute/" class="md-nav__link">
         EXECUTE
       </a>
     </li>
@@ -5390,7 +5454,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Other/Prepared-Statements/deallocate/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Other/Prepared-Statements/deallocate/" class="md-nav__link">
         DEALLOCATE
       </a>
     </li>
@@ -5438,7 +5502,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Other/Explain/explain/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Other/Explain/explain/" class="md-nav__link">
         EXPLAIN
       </a>
     </li>
@@ -5452,7 +5516,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Other/Explain/explain-workflow/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Other/Explain/explain-workflow/" class="md-nav__link">
         EXPLAIN Output Format
       </a>
     </li>
@@ -5466,7 +5530,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/SQL-Reference/Other/Explain/explain-analyze/" class="md-nav__link">
+      <a href="../../../Reference/SQL-Reference/Other/Explain/explain-analyze/" class="md-nav__link">
         Explain Analyze
       </a>
     </li>
@@ -5555,7 +5619,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Operators/interval/" class="md-nav__link">
+      <a href="../../../Reference/Operators/interval/" class="md-nav__link">
         INTERVAL
       </a>
     </li>
@@ -5596,7 +5660,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Operators/operators/operators/" class="md-nav__link">
+      <a href="../../../Reference/Operators/operators/operators/" class="md-nav__link">
         OPERATORS Overview
       </a>
     </li>
@@ -5610,7 +5674,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Operators/operators/operator-precedence/" class="md-nav__link">
+      <a href="../../../Reference/Operators/operators/operator-precedence/" class="md-nav__link">
         OPERATORS Precedence
       </a>
     </li>
@@ -5651,7 +5715,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Operators/operators/arithmetic-operators/arithmetic-operators-overview/" class="md-nav__link">
+      <a href="../../../Reference/Operators/operators/arithmetic-operators/arithmetic-operators-overview/" class="md-nav__link">
         Arithmetic Operators Overview
       </a>
     </li>
@@ -5665,7 +5729,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Operators/operators/arithmetic-operators/mod/" class="md-nav__link">
+      <a href="../../../Reference/Operators/operators/arithmetic-operators/mod/" class="md-nav__link">
         %,MOD
       </a>
     </li>
@@ -5679,7 +5743,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Operators/operators/arithmetic-operators/multiplication/" class="md-nav__link">
+      <a href="../../../Reference/Operators/operators/arithmetic-operators/multiplication/" class="md-nav__link">
         *
       </a>
     </li>
@@ -5693,7 +5757,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Operators/operators/arithmetic-operators/addition/" class="md-nav__link">
+      <a href="../../../Reference/Operators/operators/arithmetic-operators/addition/" class="md-nav__link">
         +
       </a>
     </li>
@@ -5707,7 +5771,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Operators/operators/arithmetic-operators/minus/" class="md-nav__link">
+      <a href="../../../Reference/Operators/operators/arithmetic-operators/minus/" class="md-nav__link">
         -
       </a>
     </li>
@@ -5721,7 +5785,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Operators/operators/arithmetic-operators/unary-minus/" class="md-nav__link">
+      <a href="../../../Reference/Operators/operators/arithmetic-operators/unary-minus/" class="md-nav__link">
         -
       </a>
     </li>
@@ -5735,7 +5799,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Operators/operators/arithmetic-operators/division/" class="md-nav__link">
+      <a href="../../../Reference/Operators/operators/arithmetic-operators/division/" class="md-nav__link">
         /
       </a>
     </li>
@@ -5749,7 +5813,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Operators/operators/arithmetic-operators/div/" class="md-nav__link">
+      <a href="../../../Reference/Operators/operators/arithmetic-operators/div/" class="md-nav__link">
         DIV
       </a>
     </li>
@@ -5797,7 +5861,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Operators/operators/assignment-operators/assignment-operators-overview/" class="md-nav__link">
+      <a href="../../../Reference/Operators/operators/assignment-operators/assignment-operators-overview/" class="md-nav__link">
         Assignment Operators Overview
       </a>
     </li>
@@ -5811,7 +5875,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Operators/operators/assignment-operators/equal/" class="md-nav__link">
+      <a href="../../../Reference/Operators/operators/assignment-operators/equal/" class="md-nav__link">
         =
       </a>
     </li>
@@ -5859,7 +5923,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Operators/operators/bit-functions-and-operators/bit-functions-and-operators-overview/" class="md-nav__link">
+      <a href="../../../Reference/Operators/operators/bit-functions-and-operators/bit-functions-and-operators-overview/" class="md-nav__link">
         Bit Functions and Operators Overview
       </a>
     </li>
@@ -5873,7 +5937,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Operators/operators/bit-functions-and-operators/bitwise-and/" class="md-nav__link">
+      <a href="../../../Reference/Operators/operators/bit-functions-and-operators/bitwise-and/" class="md-nav__link">
         &
       </a>
     </li>
@@ -5887,7 +5951,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Operators/operators/bit-functions-and-operators/right-shift/" class="md-nav__link">
+      <a href="../../../Reference/Operators/operators/bit-functions-and-operators/right-shift/" class="md-nav__link">
         >>
       </a>
     </li>
@@ -5901,7 +5965,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Operators/operators/bit-functions-and-operators/left-shift/" class="md-nav__link">
+      <a href="../../../Reference/Operators/operators/bit-functions-and-operators/left-shift/" class="md-nav__link">
         <<
       </a>
     </li>
@@ -5915,7 +5979,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Operators/operators/bit-functions-and-operators/bitwise-xor/" class="md-nav__link">
+      <a href="../../../Reference/Operators/operators/bit-functions-and-operators/bitwise-xor/" class="md-nav__link">
         ^
       </a>
     </li>
@@ -5929,7 +5993,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Operators/operators/bit-functions-and-operators/bitwise-or/" class="md-nav__link">
+      <a href="../../../Reference/Operators/operators/bit-functions-and-operators/bitwise-or/" class="md-nav__link">
         |
       </a>
     </li>
@@ -5943,7 +6007,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Operators/operators/bit-functions-and-operators/bitwise-inversion/" class="md-nav__link">
+      <a href="../../../Reference/Operators/operators/bit-functions-and-operators/bitwise-inversion/" class="md-nav__link">
         ~
       </a>
     </li>
@@ -5991,7 +6055,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Operators/operators/cast-functions-and-operators/cast-functions-and-operators-overview/" class="md-nav__link">
+      <a href="../../../Reference/Operators/operators/cast-functions-and-operators/cast-functions-and-operators-overview/" class="md-nav__link">
         Cast Functions and Operators Overview
       </a>
     </li>
@@ -6005,7 +6069,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Operators/operators/cast-functions-and-operators/binary/" class="md-nav__link">
+      <a href="../../../Reference/Operators/operators/cast-functions-and-operators/binary/" class="md-nav__link">
         BINARY
       </a>
     </li>
@@ -6019,7 +6083,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Operators/operators/cast-functions-and-operators/cast/" class="md-nav__link">
+      <a href="../../../Reference/Operators/operators/cast-functions-and-operators/cast/" class="md-nav__link">
         CAST
       </a>
     </li>
@@ -6033,7 +6097,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Operators/operators/cast-functions-and-operators/convert/" class="md-nav__link">
+      <a href="../../../Reference/Operators/operators/cast-functions-and-operators/convert/" class="md-nav__link">
         CONVERT
       </a>
     </li>
@@ -6081,7 +6145,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Operators/operators/comparison-functions-and-operators/comparison-functions-and-operators-overview/" class="md-nav__link">
+      <a href="../../../Reference/Operators/operators/comparison-functions-and-operators/comparison-functions-and-operators-overview/" class="md-nav__link">
         Comparison Functions and Operators Overview
       </a>
     </li>
@@ -6095,7 +6159,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Operators/operators/comparison-functions-and-operators/greater-than/" class="md-nav__link">
+      <a href="../../../Reference/Operators/operators/comparison-functions-and-operators/greater-than/" class="md-nav__link">
         >
       </a>
     </li>
@@ -6109,7 +6173,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Operators/operators/comparison-functions-and-operators/greater-than-or-equal/" class="md-nav__link">
+      <a href="../../../Reference/Operators/operators/comparison-functions-and-operators/greater-than-or-equal/" class="md-nav__link">
         >=
       </a>
     </li>
@@ -6123,7 +6187,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Operators/operators/comparison-functions-and-operators/less-than/" class="md-nav__link">
+      <a href="../../../Reference/Operators/operators/comparison-functions-and-operators/less-than/" class="md-nav__link">
         <
       </a>
     </li>
@@ -6137,7 +6201,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Operators/operators/comparison-functions-and-operators/not-equal/" class="md-nav__link">
+      <a href="../../../Reference/Operators/operators/comparison-functions-and-operators/not-equal/" class="md-nav__link">
         <>,!=
       </a>
     </li>
@@ -6151,7 +6215,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Operators/operators/comparison-functions-and-operators/less-than-or-equal/" class="md-nav__link">
+      <a href="../../../Reference/Operators/operators/comparison-functions-and-operators/less-than-or-equal/" class="md-nav__link">
         <=
       </a>
     </li>
@@ -6165,7 +6229,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Operators/operators/comparison-functions-and-operators/assign-equal/" class="md-nav__link">
+      <a href="../../../Reference/Operators/operators/comparison-functions-and-operators/assign-equal/" class="md-nav__link">
         =
       </a>
     </li>
@@ -6179,7 +6243,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Operators/operators/comparison-functions-and-operators/between/" class="md-nav__link">
+      <a href="../../../Reference/Operators/operators/comparison-functions-and-operators/between/" class="md-nav__link">
         BETWEEN ... AND ...
       </a>
     </li>
@@ -6193,7 +6257,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Operators/operators/comparison-functions-and-operators/in/" class="md-nav__link">
+      <a href="../../../Reference/Operators/operators/comparison-functions-and-operators/in/" class="md-nav__link">
         IN
       </a>
     </li>
@@ -6207,7 +6271,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Operators/operators/comparison-functions-and-operators/is/" class="md-nav__link">
+      <a href="../../../Reference/Operators/operators/comparison-functions-and-operators/is/" class="md-nav__link">
         IS
       </a>
     </li>
@@ -6221,7 +6285,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Operators/operators/comparison-functions-and-operators/is-not/" class="md-nav__link">
+      <a href="../../../Reference/Operators/operators/comparison-functions-and-operators/is-not/" class="md-nav__link">
         IS NOT
       </a>
     </li>
@@ -6235,7 +6299,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Operators/operators/comparison-functions-and-operators/is-not-null/" class="md-nav__link">
+      <a href="../../../Reference/Operators/operators/comparison-functions-and-operators/is-not-null/" class="md-nav__link">
         IS NOT NULL
       </a>
     </li>
@@ -6249,7 +6313,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Operators/operators/comparison-functions-and-operators/is-null/" class="md-nav__link">
+      <a href="../../../Reference/Operators/operators/comparison-functions-and-operators/is-null/" class="md-nav__link">
         IS NULL
       </a>
     </li>
@@ -6263,7 +6327,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Operators/operators/comparison-functions-and-operators/ilike/" class="md-nav__link">
+      <a href="../../../Reference/Operators/operators/comparison-functions-and-operators/ilike/" class="md-nav__link">
         ILIKE
       </a>
     </li>
@@ -6277,7 +6341,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Operators/operators/comparison-functions-and-operators/function_isnull/" class="md-nav__link">
+      <a href="../../../Reference/Operators/operators/comparison-functions-and-operators/function_isnull/" class="md-nav__link">
         ISNULL
       </a>
     </li>
@@ -6291,7 +6355,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Operators/operators/comparison-functions-and-operators/like/" class="md-nav__link">
+      <a href="../../../Reference/Operators/operators/comparison-functions-and-operators/like/" class="md-nav__link">
         LIKE
       </a>
     </li>
@@ -6305,7 +6369,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Operators/operators/comparison-functions-and-operators/not-between/" class="md-nav__link">
+      <a href="../../../Reference/Operators/operators/comparison-functions-and-operators/not-between/" class="md-nav__link">
         NOT BETWEEN ... AND ...
       </a>
     </li>
@@ -6319,7 +6383,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Operators/operators/comparison-functions-and-operators/not-in/" class="md-nav__link">
+      <a href="../../../Reference/Operators/operators/comparison-functions-and-operators/not-in/" class="md-nav__link">
         NOT IN
       </a>
     </li>
@@ -6333,7 +6397,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Operators/operators/comparison-functions-and-operators/not-like/" class="md-nav__link">
+      <a href="../../../Reference/Operators/operators/comparison-functions-and-operators/not-like/" class="md-nav__link">
         NOT LIKE
       </a>
     </li>
@@ -6347,7 +6411,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Operators/operators/comparison-functions-and-operators/coalesce/" class="md-nav__link">
+      <a href="../../../Reference/Operators/operators/comparison-functions-and-operators/coalesce/" class="md-nav__link">
         COALESCE
       </a>
     </li>
@@ -6395,7 +6459,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Operators/operators/flow-control-functions/flow-control-functions-overview/" class="md-nav__link">
+      <a href="../../../Reference/Operators/operators/flow-control-functions/flow-control-functions-overview/" class="md-nav__link">
         Flow Control Functions Overview
       </a>
     </li>
@@ -6409,7 +6473,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Operators/operators/flow-control-functions/case-when/" class="md-nav__link">
+      <a href="../../../Reference/Operators/operators/flow-control-functions/case-when/" class="md-nav__link">
         CASE WHEN
       </a>
     </li>
@@ -6423,7 +6487,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Operators/operators/flow-control-functions/function_if/" class="md-nav__link">
+      <a href="../../../Reference/Operators/operators/flow-control-functions/function_if/" class="md-nav__link">
         IF
       </a>
     </li>
@@ -6437,7 +6501,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Operators/operators/flow-control-functions/function_ifnull/" class="md-nav__link">
+      <a href="../../../Reference/Operators/operators/flow-control-functions/function_ifnull/" class="md-nav__link">
         IFNULL
       </a>
     </li>
@@ -6451,7 +6515,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Operators/operators/flow-control-functions/function_nullif/" class="md-nav__link">
+      <a href="../../../Reference/Operators/operators/flow-control-functions/function_nullif/" class="md-nav__link">
         NULLIF
       </a>
     </li>
@@ -6499,7 +6563,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Operators/operators/logical-operators/logical-operators-overview/" class="md-nav__link">
+      <a href="../../../Reference/Operators/operators/logical-operators/logical-operators-overview/" class="md-nav__link">
         Logical Operators Overview
       </a>
     </li>
@@ -6513,7 +6577,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Operators/operators/logical-operators/and/" class="md-nav__link">
+      <a href="../../../Reference/Operators/operators/logical-operators/and/" class="md-nav__link">
         AND,&&
       </a>
     </li>
@@ -6527,7 +6591,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Operators/operators/logical-operators/not/" class="md-nav__link">
+      <a href="../../../Reference/Operators/operators/logical-operators/not/" class="md-nav__link">
         NOT,!
       </a>
     </li>
@@ -6541,7 +6605,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Operators/operators/logical-operators/or/" class="md-nav__link">
+      <a href="../../../Reference/Operators/operators/logical-operators/or/" class="md-nav__link">
         OR
       </a>
     </li>
@@ -6555,7 +6619,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Operators/operators/logical-operators/xor/" class="md-nav__link">
+      <a href="../../../Reference/Operators/operators/logical-operators/xor/" class="md-nav__link">
         XOR
       </a>
     </li>
@@ -6644,7 +6708,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Aggregate-Functions/any-value/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/Aggregate-Functions/any-value/" class="md-nav__link">
         ANY_VALUE
       </a>
     </li>
@@ -6658,7 +6722,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Aggregate-Functions/avg/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/Aggregate-Functions/avg/" class="md-nav__link">
         AVG
       </a>
     </li>
@@ -6672,7 +6736,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Aggregate-Functions/bit_and/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/Aggregate-Functions/bit_and/" class="md-nav__link">
         BIT_AND
       </a>
     </li>
@@ -6686,7 +6750,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Aggregate-Functions/bit_or/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/Aggregate-Functions/bit_or/" class="md-nav__link">
         BIT_OR
       </a>
     </li>
@@ -6700,7 +6764,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Aggregate-Functions/bit_xor/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/Aggregate-Functions/bit_xor/" class="md-nav__link">
         BIT_XOR
       </a>
     </li>
@@ -6714,7 +6778,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Aggregate-Functions/count/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/Aggregate-Functions/count/" class="md-nav__link">
         COUNT
       </a>
     </li>
@@ -6728,7 +6792,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Aggregate-Functions/group-concat/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/Aggregate-Functions/group-concat/" class="md-nav__link">
         GROUP_CONCAT
       </a>
     </li>
@@ -6742,7 +6806,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Aggregate-Functions/max/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/Aggregate-Functions/max/" class="md-nav__link">
         MAX
       </a>
     </li>
@@ -6756,7 +6820,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Aggregate-Functions/median/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/Aggregate-Functions/median/" class="md-nav__link">
         MEDIAN
       </a>
     </li>
@@ -6770,7 +6834,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Aggregate-Functions/min/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/Aggregate-Functions/min/" class="md-nav__link">
         MIN
       </a>
     </li>
@@ -6784,7 +6848,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Aggregate-Functions/stddev_pop/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/Aggregate-Functions/stddev_pop/" class="md-nav__link">
         STDDEV_POP
       </a>
     </li>
@@ -6798,7 +6862,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Aggregate-Functions/sum/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/Aggregate-Functions/sum/" class="md-nav__link">
         SUM
       </a>
     </li>
@@ -6812,7 +6876,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Aggregate-Functions/variance/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/Aggregate-Functions/variance/" class="md-nav__link">
         VARIANCE
       </a>
     </li>
@@ -6860,7 +6924,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Datetime/curdate/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/Datetime/curdate/" class="md-nav__link">
         CURDATE()
       </a>
     </li>
@@ -6874,7 +6938,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Datetime/current-timestamp/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/Datetime/current-timestamp/" class="md-nav__link">
         CURRENT_TIMESTAMP()
       </a>
     </li>
@@ -6888,7 +6952,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Datetime/date/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/Datetime/date/" class="md-nav__link">
         DATE()
       </a>
     </li>
@@ -6902,7 +6966,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Datetime/date-add/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/Datetime/date-add/" class="md-nav__link">
         DATE_ADD()
       </a>
     </li>
@@ -6916,7 +6980,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Datetime/date-format/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/Datetime/date-format/" class="md-nav__link">
         DATE_FORMAT()
       </a>
     </li>
@@ -6930,7 +6994,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Datetime/date-sub/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/Datetime/date-sub/" class="md-nav__link">
         DATE_SUB()
       </a>
     </li>
@@ -6944,7 +7008,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Datetime/datediff/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/Datetime/datediff/" class="md-nav__link">
         DATEDIFF()
       </a>
     </li>
@@ -6958,7 +7022,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Datetime/day/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/Datetime/day/" class="md-nav__link">
         DAY()
       </a>
     </li>
@@ -6972,7 +7036,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Datetime/dayofyear/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/Datetime/dayofyear/" class="md-nav__link">
         DAYOFYEAR()
       </a>
     </li>
@@ -6986,7 +7050,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Datetime/extract/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/Datetime/extract/" class="md-nav__link">
         EXTRACT()
       </a>
     </li>
@@ -7000,7 +7064,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Datetime/hour/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/Datetime/hour/" class="md-nav__link">
         HOUR()
       </a>
     </li>
@@ -7014,7 +7078,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Datetime/from-unixtime/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/Datetime/from-unixtime/" class="md-nav__link">
         FROM_UNIXTIME
       </a>
     </li>
@@ -7028,7 +7092,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Datetime/minute/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/Datetime/minute/" class="md-nav__link">
         MINUTE()
       </a>
     </li>
@@ -7042,7 +7106,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Datetime/month/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/Datetime/month/" class="md-nav__link">
         MONTH()
       </a>
     </li>
@@ -7056,7 +7120,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Datetime/second/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/Datetime/second/" class="md-nav__link">
         SECOND()
       </a>
     </li>
@@ -7070,7 +7134,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Datetime/time/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/Datetime/time/" class="md-nav__link">
         TIME()
       </a>
     </li>
@@ -7084,7 +7148,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Datetime/timediff/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/Datetime/timediff/" class="md-nav__link">
         TIMEDIFF()
       </a>
     </li>
@@ -7098,7 +7162,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Datetime/timestamp/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/Datetime/timestamp/" class="md-nav__link">
         TIMESTAMP()
       </a>
     </li>
@@ -7112,7 +7176,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Datetime/timestampdiff/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/Datetime/timestampdiff/" class="md-nav__link">
         TIMESTAMPDIFF()
       </a>
     </li>
@@ -7126,7 +7190,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Datetime/to-date/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/Datetime/to-date/" class="md-nav__link">
         TO_DATE()
       </a>
     </li>
@@ -7140,7 +7204,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Datetime/to-seconds/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/Datetime/to-seconds/" class="md-nav__link">
         TO_DAYS()
       </a>
     </li>
@@ -7154,7 +7218,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Datetime/to-days/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/Datetime/to-days/" class="md-nav__link">
         TO_SECONDS()
       </a>
     </li>
@@ -7168,7 +7232,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Datetime/unix-timestamp/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/Datetime/unix-timestamp/" class="md-nav__link">
         UNIX_TIMESTAMP
       </a>
     </li>
@@ -7182,7 +7246,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Datetime/utc-timestamp/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/Datetime/utc-timestamp/" class="md-nav__link">
         UTC_TIMESTAMP()
       </a>
     </li>
@@ -7196,7 +7260,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Datetime/week/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/Datetime/week/" class="md-nav__link">
         WEEK()
       </a>
     </li>
@@ -7210,7 +7274,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Datetime/weekday/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/Datetime/weekday/" class="md-nav__link">
         WEEKDAY()
       </a>
     </li>
@@ -7224,7 +7288,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Datetime/year/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/Datetime/year/" class="md-nav__link">
         YEAR()
       </a>
     </li>
@@ -7272,7 +7336,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Mathematical/abs/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/Mathematical/abs/" class="md-nav__link">
         ABS()
       </a>
     </li>
@@ -7286,7 +7350,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Mathematical/acos/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/Mathematical/acos/" class="md-nav__link">
         ACOS()
       </a>
     </li>
@@ -7300,7 +7364,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Mathematical/atan/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/Mathematical/atan/" class="md-nav__link">
         ATAN()
       </a>
     </li>
@@ -7314,7 +7378,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Mathematical/ceil/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/Mathematical/ceil/" class="md-nav__link">
         CEIL()
       </a>
     </li>
@@ -7328,7 +7392,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Mathematical/cos/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/Mathematical/cos/" class="md-nav__link">
         COS()
       </a>
     </li>
@@ -7342,7 +7406,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Mathematical/cot/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/Mathematical/cot/" class="md-nav__link">
         COT()
       </a>
     </li>
@@ -7356,7 +7420,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Mathematical/exp/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/Mathematical/exp/" class="md-nav__link">
         EXP()
       </a>
     </li>
@@ -7370,7 +7434,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Mathematical/floor/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/Mathematical/floor/" class="md-nav__link">
         FLOOR()
       </a>
     </li>
@@ -7384,7 +7448,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Mathematical/ln/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/Mathematical/ln/" class="md-nav__link">
         LN()
       </a>
     </li>
@@ -7398,7 +7462,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Mathematical/log/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/Mathematical/log/" class="md-nav__link">
         LOG()
       </a>
     </li>
@@ -7412,7 +7476,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Mathematical/pi/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/Mathematical/pi/" class="md-nav__link">
         PI()
       </a>
     </li>
@@ -7426,7 +7490,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Mathematical/power/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/Mathematical/power/" class="md-nav__link">
         POWER()
       </a>
     </li>
@@ -7440,7 +7504,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Mathematical/rand/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/Mathematical/rand/" class="md-nav__link">
         RAND()
       </a>
     </li>
@@ -7454,7 +7518,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Mathematical/round/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/Mathematical/round/" class="md-nav__link">
         ROUND()
       </a>
     </li>
@@ -7468,7 +7532,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Mathematical/sin/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/Mathematical/sin/" class="md-nav__link">
         SIN()
       </a>
     </li>
@@ -7482,7 +7546,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Mathematical/sinh/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/Mathematical/sinh/" class="md-nav__link">
         SINH()
       </a>
     </li>
@@ -7496,7 +7560,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Mathematical/tan/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/Mathematical/tan/" class="md-nav__link">
         TAN()
       </a>
     </li>
@@ -7544,7 +7608,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/String/bin/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/String/bin/" class="md-nav__link">
         BIN()
       </a>
     </li>
@@ -7558,7 +7622,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/String/bit-length/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/String/bit-length/" class="md-nav__link">
         BIT_LENGTH()
       </a>
     </li>
@@ -7572,7 +7636,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/String/char-length/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/String/char-length/" class="md-nav__link">
         CHAR_LENGTH()
       </a>
     </li>
@@ -7586,7 +7650,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/String/concat/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/String/concat/" class="md-nav__link">
         CONCAT()
       </a>
     </li>
@@ -7600,7 +7664,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/String/concat-ws/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/String/concat-ws/" class="md-nav__link">
         CONCAT_WS()
       </a>
     </li>
@@ -7614,7 +7678,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/String/empty/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/String/empty/" class="md-nav__link">
         EMPTY()
       </a>
     </li>
@@ -7628,7 +7692,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/String/endswith/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/String/endswith/" class="md-nav__link">
         ENDSWITH()
       </a>
     </li>
@@ -7642,7 +7706,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/String/field/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/String/field/" class="md-nav__link">
         FIELD()
       </a>
     </li>
@@ -7656,7 +7720,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/String/find-in-set/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/String/find-in-set/" class="md-nav__link">
         FIND_IN_SET()
       </a>
     </li>
@@ -7670,7 +7734,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/String/format/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/String/format/" class="md-nav__link">
         FORMAT()
       </a>
     </li>
@@ -7684,7 +7748,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/String/hex/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/String/hex/" class="md-nav__link">
         HEX()
       </a>
     </li>
@@ -7698,7 +7762,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/String/instr/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/String/instr/" class="md-nav__link">
         INSTR()
       </a>
     </li>
@@ -7712,7 +7776,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/String/left/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/String/left/" class="md-nav__link">
         LEFT()
       </a>
     </li>
@@ -7726,7 +7790,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/String/length/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/String/length/" class="md-nav__link">
         LENGTH()
       </a>
     </li>
@@ -7740,7 +7804,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/String/lpad/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/String/lpad/" class="md-nav__link">
         LPAD()
       </a>
     </li>
@@ -7754,7 +7818,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/String/ltrim/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/String/ltrim/" class="md-nav__link">
         LTRIM()
       </a>
     </li>
@@ -7768,7 +7832,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/String/oct/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/String/oct/" class="md-nav__link">
         OCT()
       </a>
     </li>
@@ -7782,7 +7846,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/String/repeat/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/String/repeat/" class="md-nav__link">
         REPEAT()
       </a>
     </li>
@@ -7796,7 +7860,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/String/reverse/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/String/reverse/" class="md-nav__link">
         REVERSE()
       </a>
     </li>
@@ -7810,7 +7874,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/String/rpad/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/String/rpad/" class="md-nav__link">
         RPAD()
       </a>
     </li>
@@ -7824,7 +7888,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/String/rtrim/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/String/rtrim/" class="md-nav__link">
         RTRIM()
       </a>
     </li>
@@ -7838,7 +7902,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/String/space/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/String/space/" class="md-nav__link">
         SPACE()
       </a>
     </li>
@@ -7852,7 +7916,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/String/split_part/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/String/split_part/" class="md-nav__link">
         SPLIT_PART()
       </a>
     </li>
@@ -7866,7 +7930,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/String/startswith/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/String/startswith/" class="md-nav__link">
         STARTSWITH()
       </a>
     </li>
@@ -7880,7 +7944,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/String/substring/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/String/substring/" class="md-nav__link">
         SUBSTRING()
       </a>
     </li>
@@ -7894,7 +7958,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/String/substring-index/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/String/substring-index/" class="md-nav__link">
         SUBSTRING_INDEX()
       </a>
     </li>
@@ -7908,7 +7972,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/String/trim/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/String/trim/" class="md-nav__link">
         TRIM()
       </a>
     </li>
@@ -7949,7 +8013,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/String/Regular-Expressions/Regular-Expression-Functions-Overview/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/String/Regular-Expressions/Regular-Expression-Functions-Overview/" class="md-nav__link">
         Regular Expressions Overview
       </a>
     </li>
@@ -7963,7 +8027,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/String/Regular-Expressions/not-regexp/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/String/Regular-Expressions/not-regexp/" class="md-nav__link">
         NOT REGEXP
       </a>
     </li>
@@ -7977,7 +8041,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/String/Regular-Expressions/regexp-instr/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/String/Regular-Expressions/regexp-instr/" class="md-nav__link">
         REGEXP_INSTR()
       </a>
     </li>
@@ -7991,7 +8055,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/String/Regular-Expressions/regexp-like/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/String/Regular-Expressions/regexp-like/" class="md-nav__link">
         REGEXP_LIKE()
       </a>
     </li>
@@ -8005,7 +8069,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/String/Regular-Expressions/regexp-replace/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/String/Regular-Expressions/regexp-replace/" class="md-nav__link">
         REGEXP_REPLACE()
       </a>
     </li>
@@ -8019,7 +8083,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/String/Regular-Expressions/regexp-substr/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/String/Regular-Expressions/regexp-substr/" class="md-nav__link">
         REGEXP_SUBSTR()
       </a>
     </li>
@@ -8074,7 +8138,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Table/unnest/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/Table/unnest/" class="md-nav__link">
         UNNEST()
       </a>
     </li>
@@ -8122,7 +8186,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Window-Functions/dense_rank/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/Window-Functions/dense_rank/" class="md-nav__link">
         DENSE_RANK()
       </a>
     </li>
@@ -8136,7 +8200,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Window-Functions/rank/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/Window-Functions/rank/" class="md-nav__link">
         RANK()
       </a>
     </li>
@@ -8150,7 +8214,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Window-Functions/row_number/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/Window-Functions/row_number/" class="md-nav__link">
         ROW_NUMBER()
       </a>
     </li>
@@ -8171,7 +8235,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Json/json-functions/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/Json/json-functions/" class="md-nav__link">
         JSON Functions
       </a>
     </li>
@@ -8212,7 +8276,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Other/sleep/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/Other/sleep/" class="md-nav__link">
         SLEEP
       </a>
     </li>
@@ -8226,7 +8290,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/Other/uuid/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/Other/uuid/" class="md-nav__link">
         UUID()
       </a>
     </li>
@@ -8274,7 +8338,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/system-ops/current_role_name/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/system-ops/current_role_name/" class="md-nav__link">
         CURRENT_ROLE_NAME()
       </a>
     </li>
@@ -8288,7 +8352,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/system-ops/current_role/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/system-ops/current_role/" class="md-nav__link">
         CURRENT_ROLE()
       </a>
     </li>
@@ -8302,7 +8366,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/system-ops/current_user_name/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/system-ops/current_user_name/" class="md-nav__link">
         CURRENT_USER_NAME()
       </a>
     </li>
@@ -8316,7 +8380,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/system-ops/current_user/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/system-ops/current_user/" class="md-nav__link">
         CURRENT_USER()
       </a>
     </li>
@@ -8330,7 +8394,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Functions-and-Operators/system-ops/purge_log/" class="md-nav__link">
+      <a href="../../../Reference/Functions-and-Operators/system-ops/purge_log/" class="md-nav__link">
         PURGE_LOG()
       </a>
     </li>
@@ -8392,7 +8456,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/System-Parameters/system-parameter/" class="md-nav__link">
+      <a href="../../../Reference/System-Parameters/system-parameter/" class="md-nav__link">
         System Parameters Overview
       </a>
     </li>
@@ -8406,7 +8470,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/System-Parameters/standalone-configuration-settings/" class="md-nav__link">
+      <a href="../../../Reference/System-Parameters/standalone-configuration-settings/" class="md-nav__link">
         Standalone Common Parameters Configuration
       </a>
     </li>
@@ -8420,7 +8484,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/System-Parameters/distributed-configuration-settings/" class="md-nav__link">
+      <a href="../../../Reference/System-Parameters/distributed-configuration-settings/" class="md-nav__link">
         Distributed Common Parameters Configuration
       </a>
     </li>
@@ -8441,7 +8505,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/System-tables/" class="md-nav__link">
+      <a href="../../../Reference/System-tables/" class="md-nav__link">
         MatrixOne Catalog
       </a>
     </li>
@@ -8455,7 +8519,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/access-control-type/" class="md-nav__link">
+      <a href="../../../Reference/access-control-type/" class="md-nav__link">
         Privilege Control Types
       </a>
     </li>
@@ -8496,7 +8560,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Limitations/mo-jdbc-feature-list/" class="md-nav__link">
+      <a href="../../../Reference/Limitations/mo-jdbc-feature-list/" class="md-nav__link">
         JDBC supported features list
       </a>
     </li>
@@ -8510,7 +8574,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Limitations/mo-partition-support/" class="md-nav__link">
+      <a href="../../../Reference/Limitations/mo-partition-support/" class="md-nav__link">
         Partitioning supported features list
       </a>
     </li>
@@ -8531,7 +8595,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../mo-directory-structure/" class="md-nav__link">
+      <a href="../../mo-directory-structure/" class="md-nav__link">
         MatrixOne Directory Structure
       </a>
     </li>
@@ -8572,7 +8636,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../mo_ctl/" class="md-nav__link">
+      <a href="../../mo_ctl/" class="md-nav__link">
         mo_ctl Tool
       </a>
     </li>
@@ -8627,7 +8691,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Troubleshooting/slow-queries/" class="md-nav__link">
+      <a href="../../../Troubleshooting/slow-queries/" class="md-nav__link">
         Slow Queries
       </a>
     </li>
@@ -8641,7 +8705,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Troubleshooting/common-statistics-query/" class="md-nav__link">
+      <a href="../../../Troubleshooting/common-statistics-query/" class="md-nav__link">
         Common statistic data query
       </a>
     </li>
@@ -8655,7 +8719,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Troubleshooting/query-table-statistics/" class="md-nav__link">
+      <a href="../../../Troubleshooting/query-table-statistics/" class="md-nav__link">
         Database statistics
       </a>
     </li>
@@ -8669,7 +8733,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Troubleshooting/error-code/" class="md-nav__link">
+      <a href="../../../Troubleshooting/error-code/" class="md-nav__link">
         Error Code
       </a>
     </li>
@@ -8717,7 +8781,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../FAQs/product-faqs/" class="md-nav__link">
+      <a href="../../../FAQs/product-faqs/" class="md-nav__link">
         Product FAQs
       </a>
     </li>
@@ -8731,7 +8795,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../FAQs/deployment-faqs/" class="md-nav__link">
+      <a href="../../../FAQs/deployment-faqs/" class="md-nav__link">
         Deployment FAQs
       </a>
     </li>
@@ -8745,7 +8809,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../FAQs/sql-faqs/" class="md-nav__link">
+      <a href="../../../FAQs/sql-faqs/" class="md-nav__link">
         SQL FAQs
       </a>
     </li>
@@ -8793,7 +8857,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Release-Notes/release-timeline/" class="md-nav__link">
+      <a href="../../../Release-Notes/release-timeline/" class="md-nav__link">
         Release Timeline
       </a>
     </li>
@@ -8807,7 +8871,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Release-Notes/v1.0.0-rc1/" class="md-nav__link">
+      <a href="../../../Release-Notes/v1.0.0-rc1/" class="md-nav__link">
         v1.0.0-rc1
       </a>
     </li>
@@ -8821,7 +8885,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Release-Notes/v0.8.0/" class="md-nav__link">
+      <a href="../../../Release-Notes/v0.8.0/" class="md-nav__link">
         v0.8.0
       </a>
     </li>
@@ -8835,7 +8899,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Release-Notes/v0.7.0/" class="md-nav__link">
+      <a href="../../../Release-Notes/v0.7.0/" class="md-nav__link">
         v0.7.0
       </a>
     </li>
@@ -8849,7 +8913,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Release-Notes/v0.6.0/" class="md-nav__link">
+      <a href="../../../Release-Notes/v0.6.0/" class="md-nav__link">
         v0.6.0
       </a>
     </li>
@@ -8863,7 +8927,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Release-Notes/v0.5.1/" class="md-nav__link">
+      <a href="../../../Release-Notes/v0.5.1/" class="md-nav__link">
         v0.5.1
       </a>
     </li>
@@ -8877,7 +8941,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Release-Notes/v0.5.0/" class="md-nav__link">
+      <a href="../../../Release-Notes/v0.5.0/" class="md-nav__link">
         v0.5.0
       </a>
     </li>
@@ -8891,7 +8955,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Release-Notes/v0.4.0/" class="md-nav__link">
+      <a href="../../../Release-Notes/v0.4.0/" class="md-nav__link">
         v0.4.0
       </a>
     </li>
@@ -8905,7 +8969,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Release-Notes/v0.3.0/" class="md-nav__link">
+      <a href="../../../Release-Notes/v0.3.0/" class="md-nav__link">
         v0.3.0
       </a>
     </li>
@@ -8919,7 +8983,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Release-Notes/v0.2.0/" class="md-nav__link">
+      <a href="../../../Release-Notes/v0.2.0/" class="md-nav__link">
         v0.2.0
       </a>
     </li>
@@ -8933,7 +8997,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Release-Notes/v0.1.0/" class="md-nav__link">
+      <a href="../../../Release-Notes/v0.1.0/" class="md-nav__link">
         v0.1.0
       </a>
     </li>
@@ -8954,7 +9018,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../glossary/" class="md-nav__link">
+      <a href="../../../glossary/" class="md-nav__link">
         Glossary
       </a>
     </li>
@@ -8995,7 +9059,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Contribution-Guide/make-your-first-contribution/" class="md-nav__link">
+      <a href="../../../Contribution-Guide/make-your-first-contribution/" class="md-nav__link">
         Make Your First Contribution
       </a>
     </li>
@@ -9036,7 +9100,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Contribution-Guide/How-to-Contribute/types-of-contributions/" class="md-nav__link">
+      <a href="../../../Contribution-Guide/How-to-Contribute/types-of-contributions/" class="md-nav__link">
         Types of Contributions
       </a>
     </li>
@@ -9050,7 +9114,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Contribution-Guide/How-to-Contribute/preparation/" class="md-nav__link">
+      <a href="../../../Contribution-Guide/How-to-Contribute/preparation/" class="md-nav__link">
         Preparation
       </a>
     </li>
@@ -9064,7 +9128,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Contribution-Guide/How-to-Contribute/report-an-issue/" class="md-nav__link">
+      <a href="../../../Contribution-Guide/How-to-Contribute/report-an-issue/" class="md-nav__link">
         Report an Issue
       </a>
     </li>
@@ -9078,7 +9142,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Contribution-Guide/How-to-Contribute/contribute-code/" class="md-nav__link">
+      <a href="../../../Contribution-Guide/How-to-Contribute/contribute-code/" class="md-nav__link">
         Contribute Code
       </a>
     </li>
@@ -9092,7 +9156,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Contribution-Guide/How-to-Contribute/review-a-pull-request/" class="md-nav__link">
+      <a href="../../../Contribution-Guide/How-to-Contribute/review-a-pull-request/" class="md-nav__link">
         Review a Pull Request
       </a>
     </li>
@@ -9106,7 +9170,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Contribution-Guide/How-to-Contribute/contribute-documentation/" class="md-nav__link">
+      <a href="../../../Contribution-Guide/How-to-Contribute/contribute-documentation/" class="md-nav__link">
         Contribute Documentation
       </a>
     </li>
@@ -9120,7 +9184,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Contribution-Guide/How-to-Contribute/make-a-design/" class="md-nav__link">
+      <a href="../../../Contribution-Guide/How-to-Contribute/make-a-design/" class="md-nav__link">
         Make a Design
       </a>
     </li>
@@ -9168,7 +9232,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Contribution-Guide/Code-Style/code-of-conduct/" class="md-nav__link">
+      <a href="../../../Contribution-Guide/Code-Style/code-of-conduct/" class="md-nav__link">
         Code of Conduct
       </a>
     </li>
@@ -9182,7 +9246,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Contribution-Guide/Code-Style/code-comment-style/" class="md-nav__link">
+      <a href="../../../Contribution-Guide/Code-Style/code-comment-style/" class="md-nav__link">
         Code Comment Style
       </a>
     </li>
@@ -9196,7 +9260,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Contribution-Guide/Code-Style/commit-pr-style/" class="md-nav__link">
+      <a href="../../../Contribution-Guide/Code-Style/commit-pr-style/" class="md-nav__link">
         Commit & Pull Request Style
       </a>
     </li>
@@ -9302,13 +9366,13 @@
   
 
 
-<h1 id="backup-and-restore">Backup and Restore</h1>
+<h1 id="backup-and-restore-by-using-mo-dump">Backup and Restore by using mo-dump</h1>
 <p>It is essential to back up your databases to recover your data and be up and running again in case problems occur, such as system crashes, hardware failures, or users deleting data by mistake. Backups are also essential as a safeguard before upgrading a MatrixOne installation, and they can be used to transfer a MatrixOne building to another system.</p>
-<p>MatrixOne currently only supports logical backup through the <code>modump</code> utility. <code>modump</code> is a command-line utility used to generate the logical backup of the MatrixOne database. It produces SQL Statements that can be used to recreate the database objects and data. You can look up the syntax and usage guide in the <a href="../../Develop/export-data/modump/">modump</a> chapter.</p>
+<p>MatrixOne currently only supports logical backup through the <code>modump</code> utility. <code>modump</code> is a command-line utility used to generate the logical backup of the MatrixOne database. It produces SQL Statements that can be used to recreate the database objects and data. You can look up the syntax and usage guide in the <a href="../Develop/export-data/modump.md">modump</a> chapter.</p>
 <p>We will take a simple example to walk you through the backup and restore process with the <code>modump</code> utility.</p>
 <h2 id="steps">Steps</h2>
-<h3 id="1-build-the-modump-binary">1. <a href="../../Develop/export-data/modump/">Build the modump binary</a></h3>
-<p>For more information on how to build the <code>modump</code> binary, see <a href="../../Develop/export-data/modump/">Build the modump binary</a>.</p>
+<h3 id="1-build-the-modump-binary">1. <a href="../Develop/export-data/modump.md">Build the modump binary</a></h3>
+<p>For more information on how to build the <code>modump</code> binary, see <a href="../Develop/export-data/modump.md">Build the modump binary</a>.</p>
 <p>If the <code>modump</code> binary has been built, you can continue to browse the next chapter <strong>Generate the backup of a single database</strong>.</p>
 <h3 id="2-generate-the-backup-of-a-single-database">2. Generate the backup of a single database</h3>
 <p>We have a database <strong>t</strong> which is created by the following SQL.</p>
@@ -9398,13 +9462,13 @@ mysql&gt; select count(*) from t1;
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky"], "search": "../../../assets/javascripts/workers/search.74e28a9f.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["content.code.copy", "navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky"], "search": "../../../../assets/javascripts/workers/search.74e28a9f.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.220ee61c.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.220ee61c.min.js"></script>
       
         
-          <script src="../../../javascripts/extra.js"></script>
+          <script src="../../../../javascripts/extra.js"></script>
         
       
     
