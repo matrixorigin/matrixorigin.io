@@ -532,6 +532,26 @@ Fields in the `USER_PRIVILEGES` table are described as follows:
 - `CHARACTER_SET_CLIENT`: The session value of the `character_set_client` system variable when the view was created.
 - `COLLATION_CONNECTION`: The session value of the `collation_connection` system variable when the view was created.
 
+### `STATISTICS` Table
+
+Obtain detailed information about database table indexes and statistics. For example, you can check whether an index is unique, understand the order of columns within an index, and estimate the number of unique values in an index.
+
+- `TABLE_CATALOG`: The catalog name of the table (always 'def').
+- `TABLE_SCHEMA`: The name of the database to which the table belongs.
+- `TABLE_NAME`: The name of the table.
+- `NON_UNIQUE`: Indicates whether the index allows duplicate values. If 0, the index is unique.
+- `INDEX_SCHEMA`: The database name to which the index belongs.
+- `INDEX_NAME`: The name of the index.
+- `SEQ_IN_INDEX`: The position of the column within the index.
+- `COLUMN_NAME`: The name of the column.
+- `COLLATION`: The collation of the column.
+- `CARDINALITY`: An estimated count of unique values in the index.
+- `SUB_PART`: The length of the index part. For the entire column, this value is NULL.
+- `PACKED`: Indicates whether compressed storage is used.
+- `NULLABLE`: Indicates whether the column allows NULL values.
+- `INDEX_TYPE`: The index type (e.g., BTREE, HASH, etc.).
+- `COMMENT`: Comment information about the index.
+
 ## `mysql` database
 
 ### Grant system tables
