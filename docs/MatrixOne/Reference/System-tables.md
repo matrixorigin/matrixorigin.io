@@ -274,6 +274,7 @@ The other tables are all views of the `metric` table:
 * `sql_statement_errors` table: Counter of sql statements executed with errors.
 * `sql_statement_total` table: Counter of executed sql statement.
 * `sql_transaction_errors` table: Counter of transactional statements executed with errors.
+* `sql_statement_hotspot` table: records the most extended SQL query executed by each tenant within each minute. Only those SQL queries whose execution time does not exceed a certain aggregation threshold will be included in the statistics.
 * `sql_transaction_total` table: Counter of transactional sql statement.
 * `sys_cpu_combined_percent` table: System CPU busy percentage, average among all logical cores.
 * `sys_cpu_seconds_total` table: System CPU time spent in seconds, normalized by number of cores
