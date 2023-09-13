@@ -58,3 +58,61 @@ mysql> SELECT * FROM Accounts;
 +----------------+---------+
 2 rows in set (0.01 sec)
 ```
+
+## Cross-Database Transaction Behavior Example
+
+MatrixOne supports cross-database transaction behavior; here, we'll illustrate it with a simple example.
+
+First, let's create two databases (db1 and db2) along with their respective tables (table1 and table2):
+
+```sql
+-- Create the db1 database
+CREATE DATABASE db1;
+USE db1;
+
+-- Create table1 within db1
+CREATE TABLE table1 (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    field1 INT
+);
+
+-- Create the db2 database
+CREATE DATABASE db2;
+USE db2;
+
+-- Create table2 within db2
+CREATE TABLE table2 (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    field2 INT
+);
+```
+
+Now, we have created two databases and their tables. Next, let's insert some data:
+
+```sql
+-- Insert data into table1 in db1
+INSERT INTO db1.table1 (field1) VALUES (100), (200), (300);
+
+-- Insert data into table2 in db2
+INSERT INTO db2.table2 (field2) VALUES (500), (600), (700);
+```
+
+We now have data in both databases. Moving on, let's execute a cross-database transaction to modify data in these two databases simultaneously:
+
+```sql
+-- Start the cross-database transaction
+START TRANSACTION;
+
+-- Update data in table1 within db1
+UPDATE db1.table1 SET field1 = field1 + 10;
+
+-- Update data in table2 within db2
+UPDATE db2.table2 SET field2 = field2 - 50;
+
+-- Commit the cross-database transaction
+COMMIT;
+```
+
+In the above cross-database transaction, we begin with `START TRANSACTION;`, then proceed to update data in table1 within db1 and table2 within db2. Finally, we use `COMMIT;` to commit the transaction. If any step fails during the transaction, the entire transaction is rolled back to ensure data consistency.
+
+This example demonstrates a complete cross-database transaction. Cross-database transactions can be more complex in real-world applications, but this simple example helps us understand the fundamental concepts and operations involved.
