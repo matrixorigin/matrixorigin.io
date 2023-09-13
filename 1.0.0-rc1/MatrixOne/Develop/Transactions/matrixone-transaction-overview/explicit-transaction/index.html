@@ -1896,6 +1896,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#cross-database-transaction-behavior-example" class="md-nav__link">
+    Cross-Database Transaction Behavior Example
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -9310,6 +9317,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#cross-database-transaction-behavior-example" class="md-nav__link">
+    Cross-Database Transaction Behavior Example
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -9399,6 +9413,51 @@
 <span class="o">+</span><span class="c1">----------------+---------+</span>
 <span class="mi">2</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 </code></pre></div>
+<h2 id="cross-database-transaction-behavior-example">Cross-Database Transaction Behavior Example</h2>
+<p>MatrixOne supports cross-database transaction behavior; here, we'll illustrate it with a simple example.</p>
+<p>First, let's create two databases (db1 and db2) along with their respective tables (table1 and table2):</p>
+<div class="highlight"><pre><span></span><code><span class="c1">-- Create the db1 database</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">db1</span><span class="p">;</span>
+<span class="n">USE</span><span class="w"> </span><span class="n">db1</span><span class="p">;</span>
+
+<span class="c1">-- Create table1 within db1</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">table1</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">field1</span><span class="w"> </span><span class="nb">INT</span>
+<span class="p">);</span>
+
+<span class="c1">-- Create the db2 database</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">db2</span><span class="p">;</span>
+<span class="n">USE</span><span class="w"> </span><span class="n">db2</span><span class="p">;</span>
+
+<span class="c1">-- Create table2 within db2</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">table2</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">field2</span><span class="w"> </span><span class="nb">INT</span>
+<span class="p">);</span>
+</code></pre></div>
+<p>Now, we have created two databases and their tables. Next, let's insert some data:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">-- Insert data into table1 in db1</span>
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">db1</span><span class="p">.</span><span class="n">table1</span><span class="w"> </span><span class="p">(</span><span class="n">field1</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">100</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">200</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">300</span><span class="p">);</span>
+
+<span class="c1">-- Insert data into table2 in db2</span>
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">db2</span><span class="p">.</span><span class="n">table2</span><span class="w"> </span><span class="p">(</span><span class="n">field2</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">500</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">600</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">700</span><span class="p">);</span>
+</code></pre></div>
+<p>We now have data in both databases. Moving on, let's execute a cross-database transaction to modify data in these two databases simultaneously:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">-- Start the cross-database transaction</span>
+<span class="k">START</span><span class="w"> </span><span class="k">TRANSACTION</span><span class="p">;</span>
+
+<span class="c1">-- Update data in table1 within db1</span>
+<span class="k">UPDATE</span><span class="w"> </span><span class="n">db1</span><span class="p">.</span><span class="n">table1</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">field1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">field1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+
+<span class="c1">-- Update data in table2 within db2</span>
+<span class="k">UPDATE</span><span class="w"> </span><span class="n">db2</span><span class="p">.</span><span class="n">table2</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">field2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">field2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">50</span><span class="p">;</span>
+
+<span class="c1">-- Commit the cross-database transaction</span>
+<span class="k">COMMIT</span><span class="p">;</span>
+</code></pre></div>
+<p>In the above cross-database transaction, we begin with <code>START TRANSACTION;</code>, then proceed to update data in table1 within db1 and table2 within db2. Finally, we use <code>COMMIT;</code> to commit the transaction. If any step fails during the transaction, the entire transaction is rolled back to ensure data consistency.</p>
+<p>This example demonstrates a complete cross-database transaction. Cross-database transactions can be more complex in real-world applications, but this simple example helps us understand the fundamental concepts and operations involved.</p>
 
 
 

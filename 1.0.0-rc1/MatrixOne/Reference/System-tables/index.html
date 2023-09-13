@@ -8711,6 +8711,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#statistics-table" class="md-nav__link">
+    STATISTICS Table
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -9785,6 +9792,13 @@
           <li class="md-nav__item">
   <a href="#view-table" class="md-nav__link">
     VIEW table
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#statistics-table" class="md-nav__link">
+    STATISTICS Table
   </a>
   
 </li>
@@ -11354,6 +11368,25 @@ The other system databases and table functions are described in this document.</
 <li><code>SECURITY_TYPE</code>: View the <code>SQL SECURITY</code> attribute. Values ​​are <code>DEFINER</code> or <code>INVOKER</code>.</li>
 <li><code>CHARACTER_SET_CLIENT</code>: The session value of the <code>character_set_client</code> system variable when the view was created.</li>
 <li><code>COLLATION_CONNECTION</code>: The session value of the <code>collation_connection</code> system variable when the view was created.</li>
+</ul>
+<h3 id="statistics-table"><code>STATISTICS</code> Table</h3>
+<p>Obtain detailed information about database table indexes and statistics. For example, you can check whether an index is unique, understand the order of columns within an index, and estimate the number of unique values in an index.</p>
+<ul>
+<li><code>TABLE_CATALOG</code>: The catalog name of the table (always 'def').</li>
+<li><code>TABLE_SCHEMA</code>: The name of the database to which the table belongs.</li>
+<li><code>TABLE_NAME</code>: The name of the table.</li>
+<li><code>NON_UNIQUE</code>: Indicates whether the index allows duplicate values. If 0, the index is unique.</li>
+<li><code>INDEX_SCHEMA</code>: The database name to which the index belongs.</li>
+<li><code>INDEX_NAME</code>: The name of the index.</li>
+<li><code>SEQ_IN_INDEX</code>: The position of the column within the index.</li>
+<li><code>COLUMN_NAME</code>: The name of the column.</li>
+<li><code>COLLATION</code>: The collation of the column.</li>
+<li><code>CARDINALITY</code>: An estimated count of unique values in the index.</li>
+<li><code>SUB_PART</code>: The length of the index part. For the entire column, this value is NULL.</li>
+<li><code>PACKED</code>: Indicates whether compressed storage is used.</li>
+<li><code>NULLABLE</code>: Indicates whether the column allows NULL values.</li>
+<li><code>INDEX_TYPE</code>: The index type (e.g., BTREE, HASH, etc.).</li>
+<li><code>COMMENT</code>: Comment information about the index.</li>
 </ul>
 <h2 id="mysql-database"><code>mysql</code> database</h2>
 <h3 id="grant-system-tables">Grant system tables</h3>
