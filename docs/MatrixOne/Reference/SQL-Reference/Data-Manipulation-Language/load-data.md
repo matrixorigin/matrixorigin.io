@@ -6,6 +6,8 @@ The LOAD DATA statement reads rows from a text file into a table at a very high 
 
 ## **Syntax**
 
+### Load external data
+
 ```
 > LOAD DATA [LOCAL]
     INFILE 'file_name'
@@ -23,21 +25,15 @@ The LOAD DATA statement reads rows from a text file into a table at a very high 
     [PARALLEL {'TRUE' | 'FALSE'}]
 ```
 
-### Input File Location
+**Parameter Explanation**
+
+#### Input File Location
 
 - `LOAD DATA INFILE 'file_name'`: Indicates that the data file to be loaded is on the same machine as the MatrixOne host server. `file_name` can be the relative path name of the storage location of the file, or it can be the absolute path name.
 
 - `LOAD DATA LOCAL INFILE 'file_name'`: indicates that the data file to be loaded is not on the same machine as the MatrixOne host server; that is, the data file is on the client server. `file_name` can be the relative path name of the storage location of the file, or it can be the absolute path name.
 
-### IGNORE LINES
-
-The IGNORE number LINES clause can be used to ignore lines at the start of the file. For example, you can use `IGNORE 1 LINES` to skip an initial header line containing column names:
-
-```
-LOAD DATA INFILE '/tmp/test.txt' INTO TABLE table1 IGNORE 1 LINES;
-```
-
-### Field and Line Handling
+#### Field and Line Handling
 
 For both the LOAD DATA and `SELECT ... INTO OUTFILE` statements, the syntax of the FIELDS and LINES clauses is the same. Both clauses are optional, but FIELDS must precede LINES if both are specified.
 
@@ -116,7 +112,15 @@ something xxx"def",2
 
 The resulting rows are ("abc",1) and ("def",2). The third row in the file is skipped because it does not contain the prefix.
 
-### SET
+#### IGNORE LINES
+
+The IGNORE number LINES clause can be used to ignore lines at the start of the file. For example, you can use `IGNORE 1 LINES` to skip an initial header line containing column names:
+
+```
+LOAD DATA INFILE '/tmp/test.txt' INTO TABLE table1 IGNORE 1 LINES;
+```
+
+#### SET
 
 MatrixOne only supports `SET column_name=nullif(column_name,expr)`. That is, when `column_name = expr`, it returns `NULL`; otherwise, it returns the original value of `column_name`. For example, `SET a=nullif(a,1)`, if a=1, returns `NULL`; otherwise, it returns the original value of column a.
 
@@ -160,7 +164,7 @@ By setting the parameter, you can use `SET column_name=nullif(column_name,"null"
     +------+-----------+------+
     ```
 
-### PARALLEL
+#### PARALLEL
 
 For a sizeable well-formed file, such as a *JSOLLines* file or a *CSV* file with no line breaks in a line of data, you can use `PARALLEL` to load the file in parallel to speed up the loading.
 
@@ -183,6 +187,35 @@ load data infile 'file_name' into table tbl_name FIELDS TERMINATED BY '|' ENCLOS
     `[PARALLEL {'TRUE' | 'FALSE'}]` currently only support `TRUE` or `FALSE` and are not case-sensitive.
 
 __Note:__ If the `PARALLEL` field is not added in the `LOAD` statement, for *CSV* files, parallel loading is disabled by default; for *JSOLLines* files, parallel loading is enabled by default. If there is a line terminator in the *CSV* file, such as '\n', otherwise it may cause data errors when the file is loaded. If the file is too large, manually splitting the file from the '\n' as the starting and ending point is recommended, then enabling parallel loading.
+
+### Load Time-Series Data
+
+```
+> LOAD DATA INLINE FORMAT='' DATA=''
+INTO TABLE tbl_name
+    [{FIELDS | COLUMNS}
+        [TERMINATED BY 'string']
+        [[OPTIONALLY] ENCLOSED BY 'char']
+    ]
+    [LINES
+        [STARTING BY 'string']
+        [TERMINATED BY 'string']
+    ]
+    [IGNORE number {LINES | ROWS}]
+```
+
+**Parameter Explanation**
+
+The SQL command `LOAD DATA INLINE` for loading time-series data has the following parameter explanations:
+
+- `FORMAT`: Specifies the format of the time-series data being loaded; for example, `FORMAT='csv'` indicates that the data being loaded is in CSV format. It supports the same formats as `LOAD DATA INFILE`.
+
+- `DATA`: Specifies the actual time-series data to be loaded. In the example, `DATA='1\n2\n'` indicates that the data to be loaded consists of two lines containing the numbers 1 and 2.
+
+!!! note
+    Parameters such as `FIELDS`, `COLUMNS`, `TERMINATED BY`, `ENCLOSED BY`, `LINES`, `STARTING BY`, and `IGNORE` can be referred to the parameter explanations of `LOAD DATA INFILE` as mentioned earlier.
+
+Example command for loading time-series data: `load data inline format='csv', data='1\n2\n' into table t1;`. This command loads the specified data in CSV format (which includes two lines, namely 1 and 2) into a database table named `t1`.
 
 ## Supported file formats
 
