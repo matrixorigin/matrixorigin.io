@@ -29,6 +29,14 @@ At the beginning of an optimistic transaction, it is assumed that the transactio
 
 MatrixOne defaults to pessimistic transactions. At the beginning of a pessimistic transaction, it is assumed that the transaction-related table is in a state where write conflicts may occur, and the corresponding data table or data row is locked in advance. After the locking action is completed, the data's insertion, modification, or deletion is cached in In memory; after committing or rolling back, the data is completed, and the lock is released.
 
+## MatrixOne Supports Cross-Database Transactions
+
+MatrixOne supports cross-database transactions, allowing a single transaction to access and modify multiple databases simultaneously.
+
+In real-world applications, specific business requirements may necessitate operations involving multiple databases. The introduction of cross-database transactions serves to address these needs. This functionality ensures that operations across different databases maintain consistency and isolation as executed within a single database. This means that when you need to perform a series of operations across multiple databases, you can wrap them within a single transaction, facilitating the completion of these operations while preserving data integrity and consistency.
+
+Cross-database transactions typically play a pivotal role in complex enterprise application scenarios. Different business functions or departments may use separate databases in these scenarios, yet they need to collaborate to fulfill intricate business requirements. MatrixOne's support for cross-database transactions enhances system flexibility and scalability. However, preserving data integrity and consistency also requires careful design and management.
+
 ## Transaction isolation level of MatrixOne
 
 MatrixOne supports two isolation levels: **Read Committed** and **Snapshot Isolation**. The default isolation level is **Read Committed**.
