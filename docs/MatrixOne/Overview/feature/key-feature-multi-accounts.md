@@ -68,7 +68,7 @@ Both traditional models have specific challenges:
 
 The multi-account capability of MatrixOne brings a new architectural approach. accounts still share a MatrixOne cluster, and unified account O&M and management can be performed through system accounts. In addition, the isolation of data and resources is realized through the built-in multi-account capability. Each account can independently expand and contract resources, further reducing the difficulty of operation and maintenance. This approach meets not only the requirements for isolation but also the requirements for low resource and operation and maintenance costs.
 
-![MatrixOne Architecture](https://github.com/matrixorigin/artwork/blob/main/docs/overview/mo-account-arch.png?raw=true)
+<img width="1205" height="1686" style="max-width: min(100%, 16rem); display: block; margin: auto;" alt="mo-account-arch" src="https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/overview/mo-account-arch.png" >
 
 |Multi-account mode|Data isolation degree|Resource cost|Resource isolation|Operation and maintenance complexity|
 |---|---|---|---|---|
