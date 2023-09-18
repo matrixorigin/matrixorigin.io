@@ -16,7 +16,7 @@ The sqrt function is used to calculate the square root of each element in a vect
 
 #### Return Type
 
-Return a new vector of type vecf64, containing the square root of each element in the original vector.   
+Return a new vector of type vecf64 containing the square root of each element in the original vector.
 
 ### **Examples**
 
@@ -139,9 +139,10 @@ The summation function returns the sum of all the elements in a vector.
 ```
 > SELECT SUMMATION(vector_column) FROM table_name;
 ```
+
 #### Return Type
 
-Returns a FLOAT64 value, which is the sum of all the elements in the vector.
+Returns a FLOAT64 value, the sum of all the elements in the vector.
 
 ### **Examples**
 
