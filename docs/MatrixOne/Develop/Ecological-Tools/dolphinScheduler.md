@@ -1,90 +1,88 @@
-# 使用 DolphinScheduler 连接 MatrixOne
+# Connecting MatrixOne with DolphinScheduler
 
-## 概述
+## Overview
 
-Apache DolphinScheduler 是一个分布式、易扩展的可视化 DAG 工作流任务调度开源系统。它提供了一种解决方案，可以通过可视化操作任务、工作流和全生命周期的数据处理过程。
+Apache DolphinScheduler is a distributed, highly scalable open-source system for visual DAG (Directed Acyclic Graph) workflow task scheduling. It provides a solution for visually orchestrating tasks, workflows, and the entire data processing lifecycle.
 
-Apache DolphinScheduler 的主要目标是解决复杂的大数据任务依赖关系。它使用 DAG（Directed Acyclic Graph，有向无环图）的流式方式来组装任务，允许您实时监控任务的执行状态，支持任务重试、指定节点恢复失败、暂停、恢复、终止等操作。
+The main goal of Apache DolphinScheduler is to address complex dependencies in large-scale data tasks. It assembles tasks streamingly using DAGs, allowing real-time monitoring of task execution status and supporting operations such as task retries, specifying node recovery for failures, and pausing, resuming, and terminating tasks.
 
-MatrixOne 支持与可视化 DAG 工作流任务调度系统 DolphinScheduler 进行连接。本文将指导您如何通过 DolphinScheduler 连接到 MatrixOne 并创建任务工作流。
+MatrixOne supports integration with DolphinScheduler, a visual DAG workflow task scheduling system. This document will guide you on connecting MatrixOne to DolphinScheduler and creating task workflows.
 
-## 开始前准备
+## Before you start
 
-- 已完成[安装和启动 MatrixOne](../../../Get-Started/install-standalone-matrixone.md)。
+- Completed [MatrixOne installation and setup](../../../Get-Started/install-standalone-matrixone.md).
 
-- 已完成[安装 DolphinScheduler](https://dolphinscheduler.apache.org/zh-cn/docs/3.1.8/guide/installation/standalone)。
+- Installed [DolphinScheduler installation](https://dolphinscheduler.apache.org/docs/3.1.8/en/installation/standalone).
 
-## 操作步骤
+## Operating Steps
 
-### 第一步：配置 MySQL 驱动
+### Step 1: Configure the MySQL Driver
 
-1. 下载 MySQL 驱动并将其复制到 libs 目录：
+1. Download the MySQL driver and copy it to the libs directory:
 
-    在安装完成后，您需要手动下载 [mysql-connector-java 驱动](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.16/mysql-connector-java-8.0.16.jar)（版本 8.0.16），然后将它分别复制到 DolphinScheduler 安装目录下的四个目录中：`api-server/libs`、`alert-server/libs`、`master-server/libs` 和 `worker-server/libs`。
+    After installation, you need to manually download the [mysql-connector-java driver](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.16/mysql-connector-java-8.0.16.jar) (version 8.0.16). Then, copy it to four directories in the DolphinScheduler installation directory: `api-server/libs`, `alert-server/libs`, `master-server/libs`, and `worker-server/libs`.
 
-    !!! 注意
-		    推荐使用 `mysql-connector-java-8.0.16.jar` 作为 MySQL 驱动包。
+    !!! Note
+        It is recommended to use `mysql-connector-java-8.0.16.jar` as the MySQL driver package.
 
-2. 重启 DolphinScheduler：
+2. Restart DolphinScheduler:
 
-    复制驱动包完成后，需要重启 DolphinScheduler 服务。首先进入 DolphinScheduler 的安装目录，然后执行以下命令来重启 DolphinScheduler 服务：
+    After copying the driver package, you need to restart the DolphinScheduler service. First, go to the DolphinScheduler installation directory and then execute the following command to restart the DolphinScheduler service:
 
     ```shell
-    # 停止 Standalone Server 服务
+    # Stop the Standalone Server service
     bash ./bin/dolphinscheduler-daemon.sh stop standalone-server
-    # 启动 Standalone Server 服务
+    # Start the Standalone Server service
     bash ./bin/dolphinscheduler-daemon.sh start standalone-server
     ```
 
-3. 登录 DolphinScheduler：
+3. Log in to DolphinScheduler:
 
-	  使用默认用户名 `admin` 和密码 `dolphinscheduler123`，通过访问 <http://ip:12345/dolphinscheduler/ui> 登录 DolphinScheduler 的 Web 用户界面，如下图所示：
+    Use the default username `admin` and password `dolphinscheduler123`. Access the DolphinScheduler web user interface by visiting http://ip:12345/dolphinscheduler/ui, as shown below:
 
-    ![image-20230809145317885](https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/develop/Scheduling-tool/image-20230809145317885.png)
+    ![image-20230809145317885](https://github.com/matrixorigin/artwork/blob/main/docs/develop/Scheduling-tool/image-20230809145317885.png)
 
-4. 创建数据源：
+4. Create a Data Source:
 
-    点击**数据源中心 > 创建数据源**，填写 MatrixOne 数据连接信息。完成后，点击**测试连接**，如果连接成功，点击**确定**保存：
+    Click on **Data Source Center > Create Data Source** and enter the MatrixOne data connection information. Afterward, click on **Test Connection**; if the connection is successful, click **OK** to save it:
 
-    ![image-20230809145935857](https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/develop/Scheduling-tool/image-20230809145935857.png)
+    ![image-20230809145935857](https://github.com/matrixorigin/artwork/blob/main/docs/develop/Scheduling-tool/image-20230809145935857.png)
 
-### 第二步：创建项目工作流
+### Step 2: Create a Project Workflow
 
-1. 创建租户：
+1. Create a Tenant:
 
-    在**安全中心**中，点击**创建租户**，填写租户名称，如下图所示：
+    In the **Security Center**, click on **Create Tenant** and enter the tenant name, as shown below:
 
-    ![image-20230809160632965](https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/develop/Scheduling-tool/image-20230809160632965.png)
+    ![image-20230809160632965](https://github.com/matrixorigin/artwork/blob/main/docs/develop/Scheduling-tool/image-20230809160632965.png)
 
-		!!! 注意
-				在生产环境中，不建议使用 root 作为租户。
+    !!! Note
+        In a production environment, it is not recommended to use `root` as the tenant.
 
-2. 创建项目：
+2. Create a Project:
 
-    在**项目管理**中，点击**创建项目**，填写项目名称，如下图所示：
+    In **Project Management**, click on **Create Project** and enter the project name, as shown below:
 
-    ![image-20230809150528364](https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/develop/Scheduling-tool/image-20230809150528364.png)
+    ![image-20230809150528364](https://github.com/matrixorigin/artwork/blob/main/docs/develop/Scheduling-tool/image-20230809150528364.png)
 
-3. 创建工作流并添加节点：
+3. Create a Workflow and Add Nodes:
 
-    点击上一步创建的**项目名称**，然后点击**创建工作流**。从左侧拖动 **SQL** 节点到右侧的画布上，填写**节点名称**、**数据源信息**、**SQL 类型**、**SQL 语句**，然后点击**确定**。如下图所示：
+    Click on the **Project Name** created in the previous step and then click on **Create Workflow**. Drag the **SQL** node from the left to the canvas on the right. Fill in the **Node Name**, **Data Source Information**, **SQL Type**, and **SQL Statement**, then click **OK**. As shown below:
 
-    此步骤创建的是一个建表节点，SQL 语句用于创建表格。
+    The node created in this step is for creating a table, and the SQL statement is used to create a table.
 
-    ![image-20230809151554568](https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/develop/Scheduling-tool/image-20230809151554568.png)
+    ![image-20230809151554568](https://github.com/matrixorigin/artwork/blob/main/docs/develop/Scheduling-tool/image-20230809151554568.png)
 
-    接下来，类似地创建**插入数据**和**查询数据**节点。这三个节点的依赖关系如下图，您可以手动连接它们：
+    Next, create **Insert Data** and **Query Data** nodes in a similar way. The dependency relationship between these three nodes is shown below, and you can manually connect them:
 
- ![image-20230809153149428](https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/develop/Scheduling-tool/image-20230809153149428.png)		
+    ![image-20230809153149428](https://github.com/matrixorigin/artwork/blob/main/docs/develop/Scheduling-tool/image-20230809153149428.png)
 
-    三个节点的 SQL 语句如下：
+    The SQL statements for these three nodes are as follows:
 
     ```sql
     #create_table
 
-    CREATE TABLE IF NOT EXISTS test_table (id INT AUTO_INCREMENT PRIMARY KEY, name
-
-    VARCHAR(255) NOT NULL)
+    CREATE TABLE IF NOT EXISTS test_table (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255) NOT NULL)
 
     #insert_data
 
@@ -95,32 +93,32 @@ MatrixOne 支持与可视化 DAG 工作流任务调度系统 DolphinScheduler �
     SELECT * FROM test_table
     ```
 
-    根据依赖关系连接这三个节点，然后点击**保存**。填写**工作流名称**，选择之前创建的**租户**，选择执行策略为**并行**，然后点击**确定**。
+    Connect these three nodes based on their dependency relationship, then click **Save**. Enter the **Workflow Name**, select the previously created **Tenant**, choose **Parallel** as the execution policy, and click **OK**.
 
-    ![image-20230809161503945](https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/develop/Scheduling-tool/image-20230809161503945.png)
+    ![image-20230809161503945](https://github.com/matrixorigin/artwork/blob/main/docs/develop/Scheduling-tool/image-20230809161503945.png)
 
-    创建好工作流后，您可以在**工作流关系**页面看到创建的工作流，其状态为**工作流下线**：
+    Once the workflow is created, you can see it in the **Workflow Relations** page with the status "Workflow Offline":
 
-    ![image-20230809161909925](https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/develop/Scheduling-tool/image-20230809161909925.png)
+    ![image-20230809161909925](https://github.com/matrixorigin/artwork/blob/main/docs/develop/Scheduling-tool/image-20230809161909925.png)
 
-    同样，您也可以在**工作流定义**页面看到定义的工作流，其状态为**下线**：
+    Similarly, you can also see the defined workflow in the **Workflow Definitions** page with the status "Offline":
 
-    ![image-20230809162411368](https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/develop/Scheduling-tool/image-20230809162411368.png)
+    ![image-20230809162411368](https://github.com/matrixorigin/artwork/blob/main/docs/develop/Scheduling-tool/image-20230809162411368.png)
 
-4. 上线并运行工作流：
+4. Publish and Run the Workflow:
 
-    工作流必须先上线才能运行。点击**上线**按钮，将之前创建的工作流上线：
+    A workflow must be published before it can be run. Click the **Publish** button to publish the workflow created earlier:
 
-    ![image-20230809162245088](https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/develop/Scheduling-tool/image-20230809162245088.png)
+    ![image-20230809162245088](https://github.com/matrixorigin/artwork/blob/main/docs/develop/Scheduling-tool/image-20230809162245088.png)
 
-    上线后，工作流的状态如下图所示：
+    After publishing, the workflow status will appear as follows:
 
-    ![image-20230809163722777](https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/develop/Scheduling-tool/image-20230809163722777.png)
+    ![image-20230809163722777](https://github.com/matrixorigin/artwork/blob/main/docs/develop/Scheduling-tool/image-20230809163722777.png)
 
-    接下来，点击**运行**按钮，设置启动前的配置参数，然后点击**确定**：
+    Next, click the **Run** button, set the configuration parameters before starting, and then click **OK**:
 
-    ![image-20230809162828049](https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/develop/Scheduling-tool/image-20230809162828049.png)
+    ![image-20230809162828049](https://github.com/matrixorigin/artwork/blob/main/docs/develop/Scheduling-tool/image-20230809162828049.png)
 
-    最后，返回**项目概况**，查看工作流以及下面的三个任务是否成功运行，如下图所示：
+    Finally, return to the **Project Overview** to check whether the workflow and the three tasks below it have run successfully, as shown below:
 
-    ![image-20230809163533339](https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/develop/Scheduling-tool/image-20230809163533339.png)
+    ![image-20230809163533339](https://github.com/matrixorigin/artwork/blob/main/docs/develop/Scheduling-tool/image-20230809163533339.png)
