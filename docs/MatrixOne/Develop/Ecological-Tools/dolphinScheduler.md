@@ -38,7 +38,7 @@ MatrixOne supports integration with DolphinScheduler, a visual DAG workflow task
 
 3. Log in to DolphinScheduler:
 
-    Use the default username `admin` and password `dolphinscheduler123`. Access the DolphinScheduler web user interface by visiting http://ip:12345/dolphinscheduler/ui, as shown below:
+    Use the default username `admin` and password `dolphinscheduler123`. Access the DolphinScheduler web user interface by visiting `http://ip:12345/dolphinscheduler/ui`, as shown below:
 
     ![image-20230809145317885](https://github.com/matrixorigin/artwork/blob/main/docs/develop/Scheduling-tool/image-20230809145317885.png)
 
