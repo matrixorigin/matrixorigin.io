@@ -120,4 +120,4 @@ The non-recursive CTE example selects basic information of all employees from th
 
 The `RECURSIVE` keyword is needed to declare a recursive CTE.
 
-For more information on using CTEs, see [WITH (Common Table Expressions)](.. //Reference/SQL-Reference/Data-Query-Language/with-cte.md).
+For more information on using CTEs, see [WITH (Common Table Expressions)](../../Reference/SQL-Reference/Data-Query-Language/with-cte.md).
