@@ -102,5 +102,4 @@ __Note:__ The `LIKE` operator is used for fuzzy matching query strings, with % r
 
 ## Constraints
 
-1. To be compatible with MySQL, MatrixOne currently only implements syntax support for the system variables.
-2. MatrixOne is compatible with MySQL, except the `ONLY_FULL_GROUP_BY` mode; other modes of sql_mode only implement syntax support.
+MatrixOne is compatible with MySQL, and the SQL mode only supports the `ONLY_FULL_GROUP_BY` mode; other SQL modes are only supported by syntax and have no actual effect.
