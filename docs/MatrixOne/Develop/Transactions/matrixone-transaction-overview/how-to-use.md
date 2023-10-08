@@ -81,4 +81,4 @@ __Note:__ If you only add the transaction mode parameter `mode = "optimistic"`, 
 
 Restart MatrixOne to make the switched transaction mode take effect.
 
-For more information on the configuration parameters, see [Distributed Common Parameters Configuration](../../Reference/System-Parameters/distributed-configuration-settings.md).
+For more information on the configuration parameters, see [Distributed Common Parameters Configuration](../../../Reference/System-Parameters/distributed-configuration-settings.md).

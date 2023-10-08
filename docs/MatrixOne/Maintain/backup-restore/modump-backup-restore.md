@@ -2,15 +2,15 @@
 
 It is essential to back up your databases to recover your data and be up and running again in case problems occur, such as system crashes, hardware failures, or users deleting data by mistake. Backups are also essential as a safeguard before upgrading a MatrixOne installation, and they can be used to transfer a MatrixOne building to another system.
 
-MatrixOne currently only supports logical backup through the `modump` utility. `modump` is a command-line utility used to generate the logical backup of the MatrixOne database. It produces SQL Statements that can be used to recreate the database objects and data. You can look up the syntax and usage guide in the [modump](../Develop/export-data/modump.md) chapter.
+MatrixOne currently only supports logical backup through the `modump` utility. `modump` is a command-line utility used to generate the logical backup of the MatrixOne database. It produces SQL Statements that can be used to recreate the database objects and data. You can look up the syntax and usage guide in the [modump](../../Develop/export-data/modump.md) chapter.
 
 We will take a simple example to walk you through the backup and restore process with the `modump` utility.
 
 ## Steps
 
-### 1. [Build the modump binary](../Develop/export-data/modump.md)
+### 1. [Build the modump binary](../../Develop/export-data/modump.md)
 
-For more information on how to build the `modump` binary, see [Build the modump binary](../Develop/export-data/modump.md).
+For more information on how to build the `modump` binary, see [Build the modump binary](../../Develop/export-data/modump.md).
 
 If the `modump` binary has been built, you can continue to browse the next chapter **Generate the backup of a single database**.
 
