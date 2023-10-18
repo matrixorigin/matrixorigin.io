@@ -61,6 +61,8 @@ nav:
         - Architecture Design Overview: MatrixOne/Overview/architecture/matrixone-architecture-design.md
         - Transactional Analytical Engine Architecture: MatrixOne/Overview/architecture/architecture-tae.md
         - Detailed Logservice Architecture: MatrixOne/Overview/architecture/architecture-logservice.md
+        - Logtail Protocol Architecture: MatrixOne/Overview/architecture/architecture-logtail.md
+        - Transaction and Lock Mechanisms Architecture: MatrixOne/Overview/architecture/architecture-transaction-lock.md
         - Detailed Proxy Architecture: MatrixOne/Overview/architecture/architecture-proxy.md
         - Detailed Caching and Hot-Cold Data Separation Architecture: MatrixOne/Overview/architecture/architecture-cold-hot-data-separation.md
         - Detailed Stream Engine Architecture: MatrixOne/Overview/architecture/streaming.md
@@ -154,8 +156,11 @@ nav:
         - ETL Tools:
           - Writing Data to MatrixOne Using SeaTunnel: MatrixOne/Develop/Ecological-Tools/Computing-Engine/seatunnel-write.md
           - Writing Data to MatrixOne Using DataX: MatrixOne/Develop/Ecological-Tools/Computing-Engine/DataX-write.md
+        - Computing Engine:
+          - Writing Batch data to MatrixOne Using Spark: MatrixOne/Develop/Ecological-Tools/Computing-Engine/Spark.md
+          - Writing Real-Time Data to MatrixOne Using Flink: MatrixOne/Develop/Ecological-Tools/Computing-Engine/Flink.md
         - Scheduling Tools:
-          - Connecting MatrixOne with DolphinScheduler: MatrixOne/Develop/Ecological-Tools/dolphinScheduler.md
+          - Connecting MatrixOne with DolphinScheduler: MatrixOne/Develop/Ecological-Tools/Scheduling-Tools/dolphinScheduler.md
     - Deploying:
       - Plan MatrixOne Cluster Topology:
         - Cluster Topology Planning Overview: MatrixOne/Deploy/deployment-topology/topology-overview.md
