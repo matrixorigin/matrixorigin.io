@@ -10,7 +10,7 @@ This document will explain how to use SeaTunnel to write data to MatrixOne.
 
 Before using SeaTunnel to write data to MatrixOne, make sure to complete the following preparations:
 
-- Install and start MatrixOne by following the steps in [Install and Start MatrixOne](../../../Get-Started/install-standalone-matrixone.md).
+- Install and start MatrixOne by following the steps in [Install standalone MatrixOne](../../../Get-Started/install-standalone-matrixone.md).
 
 - Install SeaTunnel Version 2.3.3 by downloading it from [here](https://www.apache.org/dyn/closer.lua/seatunnel/2.3.3/apache-seatunnel-2.3.3-bin.tar.gz). After installation, you can define the installation path of SeaTunnel using a shell command:
 
