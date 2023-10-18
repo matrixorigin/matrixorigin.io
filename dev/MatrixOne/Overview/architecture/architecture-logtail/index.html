@@ -9,17 +9,17 @@
       
       
       
-        <link rel="prev" href="../Computing-Engine/DataX-write/">
+        <link rel="prev" href="../architecture-logservice/">
       
       
-        <link rel="next" href="../../../Deploy/deployment-topology/topology-overview/">
+        <link rel="next" href="../architecture-transaction-lock/">
       
       <link rel="icon" href="../../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.1.21">
     
     
       
-        <title>Connecting MatrixOne with DolphinScheduler - MatrixOne Docs</title>
+        <title>Logtail Protocol Architecture - MatrixOne Docs</title>
       
     
     
@@ -69,7 +69,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#connecting-matrixone-with-dolphinscheduler" class="md-skip">
+        <a href="#logtail-protocol-architecture" class="md-skip">
           Skip to content
         </a>
       
@@ -107,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Connecting MatrixOne with DolphinScheduler
+              Logtail Protocol Architecture
             
           </span>
         </div>
@@ -314,14 +314,16 @@
               
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_2" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_2" checked>
       
       
       
@@ -330,7 +332,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_2_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_2_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_1_2">
           <span class="md-nav__icon md-icon"></span>
           Overview
@@ -343,7 +345,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Overview/matrixone-introduction/" class="md-nav__link">
+      <a href="../../matrixone-introduction/" class="md-nav__link">
         MatrixOne Introduction
       </a>
     </li>
@@ -357,7 +359,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Overview/matrixone-feature-list/" class="md-nav__link">
+      <a href="../../matrixone-feature-list/" class="md-nav__link">
         MatrixOne Feature List
       </a>
     </li>
@@ -398,7 +400,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Overview/feature/key-feature-htap/" class="md-nav__link">
+      <a href="../../feature/key-feature-htap/" class="md-nav__link">
         HTAP
       </a>
     </li>
@@ -412,7 +414,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Overview/feature/key-feature-multi-accounts/" class="md-nav__link">
+      <a href="../../feature/key-feature-multi-accounts/" class="md-nav__link">
         Multi-Account
       </a>
     </li>
@@ -426,7 +428,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Overview/feature/scalability/" class="md-nav__link">
+      <a href="../../feature/scalability/" class="md-nav__link">
         Scalability
       </a>
     </li>
@@ -440,7 +442,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Overview/feature/cost-effective/" class="md-nav__link">
+      <a href="../../feature/cost-effective/" class="md-nav__link">
         Cost-Effective
       </a>
     </li>
@@ -454,7 +456,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Overview/feature/high-availability/" class="md-nav__link">
+      <a href="../../feature/high-availability/" class="md-nav__link">
         High Availability
       </a>
     </li>
@@ -468,7 +470,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Overview/feature/mysql-compatibility/" class="md-nav__link">
+      <a href="../../feature/mysql-compatibility/" class="md-nav__link">
         MySQL Compatibility
       </a>
     </li>
@@ -487,14 +489,16 @@
               
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_2_4" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_2_4" checked>
       
       
       
@@ -503,7 +507,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_1_2_4_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_1_2_4_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_1_2_4">
           <span class="md-nav__icon md-icon"></span>
           MatrixOne Architecture Design
@@ -516,7 +520,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Overview/architecture/matrixone-architecture-design/" class="md-nav__link">
+      <a href="../matrixone-architecture-design/" class="md-nav__link">
         Architecture Design Overview
       </a>
     </li>
@@ -530,7 +534,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Overview/architecture/architecture-tae/" class="md-nav__link">
+      <a href="../architecture-tae/" class="md-nav__link">
         Transactional Analytical Engine Architecture
       </a>
     </li>
@@ -544,8 +548,131 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Overview/architecture/architecture-logservice/" class="md-nav__link">
+      <a href="../architecture-logservice/" class="md-nav__link">
         Detailed Logservice Architecture
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Logtail Protocol Architecture
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Logtail Protocol Architecture
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#logtail-protocol-contents" class="md-nav__link">
+    Logtail Protocol Contents
+  </a>
+  
+    <nav class="md-nav" aria-label="Logtail Protocol Contents">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-checkpoints" class="md-nav__link">
+    1. Checkpoints
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-memory-cleanup" class="md-nav__link">
+    2. Memory Cleanup
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-faster-reads" class="md-nav__link">
+    3. Faster Reads
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logtail-generation" class="md-nav__link">
+    Logtail Generation
+  </a>
+  
+    <nav class="md-nav" aria-label="Logtail Generation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-pull" class="md-nav__link">
+    1. Pull
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-push" class="md-nav__link">
+    2. Push
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture-transaction-lock/" class="md-nav__link">
+        Transaction and Lock Mechanisms Architecture
       </a>
     </li>
   
@@ -558,7 +685,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Overview/architecture/architecture-proxy/" class="md-nav__link">
+      <a href="../architecture-proxy/" class="md-nav__link">
         Detailed Proxy Architecture
       </a>
     </li>
@@ -572,7 +699,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Overview/architecture/architecture-cold-hot-data-separation/" class="md-nav__link">
+      <a href="../architecture-cold-hot-data-separation/" class="md-nav__link">
         Detailed Caching and Hot-Cold Data Separation Architecture
       </a>
     </li>
@@ -586,7 +713,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Overview/architecture/streaming/" class="md-nav__link">
+      <a href="../streaming/" class="md-nav__link">
         Detailed Stream Engine Architecture
       </a>
     </li>
@@ -607,7 +734,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Overview/whats-new/" class="md-nav__link">
+      <a href="../../whats-new/" class="md-nav__link">
         What's New
       </a>
     </li>
@@ -874,16 +1001,14 @@
               
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_4" checked>
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_4" >
       
       
       
@@ -892,7 +1017,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_4_label" aria-expanded="true">
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_4_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_1_4">
           <span class="md-nav__icon md-icon"></span>
           Developing Guide
@@ -932,7 +1057,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../connect-mo/database-client-tools/" class="md-nav__link">
+      <a href="../../../Develop/connect-mo/database-client-tools/" class="md-nav__link">
         Connecting to MatrixOne with Database Client Tool
       </a>
     </li>
@@ -973,7 +1098,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../connect-mo/java-connect-to-matrixone/connect-mo-with-jdbc/" class="md-nav__link">
+      <a href="../../../Develop/connect-mo/java-connect-to-matrixone/connect-mo-with-jdbc/" class="md-nav__link">
         Connect MatrixOne with JDBC
       </a>
     </li>
@@ -987,7 +1112,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../connect-mo/java-connect-to-matrixone/connect-mo-with-orm/" class="md-nav__link">
+      <a href="../../../Develop/connect-mo/java-connect-to-matrixone/connect-mo-with-orm/" class="md-nav__link">
         Connect MatrixOne with Java ORMs
       </a>
     </li>
@@ -1008,7 +1133,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../connect-mo/python-connect-to-matrixone/" class="md-nav__link">
+      <a href="../../../Develop/connect-mo/python-connect-to-matrixone/" class="md-nav__link">
         Python connect to MatrixOne
       </a>
     </li>
@@ -1022,7 +1147,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../connect-mo/connect-to-matrixone-with-go/" class="md-nav__link">
+      <a href="../../../Develop/connect-mo/connect-to-matrixone-with-go/" class="md-nav__link">
         Connecting to MatrixOne with Golang
       </a>
     </li>
@@ -1036,7 +1161,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../connect-mo/configure-mo-ssl-connection/" class="md-nav__link">
+      <a href="../../../Develop/connect-mo/configure-mo-ssl-connection/" class="md-nav__link">
         MatrixOne SSL connection
       </a>
     </li>
@@ -1084,7 +1209,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../schema-design/overview/" class="md-nav__link">
+      <a href="../../../Develop/schema-design/overview/" class="md-nav__link">
         Overview
       </a>
     </li>
@@ -1098,7 +1223,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../schema-design/create-database/" class="md-nav__link">
+      <a href="../../../Develop/schema-design/create-database/" class="md-nav__link">
         Create Database
       </a>
     </li>
@@ -1112,7 +1237,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../schema-design/create-table/" class="md-nav__link">
+      <a href="../../../Develop/schema-design/create-table/" class="md-nav__link">
         Create Table
       </a>
     </li>
@@ -1126,7 +1251,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../schema-design/create-view/" class="md-nav__link">
+      <a href="../../../Develop/schema-design/create-view/" class="md-nav__link">
         Create View
       </a>
     </li>
@@ -1140,7 +1265,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../schema-design/create-temporary-table/" class="md-nav__link">
+      <a href="../../../Develop/schema-design/create-temporary-table/" class="md-nav__link">
         Create Temporary Table
       </a>
     </li>
@@ -1154,7 +1279,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../schema-design/create-secondary-index/" class="md-nav__link">
+      <a href="../../../Develop/schema-design/create-secondary-index/" class="md-nav__link">
         Create Secondary Index
       </a>
     </li>
@@ -1195,7 +1320,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../schema-design/data-integrity/overview-of-integrity-constraint-types/" class="md-nav__link">
+      <a href="../../../Develop/schema-design/data-integrity/overview-of-integrity-constraint-types/" class="md-nav__link">
         Data Integrity Constraints Overview
       </a>
     </li>
@@ -1209,7 +1334,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../schema-design/data-integrity/not-null-constraints/" class="md-nav__link">
+      <a href="../../../Develop/schema-design/data-integrity/not-null-constraints/" class="md-nav__link">
         NOT NULL Constraints
       </a>
     </li>
@@ -1223,7 +1348,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../schema-design/data-integrity/unique-key-constraints/" class="md-nav__link">
+      <a href="../../../Develop/schema-design/data-integrity/unique-key-constraints/" class="md-nav__link">
         UNIQUE KEY Constraints
       </a>
     </li>
@@ -1237,7 +1362,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../schema-design/data-integrity/primary-key-constraints/" class="md-nav__link">
+      <a href="../../../Develop/schema-design/data-integrity/primary-key-constraints/" class="md-nav__link">
         PRIMARY KEY Constraints
       </a>
     </li>
@@ -1251,7 +1376,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../schema-design/data-integrity/foreign-key-constraints/" class="md-nav__link">
+      <a href="../../../Develop/schema-design/data-integrity/foreign-key-constraints/" class="md-nav__link">
         FOREIGN KEY Constraints
       </a>
     </li>
@@ -1265,7 +1390,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../schema-design/data-integrity/auto-increment-integrity/" class="md-nav__link">
+      <a href="../../../Develop/schema-design/data-integrity/auto-increment-integrity/" class="md-nav__link">
         AUTO INCREMENT Constraints
       </a>
     </li>
@@ -1347,7 +1472,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../import-data/insert-data/" class="md-nav__link">
+      <a href="../../../Develop/import-data/insert-data/" class="md-nav__link">
         Insert
       </a>
     </li>
@@ -1388,7 +1513,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../import-data/bulk-load/bulk-load-overview/" class="md-nav__link">
+      <a href="../../../Develop/import-data/bulk-load/bulk-load-overview/" class="md-nav__link">
         Bulk Load Overview
       </a>
     </li>
@@ -1402,7 +1527,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../import-data/bulk-load/load-csv/" class="md-nav__link">
+      <a href="../../../Develop/import-data/bulk-load/load-csv/" class="md-nav__link">
         Load csv format data
       </a>
     </li>
@@ -1416,7 +1541,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../import-data/bulk-load/load-jsonline/" class="md-nav__link">
+      <a href="../../../Develop/import-data/bulk-load/load-jsonline/" class="md-nav__link">
         Load jsonlines format data
       </a>
     </li>
@@ -1430,7 +1555,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../import-data/bulk-load/load-s3/" class="md-nav__link">
+      <a href="../../../Develop/import-data/bulk-load/load-s3/" class="md-nav__link">
         Load data from S3
       </a>
     </li>
@@ -1444,7 +1569,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../import-data/bulk-load/using-source/" class="md-nav__link">
+      <a href="../../../Develop/import-data/bulk-load/using-source/" class="md-nav__link">
         Load data by using the `source`
       </a>
     </li>
@@ -1472,7 +1597,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../import-data/update-data/" class="md-nav__link">
+      <a href="../../../Develop/import-data/update-data/" class="md-nav__link">
         Update Data
       </a>
     </li>
@@ -1486,7 +1611,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../import-data/delete-data/" class="md-nav__link">
+      <a href="../../../Develop/import-data/delete-data/" class="md-nav__link">
         Delete Data
       </a>
     </li>
@@ -1500,7 +1625,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../import-data/prepared/" class="md-nav__link">
+      <a href="../../../Develop/import-data/prepared/" class="md-nav__link">
         Prepared
       </a>
     </li>
@@ -1548,7 +1673,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../export-data/select-into-outfile/" class="md-nav__link">
+      <a href="../../../Develop/export-data/select-into-outfile/" class="md-nav__link">
         Export data by SELECT INTO
       </a>
     </li>
@@ -1562,7 +1687,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../export-data/modump/" class="md-nav__link">
+      <a href="../../../Develop/export-data/modump/" class="md-nav__link">
         Export data by MODUMP
       </a>
     </li>
@@ -1610,7 +1735,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../read-data/query-data-single-table/" class="md-nav__link">
+      <a href="../../../Develop/read-data/query-data-single-table/" class="md-nav__link">
         Query Data from a Single Table
       </a>
     </li>
@@ -1624,7 +1749,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../read-data/multitable-join-query/" class="md-nav__link">
+      <a href="../../../Develop/read-data/multitable-join-query/" class="md-nav__link">
         Multi-table Join Queries
       </a>
     </li>
@@ -1638,7 +1763,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../read-data/subquery/" class="md-nav__link">
+      <a href="../../../Develop/read-data/subquery/" class="md-nav__link">
         Subquery
       </a>
     </li>
@@ -1652,7 +1777,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../read-data/views/" class="md-nav__link">
+      <a href="../../../Develop/read-data/views/" class="md-nav__link">
         Views
       </a>
     </li>
@@ -1666,7 +1791,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../read-data/cte/" class="md-nav__link">
+      <a href="../../../Develop/read-data/cte/" class="md-nav__link">
         Common Table Expression
       </a>
     </li>
@@ -1680,7 +1805,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../read-data/window-function/" class="md-nav__link">
+      <a href="../../../Develop/read-data/window-function/" class="md-nav__link">
         Window Function.
       </a>
     </li>
@@ -1728,7 +1853,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Publish-Subscribe/multi-account-overview/" class="md-nav__link">
+      <a href="../../../Develop/Publish-Subscribe/multi-account-overview/" class="md-nav__link">
         Multi-Account Overview
       </a>
     </li>
@@ -1742,7 +1867,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Publish-Subscribe/pub-sub-overview/" class="md-nav__link">
+      <a href="../../../Develop/Publish-Subscribe/pub-sub-overview/" class="md-nav__link">
         Publish-Subscribe
       </a>
     </li>
@@ -1790,7 +1915,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Transactions/common-transaction-overview/" class="md-nav__link">
+      <a href="../../../Develop/Transactions/common-transaction-overview/" class="md-nav__link">
         General Transaction Overview
       </a>
     </li>
@@ -1831,7 +1956,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Transactions/matrixone-transaction-overview/overview/" class="md-nav__link">
+      <a href="../../../Develop/Transactions/matrixone-transaction-overview/overview/" class="md-nav__link">
         Transaction Overview
       </a>
     </li>
@@ -1845,7 +1970,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Transactions/matrixone-transaction-overview/explicit-transaction/" class="md-nav__link">
+      <a href="../../../Develop/Transactions/matrixone-transaction-overview/explicit-transaction/" class="md-nav__link">
         Explicit Transaction
       </a>
     </li>
@@ -1859,7 +1984,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Transactions/matrixone-transaction-overview/implicit-transaction/" class="md-nav__link">
+      <a href="../../../Develop/Transactions/matrixone-transaction-overview/implicit-transaction/" class="md-nav__link">
         Implicit Transaction
       </a>
     </li>
@@ -1873,7 +1998,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Transactions/matrixone-transaction-overview/pessimistic-transaction/" class="md-nav__link">
+      <a href="../../../Develop/Transactions/matrixone-transaction-overview/pessimistic-transaction/" class="md-nav__link">
         Pessimistic Transaction
       </a>
     </li>
@@ -1887,7 +2012,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Transactions/matrixone-transaction-overview/optimistic-transaction/" class="md-nav__link">
+      <a href="../../../Develop/Transactions/matrixone-transaction-overview/optimistic-transaction/" class="md-nav__link">
         Optimistic Transaction
       </a>
     </li>
@@ -1901,7 +2026,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Transactions/matrixone-transaction-overview/isolation-level/" class="md-nav__link">
+      <a href="../../../Develop/Transactions/matrixone-transaction-overview/isolation-level/" class="md-nav__link">
         Isolation Level
       </a>
     </li>
@@ -1915,7 +2040,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Transactions/matrixone-transaction-overview/mvcc/" class="md-nav__link">
+      <a href="../../../Develop/Transactions/matrixone-transaction-overview/mvcc/" class="md-nav__link">
         MVCC
       </a>
     </li>
@@ -1956,7 +2081,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Transactions/matrixone-transaction-overview/how-to-use/" class="md-nav__link">
+      <a href="../../../Develop/Transactions/matrixone-transaction-overview/how-to-use/" class="md-nav__link">
         User Guide
       </a>
     </li>
@@ -1970,7 +2095,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Transactions/matrixone-transaction-overview/scenario/" class="md-nav__link">
+      <a href="../../../Develop/Transactions/matrixone-transaction-overview/scenario/" class="md-nav__link">
         Scenario
       </a>
     </li>
@@ -2135,16 +2260,14 @@
               
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_4_9" checked>
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_4_9" >
       
       
       
@@ -2153,7 +2276,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_1_4_9_label" aria-expanded="true">
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_1_4_9_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_1_4_9">
           <span class="md-nav__icon md-icon"></span>
           Ecological Tools
@@ -2193,7 +2316,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../BI-Connection/FineBI-connection/" class="md-nav__link">
+      <a href="../../../Develop/Ecological-Tools/BI-Connection/FineBI-connection/" class="md-nav__link">
         Visualizing MatrixOne Data with FineBI
       </a>
     </li>
@@ -2207,7 +2330,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../BI-Connection/yonghong-connection/" class="md-nav__link">
+      <a href="../../../Develop/Ecological-Tools/BI-Connection/yonghong-connection/" class="md-nav__link">
         Visualizing MatrixOne Reports with Yonghong BI
       </a>
     </li>
@@ -2221,7 +2344,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../BI-Connection/Superset-connection/" class="md-nav__link">
+      <a href="../../../Develop/Ecological-Tools/BI-Connection/Superset-connection/" class="md-nav__link">
         Visual Monitoring of MatrixOne with Superset
       </a>
     </li>
@@ -2269,7 +2392,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Computing-Engine/seatunnel-write/" class="md-nav__link">
+      <a href="../../../Develop/Ecological-Tools/Computing-Engine/seatunnel-write/" class="md-nav__link">
         Writing Data to MatrixOne Using SeaTunnel
       </a>
     </li>
@@ -2283,7 +2406,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Computing-Engine/DataX-write/" class="md-nav__link">
+      <a href="../../../Develop/Ecological-Tools/Computing-Engine/DataX-write/" class="md-nav__link">
         Writing Data to MatrixOne Using DataX
       </a>
     </li>
@@ -2302,26 +2425,86 @@
               
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_4_9_3" checked>
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_4_9_3" >
       
       
       
         <label class="md-nav__link" for="__nav_1_4_9_3" id="__nav_1_4_9_3_label" tabindex="0">
+          Computing Engine
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_1_4_9_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1_4_9_3">
+          <span class="md-nav__icon md-icon"></span>
+          Computing Engine
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Develop/Ecological-Tools/Computing-Engine/Spark/" class="md-nav__link">
+        Writing Batch data to MatrixOne Using Spark
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Develop/Ecological-Tools/Computing-Engine/Flink/" class="md-nav__link">
+        Writing Real-Time Data to MatrixOne Using Flink
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_4_9_4" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_4_9_4" id="__nav_1_4_9_4_label" tabindex="0">
           Scheduling Tools
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_1_4_9_3_label" aria-expanded="true">
-        <label class="md-nav__title" for="__nav_1_4_9_3">
+      <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_1_4_9_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1_4_9_4">
           <span class="md-nav__icon md-icon"></span>
           Scheduling Tools
         </label>
@@ -2331,86 +2514,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Connecting MatrixOne with DolphinScheduler
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../Develop/Ecological-Tools/Scheduling-Tools/dolphinScheduler/" class="md-nav__link">
         Connecting MatrixOne with DolphinScheduler
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
-    Overview
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#before-you-start" class="md-nav__link">
-    Before you start
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#operating-steps" class="md-nav__link">
-    Operating Steps
-  </a>
-  
-    <nav class="md-nav" aria-label="Operating Steps">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#step-1-configure-the-mysql-driver" class="md-nav__link">
-    Step 1: Configure the MySQL Driver
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#step-2-create-a-project-workflow" class="md-nav__link">
-    Step 2: Create a Project Workflow
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -7705,6 +7813,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../Reference/Functions-and-Operators/Mathematical/log2/" class="md-nav__link">
+        LOG2()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/Functions-and-Operators/Mathematical/log10/" class="md-nav__link">
+        LOG10()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../Reference/Functions-and-Operators/Mathematical/pi/" class="md-nav__link">
         PI()
       </a>
@@ -9544,37 +9680,57 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
-    Overview
+  <a href="#logtail-protocol-contents" class="md-nav__link">
+    Logtail Protocol Contents
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#before-you-start" class="md-nav__link">
-    Before you start
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#operating-steps" class="md-nav__link">
-    Operating Steps
-  </a>
-  
-    <nav class="md-nav" aria-label="Operating Steps">
+    <nav class="md-nav" aria-label="Logtail Protocol Contents">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#step-1-configure-the-mysql-driver" class="md-nav__link">
-    Step 1: Configure the MySQL Driver
+  <a href="#1-checkpoints" class="md-nav__link">
+    1. Checkpoints
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-2-create-a-project-workflow" class="md-nav__link">
-    Step 2: Create a Project Workflow
+  <a href="#2-memory-cleanup" class="md-nav__link">
+    2. Memory Cleanup
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-faster-reads" class="md-nav__link">
+    3. Faster Reads
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logtail-generation" class="md-nav__link">
+    Logtail Generation
+  </a>
+  
+    <nav class="md-nav" aria-label="Logtail Generation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-pull" class="md-nav__link">
+    1. Pull
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-push" class="md-nav__link">
+    2. Push
   </a>
   
 </li>
@@ -9599,7 +9755,7 @@
                   
 
   
-    <a href="https://github.com/matrixorigin/matrixorigin.io/edit/main/docs/MatrixOne/Develop/Ecological-Tools/dolphinScheduler.md" title="Edit this page" class="md-content__button md-icon">
+    <a href="https://github.com/matrixorigin/matrixorigin.io/edit/main/docs/MatrixOne/Overview/architecture/architecture-logtail.md" title="Edit this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
     </a>
@@ -9607,106 +9763,89 @@
   
 
 
-<h1 id="connecting-matrixone-with-dolphinscheduler">Connecting MatrixOne with DolphinScheduler</h1>
-<h2 id="overview">Overview</h2>
-<p>Apache DolphinScheduler is a distributed, highly scalable open-source system for visual DAG (Directed Acyclic Graph) workflow task scheduling. It provides a solution for visually orchestrating tasks, workflows, and the entire data processing lifecycle.</p>
-<p>The main goal of Apache DolphinScheduler is to address complex dependencies in large-scale data tasks. It assembles tasks streamingly using DAGs, allowing real-time monitoring of task execution status and supporting operations such as task retries, specifying node recovery for failures, and pausing, resuming, and terminating tasks.</p>
-<p>MatrixOne supports integration with DolphinScheduler, a visual DAG workflow task scheduling system. This document will guide you on connecting MatrixOne to DolphinScheduler and creating task workflows.</p>
-<h2 id="before-you-start">Before you start</h2>
+<h1 id="logtail-protocol-architecture">Logtail Protocol Architecture</h1>
+<p>The Logtail protocol is a logging synchronization protocol between Computation Nodes (CN) and Transaction Nodes (TN). It serves as the foundation for the collaboration between CN and TN in the context of the MatrixOne cloud-native transaction and analytics engine. This article provides an in-depth look at the Logtail protocol's core purpose, contents, and generation process.</p>
+<p>TAE, or the MatrixOne cloud-native transaction and analytics engine, currently involves the following responsibilities related to TN nodes:</p>
 <ul>
+<li>Processing committed transactions.</li>
+<li>Providing Logtail services to CN.</li>
+<li>Storing the most recent transaction data in object storage and pushing log windows.</li>
+</ul>
+<p>Steps 1 and 3 lead to state changes, such as successful data writes into memory or object storage. Logtail is a logging synchronization protocol designed to synchronize partial states from TN to CN, allowing CN to reconstruct the required readable data at a low cost locally. As a key protocol in the MatrixOne storage-compute separation architecture, Logtail possesses the following characteristics:</p>
+<ul>
+<li>It is a log-replication state machine connecting CN and TN in tandem.</li>
 <li>
-<p>Completed <a href="../../../Get-Started/install-standalone-matrixone.md">MatrixOne installation and setup</a>.</p>
+<p>Logtail supports two retrieval modes: pull and push.</p>
+<ul>
+<li>Push offers higher real-time capabilities by continuously synchronizing incremental logs from TN to CN.</li>
+<li>Pull supports snapshot synchronization for specified time intervals and can also synchronize subsequent incremental log information on demand.</li>
+</ul>
 </li>
 <li>
-<p>Installed <a href="https://dolphinscheduler.apache.org/docs/3.1.8/en/installation/standalone">DolphinScheduler installation</a>.</p>
+<p>Logtail supports table-level subscriptions and collections, enhancing flexibility in multiple CN support and contributing to load balancing.</p>
 </li>
 </ul>
-<h2 id="operating-steps">Operating Steps</h2>
-<h3 id="step-1-configure-the-mysql-driver">Step 1: Configure the MySQL Driver</h3>
+<h2 id="logtail-protocol-contents">Logtail Protocol Contents</h2>
+<p>The Logtail protocol consists of in-memory data and metadata, with the primary distinction being whether the data has been archived for object storage.</p>
+<p>Updates generated by a single transaction <code>commit</code> exist in Logtail as in-memory data before being archived to object storage. Any modifications to data can be categorized as inserts and deletes:</p>
+<ul>
+<li>For inserts, Logtail information includes the data row's row-id, commit timestamp, and the columns defined in the table.</li>
+<li>Logtail information contains the row-id, commit timestamp, and primary vital columns for deletes. Once CN receives this in-memory data, it organizes it into a memory-based B-tree structure to facilitate query services.</li>
+</ul>
+<p>In-memory data cannot be retained indefinitely in memory, as this would increase memory pressure. Due to time or capacity constraints, in-memory data is flushed to object storage, forming an object. Each object comprises one or more data blocks, with each block being the smallest storage unit for table data, and the number of rows in each block does not exceed a fixed limit, currently set at 8192 rows. Once the flush is complete, Logtail passes the metadata of the blocks to CN, which filters out the visible block list based on transaction timestamps, reads the block contents, and combines them with in-memory data to obtain a complete data view at a specific moment.</p>
+<p>The process above outlines the basic steps. With the introduction of performance optimizations, more details will become apparent, including:</p>
+<h3 id="1-checkpoints">1. Checkpoints</h3>
+<p>When TN has been running for a while, it performs a checkpoint at a specific moment, archiving all data before that time to object storage. Therefore, all this metadata is consolidated into a "compression package." When a newly launched CN connects to TN and requests Logtail for the first time, if the subscription timestamp is greater than the checkpoint timestamp, TN can directly transmit checkpoint metadata (a string) to Logtail, allowing CN to read block information generated before the checkpoint now, reducing the network burden of sharing block metadata from scratch and relieving TN's I/O pressure.</p>
+<h3 id="2-memory-cleanup">2. Memory Cleanup</h3>
+<p>When TN passes block metadata to CN, it cleans up the previously transmitted in-memory data based on block identifiers. However, data updates may occur during TN transaction flushing, such as new delete operations appearing on flushed blocks. If the strategy is rollback and retried, the already written data becomes invalid. In the case of loads with frequent updates, a significant amount of rollback operations may occur, wasting TN resources. To avoid this situation, TN continues to commit, rendering in-memory data generated after the start of the flush process unremovable from CN. Logtail's block metadata includes a timestamp, indicating that in-memory data for the block can only be cleared from memory before this timestamp. These uncleared updates will be asynchronously written to disk during the next flush and subsequently removed by CN.</p>
+<h3 id="3-faster-reads">3. Faster Reads</h3>
+<p>Blocks that have already been archived to object storage may continue to generate delete operations. Therefore, when reading these blocks, in-memory deleted data must be considered. CN maintains an additional block B-tree index to determine which blocks need to be combined with in-memory data. When applying Logtail to modify this index, caution should be exercised, increasing index entries when processing in-memory data and decreasing them when processing block metadata. This index includes only the blocks that need to be checked against in-memory data, which can result in a significant performance boost for a large number of blocks.</p>
+<h2 id="logtail-generation">Logtail Generation</h2>
+<p>As mentioned earlier, Logtail can be obtained through pull and push. These two modes have different characteristics, and they will be explained separately.</p>
+<h3 id="1-pull">1. Pull</h3>
+<p>As previously explained, pull effectively synchronizes table snapshots and generates incremental log information.</p>
+<p>To achieve this, TN maintains a sorted list of transaction handles, the logtail table, ordered by transaction preparation time. Given any moment, a binary search can be performed on the transaction handles within the range, which provides which blocks have been updated by that transaction. By iterating through these blocks, a complete log can be obtained. To expedite the search process, transaction handles are paginated, with the bornTs of each page being the minimum preparation time of the transaction handles within that page. The first level of binary search is performed on these pages.</p>
+<p>Based on the logtail table, from the moment a pull request is received, the primary workflow is as follows:</p>
 <ol>
 <li>
-<p>Download the MySQL driver and copy it to the libs directory:</p>
-<p>After installation, you need to manually download the <a href="https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.16/mysql-connector-java-8.0.16.jar">mysql-connector-java driver</a> (version 8.0.16). Then, copy it to four directories in the DolphinScheduler installation directory: <code>api-server/libs</code>, <code>alert-server/libs</code>, <code>master-server/libs</code>, and <code>worker-server/libs</code>.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>It is recommended to use <code>mysql-connector-java-8.0.16.jar</code> as the MySQL driver package.</p>
-</div>
+<p>Adjust the request's time range based on existing checkpoints, which may provide data earlier than the request.</p>
 </li>
 <li>
-<p>Restart DolphinScheduler:</p>
-<p>After copying the driver package, you need to restart the DolphinScheduler service. First, go to the DolphinScheduler installation directory and then execute the following command to restart the DolphinScheduler service:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># Stop the Standalone Server service</span>
-bash<span class="w"> </span>./bin/dolphinscheduler-daemon.sh<span class="w"> </span>stop<span class="w"> </span>standalone-server
-<span class="c1"># Start the Standalone Server service</span>
-bash<span class="w"> </span>./bin/dolphinscheduler-daemon.sh<span class="w"> </span>start<span class="w"> </span>standalone-server
-</code></pre></div>
+<p>Take a snapshot of the logtail table, iterate through the relevant transaction handles within this snapshot using a RespBuilder in visitor mode, and collect the committed log information.</p>
 </li>
 <li>
-<p>Log in to DolphinScheduler:</p>
-<p>Use the default username <code>admin</code> and password <code>dolphinscheduler123</code>. Access the DolphinScheduler web user interface by visiting <code>http://ip:12345/dolphinscheduler/ui</code>, as shown below:</p>
-<p><img alt="image-20230809145317885" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/Scheduling-tool/image-20230809145317885.png" /></p>
-</li>
-<li>
-<p>Create a Data Source:</p>
-<p>Click on <strong>Data Source Center &gt; Create Data Source</strong> and enter the MatrixOne data connection information. Afterward, click on <strong>Test Connection</strong>; if the connection is successful, click <strong>OK</strong> to save it:</p>
-<p><img alt="image-20230809145935857" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/Scheduling-tool/image-20230809145935857.png" /></p>
+<p>Convert the collected log information into the Logtail protocol format and return it as a response to CN.</p>
 </li>
 </ol>
-<h3 id="step-2-create-a-project-workflow">Step 2: Create a Project Workflow</h3>
-<ol>
-<li>
-<p>Create a Tenant:</p>
-<p>In the <strong>Security Center</strong>, click on <strong>Create Tenant</strong> and enter the tenant name, as shown below:</p>
-<p><img alt="image-20230809160632965" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/Scheduling-tool/image-20230809160632965.png" /></p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>In a production environment, it is not recommended to use <code>root</code> as the tenant.</p>
-</div>
-</li>
-<li>
-<p>Create a Project:</p>
-<p>In <strong>Project Management</strong>, click on <strong>Create Project</strong> and enter the project name, as shown below:</p>
-<p><img alt="image-20230809150528364" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/Scheduling-tool/image-20230809150528364.png" /></p>
-</li>
-<li>
-<p>Create a Workflow and Add Nodes:</p>
-<p>Click on the <strong>Project Name</strong> created in the previous step and then click on <strong>Create Workflow</strong>. Drag the <strong>SQL</strong> node from the left to the canvas on the right. Fill in the <strong>Node Name</strong>, <strong>Data Source Information</strong>, <strong>SQL Type</strong>, and <strong>SQL Statement</strong>, then click <strong>OK</strong>. As shown below:</p>
-<p>The node created in this step is for creating a table, and the SQL statement is used to create a table.</p>
-<p><img alt="image-20230809151554568" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/Scheduling-tool/image-20230809151554568.png" /></p>
-<p>Next, create <strong>Insert Data</strong> and <strong>Query Data</strong> nodes in a similar way. The dependency relationship between these three nodes is shown below, and you can manually connect them:</p>
-<p><img alt="image-20230809153149428" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/Scheduling-tool/image-20230809153149428.png" /></p>
-<p>The SQL statements for these three nodes are as follows:</p>
-<div class="highlight"><pre><span></span><code><span class="o">#</span><span class="n">create_table</span>
-
-<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">test_table</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">)</span>
-
-<span class="o">#</span><span class="n">insert_data</span>
-
-<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">test_table</span><span class="w"> </span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;John Doe&#39;</span><span class="p">)</span>
-
-<span class="o">#</span><span class="n">select_data</span>
-
-<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">test_table</span>
+<p><img alt="Pull Workflow" src="https://github.com/matrixorigin/artwork/blob/main/docs/overview/architecture/logtail-arch-1.png" /></p>
+<div class="highlight"><pre><span></span><code>type RespBuilder interface {
+  OnDatabase(database *DBEntry) error
+  OnPostDatabase(database *DBEntry) error
+  OnTable(table *TableEntry) error
+  OnPostTable(table *TableEntry) error
+  OnPostSegment(segment *SegmentEntry) error
+  OnSegment(segment *SegmentEntry) error
+  OnBlock(block *BlockEntry) error
+  BuildResp() (api.SyncLogtailResp, error)
+  Close()
+}
 </code></pre></div>
-<p>Connect these three nodes based on their dependency relationship, then click <strong>Save</strong>. Enter the <strong>Workflow Name</strong>, select the previously created <strong>Tenant</strong>, choose <strong>Parallel</strong> as the execution policy, and click <strong>OK</strong>.</p>
-<p><img alt="image-20230809161503945" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/Scheduling-tool/image-20230809161503945.png" /></p>
-<p>Once the workflow is created, you can see it in the <strong>Workflow Relations</strong> page with the status "Workflow Offline":</p>
-<p><img alt="image-20230809161909925" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/Scheduling-tool/image-20230809161909925.png" /></p>
-<p>Similarly, you can also see the defined workflow in the <strong>Workflow Definitions</strong> page with the status "Offline":</p>
-<p><img alt="image-20230809162411368" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/Scheduling-tool/image-20230809162411368.png" /></p>
+<h3 id="2-push">2. Push</h3>
+<p>The primary purpose of push is to synchronize incremental logs from TN to CN in a more real-time manner. The process is divided into three stages: subscription, collection, and push.</p>
+<ul>
+<li><strong>Subscription</strong>: This process is necessary when a new CN starts. The CN establishes an RPC stream with the TN and subscribes to catalog-related tables as a client. The CN can provide external services when database, table, and column information has been synchronized. When TN receives a request to subscribe to</li>
+</ul>
+<p>A table goes through the pull process, including all Logtail up to the previous push timestamp in the subscription response. For a CN, Logtail's subscription, unsubscription, and data sending all occur on a single RPC stream. If there is an exception, the CN enters a reconnection process until it recovers. Once the subscription is successful, subsequent Logtail operations involve pushing incremental logs.</p>
+<ul>
+<li>
+<p><strong>Collection</strong>: A transaction's completion within TN triggers a callback to collect Logtail within the current transaction. The primary process involves iterating through TxnEntry in the workspace, which serves as a fundamental container for transaction updates directly involved in the commit pipeline. Depending on its type, the corresponding log information is collected and transformed into a Logtail protocol data format. This collection process occurs through a pipeline and runs concurrently with WAL's fsync, reducing blocking.</p>
 </li>
 <li>
-<p>Publish and Run the Workflow:</p>
-<p>A workflow must be published before it can be run. Click the <strong>Publish</strong> button to publish the workflow created earlier:</p>
-<p><img alt="image-20230809162245088" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/Scheduling-tool/image-20230809162245088.png" /></p>
-<p>After publishing, the workflow status will appear as follows:</p>
-<p><img alt="image-20230809163722777" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/Scheduling-tool/image-20230809163722777.png" /></p>
-<p>Next, click the <strong>Run</strong> button, set the configuration parameters before starting, and then click <strong>OK</strong>:</p>
-<p><img alt="image-20230809162828049" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/Scheduling-tool/image-20230809162828049.png" /></p>
-<p>Finally, return to the <strong>Project Overview</strong> to check whether the workflow and the three tasks below it have run successfully, as shown below:</p>
-<p><img alt="image-20230809163533339" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/Scheduling-tool/image-20230809163533339.png" /></p>
+<p><strong>Push</strong>: A filtering process is mainly conducted during the push stage. If it is found that a CN has not subscribed to a specific table, it is skipped to avoid pushing data to that CN.</p>
 </li>
-</ol>
+</ul>
+<p>If a table has not been updated for a long time, how does a CN become aware of it? Here, a heartbeat mechanism is introduced, with a default of 2 ms. In TN's commit queue, a heartbeat transaction is placed, which performs no substantial work but consumes a timestamp, triggering a Logtail send to notify CN that all table data had updates sent previously, pushing the CN's timestamp watermark.</p>
+<p><img alt="Push Workflow" src="https://github.com/matrixorigin/artwork/blob/main/docs/overview/architecture/logtail-arch-2.png" /></p>
 
 
 
@@ -9728,7 +9867,7 @@ bash<span class="w"> </span>./bin/dolphinscheduler-daemon.sh<span class="w"> </s
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../Computing-Engine/DataX-write/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Writing Data to MatrixOne Using DataX" rel="prev">
+          <a href="../architecture-logservice/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Detailed Logservice Architecture" rel="prev">
             <div class="md-footer__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
             </div>
@@ -9737,20 +9876,20 @@ bash<span class="w"> </span>./bin/dolphinscheduler-daemon.sh<span class="w"> </s
                 Previous
               </span>
               <div class="md-ellipsis">
-                Writing Data to MatrixOne Using DataX
+                Detailed Logservice Architecture
               </div>
             </div>
           </a>
         
         
           
-          <a href="../../../Deploy/deployment-topology/topology-overview/" class="md-footer__link md-footer__link--next" aria-label="Next: Cluster Topology Planning Overview" rel="next">
+          <a href="../architecture-transaction-lock/" class="md-footer__link md-footer__link--next" aria-label="Next: Transaction and Lock Mechanisms Architecture" rel="next">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Cluster Topology Planning Overview
+                Transaction and Lock Mechanisms Architecture
               </div>
             </div>
             <div class="md-footer__button md-icon">
