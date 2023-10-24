@@ -98,13 +98,13 @@ Data Query Language (DQL) is used to retrieve existing data in MatrixOne. It pri
 - [INTERSECT](Data-Query-Language/intersect.md)
 - [MINUS](Data-Query-Language/minus.md)
 
-### In addition to SELECT statements, DQL includes VALUES statements for constants:
+### In addition to SELECT statements, DQL includes VALUES statements for constants
 
-- [VALUES row_constructor_list [ORDER BY column_designator] [LIMIT number]]
+- [SELECT](Data-Query-Language/select.md)
 
-### And internal commands corresponding to the modump tool:
+### And internal commands corresponding to the modump tool
 
-- [Export Data: MatrixOne-Cloud/App-Develop/export-data/modump.md)
+- [Export Data](../../Develop/export-data/modump.md)
 
 ## TCL - Transaction Control Language
 
@@ -148,8 +148,6 @@ Data Control Language (DCL) includes commands for resource allocation and deallo
 ### CREATE Statements - Creating Tenants, Users, and Roles
 
 - [CREATE ACCOUNT](Data-Control-Language/create-account.md)
-
-
 - [CREATE ROLE](Data-Control-Language/create-role.md)
 - [CREATE USER](Data-Control-Language/create-user.md)
 
