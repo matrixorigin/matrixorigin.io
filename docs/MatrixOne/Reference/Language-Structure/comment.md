@@ -56,35 +56,9 @@ MatrixOne supports three comment styles:
    1 row in set (0.01 sec)
    ```
 
-## MySQL-compatible comment syntax
-
-The same as MySQL, MatrixOne supports a variant of C comment style:
-
-```sql
-mysql> select 100 /*! Specific code */ -99;
-+----------+
-| 100 - 99 |
-+----------+
-|        1 |
-+----------+
-1 row in set (0.02 sec)
-```
-
-Or:
-
-```sql
-mysql> select 100 /*!50110 Specific code */ -99;
-+----------+
-| 100 - 99 |
-+----------+
-|        1 |
-+----------+
-1 row in set (0.02 sec)
-```
-
 ## MatrixOne specific comment syntax
 
-MatrixOne supports a variant of C comment style:
+- MatrixOne supports C comment style as below:
 
 ```sql
 mysql> select 100-99;   // This comment continues to the end of line
@@ -106,6 +80,20 @@ mysql> // This comment continues to the line
 +----------+
 |        1 |
 +----------+
+```
+
+- MatrixOne dose not support C comment style as below:
+
+```sql
+mysql> select 100 /*! Specific code */ -99;
+ERROR 1064 (HY000): SQL parser error: You have an error in your SQL syntax; check the manual that corresponds to your MatrixOne server version for the right syntax to use. syntax error at line 1 column 28 near " code */ -99";
+```
+
+Or:
+
+```sql
+mysql> select 100 /*!50110 Specific code */ -99;
+ERROR 1064 (HY000): SQL parser error: You have an error in your SQL syntax; check the manual that corresponds to your MatrixOne server version for the right syntax to use. syntax error at line 1 column 33 near " code */ -99";
 ```
 
 ## Constraints
