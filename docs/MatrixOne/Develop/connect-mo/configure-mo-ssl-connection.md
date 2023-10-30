@@ -83,7 +83,7 @@ To test the SSL configuration, perform the following steps:
     Current pager:		stdout
     Using outfile:		''
     Using delimiter:	;
-    Server version:		8.0.30-MatrixOne-v1.0.0-rc1 MatrixOne
+    Server version:		8.0.30-MatrixOne-v1.0.0-rc2 MatrixOne
     Protocol version:	10
     Connection:		127.0.0.1 via TCP/IP
     Client characterset:	utf8mb4
