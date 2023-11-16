@@ -6,34 +6,34 @@
 
 The operating systems that `mo_ctl` has adapted so far are shown in the table below:
 
-| OS | Version |
-| -------- | -------------------- |
-| Debian | 11 and above |
-| Ubuntu | 20.04 and above |
-| macOS | Monterey 12.3 and above |
+| OS     | Version                 |
+| ------ | ----------------------- |
+| Debian | 11 and above            |
+| Ubuntu | 20.04 and above         |
+| macOS  | Monterey 12.3 and above |
 
 The current function list of `mo_ctl` is shown in the table below.
 
 | Command | Function |
-| -------------------- | ---------------------------- ----------------------------------- |
-| `mo_ctl help` | See a list of statements and functions for the `mo_ctl` tool itself |
-| `mo_ctl precheck` | Check dependencies required for MatrixOne source code installation, namely golang, gcc, git, MySQL Client |
-| `mo_ctl deploy` | Download and install and compile the corresponding version of MatrixOne; the default is to install the latest stable version |
-| `mo_ctl start` | Start MatrixOne service |
-| `mo_ctl status` | Check if the MatrixOne service is running |
-| `mo_ctl stop` | Stop all MatrixOne service processes |
-| `mo_ctl restart` | Restart MatrixOne service |
-| `mo_ctl connect` | Call MySQL Client to connect to MatrixOne service |
-| `mo_ctl upgrade`     | Upgrade/downgrade MatrixOne from the current version to a release version or commit id version        |
-| `mo_ctl set_conf` | Set various usage parameters |
-| `mo_ctl get_conf` | View current parameters |
-| `mo_ctl uninstall` | Uninstall MatrixOne from MO_PATH path |
-| `mo_ctl watchdog` | Set a scheduled task to ensure the availability of MatrixOne service, check the status of MatrixOne every minute, and automatically pull up the service if the service is found to be suspended |
-| `mo_ctl sql` | Execute SQL directly through commands or a text file composed of SQL |
-| `mo_ctl ddl_convert` | A tool to convert MySQL DDL statements into MatrixOne statements |
-| `mo_ctl get_cid` | View the source version of the current MatrixOne download repository |
-| `mo_ctl get_branch`     | View the branch version of the current MatrixOne download repository                 |
-| `mo_ctl pprof` | Used to collect MatrixOne profiling data |
+| ------- | -------- ||
+| `mo_ctl help`        | See a list of statements and functions for the `mo_ctl` tool itself                                                                                                                             |
+| `mo_ctl precheck`    | Check dependencies required for MatrixOne source code installation, namely golang, gcc, git, MySQL Client                                                                                       |
+| `mo_ctl deploy`      | Download and install and compile the corresponding version of MatrixOne; the default is to install the latest stable version                                                                    |
+| `mo_ctl start`       | Start MatrixOne service                                                                                                                                                                         |
+| `mo_ctl status`      | Check if the MatrixOne service is running                                                                                                                                                       |
+| `mo_ctl stop`        | Stop all MatrixOne service processes                                                                                                                                                            |
+| `mo_ctl restart`     | Restart MatrixOne service                                                                                                                                                                       |
+| `mo_ctl connect`     | Call MySQL Client to connect to MatrixOne service                                                                                                                                               |
+| `mo_ctl upgrade`     | Upgrade/downgrade MatrixOne from the current version to a release version or commit id version                                                                                                  |
+| `mo_ctl set_conf`    | Set various usage parameters                                                                                                                                                                    |
+| `mo_ctl get_conf`    | View current parameters                                                                                                                                                                         |
+| `mo_ctl uninstall`   | Uninstall MatrixOne from MO_PATH path                                                                                                                                                           |
+| `mo_ctl watchdog`    | Set a scheduled task to ensure the availability of MatrixOne service, check the status of MatrixOne every minute, and automatically pull up the service if the service is found to be suspended |
+| `mo_ctl sql`         | Execute SQL directly through commands or a text file composed of SQL                                                                                                                            |
+| `mo_ctl ddl_convert` | A tool to convert MySQL DDL statements into MatrixOne statements                                                                                                                                |
+| `mo_ctl get_cid`     | View the source version of the current MatrixOne download repository                                                                                                                            |
+| `mo_ctl get_branch`  | View the branch version of the current MatrixOne download repository                                                                                                                            |
+| `mo_ctl pprof`       | Used to collect MatrixOne profiling data                                                                                                                                                        |
 
 ## Install mo_ctl
 
@@ -145,12 +145,12 @@ mo_ctl deploy help
 Usage         : mo_ctl deploy [mo_version] [force] # deploy mo onto the path configured
   [mo_version]: optional, specify an mo version to deploy
   [force]     : optional, if specified will delete all content under MO_PATH and deploy from beginning
-  e.g.        : mo_ctl deploy             # default, same as mo_ctl deploy 1.0.0-rc2
+  e.g.        : mo_ctl deploy             # default, same as mo_ctl deploy v1.0.0
               : mo_ctl deploy main        # deploy development latest version
               : mo_ctl deploy d29764a     # deploy development version d29764a
-              : mo_ctl deploy 1.0.0-rc2       # deploy stable verson 1.0.0-rc2
-              : mo_ctl deploy force       # delete all under MO_PATH and deploy verson 1.0.0-rc2
-              : mo_ctl deploy 1.0.0-rc2 force # delete all under MO_PATH and deploy stable verson 1.0.0-rc2 from beginning
+              : mo_ctl deploy v1.0.0       # deploy stable verson v1.0.0
+              : mo_ctl deploy force       # delete all under MO_PATH and deploy verson v1.0.0
+              : mo_ctl deploy v1.0.0 force # delete all under MO_PATH and deploy stable verson v1.0.0 from beginning
 ```
 
 ### start - launch MatrixOne
@@ -271,27 +271,27 @@ Usage         : mo_ctl getconf [conf_list] # get configurations
 
 Using `mo_ctl get_conf` will print a list of all the parameters used by the current tool. Their meanings and value ranges are shown in the table below.
 
-| Parameter Name         | Function                | Value Specification                |
-| ---------------------- | ---------------------- | -------------------------------- |
-| MO_PATH                | Location of MatrixOne's code repository and executables | Folder path                                                  |
-| MO_LOG_PATH            | Location of MatrixOne's logs                       | Folder path, default: ${MO_PATH}/matrixone/logs              |
-| MO_HOST                | IP address for connecting to MatrixOne service      | IP address, default: 127.0.0.1                                |
-| MO_PORT                | Port number for connecting to MatrixOne service     | Port number, default: 6001                                    |
-| MO_USER                | Username for connecting to MatrixOne service        | Username, default: root                                      |
-| MO_PW                  | Password for connecting to MatrixOne service        | Password, default: 111                                       |
-| CHECK_LIST             | Dependencies required for precheck                  | Default: ("go" "gcc" "git" "mysql")                          |
-| GCC_VERSION            | gcc version to be checked in precheck               | Default: 8.5.0                                               |
-| GO_VERSION             | go version to be checked in precheck                | Default: 1.20                                                |
-| MO_GIT_URL             | Repository URL for fetching MatrixOne source code   | Default: <https://github.com/matrixorigin/matrixone.git>      |
-| MO_DEFAULT_VERSION     | Default version of MatrixOne to be fetched          | Default: 1.0.0-rc2                                               |
-| GOPROXY                | Address of GOPROXY used for faster dependency retrieval in China | Default: <https://goproxy.cn>, direct                          |
-| STOP_INTERVAL          | Interval to wait for service status check after stopping the service | Default: 5 seconds                                           |
-| START_INTERVAL         | Interval to wait for service status check after starting the service | Default: 2 seconds                                           |
-| MO_DEBUG_PORT          | Debug port for MatrixOne, usually used by developers | Default: 9876                                                |
-| MO_CONF_FILE           | Launch configuration file for MatrixOne              | Default: ${MO_PATH}/matrixone/etc/launch/launch.toml |
-| RESTART_INTERVAL       | Interval to wait for service status check after restarting the service | Default: 2 seconds                                           |
-| PPROF_OUT_PATH         | Output path for collecting golang performance data   | Default: /tmp/pprof-test/                                    |
-| PPROF_PROFILE_DURATION | Duration for collecting golang performance data      | Default: 30 seconds                                          |
+| Parameter Name         | Function                                                               | Value Specification                                      |
+| ---------------------- | ---------------------------------------------------------------------- | -------------------------------------------------------- |
+| MO_PATH                | Location of MatrixOne's code repository and executables                | Folder path                                              |
+| MO_LOG_PATH            | Location of MatrixOne's logs                                           | Folder path, default: ${MO_PATH}/matrixone/logs          |
+| MO_HOST                | IP address for connecting to MatrixOne service                         | IP address, default: 127.0.0.1                           |
+| MO_PORT                | Port number for connecting to MatrixOne service                        | Port number, default: 6001                               |
+| MO_USER                | Username for connecting to MatrixOne service                           | Username, default: root                                  |
+| MO_PW                  | Password for connecting to MatrixOne service                           | Password, default: 111                                   |
+| CHECK_LIST             | Dependencies required for precheck                                     | Default: ("go" "gcc" "git" "mysql")                      |
+| GCC_VERSION            | gcc version to be checked in precheck                                  | Default: 8.5.0                                           |
+| GO_VERSION             | go version to be checked in precheck                                   | Default: 1.20                                            |
+| MO_GIT_URL             | Repository URL for fetching MatrixOne source code                      | Default: <https://github.com/matrixorigin/matrixone.git> |
+| MO_DEFAULT_VERSION     | Default version of MatrixOne to be fetched                             | Default: v1.0.0                                          |
+| GOPROXY                | Address of GOPROXY used for faster dependency retrieval in China       | Default: <https://goproxy.cn>, direct                    |
+| STOP_INTERVAL          | Interval to wait for service status check after stopping the service   | Default: 5 seconds                                       |
+| START_INTERVAL         | Interval to wait for service status check after starting the service   | Default: 2 seconds                                       |
+| MO_DEBUG_PORT          | Debug port for MatrixOne, usually used by developers                   | Default: 9876                                            |
+| MO_CONF_FILE           | Launch configuration file for MatrixOne                                | Default: ${MO_PATH}/matrixone/etc/launch/launch.toml     |
+| RESTART_INTERVAL       | Interval to wait for service status check after restarting the service | Default: 2 seconds                                       |
+| PPROF_OUT_PATH         | Output path for collecting golang performance data                     | Default: /tmp/pprof-test/                                |
+| PPROF_PROFILE_DURATION | Duration for collecting golang performance data                        | Default: 30 seconds                                      |
 
 ### ddl_convert - DDL format conversion
 
@@ -336,11 +336,11 @@ Use `mo_ctl upgrade version` or `mo_ctl upgrade commitid` to upgrade or downgrad
 ```
 mo_ctl upgrade help
 Usage           : mo_ctl upgrade [version_commitid]   # upgrade or downgrade mo from current version to a target commit id or stable version
- [commitid]     : a commit id such as '38888f7', or a stable version such as '1.0.0-rc2'
+ [commitid]     : a commit id such as '38888f7', or a stable version such as 'v1.0.0'
                 : use 'latest' to upgrade to latest commit on main branch if you don't know the id
   e.g.          : mo_ctl upgrade 38888f7              # upgrade/downgrade to commit id 38888f7 on main branch
                 : mo_ctl upgrade latest               # upgrade/downgrade to latest commit on main branch
-                : mo_ctl upgrade 1.0.0-rc2                # upgrade/downgrade to stable version 1.0.0-rc2
+                : mo_ctl upgrade v1.0.0                # upgrade/downgrade to stable version v1.0.0
 ```
 
 ### watchdog - Keep Alive MatrixOne

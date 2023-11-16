@@ -8,12 +8,12 @@ MatrixOne supports x86 and ARM Linux systems. This article uses the Debian11.1 x
 
 To install and use the stand-alone MatrixOne through source code, you need to depend on the following software packages.
 
-| Dependent software | Version |
-| ------------ | ----------------------------- |
-| golang | 1.20 or later |
-| gcc | gcc8.5 or later|
-| git | 2.20 or later |
-| MySQL Client | 8.0 or later |
+| Dependent software | Version         |
+| ------------------ | --------------- |
+| golang             | 1.20 or later   |
+| gcc                | gcc8.5 or later |
+| git                | 2.20 or later   |
+| MySQL Client       | 8.0 or later    |
 
 ## Step 1: Install Dependency
 
@@ -184,7 +184,7 @@ GCC_VERSION="8.5.0"
 CLANG_VERSION="13.0"
 GO_VERSION="1.20"
 MO_GIT_URL="https://github.com/matrixorigin/matrixone.git"
-MO_DEFAULT_VERSION="1.0.0-rc2"
+MO_DEFAULT_VERSION="v1.0.0"
 GOPROXY="https://goproxy.cn,direct"
 STOP_INTERVAL="5"
 START_INTERVAL="2"
@@ -200,7 +200,7 @@ Generally, the parameters that may need to be adjusted are as follows:
 ````
 mo_ctl set_conf MO_PATH="/data/mo/matrixone" # Set custom MatrixOne download path
 mo_ctl set_conf MO_GIT_URL="https://ghproxy.com/https://github.com/matrixorigin/matrixone.git" # For the problem of slow downloading from the original GitHub address, set the proxy download address
-mo_ctl set_conf MO_DEFAULT_VERSION="1.0.0-rc2" # Set the version of MatrixOne downloaded
+mo_ctl set_conf MO_DEFAULT_VERSION="v1.0.0" # Set the version of MatrixOne downloaded
 ````
 
 ## Step 3: Get MatrixOne code
@@ -218,7 +218,7 @@ Depending on your needs, choose whether you want to keep your code up to date, o
 === "Get the MatrixOne(Stable Version) code to build"
 
      ```
-     mo_ctl deploy 1.0.0-rc2
+     mo_ctl deploy v1.0.0
      ```
 
 ## Step 4: Launch MatrixOne server
@@ -255,7 +255,7 @@ root@VM-16-2-debian:~# mo_ctl connect
 mysql: [Warning] Using a password on the command line interface can be insecure.
 Welcome to the MySQL monitor.  Commands end with ; or \g.
 Your MySQL connection id is 15
-Server version: 8.0.30-MatrixOne-v1.0.0-rc2 MatrixOne
+Server version: 8.0.30-MatrixOne-v1.0.0 MatrixOne
 
 Copyright (c) 2000, 2023, Oracle and/or its affiliates.
 
