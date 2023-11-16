@@ -9382,6 +9382,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../Release-Notes/v1.0.0/" class="md-nav__link">
+        v1.0.0
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../Release-Notes/v1.0.0-rc2/" class="md-nav__link">
         v1.0.0-rc2
       </a>
@@ -10082,88 +10096,26 @@
 </tbody>
 </table>
 <p>The current function list of <code>mo_ctl</code> is shown in the table below.</p>
-<table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Function</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>mo_ctl help</code></td>
-<td>See a list of statements and functions for the <code>mo_ctl</code> tool itself</td>
-</tr>
-<tr>
-<td><code>mo_ctl precheck</code></td>
-<td>Check dependencies required for MatrixOne source code installation, namely golang, gcc, git, MySQL Client</td>
-</tr>
-<tr>
-<td><code>mo_ctl deploy</code></td>
-<td>Download and install and compile the corresponding version of MatrixOne; the default is to install the latest stable version</td>
-</tr>
-<tr>
-<td><code>mo_ctl start</code></td>
-<td>Start MatrixOne service</td>
-</tr>
-<tr>
-<td><code>mo_ctl status</code></td>
-<td>Check if the MatrixOne service is running</td>
-</tr>
-<tr>
-<td><code>mo_ctl stop</code></td>
-<td>Stop all MatrixOne service processes</td>
-</tr>
-<tr>
-<td><code>mo_ctl restart</code></td>
-<td>Restart MatrixOne service</td>
-</tr>
-<tr>
-<td><code>mo_ctl connect</code></td>
-<td>Call MySQL Client to connect to MatrixOne service</td>
-</tr>
-<tr>
-<td><code>mo_ctl upgrade</code></td>
-<td>Upgrade/downgrade MatrixOne from the current version to a release version or commit id version</td>
-</tr>
-<tr>
-<td><code>mo_ctl set_conf</code></td>
-<td>Set various usage parameters</td>
-</tr>
-<tr>
-<td><code>mo_ctl get_conf</code></td>
-<td>View current parameters</td>
-</tr>
-<tr>
-<td><code>mo_ctl uninstall</code></td>
-<td>Uninstall MatrixOne from MO_PATH path</td>
-</tr>
-<tr>
-<td><code>mo_ctl watchdog</code></td>
-<td>Set a scheduled task to ensure the availability of MatrixOne service, check the status of MatrixOne every minute, and automatically pull up the service if the service is found to be suspended</td>
-</tr>
-<tr>
-<td><code>mo_ctl sql</code></td>
-<td>Execute SQL directly through commands or a text file composed of SQL</td>
-</tr>
-<tr>
-<td><code>mo_ctl ddl_convert</code></td>
-<td>A tool to convert MySQL DDL statements into MatrixOne statements</td>
-</tr>
-<tr>
-<td><code>mo_ctl get_cid</code></td>
-<td>View the source version of the current MatrixOne download repository</td>
-</tr>
-<tr>
-<td><code>mo_ctl get_branch</code></td>
-<td>View the branch version of the current MatrixOne download repository</td>
-</tr>
-<tr>
-<td><code>mo_ctl pprof</code></td>
-<td>Used to collect MatrixOne profiling data</td>
-</tr>
-</tbody>
-</table>
+<p>| Command | Function |
+| ------- | -------- ||
+| <code>mo_ctl help</code>        | See a list of statements and functions for the <code>mo_ctl</code> tool itself                                                                                                                             |
+| <code>mo_ctl precheck</code>    | Check dependencies required for MatrixOne source code installation, namely golang, gcc, git, MySQL Client                                                                                       |
+| <code>mo_ctl deploy</code>      | Download and install and compile the corresponding version of MatrixOne; the default is to install the latest stable version                                                                    |
+| <code>mo_ctl start</code>       | Start MatrixOne service                                                                                                                                                                         |
+| <code>mo_ctl status</code>      | Check if the MatrixOne service is running                                                                                                                                                       |
+| <code>mo_ctl stop</code>        | Stop all MatrixOne service processes                                                                                                                                                            |
+| <code>mo_ctl restart</code>     | Restart MatrixOne service                                                                                                                                                                       |
+| <code>mo_ctl connect</code>     | Call MySQL Client to connect to MatrixOne service                                                                                                                                               |
+| <code>mo_ctl upgrade</code>     | Upgrade/downgrade MatrixOne from the current version to a release version or commit id version                                                                                                  |
+| <code>mo_ctl set_conf</code>    | Set various usage parameters                                                                                                                                                                    |
+| <code>mo_ctl get_conf</code>    | View current parameters                                                                                                                                                                         |
+| <code>mo_ctl uninstall</code>   | Uninstall MatrixOne from MO_PATH path                                                                                                                                                           |
+| <code>mo_ctl watchdog</code>    | Set a scheduled task to ensure the availability of MatrixOne service, check the status of MatrixOne every minute, and automatically pull up the service if the service is found to be suspended |
+| <code>mo_ctl sql</code>         | Execute SQL directly through commands or a text file composed of SQL                                                                                                                            |
+| <code>mo_ctl ddl_convert</code> | A tool to convert MySQL DDL statements into MatrixOne statements                                                                                                                                |
+| <code>mo_ctl get_cid</code>     | View the source version of the current MatrixOne download repository                                                                                                                            |
+| <code>mo_ctl get_branch</code>  | View the branch version of the current MatrixOne download repository                                                                                                                            |
+| <code>mo_ctl pprof</code>       | Used to collect MatrixOne profiling data                                                                                                                                                        |</p>
 <h2 id="install-mo_ctl">Install mo_ctl</h2>
 <p>Depending on whether you have internet access, you can choose to install the <code>mo_ctl</code> tool online or offline; you need to be careful to consistently execute commands as root or with sudo privileges (and add sudo before each command). Meanwhile, <code>install.sh</code> will use the <code>unzip</code> command to decompress the <code>mo_ctl</code> package; please ensure the <code>unzip</code> command is installed.</p>
 <h3 id="install-online">Install Online</h3>
@@ -10255,12 +10207,12 @@ Usage         : mo_ctl precheck # check pre-requisites for mo_ctl
 Usage         : mo_ctl deploy [mo_version] [force] # deploy mo onto the path configured
   [mo_version]: optional, specify an mo version to deploy
   [force]     : optional, if specified will delete all content under MO_PATH and deploy from beginning
-  e.g.        : mo_ctl deploy             # default, same as mo_ctl deploy 1.0.0-rc2
+  e.g.        : mo_ctl deploy             # default, same as mo_ctl deploy v1.0.0
               : mo_ctl deploy main        # deploy development latest version
               : mo_ctl deploy d29764a     # deploy development version d29764a
-              : mo_ctl deploy 1.0.0-rc2       # deploy stable verson 1.0.0-rc2
-              : mo_ctl deploy force       # delete all under MO_PATH and deploy verson 1.0.0-rc2
-              : mo_ctl deploy 1.0.0-rc2 force # delete all under MO_PATH and deploy stable verson 1.0.0-rc2 from beginning
+              : mo_ctl deploy v1.0.0       # deploy stable verson v1.0.0
+              : mo_ctl deploy force       # delete all under MO_PATH and deploy verson v1.0.0
+              : mo_ctl deploy v1.0.0 force # delete all under MO_PATH and deploy stable verson v1.0.0 from beginning
 </code></pre></div>
 <h3 id="start-launch-matrixone">start - launch MatrixOne</h3>
 <p>Use <code>mo_ctl start</code> to start MatrixOne service; the startup file path is located under <code>MO_PATH</code>.</p>
@@ -10400,7 +10352,7 @@ Usage         : mo_ctl getconf [conf_list] # get configurations
 <tr>
 <td>MO_DEFAULT_VERSION</td>
 <td>Default version of MatrixOne to be fetched</td>
-<td>Default: 1.0.0-rc2</td>
+<td>Default: v1.0.0</td>
 </tr>
 <tr>
 <td>GOPROXY</td>
@@ -10472,11 +10424,11 @@ Usage           : mo_ctl uninstall        # uninstall mo from path MO_PATH=/data
 <p>Use <code>mo_ctl upgrade version</code> or <code>mo_ctl upgrade commitid</code> to upgrade or downgrade MatrixOne from the current version to a stable version or a commit id version.</p>
 <div class="highlight"><pre><span></span><code>mo_ctl upgrade help
 Usage           : mo_ctl upgrade [version_commitid]   # upgrade or downgrade mo from current version to a target commit id or stable version
- [commitid]     : a commit id such as &#39;38888f7&#39;, or a stable version such as &#39;1.0.0-rc2&#39;
+ [commitid]     : a commit id such as &#39;38888f7&#39;, or a stable version such as &#39;v1.0.0&#39;
                 : use &#39;latest&#39; to upgrade to latest commit on main branch if you don&#39;t know the id
   e.g.          : mo_ctl upgrade 38888f7              # upgrade/downgrade to commit id 38888f7 on main branch
                 : mo_ctl upgrade latest               # upgrade/downgrade to latest commit on main branch
-                : mo_ctl upgrade 1.0.0-rc2                # upgrade/downgrade to stable version 1.0.0-rc2
+                : mo_ctl upgrade v1.0.0                # upgrade/downgrade to stable version v1.0.0
 </code></pre></div>
 <h3 id="watchdog-keep-alive-matrixone">watchdog - Keep Alive MatrixOne</h3>
 <p>Use <code>mo_ctl watchdog [options]</code> to set a scheduled task to ensure the availability of MatrixOne service, check the status of MatrixOne every minute, and automatically pull up the service if it finds that the service is suspended.</p>

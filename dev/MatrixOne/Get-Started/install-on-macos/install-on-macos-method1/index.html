@@ -9280,6 +9280,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../Release-Notes/v1.0.0/" class="md-nav__link">
+        v1.0.0
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../Release-Notes/v1.0.0-rc2/" class="md-nav__link">
         v1.0.0-rc2
       </a>
@@ -10026,7 +10040,7 @@ GCC_VERSION=&quot;8.5.0&quot;
 CLANG_VERSION=&quot;13.0&quot;
 GO_VERSION=&quot;1.20&quot;
 MO_GIT_URL=&quot;https://github.com/matrixorigin/matrixone.git&quot;
-MO_DEFAULT_VERSION=&quot;1.0.0-rc2&quot;
+MO_DEFAULT_VERSION=&quot;v1.0.0&quot;
 GOPROXY=&quot;https://goproxy.cn,direct&quot;
 STOP_INTERVAL=&quot;5&quot;
 START_INTERVAL=&quot;2&quot;
@@ -10039,7 +10053,7 @@ PPROF_PROFILE_DURATION=&quot;30&quot;
 <p>Generally, the parameters that may need to be adjusted are as follows:</p>
 <div class="highlight"><pre><span></span><code>mo_ctl set_conf MO_PATH=&quot;/Users/username/mo/matrixone&quot; # Set custom MatrixOne download path
 mo_ctl set_conf MO_GIT_URL=&quot;https://ghproxy.com/https://github.com/matrixorigin/matrixone.git&quot; ## For the problem of slow downloading from the original GitHub address, set the proxy download address
-mo_ctl set_conf MO_DEFAULT_VERSION=&quot;1.0.0-rc2&quot; # Set the version of MatrixOne downloaded
+mo_ctl set_conf MO_DEFAULT_VERSION=&quot;v1.0.0&quot; # Set the version of MatrixOne downloaded
 </code></pre></div>
 <h2 id="step-3-get-matrixone-code">Step 3: Get MatrixOne code</h2>
 <p>Depending on your needs, choose whether you want to keep your code up to date, or if you want to get the latest stable version of the code.</p>
@@ -10051,7 +10065,7 @@ mo_ctl set_conf MO_DEFAULT_VERSION=&quot;1.0.0-rc2&quot; # Set the version of Ma
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>mo_ctl deploy 1.0.0-rc2
+<div class="highlight"><pre><span></span><code>mo_ctl deploy v1.0.0
 </code></pre></div>
 </div>
 </div>
@@ -10082,7 +10096,7 @@ mo_ctl set_conf MO_DEFAULT_VERSION=&quot;1.0.0-rc2&quot; # Set the version of Ma
 mysql: [Warning] Using a password on the command line interface can be insecure.
 Welcome to the MySQL monitor.  Commands end with ; or \g.
 Your MySQL connection id is 15
-Server version: 8.0.30-MatrixOne-v1.0.0-rc2 MatrixOne
+Server version: 8.0.30-MatrixOne-v1.0.0 MatrixOne
 
 Copyright (c) 2000, 2023, Oracle and/or its affiliates.
 

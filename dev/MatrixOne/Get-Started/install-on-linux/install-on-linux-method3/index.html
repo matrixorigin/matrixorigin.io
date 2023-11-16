@@ -9232,6 +9232,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../Release-Notes/v1.0.0/" class="md-nav__link">
+        v1.0.0
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../Release-Notes/v1.0.0-rc2/" class="md-nav__link">
         v1.0.0-rc2
       </a>
@@ -9786,15 +9800,15 @@ systemctl status docker
 </ol>
 <h2 id="step-2-create-and-run-the-container-of-matrixone">Step 2: Create and run the container of MatrixOne</h2>
 <p>It will pull the image from Docker Hub if not exists. You can choose to pull the stable version image or the develop version image.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Stable Version Image(1.0.0-rc2 version)</label><label for="__tabbed_1_2">Develop Version Image</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Stable Version Image(1.0.0 version)</label><label for="__tabbed_1_2">Develop Version Image</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>pull<span class="w"> </span>matrixorigin/matrixone:1.0.0-rc2
-docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">6001</span>:6001<span class="w"> </span>--name<span class="w"> </span>matrixone<span class="w"> </span>matrixorigin/matrixone:1.0.0-rc2
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>pull<span class="w"> </span>matrixorigin/matrixone:1.0.0
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">6001</span>:6001<span class="w"> </span>--name<span class="w"> </span>matrixone<span class="w"> </span>matrixorigin/matrixone:1.0.0
 </code></pre></div>
 <p>If you are using the network in mainland China, you can pull the MatrixOne stable version image on Alibaba Cloud:</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>pull<span class="w"> </span>registry.cn-shanghai.aliyuncs.com/matrixorigin/matrixone:1.0.0-rc2
-docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">6001</span>:6001<span class="w"> </span>--name<span class="w"> </span>matrixone<span class="w"> </span>registry.cn-shanghai.aliyuncs.com/matrixorigin/matrixone:1.0.0-rc2
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>pull<span class="w"> </span>registry.cn-shanghai.aliyuncs.com/matrixorigin/matrixone:1.0.0
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">6001</span>:6001<span class="w"> </span>--name<span class="w"> </span>matrixone<span class="w"> </span>registry.cn-shanghai.aliyuncs.com/matrixorigin/matrixone:1.0.0
 </code></pre></div>
 </div>
 <div class="tabbed-block">
@@ -9813,7 +9827,7 @@ docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </sp
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>If your Docker version is lower than 20.10.18 or the Docker client and server versions are inconsistent, upgrading to the latest stable version before attempting is recommended. If you choose to proceed with the current versions, you need to add the parameter <code>--privileged=true</code> to the <code>docker run</code> command, as shown below:</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">6001</span>:6001<span class="w"> </span>--name<span class="w"> </span>matrixone<span class="w"> </span>--privileged<span class="o">=</span><span class="nb">true</span><span class="w"> </span>matrixorigin/matrixone:1.0.0-rc2
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">6001</span>:6001<span class="w"> </span>--name<span class="w"> </span>matrixone<span class="w"> </span>--privileged<span class="o">=</span><span class="nb">true</span><span class="w"> </span>matrixorigin/matrixone:1.0.0
 </code></pre></div>
 </div>
 <div class="admonition note">
