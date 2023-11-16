@@ -16,7 +16,7 @@ These introductions will help you go through you the key concepts and user detai
 
 ### Roadmap
 
-MatrixOne v1.0.0-rc2 has been released, you can see [Release Notes](../../Release-Notes/v1.0.0-rc2.md) know more information.
+MatrixOne v1.0.0 has been released, you can see [Release Notes](../../Release-Notes/v1.0.0.md) know more information.
 
 For the long-term project roadmap, please refer to [MatrixOne roadmap](https://github.com/matrixorigin/matrixone/issues/613) for a more general overview.
 
@@ -32,37 +32,37 @@ Contributions to MatrixOne are not limited to writing code. What follows are dif
 
 For contributing code, [matrixone](https://github.com/matrixorigin/matrixone) is the main repository you'll be working on. The main working directories are listed below:
 
-| Directory              | Working Files                                                  |
-| ------------------------------ | ------------------------------------------------------------ |
-| **/LICENSES** | The license of dependant libraries |
-| **/cmd** | The binary entry of Go executables  |
-| **optools** | The test and deployment utilities  |
-| **pkg** | The main codebase of MatrixOne project  |
+| Directory     | Working Files                          |
+| ------------- | -------------------------------------- |
+| **/LICENSES** | The license of dependant libraries     |
+| **/cmd**      | The binary entry of Go executables     |
+| **optools**   | The test and deployment utilities      |
+| **pkg**       | The main codebase of MatrixOne project |
 
 For different technical modules, a code structure under `/pkg` is as shown in the following table.  
 
-| Directory              | Modules                                                 |
-| ------------------------------ | ------------------------------------------------------------ |
-| **frontend/** | SQL Frontend |
-| **sql/** | MPP SQL Execution  |
-| **sql/parser** | SQL Parser  |
-| **sql/vectorize** | Vectorization of SQL Execution   |
-| **catalog/** | Catalog for storing metadata  |
-| **vm/engine** | Storage engine  |
-| **vm/engine/aoe** |  Analytics Optimized Engine  |
-| **vm/engine/tpe** |  Transaction Processing Engine  |
-| **buildin/** |  System builtin functions  |
+| Directory         | Modules                        |
+| ----------------- | ------------------------------ |
+| **frontend/**     | SQL Frontend                   |
+| **sql/**          | MPP SQL Execution              |
+| **sql/parser**    | SQL Parser                     |
+| **sql/vectorize** | Vectorization of SQL Execution |
+| **catalog/**      | Catalog for storing metadata   |
+| **vm/engine**     | Storage engine                 |
+| **vm/engine/aoe** | Analytics Optimized Engine     |
+| **vm/engine/tpe** | Transaction Processing Engine  |
+| **buildin/**      | System builtin functions       |
 
 For contributing documentation, [matrixorigin.io](https://github.com/matrixorigin/matrixorigin.io) , [matrixorigin.io.cn](https://github.com/matrixorigin/matrixorigin.io.cn) and [artwork](https://github.com/matrixorigin/artwork) are all the main repositories you'll be working on. For more details, please refer to [Contribute Documentation](contribute-documentation.md).
 
-| Directory              | Working Files                                                  |
-| ------------------------------ | ------------------------------------------------------------ |
-| **matrixone/docs/rfcs** | The design docs of MatrixOne project |
-| **matrixorigin.io/docs/MatrixOne** | The content files of the English MatrixOne documentation website  |
-| **matrixorigin.io.cn/docs/MatrixOne** | The content files of the Chinese MatrixOne documentation website  |
-| **matrixorigin.io/mkdocs.yml** | The configuration file of the English documentation website |
-| **matrixorigin.io.cn/mkdocs.yml** | The configuration file of the Chinese documentation website |
-| **artwork/docs** | The images, screenshots and diagrams of documentation webstie |
+| Directory                             | Working Files                                                    |
+| ------------------------------------- | ---------------------------------------------------------------- |
+| **matrixone/docs/rfcs**               | The design docs of MatrixOne project                             |
+| **matrixorigin.io/docs/MatrixOne**    | The content files of the English MatrixOne documentation website |
+| **matrixorigin.io.cn/docs/MatrixOne** | The content files of the Chinese MatrixOne documentation website |
+| **matrixorigin.io/mkdocs.yml**        | The configuration file of the English documentation website      |
+| **matrixorigin.io.cn/mkdocs.yml**     | The configuration file of the Chinese documentation website      |
+| **artwork/docs**                      | The images, screenshots and diagrams of documentation webstie    |
 
 ## **Set up your Development Environment**  
 

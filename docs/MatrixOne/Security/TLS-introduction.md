@@ -75,12 +75,12 @@ After completing the configuration of these two main steps, a TLS secure connect
 
     In the above code, the configuration parameters are explained as follows:
 
-    |Parameters|Description|
-    |---|---|
-    |enableTls|Bool, enable TLS support on the MatrixOne server.|
-    |tlsCertFile|Specify the SSL certificate file path|
-    |tlsKeyFile|Specify the private key corresponding to the certificate file|
-    |tlsCaFile|Optional, specify the trusted CA certificate file path|
+    | Parameters  | Description                                                   |
+    | ----------- | ------------------------------------------------------------- |
+    | enableTls   | Bool, enable TLS support on the MatrixOne server.             |
+    | tlsCertFile | Specify the SSL certificate file path                         |
+    | tlsKeyFile  | Specify the private key corresponding to the certificate file |
+    | tlsCaFile   | Optional, specify the trusted CA certificate file path        |
 
     __Note__: If you use Docker to install and launch MatrixOne, before modifying the configuration file, you need to mount the configuration file first and then modify it. For more information, see [Mount directory to Docker container](../Maintain/mount-data-by-docker.md).
 
@@ -109,7 +109,7 @@ After completing the configuration of these two main steps, a TLS secure connect
     Current pager:          stdout
     Using outfile:          ''
     Using delimiter:        ;
-    Server version:         8.0.30-MatrixOne-v1.0.0-rc2 MatrixOne
+    Server version:         8.0.30-MatrixOne-v1.0.0 MatrixOne
     Protocol version:       10
     Connection:             127.0.0.1 via TCP/IP
     Server characterset:    utf8mb4
@@ -134,7 +134,7 @@ After completing the configuration of these two main steps, a TLS secure connect
     Current pager:		stdout
     Using outfile:		''
     Using delimiter:	;
-    Server version:		8.0.30-MatrixOne-v1.0.0-rc2 MatrixOne
+    Server version:		8.0.30-MatrixOne-v1.0.0 MatrixOne
     Protocol version:	10
     Connection:		127.0.0.1 via TCP/IP
     Server characterset:	utf8mb4
@@ -161,13 +161,13 @@ mysql -h 127.0.0.1 -P 6001 -uroot -p111 --ssl-mode=PREFFERED
 
 The value types of `ssl mode` are as follows:
 
-|`ssl-mode` value|Description|
-|---|---|
-|DISABLED|Establish an encrypted connection without SSL/TLS, synonymous with skip-ssl.|
-|PREFFERED|The default behavior is first to establish an encrypted connection using SSL/TLS; if it cannot be established, it will try to establish a non-SSL/TLS connection.|
-|REQUIRED|Only SSL/TLS will be attempted to establish an encrypted connection, and if the connection cannot be established, the connection will fail.|
-|VERIFY_CA|As with the REQUIRED behavior, and also verifies that the CA certificate on the Server side is valid.|
-|VERIFY_IDENTITY|It acts like VERIFY_CA and verifies that the host in the server-side CA certificate is the same as the hostname for the actual connection.|
+| `ssl-mode` value | Description                                                                                                                                                       |
+| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| DISABLED         | Establish an encrypted connection without SSL/TLS, synonymous with skip-ssl.                                                                                      |
+| PREFFERED        | The default behavior is first to establish an encrypted connection using SSL/TLS; if it cannot be established, it will try to establish a non-SSL/TLS connection. |
+| REQUIRED         | Only SSL/TLS will be attempted to establish an encrypted connection, and if the connection cannot be established, the connection will fail.                       |
+| VERIFY_CA        | As with the REQUIRED behavior, and also verifies that the CA certificate on the Server side is valid.                                                             |
+| VERIFY_IDENTITY  | It acts like VERIFY_CA and verifies that the host in the server-side CA certificate is the same as the hostname for the actual connection.                        |
 
 !!! note
     When the client specifies `--ssl-mode=VERIFY_CA`, it needs to use `--ssl-ca` to specify the CA certificate;
