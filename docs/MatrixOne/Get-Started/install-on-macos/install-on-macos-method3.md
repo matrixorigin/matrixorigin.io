@@ -24,18 +24,18 @@ This document will guide you build standalone MatrixOne using Docker.
 
 It will pull the image from Docker Hub if not exists. You can choose to pull the stable version image or the develop version image.
 
-=== "Stable Version Image(1.0.0 version)"
+=== "Stable Version Image(1.0.1 version)"
 
       ```bash
-      docker pull matrixorigin/matrixone:1.0.0
-      docker run -d -p 6001:6001 --name matrixone matrixorigin/matrixone:1.0.0
+      docker pull matrixorigin/matrixone:1.0.1
+      docker run -d -p 6001:6001 --name matrixone matrixorigin/matrixone:1.0.1
       ```
 
       If you are using the network in mainland China, you can pull the MatrixOne stable version image on Alibaba Cloud:
 
       ```bash
-      docker pull registry.cn-shanghai.aliyuncs.com/matrixorigin/matrixone:1.0.0
-      docker run -d -p 6001:6001 --name matrixone registry.cn-shanghai.aliyuncs.com/matrixorigin/matrixone:1.0.0
+      docker pull registry.cn-shanghai.aliyuncs.com/matrixorigin/matrixone:1.0.1
+      docker run -d -p 6001:6001 --name matrixone registry.cn-shanghai.aliyuncs.com/matrixorigin/matrixone:1.0.1
       ```
 
 === "Develop Version Image"
@@ -60,7 +60,7 @@ It will pull the image from Docker Hub if not exists. You can choose to pull the
     If your Docker version is lower than 20.10.18 or the Docker client and server versions are inconsistent, upgrading to the latest stable version before attempting is recommended. If you choose to proceed with the current versions, you need to add the parameter `--privileged=true` to the `docker run` command, as shown below:
 
     ```bash
-    docker run -d -p 6001:6001 --name matrixone --privileged=true matrixorigin/matrixone:1.0.0
+    docker run -d -p 6001:6001 --name matrixone --privileged=true matrixorigin/matrixone:1.0.1
     ```
 
 !!! note
