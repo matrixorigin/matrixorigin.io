@@ -96,16 +96,16 @@ The Debian11.1 version does not have MySQL Client installed by default, so it ne
 
      ```bash
      mkdir -p /root/matrixone & cd /root/
-     wget https://github.com/matrixorigin/matrixone/releases/download/v1.0.0/mo-v1.0.0-linux-x86_64.zip
-     unzip -d matrixone/ mo-v1.0.0-linux-x86_64.zip
+     wget https://github.com/matrixorigin/matrixone/releases/download/v1.1.0/mo-v1.1.0-linux-x86_64.zip
+     unzip -d matrixone/ mo-v1.1.0-linux-x86_64.zip
      ```
 
      Binary for ARM architecture system:
 
      ```bash
      mkdir -p /root/matrixone & cd /root/
-     wget https://github.com/matrixorigin/matrixone/releases/download/v1.0.0/mo-v1.0.0-linux-arm64.zip
-     unzip -d matrixone/ mo-v1.0.0-linux-arm64.zip
+     wget https://github.com/matrixorigin/matrixone/releases/download/v1.1.0/mo-v1.1.0-linux-arm64.zip
+     unzip -d matrixone/ mo-v1.1.0-linux-arm64.zip
      ```
 
 === "**Downloading method 2: Using `curl` to install binary packages**"
@@ -114,21 +114,21 @@ The Debian11.1 version does not have MySQL Client installed by default, so it ne
 
      ```bash
      mkdir -p /root/matrixone & cd /root/
-     curl -OL https://github.com/matrixorigin/matrixone/releases/download/v1.0.0/mo-v1.0.0-linux-x86_64.zip
-     unzip -d matrixone/ mo-v1.0.0-linux-x86_64.zip
+     curl -OL https://github.com/matrixorigin/matrixone/releases/download/v1.1.0/mo-v1.1.0-linux-x86_64.zip
+     unzip -d matrixone/ mo-v1.1.0-linux-x86_64.zip
      ```
 
      Binary for ARM architecture system:
 
      ```bash
      mkdir -p /root/matrixone & cd /root/
-     curl -OL https://github.com/matrixorigin/matrixone/releases/download/v1.0.0/mo-v1.0.0-linux-arm64.zip
-     unzip -d matrixone/ mo-v1.0.0-linux-arm64.zip
+     curl -OL https://github.com/matrixorigin/matrixone/releases/download/v1.1.0/mo-v1.1.0-linux-arm64.zip
+     unzip -d matrixone/ mo-v1.1.0-linux-arm64.zip
      ```
 
 === "**Downloading method 3: Go to the page and download**"
 
-     If you want a more intuitive way to download the page, go to the [version 1.0.0](https://github.com/matrixorigin/matrixone/releases/tag/v1.0.0), pull down to find the **Assets** column, and click the installation package *mo-v1.0.0-linux-x86_64.zip* or *mo-v1.0.0-linux-arm64.zip* can be downloaded.
+     If you want a more intuitive way to download the page, go to the [version 1.1.0](https://github.com/matrixorigin/matrixone/releases/tag/v1.1.0), pull down to find the **Assets** column, and click the installation package *mo-v1.1.0-linux-x86_64.zip* or *mo-v1.1.0-linux-arm64.zip* can be downloaded.
 
 ## Step 3: Install the mo_ctl tool
 
@@ -184,7 +184,7 @@ root@VM-16-2-debian:~# mo_ctl connect
 mysql: [Warning] Using a password on the command line interface can be insecure.
 Welcome to the MySQL monitor.  Commands end with ; or \g.
 Your MySQL connection id is 15
-Server version: 8.0.30-MatrixOne-v1.0.0 MatrixOne
+Server version: 8.0.30-MatrixOne-v1.1.0 MatrixOne
 
 Copyright (c) 2000, 2023, Oracle and/or its affiliates.
 
