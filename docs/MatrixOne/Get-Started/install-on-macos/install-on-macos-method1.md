@@ -170,7 +170,7 @@ GCC_VERSION="8.5.0"
 CLANG_VERSION="13.0"
 GO_VERSION="1.20"
 MO_GIT_URL="https://github.com/matrixorigin/matrixone.git"
-MO_DEFAULT_VERSION="v1.1.0"
+MO_DEFAULT_VERSION="v1.1.1"
 GOPROXY="https://goproxy.cn,direct"
 STOP_INTERVAL="5"
 START_INTERVAL="2"
@@ -186,7 +186,7 @@ Generally, the parameters that may need to be adjusted are as follows:
 ```
 mo_ctl set_conf MO_PATH="/Users/username/mo/matrixone" # Set custom MatrixOne download path
 mo_ctl set_conf MO_GIT_URL="https://ghproxy.com/https://github.com/matrixorigin/matrixone.git" ## For the problem of slow downloading from the original GitHub address, set the proxy download address
-mo_ctl set_conf MO_DEFAULT_VERSION="v1.1.0" # Set the version of MatrixOne downloaded
+mo_ctl set_conf MO_DEFAULT_VERSION="v1.1.1" # Set the version of MatrixOne downloaded
 ```
 
 ## Step 3: Get MatrixOne code
@@ -204,7 +204,7 @@ Depending on your needs, choose whether you want to keep your code up to date, o
 === "Get the MatrixOne(Stable Version) code to build"
 
      ```
-     mo_ctl deploy v1.1.0
+     mo_ctl deploy v1.1.1
      ```
 
 ## Step 4: Launch MatrixOne server
@@ -241,7 +241,7 @@ This command will invoke the MySQL Client tool to connect to the MatrixOne servi
 mysql: [Warning] Using a password on the command line interface can be insecure.
 Welcome to the MySQL monitor.  Commands end with ; or \g.
 Your MySQL connection id is 15
-Server version: 8.0.30-MatrixOne-v1.1.0 MatrixOne
+Server version: 8.0.30-MatrixOne-v1.1.1 MatrixOne
 
 Copyright (c) 2000, 2023, Oracle and/or its affiliates.
 
