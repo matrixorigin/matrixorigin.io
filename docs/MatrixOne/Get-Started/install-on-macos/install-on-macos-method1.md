@@ -145,7 +145,7 @@ git version 2.40.0
     e.g.            : mo_ctl deploy help
     ```
 
-### Set mo_ctl parameters (Optional)
+### Set mo_ctl parameters
 
 Some parameters in the mo_ctl tool need to be set and you can view all current parameters through `mo_ctl get_conf`.
 
@@ -170,7 +170,7 @@ GCC_VERSION="8.5.0"
 CLANG_VERSION="13.0"
 GO_VERSION="1.20"
 MO_GIT_URL="https://github.com/matrixorigin/matrixone.git"
-MO_DEFAULT_VERSION="v1.1.1"
+MO_DEFAULT_VERSION="v1.1.2"
 GOPROXY="https://goproxy.cn,direct"
 STOP_INTERVAL="5"
 START_INTERVAL="2"
@@ -181,13 +181,14 @@ PPROF_OUT_PATH="/tmp/pprof-test/"
 PPROF_PROFILE_DURATION="30"
 ```
 
-Generally, the parameters that may need to be adjusted are as follows:
+Generally, the parameters that need to be adjusted are as follows:
 
-```
-mo_ctl set_conf MO_PATH="/Users/username/mo/matrixone" # Set custom MatrixOne download path
-mo_ctl set_conf MO_GIT_URL="https://ghproxy.com/https://github.com/matrixorigin/matrixone.git" ## For the problem of slow downloading from the original GitHub address, set the proxy download address
-mo_ctl set_conf MO_DEFAULT_VERSION="v1.1.1" # Set the version of MatrixOne downloaded
-```
+````
+mo_ctl set_conf MO_PATH="yourpath" # Set custom MatrixOne download path
+mo_ctl set_conf MO_GIT_URL="https://githubfast.com/matrixorigin/matrixone.git" # For the problem of slow downloading from the original GitHub address, set image download address
+mo_ctl set_conf MO_DEFAULT_VERSION="v1.1.2" # Set the version of MatrixOne downloaded
+mo_ctl set_conf MO_DEPLOY_MODE=git  # Deployment Configuration
+````
 
 ## Step 3: Get MatrixOne code
 
@@ -204,14 +205,14 @@ Depending on your needs, choose whether you want to keep your code up to date, o
 === "Get the MatrixOne(Stable Version) code to build"
 
      ```
-     mo_ctl deploy v1.1.1
+     mo_ctl deploy v1.1.2
      ```
 
 ## Step 4: Launch MatrixOne server
 
 Launch the MatrixOne service through the `mo_ctl start` command.
 
-If the operation is regular, the following log will appear. The relevant operation logs of MatrixOne will be in `/data/mo/logs/`.
+If the operation is regular, the following log will appear. The relevant operation logs of MatrixOne will be in `/yourpath/matrixone/logs/`.
 
 ```
 > mo_ctl start
@@ -241,7 +242,7 @@ This command will invoke the MySQL Client tool to connect to the MatrixOne servi
 mysql: [Warning] Using a password on the command line interface can be insecure.
 Welcome to the MySQL monitor.  Commands end with ; or \g.
 Your MySQL connection id is 15
-Server version: 8.0.30-MatrixOne-v1.1.1 MatrixOne
+Server version: 8.0.30-MatrixOne-v1.1.2 MatrixOne
 
 Copyright (c) 2000, 2023, Oracle and/or its affiliates.
 
