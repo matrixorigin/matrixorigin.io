@@ -159,7 +159,7 @@ Usage             : mo_ctl [option_1] [option_2]
   e.g.            : mo_ctl deploy help
 ```
 
-### 2. Set mo_ctl parameters (Optional)
+### 2. Set mo_ctl parameters
 
 Some parameters in the mo_ctl tool need to be set and you can view all current parameters through `mo_ctl get_conf`.
 
@@ -184,7 +184,7 @@ GCC_VERSION="8.5.0"
 CLANG_VERSION="13.0"
 GO_VERSION="1.20"
 MO_GIT_URL="https://github.com/matrixorigin/matrixone.git"
-MO_DEFAULT_VERSION="v1.1.1"
+MO_DEFAULT_VERSION="v1.1.2"
 GOPROXY="https://goproxy.cn,direct"
 STOP_INTERVAL="5"
 START_INTERVAL="2"
@@ -195,12 +195,13 @@ PPROF_OUT_PATH="/tmp/pprof-test/"
 PPROF_PROFILE_DURATION="30"
 ```
 
-Generally, the parameters that may need to be adjusted are as follows:
+Generally, the parameters that need to be adjusted are as follows:
 
 ````
-mo_ctl set_conf MO_PATH="/data/mo/matrixone" # Set custom MatrixOne download path
-mo_ctl set_conf MO_GIT_URL="https://ghproxy.com/https://github.com/matrixorigin/matrixone.git" # For the problem of slow downloading from the original GitHub address, set the proxy download address
-mo_ctl set_conf MO_DEFAULT_VERSION="v1.1.1" # Set the version of MatrixOne downloaded
+mo_ctl set_conf MO_PATH="yourpath" # Set custom MatrixOne download path
+mo_ctl set_conf MO_GIT_URL="https://githubfast.com/matrixorigin/matrixone.git" # For the problem of slow downloading from the original GitHub address, set image download address
+mo_ctl set_conf MO_DEFAULT_VERSION="v1.1.2" # Set the version of MatrixOne downloaded
+mo_ctl set_conf MO_DEPLOY_MODE=git  # Deployment Configuration
 ````
 
 ## Step 3: Get MatrixOne code
@@ -218,22 +219,22 @@ Depending on your needs, choose whether you want to keep your code up to date, o
 === "Get the MatrixOne(Stable Version) code to build"
 
      ```
-     mo_ctl deploy v1.1.1
+     mo_ctl deploy v1.1.2
      ```
 
 ## Step 4: Launch MatrixOne server
 
 Launch the MatrixOne service through the `mo_ctl start` command.
 
-If the operation is regular, the following log will appear. The relevant operation logs of MatrixOne will be in `/data/mo/logs/`.
+If the operation is regular, the following log will appear. The relevant operation logs of MatrixOne will be in `/yourpath/matrixone/logs/`.
 
 ```
 root@VM-16-2-debian:~# mo_ctl start
 2023-07-07_09:55:01    [INFO]    No mo-service is running
-2023-07-07_09:55:01    [INFO]    Starting mo-service: cd /data/mo//matrixone/ && /data/mo//matrixone/mo-service -daemon -debug-http :9876 -launch /data/mo//matrixone/etc/launch/launch.toml >/data/mo//logs/stdout-20230707_095501.log 2>/data/mo//logs/stderr-20230707_095501.log
+2023-07-07_09:55:01    [INFO]    Starting mo-service: cd /data/mo/matrixone/matrixone/ && /data/mo/matrixone/matrixone/mo-service -daemon -debug-http :9876 -launch /data/mo/matrixone/matrixone/etc/launch/launch.toml >/data/mo/matrixone/logs/stdout-20230707_095501.log 2>/data/mo/matrixone/logs/stderr-20230707_095501.log
 2023-07-07_09:55:01    [INFO]    Wait for 2 seconds
 2023-07-07_09:55:03    [INFO]    At least one mo-service is running. Process info:
-2023-07-07_09:55:03    [INFO]    root      748128       1  2 09:55 ?        00:00:00 /data/mo//matrixone/mo-service -daemon -debug-http :9876 -launch /data/mo//matrixone/etc/launch/launch.toml
+2023-07-07_09:55:03    [INFO]    root      748128       1  2 09:55 ?        00:00:00 /data/mo/matrixone/matrixone/mo-service -daemon -debug-http :9876 -launch /data/mo/matrixone/matrixone/etc/launch/launch.toml
 2023-07-07_09:55:03    [INFO]    Pids:
 2023-07-07_09:55:03    [INFO]    748128
 2023-07-07_09:55:03    [INFO]    Start succeeded
@@ -255,7 +256,7 @@ root@VM-16-2-debian:~# mo_ctl connect
 mysql: [Warning] Using a password on the command line interface can be insecure.
 Welcome to the MySQL monitor.  Commands end with ; or \g.
 Your MySQL connection id is 15
-Server version: 8.0.30-MatrixOne-v1.1.1 MatrixOne
+Server version: 8.0.30-MatrixOne-v1.1.2 MatrixOne
 
 Copyright (c) 2000, 2023, Oracle and/or its affiliates.
 
@@ -266,6 +267,7 @@ owners.
 Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 
 mysql>
+
 ```
 
 !!! note
