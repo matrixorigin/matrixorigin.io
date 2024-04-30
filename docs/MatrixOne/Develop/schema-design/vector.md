@@ -105,19 +105,72 @@ CREATE TABLE t1 (
 );
 
 -- Insert some sample data
-INSERT INTO t1 (id,b) VALUES (1, '[1,2,3]'), (2, '[4,5,6]'), (3, '[2,1,1]'), (4, '[7,8,9]'), (5, '[0,0,0]'), (6, '[3,1,2]');
+INSERT INTO t1 (id,b) VALUES (1, '[1,2,3]'), (2, '[4,5,6]'), (3, '[2,1,1]'), (4, '[7,8,9]'), (5, '[2,2,2]'), (6, '[3,1,2]');
+
+mysql> select * from t1;
++------+-----------+
+| id   | b         |
++------+-----------+
+|    1 | [1, 2, 3] |
+|    2 | [4, 5, 6] |
+|    3 | [2, 1, 1] |
+|    4 | [7, 8, 9] |
+|    5 | [2, 2, 2] |
+|    6 | [3, 1, 2] |
++------+-----------+
+6 rows in set (0.01 sec)
 
 -- Top K Queries using l1_distance
-SELECT * FROM t1 ORDER BY l1_norm(b - '[3,1,2]') LIMIT 5;
+mysql> SELECT * FROM t1 ORDER BY l1_norm(b - '[3,1,2]') LIMIT 5;
++------+-----------+
+| id   | b         |
++------+-----------+
+|    6 | [3, 1, 2] |
+|    5 | [2, 2, 2] |
+|    3 | [2, 1, 1] |
+|    1 | [1, 2, 3] |
+|    2 | [4, 5, 6] |
++------+-----------+
+5 rows in set (0.00 sec)
 
 -- Top K Queries using l2_distance
-SELECT * FROM t1 ORDER BY l2_norm(b - '[3,1,2]') LIMIT 5;
+mysql> SELECT * FROM t1 ORDER BY l2_distance(b,'[3,1,2]') LIMIT 5;
++------+-----------+
+| id   | b         |
++------+-----------+
+|    6 | [3, 1, 2] |
+|    5 | [2, 2, 2] |
+|    3 | [2, 1, 1] |
+|    1 | [1, 2, 3] |
+|    2 | [4, 5, 6] |
++------+-----------+
+5 rows in set (0.00 sec)
 
 -- Top K Queries using cosine similarity
-SELECT * FROM t1 ORDER BY cosine_similarity(b, '[3,1,2]') LIMIT 5;
+mysql> SELECT * FROM t1 ORDER BY cosine_similarity(b, '[3,1,2]') LIMIT 5;
++------+-----------+
+| id   | b         |
++------+-----------+
+|    1 | [1, 2, 3] |
+|    2 | [4, 5, 6] |
+|    4 | [7, 8, 9] |
+|    5 | [2, 2, 2] |
+|    3 | [2, 1, 1] |
++------+-----------+
+5 rows in set (0.00 sec)
 
 -- Top K Queries using cosine distance
-SELECT * FROM t1 ORDER BY 1 - cosine_similarity(b, '[3,1,2]') LIMIT 5;
+mysql> SELECT * FROM t1 ORDER BY cosine_distance(b, '[3,1,2]') LIMIT 5;
++------+-----------+
+| id   | b         |
++------+-----------+
+|    6 | [3, 1, 2] |
+|    3 | [2, 1, 1] |
+|    5 | [2, 2, 2] |
+|    4 | [7, 8, 9] |
+|    2 | [4, 5, 6] |
++------+-----------+
+5 rows in set (0.00 sec)
 ```
 
 These queries demonstrate retrieving the top 5 vectors most similar to the given vector `[3,1,2]` using different distance and similarity measures. With these queries, you can find the data that best matches your target vector based on different measurement criteria.
@@ -157,18 +210,19 @@ These queries demonstrate retrieving the top 5 vectors most similar to the given
 
 - Currently, MatrixOne Vector type supports float32 and float64 types.
 - Vector cannot be Primary Key or Unique Key.
-- Vector maximum dimension is 65536.
-
-Certainly, let's refine the original text in English:
+- Vector maximum dimension is 65535.
 
 ## Reference
 
 For more documentation on vector functions, see:
 
-- [inner_product()](../../Reference/Functions-and-Operators/1.1-Vector/inner_product.md)
-- [l1_norm()](../../Reference/Functions-and-Operators/1.1-Vector/l1_norm.md)
-- [l2_norm()](../../Reference/Functions-and-Operators/1.1-Vector/l2_norm.md)
-- [cosine_similarity()](../../Reference/Functions-and-Operators/1.1-Vector/cosine_similarity.md)
-- [vector_dims()](../../Reference/Functions-and-Operators/1.1-Vector/vector_dims.md)
-- [Arithemetic Operators](../../Reference/Functions-and-Operators/1.1-Vector/arithmetic.md)
-- [Misc Functions](../../Reference/Functions-and-Operators/1.1-Vector/misc.md)
+- [inner_product()](../../Reference/Functions-and-Operators/Vector/inner_product.md)
+- [l1_norm()](../../Reference/Functions-and-Operators/Vector/l1_norm.md)
+- [l2_norm()](../../Reference/Functions-and-Operators/Vector/l2_norm.md)
+- [l2_distance()](../../Reference/Functions-and-Operators/Vector/l2_distance.md)
+- [cosine_similarity()](../../Reference/Functions-and-Operators/Vector/cosine_similarity.md)
+- [cosine_distance()](../../Reference/Functions-and-Operators/Vector/cosine_distance.md)
+- [vector_dims()](../../Reference/Functions-and-Operators/Vector/vector_dims.md)
+- [normalize_l2()](../../Reference/Functions-and-Operators/Vector/normalize_l2.md)
+- [Arithemetic Operators](../../Reference/Functions-and-Operators/Vector/arithmetic.md)
+- [Misc Functions](../../Reference/Functions-and-Operators/Vector/misc.md)
