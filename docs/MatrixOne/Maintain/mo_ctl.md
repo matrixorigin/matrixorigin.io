@@ -15,7 +15,7 @@ The operating systems that `mo_ctl` has adapted so far are shown in the table be
 The current function list of `mo_ctl` is shown in the table below.
 
 | Command | Function |
-| ------- | -------- ||
+| ------- | -------- |
 | `mo_ctl help`        | See a list of statements and functions for the `mo_ctl` tool itself                                                                                                                             |
 | `mo_ctl precheck`    | Check dependencies required for MatrixOne source code installation, namely golang, gcc, git, MySQL Client                                                                                       |
 | `mo_ctl deploy`      | Download and install and compile the corresponding version of MatrixOne; the default is to install the latest stable version                                                                    |
