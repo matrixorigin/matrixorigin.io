@@ -98,16 +98,16 @@ __Tips__: It is recommended that you download and install one of these two tools
 
      ```bash
      mkdir -p /User/username/mo/matrixone & cd /User/username/mo
-     wget https://github.com/matrixorigin/matrixone/releases/download/v1.1.3/mo-v1.1.3-darwin-x86_64.zip
-     unzip -d matrixone/ mo-v1.1.3-darwin-x86_64.zip
+     wget https://github.com/matrixorigin/matrixone/releases/download/v1.2.0/mo-v1.2.0-darwin-x86_64.zip
+     unzip -d matrixone/ mo-v1.2.0-darwin-x86_64.zip
      ```
 
      Binary for ARM architecture system:
 
      ```bash
      mkdir -p /User/username/mo/matrixone & cd /User/username/mo
-     wget https://github.com/matrixorigin/matrixone/releases/download/v1.1.3/mo-v1.1.3-darwin-arm64.zip
-     unzip -d matrixone/ mo-v1.1.3-darwin-arm64.zip
+     wget https://github.com/matrixorigin/matrixone/releases/download/v1.2.0/mo-v1.2.0-darwin-arm64.zip
+     unzip -d matrixone/ mo-v1.2.0-darwin-arm64.zip
      ```
 
 === "**Downloading method 2: Using `curl` to install binary packages**"
@@ -116,21 +116,21 @@ __Tips__: It is recommended that you download and install one of these two tools
 
      ```bash
      mkdir -p /User/username/mo/matrixone & cd /User/username/mo
-     curl -OL https://github.com/matrixorigin/matrixone/releases/download/v1.1.3/mo-v1.1.3-darwin-x86_64.zip
-     unzip -d matrixone/ mo-v1.1.3-darwin-x86_64.zip
+     curl -OL https://github.com/matrixorigin/matrixone/releases/download/v1.2.0/mo-v1.2.0-darwin-x86_64.zip
+     unzip -d matrixone/ mo-v1.2.0-darwin-x86_64.zip
      ```
 
      Binary for ARM architecture system:
 
      ```bash
      mkdir -p /User/username/mo/matrixone & cd /User/username/mo
-     curl -OL https://github.com/matrixorigin/matrixone/releases/download/v1.1.3/mo-v1.1.3-darwin-arm64.zip
-     unzip -d matrixone/ mo-v1.1.3-darwin-arm64.zip
+     curl -OL https://github.com/matrixorigin/matrixone/releases/download/v1.2.0/mo-v1.2.0-darwin-arm64.zip
+     unzip -d matrixone/ mo-v1.2.0-darwin-arm64.zip
      ```
 
 === "**Downloading method 3: Go to the page and download**"
 
-     If you want a more intuitive way to download the page, go to the [version 1.1.3](https://github.com/matrixorigin/matrixone/releases/tag/v1.1.3), pull down to find the **Assets** column, and click the installation package *mo-v1.1.3-darwin-x86_64.zip* or *mo-v1.1.3-darwin-arm64.zip* can be downloaded.
+     If you want a more intuitive way to download the page, go to the [version 1.2.0](https://github.com/matrixorigin/matrixone/releases/tag/v1.2.0), pull down to find the **Assets** column, and click the installation package *mo-v1.2.0-darwin-x86_64.zip* or *mo-v1.2.0-darwin-arm64.zip* can be downloaded.
 
 ## Step 3: Install the mo_ctl tool
 
@@ -149,8 +149,8 @@ wget https://raw.githubusercontent.com/matrixorigin/mo_ctl_standalone/main/insta
 The parameters that need to be adjusted are as follows:
 
 ````
-mo_ctl set_conf MO_PATH="/yourpath/mo-v1.1.3-xx-xx" # Set the MO_PATH to the directory where the binary files are extracted
-mo_ctl set_conf MO_CONF_FILE="/yourpath/mo-v1.1.3-xx-xx/etc/launch/launch.toml" # Set the MO_CONF_FILE path
+mo_ctl set_conf MO_PATH="/yourpath/mo-v1.2.0-xx-xx" # Set the MO_PATH to the directory where the binary files are extracted
+mo_ctl set_conf MO_CONF_FILE="/yourpath/mo-v1.2.0-xx-xx/etc/launch/launch.toml" # Set the MO_CONF_FILE path
 mo_ctl set_conf MO_DEPLOY_MODE=binary  #Deployment Configuration
 ````
 
@@ -158,17 +158,17 @@ mo_ctl set_conf MO_DEPLOY_MODE=binary  #Deployment Configuration
 
 Launch the MatrixOne service through the `mo_ctl start` command.
 
-If the operation is regular, the following log will appear. The relevant operation logs of MatrixOne will be in `/yourpath/mo-v1.1.3-xx-xx/matrixone/logs/ .
+If the operation is regular, the following log will appear. The relevant operation logs of MatrixOne will be in `/yourpath/mo-v1.2.0-xx-xx/matrixone/logs/ .
 
 ```
 > mo_ctl start
 2024-03-07 14:34:04.942 UTC+0800    [INFO]    No mo-service is running
 2024-03-07 14:34:04.998 UTC+0800    [INFO]    Get conf succeeded: MO_DEPLOY_MODE="binary"
 2024-03-07 14:34:05.024 UTC+0800    [INFO]    GO memory limit(Mi): 14745
-2024-03-07 14:34:05.072 UTC+0800    [INFO]    Starting mo-service: cd /Users/admin/mo-v1.1.3-darwin-arm64/ && GOMEMLIMIT=14745MiB /Users/admin/mo-v1.1.3-darwin-arm64/mo-service -daemon -debug-http :9876 -launch /Users/admin/mo-v1.1.3-darwin-arm64/etc/launch/launch.toml >/Users/admin/mo-v1.1.3-darwin-arm64/matrixone/logs/stdout-20240307_143405.log 2>/Users/admin/mo-v1.1.3-darwin-arm64/matrixone/logs/stderr-20240307_143405.log
+2024-03-07 14:34:05.072 UTC+0800    [INFO]    Starting mo-service: cd /Users/admin/mo-v1.2.0-darwin-arm64/ && GOMEMLIMIT=14745MiB /Users/admin/mo-v1.2.0-darwin-arm64/mo-service -daemon -debug-http :9876 -launch /Users/admin/mo-v1.2.0-darwin-arm64/etc/launch/launch.toml >/Users/admin/mo-v1.2.0-darwin-arm64/matrixone/logs/stdout-20240307_143405.log 2>/Users/admin/mo-v1.2.0-darwin-arm64/matrixone/logs/stderr-20240307_143405.log
 2024-03-07 14:34:05.137 UTC+0800    [INFO]    Wait for 2 seconds
 2024-03-07 14:34:07.261 UTC+0800    [INFO]    At least one mo-service is running. Process info: 
-  501 27145     1   0  2:34下午 ??         0:00.18 /Users/admin/mo-v1.1.3-darwin-arm64/mo-service -daemon -debug-http :9876 -launch /Users/admin/mo-v1.1.3-darwin-arm64/etc/launch/launch.toml
+  501 27145     1   0  2:34下午 ??         0:00.18 /Users/admin/mo-v1.2.0-darwin-arm64/mo-service -daemon -debug-http :9876 -launch /Users/admin/mo-v1.2.0-darwin-arm64/etc/launch/launch.toml
 2024-03-07 14:34:07.284 UTC+0800    [INFO]    List of pid(s): 
 27145
 2024-03-07 14:34:07.308 UTC+0800    [INFO]    Start succeeded
@@ -190,7 +190,7 @@ This command will invoke the MySQL Client tool to connect to the MatrixOne servi
 2024-03-07 14:34:59.942 UTC+0800    [INFO]    Ok, connecting for user ... 
 Welcome to the MySQL monitor.  Commands end with ; or \g.
 Your MySQL connection id is 426
-Server version: 8.0.30-MatrixOne-v1.1.3 MatrixOne
+Server version: 8.0.30-MatrixOne-v1.2.0 MatrixOne
 
 Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
 
