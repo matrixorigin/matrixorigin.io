@@ -51,12 +51,9 @@ insert into t1 values(1, "[1,2,3]", "[4,5,6]");
 Suppose you are working with Python NumPy arrays. In that case, you can directly insert the NumPy array into MatrixOne by performing hexadecimal encoding on the array instead of converting it into a comma-separated textual format. This approach is faster when inserting vectors with higher dimensions.
 
 ```sql
-insert into t1 (a, b) values
-(2, decode("7e98b23e9e10383b2f41133f", "hex"));
+insert into t1 (a, b) values (2, cast(unhex("7e98b23e9e10383b2f41133f") as blob));
 
 -- "7e98b23e9e10383b2f41133f" represents the hexadecimal encoding of the little-endian []float32{0.34881967, 0.0028086076, 0.5752134}
-
--- "hex" represents hexadecimal encoding
 ```
 
 ### Querying
@@ -81,9 +78,9 @@ mysql> select a, b from t1;
 The binary format is very useful if you need to directly read the vector result set into a NumPy array with minimal conversion cost.
 
 ```sql
-mysql> select encode(b, "hex") from t1;
+mysql> select hex(b) from t1;
 +--------------------------+
-| encode(b, hex)           |
+| hex(b)                   |
 +--------------------------+
 | 0000803f0000004000004040 |
 | 7e98b23e9e10383b2f41133f |
