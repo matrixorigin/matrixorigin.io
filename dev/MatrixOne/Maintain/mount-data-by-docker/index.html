@@ -8331,23 +8331,37 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../../Reference/Functions-and-Operators/String/unhex/" class="md-nav__link">
+        UNHEX()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
     
     <li class="md-nav__item md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_11_5_2_4_28" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_11_5_2_4_29" >
       
       
       
-        <label class="md-nav__link" for="__nav_1_11_5_2_4_28" id="__nav_1_11_5_2_4_28_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_1_11_5_2_4_29" id="__nav_1_11_5_2_4_29_label" tabindex="0">
           Regular Expressions
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="6" aria-labelledby="__nav_1_11_5_2_4_28_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_1_11_5_2_4_28">
+      <nav class="md-nav" data-md-level="6" aria-labelledby="__nav_1_11_5_2_4_29_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1_11_5_2_4_29">
           <span class="md-nav__icon md-icon"></span>
           Regular Expressions
         </label>
@@ -9391,6 +9405,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../Release-Notes/v1.2.1/" class="md-nav__link">
+        v1.2.1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Release-Notes/v1.2.0/" class="md-nav__link">
+        v1.2.0
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../Release-Notes/v1.1.3/" class="md-nav__link">
         v1.1.3
       </a>
@@ -10002,7 +10044,7 @@ docker rm &lt;containerID&gt;
 </li>
 <li>
 <p>Mount the local <strong>empty directory</strong> to the Docker container directory <em>/mo-data</em>, execute the following command:</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>--name<span class="w"> </span>&lt;name&gt;<span class="w"> </span>--privileged<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">6001</span>:6001<span class="w"> </span>-v<span class="w"> </span><span class="si">${</span><span class="nv">local_data_path</span><span class="si">}</span>/mo-data:/mo-data:rw<span class="w"> </span>matrixorigin/matrixone:1.1.3
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>--name<span class="w"> </span>&lt;name&gt;<span class="w"> </span>--privileged<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">6001</span>:6001<span class="w"> </span>-v<span class="w"> </span><span class="si">${</span><span class="nv">local_data_path</span><span class="si">}</span>/mo-data:/mo-data:rw<span class="w"> </span>matrixorigin/matrixone:1.2.1
 </code></pre></div>
 <table>
 <thead>
@@ -10030,7 +10072,7 @@ docker rm &lt;containerID&gt;
 </li>
 <li>
 <p>To launch MatrixOne MatrixOne has not been running in Docker, execute the following command:</p>
-<div class="highlight"><pre><span></span><code>docker run -d -p 6001:6001 --name matrixone --privileged=true matrixorigin/matrixone:1.1.3
+<div class="highlight"><pre><span></span><code>docker run -d -p 6001:6001 --name matrixone --privileged=true matrixorigin/matrixone:1.2.1
 </code></pre></div>
 </li>
 <li>
@@ -10050,7 +10092,7 @@ docker rm &lt;containerID&gt;
 </li>
 <li>
 <p>Mount the configuration file to the Docker container directory and launch MatrixOne. Execute the following command:</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>--name<span class="w"> </span>&lt;name&gt;<span class="w"> </span>--privileged<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">6001</span>:6001<span class="w"> </span>-v<span class="w"> </span><span class="si">${</span><span class="nv">local_config_path</span><span class="si">}</span>/etc:/etc:rw<span class="w">  </span>--entrypoint<span class="w"> </span><span class="s2">&quot;/mo-service&quot;</span><span class="w"> </span>matrixorigin/matrixone:1.1.3<span class="w"> </span>-launch<span class="w"> </span>/etc/launch/launch.toml
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>--name<span class="w"> </span>&lt;name&gt;<span class="w"> </span>--privileged<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">6001</span>:6001<span class="w"> </span>-v<span class="w"> </span><span class="si">${</span><span class="nv">local_config_path</span><span class="si">}</span>/etc:/etc:rw<span class="w">  </span>--entrypoint<span class="w"> </span><span class="s2">&quot;/mo-service&quot;</span><span class="w"> </span>matrixorigin/matrixone:1.2.1<span class="w"> </span>-launch<span class="w"> </span>/etc/launch/launch.toml
 </code></pre></div>
 <table>
 <thead>
