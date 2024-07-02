@@ -47,6 +47,12 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Login Tencent Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ccr.ccs.tencentyun.com
+          username: ${{ secrets.TCR_USERNAME }}
+          password: ${{ secrets.TCR_TOKEN }}
       
       - name: Get current date
         id: date
@@ -60,4 +66,4 @@ jobs:
           push: true
           tags: |
             matrixorigin/matrixorigin.io:${{ steps.date.outputs.date }}
-            matrixorigin/matrixorigin.io:latest     
+            ccr.ccs.tencentyun.com/mo-fronted/matrixorigin.io:${{ steps.date.outputs.date }}
