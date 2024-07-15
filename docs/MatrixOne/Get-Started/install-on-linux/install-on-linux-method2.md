@@ -61,7 +61,7 @@ __Tips__: It is recommended that you download and install one of these two tools
      The successful installation results (only part of the code is displayed) are as follows:
 
      ```
-     curl 7.84.0 (x86_64-pc-linux-gnu) libcurl/7.84.0 OpenSSL/1.1.1k-fips zlib/1.2.21
+     curl 7.84.0 (x86_64-pc-linux-gnu) libcurl/7.84.0 OpenSSL/1.1.1k-fips zlib/1.2.11
      Release-Date: 2022-06-27
      ...
      ```
