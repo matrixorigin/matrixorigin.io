@@ -10,9 +10,11 @@ The LOAD DATA statement reads rows from a text file into a table at a very high 
 > LOAD DATA [LOCAL]
     INFILE 'file_name'
     INTO TABLE tbl_name
+    [CHARACTER SET charset_name]
     [{FIELDS | COLUMNS}
         [TERMINATED BY 'string']
         [[OPTIONALLY] ENCLOSED BY 'char']
+        [ENCASPED BY 'char']
     ]
     [LINES
         [STARTING BY 'string']
@@ -21,6 +23,8 @@ The LOAD DATA statement reads rows from a text file into a table at a very high 
     [IGNORE number {LINES | ROWS}]
     [SET column_name_1=nullif(column_name_1, expr1), column_name_2=nullif(column_name_2, expr2)...]
     [PARALLEL {'TRUE' | 'FALSE'}]
+    [STRICT {'TRUE' | 'FALSE'}]
+
 ```
 
 ### Input File Location
@@ -28,6 +32,17 @@ The LOAD DATA statement reads rows from a text file into a table at a very high 
 - `LOAD DATA INFILE 'file_name'`: Indicates that the data file to be loaded is on the same machine as the MatrixOne host server. `file_name` can be the relative path name of the storage location of the file, or it can be the absolute path name.
 
 - `LOAD DATA LOCAL INFILE 'file_name'`: indicates that the data file to be loaded is not on the same machine as the MatrixOne host server; that is, the data file is on the client server. `file_name` can be the relative path name of the storage location of the file, or it can be the absolute path name.
+
+### CHARACTER SET
+
+If the file content uses a different character set than the default, you can use `CHARACTER SET` to specify the character set. For example, you can use `CHARACTER SET utf8` to specify the character set of the imported content as utf8:
+
+```sql
+LOAD DATA INFILE '/tmp/test.txt' INTO TABLE table1 IGNORE 1 LINES;
+```
+
+!!! note
+    In addition to utf8, `LOAD DATA` supports specifying character sets such as utf_8, UTF_16, UTF_xx, gbk, abcd, and so on. Character sets with **-** (e.g. utf-8,UTF-16) are not supported.
 
 ### IGNORE LINES
 
@@ -39,57 +54,197 @@ LOAD DATA INFILE '/tmp/test.txt' INTO TABLE table1 IGNORE 1 LINES;
 
 ### Field and Line Handling
 
-For both the LOAD DATA and `SELECT ... INTO OUTFILE` statements, the syntax of the FIELDS and LINES clauses is the same. Both clauses are optional, but FIELDS must precede LINES if both are specified.
+Use the `FIELDS` and `LINES` parameters to specify how to handle data formats.
 
-If you specify a `FIELDS` clause, each of its subclauses (`TERMINATED BY`, `[OPTIONALLY] ENCLOSED BY`) is also optional, except that you must specify at least one of them. Arguments to these clauses are permitted to contain only ASCII characters.
+For `LOAD DATA` and `SELECT ... INTO OUTFILE` statements, the syntax of the `FIELDS` and `LINES` clauses is the same. Both clauses are optional, but if both are specified, `FIELDS` must precede `LINES`.
 
-If you specify no `FIELDS` or `LINES` clause, the defaults are the same as if you had written this:
+If the `FIELDS` clause is specified, then each of the clauses of `FIELDS` (`TERMINATED BY`, `[OPTIONALLY] ENCLOSED BY`) is also optional, unless you must specify at least one of them.
+
+`LOAD DATA` also supports the use of hexadecimal `ASCII` character expressions or binary `ASCII` character expressions as arguments to `FIELDS ENCLOSED BY` and `FIELDS TERMINATED BY`.
+
+If you do not specify a parameter for processing data, the following default values are used:
 
 ```
-FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\n'
+FIELDS TERMINATED BY '\t' ENCLOSED BY '"' ESCAPED BY '\\' LINES TERMINATED BY '\n'
 ```
 
 !!! note
-    - `FIELDS TERMINATED BY ','`: with and only `,`, `|` or `\t` as delimiters.
+    - `FIELDS TERMINATED BY '\t'`: with and only `\t` as delimiters.
     - `ENCLOSED BY '"'`: with and only `"` as the included character.
+    - `ESCAPED BY '\\'`:use `\` as an escape character, and only as an escape character.
     - `LINES TERMINATED BY '\n'`: Use and only use `\n` or `\r\n` as the line separator.
 
 **FIELDS TERMINATED BY**
 
 `FIELDS TERMINATED BY` specifies the delimiter for a field. The `FIELDS TERMINATED BY` values can be more than one character.
 
-For example, to read the comma-delimited file, the correct statement is:
+ **Examples**
 
 ```
 LOAD DATA INFILE 'data.txt' INTO TABLE table1
   FIELDS TERMINATED BY ',';
 ```
 
-If instead you tried to read the file with the statement shown following, it would not work because it instructs `LOAD DATA` to look for tabs between fields:
-
-```
-LOAD DATA INFILE 'data.txt' INTO TABLE table1
-  FIELDS TERMINATED BY '\t';
-```
-
-The likely result is that each input line would be interpreted as a single field. You may encounter an error of `"ERROR 20101 (HY000): internal error: the table column is larger than input data column"`.
-
 **FIELDS ENCLOSED BY**
 
 `FIELDS TERMINATED BY` option specifies the character enclose the input values. `ENCLOSED BY` value must be a single character. If the input values are not necessarily enclosed within quotation marks, use `OPTIONALLY` before the `ENCLOSED BY` option.
 
-For example, if some input values are enclosed within quotation marks, some are not:
+ **Examples**
 
 ```
 LOAD DATA INFILE 'data.txt' INTO TABLE table1
   FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"';
 ```
 
+**FIELDS ESCAPED BY**
+
+`FIELDS ESCAPED BY` allows you to specify an escape character, with a default value of `\\`, which means that `\` is an escape symbol that is deleted if the `FIELDS ESCAPED BY` character is not null and subsequent characters will be used literally as part of the field value.
+
+However, some two-character sequences have special meanings, as shown in the table below:
+
+|  escape sequence  | Sequentially represented characters     |
+|  -------- | -------------------- |
+| \0        | A space character |
+| \b        | A backspace character |
+| \n        | A newline (linefeed) character |
+| \r        | A carriage return character |
+| \t        | A tab character|
+| \z        | ASCII 26 (Control+Z)|
+
+**Examples**
+
+- Examples 1
+  
+The contents of data.txt are as follows:
+  
+```
+(base) admin@admindeMacBook-Pro case % cat data.txt 
+1	a\\b
+```
+
+Connect mo than execute the following statement to import the data.txt contents to t1:
+
+```sql
+create table t1(n1 int,n2 varchar(255));
+load data infile 'Users/admin/test/case/data.txt' into table t1;
+
+mysql> select * from t1;
++------+------+
+| n1   | n2   |
++------+------+
+|    1 | a\b  |
++------+------+
+1 row in set (0.00 sec)
+```
+
+The result of n2 is `a\b` because the first `\` was an escape character and was deleted.
+
+- Examples 2
+
+The contents of data.txt are as follows:
+  
+```
+(base) admin@admindeMacBook-Pro case % cat data.txt 
+1	a\\b
+```
+
+Connect mo than execute the following statement to import the data.txt contents to t2:
+
+```sql
+create table t2(n1 int,n2 varchar(255));
+load data infile 'Users/admin/test/case/data.txt' into table t2 fields escaped by 'a';
+
+mysql> select * from t2;
++------+------+
+| n1   | n2   |
++------+------+
+|    1 | \\b  |
++------+------+
+1 row in set (0.00 sec)
+```
+
+The result of n2 is `\\b`, because here we specified the escape character as `a`, so `a` is removed.
+
+- Examples 3
+
+The contents of data.txt are as follows:
+  
+```
+(base) admin@admindeMacBook-Pro case % cat data.txt 
+1	a\\b
+```
+
+Connect mo than execute the following statement to import the data.txt contents to t3:
+
+```sql
+create table t3(n1 int,n2 varchar(255));
+load data infile 'Users/admin/test/case/data.txt' into table t3 fields escaped by '';
+
+mysql> SELECT * FROM t3;
++------+------+
+| n1   | n2   |
++------+------+
+|    1 | a\\b |
++------+------+
+1 row in set (0.01 sec)
+```
+
+The result of n2 is `a\\b`, and when ESCAPED BY is empty, it is read as is without escaping the characters.
+
+- Examples 4
+
+The contents of data.txt are as follows:
+  
+```
+(base) admin@admindeMacBook-Pro case % cat data.txt 
+1	a\0b
+2	c\bd
+3	a\nb
+4	a\rb
+5	a\tb
+6	a\Zb
+```
+
+Connect mo than execute the following statement to import the data.txt contents to t4:
+
+```sql
+create table t4(n1 int,n2 varchar(255));
+load data infile 'Users/admin/test/case/data.txt' into table t4;
+
+mysql> select * from t1;
++------+------+
+| n1   | n2   |
++------+------+
+|    1 | a b  |
+|    2 | d  |
+|    3 | a
+b  |
+b  | 4 | a
+|    5 | a	b  |
+|    6 | ab  |
++------+------+
+6 rows in set (0.01 sec)
+```
+
+when n1=1, the result of n2 is `a b` because `\0` is a space character;
+
+When n1=2, the result of n2 is `d` because `\b` is a backspace and `a` is deleted;
+
+When n1=3, the result of n2 is `a` plus a newline `b` because `\n` is a newline;
+
+When n1=4, the result of n2 is `a` plus `b` after a carriage return, because `\r` is a carriage return;
+
+When n1=5, the result of n2 is b for `a  b` because `\t` is a tab;
+
+When n1=6, the result of n2 is `ab`, because `\z` is a terminator.
+
 **LINES TERMINATED BY**
 
 `LINES TERMINATED BY` specifies the delimiter for the a line. The `LINES TERMINATED BY` values can be more than one character.
 
-For example, if the lines in a csv file are terminated by carriage return/newline pairs, you can load it with `LINES TERMINATED BY '\r\n'`:
+ **Examples**
+
+ For example, to read a file separated by *comma*, the syntax is:
 
 ```
 LOAD DATA INFILE 'data.txt' INTO TABLE table1
@@ -184,10 +339,27 @@ load data infile 'file_name' into table tbl_name FIELDS TERMINATED BY '|' ENCLOS
 
 __Note:__ If the `PARALLEL` field is not added in the `LOAD` statement, for *CSV* files, parallel loading is disabled by default; for *JSOLLines* files, parallel loading is enabled by default. If there is a line terminator in the *CSV* file, such as '\n', otherwise it may cause data errors when the file is loaded. If the file is too large, manually splitting the file from the '\n' as the starting and ending point is recommended, then enabling parallel loading.
 
+### STRICT
+
+MatrixOne supports the use of the STRICT parameter to specify the way to cut the file in parallel, which is only valid when PARALLEL is TRUE. The default value of STRICT is TRUE, which indicates that the cut is done using read-ahead detection, which not only relies on the line breaks for the segmentation, but also performs a read-ahead to verify that it matches the column definitions of the table, and will process it as a valid segmentation point only if the data meets the column definitions. Only if the data matches the column definition will it be processed as a valid split point. When the parameter is FALSE, it will use the newline character (default is '\n') to cut in the parallel import of the cut file, and in the case of data with newline character, there may be an error in the cut.
+
+**Example**:
+
+```sql
+-- Enable pre-reading mode
+load data infile 'file_name' into table tbl_name PARALLEL 'TRUE' STRICT 'TRUE';
+
+-- Turn off pre-reading mode
+load data infile 'file_name' into table tbl_name PARALLEL 'TRUE' STRICT 'FALSE';
+```
+
 ## Supported file formats
 
 In MatrixOne's current release, `LOAD DATA` supports CSV(comma-separated values) format and JSONLines format file.
 See full tutorials for loading [csv](../../../Develop/import-data/bulk-load/load-csv.md) and [jsonline](../../../Develop/import-data/bulk-load/load-jsonline.md).
+
+!!! note
+    `LOAD DATA` supports importing `lz4`, `gz`, `bz2`, `zlib`, `flate`, and does not support importing compressed files ending with `.tar` or `.tar.xx`.
 
 ### *CSV* format standard description
 
@@ -540,4 +712,3 @@ For more information on loding *JSONLines*, see [Import the JSONLines data](../.
 3. When enabling the parallel loading, it must be ensured that each row of data in the file does not contain the specified line terminator, such as '\n'; otherwise, it will cause data errors during file loading.
 4. The parallel loading of files requires that the files be in uncompressed format, and parallel loading of files in compressed form is not currently supported.
 5. When you use `load data local`, you need to use the command line to connect to the MatrixOne service host: `mysql -h <mo-host -ip> -P 6001 -uroot -p111 --local-infile`.
-6. MatrixOne does not support `ESCAPED BY` currently. Writing or reading special characters differs from MySQL to some extent.
