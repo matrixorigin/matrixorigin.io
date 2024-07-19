@@ -19,7 +19,7 @@
     
     
       
-        <title>LOAD DATA - MatrixOne Docs</title>
+        <title>LOAD DATA INFILE - MatrixOne Docs</title>
       
     
     
@@ -107,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              LOAD DATA
+              LOAD DATA INFILE
             
           </span>
         </div>
@@ -4571,12 +4571,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          LOAD DATA
+          LOAD DATA INFILE
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        LOAD DATA
+        LOAD DATA INFILE
       </a>
       
         
@@ -4617,6 +4617,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#character-set" class="md-nav__link">
+    CHARACTER SET
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#ignore-lines" class="md-nav__link">
     IGNORE LINES
   </a>
@@ -4640,6 +4647,13 @@
           <li class="md-nav__item">
   <a href="#parallel" class="md-nav__link">
     PARALLEL
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strict" class="md-nav__link">
+    STRICT
   </a>
   
 </li>
@@ -10162,6 +10176,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#character-set" class="md-nav__link">
+    CHARACTER SET
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#ignore-lines" class="md-nav__link">
     IGNORE LINES
   </a>
@@ -10185,6 +10206,13 @@
           <li class="md-nav__item">
   <a href="#parallel" class="md-nav__link">
     PARALLEL
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strict" class="md-nav__link">
+    STRICT
   </a>
   
 </li>
@@ -10303,7 +10331,7 @@
                   
 
   
-    <a href="https://github.com/matrixorigin/matrixorigin.io/edit/main/docs/MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/load-data.md" title="Edit this page" class="md-content__button md-icon">
+    <a href="https://github.com/matrixorigin/matrixorigin.io/edit/main/docs/MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/load-data-infile.md" title="Edit this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
     </a>
@@ -10318,9 +10346,11 @@
 <div class="highlight"><pre><span></span><code>&gt; LOAD DATA [LOCAL]
     INFILE &#39;file_name&#39;
     INTO TABLE tbl_name
+    [CHARACTER SET charset_name]
     [{FIELDS | COLUMNS}
         [TERMINATED BY &#39;string&#39;]
         [[OPTIONALLY] ENCLOSED BY &#39;char&#39;]
+        [ENCASPED BY &#39;char&#39;]
     ]
     [LINES
         [STARTING BY &#39;string&#39;]
@@ -10329,6 +10359,7 @@
     [IGNORE number {LINES | ROWS}]
     [SET column_name_1=nullif(column_name_1, expr1), column_name_2=nullif(column_name_2, expr2)...]
     [PARALLEL {&#39;TRUE&#39; | &#39;FALSE&#39;}]
+    [STRICT {&#39;TRUE&#39; | &#39;FALSE&#39;}]
 </code></pre></div>
 <h3 id="input-file-location">Input File Location</h3>
 <ul>
@@ -10339,44 +10370,185 @@
 <p><code>LOAD DATA LOCAL INFILE 'file_name'</code>: indicates that the data file to be loaded is not on the same machine as the MatrixOne host server; that is, the data file is on the client server. <code>file_name</code> can be the relative path name of the storage location of the file, or it can be the absolute path name.</p>
 </li>
 </ul>
+<h3 id="character-set">CHARACTER SET</h3>
+<p>If the file content uses a different character set than the default, you can use <code>CHARACTER SET</code> to specify the character set. For example, you can use <code>CHARACTER SET utf8</code> to specify the character set of the imported content as utf8:</p>
+<div class="highlight"><pre><span></span><code><span class="k">LOAD</span><span class="w"> </span><span class="k">DATA</span><span class="w"> </span><span class="n">INFILE</span><span class="w"> </span><span class="s1">&#39;/tmp/test.txt&#39;</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">table1</span><span class="w"> </span><span class="k">IGNORE</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">LINES</span><span class="p">;</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In addition to utf8, <code>LOAD DATA</code> supports specifying character sets such as utf_8, UTF_16, UTF_xx, gbk, abcd, and so on. Character sets with <strong>-</strong> (e.g. utf-8,UTF-16) are not supported.</p>
+</div>
 <h3 id="ignore-lines">IGNORE LINES</h3>
 <p>The IGNORE number LINES clause can be used to ignore lines at the start of the file. For example, you can use <code>IGNORE 1 LINES</code> to skip an initial header line containing column names:</p>
 <div class="highlight"><pre><span></span><code>LOAD DATA INFILE &#39;/tmp/test.txt&#39; INTO TABLE table1 IGNORE 1 LINES;
 </code></pre></div>
 <h3 id="field-and-line-handling">Field and Line Handling</h3>
-<p>For both the LOAD DATA and <code>SELECT ... INTO OUTFILE</code> statements, the syntax of the FIELDS and LINES clauses is the same. Both clauses are optional, but FIELDS must precede LINES if both are specified.</p>
-<p>If you specify a <code>FIELDS</code> clause, each of its subclauses (<code>TERMINATED BY</code>, <code>[OPTIONALLY] ENCLOSED BY</code>) is also optional, except that you must specify at least one of them. Arguments to these clauses are permitted to contain only ASCII characters.</p>
-<p>If you specify no <code>FIELDS</code> or <code>LINES</code> clause, the defaults are the same as if you had written this:</p>
-<div class="highlight"><pre><span></span><code>FIELDS TERMINATED BY &#39;,&#39; ENCLOSED BY &#39;&quot;&#39; LINES TERMINATED BY &#39;\n&#39;
+<p>Use the <code>FIELDS</code> and <code>LINES</code> parameters to specify how to handle data formats.</p>
+<p>For <code>LOAD DATA</code> and <code>SELECT ... INTO OUTFILE</code> statements, the syntax of the <code>FIELDS</code> and <code>LINES</code> clauses is the same. Both clauses are optional, but if both are specified, <code>FIELDS</code> must precede <code>LINES</code>.</p>
+<p>If the <code>FIELDS</code> clause is specified, then each of the clauses of <code>FIELDS</code> (<code>TERMINATED BY</code>, <code>[OPTIONALLY] ENCLOSED BY</code>) is also optional, unless you must specify at least one of them.</p>
+<p><code>LOAD DATA</code> also supports the use of hexadecimal <code>ASCII</code> character expressions or binary <code>ASCII</code> character expressions as arguments to <code>FIELDS ENCLOSED BY</code> and <code>FIELDS TERMINATED BY</code>.</p>
+<p>If you do not specify a parameter for processing data, the following default values are used:</p>
+<div class="highlight"><pre><span></span><code>FIELDS TERMINATED BY &#39;\t&#39; ENCLOSED BY &#39;&quot;&#39; ESCAPED BY &#39;\\&#39; LINES TERMINATED BY &#39;\n&#39;
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <ul>
-<li><code>FIELDS TERMINATED BY ','</code>: with and only <code>,</code>, <code>|</code> or <code>\t</code> as delimiters.</li>
+<li><code>FIELDS TERMINATED BY '\t'</code>: with and only <code>\t</code> as delimiters.</li>
 <li><code>ENCLOSED BY '"'</code>: with and only <code>"</code> as the included character.</li>
+<li><code>ESCAPED BY '\\'</code>:use <code>\</code> as an escape character, and only as an escape character.</li>
 <li><code>LINES TERMINATED BY '\n'</code>: Use and only use <code>\n</code> or <code>\r\n</code> as the line separator.</li>
 </ul>
 </div>
 <p><strong>FIELDS TERMINATED BY</strong></p>
 <p><code>FIELDS TERMINATED BY</code> specifies the delimiter for a field. The <code>FIELDS TERMINATED BY</code> values can be more than one character.</p>
-<p>For example, to read the comma-delimited file, the correct statement is:</p>
+<p><strong>Examples</strong></p>
 <div class="highlight"><pre><span></span><code>LOAD DATA INFILE &#39;data.txt&#39; INTO TABLE table1
   FIELDS TERMINATED BY &#39;,&#39;;
 </code></pre></div>
-<p>If instead you tried to read the file with the statement shown following, it would not work because it instructs <code>LOAD DATA</code> to look for tabs between fields:</p>
-<div class="highlight"><pre><span></span><code>LOAD DATA INFILE &#39;data.txt&#39; INTO TABLE table1
-  FIELDS TERMINATED BY &#39;\t&#39;;
-</code></pre></div>
-<p>The likely result is that each input line would be interpreted as a single field. You may encounter an error of <code>"ERROR 20101 (HY000): internal error: the table column is larger than input data column"</code>.</p>
 <p><strong>FIELDS ENCLOSED BY</strong></p>
 <p><code>FIELDS TERMINATED BY</code> option specifies the character enclose the input values. <code>ENCLOSED BY</code> value must be a single character. If the input values are not necessarily enclosed within quotation marks, use <code>OPTIONALLY</code> before the <code>ENCLOSED BY</code> option.</p>
-<p>For example, if some input values are enclosed within quotation marks, some are not:</p>
+<p><strong>Examples</strong></p>
 <div class="highlight"><pre><span></span><code>LOAD DATA INFILE &#39;data.txt&#39; INTO TABLE table1
   FIELDS TERMINATED BY &#39;,&#39; OPTIONALLY ENCLOSED BY &#39;&quot;&#39;;
 </code></pre></div>
+<p><strong>FIELDS ESCAPED BY</strong></p>
+<p><code>FIELDS ESCAPED BY</code> allows you to specify an escape character, with a default value of <code>\\</code>, which means that <code>\</code> is an escape symbol that is deleted if the <code>FIELDS ESCAPED BY</code> character is not null and subsequent characters will be used literally as part of the field value.</p>
+<p>However, some two-character sequences have special meanings, as shown in the table below:</p>
+<table>
+<thead>
+<tr>
+<th>escape sequence</th>
+<th>Sequentially represented characters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\0</td>
+<td>A space character</td>
+</tr>
+<tr>
+<td>\b</td>
+<td>A backspace character</td>
+</tr>
+<tr>
+<td>\n</td>
+<td>A newline (linefeed) character</td>
+</tr>
+<tr>
+<td>\r</td>
+<td>A carriage return character</td>
+</tr>
+<tr>
+<td>\t</td>
+<td>A tab character</td>
+</tr>
+<tr>
+<td>\z</td>
+<td>ASCII 26 (Control+Z)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Examples</strong></p>
+<ul>
+<li>Examples 1</li>
+</ul>
+<p>The contents of data.txt are as follows:</p>
+<div class="highlight"><pre><span></span><code>(base) admin@admindeMacBook-Pro case % cat data.txt 
+1   a\\b
+</code></pre></div>
+<p>Connect mo than execute the following statement to import the data.txt contents to t1:</p>
+<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="p">(</span><span class="n">n1</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="n">n2</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">255</span><span class="p">));</span>
+<span class="k">load</span><span class="w"> </span><span class="k">data</span><span class="w"> </span><span class="n">infile</span><span class="w"> </span><span class="s1">&#39;Users/admin/test/case/data.txt&#39;</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
+
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
+<span class="o">+</span><span class="c1">------+------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">n1</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">n2</span><span class="w">   </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">------+------+</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">a</span><span class="err">\</span><span class="n">b</span><span class="w">  </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">------+------+</span>
+<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+</code></pre></div>
+<p>The result of n2 is <code>a\b</code> because the first <code>\</code> was an escape character and was deleted.</p>
+<ul>
+<li>Examples 2</li>
+</ul>
+<p>The contents of data.txt are as follows:</p>
+<div class="highlight"><pre><span></span><code>(base) admin@admindeMacBook-Pro case % cat data.txt 
+1   a\\b
+</code></pre></div>
+<p>Connect mo than execute the following statement to import the data.txt contents to t2:</p>
+<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t2</span><span class="p">(</span><span class="n">n1</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="n">n2</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">255</span><span class="p">));</span>
+<span class="k">load</span><span class="w"> </span><span class="k">data</span><span class="w"> </span><span class="n">infile</span><span class="w"> </span><span class="s1">&#39;Users/admin/test/case/data.txt&#39;</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="n">fields</span><span class="w"> </span><span class="n">escaped</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="p">;</span>
+
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t2</span><span class="p">;</span>
+<span class="o">+</span><span class="c1">------+------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">n1</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">n2</span><span class="w">   </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">------+------+</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="err">\\</span><span class="n">b</span><span class="w">  </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">------+------+</span>
+<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+</code></pre></div>
+<p>The result of n2 is <code>\\b</code>, because here we specified the escape character as <code>a</code>, so <code>a</code> is removed.</p>
+<ul>
+<li>Examples 3</li>
+</ul>
+<p>The contents of data.txt are as follows:</p>
+<div class="highlight"><pre><span></span><code>(base) admin@admindeMacBook-Pro case % cat data.txt 
+1   a\\b
+</code></pre></div>
+<p>Connect mo than execute the following statement to import the data.txt contents to t3:</p>
+<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t3</span><span class="p">(</span><span class="n">n1</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="n">n2</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">255</span><span class="p">));</span>
+<span class="k">load</span><span class="w"> </span><span class="k">data</span><span class="w"> </span><span class="n">infile</span><span class="w"> </span><span class="s1">&#39;Users/admin/test/case/data.txt&#39;</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t3</span><span class="w"> </span><span class="n">fields</span><span class="w"> </span><span class="n">escaped</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">;</span>
+
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t3</span><span class="p">;</span>
+<span class="o">+</span><span class="c1">------+------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">n1</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">n2</span><span class="w">   </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">------+------+</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">a</span><span class="err">\\</span><span class="n">b</span><span class="w"> </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">------+------+</span>
+<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+</code></pre></div>
+<p>The result of n2 is <code>a\\b</code>, and when ESCAPED BY is empty, it is read as is without escaping the characters.</p>
+<ul>
+<li>Examples 4</li>
+</ul>
+<p>The contents of data.txt are as follows:</p>
+<div class="highlight"><pre><span></span><code>(base) admin@admindeMacBook-Pro case % cat data.txt 
+1   a\0b
+2   c\bd
+3   a\nb
+4   a\rb
+5   a\tb
+6   a\Zb
+</code></pre></div>
+<p>Connect mo than execute the following statement to import the data.txt contents to t4:</p>
+<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t4</span><span class="p">(</span><span class="n">n1</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="n">n2</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">255</span><span class="p">));</span>
+<span class="k">load</span><span class="w"> </span><span class="k">data</span><span class="w"> </span><span class="n">infile</span><span class="w"> </span><span class="s1">&#39;Users/admin/test/case/data.txt&#39;</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t4</span><span class="p">;</span>
+
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
+<span class="o">+</span><span class="c1">------+------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">n1</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">n2</span><span class="w">   </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">------+------+</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">b</span><span class="w">  </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">d</span><span class="w">  </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">a</span>
+<span class="n">b</span><span class="w">  </span><span class="o">|</span>
+<span class="n">b</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">a</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">5</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">a</span><span class="w">  </span><span class="n">b</span><span class="w">  </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">6</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">ab</span><span class="w">  </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">------+------+</span>
+<span class="mi">6</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+</code></pre></div>
+<p>when n1=1, the result of n2 is <code>a b</code> because <code>\0</code> is a space character;</p>
+<p>When n1=2, the result of n2 is <code>d</code> because <code>\b</code> is a backspace and <code>a</code> is deleted;</p>
+<p>When n1=3, the result of n2 is <code>a</code> plus a newline <code>b</code> because <code>\n</code> is a newline;</p>
+<p>When n1=4, the result of n2 is <code>a</code> plus <code>b</code> after a carriage return, because <code>\r</code> is a carriage return;</p>
+<p>When n1=5, the result of n2 is b for <code>a  b</code> because <code>\t</code> is a tab;</p>
+<p>When n1=6, the result of n2 is <code>ab</code>, because <code>\z</code> is a terminator.</p>
 <p><strong>LINES TERMINATED BY</strong></p>
 <p><code>LINES TERMINATED BY</code> specifies the delimiter for the a line. The <code>LINES TERMINATED BY</code> values can be more than one character.</p>
-<p>For example, if the lines in a csv file are terminated by carriage return/newline pairs, you can load it with <code>LINES TERMINATED BY '\r\n'</code>:</p>
+<p><strong>Examples</strong></p>
+<p>For example, to read a file separated by <em>comma</em>, the syntax is:</p>
 <div class="highlight"><pre><span></span><code>LOAD DATA INFILE &#39;data.txt&#39; INTO TABLE table1
   FIELDS TERMINATED BY &#39;,&#39; ENCLOSED BY &#39;&quot;&#39;
   LINES TERMINATED BY &#39;\r\n&#39;;
@@ -10448,9 +10620,22 @@ null,wederTom,&quot;man&quot;
 <p><code>[PARALLEL {'TRUE' | 'FALSE'}]</code> currently only support <code>TRUE</code> or <code>FALSE</code> and are not case-sensitive.</p>
 </div>
 <p><strong>Note:</strong> If the <code>PARALLEL</code> field is not added in the <code>LOAD</code> statement, for <em>CSV</em> files, parallel loading is disabled by default; for <em>JSOLLines</em> files, parallel loading is enabled by default. If there is a line terminator in the <em>CSV</em> file, such as '\n', otherwise it may cause data errors when the file is loaded. If the file is too large, manually splitting the file from the '\n' as the starting and ending point is recommended, then enabling parallel loading.</p>
+<h3 id="strict">STRICT</h3>
+<p>MatrixOne supports the use of the STRICT parameter to specify the way to cut the file in parallel, which is only valid when PARALLEL is TRUE. The default value of STRICT is TRUE, which indicates that the cut is done using read-ahead detection, which not only relies on the line breaks for the segmentation, but also performs a read-ahead to verify that it matches the column definitions of the table, and will process it as a valid segmentation point only if the data meets the column definitions. Only if the data matches the column definition will it be processed as a valid split point. When the parameter is FALSE, it will use the newline character (default is '\n') to cut in the parallel import of the cut file, and in the case of data with newline character, there may be an error in the cut.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">-- Enable pre-reading mode</span>
+<span class="k">load</span><span class="w"> </span><span class="k">data</span><span class="w"> </span><span class="n">infile</span><span class="w"> </span><span class="s1">&#39;file_name&#39;</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">tbl_name</span><span class="w"> </span><span class="n">PARALLEL</span><span class="w"> </span><span class="s1">&#39;TRUE&#39;</span><span class="w"> </span><span class="k">STRICT</span><span class="w"> </span><span class="s1">&#39;TRUE&#39;</span><span class="p">;</span>
+
+<span class="c1">-- Turn off pre-reading mode</span>
+<span class="k">load</span><span class="w"> </span><span class="k">data</span><span class="w"> </span><span class="n">infile</span><span class="w"> </span><span class="s1">&#39;file_name&#39;</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">tbl_name</span><span class="w"> </span><span class="n">PARALLEL</span><span class="w"> </span><span class="s1">&#39;TRUE&#39;</span><span class="w"> </span><span class="k">STRICT</span><span class="w"> </span><span class="s1">&#39;FALSE&#39;</span><span class="p">;</span>
+</code></pre></div>
 <h2 id="supported-file-formats">Supported file formats</h2>
 <p>In MatrixOne's current release, <code>LOAD DATA</code> supports CSV(comma-separated values) format and JSONLines format file.
 See full tutorials for loading <a href="../../../../Develop/import-data/bulk-load/load-csv/">csv</a> and <a href="../../../../Develop/import-data/bulk-load/load-jsonline/">jsonline</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>LOAD DATA</code> supports importing <code>lz4</code>, <code>gz</code>, <code>bz2</code>, <code>zlib</code>, <code>flate</code>, and does not support importing compressed files ending with <code>.tar</code> or <code>.tar.xx</code>.</p>
+</div>
 <h3 id="csv-format-standard-description"><em>CSV</em> format standard description</h3>
 <p>The <em>CSV</em> format loaded by MatrixOne conforms to the RFC4180 standard, and the <em>CSV</em> format is specified as follows:</p>
 <ol>
@@ -10713,7 +10898,6 @@ load data infile {&#39;filepath&#39;=&#39;&lt;your-local-file-path&gt;/jsonline_
 <li>When enabling the parallel loading, it must be ensured that each row of data in the file does not contain the specified line terminator, such as '\n'; otherwise, it will cause data errors during file loading.</li>
 <li>The parallel loading of files requires that the files be in uncompressed format, and parallel loading of files in compressed form is not currently supported.</li>
 <li>When you use <code>load data local</code>, you need to use the command line to connect to the MatrixOne service host: <code>mysql -h &lt;mo-host -ip&gt; -P 6001 -uroot -p111 --local-infile</code>.</li>
-<li>MatrixOne does not support <code>ESCAPED BY</code> currently. Writing or reading special characters differs from MySQL to some extent.</li>
 </ol>
 
 
