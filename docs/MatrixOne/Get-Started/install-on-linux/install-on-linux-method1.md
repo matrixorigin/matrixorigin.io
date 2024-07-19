@@ -10,7 +10,7 @@ To install and use the stand-alone MatrixOne through source code, you need to de
 
 | Dependent software | Version         |
 | ------------------ | --------------- |
-| golang             | 1.20 or later   |
+| golang             | 1.22.3 or later   |
 | gcc                | gcc8.5 or later |
 | git                | 2.20 or later   |
 | MySQL Client       | 8.0 or later    |
@@ -24,7 +24,7 @@ To install and use the stand-alone MatrixOne through source code, you need to de
 2. To verify whether **Go** is installed, please execute the code `go version`. When **Go** is installed successfully, the example code line is as follows:  
 
     ```
-    go version go1.20.4 linux/amd64
+    go version go1.22.4 linux/amd64
     ```
 
 ### 2. Install GCC
@@ -182,9 +182,9 @@ MO_CONTAINER_DEBUG_PORT="12345"
 CHECK_LIST=("go" "gcc" "git" "mysql" "docker")
 GCC_VERSION="8.5.0"
 CLANG_VERSION="13.0"
-GO_VERSION="1.20"
+GO_VERSION="1.22"
 MO_GIT_URL="https://github.com/matrixorigin/matrixone.git"
-MO_DEFAULT_VERSION="v1.2.1"
+MO_DEFAULT_VERSION="v1.2.2"
 GOPROXY="https://goproxy.cn,direct"
 STOP_INTERVAL="5"
 START_INTERVAL="2"
@@ -200,7 +200,7 @@ Generally, the parameters that need to be adjusted are as follows:
 ````
 mo_ctl set_conf MO_PATH="yourpath" # Set custom MatrixOne download path
 mo_ctl set_conf MO_GIT_URL="https://githubfast.com/matrixorigin/matrixone.git" # For the problem of slow downloading from the original GitHub address, set image download address
-mo_ctl set_conf MO_DEFAULT_VERSION="v1.2.1" # Set the version of MatrixOne downloaded
+mo_ctl set_conf MO_DEFAULT_VERSION="v1.2.2" # Set the version of MatrixOne downloaded
 mo_ctl set_conf MO_DEPLOY_MODE=git  # Deployment Configuration
 ````
 
@@ -219,7 +219,7 @@ Depending on your needs, choose whether you want to keep your code up to date, o
 === "Get the MatrixOne(Stable Version) code to build"
 
      ```
-     mo_ctl deploy v1.2.1
+     mo_ctl deploy v1.2.2
      ```
 
 ## Step 4: Launch MatrixOne server
@@ -256,7 +256,7 @@ root@VM-16-2-debian:~# mo_ctl connect
 mysql: [Warning] Using a password on the command line interface can be insecure.
 Welcome to the MySQL monitor.  Commands end with ; or \g.
 Your MySQL connection id is 15
-Server version: 8.0.30-MatrixOne-v1.2.1 MatrixOne
+Server version: 8.0.30-MatrixOne-v1.2.2 MatrixOne
 
 Copyright (c) 2000, 2023, Oracle and/or its affiliates.
 
