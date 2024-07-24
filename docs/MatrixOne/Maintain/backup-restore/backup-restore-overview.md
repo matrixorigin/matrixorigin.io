@@ -1,78 +1,97 @@
 # MatrixOne Backup and Recovery Overview
 
-Database backup and recovery are core operations for any database management system and are crucial for ensuring data security and availability. MatrixOne provides flexible and powerful database backup and recovery capabilities to ensure the integrity and continuity of user data. This article provides an overview of the importance of MatrixOne database backup and recovery, backup strategies, and backup methods.
+Database backup and recovery is one of the core operations of any database management system and an important guarantee of data security and availability. MatrixOne also provides flexible and robust database backup and recovery capabilities to ensure the integrity and continuity of user data. This article describes the importance of MatrixOne database backup and recovery, backup strategies, and backup methods.
 
-## Backup and Recovery Strategies
+## Backup and recovery strategies
 
-Database backup and recovery can restore operational status in various disaster recovery scenarios.
+Under different disaster recovery scenarios, a database backup can be used to restore health.
 
-Here are backup and recovery methods for different situations:
+Here are backup recovery methods for different scenarios:
 
-1. **Operating System Crash**:
+1. **Operating system crash**:
 
-    - With Physical Backup: Restore the entire database state using physical backup after a crash. Restore the backup to normal hardware conditions and apply redo logs to ensure data consistency.
-    - With Logical Backup: Rebuild the database architecture and data on a new server using logical backup. First, install the database software, execute SQL statements from the logical backup to create tables, indexes, and more, and then import the data.
+    - If there is a physical backup: After a crash, restore the entire database state through a physical backup, restore the backup to a normal hardware environment, and apply redo logs to ensure data consistency.
+    - If there is a logical backup: Rebuild the database schema and data on the new server through a logical backup. Install the database software and execute the SQL statements in the logical backup to create tables, indexes, etc. before importing the data.
 
-2. **Power (Detection) Failure**:
+2. **Power supply (detection) failed**:
 
-    - With Physical Backup: Recover the database using physical backup after a failure. Restore the backup to normal hardware conditions and apply redo logs for data consistency.
-    - With Logical Backup: Similarly, rebuild the database on a new server using logical backup.
+    - If there is a physical backup: After failure, the database can be restored through a physical backup, restoring the backup to a normal hardware environment, and applying redo logs to ensure data consistency.
+    - If there is a logical backup: Again, rebuild the database on the new server through a logical backup.
 
-3. **File System Crash**:
+3. **File system crash**:
 
-    - With Physical Backup: Use a physical backup to recover the database, restore the backup to normal hardware conditions, and apply redo logs for data consistency.
-    - With Logical Backup: After a crash, rebuild the database architecture and data on a new server.
+    - If there is a physical backup: Restore the database using a physical backup, restore the backup to a normal hardware environment, and apply redo logs to ensure data consistency.
+    - If there is a logical backup: After a crash, rebuild the database schema and data on the new server.
 
-4. **Hardware Issues (e.g., Hard Drive, Motherboard)**:
+4. **Hardware issues (hard drives, motherboards, etc.):**
 
-    - With Physical Backup: Recover the database using physical backup, restoring the backup to new hardware conditions and applying redo logs for data consistency.
-    - With Logical Backup: Rebuild the database on new hardware using logical backup.
+    - If there is a physical backup: restore the database through a physical backup, restore the backup to a new hardware environment, and apply redo logs to ensure data consistency.
+    - If there is a logical backup: Use the logical backup to rebuild the database in the new hardware environment.
 
-For backup and recovery, consider the following strategies:
+The following strategies can be followed for backup recovery:
 
-1. **Backup Frequency**: Determine the frequency of backups, typically divided into full and incremental backups. Full backups consume more storage space and time but offer faster recovery, while incremental backups are more economical.
+1. **Frequency of backups**: Determine the frequency of backups, usually divided into full and incremental backups. Full backups take up more storage and time, but restore faster, while incremental backups are more economical.
 
-2. **Backup Storage**: Choose a secure backup storage location to ensure backup data is not easily compromised or lost. Typically, use offline storage media or cloud storage for backups.
+2. **Backup storage**: Choose a secure backup storage location to ensure backup data is not vulnerable to corruption or loss. Offline storage media or cloud storage is often used to house backups.
 
-3. **Backup Retention Period**: Determine the retention period for backup data to facilitate historical data retrieval and recovery when needed. Establish data retention policies based on regulations and business requirements.
+3. **Backup Retention Period**: Determine the retention period for backup data for retrieval and recovery of historical data when needed. Develop appropriate data retention policies based on regulations and business needs.
 
-Regardless of the recovery scenario, follow these principles:
+Whatever the recovery scenario, the following principles should be followed:
 
-1. Consider stopping database operations to prevent data changes.
-2. Choose an appropriate backup for recovery based on backup type.
-3. Restore backup files.
-4. Consider applying corresponding redo logs to ensure data consistency.
-5. Start the database and perform the necessary testing.
+1. Consider stopping database operation to prevent data changes.
+2. Select the appropriate backup for recovery based on the backup type.
+3. Restore the backup file.
+4. Consider applying the appropriate redo logs to ensure data consistency.
+5. Start the database and perform the necessary tests.
 
-## Database Backup Methods
+## Database backup method
 
-MatrixOne provides multiple backup methods, considering database requirements, performance, resources, and recovery time.
+MatrixOne offers a variety of backup methods that take into account factors such as database requirements, performance, resources, and recovery time.
 
-MatrixOne databases offer various backup tools to meet different scenarios and needs:
+The MatrixOne database provides multiple backup tools to meet different scenarios and needs:
 
-1. **modump**: Used for exporting data and schemas from the database. It generates recoverable SQL scripts for logical backups.
+1. **mo-dump**: Used to export data and patterns from a database. It generates recoverable SQL scripts for logical backups.
 
-2. **mo-backup**: Used for physical backup and recovery. `mo-backup` is a tool for physical backup and recovery of MatrixOne enterprise services, helping protect your MatrixOne database and perform reliable recovery operations when needed.
+2. **mo-backup**: for physical backup and recovery. `mo-backup` is a physical backup and recovery tool for MatrixOne enterprise-class services that helps you protect your MatrixOne databases and perform reliable recovery operations when needed.
 
-    !!! note
-        **mo-backup** is a physical backup and recovery tool for enterprise-level services. Contact your MatrixOne account manager for the tool download path and user guide.
+   !!! note
+        **mo-backup** Physical backup and recovery tool for enterprise level services, you need to contact your MatrixOne account manager for the tool download path.
 
 ### Logical Backup and Recovery
 
-#### Using `SELECT INTO OUTFILE` for Backup
+#### Backup with `SELECT INTO OUTFILE`
 
-Use the `SELECT ... INTO OUTFILE` command to export retrieved data in a specific format to a file. The exported file is created by the MatrixOne service and is only available on the MatrixOne server host. Exporting to the client file system is not supported. Ensure that the export directory does not have files with the same name to avoid overwriting new files.
+Use the `SELECT ... INTO OUTFILE` command to export the retrieved data to a file in format, created by the MatrixOne service and only on the MatrixOne server host. Export to client file system is not supported, export directory do not rename files to avoid overwriting new files.
 
-For more information on operational steps and examples, see [Export data by SELECT INTO](../../Develop/export-data/select-into-outfile.md).
+For operational steps and examples, see [`SELECT INTO...OUTFILE`](../../Develop/export-data/select-into-outfile.md)
 
-#### Using `modump` for Backup
+#### Backup with `mo-dump`
 
-MatrixOne supports logical backup using the `modump` tool, which generates SQL statements that can be used to recreate database objects and data.
+MatrixOne supports logical backups using the `mo-dump` tool to generate SQL statements that can be used to recreate database objects and data.
 
-For more information on operational steps and examples, see [Export data by MODUMP](../../Develop/export-data/modump.md).
+For operational steps and examples, see the [`mo-dump tool Write`](../../Develop/export-data/modump.md) Out
 
-#### Using Command-Line Batch Import for Recovery
+#### Bulk Import Recovery Using the Command Line
 
-MatrixOne supports inserting many rows into database tables using the `LOAD DATA` command. It also supports importing table structures and data into the entire database using the' SOURCE' command.
+MatrixOne supports inserting large numbers of rows into database tables using the `LOAD DATA` command. It also supports importing table structures and data into the entire database using the `SOURCE` command.
 
-For more information, see [Bulk Load Overview](../../Develop/import-data/bulk-load/bulk-load-overview.md).
+For more information, see [Batch Import](../../Develop/import-data/bulk-load/bulk-load-overview.md)
+
+### Physical Backup and Recovery
+
+#### Backup and restore with `mo_br`
+
+MatrixOne supports regular physical and snapshot backups using the `mo_br` tool.
+
+See the [`mo-br User Guide`](../backup-restore/mobr-backup-restore/mobr.md) for steps and examples
+
+#### Using SQL Backup and Recovery
+
+MatrixOne supports snapshot backup and recovery using SQL.
+
+Refer to the documentation for methods of snapshot backup and recovery using SQL:
+
+- [CREATE SNAPSHOT](../../Reference/SQL-Reference/Data-Definition-Language/create-snapshot.md)
+- [DROP SNAPSHOT](../../Reference/SQL-Reference/Data-Definition-Language/drop-snapshot.md)
+- [SHOW SNAPSHOTS](../../Reference/SQL-Reference/Data-Definition-Language/create-snapshot.md)
+- [RESTORE ACCOUNT](../../Reference/SQL-Reference/Data-Definition-Language/restore-account.md)

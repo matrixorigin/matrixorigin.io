@@ -1,16 +1,16 @@
 # L2_DISTANCE()
 
-## Description
+## Function Description
 
-The `L2_DISTANCE()` function is used to calculate the Euclidean distance between two vectors. It returns a value of the FLOAT64 type.
+The `L2_DISTANCE()` function is used to calculate the Euclidean distance between two vectors. Returns a value of type FLOAT64.
 
-L2 distance, also known as Euclidean distance, is one of the most commonly used methods of measuring distance in vector spaces. It measures the straight-line distance between two points in multidimensional space. L2 distance has many practical applications, including fields such as machine learning, computer vision, and spatial analysis.
+L2 distance, also known as Euclidean Distance, is one of the most commonly used distance measures in vector spaces. It measures the straight line distance between two points in multidimensional space. l2 distance has many practical applications, including areas such as machine learning, computer vision, and spatial analysis.
 
 <div align="center">
 <img src=https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/reference/vector/l2_distance.png width=50% heigth=50%/>
 </div>
 
-## Syntax
+## Function syntax
 
 ```
 > SELECT L2_DISTANCE(vector,  const_vector) FROM tbl;

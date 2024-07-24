@@ -1,12 +1,14 @@
 # **l2_norm()**
 
-## **Description**
+## **Function Description**
 
-The l2_norm function is used to  calculate the L2/Euclidean norm. The L2 norm is obtained by taking the square root of the sum of the squares of the vector elements.
+The `l2_norm` function is used to calculate the `l2`/Euclidean norm. The `l2` norm is obtained by performing a square root operation on the sum of squares of the vector elements.
 
-![l2_normy](https://github.com/matrixorigin/artwork/blob/main/docs/reference/vector/l2_norm.png?raw=true)
+<div align="center">
+<img src=https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/reference/vector/l2_norm.png?raw=true width=50% heigth=50%/>
+</div>
 
-## **Syntax**
+## **Function syntax**
 
 ```
 > SELECT l2_norm(vector) AS result FROM table_name;

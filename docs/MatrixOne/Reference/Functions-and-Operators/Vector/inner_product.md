@@ -1,12 +1,12 @@
 # **inner_product()**
 
-## **Description**
+## **Function Description**
 
-The INNER PRODUCT function is used to calculate the inner/dot product between two vectors, which is the result of multiplying corresponding elements of two vectors and then adding them together.
+The `INNER PRODUCT` function is used to calculate the inner/dot product between two vectors. It is the result of multiplying the corresponding elements of two vectors and then adding them.
 
-![inner_product](https://github.com/matrixorigin/artwork/blob/main/docs/reference/vector/inner_product.png?raw=true)
+![inner_product](https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/reference/vector/inner_product.png?raw=true)
 
-## **Syntax**
+## **Function syntax**
 
 ```
 > SELECT inner_product(vector1, vector2) AS result FROM table_name;
@@ -35,6 +35,6 @@ mysql> select inner_product(b,"[1,2,3]") from vec_table;
 1 row in set (0.00 sec)
 ```
 
-## **Constraints**
+## **Restrictions**
 
-Both the argument vector shoulds be of same dimensions.
+Two parameter vectors must have the same dimension.

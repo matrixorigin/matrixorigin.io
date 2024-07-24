@@ -1,93 +1,189 @@
-# Export data by MODUMP
+# The mo-dump tool writes out
 
-There are two methods to export data with MatrixOne:
+MatrixOne supports two ways to export data:
 
 - `SELECT INTO...OUTFILE`
 - `mo-dump`
 
-This document will introduce about how to export data with `mo-dump`.
+This document focuses on how to export data using `mo-dump`.
 
-## What is `mo-dump`
+## What is a mo-dump
 
-Like `mysqldump`, MatrixOne has a client utility tool called `mo-dump` that can perform backups of a MatrixOne database by exporting a ".sql" file type that contains SQL statements can be executed to recreate the original database.
+`mo-dump` is a client-side utility for MatrixOne that, like `mysqldump`, can be used to back up a MatrixOne database by exporting a file of type `.sql` containing SQL statements executable to recreate the original database.
 
-To use the `mo-dump` tool, you must have access to a server running an instance of MatrixOne. You must also have user credentials with the required privileges for the database you want to export.
+With the `mo-dump` tool, you must have access to the server running the MatrixOne instance. You must also have user rights to the exported database.
 
-### Syntax
+## mo-dump syntax structure
 
+```bash
+./mo-dump -u ${user} -p ${password} \
+    -h ${host} -P ${port} -db ${database}\
+    [--local-infile=true] [-csv]\
+    [-no-data] [-tbl ${table}...]\
+    -net-buffer-length ${net-buffer-length} > {importStatement.sql}
 ```
-./mo-dump -u ${user} -p ${password} -h ${host} -P ${port} -db ${database} [--local-infile=true] [-csv] [-tbl ${table}...] -net-buffer-length ${net-buffer-length} > {dumpfilename.sql}
-```
 
-The parameters are as following:
+**Parameter interpretation**
 
-- **-u [user]**:  It is a username to connect to the MatrixOne server. Only the users with database and table read privileges can use `mo-dump` utility. Default value: dump
+- **-u \[user]**: Username to connect to the MatrixOne server. Only users with database and table read access can use the `mo-dump` utility, which defaults to `dump`.
 
-- **-p [password]**: The valid password of the MatrixOne user. Default value: 111
+- **-p \[password]**: Valid password for the MatrixOne user. Default value: `111`.
 
-- **-h [host]**: The host ip address of MatrixOne server. Default value: 127.0.0.1
+- **-h \[host]**: Host IP address of the MatrixOne server. Default value: `127.0.0.1`.
 
-- **-P [port]**: The port of MatrixOne server. Default value: 6001
+- **-P \[port]**: Port of the MatrixOne server. Default value: `6001`.
 
-- **-db [database name]**: Required parameter. Name of the database that you want to take backup.
+- **-db \[databaseName]**: Required parameter. The name of the database to back up. Multiple databases can be specified, separated by `,` database names.
 
-- **-net-buffer-length [packet size]**: Packet size, the total size of the characters in the SQL statement. The data packet is the basic unit of SQL exported data. If no parameter is set, the default is 1048576 Byte (1M), and the maximum can be set to 16777216 Byte (16M). If the parameter here is set to 16777216 Byte (16M), then when the data larger than 16M is to be exported, the data will be split into multiple 16M data packets, except for the last data packet, the size of other data packets is 16M.
+- **-net-buffer-length \[packet size]**: Packet size, the total size of SQL statement characters. Packets are the basic unit of SQL exported data. If parameters are not set, the default is 1048576 Byte(1M) and the maximum is 16777216 Byte(16M). If the parameter here is set to 16777216 Byte(16M), then when data larger than 16M is to be exported, the data is split into multiple 16M packets, all but the last of which are 16M in size.
 
-- **-csv**: The default value is false. The exported data is in *CSV* format when set to true.
+- **-csv**: The default is false. When set to true means that the exported data is in csv format, the generated database and table structure and imported SQL statements are saved in the generated sql file, and the data is exported to the generated `${databaseName}_${tableName}.csv` file in the current directory.
 
-- **--local-infile**: The default value is true and only takes effect when the parameter **-csv** is set to true. Indicates support for native export of *CSV* files.
+- **--local-infile**: The default is true and takes effect only when the parameter -csv is set to true. LOAD DATA LOCAL INFILE in the sql file script output by mo-dump when the parameter is true. LOAD DATA INFILE in the sql file script output by mo-dump when the argument is false.
 
-- **-tbl [table name]**: Optional parameter. If the parameter is empty, the whole database will be exported. If you want to take the backup specific tables, then you can specify multiple `-tbl` and table names in the command.
+- **-tbl \[tableName]**: Optional argument. If the argument is empty, the entire database is exported. If you want to back up the specified table, you can add the parameters `-tbl` and `tableName` to the command. If multiple tables are specified, the table names are separated by `,` .
 
-## Build the mo-dump binary
+- **-no-data**: The default is false. When set to true means no data is exported, only the table structure.
 
-To use `mo-dump` utility, we need to build the tool first. `mo-dump` is embedded in the MatrixOne source code. You can build the binary from the source code.
+- **> {importStatement.sql}**: Stores the output SQL statement in the file *importStatement.sql*, otherwise outputs it on the screen.
 
-__Tips:__ Same as MatrixOne `mo-dump` is written by Golang, building it will require a <a href="https://go.dev/doc/install" target="_blank">Golang</a> installation and environment setting.
+## Install the mo-dump tool
 
-1. Execute the following code to build the `mo-dump` binary from the MatrixOne source code:
+Download mode one and download mode two require the download tool wget or curl to be installed first. If you do not have it installed, install the download tool yourself first.
+
+- Install under macOS
+
+=== "**Download Method One: `The wget` tool downloads binary packages**"
+
+     x86 Architecture System Installation Package:
+
+     ```
+     wget https://github.com/matrixorigin/mo_dump/releases/download/1.0.0/mo-dump-1.0.0-darwin-x86_64.zip
+     unzip mo-dump-1.0.0-darwin-x86_64.zip
+     ```
+
+     ARM Architecture System Installation Package:
+
+     ```
+     wget https://github.com/matrixorigin/mo_dump/releases/download/1.0.0/mo-dump-1.0.0-darwin-arm64.zip
+     unzip mo-dump-1.0.0-darwin-arm64.zip
+     ```
+
+    If the original github address downloads too slowly, you can try downloading the mirror package from:
 
     ```
-    git clone https://github.com/matrixorigin/matrixone.git
-    cd matrixone
-    make build modump
+    wget  https://githubfast.com/matrixorigin/mo_dump/releases/download/1.0.0/mo-dump-1.0.0-darwin-xxx.zip
+    ```
+=== "**Download mode two: `curl` tool downloads binary packages**"
+
+     x86 Architecture System Installation Package:
+
+     ```
+     curl -OL https://github.com/matrixorigin/mo_dump/releases/download/1.0.0/mo-dump-1.0.0-darwin-x86_64.zip
+     unzip mo-dump-1.0.0-darwin-x86_64.zip
+     ```
+
+     ARM Architecture System Installation Package:
+
+     ```
+     curl -OL https://github.com/matrixorigin/mo_dump/releases/download/1.0.0/mo-dump-1.0.0-darwin-arm64.zip
+     unzip mo-dump-1.0.0-darwin-arm64.zip
+     ```
+
+    If the original github address downloads too slowly, you can try downloading the mirror package from:
+
+    ```
+    curl -OL https://githubfast.com/matrixorigin/mo_dump/releases/download/1.0.0/mo-dump-1.0.0-darwin-xxx.zip
     ```
 
-2. Then you can find the `mo-dump` executable file in the MatrixOne folder.
+- Install under Linux
 
-!!! note
-    This built `mo-dump` file can also work in a same hardware platform. But a binary built in a x86 platform will not work correctly in a darwin ARM platform. The best practice is to build and use the binary file within the same operating system and hardware platform. `mo-dump` only supports Linux and macOS for now.
+=== "**Download Method One: `The wget` tool downloads binary packages**"
 
-## Steps to Export your MatrixOne Database using `mo-dump`
+     x86 Architecture System Installation Package:
 
-`mo-dump` is easy to use with the command line. Here are the steps to take to export a complete database in the form of SQL commands:
+     ```
+     wget https://github.com/matrixorigin/mo_dump/releases/download/1.0.0/mo-dump-1.0.0-linux-x86_64.zip
+     unzip mo-dump-1.0.0-linux-x86_64.zip
+     ```
 
-Open up a command line or terminal window on your computer, then verify that from this terminal you can connect to your MatrixOne instance, enter this command to export the database:
+     ARM Architecture System Installation Package:
 
+     ```
+     wget https://github.com/matrixorigin/mo_dump/releases/download/1.0.0/mo-dump-1.0.0-linux-arm64.zip
+     unzip mo-dump-1.0.0-linux-arm64.zip
+     ```
+
+    If the original github address downloads too slowly, you can try downloading the mirror package from:
+
+    ```
+    wget  https://githubfast.com/matrixorigin/mo_dump/releases/download/1.0.0/mo-dump-1.0.0-linux-xxx.zip
+    ```
+=== "**Download mode two: `curl` tool downloads binary packages**"
+
+     x86 Architecture System Installation Package:
+
+     ```
+     curl -OL https://github.com/matrixorigin/mo_dump/releases/download/1.0.0/mo-dump-1.0.0-linux-x86_64.zip
+     unzip mo-dump-1.0.0-linux-x86_64.zip
+     ```
+
+     ARM Architecture System Installation Package:
+
+     ```
+     curl -OL https://github.com/matrixorigin/mo_dump/releases/download/1.0.0/mo-dump-1.0.0-linux-arm64.zip
+     unzip mo-dump-1.0.0-linux-arm64.zip
+     ```
+
+    If the original github address downloads too slowly, you can try downloading the mirror package from:
+
+    ```
+    curl -OL https://githubfast.com/matrixorigin/mo_dump/releases/download/1.0.0/mo-dump-1.0.0-linux-xxx.zip
+    ```
+!!! note Due to limitations of the linux kernel, mo-dump may not function properly on OS with lower kernels (less than 5.0), at which point you need to upgrade your kernel version.
+
+## How to export a MatrixOne database using `mo-dump`
+
+`mo-dump` is very easy to use from the command line. Open a terminal window on your local computer, go to the unzipped mo\_dump folder directory, locate the `mo-dump` executable: *mo-dump*, enter the following command, connect to MatrixOne, and export the database:
+
+``` bash
+./mo-dump -u username -p password -h host_ip_address -P port -db database > importStatement.sql 
 ```
-./mo-dump -u username -p password -h host_ip_address -P port -db database > exporteddb.sql
+
+## Examples
+
+**Example 1**
+
+If you start the terminal in the same server as the MatrixOne instance and you want to generate a single or multiple database and a backup of all the tables in it, run the following command. This command will generate a backup **of the mydb1** and **mydb2** databases and the structure and data of the tables in the *importMydb.sql* file. The *importMydb.sql* file is saved in the current directory:
+
+```bash
+./mo-dump -u root -p 111 -h 127.0.0.1 -P 6001 -db mydb1,mydb2 > importMydb.sql 
 ```
 
-For example, if you are launching the terminal in the same server as the MatrixOne instance, and you want to generate the backup of the single database, run the following command. The command will generate the backup of the "**t**" database with structure and data in the `t.sql` file. The `t.sql` file will be located in the same directory as your `mo-dump` executable.
+**Example 2**
 
-```
-./mo-dump -u root -p 111 -h 127.0.0.1 -P 6001 -db t > t.sql
-```
+If you want to export data from tables within database *mydb* to *CSV* format, the data from all tables in database *mydb* will be exported in the current directory in the format `${databaseName}_${tableName}.csv` and the generated database and table structure and imported SQL statements will be saved in the *mydb.sql* file:
 
-If you want to export the tables in the database *t* to *CSV* format, refer to the following command:
-
-```
-./mo-dump -u root -p 111 -db t -csv --local-infile=false > ttt.csv
+```bash
+./mo-dump -u root -p 111 -h 127.0.0.1 -P 6001 -db mydb -csv > mydb.sql 
 ```
 
-If you want to generate the backup of a single table in a database, run the following command. The command will generate the backup of the `t1` table of  `t` database with structure and data in the `t.sql` file.
+**Example 3**
 
+If you want to specify in the database to generate a backup of a table or tables, you can run the following command. This command will generate a structural and data backup of the *t1* and *t2* tables in database *db1*, saved in the *tab2.sql* file.
+
+```bash
+ ./mo-dump -u root -p 111 -db db1 -tbl t1,t2 > tab2.sql 
 ```
-./mo-dump -u root -p 111 -db t -tbl t1 > t1.sql
+
+**Example 4**
+
+If you want a structural backup of a table or tables in the database, you can run the following command. This command will generate the structure of the *t1* and *t2* tables in database *db1*, saved in the *tab\_nodata.sql* file.
+
+``` bash
+./mo-dump -u root -p 111 -db db1 -no-data -tbl t1,t2 > tab_nodata.sql 
 ```
 
-## Constraints
+## Limitations
 
-* `mo-dump` only supports exporting the backup of a single database, if you have several databases to backup, you need to manually run `mo-dump` for several times.
-
-* `mo-dump` doesn't support exporting only the structure or data of databases. If you want to generate the backup of the data without the database structure or vise versa, you need to manually split the `.sql` file.
+* `mo-dump` does not yet support exporting data only. If you want to generate a backup of your data without a database and table structure, then you need to manually split the `.sql` file.

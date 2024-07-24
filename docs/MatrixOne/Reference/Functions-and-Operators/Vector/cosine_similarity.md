@@ -1,12 +1,14 @@
-# **cosine_similarity()**
+# **cosine\_similarity()**
 
-## **Description**
+## **Function Description**
 
-Cosine similarity measures the cosine of the angle between two vectors, indicating their similarity by how closely they align in a multi-dimensional space, with 1 denoting perfect similarity and -1 indicating perfect dissimilarity. Consine similarity is calculated by dividing Inner Product of two vectors, by the product of their l2 norms.
+`cosine_similarity()` is a cosine similarity that measures the cosine value of the angle between two vectors, indicating their similarity by how close they are in multidimensional space, where 1 means exactly similar and -1 means completely different. Cosine similarity is calculated by dividing the inner product of two vectors by the product of their l2 norm.
 
-![cosine_similarity](https://github.com/matrixorigin/artwork/blob/main/docs/reference/vector/cosine_similarity.png?raw=true)
+<div align="center">
+<img src=https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/reference/vector/cosine_similarity.png?raw=true width=50% heigth=50%/>
+</div>
 
-## **Syntax**
+## **Function syntax**
 
 ```
 > SELECT cosine_similarity(vector1, vector2) AS similarity FROM table_name;
@@ -35,7 +37,8 @@ mysql> select cosine_similarity(b,"[1,2,3]") from vec_table;
 1 row in set (0.00 sec)
 ```
 
-## **Constraints**
+## **Restrictions**
 
-- Both the argument vectors should have same dimensions
-- Cosine similarity value lies between -1 and 1.
+- Two parameter vectors must have the same dimension.
+- The value for cosine similarity is between -1 and 1.
+- Input vectors are not allowed to be 0 vectors because this results in a division by zero, which is mathematically undefined. In practice, we usually consider the cosine similarity of a zero vector to any other vector to be 0 because there is no similarity in any direction between them.

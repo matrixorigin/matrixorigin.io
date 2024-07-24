@@ -1,10 +1,10 @@
 # **vector_dims()**
 
-## **Description**
+## **Function Description**
 
-The vector_dims function is used to determine the dimension of a vector.
+The `vector_dims` function is used to determine the dimension of a vector.
 
-## **Syntax**
+## **Function syntax**
 
 ```
 > SELECT vector_dims(vector) AS dimension_count FROM table_name;

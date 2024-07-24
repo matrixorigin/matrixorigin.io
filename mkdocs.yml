@@ -56,6 +56,9 @@ nav:
         - Scalability: MatrixOne/Overview/feature/scalability.md
         - Cost-Effective: MatrixOne/Overview/feature/cost-effective.md
         - High Availability: MatrixOne/Overview/feature/high-availability.md
+        - Timing: MatrixOne/Overview/feature/time-series.md
+        - Streams: MatrixOne/Overview/feature/stream.md
+        - User-defined functions: MatrixOne/Overview/feature/udf.md
         - MySQL Compatibility: MatrixOne/Overview/feature/mysql-compatibility.md
       - MatrixOne Architecture Design:
         - Architecture Design Overview: MatrixOne/Overview/architecture/matrixone-architecture-design.md
@@ -64,8 +67,13 @@ nav:
         - Logtail Protocol Architecture: MatrixOne/Overview/architecture/architecture-logtail.md
         - Transaction and Lock Mechanisms Architecture: MatrixOne/Overview/architecture/architecture-transaction-lock.md
         - Detailed Proxy Architecture: MatrixOne/Overview/architecture/architecture-proxy.md
+        - WAL Technology Explained: MatrixOne/Overview/architecture/architecture-wal.md
         - Detailed Caching and Hot-Cold Data Separation Architecture: MatrixOne/Overview/architecture/architecture-cold-hot-data-separation.md
         - Detailed Stream Engine Architecture: MatrixOne/Overview/architecture/streaming.md
+        - MatrixOne-Operator design and implementation: MatrixOne/Overview/architecture/architecture-matrixone-operator.md
+      - MatrixOne vs. other databases:
+        - MatrixOne Positioning: MatrixOne/Overview/matrixone-vs-other_databases/matrixone-positioning .md
+        - MatrixOne vs. common OLTP databases: MatrixOne/Overview/matrixone-vs-other_databases/matrixone-vs-oltp.md
       - What's New: MatrixOne/Overview/whats-new.md
     - Getting Started:
       - Deploy standalone MatrixOne:
@@ -86,12 +94,14 @@ nav:
           - Connect MatrixOne with JDBC: MatrixOne/Develop/connect-mo/java-connect-to-matrixone/connect-mo-with-jdbc.md
           - Connect MatrixOne with Java ORMs: MatrixOne/Develop/connect-mo/java-connect-to-matrixone/connect-mo-with-orm.md
         - Python connect to MatrixOne: MatrixOne/Develop/connect-mo/python-connect-to-matrixone.md
+        - C# connect to MatrixOne: MatrixOne/Develop/connect-mo/connect-to-matrixone-with-c#.md
         - Connecting to MatrixOne with Golang: MatrixOne/Develop/connect-mo/connect-to-matrixone-with-go.md
         - MatrixOne SSL connection: MatrixOne/Develop/connect-mo/configure-mo-ssl-connection.md
       - Schema Design:
         - Overview: MatrixOne/Develop/schema-design/overview.md
         - Create Database: MatrixOne/Develop/schema-design/create-database.md
         - Create Table: MatrixOne/Develop/schema-design/create-table.md
+        - Replication table: MatrixOne/Develop/schema-design/create-table-as-select.md
         - Create View: MatrixOne/Develop/schema-design/create-view.md
         - Create Temporary Table: MatrixOne/Develop/schema-design/create-temporary-table.md
         - Create Secondary Index: MatrixOne/Develop/schema-design/create-secondary-index.md
@@ -124,7 +134,12 @@ nav:
         - Subquery: MatrixOne/Develop/read-data/subquery.md
         - Views: MatrixOne/Develop/read-data/views.md
         - Common Table Expression: MatrixOne/Develop/read-data/cte.md
-        - Window Function.: MatrixOne/Develop/read-data/window-function.md
+        - Window Function: 
+          - Standard Window: MatrixOne/Develop/read-data/window-function/window-function.md
+          - Time Window: MatrixOne/Develop/read-data/window-function/time-window.md
+      - Data de-duplication:
+         - COUNT(DISTINCT): MatrixOne/Develop/distinct-data/count-distinct.md
+         - BITMAP: MatrixOne/Develop/distinct-data/bitmap.md
       - Account Design:
         - Multi-Account Overview: MatrixOne/Develop/Publish-Subscribe/multi-account-overview.md
         - Publish-Subscribe: MatrixOne/Develop/Publish-Subscribe/pub-sub-overview.md
@@ -141,14 +156,25 @@ nav:
           - How to use transaction:
             - User Guide: MatrixOne/Develop/Transactions/matrixone-transaction-overview/how-to-use.md
             - Scenario: MatrixOne/Develop/Transactions/matrixone-transaction-overview/scenario.md
+      - User-defined function:
+        - UDF python: MatrixOne/Develop/udf/udf-python.md
+        - UDF python advanced: MatrixOne/Develop/udf/udf-python-advanced.md
+      - Vector:
+        - Vector Type: MatrixOne/Develop/Vector/vector_type.md
+        - Vector Search: MatrixOne/Develop/Vector/vector_search.md
+        - Cluster Centers: MatrixOne/Develop/Vector/cluster_centers.md
       - Application Developing Tutorials:
         - Java CRUD demo: MatrixOne/Tutorial/develop-java-crud-demo.md
         - SpringBoot and JPA CRUD demo: MatrixOne/Tutorial/springboot-hibernate-crud-demo.md
         - SpringBoot and MyBatis CRUD demo: MatrixOne/Tutorial/springboot-mybatis-crud-demo.md
         - Python CRUD demo: MatrixOne/Tutorial/develop-python-crud-demo.md
         - SQLAlchemy CRUD demo: MatrixOne/Tutorial/sqlalchemy-python-crud-demo.md
+        - Django CRUD demo: MatrixOne/Tutorial/django-python-crud-demo.md
         - Golang CRUD demo: MatrixOne/Tutorial/develop-golang-crud-demo.md
         - Gorm CRUD demo: MatrixOne/Tutorial/gorm-golang-crud-demo.md
+        - C# CRUD demo: MatrixOne/Tutorial/c-net-crud-demo.md
+        - Rag Application demo: MatrixOne/Tutorial/rag-demo.md
+        - Picture(Text)-to-Picture Search Application demo: MatrixOne/Tutorial/search-picture-demo.md
       - Ecological Tools:
         - BI Tools:
           - Visualizing MatrixOne Data with FineBI: MatrixOne/Develop/Ecological-Tools/BI-Connection/FineBI-connection.md
@@ -168,8 +194,10 @@ nav:
         - Experience Environment Deployment Plan: MatrixOne/Deploy/deployment-topology/experience-deployment-topology.md
         - Minimum Production Environment Deployment Plan: MatrixOne/Deploy/deployment-topology/minimal-deployment-topology.md
         - Recommended Production Environment Deployment Plan: MatrixOne/Deploy/deployment-topology/recommended-prd-deployment-topology.md
-      - MatrixOne distributed cluster deployment: MatrixOne/Deploy/deploy-MatrixOne-cluster.md
-      - Maintenance:
+      - Cluster Deployment Guide: 
+        - Kubernetes and object storage environment not deployed: MatrixOne/Deploy/deploy-Matrixone-cluster/deploy-MatrixOne-cluster-without-k8.md
+        - Deployed Kubernetes and object storage environment: MatrixOne/Deploy/deploy-Matrixone-cluster/deploy-MatrixOne-cluster-with-k8.md
+      - Cluster Operations Management:
         - Starting and stopping: MatrixOne/Deploy/MatrixOne-start-stop.md
         - Updating: MatrixOne/Deploy/update-MatrixOne-cluster.md
         - Health check and resource monitoring: MatrixOne/Deploy/health-check-resource-monitoring.md
@@ -182,6 +210,10 @@ nav:
         - MatrixOne Backup and Recovery Overview: MatrixOne/Maintain/backup-restore/backup-restore-overview.md
         - Backup and Recovery Concepts: MatrixOne/Maintain/backup-restore/key-concepts.md
         - Backup and Restore by using mo-dump: MatrixOne/Maintain/backup-restore/modump-backup-restore.md
+        - mo_br Backup and Recovery:
+          - mo_br guidelines for use: MatrixOne/Maintain/backup-restore/mobr-backup-restore/mobr.md
+          - mo_br regular physical backup recovery: MatrixOne/Maintain/backup-restore/mobr-backup-restore/mobr-physical-backup-restore.md
+          - mo_br snapshot backup recovery: MatrixOne/Maintain/backup-restore/mobr-backup-restore/mobr-snapshot-backup-restore.md
       - Mount Data:
         - Mount directory to Docker container: MatrixOne/Maintain/mount-data-by-docker.md
     - Migrating:
@@ -232,6 +264,8 @@ nav:
           - Save query result support: MatrixOne/Reference/Variable/system-variables/save_query_result.md
           - Timezone support: MatrixOne/Reference/Variable/system-variables/timezone.md
           - Lowercase table names support: MatrixOne/Reference/Variable/system-variables/lower_case_tables_name.md
+          - Foreign key checking support: MatrixOne/Reference/Variable/system-variables/foreign_key_checks.md
+          - User-specified case consistency support for query result set column names: MatrixOne/Reference/Variable/system-variables/keep_user_target_list_in_result.md
         - Custom variable: MatrixOne/Reference/Variable/custom-variable.md
       - SQL Language Structure:
         - Keywords: MatrixOne/Reference/Language-Structure/keywords.md
@@ -246,21 +280,33 @@ nav:
         - BLOB and TEXT Type: MatrixOne/Reference/Data-Types/blob-text-type.md
         - ENUM Type: MatrixOne/Reference/Data-Types/enum-type.md
         - UUID Type: MatrixOne/Reference/Data-Types/uuid-type.md
+        - VECTOR Type: MatrixOne/Reference/Data-Types/vector-type.md
         - Fixed-Point Types (Exact Value) - DECIMAL: MatrixOne/Reference/Data-Types/fixed-point-types.md
       - SQL Statements:
         - Type of SQL Statements: MatrixOne/Reference/SQL-Reference/SQL-Type.md
         - Data Definition Language:
           - CREATE DATABASE: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-database.md
           - CREATE INDEX: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-index.md
+          - CREATE INDEX...USING IVFFLAT: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-index-ivfflat.md
           - CREATE TABLE: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-table.md
+          - CREATE TABLE AS SELECT: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-table-as-select.md
+          - CREATE TABLE ... LIKE: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-table-like.md         
           - CREATE EXTERNAL TABLE: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-external-table.md
+          - CREATE CLUSTER TABLE: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-cluster-table.md
           - CREATE PUBLICATION: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-publication.md
           - CREATE SEQUENCE: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-sequence.md
           - CREATE STAGE: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-stage.md
           - CREATE...FROM...PUBLICATION...: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-subscription.md
           - CREATE VIEW: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-view.md
+          - CREATE FUNCTION...LANGUAGE SQL AS: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-function-sql.md
+          - CREATE FUNCTION...LANGUAGE PYTHON AS: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-function-python.md
+          - CREATE SOURCE: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-source.md
+          - CREATE DYNAMIC TABLE: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-dynamic-table.md
+          - CREATE SNAPSHOT: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-snapshot.md
           - ALTER TABLE: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/alter-table.md
+          - ALTER TABLE ... ALTER REINDEX: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/alter-reindex.md
           - ALTER PUBLICATION: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/alter-publication.md
+          - ALTER SEQUENCE: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/alter-sequence.md
           - ALTER STAGE: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/alter-stage.md
           - ALTER VIEW: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/alter-view.md
           - DROP DATABASE: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/drop-database.md
@@ -269,19 +315,26 @@ nav:
           - DROP PUBLICATION: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/drop-publication.md
           - DROP SEQUENCE: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/drop-sequence.md
           - DROP STAGE: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/drop-stage.md
+          - DROP SNAPSHOT: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/drop-snapshot.md
           - DROP VIEW: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/drop-view.md
+          - DROP FUNCTION: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/drop-function.md
           - TRUNCATE TABLE: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/truncate-table.md
+          - RESTORE ACCOUNT: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/restore-account.md
         - Data Manipulation Language:
-            - INSERT: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/insert.md
-            - INSERT INTO SELECT: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/insert-into-select.md
-            - INSERT ON DUPLICATE KEY UPDATE: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/insert-on-duplicate.md
-            - DELETE: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/delete.md
-            - UPDATE: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/update.md
-            - LOAD DATA INFILE: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/load-data-infile.md
-            - REPLACE: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/replace.md
-            - Information Functions:
-              - LAST_QUERY_ID(): MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/information-functions/last-query-id.md
-              - LAST_INSERT_ID(): MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/information-functions/last-insert-id.md
+          - INSERT: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/insert.md
+          - INSERT INTO SELECT: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/insert-into-select.md
+          - DELETE: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/delete.md
+          - UPDATE: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/update.md
+          - LOAD DATA INFILE: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/load-data-infile.md
+          - LOAD DATA INLINE: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/load-data-inline.md
+          - UPSERT: 
+            - UPSERT Overview: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/upsert/upsert.md
+            - INSERT ON DUPLICATE KEY UPDATE: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/upsert/insert-on-duplicate.md
+            - INSERT IGNORE: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/upsert/insert-ignore.md
+            - REPLACE: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/upsert/replace.md
+          - Information Functions:
+            - LAST_QUERY_ID(): MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/information-functions/last-query-id.md
+            - LAST_INSERT_ID(): MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/information-functions/last-insert-id.md
         - Data Query Language:
           - SELECT: MatrixOne/Reference/SQL-Reference/Data-Query-Language/select.md
           - SUBQUERY:
@@ -294,6 +347,7 @@ nav:
             - SUBQUERY with IN: MatrixOne/Reference/SQL-Reference/Data-Query-Language/subqueries/subquery-with-in.md
           - JOIN:
             - JOIN Overview: MatrixOne/Reference/SQL-Reference/Data-Query-Language/join/join.md
+            - CROSS JOIN: MatrixOne/Reference/SQL-Reference/Data-Query-Language/join/inner-join.md
             - INNER JOIN: MatrixOne/Reference/SQL-Reference/Data-Query-Language/join/inner-join.md
             - LEFT JOIN: MatrixOne/Reference/SQL-Reference/Data-Query-Language/join/left-join.md
             - RIGHT JOIN: MatrixOne/Reference/SQL-Reference/Data-Query-Language/join/right-join.md
@@ -350,6 +404,7 @@ nav:
             - EXPLAIN: MatrixOne/Reference/SQL-Reference/Other/Explain/explain.md
             - EXPLAIN Output Format: MatrixOne/Reference/SQL-Reference/Other/Explain/explain-workflow.md
             - Explain Analyze: MatrixOne/Reference/SQL-Reference/Other/Explain/explain-analyze.md
+            - Explain Prepared: MatrixOne/Reference/SQL-Reference/Other/Explain/explain-prepared.md
       - Functions and Operators:
         - Operators:
           - INTERVAL: MatrixOne/Reference/Operators/interval.md
@@ -381,6 +436,8 @@ nav:
               - BINARY: MatrixOne/Reference/Operators/operators/cast-functions-and-operators/binary.md
               - CAST: MatrixOne/Reference/Operators/operators/cast-functions-and-operators/cast.md
               - CONVERT: MatrixOne/Reference/Operators/operators/cast-functions-and-operators/convert.md
+              - SERIAL: MatrixOne/Reference/Operators/operators/cast-functions-and-operators/serial.md
+              - SERIAL_FULL: MatrixOne/Reference/Operators/operators/cast-functions-and-operators/serial_full.md
             - Comparison Functions and Operators:
               - Comparison Functions and Operators Overview: MatrixOne/Reference/Operators/operators/comparison-functions-and-operators/comparison-functions-and-operators-overview.md
               - '>': MatrixOne/Reference/Operators/operators/comparison-functions-and-operators/greater-than.md
@@ -415,9 +472,11 @@ nav:
               - OR: MatrixOne/Reference/Operators/operators/logical-operators/or.md
               - XOR: MatrixOne/Reference/Operators/operators/logical-operators/xor.md
         - Functions:
+          - Summary Table of Functions: MatrixOne/Reference/Functions-and-Operators/matrixone-function-list.md
           - Aggregate Functions:
             - ANY_VALUE: MatrixOne/Reference/Functions-and-Operators/Aggregate-Functions/any-value.md
             - AVG: MatrixOne/Reference/Functions-and-Operators/Aggregate-Functions/avg.md
+            - BITMAP: MatrixOne/Reference/Functions-and-Operators/Aggregate-Functions/bitmap.md
             - BIT_AND: MatrixOne/Reference/Functions-and-Operators/Aggregate-Functions/bit_and.md
             - BIT_OR: MatrixOne/Reference/Functions-and-Operators/Aggregate-Functions/bit_or.md
             - BIT_XOR: MatrixOne/Reference/Functions-and-Operators/Aggregate-Functions/bit_xor.md
@@ -429,7 +488,9 @@ nav:
             - STDDEV_POP: MatrixOne/Reference/Functions-and-Operators/Aggregate-Functions/stddev_pop.md
             - SUM: MatrixOne/Reference/Functions-and-Operators/Aggregate-Functions/sum.md
             - VARIANCE: MatrixOne/Reference/Functions-and-Operators/Aggregate-Functions/variance.md
+            - VAR_POP: MatrixOne/Reference/Functions-and-Operators/Aggregate-Functions/var_pop.md
           - Datetime:
+            - CONVERT_TZ(): MatrixOne/Reference/Functions-and-Operators/Datetime/convert-tz.md
             - CURDATE(): MatrixOne/Reference/Functions-and-Operators/Datetime/curdate.md
             - CURRENT_TIMESTAMP(): MatrixOne/Reference/Functions-and-Operators/Datetime/current-timestamp.md
             - DATE(): MatrixOne/Reference/Functions-and-Operators/Datetime/date.md
@@ -444,14 +505,17 @@ nav:
             - FROM_UNIXTIME: MatrixOne/Reference/Functions-and-Operators/Datetime/from-unixtime.md
             - MINUTE(): MatrixOne/Reference/Functions-and-Operators/Datetime/minute.md
             - MONTH(): MatrixOne/Reference/Functions-and-Operators/Datetime/month.md
+            - NOW(): MatrixOne/Reference/Functions-and-Operators/Datetime/now.md
             - SECOND(): MatrixOne/Reference/Functions-and-Operators/Datetime/second.md
+            - STR_TO_DATE(): MatrixOne/Reference/Functions-and-Operators/Datetime/str-to-date.md
+            - SYSDATE(): MatrixOne/Reference/Functions-and-Operators/Datetime/sysdate.md
             - TIME(): MatrixOne/Reference/Functions-and-Operators/Datetime/time.md
             - TIMEDIFF(): MatrixOne/Reference/Functions-and-Operators/Datetime/timediff.md
             - TIMESTAMP(): MatrixOne/Reference/Functions-and-Operators/Datetime/timestamp.md
             - TIMESTAMPDIFF(): MatrixOne/Reference/Functions-and-Operators/Datetime/timestampdiff.md
             - TO_DATE(): MatrixOne/Reference/Functions-and-Operators/Datetime/to-date.md
-            - TO_DAYS(): MatrixOne/Reference/Functions-and-Operators/Datetime/to-seconds.md
-            - TO_SECONDS(): MatrixOne/Reference/Functions-and-Operators/Datetime/to-days.md
+            - TO_DAYS(): MatrixOne/Reference/Functions-and-Operators/Datetime/to-days.md
+            - TO_SECONDS(): MatrixOne/Reference/Functions-and-Operators/Datetime/to-seconds.md
             - UNIX_TIMESTAMP: MatrixOne/Reference/Functions-and-Operators/Datetime/unix-timestamp.md
             - UTC_TIMESTAMP(): MatrixOne/Reference/Functions-and-Operators/Datetime/utc-timestamp.md
             - WEEK(): MatrixOne/Reference/Functions-and-Operators/Datetime/week.md
@@ -472,8 +536,8 @@ nav:
             - LOG10(): MatrixOne/Reference/Functions-and-Operators/Mathematical/log10.md
             - PI(): MatrixOne/Reference/Functions-and-Operators/Mathematical/pi.md
             - POWER(): MatrixOne/Reference/Functions-and-Operators/Mathematical/power.md
-            - RAND(): MatrixOne/Reference/Functions-and-Operators/Mathematical/rand.md
             - ROUND(): MatrixOne/Reference/Functions-and-Operators/Mathematical/round.md
+            - RAND(): MatrixOne/Reference/Functions-and-Operators/Mathematical/rand.md
             - SIN(): MatrixOne/Reference/Functions-and-Operators/Mathematical/sin.md
             - SINH(): MatrixOne/Reference/Functions-and-Operators/Mathematical/sinh.md
             - TAN(): MatrixOne/Reference/Functions-and-Operators/Mathematical/tan.md
@@ -488,24 +552,34 @@ nav:
             - FIELD(): MatrixOne/Reference/Functions-and-Operators/String/field.md
             - FIND_IN_SET(): MatrixOne/Reference/Functions-and-Operators/String/find-in-set.md
             - FORMAT(): MatrixOne/Reference/Functions-and-Operators/String/format.md
+            - FROM_BASE64(): MatrixOne/Reference/Functions-and-Operators/String/from_base64.md
             - HEX(): MatrixOne/Reference/Functions-and-Operators/String/hex.md
             - INSTR():  MatrixOne/Reference/Functions-and-Operators/String/instr.md
+            - LCASE(): MatrixOne/Reference/Functions-and-Operators/String/lcase.md
             - LEFT(): MatrixOne/Reference/Functions-and-Operators/String/left.md
             - LENGTH(): MatrixOne/Reference/Functions-and-Operators/String/length.md
+            - LOCATE(): MatrixOne/Reference/Functions-and-Operators/String/locate.md
+            - LOWER(): MatrixOne/Reference/Functions-and-Operators/String/lower.md
             - LPAD(): MatrixOne/Reference/Functions-and-Operators/String/lpad.md
             - LTRIM(): MatrixOne/Reference/Functions-and-Operators/String/ltrim.md
+            - MD5(): MatrixOne/Reference/Functions-and-Operators/String/md5.md
             - OCT(): MatrixOne/Reference/Functions-and-Operators/String/oct.md
             - REPEAT(): MatrixOne/Reference/Functions-and-Operators/String/repeat.md
             - REVERSE(): MatrixOne/Reference/Functions-and-Operators/String/reverse.md
             - RPAD(): MatrixOne/Reference/Functions-and-Operators/String/rpad.md
             - RTRIM(): MatrixOne/Reference/Functions-and-Operators/String/rtrim.md
+            - SHA1()/SHA(): MatrixOne/Reference/Functions-and-Operators/String/sha1.md
+            - SHA2(): MatrixOne/Reference/Functions-and-Operators/String/sha2.md
             - SPACE(): MatrixOne/Reference/Functions-and-Operators/String/space.md
             - SPLIT_PART(): MatrixOne/Reference/Functions-and-Operators/String/split_part.md
             - STARTSWITH(): MatrixOne/Reference/Functions-and-Operators/String/startswith.md
             - SUBSTRING(): MatrixOne/Reference/Functions-and-Operators/String/substring.md
             - SUBSTRING_INDEX(): MatrixOne/Reference/Functions-and-Operators/String/substring-index.md
+            - TO_BASE64(): MatrixOne/Reference/Functions-and-Operators/String/to_base64.md
             - TRIM(): MatrixOne/Reference/Functions-and-Operators/String/trim.md
+            - UCASE(): MatrixOne/Reference/Functions-and-Operators/String/ucase.md
             - UNHEX(): MatrixOne/Reference/Functions-and-Operators/String/unhex.md
+            - UPPER(): MatrixOne/Reference/Functions-and-Operators/String/upper.md
             - Regular Expressions:
               - Regular Expressions Overview: MatrixOne/Reference/Functions-and-Operators/String/Regular-Expressions/Regular-Expression-Functions-Overview.md
               - NOT REGEXP: MatrixOne/Reference/Functions-and-Operators/String/Regular-Expressions/not-regexp.md
@@ -513,6 +587,19 @@ nav:
               - REGEXP_LIKE(): MatrixOne/Reference/Functions-and-Operators/String/Regular-Expressions/regexp-like.md
               - REGEXP_REPLACE(): MatrixOne/Reference/Functions-and-Operators/String/Regular-Expressions/regexp-replace.md
               - REGEXP_SUBSTR(): MatrixOne/Reference/Functions-and-Operators/String/Regular-Expressions/regexp-substr.md
+          - Vector:
+            - Basic Operator: MatrixOne/Reference/Functions-and-Operators/Vector/arithmetic.md
+            - Mathematical Calculations: MatrixOne/Reference/Functions-and-Operators/Vector/misc.md
+            - CLUSTER_CENTERS(): MatrixOne/Reference/Functions-and-Operators/Vector/cluster_centers.md
+            - COSINE_SIMILARITY(): MatrixOne/Reference/Functions-and-Operators/Vector/cosine_similarity.md
+            - COSINE_DISTANCE(): MatrixOne/Reference/Functions-and-Operators/Vector/cosine_distance.md
+            - INNER_PRODUCT(): MatrixOne/Reference/Functions-and-Operators/Vector/inner_product.md
+            - L1_NORM(): MatrixOne/Reference/Functions-and-Operators/Vector/l1_norm.md
+            - L2_NORM(): MatrixOne/Reference/Functions-and-Operators/Vector/l2_norm.md
+            - L2_DISTANCE(): MatrixOne/Reference/Functions-and-Operators/Vector/l2_distance.md
+            - NORMALIZE_L2(): MatrixOne/Reference/Functions-and-Operators/Vector/normalize_l2.md
+            - SUBVECTOR(): MatrixOne/Reference/Functions-and-Operators/Vector/subvector.md
+            - VECTOR_DIMS(): MatrixOne/Reference/Functions-and-Operators/Vector/vector_dims.md
           - Table:
             - UNNEST(): MatrixOne/Reference/Functions-and-Operators/Table/unnest.md
           - Vector:
@@ -532,6 +619,8 @@ nav:
             - ROW_NUMBER(): MatrixOne/Reference/Functions-and-Operators/Window-Functions/row_number.md
           - JSON Functions: MatrixOne/Reference/Functions-and-Operators/Json/json-functions.md
           - Other Functions:
+            - SAMPLE: MatrixOne/Reference/Functions-and-Operators/Other/sample.md
+            - SERIAL_EXTRACT: MatrixOne/Reference/Functions-and-Operators/Other/serial_extract.md
             - SLEEP: MatrixOne/Reference/Functions-and-Operators/Other/sleep.md
             - UUID(): MatrixOne/Reference/Functions-and-Operators/Other/uuid.md
           - System OPS Functions:
@@ -551,7 +640,12 @@ nav:
         - Partitioning supported features list: MatrixOne/Reference/Limitations/mo-partition-support.md
       - MatrixOne Directory Structure: MatrixOne/Maintain/mo-directory-structure.md
       - MatrixOne Tools:
-        - mo_ctl Tool: MatrixOne/Maintain/mo_ctl.md
+        - mo_ctl stand-alone tool: MatrixOne/Reference/mo-tools/mo_ctl_standalone.md
+        - mo_ctl distributed Tools: MatrixOne/Reference/mo-tools/mo_ctl.md
+        - mo_datax_writer tool: MatrixOne/Reference/mo-tools/mo_datax_writer.md
+        - mo_ssb_open tool: MatrixOne/Reference/mo-tools/mo_ssb_open.md
+        - mo_tpch_open tool: MatrixOne/Reference/mo-tools/mo_tpch_open.md
+        - mo_ts_perf_test tool: MatrixOne/Reference/mo-tools/mo_ts_perf_test.md
     - Troubleshooting:
       - Slow Queries: MatrixOne/Troubleshooting/slow-queries.md
       - Common statistic data query: MatrixOne/Troubleshooting/common-statistics-query.md

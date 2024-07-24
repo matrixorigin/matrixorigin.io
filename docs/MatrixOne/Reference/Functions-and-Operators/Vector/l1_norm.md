@@ -1,20 +1,22 @@
 # **l1_norm()**
 
-## **Description**
+## **Function Description**
 
-The l1_norm function is used to calculate the L1/Manhattan/TaxiCab norm. The L1 norm is obtained by summing the absolute value of vector elements.
+The `l1_norm` function is used to calculate the `l1`/Manhattan/TaxiCab norm. The `l1` norm is obtained by summing the absolute values of the vector elements.
 
-![l1_normy](https://github.com/matrixorigin/artwork/blob/main/docs/reference/vector/l1_norm.png?raw=true)
+<div align="center">
+<img src=https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/reference/vector/l1_norm.png?raw=true width=50% heigth=50%/>
+</div>
 
-You can use L1 Norm to calculate L1 Distance.
+You can use the `l1` norm to calculate the `l1` distance.
 
 ```
 l1_distance(a,b) = l1_norm(a-b)
 ```
 
-Same is appicable for calculating L2 distance from L2_Norm.
+The same calculation applies to calculating the `l2` distance from `l2_Norm`.
 
-## **Syntax**
+## **Function syntax**
 
 ```
 > SELECT l1_norm(vector) AS result FROM table_name;

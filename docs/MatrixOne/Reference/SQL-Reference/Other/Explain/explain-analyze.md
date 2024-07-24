@@ -1,34 +1,36 @@
-# Obtaining Information with EXPLAIN ANALYZE
+# Get information with `EXPLAIN ANALYZE`
 
-EXPLAIN ANALYZE is a profiling tool for your queries that will show you where SQL spends time on your query and why. It will plan the query, instrument it and execute it while counting rows and measuring time spent at various points in the execution plan. When execution finishes, EXPLAIN ANALYZE will print the plan and the measurements instead of the query result.
+`EXPLAIN ANALYZE` is an analysis tool for queries that shows you how long SQL spends on queries and why. It will schedule the query, detect it, and execute it, while counting the rows and measuring the time spent at various points in the execution plan. When execution is complete, `EXPLAIN ANALYZE` prints the plan and measurements instead of querying the results.
 
-`EXPLAIN ANALYZE`, which runs a statement and produces EXPLAIN output along with timing and additional, iterator-based, information about how the optimizer's expectations matched the actual execution. For each iterator, the following information is provided:
+`EXPLAIN ANALYZE`, which runs SQL statements to produce `EXPLAIN` output, in addition to other information, such as time and iterator-based additional information, and about the expected versus actual execution of the optimizer.
 
-- Estimated execution cost
+For each iterator, provide the following information:
 
-   Some iterators are not accounted for by the cost model, and so are not included in the estimate.
+- Estimated implementation costs
 
-- Estimated number of returned rows
+   Some iterators are not considered in the cost model and are therefore not included in the estimate.
 
-- Time to return first row
+- Estimated number of rows returned
 
-- Time spent executing this iterator (including child iterators, but not parent iterators), in milliseconds.
+- Returns the time of the first row
+
+- Time, in milliseconds, spent executing this iterator (including only child iterators but not parent iterators).
 
 - Number of rows returned by the iterator
 
-- Number of loops
+- Number of cycles
 
-The query execution information is displayed using the TREE output format, in which nodes represent iterators. `EXPLAIN ANALYZE` always uses the TREE output format, also can optionally be specified explicitly using FORMAT=TREE; formats other than TREE remain unsupported.
+Query execution information is displayed using the `TREE` output format, where nodes represent iterators. `EXPLAIN ANALYZE` always uses the `TREE` output format.
 
-`EXPLAIN ANALYZE` can be used with `SELECT` statements, as well as with multi-table `UPDATE` and `DELETE` statements.
+`EXPLAIN ANALYZE` can be used with `SELECT` statements or with multi-table `UPDATE` and `DELETE` statements.
 
-You can terminate this statement using `KILL QUERY` or `CTRL-C`.
+You can use `KILL QUERY` or `CTRL-C` to terminate this statement.
 
-`EXPLAIN ANALYZE` cannot be used with FOR CONNECTION.
+`EXPLAIN ANALYZE` cannot be used with `FOR CONNECTION`.
 
-## Example
+## Examples
 
-**Create table**
+**Building table**
 
 ```sql
 CREATE TABLE t1 (
@@ -47,57 +49,55 @@ CREATE TABLE t3 (
 );
 ```
 
-**Example output**:
+**Table output results**:
 
 ```sql
-> EXPLAIN ANALYZE SELECT * FROM t1 JOIN t2 ON (t1.c1 = t2.c2)\G
+> mysql> EXPLAIN ANALYZE SELECT * FROM t1 JOIN t2 ON (t1.c1 = t2.c2)\G
 *************************** 1. row ***************************
 QUERY PLAN: Project
 *************************** 2. row ***************************
-QUERY PLAN:   Analyze: timeConsumed=0us inputRows=0 outputRows=0 inputSize=0bytes outputSize=0bytes memorySize=0bytes
+QUERY PLAN:   Analyze: timeConsumed=0ms waitTime=0ms inputRows=0 outputRows=0 InputSize=0bytes OutputSize=0bytes MemorySize=0bytes
 *************************** 3. row ***************************
 QUERY PLAN:   ->  Join
 *************************** 4. row ***************************
-QUERY PLAN:         Analyze: timeConsumed=5053us inputRows=0 outputRows=0 inputSize=0bytes outputSize=0bytes memorySize=0bytes
+QUERY PLAN:         Analyze: timeConsumed=0ms waitTime=0ms inputRows=0 outputRows=0 InputSize=0bytes OutputSize=0bytes MemorySize=16441bytes
 *************************** 5. row ***************************
 QUERY PLAN:         Join Type: INNER
 *************************** 6. row ***************************
 QUERY PLAN:         Join Cond: (t1.c1 = t2.c2)
 *************************** 7. row ***************************
-QUERY PLAN:         ->  Table Scan on aaa.t1
+QUERY PLAN:         ->  Table Scan on tpch.t1
 *************************** 8. row ***************************
-QUERY PLAN:               Analyze: timeConsumed=2176us inputRows=0 outputRows=0 inputSize=0bytes outputSize=0bytes memorySize=0bytes
+QUERY PLAN:               Analyze: timeConsumed=0ms waitTime=0ms inputRows=0 outputRows=0 InputSize=0bytes OutputSize=0bytes MemorySize=0bytes
 *************************** 9. row ***************************
-QUERY PLAN:         ->  Table Scan on aaa.t2
+QUERY PLAN:         ->  Table Scan on tpch.t2
 *************************** 10. row ***************************
-QUERY PLAN:               Analyze: timeConsumed=0us inputRows=0 outputRows=0 inputSize=0bytes outputSize=0bytes memorySize=0bytes
+QUERY PLAN:               Analyze: timeConsumed=0ms waitTime=0ms inputRows=0 outputRows=0 InputSize=0bytes OutputSize=0bytes MemorySize=0bytes
 10 rows in set (0.00 sec)
 
 > EXPLAIN ANALYZE SELECT * FROM t3 WHERE i > 8\G
 *************************** 1. row ***************************
 QUERY PLAN: Project
 *************************** 2. row ***************************
-QUERY PLAN:   Analyze: timeConsumed=0us inputRows=0 outputRows=0 inputSize=0bytes outputSize=0bytes memorySize=0bytes
+QUERY PLAN:   Analyze: timeConsumed=0ms waitTime=0ms inputRows=0 outputRows=0 InputSize=0bytes OutputSize=0bytes MemorySize=0bytes
 *************************** 3. row ***************************
-QUERY PLAN:   ->  Table Scan on aaa.t3
+QUERY PLAN:   ->  Table Scan on tpch.t3
 *************************** 4. row ***************************
-QUERY PLAN:         Analyze: timeConsumed=154us inputRows=0 outputRows=0 inputSize=0bytes outputSize=0bytes memorySize=0bytes
+QUERY PLAN:         Analyze: timeConsumed=0ms waitTime=0ms inputRows=0 outputRows=0 InputSize=0bytes OutputSize=0bytes MemorySize=0bytes
 *************************** 5. row ***************************
-QUERY PLAN:         Filter Cond: (CAST(t3.i AS BIGINT) > 8)
+QUERY PLAN:         Filter Cond: (t3.i > 8)
 5 rows in set (0.00 sec)
 
 > EXPLAIN ANALYZE SELECT * FROM t3 WHERE pk > 17\G
 *************************** 1. row ***************************
 QUERY PLAN: Project
 *************************** 2. row ***************************
-QUERY PLAN:   Analyze: timeConsumed=0us inputRows=0 outputRows=0 inputSize=0bytes outputSize=0bytes memorySize=0bytes
+QUERY PLAN:   Analyze: timeConsumed=0ms waitTime=0ms inputRows=0 outputRows=0 InputSize=0bytes OutputSize=0bytes MemorySize=0bytes
 *************************** 3. row ***************************
-QUERY PLAN:   ->  Table Scan on aaa.t3
+QUERY PLAN:   ->  Table Scan on tpch.t3
 *************************** 4. row ***************************
-QUERY PLAN:         Analyze: timeConsumed=309us inputRows=0 outputRows=0 inputSize=0bytes outputSize=0bytes memorySize=0bytes
+QUERY PLAN:         Analyze: timeConsumed=0ms waitTime=0ms inputRows=0 outputRows=0 InputSize=0bytes OutputSize=0bytes MemorySize=0bytes
 *************************** 5. row ***************************
-QUERY PLAN:         Filter Cond: (CAST(t3.pk AS BIGINT) > 17)
-5 rows in set (0.00 sec)
+QUERY PLAN:         Filter Cond: (t3.pk > 17)
+5 rows in set (0.01 sec)
 ```
-
-Values shown for actual time in the output of this statement are expressed in milliseconds.

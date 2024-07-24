@@ -7,7 +7,7 @@ Returns the SQL statement when PUBLICATION was created.
 ## **Syntax**
 
 ```
-SHOW CREATE PUBLICATION pubname;
+SHOW CREATE PUBLICATION pubname;
 ```
 
 ## **Examples**
@@ -19,7 +19,6 @@ create account acc2 admin_name 'root' identified by '111';
 create database t;
 create publication pub3 database t account acc0,acc1;
 mysql> alter publication pub3 account add accx;
-show create publication pub3;
 Query OK, 0 rows affected (0.00 sec)
 
 mysql> show create publication pub3;

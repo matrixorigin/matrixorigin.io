@@ -26,30 +26,30 @@ The output will include the function name, database name, type, creation time, a
 ## **Examples**
 
 ```sql
-mysql> create function twosum (x float, y float) returns float language sql as 'select $1 + $2' ;
-Query OK, 0 rows affected (0.03 sec)
-
-mysql> create function mysumtable(x int) returns int language sql as 'select mysum(test_val, id) from tbl1 where id = $1';
-Query OK, 0 rows affected (0.02 sec)
-
-mysql> create function helloworld () returns int language sql as 'select id from tbl1 limit 1';
-Query OK, 0 rows affected (0.02 sec)
+create or replace function py_add(a int, b int) returns int language python as 
+$$
+def add(a, b):
+  return a + b
+$$
+handler 'add';
+create function twosum (x float, y float) returns float language sql as 'select $1 + $2' ;
+create function helloworld () returns int language sql as 'select id from tbl1 limit 1';
 
 mysql> show function status;
-+------+------------+----------+---------+---------------------+---------------------+---------------+---------+----------------------+----------------------+--------------------+
-| Db   | Name       | Type     | Definer | Modified            | Created             | Security_type | Comment | character_set_client | collation_connection | Database Collation |
-+------+------------+----------+---------+---------------------+---------------------+---------------+---------+----------------------+----------------------+--------------------+
-| aab  | twosum     | FUNCTION | root    | 2023-03-27 06:25:41 | 2023-03-27 06:25:41 | DEFINER       |         | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
-| aab  | mysumtable | FUNCTION | root    | 2023-03-27 06:25:51 | 2023-03-27 06:25:51 | DEFINER       |         | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
-| aab  | helloworld | FUNCTION | root    | 2023-03-27 06:25:58 | 2023-03-27 06:25:58 | DEFINER       |         | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
-+------+------------+----------+---------+---------------------+---------------------+---------------+---------+----------------------+----------------------+--------------------+
-3 rows in set (0.00 sec)
++------+-------------+----------+---------+---------------------+---------------------+---------------+---------+----------------------+----------------------+--------------------+
+| Db   | Name        | Type     | Definer | Modified            | Created             | Security_type | Comment | character_set_client | collation_connection | Database Collation |
++------+-------------+----------+---------+---------------------+---------------------+---------------+---------+----------------------+----------------------+--------------------+
+| db1  | py_add      | FUNCTION | root    | 2024-01-16 08:00:21 | 2024-01-16 08:00:21 | DEFINER       |         | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
+| db1  | twosum      | FUNCTION | root    | 2024-01-16 08:00:39 | 2024-01-16 08:00:39 | DEFINER       |         | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
+| db1  | helloworld  | FUNCTION | root    | 2024-01-16 08:00:53 | 2024-01-16 08:00:53 | DEFINER       |         | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
++------+-------------+----------+---------+---------------------+---------------------+---------------+---------+----------------------+----------------------+--------------------+
+3 rows in set (0.01 sec)
 
 mysql> show function status like 'two%';
 +------+--------+----------+---------+---------------------+---------------------+---------------+---------+----------------------+----------------------+--------------------+
 | Db   | Name   | Type     | Definer | Modified            | Created             | Security_type | Comment | character_set_client | collation_connection | Database Collation |
 +------+--------+----------+---------+---------------------+---------------------+---------------+---------+----------------------+----------------------+--------------------+
-| aab  | twosum | FUNCTION | root    | 2023-03-27 06:25:41 | 2023-03-27 06:25:41 | DEFINER       |         | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
+| db1  | twosum | FUNCTION | root    | 2024-01-16 08:00:39 | 2024-01-16 08:00:39 | DEFINER       |         | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
 +------+--------+----------+---------+---------------------+---------------------+---------------+---------+----------------------+----------------------+--------------------+
-1 row in set (0.01 sec)
+1 rows in set (0.01 sec)
 ```
