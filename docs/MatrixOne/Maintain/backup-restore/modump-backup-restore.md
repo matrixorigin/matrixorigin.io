@@ -1,22 +1,22 @@
-# Backup and Restore by using mo-dump
+# mo-dump Backup and Recovery
 
-It is essential to back up your databases to recover your data and be up and running again in case problems occur, such as system crashes, hardware failures, or users deleting data by mistake. Backups are also essential as a safeguard before upgrading a MatrixOne installation, and they can be used to transfer a MatrixOne building to another system.
+For businesses that produce a lot of data every day, it's important to back up the database. In case of system crash or hardware failure, or user misoperation, you can recover data and restart the system without data loss.
 
-MatrixOne currently only supports logical backup through the `modump` utility. `modump` is a command-line utility used to generate the logical backup of the MatrixOne database. It produces SQL Statements that can be used to recreate the database objects and data. You can look up the syntax and usage guide in the [modump](../../Develop/export-data/modump.md) chapter.
+In addition, data backups serve as safeguards before upgrading a MatrixOne installation, while data backups can also be used to transfer a MatrixOne installation to another system.
 
-We will take a simple example to walk you through the backup and restore process with the `modump` utility.
+MatrixOne supports logical backups via the `mo-dump` utility. `modump` is a command-line utility that generates logical backups of MatrixOne databases. It generates SQL statements that can be used to recreate database objects and data. You can find its syntax description and usage guide in the [mo-dump](../../Develop/export-data/modump.md) chapter.
+
+We'll walk through a simple example of how to use the `mo-dump` utility to complete the data backup and restore process.
 
 ## Steps
 
-### 1. [Build the modump binary](../../Develop/export-data/modump.md)
+### 1. Deployment of mo-dump
 
-For more information on how to build the `modump` binary, see [Build the modump binary](../../Develop/export-data/modump.md).
+See the [mo-dump tool writing](../../Develop/export-data/modump.md) chapter to complete the deployment of `the mo-dump` tool.
 
-If the `modump` binary has been built, you can continue to browse the next chapter **Generate the backup of a single database**.
+### 2. Generate a backup of a single database
 
-### 2. Generate the backup of a single database
-
-We have a database **t** which is created by the following SQL.
+An example is the database *t* and its table *t1* created using the following SQL:
 
 ```
 DROP DATABASE IF EXISTS `t`;
@@ -48,33 +48,33 @@ create table t1
 insert into t1 values (1, 1, 1, 1, 1, 1, 1, 1, 1, 1, '2019-01-01', '2019-01-01 00:00:00', '2019-01-01 00:00:00', 'a', 'a', '{"a":1}','1212.1212', 'a', 'aza', '00000000-0000-0000-0000-000000000000');
 ```
 
-If you want to generate the backup of the single database, run the following command. The command will generate the backup of the **t** database with structure and data in the `t.sql` file.
+If you want to generate a backup of a single database, you can run the following command. This command will generate a backup of the database named *t* with the structure and data in the *t.sql* file.
 
 ```
-./modump -u root -p 111 -h 127.0.0.1 -P 6001 -db t > t.sql
+./mo-dump -u root -p 111 -h 127.0.0.1 -P 6001 -db t > t.sql
 ```
 
-If you want to generate the backup of a single table in a database, run the following command. The command will generate the backup of the `t1` table of  `t` database with structure and data in the `t.sql` file.
+If you want to generate a backup of a single table in the database, you can run the following command. This command generates a backup of the *t1* table of the database named *t*, which contains the structure and data in the *t.sql* file.
 
 ```
-./modump -u root -p 111 -db t -tbl t1 > t1.sql
+./mo-dump -u root -p 111 -db t -tbl t1 > t1.sql
 ```
 
 !!! note
-    If you have multiple databases, you need to run `modump` multiple times to generate SQLs one by one.
+    If you want to generate a backup of multiple databases/tables, you need to separate the database names/table names with `,` .
 
-### 3. Restore the backup to MatrixOne server
+### 3. Restore Backup to MatrixOne Server
 
-Restoring a MatrixOne database using the exported 'sql' file is very simple. To restore the database, you must create an empty database and use `mysql client` to restore.
+Restoring an exported *sql* file to a MatrixOne database is relatively simple. To recover your database, you must first create an empty database and use the *MySQL client* to recover.
 
-Connect to MatrixOne with MySQL client in the same server, and make sure the exported `sql` file is also in the same machine as the MySQL client.
+Connect MatrixOne to the same server as the MySQL client and make sure the exported *sql* file is also on the same server.
 
 ```
 mysql> create database t if not exists;
 mysql> source /YOUR_SQL_FILE_PATH/t.sql
 ```
 
-Once command executes successfully, execute the following command to verify that all objects have been created on the `t` database.
+After successfully executing the above command, execute the following command to check if all objects were created on the named *t* database.
 
 ```
 mysql> use t;

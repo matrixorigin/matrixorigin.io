@@ -1,14 +1,14 @@
-# Misc Function
+# Mathematical class functions
 
-Other support functions on vector include.
+Vectors support the following mathematical functions:
 
 ## SQRT
 
-### **Description**
+### **Function Description**
 
-The sqrt function is used to calculate the square root of each element in a vector.
+The `sqrt` function is used to calculate the square root of each element in a vector.
 
-### **Syntax**
+### **Function syntax**
 
 ```
 > SELECT sqrt(vector_column) FROM table_name;
@@ -16,7 +16,7 @@ The sqrt function is used to calculate the square root of each element in a vect
 
 #### Return Type
 
-Return a new vector of type vecf64 containing the square root of each element in the original vector.
+Returns a new vector of type vecf64 containing the square root of each element in the original vector.
 
 ### **Examples**
 
@@ -41,17 +41,17 @@ mysql> select sqrt(b) from vec_table;
 1 row in set (0.00 sec)
 ```
 
-### **Constraints**
+### **Restrictions**
 
-- Elements of the vector cannot have -ve.
+- Elements of a vector cannot be negative.
 
 ## ABS
 
-### **Description**
+### **Function Description**
 
-The abs function is used to calculate the absolute value of a vector.
+The `abs` function is used to calculate the absolute value of a vector.
 
-### **Syntax**
+### **Function syntax**
 
 ```
 > SELECT ABS(vector_column) FROM table_name;
@@ -59,7 +59,7 @@ The abs function is used to calculate the absolute value of a vector.
 
 #### Return Type
 
-Return a new vector of same type, containing the absolute values of each element in the original vector.
+Returns a new vector of the same type containing the absolute value of each element in the original vector.
 
 ### **Examples**
 
@@ -67,13 +67,13 @@ Return a new vector of same type, containing the absolute values of each element
 drop table if exists vec_table;
 create table vec_table(a int, b vecf32(3), c vecf64(3));
 insert into vec_table values(1, "[-1,-2,3]", "[4,5,6]");
-mysql> select * from vec_table;
-+------+-------------+-----------+
-| a    | b           | c         |
-+------+-------------+-----------+
-|    1 | [-1, -2, 3] | [4, 5, 6] |
-+------+-------------+-----------+
-1 row in set (0.00 sec)
+  mysql> select * from vec_table;
+  +------+-------------+-----------+
+  | a    | b           | c         |
+  +------+-------------+-----------+
+  |    1 | [-1, -2, 3] | [4, 5, 6] |
+  +------+-------------+-----------+
+  1 row in set (0.00 sec)
 
 mysql> select abs(b) from vec_table;
 +-----------+
@@ -86,24 +86,24 @@ mysql> select abs(b) from vec_table;
 
 ## CAST
 
-### **Description**
+### **Function Description**
 
-The cast function is used to explicitly convert vector from one vector type to another.
+The cast function is used to explicitly convert a vector from one vector type to another.
 
-### **Syntax**
+### **Function syntax**
 
 ```
 > SELECT CAST(vector AS vector_type) FROM table_name;
 ```
 
-#### Arguments
+#### Parameters
 
-- `vector`: input vector
-- `vector_type`: new vector type
+- `vector`: Enter the vector.
+- `vector_type`: new vector type.
 
 #### Return Type
 
-The new vector_type vector.
+New `vector_type` vector.
 
 ### **Examples**
 
@@ -130,11 +130,11 @@ mysql> select b + cast("[1,2,3]" as vecf32(3)) from vec_table;
 
 ## SUMMATION
 
-### **Description**
+### **Function Description**
 
-The summation function returns the sum of all the elements in a vector.
+The `summation` function returns the sum of all the elements in the vector.
 
-### **Syntax**
+### **Function syntax**
 
 ```
 > SELECT SUMMATION(vector_column) FROM table_name;

@@ -61,8 +61,28 @@ This document lists the features supported by the latest version of MatrixOne an
 | STORED PROCEDURE     | N                                  |
 | TRIGGER                | N                                  |
 | EVENT SCHEDULER     | N                                  |
-| UDF                 | N                                  |
+| UDF                 | Y                                  |
 | Materialized VIEW | N                                  |
+
+## Stream Calculation
+
+| Stream Computing Capabilities | Supported (Y) / Not Supported (N) / Experimental Features (E) |
+|-------------------------------| --------------------------------------------------------------|
+| Dynamic Tables | E |
+| Kafka Connectors | E |
+| Materialized View | N |
+| (incremental) Materialized View | N |
+
+## Timing
+
+| Timing                        | Supported (Y) / Not Supported (N) / Experimental Features (E) |
+|-------------------------------| ----------------------------------------|
+| Timing Table  | Y |
+| Sliding window  | Y |
+| Downsampling| Y |
+| Interpolation | Y |
+| TTL(Time To Live)| N |
+| ROLLUP | Y |
 
 ## Data types
 

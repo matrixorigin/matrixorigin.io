@@ -22,6 +22,8 @@ When defining FOREIGN KEY, the following rules need to be followed:
 
 **Foreign Key Characteristics**
 
+- Foreign key self-referencing: is when a column in a table references the primary key of the same table. This design is often used to represent hierarchical or parent-child relationships, such as organizational structures, classified directories, and so on.
+
 - Multi-column foreign key: This type of foreign key is when two or more columns in a table jointly reference another table's primary key. In other words, these columns together define the reference to another table. They must exist in the form of a group and need to meet the foreign key constraint simultaneously.
 
 - Multi-level foreign key: This situation usually involves three or more tables, and they have a dependency relationship. A table's foreign key can be another table's primary key, and this table's foreign key can be the primary key of a third table, forming a multi-level foreign key situation.
@@ -92,7 +94,41 @@ ERROR 20101 (HY000): internal error: Cannot add or update a child row: a foreign
 
 **Example Explanation**: In the above example, column c of t2 can only refer to the value or null value of column a in t1, so the operation of inserting row 1 and row 2 of t1 can be successfully inserted, but row 3 103 in the row is not a value in column a of t1, which violates the foreign key constraint, so the insert fails.
 
-### Example 2 - Multi-column foreign key
+### Example 2 - Foreign key self-reference
+
+```sql
+-- Create a table named categories to store product categorization information.
+CREATE TABLE categories (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    parent_id INT,
+    FOREIGN KEY (parent_id) REFERENCES categories(id)
+);
+
+mysql> INSERT INTO categories (name) VALUES ('Electronics'),('Books');
+Query OK, 2 rows affected (0.01 sec)
+
+mysql> INSERT INTO categories (name, parent_id) VALUES ('Laptops', 1),('Smartphones', 1),('Science Fiction', 2),('Mystery', 2);
+Query OK, 4 rows affected (0.01 sec)
+
+mysql> select * from categories;
++------+-----------------+-----------+
+| id   | name            | parent_id |
++------+-----------------+-----------+
+|    1 | Electronics     |      NULL |
+|    2 | Books           |      NULL |
+|    3 | Laptops         |         1 |
+|    4 | Smartphones     |         1 |
+|    5 | Science Fiction |         2 |
+|    6 | Mystery         |         2 |
++------+-----------------+-----------+
+6 rows in set (0.01 sec)
+
+```
+
+**Example Explanation**:In the above code, we have created a table named `categories` to store the category information of the products and first inserted two top level categories `Electronics` and `Books`. Then, we added subcategories to each of the top-level categories, for example, `Laptops` and `Smartphones` are subcategories of `Electronics`, and `Science Fiction` and `Mystery` are subcategories of `Books`.
+
+### Example 3 - Multi-column foreign key
 
 ```sql
 -- Creating a "Student" table to store student information
@@ -121,7 +157,7 @@ CREATE TABLE StudentCourse (
 
 **Example Explanation**: In the above example, there are three tables: the `Student` table, the `Course` table, and the `StudentCourse` table for recording which students have chosen which courses. In this case, the `Student ID` and `Course ID` in the course selection table can serve as foreign keys, jointly referencing the primary keys of the student table and the course table.
 
-### Example 3 - Multi-level foreign key
+### Example 4 - Multi-level foreign key
 
 ```sql
 -- Creating a "Country" table to store country information

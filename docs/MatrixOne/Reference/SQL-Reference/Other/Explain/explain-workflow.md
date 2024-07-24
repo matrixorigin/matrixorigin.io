@@ -2,122 +2,463 @@
 
 ## Output Structure
 
-The command's result is a textual description of the plan selected for the *`statement`*, optionally annotated with execution statistics.
+The syntax structure execution result is a textual description of the plan selected for the `statement`, optionally annotated with execution statistics.
 
-Take the following SQL as an example, we demonstrate the output structure.
-
-```
-explain select city,libname1,count(libname1) as a from t3 join t1 on libname1=libname3 join t2 on isbn3=isbn2 group by city,libname1;
-```
+The following is an example of an output structure using query analysis of a dataset in [TPCH]( ../../../../Test/performance-testing/TPCH-test-with-matrixone.md):
 
 ```
-+--------------------------------------------------------------------------------------------+
-| QUERY PLAN                                                                                 |
-+--------------------------------------------------------------------------------------------+
-| Project(cost=0.00..0.00 card=400.00 ndv=0.00 rowsize=0                                     |
-|   ->  Aggregate(cost=0.00..0.00 card=400.00 ndv=0.00 rowsize=0                             |
-|         Group Key:#[0,1], #[0,0]                                                           |
-|         Aggregate Functions: count(#[0,0])                                                 |
-|         ->  Join(cost=0.00..0.00 card=400.00 ndv=0.00 rowsize=0                            |
-|               Join Type: INNER                                                             |
-|               Join Cond: (#[1,2] = #[0,0])                                                 |
-|               ->  Table Scan on abc.t2(cost=0.00..0.00 card=8.00 ndv=0.00 rowsize=0        |
-|               ->  Join(cost=0.00..0.00 card=50.00 ndv=0.00 rowsize=0                       |
-|                     Join Type: INNER                                                       |
-|                     Join Cond: (#[0,0] = #[1,1])                                           |
-|                     ->  Table Scan on abc.t1(cost=0.00..0.00 card=5.00 ndv=0.00 rowsize=0  |
-|                     ->  Table Scan on abc.t3(cost=0.00..0.00 card=10.00 ndv=0.00 rowsize=0 |
-+--------------------------------------------------------------------------------------------+
-13 rows in set (0.00 sec)
+explain SELECT * FROM customer WHERE c_nationkey = (SELECT n_nationkey FROM nation
+WHERE customer.c_nationkey  = nation.n_nationkey  AND nation.n_nationkey > 5);
 ```
 
-EXPLAIN outputs a tree structure, named as `Execution Plan Tree`. Every leaf node includes the information of node type, affected objects and other properties such as `cost`, `rowsize` and so on. We can simplify the above example only with node type information. It visualizes the whole process of a SQL query,  shows which operation nodes it goes through and what are their cost  estimation.
+```
+mysql> explain SELECT * FROM customer WHERE c_nationkey = (SELECT n_nationkey FROM nation
+    -> WHERE customer.c_nationkey  = nation.n_nationkey  AND nation.n_nationkey > 5);
++----------------------------------------------------------------------+
+| QUERY PLAN                                                           |
++----------------------------------------------------------------------+
+| Project                                                              |
+|   ->  Filter                                                         |
+|         Filter Cond: (customer.c_nationkey = nation.n_nationkey)     |
+|         ->  Join                                                     |
+|               Join Type: SINGLE   hashOnPK                           |
+|               Join Cond: (customer.c_nationkey = nation.n_nationkey) |
+|               ->  Table Scan on tpch.customer                        |
+|               ->  Table Scan on tpch.nation                          |
+|                     Filter Cond: (nation.n_nationkey > 5)            |
+|                     Block Filter Cond: (nation.n_nationkey > 5)      |
++----------------------------------------------------------------------+
+10 rows in set (0.01 sec)
+```
+
+EXPLAIN 输出一个名
+EXPLAIN outputs a tree structure named `QUERY PLAN`, with each leaf node containing the node type, affected objects. We will now only use node type information to simplify the presentation of the example above. The `QUERY PLAN` tree visualizes the entire process of a SQL query, showing the nodes through which it operates.
 
 ```
 Project
-└── Aggregate
+└── Filter
     └── Join
         └── Table Scan
-        └──	Join
-        	  └──Table Scan
-        	  └──Table Scan
+        └──	Table Scan
 ```
 
-## Node types
+## Node Type
 
-MatrixOne supports the following node types:
+MatrixOne supports the following node types.
 
-| Node Type       | Name in Explain |
-| --------------- | --------------- |
-| Node_TABLE_SCAN | Table Scan      |
-| Node_VALUE_SCAN | Values Scan     |
-| Node_PROJECT    | Project         |
-| Node_AGG        | Aggregate       |
-| Node_FILTER     | Filter          |
-| Node_JOIN       | Join            |
-| Node_SORT       | Sort            |
-| Node_INSERT     | Insert          |
-| Node_UPDATE     | Update          |
-| Node_DELETE     | Delete          |
+| Node name                      | meaning             |
+|: -------------------------- |: --------------- |
+| Values Scan	              | Scanning of processed values|
+| Table Scan	              | Scanning data from a table|
+| External Scan	              | Handling external data scanning|
+| Source Scan	              | Processing a data scan of the source table
+| Project	                  | Projective operations on data|
+| Sink	                      | Distribute the same data to one / more objects|
+| Sink Scan                   | Read data distributed by other objects|
+| Recursive Scan	          | In the loop CTE syntax, the data at the end of each loop is processed to determine whether to open the next round of looping |
+| CTE Scan	                  | Loop CTE syntax to read the data at the beginning of each loop |
+| Aggregate	                  | Aggregation of data|
+| Filter	                  | Filtering of data|
+| Join	                      | Concatenation of data|
+| Sample                      |	SAMPLE Sampling function to sample the data|
+| Sort	                      | Sorting data|
+| Partition                   | Sorting data in the range window and slicing by value|
+| Union	                      | Combining result sets for two or more queries|
+| Union All	                  | Combination of result sets for two or more queries, including duplicate rows|
+| Window	                  | Perform range window calculations on data|
+| Time Window	              | Perform time window calculations on data|
+| Fill	                      | Handling NULL values in the time window|
+| Insert	                  | Insertion of data|
+| Delete	                  | Deletion of data|
+| Intersect                   | Combination of rows that exist for two or more queries|
+| Intersect All	              | Combination of rows that exist for two or more queries, including duplicate rows.|
+| Minus	                      | Compares the results of two queries and returns the rows that exist in the first query but not in the second query|
+| Table Function              | Reading data through table functions|
+| PreInsert	                  | Organize the data to be written|
+| PreInsert UniqueKey	      | Organize the data to be written to the unique key hidden table|
+| PreInsert SecondaryKey	  | Organize the data to be written to the secondary index hidden table|
+| PreDelete	                  | Organize the data that needs to be deleted from the partitioned table.|
+| On Duplicate Key	          | Updates to duplicate data|
+| Fuzzy Filter for duplicate key	| De-duplication of written/updated data|
+| Lock	                      |Locking the data of an operation|
+
+## Example
+
+### VALUES Scan & Project
+
+```sql
+mysql> explain  select abs(-1);
++-------------------------------+
+| QUERY PLAN                    |
++-------------------------------+
+| Project                       |
+|   ->  Values Scan "*VALUES*"  |
++-------------------------------+
+2 rows in set (0.00 sec)
+```
 
 ### Table Scan
 
-| Property    | Format                                                       | Description                                                  |
-| ----------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| cost        | cost=0.00..0.00                                              | The first is estimated start-up cost. This is the time expended before the output phase can begin, e.g., time to do the sorting in a sort node. The second is estimated total cost. This is stated on the assumption that the plan node is run to completion, i.e., all available rows are retrieved. In practice a node's parent node might stop short of reading all available rows (see the `LIMIT` example below). |
-| card        | card=14.00                                                   | Estimated column cardinality.                                |
-| ndv         | ndv=0.00                                                     | Estimated number of distinct values.                         |
-| rowsize     | rowsize=0.00                                                 | Estimated rowsize.                                           |
-| output      | Output: #[0,0], #[0,1], #[0,2], #[0,3], #[0,4], #[0,5], #[0,6], #[0,7] | Node output information.                                     |
-| Table       | Table : 'emp' (0:'empno', 1:'ename', 2:'job', 3:'mgr',)      | Table definition information after column pruning.           |
-| Filter Cond | Filter Cond: (CAST(#[0,5] AS DECIMAL128) > CAST(20 AS DECIMAL128)) | Filter condition.                                            |
+```sql
+mysql> explain select * from customer;
++-----------------------------------+
+| QUERY PLAN                        |
++-----------------------------------+
+| Project                           |
+|   ->  Table Scan on tpch.customer |
++-----------------------------------+
+2 rows in set (0.01 sec)
+```
 
-### Values Scan
+### External Scan
 
-| Property | Format                                          | Description             |
-| -------- | ----------------------------------------------- | ----------------------- |
-| cost     | (cost=0.00..0.00 card=14.00 ndv=0.00 rowsize=0) | Estimated cost          |
-| output   | Output: 0                                       | Node output information |
+```sql
+mysql> create external table extable(n1 int)infile{"filepath"='yourpath/xx.csv'} ;
+Query OK, 0 rows affected (0.03 sec)
 
-### Project
+mysql> explain select * from extable;
++------------------------------------+
+| QUERY PLAN                         |
++------------------------------------+
+| Project                            |
+|   ->  External Scan on db1.extable |
++------------------------------------+
+2 rows in set (0.01 sec)
+```
 
-| Property | Format                                          | Description             |
-| -------- | ----------------------------------------------- | ----------------------- |
-| cost     | (cost=0.00..0.00 card=25.00 ndv=0.00 rowsize=0) | Estimated cost          |
-| output   | Output: (CAST(#[0,0] AS INT64) + 2)             | Node output information |
+### Sink & Lock & Delete & Insert & PreInsert & Sink Scan
 
-### Aggregate
+```sql
+mysql> create table t3(n1 int);
+Query OK, 0 rows affected (0.02 sec)
 
-| Property            | Format                                                       | Description             |
-| ------------------- | ------------------------------------------------------------ | ----------------------- |
-| cost                | (cost=0.00..0.00 card=14.00 ndv=0.00 rowsize=0)              | Estimated cost          |
-| output              | Output: #[0,0], #[0,1], #[0,2], #[0,3], #[0,4], #[0,5], #[0,6], #[0,7] | Node output information |
-| Group Key           | Group Key:#[0,0]                                             | Key for grouping        |
-| Aggregate Functions | Aggregate Functions: max(#[0,1])                             | Aggregate function name |
+mysql> insert into t3 values(1);
+Query OK, 1 row affected (0.01 sec)
 
-### Filter
+mysql> explain update t3 set n1=2;
++-----------------------------------------------+
+| QUERY PLAN                                    |
++-----------------------------------------------+
+| Plan 0:                                       |
+| Sink                                          |
+|   ->  Lock                                    |
+|         ->  Project                           |
+|               ->  Project                     |
+|                     ->  Table Scan on tpch.t3 |
+| Plan 1:                                       |
+| Delete on tpch.t3                             |
+|   ->  Sink Scan                               |
+|         DataSource: Plan 0                    |
+| Plan 2:                                       |
+| Insert on tpch.t3                             |
+|   ->  Project                                 |
+|         ->  PreInsert on tpch.t3              |
+|               ->  Project                     |
+|                     ->  Sink Scan             |
+|                           DataSource: Plan 0  |
++-----------------------------------------------+
+17 rows in set (0.00 sec)
+```
 
-| Property    | Format                                                       | Description             |
-| ----------- | ------------------------------------------------------------ | ----------------------- |
-| cost        | (cost=0.00..0.00 card=14.00 ndv=0.00 rowsize=0)              | Estimated cost          |
-| output      | Output: #[0,0], #[0,1], #[0,2], #[0,3], #[0,4], #[0,5], #[0,6], #[0,7] | Node output information |
-| Filter Cond | Filter Cond: (CAST(#[0,1] AS INT64) > 10)                    | Filter condition        |
+### Recursive Scan & CTE Scan & Filter
+
+```sql
+mysql> create table t4(n1 int,n2 int);
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> insert into t4 values(1,1),(2,2),(3,3);
+Query OK, 3 rows affected (0.01 sec)
+
+mysql> explain WITH RECURSIVE t4_1(n1_1) AS (
+    ->     SELECT n1 FROM t4 
+    ->     UNION all
+    ->     SELECT n1_1 FROM t4_1 WHERE n1_1=1
+    -> )
+    -> SELECT * FROM t4_1;
++---------------------------------------------------------------------------------------------------+
+| QUERY PLAN                                                                                        |
++---------------------------------------------------------------------------------------------------+
+| Plan 0:                                                                                           |
+| Sink                                                                                              |
+|   ->  Project                                                                                     |
+|         ->  Table Scan on tpch.t4                                                                 |
+| Plan 1:                                                                                           |
+| Sink                                                                                              |
+|   ->  Project                                                                                     |
+|         ->  Filter                                                                                |
+|               Filter Cond: (t4_1.n1_1 = 1), mo_check_level((t4_1.__mo_recursive_level_col < 100)) |
+|               ->  Recursive Scan                                                                  |
+|                     DataSource: Plan 2                                                            |
+| Plan 2:                                                                                           |
+| Sink                                                                                              |
+|   ->  CTE Scan                                                                                    |
+|         DataSource: Plan 0, Plan 1                                                                |
+| Plan 3:                                                                                           |
+| Project                                                                                           |
+|   ->  Sink Scan                                                                                   |
+|         DataSource: Plan 2                                                                        |
++---------------------------------------------------------------------------------------------------+
+19 rows in set (0.00 sec)
+```
+
+### Aggregate  
+
+```sql
+mysql>  explain  SELECT count(*) FROM NATION group by N_NAME;
++-------------------------------------------+
+| QUERY PLAN                                |
++-------------------------------------------+
+| Project                                   |
+|   ->  Aggregate                           |
+|         Group Key: nation.n_name          |
+|         Aggregate Functions: starcount(1) |
+|         ->  Table Scan on tpch.nation     |
++-------------------------------------------+
+5 rows in set (0.01 sec)
+```
 
 ### Join
 
-| Property         | Format                                          | Description             |
-| ---------------- | ----------------------------------------------- | ----------------------- |
-| cost             | (cost=0.00..0.00 card=14.00 ndv=0.00 rowsize=0) | Estimated cost          |
-| output           | Output: #[0,0]                                  | Node output information |
-| Join Type: INNER | Join Type: INNER                                | Join type               |
-| Join Cond        | Join Cond: (#[0,0] = #[1,0])                    | Join condition          |
+```sql
+mysql>  create table t5(n1 int);
+Query OK, 0 rows affected (0.01 sec)
 
-### Sort
+mysql> insert into t5 values(1),(2),(3);
+Query OK, 3 rows affected (0.01 sec)
 
-| Property | Format                                                       | Description                   |
-| -------- | ------------------------------------------------------------ | ----------------------------- |
-| cost     | (cost=0.00..0.00 card=25.00 ndv=0.00 rowsize=0)              | Estimated cost                |
-| output   | Output: #[0,0], #[0,1], #[0,2], #[0,3], #[0,4], #[0,5], #[0,6], #[0,7] | Node output information       |
-| Sort Key | Sort Key: #[0,0] DESC,  #[0,1] INTERNAL                      | Sort key                      |
-| Limit    | Limit: 10                                                    | Number limit for output data  |
-| Offset   | Offset: 20                                                   | Number offset for output data |
+mysql> create table t6(n1 int);
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> insert into t5 values(3),(4),(5);
+Query OK, 3 rows affected (0.01 sec)
+
+mysql> explain SELECT * FROM t5 LEFT JOIN t6 ON t5.n1 = t6.n1;
++------------------------------------+
+| QUERY PLAN                         |
++------------------------------------+
+| Project                            |
+|   ->  Join                         |
+|         Join Type: LEFT            |
+|         Join Cond: (t5.n1 = t6.n1) |
+|         ->  Table Scan on tpch.t5  |
+|         ->  Table Scan on tpch.t6  |
++------------------------------------+
+6 rows in set (0.00 sec)
+```
+
+### Sample
+
+```sql
+mysql> explain SELECT SAMPLE(c_address, 90 percent) FROM customer;
++-----------------------------------------------------+
+| QUERY PLAN                                          |
++-----------------------------------------------------+
+| Project                                             |
+|   ->  Sample                                        |
+|         Sample 90.00 Percent by: customer.c_address |
+|         ->  Table Scan on tpch.customer             |
++-----------------------------------------------------+
+4 rows in set (0.00 sec)
+```
+
+### SORT
+
+```sql
+mysql> explain select * from customer order by c_custkey;
++-----------------------------------------------+
+| QUERY PLAN                                    |
++-----------------------------------------------+
+| Project                                       |
+|   ->  Sort                                    |
+|         Sort Key: customer.c_custkey INTERNAL |
+|         ->  Table Scan on tpch.customer       |
++-----------------------------------------------+
+4 rows in set (0.00 sec)
+```
+
+### Partition & Window
+
+```sql
+mysql>CREATE TABLE t7(n1 int,n2 int);
+Query OK, 0 rows affected (0.01 sec)
+
+mysql>  INSERT INTO t7 values(1,3),(2,2),(3,1);
+Query OK, 3 rows affected (0.01 sec)
+
+mysql> explain SELECT SUM(n1) OVER(PARTITION BY n2) AS sn1 FROM t7;
++----------------------------------------------------------+
+| QUERY PLAN                                               |
++----------------------------------------------------------+
+| Project                                                  |
+|   ->  Window                                             |
+|         Window Function: sum(t7.n1); Partition By: t7.n2 |
+|         ->  Partition                                    |
+|               Sort Key: t7.n2 INTERNAL                   |
+|               ->  Table Scan on tpch.t7                  |
++----------------------------------------------------------+
+6 rows in set (0.01 sec)
+```
+
+### Time window & Fill
+
+```sql
+mysql> CREATE TABLE sensor_data (ts timestamp(3) primary key, temperature FLOAT);
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> INSERT INTO sensor_data VALUES('2023-08-01 00:00:00', 25.0);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO sensor_data VALUES('2023-08-01 00:05:00', 26.0);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> explain select _wstart, _wend from sensor_data  interval(ts, 10, minute)  fill(prev);
++---------------------------------------------------+
+| QUERY PLAN                                        |
++---------------------------------------------------+
+| Project                                           |
+|   ->  Fill                                        |
+|         Fill Columns:                             |
+|         Fill Mode: Prev                           |
+|         ->  Time window                           |
+|               Sort Key: sensor_data.ts            |
+|               Aggregate Functions: _wstart, _wend |
+|               ->  Table Scan on db2.sensor_data   |
++---------------------------------------------------+
+8 rows in set (0.00 sec)
+```
+
+### Intersect
+
+```sql
+mysql> explain select * from t5 intersect select * from t6;
++-----------------------------------------+
+| QUERY PLAN                              |
++-----------------------------------------+
+| Project                                 |
+|   ->  Intersect                         |
+|         ->  Project                     |
+|               ->  Table Scan on tpch.t5 |
+|         ->  Project                     |
+|               ->  Table Scan on tpch.t6 |
++-----------------------------------------+
+6 rows in set (0.00 sec)
+```
+
+### Intersect All
+
+```sql
+mysql> explain select * from t5 intersect all select * from t6;
++-----------------------------------------+
+| QUERY PLAN                              |
++-----------------------------------------+
+| Project                                 |
+|   ->  Intersect All                     |
+|         ->  Project                     |
+|               ->  Table Scan on tpch.t5 |
+|         ->  Project                     |
+|               ->  Table Scan on tpch.t6 |
++-----------------------------------------+
+6 rows in set (0.00 sec)
+```
+
+### Minus
+
+```sql
+mysql> explain select * from t5 minus  select * from t6;
++-----------------------------------------+
+| QUERY PLAN                              |
++-----------------------------------------+
+| Project                                 |
+|   ->  Minus                             |
+|         ->  Project                     |
+|               ->  Table Scan on tpch.t5 |
+|         ->  Project                     |
+|               ->  Table Scan on tpch.t6 |
++-----------------------------------------+
+6 rows in set (0.00 sec)
+```
+
+### Table Function
+
+```sql
+mysql>  explain select * from unnest('{"a":1}') u;
++-------------------------------------+
+| QUERY PLAN                          |
++-------------------------------------+
+| Project                             |
+|   ->  Table Function on unnest      |
+|         ->  Values Scan "*VALUES*"  |
++-------------------------------------+
+3 rows in set (0.10 sec)
+```
+
+### PreInsert UniqueKey & Fuzzy Filter for duplicate key
+
+```sql
+mysql> CREATE TABLE t8(n1 int,n2 int UNIQUE key);
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> explain INSERT INTO t8(n2) values(1);
++---------------------------------------------------------------------------------+
+| QUERY PLAN                                                                      |
++---------------------------------------------------------------------------------+
+| Plan 0:                                                                         |
+| Sink                                                                            |
+|   ->  PreInsert on tpch.t8                                                      |
+|         ->  Project                                                             |
+|               ->  Project                                                       |
+|                     ->  Values Scan "*VALUES*"                                  |
+| Plan 1:                                                                         |
+| Sink                                                                            |
+|   ->  Lock                                                                      |
+|         ->  PreInsert UniqueKey                                                 |
+|               ->  Sink Scan                                                     |
+|                     DataSource: Plan 0                                          |
+| Plan 2:                                                                         |
+| Insert on tpch.__mo_index_unique_018e2d16-6629-719d-82b5-036222e9658a           |
+|   ->  Sink Scan                                                                 |
+|         DataSource: Plan 1                                                      |
+| Plan 3:                                                                         |
+| Fuzzy Filter for duplicate key                                                  |
+|   ->  Table Scan on tpch.__mo_index_unique_018e2d16-6629-719d-82b5-036222e9658a |
+|         Filter Cond: (__mo_index_idx_col = 1)                                   |
+|         Block Filter Cond: (__mo_index_idx_col = 1)                             |
+|   ->  Sink Scan                                                                 |
+|         DataSource: Plan 1                                                      |
+| Plan 4:                                                                         |
+| Insert on tpch.t8                                                               |
+|   ->  Sink Scan                                                                 |
+|         DataSource: Plan 0                                                      |
++---------------------------------------------------------------------------------+
+27 rows in set (0.01 sec)
+```
+
+### PreInsert SecondaryKey
+
+```sql
+mysql>  CREATE TABLE t9 ( n1 int , n2 int, KEY key2 (n2) USING BTREE);
+Query OK, 0 rows affected (0.02 sec)
+
+mysql>  explain INSERT INTO t9(n2) values(2);
++--------------------------------------------------------------------------+
+| QUERY PLAN                                                               |
++--------------------------------------------------------------------------+
+| Plan 0:                                                                  |
+| Sink                                                                     |
+|   ->  PreInsert on tpch.t9                                               |
+|         ->  Project                                                      |
+|               ->  Project                                                |
+|                     ->  Values Scan "*VALUES*"                           |
+| Plan 1:                                                                  |
+| Insert on tpch.__mo_index_secondary_018e2d14-6f20-7db0-babb-c1fd505fd3c5 |
+|   ->  Lock                                                               |
+|         ->  PreInsert SecondaryKey                                       |
+|               ->  Sink Scan                                              |
+|                     DataSource: Plan 0                                   |
+| Plan 2:                                                                  |
+| Insert on tpch.t9                                                        |
+|   ->  Sink Scan                                                          |
+|         DataSource: Plan 0                                               |
++--------------------------------------------------------------------------+
+16 rows in set (0.00 sec)
+```

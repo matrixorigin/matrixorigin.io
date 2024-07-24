@@ -169,3 +169,4 @@ mysql> select * from t1 order by spID asc nulls last;
 
 1. `SELECT...FOR UPDATE` currently only supports single-table queries.
 2. `INTO OUTFILE` is limitedly support.
+3. When the table name is `DUAL`, it is not supported to execute `SELECT xx from DUAL` directly into the corresponding database (`USE DBNAME`), but you can specify the database name to query the table `DUAL` by using `SELECT xx from DBNAME.DUAL`.

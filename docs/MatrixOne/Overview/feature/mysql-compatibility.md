@@ -31,9 +31,6 @@ MatrixOne is highly compatible with the MySQL 8.0 protocol and commonly used fea
 
 ### About TABLE
 
-* The `CREATE TABLE .. AS SELECT` statement is not supported.
-* Support `AUTO_INCREMENT` in the column definition, but not the `AUTO_INCREMENT` custom start value in a table definition.
-* `CHARACTER SET/CHARSET` and `COLLATE` in column definitions are not supported.
 * `ENGINE=` in the table definition is not supported.
 * The clauses: `CHANGE [COLUMN]`, `MODIFY [COLUMN]`, `RENAME COLUMN`, `ADD [CONSTRAINT [symbol]] PRIMARY KEY`, `DROP PRIMARY KEY`, and `ALTER COLUMN ORDER BY` can be freely combined in `ALTER TABLE`, these are not supported to be used with other clauses for the time being.
 * Temporary tables currently do not support using `ALTER TABLE` to modify the table structure.
@@ -43,7 +40,6 @@ MatrixOne is highly compatible with the MySQL 8.0 protocol and commonly used fea
 
 ### About VIEW
 
-* `CREATE OR REPLACE VIEW` is not supported.
 * The `with check option` clause is not supported, but MatrixOne simply ignores' ENGINE= '.
 * The `DEFINER` and `SQL SECURITY` clauses are not supported.
 
@@ -83,7 +79,7 @@ MatrixOne is highly compatible with the MySQL 8.0 protocol and commonly used fea
 
 ### About INSERT
 
-* MatrixOne does not support modifiers such as `LOW_PRIORITY`, `DELAYED`, `HIGH_PRIORITY`, `IGNORE`.
+* MatrixOne does not support modifiers such as `LOW_PRIORITY`, `DELAYED`, `HIGH_PRIORITY`.
 
 ### About UPDATE
 
@@ -100,7 +96,6 @@ MatrixOne is highly compatible with the MySQL 8.0 protocol and commonly used fea
 ### About LOAD
 
 * MatrixOne supports `SET`, but only in the form of `SET columns_name=nullif(expr1,expr2)`.
-* MatrixOne does not support `ESCAPED BY`.
 * MatrixOne supports `LOAD DATA LOCAL` on the client side, but the `--local-infle` parameter must be added when connecting.
 * MatrixOne supports the import of `JSONlines` files but requires some unique syntax.
 * MatrixOne supports importing files from object storage but requires some unique syntax.
@@ -119,8 +114,13 @@ MatrixOne is highly compatible with the MySQL 8.0 protocol and commonly used fea
 * Triggers are not supported.
 * Stored procedures are not supported.
 * Event dispatchers are not supported.
-* Custom functions are not supported.
 * Materialized views are not supported.
+* Support for custom functions, Python only, with big differences in use with MySQL.
+
+## Stream Computing
+
+* Streaming is unique to MatrixOne and currently version 1.2.2 only supports Kafka connectors.
+* Kafka connectors need to be created and used with a special syntax.
 
 ## Data Types
 
@@ -130,19 +130,27 @@ MatrixOne is highly compatible with the MySQL 8.0 protocol and commonly used fea
 * DATETIME: The maximum value range of MySQL is `'1000-01-01 00:00:00'` to `'9999-12-31 23:59:59'`, and the maximum range of MatrixOne is `'0001-01 -01 00:00:00'` to `'9999-12-31 23:59:59'`.
 * TIMESTAMP: The maximum value range of MySQL is `'1970-01-01 00:00:01.000000'` UTC to `'2038-01-19 03:14:07.999999'` UTC, the maximum range of MatrixOne is `'0001- 01-01 00:00:00'` UTC to `'9999-12-31 23:59:59'` UTC.
 * MatrixOne supports `UUID` type.
+* MatrixOne supports vector types.
 * Spatial types are not supported.
-* `BIT` and `SET` types are not supported.
+* `SET` types are not supported.
 * `MEDIUMINT` type is not supported.
 
 ## Indexes and Constraints
 
+* MatrixOne supports vector indexing.
 * Secondary indexes only implement syntax and have no speedup effect.
 * Foreign keys do not support the `ON CASCADE DELETE` cascade delete.
 
 ## Partition Support
 
-* Only support `KEY`, `HASH` two partition types.
-* Subpartitions implement only syntax, not functionality.
+* Supports KEY, HASH, RANGE, RANGE COLUMNS, LIST, LIST COLUMNS.
+* Supports KEY, HASH two kinds of partition cropping, the other four are not yet realized.
+* Sub-partitioning only implements the syntax, not the function.
+* ADD/DROP/TRUNCATE PARTITION is not yet supported.
+
+## MatrixOne Keywords
+
+* MatrixOne and MySQL keywords have many differences, see [MatrixOne Keywords](../../Reference/Language-Structure/keywords.md).
 
 ## Functions and Operators
 
@@ -187,22 +195,32 @@ MatrixOne is highly compatible with the MySQL 8.0 protocol and commonly used fea
 
 * MatrixOne defaults to optimistic transactions.
 * different from MySQL, DDL statements in MatrixOne are transactional, and DDL operations can be rolled back within a transaction.
+* SET operations within a transaction are not allowed in MatrixOne.
 * Table-level lock `LOCK/UNLOCK TABLE` is not supported.
 
 ## Backup and Restore
 
-* The mysqldump backup tool is not supported; only the modump tool is supported.
-* Physical backups are supported.
-* Does not support binlog log backup.
-* Incremental backups are not supported.
+* Support for physical backups based on the mobackup tool.
+* Snapshot backup support
+* The mysqldump backup tool is not supported, only the mo-dump tool.
+* Binlog log backup is not supported.
 
 ## System variables
 
-* MatrixOne's `lower_case_table_names` has 5 modes; the default is 1.
+* MatrixOne's lower_case_table_names has 2 modes, default is 1.
+* MatrixOne's sql_mode only supports ONLY_FULL_GROUP_BY.
+
+## System Tables
+
+* MatrixOne's system tables have their own unique system tables, but also take into account MySQL's system tables as a whole.  
+* The default mysql and information_schema libraries in MatrixOne are compatible with the MySQL usage model.
+* The system_metrics system library in MatrixOne collects and stores a range of runtime status monitoring data for MatrixOne services.  
+* The system_system library in MatrixOne collects statements and system logs executed by users and systems in MatrixOne.
+* The mo_catalog system library in MatrixOne stores various database objects and metadata in MatrixOne.  
 
 ## Programming language
 
-* Java, Python, Golang connectors, and ORM are basically supported, and connectors and ORMs in other languages ​​may encounter compatibility issues.
+* Java, Python, C#, Golang connectors, and ORM are basically supported, and connectors and ORMs in other languages ​​may encounter compatibility issues.
 
 ## Other support tools
 

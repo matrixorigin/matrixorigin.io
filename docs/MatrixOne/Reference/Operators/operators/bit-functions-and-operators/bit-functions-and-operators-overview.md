@@ -6,7 +6,7 @@
 | [>>](right-shift.md) | Right shift |
 | [<<](left-shift.md) |Left shift|
 | [^](bitwise-xor.md) |Bitwise XOR|
-| [|](bitwise-or.md) |Bitwise OR|
+| [\|](bitwise-or.md) |Bitwise OR|
 | [~](bitwise-inversion.md) |Bitwise inversion|
 
 Bit functions and operators required BIGINT (64-bit integer) arguments and returned BIGINT values, so they had a maximum range of 64 bits. Non-BIGINT arguments were converted to BIGINT prior to performing the operation and truncation could occur.

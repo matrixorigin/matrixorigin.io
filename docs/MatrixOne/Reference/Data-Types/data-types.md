@@ -145,6 +145,95 @@ mysql> select min(big),max(big),max(big)-1 from floattable;
 1 row in set (0.05 sec)
 ```
 
+## **Binary type**
+
+|  data type | storage space | minimum value | maximum values  | grammatical representation  | descriptive |
+| --------| --------| ----- | -------------------- | -------- | ----  |
+| BIT     | 1bytes  | 0     | 18446744073709551615 | BIT(M)   | Data type for storing bit data, M supports the range from 1 to 64, M is 1 by default, if the stored data is less than M bits, then the length will be left zero padded. |
+
+### **Examples**
+
+```sql
+create table t1 (a bit);
+mysql> desc  t1;--bit(M)  M DEFAULT 1
++-------+--------+------+------+---------+-------+---------+
+| Field | Type   | Null | Key  | Default | Extra | Comment |
++-------+--------+------+------+---------+-------+---------+
+| a     | BIT(1) | YES  |      | NULL    |       |         |
++-------+--------+------+------+---------+-------+---------+
+1 row in set (0.01 sec)
+
+create table t2 (a bit(8));
+
+-- Assigning values with bit-value literal syntax
+insert into t2 values (0b1);
+insert into t2 values (b'1');
+mysql> select * from t2;
++------------+
+| a          |
++------------+
+| 0x01       |
+| 0x01       |
++------------+
+2 rows in set (0.00 sec)
+
+truncate table t2;
+
+--Assigning values with hex-value literal syntax
+insert into t2 values (0x10);
+insert into t2 values (x'10');
+mysql> select * from t2;
++------------+
+| a          |
++------------+
+| 0x10       |
+| 0x10       |
++------------+
+2 rows in set (0.00 sec)
+
+truncate table t2;
+
+--Supports assignment by int type, but the length of the binary representation of int cannot exceed the length of bit type.
+insert into t2 values (255);--a = b'11111111'
+mysql> insert into t2 values (256);--The length of the binary representation of 256 exceeds 8.
+ERROR 20301 (HY000): invalid input: data too long, type width = 8, val = 100000000
+
+mysql> select * from t2;
++------------+
+| a          |
++------------+
+| 0xFF       |
++------------+
+1 row in set (0.00 sec)
+
+truncate table t2;
+
+--Floating-point data will first be rounded to int type and then assigned according to the int type.
+insert into t2 values (2.1);--a = b'00000010'
+mysql> select * from t2;
++------------+
+| a          |
++------------+
+| 0x02       |
++------------+
+1 row in set (0.00 sec)
+
+truncate table t2;
+
+--Character data is stored as its encoded value, and the total length of the encoding into which the entire string is converted must not exceed the bit type.
+insert into t2 values ('a');--a = b'01100001' 
+mysql> insert into t2 values ('啊');--utf8('啊') = 0xe5958a;
+ERROR 20301 (HY000): invalid input: data too long, type width = 8, val = 111001011001010110001010
+
+mysql> select * from t2;
++------------+
+| a          |
++------------+
+| 0x61       |
++------------+
+1 row in set (0.00 sec)
+```
+
 ## **String Types**
 
 |  Data Type   | Size |Length | Syntax | Description|
@@ -295,6 +384,14 @@ mysql> select * from jsontest;
 | DateTime  | 8 bytes | microsecond | 0001-01-01 00:00:00.000000  | 9999-12-31 23:59:59.999999 | YYYY-MM-DD hh:mi:ssssss |
 | TIMESTAMP|8 bytes|microsecond|0001-01-01 00:00:00.000000|9999-12-31 23:59:59.999999|YYYYMMDD hh:mi:ss.ssssss|
 
+The Time and Date section type supports the following hint values when inserting data:
+
+- `Time`:{t 'xx'},{time 'xx'}
+
+- `Date`:{d 'xx'},{date 'xx'}
+
+- `TIMESTAMP`:{ts 'xx'},{timestamp 'xx'}
+
 ### **Examples**
 
 - TIME
@@ -302,17 +399,18 @@ mysql> select * from jsontest;
 ```sql
 -- Create a table named "timetest" with 1 attributes of a "time"
 create table time_02(t1 time);
-insert into time_02 values(200);
-insert into time_02 values("");
+insert into time_02 values(200),(time'23:29:30'),({t'12:11:12'}),('');
 
 mysql> select * from time_02;
 +----------+
 | t1       |
 +----------+
 | 00:02:00 |
+| 23:29:30 |
+| 12:11:12 |
 | NULL     |
 +----------+
-2 rows in set (0.00 sec)
+4 rows in set (0.01 sec)
 ```
 
 - DATE
@@ -320,17 +418,17 @@ mysql> select * from time_02;
 ```sql
 -- Create a table named "datetest" with 1 attributes of a "date"
 create table datetest (a date not null, primary key(a));
-insert into datetest values ('2022-01-01'), ('20220102'),('2022-01-03'),('20220104');
-
-mysql> select * from datetest order by a asc;
+insert into datetest values ({d'2022-01-01'}), ('20220102'),(date'2022-01-03'),({d now()});
+mysql> select * from datetest;
 +------------+
 | a          |
 +------------+
 | 2022-01-01 |
 | 2022-01-02 |
 | 2022-01-03 |
-| 2022-01-04 |
+| 2024-03-19 |
 +------------+
+4 rows in set (0.00 sec)
 ```
 
 - DATETIME
@@ -357,17 +455,18 @@ mysql> select * from datetimetest order by a asc;
 ```sql
 -- Create a table named "timestamptest" with 1 attribute of a "timestamp"
 create table timestamptest (a timestamp(0) not null, primary key(a));
-insert into timestamptest values ('20200101000000'), ('2022-01-02'), ('2022-01-02 00:00:01'), ('2022-01-02 00:00:01.512345');
+insert into timestamptest values ('20200101000000'), (timestamp'2022-01-02 11:30:40'), ({ts'2022-01-02 00:00:01'}), ({ts current_timestamp});
 
 mysql> select * from timestamptest;
 +---------------------+
 | a                   |
 +---------------------+
 | 2020-01-01 00:00:00 |
-| 2022-01-02 00:00:00 |
+| 2022-01-02 11:30:40 |
 | 2022-01-02 00:00:01 |
-| 2022-01-02 00:00:02 |
+| 2024-03-19 17:22:08 |
 +---------------------+
+4 rows in set (0.00 sec)
 ```
 
 ## **Bool**
@@ -451,5 +550,27 @@ mysql> select * from t1;
 +----------------------------------------+
 | 948d8e4e-1b00-11ee-b656-5ad2460dea50 |
 +----------------------------------------+
+1 row in set (0.00 sec)
+```
+
+## **vector data type**
+
+|type         | descriptive       |
+|------------|---------------------  |
+|vecf32      | Vector column type is float32     |
+|vecf64      | Vector column type is float64     |
+
+### **Example**
+
+```sql
+create table t1(n1 vecf32(3), n2 vecf64(2));
+insert into t1 values("[1,2,3]",'[4,5]');
+
+mysql> select * from t1;
++-----------+--------+
+| n1        | n2     |
++-----------+--------+
+| [1, 2, 3] | [4, 5] |
++-----------+--------+
 1 row in set (0.00 sec)
 ```

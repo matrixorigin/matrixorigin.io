@@ -1,20 +1,20 @@
-# Arithemetic Operators
+# Arithmetic operators
 
-MatrixOne supports the basic arithmetic operators like Add, Subtract, Multiply, Divide on vector. These operator performs element-wise arithemetic operation and return a new vector.
+MatrixOne supports basic arithmetic operators such as addition, subtraction, multiplication, and division between vectors or between vectors and scalars. These operators perform element-by-element arithmetic and return a new vector.
 
 !!! note
-    Sub(`-`), Multipy(`*`) and Divide(`/`) are all similar to the Add example.
+    Subtraction (`-`), multiplication (`*`), and division (`/`) are all similar to addition examples and will not be repeated.
 
 ## Add
 
-### **Description**
+### **Function Description**
 
-This operator is used to add two vectors element-wise by using the + operator.
+`+` is used to add two elements together.
 
-### **Syntax**
+### **Function syntax**
 
 ```
-> SELECT vector1 + vector2 AS result_vector FROM table_name;
+> SELECT para1 + para2
 ```
 
 ### **Examples**
@@ -38,24 +38,40 @@ mysql> select b + "[1,2,3]" from vec_table;
 | [2, 4, 6]   |
 +-------------+
 1 row in set (0.00 sec)
+
+mysql> select b + 1 from vec_table;
++-----------+
+| b + 1     |
++-----------+
+| [2, 3, 4] |
++-----------+
+1 row in set (0.01 sec)
+
+mysql> select cast("[1,2,3]" as vecf32(3)) + 5.0;
++----------------------------------+
+| cast([1,2,3] as vecf32(3)) + 5.0 |
++----------------------------------+
+| [6, 7, 8]                        |
++----------------------------------+
+1 row in set (0.00 sec)
 ```
 
-### **Constraints**
+### **Restrictions**
 
-- Both the argument vectors should be of same dimension
-- If operation is performed between vecf32 and vecf64, the result is cast to vecf64
-- If one of the argument is VECTOR in textual format, then the other argument should be of VECTOR type. If both the arguments are TEXT, then Query Engine would treat it like string operation.
+- When two vector type parameters are added, the dimensions of the vector should be the same.
+- If two vector type parameters are added, of type vecf32 and vecf64, the result is converted to vecf64.
+- When vector type and scalar type data are subtracted, vector type data needs to be subtracted.
 
 ## Divide
 
-### **Description**
+### **Function Description**
 
-This operator is used to divide two vectors element-wise by using the / operator.
+`/` Used to divide two vector elements.
 
-## **Syntax**
+## **Function syntax**
 
 ```
-> SELECT vector1 / vector2 AS result_vector FROM table_name;
+> SELECT para1 / para2
 ```
 
 ### **Examples**
@@ -79,11 +95,27 @@ mysql> select b/b from vec_table;
 | [1, 1, 1] |
 +-----------+
 1 row in set (0.00 sec)
+
+mysql> select cast("[1,2,3]" as vecf32(3)) / b from vec_table;;
++--------------------------------+
+| cast([1,2,3] as vecf32(3)) / b |
++--------------------------------+
+| [1, 1, 1]                      |
++--------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select b/2 from vec_table;
++---------------+
+| b / 2         |
++---------------+
+| [0.5, 1, 1.5] |
++---------------+
+1 row in set (0.00 sec)
 ```
 
-### **Constraints**
+### **Restrictions**
 
-- If one of the element in denominator vector is zero, then it will throw Division By Zero error.
--Both the argument vectors should be of same dimension
-- If operation is performed between vecf32 and vecf64, the result is cast to vecf64
-- If one of the argument is VECTOR in textual format, then the other argument should be of VECTOR type. If both the arguments are TEXT, then Query Engine would treat it like string operation.
+- The denominator element is not allowed to be 0, otherwise an error is generated.
+- The dimension should be the same when both parameters are vector types.
+- If two vector type parameters are added, of type vecf32 and vecf64, the result is converted to vecf64.
+- When vector type and scalar type data are divided, vector type data needs to be divisible.

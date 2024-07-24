@@ -1,16 +1,16 @@
-# COSINE_DISTANCE()
+# COSINE\_DISTANCE()
 
-## Description
+## Function Description
 
 The `COSINE_DISTANCE()` function is used to calculate the cosine distance between two vectors.
 
-Cosine Distance is a measure of the directional difference between two vectors, typically defined as 1 minus the cosine similarity ([Cosine Similarity](cosine_similarity.md)). The value of cosine distance ranges from 0 to 2. A value of 0 indicates that the directions of the two vectors are exactly the same (minimum distance). A value of 2 indicates that the directions of the two vectors are exactly opposite (maximum distance). In text analysis, cosine distance can be used to measure the similarity between documents. Since it only considers the direction of the vectors and not their magnitude, it is fair for comparisons between long and short texts.
+Cosine Distance is a measure of the difference in direction between two vectors, usually defined as 1 minus [Cosine Similarity](cosine_similarity.md). The value of the cosine distance ranges from 0 to 2. 0 means that both vectors are in exactly the same direction (minimum distance). 2 means that the two vectors are in exactly the opposite direction (maximum distance). In text analysis, cosine distance can be used to measure similarities between documents. Since it considers only the direction of the vector and not the length, it is fair for comparisons between long and short text.
 
 <div align="center">
 <img src=https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/reference/vector/cosine_distance.png width=50% heigth=50%/>
 </div>
 
-## Syntax
+## Function syntax
 
 ```
 > SELECT COSINE_DISTANCE(vector1, vector2) FROM tbl;
@@ -55,6 +55,6 @@ mysql> select cosine_distance(b,"[-1,-2,-3]") from vec_table;
 1 row in set (0.00 sec)
 ```
 
-## Constraints
+## Limitations
 
-When using the `COSINE_DISTANCE()`, input vectors must not be zero vectors, as this would result in a division by zero, which is undefined in mathematics. In practical applications, we generally consider the cosine similarity between a zero vector and any other vector to be zero, because there is no directional similarity between them.
+Input vectors are not allowed to be 0 vectors when using the `COSINE_DISTANCE()` function, as this results in a division by zero, which is mathematically undefined. In practice, we usually consider the cosine similarity of a zero vector to any other vector to be 0 because there is no similarity in any direction between them.
