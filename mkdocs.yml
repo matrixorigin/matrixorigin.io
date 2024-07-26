@@ -176,18 +176,44 @@ nav:
         - Rag Application demo: MatrixOne/Tutorial/rag-demo.md
         - Picture(Text)-to-Picture Search Application demo: MatrixOne/Tutorial/search-picture-demo.md
       - Ecological Tools:
+        - Message Queue Tools:
+          - Connecting MatrixOne with Kafka : MatrixOne/Develop/Ecological-Tools/Message-Queue/Kafka.md
         - BI Tools:
           - Visualizing MatrixOne Data with FineBI: MatrixOne/Develop/Ecological-Tools/BI-Connection/FineBI-connection.md
           - Visualizing MatrixOne Reports with Yonghong BI: MatrixOne/Develop/Ecological-Tools/BI-Connection/yonghong-connection.md
           - Visual Monitoring of MatrixOne with Superset: MatrixOne/Develop/Ecological-Tools/BI-Connection/Superset-connection.md
         - ETL Tools:
-          - Writing Data to MatrixOne Using SeaTunnel: MatrixOne/Develop/Ecological-Tools/Computing-Engine/seatunnel-write.md
-          - Writing Data to MatrixOne Using DataX: MatrixOne/Develop/Ecological-Tools/Computing-Engine/DataX-write.md
+          - Write Data to MatrixOne using SeaTunnel:
+            - Overview: MatrixOne/Develop/Ecological-Tools/Etl/Seatunnel/seatunnel-overview.md
+            - Writing Data from MySQL to MatrixOne: MatrixOne/Develop/Ecological-Tools/Etl/Seatunnel/seatunnel-mysql-matrixone.md
+            - Writing Data from Oracle to MatrixOne: MatrixOne/Develop/Ecological-Tools/Etl/Seatunnel/seatunnel-oracle-matrixone.md
+          - Using DataX to write data to MatrixOne:
+            - Overview: MatrixOne/Develop/Ecological-Tools/Etl/DataX/datax-overview.md
+            - Writing Data from MySQL to MatrixOne: MatrixOne/Develop/Ecological-Tools/Etl/DataX/datax-mysql-matrixone.md
+            - Writing Data from Oracle to MatrixOne: MatrixOne/Develop/Ecological-Tools/Etl/DataX/datax-oracle-matrixone.md
+            - Writing Data from PostgreSQL to MatrixOne: MatrixOne/Develop/Ecological-Tools/Etl/DataX/datax-postgresql-matrixone.md
+            - Writing Data from SQL Server to MatrixOne: MatrixOne/Develop/Ecological-Tools/Etl/DataX/datax-sqlserver-matrixone.md
+            - Writing Data from MongoDB to MatrixOne: MatrixOne/Develop/Ecological-Tools/Etl/DataX/datax-mongodb-matrixone.md
+            - Writing Data from TiDB to MatrixOne: MatrixOne/Develop/Ecological-Tools/Etl/DataX/datax-tidb-matrixone.md
+            - Writing Data from ClickHouse to MatrixOne: MatrixOne/Develop/Ecological-Tools/Etl/DataX/datax-clickhouse-matrixone.md
+            - Writing Data from Doris to MatrixOne: MatrixOne/Develop/Ecological-Tools/Etl/DataX/datax-doris-matrixone.md
+            - Writing Data from InfluxDB to MatrixOne: MatrixOne/Develop/Ecological-Tools/Etl/DataX/datax-influxdb-matrixone.md
+            - Writing Data from Elasticsearch to MatrixOne: MatrixOne/Develop/Ecological-Tools/Etl/DataX/datax-elasticsearch-matrixone.md
         - Computing Engine:
-          - Writing Batch data to MatrixOne Using Spark: MatrixOne/Develop/Ecological-Tools/Computing-Engine/Spark.md
-          - Writing Real-Time Data to MatrixOne Using Flink: MatrixOne/Develop/Ecological-Tools/Computing-Engine/Flink.md
-        - Scheduling Tools:
-          - Connecting MatrixOne with DolphinScheduler: MatrixOne/Develop/Ecological-Tools/Scheduling-Tools/dolphinScheduler.md
+          - Using Spark to Write Batch Data to MatrixOne: 
+            - Overview: MatrixOne/Develop/Ecological-Tools/Computing-Engine/Spark/spark-overview.md
+            - Writing Data from MySQL to MatrixOne: MatrixOne/Develop/Ecological-Tools/Computing-Engine/Spark/spark-mysql-matrixone.md
+            - Writing Data from Hive to MatrixOne: MatrixOne/Develop/Ecological-Tools/Computing-Engine/Spark/spark-hive-matrixone.md
+            - Writing Data from Doris to MatrixOne: MatrixOne/Develop/Ecological-Tools/Computing-Engine/Spark/spark-doris-matrixone.md
+          - Using Flink to Write Real-Time Data to MatrixOne:
+            - Overview: MatrixOne/Develop/Ecological-Tools/Computing-Engine/Flink/flink-overview.md
+            - Writing Data from MySQL to MatrixOne: MatrixOne/Develop/Ecological-Tools/Computing-Engine/Flink/flink-mysql-matrixone.md
+            - Writing Data from Oracle to MatrixOne: MatrixOne/Develop/Ecological-Tools/Computing-Engine/Flink/flink-oracle-matrixone.md
+            - Writing Data from SQL Server to MatrixOne: MatrixOne/Develop/Ecological-Tools/Computing-Engine/Flink/flink-sqlserver-matrixone.md
+            - Writing Data from PostgreSQL to MatrixOne: MatrixOne/Develop/Ecological-Tools/Computing-Engine/Flink/flink-postgresql-matrixone.md
+            - Writing Data from MongoDB to MatrixOne: MatrixOne/Develop/Ecological-Tools/Computing-Engine/Flink/flink-mongo-matrixone.md
+            - Writing Data from TiDB to MatrixOne: MatrixOne/Develop/Ecological-Tools/Computing-Engine/Flink/flink-tidb-matrixone.md
+            - Writing Data from Kafka to MatrixOne: MatrixOne/Develop/Ecological-Tools/Computing-Engine/Flink/flink-kafka-matrixone.md
     - Deploying:
       - Plan MatrixOne Cluster Topology:
         - Cluster Topology Planning Overview: MatrixOne/Deploy/deployment-topology/topology-overview.md
