@@ -1,0 +1,42 @@
+spring:
+  profiles:
+    #choose your env
+    active: test
+  application:
+    name: codebot
+  datasource:
+    url: jdbc:mysql://${codebot.mo.ip}:${codebot.mo.port}/${codebot.mo.db}?characterSetResults=UTF-8&continueBatchOnError=false&useServerPrepStmts=true&alwaysSendSetIsolation=false&useLocalSessionState=true&zeroDateTimeBehavior=CONVERT_TO_NULL&failoverReadOnly=false&serverTimezone=Asia/Shanghai&socketTimeout=30000
+    username: ${codebot.mo.username}
+    password: ${codebot.mo.password}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  redis:
+    # Redis host
+    host: ${codebot.redis.host}
+    # Redis Server port
+    port: ${codebot.redis.port}
+    database: 0
+    timeout: 1800000
+    password: ${codebot.redis.password}
+  jackson:
+    serialization:
+      write-dates-as-timestamps: true
+wx:
+  mp:
+
+    callback: ${codebot.wx.callback}
+    configs:
+      - appId: ${codebot.wx.appId}
+        secret: ${codebot.wx.secret}
+        token: ${codebot.wx.token}
+        aesKey: ${codebot.wx.aesKey}
+jwt:
+  secret: ${codebot.jwt.secret}
+
+github:
+  client:
+    id: "Ov23liuwsvlUImneTgL2"
+    authorize-url: "https://github.com/login/oauth/authorize"
+    secret: "a3c64569bb49a66cc283bf874a2724c4b6cd254c"
+    redirect-url: "http://localhost:8080/oauth2/callback"
+    access-token-url: "https://github.com/login/oauth/access_token"
+    user-info-url: "https://api.github.com/user"
