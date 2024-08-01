@@ -736,7 +736,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../architecture-matrixone-operator.md" class="md-nav__link">
+      <a href="../architecture-matrixone-operator/" class="md-nav__link">
         MatrixOne-Operator design and implementation
       </a>
     </li>
@@ -4876,7 +4876,7 @@
   
     <li class="md-nav__item">
       <a href="../../../Reference/Variable/system-variables/lower_case_tables_name/" class="md-nav__link">
-        Lowercase table names support
+        Lower case table names support
       </a>
     </li>
   
@@ -11982,7 +11982,10 @@
 <h1 id="detailed-proxy-architecture">Detailed Proxy Architecture</h1>
 <p>Proxy, the sole component in MatrixOne responsible for load balancing and SQL request distribution, adapts to various scenarios by implementing session-level SQL routing through CN grouping and Proxy's SQL distribution.</p>
 <p>The architecture diagram of its SQL request distribution is as follows:</p>
-<p><img alt="" src="https://github.com/matrixorigin/artwork/blob/main/docs/overview/proxy/proxy-arch.png?raw=true" /></p>
+<div align="center">
+<img src=https://github.com/matrixorigin/artwork/blob/main/docs/overview/proxy/proxy-arch.png?raw=true width=70% heigth=70%/>
+</div>
+
 <ul>
 <li>The Kubernetes Library layer utilizes built-in Kubernetes features to ensure high availability and load balancing of the Proxy layer.</li>
 <li>SQL Proxy implements long connections, allowlists, and SQL request distribution, achieving load balancing and request forwarding for CNs.</li>
@@ -11990,7 +11993,10 @@
 </ul>
 <h2 id="technical-implementation">Technical Implementation</h2>
 <p>Based on the multi-CN architecture of MatrixOne's storage-compute separation and the responsibilities of Proxy, the concept of CN label groups is introduced in HAKeeper and Proxy, that is, CN collections with fixed names and quantities.</p>
-<p><img alt="" src="https://github.com/matrixorigin/artwork/blob/main/docs/overview/proxy/proxy-arch-2.png?raw=true" /></p>
+<div align="center">
+<img src=https://github.com/matrixorigin/artwork/blob/main/docs/overview/proxy/proxy-arch-2.png?raw=true width=40% heigth=40%/>
+</div>
+
 <p>As shown in the figure above, the technical implementation process is explained as follows:</p>
 <ol>
 <li>Create different CN labels through configuration options in the <code>yaml</code> file (including configuration, replica count, and tenant).</li>

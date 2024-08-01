@@ -886,7 +886,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../architecture-matrixone-operator.md" class="md-nav__link">
+      <a href="../architecture-matrixone-operator/" class="md-nav__link">
         MatrixOne-Operator design and implementation
       </a>
     </li>
@@ -5026,7 +5026,7 @@
   
     <li class="md-nav__item">
       <a href="../../../Reference/Variable/system-variables/lower_case_tables_name/" class="md-nav__link">
-        Lowercase table names support
+        Lower case table names support
       </a>
     </li>
   
@@ -12331,7 +12331,7 @@
 <p>In a pessimistic mode, multiple TN nodes exist in the MatrixOne cluster. Thus, it is necessary to remove conflict detection safely.</p>
 <p>The Commit phase of TN nodes.</p>
 <h3 id="lock-service">Lock Service</h3>
-<p><img alt="" src="https://github.com/matrixorigin/artwork/blob/main/docs/overview/architecture/lockservice.png" /></p>
+<p><img alt="" src="https://github.com/matrixorigin/artwork/blob/main/docs/overview/architecture/lockservice.png?raw=true" /></p>
 <p>MatrixOne has implemented LockService to provide lock services, including locking, unlocking, lock conflict detection, lock waiting, and deadlock detection.</p>
 <p>LockService is not a separately deployed component but a part of CN. In a MatrixOne cluster, each CN's LockService instance is aware of other LockService instances, coordinating the work of LockService across the entire cluster. Each CN only accesses its local LockService instance and is unaware of other LockService instances. From the perspective of a CN, the current node's LockService behaves like a local component.</p>
 <h4 id="locktable">LockTable</h4>

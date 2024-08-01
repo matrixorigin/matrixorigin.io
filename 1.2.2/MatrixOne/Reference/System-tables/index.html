@@ -684,7 +684,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Overview/architecture/architecture-matrixone-operator.md" class="md-nav__link">
+      <a href="../../Overview/architecture/architecture-matrixone-operator/" class="md-nav__link">
         MatrixOne-Operator design and implementation
       </a>
     </li>
@@ -4826,7 +4826,7 @@
   
     <li class="md-nav__item">
       <a href="../Variable/system-variables/lower_case_tables_name/" class="md-nav__link">
-        Lowercase table names support
+        Lower case table names support
       </a>
     </li>
   
@@ -10901,22 +10901,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#mo_database-table" class="md-nav__link">
-    mo_database table
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#mo_tables-table" class="md-nav__link">
-    mo_tables table
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#mo_columns-table" class="md-nav__link">
-    mo_columns table
+  <a href="#mo_indexes-table" class="md-nav__link">
+    mo_indexes table
   </a>
   
 </li>
@@ -10929,6 +10915,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#mo_user-table" class="md-nav__link">
+    mo_user table
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#mo_account-table-only-visible-for-sys-account" class="md-nav__link">
     mo_account table (Only visible for sys account)
   </a>
@@ -10936,15 +10929,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#mo_role-table" class="md-nav__link">
-    mo_role table
+  <a href="#mo_database-table" class="md-nav__link">
+    mo_database table
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#mo_user-table" class="md-nav__link">
-    mo_user table
+  <a href="#mo_role-table" class="md-nav__link">
+    mo_role table
   </a>
   
 </li>
@@ -10966,6 +10959,27 @@
           <li class="md-nav__item">
   <a href="#mo_role_privs-table" class="md-nav__link">
     mo_role_privs table
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mo_user_defined_function-table" class="md-nav__link">
+    mo_user_defined_function table
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mo_mysql_compatbility_mode-table" class="md-nav__link">
+    mo_mysql_compatbility_mode table
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mo_pubs-table" class="md-nav__link">
+    mo_pubs table
   </a>
   
 </li>
@@ -11012,29 +11026,22 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#mo_user_defined_function-table" class="md-nav__link">
-    mo_user_defined_function table
+  <a href="#mo_transactions" class="md-nav__link">
+    mo_transactions 视图
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#mo_mysql_compatbility_mode-table" class="md-nav__link">
-    mo_mysql_compatbility_mode table
+  <a href="#mo_columns-table" class="md-nav__link">
+    mo_columns table
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#mo_pubs-table" class="md-nav__link">
-    mo_pubs table
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#mo_indexes-table" class="md-nav__link">
-    mo_indexes table
+  <a href="#mo_tables-table" class="md-nav__link">
+    mo_tables table
   </a>
   
 </li>
@@ -11128,8 +11135,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#partitions-table" class="md-nav__link">
-    PARTITIONS table
+  <a href="#partitions-view" class="md-nav__link">
+    PARTITIONS view
   </a>
   
 </li>
@@ -11142,8 +11149,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#schemata-table" class="md-nav__link">
-    SCHEMATA table
+  <a href="#schemata-view" class="md-nav__link">
+    SCHEMATA view
   </a>
   
 </li>
@@ -11163,8 +11170,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#view-view" class="md-nav__link">
-    VIEW view
+  <a href="#views-view" class="md-nav__link">
+    VIEWS view
   </a>
   
 </li>
@@ -12244,22 +12251,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#mo_database-table" class="md-nav__link">
-    mo_database table
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#mo_tables-table" class="md-nav__link">
-    mo_tables table
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#mo_columns-table" class="md-nav__link">
-    mo_columns table
+  <a href="#mo_indexes-table" class="md-nav__link">
+    mo_indexes table
   </a>
   
 </li>
@@ -12272,6 +12265,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#mo_user-table" class="md-nav__link">
+    mo_user table
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#mo_account-table-only-visible-for-sys-account" class="md-nav__link">
     mo_account table (Only visible for sys account)
   </a>
@@ -12279,15 +12279,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#mo_role-table" class="md-nav__link">
-    mo_role table
+  <a href="#mo_database-table" class="md-nav__link">
+    mo_database table
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#mo_user-table" class="md-nav__link">
-    mo_user table
+  <a href="#mo_role-table" class="md-nav__link">
+    mo_role table
   </a>
   
 </li>
@@ -12309,6 +12309,27 @@
           <li class="md-nav__item">
   <a href="#mo_role_privs-table" class="md-nav__link">
     mo_role_privs table
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mo_user_defined_function-table" class="md-nav__link">
+    mo_user_defined_function table
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mo_mysql_compatbility_mode-table" class="md-nav__link">
+    mo_mysql_compatbility_mode table
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mo_pubs-table" class="md-nav__link">
+    mo_pubs table
   </a>
   
 </li>
@@ -12355,29 +12376,22 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#mo_user_defined_function-table" class="md-nav__link">
-    mo_user_defined_function table
+  <a href="#mo_transactions" class="md-nav__link">
+    mo_transactions 视图
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#mo_mysql_compatbility_mode-table" class="md-nav__link">
-    mo_mysql_compatbility_mode table
+  <a href="#mo_columns-table" class="md-nav__link">
+    mo_columns table
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#mo_pubs-table" class="md-nav__link">
-    mo_pubs table
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#mo_indexes-table" class="md-nav__link">
-    mo_indexes table
+  <a href="#mo_tables-table" class="md-nav__link">
+    mo_tables table
   </a>
   
 </li>
@@ -12471,8 +12485,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#partitions-table" class="md-nav__link">
-    PARTITIONS table
+  <a href="#partitions-view" class="md-nav__link">
+    PARTITIONS view
   </a>
   
 </li>
@@ -12485,8 +12499,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#schemata-table" class="md-nav__link">
-    SCHEMATA table
+  <a href="#schemata-view" class="md-nav__link">
+    SCHEMATA view
   </a>
   
 </li>
@@ -12506,8 +12520,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#view-view" class="md-nav__link">
-    VIEW view
+  <a href="#views-view" class="md-nav__link">
+    VIEWS view
   </a>
   
 </li>
@@ -12573,7 +12587,7 @@
 <h2 id="mo_catalog-database"><code>mo_catalog</code> database</h2>
 <p>The <code>mo_catalog</code> is used to store metadata about MatrixOne objects such as: databases, tables, columns, system variables, tenants, users, and roles.</p>
 <p>The concept of multi-tenancy was introduced with MatrixOne version 0.6, and the default <code>sys</code> tenant behaves slightly differently from other tenants. The system table <code>mo_account</code>, which serves multi-tenant management, is only visible to <code>sys</code> tenants; it is not visible to other tenants.</p>
-<h3 id="mo_database-table">mo_database table</h3>
+<h3 id="mo_indexes-table">mo_indexes table</h3>
 <table>
 <thead>
 <tr>
@@ -12584,268 +12598,79 @@
 </thead>
 <tbody>
 <tr>
-<td>dat_id</td>
-<td>bigint unsigned</td>
-<td>Primary key ID</td>
+<td>id</td>
+<td>BIGINT UNSIGNED(64)</td>
+<td>index ID</td>
 </tr>
 <tr>
-<td>datname</td>
-<td>varchar(100)</td>
-<td>Database name</td>
+<td>table_id</td>
+<td>BIGINT UNSIGNED(64)</td>
+<td>ID of the table where the index resides</td>
 </tr>
 <tr>
-<td>dat_catalog_name</td>
-<td>varchar(100)</td>
-<td>Database catalog name, default as <code>def</code></td>
+<td>database_id</td>
+<td>BIGINT UNSIGNED(64)</td>
+<td>ID of the database where the index resides</td>
 </tr>
 <tr>
-<td>dat_createsql</td>
-<td>varchar(100)</td>
-<td>Database creation SQL statement</td>
+<td>name</td>
+<td>VARCHAR(64)</td>
+<td>name of the index</td>
 </tr>
 <tr>
-<td>owner</td>
-<td>int unsigned</td>
-<td>Role id</td>
+<td>type</td>
+<td>VARCHAR(11)</td>
+<td>The type of index, including primary key index (PRIMARY), unique index (UNIQUE), secondary index (MULTIPLE)</td>
 </tr>
 <tr>
-<td>creator</td>
-<td>int unsigned</td>
-<td>User id</td>
+<td>algo_table_type</td>
+<td>VARCHAR(11)</td>
+<td>Algorithm for creating indexes</td>
 </tr>
 <tr>
-<td>created_time</td>
-<td>timestamp</td>
-<td>Create time</td>
+<td>algo_table_type</td>
+<td>VARCHAR(11)</td>
+<td>Hidden table types for multi-table indexes</td>
 </tr>
 <tr>
-<td>account_id</td>
-<td>int unsigned</td>
-<td>Account id</td>
-</tr>
-<tr>
-<td>dat_type</td>
-<td>varchar(23)</td>
-<td>Database type, common library or subscription library</td>
-</tr>
-</tbody>
-</table>
-<h3 id="mo_tables-table">mo_tables table</h3>
-<table>
-<thead>
-<tr>
-<th>column</th>
-<th>type</th>
-<th>comments</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>rel_id</td>
-<td>bigint unsigned</td>
-<td>Primary key, table ID</td>
-</tr>
-<tr>
-<td>relname</td>
-<td>varchar(100)</td>
-<td>Name of the table, index, view, and so on.</td>
-</tr>
-<tr>
-<td>reldatabase</td>
-<td>varchar(100)</td>
-<td>The database that contains this relation. reference mo_database.datname</td>
-</tr>
-<tr>
-<td>reldatabase_id</td>
-<td>bigint unsigned</td>
-<td>The database id that contains this relation. reference mo_database.datid</td>
-</tr>
-<tr>
-<td>relpersistence</td>
-<td>varchar(100)</td>
-<td>p = permanent table, t = temporary table</td>
-</tr>
-<tr>
-<td>relkind</td>
-<td>varchar(100)</td>
-<td>r = ordinary table, e = external table, i = index, S = sequence, v = view, m = materialized view</td>
-</tr>
-<tr>
-<td>rel_comment</td>
-<td>varchar(100)</td>
 <td></td>
+<td>algo_params</td>
+<td>VARCHAR(2048)</td>
 </tr>
 <tr>
-<td>rel_createsql</td>
-<td>varchar(100)</td>
-<td>Table creation SQL statement</td>
+<td>is_visible</td>
+<td>TINYINT(8)</td>
+<td>Whether the index is visible, 1 means visible, 0 means invisible (currently all MatrixOne indexes are visible indexes)</td>
 </tr>
 <tr>
-<td>created_time</td>
-<td>timestamp</td>
-<td>Create time</td>
+<td>hidden</td>
+<td>TINYINT(8)</td>
+<td>Whether the index is hidden, 1 is a hidden index, 0 is a non-hidden index</td>
 </tr>
 <tr>
-<td>creator</td>
-<td>int unsigned</td>
-<td>Creator ID</td>
-</tr>
-<tr>
-<td>owner</td>
-<td>int unsigned</td>
-<td>Creator's default role id</td>
-</tr>
-<tr>
-<td>account_id</td>
-<td>int unsigned</td>
-<td>Account id</td>
-</tr>
-<tr>
-<td>partitioned</td>
-<td>blob</td>
-<td>Partition by statement</td>
-</tr>
-<tr>
-<td>partition_info</td>
-<td>blob</td>
-<td>the information of partition</td>
-</tr>
-<tr>
-<td>viewdef</td>
-<td>blob</td>
-<td>View definition statement</td>
-</tr>
-<tr>
-<td>constraint</td>
-<td>varchar(5000)</td>
-<td>Table related constraints</td>
-</tr>
-<tr>
-<td>catalog_version</td>
-<td>INT UNSIGNED(0)</td>
-<td>Version number of the system table</td>
-</tr>
-</tbody>
-</table>
-<h3 id="mo_columns-table">mo_columns table</h3>
-<table>
-<thead>
-<tr>
-<th>column</th>
-<th>type</th>
-<th>comments</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>att_uniq_name</td>
-<td>varchar(256)</td>
-<td>Primary Key. Hidden, composite primary key, format is like "${att_relname_id}-${attname}"</td>
-</tr>
-<tr>
-<td>account_id</td>
-<td>int unsigned</td>
-<td>accountID</td>
-</tr>
-<tr>
-<td>att_database_id</td>
-<td>bigint unsigned</td>
-<td>databaseID</td>
-</tr>
-<tr>
-<td>att_database</td>
-<td>varchar(256)</td>
-<td>database Name</td>
-</tr>
-<tr>
-<td>att_relname_id</td>
-<td>bigint unsigned</td>
-<td>table id</td>
-</tr>
-<tr>
-<td>att_relname</td>
-<td>varchar(256)</td>
-<td>The table this column belongs to.(references mo_tables.relname)</td>
-</tr>
-<tr>
-<td>attname</td>
-<td>varchar(256)</td>
-<td>The column name</td>
-</tr>
-<tr>
-<td>atttyp</td>
-<td>varchar(256)</td>
-<td>The data type of this column (zero for a dropped column).</td>
-</tr>
-<tr>
-<td>attnum</td>
-<td>int</td>
-<td>The number of the column. Ordinary columns are numbered from 1 up.</td>
-</tr>
-<tr>
-<td>att_length</td>
-<td>int</td>
-<td>bytes count for the type.</td>
-</tr>
-<tr>
-<td>attnotnull</td>
-<td>tinyint(1)</td>
-<td>This represents a not-null constraint.</td>
-</tr>
-<tr>
-<td>atthasdef</td>
-<td>tinyint(1)</td>
-<td>This column has a default expression or generation expression.</td>
-</tr>
-<tr>
-<td>att_default</td>
-<td>varchar(1024)</td>
-<td>default expression</td>
-</tr>
-<tr>
-<td>attisdropped</td>
-<td>tinyint(1)</td>
-<td>This column has been dropped and is no longer valid. A dropped column is still physically present in the table, but is ignored by the parser and so cannot be accessed via SQL.</td>
-</tr>
-<tr>
-<td>att_constraint_type</td>
-<td>char(1)</td>
-<td>p = primary key constraint, n=no constraint</td>
-</tr>
-<tr>
-<td>att_is_unsigned</td>
-<td>tinyint(1)</td>
-<td>unsigned or not</td>
-</tr>
-<tr>
-<td>att_is_auto_increment</td>
-<td>tinyint(1)</td>
-<td>auto increment or not</td>
-</tr>
-<tr>
-<td>att_comment</td>
-<td>varchar(1024)</td>
 <td>comment</td>
+<td>VARCHAR(2048)</td>
+<td>Comment information for the index</td>
 </tr>
 <tr>
-<td>att_is_hidden</td>
-<td>tinyint(1)</td>
-<td>hidden or not</td>
+<td>column_name</td>
+<td>VARCHAR(256)</td>
+<td>The column name of the constituent columns of the index</td>
 </tr>
 <tr>
-<td>attr_has_update</td>
-<td>tinyint(1)</td>
-<td>This columns has update expression</td>
+<td>ordinal_position</td>
+<td>INT UNSIGNED(32)</td>
+<td>Column ordinal in index, starting from 1</td>
 </tr>
 <tr>
-<td>attr_update</td>
-<td>varchar(1024)</td>
-<td>update expression</td>
+<td>options</td>
+<td>TEXT(0)</td>
+<td>options option information for index</td>
 </tr>
 <tr>
-<td>attr_is_clusterby</td>
-<td>tinyint(1)</td>
-<td>Whether this column is used as the cluster by keyword to create the table</td>
+<td>index_table_name</td>
+<td>VARCHAR(5000)</td>
+<td>The table name of the index table corresponding to the index, currently only the unique index contains the index table</td>
 </tr>
 </tbody>
 </table>
@@ -12908,95 +12733,6 @@
 <td>partition_table_name</td>
 <td>VARCHAR(1024)</td>
 <td>The name of the subtable corresponding to the current partition.</td>
-</tr>
-</tbody>
-</table>
-<h3 id="mo_account-table-only-visible-for-sys-account">mo_account table (Only visible for <code>sys</code> account)</h3>
-<table>
-<thead>
-<tr>
-<th>column</th>
-<th>type</th>
-<th>comments</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>account_id</td>
-<td>int unsigned</td>
-<td>account id, primary key</td>
-</tr>
-<tr>
-<td>account_name</td>
-<td>varchar(100)</td>
-<td>account name</td>
-</tr>
-<tr>
-<td>status</td>
-<td>varchar(100)</td>
-<td>open/suspend</td>
-</tr>
-<tr>
-<td>created_time</td>
-<td>timestamp</td>
-<td>create time</td>
-</tr>
-<tr>
-<td>comments</td>
-<td>varchar(256)</td>
-<td>comment</td>
-</tr>
-<tr>
-<td>suspended_time</td>
-<td>TIMESTAMP</td>
-<td>Time of the account's status is changed</td>
-</tr>
-<tr>
-<td>version</td>
-<td>bigint unsigned</td>
-<td>the version status of the current account</td>
-</tr>
-</tbody>
-</table>
-<h3 id="mo_role-table">mo_role table</h3>
-<table>
-<thead>
-<tr>
-<th>column</th>
-<th>type</th>
-<th>comments</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>role_id</td>
-<td>int unsigned</td>
-<td>role id, primary key</td>
-</tr>
-<tr>
-<td>role_name</td>
-<td>varchar(100)</td>
-<td>role name</td>
-</tr>
-<tr>
-<td>creator</td>
-<td>int unsigned</td>
-<td>user_id</td>
-</tr>
-<tr>
-<td>owner</td>
-<td>int unsigned</td>
-<td>MOADMIN/ACCOUNTADMIN  ownerid</td>
-</tr>
-<tr>
-<td>created_time</td>
-<td>timestamp</td>
-<td>create time</td>
-</tr>
-<tr>
-<td>comments</td>
-<td>text</td>
-<td>comment</td>
 </tr>
 </tbody>
 </table>
@@ -13064,6 +12800,152 @@
 <td>default_role</td>
 <td>int</td>
 <td>the default role id for this user</td>
+</tr>
+</tbody>
+</table>
+<h3 id="mo_account-table-only-visible-for-sys-account">mo_account table (Only visible for <code>sys</code> account)</h3>
+<table>
+<thead>
+<tr>
+<th>column</th>
+<th>type</th>
+<th>comments</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account_id</td>
+<td>int unsigned</td>
+<td>account id, primary key</td>
+</tr>
+<tr>
+<td>account_name</td>
+<td>varchar(100)</td>
+<td>account name</td>
+</tr>
+<tr>
+<td>status</td>
+<td>varchar(100)</td>
+<td>open/suspend</td>
+</tr>
+<tr>
+<td>created_time</td>
+<td>timestamp</td>
+<td>create time</td>
+</tr>
+<tr>
+<td>comments</td>
+<td>varchar(256)</td>
+<td>comment</td>
+</tr>
+<tr>
+<td>suspended_time</td>
+<td>TIMESTAMP</td>
+<td>Time of the account's status is changed</td>
+</tr>
+<tr>
+<td>version</td>
+<td>bigint unsigned</td>
+<td>the version status of the current account</td>
+</tr>
+</tbody>
+</table>
+<h3 id="mo_database-table">mo_database table</h3>
+<table>
+<thead>
+<tr>
+<th>column</th>
+<th>type</th>
+<th>comments</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dat_id</td>
+<td>bigint unsigned</td>
+<td>Primary key ID</td>
+</tr>
+<tr>
+<td>datname</td>
+<td>varchar(100)</td>
+<td>Database name</td>
+</tr>
+<tr>
+<td>dat_catalog_name</td>
+<td>varchar(100)</td>
+<td>Database catalog name, default as <code>def</code></td>
+</tr>
+<tr>
+<td>dat_createsql</td>
+<td>varchar(100)</td>
+<td>Database creation SQL statement</td>
+</tr>
+<tr>
+<td>owner</td>
+<td>int unsigned</td>
+<td>Role id</td>
+</tr>
+<tr>
+<td>creator</td>
+<td>int unsigned</td>
+<td>User id</td>
+</tr>
+<tr>
+<td>created_time</td>
+<td>timestamp</td>
+<td>Create time</td>
+</tr>
+<tr>
+<td>account_id</td>
+<td>int unsigned</td>
+<td>Account id</td>
+</tr>
+<tr>
+<td>dat_type</td>
+<td>varchar(23)</td>
+<td>Database type, common library or subscription library</td>
+</tr>
+</tbody>
+</table>
+<h3 id="mo_role-table">mo_role table</h3>
+<table>
+<thead>
+<tr>
+<th>column</th>
+<th>type</th>
+<th>comments</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>role_id</td>
+<td>int unsigned</td>
+<td>role id, primary key</td>
+</tr>
+<tr>
+<td>role_name</td>
+<td>varchar(100)</td>
+<td>role name</td>
+</tr>
+<tr>
+<td>creator</td>
+<td>int unsigned</td>
+<td>user_id</td>
+</tr>
+<tr>
+<td>owner</td>
+<td>int unsigned</td>
+<td>MOADMIN/ACCOUNTADMIN  ownerid</td>
+</tr>
+<tr>
+<td>created_time</td>
+<td>timestamp</td>
+<td>create time</td>
+</tr>
+<tr>
+<td>comments</td>
+<td>text</td>
+<td>comment</td>
 </tr>
 </tbody>
 </table>
@@ -13200,6 +13082,222 @@
 <td>with_grant_option</td>
 <td>bool</td>
 <td>If permission granting is permitted</td>
+</tr>
+</tbody>
+</table>
+<h3 id="mo_user_defined_function-table">mo_user_defined_function table</h3>
+<table>
+<thead>
+<tr>
+<th>column</th>
+<th>type</th>
+<th>comments</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>function_id</td>
+<td>INT(32)</td>
+<td>ID of the function, primary key</td>
+</tr>
+<tr>
+<td>name</td>
+<td>VARCHAR(100)</td>
+<td>the name of the function</td>
+</tr>
+<tr>
+<td>owner</td>
+<td>INT UNSIGNED(32)</td>
+<td>ID of the role who created the function</td>
+</tr>
+<tr>
+<td>args</td>
+<td>TEXT(0)</td>
+<td>Argument list for the function</td>
+</tr>
+<tr>
+<td>rettype</td>
+<td>VARCHAR(20)</td>
+<td>return type of the function</td>
+</tr>
+<tr>
+<td>body</td>
+<td>TEXT(0)</td>
+<td>function body</td>
+</tr>
+<tr>
+<td>language</td>
+<td>VARCHAR(20)</td>
+<td>language used by the function</td>
+</tr>
+<tr>
+<td>db</td>
+<td>VARCHAR(100)</td>
+<td>database where the function is located</td>
+</tr>
+<tr>
+<td>definer</td>
+<td>VARCHAR(50)</td>
+<td>name of the user who defined the function</td>
+</tr>
+<tr>
+<td>modified_time</td>
+<td>TIMESTAMP(0)</td>
+<td>time when the function was last modified</td>
+</tr>
+<tr>
+<td>created_time</td>
+<td>TIMESTAMP(0)</td>
+<td>creation time of the function</td>
+</tr>
+<tr>
+<td>type</td>
+<td>VARCHAR(10)</td>
+<td>type of function, default FUNCTION</td>
+</tr>
+<tr>
+<td>security_type</td>
+<td>VARCHAR(10)</td>
+<td>security processing method, uniform value DEFINER</td>
+</tr>
+<tr>
+<td>comment</td>
+<td>VARCHAR(5000)</td>
+<td>Create a comment for the function</td>
+</tr>
+<tr>
+<td>character_set_client</td>
+<td>VARCHAR(64)</td>
+<td>Client character set: utf8mb4</td>
+</tr>
+<tr>
+<td>collation_connection</td>
+<td>VARCHAR(64)</td>
+<td>Connection sort: utf8mb4_0900_ai_ci</td>
+</tr>
+<tr>
+<td>database_collation</td>
+<td>VARCHAR(64)</td>
+<td>Database connection collation: utf8mb4_0900_ai_ci</td>
+</tr>
+</tbody>
+</table>
+<h3 id="mo_mysql_compatbility_mode-table">mo_mysql_compatbility_mode table</h3>
+<table>
+<thead>
+<tr>
+<th>column</th>
+<th>type</th>
+<th>comments</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>configuration_id</td>
+<td>INT(32)</td>
+<td>Configuration item id, self-incrementing column, used as primary key to distinguish between different configurations</td>
+</tr>
+<tr>
+<td>account_id</td>
+<td>INT(32)</td>
+<td>Tenant id of the configuration</td>
+</tr>
+<tr>
+<td>account_name</td>
+<td>VARCHAR(300)</td>
+<td>The name of the tenant where the configuration is located</td>
+</tr>
+<tr>
+<td>dat_name</td>
+<td>VARCHAR(5000)</td>
+<td>The name of the database where the configuration resides</td>
+</tr>
+<tr>
+<td>variable_name</td>
+<td>VARCHAR(300)</td>
+<td>The name of the variable</td>
+</tr>
+<tr>
+<td>variable_value</td>
+<td>VARCHAR(5000)</td>
+<td>The name of the database where the configuration resides.</td>
+</tr>
+<tr>
+<td>variable_value</td>
+<td>VARCHAR(5000)</td>
+<td>The value of the variable</td>
+</tr>
+<tr>
+<td>system_variables</td>
+<td>BOOL(0)</td>
+<td>if it is a system variable (compatibility variables are added in addition to system variables)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="mo_pubs-table">mo_pubs table</h3>
+<table>
+<thead>
+<tr>
+<th>column</th>
+<th>type</th>
+<th>comments</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pub_name</td>
+<td>VARCHAR(64)</td>
+<td>publication name</td>
+</tr>
+<tr>
+<td>database_name</td>
+<td>VARCHAR(5000)</td>
+<td>The name of the published data</td>
+</tr>
+<tr>
+<td>database_id</td>
+<td>BIGINT UNSIGNED(64)</td>
+<td>ID of the publishing database, corresponding to dat_id in the mo_database table</td>
+</tr>
+<tr>
+<td>all_table</td>
+<td>BOOL(0)</td>
+<td>Whether the publishing library contains all tables in the database corresponding to database_id</td>
+</tr>
+<tr>
+<td>all_account</td>
+<td>BOOL(0)</td>
+<td>Whether all accounts can subscribe to the library</td>
+</tr>
+<tr>
+<td>table_list</td>
+<td>TEXT(0)</td>
+<td>When it is not all table, publish the list of tables contained in the library, and the table name corresponds to the table under the database corresponding to database_id</td>
+</tr>
+<tr>
+<td>account_list</td>
+<td>TEXT(0)</td>
+<td>Account list that is allowed to subscribe to the publishing library when it is not all accounts</td>
+</tr>
+<tr>
+<td>created_time</td>
+<td>TIMESTAMP(0)</td>
+<td>Time when the release repository was created</td>
+</tr>
+<tr>
+<td>owner</td>
+<td>INT UNSIGNED(32)</td>
+<td>The role ID corresponding to the creation of the release library</td>
+</tr>
+<tr>
+<td>creator</td>
+<td>INT UNSIGNED(32)</td>
+<td>The ID of the user who created the release library</td>
+</tr>
+<tr>
+<td>comment</td>
+<td>TEXT(0)</td>
+<td>Remarks for creating a release library</td>
 </tr>
 </tbody>
 </table>
@@ -13528,7 +13626,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="mo_user_defined_function-table">mo_user_defined_function table</h3>
+<h3 id="mo_transactions"><code>mo_transactions</code> 视图</h3>
 <table>
 <thead>
 <tr>
@@ -13539,295 +13637,293 @@
 </thead>
 <tbody>
 <tr>
-<td>function_id</td>
-<td>INT(32)</td>
-<td>ID of the function, primary key</td>
+<td>cn_id</td>
+<td>VARCHAR(65535)</td>
+<td>ID that uniquely identifies the CN (Compute Node).</td>
 </tr>
 <tr>
-<td>name</td>
-<td>VARCHAR(100)</td>
-<td>the name of the function</td>
+<td>txn_id</td>
+<td>VARCHAR(65535)</td>
+<td>The ID that uniquely identifies the transaction.</td>
 </tr>
 <tr>
-<td>owner</td>
-<td>INT UNSIGNED(32)</td>
-<td>ID of the role who created the function</td>
+<td>create_ts</td>
+<td>VARCHAR(65535)</td>
+<td>Record the transaction creation timestamp, following the RFC3339Nano format ("2006-01-02T15:04:05.99999999999Z07:00").</td>
 </tr>
 <tr>
-<td>args</td>
-<td>TEXT(0)</td>
-<td>Argument list for the function</td>
+<td>snapshot_ts</td>
+<td>VARCHAR(65535)</td>
+<td>Represents the snapshot timestamp of the transaction, expressed in both physical and logical time.</td>
 </tr>
 <tr>
-<td>rettype</td>
-<td>VARCHAR(20)</td>
-<td>return type of the function</td>
+<td>prepared_ts</td>
+<td>VARCHAR(65535)</td>
+<td>Indicates the prepared timestamp of the transaction, in the form of physical and logical time.</td>
 </tr>
 <tr>
-<td>body</td>
-<td>TEXT(0)</td>
-<td>function body</td>
+<td>commit_ts</td>
+<td>VARCHAR(65535)</td>
+<td>Indicates the commit timestamp of the transaction, in both physical and logical time.</td>
 </tr>
 <tr>
-<td>language</td>
-<td>VARCHAR(20)</td>
-<td>language used by the function</td>
+<td>txn_mode</td>
+<td>VARCHAR(65535)</td>
+<td>Identifies the transaction mode, which can be either pessimistic or optimistic.</td>
 </tr>
 <tr>
-<td>db</td>
-<td>VARCHAR(100)</td>
-<td>database where the function is located</td>
+<td>isolation</td>
+<td>VARCHAR(65535)</td>
+<td>Indicates the isolation level of the transaction, either SI (Snapshot Isolation) or RC (Read Committed).</td>
 </tr>
 <tr>
-<td>definer</td>
-<td>VARCHAR(50)</td>
-<td>name of the user who defined the function</td>
+<td>user_txn</td>
+<td>VARCHAR(65535)</td>
+<td>Indicates a user transaction, i.e., a transaction created by a SQL operation performed by a user connecting to MatrixOne via a client.</td>
 </tr>
 <tr>
-<td>modified_time</td>
-<td>TIMESTAMP(0)</td>
-<td>time when the function was last modified</td>
-</tr>
-<tr>
-<td>created_time</td>
-<td>TIMESTAMP(0)</td>
-<td>creation time of the function</td>
-</tr>
-<tr>
-<td>type</td>
-<td>VARCHAR(10)</td>
-<td>type of function, default FUNCTION</td>
-</tr>
-<tr>
-<td>security_type</td>
-<td>VARCHAR(10)</td>
-<td>security processing method, uniform value DEFINER</td>
-</tr>
-<tr>
-<td>comment</td>
-<td>VARCHAR(5000)</td>
-<td>Create a comment for the function</td>
-</tr>
-<tr>
-<td>character_set_client</td>
-<td>VARCHAR(64)</td>
-<td>Client character set: utf8mb4</td>
-</tr>
-<tr>
-<td>collation_connection</td>
-<td>VARCHAR(64)</td>
-<td>Connection sort: utf8mb4_0900_ai_ci</td>
-</tr>
-<tr>
-<td>database_collation</td>
-<td>VARCHAR(64)</td>
-<td>Database connection collation: utf8mb4_0900_ai_ci</td>
-</tr>
-</tbody>
-</table>
-<h3 id="mo_mysql_compatbility_mode-table">mo_mysql_compatbility_mode table</h3>
-<table>
-<thead>
-<tr>
-<th>column</th>
-<th>type</th>
-<th>comments</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>configuration_id</td>
-<td>INT(32)</td>
-<td>Configuration item id, self-incrementing column, used as primary key to distinguish between different configurations</td>
-</tr>
-<tr>
-<td>account_id</td>
-<td>INT(32)</td>
-<td>Tenant id of the configuration</td>
-</tr>
-<tr>
-<td>account_name</td>
-<td>VARCHAR(300)</td>
-<td>The name of the tenant where the configuration is located</td>
-</tr>
-<tr>
-<td>dat_name</td>
-<td>VARCHAR(5000)</td>
-<td>The name of the database where the configuration resides</td>
-</tr>
-<tr>
-<td>variable_name</td>
-<td>VARCHAR(300)</td>
-<td>The name of the variable</td>
-</tr>
-<tr>
-<td>variable_value</td>
-<td>VARCHAR(5000)</td>
-<td>The name of the database where the configuration resides.</td>
-</tr>
-<tr>
-<td>variable_value</td>
-<td>VARCHAR(5000)</td>
-<td>The value of the variable</td>
-</tr>
-<tr>
-<td>system_variables</td>
-<td>BOOL(0)</td>
-<td>if it is a system variable (compatibility variables are added in addition to system variables)</td>
-</tr>
-</tbody>
-</table>
-<h3 id="mo_pubs-table">mo_pubs table</h3>
-<table>
-<thead>
-<tr>
-<th>column</th>
-<th>type</th>
-<th>comments</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>pub_name</td>
-<td>VARCHAR(64)</td>
-<td>publication name</td>
-</tr>
-<tr>
-<td>database_name</td>
-<td>VARCHAR(5000)</td>
-<td>The name of the published data</td>
-</tr>
-<tr>
-<td>database_id</td>
-<td>BIGINT UNSIGNED(64)</td>
-<td>ID of the publishing database, corresponding to dat_id in the mo_database table</td>
-</tr>
-<tr>
-<td>all_table</td>
-<td>BOOL(0)</td>
-<td>Whether the publishing library contains all tables in the database corresponding to database_id</td>
-</tr>
-<tr>
-<td>all_account</td>
-<td>BOOL(0)</td>
-<td>Whether all accounts can subscribe to the library</td>
-</tr>
-<tr>
-<td>table_list</td>
-<td>TEXT(0)</td>
-<td>When it is not all table, publish the list of tables contained in the library, and the table name corresponds to the table under the database corresponding to database_id</td>
-</tr>
-<tr>
-<td>account_list</td>
-<td>TEXT(0)</td>
-<td>Account list that is allowed to subscribe to the publishing library when it is not all accounts</td>
-</tr>
-<tr>
-<td>created_time</td>
-<td>TIMESTAMP(0)</td>
-<td>Time when the release repository was created</td>
-</tr>
-<tr>
-<td>owner</td>
-<td>INT UNSIGNED(32)</td>
-<td>The role ID corresponding to the creation of the release library</td>
-</tr>
-<tr>
-<td>creator</td>
-<td>INT UNSIGNED(32)</td>
-<td>The ID of the user who created the release library</td>
-</tr>
-<tr>
-<td>comment</td>
-<td>TEXT(0)</td>
-<td>Remarks for creating a release library</td>
-</tr>
-</tbody>
-</table>
-<h3 id="mo_indexes-table">mo_indexes table</h3>
-<table>
-<thead>
-<tr>
-<th>column</th>
-<th>type</th>
-<th>comments</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>id</td>
-<td>BIGINT UNSIGNED(64)</td>
-<td>index ID</td>
+<td>txn_status</td>
+<td>VARCHAR(65535)</td>
+<td>Indicates the current state of the transaction, with possible values including active, committed, aborting, aborted. In the distributed transaction 2PC model, this would also include prepared and committing.</td>
 </tr>
 <tr>
 <td>table_id</td>
-<td>BIGINT UNSIGNED(64)</td>
-<td>ID of the table where the index resides</td>
+<td>VARCHAR(65535)</td>
+<td>Indicates the ID of the table involved in the transaction.</td>
 </tr>
 <tr>
-<td>database_id</td>
-<td>BIGINT UNSIGNED(64)</td>
-<td>ID of the database where the index resides</td>
+<td>lock_key</td>
+<td>VARCHAR(65535)</td>
+<td>Indicates the type of lock, either range or point.</td>
 </tr>
 <tr>
-<td>name</td>
-<td>VARCHAR(64)</td>
-<td>name of the index</td>
+<td>lock_content</td>
+<td>VARCHAR(65535)</td>
+<td>Point locks represent individual values, range locks represent ranges, usually in the form of "low - high". Note that transactions may involve multiple locks, but only the first lock is shown here.</td>
 </tr>
 <tr>
-<td>type</td>
-<td>VARCHAR(11)</td>
-<td>The type of index, including primary key index (PRIMARY), unique index (UNIQUE), secondary index (MULTIPLE)</td>
+<td>lock_mode</td>
+<td>VARCHAR(65535)</td>
+<td>Indicates the mode of the lock, either exclusive or shared.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="mo_columns-table">mo_columns table</h3>
+<table>
+<thead>
+<tr>
+<th>column</th>
+<th>type</th>
+<th>comments</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>att_uniq_name</td>
+<td>varchar(256)</td>
+<td>Primary Key. Hidden, composite primary key, format is like "${att_relname_id}-${attname}"</td>
 </tr>
 <tr>
-<td>algo_table_type</td>
-<td>VARCHAR(11)</td>
-<td>Algorithm for creating indexes</td>
+<td>account_id</td>
+<td>int unsigned</td>
+<td>accountID</td>
 </tr>
 <tr>
-<td>algo_table_type</td>
-<td>VARCHAR(11)</td>
-<td>Hidden table types for multi-table indexes</td>
+<td>att_database_id</td>
+<td>bigint unsigned</td>
+<td>databaseID</td>
 </tr>
 <tr>
-<td></td>
-<td>algo_params</td>
-<td>VARCHAR(2048)</td>
+<td>att_database</td>
+<td>varchar(256)</td>
+<td>database Name</td>
 </tr>
 <tr>
-<td>is_visible</td>
-<td>TINYINT(8)</td>
-<td>Whether the index is visible, 1 means visible, 0 means invisible (currently all MatrixOne indexes are visible indexes)</td>
+<td>att_relname_id</td>
+<td>bigint unsigned</td>
+<td>table id</td>
 </tr>
 <tr>
-<td>hidden</td>
-<td>TINYINT(8)</td>
-<td>Whether the index is hidden, 1 is a hidden index, 0 is a non-hidden index</td>
+<td>att_relname</td>
+<td>varchar(256)</td>
+<td>The table this column belongs to.(references mo_tables.relname)</td>
 </tr>
 <tr>
+<td>attname</td>
+<td>varchar(256)</td>
+<td>The column name</td>
+</tr>
+<tr>
+<td>atttyp</td>
+<td>varchar(256)</td>
+<td>The data type of this column (zero for a dropped column).</td>
+</tr>
+<tr>
+<td>attnum</td>
+<td>int</td>
+<td>The number of the column. Ordinary columns are numbered from 1 up.</td>
+</tr>
+<tr>
+<td>att_length</td>
+<td>int</td>
+<td>bytes count for the type.</td>
+</tr>
+<tr>
+<td>attnotnull</td>
+<td>tinyint(1)</td>
+<td>This represents a not-null constraint.</td>
+</tr>
+<tr>
+<td>atthasdef</td>
+<td>tinyint(1)</td>
+<td>This column has a default expression or generation expression.</td>
+</tr>
+<tr>
+<td>att_default</td>
+<td>varchar(1024)</td>
+<td>default expression</td>
+</tr>
+<tr>
+<td>attisdropped</td>
+<td>tinyint(1)</td>
+<td>This column has been dropped and is no longer valid. A dropped column is still physically present in the table, but is ignored by the parser and so cannot be accessed via SQL.</td>
+</tr>
+<tr>
+<td>att_constraint_type</td>
+<td>char(1)</td>
+<td>p = primary key constraint, n=no constraint</td>
+</tr>
+<tr>
+<td>att_is_unsigned</td>
+<td>tinyint(1)</td>
+<td>unsigned or not</td>
+</tr>
+<tr>
+<td>att_is_auto_increment</td>
+<td>tinyint(1)</td>
+<td>auto increment or not</td>
+</tr>
+<tr>
+<td>att_comment</td>
+<td>varchar(1024)</td>
 <td>comment</td>
-<td>VARCHAR(2048)</td>
-<td>Comment information for the index</td>
 </tr>
 <tr>
-<td>column_name</td>
-<td>VARCHAR(256)</td>
-<td>The column name of the constituent columns of the index</td>
+<td>att_is_hidden</td>
+<td>tinyint(1)</td>
+<td>hidden or not</td>
 </tr>
 <tr>
-<td>ordinal_position</td>
-<td>INT UNSIGNED(32)</td>
-<td>Column ordinal in index, starting from 1</td>
+<td>attr_has_update</td>
+<td>tinyint(1)</td>
+<td>This columns has update expression</td>
 </tr>
 <tr>
-<td>options</td>
-<td>TEXT(0)</td>
-<td>options option information for index</td>
+<td>attr_update</td>
+<td>varchar(1024)</td>
+<td>update expression</td>
 </tr>
 <tr>
-<td>index_table_name</td>
-<td>VARCHAR(5000)</td>
-<td>The table name of the index table corresponding to the index, currently only the unique index contains the index table</td>
+<td>attr_is_clusterby</td>
+<td>tinyint(1)</td>
+<td>Whether this column is used as the cluster by keyword to create the table</td>
+</tr>
+</tbody>
+</table>
+<h3 id="mo_tables-table">mo_tables table</h3>
+<table>
+<thead>
+<tr>
+<th>column</th>
+<th>type</th>
+<th>comments</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>rel_id</td>
+<td>bigint unsigned</td>
+<td>Primary key, table ID</td>
+</tr>
+<tr>
+<td>relname</td>
+<td>varchar(100)</td>
+<td>Name of the table, index, view, and so on.</td>
+</tr>
+<tr>
+<td>reldatabase</td>
+<td>varchar(100)</td>
+<td>The database that contains this relation. reference mo_database.datname</td>
+</tr>
+<tr>
+<td>reldatabase_id</td>
+<td>bigint unsigned</td>
+<td>The database id that contains this relation. reference mo_database.datid</td>
+</tr>
+<tr>
+<td>relpersistence</td>
+<td>varchar(100)</td>
+<td>p = permanent table, t = temporary table</td>
+</tr>
+<tr>
+<td>relkind</td>
+<td>varchar(100)</td>
+<td>r = ordinary table, e = external table, i = index, S = sequence, v = view, m = materialized view</td>
+</tr>
+<tr>
+<td>rel_comment</td>
+<td>varchar(100)</td>
+<td></td>
+</tr>
+<tr>
+<td>rel_createsql</td>
+<td>varchar(100)</td>
+<td>Table creation SQL statement</td>
+</tr>
+<tr>
+<td>created_time</td>
+<td>timestamp</td>
+<td>Create time</td>
+</tr>
+<tr>
+<td>creator</td>
+<td>int unsigned</td>
+<td>Creator ID</td>
+</tr>
+<tr>
+<td>owner</td>
+<td>int unsigned</td>
+<td>Creator's default role id</td>
+</tr>
+<tr>
+<td>account_id</td>
+<td>int unsigned</td>
+<td>Account id</td>
+</tr>
+<tr>
+<td>partitioned</td>
+<td>blob</td>
+<td>Partition by statement</td>
+</tr>
+<tr>
+<td>partition_info</td>
+<td>blob</td>
+<td>the information of partition</td>
+</tr>
+<tr>
+<td>viewdef</td>
+<td>blob</td>
+<td>View definition statement</td>
+</tr>
+<tr>
+<td>constraint</td>
+<td>varchar(5000)</td>
+<td>Table related constraints</td>
+</tr>
+<tr>
+<td>catalog_version</td>
+<td>INT UNSIGNED(0)</td>
+<td>Version number of the system table</td>
 </tr>
 </tbody>
 </table>
@@ -14341,8 +14437,8 @@
 <li><code>XA</code>: Whether the storage engine supports XA transactions.</li>
 <li><code>SAVEPOINTS</code>: Whether the storage engine supports <code>savepoints</code>.</li>
 </ul>
-<h3 id="partitions-table"><code>PARTITIONS</code> table</h3>
-<p>The description of columns in the <code>PARTITIONS</code> table is as follows:</p>
+<h3 id="partitions-view"><code>PARTITIONS</code> view</h3>
+<p>The description of columns in the <code>PARTITIONS</code> View is as follows:</p>
 <ul>
 <li><code>TABLE_CATALOG</code>: The name of the catalog to which the table belongs. This value is always def.</li>
 <li><code>TABLE_SCHEMA</code>: The name of the schema (database) to which the table belongs.</li>
@@ -14390,7 +14486,7 @@
 <li><code>QUERY_START</code>: Query start time.</li>
 <li><code>CLIENT_HOST</code>: client address</li>
 </ul>
-<h3 id="schemata-table"><code>SCHEMATA</code> table</h3>
+<h3 id="schemata-view"><code>SCHEMATA</code> view</h3>
 <p>The <code>SCHEMATA</code> table provides information about databases. The table data is equivalent to the result of the <code>SHOW DATABASES</code> statement. Fields in the <code>SCHEMATA</code> table are described as follows:</p>
 <ul>
 <li><code>CATALOG_NAME</code>: The catalog to which the database belongs.</li>
@@ -14434,7 +14530,7 @@
 <li><code>PRIVILEGE_TYPE</code>: The privilege type to be granted. Only one privilege type is shown in each row.</li>
 <li><code>IS_GRANTABLE</code>: If you have the <code>GRANT OPTION</code> privilege, the value is <code>YES</code>; otherwise, the value is <code>NO</code>.</li>
 </ul>
-<h3 id="view-view"><code>VIEW</code> view</h3>
+<h3 id="views-view"><code>VIEWS</code> view</h3>
 <ul>
 <li><code>TABLE_CATALOG</code>: The name of the catalog the view belongs to. The value is <code>def</code>.</li>
 <li><code>TABLE_SCHEMA</code>: The name of the database to which the view belongs.</li>

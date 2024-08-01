@@ -684,7 +684,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../Overview/architecture/architecture-matrixone-operator.md" class="md-nav__link">
+      <a href="../../../../../Overview/architecture/architecture-matrixone-operator/" class="md-nav__link">
         MatrixOne-Operator design and implementation
       </a>
     </li>
@@ -4949,7 +4949,7 @@
   
     <li class="md-nav__item">
       <a href="../../../../../Reference/Variable/system-variables/lower_case_tables_name/" class="md-nav__link">
-        Lowercase table names support
+        Lower case table names support
       </a>
     </li>
   
@@ -12159,13 +12159,13 @@
 <p>Verify that the current user has sysadmin privileges turned on Queries for the current user permissions. The CDC (Change Data Capture) feature must be enabled for the database to be a member of the sysadmin fixed server role. query the sa user for sysadmin by the following command</p>
 <p><code>sql exec sp_helpsrvrolemember 'sysadmin';</code></p>
 <p><div align="center">
-    <img src=https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/develop/flink/flink-sqlserver-01.jpg width=70% heigth=70%/>
+    <img src=https://github.com/matrixorigin/artwork/blob/main/docs/develop/flink/flink-sqlserver-01.jpg?raw=true width=70% heigth=70%/>
 </div></p>
 </li>
 <li>
 <p>Queries if the current database has CDC (Change Data Capture Capability) enabled</p>
 <p><div align="center">
-    <img src=https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/develop/flink/%EF%BF%BCflink-sqlserver-02.jpg width=60% heigth=60%/>
+    <img src=https://github.com/matrixorigin/artwork/blob/main/docs/develop/flink/%EF%BF%BCflink-sqlserver-02.jpg?raw=true width=60% heigth=60%/>
 </div></p>
 <p>Remarks: 0: means not enabled; 1: means enabled</p>
 <p>If not, execute the following sql open:</p>
@@ -12177,7 +12177,7 @@
 <div class="highlight"><pre><span></span><code><span class="k">select</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="n">is_tracked_by_cdc</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">sys</span><span class="p">.</span><span class="n">tables</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;sqlserver_data&#39;</span><span class="p">;</span><span class="w"> </span>
 </code></pre></div>
 <p><div align="center">
-    <img src=https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/develop/flink/flink-sqlserver-03.jpg width=50% heigth=50%/>
+    <img src=https://github.com/matrixorigin/artwork/blob/main/docs/develop/flink/flink-sqlserver-03.jpg?raw=true width=50% heigth=50%/>
 </div></p>
 <p>Remarks: 0: means not enabled; 1: means enabled If not, execute the following sql to turn it on:</p>
 <div class="highlight"><pre><span></span><code><span class="n">use</span><span class="w"> </span><span class="n">sstomo</span><span class="p">;</span>
@@ -12192,7 +12192,7 @@
 <p>Table sqlserver_data Start CDC (Change Data Capture) Feature Configuration Completed</p>
 <p>Looking at the system tables under the database, you will see more cdc-related data tables, where cdc.dbo_sqlserver_flink_CT is the record of all DML operations that record the source tables, each corresponding to an instance table.</p>
 <p><div align="center">
-    <img src=https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/develop/flink/flink-sqlserver-04.jpg width=50% heigth=50%/>
+    <img src=https://github.com/matrixorigin/artwork/blob/main/docs/develop/flink/flink-sqlserver-04.jpg?raw=true width=50% heigth=50%/>
 </div></p>
 </li>
 <li>
@@ -12202,15 +12202,15 @@
 </code></pre></div>
 <p>If the status is <code>Stopped</code>, you need to turn on the CDC agent.</p>
 <p><div align="center">
-    <img src=https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/develop/flink/flink-sqlserver-05.jpg width=50% heigth=50%/>
+    <img src=https://github.com/matrixorigin/artwork/blob/main/docs/develop/flink/flink-sqlserver-05.jpg?raw=true width=50% heigth=50%/>
 </div></p>
 <p>Open the CDC agent in a Windows environment: On the machine where the SqlServer database is installed, open Microsoft Sql Server Managememt Studio, right-click the following image location (SQL Server agent), and click Open, as shown below:</p>
 <p><div align="center">
-    <img src=https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/develop/flink/flink-sqlserver-06.jpg width=50% heigth=50%/>
+    <img src=https://github.com/matrixorigin/artwork/blob/main/docs/develop/flink/flink-sqlserver-06.jpg?raw=true width=50% heigth=50%/>
 </div></p>
 <p>Once on, query the agent status again to confirm that the status has changed to running</p>
 <p><div align="center">
-    <img src=https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/develop/flink/flink-sqlserver-07.jpg width=50% heigth=50%/>
+    <img src=https://github.com/matrixorigin/artwork/blob/main/docs/develop/flink/flink-sqlserver-07.jpg?raw=true width=50% heigth=50%/>
 </div></p>
 <p>At this point, the table sqlserver_data starts the CDC (Change Data Capture) function all complete.</p>
 </li>
@@ -12292,7 +12292,7 @@
 <span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">sqlserver_data</span><span class="p">;</span><span class="w"> </span>
 </code></pre></div>
 <div align="center">
-    <img src=https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/develop/flink/flink-sqlserver-08.jpg width=50% heigth=50%/>
+    <img src=https://github.com/matrixorigin/artwork/blob/main/docs/develop/flink/flink-sqlserver-08.jpg?raw=true width=50% heigth=50%/>
 </div>
 
 <h3 id="inserting-data-to-sql-server">Inserting data to SQL Server</h3>
@@ -12306,7 +12306,7 @@
 <div class="highlight"><pre><span></span><code><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">sstomo</span><span class="p">.</span><span class="n">sqlserver_data</span><span class="p">;</span><span class="w"> </span>
 </code></pre></div>
 <div align="center">
-    <img src=https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/develop/flink/flink-sqlserver-09.jpg width=50% heigth=50%/>
+    <img src=https://github.com/matrixorigin/artwork/blob/main/docs/develop/flink/flink-sqlserver-09.jpg?raw=true width=50% heigth=50%/>
 </div>
 
 <h3 id="deleting-incremental-data-in-sql-server">Deleting incremental data in SQL Server</h3>
@@ -12315,7 +12315,7 @@
 </code></pre></div>
 <p>Query table data in mo, these two rows have been deleted synchronously:</p>
 <div align="center">
-    <img src=https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/develop/flink/flink-sqlserver-10.jpg width=50% heigth=50%/>
+    <img src=https://github.com/matrixorigin/artwork/blob/main/docs/develop/flink/flink-sqlserver-10.jpg?raw=true width=50% heigth=50%/>
 </div>
 
 <h3 id="adding-new-data-to-sql-server">Adding new data to SQL Server</h3>
@@ -12324,7 +12324,7 @@
 </code></pre></div>
 <p>Query table data in MatrixOne, the two rows have been updated in sync:</p>
 <div align="center">
-    <img src=https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/develop/flink/flink-sqlserver-11.jpg width=50% heigth=50%/>
+    <img src=https://github.com/matrixorigin/artwork/blob/main/docs/develop/flink/flink-sqlserver-11.jpg?raw=true width=50% heigth=50%/>
 </div>
 
 

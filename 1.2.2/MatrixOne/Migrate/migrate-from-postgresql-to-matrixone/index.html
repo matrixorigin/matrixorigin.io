@@ -684,7 +684,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Overview/architecture/architecture-matrixone-operator.md" class="md-nav__link">
+      <a href="../../Overview/architecture/architecture-matrixone-operator/" class="md-nav__link">
         MatrixOne-Operator design and implementation
       </a>
     </li>
@@ -4982,7 +4982,7 @@
   
     <li class="md-nav__item">
       <a href="../../Reference/Variable/system-variables/lower_case_tables_name/" class="md-nav__link">
-        Lowercase table names support
+        Lower case table names support
       </a>
     </li>
   
@@ -12291,7 +12291,7 @@
 <ol>
 <li>
 <p>Open DBeaver, select the table to be migrated from Oracle, right-click and select <strong>Generate SQL &gt; DDL</strong> Click <strong>Copy</strong>, first copy this SQL to a text editor for text editing Name the filer as <em>pg_ddl.sql</em> and save it locally on the springboard machine.</p>
-<p><img alt="" src="https://github.com/matrixorigin/artwork/blob/main/docs/migrate/PostgreSQL-1.png" /></p>
+<p><img alt="" src="https://github.com/matrixorigin/artwork/blob/main/docs/migrate/PostgreSQL-1.png?raw=true" /></p>
 </li>
 <li>
 <p>Use <code>pg2mysql</code> translation tool to convert <em>pg_ddl.sql</em> file to MySQL format DDL:**</p>
@@ -12341,17 +12341,17 @@ sed -i '' 's/numeric/decimal/g' mysql_ddl.sql
 <ol>
 <li>
 <p>Open DBeaver, select the table to be migrated from PostgreSQL, right-click and select <strong>Export Data</strong>:</p>
-<p><img alt="" src="https://github.com/matrixorigin/artwork/blob/main/docs/migrate/PostgreSQL-2.png" /></p>
+<p><img alt="" src="https://github.com/matrixorigin/artwork/blob/main/docs/migrate/PostgreSQL-2.png?raw=true" /></p>
 </li>
 <li>
 <p>In the <strong>Conversion Target &gt; Export Target</strong> window, select <strong>Database</strong>, click <strong>Next</strong>; in the <strong>Table Mapping</strong> window, select <strong>Target Container</strong>, and select the MatrixOne database for the target container <em>tpch</em>:</p>
-<p><img alt="" src="https://github.com/matrixorigin/artwork/blob/main/docs/migrate/PostgreSQL-3.png" /></p>
-<p><img alt="" src="https://github.com/matrixorigin/artwork/blob/main/docs/migrate/PostgreSQL-4.png" /></p>
+<p><img alt="" src="https://github.com/matrixorigin/artwork/blob/main/docs/migrate/PostgreSQL-3.png?raw=true" /></p>
+<p><img alt="" src="https://github.com/matrixorigin/artwork/blob/main/docs/migrate/PostgreSQL-4.png?raw=true" /></p>
 </li>
 <li>
 <p>In the <strong>Extraction Settings</strong> and <strong>Data Loading Settings</strong> windows, set the number of selected extractions and inserts. To trigger MatrixOne's direct write S3 strategy, it is recommended to fill in 5000:</p>
-<p><img alt="" src="https://github.com/matrixorigin/artwork/blob/main/docs/migrate/PostgreSQL-5.png" /></p>
-<p><img alt="" src="https://github.com/matrixorigin/artwork/blob/main/docs/migrate/PostgreSQL-6.png" /></p>
+<p><img alt="" src="https://github.com/matrixorigin/artwork/blob/main/docs/migrate/PostgreSQL-5.png?raw=true" /></p>
+<p><img alt="" src="https://github.com/matrixorigin/artwork/blob/main/docs/migrate/PostgreSQL-6.png?raw=true" /></p>
 </li>
 <li>
 <p>After completing the settings, DBeaver starts to migrate the data, and after completion, DBeaver will prompt that the migration is successful.</p>
@@ -12387,7 +12387,7 @@ sed -i '' 's/numeric/decimal/g' mysql_ddl.sql
 <ol>
 <li>
 <p>Open DBeaver, select the table to be migrated from PostgreSQL, right-click and select <strong>Generate SQL &gt; DDL &gt; Copy</strong>, first copy this SQL to a text editor, and name the text editor <em>pg_ddl.sql</em>, saved locally on the springboard machine.</p>
-<p><img alt="" src="https://github.com/matrixorigin/artwork/blob/main/docs/migrate/PostgreSQL-1.png" /></p>
+<p><img alt="" src="https://github.com/matrixorigin/artwork/blob/main/docs/migrate/PostgreSQL-1.png?raw=true" /></p>
 </li>
 <li>
 <p>Use <code>pg2mysql</code> translation tool to convert <em>pg_ddl.sql</em> file to MySQL format DDL:**</p>

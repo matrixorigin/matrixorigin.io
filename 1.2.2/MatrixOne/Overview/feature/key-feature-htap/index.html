@@ -844,7 +844,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../architecture/architecture-matrixone-operator.md" class="md-nav__link">
+      <a href="../../architecture/architecture-matrixone-operator/" class="md-nav__link">
         MatrixOne-Operator design and implementation
       </a>
     </li>
@@ -4984,7 +4984,7 @@
   
     <li class="md-nav__item">
       <a href="../../../Reference/Variable/system-variables/lower_case_tables_name/" class="md-nav__link">
-        Lowercase table names support
+        Lower case table names support
       </a>
     </li>
   
@@ -12209,7 +12209,10 @@
 <p>MatrixOne implements HTAP through modular storage, calculation, transaction architecture, a multi-level storage system, and load processing link isolation mode.</p>
 <h3 id="modular-separation-of-storage-computation-and-transaction">Modular Separation of Storage, Computation, and Transaction</h3>
 <p>The overall technical architecture of MatrixOne adopts a separate architecture of storage and computation. The modular design separates the database's computation, storage, and transaction processing into independent modules, thus forming a database system with independent scalability for each component. As shown in the following figure, MatrixOne is composed of three independent layers:</p>
-<p><img alt="" src="https://github.com/matrixorigin/artwork/blob/main/docs/overview/htap/mo-htap-arch.png?raw=true" /></p>
+<div align="center">
+  <img src=https://github.com/matrixorigin/artwork/blob/main/docs/overview/htap/mo-htap-arch.png?raw=true width=80% heigth=80%/>
+ </div>
+
 <ul>
 <li><strong>Computation layer</strong>, with Compute Node as the unit, realizes serverless computation and transaction processing. It has its Cache, supporting random restarts and scaling; multiple Compute Nodes can calculate parallel to improve query efficiency.</li>
 <li><strong>Transaction layer</strong>, composed of Transaction Node and Log Service, provides complete log service and metadata information, with built-in Logtail for storing recently written new data.</li>
@@ -12229,7 +12232,10 @@
 <h4 id="isolation-of-tpap-load-links">Isolation of TP/AP Load Links</h4>
 <p>At the execution level, MatrixOne will route it to different processing links according to the request type, thus realizing the isolation of OLTP and OLAP. Below we will explain how to implement load isolation based on the processing methods of read and write requests.</p>
 <h5 id="write-request-processing">Write Request Processing</h5>
-<p><img alt="" src="https://github.com/matrixorigin/artwork/blob/main/docs/overview/htap/write.png?raw=true" /></p>
+<div align="center">
+  <img src=https://github.com/matrixorigin/artwork/blob/main/docs/overview/htap/write.png?raw=true width=40% heigth=40%/>
+ </div>
+
 <p>As shown in the figure, when processing write requests (INSERT/UPDATE/DELETE):</p>
 <ol>
 <li>
@@ -12244,7 +12250,10 @@
 </ol>
 <p>From the figure above, it is known that small data volume OLTP-type write requests will go through the processing link from CN to TN and then to LogService, while large data volume write requests, such as Load, etc., will mainly go through CN to S3, and a small amount from CN to TN.</p>
 <h5 id="read-request-processing">Read Request Processing</h5>
-<p><img alt="" src="https://github.com/matrixorigin/artwork/blob/main/docs/overview/htap/read.png?raw=true" /></p>
+<div align="center">
+  <img src=https://github.com/matrixorigin/artwork/blob/main/docs/overview/htap/read.png?raw=true width=40% heigth=40%/>
+ </div>
+
 <p>As shown in the figure, the CN node will first check the subscribed Logtail data when handling read requests. If the data directly hits Logtail, it is in the latest part of the written data and can be directly returned. If it does not hit Logtail, CN will check its cache and other visible CNs. If it hits the cache, it will directly return the result. If it does not hit the cache, CN will judge whether a large amount of data needs to be read through the execution plan. Multiple CN nodes will read in parallel from the object storage if it exceeds a certain threshold (such as 200 block sizes). A single CN node will read from object storage if it does not exceed the threshold.</p>
 <p>As shown above, OLTP and OLAP read requests will go through the processing link from CN to S3. Through the isolation of CN nodes by Proxy, further isolation of CN can be achieved.</p>
 <h2 id="scenarios">Scenarios</h2>

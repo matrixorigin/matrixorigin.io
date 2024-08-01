@@ -676,7 +676,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Overview/architecture/architecture-matrixone-operator.md" class="md-nav__link">
+      <a href="../../../../Overview/architecture/architecture-matrixone-operator/" class="md-nav__link">
         MatrixOne-Operator design and implementation
       </a>
     </li>
@@ -4816,7 +4816,7 @@
   
     <li class="md-nav__item">
       <a href="../../../../Reference/Variable/system-variables/lower_case_tables_name/" class="md-nav__link">
-        Lowercase table names support
+        Lower case table names support
       </a>
     </li>
   
@@ -11983,12 +11983,12 @@ bash<span class="w"> </span>./bin/dolphinscheduler-daemon.sh<span class="w"> </s
 <li>
 <p>Log in to DolphinScheduler:</p>
 <p>Use the default username <code>admin</code> and password <code>dolphinscheduler123</code>. Access the DolphinScheduler web user interface by visiting <code>http://ip:12345/dolphinscheduler/ui</code>, as shown below:</p>
-<p><img alt="image-20230809145317885" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/Scheduling-tool/image-20230809145317885.png" /></p>
+<p><img alt="image-20230809145317885" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/Scheduling-tool/image-20230809145317885.png?raw=true" /></p>
 </li>
 <li>
 <p>Create a Data Source:</p>
 <p>Click on <strong>Data Source Center &gt; Create Data Source</strong> and enter the MatrixOne data connection information. Afterward, click on <strong>Test Connection</strong>; if the connection is successful, click <strong>OK</strong> to save it:</p>
-<p><img alt="image-20230809145935857" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/Scheduling-tool/image-20230809145935857.png" /></p>
+<p><img alt="image-20230809145935857" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/Scheduling-tool/image-20230809145935857.png?raw=true" /></p>
 </li>
 </ol>
 <h3 id="step-2-create-a-project-workflow">Step 2: Create a Project Workflow</h3>
@@ -11996,7 +11996,7 @@ bash<span class="w"> </span>./bin/dolphinscheduler-daemon.sh<span class="w"> </s
 <li>
 <p>Create a Tenant:</p>
 <p>In the <strong>Security Center</strong>, click on <strong>Create Tenant</strong> and enter the tenant name, as shown below:</p>
-<p><img alt="image-20230809160632965" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/Scheduling-tool/image-20230809160632965.png" /></p>
+<p><img alt="image-20230809160632965" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/Scheduling-tool/image-20230809160632965.png?raw=true" /></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>In a production environment, it is not recommended to use <code>root</code> as the tenant.</p>
@@ -12005,15 +12005,15 @@ bash<span class="w"> </span>./bin/dolphinscheduler-daemon.sh<span class="w"> </s
 <li>
 <p>Create a Project:</p>
 <p>In <strong>Project Management</strong>, click on <strong>Create Project</strong> and enter the project name, as shown below:</p>
-<p><img alt="image-20230809150528364" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/Scheduling-tool/image-20230809150528364.png" /></p>
+<p><img alt="image-20230809150528364" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/Scheduling-tool/image-20230809150528364.png?raw=true" /></p>
 </li>
 <li>
 <p>Create a Workflow and Add Nodes:</p>
 <p>Click on the <strong>Project Name</strong> created in the previous step and then click on <strong>Create Workflow</strong>. Drag the <strong>SQL</strong> node from the left to the canvas on the right. Fill in the <strong>Node Name</strong>, <strong>Data Source Information</strong>, <strong>SQL Type</strong>, and <strong>SQL Statement</strong>, then click <strong>OK</strong>. As shown below:</p>
 <p>The node created in this step is for creating a table, and the SQL statement is used to create a table.</p>
-<p><img alt="image-20230809151554568" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/Scheduling-tool/image-20230809151554568.png" /></p>
+<p><img alt="image-20230809151554568" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/Scheduling-tool/image-20230809151554568.png?raw=true" /></p>
 <p>Next, create <strong>Insert Data</strong> and <strong>Query Data</strong> nodes in a similar way. The dependency relationship between these three nodes is shown below, and you can manually connect them:</p>
-<p><img alt="image-20230809153149428" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/Scheduling-tool/image-20230809153149428.png" /></p>
+<p><img alt="image-20230809153149428" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/Scheduling-tool/image-20230809153149428.png?raw=true" /></p>
 <p>The SQL statements for these three nodes are as follows:</p>
 <div class="highlight"><pre><span></span><code><span class="o">#</span><span class="n">create_table</span>
 
@@ -12028,22 +12028,22 @@ bash<span class="w"> </span>./bin/dolphinscheduler-daemon.sh<span class="w"> </s
 <span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">test_table</span>
 </code></pre></div>
 <p>Connect these three nodes based on their dependency relationship, then click <strong>Save</strong>. Enter the <strong>Workflow Name</strong>, select the previously created <strong>Tenant</strong>, choose <strong>Parallel</strong> as the execution policy, and click <strong>OK</strong>.</p>
-<p><img alt="image-20230809161503945" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/Scheduling-tool/image-20230809161503945.png" /></p>
+<p><img alt="image-20230809161503945" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/Scheduling-tool/image-20230809161503945.png?raw=true" /></p>
 <p>Once the workflow is created, you can see it in the <strong>Workflow Relations</strong> page with the status "Workflow Offline":</p>
-<p><img alt="image-20230809161909925" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/Scheduling-tool/image-20230809161909925.png" /></p>
+<p><img alt="image-20230809161909925" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/Scheduling-tool/image-20230809161909925.png?raw=true" /></p>
 <p>Similarly, you can also see the defined workflow in the <strong>Workflow Definitions</strong> page with the status "Offline":</p>
-<p><img alt="image-20230809162411368" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/Scheduling-tool/image-20230809162411368.png" /></p>
+<p><img alt="image-20230809162411368" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/Scheduling-tool/image-20230809162411368.png?raw=true" /></p>
 </li>
 <li>
 <p>Publish and Run the Workflow:</p>
 <p>A workflow must be published before it can be run. Click the <strong>Publish</strong> button to publish the workflow created earlier:</p>
-<p><img alt="image-20230809162245088" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/Scheduling-tool/image-20230809162245088.png" /></p>
+<p><img alt="image-20230809162245088" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/Scheduling-tool/image-20230809162245088.png?raw=true" /></p>
 <p>After publishing, the workflow status will appear as follows:</p>
-<p><img alt="image-20230809163722777" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/Scheduling-tool/image-20230809163722777.png" /></p>
+<p><img alt="image-20230809163722777" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/Scheduling-tool/image-20230809163722777.png?raw=true" /></p>
 <p>Next, click the <strong>Run</strong> button, set the configuration parameters before starting, and then click <strong>OK</strong>:</p>
-<p><img alt="image-20230809162828049" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/Scheduling-tool/image-20230809162828049.png" /></p>
+<p><img alt="image-20230809162828049" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/Scheduling-tool/image-20230809162828049.png?raw=true" /></p>
 <p>Finally, return to the <strong>Project Overview</strong> to check whether the workflow and the three tasks below it have run successfully, as shown below:</p>
-<p><img alt="image-20230809163533339" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/Scheduling-tool/image-20230809163533339.png" /></p>
+<p><img alt="image-20230809163533339" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/Scheduling-tool/image-20230809163533339.png?raw=true" /></p>
 </li>
 </ol>
 
