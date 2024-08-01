@@ -27,7 +27,7 @@ This practice requires the installation and deployment of the following software
     - **JDK** 1.8
 
     <div align="center">
-    <img src=https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/develop/spark/matrixone-spark-demo.png width=50% heigth=50%/>
+    <img src=https://github.com/matrixorigin/artwork/blob/main/docs/develop/spark/matrixone-spark-demo.png?raw=true width=50% heigth=50%/>
     </div>
 
 2. Add a project dependency and edit the contents of `pom.xml` in the project root as follows:
@@ -152,7 +152,7 @@ After connecting to MatrixOne using a MySQL client, create the database you need
 
 3. Run `MoRead.Main()` in IDEA with the following result:
 
-    ![](https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/develop/spark/moread.png)
+    ![](https://github.com/matrixorigin/artwork/blob/main/docs/develop/spark/moread.png?raw=true)
 
 ### Step Three: Write MySQL Data to MatrixOne
 

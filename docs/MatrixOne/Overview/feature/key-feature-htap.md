@@ -20,7 +20,9 @@ MatrixOne implements HTAP through modular storage, calculation, transaction arch
 
 The overall technical architecture of MatrixOne adopts a separate architecture of storage and computation. The modular design separates the database's computation, storage, and transaction processing into independent modules, thus forming a database system with independent scalability for each component. As shown in the following figure, MatrixOne is composed of three independent layers:
 
-![](https://github.com/matrixorigin/artwork/blob/main/docs/overview/htap/mo-htap-arch.png?raw=true)
+ <div align="center">
+  <img src=https://github.com/matrixorigin/artwork/blob/main/docs/overview/htap/mo-htap-arch.png?raw=true width=80% heigth=80%/>
+ </div>
 
 - **Computation layer**, with Compute Node as the unit, realizes serverless computation and transaction processing. It has its Cache, supporting random restarts and scaling; multiple Compute Nodes can calculate parallel to improve query efficiency.
 - **Transaction layer**, composed of Transaction Node and Log Service, provides complete log service and metadata information, with built-in Logtail for storing recently written new data.
@@ -48,7 +50,9 @@ At the execution level, MatrixOne will route it to different processing links ac
 
 ##### Write Request Processing
 
-![](https://github.com/matrixorigin/artwork/blob/main/docs/overview/htap/write.png?raw=true)
+ <div align="center">
+  <img src=https://github.com/matrixorigin/artwork/blob/main/docs/overview/htap/write.png?raw=true width=40% heigth=40%/>
+ </div>
 
 As shown in the figure, when processing write requests (INSERT/UPDATE/DELETE):
 
@@ -62,7 +66,9 @@ From the figure above, it is known that small data volume OLTP-type write reques
 
 ##### Read Request Processing
 
-![](https://github.com/matrixorigin/artwork/blob/main/docs/overview/htap/read.png?raw=true)
+<div align="center">
+  <img src=https://github.com/matrixorigin/artwork/blob/main/docs/overview/htap/read.png?raw=true width=40% heigth=40%/>
+ </div>
 
 As shown in the figure, the CN node will first check the subscribed Logtail data when handling read requests. If the data directly hits Logtail, it is in the latest part of the written data and can be directly returned. If it does not hit Logtail, CN will check its cache and other visible CNs. If it hits the cache, it will directly return the result. If it does not hit the cache, CN will judge whether a large amount of data needs to be read through the execution plan. Multiple CN nodes will read in parallel from the object storage if it exceeds a certain threshold (such as 200 block sizes). A single CN node will read from object storage if it does not exceed the threshold.
 

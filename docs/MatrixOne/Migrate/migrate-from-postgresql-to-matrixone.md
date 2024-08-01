@@ -50,7 +50,7 @@ Here we take the TPCH dataset as an example and migrate the 8 tables of the TPCH
 
 1. Open DBeaver, select the table to be migrated from Oracle, right-click and select **Generate SQL > DDL** Click **Copy**, first copy this SQL to a text editor for text editing Name the filer as *pg_ddl.sql* and save it locally on the springboard machine.
 
-    ![](https://github.com/matrixorigin/artwork/blob/main/docs/migrate/PostgreSQL-1.png)
+    ![](https://github.com/matrixorigin/artwork/blob/main/docs/migrate/PostgreSQL-1.png?raw=true)
 
 2. Use `pg2mysql` translation tool to convert *pg_ddl.sql* file to MySQL format DDL:**
 
@@ -103,19 +103,19 @@ Here we take the TPCH dataset as an example and migrate the 8 tables of the TPCH
 
 1. Open DBeaver, select the table to be migrated from PostgreSQL, right-click and select **Export Data**:
 
-    ![](https://github.com/matrixorigin/artwork/blob/main/docs/migrate/PostgreSQL-2.png)
+    ![](https://github.com/matrixorigin/artwork/blob/main/docs/migrate/PostgreSQL-2.png?raw=true)
 
 2. In the **Conversion Target > Export Target** window, select **Database**, click **Next**; in the **Table Mapping** window, select **Target Container**, and select the MatrixOne database for the target container *tpch*:
 
-    ![](https://github.com/matrixorigin/artwork/blob/main/docs/migrate/PostgreSQL-3.png)
+    ![](https://github.com/matrixorigin/artwork/blob/main/docs/migrate/PostgreSQL-3.png?raw=true)
 
-    ![](https://github.com/matrixorigin/artwork/blob/main/docs/migrate/PostgreSQL-4.png)
+    ![](https://github.com/matrixorigin/artwork/blob/main/docs/migrate/PostgreSQL-4.png?raw=true)
 
 3. In the **Extraction Settings** and **Data Loading Settings** windows, set the number of selected extractions and inserts. To trigger MatrixOne's direct write S3 strategy, it is recommended to fill in 5000:
 
-    ![](https://github.com/matrixorigin/artwork/blob/main/docs/migrate/PostgreSQL-5.png)
+    ![](https://github.com/matrixorigin/artwork/blob/main/docs/migrate/PostgreSQL-5.png?raw=true)
 
-    ![](https://github.com/matrixorigin/artwork/blob/main/docs/migrate/PostgreSQL-6.png)
+    ![](https://github.com/matrixorigin/artwork/blob/main/docs/migrate/PostgreSQL-6.png?raw=true)
 
 4. After completing the settings, DBeaver starts to migrate the data, and after completion, DBeaver will prompt that the migration is successful.
 
@@ -146,7 +146,7 @@ Here we take the TPCH dataset as an example and migrate the 8 tables of the TPCH
 
 1. Open DBeaver, select the table to be migrated from PostgreSQL, right-click and select **Generate SQL > DDL > Copy**, first copy this SQL to a text editor, and name the text editor *pg_ddl.sql*, saved locally on the springboard machine.
 
-    ![](https://github.com/matrixorigin/artwork/blob/main/docs/migrate/PostgreSQL-1.png)
+    ![](https://github.com/matrixorigin/artwork/blob/main/docs/migrate/PostgreSQL-1.png?raw=true)
 
 2. Use `pg2mysql` translation tool to convert *pg_ddl.sql* file to MySQL format DDL:**
 

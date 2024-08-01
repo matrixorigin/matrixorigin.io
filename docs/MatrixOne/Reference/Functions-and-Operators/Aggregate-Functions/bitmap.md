@@ -8,7 +8,7 @@ We can use only one bit to identify the presence or absence of an element, 1 for
 
 We specify that the maximum width of bitmap is 32768 (2^15 = 4K), and for non-negative integer n, take its lower 15 bits (binary) as the position in bitmap and the other high bits as the number of the bitmap bucket. The following diagram shows the logic of bitmap:
 
-![](https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/reference/bitmap.png)
+![](https://github.com/matrixorigin/artwork/blob/main/docs/reference/bitmap.png?raw=true)
 
 Each bucket is a bitmap, and since the buckets are orthogonal, each bucket doing the operation (or,bit_count) can be done only in the current bucket, regardless of the other buckets.
 

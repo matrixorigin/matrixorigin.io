@@ -7,7 +7,7 @@ The `COSINE_DISTANCE()` function is used to calculate the cosine distance betwee
 Cosine Distance is a measure of the difference in direction between two vectors, usually defined as 1 minus [Cosine Similarity](cosine_similarity.md). The value of the cosine distance ranges from 0 to 2. 0 means that both vectors are in exactly the same direction (minimum distance). 2 means that the two vectors are in exactly the opposite direction (maximum distance). In text analysis, cosine distance can be used to measure similarities between documents. Since it considers only the direction of the vector and not the length, it is fair for comparisons between long and short text.
 
 <div align="center">
-<img src=https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/reference/vector/cosine_distance.png width=50% heigth=50%/>
+<img src=https://github.com/matrixorigin/artwork/blob/main/docs/reference/vector/cosine_distance.png?raw=true width=50% heigth=50%/>
 </div>
 
 ## Function syntax

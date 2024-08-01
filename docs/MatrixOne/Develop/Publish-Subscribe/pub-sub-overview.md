@@ -58,7 +58,7 @@ The publish subscription feature has several typical application scenarios:
 
 This chapter will give an example of how three tenants, sys, acc1, and acc2, currently exist in a MatrixOne cluster, operating on the three tenants in order of operation:
 
-![](https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/develop/pub-sub/data-share.png)
+![](https://github.com/matrixorigin/artwork/blob/main/docs/develop/pub-sub/data-share.png?raw=true)
 
 1. **Publisher**: sys tenant creates database sub1 with table t1 and publishes pub1:
 

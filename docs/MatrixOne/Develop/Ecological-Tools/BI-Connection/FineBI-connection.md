@@ -19,11 +19,11 @@ MatrixOne supports integration with the data visualization tool FineBI. This art
 
 1. After logging into FineBI, select **Management System > Data Connection > Data Connection Management > New Data Connection** as shown below, then choose **MySQL**:
 
-    ![image-20230808174909411](https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/finebi/select-mysql.png)
+    ![image-20230808174909411](https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/finebi/select-mysql.png?raw=true)
 
 2. Fill in the MatrixOne connection configuration, including the database name, host, port, username, and password. Other parameters can be left at their default settings. You can click the **Test Connection** button to verify if the connection is functional and then click **Save** :
 
-    ![image-20230808182330603](https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/finebi/testing.png)
+    ![image-20230808182330603](https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/finebi/testing.png?raw=true)
 
 ## Creating Visual Reports Using MatrixOne Data
 
@@ -127,7 +127,7 @@ MatrixOne supports integration with the data visualization tool FineBI. This art
 
     You can click the **Preview** button to view the results of the SQL query and then click **OK** to save it:
 
-    ![image-20230809091306270](https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/finebi/preview.png)
+    ![image-20230809091306270](https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/finebi/preview.png?raw=true)
 
     Below are examples of all the query SQL used in this demo:
 
@@ -232,7 +232,7 @@ MatrixOne supports integration with the data visualization tool FineBI. This art
 
     After saving the dataset, you need to click the **Update Data** button and wait for the data update to complete before proceeding with the analysis:
 
-    ![image-20230809091814920](https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/finebi/update-data.png)
+    ![image-20230809091814920](https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/finebi/update-data.png?raw=true)
 
 4. Create Analytic Themes:
 
@@ -241,30 +241,30 @@ MatrixOne supports integration with the data visualization tool FineBI. This art
     - Click **My Analysis**, then click **New Folder** to create and select a folder.
     - Click **New Analytic Theme**, select the dataset created in the previous step, and then click **OK**.
 
-    ![image-20230809092959252](https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/finebi/create-analytic.png)
+    ![image-20230809092959252](https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/finebi/create-analytic.png?raw=true)
 
     __Note:__ You can use the **Batch Selection** feature to select multiple datasets for theme analysis.
 
-    ![image-20230809092959252](https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/finebi/batch-select.png)
+    ![image-20230809092959252](https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/finebi/batch-select.png?raw=true)
 
     Click the **Add Component** button, choose the chart type, drag the fields from the left to the right as needed, double-click to modify the field visualization name, and change the component name below to describe the content of the report analyzed by the component:
 
-    ![image-20230809092959252](https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/finebi/add-compon-1.png)
+    ![image-20230809092959252](https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/finebi/add-compon-1.png?raw=true)
 
-    ![image-20230809092959252](https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/finebi/add-compon-2.png)
+    ![image-20230809092959252](https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/finebi/add-compon-2.png?raw=true)
 
 5. Assemble Dashboards:
 
     Click **Add Dashboard** to add the components you just created to the dashboard. You can freely drag and resize the components and change the component names below to describe the report's content analyzed by the component.
 
-    ![image-20230810123913230](https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/finebi/add-dashboard.png)
+    ![image-20230810123913230](https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/finebi/add-dashboard.png?raw=true)
 
 6. Publish Dashboards:
 
     After assembling the dashboard, click **Publish**, set the publication name, publication node, and display platform. Then click **Confirm**, and your dashboard will be successfully published.
 
-    ![image-20230810123913230](https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/finebi/publish.png)
+    ![image-20230810123913230](https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/finebi/publish.png?raw=true)
 
     Now, see the newly published dashboard under **Navigation** and see how it looks.
 
-    ![image-20230810131752645](https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/finebi/published.png)
+    ![image-20230810131752645](https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/finebi/published.png?raw=true)

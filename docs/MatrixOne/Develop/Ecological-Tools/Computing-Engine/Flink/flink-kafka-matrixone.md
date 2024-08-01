@@ -338,7 +338,7 @@ After executing the above command, you will wait on the console to enter the mes
 {"id": 50, "name": "xiaoli", "age": 42}
 ```
 
-![](https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/develop/flink/message.png)
+![](https://github.com/matrixorigin/artwork/blob/main/docs/develop/flink/message.png?raw=true)
 
 ### Step Five: View Implementation Results
 

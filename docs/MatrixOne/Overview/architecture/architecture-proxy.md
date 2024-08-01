@@ -4,7 +4,9 @@ Proxy, the sole component in MatrixOne responsible for load balancing and SQL re
 
 The architecture diagram of its SQL request distribution is as follows:
 
-![](https://github.com/matrixorigin/artwork/blob/main/docs/overview/proxy/proxy-arch.png?raw=true)
+<div align="center">
+<img src=https://github.com/matrixorigin/artwork/blob/main/docs/overview/proxy/proxy-arch.png?raw=true width=70% heigth=70%/>
+</div>
 
 - The Kubernetes Library layer utilizes built-in Kubernetes features to ensure high availability and load balancing of the Proxy layer.
 - SQL Proxy implements long connections, allowlists, and SQL request distribution, achieving load balancing and request forwarding for CNs.
@@ -14,7 +16,9 @@ The architecture diagram of its SQL request distribution is as follows:
 
 Based on the multi-CN architecture of MatrixOne's storage-compute separation and the responsibilities of Proxy, the concept of CN label groups is introduced in HAKeeper and Proxy, that is, CN collections with fixed names and quantities.
 
-![](https://github.com/matrixorigin/artwork/blob/main/docs/overview/proxy/proxy-arch-2.png?raw=true)
+<div align="center">
+<img src=https://github.com/matrixorigin/artwork/blob/main/docs/overview/proxy/proxy-arch-2.png?raw=true width=40% heigth=40%/>
+</div>
 
 As shown in the figure above, the technical implementation process is explained as follows:
 

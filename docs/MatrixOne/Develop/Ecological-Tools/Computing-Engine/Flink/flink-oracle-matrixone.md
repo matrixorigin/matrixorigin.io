@@ -138,5 +138,5 @@ select * from oracle_empt;
 ```
 
  <div align="center">
-    <img src=https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/develop/flink/flink-oracle.jpg width=70% heigth=70%/>
+    <img src=https://github.com/matrixorigin/artwork/blob/main/docs/develop/flink/flink-oracle.jpg?raw=true width=70% heigth=70%/>
 </div>

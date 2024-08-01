@@ -28,7 +28,7 @@ This practice requires the installation and deployment of the following software
     - **JDK** 1.8
 
     <div align="center">
-    <img src=https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/develop/spark/matrixone-spark-demo.png width=50% heigth=50%/>
+    <img src=https://github.com/matrixorigin/artwork/blob/main/docs/develop/spark/matrixone-spark-demo.png?raw=true width=50% heigth=50%/>
     </div>
 
 2. Add a project dependency and edit the contents of `pom.xml` in the project root as follows:
@@ -127,7 +127,7 @@ CREATE TABLE `users` (
 Copy the three configuration files "etc/hadoop/core-site.xml" and "hdfs-site.xml" in the Hadoop root and "conf/hive-site.xml" in the Hive root to the "resource" directory of your project.
 
 <div align="center">
-<img src=https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/develop/spark/config-files.png width=40% heigth=40%/>
+<img src=https://github.com/matrixorigin/artwork/blob/main/docs/develop/spark/config-files.png?raw=true width=40% heigth=40%/>
 </div>
 
 ### Step five: Write the code

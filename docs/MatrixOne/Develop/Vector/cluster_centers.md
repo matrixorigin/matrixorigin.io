@@ -88,7 +88,7 @@ Suppose we have annual shopping data for a set of customers, including their ann
     A good cluster usually appears as a distinctly separated group in the visualization. As can be seen from the figure below, the cluster center selection is more appropriate.
 
     <div align="center">
-    <img src=https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/tutorial/Vector/cluster-center.png width=60% heigth=60%/>
+    <img src=https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/Vector/cluster-center.png?raw=true width=60% heigth=60%/>
     </div>
 
 By identifying cluster centers, we can divide our customers into two groups: those with middle income and middle consumption levels (cluster center A) and those with higher income and higher consumption levels (cluster center B). Merchants can tailor their product positioning to each group's consumption characteristics, such as offering better value for money for Cluster Center A and high-end or luxury brands for Cluster Center B.
@@ -153,7 +153,7 @@ A music streaming service wants to divide users into groups based on their prefe
     Use t-SNE to reduce high-dimensional data to 2D and visualize clustering results. As can be seen from the figure below, the data points are clearly separated by cluster centers in the space after dimension reduction, which increases confidence in the correctness of the cluster centers.
 
     <div align="center">
-    <img src=https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/tutorial/Vector/cluster_center2.png width=70% heigth=70%/>
+    <img src=https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/Vector/cluster_center2.png?raw=true width=70% heigth=70%/>
     </div>
 
 By determining the cluster centers, we can divide users into two groups: Cluster 1 is primarily composed of users who prefer rock and hip hop music, which may represent a group of users seeking modern and rhythmic music. Cluster 2 is composed of users who prefer pop and jazz music, which may represent a group of users who prefer melodic and relaxed atmosphere music. Media companies can push out styles of music for users based on their preferences.

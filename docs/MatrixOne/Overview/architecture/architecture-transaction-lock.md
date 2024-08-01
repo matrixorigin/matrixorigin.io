@@ -90,7 +90,7 @@ In a pessimistic mode, multiple TN nodes exist in the MatrixOne cluster. Thus, i
 
 ### Lock Service
 
-![](https://github.com/matrixorigin/artwork/blob/main/docs/overview/architecture/lockservice.png)
+![](https://github.com/matrixorigin/artwork/blob/main/docs/overview/architecture/lockservice.png?raw=true)
 
 MatrixOne has implemented LockService to provide lock services, including locking, unlocking, lock conflict detection, lock waiting, and deadlock detection.
 

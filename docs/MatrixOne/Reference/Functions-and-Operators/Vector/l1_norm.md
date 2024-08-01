@@ -5,7 +5,7 @@
 The `l1_norm` function is used to calculate the `l1`/Manhattan/TaxiCab norm. The `l1` norm is obtained by summing the absolute values of the vector elements.
 
 <div align="center">
-<img src=https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/reference/vector/l1_norm.png?raw=true width=50% heigth=50%/>
+<img src=https://github.com/matrixorigin/artwork/blob/main/docs/reference/vector/l1_norm.png?raw=true width=50% heigth=50%/>
 </div>
 
 You can use the `l1` norm to calculate the `l1` distance.
