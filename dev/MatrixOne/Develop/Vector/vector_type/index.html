@@ -684,7 +684,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Overview/architecture/architecture-matrixone-operator.md" class="md-nav__link">
+      <a href="../../../Overview/architecture/architecture-matrixone-operator/" class="md-nav__link">
         MatrixOne-Operator design and implementation
       </a>
     </li>
@@ -4890,7 +4890,7 @@
   
     <li class="md-nav__item">
       <a href="../../../Reference/Variable/system-variables/lower_case_tables_name/" class="md-nav__link">
-        Lowercase table names support
+        Lower case table names support
       </a>
     </li>
   
@@ -12011,7 +12011,7 @@
 <h2 id="what-is-a-vector">What is a vector?</h2>
 <p>In a database, vectors are usually a set of numbers that are arranged in a particular way to represent some data or feature. These vectors can be one-dimensional arrays, multi-dimensional arrays, or data structures with higher dimensions. In machine learning and data analysis, vectors are used to represent data points, features, or model parameters. They are typically used to process unstructured data, such as pictures, speech, text, etc., to transform the unstructured data into embedding vectors through machine learning models and subsequently process and analyze the data.</p>
 <div align="center">
-<img src=https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/reference/vector/vector_introduction.png width=80% heigth=80%/>
+<img src=https://github.com/matrixorigin/artwork/blob/main/docs/reference/vector/vector_introduction.png?raw=true width=80% heigth=80%/>
 </div>
 
 <h2 id="matrixone-support-vector-type">Matrixone support vector type</h2>
@@ -12030,7 +12030,7 @@
 <p><strong>Use binary format</strong>: To improve overall insertion performance, consider using binary format instead of text format. Make sure the array is in small end-order format before converting to hexadecimal encoding. The following is sample Python code:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">binascii</span>
 <span class="c1"># &#39;value&#39; is a NumPy object</span>
-<span class="k">def</span> <span class="nf">to</span>\<span class="n">_binary</span><span class="p">(</span><span class="n">value</span><span class="p">):</span> <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="k">return</span> <span class="n">value</span>
+<span class="k">def</span> <span class="nf">to_binary</span><span class="p">(</span><span class="n">value</span><span class="p">):</span> <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="k">return</span> <span class="n">value</span>
 
     <span class="c1"># small endian floating point array</span>
     <span class="n">value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;&lt;f&#39;</span><span class="p">)</span>

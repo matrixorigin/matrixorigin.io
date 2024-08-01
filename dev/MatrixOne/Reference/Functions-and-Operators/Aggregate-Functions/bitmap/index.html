@@ -684,7 +684,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Overview/architecture/architecture-matrixone-operator.md" class="md-nav__link">
+      <a href="../../../../Overview/architecture/architecture-matrixone-operator/" class="md-nav__link">
         MatrixOne-Operator design and implementation
       </a>
     </li>
@@ -4826,7 +4826,7 @@
   
     <li class="md-nav__item">
       <a href="../../../Variable/system-variables/lower_case_tables_name/" class="md-nav__link">
-        Lowercase table names support
+        Lower case table names support
       </a>
     </li>
   
@@ -12272,7 +12272,7 @@
 <p>A <code>BITMAP</code> function is a set of built-in functions for processing bitmaps, which are contiguous pieces of memory stored as binary data types. These functions are particularly useful for counting distinct values when dealing with hierarchical aggregations, such as multiple grouped sets, and return results consistent with <a href="../count/"><code>count (distinct</code></a>), but more efficiently.</p>
 <p>We can use only one bit to identify the presence or absence of an element, 1 for presence or 0 for absence, and the nth bit of bitmap to record whether the element exists.</p>
 <p>We specify that the maximum width of bitmap is 32768 (2^15 = 4K), and for non-negative integer n, take its lower 15 bits (binary) as the position in bitmap and the other high bits as the number of the bitmap bucket. The following diagram shows the logic of bitmap:</p>
-<p><img alt="" src="https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/reference/bitmap.png" /></p>
+<p><img alt="" src="https://github.com/matrixorigin/artwork/blob/main/docs/reference/bitmap.png?raw=true" /></p>
 <p>Each bucket is a bitmap, and since the buckets are orthogonal, each bucket doing the operation (or,bit_count) can be done only in the current bucket, regardless of the other buckets.</p>
 <p>Here are some common <code>BITMAP</code> functions and their usage:</p>
 <h3 id="bitmap_bucket_number">BITMAP_BUCKET_NUMBER</h3>

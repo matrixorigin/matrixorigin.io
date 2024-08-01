@@ -684,7 +684,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Overview/architecture/architecture-matrixone-operator.md" class="md-nav__link">
+      <a href="../../../Overview/architecture/architecture-matrixone-operator/" class="md-nav__link">
         MatrixOne-Operator design and implementation
       </a>
     </li>
@@ -5078,7 +5078,7 @@
   
     <li class="md-nav__item">
       <a href="../../../Reference/Variable/system-variables/lower_case_tables_name/" class="md-nav__link">
-        Lowercase table names support
+        Lower case table names support
       </a>
     </li>
   
@@ -12444,7 +12444,7 @@
 <h3 id="overall-architecture">Overall architecture</h3>
 <p>The overall deployment architecture is shown in the following figure:</p>
 <div align="center">
-  <img src=https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/deploy/deploy-mo-cluster-arch-overall.png width=80% heigth=80%/>
+  <img src=https://github.com/matrixorigin/artwork/blob/main/docs/deploy/deploy-mo-cluster-arch-overall.png?raw=true width=80% heigth=80%/>
  </div>
 
 <p>The overall architecture consists of the following components:</p>
@@ -12479,7 +12479,7 @@
 </li>
 </ul>
 <div align="center">
-<img src=https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/deploy/deploy-mo-cluster-arch-pod.png width=80% heigth=80%/>
+<img src=https://github.com/matrixorigin/artwork/blob/main/docs/deploy/deploy-mo-cluster-arch-pod.png?raw=true width=80% heigth=80%/>
 </div>
 
 <h2 id="1-deploy-a-kubernetes-cluster">1. Deploy a Kubernetes cluster</h2>
@@ -12593,7 +12593,7 @@ May 07 11:48:06 VM-0-6-centos dockerd[5845]: time=&quot;2023-05-07T11:48:06.5692
   swr.cn-east-2.myhuaweicloud.com/kuboard/kuboard-spray:latest-amd64
 </code></pre></div>
 <p>Once this is done, you can enter <code>http://1.13.2.100</code> (Springboard IP address) in your browser to open the Kuboard-Spray web interface, enter the username <code>admin</code>, the default password <code>Kuboard123</code>, and log into the Kuboard-Spray interface as follows:</p>
-<p><img alt="" src="https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/deploy/deploy-mo-cluster-1.png" /></p>
+<p><img alt="" src="https://github.com/matrixorigin/artwork/blob/main/docs/deploy/deploy-mo-cluster-1.png?raw=true" /></p>
 <p>Once logged in, you can begin deploying Kubernetes clusters.</p>
 <h3 id="visually-deploy-kubernetes-clusters">Visually deploy Kubernetes clusters</h3>
 <p>Once logged into the Kuboard-Spray interface, you can begin visual deployment of your Kubernetes cluster.</p>
@@ -12603,20 +12603,20 @@ May 07 11:48:06 VM-0-6-centos dockerd[5845]: time=&quot;2023-05-07T11:48:06.5692
 <li>
 <p>Click on <strong>Resource Pack Management</strong> and select the appropriate version of Kubernetes Resource Pack to download:</p>
 <p>Download version <code>spray-v2.18.0b-2_k8s-v1.23.17_v1.24-amd64</code></p>
-<p><img alt="" src="https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/deploy/deploy-mo-cluster-2.png" /></p>
+<p><img alt="" src="https://github.com/matrixorigin/artwork/blob/main/docs/deploy/deploy-mo-cluster-2.png?raw=true" /></p>
 </li>
 <li>
 <p>After clicking <strong>Import</strong>, select <strong>Load Resource Package</strong>, select the appropriate download source, and wait for the resource package download to complete.</p>
 <p>!!! note It is recommended that you choose Docker as the container engine for the K8s cluster. After selecting Docker as the container engine for K8s, Kuboard-Spray automatically uses Docker to run the various components of the K8s cluster, including containers on the Master node and the Worker node.</p>
-<p><img alt="" src="https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/deploy/deploy-mo-cluster-3.png" /></p>
+<p><img alt="" src="https://github.com/matrixorigin/artwork/blob/main/docs/deploy/deploy-mo-cluster-3.png?raw=true" /></p>
 </li>
 <li>
 <p>This <code>pulls</code> the relevant mirror dependencies:</p>
-<p><img alt="" src="https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/deploy/deploy-mo-cluster-4.png" /></p>
+<p><img alt="" src="https://github.com/matrixorigin/artwork/blob/main/docs/deploy/deploy-mo-cluster-4.png?raw=true" /></p>
 </li>
 <li>
 <p>After the mirrored resource pack is pulled successfully, return to Kuboard-Spray's web interface and see that the corresponding version of the resource pack has been imported.</p>
-<p><img alt="" src="https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/deploy/deploy-mo-cluster-5.png" /></p>
+<p><img alt="" src="https://github.com/matrixorigin/artwork/blob/main/docs/deploy/deploy-mo-cluster-5.png?raw=true" /></p>
 </li>
 </ol>
 <h4 id="installing-a-kubernetes-cluster">Installing a Kubernetes Cluster</h4>
@@ -12624,11 +12624,11 @@ May 07 11:48:06 VM-0-6-centos dockerd[5845]: time=&quot;2023-05-07T11:48:06.5692
 <ol>
 <li>
 <p>Select <strong>Cluster Management</strong> and select <strong>Add Cluster Installation Plan</strong>:</p>
-<p><img alt="" src="https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/deploy/deploy-mo-cluster-6.png" /></p>
+<p><img alt="" src="https://github.com/matrixorigin/artwork/blob/main/docs/deploy/deploy-mo-cluster-6.png?raw=true" /></p>
 </li>
 <li>
 <p>In the pop-up dialog box, define the name of the cluster, select the version of the resource package you just imported, and click <strong>OK</strong>. As shown in the following figure:</p>
-<p><img alt="" src="https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/deploy/deploy-mo-cluster-7.png" /></p>
+<p><img alt="" src="https://github.com/matrixorigin/artwork/blob/main/docs/deploy/deploy-mo-cluster-7.png?raw=true" /></p>
 </li>
 </ol>
 <h5 id="cluster-planning">Cluster planning</h5>
@@ -12637,7 +12637,7 @@ May 07 11:48:06 VM-0-6-centos dockerd[5845]: time=&quot;2023-05-07T11:48:06.5692
 <ol>
 <li>
 <p>Select the role and name of the corresponding node:</p>
-<p><img alt="" src="https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/deploy/deploy-mo-cluster-8.png" /></p>
+<p><img alt="" src="https://github.com/matrixorigin/artwork/blob/main/docs/deploy/deploy-mo-cluster-8.png?raw=true" /></p>
 <ul>
 <li>master node: Select the ETCD and control node and name it master0. (You can also select the working node if you want the master node to work.) This approach improves resource utilization, but reduces the high availability of Kubernetes.)</li>
 <li>worker node: Select only the worker node and name it node0.</li>
@@ -12645,8 +12645,8 @@ May 07 11:48:06 VM-0-6-centos dockerd[5845]: time=&quot;2023-05-07T11:48:06.5692
 </li>
 <li>
 <p>After each node has filled in the role and node name, fill in the connection information for the corresponding node to the right, as shown in the following figure:</p>
-<p><img alt="" src="https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/deploy/deploy-mo-cluster-9.png" /></p>
-<p><img alt="" src="https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/deploy/deploy-mo-cluster-9-1.png" /></p>
+<p><img alt="" src="https://github.com/matrixorigin/artwork/blob/main/docs/deploy/deploy-mo-cluster-9.png?raw=true" /></p>
+<p><img alt="" src="https://github.com/matrixorigin/artwork/blob/main/docs/deploy/deploy-mo-cluster-9-1.png?raw=true" /></p>
 </li>
 <li>
 <p>Click <strong>Save</strong> when you have filled out all the roles. Next you are ready to install the Kubernetes cluster.</p>
@@ -12657,7 +12657,7 @@ May 07 11:48:06 VM-0-6-centos dockerd[5845]: time=&quot;2023-05-07T11:48:06.5692
 <ol>
 <li>
 <p>Click <strong>OK</strong> to begin installing the Kubernetes cluster as shown in the following figure:</p>
-<p><img alt="" src="https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/deploy/deploy-mo-cluster-10.png" /></p>
+<p><img alt="" src="https://github.com/matrixorigin/artwork/blob/main/docs/deploy/deploy-mo-cluster-10.png?raw=true" /></p>
 </li>
 <li>
 <p>When you install a Kubernetes cluster, the Kubernetes cluster is installed by executing an <code>ansible</code> script on the corresponding node. The overall event can take anywhere from 5 to 10 minutes depending on the machine configuration and network and the time to wait.</p>
@@ -12678,7 +12678,7 @@ node0     Ready    &lt;none&gt;                 52m   v1.23.17
 <p>Adjust the DNS routing table on each node of Kubernetes. Execute the following command on each machine to locate the nameserver that contains <code>169.254.25.10</code> and delete the record. (The record may affect the efficiency of communication between the individual pods and need not be changed if it does not exist)</p>
 <div class="highlight"><pre><span></span><code>vim /etc/resolve.conf 
 </code></pre></div>
-<p><img alt="" src="https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/deploy/deploy-mo-cluster-10-1.png" /></p>
+<p><img alt="" src="https://github.com/matrixorigin/artwork/blob/main/docs/deploy/deploy-mo-cluster-10-1.png?raw=true" /></p>
 </li>
 </ol>
 <h2 id="2-deployment-helm">2. Deployment helm</h2>
@@ -12813,12 +12813,12 @@ nohup kubectl port-forward --address 0.0.0.0 $POD_NAME -n mostorage 9000:9000 &a
 </li>
 <li>
 <p>Once launched, use <a href="http://118.195.255.252:32001/">http://118.195.255.252:32001/</a> to log into MinIO's page and create the information stored by the object. As shown in the following figure, the account password is the rootUser and rootPassword set by <code>--set rootUser=rootuser,rootPassword=rootpass123</code> in the above steps:</p>
-<p><img alt="" src="https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/deploy/deploy-mo-cluster-13.png" /></p>
+<p><img alt="" src="https://github.com/matrixorigin/artwork/blob/main/docs/deploy/deploy-mo-cluster-13.png?raw=true" /></p>
 </li>
 <li>
 <p>Once the login is complete, you need to create an object to store the relevant information:</p>
 <p>Click <strong>Bucket &gt; Create Bucket</strong> and fill in Bucket's name <strong>minio-mo</strong> in <strong>Bucket Name</strong>. Once completed, click the button <strong>Create Bucket</strong> at the bottom right.</p>
-<p><img alt="" src="https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/deploy/deploy-mo-cluster-14.png" /></p>
+<p><img alt="" src="https://github.com/matrixorigin/artwork/blob/main/docs/deploy/deploy-mo-cluster-14.png?raw=true" /></p>
 </li>
 </ol>
 <h2 id="5-matrixone-cluster-deployment">5. MatrixOne Cluster Deployment</h2>

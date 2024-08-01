@@ -684,7 +684,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Overview/architecture/architecture-matrixone-operator.md" class="md-nav__link">
+      <a href="../../../../Overview/architecture/architecture-matrixone-operator/" class="md-nav__link">
         MatrixOne-Operator design and implementation
       </a>
     </li>
@@ -4946,7 +4946,7 @@
   
     <li class="md-nav__item">
       <a href="../../../../Reference/Variable/system-variables/lower_case_tables_name/" class="md-nav__link">
-        Lowercase table names support
+        Lower case table names support
       </a>
     </li>
   
@@ -12186,19 +12186,19 @@
 <ol>
 <li>
 <p>Access the Superset login page, typically at <code>http://ip:8080</code>. Then, enter your username and password to log in to Superset.</p>
-<p><img alt="Superset Login Page" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/superset/superset-login.png" /></p>
+<p><img alt="Superset Login Page" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/superset/superset-login.png?raw=true" /></p>
 <p><strong>Note:</strong> The port for Superset may be either 8080 or 8088, depending on your configuration. The username and password are the ones you set during the Superset deployment.</p>
 <p>After logging in, you will see the main interface of Superset.</p>
-<p><img alt="Superset Main Interface" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/superset/superset-dashboard.png" /></p>
+<p><img alt="Superset Main Interface" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/superset/superset-dashboard.png?raw=true" /></p>
 </li>
 <li>
 <p>Create a database connection:</p>
 <p>In Superset, you first need to create a database connection to MatrixOne. Click on <strong>Settings</strong> in the top right corner and select <strong>Database Connections</strong>.</p>
 <p>Click the <strong>+ DATABASE</strong> button on the Database Connections page and choose <strong>MySQL</strong> as the database type.</p>
 <p>Fill in the connection information for the MatrixOne database, including the host, port, username, and password.</p>
-<p><img alt="Create Database Connection" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/superset/superset-create-db-connection.png" /></p>
+<p><img alt="Create Database Connection" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/superset/superset-create-db-connection.png?raw=true" /></p>
 <p>After filling in the details, click the <strong>CONNECT</strong> button and then click <strong>FINISH</strong>.</p>
-<p><img alt="Create Query" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/superset/superset-create-query.png" /></p>
+<p><img alt="Create Query" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/superset/superset-create-query.png?raw=true" /></p>
 </li>
 </ol>
 <h2 id="creating-visual-monitoring-dashboards">Creating Visual Monitoring Dashboards</h2>
@@ -12206,7 +12206,7 @@
 <ol>
 <li>
 <p>Click on <strong>SQL &gt; SQL Lab</strong> on the page, select the MatrixOne database connection you created earlier, and write SQL queries to select the tables you want to monitor.</p>
-<p><img alt="image-20230807201143069" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/superset/sql-lab.png" /></p>
+<p><img alt="image-20230807201143069" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/superset/sql-lab.png?raw=true" /></p>
 <p>You can write multiple queries to monitor different metrics. Here are example SQL statements for some queries:</p>
 <ul>
 <li>CPU Usage:</li>
@@ -12279,11 +12279,11 @@
 <li>
 <p>Edit the charts:</p>
 <p>Here, we'll use one of the queries as an example to demonstrate how to edit a visual chart. First, select the 'disk_read_write' query as the data source for the chart. In the SQL Lab, click <strong>CREATE CHART</strong> below the corresponding query, or if you've saved the query in the previous step, the page will redirect to the Chart editing page:</p>
-<p><img alt="Create Dashboard" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/superset/superset-create-dashboard.png" /></p>
+<p><img alt="Create Dashboard" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/superset/superset-create-dashboard.png?raw=true" /></p>
 </li>
 <li>
 <p>In the chart editing page, choose chart type, time field, metric columns from the query, grouping columns, and other options. Once configured, select <strong>RUN</strong>:</p>
-<p><img alt="View Dashboard" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/superset/superset-view-dashboard.png" /></p>
+<p><img alt="View Dashboard" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/superset/superset-view-dashboard.png?raw=true" /></p>
 </li>
 <li>
 <p>Click <strong>UPDATE CHART &gt; SAVE</strong> to save the edited chart.</p>
@@ -12294,11 +12294,11 @@
 <li>
 <p>After creating multiple charts, you can assemble them in Superset to create a monitoring dashboard:</p>
 <p>Click on <strong>Dashboards</strong>, then click <strong>+ DASHBOARD</strong> to create a new dashboard or edit an existing one.</p>
-<p><img alt="image-20230808101636134" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/superset/superset-add-dashboard.png" /></p>
+<p><img alt="image-20230808101636134" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/superset/superset-add-dashboard.png?raw=true" /></p>
 </li>
 <li>
 <p>In the dashboard editing page, you can drag the charts you've created from the CHARTS list on the right onto the dashboard for assembly. You can also freely adjust the position of charts, add titles, and more.</p>
-<p><img alt="image-20230808102033250" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/superset/superset-edit-dashboard.png" /></p>
+<p><img alt="image-20230808102033250" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/superset/superset-edit-dashboard.png?raw=true" /></p>
 </li>
 </ol>
 <p>You have successfully connected the MatrixOne database with Superset and created a simple monitoring dashboard to visualize key metrics of the MatrixOne database.</p>

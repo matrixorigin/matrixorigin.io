@@ -783,7 +783,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../architecture-matrixone-operator.md" class="md-nav__link">
+      <a href="../architecture-matrixone-operator/" class="md-nav__link">
         MatrixOne-Operator design and implementation
       </a>
     </li>
@@ -4923,7 +4923,7 @@
   
     <li class="md-nav__item">
       <a href="../../../Reference/Variable/system-variables/lower_case_tables_name/" class="md-nav__link">
-        Lowercase table names support
+        Lower case table names support
       </a>
     </li>
   
@@ -12127,7 +12127,7 @@
 <p>Convert the collected log information into the Logtail protocol format and return it as a response to CN.</p>
 </li>
 </ol>
-<p><img alt="Pull Workflow" src="https://github.com/matrixorigin/artwork/blob/main/docs/overview/architecture/logtail-arch-1.png" /></p>
+<p><img alt="Pull Workflow" src="https://github.com/matrixorigin/artwork/blob/main/docs/overview/architecture/logtail-arch-1.png?raw=true" /></p>
 <div class="highlight"><pre><span></span><code>type RespBuilder interface {
   OnDatabase(database *DBEntry) error
   OnPostDatabase(database *DBEntry) error
@@ -12155,7 +12155,7 @@
 </li>
 </ul>
 <p>If a table has not been updated for a long time, how does a CN become aware of it? Here, a heartbeat mechanism is introduced, with a default of 2 ms. In TN's commit queue, a heartbeat transaction is placed, which performs no substantial work but consumes a timestamp, triggering a Logtail send to notify CN that all table data had updates sent previously, pushing the CN's timestamp watermark.</p>
-<p><img alt="Push Workflow" src="https://github.com/matrixorigin/artwork/blob/main/docs/overview/architecture/logtail-arch-2.png" /></p>
+<p><img alt="Push Workflow" src="https://github.com/matrixorigin/artwork/blob/main/docs/overview/architecture/logtail-arch-2.png?raw=true" /></p>
 
 
 

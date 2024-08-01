@@ -684,7 +684,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Overview/architecture/architecture-matrixone-operator.md" class="md-nav__link">
+      <a href="../../../../Overview/architecture/architecture-matrixone-operator/" class="md-nav__link">
         MatrixOne-Operator design and implementation
       </a>
     </li>
@@ -4919,7 +4919,7 @@
   
     <li class="md-nav__item">
       <a href="../../../../Reference/Variable/system-variables/lower_case_tables_name/" class="md-nav__link">
-        Lowercase table names support
+        Lower case table names support
       </a>
     </li>
   
@@ -12075,21 +12075,21 @@
 <h2 id="connecting-matrixone-services-with-yonghong-bi">Connecting MatrixOne Services with Yonghong BI</h2>
 <h3 id="adding-a-data-source">Adding a Data Source</h3>
 <p>Open Yonghong BI, select <strong>Add Data Source &gt; + (New Data Source)</strong> on the left, and choose <strong>MySQL</strong> in the pop-up database options.</p>
-<p><img alt="Add Data Source" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/yonghong/yonghong_add_connect.png" /></p>
+<p><img alt="Add Data Source" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/yonghong/yonghong_add_connect.png?raw=true" /></p>
 <p>After filling in the connection information related to the MatrixOne database, you can select the <strong>Test Connection</strong> button in the upper right corner to ensure a successful connection.</p>
 <p>Once the connection is successful, click <strong>Save</strong> to save the data source information we just filled in.</p>
-<p><img alt="Connect to MatrixOne" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/yonghong/yonghong_connect.png" /></p>
+<p><img alt="Connect to MatrixOne" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/yonghong/yonghong_connect.png?raw=true" /></p>
 <h3 id="creating-a-dataset">Creating a Dataset</h3>
 <p>In Yonghong BI, select the <strong>Create Dataset</strong> menu on the left, then choose the data source you added just now. You will see tables and views from the MatrixOne database. To meet your business needs, add <strong>Custom SQL</strong>, then click <strong>Refresh Data</strong>. The query results will be displayed on the right. After confirming that the query results meet expectations, click <strong>Save</strong> to save the dataset.</p>
-<p><img alt="Create Dataset" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/yonghong/yonghong_dataset.png" /></p>
+<p><img alt="Create Dataset" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/yonghong/yonghong_dataset.png?raw=true" /></p>
 <h3 id="creating-reports">Creating Reports</h3>
 <p>First, in Yonghong BI, select the <strong>Create Report</strong> menu on the left, then choose the appropriate <strong>Chart Component</strong> from the right and drag it to the left.</p>
-<p><img alt="Create Report" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/yonghong/yonghong_panel_add.png" /></p>
+<p><img alt="Create Report" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/yonghong/yonghong_panel_add.png?raw=true" /></p>
 <p>Select the dataset you just created, set the time dimension as the X-axis, and set the daily order count and active user count as the Y-axis. You can drag the measurement and dimension <strong>fields to their respective positions as needed</strong>. After editing, click <strong>Save</strong> to save the report you created.</p>
-<p><img alt="Create Report" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/yonghong/yonghong_report.png" /></p>
+<p><img alt="Create Report" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/yonghong/yonghong_report.png?raw=true" /></p>
 <h3 id="viewing-reports">Viewing Reports</h3>
 <p>Finally, in Yonghong BI, select <strong>View Report</strong>, then click on the report name we created in the tree menu on the left. You will be able to view the report we created above.</p>
-<p><img alt="View Report" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/yonghong/yonghong_result.png" /></p>
+<p><img alt="View Report" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/yonghong/yonghong_result.png?raw=true" /></p>
 <p>You have successfully connected to the MatrixOne database using Yonghong BI and created a simple report for visualizing MatrixOne data.</p>
 
 
