@@ -6,7 +6,7 @@ This document will guide you through the process of connecting to MatrixOne usin
 
 ## Prepare for the start
 
-- Completed [Installation and startup of MatrixOne] (../../Get-Started/install-standalone-matrixone.md).
+- Completed [Installation and startup of MatrixOne](../../Get-Started/install-standalone-matrixone.md).
 
 - Installed [. NET Core SDK](https://dotnet.microsoft.com/zh-cn/download).
 

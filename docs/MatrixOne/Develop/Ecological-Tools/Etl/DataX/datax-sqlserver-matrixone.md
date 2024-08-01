@@ -115,5 +115,5 @@ select * from test_2;
 ```
 
 <div align="center">
-    <img src=https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/develop/datax/datax-sqlserver-02.jpg width=50% heigth=50%/>
+    <img src=https://github.com/matrixorigin/artwork/blob/main/docs/develop/datax/datax-sqlserver-02.jpg?raw=true width=50% heigth=50%/>
 </div>

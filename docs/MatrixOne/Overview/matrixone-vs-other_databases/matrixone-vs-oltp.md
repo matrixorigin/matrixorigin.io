@@ -24,7 +24,7 @@ OLTP databases can also be divided into centralized databases, distributed datab
 It is worth noting that there are no strict dividing criteria for these three classifications, and each database has gradually begun to integrate the capabilities of other route products as it has evolved in practice. Oracle's RAC architecture, for example, is a typical shared storage architecture with some scalability. Products like CockroachDB and TiDB are also evolving toward cloud-native and shared storage. In practice, OLTP is the most widely needed database scenario, and products along all three technical routes are also used by a large number of users.
 
 <div align="center">
-<img src=https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/overview/mo-other-database/oltp_category.png width=80% heigth=80%/>
+<img src=https://github.com/matrixorigin/artwork/blob/main/docs/overview/mo-other-database/oltp_category.png?raw=true width=80% heigth=80%/>
 </div>
 
 ## OLTP Features of MatrixOne
@@ -44,20 +44,48 @@ There are two differences from Aurora:
 
 Of course, MatrixOne isn't limited to OLTP capabilities, and MatrixOne's ability to accommodate other loads is significantly different from Aurora's positioning.
 
-![](https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/overview/mo-other-database/mo_vs_aurora.png)
+![](https://github.com/matrixorigin/artwork/blob/main/docs/overview/mo-other-database/mo_vs_aurora.png?raw=true)
 
 ## MatrixOne versus MySQL
 
 Since MatrixOne's primary goal is to be compatible with MySQL, MySQL itself is the world['s most popular open source database](https://db-engines.com/en/ranking). A large portion of MatrixOne's users are migrated from open source MySQL to MatrixOne, so here we compare MatrixOne to MySQL in detail.
 
-| | | MySQL | MatrixOne | | | -------------------------- | -------------------------------------- | ---------------------------------- | -------------------------------------------------- | | Version | 8.0.37 | Latest Version | ---------------------------------------------------------------------- | | | License | GPL License | Apache License 2.0 | | | | Schema | Centralized Database | Distributed Cloud Native Database | | | | Load Type | OLTP, Analytical Load Depends on Enterprise Heatwave | HTAP, Timing | | Storage Format | RBAC-Based Functions Base Window | Row Storage Engine | InnoDB/MyIsam | TAE | | Interactions | SQL | SQL | | | Deployment Method | Standalone Deployment/Master/Slave Deployment | Standalone Deployment/Master/Slave Deployment/Distributed Deployment/K8s Deployment | | Scale Out Capabilities | Reliance on Split Table Middleware Implementation | Natural Support | | Transaction Capabilities | Pessimistic Transactions/Optimistic Transactions + ANSI 4 Isolation Levels (InnoDB Engine) | Pessimistic Transactions/Optimistic Transactions + RC/SI | | | | Data Types | Base Numerical Values, Time Date, Characters, JSON, Spatial | Base Numerical Values, Time, Dates, Characters, JSON, Vector | Indexes and Constraints | Primary Keys, Unique Foreign Keys, Unique Foreign Keys, Unique Foreign Keys | Foreign Keys
+|                    | MySQL             |   MatrixOne      |
+| ------------------ | ----------------- | ---------------------- |
+| Versions           | 8.0.37 | Latest Version
+| License             | GPL License 2.0 | Apache License 2.0 | Apache License|
+| Architecture | Centralized Databases | Distributed Cloud-Native Databases|
+| Load Types | OLTP, Analytical loads rely on enterprise version of Heatwave | HTAP, Time-Series |
+| Storage Formats | Row Stores | Column Stores |
+| Storage Engines | InnoDB/MyIsam | TAE |
+| Interaction            | SQL               | SQL                     |
+| Deployment Mode | Standalone Deployment/Master-Slave Deployment | Standalone Deployment/Master-Slave Deployment/Distributed Deployment/K8s Deployment |
+| Horizontal Scalability | Dependent on Split Database and Split Table Middleware | Natural Support |
+| Affair capacity      | Pessimistic transactions/optimistic transactions + ANSI 4 isolation levels (InnoDB Engine)  | Pessimistic Service/Optimistic Service + RC/SI   |
+| Data Types | Base Numeric, TimeDate, Character, JSON, Space | Base Numeric, TimeDate, Character, JSON, Vector |
+| Indexes and Constraints | Primary key, Secondary key, Unique key, Foreign key| Primary key, Secondary key, Unique key, Foreign key |
+| Access Control | RBAC-Based | RBAC-Based | RBAC-Based |
+| Window Functions | Base Window Functions | Base Window Functions, Time Sliding Window |
+| Advanced SQL Capabilities | Triggers, Stored Procedures | Unsupported
+| Streaming Computing | Not Supported | Streaming Writes/kafka Connector/Dynamic Tables |
+| UDF | UDF for SQL and C | UDF for SQL and Python | UDF for SQL and Python |
+| Multi-tenancy | Not Supported | Supported |
+| Data Sharing | Not Supported | Support for Inter-tenant Data Sharing |
+| Programming Languages | Most Languages | Java, Python, Golang Connector and ORM Basic Support |
+| Common Visualization Management Tools | Navicat, DBeaver, MySQL Workbench, DataGrip, HeidiSQL, etc. | Consistent with MySQL |
+| Backup Tools | Logical Backup, Physical Backup | Logical Backup, Physical Backup, Snapshot Backup | Logical Backup, Physical Backup, Snapshot Backup |
+| CDC Competencies | Yes | No |
+| OLTP Performance | Standalone excellent, non-scalable | Standalone good, scalable |
+| OLAP Performance | Poor | Excellent, Scalable |
+| High Volume Write Performance | Poor | Excellent, Scalable |
+| Storage Space | Limited to Disk | Unlimited Expansion |
 
 Additional details can be found in [MatrixOne's MySQL compatibility details](../../Overview/feature/mysql-compatibility.md).
 
 Overall, MatrixOne is a highly MySQL-compatible cloud-native HTAP database that works seamlessly with most MySQL-based applications. At the same time, MatrixOne naturally has great scalability and the ability to support other types of business loads. In addition, based on MatrixOne's memory separation and multi-tenancy features, users have the flexibility to design their application architecture with MatrixOne as a one-stop shop for load isolation issues previously addressed by applications, middleware, or other databases.
 
 <div align="center">
-<img src=https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/overview/mo-other-database/mo_mysql_use_case.png width=60% heigth=60%/>
+<img src=https://github.com/matrixorigin/artwork/blob/main/docs/overview/mo-other-database/mo_mysql_use_case.png?raw=true width=60% heigth=60%/>
 </div>
 
 For MySQL users, MatrixOne is a more appropriate option if they experience bottlenecks with:

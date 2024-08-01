@@ -30,7 +30,7 @@ This practice requires the installation and deployment of the following software
     An example configuration is shown in the following figure:
 
     <div align="center">
-    <img src=https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/develop/flink/matrixone-flink-demo.png width=50% heigth=50%/>
+    <img src=https://github.com/matrixorigin/artwork/blob/main/docs/develop/flink/matrixone-flink-demo.png?raw=true width=50% heigth=50%/>
     </div>
 
 2. Add project dependencies, edit the `pom.xml` file in the root of your project, and add the following to the file:
@@ -248,7 +248,7 @@ After connecting to MatrixOne using a MySQL client, create the database you need
 
 3. Run `MoRead.Main()` in IDEA with the following result:
 
-    ![MoRead execution results](https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/develop/flink/moread.png)
+    ![MoRead execution results](https://github.com/matrixorigin/artwork/blob/main/docs/develop/flink/moread.png?raw=true)
 
 ### Step Three: Write MySQL Data to MatrixOne
 

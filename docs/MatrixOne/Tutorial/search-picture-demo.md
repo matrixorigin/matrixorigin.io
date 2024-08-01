@@ -5,7 +5,7 @@ Currently, graphic and text search applications cover a wide range of areas. In 
 The following is a flow chart of a graphic search:
 
 <div align="center">
-<img src=https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/tutorial/Vector/search-image.png width=80% heigth=80%/>
+<img src=https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/Vector/search-image.png?raw=true width=80% heigth=80%/>
 </div>
 
 As you can see, vectorized storage and retrieval of images is involved in building graph-to-text search applications, while MatrixOne's vector capabilities and multiple retrieval methods provide critical technical support for building graph-to-text search applications.
@@ -224,13 +224,13 @@ if __name__ == "__main__":
 Using the results of the chart search, the first chart on the left is a comparison chart. As you can see, the searched picture is very similar to the comparison chart:
 
 <div align="center">
-<img src=https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/tutorial/Vector/img_search.png width=80% heigth=80%/>
+<img src=https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/Vector/img_search.png?raw=true width=80% heigth=80%/>
 </div>
 
 As you can see from the text search results, the searched image matches the input text:
 
 <div align="center">
-<img src=https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/tutorial/Vector/text_search_pic.png width=50% heigth=50%/>
+<img src=https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/Vector/text_search_pic.png?raw=true width=50% heigth=50%/>
 </div>
 
 ## Reference Documents

@@ -5,7 +5,7 @@
 In a database, vectors are usually a set of numbers that are arranged in a particular way to represent some data or feature. These vectors can be one-dimensional arrays, multi-dimensional arrays, or data structures with higher dimensions. In machine learning and data analysis, vectors are used to represent data points, features, or model parameters. They are typically used to process unstructured data, such as pictures, speech, text, etc., to transform the unstructured data into embedding vectors through machine learning models and subsequently process and analyze the data.
 
 <div align="center">
-<img src=https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/reference/vector/vector_introduction.png width=80% heigth=80%/>
+<img src=https://github.com/matrixorigin/artwork/blob/main/docs/reference/vector/vector_introduction.png?raw=true width=80% heigth=80%/>
 </div>
 
 ## Matrixone support vector type
@@ -31,7 +31,7 @@ Matrixone currently supports vectors of type `float32` and `float64`, called `ve
     ```python
     import binascii
     # 'value' is a NumPy object
-    def to\_binary(value): if value is None: return value
+    def to_binary(value): if value is None: return value
 
         # small endian floating point array
         value = np.asarray(value, dtype='<f')

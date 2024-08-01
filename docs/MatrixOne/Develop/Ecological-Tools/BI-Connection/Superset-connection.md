@@ -84,13 +84,13 @@ Here are the steps for deploying a single-node Superset using Docker:
 
 1. Access the Superset login page, typically at `http://ip:8080`. Then, enter your username and password to log in to Superset.
 
-    ![Superset Login Page](https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/superset/superset-login.png)
+    ![Superset Login Page](https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/superset/superset-login.png?raw=true)
 
     __Note:__ The port for Superset may be either 8080 or 8088, depending on your configuration. The username and password are the ones you set during the Superset deployment.
 
     After logging in, you will see the main interface of Superset.
 
-    ![Superset Main Interface](https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/superset/superset-dashboard.png)
+    ![Superset Main Interface](https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/superset/superset-dashboard.png?raw=true)
 
 2. Create a database connection:
 
@@ -100,11 +100,11 @@ Here are the steps for deploying a single-node Superset using Docker:
 
     Fill in the connection information for the MatrixOne database, including the host, port, username, and password.
 
-    ![Create Database Connection](https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/superset/superset-create-db-connection.png)
+    ![Create Database Connection](https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/superset/superset-create-db-connection.png?raw=true)
 
     After filling in the details, click the **CONNECT** button and then click **FINISH**.
 
-    ![Create Query](https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/superset/superset-create-query.png)
+    ![Create Query](https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/superset/superset-create-query.png?raw=true)
 
 ## Creating Visual Monitoring Dashboards
 
@@ -112,7 +112,7 @@ Now, you can use the MatrixOne database to create a monitoring dashboard.
 
 1. Click on **SQL > SQL Lab** on the page, select the MatrixOne database connection you created earlier, and write SQL queries to select the tables you want to monitor.
 
-    ![image-20230807201143069](https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/superset/sql-lab.png)
+    ![image-20230807201143069](https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/superset/sql-lab.png?raw=true)
 
     You can write multiple queries to monitor different metrics. Here are example SQL statements for some queries:
 
@@ -194,11 +194,11 @@ Now, you can use the MatrixOne database to create a monitoring dashboard.
 
     Here, we'll use one of the queries as an example to demonstrate how to edit a visual chart. First, select the 'disk_read_write' query as the data source for the chart. In the SQL Lab, click **CREATE CHART** below the corresponding query, or if you've saved the query in the previous step, the page will redirect to the Chart editing page:
 
-    ![Create Dashboard](https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/superset/superset-create-dashboard.png)
+    ![Create Dashboard](https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/superset/superset-create-dashboard.png?raw=true)
 
 4. In the chart editing page, choose chart type, time field, metric columns from the query, grouping columns, and other options. Once configured, select **RUN**:
 
-    ![View Dashboard](https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/superset/superset-view-dashboard.png)
+    ![View Dashboard](https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/superset/superset-view-dashboard.png?raw=true)
 
 5. Click **UPDATE CHART > SAVE** to save the edited chart.
 
@@ -208,10 +208,10 @@ Now, you can use the MatrixOne database to create a monitoring dashboard.
 
     Click on **Dashboards**, then click **+ DASHBOARD** to create a new dashboard or edit an existing one.
 
-    ![image-20230808101636134](https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/superset/superset-add-dashboard.png)
+    ![image-20230808101636134](https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/superset/superset-add-dashboard.png?raw=true)
 
 2. In the dashboard editing page, you can drag the charts you've created from the CHARTS list on the right onto the dashboard for assembly. You can also freely adjust the position of charts, add titles, and more.
 
-    ![image-20230808102033250](https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/superset/superset-edit-dashboard.png)
+    ![image-20230808102033250](https://github.com/matrixorigin/artwork/blob/main/docs/develop/bi-connection/superset/superset-edit-dashboard.png?raw=true)
 
 You have successfully connected the MatrixOne database with Superset and created a simple monitoring dashboard to visualize key metrics of the MatrixOne database.

@@ -77,7 +77,7 @@ Before you begin, confirm that you have downloaded and installed the following s
 
     Enter the ip of your server in your browser (here we enter the native IP address: 127.0.0.1:8000) and the port number. If it starts normally, the output is as follows:
 
-    ![](https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/tutorial/django/django-1.png)
+    ![](https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/django/django-1.png?raw=true)
 
 4. We found the DATABASES configuration item in the project's settings.py file and modified its information to:
 
@@ -156,7 +156,7 @@ The Django model uses its own ORM. The above class name represents the database 
 ORM correspondence table:
 
 <div align="center">
-<img src=https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/tutorial/django/django-7.png width=70% heigth=70%/>
+<img src=https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/django/django-7.png?raw=true width=70% heigth=70%/>
 </div>
 
 Refer to: <https://docs.djangoproject.com/en/5.0/ref/models/fields/> for more model field types.
@@ -214,7 +214,7 @@ python3 manage.py runserver 0.0.0.0:8000
 Enter the ip of your server in your browser (here we enter the native IP address: 127.0.0.1:8000) and the port number. If it starts normally, the output is as follows:
 
 <div align="center">
-<img src=https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/tutorial/django/django-2.png width=50% heigth=50%/>
+<img src=https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/django/django-2.png?raw=true width=50% heigth=50%/>
 </div>
 
 - Connecting to the database to query the data, you can see that the data was successfully inserted:
@@ -260,13 +260,13 @@ python3 manage.py runserver 0.0.0.0:8000
 Enter the ip of your server in your browser (here we enter the native IP address: 127.0.0.1:8000) and the port number. If it starts normally, the output is as follows:
 
 <div align="center">
-<img src=https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/tutorial/django/django-3.png width=50% heigth=50%/>
+<img src=https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/django/django-3.png?raw=true width=50% heigth=50%/>
 </div>
 
 The command line results are:
 
 <div align="center">
-<img src=https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/tutorial/django/django-4.png width=50% heigth=50%/>
+<img src=https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/django/django-4.png?raw=true width=50% heigth=50%/>
 </div>
 
 ## Update Data
@@ -298,7 +298,7 @@ python3 manage.py runserver 0.0.0.0:8000
 Enter the ip of your server in your browser (here we enter the native IP address: 127.0.0.1:8000) and the port number. If it starts normally, the output is as follows:
 
 <div align="center">
-<img src=https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/tutorial/django/django-5.png width=40% heigth=40%/>
+<img src=https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/django/django-5.png?raw=true width=40% heigth=40%/>
 </div>
 
 - Looking at the *testmodel\_book table*, you can see that the data was updated successfully:
@@ -340,7 +340,7 @@ python3 manage.py runserver 0.0.0.0:8000
 Enter the ip of your server in your browser (here we enter the native IP address: 127.0.0.1:8000) and the port number. If it starts normally, the output is as follows:
 
 <div align="center">
-<img src=https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/tutorial/django/django-6.png width=50% heigth=50%/>
+<img src=https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/django/django-6.png?raw=true width=50% heigth=50%/>
 </div>
 
 - Looking at the *testmodel\_book table*, you can see that the data was successfully deleted.

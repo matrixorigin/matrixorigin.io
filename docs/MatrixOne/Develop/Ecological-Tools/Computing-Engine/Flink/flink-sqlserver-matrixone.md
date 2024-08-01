@@ -44,13 +44,13 @@ values  (1, 'Lisa', 25, '2010-10-12', '0'),
     ```sql exec sp_helpsrvrolemember 'sysadmin';```
 
     <div align="center">
-        <img src=https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/develop/flink/flink-sqlserver-01.jpg width=70% heigth=70%/>
+        <img src=https://github.com/matrixorigin/artwork/blob/main/docs/develop/flink/flink-sqlserver-01.jpg?raw=true width=70% heigth=70%/>
     </div>
 
 2. Queries if the current database has CDC (Change Data Capture Capability) enabled
 
     <div align="center">
-        <img src=https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/develop/flink/%EF%BF%BCflink-sqlserver-02.jpg width=60% heigth=60%/>
+        <img src=https://github.com/matrixorigin/artwork/blob/main/docs/develop/flink/%EF%BF%BCflink-sqlserver-02.jpg?raw=true width=60% heigth=60%/>
     </div>
 
     Remarks: 0: means not enabled; 1: means enabled
@@ -68,7 +68,7 @@ values  (1, 'Lisa', 25, '2010-10-12', '0'),
     ```
 
     <div align="center">
-        <img src=https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/develop/flink/flink-sqlserver-03.jpg width=50% heigth=50%/>
+        <img src=https://github.com/matrixorigin/artwork/blob/main/docs/develop/flink/flink-sqlserver-03.jpg?raw=true width=50% heigth=50%/>
     </div>
 
     Remarks: 0: means not enabled; 1: means enabled If not, execute the following sql to turn it on:
@@ -87,7 +87,7 @@ values  (1, 'Lisa', 25, '2010-10-12', '0'),
     Looking at the system tables under the database, you will see more cdc-related data tables, where cdc.dbo_sqlserver_flink_CT is the record of all DML operations that record the source tables, each corresponding to an instance table.
 
     <div align="center">
-        <img src=https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/develop/flink/flink-sqlserver-04.jpg width=50% heigth=50%/>
+        <img src=https://github.com/matrixorigin/artwork/blob/main/docs/develop/flink/flink-sqlserver-04.jpg?raw=true width=50% heigth=50%/>
     </div>
 
 5. Verify that the CDC agent starts properly
@@ -101,19 +101,19 @@ values  (1, 'Lisa', 25, '2010-10-12', '0'),
     If the status is `Stopped`, you need to turn on the CDC agent.
 
     <div align="center">
-        <img src=https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/develop/flink/flink-sqlserver-05.jpg width=50% heigth=50%/>
+        <img src=https://github.com/matrixorigin/artwork/blob/main/docs/develop/flink/flink-sqlserver-05.jpg?raw=true width=50% heigth=50%/>
     </div>
 
     Open the CDC agent in a Windows environment: On the machine where the SqlServer database is installed, open Microsoft Sql Server Managememt Studio, right-click the following image location (SQL Server agent), and click Open, as shown below:
 
     <div align="center">
-        <img src=https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/develop/flink/flink-sqlserver-06.jpg width=50% heigth=50%/>
+        <img src=https://github.com/matrixorigin/artwork/blob/main/docs/develop/flink/flink-sqlserver-06.jpg?raw=true width=50% heigth=50%/>
     </div>
 
     Once on, query the agent status again to confirm that the status has changed to running
 
     <div align="center">
-        <img src=https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/develop/flink/flink-sqlserver-07.jpg width=50% heigth=50%/>
+        <img src=https://github.com/matrixorigin/artwork/blob/main/docs/develop/flink/flink-sqlserver-07.jpg?raw=true width=50% heigth=50%/>
     </div>
 
     At this point, the table sqlserver_data starts the CDC (Change Data Capture) function all complete.
@@ -209,7 +209,7 @@ select * from sqlserver_data;
 ```
 
 <div align="center">
-    <img src=https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/develop/flink/flink-sqlserver-08.jpg width=50% heigth=50%/>
+    <img src=https://github.com/matrixorigin/artwork/blob/main/docs/develop/flink/flink-sqlserver-08.jpg?raw=true width=50% heigth=50%/>
 </div>
 
 ### Inserting data to SQL Server
@@ -230,7 +230,7 @@ select * from sstomo.sqlserver_data;
 ```
 
 <div align="center">
-    <img src=https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/develop/flink/flink-sqlserver-09.jpg width=50% heigth=50%/>
+    <img src=https://github.com/matrixorigin/artwork/blob/main/docs/develop/flink/flink-sqlserver-09.jpg?raw=true width=50% heigth=50%/>
 </div>
 
 ### Deleting incremental data in SQL Server
@@ -244,7 +244,7 @@ delete from sstomo.dbo.sqlserver_data where id in(3,4);
 Query table data in mo, these two rows have been deleted synchronously:
 
 <div align="center">
-    <img src=https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/develop/flink/flink-sqlserver-10.jpg width=50% heigth=50%/>
+    <img src=https://github.com/matrixorigin/artwork/blob/main/docs/develop/flink/flink-sqlserver-10.jpg?raw=true width=50% heigth=50%/>
 </div>
 
 ### Adding new data to SQL Server
@@ -258,5 +258,5 @@ update sstomo.dbo.sqlserver_data set age = 18 where id in(1,2);
 Query table data in MatrixOne, the two rows have been updated in sync:
 
 <div align="center">
-    <img src=https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/develop/flink/flink-sqlserver-11.jpg width=50% heigth=50%/>
+    <img src=https://github.com/matrixorigin/artwork/blob/main/docs/develop/flink/flink-sqlserver-11.jpg?raw=true width=50% heigth=50%/>
 </div>

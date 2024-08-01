@@ -61,7 +61,7 @@ Based on the logtail table, from the moment a pull request is received, the prim
 
 3. Convert the collected log information into the Logtail protocol format and return it as a response to CN.
 
-![Pull Workflow](https://github.com/matrixorigin/artwork/blob/main/docs/overview/architecture/logtail-arch-1.png)
+![Pull Workflow](https://github.com/matrixorigin/artwork/blob/main/docs/overview/architecture/logtail-arch-1.png?raw=true)
 
 ```
 type RespBuilder interface {
@@ -91,4 +91,4 @@ The primary purpose of push is to synchronize incremental logs from TN to CN in 
 
 If a table has not been updated for a long time, how does a CN become aware of it? Here, a heartbeat mechanism is introduced, with a default of 2 ms. In TN's commit queue, a heartbeat transaction is placed, which performs no substantial work but consumes a timestamp, triggering a Logtail send to notify CN that all table data had updates sent previously, pushing the CN's timestamp watermark.
 
-![Push Workflow](https://github.com/matrixorigin/artwork/blob/main/docs/overview/architecture/logtail-arch-2.png)
+![Push Workflow](https://github.com/matrixorigin/artwork/blob/main/docs/overview/architecture/logtail-arch-2.png?raw=true)

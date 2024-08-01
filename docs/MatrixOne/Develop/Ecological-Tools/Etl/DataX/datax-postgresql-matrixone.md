@@ -196,11 +196,11 @@ python ./bin/datax.py ./job/pgsql2mo.json #in the datax directory
 When the task is complete, print the overall operation:
 
 <div align="center">
-    <img src=https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/develop/datax/datax-pg-01.jpg width=70% heigth=70%/>
+    <img src=https://github.com/matrixorigin/artwork/blob/main/docs/develop/datax/datax-pg-01.jpg?raw=true width=70% heigth=70%/>
 </div>
 
 ### View data in a MatrixOne table
 
 <div align="center">
-    <img src=https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/develop/datax/datax-pg-02.jpg width=70% heigth=70%/>
+    <img src=https://github.com/matrixorigin/artwork/blob/main/docs/develop/datax/datax-pg-02.jpg?raw=true width=70% heigth=70%/>
 </div>

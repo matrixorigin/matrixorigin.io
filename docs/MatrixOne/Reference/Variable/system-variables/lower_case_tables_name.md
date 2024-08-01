@@ -64,7 +64,7 @@ mysql> select Aa from Tt;--Name comparison is case sensitive
 
 ### Parameter set to 1
 
-将 `lower_case_table_names` Set to 1. identifiers are stored in lowercase and name comparisons are case insensitive.
+ Set `lower_case_table_names` to 1. identifiers are stored in lowercase and name comparisons are case insensitive.
 
 **Example**
 

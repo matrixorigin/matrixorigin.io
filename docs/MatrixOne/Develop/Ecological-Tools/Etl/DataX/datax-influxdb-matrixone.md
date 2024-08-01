@@ -57,7 +57,7 @@ vim /etc/influxdb/influxdb.conf
 ```
 
 <div align="center">
-    <img src=https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/develop/datax/datax-influxdb-01.jpg width=50% heigth=50%/>
+    <img src=https://github.com/matrixorigin/artwork/blob/main/docs/develop/datax/datax-influxdb-01.jpg?raw=true width=50% heigth=50%/>
 </div>
 
 ### Restart influxdb

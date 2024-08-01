@@ -7,7 +7,7 @@ The `L2_DISTANCE()` function is used to calculate the Euclidean distance between
 L2 distance, also known as Euclidean Distance, is one of the most commonly used distance measures in vector spaces. It measures the straight line distance between two points in multidimensional space. l2 distance has many practical applications, including areas such as machine learning, computer vision, and spatial analysis.
 
 <div align="center">
-<img src=https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/reference/vector/l2_distance.png width=50% heigth=50%/>
+<img src=https://github.com/matrixorigin/artwork/blob/main/docs/reference/vector/l2_distance.png?raw=true width=50% heigth=50%/>
 </div>
 
 ## Function syntax

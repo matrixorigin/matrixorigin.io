@@ -10,7 +10,7 @@ MatrixOne is highly compatible with MySQL 8.0, but since DataX's included MySQL 
 
 MatrixOneWriter leverages the DataX framework to get the generated protocol data from Reader and generates the appropriate `insert into...` statement based on the `writeMode` you configured. When a primary key or unique index conflict is encountered, conflicting rows are excluded and writes continue. For performance optimization reasons, we took the `PreparedStatement + Batch` approach and set the `rewriteBatchedStatements=true` option to buffer the data into the thread context's buffer. A write request is triggered only when the amount of data in the buffer reaches a predetermined threshold.
 
-![DataX](https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/develop/Computing-Engine/datax-write/datax.png)
+![DataX](https://github.com/matrixorigin/artwork/blob/main/docs/develop/Computing-Engine/datax-write/datax.png?raw=true)
 
 !!! note
     You need to have at least `insert into ...` permissions to execute the entire task. Whether you need additional permissions depends on your `preSql` and `postSql` in the task configuration.

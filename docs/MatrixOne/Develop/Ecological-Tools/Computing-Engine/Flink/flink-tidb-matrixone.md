@@ -139,7 +139,7 @@ select * from EMPQ;
 ```
 
 <div align="center">
-    <img src=https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/develop/flink/flink-tidb-01.jpg width=50% heigth=50%/>
+    <img src=https://github.com/matrixorigin/artwork/blob/main/docs/develop/flink/flink-tidb-01.jpg?raw=true width=50% heigth=50%/>
 </div>
 
 Data can be found to have been imported
@@ -151,7 +151,7 @@ delete from EMPQ_cdc where empno=1;
 ```
 
 <div align="center">
-    <img src=https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/develop/flink/flink-tidb-02.jpg width=50% heigth=50%/>
+    <img src=https://github.com/matrixorigin/artwork/blob/main/docs/develop/flink/flink-tidb-02.jpg?raw=true width=50% heigth=50%/>
 </div>
 
 Query table data in MatrixOne, this row has been deleted synchronously.

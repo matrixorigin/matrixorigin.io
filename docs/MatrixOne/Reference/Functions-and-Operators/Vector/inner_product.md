@@ -4,7 +4,7 @@
 
 The `INNER PRODUCT` function is used to calculate the inner/dot product between two vectors. It is the result of multiplying the corresponding elements of two vectors and then adding them.
 
-![inner_product](https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/reference/vector/inner_product.png?raw=true)
+![inner_product](https://github.com/matrixorigin/artwork/blob/main/docs/reference/vector/inner_product.png?raw=true)
 
 ## **Function syntax**
 

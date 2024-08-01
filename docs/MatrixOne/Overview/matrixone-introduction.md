@@ -4,7 +4,7 @@ MatrixOne is a hyper-converged cloud & edge native distributed database with a s
 
 MatrixOne touts significant features, including real-time HTAP, multi-tenancy, stream computation, extreme scalability, cost-effectiveness, enterprise-grade availability, and extensive MySQL compatibility. MatrixOne unifies tasks traditionally performed by multiple databases into one system by offering a comprehensive ultra-hybrid data solution. This consolidation simplifies development and operations, minimizes data fragmentation, and boosts development agility.
 
-![](https://github.com/matrixorigin/artwork/blob/main/docs/overview/mo-new-arch.png?raw=true)
+![](https://github.com/matrixorigin/artwork/blob/main/docs/overview/architecture/archi-en-1.png?raw=true)
 
 MatrixOne is optimally suited for scenarios requiring real-time data input, large data scales, frequent load fluctuations, and a mix of procedural and analytical business operations. It caters to use cases such as mobile internet apps, IoT data applications, real-time data warehouses, SaaS platforms, and more.
 
