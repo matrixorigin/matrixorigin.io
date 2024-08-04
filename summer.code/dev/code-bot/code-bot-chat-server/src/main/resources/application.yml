@@ -20,15 +20,7 @@ spring:
   jackson:
     serialization:
       write-dates-as-timestamps: true
-wx:
-  mp:
 
-    callback: ${codebot.wx.callback}
-    configs:
-      - appId: ${codebot.wx.appId}
-        secret: ${codebot.wx.secret}
-        token: ${codebot.wx.token}
-        aesKey: ${codebot.wx.aesKey}
 jwt:
   secret: ${codebot.jwt.secret}
 
@@ -36,7 +28,7 @@ github:
   client:
     id: "Ov23liuwsvlUImneTgL2"
     authorize-url: "https://github.com/login/oauth/authorize"
-    secret: "a3c64569bb49a66cc283bf874a2724c4b6cd254c"
-    redirect-url: "http://localhost:8080/oauth2/callback"
+    secret: "6ce0aee0a72f61263d941ffd6a5dcec35b243df0"
+    redirect-url: "http://localhost:8080/oauth2/callback&state="
     access-token-url: "https://github.com/login/oauth/access_token"
     user-info-url: "https://api.github.com/user"

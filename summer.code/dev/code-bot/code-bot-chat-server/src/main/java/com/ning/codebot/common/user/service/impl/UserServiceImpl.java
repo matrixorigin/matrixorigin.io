@@ -18,7 +18,6 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public Long register(User insert) {
         userDao.save(insert);
-        //todo 用户注册的事件
         return insert.getId();
     }
 }

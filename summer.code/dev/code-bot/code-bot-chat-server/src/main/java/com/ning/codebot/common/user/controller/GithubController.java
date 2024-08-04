@@ -2,6 +2,9 @@ package com.ning.codebot.common.user.controller;
 
 import com.ning.codebot.common.common.utils.JsonUtils;
 import com.ning.codebot.common.user.config.Oauth2Properties;
+import com.ning.codebot.common.user.domain.dto.GithubUserInfo;
+import com.ning.codebot.common.user.service.Outh2Service;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -18,7 +21,8 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 public class GithubController {
     private final Oauth2Properties oauth2Properties;
-
+    @Autowired
+    private Outh2Service outh2Service;
     public GithubController(Oauth2Properties oauth2Properties) {
         this.oauth2Properties = oauth2Properties;
     }
@@ -37,17 +41,18 @@ public class GithubController {
 
     /**
      * Call back func. GITHUB will call this func when user agree the auth.
-     *
      * @param code GitHub redirect Auth code
      * @return
      */
     @GetMapping("/oauth2/callback")
-    public String callback(@RequestParam("code") String code) {
+    public String callback(@RequestParam("code") String code, @RequestParam("state") String state) {
         log.info("code={}", code);
+        log.info("state={}", state);
         // code -> token
         String accessToken = getAccessToken(code);
         // token -> userInfo
         String userInfo = getUserInfo(accessToken);
+        outh2Service.storeUserInfo(Integer.parseInt(state), new GithubUserInfo(JsonUtils.toJsonNode(userInfo)));
         log.info("redirect to the home page");
         return "redirect:/test";
     }

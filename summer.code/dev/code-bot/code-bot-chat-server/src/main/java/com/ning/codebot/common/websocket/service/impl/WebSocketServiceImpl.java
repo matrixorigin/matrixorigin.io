@@ -40,7 +40,8 @@ public class WebSocketServiceImpl implements WebSocketService {
     public static final Duration DURATION = Duration.ofHours(1);
     public static final int MAXIMUM_SIZE = 1000;
     /**
-     * 临时保存登录code和channel的映射关系
+     * state <---> wait authorize channel
+     * Store all users who need to wait them login through their github account
      */
     private static final Cache<Integer, Channel> WAIT_LOGIN_MAP = Caffeine.newBuilder()
             .maximumSize(MAXIMUM_SIZE)
@@ -56,7 +57,8 @@ public class WebSocketServiceImpl implements WebSocketService {
     @SneakyThrows
     @Override
     public void handleLoginReq(Channel channel) {
-        String url = outh2Service.getRedirectUrl();
+        Integer state = generateLoginState(channel);
+        String url = outh2Service.getRedirectUrl(state);
         sendMsg(channel, WebSocketAdapter.buildResp(url));
     }
 
@@ -66,13 +68,17 @@ public class WebSocketServiceImpl implements WebSocketService {
     }
 
     @Override
-    public void scanLoginSuccess(Integer code, Long uid) {
-
-    }
-
-    @Override
-    public void waitAuthorize(Integer code) {
-
+    public void scanLoginSuccess(Integer state, Long uid) {
+        // check the channel do not expire
+        Channel channel = WAIT_LOGIN_MAP.getIfPresent(state);
+        if (Objects.isNull(channel)) {
+            return;
+        }
+        //delete the channel in wait cache
+        WAIT_LOGIN_MAP.invalidate(state);
+        String token = loginService.login(uid);
+        User user = userDao.getById(uid);
+        loginSuccess(channel,user,token);
     }
 
     @Override
@@ -101,4 +107,12 @@ public class WebSocketServiceImpl implements WebSocketService {
         channel.writeAndFlush(new TextWebSocketFrame(JSONUtil.toJsonStr(resp)));
     }
 
+    private Integer generateLoginState(Channel channel) {
+        Integer state;
+        do {
+            // if exist such code, regenerate a new state
+            state = RandomUtil.randomInt(Integer.MAX_VALUE);
+        } while (Objects.nonNull(WAIT_LOGIN_MAP.asMap().putIfAbsent(state, channel)));
+        return state;
+    }
 }

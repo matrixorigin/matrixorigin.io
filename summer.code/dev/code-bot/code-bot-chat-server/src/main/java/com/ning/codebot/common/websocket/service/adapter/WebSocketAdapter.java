@@ -15,7 +15,7 @@ public class WebSocketAdapter {
         resp.setData(new WSLoginUrl(url));
         return resp;
     }
-
+    //Send login token to the user
     public static WSBaseResp<?> buildResp(User user, String token) {
         WSBaseResp<WSLoginSuccess> resp = new WSBaseResp<>();
         resp.setType(WSRespTypeEnum.LOGIN_SUCCESS.getType());
