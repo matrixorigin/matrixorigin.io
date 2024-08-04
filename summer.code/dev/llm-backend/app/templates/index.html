@@ -1,0 +1,16 @@
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>问答系统</h1>
+        </div>
+        <form method="POST">
+            <label for="question">Enter your question:</label><br>
+            <input type="text" id="question" name="question"><br>
+            <input type="submit" value="Submit">
+        </form>
+        {% if result is defined %}
+            <h2>Answer</h2>
+            <p>{{ result.result }}</p>
+        {% endif %}
+    </div>
+</body>

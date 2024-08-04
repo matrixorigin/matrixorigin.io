@@ -31,9 +31,7 @@ public class WebSocketServiceImpl implements WebSocketService {
     private UserDao userDao;
     @Autowired
     private LoginService loginService;
-    /**
-     * 管理所有用户的连接（登录态/游客）
-     */
+    // Store all users(login/visitor)
     private static final ConcurrentHashMap<Channel, WSChannelExtraDTO> ONLINE_WS_MAP = new ConcurrentHashMap<>();
 
     public static final Duration DURATION = Duration.ofHours(1);
@@ -47,8 +45,9 @@ public class WebSocketServiceImpl implements WebSocketService {
             .build();
 
     @Override
+    // put current channel into map
     public void connect(Channel channel) {
-
+        ONLINE_WS_MAP.put(channel, new WSChannelExtraDTO());
     }
 
     @SneakyThrows
@@ -74,11 +73,24 @@ public class WebSocketServiceImpl implements WebSocketService {
 
     @Override
     public void authorize(Channel channel, String token) {
-
+        Long validUid = loginService.getValidUid(token);
+        // If success
+        if (Objects.nonNull(validUid)) {
+            // get user info from database
+            User user = userDao.getById(validUid);
+            loginSuccess(channel,user,token);
+        // Failure
+        } else {
+            sendMsg(channel, WebSocketAdapter.buildInvalidTokenResp());
+        }
     }
 
     private void loginSuccess(Channel channel, User user, String token) {
-
+        //保存channel的对应uid
+        WSChannelExtraDTO wsChannelExtraDTO = ONLINE_WS_MAP.get(channel);
+        wsChannelExtraDTO.setUid(user.getId());
+        //推送成功消息
+        sendMsg(channel, WebSocketAdapter.buildResp(user, token));
     }
 
     private void sendMsg(Channel channel, WSBaseResp<?> resp) {

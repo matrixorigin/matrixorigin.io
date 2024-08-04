@@ -18,7 +18,7 @@ public class MyHeaderCollectHandler extends ChannelInboundHandlerAdapter {
                     .map(UrlBuilder::getQuery)
                     .map(k -> k.get("token"))
                     .map(CharSequence::toString);
-            //如果token存在
+            // if token existed, store it in attribute
             tokenOptional.ifPresent(s -> NettyUtil.setAttr(ctx.channel(), NettyUtil.TOKEN, s));
             //移除后面拼接的所有参数
             request.setUri(urlBuilder.getPath().toString());
