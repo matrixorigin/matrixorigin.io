@@ -9,10 +9,10 @@ import me.chanjar.weixin.mp.bean.result.WxMpQrCodeTicket;
 
 
 public class WebSocketAdapter {
-    public static WSBaseResp<?> buildResp(WxMpQrCodeTicket wxMpQrCodeTicket) {
+    public static WSBaseResp<?> buildResp(String url) {
         WSBaseResp<WSLoginUrl> resp = new WSBaseResp<>();
         resp.setType(WSRespTypeEnum.LOGIN_URL.getType());
-        resp.setData(new WSLoginUrl(wxMpQrCodeTicket.getUrl()));
+        resp.setData(new WSLoginUrl(url));
         return resp;
     }
 

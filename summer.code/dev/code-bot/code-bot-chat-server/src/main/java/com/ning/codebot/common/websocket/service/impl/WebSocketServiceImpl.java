@@ -5,6 +5,7 @@ import cn.hutool.json.JSONUtil;
 import com.ning.codebot.common.user.dao.UserDao;
 import com.ning.codebot.common.user.domain.entity.User;
 import com.ning.codebot.common.user.service.LoginService;
+import com.ning.codebot.common.user.service.Outh2Service;
 import com.ning.codebot.common.websocket.domain.dto.WSChannelExtraDTO;
 import com.ning.codebot.common.websocket.domain.vo.resp.WSBaseResp;
 import com.ning.codebot.common.websocket.service.WebSocketService;
@@ -31,6 +32,8 @@ public class WebSocketServiceImpl implements WebSocketService {
     private UserDao userDao;
     @Autowired
     private LoginService loginService;
+    private Outh2Service outh2Service;
+
     // Store all users(login/visitor)
     private static final ConcurrentHashMap<Channel, WSChannelExtraDTO> ONLINE_WS_MAP = new ConcurrentHashMap<>();
 
@@ -53,7 +56,8 @@ public class WebSocketServiceImpl implements WebSocketService {
     @SneakyThrows
     @Override
     public void handleLoginReq(Channel channel) {
-
+        String url = outh2Service.getRedirectUrl();
+        sendMsg(channel, WebSocketAdapter.buildResp(url));
     }
 
     @Override
@@ -94,14 +98,7 @@ public class WebSocketServiceImpl implements WebSocketService {
     }
 
     private void sendMsg(Channel channel, WSBaseResp<?> resp) {
-
+        channel.writeAndFlush(new TextWebSocketFrame(JSONUtil.toJsonStr(resp)));
     }
 
-    private Integer generateLoginCode(Channel channel) {
-        Integer code;
-        do {
-            code = RandomUtil.randomInt(Integer.MAX_VALUE);
-        } while (Objects.nonNull(WAIT_LOGIN_MAP.asMap().putIfAbsent(code, channel)));
-        return code;
-    }
 }
