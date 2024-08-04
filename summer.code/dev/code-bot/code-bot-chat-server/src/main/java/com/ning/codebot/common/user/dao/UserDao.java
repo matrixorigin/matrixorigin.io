@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserDao extends ServiceImpl<UserMapper, User> {
 
-    public User getByOpenId(String openId) {
+    public User getByNodeId(String openId) {
         return lambdaQuery()
-                .eq(User::getOpenId, openId)
+                .eq(User::getNodeId, openId)
                 .one();
     }
 }

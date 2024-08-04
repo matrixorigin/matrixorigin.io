@@ -40,10 +40,10 @@ public class User implements Serializable {
     private String avatar;
 
     /**
-     * github openid用户标识
+     * github node id用户标识
      */
-    @TableField("open_id")
-    private String openId;
+    @TableField("node_id")
+    private String nodeId;
 
     /**
      * 在线状态 1在线 2离线
