@@ -45,7 +45,7 @@ public class GithubController {
      * @return
      */
     @GetMapping("/oauth2/callback")
-    public String callback(@RequestParam("code") String code, @RequestParam("state") String state) {
+    public void callback(@RequestParam("code") String code, @RequestParam("state") String state) {
         log.info("code={}", code);
         log.info("state={}", state);
         // code -> token
@@ -53,8 +53,8 @@ public class GithubController {
         // token -> userInfo
         String userInfo = getUserInfo(accessToken);
         outh2Service.storeUserInfo(Integer.parseInt(state), new GithubUserInfo(JsonUtils.toJsonNode(userInfo)));
-        log.info("redirect to the home page");
-        return "redirect:/test";
+        // log.info("redirect to the home page");
+        // return "redirect:/test";
     }
 
     @GetMapping("/test")
