@@ -53,7 +53,7 @@ public class GithubController {
         // token -> userInfo
         String userInfo = getUserInfo(accessToken);
         outh2Service.storeUserInfo(Integer.parseInt(state), new GithubUserInfo(JsonUtils.toJsonNode(userInfo)));
-        log.info("redirect to the home page");
+        // log.info("redirect to the home page");
         return "redirect:/test";
     }
 

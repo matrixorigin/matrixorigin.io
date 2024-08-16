@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("codebot/user")
 public class UserController {
 
 }
