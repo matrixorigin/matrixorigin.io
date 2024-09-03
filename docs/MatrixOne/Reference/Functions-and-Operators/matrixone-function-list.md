@@ -66,6 +66,7 @@ This document lists the functions supported in the latest version of MatrixOne.
 | [ACOS()](./Mathematical/acos.md)  | Used to find the cosine of a given value (expressed in radians)  |
 | [ATAN()](./Mathematical/atan.md)  | Used to find the arctangent of a given value (expressed in radians)|
 | [CEIL()](./Mathematical/ceil.md)  | Used to find the smallest integer that is not less than the argument.|
+| [CEILING()](./Mathematical/ceiling.md)  | Used to find the smallest integer that is not less than the argument.|
 | [COS()](./Mathematical/cos.md)    | Used to find the cosine of an input parameter (expressed in radians).|
 | [COT()](./Mathematical/cot.md)    | Used to find the cotangent value of the input parameter (expressed in radians). |
 | [EXP()](./Mathematical/exp.md)    | Used to find the exponent of number with the natural constant e as the base.|
