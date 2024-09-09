@@ -53,3 +53,4 @@ class SimpleFactory:
         item = QListWidgetItem()
         item.setSizeHint(QSize(width, chat_height*UNIT_HEIGHT + 30))
         return item, widget
+
