@@ -22,6 +22,7 @@ public class ChatServiceImpl implements ChatService {
         AbstractMsgHandler<?> msgHandler = MsgHandlerFactory.getStrategyNoNull(request.getMsgType());
         Long msgId = msgHandler.checkAndSaveMsg(request, uid);
         // send to mq
+
         return msgId;
     }
 
