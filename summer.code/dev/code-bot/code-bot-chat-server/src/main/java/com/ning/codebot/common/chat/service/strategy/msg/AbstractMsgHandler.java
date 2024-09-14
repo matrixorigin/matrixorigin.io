@@ -37,12 +37,12 @@ public abstract class AbstractMsgHandler<Req> {
         // check
         checkMsg(body, request.getRoomId(), uid);
         // convert to insert data
-        Message insert = MessageAdapter.buildMsgSave(request, uid);
+        Message insert = MessageAdapter.buildMsgSave(request, uid, convertToString(body));
         // save to the db
         messageDao.save(insert);
-
         return insert.getId();
     }
+
     // Change message body to bean
     private Req toBean(Object body) {
         if (bodyClass.isAssignableFrom(body.getClass())) {
@@ -52,4 +52,5 @@ public abstract class AbstractMsgHandler<Req> {
     }
 
     protected abstract void checkMsg(Req body, Long roomId, Long uid);
+    protected abstract String convertToString(Req body);
 }

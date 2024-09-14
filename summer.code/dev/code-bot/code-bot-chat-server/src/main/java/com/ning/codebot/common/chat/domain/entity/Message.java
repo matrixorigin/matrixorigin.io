@@ -12,7 +12,7 @@ import java.util.Date;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
-@TableName(value = "message", autoResultMap = true)
+@TableName(value = "messages", autoResultMap = true)
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor

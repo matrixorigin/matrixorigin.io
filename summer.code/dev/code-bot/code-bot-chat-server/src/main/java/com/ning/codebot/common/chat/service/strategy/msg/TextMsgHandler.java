@@ -22,4 +22,9 @@ public class TextMsgHandler extends AbstractMsgHandler<TextMsgReq> {
 
     }
 
+    @Override
+    protected String convertToString(TextMsgReq body){
+        return body.getContent();
+    }
+
 }
