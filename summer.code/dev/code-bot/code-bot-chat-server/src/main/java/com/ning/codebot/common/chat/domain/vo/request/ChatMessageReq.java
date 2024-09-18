@@ -20,13 +20,12 @@ public class ChatMessageReq {
     @ApiModelProperty("Room Id")
     private Long roomId;
 
+    // Now only support text type
+    //TODO: support more types in the feature
     @ApiModelProperty("Message Type")
     @NotNull
     // 1: text type
-    // 2: image type
-    // 3: audio type
     private Integer msgType;
-
 
     @ApiModelProperty("Message Body")
     @NotNull

@@ -5,11 +5,12 @@ import com.ning.codebot.common.chat.domain.vo.request.ChatMessageReq;
 
 public class MessageAdapter {
 
-    public static Message buildMsgSave(ChatMessageReq request, Long uid) {
+    public static Message buildMsgSave(ChatMessageReq request, Long uid, String content) {
 
         return Message.builder()
                 .fromUid(uid)
                 .roomId(request.getRoomId())
+                .content(content)
                 .build();
 
     }
