@@ -12,6 +12,5 @@ public interface WebSocketService {
 
     void scanLoginSuccess(Integer state, Long uid);
 
-
     void authorize(Channel channel, String token);
 }

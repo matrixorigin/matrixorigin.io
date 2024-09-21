@@ -20,37 +20,26 @@ public abstract class AbstractMsgHandler<Req> {
 
     @Autowired
     private MessageDao messageDao;
-    private Class<Req> bodyClass;
+    private Integer type;
     @PostConstruct
     private void init() {
-        ParameterizedType genericSuperclass = (ParameterizedType) this.getClass().getGenericSuperclass();
-        this.bodyClass = (Class<Req>) genericSuperclass.getActualTypeArguments()[0];
         // register in the factory
-        MsgHandlerFactory.register(getMsgTypeEnum().getType(), this);
+        MsgHandlerFactory.register(this.type, this);
     }
 
     abstract MessageTypeEnum getMsgTypeEnum();
 
     @Transactional
     public Long checkAndSaveMsg(ChatMessageReq request, Long uid) {
-        Req body = this.toBean(request.getBody());
+        String content = request.getContent();
         // check
-        checkMsg(body, request.getRoomId(), uid);
+        checkMsg(content, request.getRoomId(), uid);
         // convert to insert data
-        Message insert = MessageAdapter.buildMsgSave(request, uid, convertToString(body));
+        Message insert = MessageAdapter.buildMsgSave(request, uid, convertToRowData(content));
         // save to the db
         messageDao.save(insert);
         return insert.getId();
     }
-
-    // Change message body to bean
-    private Req toBean(Object body) {
-        if (bodyClass.isAssignableFrom(body.getClass())) {
-            return (Req) body;
-        }
-        return BeanUtil.toBean(body, bodyClass);
-    }
-
-    protected abstract void checkMsg(Req body, Long roomId, Long uid);
-    protected abstract String convertToString(Req body);
+    protected abstract void checkMsg(String content, String roomId, Long uid);
+    protected abstract String convertToRowData(String content);
 }

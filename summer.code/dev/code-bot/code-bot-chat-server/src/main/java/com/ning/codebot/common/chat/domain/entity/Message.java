@@ -30,7 +30,7 @@ public class Message implements Serializable {
      * room id
      */
     @TableField("room_id")
-    private Long roomId;
+    private String roomId;
 
     /**
      * from uid

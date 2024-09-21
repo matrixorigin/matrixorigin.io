@@ -48,7 +48,7 @@ public class NettyWebSocketServerHandler extends SimpleChannelInboundHandler<Tex
     }
 
     /**
-     * 用户下线统一处理
+     * clear use offline
      */
     private void userOffline(Channel channel) {
         webSocketService.remove(channel);

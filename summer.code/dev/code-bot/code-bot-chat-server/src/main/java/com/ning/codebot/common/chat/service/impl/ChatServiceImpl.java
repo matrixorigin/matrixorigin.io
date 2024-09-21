@@ -7,6 +7,7 @@ import com.ning.codebot.common.chat.domain.vo.response.ChatMessageResp;
 import com.ning.codebot.common.chat.service.ChatService;
 import com.ning.codebot.common.chat.service.strategy.msg.AbstractMsgHandler;
 import com.ning.codebot.common.chat.service.strategy.msg.MsgHandlerFactory;
+import com.ning.codebot.common.client.LLMClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
@@ -16,13 +17,15 @@ import org.springframework.transaction.annotation.Transactional;
 public class ChatServiceImpl implements ChatService {
     @Autowired
     MessageDao messageDao;
+
+    @Autowired
+    LLMClient llmClient;
+
     @Override
     @Transactional
-    public Long sendMsg(ChatMessageReq request, Long uid){
+    public Long storeMsg(ChatMessageReq request, Long uid){
         AbstractMsgHandler<?> msgHandler = MsgHandlerFactory.getStrategyNoNull(request.getMsgType());
         Long msgId = msgHandler.checkAndSaveMsg(request, uid);
-        // send to mq
-
         return msgId;
     }
 

@@ -10,6 +10,10 @@ from thread.worker_thread import SendThread
 from ui.chat_system_ui import Ui_Form
 from ui.signin_ui import Ui_Form as Signin_Form
 from factory.simple_factory import SimpleFactory
+from PyQt5.QtCore import QUrl
+from PyQt5.QtGui import QDesktopServices
+
+
 
 
 class LoginForm(QDialog, Signin_Form):
@@ -21,14 +25,25 @@ class LoginForm(QDialog, Signin_Form):
         self.main = None
         self.start_x = None
         self.start_y = None
-        self.send_btn.clicked.connect(self.on_signin_clicked)
+        self.send_btn_2.clicked.connect(self.on_getcode_clicked)
+        self.send_btn_3.clicked.connect(self.on_signin_clicked)
+        self.chat_client = ChatClient()
+
+    def on_getcode_clicked(self):
+        url = self.chat_client.get_auth_url()
+        if url is not None:
+            QDesktopServices.openUrl(QUrl(url))
 
     def on_signin_clicked(self):
-        text = self.lineEdit.text()
-        if len(text) != 0:
-            self.main = MyMainForm(text)
+        code = self.textEdit.toPlainText()
+        self.textEdit.clear()
+        ans = self.chat_client.send_code(code)
+        if ans is not None:
+            print(ans)
+            self.main = MyMainForm(ans)
             self.main.show()
             self.close()
+
 
     def mousePressEvent(self, event):
         try:

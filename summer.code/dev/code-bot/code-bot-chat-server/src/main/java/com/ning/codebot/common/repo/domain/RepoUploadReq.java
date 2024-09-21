@@ -1,4 +1,4 @@
-package com.ning.codebot.common.chat.domain.vo.response;
+package com.ning.codebot.common.repo.domain;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -6,12 +6,15 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import javax.validation.constraints.NotNull;
+
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ChatMessageResp {
-    private String content;
+public class RepoUploadReq {
+    @NotNull
+    @ApiModelProperty("Repo name")
+    private String repoName;
 
 }

@@ -22,55 +22,43 @@ public class User implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 用户id
+     * user id
      */
       @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
     /**
-     * 用户昵称
+     * user name
      */
     @TableField("name")
     private String name;
 
     /**
-     * 用户头像
+     * user avatar
      */
     @TableField("avatar")
     private String avatar;
 
     /**
-     * github node id用户标识
+     * github node id
      */
     @TableField("node_id")
     private String nodeId;
 
     /**
-     * 在线状态 1在线 2离线
+     * user status: 1 online 2 offline
      */
     @TableField("active_status")
     private Integer activeStatus;
 
     /**
-     * 最后上下线时间
-     */
-    @TableField("last_opt_time")
-    private Date lastOptTime;
-
-    /**
-     * 使用状态 0.正常 1拉黑
-     */
-    @TableField("status")
-    private Integer status;
-
-    /**
-     * 创建时间
+     * create time
      */
     @TableField("create_time")
     private Date createTime;
 
     /**
-     * 修改时间
+     * update time
      */
     @TableField("update_time")
     private Date updateTime;

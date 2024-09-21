@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 public class Oauth2Properties {
     @Value("${github.client.id}")
     private String clientId;
-    @Value("${github.client.secret}")
+    @Value("49a6e5f1b574455ce6e49b277ebc2bd8bcd2bc3a")
     private String clientSecret;
     @Value("${github.client.authorize-url}")
     private String authorizeUrl;

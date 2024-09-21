@@ -28,7 +28,6 @@ github:
   client:
     id: "Ov23liuwsvlUImneTgL2"
     authorize-url: "https://github.com/login/oauth/authorize"
-    secret: "6ce0aee0a72f61263d941ffd6a5dcec35b243df0"
-    redirect-url: "http://localhost:8080/oauth2/callback&state="
+    redirect-url: "http://localhost:8080/codebot/login/oauth2/callback&state="
     access-token-url: "https://github.com/login/oauth/access_token"
     user-info-url: "https://api.github.com/user"
