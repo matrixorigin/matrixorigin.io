@@ -14,8 +14,6 @@ from PyQt5.QtCore import QUrl
 from PyQt5.QtGui import QDesktopServices
 
 
-
-
 class LoginForm(QDialog, Signin_Form):
     def __init__(self, parent=None):
         super(LoginForm, self).__init__()
