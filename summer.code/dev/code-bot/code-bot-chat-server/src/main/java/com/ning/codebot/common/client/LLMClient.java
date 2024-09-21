@@ -19,9 +19,9 @@ public class LLMClient {
         return restTemplate.getForObject(url, String.class);
     }
 
-    public boolean subscribeRepo(String repoName, Long userID){
+    public boolean subscribeRepo(String repoName, String userName){
         // Construct the URL dynamically
-        String url = String.format("http://localhost:8080/repos/%s/%d", repoName, userID);
+        String url = String.format("http://localhost:8080/repos/%s/%s", repoName, userName);
         // Make a GET request and return the response
         try {
             ResponseEntity<String> responseEntity = restTemplate.getForEntity(url, String.class);

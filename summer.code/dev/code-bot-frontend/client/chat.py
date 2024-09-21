@@ -58,6 +58,7 @@ class ChatClient:
         except Exception as e:
             print(e)
         return 'error'
+
     def get_auth_url(self):
         try:
             response = requests.get("http://localhost:8080/codebot/login/authorize")

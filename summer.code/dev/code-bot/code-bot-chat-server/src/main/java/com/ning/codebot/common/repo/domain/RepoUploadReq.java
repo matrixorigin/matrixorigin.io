@@ -14,6 +14,9 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 public class RepoUploadReq {
     @NotNull
+    @ApiModelProperty("User name")
+    private String userName;
+    @NotNull
     @ApiModelProperty("Repo name")
     private String repoName;
 
