@@ -36,13 +36,13 @@ border: 1px solid grey;
      <x>80</x>
      <y>10</y>
      <width>131</width>
-     <height>41</height>
+     <height>21</height>
     </rect>
    </property>
    <property name="font">
     <font>
      <family>Agency FB</family>
-     <pointsize>13</pointsize>
+     <pointsize>11</pointsize>
     </font>
    </property>
    <property name="styleSheet">
@@ -88,6 +88,29 @@ background-color:#1a1a1e;</string>
    </property>
    <property name="text">
     <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>80</x>
+     <y>30</y>
+     <width>131</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Agency FB</family>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border: 0px;
+color: qlineargradient(x0:0, y0:1, x2:0, y2:1,stop:0 rgb(113, 109, 252), stop:1 rgb(255, 255, 255));</string>
+   </property>
+   <property name="text">
+    <string>building</string>
    </property>
   </widget>
  </widget>

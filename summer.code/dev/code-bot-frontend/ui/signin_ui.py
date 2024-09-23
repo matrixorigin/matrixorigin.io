@@ -22,50 +22,6 @@ class Ui_Form(object):
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame.setObjectName("frame")
-        self.input_frame = QtWidgets.QFrame(Form)
-        self.input_frame.setGeometry(QtCore.QRect(220, 420, 764, 56))
-        self.input_frame.setMinimumSize(QtCore.QSize(0, 56))
-        self.input_frame.setMaximumSize(QtCore.QSize(16777215, 58))
-        self.input_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.input_frame.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.input_frame.setObjectName("input_frame")
-        self.input_left_frame = QtWidgets.QFrame(self.input_frame)
-        self.input_left_frame.setGeometry(QtCore.QRect(1, 1, 718, 54))
-        self.input_left_frame.setMinimumSize(QtCore.QSize(0, 42))
-        self.input_left_frame.setMaximumSize(QtCore.QSize(16777215, 58))
-        self.input_left_frame.setStyleSheet("")
-        self.input_left_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.input_left_frame.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.input_left_frame.setObjectName("input_left_frame")
-        self.send_btn = QtWidgets.QPushButton(self.input_left_frame)
-        self.send_btn.setGeometry(QtCore.QRect(537, 0, 171, 51))
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.send_btn.sizePolicy().hasHeightForWidth())
-        self.send_btn.setSizePolicy(sizePolicy)
-        self.send_btn.setMinimumSize(QtCore.QSize(40, 51))
-        font = QtGui.QFont()
-        font.setFamily("Californian FB")
-        font.setPointSize(12)
-        self.send_btn.setFont(font)
-        self.send_btn.setStyleSheet("QPushButton{\n"
-"    color: rgb(255, 255, 255);\n"
-"    background-color: qlineargradient(x0:0, y0:1, x2:0, y2:1,stop:0 rgb(113, 109, 252), stop:1 rgb(164, 124, 255));\n"
-"    \n"
-"    border-radius:6px;\n"
-"      text-align: center center;\n"
-"} ")
-        self.send_btn.setObjectName("send_btn")
-        self.lineEdit = QtWidgets.QLineEdit(self.input_left_frame)
-        self.lineEdit.setGeometry(QtCore.QRect(30, 0, 541, 51))
-        self.lineEdit.setStyleSheet("border-radius:6px;\n"
-"text-align: center center;\n"
-"background-color:white;\n"
-"")
-        self.lineEdit.setObjectName("lineEdit")
-        self.lineEdit.raise_()
-        self.send_btn.raise_()
         self.label = QtWidgets.QLabel(Form)
         self.label.setGeometry(QtCore.QRect(230, 1080, 671, 71))
         font = QtGui.QFont()
@@ -190,9 +146,65 @@ class Ui_Form(object):
         self.main_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.main_frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.main_frame.setObjectName("main_frame")
+        self.send_btn_2 = QtWidgets.QPushButton(self.main_frame)
+        self.send_btn_2.setGeometry(QtCore.QRect(330, 340, 521, 51))
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.send_btn_2.sizePolicy().hasHeightForWidth())
+        self.send_btn_2.setSizePolicy(sizePolicy)
+        self.send_btn_2.setMinimumSize(QtCore.QSize(40, 51))
+        font = QtGui.QFont()
+        font.setFamily("Californian FB")
+        font.setPointSize(12)
+        self.send_btn_2.setFont(font)
+        self.send_btn_2.setStyleSheet("QPushButton{\n"
+"    color: rgb(255, 255, 255);\n"
+"    background-color: qlineargradient(x0:0, y0:1, x2:0, y2:1,stop:0 rgb(113, 109, 252), stop:1 rgb(164, 124, 255));\n"
+"    \n"
+"    border-radius:6px;\n"
+"      text-align: center center;\n"
+"} ")
+        self.send_btn_2.setObjectName("send_btn_2")
+        self.send_btn_3 = QtWidgets.QPushButton(self.main_frame)
+        self.send_btn_3.setGeometry(QtCore.QRect(600, 410, 251, 51))
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.send_btn_3.sizePolicy().hasHeightForWidth())
+        self.send_btn_3.setSizePolicy(sizePolicy)
+        self.send_btn_3.setMinimumSize(QtCore.QSize(40, 51))
+        font = QtGui.QFont()
+        font.setFamily("Californian FB")
+        font.setPointSize(12)
+        self.send_btn_3.setFont(font)
+        self.send_btn_3.setStyleSheet("QPushButton{\n"
+"    color: rgb(255, 255, 255);\n"
+"    background-color: qlineargradient(x0:0, y0:1, x2:0, y2:1,stop:0 rgb(113, 109, 252), stop:1 rgb(164, 124, 255));\n"
+"    \n"
+"    border-radius:6px;\n"
+"      text-align: center center;\n"
+"} ")
+        self.send_btn_3.setObjectName("send_btn_3")
+        self.textEdit = QtWidgets.QTextEdit(self.main_frame)
+        self.textEdit.setGeometry(QtCore.QRect(250, 410, 361, 51))
+        font = QtGui.QFont()
+        font.setFamily("Agency FB")
+        font.setPointSize(12)
+        self.textEdit.setFont(font)
+        self.textEdit.setStyleSheet("color: rgb(0, 0, 0);\n"
+"background-color:rgb(255, 255, 255);\n"
+"border-radius:6px;\n"
+"text-align: center center;\n"
+"")
+        self.textEdit.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
+        self.textEdit.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
+        self.textEdit.setObjectName("textEdit")
+        self.textEdit.raise_()
+        self.send_btn_2.raise_()
+        self.send_btn_3.raise_()
         self.main_frame.raise_()
         self.frame.raise_()
-        self.input_frame.raise_()
         self.label.raise_()
         self.frame_2.raise_()
         self.frame_3.raise_()
@@ -206,11 +218,12 @@ class Ui_Form(object):
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
-        self.send_btn.setText(_translate("Form", "Sign in"))
-        self.lineEdit.setPlaceholderText(_translate("Form", "please input youar partner name"))
         self.label.setText(_translate("Form", "Code Bot"))
         self.label_2.setText(_translate("Form", "Search"))
         self.label_3.setText(_translate("Form", "Chat"))
         self.label_4.setText(_translate("Form", "Summary"))
         self.label_5.setText(_translate("Form", "Your best code copilot!"))
+        self.send_btn_2.setText(_translate("Form", "GET CODE THROUGH GITHUB"))
+        self.send_btn_3.setText(_translate("Form", "LOGIN IN"))
+        self.textEdit.setPlaceholderText(_translate("Form", "Please Input the code"))
 import res_rc

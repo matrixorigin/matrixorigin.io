@@ -1,10 +1,9 @@
 package com.ning.codebot.common.chat.controller;
-
 import com.ning.codebot.common.chat.domain.vo.request.ChatMessageReq;
 import com.ning.codebot.common.chat.domain.vo.response.ChatMessageResp;
 import com.ning.codebot.common.chat.service.ChatService;
+import com.ning.codebot.common.client.LLMClient;
 import com.ning.codebot.common.common.utils.RequestHolder;
-import com.ning.codebot.common.domain.dto.RequestInfo;
 import com.ning.codebot.common.domain.vo.response.ApiResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -29,14 +28,16 @@ import javax.validation.Valid;
 public class ChatController {
     @Autowired
     private ChatService chatService;
+    @Autowired
+    private LLMClient llmClient;
 
     @PostMapping("/msg")
     @ApiOperation("Send meesage")
     public ApiResult<ChatMessageResp> sendMsg(@Valid @RequestBody ChatMessageReq request) {
-        RequestHolder.set(new RequestInfo(123L));
-        // System.out.println(RequestHolder.get().getUid());
-        Long msgId = chatService.sendMsg(request, RequestHolder.get().getUid());
-        return ApiResult.success(ChatMessageResp.builder().messageId(msgId).build());
+        // RequestHolder.set(new RequestInfo(123L));
+        Long msgId = chatService.storeMsg(request, RequestHolder.get().getUid());
+        String ans = llmClient.sendMsg(request.getRoomId(), RequestHolder.get().getUid(), request.getContent());
+        return ApiResult.success(ChatMessageResp.builder().content(ans).build());
     }
 
 }

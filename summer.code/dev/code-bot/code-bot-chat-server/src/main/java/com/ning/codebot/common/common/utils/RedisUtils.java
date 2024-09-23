@@ -1,6 +1,7 @@
 package com.ning.codebot.common.common.utils;
 
 import cn.hutool.extra.spring.SpringUtil;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
@@ -56,7 +57,7 @@ public class RedisUtils {
             throw e;
         }
     }
-
+    
     /**
      * 指定缓存失效时间
      *

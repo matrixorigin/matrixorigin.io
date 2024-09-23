@@ -23,6 +23,25 @@ class ChatClient:
     def send_msg(self, name, group_name, text):
         return group_name + "%" + self.call_api(name, text)
 
+    def send_code(self, code):
+        try:
+            response = requests.get(f"http://localhost:8080/codebot/login/valid?code={code}")
+            # Check if the request was successful
+            if response.status_code == 200:
+                # parse to json
+                response_json = response.json()
+                is_success = response_json['success']
+                if is_success:
+                    return response_json['data']
+                else:
+                    return None
+            else:
+                print(response)
+                return None
+        except Exception as e:
+            print("An error occurred:", e)
+            return None
+
     def call_api(self, name, text):
         try:
             url = "http://localhost:5000/api/chat"
@@ -39,4 +58,21 @@ class ChatClient:
         except Exception as e:
             print(e)
         return 'error'
+
+    def get_auth_url(self):
+        try:
+            response = requests.get("http://localhost:8080/codebot/login/authorize")
+            # Check if the request was successful
+            if response.status_code == 200:
+                # parse to json
+                response_json = response.json()
+                # 提取 data 字段
+                data_url = response_json['data']
+                return data_url
+            else:
+                print(response)
+                return None
+        except Exception as e:
+            print("An error occurred:", e)
+
 

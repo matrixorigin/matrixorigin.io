@@ -12,6 +12,6 @@ public interface ChatService {
      * Send message
      * @param request
      */
-    Long sendMsg(ChatMessageReq request, Long uid);
+    Long storeMsg(ChatMessageReq request, Long uid);
 
 }

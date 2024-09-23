@@ -17,14 +17,11 @@ public class TextMsgHandler extends AbstractMsgHandler<TextMsgReq> {
         return MessageTypeEnum.TEXT;
     }
 
-    @Override
-    protected void checkMsg(TextMsgReq body, Long roomId, Long uid){
-
+    protected void checkMsg(String content, String roomId, Long uid){
+        return;
     }
-
-    @Override
-    protected String convertToString(TextMsgReq body){
-        return body.getContent();
+    protected String convertToRowData(String content){
+        return content;
     }
 
 }

@@ -12,6 +12,6 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ChatMessageResp {
-    private Long messageId;
+    private String content;
 
 }

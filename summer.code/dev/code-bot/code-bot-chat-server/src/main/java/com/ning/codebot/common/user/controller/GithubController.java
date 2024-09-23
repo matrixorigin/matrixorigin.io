@@ -1,9 +1,14 @@
 package com.ning.codebot.common.user.controller;
 
+import cn.hutool.system.UserInfo;
+import com.ning.codebot.common.chat.domain.vo.response.ChatMessageResp;
+import com.ning.codebot.common.common.exception.ErrorEnum;
 import com.ning.codebot.common.common.utils.JsonUtils;
+import com.ning.codebot.common.domain.vo.response.ApiResult;
 import com.ning.codebot.common.user.config.Oauth2Properties;
 import com.ning.codebot.common.user.domain.dto.GithubUserInfo;
 import com.ning.codebot.common.user.service.Outh2Service;
+import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -13,30 +18,37 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import lombok.extern.slf4j.Slf4j;
+import com.ning.codebot.common.common.exception.HttpErrorEnum;
+import java.util.Random;
 
 
 @Slf4j
-@Controller
+@RestController
+@RequestMapping("codebot/login")
 public class GithubController {
     private final Oauth2Properties oauth2Properties;
+    Random random;
     @Autowired
     private Outh2Service outh2Service;
     public GithubController(Oauth2Properties oauth2Properties) {
         this.oauth2Properties = oauth2Properties;
+        this.random = new Random();
     }
+
 
     /*
      * Let user jump to GITHUB page
      */
     @GetMapping("/authorize")
-    public String authorize() {
+    public ApiResult<String> authorize() {
         String url = oauth2Properties.getAuthorizeUrl() +
                 "?client_id=" + oauth2Properties.getClientId() +
                 "&redirect_uri=" + oauth2Properties.getRedirectUrl();
         log.info("Auth url:{}", url);
-        return "redirect:" + url;
+        return ApiResult.success(url);
     }
 
     /**
@@ -47,19 +59,26 @@ public class GithubController {
     @GetMapping("/oauth2/callback")
     public String callback(@RequestParam("code") String code, @RequestParam("state") String state) {
         log.info("code={}", code);
-        log.info("state={}", state);
         // code -> token
         String accessToken = getAccessToken(code);
         // token -> userInfo
         String userInfo = getUserInfo(accessToken);
-        outh2Service.storeUserInfo(Integer.parseInt(state), new GithubUserInfo(JsonUtils.toJsonNode(userInfo)));
-        // log.info("redirect to the home page");
-        return "redirect:/test";
+        GithubUserInfo githubUserInfo =  new GithubUserInfo(JsonUtils.toJsonNode(userInfo));
+        outh2Service.storeUserInfo(githubUserInfo);
+
+        String validCode = String.valueOf(this.random.nextInt(100000));
+        outh2Service.storeValidCode(validCode, githubUserInfo.getUserName());
+        return "success! code: "  + validCode;
     }
 
-    @GetMapping("/test")
-    public String home() {
-        return "hello world";
+    @GetMapping("/valid")
+    public ApiResult<String> valid(@RequestParam("code") String code) {
+        String userName = outh2Service.validCode(code);
+        if (userName != null){
+            return ApiResult.success(userName);
+        }else{
+            return ApiResult.fail(HttpErrorEnum.ACCESS_DENIED);
+        }
     }
 
     /*
