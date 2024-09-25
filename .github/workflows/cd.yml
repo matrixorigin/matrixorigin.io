@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - id: checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           token: ${{ secrets.ACTIONTOKEN }}
           ref: ${{ inputs.branch }} # 可以指定分支 checkout, 但不允许直接修改 gh-pages
@@ -78,7 +78,7 @@ jobs:
           password: ${{ secrets.TCR_TOKEN }}
 
       - name: Build && Push
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v5
         with:
           context: .
           file: ./Dockerfile
