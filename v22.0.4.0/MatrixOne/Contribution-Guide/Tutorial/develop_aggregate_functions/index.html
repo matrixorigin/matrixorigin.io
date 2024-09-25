@@ -1,0 +1,3574 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-8.1.4">
+    
+    
+      
+        <title>Develop an aggregate function - MatrixOne Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.bb3983ee.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.e6a45f82.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,400i,700%7C&display=fallback">
+        <style>:root{--md-text-font:"Ubuntu";--md-code-font:""}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="mo" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#develop-an-aggregate-function" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-component="outdated" hidden>
+        <aside class="md-banner md-banner--warning">
+          
+        </aside>
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="https://www.matrixorigin.io" title="MatrixOne Docs" class="md-header__button md-logo" aria-label="MatrixOne Docs" data-md-component="logo">
+      
+  <img src="../../../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MatrixOne Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Develop an aggregate function
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <div class="md-header__option">
+        <div class="md-select">
+          
+          <button class="md-header__button md-icon" aria-label="Select language">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.52 17.52 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04M18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12m-2.62 7 1.62-4.33L19.12 17h-3.24z"/></svg>
+          </button>
+          <div class="md-select__inner">
+            <ul class="md-select__list">
+              
+                <li class="md-select__item">
+                  <a href="/en/" hreflang="en" class="md-select__link">
+                    English
+                  </a>
+                </li>
+                
+                <li class="md-select__item">
+                  <a href="/" hreflang="zh" class="md-select__link">
+                    中文简体
+                  </a>
+                </li>
+                
+            </ul>
+          </div>
+        </div>
+      </div>
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/matrixorigin/matrixorigin.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    matrixorigin/matrixone
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link md-tabs__link--active">
+        MatrixOne
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://www.matrixorigin.io" title="MatrixOne Docs" class="md-nav__button md-logo" aria-label="MatrixOne Docs" data-md-component="logo">
+      
+  <img src="../../../../assets/logo.png" alt="logo">
+
+    </a>
+    MatrixOne Docs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/matrixorigin/matrixorigin.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    matrixorigin/matrixone
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1">
+          MatrixOne
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="MatrixOne" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          MatrixOne
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_2" type="checkbox" id="__nav_1_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_2">
+          Overview
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Overview" data-md-level="2">
+        <label class="md-nav__title" for="__nav_1_2">
+          <span class="md-nav__icon md-icon"></span>
+          Overview
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Overview/matrixone-introduction/" class="md-nav__link">
+        MatrixOne Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Overview/matrixone-architecture/" class="md-nav__link">
+        MatrixOne Architecture
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_2_3" type="checkbox" id="__nav_1_2_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_2_3">
+          MatrixOne Tech Design
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="MatrixOne Tech Design" data-md-level="3">
+        <label class="md-nav__title" for="__nav_1_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          MatrixOne Tech Design
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Overview/MatrixOne-Tech-Design/matrixone-techdesign/" class="md-nav__link">
+        MatrixOne Modules
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_2_4" type="checkbox" id="__nav_1_2_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_2_4">
+          MatrixCube Tech Design
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="MatrixCube Tech Design" data-md-level="3">
+        <label class="md-nav__title" for="__nav_1_2_4">
+          <span class="md-nav__icon md-icon"></span>
+          MatrixCube Tech Design
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Overview/matrixcube/matrixcube-introduction/" class="md-nav__link">
+        MatrixCube Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Overview/matrixcube/matrixcube-auto-rebalance-scheduling/" class="md-nav__link">
+        Auto Rebalancing and Scheduling
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Overview/matrixcube/matrixcube-shard-splitting/" class="md-nav__link">
+        Shard Splitting
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Overview/matrixcube/matrixcube-proxy-routing/" class="md-nav__link">
+        Shard Proxy and Routing
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Overview/mysql-compatibility/" class="md-nav__link">
+        MySQL Compatibility
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_2_6" type="checkbox" id="__nav_1_2_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_2_6">
+          Performance
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Performance" data-md-level="3">
+        <label class="md-nav__title" for="__nav_1_2_6">
+          <span class="md-nav__icon md-icon"></span>
+          Performance
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Overview/SSB%20Test%20Performance/" class="md-nav__link">
+        SSB Test Performance
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Overview/NYC%20Test%20Performance/" class="md-nav__link">
+        NYC Test Performance
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Overview/whats-new/" class="md-nav__link">
+        What's New
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_3" type="checkbox" id="__nav_1_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_3">
+          Get Started
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Get Started" data-md-level="2">
+        <label class="md-nav__title" for="__nav_1_3">
+          <span class="md-nav__icon md-icon"></span>
+          Get Started
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Get-Started/install-standalone-matrixone/" class="md-nav__link">
+        Install Standalone MatrixOne
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Get-Started/install-distributed-matrixone/" class="md-nav__link">
+        Install Distributed MatrixOne
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Get-Started/connect-to-matrixone-server/" class="md-nav__link">
+        Connect to MatrixOne Server
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_3_4" type="checkbox" id="__nav_1_3_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_3_4">
+          Tutorial
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Tutorial" data-md-level="3">
+        <label class="md-nav__title" for="__nav_1_3_4">
+          <span class="md-nav__icon md-icon"></span>
+          Tutorial
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Get-Started/Tutorial/SSB-test-with-matrixone/" class="md-nav__link">
+        SSB Test with MatrixOne
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Get-Started/Tutorial/NYC-test-with-matrixone/" class="md-nav__link">
+        NYC Test with MatrixOne
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4" type="checkbox" id="__nav_1_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_4">
+          Reference
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Reference" data-md-level="2">
+        <label class="md-nav__title" for="__nav_1_4">
+          <span class="md-nav__icon md-icon"></span>
+          Reference
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4_1" type="checkbox" id="__nav_1_4_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_4_1">
+          SQL Reference
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="SQL Reference" data-md-level="3">
+        <label class="md-nav__title" for="__nav_1_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          SQL Reference
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4_1_1" type="checkbox" id="__nav_1_4_1_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_4_1_1">
+          DDL
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="DDL" data-md-level="4">
+        <label class="md-nav__title" for="__nav_1_4_1_1">
+          <span class="md-nav__icon md-icon"></span>
+          DDL
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Statements/create-database/" class="md-nav__link">
+        CREATE DATABASE
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Statements/create-table/" class="md-nav__link">
+        CREATE TABLE
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Statements/drop-database/" class="md-nav__link">
+        DROP DATABASE
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Statements/drop-table/" class="md-nav__link">
+        DROP TABLE
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Statements/create-index/" class="md-nav__link">
+        CREATE INDEX
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Statements/drop-index/" class="md-nav__link">
+        DROP INDEX
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Statements/primary-key/" class="md-nav__link">
+        PRIMARY KEY
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4_1_2" type="checkbox" id="__nav_1_4_1_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_4_1_2">
+          DML
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="DML" data-md-level="4">
+        <label class="md-nav__title" for="__nav_1_4_1_2">
+          <span class="md-nav__icon md-icon"></span>
+          DML
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Statements/insert/" class="md-nav__link">
+        INSERT
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Statements/load-data/" class="md-nav__link">
+        LOAD DATA
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Statements/select/" class="md-nav__link">
+        SELECT
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Statements/show-databases/" class="md-nav__link">
+        SHOW DATABASES
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Statements/show-tables/" class="md-nav__link">
+        SHOW TABLES
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Statements/use/" class="md-nav__link">
+        USE
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Statements/like/" class="md-nav__link">
+        LIKE
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Statements/in/" class="md-nav__link">
+        IN
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Statements/cast/" class="md-nav__link">
+        CAST
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/SQL-Reference/Data-Manipulation-Statements/inner-join/" class="md-nav__link">
+        INNER JOIN
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4_1_3" type="checkbox" id="__nav_1_4_1_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_4_1_3">
+          Aggregate Functions
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Aggregate Functions" data-md-level="4">
+        <label class="md-nav__title" for="__nav_1_4_1_3">
+          <span class="md-nav__icon md-icon"></span>
+          Aggregate Functions
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/SQL-Reference/Aggregate-Functions/avg/" class="md-nav__link">
+        AVG
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/SQL-Reference/Aggregate-Functions/count/" class="md-nav__link">
+        COUNT
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/SQL-Reference/Aggregate-Functions/max/" class="md-nav__link">
+        MAX
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/SQL-Reference/Aggregate-Functions/min/" class="md-nav__link">
+        MIN
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/SQL-Reference/Aggregate-Functions/sum/" class="md-nav__link">
+        SUM
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/SQL-Reference/Aggregate-Functions/bit_and/" class="md-nav__link">
+        BIT_AND
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/SQL-Reference/Aggregate-Functions/bit_or/" class="md-nav__link">
+        BIT_OR
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/SQL-Reference/Aggregate-Functions/bit_xor/" class="md-nav__link">
+        BIT_XOR
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/SQL-Reference/Aggregate-Functions/stddev_pop/" class="md-nav__link">
+        STDDEV_POP
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/SQL-Reference/Aggregate-Functions/var/" class="md-nav__link">
+        VAR
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4_2" type="checkbox" id="__nav_1_4_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_4_2">
+          Data Types
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Data Types" data-md-level="3">
+        <label class="md-nav__title" for="__nav_1_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          Data Types
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/Data-Types/data-types/" class="md-nav__link">
+        Date Types Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/Data-Types/fixed-point-types/" class="md-nav__link">
+        Fixed-Point Types (Exact Value) - DECIMAL
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4_3" type="checkbox" id="__nav_1_4_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_4_3">
+          Builtin Functions
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Builtin Functions" data-md-level="3">
+        <label class="md-nav__title" for="__nav_1_4_3">
+          <span class="md-nav__icon md-icon"></span>
+          Builtin Functions
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4_3_1" type="checkbox" id="__nav_1_4_3_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_4_3_1">
+          Mathematical
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Mathematical" data-md-level="4">
+        <label class="md-nav__title" for="__nav_1_4_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          Mathematical
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/Builtin-Functions/Mathematical/abs/" class="md-nav__link">
+        ABS()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/Builtin-Functions/Mathematical/sin/" class="md-nav__link">
+        SIN()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/Builtin-Functions/Mathematical/cos/" class="md-nav__link">
+        COS()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/Builtin-Functions/Mathematical/tan/" class="md-nav__link">
+        TAN()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/Builtin-Functions/Mathematical/cot/" class="md-nav__link">
+        COT()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/Builtin-Functions/Mathematical/acos/" class="md-nav__link">
+        ACOS()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/Builtin-Functions/Mathematical/atan/" class="md-nav__link">
+        ATAN()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/Builtin-Functions/Mathematical/sinh/" class="md-nav__link">
+        SINH()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/Builtin-Functions/Mathematical/floor/" class="md-nav__link">
+        FLOOR()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/Builtin-Functions/Mathematical/round/" class="md-nav__link">
+        ROUND()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/Builtin-Functions/Mathematical/ceil/" class="md-nav__link">
+        CEIL()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/Builtin-Functions/Mathematical/power/" class="md-nav__link">
+        POWER()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/Builtin-Functions/Mathematical/pi/" class="md-nav__link">
+        PI()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/Builtin-Functions/Mathematical/log/" class="md-nav__link">
+        LOG()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/Builtin-Functions/Mathematical/ln/" class="md-nav__link">
+        LN()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/Builtin-Functions/Mathematical/exp/" class="md-nav__link">
+        EXP()
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4_3_2" type="checkbox" id="__nav_1_4_3_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_4_3_2">
+          Datetime
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Datetime" data-md-level="4">
+        <label class="md-nav__title" for="__nav_1_4_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Datetime
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/Builtin-Functions/Datetime/year/" class="md-nav__link">
+        YEAR()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/Builtin-Functions/Datetime/month/" class="md-nav__link">
+        MONTH()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/Builtin-Functions/Datetime/date/" class="md-nav__link">
+        DATE()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/Builtin-Functions/Datetime/weekday/" class="md-nav__link">
+        WEEKDAY()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/Builtin-Functions/Datetime/dayofyear/" class="md-nav__link">
+        DAYOFYEAR()
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4_3_3" type="checkbox" id="__nav_1_4_3_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_4_3_3">
+          String
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="String" data-md-level="4">
+        <label class="md-nav__title" for="__nav_1_4_3_3">
+          <span class="md-nav__icon md-icon"></span>
+          String
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/Builtin-Functions/String/empty/" class="md-nav__link">
+        EMPTY()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/Builtin-Functions/String/length/" class="md-nav__link">
+        LENGTH()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/Builtin-Functions/String/lengthUTF8/" class="md-nav__link">
+        LENGTHUTF8()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/Builtin-Functions/String/ltrim/" class="md-nav__link">
+        LTRIM()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/Builtin-Functions/String/rtrim/" class="md-nav__link">
+        RTRIM()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/Builtin-Functions/String/lpad/" class="md-nav__link">
+        LPAD()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/Builtin-Functions/String/rpad/" class="md-nav__link">
+        RPAD()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/Builtin-Functions/String/startswith/" class="md-nav__link">
+        STARTSWITH()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/Builtin-Functions/String/endswith/" class="md-nav__link">
+        ENDSWITH()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/Builtin-Functions/String/substring/" class="md-nav__link">
+        SUBSTRING()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/Builtin-Functions/String/space/" class="md-nav__link">
+        SPACE()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/Builtin-Functions/String/reverse/" class="md-nav__link">
+        REVERSE()
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4_4" type="checkbox" id="__nav_1_4_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_4_4">
+          System Paramaters
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="System Paramaters" data-md-level="3">
+        <label class="md-nav__title" for="__nav_1_4_4">
+          <span class="md-nav__icon md-icon"></span>
+          System Paramaters
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/System-Parameters/configuration-settings/" class="md-nav__link">
+        General Settings
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/System-Parameters/distributed-settings/" class="md-nav__link">
+        Distributed Settings
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_5" type="checkbox" id="__nav_1_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_5">
+          Develop
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Develop" data-md-level="2">
+        <label class="md-nav__title" for="__nav_1_5">
+          <span class="md-nav__icon md-icon"></span>
+          Develop
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Develop/develop_python_application/" class="md-nav__link">
+        Develop Python Applications
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_6" type="checkbox" id="__nav_1_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_6">
+          FAQs
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="FAQs" data-md-level="2">
+        <label class="md-nav__title" for="__nav_1_6">
+          <span class="md-nav__icon md-icon"></span>
+          FAQs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../FAQs/general-faqs/" class="md-nav__link">
+        General FAQs
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_7" type="checkbox" id="__nav_1_7" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_7">
+          Release Notes
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Release Notes" data-md-level="2">
+        <label class="md-nav__title" for="__nav_1_7">
+          <span class="md-nav__icon md-icon"></span>
+          Release Notes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Release-Notes/v0.1.0/" class="md-nav__link">
+        v0.1.0
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Release-Notes/v0.2.0/" class="md-nav__link">
+        v0.2.0
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Release-Notes/v0.3.0/" class="md-nav__link">
+        v0.3.0
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Release-Notes/v0.4.0/" class="md-nav__link">
+        v0.4.0
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../glossary/" class="md-nav__link">
+        Glossary
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_9" type="checkbox" id="__nav_1_9" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_9">
+          Contribution Guide
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Contribution Guide" data-md-level="2">
+        <label class="md-nav__title" for="__nav_1_9">
+          <span class="md-nav__icon md-icon"></span>
+          Contribution Guide
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../make-your-first-contribution/" class="md-nav__link">
+        Make Your First Contribution
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_9_2" type="checkbox" id="__nav_1_9_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_9_2">
+          How to Contribute
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="How to Contribute" data-md-level="3">
+        <label class="md-nav__title" for="__nav_1_9_2">
+          <span class="md-nav__icon md-icon"></span>
+          How to Contribute
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../How-to-Contribute/types-of-contributions/" class="md-nav__link">
+        Types of Contributions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../How-to-Contribute/preparation/" class="md-nav__link">
+        Preparation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../How-to-Contribute/report-an-issue/" class="md-nav__link">
+        Report an Issue
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../How-to-Contribute/contribute-code/" class="md-nav__link">
+        Contribute Code
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../How-to-Contribute/review-a-pull-request/" class="md-nav__link">
+        Review a Pull Request
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../How-to-Contribute/contribute-documentation/" class="md-nav__link">
+        Contribute Documentation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../How-to-Contribute/make-a-design/" class="md-nav__link">
+        Make a Design
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_9_3" type="checkbox" id="__nav_1_9_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_9_3">
+          Tutorial
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Tutorial" data-md-level="3">
+        <label class="md-nav__title" for="__nav_1_9_3">
+          <span class="md-nav__icon md-icon"></span>
+          Tutorial
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../develop_builtin_functions/" class="md-nav__link">
+        Develop a built-in function
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Develop an aggregate function
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Develop an aggregate function
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisite" class="md-nav__link">
+    Prerequisite
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#preparation" class="md-nav__link">
+    Preparation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-an-aggregation-function" class="md-nav__link">
+    What is an aggregation function?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aggregate-function-in-matrixone" class="md-nav__link">
+    Aggregate function in MatrixOne
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-a-ring" class="md-nav__link">
+    What is a Ring
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-does-ring-work-with-query" class="md-nav__link">
+    How does Ring work with query:
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-secret-of-factorisation" class="md-nav__link">
+    The secret of factorisation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#develop-an-var-function" class="md-nav__link">
+    Develop an var() function
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#compile-and-run-matrixone" class="md-nav__link">
+    Compile and run MatrixOne
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#write-unit-test-for-your-function" class="md-nav__link">
+    Write unit Test for your function
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conduct-a-performance-test" class="md-nav__link">
+    Conduct a Performance Test
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_9_4" type="checkbox" id="__nav_1_9_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_9_4">
+          Code Style
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Code Style" data-md-level="3">
+        <label class="md-nav__title" for="__nav_1_9_4">
+          <span class="md-nav__icon md-icon"></span>
+          Code Style
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Code-Style/code-of-conduct/" class="md-nav__link">
+        Code of Conduct
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Code-Style/code-comment-style/" class="md-nav__link">
+        Code Comment Style
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Code-Style/commit-pr-style/" class="md-nav__link">
+        Commit & Pull Request Style
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisite" class="md-nav__link">
+    Prerequisite
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#preparation" class="md-nav__link">
+    Preparation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-an-aggregation-function" class="md-nav__link">
+    What is an aggregation function?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aggregate-function-in-matrixone" class="md-nav__link">
+    Aggregate function in MatrixOne
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-a-ring" class="md-nav__link">
+    What is a Ring
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-does-ring-work-with-query" class="md-nav__link">
+    How does Ring work with query:
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-secret-of-factorisation" class="md-nav__link">
+    The secret of factorisation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#develop-an-var-function" class="md-nav__link">
+    Develop an var() function
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#compile-and-run-matrixone" class="md-nav__link">
+    Compile and run MatrixOne
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#write-unit-test-for-your-function" class="md-nav__link">
+    Write unit Test for your function
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conduct-a-performance-test" class="md-nav__link">
+    Conduct a Performance Test
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+<a href="https://github.com/matrixorigin/matrixorigin.io/edit/0.4.0/docs/MatrixOne/Contribution-Guide/Tutorial/develop_aggregate_functions.md" title="Edit this page" class="md-content__button md-icon">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+</a>
+
+
+<h1 id="develop-an-aggregate-function"><strong>Develop an aggregate function</strong></h1>
+<h2 id="prerequisite"><strong>Prerequisite</strong></h2>
+<p>To develop an aggregate function for MatrixOne, you need a basic knowledge of Golang programming. You can go through this excellent <a href="https://www.educative.io/blog/golang-tutorial">Golang tutorial</a> to get some Golang basic concepts. </p>
+<h2 id="preparation"><strong>Preparation</strong></h2>
+<p>Before you start, please make sure that you have <code>Go</code> installed, cloned the <code>MatrixOne</code> code base.
+Please refer to <a href="../../How-to-Contribute/preparation/">Preparation</a> and <a href="../../How-to-Contribute/contribute-code/">Contribute Code</a> for more details.</p>
+<h2 id="what-is-an-aggregation-function"><strong>What is an aggregation function?</strong></h2>
+<p>In database systems, an aggregate function or aggregation function is a function where the values of multiple rows are grouped together to form a single summary value.</p>
+<p>Common aggregate functions include:</p>
+<ul>
+<li><code>COUNT</code> counts how many rows are in a particular column.</li>
+<li><code>SUM</code> adds together all the values in a particular column.</li>
+<li><code>MIN</code> and <code>MAX</code> return the lowest and highest values in a particular column, respectively.</li>
+<li><code>AVG</code> calculates the average of a group of selected values.</li>
+</ul>
+<h2 id="aggregate-function-in-matrixone"><strong>Aggregate function in MatrixOne</strong></h2>
+<p>As MatrixOne's one major key feature, via factorisation, the database <code>join</code> in MatrixOne is highly efficient and less redundant in comparison with
+other state-of-the-art databases. Therefore, many operations in MatrixOne need to be adapted to the factorisation method, in order
+to improve efficiency when performing <code>join</code>. Aggregate function is an important one among those operations. </p>
+<p>To implement aggragate function in MatrixOne, we design a data structure named <code>Ring</code>. Every aggregate function needs to implement the <code>Ring</code> interface
+in order to be factorised when <code>join</code> occurs. </p>
+<p>For the common aggregate function <code>AVG</code> as an example, we need to calculate the number of groups and their total numeric sum, then get an average result, which 
+is the common practice for any database design. But when a query with <code>join</code> occurs for two tables, the common method is to get a Cartesian product by joining tables first,
+then perform an <code>AVG</code> with that Cartesian product, which is an expensive computational cost as Cartesian product can be very large. 
+In MatrixOne's implementation, the factorisation method pushs down the calculation of group statistic and sum before the <code>join</code> operation is performed. This method helps to reduce
+a lot in computational and storage cost. This factorisation 
+is realized by the <code>Ring</code> interface and its inner functions. </p>
+<p>To checkout more about the factorisation theory and factorized database, please refer to <a href="https://fdbresearch.github.io/principles.html">Principles of Factorised Databases</a>.</p>
+<h2 id="what-is-a-ring"><strong>What is a <code>Ring</code></strong></h2>
+<p><code>Ring</code> is an important data structure for MatrixOne factorisation, as well as an mathematical algebraic concept with a clear <a href="https://en.wikipedia.org/wiki/Ring_(mathematics)">definition</a>.
+An algebraic <code>Ring</code> is a set equipped with two binary operations  <code>+</code> (addition) and <code>⋅</code> (multiplication) satisfying several axioms.</p>
+<p>A <code>Ring</code> in MatrixOne is an interface, with several functions similar to the algebraic <code>Ring</code> structure. We use <code>Ring</code> interface to implement aggragate functions,
+the <code>+</code>(addition) is defined as merging two <code>Ring</code>s groups, the <code>⋅</code>(multiplication) operation is defined as the computation of a grouped aggregate value combined with its grouping key frequency information.</p>
+<table>
+<thead>
+<tr>
+<th>Method of Ring Interface</th>
+<th>Do What</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Count</td>
+<td>Return the number of groups</td>
+</tr>
+<tr>
+<td>Size</td>
+<td>Return the memory size of Ring</td>
+</tr>
+<tr>
+<td>Dup</td>
+<td>Duplicate a Ring of same type</td>
+</tr>
+<tr>
+<td>Type</td>
+<td>Return the type of a Ring</td>
+</tr>
+<tr>
+<td>String</td>
+<td>Return some basic information of Ring for execution plan log</td>
+</tr>
+<tr>
+<td>Free</td>
+<td>Free the Ring memory</td>
+</tr>
+<tr>
+<td>Grow</td>
+<td>Add a group for the Ring</td>
+</tr>
+<tr>
+<td>Grows</td>
+<td>Add multiple groups for the Ring</td>
+</tr>
+<tr>
+<td>SetLength</td>
+<td>Shrink the size of Ring, keep the first N groups</td>
+</tr>
+<tr>
+<td>Shrink</td>
+<td>Shrink the size of Ring, keep the designated groups</td>
+</tr>
+<tr>
+<td>Eval</td>
+<td>Return the eventual result of the aggregate function</td>
+</tr>
+<tr>
+<td>Fill</td>
+<td>Update the data of Ring by a row</td>
+</tr>
+<tr>
+<td>BulkFill</td>
+<td>Update the ring data by a whole vector</td>
+</tr>
+<tr>
+<td>BatchFill</td>
+<td>Update the ring data by a part of vector</td>
+</tr>
+<tr>
+<td>Add</td>
+<td>Merge a couple of groups for two Rings</td>
+</tr>
+<tr>
+<td>BatchAdd</td>
+<td>Merge several couples of groups for two Rings</td>
+</tr>
+<tr>
+<td>Mul</td>
+<td>Multiplication between groups for two Rings, called when join occurs</td>
+</tr>
+</tbody>
+</table>
+<p>The implementation of <code>Ring</code> data structure is under <code>/pkg/container/ring/</code>. </p>
+<h2 id="how-does-ring-work-with-query"><strong>How does <code>Ring</code> work with query:</strong></h2>
+<p>To better understand the <code>Ring</code> interface, we can take aggregate function <code>sum()</code> as an example. We'll walk you through the whole process
+of <code>Ring</code>.</p>
+<p>There are two different scenarios for aggregation functions with <code>Ring</code>s.</p>
+<p><em>1. Query with single table.</em></p>
+<p>In the single table scenario, when we run the below query, it generates one or several <code>Ring</code>s, 
+depending on the storage blocks the <code>T1</code> table is stored. The number of blocks depends on the storage strategy. Each <code>Ring</code> will 
+store several groups of sums, the number of group depends how many duplicate rows are in this <code>Ring</code>. </p>
+<div class="highlight"><pre><span></span><code><span class="n">T1</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="p">)</span><span class="w"> </span>
+<span class="o">+</span><span class="c1">------+-------+------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">id</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">age</span><span class="w">  </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">------+-------+------+</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">one</span><span class="w">   </span><span class="o">|</span><span class="w">   </span><span class="mi">23</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">one</span><span class="w">   </span><span class="o">|</span><span class="w">   </span><span class="mi">20</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">one</span><span class="w">   </span><span class="o">|</span><span class="w">   </span><span class="mi">22</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">two</span><span class="w">   </span><span class="o">|</span><span class="w">   </span><span class="mi">20</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">5</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">two</span><span class="w">   </span><span class="o">|</span><span class="w">   </span><span class="mi">19</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">6</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">three</span><span class="w"> </span><span class="o">|</span><span class="w">   </span><span class="mi">18</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">7</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">three</span><span class="w"> </span><span class="o">|</span><span class="w">   </span><span class="mi">20</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">8</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">three</span><span class="w"> </span><span class="o">|</span><span class="w">   </span><span class="mi">21</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">9</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">three</span><span class="w"> </span><span class="o">|</span><span class="w">   </span><span class="mi">24</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">   </span><span class="mi">10</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">three</span><span class="w"> </span><span class="o">|</span><span class="w">   </span><span class="mi">19</span><span class="w"> </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">------+-------+------+</span>
+
+<span class="k">select</span><span class="w"> </span><span class="k">class</span><span class="p">,</span><span class="w"> </span><span class="k">sum</span><span class="p">(</span><span class="n">age</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">T1</span><span class="w"> </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="k">class</span><span class="p">;</span>
+</code></pre></div>
+<p>For example, if two <code>Ring</code>s were generated, the first <code>Ring</code> holds the group sums of the first 4 rows, which will be like:
+<div class="highlight"><pre><span></span><code><span class="o">|</span><span class="w">  </span><span class="n">one</span><span class="w">   </span><span class="o">|</span><span class="w">  </span><span class="mi">23</span><span class="o">+</span><span class="mi">20</span><span class="o">+</span><span class="mi">22</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">  </span><span class="n">two</span><span class="w">   </span><span class="o">|</span><span class="w">  </span><span class="mi">20</span><span class="w">       </span><span class="o">|</span>
+</code></pre></div>
+The second <code>Ring</code> holds the group sums of the last 6 rows, which will be like:
+<div class="highlight"><pre><span></span><code><span class="o">|</span><span class="w">  </span><span class="n">two</span><span class="w">   </span><span class="o">|</span><span class="w">  </span><span class="mi">19</span><span class="w">       </span><span class="o">|</span>
+<span class="o">|</span><span class="w">  </span><span class="n">three</span><span class="w"> </span><span class="o">|</span><span class="w">  </span><span class="mi">18</span><span class="o">+</span><span class="mi">20</span><span class="o">+</span><span class="mi">21</span><span class="o">+</span><span class="mi">24</span><span class="o">+</span><span class="mi">19</span><span class="w"> </span><span class="o">|</span>
+</code></pre></div>
+Then the <code>Add</code> method of <code>Ring</code> will be called to merge two groups together, and at last the <code>Eval</code> method will return the overall result to user.
+<div class="highlight"><pre><span></span><code><span class="o">|</span><span class="w">  </span><span class="n">one</span><span class="w">   </span><span class="o">|</span><span class="w">  </span><span class="mi">23</span><span class="o">+</span><span class="mi">20</span><span class="o">+</span><span class="mi">22</span><span class="w">       </span><span class="o">|</span>
+<span class="o">|</span><span class="w">  </span><span class="n">two</span><span class="w">   </span><span class="o">|</span><span class="w">  </span><span class="mi">20</span><span class="o">+</span><span class="mi">19</span><span class="w">       </span><span class="o">|</span>
+<span class="o">|</span><span class="w">  </span><span class="n">three</span><span class="w"> </span><span class="o">|</span><span class="w">  </span><span class="mi">18</span><span class="o">+</span><span class="mi">20</span><span class="o">+</span><span class="mi">21</span><span class="o">+</span><span class="mi">24</span><span class="o">+</span><span class="mi">19</span><span class="w"> </span><span class="o">|</span>
+</code></pre></div></p>
+<p><em>2. Query with joining multiple tables.</em></p>
+<p>In the multiple tables join scenario, we have two tables <code>Tc</code> and <code>Ts</code>. The query looks like the following.</p>
+<div class="highlight"><pre><span></span><code><span class="n">Tc</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="p">)</span><span class="w"> </span>
+<span class="o">+</span><span class="c1">------+-------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">id</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">------+-------+</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">one</span><span class="w">   </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">one</span><span class="w">   </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">one</span><span class="w">   </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">two</span><span class="w">   </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">5</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">two</span><span class="w">   </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">6</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">three</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">7</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">three</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">8</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">three</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">9</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">three</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">   </span><span class="mi">10</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">three</span><span class="w"> </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">------+-------+ </span>
+
+<span class="n">Ts</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="p">)</span>
+<span class="o">+</span><span class="c1">------+------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">id</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">age</span><span class="w">  </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">------+------+</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w">   </span><span class="mi">23</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w">   </span><span class="mi">20</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w">   </span><span class="mi">22</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span><span class="w">   </span><span class="mi">20</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">5</span><span class="w"> </span><span class="o">|</span><span class="w">   </span><span class="mi">19</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">6</span><span class="w"> </span><span class="o">|</span><span class="w">   </span><span class="mi">18</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">7</span><span class="w"> </span><span class="o">|</span><span class="w">   </span><span class="mi">20</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">8</span><span class="w"> </span><span class="o">|</span><span class="w">   </span><span class="mi">24</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">9</span><span class="w"> </span><span class="o">|</span><span class="w">   </span><span class="mi">24</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">   </span><span class="mi">10</span><span class="w"> </span><span class="o">|</span><span class="w">   </span><span class="mi">19</span><span class="w"> </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">------+------+</span>
+
+<span class="k">select</span><span class="w"> </span><span class="k">class</span><span class="p">,</span><span class="w"> </span><span class="k">sum</span><span class="p">(</span><span class="n">age</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">Tc</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">Ts</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">Tc</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Ts</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="k">class</span><span class="p">;</span>
+</code></pre></div>
+<p>When we run this query, it will firstly generate <code>Ring</code>s for the <code>Ts</code> table, as we are performing aggeration over <code>age</code> column.
+It might generate also one or several <code>Ring</code>s, same as the single table. For simplyfing, we imagine only one <code>Ring</code> is created for each table.
+The <code>Ring-Ts</code> will start to count sums for the group of <code>id</code>, as all <code>id</code>s are different, so it will maintain the same. Then a hashtable will be created
+for performing <code>join</code> operation.</p>
+<p>The <code>Ring-Tc</code> is created in the same time as <code>join</code> is performed. This <code>Ring-Tc</code> will count the appearing frequency <code>f</code> of id. Then the <code>Mul</code> method
+of <code>Ring-Ts</code> is called, to calculate the sum calculated from the <code>Ring-Ts</code> and frequency from <code>Ring-Tc</code>.
+<div class="highlight"><pre><span></span><code>sum[i] = sum[i] * f[i]
+</code></pre></div></p>
+<p>Now we get values of <code>[class, sum(age)]</code>, then performing a group by with class will give us the final result.</p>
+<h2 id="the-secret-of-factorisation"><strong>The secret of factorisation</strong></h2>
+<p>From the above example, you can see that the <code>Ring</code> performs some pre calculations and only the result(like <code>sum</code>) is stored in its structure. When performing operations like <code>join</code>,
+only simple <code>Add</code> or <code>Multiplication</code> is needed to get the result, which is called a push down calculation in <code>factorisation</code>. With the help of this push down, we no longer need to 
+deal with costly Cartesian product. As the joined table number increases, the factorisation allow us to take linear cost performing that, instead of exponential increase.</p>
+<p>Take the implementation of <code>Variance</code> function as an example. </p>
+<p>The variance formula is as below:
+<div class="highlight"><pre><span></span><code>Variance = Σ [(xi - x̅)^2]/n
+
+Example: xi = 10,8,6,12,14, x̅ = 10
+Calculation: ((10-10)^2+(8-10)^2+(6-10)^2+(12-10)^2+(14-10)^2)/5 = 8
+</code></pre></div></p>
+<p>If we proceed implementation with this formula, we have to record all values of each group, and keep maintaining these values 
+with <code>Add</code> and <code>Mul</code> operations of <code>Ring</code>. Eventual result is calculated in <code>Eval()</code> function. This implementation has a drawback of high memory cost,
+as we store all values during processing.</p>
+<p>But in the <code>Avg</code> implementation, it doesn't store all values in the <code>Ring</code>. Instead it stores only the <code>sum</code> of each group and the null numbers.  It returns the final result with a simple division. This method saves a lot of memory space.</p>
+<p>Now let's turn the <code>Variance</code> formula a bit to a different form:
+<div class="highlight"><pre><span></span><code>Variance = Σ (xi^2)/n-x̅^2
+
+Example: xi = 10,8,6,12,14, x̅ = 10
+Calculation: (10^2+8^2+6^2+12^2+14^2)/5-10^2 = 8
+</code></pre></div></p>
+<p>This formula's result is actually exactly the same as the previous one, but we only have to record the values sum of <code>xi^2</code> and the sum of <code>xi</code>. We can largely reduce the memory space 
+with this kind of reformulation.</p>
+<p>To conclude, every aggregate function needs to find a way to record as little values as possible in order to reduce memory cost.
+Below is two different implementation for <code>Variance</code> (the second one has a better performance):</p>
+<div class="highlight"><pre><span></span><code><span class="w">   </span><span class="c1">//Implementation1</span>
+
+<span class="w">   </span><span class="kd">type</span><span class="w"> </span><span class="nx">VarRing</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Typ is vector&#39;s value type</span>
+<span class="w">    </span><span class="nx">Typ</span><span class="w"> </span><span class="nx">types</span><span class="p">.</span><span class="nx">Type</span>
+
+<span class="w">    </span><span class="c1">// attributes for computing the variance</span>
+<span class="w">    </span><span class="nx">Data</span><span class="w"> </span><span class="p">[]</span><span class="kt">byte</span><span class="w">    </span><span class="c1">// store all the Sums&#39; bytes</span>
+<span class="w">    </span><span class="nx">Sums</span><span class="w">  </span><span class="p">[]</span><span class="kt">float64</span><span class="w"> </span><span class="c1">// sums of each group, its memory address is same to Data</span>
+
+<span class="w">    </span><span class="nx">Values</span><span class="w"> </span><span class="p">[][]</span><span class="kt">float64</span><span class="w">  </span><span class="c1">// values of each group</span>
+<span class="w">    </span><span class="nx">NullCounts</span><span class="w"> </span><span class="p">[]</span><span class="kt">int64</span><span class="w">   </span><span class="c1">// group to record number of the null value</span>
+<span class="w">   </span><span class="p">}</span>
+
+<span class="w">   </span><span class="c1">//Implementation2</span>
+<span class="w">   </span><span class="kd">type</span><span class="w"> </span><span class="nx">VarRing</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Typ is vector&#39;s value type</span>
+<span class="w">    </span><span class="nx">Typ</span><span class="w"> </span><span class="nx">types</span><span class="p">.</span><span class="nx">Type</span>
+
+<span class="w">    </span><span class="c1">// attributes for computing the variance</span>
+<span class="w">    </span><span class="nx">Data</span><span class="w">  </span><span class="p">[]</span><span class="kt">byte</span>
+<span class="w">    </span><span class="nx">SumX</span><span class="w">  </span><span class="p">[]</span><span class="kt">float64</span><span class="w"> </span><span class="c1">// sum of x, its memory address is same to Data, because we will use it to store result finally.</span>
+<span class="w">    </span><span class="nx">SumX2</span><span class="w"> </span><span class="p">[]</span><span class="kt">float64</span><span class="w"> </span><span class="c1">// sum of x^2</span>
+
+<span class="w">    </span><span class="nx">NullCounts</span><span class="w"> </span><span class="p">[]</span><span class="kt">int64</span><span class="w"> </span><span class="c1">// group to record number of the null value</span>
+<span class="w">   </span><span class="p">}</span>
+</code></pre></div>
+<h2 id="develop-an-var-function"><strong>Develop an var() function</strong></h2>
+<p>In this tutorial, we walk you through the complete implementation of Variance (get the standard overall variance value) aggregate function as an example with two different methods. </p>
+<p>Step 1: register function</p>
+<p>MatrixOne doesn't distinguish between operators and functions. 
+In our code repository, the file <code>pkg/sql/viewexec/transformer/types.go</code> register aggregate functions as operators 
+and we assign each operator a distinct integer number. 
+To add a new function <code>var()</code>, add a new const <code>Variance</code> in the const declaration and <code>var</code> in the name declaration.</p>
+<div class="highlight"><pre><span></span><code><span class="w">   </span><span class="kd">const</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="nx">Sum</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">iota</span>
+<span class="w">    </span><span class="nx">Avg</span>
+<span class="w">    </span><span class="nx">Max</span>
+<span class="w">    </span><span class="nx">Min</span>
+<span class="w">    </span><span class="nx">Count</span>
+<span class="w">    </span><span class="nx">StarCount</span>
+<span class="w">    </span><span class="nx">ApproxCountDistinct</span>
+<span class="w">    </span><span class="nx">Variance</span>
+<span class="w">   </span><span class="p">)</span>
+
+<span class="w">   </span><span class="kd">var</span><span class="w"> </span><span class="nx">TransformerNames</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="o">...</span><span class="p">]</span><span class="kt">string</span><span class="p">{</span>
+<span class="w">    </span><span class="nx">Sum</span><span class="p">:</span><span class="w">                 </span><span class="s">&quot;sum&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">Avg</span><span class="p">:</span><span class="w">                 </span><span class="s">&quot;avg&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">Max</span><span class="p">:</span><span class="w">                 </span><span class="s">&quot;max&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">Min</span><span class="p">:</span><span class="w">                 </span><span class="s">&quot;min&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">Count</span><span class="p">:</span><span class="w">               </span><span class="s">&quot;count&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">StarCount</span><span class="p">:</span><span class="w">           </span><span class="s">&quot;starcount&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">ApproxCountDistinct</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;approx_count_distinct&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">Variance</span><span class="p">:</span><span class="w">            </span><span class="s">&quot;var&quot;</span><span class="p">,</span>
+<span class="w">   </span><span class="p">}</span>
+</code></pre></div>
+<p>Step2: implement the <code>Ring</code> interface</p>
+<p><em>1. Define <code>Ring</code> structure</em></p>
+<p>Create <code>variance.go</code> under <code>pkg/container/ring</code>, and define a structure of <code>VarRing</code>.</p>
+<p>As we calculate the overall variance, we need to calculate:</p>
+<ul>
+<li>The numeric <code>Sums</code> and the null value numbers of each group, to calculate the average.</li>
+<li>Values of each group, to calculate the variance. </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="w">   </span><span class="c1">//Implementation1</span>
+
+<span class="w">   </span><span class="kd">type</span><span class="w"> </span><span class="nx">VarRing</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Typ is vector&#39;s value type</span>
+<span class="w">    </span><span class="nx">Typ</span><span class="w"> </span><span class="nx">types</span><span class="p">.</span><span class="nx">Type</span>
+
+<span class="w">    </span><span class="c1">// attributes for computing the variance</span>
+<span class="w">    </span><span class="nx">Data</span><span class="w"> </span><span class="p">[]</span><span class="kt">byte</span><span class="w">    </span><span class="c1">// store all the Sums&#39; bytes</span>
+<span class="w">    </span><span class="nx">Sums</span><span class="w">  </span><span class="p">[]</span><span class="kt">float64</span><span class="w"> </span><span class="c1">// sums of each group, its memory address is same to Data</span>
+
+<span class="w">    </span><span class="nx">Values</span><span class="w"> </span><span class="p">[][]</span><span class="kt">float64</span><span class="w">  </span><span class="c1">// values of each group</span>
+<span class="w">    </span><span class="nx">NullCounts</span><span class="w"> </span><span class="p">[]</span><span class="kt">int64</span><span class="w">   </span><span class="c1">// group to record number of the null value</span>
+<span class="w">   </span><span class="p">}</span>
+
+<span class="w">   </span><span class="c1">//Implementation2</span>
+<span class="w">   </span><span class="kd">type</span><span class="w"> </span><span class="nx">VarRing</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Typ is vector&#39;s value type</span>
+<span class="w">    </span><span class="nx">Typ</span><span class="w"> </span><span class="nx">types</span><span class="p">.</span><span class="nx">Type</span>
+
+<span class="w">    </span><span class="c1">// attributes for computing the variance</span>
+<span class="w">    </span><span class="nx">Data</span><span class="w">  </span><span class="p">[]</span><span class="kt">byte</span>
+<span class="w">    </span><span class="nx">SumX</span><span class="w">  </span><span class="p">[]</span><span class="kt">float64</span><span class="w"> </span><span class="c1">// sum of x, its memory address is same to Data, because we will use it to store result finally.</span>
+<span class="w">    </span><span class="nx">SumX2</span><span class="w"> </span><span class="p">[]</span><span class="kt">float64</span><span class="w"> </span><span class="c1">// sum of x^2</span>
+
+<span class="w">    </span><span class="nx">NullCounts</span><span class="w"> </span><span class="p">[]</span><span class="kt">int64</span><span class="w"> </span><span class="c1">// group to record number of the null value</span>
+<span class="w">   </span><span class="p">}</span>
+</code></pre></div>
+<p><em>2. Implement the functions of <code>Ring</code> interface</em></p>
+<p>You can checkout the full implmetation at <a href="https://github.com/matrixorigin/matrixone/blob/main/pkg/container/ring/variance/variance.go">variance.go</a>.</p>
+<ul>
+<li><code>Fill</code> function</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="w">      </span><span class="c1">//Implementation1</span>
+
+<span class="w">    </span><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">v</span><span class="w"> </span><span class="o">*</span><span class="nx">VarRing</span><span class="p">)</span><span class="w"> </span><span class="nx">Fill</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span><span class="w"> </span><span class="nx">j</span><span class="w"> </span><span class="kt">int64</span><span class="p">,</span><span class="w"> </span><span class="nx">z</span><span class="w"> </span><span class="kt">int64</span><span class="p">,</span><span class="w"> </span><span class="nx">vec</span><span class="w"> </span><span class="o">*</span><span class="nx">vector</span><span class="p">.</span><span class="nx">Vector</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="nx">value</span><span class="w"> </span><span class="kt">float64</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">0</span>
+
+<span class="w">        </span><span class="k">switch</span><span class="w"> </span><span class="nx">vec</span><span class="p">.</span><span class="nx">Typ</span><span class="p">.</span><span class="nx">Oid</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="nx">types</span><span class="p">.</span><span class="nx">T_int8</span><span class="p">:</span>
+<span class="w">            </span><span class="nx">value</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">float64</span><span class="p">(</span><span class="nx">vec</span><span class="p">.</span><span class="nx">Col</span><span class="p">.([]</span><span class="kt">int8</span><span class="p">)[</span><span class="nx">j</span><span class="p">])</span>
+<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="o">...</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="nx">k</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">z</span><span class="p">;</span><span class="w"> </span><span class="nx">k</span><span class="w"> </span><span class="p">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="nx">k</span><span class="o">--</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">v</span><span class="p">.</span><span class="nx">Values</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">append</span><span class="p">(</span><span class="nx">v</span><span class="p">.</span><span class="nx">Values</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span><span class="w"> </span><span class="nx">value</span><span class="p">)</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="nx">v</span><span class="p">.</span><span class="nx">Sums</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">value</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nb">float64</span><span class="p">(</span><span class="nx">z</span><span class="p">)</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="nx">nulls</span><span class="p">.</span><span class="nx">Contains</span><span class="p">(</span><span class="nx">vec</span><span class="p">.</span><span class="nx">Nsp</span><span class="p">,</span><span class="w"> </span><span class="nb">uint64</span><span class="p">(</span><span class="nx">z</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">v</span><span class="p">.</span><span class="nx">NullCounts</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">z</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">       </span><span class="p">}</span>
+
+<span class="w">       </span><span class="c1">//Implementation2</span>
+
+<span class="w">    </span><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">v</span><span class="w"> </span><span class="o">*</span><span class="nx">VarRing</span><span class="p">)</span><span class="w"> </span><span class="nx">Fill</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span><span class="w"> </span><span class="nx">j</span><span class="w"> </span><span class="kt">int64</span><span class="p">,</span><span class="w"> </span><span class="nx">z</span><span class="w"> </span><span class="kt">int64</span><span class="p">,</span><span class="w"> </span><span class="nx">vec</span><span class="w"> </span><span class="o">*</span><span class="nx">vector</span><span class="p">.</span><span class="nx">Vector</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="nx">value</span><span class="w"> </span><span class="kt">float64</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">0</span>
+
+<span class="w">        </span><span class="k">switch</span><span class="w"> </span><span class="nx">vec</span><span class="p">.</span><span class="nx">Typ</span><span class="p">.</span><span class="nx">Oid</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="nx">types</span><span class="p">.</span><span class="nx">T_int8</span><span class="p">:</span>
+<span class="w">            </span><span class="nx">value</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">float64</span><span class="p">(</span><span class="nx">vec</span><span class="p">.</span><span class="nx">Col</span><span class="p">.([]</span><span class="kt">int8</span><span class="p">)[</span><span class="nx">j</span><span class="p">])</span>
+<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="o">...</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="nx">v</span><span class="p">.</span><span class="nx">SumX</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">value</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nb">float64</span><span class="p">(</span><span class="nx">z</span><span class="p">)</span>
+<span class="w">        </span><span class="nx">v</span><span class="p">.</span><span class="nx">SumX2</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">math</span><span class="p">.</span><span class="nx">Pow</span><span class="p">(</span><span class="nx">value</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nb">float64</span><span class="p">(</span><span class="nx">z</span><span class="p">)</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="nx">nulls</span><span class="p">.</span><span class="nx">Contains</span><span class="p">(</span><span class="nx">vec</span><span class="p">.</span><span class="nx">Nsp</span><span class="p">,</span><span class="w"> </span><span class="nb">uint64</span><span class="p">(</span><span class="nx">z</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">v</span><span class="p">.</span><span class="nx">NullCounts</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">z</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+</code></pre></div>
+<ul>
+<li><code>Add</code> function   </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="w">      </span><span class="c1">//Implementation1</span>
+<span class="w">      </span><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">v</span><span class="w"> </span><span class="o">*</span><span class="nx">VarRing</span><span class="p">)</span><span class="w"> </span><span class="nx">Add</span><span class="p">(</span><span class="nx">a</span><span class="w"> </span><span class="kd">interface</span><span class="p">{},</span><span class="w"> </span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="w"> </span><span class="kt">int64</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nx">v2</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">a</span><span class="p">.(</span><span class="o">*</span><span class="nx">VarRing</span><span class="p">)</span>
+<span class="w">          </span><span class="nx">v</span><span class="p">.</span><span class="nx">Sums</span><span class="p">[</span><span class="nx">x</span><span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">v2</span><span class="p">.</span><span class="nx">Sums</span><span class="p">[</span><span class="nx">y</span><span class="p">]</span>
+<span class="w">          </span><span class="nx">v</span><span class="p">.</span><span class="nx">NullCounts</span><span class="p">[</span><span class="nx">x</span><span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">v2</span><span class="p">.</span><span class="nx">NullCounts</span><span class="p">[</span><span class="nx">y</span><span class="p">]</span>
+<span class="w">          </span><span class="nx">v</span><span class="p">.</span><span class="nx">Values</span><span class="p">[</span><span class="nx">x</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">append</span><span class="p">(</span><span class="nx">v</span><span class="p">.</span><span class="nx">Values</span><span class="p">[</span><span class="nx">x</span><span class="p">],</span><span class="w"> </span><span class="nx">v2</span><span class="p">.</span><span class="nx">Values</span><span class="p">[</span><span class="nx">y</span><span class="p">]</span><span class="o">...</span><span class="p">)</span>
+<span class="w">      </span><span class="p">}</span>
+
+<span class="w">      </span><span class="c1">//Implementation2</span>
+<span class="w">      </span><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">v</span><span class="w"> </span><span class="o">*</span><span class="nx">VarRing</span><span class="p">)</span><span class="w"> </span><span class="nx">Add</span><span class="p">(</span><span class="nx">a</span><span class="w"> </span><span class="kd">interface</span><span class="p">{},</span><span class="w"> </span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="w"> </span><span class="kt">int64</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">v2</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">a</span><span class="p">.(</span><span class="o">*</span><span class="nx">VarRing</span><span class="p">)</span>
+<span class="w">        </span><span class="nx">v</span><span class="p">.</span><span class="nx">SumX</span><span class="p">[</span><span class="nx">x</span><span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">v2</span><span class="p">.</span><span class="nx">SumX</span><span class="p">[</span><span class="nx">y</span><span class="p">]</span>
+<span class="w">        </span><span class="nx">v</span><span class="p">.</span><span class="nx">SumX2</span><span class="p">[</span><span class="nx">x</span><span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">v2</span><span class="p">.</span><span class="nx">SumX2</span><span class="p">[</span><span class="nx">y</span><span class="p">]</span>
+<span class="w">        </span><span class="nx">v</span><span class="p">.</span><span class="nx">NullCounts</span><span class="p">[</span><span class="nx">x</span><span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">v2</span><span class="p">.</span><span class="nx">NullCounts</span><span class="p">[</span><span class="nx">y</span><span class="p">]</span>
+<span class="w">      </span><span class="p">}</span>
+</code></pre></div>
+<ul>
+<li><code>Mul</code> function   </li>
+</ul>
+<p><div class="highlight"><pre><span></span><code><span class="w">      </span><span class="c1">//Implementation1</span>
+<span class="w">      </span><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">v</span><span class="w"> </span><span class="o">*</span><span class="nx">VarRing</span><span class="p">)</span><span class="w"> </span><span class="nx">Mul</span><span class="p">(</span><span class="nx">a</span><span class="w"> </span><span class="kd">interface</span><span class="p">{},</span><span class="w"> </span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="p">,</span><span class="w"> </span><span class="nx">z</span><span class="w"> </span><span class="kt">int64</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nx">v2</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">a</span><span class="p">.(</span><span class="o">*</span><span class="nx">VarRing</span><span class="p">)</span>
+<span class="w">          </span><span class="p">{</span>
+<span class="w">              </span><span class="nx">v</span><span class="p">.</span><span class="nx">Sums</span><span class="p">[</span><span class="nx">x</span><span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">v2</span><span class="p">.</span><span class="nx">Sums</span><span class="p">[</span><span class="nx">y</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nb">float64</span><span class="p">(</span><span class="nx">z</span><span class="p">)</span>
+<span class="w">              </span><span class="nx">v</span><span class="p">.</span><span class="nx">NullCounts</span><span class="p">[</span><span class="nx">x</span><span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">v2</span><span class="p">.</span><span class="nx">NullCounts</span><span class="p">[</span><span class="nx">y</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">z</span>
+<span class="w">              </span><span class="k">for</span><span class="w"> </span><span class="nx">k</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">z</span><span class="p">;</span><span class="w"> </span><span class="nx">k</span><span class="w"> </span><span class="p">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="nx">k</span><span class="o">--</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                  </span><span class="nx">v</span><span class="p">.</span><span class="nx">Values</span><span class="p">[</span><span class="nx">x</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">append</span><span class="p">(</span><span class="nx">v</span><span class="p">.</span><span class="nx">Values</span><span class="p">[</span><span class="nx">x</span><span class="p">],</span><span class="w"> </span><span class="nx">v2</span><span class="p">.</span><span class="nx">Values</span><span class="p">[</span><span class="nx">y</span><span class="p">]</span><span class="o">...</span><span class="p">)</span>
+<span class="w">              </span><span class="p">}</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+
+<span class="w">      </span><span class="c1">//Implementation2</span>
+<span class="w">      </span><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">v</span><span class="w"> </span><span class="o">*</span><span class="nx">VarRing</span><span class="p">)</span><span class="w"> </span><span class="nx">Mul</span><span class="p">(</span><span class="nx">a</span><span class="w"> </span><span class="kd">interface</span><span class="p">{},</span><span class="w"> </span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="p">,</span><span class="w"> </span><span class="nx">z</span><span class="w"> </span><span class="kt">int64</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">v2</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">a</span><span class="p">.(</span><span class="o">*</span><span class="nx">VarRing</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">v</span><span class="p">.</span><span class="nx">SumX</span><span class="p">[</span><span class="nx">x</span><span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">v2</span><span class="p">.</span><span class="nx">SumX</span><span class="p">[</span><span class="nx">y</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nb">float64</span><span class="p">(</span><span class="nx">z</span><span class="p">)</span>
+<span class="w">            </span><span class="nx">v</span><span class="p">.</span><span class="nx">SumX2</span><span class="p">[</span><span class="nx">x</span><span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">v2</span><span class="p">.</span><span class="nx">SumX2</span><span class="p">[</span><span class="nx">y</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nb">float64</span><span class="p">(</span><span class="nx">z</span><span class="p">)</span>
+<span class="w">            </span><span class="nx">v</span><span class="p">.</span><span class="nx">NullCounts</span><span class="p">[</span><span class="nx">x</span><span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">v2</span><span class="p">.</span><span class="nx">NullCounts</span><span class="p">[</span><span class="nx">y</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">z</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+</code></pre></div>
+* <code>Eval</code> function  </p>
+<div class="highlight"><pre><span></span><code><span class="w">         </span><span class="c1">//Implementation1</span>
+<span class="w">      </span><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">v</span><span class="w"> </span><span class="o">*</span><span class="nx">VarRing</span><span class="p">)</span><span class="w"> </span><span class="nx">Eval</span><span class="p">(</span><span class="nx">zs</span><span class="w"> </span><span class="p">[]</span><span class="kt">int64</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="nx">vector</span><span class="p">.</span><span class="nx">Vector</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="k">defer</span><span class="w"> </span><span class="kd">func</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="o">...</span>
+<span class="w">          </span><span class="p">}()</span>
+
+<span class="w">          </span><span class="nx">nsp</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nb">new</span><span class="p">(</span><span class="nx">nulls</span><span class="p">.</span><span class="nx">Nulls</span><span class="p">)</span>
+<span class="w">          </span><span class="k">for</span><span class="w"> </span><span class="nx">i</span><span class="p">,</span><span class="w"> </span><span class="nx">z</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">range</span><span class="w"> </span><span class="nx">zs</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="k">if</span><span class="w"> </span><span class="nx">n</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">z</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">v</span><span class="p">.</span><span class="nx">NullCounts</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span><span class="w"> </span><span class="nx">n</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                  </span><span class="nx">nulls</span><span class="p">.</span><span class="nx">Add</span><span class="p">(</span><span class="nx">nsp</span><span class="p">,</span><span class="w"> </span><span class="nb">uint64</span><span class="p">(</span><span class="nx">i</span><span class="p">))</span>
+<span class="w">              </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                  </span><span class="nx">v</span><span class="p">.</span><span class="nx">Sums</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="nb">float64</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span>
+
+<span class="w">                  </span><span class="kd">var</span><span class="w"> </span><span class="nx">variance</span><span class="w"> </span><span class="kt">float64</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">                  </span><span class="nx">avg</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">v</span><span class="p">.</span><span class="nx">Sums</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span>
+<span class="w">                  </span><span class="k">for</span><span class="w"> </span><span class="nx">_</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">range</span><span class="w"> </span><span class="nx">v</span><span class="p">.</span><span class="nx">Values</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                      </span><span class="nx">variance</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">math</span><span class="p">.</span><span class="nx">Pow</span><span class="p">(</span><span class="nx">value</span><span class="o">-</span><span class="nx">avg</span><span class="p">,</span><span class="w"> </span><span class="mf">2.0</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nb">float64</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span>
+<span class="w">                  </span><span class="p">}</span>
+<span class="w">                  </span><span class="nx">v</span><span class="p">.</span><span class="nx">Sums</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">variance</span>
+<span class="w">              </span><span class="p">}</span>
+<span class="w">          </span><span class="p">}</span>
+
+<span class="w">          </span><span class="k">return</span><span class="w"> </span><span class="o">...</span>
+<span class="w">      </span><span class="p">}</span>
+
+<span class="w">       </span><span class="c1">//Implementation2</span>
+<span class="w">      </span><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">v</span><span class="w"> </span><span class="o">*</span><span class="nx">VarRing</span><span class="p">)</span><span class="w"> </span><span class="nx">Eval</span><span class="p">(</span><span class="nx">zs</span><span class="w"> </span><span class="p">[]</span><span class="kt">int64</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="nx">vector</span><span class="p">.</span><span class="nx">Vector</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">defer</span><span class="w"> </span><span class="kd">func</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="o">...</span>
+<span class="w">        </span><span class="p">}()</span>
+
+<span class="w">        </span><span class="nx">nsp</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nb">new</span><span class="p">(</span><span class="nx">nulls</span><span class="p">.</span><span class="nx">Nulls</span><span class="p">)</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="nx">i</span><span class="p">,</span><span class="w"> </span><span class="nx">z</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">range</span><span class="w"> </span><span class="nx">zs</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="nx">n</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">z</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">v</span><span class="p">.</span><span class="nx">NullCounts</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span><span class="w"> </span><span class="nx">n</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">nulls</span><span class="p">.</span><span class="nx">Add</span><span class="p">(</span><span class="nx">nsp</span><span class="p">,</span><span class="w"> </span><span class="nb">uint64</span><span class="p">(</span><span class="nx">i</span><span class="p">))</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">v</span><span class="p">.</span><span class="nx">SumX</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="nb">float64</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span><span class="w">  </span><span class="c1">// compute E(x)</span>
+<span class="w">                </span><span class="nx">v</span><span class="p">.</span><span class="nx">SumX2</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="nb">float64</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span><span class="w"> </span><span class="c1">// compute E(x^2)</span>
+
+<span class="w">                </span><span class="nx">variance</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">v</span><span class="p">.</span><span class="nx">SumX2</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">math</span><span class="p">.</span><span class="nx">Pow</span><span class="p">(</span><span class="nx">v</span><span class="p">.</span><span class="nx">SumX</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span>
+
+<span class="w">                </span><span class="nx">v</span><span class="p">.</span><span class="nx">SumX</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">variance</span><span class="w"> </span><span class="c1">// using v.SumX to record the result and return.</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="o">...</span>
+<span class="w">      </span><span class="p">}</span>
+</code></pre></div>
+<p><em>3. Implement encoding and decoding for <code>VarRing</code></em></p>
+<p>In the <code>pkg/sql/protocol/protocol.go</code> file, implement the code for serialization and deserialization of <code>VarRing</code>. </p>
+<table>
+<thead>
+<tr>
+<th>Serialization function</th>
+<th>Deserialization function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EncodeRing</td>
+<td>DecodeRing<br>DecodeRingWithProcess</td>
+</tr>
+</tbody>
+</table>
+<p>Serialization: </p>
+<div class="highlight"><pre><span></span><code><span class="w">   </span><span class="k">case</span><span class="w"> </span><span class="o">*</span><span class="nx">variance</span><span class="p">.</span><span class="nx">VarRing</span><span class="p">:</span>
+<span class="w">        </span><span class="nx">buf</span><span class="p">.</span><span class="nx">WriteByte</span><span class="p">(</span><span class="nx">VarianceRing</span><span class="p">)</span>
+<span class="w">        </span><span class="c1">// NullCounts</span>
+<span class="w">        </span><span class="nx">n</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="nx">v</span><span class="p">.</span><span class="nx">NullCounts</span><span class="p">)</span>
+<span class="w">        </span><span class="nx">buf</span><span class="p">.</span><span class="nx">Write</span><span class="p">(</span><span class="nx">encoding</span><span class="p">.</span><span class="nx">EncodeUint32</span><span class="p">(</span><span class="nb">uint32</span><span class="p">(</span><span class="nx">n</span><span class="p">)))</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="nx">n</span><span class="w"> </span><span class="p">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">buf</span><span class="p">.</span><span class="nx">Write</span><span class="p">(</span><span class="nx">encoding</span><span class="p">.</span><span class="nx">EncodeInt64Slice</span><span class="p">(</span><span class="nx">v</span><span class="p">.</span><span class="nx">NullCounts</span><span class="p">))</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="c1">// Sumx2</span>
+<span class="w">        </span><span class="nx">n</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="nx">v</span><span class="p">.</span><span class="nx">SumX2</span><span class="p">)</span>
+<span class="w">        </span><span class="nx">buf</span><span class="p">.</span><span class="nx">Write</span><span class="p">(</span><span class="nx">encoding</span><span class="p">.</span><span class="nx">EncodeUint32</span><span class="p">(</span><span class="nb">uint32</span><span class="p">(</span><span class="nx">n</span><span class="p">)))</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="nx">n</span><span class="w"> </span><span class="p">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">buf</span><span class="p">.</span><span class="nx">Write</span><span class="p">(</span><span class="nx">encoding</span><span class="p">.</span><span class="nx">EncodeFloat64Slice</span><span class="p">(</span><span class="nx">v</span><span class="p">.</span><span class="nx">SumX2</span><span class="p">))</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="c1">// Sumx</span>
+<span class="w">        </span><span class="nx">da</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">encoding</span><span class="p">.</span><span class="nx">EncodeFloat64Slice</span><span class="p">(</span><span class="nx">v</span><span class="p">.</span><span class="nx">SumX</span><span class="p">)</span>
+<span class="w">        </span><span class="nx">n</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="nx">da</span><span class="p">)</span>
+<span class="w">        </span><span class="nx">buf</span><span class="p">.</span><span class="nx">Write</span><span class="p">(</span><span class="nx">encoding</span><span class="p">.</span><span class="nx">EncodeUint32</span><span class="p">(</span><span class="nb">uint32</span><span class="p">(</span><span class="nx">n</span><span class="p">)))</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="nx">n</span><span class="w"> </span><span class="p">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">buf</span><span class="p">.</span><span class="nx">Write</span><span class="p">(</span><span class="nx">da</span><span class="p">)</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="c1">// Typ</span>
+<span class="w">        </span><span class="nx">buf</span><span class="p">.</span><span class="nx">Write</span><span class="p">(</span><span class="nx">encoding</span><span class="p">.</span><span class="nx">EncodeType</span><span class="p">(</span><span class="nx">v</span><span class="p">.</span><span class="nx">Typ</span><span class="p">))</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="kc">nil</span>
+</code></pre></div>
+<p>Deserialization:</p>
+<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="nx">VarianceRing</span><span class="p">:</span>
+<span class="w">        </span><span class="nx">r</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nb">new</span><span class="p">(</span><span class="nx">variance</span><span class="p">.</span><span class="nx">VarRing</span><span class="p">)</span>
+<span class="w">        </span><span class="nx">data</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">data</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+
+<span class="w">        </span><span class="c1">// decode NullCounts</span>
+<span class="w">        </span><span class="nx">n</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">encoding</span><span class="p">.</span><span class="nx">DecodeUint32</span><span class="p">(</span><span class="nx">data</span><span class="p">[:</span><span class="mi">4</span><span class="p">])</span>
+<span class="w">        </span><span class="nx">data</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">data</span><span class="p">[</span><span class="mi">4</span><span class="p">:]</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="nx">n</span><span class="w"> </span><span class="p">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">r</span><span class="p">.</span><span class="nx">NullCounts</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">make</span><span class="p">([]</span><span class="kt">int64</span><span class="p">,</span><span class="w"> </span><span class="nx">n</span><span class="p">)</span>
+<span class="w">            </span><span class="nb">copy</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">NullCounts</span><span class="p">,</span><span class="w"> </span><span class="nx">encoding</span><span class="p">.</span><span class="nx">DecodeInt64Slice</span><span class="p">(</span><span class="nx">data</span><span class="p">[:</span><span class="nx">n</span><span class="o">*</span><span class="mi">8</span><span class="p">]))</span>
+<span class="w">            </span><span class="nx">data</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">data</span><span class="p">[</span><span class="nx">n</span><span class="o">*</span><span class="mi">8</span><span class="p">:]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="c1">// decode Sumx2</span>
+<span class="w">        </span><span class="nx">n</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">encoding</span><span class="p">.</span><span class="nx">DecodeUint32</span><span class="p">(</span><span class="nx">data</span><span class="p">[:</span><span class="mi">4</span><span class="p">])</span>
+<span class="w">        </span><span class="nx">data</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">data</span><span class="p">[</span><span class="mi">4</span><span class="p">:]</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="nx">n</span><span class="w"> </span><span class="p">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">r</span><span class="p">.</span><span class="nx">SumX2</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">make</span><span class="p">([]</span><span class="kt">float64</span><span class="p">,</span><span class="w"> </span><span class="nx">n</span><span class="p">)</span>
+<span class="w">            </span><span class="nb">copy</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">SumX2</span><span class="p">,</span><span class="w"> </span><span class="nx">encoding</span><span class="p">.</span><span class="nx">DecodeFloat64Slice</span><span class="p">(</span><span class="nx">data</span><span class="p">[:</span><span class="nx">n</span><span class="o">*</span><span class="mi">8</span><span class="p">]))</span>
+<span class="w">            </span><span class="nx">data</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">data</span><span class="p">[</span><span class="nx">n</span><span class="o">*</span><span class="mi">8</span><span class="p">:]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="c1">// decode Sumx</span>
+<span class="w">        </span><span class="nx">n</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">encoding</span><span class="p">.</span><span class="nx">DecodeUint32</span><span class="p">(</span><span class="nx">data</span><span class="p">[:</span><span class="mi">4</span><span class="p">])</span>
+<span class="w">        </span><span class="nx">data</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">data</span><span class="p">[</span><span class="mi">4</span><span class="p">:]</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="nx">n</span><span class="w"> </span><span class="p">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">r</span><span class="p">.</span><span class="nx">Data</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">data</span><span class="p">[:</span><span class="nx">n</span><span class="p">]</span>
+<span class="w">            </span><span class="nx">data</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">data</span><span class="p">[</span><span class="nx">n</span><span class="p">:]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="nx">r</span><span class="p">.</span><span class="nx">SumX</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">encoding</span><span class="p">.</span><span class="nx">DecodeFloat64Slice</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">Data</span><span class="p">)</span>
+<span class="w">        </span><span class="c1">// decode typ</span>
+<span class="w">        </span><span class="nx">typ</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">encoding</span><span class="p">.</span><span class="nx">DecodeType</span><span class="p">(</span><span class="nx">data</span><span class="p">[:</span><span class="nx">encoding</span><span class="p">.</span><span class="nx">TypeSize</span><span class="p">])</span>
+<span class="w">        </span><span class="nx">data</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">data</span><span class="p">[</span><span class="nx">encoding</span><span class="p">.</span><span class="nx">TypeSize</span><span class="p">:]</span>
+<span class="w">        </span><span class="nx">r</span><span class="p">.</span><span class="nx">Typ</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">typ</span>
+<span class="w">        </span><span class="c1">// return</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">r</span><span class="p">,</span><span class="w"> </span><span class="nx">data</span><span class="p">,</span><span class="w"> </span><span class="kc">nil</span>
+</code></pre></div>
+<p>Here we go. Now we can fire up MatrixOne and try with our <code>var()</code> function.</p>
+<h2 id="compile-and-run-matrixone"><strong>Compile and run MatrixOne</strong></h2>
+<p>Once the aggregation function is ready, we could compile and run MatrixOne to see the function behavior. </p>
+<p>Step1: Run <code>make config</code> and <code>make build</code> to compile the MatrixOne project and build binary file. 
+<div class="highlight"><pre><span></span><code>make config
+make build
+</code></pre></div></p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p><code>make config</code> generates a new configuration file, in this tutorial, you only need to run it once. If you modify some code and want to recompile, you only have to run <code>make build</code>.  </p>
+</div>
+<p>Step2: Run <code>./mo-server system_vars_config.toml</code> to launch MatrixOne, the MatrixOne server will start to listen for client connecting. 
+<div class="highlight"><pre><span></span><code>./mo-server system_vars_config.toml
+</code></pre></div></p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>The logger print level of <code>system_vars_config.toml</code> is set to default as <code>DEBUG</code>, which will print a lot of information for you. If you only care about what your function will print, you can modify the <code>system_vars_config.toml</code> and set <code>cubeLogLevel</code> and <code>level</code> to <code>ERROR</code> level.</p>
+<p>cubeLogLevel = "error"</p>
+<p>level = "error"</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Sometimes a <code>port is in use</code> error at port 50000 will occur. You could checkout what process in occupying port 50000 by <code>lsof -i:50000</code>. This command helps you to get the PIDNAME of this process, then you can kill the process by <code>kill -9 PIDNAME</code>.</p>
+</div>
+<p>Step3: Connect to MatrixOne server with a MySQL client. Use the built-in test account for example:</p>
+<p>user: dump
+password: 111</p>
+<div class="highlight"><pre><span></span><code>$ mysql -h 127.0.0.1 -P 6001 -udump -p
+Enter password:
+</code></pre></div>
+<p>Step4: Test your function behavior with some data. Below is an example. You can check if you get the right mathematical variance result. 
+You can also try an <code>inner join</code> and check the result, if the result is correct, the factorisation is valid. </p>
+<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">variance</span><span class="p">;</span>
+<span class="o">+</span><span class="c1">------+------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">a</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="n">b</span><span class="w">    </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">------+------+</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">   </span><span class="mi">10</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">   </span><span class="mi">19</span><span class="w"> </span><span class="o">|</span><span class="w">   </span><span class="mi">12</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">  </span><span class="mi">239</span><span class="w"> </span><span class="o">|</span><span class="w">  </span><span class="mi">114</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">   </span><span class="mi">49</span><span class="w"> </span><span class="o">|</span><span class="w">  </span><span class="mi">149</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">   </span><span class="mi">10</span><span class="w"> </span><span class="o">|</span><span class="w">  </span><span class="mi">159</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">   </span><span class="mi">34</span><span class="w"> </span><span class="o">|</span><span class="w">   </span><span class="mi">35</span><span class="w"> </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">------+------+</span>
+<span class="mi">8</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">04</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">variance2</span><span class="p">;</span>
+<span class="o">+</span><span class="c1">------+------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">a</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="n">b</span><span class="w">    </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">------+------+</span>
+<span class="o">|</span><span class="w">   </span><span class="mi">14</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">3514</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">   </span><span class="mi">10</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">3514</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w">   </span><span class="mi">61</span><span class="w"> </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">------+------+</span>
+<span class="mi">3</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">02</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">var</span><span class="p">(</span><span class="n">variance</span><span class="p">.</span><span class="n">a</span><span class="p">),</span><span class="w"> </span><span class="n">var</span><span class="p">(</span><span class="n">variance</span><span class="p">.</span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">variance</span><span class="p">;</span>
+<span class="o">+</span><span class="c1">-----------------+-----------------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">var</span><span class="p">(</span><span class="n">variance</span><span class="p">.</span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">var</span><span class="p">(</span><span class="n">variance</span><span class="p">.</span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">-----------------+-----------------+</span>
+<span class="o">|</span><span class="w">       </span><span class="mi">5596</span><span class="p">.</span><span class="mi">2344</span><span class="w"> </span><span class="o">|</span><span class="w">       </span><span class="mi">4150</span><span class="p">.</span><span class="mi">1094</span><span class="w"> </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">-----------------+-----------------+</span>
+<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">06</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">variance</span><span class="p">.</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">var</span><span class="p">(</span><span class="n">variance</span><span class="p">.</span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">variance</span><span class="w"> </span><span class="k">inner</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">variance2</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">variance</span><span class="p">.</span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="n">variance2</span><span class="p">.</span><span class="n">a</span><span class="w"> </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">variance</span><span class="p">.</span><span class="n">a</span><span class="p">;</span>
+<span class="o">+</span><span class="c1">------------+-----------------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">variance</span><span class="p">.</span><span class="n">a</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">var</span><span class="p">(</span><span class="n">variance</span><span class="p">.</span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">------------+-----------------+</span>
+<span class="o">|</span><span class="w">         </span><span class="mi">10</span><span class="w"> </span><span class="o">|</span><span class="w">       </span><span class="mi">6084</span><span class="p">.</span><span class="mi">0000</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">          </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w">          </span><span class="mi">0</span><span class="p">.</span><span class="mi">2500</span><span class="w"> </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">------------+-----------------+</span>
+<span class="mi">2</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">04</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+</code></pre></div>
+<p>Bingo!</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Except for <code>var()</code>, MatrixOne has already some neat examples for aggregate functions, such as <code>sum()</code>, <code>count()</code>, <code>max()</code>, <code>min()</code> and <code>avg()</code>. With some minor corresponding changes, the procedure is quite the same as other functions.</p>
+</div>
+<p>​</p>
+<h2 id="write-unit-test-for-your-function"><strong>Write unit Test for your function</strong></h2>
+<p>We recommend you to also write a unit test for the new function. 
+Go has a built-in testing command called <code>go test</code> and a package <code>testing</code> which combine to give a minimal but complete testing experience. It automates execution of any function of the form.
+<div class="highlight"><pre><span></span><code>func TestXxx(*testing.T)
+</code></pre></div></p>
+<p>To write a new test suite, create a file whose name ends <code>_test.go</code> that contains the <code>TestXxx</code> functions as described here. Put the file in the same package as the one being tested. The file will be excluded from regular package builds but will be included when the <code>go test</code> command is run. </p>
+<p>Step1: Create a file named <code>variance_test.go</code> under <code>pkg/container/ring/variance/</code> directory. 
+Import the <code>testing</code> framework and the <code>reflect</code> framework we are going to use for testing. </p>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span><span class="w"> </span><span class="nx">variance</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="s">&quot;fmt&quot;</span>
+<span class="w">    </span><span class="s">&quot;github.com/matrixorigin/matrixone/pkg/container/types&quot;</span>
+<span class="w">    </span><span class="s">&quot;reflect&quot;</span>
+<span class="w">    </span><span class="s">&quot;testing&quot;</span>
+<span class="p">)</span>
+
+<span class="c1">// TestVariance just for verify varRing related process</span>
+<span class="kd">func</span><span class="w"> </span><span class="nx">TestVariance</span><span class="p">(</span><span class="nx">t</span><span class="w"> </span><span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">T</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="p">}</span>
+</code></pre></div>
+<p>Step2: Implement the <code>TestVariance</code> function with some predefined values.</p>
+<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="kd">func</span><span class="w"> </span><span class="nx">TestVariance</span><span class="p">(</span><span class="nx">t</span><span class="w"> </span><span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">T</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// verify that if we can calculate</span>
+<span class="w">    </span><span class="c1">// the variance of {1, 2, null, 0, 3, 4} and {2, 3, null, null, 4, 5} correctly</span>
+
+<span class="w">    </span><span class="c1">// 1. make the test case</span>
+<span class="w">    </span><span class="nx">v1</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">NewVarianceRing</span><span class="p">(</span><span class="nx">types</span><span class="p">.</span><span class="nx">Type</span><span class="p">{</span><span class="nx">Oid</span><span class="p">:</span><span class="w"> </span><span class="nx">types</span><span class="p">.</span><span class="nx">T_float64</span><span class="p">})</span>
+<span class="w">    </span><span class="nx">v2</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">v1</span><span class="p">.</span><span class="nx">Dup</span><span class="p">().(</span><span class="o">*</span><span class="nx">VarRing</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// first 3 rows.</span>
+<span class="w">        </span><span class="c1">// column1: {1, 2, null}, column2: {2, 3, null}</span>
+<span class="w">        </span><span class="nx">v1</span><span class="p">.</span><span class="nx">SumX</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[]</span><span class="kt">float64</span><span class="p">{</span><span class="mi">1</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="o">+</span><span class="mi">3</span><span class="p">}</span>
+<span class="w">        </span><span class="nx">v1</span><span class="p">.</span><span class="nx">SumX2</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[]</span><span class="kt">float64</span><span class="p">{</span><span class="mi">1</span><span class="o">*</span><span class="mi">1</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="mi">2</span><span class="o">+</span><span class="mi">3</span><span class="o">*</span><span class="mi">3</span><span class="p">}</span>
+<span class="w">        </span><span class="nx">v1</span><span class="p">.</span><span class="nx">NullCounts</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[]</span><span class="kt">int64</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// last 3 rows.</span>
+<span class="w">        </span><span class="c1">// column1: {0, 3, 4}, column2: {null, 4, 5}</span>
+<span class="w">        </span><span class="nx">v2</span><span class="p">.</span><span class="nx">SumX</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[]</span><span class="kt">float64</span><span class="p">{</span><span class="mi">0</span><span class="o">+</span><span class="mi">3</span><span class="o">+</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="o">+</span><span class="mi">5</span><span class="p">}</span>
+<span class="w">        </span><span class="nx">v2</span><span class="p">.</span><span class="nx">SumX2</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[]</span><span class="kt">float64</span><span class="p">{</span><span class="mi">3</span><span class="o">*</span><span class="mi">3</span><span class="o">+</span><span class="mi">4</span><span class="o">*</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="o">*</span><span class="mi">4</span><span class="o">+</span><span class="mi">5</span><span class="o">*</span><span class="mi">5</span><span class="p">}</span>
+<span class="w">        </span><span class="nx">v2</span><span class="p">.</span><span class="nx">NullCounts</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[]</span><span class="kt">int64</span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nx">v1</span><span class="p">.</span><span class="nx">Add</span><span class="p">(</span><span class="nx">v2</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">    </span><span class="nx">v1</span><span class="p">.</span><span class="nx">Add</span><span class="p">(</span><span class="nx">v2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+
+<span class="w">    </span><span class="nx">result</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">v1</span><span class="p">.</span><span class="nx">Eval</span><span class="p">([]</span><span class="kt">int64</span><span class="p">{</span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">})</span>
+
+<span class="w">    </span><span class="nx">expected</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="p">[]</span><span class="kt">float64</span><span class="p">{</span><span class="mf">2.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.25</span><span class="p">}</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">!</span><span class="nx">reflect</span><span class="p">.</span><span class="nx">DeepEqual</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">Col</span><span class="p">,</span><span class="w"> </span><span class="nx">expected</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">t</span><span class="p">.</span><span class="nx">Errorf</span><span class="p">(</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Sprintf</span><span class="p">(</span><span class="s">&quot;TestVariance wrong, expected %v, but got %v&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">expected</span><span class="p">,</span><span class="w"> </span><span class="nx">result</span><span class="p">.</span><span class="nx">Col</span><span class="p">))</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">   </span><span class="p">}</span>
+</code></pre></div>
+<p>Step3: Complete the unit test for Serialization and Deserialization in the function <code>TestRing</code> in the file <code>pkg/sql/protocol/protocol_test.go</code>.
+You can check the complete test code of <code>VarRing</code> there.</p>
+<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="o">&amp;</span><span class="nx">variance</span><span class="p">.</span><span class="nx">VarRing</span><span class="p">{</span>
+<span class="w">            </span><span class="nx">NullCounts</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="kt">int64</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">},</span>
+<span class="w">            </span><span class="nx">SumX</span><span class="p">:</span><span class="w">       </span><span class="p">[]</span><span class="kt">float64</span><span class="p">{</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="mi">13</span><span class="p">},</span>
+<span class="w">            </span><span class="nx">SumX2</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="kt">float64</span><span class="p">{</span><span class="mi">16</span><span class="p">,</span><span class="w"> </span><span class="mi">81</span><span class="p">,</span><span class="w"> </span><span class="mi">169</span><span class="p">},</span>
+<span class="w">            </span><span class="nx">Typ</span><span class="p">:</span><span class="w"> </span><span class="nx">types</span><span class="p">.</span><span class="nx">Type</span><span class="p">{</span><span class="nx">Oid</span><span class="p">:</span><span class="w"> </span><span class="nx">types</span><span class="p">.</span><span class="nx">T</span><span class="p">(</span><span class="nx">types</span><span class="p">.</span><span class="nx">T_float64</span><span class="p">),</span><span class="w"> </span><span class="nx">Size</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">},</span>
+<span class="w">   </span><span class="p">}</span>
+
+<span class="w">   </span><span class="k">case</span><span class="w"> </span><span class="o">*</span><span class="nx">variance</span><span class="p">.</span><span class="nx">VarRing</span><span class="p">:</span>
+<span class="w">            </span><span class="nx">oriRing</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">r</span><span class="p">.(</span><span class="o">*</span><span class="nx">variance</span><span class="p">.</span><span class="nx">VarRing</span><span class="p">)</span>
+<span class="w">            </span><span class="c1">// Sumx</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="nb">string</span><span class="p">(</span><span class="nx">ExpectRing</span><span class="p">.</span><span class="nx">Data</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">string</span><span class="p">(</span><span class="nx">encoding</span><span class="p">.</span><span class="nx">EncodeFloat64Slice</span><span class="p">(</span><span class="nx">oriRing</span><span class="p">.</span><span class="nx">SumX</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">t</span><span class="p">.</span><span class="nx">Errorf</span><span class="p">(</span><span class="s">&quot;Decode varRing Sums failed.&quot;</span><span class="p">)</span>
+<span class="w">                </span><span class="k">return</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="c1">// NullCounts</span>
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="nx">i</span><span class="p">,</span><span class="w"> </span><span class="nx">n</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">range</span><span class="w"> </span><span class="nx">oriRing</span><span class="p">.</span><span class="nx">NullCounts</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="nx">ExpectRing</span><span class="p">.</span><span class="nx">NullCounts</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nx">n</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nx">t</span><span class="p">.</span><span class="nx">Errorf</span><span class="p">(</span><span class="s">&quot;Decode varRing NullCounts failed. \nExpected/Got:\n%v\n%v&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">n</span><span class="p">,</span><span class="w"> </span><span class="nx">ExpectRing</span><span class="p">.</span><span class="nx">NullCounts</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span>
+<span class="w">                    </span><span class="k">return</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="c1">// Sumx2</span>
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="nx">i</span><span class="p">,</span><span class="w"> </span><span class="nx">v</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">range</span><span class="w"> </span><span class="nx">oriRing</span><span class="p">.</span><span class="nx">SumX2</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">!</span><span class="nx">reflect</span><span class="p">.</span><span class="nx">DeepEqual</span><span class="p">(</span><span class="nx">ExpectRing</span><span class="p">.</span><span class="nx">SumX2</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span><span class="w"> </span><span class="nx">v</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nx">t</span><span class="p">.</span><span class="nx">Errorf</span><span class="p">(</span><span class="s">&quot;Decode varRing Values failed. \nExpected/Got:\n%v\n%v&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">v</span><span class="p">,</span><span class="w"> </span><span class="nx">ExpectRing</span><span class="p">.</span><span class="nx">SumX2</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span>
+<span class="w">                    </span><span class="k">return</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+</code></pre></div>
+<p>Step4: Launch Test.</p>
+<p>Within the same directory as the test:
+<div class="highlight"><pre><span></span><code>go test
+</code></pre></div>
+This picks up any files matching packagename_test.go.
+If you are getting a <code>PASS</code>, you are passing the unit test. </p>
+<p>In MatrixOne, we have a <code>bvt</code> test framework which will run all the unit tests defined in the whole package, and each time your make a pull request to the code base, the test will automatically run.
+You code will be merged only if the <code>bvt</code> test pass.</p>
+<h2 id="conduct-a-performance-test"><strong>Conduct a Performance Test</strong></h2>
+<p>Aggregate function is an important feature of a database system, with queries on hundreds of millions of data rows, the time consumption of aggregate function is quite significant.
+So we recommend you to run a performance test. </p>
+<p>Step1: Download the standard test dataset.</p>
+<p>We have prepared a single table SSB query dataset with 10 million rows of data. The raw data file size is about 4GB, 500MB after being zipped.  You can get the data files directly:</p>
+<div class="highlight"><pre><span></span><code>https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/lineorder_flat.tar.bz2
+</code></pre></div>
+<p>Step2: Unzip the file and Load the data into MatrixOne. </p>
+<p>With the following SQL you can create the database and table, and load the <code>lineorder_flat.tbl</code> into MatrixOne.</p>
+<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="n">ssb</span><span class="p">;</span>
+<span class="n">use</span><span class="w"> </span><span class="n">ssb</span><span class="p">;</span>
+<span class="k">drop</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="n">lineorder_flat</span><span class="p">;</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">lineorder_flat</span><span class="p">(</span>
+<span class="w">  </span><span class="n">LO_ORDERKEY</span><span class="w"> </span><span class="nb">bigint</span><span class="w"> </span><span class="k">primary</span><span class="w"> </span><span class="k">key</span><span class="p">,</span>
+<span class="w">  </span><span class="n">LO_LINENUMBER</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span>
+<span class="w">  </span><span class="n">LO_CUSTKEY</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span>
+<span class="w">  </span><span class="n">LO_PARTKEY</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span>
+<span class="w">  </span><span class="n">LO_SUPPKEY</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span>
+<span class="w">  </span><span class="n">LO_ORDERDATE</span><span class="w"> </span><span class="nb">date</span><span class="p">,</span>
+<span class="w">  </span><span class="n">LO_ORDERPRIORITY</span><span class="w"> </span><span class="nb">char</span><span class="p">(</span><span class="mi">15</span><span class="p">),</span>
+<span class="w">  </span><span class="n">LO_SHIPPRIORITY</span><span class="w"> </span><span class="n">tinyint</span><span class="p">,</span>
+<span class="w">  </span><span class="n">LO_QUANTITY</span><span class="w"> </span><span class="n">double</span><span class="p">,</span>
+<span class="w">  </span><span class="n">LO_EXTENDEDPRICE</span><span class="w"> </span><span class="n">double</span><span class="p">,</span>
+<span class="w">  </span><span class="n">LO_ORDTOTALPRICE</span><span class="w"> </span><span class="n">double</span><span class="p">,</span>
+<span class="w">  </span><span class="n">LO_DISCOUNT</span><span class="w"> </span><span class="n">double</span><span class="p">,</span>
+<span class="w">  </span><span class="n">LO_REVENUE</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="n">unsigned</span><span class="p">,</span>
+<span class="w">  </span><span class="n">LO_SUPPLYCOST</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="n">unsigned</span><span class="p">,</span>
+<span class="w">  </span><span class="n">LO_TAX</span><span class="w"> </span><span class="n">double</span><span class="p">,</span>
+<span class="w">  </span><span class="n">LO_COMMITDATE</span><span class="w"> </span><span class="nb">date</span><span class="p">,</span>
+<span class="w">  </span><span class="n">LO_SHIPMODE</span><span class="w"> </span><span class="nb">char</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span>
+<span class="w">  </span><span class="n">C_NAME</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">25</span><span class="p">),</span>
+<span class="w">  </span><span class="n">C_ADDRESS</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">25</span><span class="p">),</span>
+<span class="w">  </span><span class="n">C_CITY</span><span class="w"> </span><span class="nb">char</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span>
+<span class="w">  </span><span class="n">C_NATION</span><span class="w"> </span><span class="nb">char</span><span class="p">(</span><span class="mi">15</span><span class="p">),</span>
+<span class="w">  </span><span class="n">C_REGION</span><span class="w"> </span><span class="nb">char</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span>
+<span class="w">  </span><span class="n">C_PHONE</span><span class="w"> </span><span class="nb">char</span><span class="p">(</span><span class="mi">15</span><span class="p">),</span>
+<span class="w">  </span><span class="n">C_MKTSEGMENT</span><span class="w"> </span><span class="nb">char</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span>
+<span class="w">  </span><span class="n">S_NAME</span><span class="w"> </span><span class="nb">char</span><span class="p">(</span><span class="mi">25</span><span class="p">),</span>
+<span class="w">  </span><span class="n">S_ADDRESS</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">25</span><span class="p">),</span>
+<span class="w">  </span><span class="n">S_CITY</span><span class="w"> </span><span class="nb">char</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span>
+<span class="w">  </span><span class="n">S_NATION</span><span class="w"> </span><span class="nb">char</span><span class="p">(</span><span class="mi">15</span><span class="p">),</span>
+<span class="w">  </span><span class="n">S_REGION</span><span class="w"> </span><span class="nb">char</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span>
+<span class="w">  </span><span class="n">S_PHONE</span><span class="w"> </span><span class="nb">char</span><span class="p">(</span><span class="mi">15</span><span class="p">),</span>
+<span class="w">  </span><span class="n">P_NAME</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">22</span><span class="p">),</span>
+<span class="w">  </span><span class="n">P_MFGR</span><span class="w"> </span><span class="nb">char</span><span class="p">(</span><span class="mi">6</span><span class="p">),</span>
+<span class="w">  </span><span class="n">P_CATEGORY</span><span class="w"> </span><span class="nb">char</span><span class="p">(</span><span class="mi">7</span><span class="p">),</span>
+<span class="w">  </span><span class="n">P_BRAND</span><span class="w"> </span><span class="nb">char</span><span class="p">(</span><span class="mi">9</span><span class="p">),</span>
+<span class="w">  </span><span class="n">P_COLOR</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">11</span><span class="p">),</span>
+<span class="w">  </span><span class="n">P_TYPE</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">25</span><span class="p">),</span>
+<span class="w">  </span><span class="n">P_SIZE</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span>
+<span class="w">  </span><span class="n">P_CONTAINER</span><span class="w"> </span><span class="nb">char</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="k">load</span><span class="w"> </span><span class="k">data</span><span class="w"> </span><span class="n">infile</span><span class="w"> </span><span class="s1">&#39;/Users/YOURPATH/lineorder_flat.tbl&#39;</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">lineorder_flat</span><span class="w"> </span><span class="n">FIELDS</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;,&#39;</span><span class="w"> </span><span class="n">OPTIONALLY</span><span class="w"> </span><span class="n">ENCLOSED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;&quot;&#39;</span><span class="w"> </span><span class="n">LINES</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;\n&#39;</span><span class="p">;</span>
+</code></pre></div>
+<p>If you load successfully this dataset, you are normally getting a result as:</p>
+<div class="highlight"><pre><span></span><code>Query OK, 10272594 rows affected (1 min 7.09 sec)
+</code></pre></div>
+<p>Step3: Run your aggregate function and <code>sum()</code>, <code>avg()</code> on the column <code>LO_SUPPKEY</code> respectively to check the performance.</p>
+<div class="highlight"><pre><span></span><code><span class="k">select</span><span class="w"> </span><span class="k">avg</span><span class="p">(</span><span class="n">LO_SUPPKEY</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">lineorder_flat</span><span class="p">;</span>
+<span class="k">select</span><span class="w"> </span><span class="k">sum</span><span class="p">(</span><span class="n">LO_SUPPKEY</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">lineorder_flat</span><span class="p">;</span>
+<span class="k">select</span><span class="w"> </span><span class="n">yourfunction</span><span class="p">(</span><span class="n">LO_SUPPKEY</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">lineorder_flat</span><span class="p">;</span>
+</code></pre></div>
+<p>Step4: When you submit your PR, please submit these performance results in your PR comment as well. </p>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../develop_builtin_functions/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Develop a built-in function" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Develop a built-in function
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../../Code-Style/code-of-conduct/" class="md-footer__link md-footer__link--next" aria-label="Next: Code of Conduct" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Code of Conduct
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky"], "search": "../../../../assets/javascripts/workers/search.361d90f1.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.289a2a4b.min.js"></script>
+      
+    
+  </body>
+</html>
