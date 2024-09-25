@@ -6,7 +6,7 @@ In this chapter, we will cover the implementation of MySQL bulk data writing to 
 
 This practice requires the installation and deployment of the following software environments:
 
-- Finished [installing and starting](https://docs.matrixorigin.cn/1.2.2/MatrixOne/Get-Started/install-standalone-matrixone/) MatrixOne.
+- Finished [installing and starting](../../../../Get-Started/install-standalone-matrixone.md).
 - Download and install [IntelliJ IDEA version 2022.2.1 and above](https://www.jetbrains.com/idea/download/).
 - Download and install [JDK 8+](https://www.oracle.com/sg/java/technologies/javase/javase8-archive-downloads.html).
 - Download and install [MySQL](https://downloads.mysql.com/archives/get/p/23/file/mysql-server_8.0.33-1ubuntu23.04_amd64.deb-bundle.tar).

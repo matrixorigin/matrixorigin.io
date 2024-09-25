@@ -1,5 +1,5 @@
 # **What's New**
 
-The lastest version of MatrixOne is 1.2.2, releases on 12th July, 2024. See the following:
+The lastest version of MatrixOne is v24.1.2.3, releases on 12th Sep, 2024. See the following:
 
-* [v1.2.2 Release Notes](../Release-Notes/v1.2.2.md)
+* [v24.1.2.3 Release Notes](../Release-Notes/v24.1.2.3.md)
