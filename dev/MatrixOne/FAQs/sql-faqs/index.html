@@ -11385,6 +11385,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../Release-Notes/v24.1.2.4/" class="md-nav__link">
+        v24.1.2.4
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../Release-Notes/v24.1.2.3/" class="md-nav__link">
         v24.1.2.3
       </a>
@@ -12098,7 +12112,7 @@
 <p><strong>Does mo-dump support batch export of multiple databases?</strong></p>
 <p>Exporting a backup of a single database is currently only supported. If you have multiple databases to back up, you need to manually run mo-dump multiple times.</p>
 <p><strong>Does MatrixOne support importing data from Minio?</strong></p>
-<p>Yes, the load data command supports importing data from local files, S3 object storage services, and S3 compatible object storage services into matrixone, while Minio is also based on the S3 protocol, so it is also supported, see <a href="https://docs.matrixorigin.cn/1.2.3/MatrixOne/Deploy/import-data-from-minio-to-mo/">Local Object Storage</a> for details</p>
+<p>Yes, the load data command supports importing data from local files, S3 object storage services, and S3 compatible object storage services into matrixone, while Minio is also based on the S3 protocol, so it is also supported, see <a href="../Deploy/import-data-from-minio-to-mo/">Local Object Storage</a> for details</p>
 <p><strong>When MatrixOne imports and exports data, if there is an encoding problem that causes the data to be scrambled, how do we generally solve it</strong></p>
 <p>Since matrixone only supports UTF8 as an encoding by default and cannot be changed, if there is a garbled code when importing data, we can't solve it by modifying the character set of the database and tables. We can try converting the data encoding to UTF8. Common conversion tools are iconv and recode, such as: Convert GBK encoded data to UTF-8 encoded: iconv -f GBK -t UTF8 t1.sql &gt; t1_utf8.sql.</p>
 <p><strong>What permissions are required when importing and exporting MatrixOne?</strong></p>
