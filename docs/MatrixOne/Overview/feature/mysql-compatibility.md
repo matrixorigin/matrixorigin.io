@@ -119,7 +119,7 @@ MatrixOne is highly compatible with the MySQL 8.0 protocol and commonly used fea
 
 ## Stream Computing
 
-* Streaming is unique to MatrixOne and currently version 1.2.2 only supports Kafka connectors.
+* Streaming is unique to MatrixOne and currently version 1.2.3 only supports Kafka connectors.
 * Kafka connectors need to be created and used with a special syntax.
 
 ## Data Types

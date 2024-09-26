@@ -194,7 +194,7 @@ print(output['response'])
 Console output related answer:
 
 ```
-Based on the provided data, the latest version of MatrixOne is 1.2.2, which was released on July 12th, 2024. 
+Based on the provided data, the latest version of MatrixOne is 1.2.3, which was released on July 12th, 2024. 
 ```
 
 After enhancement, the model generates the correct answer.

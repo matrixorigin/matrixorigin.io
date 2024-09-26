@@ -6,7 +6,7 @@ This article describes how to write PostgreSQL data offline to a MatrixOne datab
 
 Before you can start writing data to MatrixOne using DataX, you need to complete the installation of the following software:
 
-- Complete [standalone MatrixOne deployment](https://docs.matrixorigin.cn/1.2.2/MatrixOne/Get-Started/install-standalone-matrixone/).
+- Complete [standalone MatrixOne deployment](../../../../Get-Started/install-standalone-matrixone.md).
 - Install [JDK 8+ version](https://www.oracle.com/sg/java/technologies/javase/javase8-archive-downloads.html).
 - Install [Python 3.8 (or plus)](https://www.python.org/downloads/).
 - Download the [DataX](https://datax-opensource.oss-cn-hangzhou.aliyuncs.com/202210/datax.tar.gz) installation package and unzip it.

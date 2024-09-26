@@ -6,7 +6,7 @@ This chapter describes how to write MySQL data to MatrixOne using Flink.
 
 This practice requires the installation and deployment of the following software environments:
 
-- Complete [standalone MatrixOne deployment](https://docs.matrixorigin.cn/1.2.2/MatrixOne/Get-Started/install-standalone-matrixone/).
+- Complete [standalone MatrixOne deployment](../../../../Get-Started/install-standalone-matrixone.md).
 - Download and install [lntelliJ IDEA (2022.2.1 or later version)](https://www.jetbrains.com/idea/download/).
 - Select the [JDK 8+ version](https://www.oracle.com/sg/java/technologies/javase/javase8-archive-downloads.html) version to download and install depending on your system environment.
 - Download and install [Flink](https://archive.apache.org/dist/flink/flink-1.17.0/flink-1.17.0-bin-scala_2.12.tgz) with a minimum supported version of 1.11.

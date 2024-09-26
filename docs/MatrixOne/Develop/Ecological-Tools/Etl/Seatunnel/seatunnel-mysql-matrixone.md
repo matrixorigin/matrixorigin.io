@@ -31,7 +31,7 @@ export SEATNUNNEL_HOME="/root/seatunnel"
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
     ```
 
-2. Use the [mo\_ctl](https://docs.matrixorigin.cn/1.2.2/MatrixOne/Maintain/mo_ctl/) tool to import MySQL's DDL statements directly into MatrixOne. Execute the following command:
+2. Use the [mo\_ctl](https://docs.matrixorigin.cn/1.2.3/MatrixOne/Maintain/mo_ctl/) tool to import MySQL's DDL statements directly into MatrixOne. Execute the following command:
 
     ```shell
     mo_ctl sql /root/mysql.sql 

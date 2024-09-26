@@ -6,7 +6,7 @@ In this chapter, we will cover the implementation of Hive bulk data writing to M
 
 This practice requires the installation and deployment of the following software environments:
 
-- Finished [installing and starting](https://docs.matrixorigin.cn/1.2.2/MatrixOne/Get-Started/install-standalone-matrixone/) MatrixOne.
+- Finished [installing and starting MatrixOne](../../../../Get-Started/install-standalone-matrixone.md).
 - Download and install [IntelliJ IDEA version 2022.2.1 and above](https://www.jetbrains.com/idea/download/).
 - Download and install [JDK 8+](https://www.oracle.com/sg/java/technologies/javase/javase8-archive-downloads.html).
 - Importing data from Hive requires installing [Hadoop](http://archive.apache.org/dist/hadoop/core/hadoop-3.1.4/) and [Hive](https://dlcdn.apache.org/hive/hive-3.1.3/).
