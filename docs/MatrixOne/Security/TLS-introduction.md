@@ -109,7 +109,7 @@ After completing the configuration of these two main steps, a TLS secure connect
     Current pager:          stdout
     Using outfile:          ''
     Using delimiter:        ;
-    Server version:         8.0.30-MatrixOne-v1.2.3 MatrixOne
+    Server version:         8.0.30-MatrixOne-v1.2.4 MatrixOne
     Protocol version:       10
     Connection:             127.0.0.1 via TCP/IP
     Server characterset:    utf8mb4
@@ -134,7 +134,7 @@ After completing the configuration of these two main steps, a TLS secure connect
     Current pager:		stdout
     Using outfile:		''
     Using delimiter:	;
-    Server version:		8.0.30-MatrixOne-v1.2.3 MatrixOne
+    Server version:		8.0.30-MatrixOne-v1.2.4 MatrixOne
     Protocol version:	10
     Connection:		127.0.0.1 via TCP/IP
     Server characterset:	utf8mb4
