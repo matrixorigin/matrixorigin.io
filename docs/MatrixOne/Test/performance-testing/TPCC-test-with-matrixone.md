@@ -30,7 +30,7 @@ Now you can execute commands step by step as the following descriptions.
 
 ### 1. Configure the *props.mo* file
 
-After the mo-tpch repository is cloned, open the *mo-tpcc* directory, and modify the configuration items of the *props.mo* file. The number of warehouses
+After the mo-tpcc repository is cloned, open the *mo-tpcc* directory, and modify the configuration items of the *props.mo* file. The number of warehouses
 can be configurable by the `warehouse=XX` row in this file.
 
 ```
@@ -68,7 +68,7 @@ cd mo-tpcc
 
 __Npte__: If you get an error like `java:command not found` while running `./runSQL.sh props.mo tableCreates`, install or reinstall Java and the JDK on your computer.
 
-The above code means to enter the *mo-tpch* directory and create the TPCC database and table.
+The above code means to enter the *mo-tpcc* directory and create the TPCC database and table.
 
 The following is an example of the command output:
 
