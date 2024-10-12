@@ -12187,7 +12187,7 @@
 <p>This section will teach you how to generate the TPCC data, create TPCC tables, load data to MatrixOne, and run TPCC.</p>
 <p>Now you can execute commands step by step as the following descriptions.</p>
 <h3 id="1-configure-the-propsmo-file">1. Configure the <em>props.mo</em> file</h3>
-<p>After the mo-tpch repository is cloned, open the <em>mo-tpcc</em> directory, and modify the configuration items of the <em>props.mo</em> file. The number of warehouses
+<p>After the mo-tpcc repository is cloned, open the <em>mo-tpcc</em> directory, and modify the configuration items of the <em>props.mo</em> file. The number of warehouses
 can be configurable by the <code>warehouse=XX</code> row in this file.</p>
 <div class="highlight"><pre><span></span><code>db=mo
 driver=com.mysql.cj.jdbc.Driver
@@ -12216,7 +12216,7 @@ limitTxnsPerMin=0
 ./runSQL.sh props.mo tableCreates
 </code></pre></div>
 <p><strong>Npte</strong>: If you get an error like <code>java:command not found</code> while running <code>./runSQL.sh props.mo tableCreates</code>, install or reinstall Java and the JDK on your computer.</p>
-<p>The above code means to enter the <em>mo-tpch</em> directory and create the TPCC database and table.</p>
+<p>The above code means to enter the <em>mo-tpcc</em> directory and create the TPCC database and table.</p>
 <p>The following is an example of the command output:</p>
 <div class="highlight"><pre><span></span><code># ------------------------------------------------------------
 # Loading SQL file ./sql/tableCreates.sql
