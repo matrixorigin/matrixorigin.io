@@ -134,7 +134,7 @@ To see how MatrixOne executes on a given query, you can use the [`EXPLAIN`](../R
 EXPLAIN SELECT col1 FROM tbl1; 
 ```
 
-**How to check the table compression ratio？**
+**How to check the table compression ratio?**
 
 To check the table compression ratio in MatrixOne, you can use the following SQL query:
 
