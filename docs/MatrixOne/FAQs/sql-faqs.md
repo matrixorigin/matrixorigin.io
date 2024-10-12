@@ -128,8 +128,26 @@ Currently it can be viewed through the "show create table temporary table name" 
 
 **How do I view my Query execution plan?**
 
-  To see how MatrixOne executes on a given query, you can use the [`EXPLAIN`](../Reference/SQL-Reference/Other/Explain/explain.md) statement, which prints out the query plan.
+To see how MatrixOne executes on a given query, you can use the [`EXPLAIN`](../Reference/SQL-Reference/Other/Explain/explain.md) statement, which prints out the query plan.
 
-  ```
-  EXPLAIN SELECT col1 FROM tbl1; 
-  ```
+```sql
+EXPLAIN SELECT col1 FROM tbl1; 
+```
+
+**How to check the table compression ratio?**
+
+To check the table compression ratio in MatrixOne, you can use the following SQL query:
+
+```sql
+mysql> select ( sum(compress_size) + 1) / ( sum(origin_size) +1 ) from metadata_scan('db1.students', '*') m;
++---------------------------------------------------+
+| (sum(compress_size) + 1) / (sum(origin_size) + 1) |
++---------------------------------------------------+
+|                               0.44582681643679795 |
++---------------------------------------------------+
+1 row in set (0.01 sec)
+```
+
+The compression ratio of the `students` table is approximately: 1 - 44.96% = 55.04%.
+
+**NOTE:** During the data compression process, if the data has not yet been written from memory to disk, the compression ratio obtained from the query may not be accurate. Typically, data will be written to disk within 5 minutes, so it is recommended to wait until the data is flushed to disk before performing the query.
