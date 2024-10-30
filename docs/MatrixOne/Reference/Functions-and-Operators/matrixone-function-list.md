@@ -164,19 +164,24 @@ This document lists the functions supported in the latest version of MatrixOne.
 
 ## Window function
 
-| Function name                     | effect                              |
+| Function name                                       | effect                              |
 | --------------------------------------------------- | --------------------------------------- |
 | [DENSE_RANK()](./Window-Functions/dense_rank.md)    | Provide a unique ranking for each row in the dataset|
 | [RANK()](./Window-Functions/rank.md)                | Provide a unique ranking for each row in the dataset|
 | [ROW_UNMBER()](./Window-Functions/row_number.md)    | Provide a unique serial number for each row in the data set|
 
-## JSON functions
+## JSON function
 
-| Function name                     | effect                              |
-| --------------------------------------------- | --------------------------------------- |
-| [JSON_EXTRACT()](./Json/json-functions.md)    | Returning data from a JSON document|
-| [JSON_QUOTE()](./Json/json-functions.md)      | Referencing JSON Documents|
-| [JSON_UNQUOTE()](./Json/json-functions.md)    | Dereferencing JSON documents|
+| Function name                                  | effect|
+|------------------------------------------------| -------------------------------------|
+| [JQ()](./Json/jq.md)                           | Used to parse and transform JSON data based on jq expressions |
+| [JSON_EXTRACT()](./Json/json_extract.md)       | Return data from a JSON document |
+| [JSON_EXTRACT_FLOAT64()](./Json/json_extract_float64.md) | Extract the value of the specified path from JSON data |
+| [JSON_EXTRACT_STRING()](./Json/json_extract_string.md)   | Extract the value of a string with a specified path from JSON data |
+| [JSON_QUOTE()](./Json/json_quote.md)            | Quote JSON document |
+| [JSON_ROW()](./Json/json_row.md)                | Used to convert each row into a json array |
+| [JSON_UNQUOTE()](./Json/json_unquote.md)        | Unquote a JSON document |
+| [TRY_JQ()](./Json/try_jq.md)                    | Used to parse and convert JSON data based on jq expressions, and provide a fault-tolerant mechanism |
 
 ## system operation and maintenance function
 
@@ -190,9 +195,12 @@ This document lists the functions supported in the latest version of MatrixOne.
 
 ## Other functions
 
-| Function name                     | effect                              |
-| ------------------------------ | --------------------------------------- |
-| [SAMPLE()](./Other/sample.md)  | Primarily used for quick query narrowing|
-| [SERIAL_EXTRACT()](./Other/serial_extract.md)    | Used to extract individual elements of a sequence/tuple of values|
-| [SLEEP()](./Other/sleep.md)    | Pause (sleep) the current query for the specified number of seconds.|
-| [UUID()](./Other/uuid.md)      | Returns the generation of an internationally recognized unique identifier according to RFC 4122.|
+| Function name | effect |
+| ----------------------------------| --------------------------------------------|
+| [LOAD_FILE()](./Other/load_file.md) | Used to read the contents of the file pointed to by the datalink type. |
+| [SAVE_FILE()](./Other/save_file.md) | Used to save the content of the file pointed to by the datalink type. |
+| [SAMPLE()](./Other/sample.md) | Mainly used to quickly reduce the query scope |
+| [SERIAL_EXTRACT()](./Other/serial_extract.md) | Used to extract individual elements in a sequence/tuple value |
+| [SLEEP()](./Other/sleep.md) | Pause (sleep) the current query for the specified number of seconds |
+| [STAGE_LIST()](./Other/stage_list.md) | Used to view directories and files in stage. |
+| [UUID()](./Other/uuid.md) | Returns an internationally unique identifier generated according to RFC 4122 |

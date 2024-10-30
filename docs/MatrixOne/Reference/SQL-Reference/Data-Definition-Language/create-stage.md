@@ -1,81 +1,72 @@
 # **CREATE STAGE**
 
-## **Description**
+## **Syntax description**
 
-The `CREATE STAGE` command is used in the MatrixOne database to create a named internal or external data stage for **data export**. By creating a data stage and exporting data to it, you can download data files to your local system or store them in cloud storage services.
+`CREATE STAGE` is used to provide an efficient and secure way to interact with data from external storage (such as Amazon S3, file systems). By creating an external stage, MatrixOne can read files from external storage and quickly load them into MatrixOne database tables. For example, load a CSV file on Amazon S3 into a table.
 
-- **Internal Stage**: Internal stages store data files within the MatrixOne system. Internal stages can be either permanent or temporary.
+The following external storages are currently supported:
 
-- **External Stage**: External stages reference data files stored outside the MatrixOne environment. Currently, the following cloud storage services are supported:
+- Amazon S3
+- MinIO
+- File System
 
-    - Amazon S3 buckets
-    - Aliyun buckets
-
-The storage location can be private/protected or public—however, data held in archival cloud storage classes that require restoration before retrieval cannot be accessed.
-
-An internal or external stage can include a directory table. Directory tables maintain a catalog of staged file directories in cloud storage.
-
-- Configure a specified path to control the write permissions for user `SELECT INTO` operations. After creation, users can only write to the set `STAGE` path.
-
-- If no `STAGE` is created or all `STAGE` instances are `DISABLED`, users can write to any path permitted by the operating system or object storage permissions.
-
-- If not using a `STAGE`, users must forcefully include `credential` information during `SELECT INTO` operations.
-
-!!! note
-    1. Cluster administrators (i.e., root users) and tenant administrators can create data stages.
-    2. Once created, data tables can only be imported to the paths specified in the STAGE.
-
-## **Syntax**
+## **Grammar structure**
 
 ```
 > CREATE STAGE [ IF NOT EXISTS ] { stage_name }
-   { StageParams }
-   [ directoryTableParams ]
-   [ COMMENT = '<string_literal>' ]
+   { StageParams }
+   [ COMMENT = '<string_literal>' 
 
-StageParams (for Amazon S3) :
-URL =  "endpoint"='<string>' CREDENTIALS = {"access_key_id"='<string>', "secret_access_key"='<string>'}
-
-StageParams (for Aliyun OSS) :
-URL =  "endpoint"='<string>' CREDENTIALS = {"access_key_id"='<string>', "secret_access_key"='<string>'}
+StageParams (for MinIO/Amazon S3) :
+URL =  "s3://<bucket>[/<path>/]" CREDENTIALS = {"AWS_KEY_ID"='<string>', "AWS_SECRET_KEY"='<string>', "AWS_ROLE"='<string>', "AWS_TOKEN"='<string>', "AWS_REGION"='<string>', "COMPRESSION"='<string>', 'PROVIDER'='<string>', 'ENDPOINT'='<string>'}
 
 StageParams (for File System) :
-URL= 'filepath'
+URL= 'file://[/path/]'
 
-directoryTableParams :
-ENABLE = { TRUE | FALSE }
+StageParams (for sub-stage):
+URL= "stage://<stagename>[/path/]"
 ```
 
-### Explanations
+## **Grammar explanation**
 
-- `IF NOT EXISTS`: An optional parameter used to check whether a stage with the same name already exists when creating a stage, avoiding duplicate creations.
+- `IF NOT EXISTS`: optional parameter, used to check whether a Stage with the same name already exists when creating a Stage to avoid repeated creation.
 
-- `stage_name`: The name of the stage to be created.
+- `stage_name`: The name of the Stage to be created.
 
-- `StageParams`: This parameter group is used to specify the stage's configuration parameters.
+- `StageParams (for MinIO/Amazon S3)`: Configuration parameters used to specify the stage where the object is stored as MinIO or S3.
 
-    - `endpoint`: The connection URL for the stage, indicating the location of the object storage service. This URL's content may vary for object storage services like Amazon S3, Aliyun OSS, or a file system. For example s3.us-west-2.amazonaws.com
+    - `URL`: Specify a file path or directory in S3 storage
+    - `CREDENTIALS`: This is a JSON object containing the credential information required to connect to the object storage service.
 
-    - `CREDENTIALS`: This JSON object contains the credentials required to connect to the object storage service, such as `access_key_id`, `secret_access_key`, etc.
+        + `access_key_id`: Access key ID used for authentication.
+        + `secret_access_key`: The secret associated with the access key ID.
+        + `aws_role`: optional, used to specify the role name if an IAM role is used. Roles can be configured on AWS to assign different permissions.
+        + `aws_token`: Optional, security token used for temporary access to AWS services.
 
-- `directoryTableParams`: This parameter group is used to specify the configuration of a directory table associated with the stage.
++ `aws_region`: Specifies the AWS region where Amazon S3 storage is located.
+         + `compression`: optional, specifies the compression type of the file.
+         + `provider`: Specify the cloud storage provider.
+         + `endpint`: Specifies to connect to a custom or third-party S3 API-compatible service.
 
-    - `ENABLE`: Indicates whether the directory table is enabled, with values `TRUE` or `FALSE` values.
+- `StageParams (for File System)`: used to specify the configuration parameters of the stage stored in the file system.
 
-## **Examples**
+    - `URL`: Specifies the file path or directory in the file storage.
+
+- `StageParams (for sub-stage)`: Configuration parameters for sub-stage.
+  
+    - `URL`: Specifies the file path or directory in the file storage.
+
+- `COMMENT`: Comment.
+  
+## **Example**
 
 ```sql
-CREATE TABLE `user` (`id` int(11) ,`user_name` varchar(255) ,`sex` varchar(255));
-INSERT INTO user(id,user_name,sex) values('1', 'weder', 'man'), ('2', 'tom', 'man'), ('3', 'wederTom', 'man');
+#file system
+mysql> create stage stage_fs url = 'file:///Users/admin/test';
 
--- Create internal data stage
-mysql> CREATE STAGE stage1 URL='/tmp' ENABLE = TRUE;
+#substage
+mysql> create stage sub_stage url = 'stage://fs_stage/test1/';
 
--- Export data from the table to data stage
-mysql> SELECT * FROM user INTO OUTFILE 'stage1:/user.csv';
--- You can see your exported table in your local directory
-
--- After setting the data stage, the data table can only be exported to the specified path, and an error will be reported when exporting to other paths
-mysql> SELECT * FROM user INTO OUTFILE '~/tmp/csv2/user.txt';
-ERROR 20101 (HY000): internal error: stage exists, please try to check and use a stage instead
+#s3
+mysql>create stage stage01 url = 's3://bucket1/test' credentials = {"aws_key_id"='AKIAYOFAMAB7FM7Axxxx',"aws_secret_key"='UjuSDmekK6uXK6CrUs9YhZzY27VOk9W3qMwYxxxx',"AWS_REGION"='us-west-2','PROVIDER'='Amazon', 'ENDPOINT'='s3.us-west-2.amazonaws.com'};
 ```

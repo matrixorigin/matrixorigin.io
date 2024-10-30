@@ -11,7 +11,7 @@ This document lists the features supported by the latest version of MatrixOne an
 | ALTER DATABASE           | N                                            |
 | CREATE TABLE             | Y                                            |
 | ALTER TABLE              | E, The clauses: `CHANGE [COLUMN]`, `MODIFY [COLUMN]`, `RENAME COLUMN`, `ADD [CONSTRAINT [symbol]] PRIMARY KEY`, `DROP PRIMARY KEY`, and `ALTER COLUMN ORDER BY` can be used in ALTER It can be freely combined in the TABLE statement. Still, it is not supported to be used with other clauses for the time being.       |
-| RENAME TABLE             | N, Can be replaced by `ALTER TABLE tbl RENAME TO new_tbl`  |
+| RENAME TABLE             | Y                                            |
 | DROP TABLE               | Y                                            |
 | CREATE INDEX             | Y, Secondary indexes have no speedup         |
 | DROP INDEX               | Y                                            |
@@ -182,12 +182,16 @@ This document lists the features supported by the latest version of MatrixOne an
 | Role-Based Access Control (RBAC) | Y |
 | Multi-Account | Y |
 
-## Backup and Restore
+## Backup and restore
 
-| Backup and Restore   | Supported(Y)/Not supported (N) /Experimental (E) |
-| ------------ | ---------------------------------- |
-| Logical Backup and Restore | Y, Only the modump tool is supported                |
-| Physical Backup and Restore | Y                                  |
+| Backup and Recovery | Supported (Y)/Not Supported (N)/Experimental (E) |
+| --------------------------| ----------------------------------|
+| Logical backup recovery | Y, only supports mo-dump tool |
+| Physical backup recovery | Y, only supports mobackup tool |
+| Snapshot backup and recovery | Y, supports mobackup tool and SQL |
+| PITR | Y, supports mobackup tool and SQL |
+| CDC synchronization | Y, only supports matrixone to mysql, supports mo_cdc tool |
+| Primary and backup disaster recovery | Y, only supports cold backup |
 
 ## Management Tool
 

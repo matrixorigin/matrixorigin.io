@@ -7,37 +7,45 @@ This document will guide you on how to import large amounts of *.csv* format dat
 - Scenario 1: The data file is in the same machine with the MatrixOne server.
 
 ```
-LOAD DATA
-INFILE 'file_name'
-INTO TABLE tbl_name
-[{FIELDS | COLUMNS}
-[TERMINATED BY 'string']
-[[OPTIONALLY] ENCLOSED BY 'char']
-]
-[LINES
-[STARTING BY 'string']
-[TERMINATED BY 'string']
-]
-[IGNORE number {LINES | ROWS}]
-[PARALLEL {'TRUE' | 'FALSE'}]
+> LOAD DATA 
+    INFILE '<file_name>|<stage://stage_name/filepath>'
+    INTO TABLE tbl_name
+    [CHARACTER SET charset_name]
+    [{FIELDS | COLUMNS}
+        [TERMINATED BY 'string']
+        [[OPTIONALLY] ENCLOSED BY 'char']
+        [ENCASPED BY 'char']
+    ]
+    [LINES
+        [STARTING BY 'string']
+        [TERMINATED BY 'string']
+    ]
+    [IGNORE number {LINES | ROWS}]
+    [SET column_name_1=nullif(column_name_1, expr1), column_name_2=nullif(column_name_2, expr2)...]
+    [PARALLEL {'TRUE' | 'FALSE'}]
+    [STRICT {'TRUE' | 'FALSE'}]
 ```
 
 - Scenario 2: The data file is in separate machines with the MatrixOne server.
 
 ```
-LOAD DATA LOCAL
-INFILE 'file_name'
-INTO TABLE tbl_name
-[{FIELDS | COLUMNS}
-[TERMINATED BY 'string']
-[[OPTIONALLY] ENCLOSED BY 'char']
-]
-[LINES
-[STARTING BY 'string']
-[TERMINATED BY 'string']
-]
-[IGNORE number {LINES | ROWS}]
-[PARALLEL {'TRUE' | 'FALSE'}]
+> LOAD DATA LOCAL
+    INFILE '<file_name>|<stage://stage_name/filepath>'
+    INTO TABLE tbl_name
+    [CHARACTER SET charset_name]
+    [{FIELDS | COLUMNS}
+        [TERMINATED BY 'string']
+        [[OPTIONALLY] ENCLOSED BY 'char']
+        [ENCASPED BY 'char']
+    ]
+    [LINES
+        [STARTING BY 'string']
+        [TERMINATED BY 'string']
+    ]
+    [IGNORE number {LINES | ROWS}]
+    [SET column_name_1=nullif(column_name_1, expr1), column_name_2=nullif(column_name_2, expr2)...]
+    [PARALLEL {'TRUE' | 'FALSE'}]
+    [STRICT {'TRUE' | 'FALSE'}]
 ```
 
 ## Before you start
@@ -96,7 +104,7 @@ __Note__: A `csv`(comma-separated values) file is a delimited text file that use
 ### Example using `Load data` with `docker` version
 
 If you install MatrixOne by `docker`, the file system is inside the docker image by default. To work with local directory, you need to bind a local directory to the container. In the following example, the local file system path `~/tmp/docker_loaddata_demo/` is binded to the MatrixOne docker image, with a mapping to the `/ssb-dbgen-path` path inside the docker.
-We will walk you through the whole process of loading data with MatrixOne 1.2.4 docker version in this example.
+We will walk you through the whole process of loading data with MatrixOne 2.0.0 docker version in this example.
 
 1. Download the dataset file and store the data in *~/tmp/docker_loaddata_demo/*:
 
@@ -114,7 +122,7 @@ We will walk you through the whole process of loading data with MatrixOne 1.2.4 
 3. Use Docker to launch MatrixOne, and mount the directory *~/tmp/docker_loaddata_demo/* that stores data files to a directory in the container. The container directory is */sb-dbgen-path* as an example:
 
     ```
-    sudo docker run --name matrixone --privileged -d -p 6001:6001 -v ~/tmp/docker_loaddata_demo/:/ssb-dbgen-path:rw matrixorigin/matrixone:1.2.4
+    sudo docker run --name matrixone --privileged -d -p 6001:6001 -v ~/tmp/docker_loaddata_demo/:/ssb-dbgen-path:rw matrixorigin/matrixone:2.0.0
     ```
 
 4. Connect to MatrixOne server:

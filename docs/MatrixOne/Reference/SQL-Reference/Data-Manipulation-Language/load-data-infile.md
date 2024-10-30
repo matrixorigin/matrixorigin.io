@@ -8,7 +8,7 @@ The LOAD DATA statement reads rows from a text file into a table at a very high 
 
 ```
 > LOAD DATA [LOCAL]
-    INFILE 'file_name'
+    INFILE '<file_name>|<stage://stage_name/filepath>'
     INTO TABLE tbl_name
     [CHARACTER SET charset_name]
     [{FIELDS | COLUMNS}
@@ -24,7 +24,6 @@ The LOAD DATA statement reads rows from a text file into a table at a very high 
     [SET column_name_1=nullif(column_name_1, expr1), column_name_2=nullif(column_name_2, expr2)...]
     [PARALLEL {'TRUE' | 'FALSE'}]
     [STRICT {'TRUE' | 'FALSE'}]
-
 ```
 
 ### Input File Location
@@ -704,6 +703,63 @@ mysql> select * from t1;
 As you can see, the query result ignores the first line.
 
 For more information on loding *JSONLines*, see [Import the JSONLines data](../../../Develop/import-data/bulk-load/load-jsonline.md).
+
+### Example 3: LOAD Stage
+
+#### Simple import example
+
+There is a file `t1.csv` in the `/Users/admin/test` directory:
+
+```bash
+(base) admin@192 test % cat t1.csv 
+1	a
+2	b
+3	c
+```
+
+```sql
+create table t1(n1 int,n2 varchar(10));
+create stage stage_fs url = 'file:///Users/admin/test';
+load data infile 'stage://stage_fs/t1.csv' into table t1;
+
+mysql> select * from t1;
++------+------+
+| n1   | n2   |
++------+------+
+|    1 | a    |
+|    2 | b    |
+|    3 | c    |
++------+------+
+3 rows in set (0.01 sec)
+```
+
+#### Add conditional import example
+
+You can add IGNORE 1 LINES at the end of the LOAD DATA statement to skip the first line of the data file.
+
+There is a file `t1.csv` in the `/Users/admin/test` directory:
+
+```bash
+(base) admin@192 test % cat t1.csv 
+1	a
+2	b
+3	c
+```
+
+```sql
+create table t2(n1 int,n2 varchar(10));
+create stage stage_fs1 url = 'file:///Users/admin/test';
+load data infile 'stage://stage_fs1/t1.csv' into table t2 ignore 1 lines;
+
+mysql> select * from t2;
++------+------+
+| n1   | n2   |
++------+------+
+|    2 | b    |
+|    3 | c    |
++------+------+
+2 rows in set (0.00 sec)
+```
 
 ## **Constraints**
 
