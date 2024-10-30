@@ -1,93 +1,81 @@
 # **ALTER STAGE**
 
-## **Description**
+## **Syntax description**
 
-`ALTER STAGE` is used to modify the attributes of an existing named internal or external stage.
+`ALTER STAGE` is used to modify the properties of an existing stage.
 
 !!! note
-    Cluster administrators (i.e., root users) and account administrators can modify the data stage.
+    `ALTER STAGE` can only modify one parameter at a time. Therefore, if you need to update multiple parameters at the same time, such as `URL` and `COMMENT`, you need to execute multiple `ALTER STAGE` statements separately, modifying one parameter each time.
 
-## **Syntax**
+## **Grammar structure**
 
 ```
-> ALTER STAGE [ IF EXISTS ] { stage_name }
+> ALTER STAGE [ IF EXISTS ] { stage_name } SET
    { StageParams }
-   [ directoryTableParams ]
    [ COMMENT = '<string_literal>' ]
-
+   
 StageParams (for Amazon S3) :
-URL =  "endpoint"='<string>' CREDENTIALS = {"access_key_id"='<string>', "secret_access_key"='<string>'}
-
-StageParams (for Aliyun OSS) :
-URL =  "endpoint"='<string>' CREDENTIALS = {"access_key_id"='<string>', "secret_access_key"='<string>'}
-
+URL =  "s3://<bucket>[/<path>/]" CREDENTIALS = {"AWS_KEY_ID"='<string>', "AWS_SECRET_KEY"='<string>', "AWS_ROLE"='<string>', "AWS_TOKEN"='<string>', "AWS_REGION"='<string>', "COMPRESSION"='<string>', 'PROVIDER'='<string>', 'ENDPOINT'='<string>'}
+                                                    
 StageParams (for File System) :
-URL= 'filepath'
+URL= 'file://[/path/]'
 
-directoryTableParams :
-ENABLE = { TRUE | FALSE }
+StageParams (for sub-stage):
+URL= "stage://<stagename>[/path/]"
 ```
 
-### Explanations
+## **Grammar explanation**
 
-- `IF NOT EXISTS`: An optional parameter used to check whether a stage with the same name already exists when modifying a stage, avoiding duplicate creations.
+- `IF NOT EXISTS`: optional parameter, used to check whether a Stage with the same name already exists when creating a Stage to avoid repeated creation.
 
-- `stage_name`: The name of the stage to be modified.
+- `stage_name`: The name of the Stage to be created.
 
-- `StageParams`: This parameter group is used to specify the stage's configuration parameters.
+- `StageParams (for MinIO/Amazon S3)`: Configuration parameters used to specify the stage where the object is stored as MinIO or S3.
 
-    - `endpoint`: The connection URL for the stage, indicating the location of the object storage service. This URL's content may vary for object storage services like Amazon S3, Aliyun OSS, or a file system. For example s3.us-west-2.amazonaws.com
+    - `URL`: Specify a file path or directory in S3 storage
+    - `CREDENTIALS`: This is a JSON object containing the credential information required to connect to the object storage service.
 
-    - `CREDENTIALS`: This JSON object contains the credentials required to connect to the object storage service, such as `access_key_id`, `secret_access_key`, etc.
+        + `access_key_id`: Access key ID used for authentication.
+        + `secret_access_key`: The secret associated with the access key ID.
+        + `aws_role`: optional, used to specify the role name if an IAM role is used. Roles can be configured on AWS to assign different permissions.
+        + `aws_token`: Optional, security token used for temporary access to AWS services.
 
-- `directoryTableParams`: This parameter group is used to specify the configuration of a directory table associated with the stage.
++ `aws_region`: Specifies the AWS region where Amazon S3 storage is located.
+         + `compression`: optional, specifies the compression type of the file.
+         + `provider`: Specify the cloud storage provider.
+         + `endpint`: Specifies to connect to a custom or third-party S3 API-compatible service.
 
-    - `ENABLE`: Indicates whether the directory table is enabled, with values `TRUE` or `FALSE` values.
+- `StageParams (for File System)`: used to specify the configuration parameters of the stage stored in the file system.
 
-## **Examples**
+    - `URL`: Specifies the file path or directory in the file storage.
+
+- `StageParams (for sub-stage)`: Configuration parameters for sub-stage.
+  
+    - URL`: Specifies the file path or directory in the file storage.
+
+- `COMMENT`: Comment.
+
+## **Example**
 
 ```sql
-CREATE TABLE `user` (`id` int(11) ,`user_name` varchar(255) ,`sex` varchar(255));
-INSERT INTO user(id,user_name,sex) values('1', 'weder', 'man'), ('2', 'tom', 'man'), ('3', 'wederTom', 'man');
+create stage stage_fs url = 'file:///Users/admin/test' comment='this is a stage';
 
--- Create internal data stage
-mysql> CREATE STAGE stage1 URL='/tmp' ENABLE = TRUE;
-
--- Export data from the table to data stage
-mysql> SELECT * FROM user INTO OUTFILE 'stage1:/user.csv';
--- You can see your exported table in your local directory
-
-mysql> SHOW STAGES;
-+------------+-----------------------------+---------+---------+
-| STAGE_NAME | URL                         | STATUS  | COMMENT |
-+------------+-----------------------------+---------+---------+
-| stage1     | /Users/Prinz/03testrepo/csv | ENABLED |         |
-+------------+-----------------------------+---------+---------+
-1 row in set (0.01 sec)
-
--- modify the stage1
-mysql> ALTER STAGE stage1 SET COMMENT 'user stage';
-
-mysql> SHOW STAGES;
-+------------+-----------------------------+---------+------------+
-| STAGE_NAME | URL                         | STATUS  | COMMENT    |
-+------------+-----------------------------+---------+------------+
-| stage1     | /Users/Prinz/03testrepo/csv | ENABLED | user stage |
-+------------+-----------------------------+---------+------------+
+mysql> select * from mo_catalog.mo_stages where stage_name='stage_fs';
++----------+------------+--------------------------+-------------------+--------------+---------------------+-----------------+
+| stage_id | stage_name | url                      | stage_credentials | stage_status | created_time        | comment         |
++----------+------------+--------------------------+-------------------+--------------+---------------------+-----------------+
+|        1 | stage_fs   | file:///Users/admin/test |                   | disabled     | 2024-10-09 03:46:00 | this is a stage |
++----------+------------+--------------------------+-------------------+--------------+---------------------+-----------------+
 1 row in set (0.00 sec)
 
--- disable the data stage named 'stage1'
-mysql> ALTER STAGE stage1 SET ENABLE = FALSE;
-Query OK, 0 rows affected (0.00 sec)
+alter stage stage_fs set url = 'file:///Users/admin/test1';
+alter stage stage_fs set comment='stage_fs has been changed';
 
--- Try to export the data of the user table to the data stage named 'stage1:/user.csv', but stage1 has been disabled, so it is no longer available, and an error is reported
-mysql> SELECT * FROM user INTO OUTFILE 'stage1:/user.csv';
-ERROR 20101 (HY000): internal error: stage 'stage1' is invalid, please check
-
--- Re-enable with a data stage named 'stage1'
-mysql> ALTER STAGE stage1 SET ENABLE = TRUE;
-Query OK, 0 rows affected (0.00 sec)
-
--- The export can be executed successfully again
-mysql> SELECT * FROM user INTO OUTFILE 'stage1:/user.csv';
+mysql> select * from mo_catalog.mo_stages where stage_name='stage_fs';
++----------+------------+---------------------------+-------------------+--------------+---------------------+---------------------------+
+| stage_id | stage_name | url                       | stage_credentials | stage_status | created_time        | comment                   |
++----------+------------+---------------------------+-------------------+--------------+---------------------+---------------------------+
+|        1 | stage_fs   | file:///Users/admin/test1 |                   | disabled     | 2024-10-09 03:46:00 | stage_fs has been changed |
++----------+------------+---------------------------+-------------------+--------------+---------------------+---------------------------+
+1 row in set (0.00 sec)
 ```

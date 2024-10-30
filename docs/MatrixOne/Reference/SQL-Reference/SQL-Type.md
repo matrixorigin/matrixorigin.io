@@ -12,8 +12,11 @@ Data Definition Language (DDL) is a subset of DBMS language used for defining da
 - [CREATE INDEX](Data-Definition-Language/create-index.md)
 - [CREATE TABLE](Data-Definition-Language/create-table.md)
 - [CREATE EXTERNAL TABLE](Data-Definition-Language/create-external-table.md)
+- [CREATE FUNCTION](Data-Definition-Language/create-function-sql.md)
+- [CREATE PITR](Data-Definition-Language/create-pitr.md)
 - [CREATE PUBLICATION](Data-Definition-Language/create-publication.md)
 - [CREATE SEQUENCE](Data-Definition-Language/create-sequence.md)
+- [CREATE SNAPSHOT](Data-Definition-Language/create-snapshot.md)
 - [CREATE STAGE](Data-Definition-Language/create-stage.md)
 - [CREATE...FROM...PUBLICATION...](Data-Definition-Language/create-subscription.md)
 - [CREATE VIEW](Data-Definition-Language/create-view.md)
@@ -22,8 +25,11 @@ Data Definition Language (DDL) is a subset of DBMS language used for defining da
 
 - [DROP INDEX](Data-Definition-Language/drop-index.md)
 - [DROP TABLE](Data-Definition-Language/drop-table.md)
+- [DROP FUNCTION](Data-Definition-Language/drop-function.md)
+- [DROP PITR](Data-Definition-Language/drop-pitr.md)
 - [DROP PUBLICATION](Data-Definition-Language/drop-publication.md)
 - [DROP SEQUENCE](Data-Definition-Language/drop-sequence.md)
+- [DROP SNAPSHOT](Data-Definition-Language/drop-snapshot.md)
 - [DROP STAGE](Data-Definition-Language/drop-stage.md)
 - [DROP VIEW](Data-Definition-Language/drop-view.md)
 
@@ -31,12 +37,24 @@ Data Definition Language (DDL) is a subset of DBMS language used for defining da
 
 - [ALTER TABLE](Data-Definition-Language/alter-table.md)
 - [ALTER PUBLICATION](Data-Definition-Language/alter-publication.md)
+- [ALTER PITR](Data-Definition-Language/alter-pitr.md)
+- [ALTER REINDEX](Data-Definition-Language/alter-reindex.md)
+- [ALTER SEQUENCE](Data-Definition-Language/alter-sequence.md)
 - [ALTER STAGE](Data-Definition-Language/alter-stage.md)
 - [ALTER VIEW](Data-Definition-Language/alter-view.md)
 
 ### TRUNCATE Statement - Clearing Data from a Table
 
 - [TRUNCATE TABLE](Data-Definition-Language/truncate-table.md)
+
+### RENAME 语句
+
+- [RENAME TABLE](Data-Definition-Language/rename-table.md)
+
+### RESTORE 语句
+
+- [RESTORE SNAPSHOT](Data-Definition-Language/restore-snapshot.md)
+- [RESTORE PITR](Data-Definition-Language/restore-pitr.md)
 
 ## DML - Data Manipulation Language
 

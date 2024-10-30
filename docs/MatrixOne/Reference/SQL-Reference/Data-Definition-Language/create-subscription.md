@@ -1,8 +1,8 @@
 # **CREATE...FROM...PUBLICATION...**
 
-## **Grammar description**
+## **Syntax description**
 
-`CREATE...FROM...PUBLICATION...` is a subscription by a subscriber to a publication created by the publisher to get the publisher's shared data.
+`CREATE...FROM...PUBLICATION...` means the subscriber subscribes to a publication created by the publisher to obtain the publisher's shared data.
 
 ## **Grammar structure**
 
@@ -12,91 +12,47 @@ FROM account_name
 PUBLICATION pubname;
 ```
 
-## Interpretation of grammar
+## Grammar explanation
 
 - database_name: The name of the database created by the subscriber.
-- pubname: The published name of the publisher.
-- account_name: Gets the tenant name for this publication.
+- pubname: The publication name published by the publisher.
+- account_name: The tenant name of the publication can be obtained.
 
-## **Examples**
+## **Example**
 
 ```sql
--- Suppose the system administrator creates a tenant, acc1, as a subscriber.
-create account acc1 admin_name 'root' identified by '111';
+create account acc01 admin_name 'root' identified by '111';
+create database db1;
+use db1;
+create table t1(n1 int);
+create table t2(n1 int);
 
--- Assuming session 1 is the publisher, the publisher first publishes a database to the tenant
-create database sys_db_1;
-use sys_db_1;
-create table sys_tbl_1(a int primary key );
-insert into sys_tbl_1 values(1),(2),(3);
-create view v1 as (select * from sys_tbl_1);
-create publication sys_pub_1 database sys_db_1;
-mysql> show publications;
-+-------------+----------+---------------------+-------------+-------------+----------+
-| publication | database | create_time         | update_time | sub_account | comments |
-+-------------+----------+---------------------+-------------+-------------+----------+
-| sys_pub_1   | sys_db_1 | 2024-04-24 11:54:36 | NULL        | *           |          |
-+-------------+----------+---------------------+-------------+-------------+----------+
-1 row in set (0.01 sec)
+--Create a publication
+create publication db_pub1 database db1 account acc01;
+create publication tab_pub1 database db1 table t1,t2 account acc01;
 
--- A new session is opened, assuming that session 2 is a subscriber who subscribes to the published database
-mysql -h 127.0.0.1 -P 6001 -u acc1:root -p  --Login to Tenant Account
+--Connect tenant acc01
+mysql> show subscriptions all;
++----------+-------------+--------------+------------+-------------+---------------------+----------+----------+--------+
+| pub_name | pub_account | pub_database | pub_tables | pub_comment | pub_time            | sub_name | sub_time | status |
++----------+-------------+--------------+------------+-------------+---------------------+----------+----------+--------+
+| tab_pub1 | sys         | db1          | t1,t2      |             | 2024-10-25 17:06:06 | NULL     | NULL     |      0 |
+| db_pub1  | sys         | db1          | *          |             | 2024-10-25 17:05:54 | NULL     | NULL     |      0 |
++----------+-------------+--------------+------------+-------------+---------------------+----------+----------+--------+
+2 rows in set (0.00 sec)
 
-create database sub1 from sys publication sys_pub_1;
-mysql> show databases;
-+--------------------+
-| Database           |
-+--------------------+
-| information_schema |
-| mo_catalog         |
-| mysql              |
-| sub1               |
-| system             |
-| system_metrics     |
-+--------------------+
-6 rows in set (0.01 sec)
+create database db_sub1 from sys publication db_pub1;
+create database tab_sub1 from sys publication tab_pub1;
 
 mysql> show subscriptions;
-+-----------+-------------+--------------+---------------------+----------+---------------------+
-| pub_name  | pub_account | pub_database | pub_time            | sub_name | sub_time            |
-+-----------+-------------+--------------+---------------------+----------+---------------------+
-| sys_pub_1 | sys         | sys_db_1     | 2024-04-24 11:54:36 | sub1     | 2024-04-24 11:56:05 |
-+-----------+-------------+--------------+---------------------+----------+---------------------+
-1 row in set (0.01 sec)
-
-mysql> use sub1;
-Reading table information for completion of table and column names
-You can turn off this feature to get a quicker startup with -A
-
-Database changed
-mysql> show tables;
-+----------------+
-| Tables_in_sub1 |
-+----------------+
-| sys_tbl_1      |
-| v1             |
-+----------------+
-2 rows in set (0.01 sec)
-
-mysql> desc sys_tbl_1;
-+-------+---------+------+------+---------+-------+---------+
-| Field | Type    | Null | Key  | Default | Extra | Comment |
-+-------+---------+------+------+---------+-------+---------+
-| a     | INT(32) | NO   | PRI  | NULL    |       |         |
-+-------+---------+------+------+---------+-------+---------+
-1 row in set (0.01 sec)
-
-mysql> select * from sys_tbl_1 order by a;
-+------+
-| a    |
-+------+
-|    1 |
-|    2 |
-|    3 |
-+------+
-3 rows in set (0.01 sec)
--- Subscription Success
++----------+-------------+--------------+------------+-------------+---------------------+----------+---------------------+--------+
+| pub_name | pub_account | pub_database | pub_tables | pub_comment | pub_time            | sub_name | sub_time            | status |
++----------+-------------+--------------+------------+-------------+---------------------+----------+---------------------+--------+
+| tab_pub1 | sys         | db1          | t1,t2      |             | 2024-10-25 17:06:06 | tab_sub1 | 2024-10-25 17:09:24 |      0 |
+| db_pub1  | sys         | db1          | *          |             | 2024-10-25 17:05:54 | db_sub1  | 2024-10-25 17:09:23 |      0 |
++----------+-------------+--------------+------------+-------------+---------------------+----------+---------------------+--------+
+2 rows in set (0.00 sec)
 ```
 
 !!! note
-    If you need to unsubscribe, you can simply delete the subscribed database name and use [`DROP DATABASE`](drop-database.md).
+    If you need to cancel the subscription, you can directly delete the subscribed database name and use [`DROP DATABASE`](drop-database.md).

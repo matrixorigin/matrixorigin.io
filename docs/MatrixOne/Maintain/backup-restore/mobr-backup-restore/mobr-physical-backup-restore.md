@@ -1,19 +1,18 @@
-## Overview of principles
+## Principle overview
 
-A regular physical backup of a database is a direct copy of the database's physical storage files, including data files, log files, and control files, to create a separate copy of the database. This process is usually performed at the file system level and can be achieved by operating system commands. The resulting backup is a full backup of the database, containing all the data and objects. Backup files can be stored on multiple media and can be compressed and encrypted to save space and improve security. On recovery, these files can be copied directly to the desired location to quickly restore the entire database. In addition, physical backups support cross-platform migration for disaster recovery and database migration scenarios, but may require more storage space and time.
+Regular physical backup of the database is to directly copy the physical storage files of the database, including data files, log files, control files, etc., to create an independent copy of the database. This process is usually performed at the file system level and can be implemented through operating system commands. The generated backup is a complete backup of the database, including all data and objects. Backup files can be stored on a variety of media and can be compressed and encrypted to save space and increase security. During recovery, these files can be copied directly to the required location to quickly recover the entire database. In addition, physical backup supports cross-platform migration and is suitable for disaster recovery and database migration scenarios, but may require more storage space and time.
 
-A full backup is a backup process that backs up all data in a database. It creates a full copy of the database, which usually requires more storage space and longer to complete. Because it contains all the data, full backups are simpler to restore and can be restored directly to the state they were in.
+Full backup refers to the backup process of backing up all data in the database. It creates a complete copy of the database, which usually requires more storage space and longer time to complete. Because it contains all data, full backup is relatively simple to restore and can be restored directly to the state at the time of backup.
 
-Incremental backups are backups of data that has changed since the last backup. It replicates only blocks or data files that have been modified between backups, so backup sets are typically smaller and faster. Incremental backups can save storage space and backup time, but can be more complex when data is restored because a series of incremental backups need to be applied sequentially to restore to the latest state.
+Incremental backup means backing up data that has changed since the last backup. It only copies data blocks or data files that have been modified between backups, so the backup set is usually smaller and the backup speed is faster. Incremental backups can save storage space and backup time, but may be more complex during data recovery because a series of incremental backups need to be applied in sequence to restore to the latest state.
 
-MatrixOne supports incremental and full physical backup restores using `mo_br`:
-
+MatrixOne supports incremental and full physical backup recovery using `mo_br`:
 !!! note
-    mo_br Backup and recovery tool for enterprise services, you need to contact your MatrixOne account manager for the tool download path.
+    mo_br enterprise-level service backup and recovery tool, you need to contact your MatrixOne account manager to obtain the tool download path.
 
-## Examples
+## Example
 
-### Example 1 Full Backup Recovery
+### Example 1 Full backup and restore
 
 - Connect mo to create databases db1, db2.
 
@@ -38,9 +37,9 @@ mysql> show databases;
 9 rows in set (0.00 sec)
 ```
 
-- Create a full backup
+- Create full backup
 
-```
+```bash
 ./mo_br backup --host "127.0.0.1" --port 6001 --user "dump" --password "111" --backup_dir "filesystem"  --path "/Users/admin/soft/backuppath/syncback1"
 
 Backup ID
@@ -55,7 +54,7 @@ Backup ID
 +--------------------------------------+-------+----------------------------------------+---------------------------+--------------+---------------------------+-----------------------+------------+
 ```
 
-- Connect mo Delete database db1 and build database db3.
+- Connect mo to drop database db1 and create database db3.
 
 ```sql
 drop database db1;
@@ -102,7 +101,7 @@ Copy tae file 1
     ... 
 ```
 
-- Start mo, check recovery
+- Start mo and check the recovery status
 
 ```
 mo_ctl start
@@ -128,9 +127,9 @@ mysql> show databases;
 
 As you can see, the recovery was successful.
 
-### Example 2 Incremental Backup Recovery
+### Example 2 Incremental backup and recovery
 
-- Connect mo Create databases db1, db2
+- Connect mo to create databases db1, db2
 
 ```sql
 create database db1;
@@ -153,7 +152,7 @@ mysql> show databases;
 9 rows in set (0.00 sec)
 ```
 
-- Creating Full Backups
+- Create full backup
 
 ```
 ./mo_br backup --host "127.0.0.1" --port 6001 --user "dump" --password "111" --backup_dir "filesystem"  --path "/Users/admin/soft/backuppath/syncback2"
@@ -162,7 +161,7 @@ Backup ID
     2289638c-1284-11ef-85e4-26dd28356ef3
 ```
 
-- Create incremental backups based on the above full backup
+- Create incremental backup based on the above full backup
 
 ```
 ./mo_br backup --host "127.0.0.1" --port 6001 --user "dump" --password "111" --backup_dir "filesystem"  --path "/Users/admin/soft/backuppath/syncback2" --backup_type "incremental" --base_id "2289638c-1284-11ef-85e4-26dd28356ef3"
@@ -181,9 +180,9 @@ Backup ID
 +--------------------------------------+-------+----------------------------------------+---------------------------+--------------+---------------------------+-----------------------+-------------+
 ```
 
-Comparing the time consumption of incremental and full backups, you can see that incremental backups take less time.
+Comparing the duration of incremental backup and full backup, you can see that incremental backup takes less time.
 
-- Connect mo Delete database db1 and build database db3.
+- Connect mo to drop database db1 and create database db3.
 
 ```sql
 drop database db1;
@@ -227,7 +226,7 @@ TaePath
 ...
 ```
 
-- Start mo, check recovery
+- Start mo and check the recovery status
 
 ```
 mo_ctl start

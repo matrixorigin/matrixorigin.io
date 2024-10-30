@@ -1,24 +1,26 @@
-# Export data by SELECT INTO
+# SELECT INTO write out
 
-There are two methods to export data with MatrixOne:
+MatrixOne supports the following two ways to export data:
 
 - `SELECT INTO...OUTFILE`
-- `modump`
+- `mo-dump`
 
-This document will introduce about how to export data with `SELECT INTO...OUTFILE`.
+This document mainly introduces how to use `SELECT INTO...OUTFILE` to export data.
 
-`SELECT...INTO OUTFILE` statement exports a table data into a text file on the server host.
+Table data can be exported to a text file or stage on the host using the `SELECT...INTO OUTFILE` syntax.
 
-## Syntax
+## Grammar structure
 
-The syntax for this statement combines a regular **SELECT** command with **INTO OUTFILE filename** at the end. The default output format is the same as it is for the LOAD DATA command. So, the following statement exports the **test** table into **/root/test** as a tab-delimited, linefeed-terminated file.
+The `SELECT...INTO OUTFILE` syntax is a combination of the `SELECT` syntax and `INTO OUTFILE filename`. The default output format is the same as the `LOAD DATA` command.
 
 ```
-mysql> SELECT * FROM TEST
-    -> INTO OUTFILE '/root/test.csv';
+mysql> SELECT *FROM <table_name>
+    -> INTO OUTFILE '<filepath>|<stage://stage_name>';
 ```
 
-You can change the output format using various options to indicate how to quote and delimit columns and records. Using the following code to export the *TEST* table in a CSV format with CRLF-terminated lines:
+You can change the output format using a variety of forms and options to represent how columns and records are referenced and separated.
+
+Use the following code to export the *TEST*table in *.csv*format. The following lines of code are displayed with carriage returns and line feeds:
 
 ```
 mysql> SELECT * FROM TEST INTO OUTFILE '/root/test.csv'
@@ -26,29 +28,32 @@ mysql> SELECT * FROM TEST INTO OUTFILE '/root/test.csv'
    -> LINES TERMINATED BY '\r\n';
 ```
 
-The `SELECT ... INTO OUTFILE` has the following properties −
+**`SELECT ... INTO OUTFILE` features are as follows**:
 
-- The output file is created directly by the MatrixOne server, so the filename should indicate where you want the file to be written on the server host. MatrixOne doesn't support export the file to a client-side file system.
-- You must have the privilege to execute the `SELECT ... INTO` statement.
-- The output file must not already exist. This prevents MatrixOne from clobbering files that may be important.
-- You should have a login account on the server host or some way to retrieve the file from that host. Otherwise, the `SELECT ... INTO OUTFILE` command will most likely be of no value to you.
+- The exported file is created directly by the MatrixOne service, so the `filename` in the command line should point to the location of the server host where you need the file to be stored. MatrixOne does not currently support exporting files to the client file system.
+
+- `SELECT ... INTO OUTFILE` is used to export the retrieved data to a file in a format, that is, the file to be exported is directly created by the MatrixOne service, and the exported file can only be located on the server host where MatrixOne is located, so You must have a username and password to log in to the server host where MatrixOne is located, and you must have permission to retrieve files from MatrixOne.
+
+- You must have permission to execute `SELECT`.
+
+- Check that there are no files with the same name in the directory where the files need to be exported, otherwise they will be overwritten by the newly exported files.
 
 ## Example
 
-### Before you start
+### Preparation before starting
 
-Make sure you have already [Deployed standalone MatrixOne](../../Get-Started/install-standalone-matrixone.md).
+[Stand-alone deployment of MatrixOne](../../Get-Started/install-standalone-matrixone.md) has been completed.
 
 !!! note
-    If you install MatrixOne by `docker`, the directory is inside the docker image by default. To work with local directory, you need to bind a local directory to the container. In the following example, the local file system path `${local_data_path}/mo-data` is binded to the MatrixOne docker image, with a mapping to the `/mo-data` path. For more information, see [Docker Mount Volume tutorial](https://www.freecodecamp.org/news/docker-mount-volume-guide-how-to-mount-a-local-directory/).
+    If you installed MatrixOne via `docker`, the export directory is located in the docker image by default. If you need to mount a local directory, see the following code example: the local file system path *${local_data_path}/mo-data*is mounted into the MatrixOne Docker image and mapped to the */mo-data*path. For more information, see the [Docker Mount Volume tutorial](https://www.freecodecamp.org/news/docker-mount-volume-guide-how-to-mount-a-local-directory/).
 
 ```
-sudo docker run --name <name> --privileged -d -p 6001:6001 -v ${local_data_path}/mo-data:/mo-data:rw matrixorigin/matrixone:1.2.4
+sudo docker run --name <name> --privileged -d -p 6001:6001 -v ${local_data_path}/mo-data:/mo-data:rw matrixorigin/matrixone:2.0.0
 ```
 
 ### Steps
 
-1. Create tables in MatrixOne:
+1. Create a new data table in MatrixOne:
 
     ```sql
     create database aaa;
@@ -65,21 +70,45 @@ sudo docker run --name <name> --privileged -d -p 6001:6001 -v ${local_data_path}
     +------+-----------+------+
     ```
 
-2. For installation with source code or binary file, export the table to your local directory, for example, *~/tmp/export_demo/export_datatable.txt*.
+2.Data export
+
+- Export to local
+  
+   For installing and building MatrixOne using source code or binary files, export the table to a local directory, such as *~/tmp/export_demo/export_datatable.txt*. The command example is as follows:
 
     ```
     select * from user into outfile '~/tmp/export_demo/export_datatable.txt'
     ```
 
-    For installation with docker, export the your mounted directory path of container as the following example. The directory `mo-data` refers to the local path of `~/tmp/docker_export_demo/mo-data`.
+    Use Docker to install and start MatrixOne, and export to the directory path of your mounted container, as shown in the example below. The directory *mo-data*refers to the local path *~/tmp/docker_export_demo/mo-data*.
 
     ```
     select * from user into outfile 'mo-data/export_datatable.txt';
     ```
 
-3. Check the table in your directory `export_datatable.txt`, the result is as below:
+    - export to satge
 
+    ```sql
+    create stage stage_fs url = 'file:///Users/admin/test';
+    select * from user into outfile 'stage://stage_fs/user.csv';
     ```
+  
+3. Check the export status:
+
+    - Export to local
+  
+    ```
+    (base) admin@192 test % cat export_datatable.txt 
+    id,user_name,sex
+    1,"weder","man"
+    2,"tom","man"
+    3,"wederTom","man"
+    ```
+
+    - Export to stage
+  
+    ```bash
+    (base) admin@192 test % cat user.csv 
     id,user_name,sex
     1,"weder","man"
     2,"tom","man"

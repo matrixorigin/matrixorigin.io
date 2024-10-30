@@ -168,21 +168,36 @@ The concept of multi-tenancy was introduced with MatrixOne version 0.6, and the 
 | variable_value | VARCHAR(5000) | The value of the variable |
 | system_variables | BOOL(0) | if it is a system variable (compatibility variables are added in addition to system variables) |
 
-### mo_pubs table
+### `mo_pubs` table
 
-| column            | type            | comments                            |
-| -----------------| --------------- | ----------------- |
-| pub_name | VARCHAR(64) | publication name|
-| database_name | VARCHAR(5000) | The name of the published data |
-| database_id | BIGINT UNSIGNED(64) | ID of the publishing database, corresponding to dat_id in the mo_database table |
+| Column Properties | Type | Description |
+| ------------------| ---------------| -----------------|
+| pub_name | VARCHAR(64) | Publish name |
+| database_name | VARCHAR(5000) | Name of published data |
+| database_id | BIGINT UNSIGNED(64) | The ID of the publishing database, corresponding to the dat_id in the mo_database table |
 | all_table | BOOL(0) | Whether the publishing library contains all tables in the database corresponding to database_id |
-| all_account | BOOL(0) | Whether all accounts can subscribe to the library |
-| table_list | TEXT(0) | When it is not all table, publish the list of tables contained in the library, and the table name corresponds to the table under the database corresponding to database_id|
-| account_list | TEXT(0) |Account list that is allowed to subscribe to the publishing library when it is not all accounts|
-| created_time | TIMESTAMP(0) | Time when the release repository was created |
-| owner | INT UNSIGNED(32) | The role ID corresponding to the creation of the release library |
-| creator | INT UNSIGNED(32) | The ID of the user who created the release library |
+| table_list | TEXT(0) | When it is not all table, publish the list of tables contained in the library. The table name corresponds one-to-one with the table under the database corresponding to database_id |
+| account_list | TEXT(0) |When non-all accounts are used, the list of accounts allowed to subscribe to the publication library|
+| created_time | TIMESTAMP(0) |The time when the release library was created |
+| updated_time | TIMESTAMP(0) |Time to update the release library |
+| owner | INT UNSIGNED(32) | Create the role ID corresponding to the release library |
+| creator | INT UNSIGNED(32) | Create the user ID corresponding to the release library |
 | comment | TEXT(0) | Remarks for creating a release library |
+
+### `mo_subs` table
+
+| Column Properties | Type | Description |
+| ---------------------| ---------------| -----------------|
+| sub_account_id | INT(32) | Subscription tenant id|
+| sub_name | VARCHAR(5000) | subscription name |
+| sub_time | TIMESTAMP(0) | Subscription time |
+| pub_account_name |VARCHAR(300) | The name of the publishing tenant |
+| pub_name | VARCHAR(64) | Publish name |
+| pub_database | VARCHAR(5000) |Published database|
+| pub_tables | TEXT(0) |Published tables |
+| pub_time | TIMESTAMP(0) | Published time |
+| pub_comment | TEXT(0) | Comments from the publishing library |
+| status | TINYINT(8) | Subscription status, 0 means normal subscription, 1 means the publication exists but does not have subscription permission, 2 means the publication was originally subscribed but was deleted |
 
 ### mo_stages table
 

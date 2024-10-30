@@ -1,35 +1,42 @@
 # **CREATE PUBLICATION**
 
-## **Grammar description**
+## **Syntax description**
 
-`CREATE PUBLICATION` Adds a new publication to the current database.
+`CREATE PUBLICATION` adds a new publication to the current database.
 
 ## **Grammar structure**
 
 ```
-CREATE PUBLICATION pubname
-    DATABASE database_name ACCOUNT
+CREATE PUBLICATION <pubname>
+    DATABASE <database_name>[<table_name>] ACCOUNT
     [ { ALL
     | account_name, [, ... ] }]
-    [ COMMENT 'string']
+    [COMMENT 'string']
 ```
 
-## Interpretation of grammar
+## Grammar explanation
 
-- pubname: The publication name. The publication name must be different from the name of any existing publication in the current database.
+- pubname: Publish name. The publication name must be different from the name of any existing publication in the current database.
 - database_name: The name of a database that already exists under the current tenant.
-- account_name: Gets the tenant name for this publication.
+- account_name: The tenant name of the publication can be obtained.
 
-## **Examples**
+## **Example**
 
 ```sql
-create database t;
-create account acc0 admin_name 'root' identified by '111';
-create account acc1 admin_name 'root' identified by '111';
-mysql> create publication pub1 database t account acc0,acc1;
-Query OK, 0 rows affected (0.01 sec)
+create account acc01 admin_name 'root' identified by '111';
+create account acc02 admin_name 'root' identified by '111';
+create database db1;
+use db1;
+create table t1(n1 int);
+create table t2(n1 int);
+
+--Database level publishing
+create publication db_pub1 database db1 account acc01,acc02;
+
+--Table level publishing
+create publication tab_pub1 database db1 table t1,t2 account acc01,acc02;
 ```
 
-## Limitations
+## limit
 
-MatrxiOne currently only supports publishing one database data at a time.
+-Database-level publishing currently only supports publishing one database data at a time.

@@ -1,46 +1,60 @@
 # CREATE SNAPSHOT
 
-## Syntax Description
+## Syntax description
 
-The `CREATE SNAPSHOT` command is used to create a snapshot. System tenants can create snapshots for themselves or for regular tenants, but regular tenants can only create snapshots for themselves. Snapshots created by a tenant are visible only to this tenant.
+The `CREATE SNAPSHOT` command is used to create a snapshot of the database. Cluster administrators can create cluster-level or tenant-level snapshots, while ordinary tenant administrators can create tenant-level snapshots for the current tenant. Each snapshot is only visible to the tenant that created it, ensuring data isolation and security.
 
-## Syntax structure
+## Grammar structure
 
 ```sql
-> CREATE SNAPSHOT snapshot_name FOR ACCOUNT account_name
+create snapshot <snapshot_name> for [cluster]|[account <account_name>]
 ```
 
-## Examples
+## Example
+
+**Example 1: Cluster administrator creates a cluster snapshot for the cluster**
 
 ```sql
---Execute under system tenant sys
-create snapshot sp1 for account sys;
-create snapshot sp2 for account acc1;
-
+create snapshot cluster_sp for cluster;
 mysql> show snapshots;
 +---------------+----------------------------+----------------+--------------+---------------+------------+
 | SNAPSHOT_NAME | TIMESTAMP                  | SNAPSHOT_LEVEL | ACCOUNT_NAME | DATABASE_NAME | TABLE_NAME |
 +---------------+----------------------------+----------------+--------------+---------------+------------+
-| sp2           | 2024-05-10 09:49:08.925908 | account        | acc1         |               |            |
-| sp1           | 2024-05-10 09:48:50.271707 | account        | sys          |               |            |
-+---------------+----------------------------+----------------+--------------+---------------+------------+
-2 rows in set (0.00 sec)
-
---Executed under tenant acc1
-mysql> create snapshot sp3 for account acc2;--Regular tenants can only create snapshots for themselves
-ERROR 20101 (HY000): internal error: only sys tenant can create tenant level snapshot for other tenant
-
-create snapshot sp3 for account acc1;
-
-mysql> show snapshots;
-+---------------+----------------------------+----------------+--------------+---------------+------------+
-| SNAPSHOT_NAME | TIMESTAMP                  | SNAPSHOT_LEVEL | ACCOUNT_NAME | DATABASE_NAME | TABLE_NAME |
-+---------------+----------------------------+----------------+--------------+---------------+------------+
-| sp3           | 2024-05-10 09:53:09.948762 | account        | acc1         |               |            |
+| cluster_sp    | 2024-10-10 10:40:14.487655 | cluster        |              |               |            |
 +---------------+----------------------------+----------------+--------------+---------------+------------+
 1 row in set (0.00 sec)
 ```
 
-## Limitations
+**Example 2: Cluster administrator creates tenant snapshot for tenant**
 
-- Currently only tenant-level snapshots are supported, not cluster-level, database-level, and table-level snapshots.
+```sql
+mysql> create snapshot account_sp1 for account acc1;
+mysql> show snapshots;
++---------------+----------------------------+----------------+--------------+---------------+------------+
+| SNAPSHOT_NAME | TIMESTAMP                  | SNAPSHOT_LEVEL | ACCOUNT_NAME | DATABASE_NAME | TABLE_NAME |
++---------------+----------------------------+----------------+--------------+---------------+------------+
+| account_sp1   | 2024-10-10 10:58:53.946829 | account        | acc1         |               |            |
++---------------+----------------------------+----------------+--------------+---------------+------------+
+1 row in set (0.00 sec)
+```
+
+**Example 3: A normal tenant administrator creates a tenant snapshot for the tenant**
+
+```sql
+create snapshot account_sp2 for account acc1;
+
+mysql> create snapshot account_sp2 for account acc2;
+ERROR 20101 (HY000): internal error: only sys tenant can create tenant level snapshot for other tenant--Tenant administrators can only create snapshots for this tenant
+
+mysql> show snapshots;
++---------------+----------------------------+----------------+--------------+---------------+------------+
+| SNAPSHOT_NAME | TIMESTAMP                  | SNAPSHOT_LEVEL | ACCOUNT_NAME | DATABASE_NAME | TABLE_NAME |
++---------------+----------------------------+----------------+--------------+---------------+------------+
+| account_sp2   | 2024-10-10 11:19:12.699093 | account        | acc1         |               |            |
++---------------+----------------------------+----------------+--------------+---------------+------------+
+1 row in set (0.00 sec)
+```
+
+## limit
+
+- Currently, only cluster-level and tenant-level snapshots are supported. Database-level and table-level snapshots are not supported.

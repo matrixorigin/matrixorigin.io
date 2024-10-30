@@ -241,6 +241,11 @@ nav:
           - mo_br guidelines for use: MatrixOne/Maintain/backup-restore/mobr-backup-restore/mobr.md
           - mo_br regular physical backup recovery: MatrixOne/Maintain/backup-restore/mobr-backup-restore/mobr-physical-backup-restore.md
           - mo_br snapshot backup recovery: MatrixOne/Maintain/backup-restore/mobr-backup-restore/mobr-snapshot-backup-restore.md
+          - mo_br pitr: MatrixOne/Maintain/backup-restore/mobr-backup-restore/mobr-pitr-backup-restore.md
+        - MatrixOne active/standby disaster recovery: MatrixOne/Maintain/backup-restore/active-standby.md
+      - cdc:
+          - mo_cdc guidelines for use: MatrixOne/Maintain/cdc/mocdc.md
+          - From MatrixOne to MySQL: MatrixOne/Maintain/cdc/mo-mysql.md
       - Mount Data:
         - Mount directory to Docker container: MatrixOne/Maintain/mount-data-by-docker.md
     - Migrating:
@@ -305,6 +310,7 @@ nav:
           - YEAR Type: MatrixOne/Reference/Data-Types/date-time-data-types/year-type.md
         - JSON Data Type: MatrixOne/Reference/Data-Types/json-type.md
         - BLOB and TEXT Type: MatrixOne/Reference/Data-Types/blob-text-type.md
+        - DATALINK Type: MatrixOne/Reference/Data-Types/datalink-type.md
         - ENUM Type: MatrixOne/Reference/Data-Types/enum-type.md
         - UUID Type: MatrixOne/Reference/Data-Types/uuid-type.md
         - VECTOR Type: MatrixOne/Reference/Data-Types/vector-type.md
@@ -320,6 +326,7 @@ nav:
           - CREATE TABLE ... LIKE: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-table-like.md         
           - CREATE EXTERNAL TABLE: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-external-table.md
           - CREATE CLUSTER TABLE: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-cluster-table.md
+          - CREATE PITR: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-pitr.md
           - CREATE PUBLICATION: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-publication.md
           - CREATE SEQUENCE: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-sequence.md
           - CREATE STAGE: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-stage.md
@@ -332,6 +339,7 @@ nav:
           - CREATE SNAPSHOT: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-snapshot.md
           - ALTER TABLE: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/alter-table.md
           - ALTER TABLE ... ALTER REINDEX: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/alter-reindex.md
+          - ALTER PITR: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/alter-pitr.md
           - ALTER PUBLICATION: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/alter-publication.md
           - ALTER SEQUENCE: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/alter-sequence.md
           - ALTER STAGE: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/alter-stage.md
@@ -339,6 +347,7 @@ nav:
           - DROP DATABASE: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/drop-database.md
           - DROP INDEX: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/drop-index.md
           - DROP TABLE: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/drop-table.md
+          - DROP PITR: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/drop-pitr.md
           - DROP PUBLICATION: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/drop-publication.md
           - DROP SEQUENCE: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/drop-sequence.md
           - DROP STAGE: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/drop-stage.md
@@ -346,7 +355,9 @@ nav:
           - DROP VIEW: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/drop-view.md
           - DROP FUNCTION: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/drop-function.md
           - TRUNCATE TABLE: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/truncate-table.md
-          - RESTORE ACCOUNT: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/restore-account.md
+          - RENAME TABLE: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/rename-table.md
+          - RESTORE PITR: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/restore-pitr.md
+          - RESTORE SNAPSHOT: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/restore-snapshot.md
         - Data Manipulation Language:
           - INSERT: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/insert.md
           - INSERT INTO SELECT: MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/insert-into-select.md
@@ -413,6 +424,7 @@ nav:
             - SHOW GRANT: MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-grants.md
             - SHOW PROCESSLIST: MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-processlist.md
             - SHOW PUBLICATIONS: MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-publications.md
+            - SHOW PITRS: MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-pitrs.md
             - SHOW ROLES: MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-roles.md
             - SHOW SEQUENCES: MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-sequences.md
             - SHOW STAGE: MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-stage.md
@@ -463,6 +475,8 @@ nav:
               - BINARY: MatrixOne/Reference/Operators/operators/cast-functions-and-operators/binary.md
               - CAST: MatrixOne/Reference/Operators/operators/cast-functions-and-operators/cast.md
               - CONVERT: MatrixOne/Reference/Operators/operators/cast-functions-and-operators/convert.md
+              - DECODE: MatrixOne/Reference/Operators/operators/cast-functions-and-operators/decode.md
+              - ENCODE: MatrixOne/Reference/Operators/operators/cast-functions-and-operators/encode.md
               - SERIAL: MatrixOne/Reference/Operators/operators/cast-functions-and-operators/serial.md
               - SERIAL_FULL: MatrixOne/Reference/Operators/operators/cast-functions-and-operators/serial_full.md
             - Comparison Functions and Operators:
@@ -645,11 +659,22 @@ nav:
             - DENSE_RANK(): MatrixOne/Reference/Functions-and-Operators/Window-Functions/dense_rank.md
             - RANK(): MatrixOne/Reference/Functions-and-Operators/Window-Functions/rank.md
             - ROW_NUMBER(): MatrixOne/Reference/Functions-and-Operators/Window-Functions/row_number.md
-          - JSON Functions: MatrixOne/Reference/Functions-and-Operators/Json/json-functions.md
+          - JSON Functions: 
+            - JQ(): MatrixOne/Reference/Functions-and-Operators/Json/jq.md
+            - JSON_EXTRACT(): MatrixOne/Reference/Functions-and-Operators/Json/json_extract.md
+            - JSON_EXTRACT_FLOAT64(): MatrixOne/Reference/Functions-and-Operators/Json/json_extract_float64.md
+            - JSON_EXTRACT_STRING(): MatrixOne/Reference/Functions-and-Operators/Json/json_extract_string.md
+            - JSON_QUOTE(): MatrixOne/Reference/Functions-and-Operators/Json/json_quote.md
+            - JSON_ROW(): MatrixOne/Reference/Functions-and-Operators/Json/json_row.md
+            - JSON_UNQUOTE(): MatrixOne/Reference/Functions-and-Operators/Json/json_unquote.md
+            - TRY_JQ(): MatrixOne/Reference/Functions-and-Operators/Json/try_jq.md
           - Other Functions:
-            - SAMPLE: MatrixOne/Reference/Functions-and-Operators/Other/sample.md
-            - SERIAL_EXTRACT: MatrixOne/Reference/Functions-and-Operators/Other/serial_extract.md
-            - SLEEP: MatrixOne/Reference/Functions-and-Operators/Other/sleep.md
+            - LOAD_FILE(): MatrixOne/Reference/Functions-and-Operators/Other/load_file.md
+            - SAVE_FILE(): MatrixOne/Reference/Functions-and-Operators/Other/save_file.md
+            - SAMPLE(): MatrixOne/Reference/Functions-and-Operators/Other/sample.md
+            - SERIAL_EXTRACT(): MatrixOne/Reference/Functions-and-Operators/Other/serial_extract.md
+            - SLEEP(): MatrixOne/Reference/Functions-and-Operators/Other/sleep.md
+            - STAGE_LIST(): MatrixOne/Reference/Functions-and-Operators/Other/stage_list.md
             - UUID(): MatrixOne/Reference/Functions-and-Operators/Other/uuid.md
           - System OPS Functions:
             - CURRENT_ROLE_NAME(): MatrixOne/Reference/Functions-and-Operators/system-ops/current_role_name.md
@@ -685,6 +710,7 @@ nav:
       - SQL FAQs: MatrixOne/FAQs/sql-faqs.md
     - Release Notes:
       - Release Timeline: MatrixOne/Release-Notes/release-timeline.md
+      - v24.2.0.0: MatrixOne/Release-Notes/v24.2.0.0.md
       - v24.1.2.4: MatrixOne/Release-Notes/v24.1.2.4.md
       - v24.1.2.3: MatrixOne/Release-Notes/v24.1.2.3.md
       - v24.1.2.2: MatrixOne/Release-Notes/v24.1.2.2.md

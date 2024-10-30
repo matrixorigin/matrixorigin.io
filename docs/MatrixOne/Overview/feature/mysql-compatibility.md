@@ -131,6 +131,7 @@ MatrixOne is highly compatible with the MySQL 8.0 protocol and commonly used fea
 * TIMESTAMP: The maximum value range of MySQL is `'1970-01-01 00:00:01.000000'` UTC to `'2038-01-19 03:14:07.999999'` UTC, the maximum range of MatrixOne is `'0001- 01-01 00:00:00'` UTC to `'9999-12-31 23:59:59'` UTC.
 * MatrixOne supports `UUID` type.
 * MatrixOne supports vector types.
+* MatrixOne supports datalink type.
 * Spatial types are not supported.
 * `SET` types are not supported.
 * `MEDIUMINT` type is not supported.
