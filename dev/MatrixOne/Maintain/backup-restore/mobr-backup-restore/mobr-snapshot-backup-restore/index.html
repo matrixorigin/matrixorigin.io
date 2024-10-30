@@ -12,7 +12,7 @@
         <link rel="prev" href="../mobr-physical-backup-restore/">
       
       
-        <link rel="next" href="../../../mount-data-by-docker/">
+        <link rel="next" href="../mobr-pitr-backup-restore/">
       
       <link rel="icon" href="../../../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.1.21">
@@ -69,7 +69,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#mo_br-tool-for-snapshot-backup-recovery" class="md-skip">
+        <a href="#mo_br-tool-for-snapshot-backup-and-recovery" class="md-skip">
           Skip to content
         </a>
       
@@ -3897,8 +3897,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#snapshot-backup-recovery-implementation-principles" class="md-nav__link">
-    Snapshot Backup Recovery Implementation Principles
+  <a href="#snapshot-backup-and-recovery-implementation-principle" class="md-nav__link">
+    Snapshot backup and recovery implementation principle
   </a>
   
 </li>
@@ -3918,36 +3918,43 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#prepare-before-you-start" class="md-nav__link">
-    Prepare before you start
+  <a href="#preparation-before-starting" class="md-nav__link">
+    Preparation before starting
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#examples" class="md-nav__link">
-    Examples
+  <a href="#example" class="md-nav__link">
+    Example
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#example-1-table-level-recovery" class="md-nav__link">
-    Example 1 Table Level Recovery
+    Example 1 Table level recovery
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#example-2-database-level-recovery" class="md-nav__link">
-    Example 2 Database Level Recovery
+    Example 2 Database level recovery
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#example-3-tenant-level-recovery" class="md-nav__link">
-    Example 3 Tenant Level Recovery
+    Example 3 Tenant level recovery
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-4-cluster-level-recovery" class="md-nav__link">
+    Example 4 Cluster level recovery
   </a>
   
 </li>
@@ -3961,8 +3968,36 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mobr-pitr-backup-restore/" class="md-nav__link">
+        mo_br pitr
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../active-standby/" class="md-nav__link">
+        MatrixOne active/standby disaster recovery
+      </a>
     </li>
   
 
@@ -3991,12 +4026,74 @@
       
       
         <label class="md-nav__link" for="__nav_1_6_2" id="__nav_1_6_2_label" tabindex="0">
-          Mount Data
+          cdc
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_1_6_2_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_1_6_2">
+          <span class="md-nav__icon md-icon"></span>
+          cdc
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cdc/mocdc/" class="md-nav__link">
+        mo_cdc guidelines for use
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cdc/mo-mysql/" class="md-nav__link">
+        From MatrixOne to MySQL
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_6_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_6_3" id="__nav_1_6_3_label" tabindex="0">
+          Mount Data
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_1_6_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1_6_3">
           <span class="md-nav__icon md-icon"></span>
           Mount Data
         </label>
@@ -5210,6 +5307,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../Reference/Data-Types/datalink-type/" class="md-nav__link">
+        DATALINK Type
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../Reference/Data-Types/enum-type/" class="md-nav__link">
         ENUM Type
       </a>
@@ -5453,6 +5564,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../Reference/SQL-Reference/Data-Definition-Language/create-pitr/" class="md-nav__link">
+        CREATE PITR
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../Reference/SQL-Reference/Data-Definition-Language/create-publication/" class="md-nav__link">
         CREATE PUBLICATION
       </a>
@@ -5621,6 +5746,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../Reference/SQL-Reference/Data-Definition-Language/alter-pitr/" class="md-nav__link">
+        ALTER PITR
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../Reference/SQL-Reference/Data-Definition-Language/alter-publication/" class="md-nav__link">
         ALTER PUBLICATION
       </a>
@@ -5707,6 +5846,20 @@
     <li class="md-nav__item">
       <a href="../../../../Reference/SQL-Reference/Data-Definition-Language/drop-table/" class="md-nav__link">
         DROP TABLE
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Reference/SQL-Reference/Data-Definition-Language/drop-pitr/" class="md-nav__link">
+        DROP PITR
       </a>
     </li>
   
@@ -5817,8 +5970,36 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Reference/SQL-Reference/Data-Definition-Language/restore-account/" class="md-nav__link">
-        RESTORE ACCOUNT
+      <a href="../../../../Reference/SQL-Reference/Data-Definition-Language/rename-table/" class="md-nav__link">
+        RENAME TABLE
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Reference/SQL-Reference/Data-Definition-Language/restore-pitr/" class="md-nav__link">
+        RESTORE PITR
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Reference/SQL-Reference/Data-Definition-Language/restore-snapshot/" class="md-nav__link">
+        RESTORE SNAPSHOT
       </a>
     </li>
   
@@ -6948,6 +7129,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../Reference/SQL-Reference/Other/SHOW-Statements/show-pitrs/" class="md-nav__link">
+        SHOW PITRS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../Reference/SQL-Reference/Other/SHOW-Statements/show-roles/" class="md-nav__link">
         SHOW ROLES
       </a>
@@ -7849,6 +8044,34 @@
     <li class="md-nav__item">
       <a href="../../../../Reference/Operators/operators/cast-functions-and-operators/convert/" class="md-nav__link">
         CONVERT
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Reference/Operators/operators/cast-functions-and-operators/decode/" class="md-nav__link">
+        DECODE
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Reference/Operators/operators/cast-functions-and-operators/encode/" class="md-nav__link">
+        ENCODE
       </a>
     </li>
   
@@ -10682,10 +10905,142 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_11_5_2_10" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_11_5_2_10" id="__nav_1_11_5_2_10_label" tabindex="0">
+          JSON Functions
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_1_11_5_2_10_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1_11_5_2_10">
+          <span class="md-nav__icon md-icon"></span>
+          JSON Functions
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
-      <a href="../../../../Reference/Functions-and-Operators/Json/json-functions/" class="md-nav__link">
-        JSON Functions
+      <a href="../../../../Reference/Functions-and-Operators/Json/jq/" class="md-nav__link">
+        JQ()
       </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Reference/Functions-and-Operators/Json/json_extract/" class="md-nav__link">
+        JSON_EXTRACT()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Reference/Functions-and-Operators/Json/json_extract_float64/" class="md-nav__link">
+        JSON_EXTRACT_FLOAT64()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Reference/Functions-and-Operators/Json/json_extract_string/" class="md-nav__link">
+        JSON_EXTRACT_STRING()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Reference/Functions-and-Operators/Json/json_quote/" class="md-nav__link">
+        JSON_QUOTE()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Reference/Functions-and-Operators/Json/json_row/" class="md-nav__link">
+        JSON_ROW()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Reference/Functions-and-Operators/Json/json_unquote/" class="md-nav__link">
+        JSON_UNQUOTE()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Reference/Functions-and-Operators/Json/try_jq/" class="md-nav__link">
+        TRY_JQ()
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -10724,8 +11079,36 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../Reference/Functions-and-Operators/Other/load_file/" class="md-nav__link">
+        LOAD_FILE()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Reference/Functions-and-Operators/Other/save_file/" class="md-nav__link">
+        SAVE_FILE()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../Reference/Functions-and-Operators/Other/sample/" class="md-nav__link">
-        SAMPLE
+        SAMPLE()
       </a>
     </li>
   
@@ -10739,7 +11122,7 @@
   
     <li class="md-nav__item">
       <a href="../../../../Reference/Functions-and-Operators/Other/serial_extract/" class="md-nav__link">
-        SERIAL_EXTRACT
+        SERIAL_EXTRACT()
       </a>
     </li>
   
@@ -10753,7 +11136,21 @@
   
     <li class="md-nav__item">
       <a href="../../../../Reference/Functions-and-Operators/Other/sleep/" class="md-nav__link">
-        SLEEP
+        SLEEP()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Reference/Functions-and-Operators/Other/stage_list/" class="md-nav__link">
+        STAGE_LIST()
       </a>
     </li>
   
@@ -11417,6 +11814,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../Release-Notes/v24.2.0.0/" class="md-nav__link">
+        v24.2.0.0
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../Release-Notes/v24.1.2.4/" class="md-nav__link">
         v24.1.2.4
       </a>
@@ -12043,8 +12454,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#snapshot-backup-recovery-implementation-principles" class="md-nav__link">
-    Snapshot Backup Recovery Implementation Principles
+  <a href="#snapshot-backup-and-recovery-implementation-principle" class="md-nav__link">
+    Snapshot backup and recovery implementation principle
   </a>
   
 </li>
@@ -12064,36 +12475,43 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#prepare-before-you-start" class="md-nav__link">
-    Prepare before you start
+  <a href="#preparation-before-starting" class="md-nav__link">
+    Preparation before starting
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#examples" class="md-nav__link">
-    Examples
+  <a href="#example" class="md-nav__link">
+    Example
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#example-1-table-level-recovery" class="md-nav__link">
-    Example 1 Table Level Recovery
+    Example 1 Table level recovery
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#example-2-database-level-recovery" class="md-nav__link">
-    Example 2 Database Level Recovery
+    Example 2 Database level recovery
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#example-3-tenant-level-recovery" class="md-nav__link">
-    Example 3 Tenant Level Recovery
+    Example 3 Tenant level recovery
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-4-cluster-level-recovery" class="md-nav__link">
+    Example 4 Cluster level recovery
   </a>
   
 </li>
@@ -12121,76 +12539,75 @@
   
 
 
-<h1 id="mo_br-tool-for-snapshot-backup-recovery">mo_br tool for snapshot backup recovery</h1>
-<h2 id="snapshot-backup-recovery-implementation-principles">Snapshot Backup Recovery Implementation Principles</h2>
-<p>Database snapshot backup restores by creating a read-only static view of the database at a specific point in time, known as a snapshot. Snapshots utilize the storage system's copy-on-write (COW) technology to copy and store the original data page only before it is modified, creating a stateful copy of the database at the time the snapshot was created. When you need to recover data, you can pick the data from the snapshot and copy or restore it to a new or existing database. Snapshot files are initially small and grow as the source database changes, so their size needs to be monitored and managed as necessary. Snapshots must be on the same server instance as the source database, and since they are read-only, writes cannot be made directly on them. Note that snapshot recovery operations overwrite the current data, so caution is required.</p>
+<h1 id="mo_br-tool-for-snapshot-backup-and-recovery">mo_br tool for snapshot backup and recovery</h1>
+<h2 id="snapshot-backup-and-recovery-implementation-principle">Snapshot backup and recovery implementation principle</h2>
+<p>Database snapshot backup and recovery create a read-only static view of the database at a specific point in time. This view is called a snapshot. Snapshots use the storage system's copy-on-write (COW) technology to copy and store the original data page only before it is modified, thereby generating a copy of the state of the database at the time the snapshot was created. When data needs to be restored, the data in the snapshot can be selected and copied or restored to a new or existing database. Snapshot files start small and gradually grow as changes are made to the source database, so their size needs to be monitored and managed if necessary. Snapshots must be on the same server instance as the source database, and since they are read-only, write operations cannot be performed directly on them. It should be noted that the snapshot recovery operation will overwrite the current data, so you need to operate with caution.</p>
 <h2 id="application-scenarios">Application scenarios</h2>
-<p>Database snapshots are a powerful tool to improve database availability and performance in multiple scenarios. Here are some application scenarios for snapshots:</p>
+<p>Database snapshots are a powerful tool that can improve database availability and performance in a variety of scenarios. The following are some application scenarios of snapshots:</p>
 <ul>
 <li>
-<p><strong>Data Backup and Recovery</strong>: Snapshots can be used as a way to backup a database, allowing a read-only copy of the database to be created for data backup and recovery without stopping the database service.</p>
+<p><strong>Data Backup and Recovery</strong>: Snapshot can be used as a method of database backup, which allows the creation of a read-only copy of the database without stopping the database service for data backup and recovery.</p>
 </li>
 <li>
-<p><strong>Reports and Data Analysis</strong>: Snapshots can be used to avoid impacting online transactions when databases are required to remain static for report generation or data analysis.</p>
+<p><strong>Reporting and Data Analysis</strong>: When the database needs to remain static for report generation or data analysis, snapshots can be used to avoid affecting online transaction processing.</p>
 </li>
 <li>
-<p><strong>Development and testing</strong>: Before developing a new feature or testing system, a copy of the database can be created by snapshot so that testing can be done without affecting the production environment.</p>
+<p><strong>Development and Testing</strong>: Before developing new features or testing the system, a copy of the database can be created through a snapshot so that testing can be performed without affecting the production environment.</p>
 </li>
 <li>
-<p><strong>Data migration</strong>: During data migration, snapshots can be used to ensure data consistency and avoid data changes during migration.</p>
+<p><strong>Data Migration</strong>: During the data migration process, snapshots can be used to ensure data consistency and avoid data changes during the migration process.</p>
 </li>
 <li>
-<p><strong>High-risk operational protection</strong>: Before performing operations that may have an impact on database stability, such as database upgrades, structural changes, etc., snapshots can be created so that they can be quickly restored if the operation fails.</p>
+<p><strong>High-risk operation protection</strong>: Before performing operations that may affect database stability (such as database upgrades, structural changes, etc.), you can create a snapshot so that you can quickly recover if the operation fails.</p>
 </li>
 </ul>
 <h2 id="matrixone-support-for-snapshots">MatrixOne support for snapshots</h2>
-<p>MatrixOne supports two ways to perform tenant-level snapshot backup restores:</p>
+<p>MatrixOne supports the following two methods for snapshot backup and recovery:</p>
 <ul>
 <li>sql statement</li>
 <li>mo_br tool</li>
 </ul>
-<p>This document focuses on using <code>mo_br</code> for tenant-level snapshot backup restores.</p>
+<p>This document mainly introduces how to use <code>mo_br</code> to perform cluster/tenant level snapshot backup and recovery.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>mo_br Backup and recovery tool for enterprise services, you need to contact your MatrixOne account manager for the tool download path.</p>
+<p>mo_br enterprise-level service backup and recovery tool, you need to contact your MatrixOne account manager to obtain the tool download path.</p>
 </div>
-<h2 id="prepare-before-you-start">Prepare before you start</h2>
+<h2 id="preparation-before-starting">Preparation before starting</h2>
 <ul>
 <li>
-<p>Completed <a href="../../../../Get-Started/install-standalone-matrixone/">standalone deployment of</a> MatrixOne</p>
+<p>Completed <a href="../../../../Get-Started/install-standalone-matrixone/">Standalone Deployment MatrixOne</a></p>
 </li>
 <li>
 <p>Completed mo_br tool deployment</p>
 </li>
 </ul>
-<h2 id="examples">Examples</h2>
-<h2 id="example-1-table-level-recovery">Example 1 Table Level Recovery</h2>
+<h2 id="example">Example</h2>
+<h2 id="example-1-table-level-recovery">Example 1 Table level recovery</h2>
 <ul>
-<li>Connecting Matrixone System Tenants to Execute Table-Building Statements</li>
+<li>Connect to the Matrixone system tenant to execute table creation statements</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="n">db</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="n">snapshot_read</span><span class="p">;</span>
 <span class="n">use</span><span class="w"> </span><span class="n">snapshot_read</span><span class="p">;</span>
 <span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">test_snapshot_read</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">int</span><span class="p">);</span>
-<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">test_snapshot_read</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">4</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">5</span><span class="p">),(</span><span class="mi">6</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">7</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">8</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">9</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">10</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">11</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">12</span><span class="p">),(</span><span class="mi">13</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">14</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">15</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">16</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">17</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">18</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">19</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">20</span><span class="p">),(</span><span class="mi">21</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">22</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">23</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">24</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">25</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">26</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">27</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">28</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">29</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">30</span><span class="p">),(</span><span class="mi">31</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">32</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">33</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">34</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">35</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">36</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">37</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">38</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">39</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">40</span><span class="p">),(</span><span class="mi">41</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">42</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">43</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">44</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">45</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">46</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">47</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">48</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">49</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">50</span><span class="p">),(</span><span class="mi">51</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">52</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">53</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">54</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">55</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">56</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">57</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">58</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">59</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">60</span><span class="p">),(</span><span class="mi">61</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">62</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">63</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">64</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">65</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">66</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">67</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">68</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">69</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">70</span><span class="p">),(</span><span class="mi">71</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">72</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">73</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">74</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">75</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">76</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">77</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">78</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">79</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">80</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">81</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">82</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">83</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">84</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">85</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">86</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">87</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">88</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">89</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">90</span><span class="p">),(</span><span class="mi">91</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">92</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">93</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">94</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">95</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">96</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">97</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">98</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">99</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
-
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">test_snapshot_read</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">4</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">5</span><span class="p">),(</span><span class="mi">6</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">7</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">8</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">9</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">10</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">11</span><span class="p">)</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="mi">12</span><span class="p">),(</span><span class="mi">13</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">14</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">15</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">16</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">17</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">18</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">19</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">20</span><span class="p">),(</span><span class="mi">21</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">22</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">23</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="mi">24</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">25</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">26</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">27</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">28</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">29</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">30</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">31</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">32</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">33</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">34</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">35</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">36</span><span class="p">)</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="mi">37</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">38</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">39</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">40</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">41</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">42</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">43</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">44</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">45</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">46</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">47</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">48</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="mi">49</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">50</span><span class="p">),(</span><span class="mi">51</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">52</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">53</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">54</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">55</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">56</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">57</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">58</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">59</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">60</span><span class="p">),(</span><span class="mi">61</span><span class="p">)</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="mi">62</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">63</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">64</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">65</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">66</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">67</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">68</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">69</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">70</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">71</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">72</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">73</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="mi">74</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">75</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">76</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">77</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">78</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">79</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">80</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">81</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">82</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">83</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">84</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">85</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">86</span><span class="p">)</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="mi">87</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">88</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">89</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">90</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">91</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">92</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">93</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">94</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">95</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">96</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">97</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">98</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="mi">99</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
 <span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">snapshot_read</span><span class="p">.</span><span class="n">test_snapshot_read</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">----------+</span>
 <span class="o">|</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">----------+</span>
-<span class="o">|</span><span class="w">      </span><span class="mi">100</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">----------+</span>
 </code></pre></div>
 <ul>
-<li>Create a snapshot</li>
+<li>Create snapshot</li>
 </ul>
-<div class="highlight"><pre><span></span><code>./mo_br snapshot create --host &quot;127.0.0.1&quot; --port 6001 --user &quot;dump&quot; --password &quot;111&quot; --level &quot;account&quot; --sname &quot;sp_01&quot; --account &quot;sys&quot; 
+<div class="highlight"><pre><span></span><code>./mo_br<span class="w"> </span>snapshot<span class="w"> </span>create<span class="w"> </span>--host<span class="w"> </span><span class="s2">&quot;127.0.0.1&quot;</span><span class="w"> </span>--port<span class="w"> </span><span class="m">6001</span><span class="w"> </span>--user<span class="w"> </span><span class="s2">&quot;dump&quot;</span><span class="w"> </span>--password<span class="w"> </span><span class="s2">&quot;111&quot;</span><span class="w"> </span>--level<span class="w"> </span><span class="s2">&quot;account&quot;</span><span class="w"> </span>--sname<span class="w"> </span><span class="s2">&quot;sp_01&quot;</span><span class="w"> </span>--account<span class="w"> </span><span class="s2">&quot;sys&quot;</span>
 
-./mo_br snapshot show --host &quot;127.0.0.1&quot; --port 6001 --user &quot;dump&quot; --password &quot;111&quot; --account &quot;sys&quot;
-SNAPSHOT NAME           TIMESTAMP           SNAPSHOT LEVEL  ACCOUNT NAME    DATABASE NAME   TABLE NAME 
-sp_01           2024-05-10 02:06:08.01635   account         sys                                         
+./mo_br<span class="w"> </span>snapshot<span class="w"> </span>show<span class="w"> </span>--host<span class="w"> </span><span class="s2">&quot;127.0.0.1&quot;</span><span class="w"> </span>--port<span class="w"> </span><span class="m">6001</span><span class="w"> </span>--user<span class="w"> </span><span class="s2">&quot;dump&quot;</span><span class="w"> </span>--password<span class="w"> </span><span class="s2">&quot;111&quot;</span><span class="w"> </span>--account<span class="w"> </span><span class="s2">&quot;sys&quot;</span>
+SNAPSHOT<span class="w"> </span>NAME<span class="w"> </span>TIMESTAMP<span class="w"> </span>SNAPSHOT<span class="w"> </span>LEVEL<span class="w"> </span>ACCOUNT<span class="w"> </span>NAME<span class="w"> </span>DATABASE<span class="w"> </span>NAME<span class="w"> </span>TABLE<span class="w"> </span>NAME
+sp_01<span class="w"> </span><span class="m">2024</span>-05-10<span class="w"> </span><span class="m">02</span>:06:08.01635<span class="w"> </span>account<span class="w"> </span>sys
 </code></pre></div>
 <ul>
-<li>Connect the Matrixone system tenant by deleting some of the data in the table.</li>
+<li>Connect to the Matrixone system tenant and delete some data in the table.</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="k">delete</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">snapshot_read</span><span class="p">.</span><span class="n">test_snapshot_read</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">50</span><span class="p">;</span>
 
@@ -12198,40 +12615,39 @@ sp_01           2024-05-10 02:06:08.01635   account         sys
 <span class="o">+</span><span class="c1">----------+</span>
 <span class="o">|</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">----------+</span>
-<span class="o">|</span><span class="w">       </span><span class="mi">50</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="mi">50</span><span class="w">       </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">----------+</span>
 </code></pre></div>
 <ul>
 <li>Table level restored to this tenant</li>
 </ul>
-<div class="highlight"><pre><span></span><code>./mo_br snapshot restore --host &quot;127.0.0.1&quot; --port 6001 --user &quot;dump&quot; --password &quot;111&quot; --account &quot;sys&quot; --db &quot;snapshot_read&quot; --table &quot;test_snapshot_read&quot; --sname &quot;sp_01&quot;
+<div class="highlight"><pre><span></span><code>./mo_br<span class="w"> </span>snapshot<span class="w"> </span>restore<span class="w"> </span>--host<span class="w"> </span><span class="s2">&quot;127.0.0.1&quot;</span><span class="w"> </span>--port<span class="w"> </span><span class="m">6001</span><span class="w"> </span>--user<span class="w"> </span><span class="s2">&quot;dump&quot;</span><span class="w"> </span>--password<span class="w"> </span><span class="s2">&quot;111&quot;</span><span class="w"> </span>--account<span class="w"> </span><span class="s2">&quot;sys&quot;</span><span class="w"> </span>--db<span class="w"> </span><span class="s2">&quot;snapshot_read&quot;</span><span class="w"> </span>--table<span class="w"> </span><span class="s2">&quot;test_snapshot_read&quot;</span><span class="w"> </span>--sname<span class="w"> </span><span class="s2">&quot;sp_01&quot;</span>
 </code></pre></div>
 <ul>
-<li>Connect Matrixone System Tenant Query Recovery</li>
+<li>Connect to the Matrixone system tenant to query the recovery status</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">snapshot_read</span><span class="p">.</span><span class="n">test_snapshot_read</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">----------+</span>
 <span class="o">|</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">----------+</span>
-<span class="o">|</span><span class="w">      </span><span class="mi">100</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="mi">100</span><span class="w">      </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">----------+</span>
 </code></pre></div>
-<h2 id="example-2-database-level-recovery">Example 2 Database Level Recovery</h2>
+<h2 id="example-2-database-level-recovery">Example 2 Database level recovery</h2>
 <ul>
-<li>Connect Matrixone system tenant to execute sql statement</li>
+<li>Connect to the Matrixone system tenant to execute sql statements</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="n">db</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="n">snapshot_read</span><span class="p">;</span>
 <span class="n">use</span><span class="w"> </span><span class="n">snapshot_read</span><span class="p">;</span>
 <span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">test_snapshot_read</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">int</span><span class="p">);</span>
-<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">test_snapshot_read</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">4</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">5</span><span class="p">),(</span><span class="mi">6</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">7</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">8</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">9</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">10</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">11</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">12</span><span class="p">),(</span><span class="mi">13</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">14</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">15</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">16</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">17</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">18</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">19</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">20</span><span class="p">),(</span><span class="mi">21</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">22</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">23</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">24</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">25</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">26</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">27</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">28</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">29</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">30</span><span class="p">),(</span><span class="mi">31</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">32</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">33</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">34</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">35</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">36</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">37</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">38</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">39</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">40</span><span class="p">),(</span><span class="mi">41</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">42</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">43</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">44</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">45</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">46</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">47</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">48</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">49</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">50</span><span class="p">),(</span><span class="mi">51</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">52</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">53</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">54</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">55</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">56</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">57</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">58</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">59</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">60</span><span class="p">),(</span><span class="mi">61</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">62</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">63</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">64</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">65</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">66</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">67</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">68</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">69</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">70</span><span class="p">),(</span><span class="mi">71</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">72</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">73</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">74</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">75</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">76</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">77</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">78</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">79</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">80</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">81</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">82</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">83</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">84</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">85</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">86</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">87</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">88</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">89</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">90</span><span class="p">),(</span><span class="mi">91</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">92</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">93</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">94</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">95</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">96</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">97</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">98</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">99</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
-<span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">test_snapshot_read_1</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">int</span><span class="p">);</span>
-<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">test_snapshot_read_1</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">4</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">5</span><span class="p">),(</span><span class="mi">6</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">7</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">8</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">9</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">10</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">11</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">12</span><span class="p">),(</span><span class="mi">13</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">14</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">15</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">16</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">17</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">18</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">19</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">20</span><span class="p">),(</span><span class="mi">21</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">22</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">23</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">24</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">25</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">26</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">27</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">28</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">29</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">30</span><span class="p">),(</span><span class="mi">31</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">32</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">33</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">34</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">35</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">36</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">37</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">38</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">39</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">40</span><span class="p">),(</span><span class="mi">41</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">42</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">43</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">44</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">45</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">46</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">47</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">48</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">49</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">50</span><span class="p">),(</span><span class="mi">51</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">52</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">53</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">54</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">55</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">56</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">57</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">58</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">59</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">60</span><span class="p">),(</span><span class="mi">61</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">62</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">63</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">64</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">65</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">66</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">67</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">68</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">69</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">70</span><span class="p">),(</span><span class="mi">71</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">72</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">73</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">74</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">75</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">76</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">77</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">78</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">79</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">80</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">81</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">82</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">83</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">84</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">85</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">86</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">87</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">88</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">89</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">90</span><span class="p">),(</span><span class="mi">91</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">92</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">93</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">94</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">95</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">96</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">97</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">98</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">99</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
-
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">test_snapshot_read</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">4</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">5</span><span class="p">),(</span><span class="mi">6</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">7</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">8</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">9</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">10</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">11</span><span class="p">)</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="mi">12</span><span class="p">),(</span><span class="mi">13</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">14</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">15</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">16</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">17</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">18</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">19</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">20</span><span class="p">),(</span><span class="mi">21</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">22</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">23</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="mi">24</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">25</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">26</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">27</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">28</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">29</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">30</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">31</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">32</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">33</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">34</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">35</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">36</span><span class="p">)</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="mi">37</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">38</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">39</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">40</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">41</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">42</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">43</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">44</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">45</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">46</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">47</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">48</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="mi">49</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">50</span><span class="p">),(</span><span class="mi">51</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">52</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">53</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">54</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">55</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">56</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">57</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">58</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">59</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">60</span><span class="p">),(</span><span class="mi">61</span><span class="p">)</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="mi">62</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">63</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">64</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">65</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">66</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">67</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">68</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">69</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">70</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">71</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">72</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">73</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="mi">74</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">75</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">76</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">77</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">78</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">79</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">80</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">81</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">82</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">83</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">84</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">85</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">86</span><span class="p">)</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="mi">87</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">88</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">89</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">90</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">91</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">92</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">93</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">94</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">95</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">96</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">97</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">98</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="mi">99</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+<span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">test_snapshot_read_1</span><span class="p">(</span><span class="n">A</span><span class="w"> </span><span class="nb">int</span><span class="p">);</span>
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">test_snapshot_read_1</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">4</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">5</span><span class="p">),(</span><span class="mi">6</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">7</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">8</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">9</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">10</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">11</span><span class="p">)</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="mi">12</span><span class="p">),(</span><span class="mi">13</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">14</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">15</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">16</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">17</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">18</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">19</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">20</span><span class="p">),(</span><span class="mi">21</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">22</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">23</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="mi">24</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">25</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">26</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">27</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">28</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">29</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">30</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">31</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">32</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">33</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">34</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">35</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">36</span><span class="p">)</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="mi">37</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">38</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">39</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">40</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">41</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">42</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">43</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">44</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">45</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">46</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">47</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">48</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="mi">49</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">50</span><span class="p">),(</span><span class="mi">51</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">52</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">53</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">54</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">55</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">56</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">57</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">58</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">59</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">60</span><span class="p">),(</span><span class="mi">61</span><span class="p">)</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="mi">62</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">63</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">64</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">65</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">66</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">67</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">68</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">69</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">70</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">71</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">72</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">73</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="mi">74</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">75</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">76</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">77</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">78</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">79</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">80</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">81</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">82</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">83</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">84</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">85</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">86</span><span class="p">)</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="mi">87</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">88</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">89</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">90</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">91</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">92</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">93</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">94</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">95</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">96</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">97</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">98</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="mi">99</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
 <span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">snapshot_read</span><span class="p">.</span><span class="n">test_snapshot_read</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">----------+</span>
 <span class="o">|</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">----------+</span>
-<span class="o">|</span><span class="w">      </span><span class="mi">200</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="mi">200</span><span class="w">      </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">----------+</span>
 <span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 
@@ -12239,30 +12655,29 @@ sp_01           2024-05-10 02:06:08.01635   account         sys
 <span class="o">+</span><span class="c1">----------+</span>
 <span class="o">|</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">----------+</span>
-<span class="o">|</span><span class="w">      </span><span class="mi">100</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">----------+</span>
 <span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 </code></pre></div>
 <ul>
-<li>Create a snapshot</li>
+<li>Create snapshot</li>
 </ul>
-<div class="highlight"><pre><span></span><code>./mo_br snapshot create --host &quot;127.0.0.1&quot; --port 6001 --user &quot;dump&quot; --password &quot;111&quot; --level &quot;account&quot; --sname &quot;sp_02&quot; --account &quot;sys&quot;
+<div class="highlight"><pre><span></span><code>./mo_br<span class="w"> </span>snapshot<span class="w"> </span>create<span class="w"> </span>--host<span class="w"> </span><span class="s2">&quot;127.0.0.1&quot;</span><span class="w"> </span>--port<span class="w"> </span><span class="m">6001</span><span class="w"> </span>--user<span class="w"> </span><span class="s2">&quot;dump&quot;</span><span class="w"> </span>--password<span class="w"> </span><span class="s2">&quot;111&quot;</span><span class="w"> </span>--level<span class="w"> </span><span class="s2">&quot;account&quot;</span><span class="w"> </span>--sname<span class="w"> </span><span class="s2">&quot;sp_02&quot;</span><span class="w"> </span>--account<span class="w"> </span><span class="s2">&quot;sys&quot;</span>
 
-./mo_br snapshot show --host &quot;127.0.0.1&quot; --port 6001 --user &quot;dump&quot; --password &quot;111&quot; --account &quot;sys&quot;
-SNAPSHOT NAME           TIMESTAMP           SNAPSHOT LEVEL  ACCOUNT NAME    DATABASE NAME   TABLE NAME 
-sp_02           2024-05-10 02:47:15.638519  account         sys                                         
+./mo_br<span class="w"> </span>snapshot<span class="w"> </span>show<span class="w"> </span>--host<span class="w"> </span><span class="s2">&quot;127.0.0.1&quot;</span><span class="w"> </span>--port<span class="w"> </span><span class="m">6001</span><span class="w"> </span>--user<span class="w"> </span><span class="s2">&quot;dump&quot;</span><span class="w"> </span>--password<span class="w"> </span><span class="s2">&quot;111&quot;</span><span class="w"> </span>--account<span class="w"> </span><span class="s2">&quot;sys&quot;</span>
+SNAPSHOT<span class="w"> </span>NAME<span class="w"> </span>TIMESTAMP<span class="w"> </span>SNAPSHOT<span class="w"> </span>LEVEL<span class="w"> </span>ACCOUNT<span class="w"> </span>NAME<span class="w"> </span>DATABASE<span class="w"> </span>NAME<span class="w"> </span>TABLE<span class="w"> </span>NAME
+sp_02<span class="w"> </span><span class="m">2024</span>-05-10<span class="w"> </span><span class="m">02</span>:47:15.638519<span class="w"> </span>account<span class="w"> </span>sys
 </code></pre></div>
 <ul>
-<li>Connection Matrixone system tenant deletes some data</li>
+<li>Connect to Matrixone system tenant to delete some data</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="k">delete</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">snapshot_read</span><span class="p">.</span><span class="n">test_snapshot_read</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">50</span><span class="p">;</span>
 <span class="k">delete</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">snapshot_read</span><span class="p">.</span><span class="n">test_snapshot_read_1</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">50</span><span class="p">;</span>
-
 <span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">snapshot_read</span><span class="p">.</span><span class="n">test_snapshot_read</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">----------+</span>
 <span class="o">|</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">----------+</span>
-<span class="o">|</span><span class="w">      </span><span class="mi">100</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="mi">100</span><span class="w">      </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">----------+</span>
 <span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 
@@ -12270,23 +12685,23 @@ sp_02           2024-05-10 02:47:15.638519  account         sys
 <span class="o">+</span><span class="c1">----------+</span>
 <span class="o">|</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">----------+</span>
-<span class="o">|</span><span class="w">       </span><span class="mi">49</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="mi">49</span><span class="w">       </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">----------+</span>
 <span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 </code></pre></div>
 <ul>
-<li>Database level restore to this tenant</li>
+<li>Database level recovery to this tenant</li>
 </ul>
-<div class="highlight"><pre><span></span><code>./mo_br snapshot restore --host &quot;127.0.0.1&quot; --port 6001 --user &quot;dump&quot; --password &quot;111&quot; --account &quot;sys&quot; --db &quot;snapshot_read&quot; --sname &quot;sp_02&quot;
+<div class="highlight"><pre><span></span><code>./mo_br<span class="w"> </span>snapshot<span class="w"> </span>restore<span class="w"> </span>--host<span class="w"> </span><span class="s2">&quot;127.0.0.1&quot;</span><span class="w"> </span>--port<span class="w"> </span><span class="m">6001</span><span class="w"> </span>--user<span class="w"> </span><span class="s2">&quot;dump&quot;</span><span class="w"> </span>--password<span class="w"> </span><span class="s2">&quot;111&quot;</span><span class="w"> </span>--account<span class="w"> </span><span class="s2">&quot;sys&quot;</span><span class="w"> </span>--db<span class="w"> </span><span class="s2">&quot;snapshot_read&quot;</span><span class="w"> </span>--sname<span class="w"> </span><span class="s2">&quot;sp_02&quot;</span>
 </code></pre></div>
 <ul>
-<li>Connect Matrixone System Tenant Query Recovery</li>
+<li>Connect to the Matrixone system tenant to query the recovery status</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">snapshot_read</span><span class="p">.</span><span class="n">test_snapshot_read</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">----------+</span>
 <span class="o">|</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">----------+</span>
-<span class="o">|</span><span class="w">      </span><span class="mi">200</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="mi">200</span><span class="w">      </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">----------+</span>
 <span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 
@@ -12294,14 +12709,14 @@ sp_02           2024-05-10 02:47:15.638519  account         sys
 <span class="o">+</span><span class="c1">----------+</span>
 <span class="o">|</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">----------+</span>
-<span class="o">|</span><span class="w">      </span><span class="mi">100</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="mi">100</span><span class="w">      </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">----------+</span>
 <span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="example-3-tenant-level-recovery">Example 3 Tenant Level Recovery</h2>
-<p>Tenant Level Recovery</p>
+<h2 id="example-3-tenant-level-recovery">Example 3 Tenant level recovery</h2>
+<p>Tenant level recovery</p>
 <ul>
-<li>Connect Matrixone system tenant to execute sql statement</li>
+<li>Connect to the Matrixone system tenant to execute sql statements</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="n">snapshot_read</span><span class="p">;</span>
 
@@ -12321,16 +12736,7 @@ sp_02           2024-05-10 02:47:15.638519  account         sys
 <span class="mi">8</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 </code></pre></div>
 <ul>
-<li>Create a snapshot</li>
-</ul>
-<div class="highlight"><pre><span></span><code>./mo_br snapshot create --host &quot;127.0.0.1&quot; --port 6001 --user &quot;dump&quot; --password &quot;111&quot; --level &quot;account&quot; --sname &quot;sp_03&quot; --account &quot;sys&quot;
-
-./mo_br snapshot show --host &quot;127.0.0.1&quot; --port 6001 --user &quot;dump&quot; --password &quot;111&quot;
-SNAPSHOT NAME           TIMESTAMP           SNAPSHOT LEVEL  ACCOUNT NAME    DATABASE NAME   TABLE NAME 
-sp_03           2024-05-11 03:20:16.065685  account         sys                                                                 
-</code></pre></div>
-<ul>
-<li>Connecting Matrixone System Tenant Delete Database</li>
+<li>Connect the Matrixone system tenant to delete the database</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="k">drop</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n">snapshot_read</span><span class="p">;</span>
 
@@ -12351,15 +12757,15 @@ sp_03           2024-05-11 03:20:16.065685  account         sys
 <ul>
 <li>Tenant level restored to this tenant</li>
 </ul>
-<div class="highlight"><pre><span></span><code>./mo_br snapshot restore --host &quot;127.0.0.1&quot; --port 6001 --user &quot;dump&quot; --password &quot;111&quot; --account &quot;sys&quot; --sname &quot;sp_03&quot;
+<div class="highlight"><pre><span></span><code>./mo_br<span class="w"> </span>snapshot<span class="w"> </span>restore<span class="w"> </span>--host<span class="w"> </span><span class="s2">&quot;127.0.0.1&quot;</span><span class="w"> </span>--port<span class="w"> </span><span class="m">6001</span><span class="w"> </span>--user<span class="w"> </span><span class="s2">&quot;dump&quot;</span><span class="w"> </span>--password<span class="w"> </span><span class="s2">&quot;111&quot;</span><span class="w"> </span>--account<span class="w"> </span><span class="s2">&quot;sys&quot;</span><span class="w"> </span>--sname<span class="w"> </span><span class="s2">&quot;sp_03&quot;</span>
 </code></pre></div>
 <ul>
-<li>Tenant level restored to new tenant</li>
+<li>Tenant level reversion to new tenant</li>
 </ul>
-<div class="highlight"><pre><span></span><code>./mo_br snapshot restore --host &quot;127.0.0.1&quot; --port 6001 --user &quot;dump&quot; --password &quot;111&quot; --account &quot;sys&quot; --sname &quot;sp_03&quot; --new_account &quot;acc2&quot; --new_admin_name &quot;admin&quot; --new_admin_password &quot;111&quot;;
+<div class="highlight"><pre><span></span><code>./mo_br<span class="w"> </span>snapshot<span class="w"> </span>restore<span class="w"> </span>--host<span class="w"> </span><span class="s2">&quot;127.0.0.1&quot;</span><span class="w"> </span>--port<span class="w"> </span><span class="m">6001</span><span class="w"> </span>--user<span class="w"> </span><span class="s2">&quot;dump&quot;</span><span class="w"> </span>--password<span class="w"> </span><span class="s2">&quot;111&quot;</span><span class="w"> </span>--account<span class="w"> </span><span class="s2">&quot;sys&quot;</span><span class="w"> </span>--sname<span class="w"> </span><span class="s2">&quot;sp_03&quot;</span><span class="w"> </span>--new_account<span class="w"> </span><span class="s2">&quot;acc2&quot;</span><span class="w"> </span>--new_admin_name<span class="w"> </span><span class="s2">&quot;admin&quot;</span><span class="w"> </span>--new_admin_password<span class="w"> </span><span class="s2">&quot;111&quot;</span><span class="p">;</span>
 </code></pre></div>
 <ul>
-<li>Connect Matrixone System Tenant Query Recovery</li>
+<li>Connect to the Matrixone system tenant to query the recovery status</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="n">databases</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">--------------------+</span>
@@ -12377,7 +12783,7 @@ sp_03           2024-05-11 03:20:16.065685  account         sys
 <span class="mi">8</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 </code></pre></div>
 <ul>
-<li>Connect New Tenant acc2 Query Recovery</li>
+<li>Connect to the new tenant acc2 to query the recovery status</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="n">databases</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">--------------------+</span>
@@ -12391,6 +12797,71 @@ sp_03           2024-05-11 03:20:16.065685  account         sys
 <span class="o">|</span><span class="w"> </span><span class="n">system_metrics</span><span class="w">     </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">--------------------+</span>
 <span class="mi">6</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="example-4-cluster-level-recovery">Example 4 Cluster level recovery</h2>
+<div class="highlight"><pre><span></span><code><span class="c1">--Executed under tenant acc1, acc2</span>
+<span class="k">create</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n">db1</span><span class="p">;</span>
+
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="n">databases</span><span class="p">;</span>
+<span class="o">+</span><span class="c1">--------------------+</span>
+<span class="o">|</span><span class="w"> </span><span class="k">Database</span><span class="w">           </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">--------------------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">db1</span><span class="w">                </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">information_schema</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">mo_catalog</span><span class="w">         </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">mysql</span><span class="w">              </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="k">system</span><span class="w">             </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">system_metrics</span><span class="w">     </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">--------------------+</span>
+<span class="mi">6</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+</code></pre></div>
+<ul>
+<li>Create snapshot</li>
+</ul>
+<div class="highlight"><pre><span></span><code>./mo_br<span class="w"> </span>snapshot<span class="w"> </span>create<span class="w"> </span>--host<span class="w"> </span><span class="s2">&quot;127.0.0.1&quot;</span><span class="w"> </span>--port<span class="w"> </span><span class="m">6001</span><span class="w"> </span>--user<span class="w"> </span><span class="s2">&quot;root&quot;</span><span class="w"> </span>--password<span class="w"> </span><span class="s2">&quot;111&quot;</span><span class="w"> </span>--level<span class="w"> </span><span class="s2">&quot;cluster&quot;</span><span class="w"> </span>--sname<span class="w"> </span><span class="s2">&quot;cluster_sp1&quot;</span>
+
+&gt;./mo_br<span class="w"> </span>snapshot<span class="w"> </span>show<span class="w"> </span>--host<span class="w"> </span><span class="s2">&quot;127.0.0.1&quot;</span><span class="w"> </span>--port<span class="w"> </span><span class="m">6001</span><span class="w"> </span>--user<span class="w"> </span><span class="s2">&quot;dump&quot;</span><span class="w"> </span>--password<span class="w"> </span><span class="s2">&quot;111&quot;</span><span class="w"> </span>--cluster<span class="w"> </span><span class="s2">&quot;sys&quot;</span>
+SNAPSHOT<span class="w"> </span>NAME<span class="w"> </span>TIMESTAMP<span class="w"> </span>SNAPSHOT<span class="w"> </span>LEVEL<span class="w"> </span>ACCOUNT<span class="w"> </span>NAME<span class="w"> </span>DATABASE<span class="w"> </span>NAME<span class="w"> </span>TABLE<span class="w"> </span>NAME
+cluster_sp1<span class="w"> </span><span class="m">2024</span>-10-14<span class="w"> </span><span class="m">03</span>:52:55.657359<span class="w"> </span>cluster
+</code></pre></div>
+<ul>
+<li>Connect the Matrixone system tenant to delete the database</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1">--Executed under tenant acc1, acc2</span>
+<span class="k">drop</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n">db1</span><span class="p">;</span>
+
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="n">databases</span><span class="p">;</span>
+<span class="o">+</span><span class="c1">--------------------+</span>
+<span class="o">|</span><span class="w"> </span><span class="k">Database</span><span class="w">           </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">--------------------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">information_schema</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">mo_catalog</span><span class="w">         </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">mysql</span><span class="w">              </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="k">system</span><span class="w">             </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">system_metrics</span><span class="w">     </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">--------------------+</span>
+<span class="mi">5</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+</code></pre></div>
+<ul>
+<li>recover</li>
+</ul>
+<div class="highlight"><pre><span></span><code>./mo_br<span class="w"> </span>snapshot<span class="w"> </span>restore<span class="w"> </span>--host<span class="w"> </span><span class="s2">&quot;127.0.0.1&quot;</span><span class="w"> </span>--port<span class="w"> </span><span class="m">6001</span><span class="w"> </span>--user<span class="w"> </span><span class="s2">&quot;root&quot;</span><span class="w"> </span>--password<span class="w"> </span><span class="s2">&quot;111&quot;</span><span class="w"> </span>--sname<span class="w"> </span><span class="s2">&quot;cluster_sp1&quot;</span>
+</code></pre></div>
+<ul>
+<li>Connect to tenants acc1 and acc2 to query the recovery status</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="n">databases</span><span class="p">;</span>
+<span class="o">+</span><span class="c1">--------------------+</span>
+<span class="o">|</span><span class="w"> </span><span class="k">Database</span><span class="w">           </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">--------------------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">db1</span><span class="w">                </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">information_schema</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">mo_catalog</span><span class="w">         </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">mysql</span><span class="w">              </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="k">system</span><span class="w">             </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">system_metrics</span><span class="w">     </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">--------------------+</span>
+<span class="mi">6</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 </code></pre></div>
 
 
@@ -12429,13 +12900,13 @@ sp_03           2024-05-11 03:20:16.065685  account         sys
         
         
           
-          <a href="../../../mount-data-by-docker/" class="md-footer__link md-footer__link--next" aria-label="Next: Mount directory to Docker container" rel="next">
+          <a href="../mobr-pitr-backup-restore/" class="md-footer__link md-footer__link--next" aria-label="Next: mo_br pitr" rel="next">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Mount directory to Docker container
+                mo_br pitr
               </div>
             </div>
             <div class="md-footer__button md-icon">

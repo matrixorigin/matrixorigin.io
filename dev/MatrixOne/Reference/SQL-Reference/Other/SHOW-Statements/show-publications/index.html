@@ -12,7 +12,7 @@
         <link rel="prev" href="../show-processlist/">
       
       
-        <link rel="next" href="../show-roles/">
+        <link rel="next" href="../show-pitrs/">
       
       <link rel="icon" href="../../../../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.1.21">
@@ -3865,8 +3865,36 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Maintain/backup-restore/mobr-backup-restore/mobr-pitr-backup-restore/" class="md-nav__link">
+        mo_br pitr
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Maintain/backup-restore/active-standby/" class="md-nav__link">
+        MatrixOne active/standby disaster recovery
+      </a>
     </li>
   
 
@@ -3895,12 +3923,74 @@
       
       
         <label class="md-nav__link" for="__nav_1_6_2" id="__nav_1_6_2_label" tabindex="0">
-          Mount Data
+          cdc
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_1_6_2_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_1_6_2">
+          <span class="md-nav__icon md-icon"></span>
+          cdc
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Maintain/cdc/mocdc/" class="md-nav__link">
+        mo_cdc guidelines for use
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Maintain/cdc/mo-mysql/" class="md-nav__link">
+        From MatrixOne to MySQL
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_6_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_6_3" id="__nav_1_6_3_label" tabindex="0">
+          Mount Data
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_1_6_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1_6_3">
           <span class="md-nav__icon md-icon"></span>
           Mount Data
         </label>
@@ -5116,6 +5206,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../Data-Types/datalink-type/" class="md-nav__link">
+        DATALINK Type
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../Data-Types/enum-type/" class="md-nav__link">
         ENUM Type
       </a>
@@ -5361,6 +5465,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../Data-Definition-Language/create-pitr/" class="md-nav__link">
+        CREATE PITR
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../Data-Definition-Language/create-publication/" class="md-nav__link">
         CREATE PUBLICATION
       </a>
@@ -5529,6 +5647,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../Data-Definition-Language/alter-pitr/" class="md-nav__link">
+        ALTER PITR
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../Data-Definition-Language/alter-publication/" class="md-nav__link">
         ALTER PUBLICATION
       </a>
@@ -5615,6 +5747,20 @@
     <li class="md-nav__item">
       <a href="../../../Data-Definition-Language/drop-table/" class="md-nav__link">
         DROP TABLE
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Data-Definition-Language/drop-pitr/" class="md-nav__link">
+        DROP PITR
       </a>
     </li>
   
@@ -5725,8 +5871,36 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Data-Definition-Language/restore-account/" class="md-nav__link">
-        RESTORE ACCOUNT
+      <a href="../../../Data-Definition-Language/rename-table/" class="md-nav__link">
+        RENAME TABLE
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Data-Definition-Language/restore-pitr/" class="md-nav__link">
+        RESTORE PITR
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Data-Definition-Language/restore-snapshot/" class="md-nav__link">
+        RESTORE SNAPSHOT
       </a>
     </li>
   
@@ -6880,22 +7054,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#description" class="md-nav__link">
-    Description
+  <a href="#syntax-description" class="md-nav__link">
+    Syntax description
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#syntax" class="md-nav__link">
-    Syntax
+  <a href="#grammar-structure" class="md-nav__link">
+    Grammar structure
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#examples" class="md-nav__link">
-    Examples
+  <a href="#example" class="md-nav__link">
+    Example
   </a>
   
 </li>
@@ -6904,6 +7078,20 @@
   
 </nav>
       
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../show-pitrs/" class="md-nav__link">
+        SHOW PITRS
+      </a>
     </li>
   
 
@@ -7816,6 +8004,34 @@
     <li class="md-nav__item">
       <a href="../../../../Operators/operators/cast-functions-and-operators/convert/" class="md-nav__link">
         CONVERT
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Operators/operators/cast-functions-and-operators/decode/" class="md-nav__link">
+        DECODE
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Operators/operators/cast-functions-and-operators/encode/" class="md-nav__link">
+        ENCODE
       </a>
     </li>
   
@@ -10649,10 +10865,142 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_11_5_2_10" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_11_5_2_10" id="__nav_1_11_5_2_10_label" tabindex="0">
+          JSON Functions
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_1_11_5_2_10_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1_11_5_2_10">
+          <span class="md-nav__icon md-icon"></span>
+          JSON Functions
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
-      <a href="../../../../Functions-and-Operators/Json/json-functions/" class="md-nav__link">
-        JSON Functions
+      <a href="../../../../Functions-and-Operators/Json/jq/" class="md-nav__link">
+        JQ()
       </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Functions-and-Operators/Json/json_extract/" class="md-nav__link">
+        JSON_EXTRACT()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Functions-and-Operators/Json/json_extract_float64/" class="md-nav__link">
+        JSON_EXTRACT_FLOAT64()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Functions-and-Operators/Json/json_extract_string/" class="md-nav__link">
+        JSON_EXTRACT_STRING()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Functions-and-Operators/Json/json_quote/" class="md-nav__link">
+        JSON_QUOTE()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Functions-and-Operators/Json/json_row/" class="md-nav__link">
+        JSON_ROW()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Functions-and-Operators/Json/json_unquote/" class="md-nav__link">
+        JSON_UNQUOTE()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Functions-and-Operators/Json/try_jq/" class="md-nav__link">
+        TRY_JQ()
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -10691,8 +11039,36 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../Functions-and-Operators/Other/load_file/" class="md-nav__link">
+        LOAD_FILE()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Functions-and-Operators/Other/save_file/" class="md-nav__link">
+        SAVE_FILE()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../Functions-and-Operators/Other/sample/" class="md-nav__link">
-        SAMPLE
+        SAMPLE()
       </a>
     </li>
   
@@ -10706,7 +11082,7 @@
   
     <li class="md-nav__item">
       <a href="../../../../Functions-and-Operators/Other/serial_extract/" class="md-nav__link">
-        SERIAL_EXTRACT
+        SERIAL_EXTRACT()
       </a>
     </li>
   
@@ -10720,7 +11096,21 @@
   
     <li class="md-nav__item">
       <a href="../../../../Functions-and-Operators/Other/sleep/" class="md-nav__link">
-        SLEEP
+        SLEEP()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Functions-and-Operators/Other/stage_list/" class="md-nav__link">
+        STAGE_LIST()
       </a>
     </li>
   
@@ -11384,6 +11774,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../../Release-Notes/v24.2.0.0/" class="md-nav__link">
+        v24.2.0.0
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../../Release-Notes/v24.1.2.4/" class="md-nav__link">
         v24.1.2.4
       </a>
@@ -12010,22 +12414,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#description" class="md-nav__link">
-    Description
+  <a href="#syntax-description" class="md-nav__link">
+    Syntax description
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#syntax" class="md-nav__link">
-    Syntax
+  <a href="#grammar-structure" class="md-nav__link">
+    Grammar structure
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#examples" class="md-nav__link">
-    Examples
+  <a href="#example" class="md-nav__link">
+    Example
   </a>
   
 </li>
@@ -12054,13 +12458,13 @@
 
 
 <h1 id="show-publications"><strong>SHOW PUBLICATIONS</strong></h1>
-<h2 id="description"><strong>Description</strong></h2>
-<p>Returns a list of all publish names, the database name of the publish, the publish creation time, the publish last modification time, a list of the tenant names specified by the publish (show "*" if all), and notes.</p>
-<p>For more information, you need to have tenant administrator privileges and view the system table mo_pubs to see more parameters.</p>
-<h2 id="syntax"><strong>Syntax</strong></h2>
+<h2 id="syntax-description"><strong>Syntax description</strong></h2>
+<p>Returns information such as all publication names, published database/table names, publication creation time, publication latest modification time, and a list of tenant names specified by the publication (if all, "*" is displayed).</p>
+<p>To view more information, you need to have tenant administrator rights and view the system table mo_pubs to view more parameters.</p>
+<h2 id="grammar-structure"><strong>Grammar structure</strong></h2>
 <div class="highlight"><pre><span></span><code>SHOW PUBLICATIONS;
 </code></pre></div>
-<h2 id="examples"><strong>Examples</strong></h2>
+<h2 id="example"><strong>Example</strong></h2>
 <div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="n">account</span><span class="w"> </span><span class="n">acc0</span><span class="w"> </span><span class="n">admin_name</span><span class="w"> </span><span class="s1">&#39;root&#39;</span><span class="w"> </span><span class="n">identified</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="s1">&#39;111&#39;</span><span class="p">;</span>
 <span class="k">create</span><span class="w"> </span><span class="n">account</span><span class="w"> </span><span class="n">acc1</span><span class="w"> </span><span class="n">admin_name</span><span class="w"> </span><span class="s1">&#39;root&#39;</span><span class="w"> </span><span class="n">identified</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="s1">&#39;111&#39;</span><span class="p">;</span>
 <span class="k">create</span><span class="w"> </span><span class="n">account</span><span class="w"> </span><span class="n">acc2</span><span class="w"> </span><span class="n">admin_name</span><span class="w"> </span><span class="s1">&#39;root&#39;</span><span class="w"> </span><span class="n">identified</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="s1">&#39;111&#39;</span><span class="p">;</span>
@@ -12068,11 +12472,11 @@
 <span class="k">create</span><span class="w"> </span><span class="n">publication</span><span class="w"> </span><span class="n">pub3</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">account</span><span class="w"> </span><span class="n">acc0</span><span class="p">,</span><span class="n">acc1</span><span class="p">;</span>
 
 <span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="n">publications</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">-------------+----------+---------------------+-------------+-------------+----------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">publication</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">create_time</span><span class="w">         </span><span class="o">|</span><span class="w"> </span><span class="n">update_time</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">sub_account</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">comments</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------------+----------+---------------------+-------------+-------------+----------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">pub3</span><span class="w">        </span><span class="o">|</span><span class="w"> </span><span class="n">t</span><span class="w">        </span><span class="o">|</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">23</span><span class="w"> </span><span class="mi">10</span><span class="p">:</span><span class="mi">10</span><span class="p">:</span><span class="mi">59</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w">        </span><span class="o">|</span><span class="w"> </span><span class="n">acc0</span><span class="p">,</span><span class="n">acc1</span><span class="w">   </span><span class="o">|</span><span class="w">          </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------------+----------+---------------------+-------------+-------------+----------+</span>
+<span class="o">+</span><span class="c1">-------------+----------+--------+-------------+---------------------+---------------------+-------------+----------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">publication</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">tables</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">sub_account</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">subscribed_accounts</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">create_time</span><span class="w">         </span><span class="o">|</span><span class="w"> </span><span class="n">update_time</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">comments</span><span class="w"> </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">-------------+----------+--------+-------------+---------------------+---------------------+-------------+----------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">pub3</span><span class="w">        </span><span class="o">|</span><span class="w"> </span><span class="n">t</span><span class="w">        </span><span class="o">|</span><span class="w"> </span><span class="o">*</span><span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="n">acc0</span><span class="p">,</span><span class="n">acc1</span><span class="w">   </span><span class="o">|</span><span class="w">                     </span><span class="o">|</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">25</span><span class="w"> </span><span class="mi">16</span><span class="p">:</span><span class="mi">36</span><span class="p">:</span><span class="mi">04</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w">        </span><span class="o">|</span><span class="w">          </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">-------------+----------+--------+-------------+---------------------+---------------------+-------------+----------+</span>
 <span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 </code></pre></div>
 
@@ -12112,13 +12516,13 @@
         
         
           
-          <a href="../show-roles/" class="md-footer__link md-footer__link--next" aria-label="Next: SHOW ROLES" rel="next">
+          <a href="../show-pitrs/" class="md-footer__link md-footer__link--next" aria-label="Next: SHOW PITRS" rel="next">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                SHOW ROLES
+                SHOW PITRS
               </div>
             </div>
             <div class="md-footer__button md-icon">
