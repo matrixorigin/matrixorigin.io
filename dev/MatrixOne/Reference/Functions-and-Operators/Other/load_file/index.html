@@ -12474,6 +12474,10 @@
 <h1 id="load_file"><strong>LOAD_FILE()</strong></h1>
 <h2 id="function-description"><strong>Function description</strong></h2>
 <p>The <code>LOAD_FILE()</code> function is used to read the contents of the file pointed to by the datalink type.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When using load_file() to load a large file, if the file data volume is too large, the system memory limit may be exceeded, causing memory overflow. It is recommended to use it in combination with <code>offset</code> and <code>size</code> of <a href="../../../Data-Types/datalink-type/">DATALINK</a>.</p>
+</div>
 <h2 id="function-syntax"><strong>Function syntax</strong></h2>
 <div class="highlight"><pre><span></span><code>&gt;LOAD_FILE(datalink_type_data);
 </code></pre></div>
