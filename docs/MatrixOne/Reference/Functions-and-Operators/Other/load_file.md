@@ -4,6 +4,9 @@
 
 The `LOAD_FILE()` function is used to read the contents of the file pointed to by the datalink type.
 
+!!! note
+    When using load_file() to load a large file, if the file data volume is too large, the system memory limit may be exceeded, causing memory overflow. It is recommended to use it in combination with `offset` and `size` of [DATALINK](../../Data-Types/datalink-type.md).
+
 ## **Function syntax**
 
 ```
