@@ -64,7 +64,8 @@ Data Manipulation Language (DML) is used for database operations, including prog
 
 - [INSERT](Data-Manipulation-Language/insert.md)
 - [INSERT INTO SELECT](Data-Manipulation-Language/insert-into-select.md)
-- [INSERT ON DUPLICATE KEY UPDATE](Data-Manipulation-Language/insert-on-duplicate.md)
+- [INSERT IGNORE](Data-Manipulation-Language/upsert/insert-ignore.md)
+- [INSERT ON DUPLICATE KEY UPDATE](Data-Manipulation-Language/upsert/insert-on-duplicate.md)
 
 ### DELETE Statement - Deleting Existing Rows from a Table
 
