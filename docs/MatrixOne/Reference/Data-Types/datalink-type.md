@@ -29,6 +29,9 @@ INSERT INTO TABLE_NAME VALUES ('<file://<path>/<filename>>|<stage://<stage_name>
 
 If you want to read the data pointed by `DATALINK` to a file link, you can use the [load_file](../../Reference/Functions-and-Operators/Other/load_file.md) function.
 
+!!! note
+    The `load_file()` function reads files in binary mode. For non-text files (such as images, audio, video and other binary format files), the read content will be returned in the form of a raw byte stream without character encoding. Convert. In addition, because in UTF-8 encoding, Chinese characters usually occupy 3 bytes, while English characters only occupy 1 byte. Therefore, when specifying the offset (offset) and read size (size) of the file, if the byte alignment of the characters is not considered, Chinese characters may be truncated or cannot be read correctly, resulting in garbled characters. In order to avoid this situation, the values ​​of offset and size need to be correctly converted according to the character encoding to ensure that the number of bytes of the read content is aligned with the character boundary.
+
 ## Example
 
 There is a file `t1.csv` under `/Users/admin/case`

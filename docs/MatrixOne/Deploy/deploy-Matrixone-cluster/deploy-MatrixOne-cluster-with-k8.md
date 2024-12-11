@@ -479,6 +479,49 @@ This section describes two ways to deploy MatrixOne: YAML and Chart.
     helm install -n ${NS} ${RELEASE_NAME} matrixone-operator/matrixone --version ${VERSION} -f values.yaml
     ```
 
+### Dynamic expansion
+
+The Operator supports dynamic expansion of the cacheVolume configuration of TN and CN, but does not support the reduction operation. There is no need to restart the CN and TN pods before and after the expansion process. The specific steps are as follows:
+
+1. Make sure the StorageClass supports the volume extension feature
+
+    ```bash
+    #View storageclass name
+    >kubectl get pvc -n ${MO_NS}
+
+    #Check whether StorageClass supports volume extension function
+    >kubectl get storageclass ${SC_NAME} -oyaml |  grep allowVolumeExpansion #SC_NAME is the sc type of pvc used by the mo cluster
+    allowVolumeExpansion: true #Only when true can subsequent steps be performed
+    ```
+
+2. Enter cluster configuration editing mode
+
+    ```bash
+    kubectl edit mo -n ${MO_NS} ${MO_NAME} # Among them, MO_NS is the namespace where the MO cluster is deployed, and MO_NAME is the name of the MO cluster; for example,MO_NS=matrixone; MO_NAME=mo_cluster
+    ```
+
+3. Modify the cacheVolume size of tn and cn as needed
+
+    ```bash
+    - cacheVolume:
+            size: 900Gi
+    ```
+
+    - If it is a CN group, modify spec.cnGroups[0].cacheVolume (or spec.cnGroups[1].cacheVolume, where n in [n] is the array subscript of the CN Group);
+    - If it is CN, modify spec.tp.cacheVolume;
+    - If TN, modifies spec.tn.cacheVolume (or spec.dn.cacheVolume).
+
+    Then save and exit: press `esq` keys, and `:wq`
+
+4. View expansion results
+
+    ```bash
+    #The value of the `capacity` field is the value after expansion.
+    >kubectl get pvc -n ${MO_NS}
+
+    >kubectl get pv | grep ${NS}
+    ```
+
 ### Checking cluster status
 
 Observe cluster status until Ready

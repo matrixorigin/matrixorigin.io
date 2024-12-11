@@ -69,6 +69,7 @@ This document lists the functions supported in the latest version of MatrixOne.
 | [CEILING()](./Mathematical/ceiling.md)  | Used to find the smallest integer that is not less than the argument.|
 | [COS()](./Mathematical/cos.md)    | Used to find the cosine of an input parameter (expressed in radians).|
 | [COT()](./Mathematical/cot.md)    | Used to find the cotangent value of the input parameter (expressed in radians). |
+| [CRC32()](./Mathematical/crc32.md)| Used to calculate a CRC32 checksum for a string |
 | [EXP()](./Mathematical/exp.md)    | Used to find the exponent of number with the natural constant e as the base.|
 | [FLOOR()](./Mathematical/floor.md)| Used to find the number of digits not greater than the corresponding digit of a number. |
 | [LN()](./Mathematical/ln.md)      | The natural logarithm used to find the parameters|
@@ -160,6 +161,7 @@ This document lists the functions supported in the latest version of MatrixOne.
 
 | Function name                     | effect                              |
 | -------------------------------- | --------------------------------------- |
+| [GENERATE_SERIES()](./Table/generate_series.md)    | Used to form a sequence from start value to end value|
 | [UNNEST()](./Table/unnest.md)    | Used to expand an array of columns or parameters within JSON-type data into a table.|
 
 ## Window function
