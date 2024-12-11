@@ -98,6 +98,11 @@ Data Query Language (DQL) is used to retrieve existing data in MatrixOne. It pri
 - [SUBQUERY with EXISTS](Data-Query-Language/subqueries/subquery-with-exists.md)
 - [SUBQUERY with IN](Data-Query-Language/subqueries/subquery-with-in.md)
 
+### Apply Query - A query that applies an operation to each row of data
+
+- [CROSS APPLY](Data-Query-Language/apply/cross-apply.md)
+- [OUTER APPLY](Data-Query-Language/apply/outer-apply.md)
+  
 ### Join Query - Combining Results from Multiple Tables
 
 - [INNER JOIN](Data-Query-Language/join/inner-join.md)

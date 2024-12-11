@@ -1,38 +1,38 @@
 # **SHOW ACCOUNTS**
 
-## **Description**
+## **Function description**
 
-Lists the meta information and statistics for the accounts created.
+Lists meta-information and statistics for tenant users created under your account.
 
-## **Syntax**
+## **Function syntax**
 
 ```
 > SHOW ACCOUNTS;
 ```
 
-### Meta information of account
+### Tenant user information details
 
-| Column Name            | Details                 | Type             | Date Source                                         |
-| -------------- | ------------------- | --------------- | -------------------------------------------- |
-| ACCOUNT_NAME   | Account name                | varchar         | mo_account                                   |
-| ADMIN_NAME     | The default administrator name is created       | varchar         | In the mo_user table under each account                               |
-| CREATED        | Created time                | timestamp       | mo_account                                   |
-| STATUS         | Status, OPEN or SUSPENDED | varchar         | mo_account                                   |
-| SUSPENDED_TIME | Suspended time                | timestamp       | mo_account                                   |
-| DB_COUNT       | the number of databases             | bigint unsigned | mo_tables                                    |
-| TABLE_COUNT    | the number of tables                | bigint unsigned | mo_tables                                    |
-| ROW_COUNT      | Total line number                 | bigint unsigned | sum(mo_table_rows())                         |
-| SIZE           | Total space used (MB)          | decimal(29,3)   | sum(mo_table_size(mt.reldatabase,mt.relname) |
-| COMMENT        | COMMENT information at creation time       | varchar         | mo_account                                   |
+| Column Name | Information | Type | Data Source |
+| --------------| -------------------| ---------------| -----------------------------------------------|
+| ACCOUNT_NAME | tenant name | varchar | mo_account |
+| ADMIN_NAME | Default super administrator name when created | varchar | In the mo_user table under each tenant |
+| CREATED_TIME | Creation time | timestamp | mo_account |
+| STATUS | Current status, OPEN or SUSPENDED | varchar | mo_account |
+| SUSPENDED_TIME | Suspension time | timestamp | mo_account |
+| DB_COUNT | Number of databases | bigint unsigned | mo_tables |
+| TBL_COUNT | Number of tables | bigint unsigned | mo_tables |
+| SIZE | Total space used (MB) | decimal(29,3) | sum(mo_table_size(mt.reldatabase,mt.relname) |
+| SNAPSHOT_SIZE | Backup data storage size (MB) | --| --|
+| COMMENTS | COMMENT information when created | varchar | mo_account |
 
-## **Examples**
+## **Example**
 
 ```sql
 mysql> show accounts;
-+--------------+------------+---------------------+--------+----------------+----------+-------------+-----------+-------+----------------+
-| account_name | admin_name | created             | status | suspended_time | db_count | table_count | row_count | size  | comment        |
-+--------------+------------+---------------------+--------+----------------+----------+-------------+-----------+-------+----------------+
-| sys          | root       | 2023-02-14 06:58:15 | open   | NULL           |        8 |          57 |      2681 | 0.351 | system account |
-+--------------+------------+---------------------+--------+----------------+----------+-------------+-----------+-------+----------------+
-1 row in set (0.14 sec)
++--------------+------------+---------------------+--------+----------------+----------+-----------+----------+---------------+----------------+
+| account_name | admin_name | created_time        | status | suspended_time | db_count | tbl_count | size     | snapshot_size | comments       |
++--------------+------------+---------------------+--------+----------------+----------+-----------+----------+---------------+----------------+
+| sys          | root       | 2024-12-06 03:37:02 | open   | NULL           |        7 |       108 | 3.188068 |             0 | system account |
++--------------+------------+---------------------+--------+----------------+----------+-----------+----------+---------------+----------------+
+1 row in set (0.01 sec)
 ```

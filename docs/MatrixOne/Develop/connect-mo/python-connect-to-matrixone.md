@@ -69,7 +69,7 @@ The PyMySQL is a pure-Python MySQL client library.
 
     ```
     > python3 pymysql_connect_matrixone.py
-    Database version : 8.0.30-MatrixOne-v2.0.0
+    Database version : 8.0.30-MatrixOne-v2.0.1
     ```
 
 ## Using sqlalchemy connect to MatrixOne

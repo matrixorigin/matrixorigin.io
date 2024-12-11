@@ -183,7 +183,7 @@ mysql> show tables;
 
 ## Insert Data
 
-- Adding data requires the creation of objects first, and then through the ORM-supplied objects-supplied method create . Create a new views.py file in the django\_crud\_matrixone directory under the previously created django\_crud\_matrixone directory and enter the code:
+- Adding data requires the creation of objects first, and then through the ORM-supplied objects-supplied method create . Create a new views.py file in the django\_crud\_matrixone directory under the previously created django_crud_matrixone directory and enter the code:
   
 ```
 from django.shortcuts import render,HttpResponse
