@@ -6,172 +6,219 @@ The system can only modify system databases and tables; you can only read from t
 
 ## `mo_catalog` database
 
-The `mo_catalog` is used to store metadata about MatrixOne objects such as: databases, tables, columns, system variables, tenants, users, and roles.
+`mo_catalog` is used to store metadata of MatrixOne objects, such as databases, tables, columns, system variables, tenants, users and roles.
 
-The concept of multi-tenancy was introduced with MatrixOne version 0.6, and the default `sys` tenant behaves slightly differently from other tenants. The system table `mo_account`, which serves multi-tenant management, is only visible to `sys` tenants; it is not visible to other tenants.
+The concept of multi-tenancy was introduced from MatrixOne version 0.6, and the default `sys` tenant behaves slightly differently from other tenants. The system table `mo_account` that serves multi-tenant management is only visible to the `sys` tenant; other tenants cannot see this table.
 
-### mo_indexes table
+### `mo_account` table (only visible to `sys` tenant)
 
-| column            | type            | comments                            |
-| -----------------| --------------- | ----------------- |
-| id | BIGINT UNSIGNED(64) | index ID |
-| table_id | BIGINT UNSIGNED(64) | ID of the table where the index resides |
-| database_id | BIGINT UNSIGNED(64) | ID of the database where the index resides |
-| name | VARCHAR(64) | name of the index |
-| type | VARCHAR(11) | The type of index, including primary key index (PRIMARY), unique index (UNIQUE), secondary index (MULTIPLE) |
-| algo_table_type | VARCHAR(11) | Algorithm for creating indexes |
-| algo_table_type | VARCHAR(11) | Hidden table types for multi-table indexes |
-| | algo_params | VARCHAR(2048) | Parameters for indexing algorithms |
-| is_visible | TINYINT(8) | Whether the index is visible, 1 means visible, 0 means invisible (currently all MatrixOne indexes are visible indexes) |
-| hidden | TINYINT(8) | Whether the index is hidden, 1 is a hidden index, 0 is a non-hidden index|
-| comment | VARCHAR(2048) | Comment information for the index |
-| column_name | VARCHAR(256) | The column name of the constituent columns of the index |
-| ordinal_position | INT UNSIGNED(32) | Column ordinal in index, starting from 1 |
-| options | TEXT(0) | options option information for index |
-| index_table_name | VARCHAR(5000) | The table name of the index table corresponding to the index, currently only the unique index contains the index table |
+| Column  | Type | Description |
+| ----------------| ----------------| ----------------|
+| account_id   | int unsigned | tenant ID, primary key |
+| account_name | varchar(100) | tenant name |
+| status       | varchar(100) | enable/pause/restrict |
+| created_time | timestamp | creation time |
+| comments     | varchar(256) | Comments |
+| suspended_time | TIMESTAMP | Time to modify tenant status |
+| version        | bigint unsigned | Current tenant version status |
 
-### mo_table_partitions table
+### `mo_cdc_task` table
 
-| column       | type         | comments     |
-| ------------ | ------------ | ------------ |
-| table_id | BIGINT UNSIGNED(64) | The ID of the current partitioned table. |
-| database_id | BIGINT UNSIGNED(64) | The ID of the database to which the current partitioned table belongs. |
-| number | SMALLINT UNSIGNED(16) | The current partition number. All partitions are indexed in the order they are defined, with 1 assigned to the first partition. |
-| name | VARCHAR(64) | The name of the partition. |
-| partition_type | VARCHAR(50) | Stores the partition type information for the table. For partitioned tables, the values can be "KEY", "LINEAR_KEY", "HASH", "LINEAR_KEY_51", "RANGE", "RANGE_COLUMNS", "LIST", "LIST_COLUMNS". For non-partitioned tables, the value is an empty string. Note: MatrixOne does not currently support RANGE and LIST partitioning. |
-| partition_expression | VARCHAR(2048) | The expression for the partitioning function used in the CREATE TABLE or ALTER TABLE statement that created the partitioned table's partitioning scheme. |
-| description_utf8 | TEXT(0) | This column is used for RANGE and LIST partitions. For a RANGE partition, it contains the value set in the partition's VALUES LESS THAN clause, which can be an integer or MAXVALUE. For a LIST partition, this column contains the values defined in the partition's VALUES IN clause, which is a comma-separated list of integer values. For partitions with partition_type other than RANGE or LIST, this column is always NULL. Note: MatrixOne does not currently support RANGE and LIST partitioning, so this column is NULL. |
-| comment | VARCHAR(2048) | The text of the comment, if the partition has one. Otherwise, this value is empty. |
-| options | TEXT(0) | Partition options information, currently set to NULL. |
-| partition_table_name | VARCHAR(1024) | The name of the subtable corresponding to the current partition. |
+| Column  | Type | Description |
+| ------------------| ---------------| -------------------------|
+| account_id | BIGINT UNSIGNED(64) | tenant id |
+| task_id | UUID(0) | task id |
+| task_name | VARCHAR(1000) | task name |
+| source_uri | TEXT(0) | upstream uri |
+| source_password | VARCHAR(1000) | Upstream password, encrypted display |
+| sink_uri | TEXT(0) | downstream uri |
+| sink_type | VARCHAR(20) | Downstream type |
+| sink_password | VARCHAR(1000) | Downstream password, encrypted display |
+| sink_ssl_ca_path | VARCHAR(65535) |Downstream ca certificate path |
+| sink_ssl_cert_path | VARCHAR(65535) | Downstream cert certificate path |
+| sink_ssl_key_path | VARCHAR(65535) | Downstream ssl key path |
+| tables | TEXT(0) |Synchronized tables |
+| filters | TEXT(0) | filtered table |
+| opfilters | TEXT(0) | Filter operations |
+| source_state | VARCHAR(20) | upstream state |
+| sink_state | VARCHAR(20) | Downstream state |
+| start_ts | VARCHAR(1000) | Pull the data at this point in time and start synchronization |
+| end_ts | VARCHAR(1000) | Data synchronization ends at this point in time |
+| config_file | VARCHAR(65535) | Configuration file path |
+| task_create_time | DATETIME(0) | Task creation time |
+| state | VARCHAR(20) | task status |
+| checkpoint | BIGINT UNSIGNED(64) | checkpoint |
+| checkpoint_str | VARCHAR(1000) | Task progress |
+| no_full | BOOL(0) | Whether to synchronize full volume |
+| incr_config | VARCHAR(1000) | Incremental configuration |
+| additional_config | TEXT(0) | Additional configuration |
+| err_msg | VARCHAR(256) | Error message |
 
-### mo_user table
+### `mo_cdc_watermark` table
 
-| column                | type         | comments            |
-| --------------------- | ------------ | ------------------- |
-| user_id               | int | user id, primary key                 |
-| user_host             | varchar(100) |  user host address                   |
-| user_name             | varchar(100) |  user name                   |
-| authentication_string | varchar(100) |  authentication string encrypted with password                   |
-| status                | varchar(8)   | open,locked,expired |
-| created_time          | timestamp    | user created time                   |
-| expired_time          | timestamp    | user expired time                    |
-| login_type            | varchar(16)  | ssl/password/other  |
-| creator               | int | the creator id who created this user             |
-| owner                 | int | the admin id for this user      |
-| default_role          | int | the default role id for this user          |
+| Column  | Type | Description |
+| ------------| ---------------| ------------------------------------------------------------|
+| account_id | BIGINT UNSIGNED(64) |tenant id |
+| task_id | UUID(0) | task id |
+| table_id | VARCHAR(64) | The id of the synchronized table |
+| db_name | VARCHAR(256) | Database name of the synchronized table |
+| table_name | VARCHAR(256) | The table name of the synchronized table |
+| watermark | VARCHAR(128) | The complete data range has been received in the data stream |
+| err_msg | VARCHAR(256) | Error message |
 
-### mo_account table (Only visible for `sys` account)
+### `mo_data_key` table
 
-| column       | type         | comments     |
-| ------------ | ------------ | ------------ |
-| account_id   | int unsigned | account id, primary key  |
-| account_name | varchar(100) | account name  |
-| status       | varchar(100) | open/suspend |
-| created_time | timestamp    | create time  |
-| comments     | varchar(256) | comment      |
-| suspended_time | TIMESTAMP   | Time of the account's status is changed |
-| version | bigint unsigned    | the version status of the current account|
+| Column  | Type | Description |
+| ------------| --------------------| ---------------------------------------------------------------|
+| account_id | BIGINT UNSIGNED(64) | tenant id |
+| key_id | UUID(0) | key id |
+| encrypted_key | VARCHAR(128) | Key after random key encryption |
+| create_time | TIMESTAMP(0) | Creation time |
+| update_time | TIMESTAMP(0) | update time |
 
-### mo_database table
+### `mo_columns` table
 
-| column           | type            | comments                                |
-| ---------------- | --------------- | --------------------------------------- |
-| dat_id           | bigint unsigned | Primary key ID                          |
-| datname          | varchar(100)    | Database name                           |
-| dat_catalog_name | varchar(100)    | Database catalog name, default as `def` |
-| dat_createsql    | varchar(100)    | Database creation SQL statement         |
-| owner            | int unsigned    | Role id                                 |
-| creator          | int unsigned    | User id                                 |
-| created_time     | timestamp       | Create time                             |
-| account_id       | int unsigned    | Account id                              |
-| dat_type         | varchar(23)     | Database type, common library or subscription library |
+| Column  | Type | Description |
+| ---------------------| ---------------| -------------------------------------------------------------|
+| att_uniq_name | varchar(256) | Primary key. Hidden composite primary key, format similar to "${att_relname_id}-${attname}" |
+| account_id | int unsigned | tenant ID |
+| att_database_id | bigint unsigned | Database ID |
+| att_database | varchar(256) | Data Name |
+| att_relname_id | bigint unsigned | table ID |
+| att_relname | varchar(256) | The table to which this column belongs. (reference mo_tables.relname) |
+| attname | varchar(256) | column name |
+| atttyp | varchar(256) | The data type of this column (removed columns are 0).   |
+| attnum | int | Number of columns. Normal columns are numbered starting from 1. |
+| att_length | int | Number of bytes of type |
+| attnotnull | tinyint(1) | Represents a non-null constraint.                       |
+| atthasdef | tinyint(1) | This column has a default expression or a generated expression. |
+| att_default | varchar(1024) | Default expression |
+| attisdropped | tinyint(1) | This column has been dropped and is no longer valid. The deleted column still physically exists in the table, but it is ignored by the parser and therefore cannot be accessed through SQL. |
+| att_constraint_type | char(1) | p = primary key constraint<br>n=no constraint |
+| att_is_unsigned | tinyint(1) | Whether it is unsigned |
+| att_is_auto_increment | tinyint(1) | Whether to increment |
+| att_comment | varchar(1024) | Comment |
+| att_is_hidden | tinyint(1) | Whether to hide |
+| attr_has_update | tinyint(1) | This column contains an update expression |
+| attr_update | varchar(1024) | update expression |
+| attr_is_clusterby | tinyint(1) | Whether this column is used as the cluster by keyword to create a table |
+| attr_seqnum | SMALLINT UNSIGNED(0) | Sequence number for each column |
+| attr_enum | varchar(65535) | If the type of this column is ENUM, it indicates the value of ENUM type represented by this column, otherwise it is empty |
 
-### mo_role table
+### `mo_configurations` view
 
-| column       | type         | comments                      |
-| ------------ | ------------ | ----------------------------- |
-| role_id      | int unsigned | role id, primary key          |
-| role_name    | varchar(100) | role name                     |
-| creator      | int unsigned | user_id                       |
-| owner        | int unsigned | MOADMIN/ACCOUNTADMIN  ownerid |
-| created_time | timestamp    | create time                   |
-| comments     | text         | comment                       |
+| Column | Data type | Description |
+| -------------| ---------------| -------------------------------------|
+| node_type | VARCHAR(65535) | Type of node: cn (computing node), tn (transaction node), log (log node), proxy (proxy).   |
+| node_id | VARCHAR(65535) | The unique identifier of the node.  |
+| name | VARCHAR(65535) |The name of the configuration item, which may be prefixed with a nested structure. |
+| current_value | VARCHAR(65535) | The current value of the configuration item.   |
+| default_value | VARCHAR(65535) | The default value of the configuration item.   |
+| internal | VARCHAR(65535) | Indicates whether the configuration parameter is an internal parameter. |
 
-### mo_user_grant table
+### `mo_database` table
 
-| column            | type         | comments                            |
-| ----------------- | ------------ | ----------------------------------- |
-| role_id           | int unsigned | ID of the authorized role, associated primary key       |
-| user_id           | int unsigned | Obtain the user ID of the authorized role and associate the primary key   |
-| granted_time      | timestamp    | granted time                        |
-| with_grant_option | bool         | Whether to allow an authorized user to license to another user or role |
+| Column  | Type | Description |
+|----------------| ------------------| ---------------------------------------|
+| dat_id | bigint unsigned | primary key ID |
+| datname | varchar(100) | database name |
+| dat_catalog_name | varchar(100) | Database catalog name, default `def` |
+| dat_createsql | varchar(100) | Create database SQL statement |
+| owner | int unsigned | role ID |
+| creator | int unsigned | user ID |
+| created_time | timestamp | creation time |
+| account_id | int unsigned | tenant ID |
+| dat_type | varchar(23) | Database type, normal library or subscription library |
 
-### mo_role_grant table
+### `mo_foreign_keys` table
 
-| column            | type         | comments                            |
-| ----------------- | ------------ | ----------------------------------- |
-| granted_id        | int  | the role id being granted, associated primary key              |
-| grantee_id        | int  | the role id to grant others, associated primary key            |
-| operation_role_id | int  | operation role id                   |
-| operation_user_id | int  | operation user id                   |
-| granted_time      | timestamp    | granted time                        |
-| with_grant_option | bool         | Whether to allow an authorized role to be authorized to another user or role|
+| Column  | Type | Description |
+|----------------| ------------------| ---------------------------------------|
+| constraint_name | VARCHAR(5000) | constraint name |
+| constraint_id | BIGINT UNSIGNED(64) | constraint id |
+| db_name | VARCHAR(5000) | Database name |
+| db_id | BIGINT UNSIGNED(64) | database id |
+| table_name | VARCHAR(5000) | table name |
+| table_id | BIGINT UNSIGNED(64) | table id |
+| column_name | VARCHAR(256) | column name |
+| column_id | BIGINT UNSIGNED(64) | column id |
+| refer_db_name | VARCHAR(5000) | Associated database name |
+| refer_db_id | BIGINT UNSIGNED(64) | associated table id |
+| refer_table_name | VARCHAR(5000) | Associated table name |
+| refer_table_id | BIGINT UNSIGNED(64) | associated table id |
+| refer_column_name | VARCHAR(256) | associated column name |
+| refer_column_id | BIGINT UNSIGNED(64) | associated column id |
+| on_delete | VARCHAR(128) | Cascade delete |
+| on_update | VARCHAR(128) | Cascade update |
 
-### mo_role_privs table
+### `mo_indexes` table
 
-| column            | type            | comments                            |
-| ----------------- | --------------- | ----------------------------------- |
-| role_id           | int     | role id, associated primary key                        |
-| role_name         | varchar(100)    | role name: accountadmin/public                           |
-| obj_type          | varchar(16)     | object type: account/database/table, associated primary key                         |
-| obj_id            | bigint unsigned | object id, associated primary key                         |
-| privilege_id      | int             | privilege id, associated primary key                      |
-| privilege_name    | varchar(100)    | privilege name: the list of privileges                                   |
-| privilege_level   | varchar(100)    | level of privileges, associated primary key                                    |
-| operation_user_id | int unsigned    | operation user id                             |
-| granted_time      | timestamp       | granted time                                    |
-| with_grant_option | bool            | If permission granting is permitted |
+| Column  | Type | Description |
+| ------------------| ---------------| -----------------|
+| id | BIGINT UNSIGNED(64) | Index ID |
+| table_id | BIGINT UNSIGNED(64) | ID of the table where the index is located |
+| database_id | BIGINT UNSIGNED(64) | ID of the database where the index is located |
+| name | VARCHAR(64) | The name of the index |
+| type | VARCHAR(11) | Type of index, including primary key index (PRIMARY), unique index (UNIQUE), secondary index (MULTIPLE|
+| algo | VARCHAR(11) | Algorithm for creating index |
+| algo_table_type | VARCHAR(11) | Hidden table type for multi-table indexes |
+| algo_params | VARCHAR(2048) | Index algorithm parameters |
+| is_visible | TINYINT(8) | Whether the index is visible, 1 is visible, 0 is invisible (currently all indexes of MatrixOne are visible indexes) |
+| hidden | TINYINT(8) | Whether the index is a hidden index, 1 is a hidden index, 0 is a non-hidden index |
+| comment | VARCHAR(2048) | Index comment information |
+| column_name | VARCHAR(256) | The column name of the index's constituent columns |
+| ordinal_position | INT UNSIGNED(32) | The column number in the index, starting from 1 |
+| options | TEXT(0) | Indexed options option information |
+| index_table_name | VARCHAR(5000) | The table name of the index table corresponding to this index. Currently, only the unique index contains the index table |
 
-### mo_user_defined_function table
+### `mo_locks` view
 
-| column            | type            | comments                            |
-| -----------------| --------------- | ----------------- |
-| function_id | INT(32) | ID of the function, primary key |
-| name | VARCHAR(100) | the name of the function |
-| owner | INT UNSIGNED(32) | ID of the role who created the function |
-| args | TEXT(0) | Argument list for the function |
-| rettype | VARCHAR(20) | return type of the function |
-| body | TEXT(0) | function body |
-| language | VARCHAR(20) | language used by the function |
-| db | VARCHAR(100) | database where the function is located |
-| definer | VARCHAR(50) | name of the user who defined the function |
-| modified_time | TIMESTAMP(0) | time when the function was last modified |
-| created_time | TIMESTAMP(0) | creation time of the function |
-| type | VARCHAR(10) | type of function, default FUNCTION |
-| security_type | VARCHAR(10) | security processing method, uniform value DEFINER |
-| comment | VARCHAR(5000) | Create a comment for the function |
-| character_set_client | VARCHAR(64) | Client character set: utf8mb4 |
-| collation_connection | VARCHAR(64) | Connection sort: utf8mb4_0900_ai_ci |
-| database_collation | VARCHAR(64) | Database connection collation: utf8mb4_0900_ai_ci |
+| Column | Data type | Description |
+| -------------| ---------------| ---------------------------------------------|
+| cn_id | VARCHAR(65535) | uuid of cn |
+| txn_id | VARCHAR(65535) | The transaction holding the lock.                                  |
+| table_id | VARCHAR(65535) | Locked table.                                      |
+| lock_key | VARCHAR(65535) | Lock type. Can be `point` or `range`.              |
+| lock_content | VARCHAR(65535) | Locked content, expressed in hexadecimal. For `range` locks, it represents a range; for `point` locks, it represents a single value. |
+| lock_mode | VARCHAR(65535) | Lock mode. Can be `shared` or `exclusive`.         |
+| lock_status | VARCHAR(65535) | Lock status, may be `wait`, `acquired` or `none`. <br>wait. No transaction holds the lock, but there are transactions waiting on the lock. <br>acquired. A transaction holds the lock. <br>none. No transaction holds the lock, and no transaction is waiting on the lock.     |
+| lock_wait | VARCHAR(65535) | Transactions waiting on this lock.                             |
 
-### mo_mysql_compatbility_mode table
+### `mo_mysql_compatibility_mode` table
 
-| column            | type            | comments                            |
-| -----------------| --------------- | ----------------- |
-| configuration_id | INT(32) | Configuration item id, self-incrementing column, used as primary key to distinguish between different configurations |
-| account_id | INT(32) | Tenant id of the configuration |
+| Column  | Type | Description |
+| ------------------| ---------------| -----------------|
+| configuration_id | INT(32) | Configuration item id, auto-increment column, used as primary key to distinguish different configurations |
+| account_id | INT(32) | Tenant id where the configuration is located |
 | account_name | VARCHAR(300) | The name of the tenant where the configuration is located |
-| dat_name | VARCHAR(5000) | The name of the database where the configuration resides |
+| dat_name | VARCHAR(5000) | The name of the database where the configuration is located |
 | variable_name | VARCHAR(300) | The name of the variable |
-| variable_value | VARCHAR(5000) | The name of the database where the configuration resides. |
 | variable_value | VARCHAR(5000) | The value of the variable |
-| system_variables | BOOL(0) | if it is a system variable (compatibility variables are added in addition to system variables) |
+| system_variables | BOOL(0) | Whether it is a system variable (in addition to system variables, compatibility variables are also added) |
+
+### `mo_pitr` table
+
+| Column | Type | Description |
+| ---------------| ------------------| -----------------|
+| pitr_id | UUID(0) |pitr's id |
+| pitr_name | VARCHAR(5000) | The name of pitr |
+| create_account | BIGINT UNSIGNED(64) | Created tenant |
+| create_time | TIMESTAMP(0) | Creation time |
+| modified_time | TIMESTAMP(0) | modified time |
+| level | VARCHAR(10) | range |
+| account_id | BIGINT UNSIGNED(64) | tenant id |
+| account_name | VARCHAR(300) | tenant name |
+| database_name | VARCHAR(5000) | database name |
+| table_name | VARCHAR(5000) | table name |
+| obj_id | BIGINT UNSIGNED(64) | object id |
+| pitr_length | TINYINT UNSIGNED(8) | pitr time value |
+| pitr_unit | VARCHAR(10) | time unit |
 
 ### `mo_pubs` table
 
-| Column Properties | Type | Description |
+| Column  | Type | Description |
 | ------------------| ---------------| -----------------|
+| account_id | INT(32) |tenant id |
 | pub_name | VARCHAR(64) | Publish name |
 | database_name | VARCHAR(5000) | Name of published data |
 | database_id | BIGINT UNSIGNED(64) | The ID of the publishing database, corresponding to the dat_id in the mo_database table |
@@ -184,11 +231,61 @@ The concept of multi-tenancy was introduced with MatrixOne version 0.6, and the 
 | creator | INT UNSIGNED(32) | Create the user ID corresponding to the release library |
 | comment | TEXT(0) | Remarks for creating a release library |
 
+### `mo_role` table
+
+| Column  | Type | Description |
+| ------------| ------------| -----------------------------|
+| role_id | int unsigned | Role ID, primary key |
+| role_name | varchar(100) | role name |
+| creator | int unsigned | user ID |
+| owner | int unsigned | MatrixOne administrator/tenant administrator owner ID |
+| created_time | timestamp | creation time |
+| comments | text | comments |
+
+### `mo_role_grant` table
+
+| Column  | Type | Description |
+| ------------------| ----------| ------------------------------------|
+| granted_id | int | Granted role ID, joint primary key |
+| grantee_id | int | Role ID to grant other roles, federated primary key |
+| operation_role_id | int | Operation role ID |
+| operation_user_id | int | Operation user ID |
+| granted_time | timestamp | granted time |
+| with_grant_option | bool | Whether to allow the authorized role to be granted to other users or roles |
+
+### `mo_role_privs` table
+
+| Column | Type | Description |
+| ------------------| ---------------| ---------------------------------|
+| role_id | int unsigned | Role ID, joint primary key |
+| role_name | varchar(100) | Role name: accountadmin/public |
+| obj_type | varchar(16) | Object type: account/database/table, joint primary key |
+| obj_id | bigint unsigned | Object ID, joint primary key |
+| privilege_id | int | Privilege ID, joint primary key |
+| privilege_name | varchar(100) | Privilege name: privilege list |
+| privilege_level | varchar(100) | Privilege level, combined primary key |
+| operation_user_id | int unsigned | Operation user ID |
+| granted_time | timestamp | granted time |
+| with_grant_option | bool | Whether to allow authorization |
+
+### `mo_snapshot` table
+
+| Column| Type | Description |
+| -----------------| --------------------------------------------| ------------------|
+| snapshot_id | UUID(0) | snapshot id |
+| sname | VARCHAR(64) |Snapshot name |
+| ts | BIGINT(64) | Timestamp when snapshot was created |
+| level | ENUM('cluster','account','database','table') | Snapshot range |
+| account_name | VARCHAR(300) | tenant name |
+| database_name | VARCHAR(5000) | database name |
+| table_name | VARCHAR(5000) | table name |
+| obj_id | BIGINT UNSIGNED(64) | snapshot object name |
+
 ### `mo_subs` table
 
-| Column Properties | Type | Description |
+| Column | Type | Description |
 | ---------------------| ---------------| -----------------|
-| sub_account_id | INT(32) | Subscription tenant id|
+| sub_account_id | INT(32) | Subscription tenant id |
 | sub_name | VARCHAR(5000) | subscription name |
 | sub_time | TIMESTAMP(0) | Subscription time |
 | pub_account_name |VARCHAR(300) | The name of the publishing tenant |
@@ -199,151 +296,166 @@ The concept of multi-tenancy was introduced with MatrixOne version 0.6, and the 
 | pub_comment | TEXT(0) | Comments from the publishing library |
 | status | TINYINT(8) | Subscription status, 0 means normal subscription, 1 means the publication exists but does not have subscription permission, 2 means the publication was originally subscribed but was deleted |
 
-### mo_stages table
+### `mo_stages` table
 
-| column            | type            | comments         |
-| -----------------| ---------------- | ----------------- |
-| stage_id         | INT UNSIGNED(32) | data stage ID |
-| stage_name       | VARCHAR(64)      | data stage name |
-| url              | TEXT(0)          | Path to object storage (without authentication), path to file system |
-| stage_credentials| TEXT(0)          | Authentication information, encrypted and saved |
-| stage_status     | VARCHAR(64)      | ENABLED/DISABLED Default: DISABLED |
-| created_time     | TIMESTAMP(0)     | creation time |
-| comment          | TEXT(0)          | comment |
+| Column | Type | Description |
+| ------------------| ---------------| -----------------|
+| stage_id | INT UNSIGNED(32) | Data stage ID |
+| stage_name | VARCHAR(64) | Data stage name |
+| url | TEXT(0) | Path to object storage (excluding authentication), path to file system |
+| stage_credentials | TEXT(0) | Authentication information, encrypted and saved |
+| stage_status | VARCHAR(64) | ENABLED/DISABLED Default: DISABLED |
+| created_time | TIMESTAMP(0) | Creation time |
+| comment | TEXT(0) | comment |
 
-## `mo_sessions` view
+### `mo_sessions` view
 
-| column            | type            | comments         |
-| ----------------- | ----------------- | ------------------------------------------------------------ |
-| node_id           | VARCHAR(65535)   | Unique identifier of the atrixOne node. Once activated, it cannot be changed. |
-| conn_id           | INT UNSIGNED     | A unique number associated with the client TCP connection in MatrixOne, automatically generated by Hakeeper. |
-| session_id        | VARCHAR(65535)   | A unique UUID used to identify a session. a new UUID is generated for each new session. |
-| account           | VARCHAR(65535)   | Name of the tenant.                                |
-| user              | VARCHAR(65535)   | The name of the user.                                                |
-| host              | VARCHAR(65535)   | The IP address and port on which the CN node receives client requests.  |
-| db                | VARCHAR(65535)   | The name of the database used when executing the SQL.   |
-| session_start     | VARCHAR(65535)   | The timestamp of the session creation.    |
-| command           | VARCHAR(65535)   | Types of MySQL commands, such as COM_QUERY, COM_STMT_PREPARE, COM_STMT_EXECUTE, and so on. |
-| info              | VARCHAR(65535)   | The SQL statement to execute. A single SQL may contain multiple statements. |
-| txn_id            | VARCHAR(65535)   | The unique identifier of the associated transaction.    |
-| statement_id      | VARCHAR(65535)   | The unique identifier (UUID) of the SQL statement.     |
-| statement_type    | VARCHAR(65535)   | Types of SQL statements, such as SELECT, INSERT, UPDATE, and so on.   |
-| query_type        | VARCHAR(65535)   | Types of SQL statements such as DQL (Data Query Language), TCL (Transaction Control Language), etc. |
-| sql_source_type   | VARCHAR(65535)   | The source of the SQL statement, such as external or internal.      |
-| query_start       | VARCHAR(65535)   | The timestamp at which the SQL statement began execution. |
-| client_host       | VARCHAR(65535)   | The IP address and port number of the client.         |
-| role              | VARCHAR(65535)   | The name of the user's role.       |
+| Column  | Data type | Description |
+| ------------------| ------------------| ---------------------------------------------------------------|
+| node_id | VARCHAR(65535) | The unique identifier of the MatrixOne node. Once activated, it cannot be changed.               |
+| conn_id | INT UNSIGNED | Unique number associated with the client TCP connection in MatrixOne, automatically generated by Hakeeper. |
+| session_id | VARCHAR(65535) | A unique UUID that identifies the session. Each new session generates a new UUID.         |
+| account | VARCHAR(65535) | The name of the tenant.                                                |
+| user | VARCHAR(65535) | The name of the user.                                                |
+| host | VARCHAR(65535) | The IP address and port where the CN node receives client requests.                       |
+| db | VARCHAR(65535) | The database name to use when executing SQL.                                 |
+| session_start | VARCHAR(65535) | Timestamp of session creation.                                          |
+| command | VARCHAR(65535) | The type of MySQL command, such as COM_QUERY, COM_STMT_PREPARE, COM_STMT_EXECUTE, etc. |
+| info | VARCHAR(65535) | SQL statement to execute. A SQL may contain multiple statements.                 |
+| txn_id | VARCHAR(65535) | The unique identifier of the related transaction.                                       |
+| statement_id | VARCHAR(65535) | The unique identifier (UUID) of the SQL statement.                                |
+| statement_type | VARCHAR(65535) | Type of SQL statement, such as SELECT, INSERT, UPDATE, etc.                   |
+| query_type | VARCHAR(65535) | Type of SQL statement, such as DQL (Data Query Language), TCL (Transaction Control Language), etc.   |
+| sql_source_type | VARCHAR(65535) | The source of the SQL statement, such as external or internal.                                |
+| query_start | VARCHAR(65535) | The timestamp when the SQL statement started executing.                                   |
+| client_host | VARCHAR(65535) | The client's IP address and port number.                                    |
+| role | VARCHAR(65535) | The user's role name.                                             |
 
-### `mo_configurations` view
+### `mo_tables` table
 
-| column            | type            | comments                            |
-| ------------- | --------------- | ------------------------------------ |
-| node_type     | VARCHAR(65535) |  Types of nodes: cn (compute node), tn (transaction node), log (log node), proxy (proxy).   |
-| node_id       | VARCHAR(65535) |  The unique identifier of the node.  |
-| name          | VARCHAR(65535) |The name of the configuration item, possibly accompanied by a nested structure prefix.|
-| current_value | VARCHAR(65535) |  The current value of the configuration item.   |
-| default_value | VARCHAR(65535) |  The default value of the configuration item.   |
-| internal      | VARCHAR(65535) |  Indicates whether the configuration parameter is internal. |
+| Column  | Type | Description |
+| --------------| ---------------| ----------------------------------------------------|
+| rel_id | bigint unsigned | primary key, table ID |
+| relname | varchar(100) | The name of a table, index, view, etc. |
+| reldatabase | varchar(100) | The database containing this relationship, refer to mo_database.datname |
+| reldatabase_id | bigint unsigned | Database ID containing this relationship, refer to mo_database.datid |
+| relpersistence | varchar(100) | p = permanent table<br> t = temporary table |
+| relkind | varchar(100) | r = ordinary table<br> e = external table<br> i = index<br> S = sequence<br> v = view<br> m = materialized view |
+| rel_comment | varchar(100) | table comment |
+| rel_createsql | varchar(100) | Create table SQL statement |
+| created_time | timestamp | creation time |
+| creator | int unsigned | creator ID |
+| owner | int unsigned | The default role ID of the creator |
+| account_id | int unsigned | tenant id |
+| partitioned | blob | Partitioned by statement |
+| partition_info | blob | partition information |
+| viewdef | blob | view definition statement |
+| constraint | varchar(5000) | Constraints related to tables |
+| rel_version | INT UNSIGNED(0) | Primary key, version number of the table |
+| catalog_version | INT UNSIGNED(0) | The version number of the system table |
 
-### `mo_locks` view
+### `mo_table_partitions` table
 
-| column            | type            | comments                            |
-| ------------- | --------------- | ------------------------------------------------ |
-| cn_id         | VARCHAR(65535) | cn's uuid                              |
-| txn_id        | VARCHAR(65535) | The transaction holding the lock.                                  |
-| table_id      | VARCHAR(65535) | Locked tables.                                      |
-| lock_key      | VARCHAR(65535) | Lock type. Can be `point` or `range`.              |
-| lock_content  | VARCHAR(65535) | The contents of the lock, in hexadecimal. For `range` locks, an interval; for `point` locks, a single value. |
-| lock_mode     | VARCHAR(65535) | Lock mode. Can be `shared` or `exclusive`.         |
-| lock_status   | VARCHAR(65535) | Lock status, which may be `wait`, `acquired` or `none`. <br>wait. No transaction holds the lock, but there are transactions waiting on the lock. <br>acquired. A transaction holds the lock. <br>none. No transaction holds the lock, and no transaction is waiting on the lock.    |
-| lock_wait   | VARCHAR(65535) | Transactions waiting on this lock.                             |
+| Column  | Type | Description |
+| ----------------| ----------------| ----------------|
+| table_id | BIGINT UNSIGNED(64) | ID of the current partition table |
+| database_id | BIGINT UNSIGNED(64) | ID of the database to which the current partition table belongs |
+| number | SMALLINT UNSIGNED(16) | Current partition number. All partitions are indexed in a defined order, where 1 is the number assigned to the first partition |
+| name | VARCHAR(64) | The name of the partition |
+| partition_type | VARCHAR(50) | Stores the partition type information of the table. If it is a partitioned table, its value enumeration is "KEY", "LINEAR_KEY", "HASH", "LINEAR_KEY_51", "RANGE", "RANGE_COLUMNS", " LIST", "LIST_COLUMNS"; if it is not a partitioned table, the value of partition_type is an empty string. __Note:__ MatrixOne does not currently support `RANGE` and `LIST` partitions.   |
+| partition_expression | VARCHAR(2048) | Expression of the partitioning function used in a `CREATE TABLE` or `ALTER TABLE` statement to create a partitioned table. |
+| description_utf8 | TEXT(0) | This column is used for `RANGE` and `LIST` partitions. For a `RANGE` partition, it contains the value set in the partition's `VALUES LESS THAN` clause, which can be an integer or `MAXVALUE`. For a `LIST` partition, this column contains the values ​​defined in the partition's `values ​​in` clause, which is a comma-separated list of integer values. This column is always NULL for partitions that are not `RANGE` or `LIST`. __Note:__ MatrixOne currently does not support `RANGE` and `LIST` partitions, this column is NULL |
+| comment | VARCHAR(2048) | The text of the comment. Otherwise, this value is empty.   |
+| options | TEXT(0) | Partition option information, temporarily `NULL` |
+| partition_table_name | VARCHAR(1024) | The name of the partition subtable corresponding to the current partition |
 
 ### `mo_transactions` view
 
-| column            | type            | comments                            |
-| ------------- | --------------- | ------------------------------------ |
-| cn_id        | VARCHAR(65535) | ID that uniquely identifies the CN (Compute Node).    |
-| txn_id       | VARCHAR(65535) | The ID that uniquely identifies the transaction.                  |
-| create_ts    | VARCHAR(65535) | Record the transaction creation timestamp, following the RFC3339Nano format ("2006-01-02T15:04:05.99999999999Z07:00").   |
-| snapshot_ts  | VARCHAR(65535) | Represents the snapshot timestamp of the transaction, expressed in both physical and logical time.   |
-| prepared_ts  | VARCHAR(65535) | Indicates the prepared timestamp of the transaction, in the form of physical and logical time.  |
-| commit_ts    | VARCHAR(65535) | Indicates the commit timestamp of the transaction, in both physical and logical time.|
-| txn_mode     | VARCHAR(65535) | Identifies the transaction mode, which can be either pessimistic or optimistic.   |
-| isolation    | VARCHAR(65535) | Indicates the isolation level of the transaction, either SI (Snapshot Isolation) or RC (Read Committed).  |
-| user_txn     | VARCHAR(65535) | Indicates a user transaction, i.e., a transaction created by a SQL operation performed by a user connecting to MatrixOne via a client.   |
-| txn_status   | VARCHAR(65535) | Indicates the current state of the transaction, with possible values including active, committed, aborting, aborted. In the distributed transaction 2PC model, this would also include prepared and committing.  |
-| table_id     | VARCHAR(65535) | Indicates the ID of the table involved in the transaction.  |
-| lock_key     | VARCHAR(65535) | Indicates the type of lock, either range or point.   |
-| lock_content | VARCHAR(65535) | Point locks represent individual values, range locks represent ranges, usually in the form of "low - high". Note that transactions may involve multiple locks, but only the first lock is shown here.|
-| lock_mode    | VARCHAR(65535) | Indicates the mode of the lock, either exclusive or shared.   |
+| Column | Data type | Description |
+| -------------| ---------------| -------------------------------------|
+| cn_id | VARCHAR(65535) | The ID that uniquely identifies CN (Compute Node).    |
+| txn_id | VARCHAR(65535) | ID that uniquely identifies the transaction.                  |
+| create_ts | VARCHAR(65535) | Record transaction creation timestamp, following RFC3339Nano format ("2006-01-02T15:04:05.999999999Z07:00").   |
+| snapshot_ts | VARCHAR(65535) | Represents the snapshot timestamp of the transaction, expressed in the form of physical time and logical time.   |
+| prepared_ts | VARCHAR(65535) | Represents the prepared timestamp of the transaction, expressed in physical and logical time.  |
+| commit_ts | VARCHAR(65535) | Represents the commit timestamp of the transaction, expressed in the form of physical time and logical time. |
+| txn_mode | VARCHAR(65535) | Identifies the transaction mode, which can be pessimistic or optimistic.   |
+| isolation | VARCHAR(65535) | Indicates the isolation level of the transaction, which can be SI (Snapshot Isolation) or RC (Read Committed).  |
+| user_txn | VARCHAR(65535) | Indicates a user transaction, that is, a transaction created by a user connecting to MatrixOne through a client and performing a SQL operation.   |
+| txn_status | VARCHAR(65535) | Indicates the current status of the transaction. Possible values ​​include active, committed, aborting, and aborted. In distributed transaction 2PC mode, prepared (prepared) and committing (committing) are also included.  |
+| table_id | VARCHAR(65535) | Indicates the ID of the table involved in the transaction.  |
+| lock_key | VARCHAR(65535) | Indicates the type of lock, which can be range (range lock) or point (point lock).   |
+| lock_content | VARCHAR(65535) | Point represents a single value when locked, range represents a range when locked, usually expressed in the form of "low -high". Note that a transaction may involve multiple locks, but only the first lock is shown here. |
+| lock_mode | VARCHAR(65535) | Represents the lock mode, which can be exclusive or shared.   |
 
-### `mo_transactions` 视图
+### `mo_user` table
 
-| column           | type     | comments                                                |
-| ------------- | --------------- | ------------------------------------ |
-| cn_id        | VARCHAR(65535) | ID that uniquely identifies the CN (Compute Node).    |
-| txn_id       | VARCHAR(65535) | The ID that uniquely identifies the transaction.                  |
-| create_ts    | VARCHAR(65535) | Record the transaction creation timestamp, following the RFC3339Nano format ("2006-01-02T15:04:05.99999999999Z07:00").   |
-| snapshot_ts  | VARCHAR(65535) | Represents the snapshot timestamp of the transaction, expressed in both physical and logical time.   |
-| prepared_ts  | VARCHAR(65535) | Indicates the prepared timestamp of the transaction, in the form of physical and logical time.  |
-| commit_ts    | VARCHAR(65535) | Indicates the commit timestamp of the transaction, in both physical and logical time.|
-| txn_mode     | VARCHAR(65535) | Identifies the transaction mode, which can be either pessimistic or optimistic.   |
-| isolation    | VARCHAR(65535) | Indicates the isolation level of the transaction, either SI (Snapshot Isolation) or RC (Read Committed).  |
-| user_txn     | VARCHAR(65535) | Indicates a user transaction, i.e., a transaction created by a SQL operation performed by a user connecting to MatrixOne via a client.   |
-| txn_status   | VARCHAR(65535) | Indicates the current state of the transaction, with possible values including active, committed, aborting, aborted. In the distributed transaction 2PC model, this would also include prepared and committing.  |
-| table_id     | VARCHAR(65535) | Indicates the ID of the table involved in the transaction.  |
-| lock_key     | VARCHAR(65535) | Indicates the type of lock, either range or point.   |
-| lock_content | VARCHAR(65535) | Point locks represent individual values, range locks represent ranges, usually in the form of "low - high". Note that transactions may involve multiple locks, but only the first lock is shown here.|
-| lock_mode    | VARCHAR(65535) | Indicates the mode of the lock, either exclusive or shared.   |
+| Column | Type | Description |
+| --------------------------| ------------| ------------------|
+| user_id | int | user ID, primary key |
+| user_host | varchar(100) | User host address |
+| user_name | varchar(100) | username |
+| authentication_string | varchar(100) | Password-encrypted authentication string |
+| status | varchar(8) | open, locked, invalid |
+| created_time | timestamp | User creation time |
+| expired_time | timestamp | User expiration time |
+| login_type | varchar(16) | ssl/password/others |
+| creator | int | The ID of the creator who created this user |
+| owner | int | This user's administrator ID |
+| default_role | int | The default role ID for this user |
 
-### mo_columns table
+### `mo_user_grant` table
 
-| column           | type     | comments                                                |
-| --------------------- | --------------- | ------------------------------------------------------------ |
-| att_uniq_name         | varchar(256)    | Primary Key. Hidden, composite primary key, format is like "${att_relname_id}-${attname}" |
-| account_id            | int unsigned    | accountID                                                     |
-| att_database_id       | bigint unsigned | databaseID                                                   |
-| att_database          | varchar(256)    | database Name                                                |
-| att_relname_id        | bigint unsigned | table id                                                     |
-| att_relname           | varchar(256)    | The table this column belongs to.(references mo_tables.relname) |
-| attname               | varchar(256)    | The column name                                              |
-| atttyp                | varchar(256)    | The data type of this column (zero for a dropped column).    |
-| attnum                | int             | The number of the column. Ordinary columns are numbered from 1 up. |
-| att_length            | int             | bytes count for the type.                                    |
-| attnotnull            | tinyint(1)      | This represents a not-null constraint.                       |
-| atthasdef             | tinyint(1)      | This column has a default expression or generation expression. |
-| att_default           | varchar(1024)   | default expression                                           |
-| attisdropped          | tinyint(1)      | This column has been dropped and is no longer valid. A dropped column is still physically present in the table, but is ignored by the parser and so cannot be accessed via SQL. |
-| att_constraint_type   | char(1)         | p = primary key constraint, n=no constraint                  |
-| att_is_unsigned       | tinyint(1)      | unsigned or not                                              |
-| att_is_auto_increment | tinyint(1)      | auto increment or not                                        |
-| att_comment           | varchar(1024)   | comment                                                      |
-| att_is_hidden         | tinyint(1)      | hidden or not                                                |
-| attr_has_update       | tinyint(1)      | This columns has update expression                           |
-| attr_update           | varchar(1024)   | update expression                                            |
-| attr_is_clusterby     | tinyint(1)      | Whether this column is used as the cluster by keyword to create the table   |
+| Column  | Type | Description |
+| ------------------| ----------| ------------------------------------|
+| role_id | int unsigned | Authorized role ID, joint primary key |
+| user_id | int unsigned | User ID to obtain authorized role, joint primary key |
+| granted_time | timestamp | granted time |
+| with_grant_option | bool | Whether to allow authorized users to be authorized to other users or roles |
 
-### mo_tables table
+### `mo_user_defined_function` table
 
-| column         | type            | comments                                                     |
-| -------------- | --------------- | ------------------------------------------------------------ |
-| rel_id         | bigint unsigned | Primary key, table ID                  |
-| relname        | varchar(100)    | Name of the table, index, view, and so on.                         |
-| reldatabase    | varchar(100)    | The database that contains this relation. reference mo_database.datname |
-| reldatabase_id | bigint unsigned | The database id that contains this relation. reference mo_database.datid |
-| relpersistence | varchar(100)    | p = permanent table, t = temporary table                     |
-| relkind        | varchar(100)    | r = ordinary table, e = external table, i = index, S = sequence, v = view, m = materialized view |
-| rel_comment    | varchar(100)    |                                                              |
-| rel_createsql  | varchar(100)    | Table creation SQL statement                                 |
-| created_time   | timestamp       | Create time                                                  |
-| creator        | int unsigned    | Creator ID                                                   |
-| owner          | int unsigned    | Creator's default role id                                    |
-| account_id     | int unsigned    | Account id                                                    |
-| partitioned    | blob            | Partition by statement                                       |
-| partition_info    | blob            | the information of partition         |
-| viewdef            | blob                    | View definition statement                       |
-| constraint        | varchar(5000)            | Table related constraints                      |
-| catalog_version | INT UNSIGNED(0)    | Version number of the system table |
+| Column  | Type | Description |
+| ------------------| ---------------| -----------------|
+| function_id | INT(32) | Function ID, primary key |
+| name | VARCHAR(100) | The name of the function |
+| owner | INT UNSIGNED(32) | Role ID of the created function |
+| args | TEXT(0) |Function parameter list |
+| rettype | VARCHAR(20) | Return type of function |
+| body | TEXT(0) |Function body of function |
+| language | VARCHAR(20) | The language used by the function |
+| db | VARCHAR(100) | The database where the function is located |
+| definer | VARCHAR(50) | The name of the user who defined the function |
+| modified_time | TIMESTAMP(0) | The time when the function was last modified |
+| created_time | TIMESTAMP(0) | The creation time of the function |
+| type | VARCHAR(10) |Type of function, default FUNCTION |
+| security_type | VARCHAR(10) | Security processing method, unified value DEFINER |
+| comment | VARCHAR(5000) | Create a comment for the function |
+| character_set_client | VARCHAR(64) | Client character set: utf8mb4 |
+| collation_connection | VARCHAR(64) | Connection sorting: utf8mb4_0900_ai_ci |
+| database_collation | VARCHAR(64) | Database connection sorting: utf8mb4_0900_ai_ci |
+
+### `mo_variables` view
+
+| Column  | Data type | Description |
+|----------------| -----------------| ------------------------------------|
+| configuration_id | INT(32) | Auto-increment column, used to uniquely identify each configuration item.   |
+| account_id | INT(32) | A unique identifier that identifies the tenant.              |
+| account_name | VARCHAR(300) | The name of the tenant.                        |
+| dat_name | VARCHAR(5000) | The name of the database.                      |
+| variable_name | VARCHAR(300) | The name of the configuration variable.                    |
+| variable_value | VARCHAR(5000) | The value of the configuration variable.                    |
+| system_variables | BOOL(0) | Indicates whether the configuration variable is a system-level variable. |
+
+### `mo_version` table
+
+| Column  | Data type | Description |
+| ---------------| ---------------| ------------------------------------|
+| version | VARCHAR(50) |version |
+| version_offset | INT UNSIGNED(32) |Offset position when doing incremental upgrade of the same version |
+| state | INT(32) | state |
+| create_at | TIMESTAMP(0) | Version creation time |
+| update_at | TIMESTAMP(0) | Version update time |
 
 ## `system_metrics` database
 
