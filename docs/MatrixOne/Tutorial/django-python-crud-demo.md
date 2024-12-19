@@ -89,6 +89,9 @@ Before you begin, confirm that you have downloaded and installed the following s
         'PORT': 6001, # Port 
         'USER': 'root', # database username 
         'PASSWORD': '111', #database password 
+        'OPTIONS': {
+        'autocommit': True
+        }
         } 
     } 
     ```
