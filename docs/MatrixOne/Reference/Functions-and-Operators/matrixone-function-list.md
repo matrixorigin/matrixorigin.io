@@ -182,6 +182,7 @@ This document lists the functions supported in the latest version of MatrixOne.
 | [JSON_EXTRACT_STRING()](./Json/json_extract_string.md)   | Extract the value of a string with a specified path from JSON data |
 | [JSON_QUOTE()](./Json/json_quote.md)            | Quote JSON document |
 | [JSON_ROW()](./Json/json_row.md)                | Used to convert each row into a json array |
+| [JSON_SET()](./Json/json_set.md)               | Used to set or update the value of a key in a JSON document |
 | [JSON_UNQUOTE()](./Json/json_unquote.md)        | Unquote a JSON document |
 | [TRY_JQ()](./Json/try_jq.md)                    | Used to parse and convert JSON data based on jq expressions, and provide a fault-tolerant mechanism |
 
