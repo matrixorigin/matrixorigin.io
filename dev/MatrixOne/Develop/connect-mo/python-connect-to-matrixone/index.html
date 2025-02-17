@@ -11126,6 +11126,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../Reference/Functions-and-Operators/Json/json_set/" class="md-nav__link">
+        JSON_SET()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../Reference/Functions-and-Operators/Json/json_unquote/" class="md-nav__link">
         JSON_UNQUOTE()
       </a>
@@ -11923,6 +11937,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../Release-Notes/v25.2.0.2/" class="md-nav__link">
+        v24.2.0.2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../Release-Notes/v24.2.0.1/" class="md-nav__link">
         v24.2.0.1
       </a>
@@ -12662,7 +12690,7 @@ pip3 install cryptography -i https://pypi.tuna.tsinghua.edu.cn/simple
 <p>Create a plain text file <code>pymysql_connect_matrixone.py</code> and put the code below.</p>
 <div class="highlight"><pre><span></span><code><span class="ch">#!/usr/bin/python3</span>
 
-<span class="kn">import</span> <span class="nn">pymysql</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pymysql</span>
 
 <span class="c1"># Open database connection</span>
 <span class="n">db</span> <span class="o">=</span> <span class="n">pymysql</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
@@ -12689,7 +12717,7 @@ pip3 install cryptography -i https://pypi.tuna.tsinghua.edu.cn/simple
 <li>
 <p>Execute this python file in the command line terminal.</p>
 <div class="highlight"><pre><span></span><code>&gt; python3 pymysql_connect_matrixone.py
-Database version : 8.0.30-MatrixOne-v2.0.1
+Database version : 8.0.30-MatrixOne-v2.0.2
 </code></pre></div>
 </li>
 </ol>
@@ -12715,7 +12743,7 @@ pip3 install sqlalchemy -i https://pypi.tuna.tsinghua.edu.cn/simple
 <li>
 <p>Create a plain text file <code>sqlalchemy_connect_matrixone.py</code> and put the code below,</p>
 <div class="highlight"><pre><span></span><code><span class="ch">#!/usr/bin/python3</span>
-<span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span><span class="p">,</span> <span class="n">text</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sqlalchemy</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_engine</span><span class="p">,</span> <span class="n">text</span>
 
 <span class="c1"># Open database connection</span>
 <span class="n">my_conn</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s2">&quot;mysql+mysqldb://root:111@127.0.0.1:6001/test&quot;</span><span class="p">)</span>

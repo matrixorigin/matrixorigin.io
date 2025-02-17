@@ -11126,6 +11126,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../Reference/Functions-and-Operators/Json/json_set/" class="md-nav__link">
+        JSON_SET()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../Reference/Functions-and-Operators/Json/json_unquote/" class="md-nav__link">
         JSON_UNQUOTE()
       </a>
@@ -11923,6 +11937,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../Release-Notes/v25.2.0.2/" class="md-nav__link">
+        v24.2.0.2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../Release-Notes/v24.2.0.1/" class="md-nav__link">
         v24.2.0.1
       </a>
@@ -12648,9 +12676,9 @@
 </li>
 <li>
 <p><strong>Use binary format</strong>: To improve overall insertion performance, consider using binary format instead of text format. Make sure the array is in small end-order format before converting to hexadecimal encoding. The following is sample Python code:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">binascii</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">binascii</span>
 <span class="c1"># &#39;value&#39; is a NumPy object</span>
-<span class="k">def</span> <span class="nf">to_binary</span><span class="p">(</span><span class="n">value</span><span class="p">):</span> <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="k">return</span> <span class="n">value</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">to_binary</span><span class="p">(</span><span class="n">value</span><span class="p">):</span> <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="k">return</span> <span class="n">value</span>
 
     <span class="c1"># small endian floating point array</span>
     <span class="n">value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;&lt;f&#39;</span><span class="p">)</span>
