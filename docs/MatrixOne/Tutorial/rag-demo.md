@@ -124,7 +124,7 @@ documents = [
 "MatrixOne touts significant features, including real-time HTAP, multi-tenancy, stream computation, extreme scalability, cost-effectiveness, enterprise-grade availability, and extensive MySQL compatibility. MatrixOne unifies tasks traditionally performed by multiple databases into one system by offering a comprehensive ultra-hybrid data solution. This consolidation simplifies development and operations, minimizes data fragmentation, and boosts development agility.",
 "MatrixOne is optimally suited for scenarios requiring real-time data input, large data scales, frequent load fluctuations, and a mix of procedural and analytical business operations. It caters to use cases such as mobile internet apps, IoT data applications, real-time data warehouses, SaaS platforms, and more.",
 "Matrix is a collection of complex or real numbers arranged in a rectangular array.",
-"The lastest version of MatrixOne is v25.2.0.3,released on 2025/03/12."
+"The lastest version of MatrixOne is v25.2.1.0,released on 2025/03/28."
 "We are excited to announce MatrixOne v22.0.8.0 release on 2023/6/30."
 ]
 
@@ -194,7 +194,7 @@ print(output['response'])
 Console output related answer:
 
 ```
-Based on the provided data, the latest version of MatrixOne is v25.2.0.3, which was released on 2025/03/12. 
+Based on the provided data, the latest version of MatrixOne is v25.2.1.0, which was released on 2025/03/28. 
 ```
 
 After enhancement, the model generates the correct answer.

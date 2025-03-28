@@ -2,9 +2,9 @@
 
 ## Syntax Description
 
-The `CREATE TABLE AS SELECT` command creates a new table by copying column definitions and column data from an existing table specified in the `SELECT` query. However, it does not copy constraints, indexes, views, or other non-data attributes of the original table.
+The `CREATE TABLE AS SELECT` command creates a new table by copying column definitions and data from existing tables specified in a `SELECT` query. However, it does not copy constraints, indexes, views, or other non-data attributes from the original table.
 
-## Syntax structure
+## Syntax Structure
 
 ```
 > CREATE [TEMPORARY] TABLE [ IF NOT EXISTS ] table_name
@@ -16,7 +16,7 @@ SELECT
 [ALL | DISTINCT ]
 select_expr [, select_expr] [[AS] alias] ...
 [INTO variable [, ...]]
-[FROM table_references
+[FROM table_references[{as of timestamp 'YYYY-MM-DD HH:MM:SS'}]]
 [WHERE where_condition]
 [GROUP BY {col_name | expr | position}
 [ASC | DESC]]
@@ -26,56 +26,42 @@ select_expr [, select_expr] [[AS] alias] ...
 [LIMIT {[offset,] row_count | row_count OFFSET offset}]
 ```
 
-## Grammatical interpretation
+## Syntax Explanation
 
-- ALL: Default option to return all matching rows, including duplicate rows.
-
-- DISTINCT: Indicates that only unique rows are returned, i.e. duplicate rows are removed.
-
-- select_expr: Indicates the column or expression to select.
-
-- AS alias: Specifies an alias for the selected column or expression.
-
-- [INTO variable[, ...]: Used to store query results in a variable instead of returning them to the client.
-
-- [FROM table_references]: Specifies which table or tables to retrieve data from. table_references can be a table name or a complex expression (such as a join) with multiple tables.
-
-- [WHERE where_condition]: Used to filter the result set to return only rows that satisfy the where_condition condition.
-
-- [GROUP BY {col_name | expr | position} [ASC | DESC]]: Used to group result sets by one or more columns or expressions; ASC and DESC are used to specify how rows within a group are sorted.
-
-- [HAVING where_condition]: Filter groups after they are grouped. Usually used with GROUP BY to filter out groups that do not meet the criteria.
-
-- [ORDER BY {col_name | expr | position} [ASC | DESC] [NULLS {FIRST | LAST}]: Used to sort result sets; ASC and DESC are used to specify sorting methods.
-
-- [NULLS {FIRST | LAST}]: Used to specify how to handle the position of NULL values in the sort.
-
-- [LIMIT {[offset,] row_count | row_count OFFSET offset}]: Used to limit the number of rows returned. offset specifies which row of the result set to return from, with 0 being the first row. row_count Specifies the number of rows returned.
+- **ALL**: Default option, returns all matching rows including duplicates.
+- **DISTINCT**: Returns only unique rows (removes duplicates).
+- **select_expr**: Columns or expressions to select.
+- **AS alias**: Assigns an alias to the selected column or expression.
+- **[INTO variable [, ...]]**: Stores query results in variables instead of returning them to the client.
+- **[FROM table_references]**: Specifies the source table(s) for data retrieval. `table_references` can be a table name or a complex expression (e.g., joins). Optionally copies table data from a specific PITR timestamp.
+- **[WHERE where_condition]**: Filters results to rows satisfying the condition.
+- **[GROUP BY {col_name | expr | position} [ASC | DESC]]**: Groups results by specified columns/expressions. `ASC`/`DESC` defines sorting within groups.
+- **[HAVING where_condition]**: Filters groups after grouping (used with `GROUP BY`).
+- **[ORDER BY {col_name | expr | position} [ASC | DESC] [NULLS {FIRST | LAST}]]**: Sorts results. `NULLS FIRST`/`LAST` controls NULL value placement.
+- **[LIMIT {[offset,] row_count | row_count OFFSET offset}]**: Limits returned rows. `offset` specifies starting row (0 = first), `row_count` specifies number of rows.
 
 ## Permissions
 
-In `Matrixone`, executing the `CREATE TABLE AS SELECT` statement requires at least the following permissions:
+In `MatrixOne`, executing `CREATE TABLE AS SELECT` requires:
 
-- `CREATE` permissions: Users need to have permissions to create tables, which can be done with `CREATE` permissions.
+- **CREATE** permission: To create tables.
+- **INSERT** permission: To insert data into the new table.
+- **SELECT** permission: To query source table(s).
 
-- `INSERT` permission: Because the `CREATE TABLE AS SELECT` statement inserts the selected data into the new table, the user also needs to have permission to insert data into the target table. This can be done with `INSERT` privileges.
-
-- `SELECT` permission: Users need to be able to select data from the source data table, so they need to have SELECT permission.
-
-For more permission-related actions, check out the [Matrixone permission classification](../../access-control-type.md) and [grant instructions](../Data-Control-Language/grant.md).
+For detailed permission operations, see [MatrixOne Permission Types](../../access-control-type.md) and [GRANT](../Data-Control-Language/grant.md).
 
 ## Examples
 
-- Example 1
+- Example 1: Copy entire table
 
 ```sql
-create table t1(a int default 123, b char(5));
-INSERT INTO t1 values (1, '1'),(2,'2'),(0x7fffffff, 'max');
+CREATE TABLE t1(a INT DEFAULT 123, b CHAR(5));
+INSERT INTO t1 VALUES (1, '1'),(2,'2'),(0x7fffffff, 'max');
 
-mysql> create table t2 as select *from t1;--Whole Table Replication
+mysql> CREATE TABLE t2 AS SELECT * FROM t1; -- Full table copy
 Query OK, 3 rows affected (0.02 sec)
 
-mysql> desc t2;
+mysql> DESC t2;
 +-------+---------+------+------+---------+-------+---------+
 | Field | Type    | Null | Key  | Default | Extra | Comment |
 +-------+---------+------+------+---------+-------+---------+
@@ -84,7 +70,7 @@ mysql> desc t2;
 +-------+---------+------+------+---------+-------+---------+
 2 rows in set (0.01 sec)
 
-mysql> select * from t2;
+mysql> SELECT * FROM t2;
 +------------+------+
 | a          | b    |
 +------------+------+
@@ -95,16 +81,16 @@ mysql> select * from t2;
 3 rows in set (0.00 sec)
 ```
 
-- Example 2
+- Example 2: Column aliasing
 
 ```sql
-create table t1(a int default 123, b char(5));
-INSERT INTO t1 values (1, '1'),(2,'2'),(0x7fffffff, 'max');
+CREATE TABLE t1(a INT DEFAULT 123, b CHAR(5));
+INSERT INTO t1 VALUES (1, '1'),(2,'2'),(0x7fffffff, 'max');
 
-mysql> CREATE table test as select a as alias_a from t1;--Specify an alias for the selection column
+mysql> CREATE TABLE test AS SELECT a AS alias_a FROM t1; -- Column alias
 Query OK, 3 rows affected (0.02 sec)
 
-mysql> desc test;
+mysql> DESC test;
 +---------+---------+------+------+---------+-------+---------+
 | Field   | Type    | Null | Key  | Default | Extra | Comment |
 +---------+---------+------+------+---------+-------+---------+
@@ -112,7 +98,7 @@ mysql> desc test;
 +---------+---------+------+------+---------+-------+---------+
 1 row in set (0.01 sec)
 
-mysql> select * from test;
+mysql> SELECT * FROM test;
 +------------+
 | alias_a    |
 +------------+
@@ -123,16 +109,16 @@ mysql> select * from test;
 3 rows in set (0.01 sec)
 ```
 
-- Example 3
+- Example 3: Copy schema only
 
 ```sql
-create table t1(a int default 123, b char(5));
-INSERT INTO t1 values (1, '1'),(2,'2'),(0x7fffffff, 'max');
+CREATE TABLE t1(a INT DEFAULT 123, b CHAR(5));
+INSERT INTO t1 VALUES (1, '1'),(2,'2'),(0x7fffffff, 'max');
 
-mysql> create table t3 as select * from t1 where 1=2;--Copy only the fields, not the data
+mysql> CREATE TABLE t3 AS SELECT * FROM t1 WHERE 1=2; -- Schema only
 Query OK, 0 rows affected (0.01 sec)
 
-mysql> desc t3;
+mysql> DESC t3;
 +-------+---------+------+------+---------+-------+---------+
 | Field | Type    | Null | Key  | Default | Extra | Comment |
 +-------+---------+------+------+---------+-------+---------+
@@ -141,47 +127,47 @@ mysql> desc t3;
 +-------+---------+------+------+---------+-------+---------+
 2 rows in set (0.01 sec)
 
-mysql> select * from t3;
+mysql> SELECT * FROM t3;
 Empty set (0.00 sec)
 ```
 
-- Example 4
+- Example 4: Aggregated values
 
 ```sql
-create table t1(a int default 123, b char(5));
-INSERT INTO t1 values (1, '1'),(2,'2'),(0x7fffffff, 'max');
+CREATE TABLE t1(a INT DEFAULT 123, b CHAR(5));
+INSERT INTO t1 VALUES (1, '1'),(2,'2'),(0x7fffffff, 'max');
 
-mysql> CREATE table t4(n1 int unique) as select max(a) from t1;--Use the original table data aggregation values as columns in the new table
+mysql> CREATE TABLE t4(n1 INT UNIQUE) AS SELECT MAX(a) FROM t1; -- Aggregated column
 Query OK, 1 row affected (0.03 sec)
 
-mysql> desc t4;
+mysql> DESC t4;
 +--------+---------+------+------+---------+-------+---------+
 | Field  | Type    | Null | Key  | Default | Extra | Comment |
 +--------+---------+------+------+---------+-------+---------+
 | n1     | INT(32) | YES  | UNI  | NULL    |       |         |
-| max(a) | INT(32) | YES  |      | NULL    |       |         |
+| MAX(a) | INT(32) | YES  |      | NULL    |       |         |
 +--------+---------+------+------+---------+-------+---------+
 2 rows in set (0.01 sec)
 
-mysql> select * from t4;
+mysql> SELECT * FROM t4;
 +------+------------+
-| n1   | max(a)     |
+| n1   | MAX(a)     |
 +------+------------+
 | NULL | 2147483647 |
 +------+------------+
 1 row in set (0.00 sec)
 ```
 
-- Example 5
+- Example 5: DISTINCT rows
 
 ```sql
-create table t5(n1 int,n2 int,n3 int);
-insert into t5 values(1,1,1),(1,1,1),(3,3,3);
+CREATE TABLE t5(n1 INT,n2 INT,n3 INT);
+INSERT INTO t5 VALUES(1,1,1),(1,1,1),(3,3,3);
 
-mysql> create table t5_1 as select distinct n1 from t5;--Remove duplicate lines
+mysql> CREATE TABLE t5_1 AS SELECT DISTINCT n1 FROM t5; -- Remove duplicates
 Query OK, 2 rows affected (0.02 sec)
 
-mysql> select * from t5_1;
+mysql> SELECT * FROM t5_1;
 +------+
 | n1   |
 +------+
@@ -191,16 +177,16 @@ mysql> select * from t5_1;
 2 rows in set (0.00 sec)
 ```
 
-- Example 6
+- Example 6: Sorted results
 
 ```sql
-create table t6(n1 int,n2 int,n3 int);
-insert into t6 values(1,1,3),(2,2,2),(3,3,1);
+CREATE TABLE t6(n1 INT,n2 INT,n3 INT);
+INSERT INTO t6 VALUES(1,1,3),(2,2,2),(3,3,1);
 
-mysql> create table t6_1 as select * from t6 order by n3;--Sorting the result set
+mysql> CREATE TABLE t6_1 AS SELECT * FROM t6 ORDER BY n3; -- Sorted copy
 Query OK, 3 rows affected (0.01 sec)
 
-mysql> select * from t6_1;
+mysql> SELECT * FROM t6_1;
 +------+------+------+
 | n1   | n2   | n3   |
 +------+------+------+
@@ -211,17 +197,16 @@ mysql> select * from t6_1;
 3 rows in set (0.01 sec)
 ```
 
-- Example 7
+- Example 7: Grouped results
 
 ```sql
-create table t7(n1 int,n2 int,n3 int);
-insert into t7 values(1,1,3),(1,2,2),(2,3,1),(2,3,1),(3,3,1);
+CREATE TABLE t7(n1 INT,n2 INT,n3 INT);
+INSERT INTO t7 VALUES(1,1,3),(1,2,2),(2,3,1),(2,3,1),(3,3,1);
 
-mysql> CREATE TABLE t7_1 AS SELECT n1 FROM t7 GROUP BY n1 HAVING count(n1)>1;--Grouping of result sets
+mysql> CREATE TABLE t7_1 AS SELECT n1 FROM t7 GROUP BY n1 HAVING COUNT(n1)>1; -- Group filtering
 Query OK, 2 rows affected (0.02 sec)
 
-mysql> 
-mysql> select * from t7_1;
+mysql> SELECT * FROM t7_1;
 +------+
 | n1   |
 +------+
@@ -231,15 +216,16 @@ mysql> select * from t7_1;
 2 rows in set (0.01 sec)
 ```
 
-- Example 8
+- Example 8: Limited rows
 
-```sql
-create table t8(n1 int,n2 int,n3 int);
-insert into t8 values(1,1,1),(2,2,2),(3,3,3);
+```sql src/main.sql
+CREATE TABLE t8(n1 INT,n2 INT,n3 INT);
+INSERT INTO t8 VALUES(1,1,1),(2,2,2),(3,3,3);
 
-mysql> CREATE TABLE t8_1 AS SELECT * FROM t8 limit 1 offset 1;--Specifies to return from the second row of the result set, and the number of rows to return is 1.
+mysql> CREATE TABLE t8_1 AS SELECT * FROM t8 LIMIT 1 OFFSET 1; -- Second row only
+Query OK, 1 row affected (0.01 sec)
 
-mysql> select * from t8_1;
+mysql> SELECT * FROM t8_1;
 +------+------+------+
 | n1   | n2   | n3   |
 +------+------+------+
@@ -248,24 +234,25 @@ mysql> select * from t8_1;
 1 row in set (0.00 sec)
 ```
 
-- Example 9
+- Example 9: Constraints handling
 
 ```sql
-create table t9 (a int primary key, b varchar(5) unique key);
-create table t9_1 (
-a int primary key,
-b varchar(5) unique,
-c int , 
-d int,
-foreign key(c) references t9(a),
-INDEX idx_d(d)
+CREATE TABLE t9 (a INT PRIMARY KEY, b VARCHAR(5) UNIQUE KEY);
+CREATE TABLE t9_1 (
+  a INT PRIMARY KEY,
+  b VARCHAR(5) UNIQUE,
+  c INT, 
+  d INT,
+  FOREIGN KEY(c) REFERENCES t9(a),
+  INDEX idx_d(d)
 );
-insert into t9 values (101,'abc'),(102,'def');
-insert into t9_1 values (1,'zs1',101,1),(2,'zs2',102,1);
+INSERT INTO t9 VALUES (101,'abc'),(102,'def');
+INSERT INTO t9_1 VALUES (1,'zs1',101,1),(2,'zs2',102,1);
 
-mysql> create table t9_2 as select * from t9_1;
+mysql> CREATE TABLE t9_2 AS SELECT * FROM t9_1; -- Constraints not copied
+Query OK, 2 rows affected (0.01 sec)
 
-mysql> show create table t9_1;
+mysql> SHOW CREATE TABLE t9_1; -- Original table with constraints
 +-------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Table | Create Table                                                                                                                                                                                                                                                                                                   |
 +-------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -282,7 +269,7 @@ CONSTRAINT `018f27eb-0b33-7289-a3c2-af479b1833b1` FOREIGN KEY (`c`) REFERENCES `
 +-------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 1 row in set (0.01 sec)
 
-mysql> show create table t9_2;--If the source table has constraints or indexes, the new table created by CTAS will not have the constraints and indexes of the original table by default.
+mysql> SHOW CREATE TABLE t9_2; -- New table lacks constraints
 +-------+-------------------------------------------------------------------------------------------------------------------+
 | Table | Create Table                                                                                                      |
 +-------+-------------------------------------------------------------------------------------------------------------------+
@@ -295,13 +282,13 @@ mysql> show create table t9_2;--If the source table has constraints or indexes, 
 +-------+-------------------------------------------------------------------------------------------------------------------+
 1 row in set (0.00 sec)
 
---If you want the new table to come with the original table with constraints and indexes, you can build the table by adding the
+-- Manually add constraints
 ALTER TABLE t9_2 ADD PRIMARY KEY (a);
 ALTER TABLE t9_2 ADD UNIQUE KEY (b);
-ALTER TABLE  t9_2 ADD FOREIGN KEY (c) REFERENCES t9 (a);
+ALTER TABLE t9_2 ADD FOREIGN KEY (c) REFERENCES t9 (a);
 ALTER TABLE t9_2 ADD INDEX idx_d3 (d);
 
-mysql> show create table t9_2;
+mysql> SHOW CREATE TABLE t9_2; -- With added constraints
 +-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Table | Create Table                                                                                                                                                                                                                                                                                                    |
 +-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -317,5 +304,4 @@ CONSTRAINT `018f282d-4563-7e9d-9be5-79c0d0e8136d` FOREIGN KEY (`c`) REFERENCES `
 ) |
 +-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 1 row in set (0.00 sec)
-
 ```

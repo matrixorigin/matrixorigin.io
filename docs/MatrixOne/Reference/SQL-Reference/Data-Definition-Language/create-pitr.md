@@ -1,29 +1,35 @@
-# CREATEPITR
+# CREATE PITR
 
-## Syntax description
+## Syntax Description
 
-The `CREATE PITR` command is used to create a recovery point for Point-in-Time Recovery (PITR). Cluster administrators can create cluster-level or tenant-level pitrs, while tenant administrators can create tenant/database/table-level pitrs for the current tenant. The information of each pitr is only visible to the tenant that created the pitr, ensuring data isolation and security.
+The `CREATE PITR` command is used to create Point-in-Time Recovery (PITR) restore points. Cluster administrators can create cluster-level or tenant-level PITRs, while tenant administrators can create PITRs for their current tenant at the tenant/database/table level. Each PITR's information is only visible to the tenant that created it, ensuring data isolation and security.
 
-## Grammar structure
+## Syntax Structure
 
 ```sql
-create pitr <pitr_name> for
-    [cluster]|[account <account_name>]|[database <database_name>]|[table <database_name> <table_name>]
-    range <value><unit>
+CREATE PITR <pitr_name> FOR 
+    [CLUSTER]|[ACCOUNT <account_name>]|[DATABASE <database_name>]|[TABLE <database_name> <table_name>]
+    RANGE <value><unit>
 ```
 
-### Grammar explanation
+### Syntax Explanation
 
-**range**: int, time range value, 1-100.
-**unit**: string time range unit, optional range h (hour), d (day, default), mo (month), y (year)
+**RANGE**:  
 
-## Example
+- `value`: Integer, time range value (1-100).  
+- `unit`: String, time range unit. Options:  
+    - `h` (hours)  
+    - `d` (days, default)  
+    - `mo` (months)  
+    - `y` (years)  
 
-**Example 1: Cluster administrator creates pitr for cluster**
+## Examples
+
+**Example 1: Cluster admin creates a cluster-level PITR**
 
 ```sql
-create pitr cluster_pitr1 for cluster range 1 "d";
-mysql> show pitr;
+CREATE PITR cluster_pitr1 FOR CLUSTER RANGE 1 "d";
+mysql> SHOW PITR;
 +---------------+---------------------+---------------------+------------+--------------+---------------+------------+-------------+-----------+
 | PITR_NAME     | CREATED_TIME        | MODIFIED_TIME       | PITR_LEVEL | ACCOUNT_NAME | DATABASE_NAME | TABLE_NAME | PITR_LENGTH | PITR_UNIT |
 +---------------+---------------------+---------------------+------------+--------------+---------------+------------+-------------+-----------+
@@ -32,13 +38,13 @@ mysql> show pitr;
 1 row in set (0.01 sec)
 ```
 
-**Example 2: Cluster administrator creates pitr for tenant**
+**Example 2: Cluster admin creates a tenant-level PITR**
 
 ```sql
-create account acc1 admin_name 'root' identified by '111';
-create account acc2 admin_name 'root' identified by '111';
-mysql> create pitr account_pitr1 for account acc1 range 1 "d";
-mysql> show pitr where pitr_name='account_pitr1';
+CREATE ACCOUNT acc1 ADMIN_NAME 'root' IDENTIFIED BY '111';
+CREATE ACCOUNT acc2 ADMIN_NAME 'root' IDENTIFIED BY '111';
+mysql> CREATE PITR account_pitr1 FOR ACCOUNT acc1 RANGE 1 "d";
+mysql> SHOW PITR WHERE pitr_name='account_pitr1';
 +---------------+---------------------+---------------------+------------+--------------+---------------+------------+-------------+-----------+
 | pitr_name     | created_time        | modified_time       | pitr_level | account_name | database_name | table_name | pitr_length | pitr_unit |
 +---------------+---------------------+---------------------+------------+--------------+---------------+------------+-------------+-----------+
@@ -47,12 +53,12 @@ mysql> show pitr where pitr_name='account_pitr1';
 1 row in set (0.00 sec)
 ```
 
-**Example 3: Tenant administrator creates pitr for tenant**
+**Example 3: Tenant admin creates a tenant-level PITR**
 
 ```sql
-create pitr account_pitr1 range 2 "h";
+CREATE PITR account_pitr1 FOR ACCOUNT RANGE 2 "h";
 
-mysql> show pitr where pitr_name='account_pitr1';
+mysql> SHOW PITR WHERE pitr_name='account_pitr1';
 +---------------+---------------------+---------------------+------------+--------------+---------------+------------+-------------+-----------+
 | pitr_name     | created_time        | modified_time       | pitr_level | account_name | database_name | table_name | pitr_length | pitr_unit |
 +---------------+---------------------+---------------------+------------+--------------+---------------+------------+-------------+-----------+
@@ -61,13 +67,13 @@ mysql> show pitr where pitr_name='account_pitr1';
 1 row in set (0.00 sec)
 ```
 
-**Example 4: Tenant administrator creates pitr for database**
+**Example 4: Tenant admin creates a database-level PITR**
 
 ```sql
-mysql> create pitr db_pitr1 for database db1 range 1 'y';
+mysql> CREATE PITR db_pitr1 FOR DATABASE db1 RANGE 1 'y';
 Query OK, 0 rows affected (0.01 sec)
 
-mysql> show pitr where pitr_name='db_pitr1';
+mysql> SHOW PITR WHERE pitr_name='db_pitr1';
 +-----------+---------------------+---------------------+------------+--------------+---------------+------------+-------------+-----------+
 | pitr_name | created_time        | modified_time       | pitr_level | account_name | database_name | table_name | pitr_length | pitr_unit |
 +-----------+---------------------+---------------------+------------+--------------+---------------+------------+-------------+-----------+
@@ -76,13 +82,13 @@ mysql> show pitr where pitr_name='db_pitr1';
 1 row in set (0.01 sec)
 ```
 
-**Example 5: Tenant administrator creates pitr for table**
+**Example 5: Tenant admin creates a table-level PITR**
 
 ```sql
-mysql> create pitr tab_pitr1 for database  db1 table t1 range 1 'y';
+mysql> CREATE PITR tab_pitr1 FOR TABLE db1 TABLE t1 RANGE 1 'y';
 Query OK, 0 rows affected (0.02 sec)
 
-mysql> show pitr where pitr_name='tab_pitr1';
+mysql> SHOW PITR WHERE pitr_name='tab_pitr1';
 +-----------+---------------------+---------------------+------------+--------------+---------------+------------+-------------+-----------+
 | pitr_name | created_time        | modified_time       | pitr_level | account_name | database_name | table_name | pitr_length | pitr_unit |
 +-----------+---------------------+---------------------+------------+--------------+---------------+------------+-------------+-----------+
@@ -91,6 +97,6 @@ mysql> show pitr where pitr_name='tab_pitr1';
 1 row in set (0.01 sec)
 ```
 
-## limit
+## Limitations
 
-- Cluster administrators can only create tenant-level pitrs when creating pitrs for other tenants.
+- Cluster administrators can only create tenant-level PITRs for other tenants.

@@ -8,7 +8,7 @@ The LOAD DATA statement reads rows from a text file into a table at a very high 
 
 ```
 > LOAD DATA [LOCAL]
-    INFILE '<file_name>|<stage://stage_name/filepath>'
+    INFILE '<file_name>|<stage://stage_name/filepath>|hdfs'
     INTO TABLE tbl_name
     [CHARACTER SET charset_name]
     [{FIELDS | COLUMNS}
@@ -761,10 +761,72 @@ mysql> select * from t2;
 2 rows in set (0.00 sec)
 ```
 
+### Example 4: LOAD HDFS
+
+#### Simple Import Example
+
+There is a file `t1.csv` under `/User/` in HDFS:
+
+```bash
+(base) admin@admindeMBP test % hdfs dfs -cat /user/t1.csv
+1	a
+2	b
+3	c
+```
+
+```sql
+mysql> create table t1(n1 int,n2 text);
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> load data url s3option {'endpoint'='hdfs://127.0.0.1:9000','filepath'='/user/t1.csv'} into table t1;
+Query OK, 3 rows affected (0.15 sec)
+
+mysql> select * from t1;
++------+------+
+| n1   | n2   |
++------+------+
+|    1 | a    |
+|    2 | b    |
+|    3 | c    |
++------+------+
+3 rows in set (0.01 sec)
+```
+
+#### Conditional Import Example
+
+You can append `IGNORE 1 LINES` at the end of the `LOAD DATA` statement to skip the first line of the data file.
+
+There is a file `t1.csv` under `/User/` in HDFS:
+
+```bash
+(base) admin@admindeMBP test % hdfs dfs -cat /user/t1.csv
+1	a
+2	b
+3	c
+```
+
+```sql
+mysql> create table t2(n1 int,n2 varchar(10));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> load data url s3option {'endpoint'='hdfs://127.0.0.1:9000','filepath'='/user/t1.csv'} into table t2 ignore 1 lines;
+Query OK, 2 rows affected (0.08 sec)
+
+mysql> select * from t2;
++------+------+
+| n1   | n2   |
++------+------+
+|    2 | b    |
+|    3 | c    |
++------+------+
+2 rows in set (0.01 sec)
+```
+
 ## **Constraints**
 
-1. The `REPLACE` and `IGNORE` modifiers control handling of new (input) rows that duplicate existing table rows on unique key values (`PRIMARY KEY` or `UNIQUE index` values) are not supported in MatrixOne yet.
-2. Input pre-pressing with `SET` is supported very limitedly. Only `SET columns_name=nullif(expr1,expr2)` is supported.
-3. When enabling the parallel loading, it must be ensured that each row of data in the file does not contain the specified line terminator, such as '\n'; otherwise, it will cause data errors during file loading.
-4. The parallel loading of files requires that the files be in uncompressed format, and parallel loading of files in compressed form is not currently supported.
-5. When you use `load data local`, you need to use the command line to connect to the MatrixOne service host: `mysql -h <mo-host -ip> -P 6001 -uroot -p111 --local-infile`.
+1. The `REPLACE` and `IGNORE` modifiers, which control the handling of new (input) rows that duplicate existing table rows on unique key values (`PRIMARY KEY` or `UNIQUE index` values), are not yet supported in MatrixOne.
+2. Input pre-processing with `SET` is very limited. Only `SET columns_name=nullif(expr1,expr2)` is supported.
+3. When enabling parallel loading, ensure that each row of data in the file does not contain the specified line terminator (e.g., `\n`); otherwise, it may cause data errors during file loading.
+4. Parallel loading of files requires uncompressed formats. Currently, parallel loading of compressed files is not supported.
+5. When using `load data local`, you must connect to the MatrixOne service host via the command line:  
+   `mysql -h <mo-host-ip> -P 6001 -uroot -p111 --local-infile`.
