@@ -3976,6 +3976,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Maintain/cdc/mo-mo/" class="md-nav__link">
+        From MatrixOne to MatrixOne
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -5451,6 +5465,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../Data-Definition-Language/create-fulltext-index/" class="md-nav__link">
+        CREATE FULLTEXT INDEX
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../Data-Definition-Language/create-table/" class="md-nav__link">
         CREATE TABLE
       </a>
@@ -6517,27 +6545,34 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#description" class="md-nav__link">
-    Description
+  <a href="#syntax-description" class="md-nav__link">
+    Syntax Description
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#syntax" class="md-nav__link">
-    Syntax
+  <a href="#syntax-structure" class="md-nav__link">
+    Syntax Structure
   </a>
   
-    <nav class="md-nav" aria-label="Syntax">
+    <nav class="md-nav" aria-label="Syntax Structure">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#explanations" class="md-nav__link">
-    Explanations
+  <a href="#syntax-explanation" class="md-nav__link">
+    Syntax Explanation
   </a>
   
-    <nav class="md-nav" aria-label="Explanations">
+    <nav class="md-nav" aria-label="Syntax Explanation">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#all-distinct" class="md-nav__link">
+    ALL &amp; DISTINCT
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#select_expr" class="md-nav__link">
@@ -6590,7 +6625,7 @@
         
           <li class="md-nav__item">
   <a href="#for-update" class="md-nav__link">
-    FOR UPDATE
+    `FOR UPDATE**
   </a>
   
 </li>
@@ -6613,8 +6648,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#constraints" class="md-nav__link">
-    Constraints
+  <a href="#limitations" class="md-nav__link">
+    Limitations
   </a>
   
 </li>
@@ -12014,6 +12049,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../Release-Notes/v25.2.1.0/" class="md-nav__link">
+        v25.2.1.0
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../Release-Notes/v25.2.0.3/" class="md-nav__link">
         v25.2.0.3
       </a>
@@ -12696,27 +12745,34 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#description" class="md-nav__link">
-    Description
+  <a href="#syntax-description" class="md-nav__link">
+    Syntax Description
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#syntax" class="md-nav__link">
-    Syntax
+  <a href="#syntax-structure" class="md-nav__link">
+    Syntax Structure
   </a>
   
-    <nav class="md-nav" aria-label="Syntax">
+    <nav class="md-nav" aria-label="Syntax Structure">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#explanations" class="md-nav__link">
-    Explanations
+  <a href="#syntax-explanation" class="md-nav__link">
+    Syntax Explanation
   </a>
   
-    <nav class="md-nav" aria-label="Explanations">
+    <nav class="md-nav" aria-label="Syntax Explanation">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#all-distinct" class="md-nav__link">
+    ALL &amp; DISTINCT
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#select_expr" class="md-nav__link">
@@ -12769,7 +12825,7 @@
         
           <li class="md-nav__item">
   <a href="#for-update" class="md-nav__link">
-    FOR UPDATE
+    `FOR UPDATE**
   </a>
   
 </li>
@@ -12792,8 +12848,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#constraints" class="md-nav__link">
-    Constraints
+  <a href="#limitations" class="md-nav__link">
+    Limitations
   </a>
   
 </li>
@@ -12822,14 +12878,14 @@
 
 
 <h1 id="select"><strong>SELECT</strong></h1>
-<h2 id="description"><strong>Description</strong></h2>
-<p>Retrieves data from a table.</p>
-<h2 id="syntax"><strong>Syntax</strong></h2>
+<h2 id="syntax-description"><strong>Syntax Description</strong></h2>
+<p>The <code>SELECT</code> statement is used to retrieve data from a table.</p>
+<h2 id="syntax-structure"><strong>Syntax Structure</strong></h2>
 <div class="highlight"><pre><span></span><code><span class="k">SELECT</span>
 <span class="w">    </span><span class="p">[</span><span class="k">ALL</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="p">]</span>
 <span class="w">    </span><span class="n">select_expr</span><span class="w"> </span><span class="p">[,</span><span class="w"> </span><span class="n">select_expr</span><span class="p">]</span><span class="w"> </span><span class="p">[[</span><span class="k">AS</span><span class="p">]</span><span class="w"> </span><span class="k">alias</span><span class="p">]</span><span class="w"> </span><span class="p">...</span>
 <span class="w">    </span><span class="p">[</span><span class="k">INTO</span><span class="w"> </span><span class="k">variable</span><span class="w"> </span><span class="p">[,</span><span class="w"> </span><span class="p">...]]</span>
-<span class="w">    </span><span class="p">[</span><span class="k">FROM</span><span class="w"> </span><span class="n">table_references</span>
+<span class="w">    </span><span class="p">[</span><span class="k">FROM</span><span class="w"> </span><span class="n">table_references</span><span class="p">[</span><span class="err">{</span><span class="k">as</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="k">timestamp</span><span class="w"> </span><span class="s1">&#39;YYYY-MM-DD HH:MM:SS&#39;</span><span class="err">}</span><span class="p">]]</span>
 <span class="w">    </span><span class="p">[</span><span class="k">WHERE</span><span class="w"> </span><span class="n">where_condition</span><span class="p">]</span>
 <span class="w">    </span><span class="p">[</span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="err">{</span><span class="n">col_name</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">expr</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">position</span><span class="err">}</span>
 <span class="w">      </span><span class="p">[</span><span class="k">ASC</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">DESC</span><span class="p">]]</span>
@@ -12839,133 +12895,153 @@
 <span class="w">    </span><span class="p">[</span><span class="k">LIMIT</span><span class="w"> </span><span class="err">{</span><span class="p">[</span><span class="k">offset</span><span class="p">,]</span><span class="w"> </span><span class="k">row_count</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">row_count</span><span class="w"> </span><span class="k">OFFSET</span><span class="w"> </span><span class="k">offset</span><span class="err">}</span><span class="p">]</span>
 <span class="w">    </span><span class="p">[</span><span class="k">FOR</span><span class="w"> </span><span class="err">{</span><span class="k">UPDATE</span><span class="err">}</span><span class="p">]</span>
 </code></pre></div>
-<h3 id="explanations">Explanations</h3>
-<p>The most commonly used clauses of <code>SELECT</code> statements are these:</p>
+<h3 id="syntax-explanation">Syntax Explanation</h3>
+<p>The most commonly used clauses or conditions in the <code>SELECT</code> statement are explained below:</p>
+<h4 id="all-distinct"><code>ALL</code> &amp; <code>DISTINCT</code></h4>
+<p>The <code>ALL</code> and <code>DISTINCT</code> modifiers specify whether duplicate rows should be returned. <code>ALL</code> (the default) specifies that all matching rows, including duplicates, should be returned. <code>DISTINCT</code> specifies that duplicate rows should be removed from the result set.</p>
 <h4 id="select_expr"><code>select_expr</code></h4>
-<p>Each <code>select_expr</code> indicates a column that you want to retrieve. There must be at least one <code>select_expr</code>.</p>
-<p>The list of <code>select_expr</code> terms comprises the select list that indicates which columns to retrieve. Terms specify a column or expression or can use *-shorthand:</p>
+<p>Each <code>select_expr</code> expression represents a column you want to query, and there must be at least one <code>select_expr</code>.</p>
+<p>The <code>select_expr</code> list contains the columns to be selected. You can specify columns explicitly or use <code>*</code> to select all columns:</p>
+<p>```sql src/main.sql
+SELECT * FROM t1
+<div class="highlight"><pre><span></span><code>- `tbl_name.*` can be used to select all columns from a table:
+
+```sql src/main.sql
+SELECT t1.*, t2.* FROM t1
+</code></pre></div></p>
 <ul>
-<li>A select list consisting only of a single unqualified * can be used as shorthand to select all columns from all tables:</li>
-</ul>
-<div class="highlight"><pre><span></span><code>SELECT * FROM t1
-</code></pre></div>
-<ul>
-<li><code>tbl_name.*</code> can be used as a qualified shorthand to select all columns from the named table:</li>
-</ul>
-<div class="highlight"><pre><span></span><code>SELECT t1.*, t2.* FROM t1
-</code></pre></div>
-<ul>
-<li>A <code>select_expr</code> can be given an alias using <code>AS</code> alias_name.</li>
+<li><code>select_expr</code> can use <code>AS</code> to assign an alias to a column.</li>
 </ul>
 <h4 id="table_references"><code>table_references</code></h4>
 <ul>
 <li>
-<p>The <code>FROM table_references</code> clause indicates the table or tables from which to retrieve rows.</p>
+<p>Tables in the default database can be referred to as <code>tbl_name</code> or <code>db_name.tbl_name</code>, primarily to explicitly specify the database. Columns can be referred to as <code>col_name</code>, <code>tbl_name.col_name</code>, or <code>db_name.tbl_name.col_name</code>. You do not need to specify <code>tbl_name</code> or <code>db_name.tbl_name</code> for columns unless necessary for clarity.</p>
 </li>
 <li>
-<p>You can refer to a table within the default database as <code>tbl_name</code>, or as <code>db_name.tbl_name</code> to specify a database explicitly. You can refer to a column as <code>col_name</code>, <code>tbl_name.col_name</code>, or <code>db_name.tbl_name.col_name</code>. You need not specify a <code>tbl_name</code> or <code>db_name.tbl_name</code> prefix for a column reference unless the reference would be ambiguous.</p>
+<p>Table aliases can be assigned using <code>tbl_name AS alias_name</code> or <code>tbl_name alias_name</code>.</p>
 </li>
 <li>
-<p>A table reference can be aliased using <code>tbl_name AS alias_name</code> or <code>tbl_name alias_name</code>.</p>
+<p>To view the table's data at a specific point-in-time (PITR), append <code>{as of timestamp 'YYYY-MM-DD HH:MM:SS'}</code> to the table name.</p>
 </li>
 </ul>
 <h4 id="where"><code>WHERE</code></h4>
-<p>The <code>WHERE</code> clause, if given, indicates the condition or conditions that rows must satisfy to be selected. <code>where_condition</code> is an expression that evaluates to true for each row to be selected. The statement selects all rows if there is no <code>WHERE</code> clause.</p>
+<p>The <code>WHERE</code> clause (if given) specifies one or more conditions that rows must satisfy to be selected. The <code>where_condition</code> expression evaluates to true for each row to be selected. If no <code>WHERE</code> clause is provided, the statement selects all rows.</p>
 <h4 id="group-by"><code>GROUP BY</code></h4>
-<p>Columns selected for output can be referred to in ORDER BY and GROUP BY clauses using column names, column aliases, or column positions.</p>
+<p>Column names, column aliases, or column positions can be used in the <code>ORDER BY</code> and <code>GROUP BY</code> clauses to reference selected columns.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <ul>
-<li>In the <code>GROUP BY</code> or <code>HAVING</code> clauses, it is not allowed to use an alias to define another alias.</li>
-<li>In the <code>GROUP BY</code> or <code>HAVING</code> clauses, the SQL engine first attempts to group or filter by column names. If the corresponding column names are not found in these clauses, it checks if aliases match and use the matched aliases as a fallback.</li>
-<li>It is recommended to avoid ambiguous column references when using aliases in the <code>GROUP BY</code> or <code>HAVING</code> clauses. In such cases, the SQL engine looks for matching columns based on the aliases, and if multiple matches are found, it will raise an error.</li>
-<li>In the <code>ORDER BY</code> clause, sorting is first attempted using aliases. If aliases are not found, the SQL engine attempts sorting using column names.</li>
+<li>In <code>GROUP BY</code> or <code>HAVING</code> clauses, you cannot use one alias to define another alias.</li>
+<li>In <code>GROUP BY</code> or <code>HAVING</code> clauses, the system first attempts to group or filter using column names. If no matching column name is found, it checks for aliases and uses them if available.</li>
+<li>Avoid ambiguous column references when using aliases in <code>GROUP BY</code> or <code>HAVING</code> clauses. If multiple matching columns are found, an error will occur.</li>
+<li>The <code>ORDER BY</code> clause first attempts to sort by aliases. If no alias is found, it then tries to sort by column names.</li>
 </ul>
 </div>
 <h4 id="having"><code>HAVING</code></h4>
-<p>The <code>HAVING</code> clause, like the <code>WHERE</code> clause, specifies selection conditions.</p>
+<p>The <code>HAVING</code> clause, like <code>WHERE</code>, specifies selection conditions.</p>
 <h4 id="order-by"><code>ORDER BY</code></h4>
-<p>To sort in reverse order, add the DESC (descending) keyword to the name of the column in the <code>ORDER BY</code> clause that you are sorting by. The default is ascending order; this can be specified explicitly using the ASC keyword.</p>
+<p><code>ORDER BY</code> defaults to ascending order; you can explicitly specify this with the <code>ASC</code> keyword. To sort in descending order, add the <code>DESC</code> keyword to the column name in the clause.</p>
 <h4 id="limit"><code>LIMIT</code></h4>
-<p>The <code>LIMIT</code> clause can be used to constrain the number of rows returned by the SELECT statement.</p>
-<h4 id="for-update"><code>FOR UPDATE</code></h4>
-<p><code>SELECT...FOR UPDATE</code> is mainly used to lock a set of data rows in transaction processing to prevent them from being modified by other concurrent transactions. This statement is most commonly used in "read-modify-write" scenarios. That is, when you need to read a data set, make changes to it, and then write the results back to the database, you don't want other transactions to modify this data set.</p>
-<p>Using <code>SELECT FOR UPDATE</code> in a transaction can lock the selected rows until the transaction ends (either by commit or rollback) and the locks are released. This way, other transactions attempting to modify these rows are blocked until the first transaction is complete.</p>
+<p>The <code>LIMIT</code> clause can be used to restrict the number of rows returned by the <code>SELECT</code> statement.</p>
+<h4 id="for-update">`FOR UPDATE**</h4>
+<p><code>SELECT...FOR UPDATE</code> is primarily used in transactions to lock a set of rows, preventing them from being modified by other concurrent transactions. This statement is most commonly used in <strong>read-modify-write</strong> scenarios, where you need to read data, modify it, and write it back to the database while ensuring no other transactions modify the same data during the process.</p>
+<p>Using <code>SELECT FOR UPDATE</code> in a transaction locks the selected rows until the transaction ends (via commit or rollback). Other transactions attempting to modify these rows will be blocked until the first transaction completes.</p>
 <p>See the example below:</p>
-<div class="highlight"><pre><span></span><code><span class="k">START</span><span class="w"> </span><span class="k">TRANSACTION</span><span class="p">;</span>
+<p>```sql src/main.sql
+START TRANSACTION;</p>
+<p>SELECT * FROM Orders
+WHERE OrderID = 1
+FOR UPDATE;
+<div class="highlight"><pre><span></span><code>In this transaction, the `SELECT FOR UPDATE` statement selects and locks the row in the `Orders` table where `OrderID` is 1. Other transactions cannot modify this row until the transaction ends. After modifying the row, you can commit the transaction to release the lock:
 
-<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Orders</span>
-<span class="k">WHERE</span><span class="w"> </span><span class="n">OrderID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span>
-<span class="k">FOR</span><span class="w"> </span><span class="k">UPDATE</span><span class="p">;</span>
-</code></pre></div>
-<p>In the above transaction, the <code>SELECT FOR UPDATE</code> statement selects and locks the row with <code>OrderID</code> 1 in the <code>Orders</code> table. Other transactions cannot modify this row before the transaction ends. After you have finished modifying this row, you can commit the transaction to release the lock:</p>
-<div class="highlight"><pre><span></span><code><span class="k">UPDATE</span><span class="w"> </span><span class="n">Orders</span>
-<span class="k">SET</span><span class="w"> </span><span class="n">Quantity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Quantity</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span>
-<span class="k">WHERE</span><span class="w"> </span><span class="n">OrderID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+```sql src/main.sql
+UPDATE Orders
+SET Quantity = Quantity - 1
+WHERE OrderID = 1;
 
-<span class="k">COMMIT</span><span class="p">;</span>
-</code></pre></div>
-<p>The above <code>UPDATE</code> statement modifies the <code>Quantity</code> value of the selected row, and then the <code>COMMIT</code> statement commits the transaction and releases the lock. At this point, other blocked transactions can continue. If you decide not to make any changes, you can use the <code>ROLLBACK</code> statement to end the transaction and release the lock.</p>
+COMMIT;
+</code></pre></div></p>
+<p>The <code>UPDATE</code> statement modifies the <code>Quantity</code> value of the selected row, and the <code>COMMIT</code> statement releases the lock. Other blocked transactions can then proceed. If you decide not to make any changes, use <code>ROLLBACK</code> to end the transaction and release the lock.</p>
 <h2 id="examples"><strong>Examples</strong></h2>
-<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">spID</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="n">userID</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="n">score</span><span class="w"> </span><span class="nb">smallint</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">10</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">99</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="k">null</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">99</span><span class="p">);</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">spID</span><span class="o">&gt;</span><span class="mi">2</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">userID</span><span class="w"> </span><span class="o">&lt;</span><span class="mi">2</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">userID</span><span class="w"> </span><span class="o">&gt;=</span><span class="mi">2</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="n">userID</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------+--------+-------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">spid</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">userid</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">score</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+--------+-------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="o">|</span><span class="w">      </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">99</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w">      </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w">     </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w">      </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w">     </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+--------+-------+</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">userID</span><span class="p">,</span><span class="k">MAX</span><span class="p">(</span><span class="n">score</span><span class="p">)</span><span class="w"> </span><span class="n">max_score</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">userID</span><span class="w"> </span><span class="o">&lt;</span><span class="mi">2</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">userID</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">userID</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">max_score</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">--------+-----------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">userid</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">max_score</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------+-----------+</span>
-<span class="o">|</span><span class="w">      </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w">         </span><span class="mi">5</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">      </span><span class="mi">6</span><span class="w"> </span><span class="o">|</span><span class="w">        </span><span class="mi">10</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">      </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span><span class="w">        </span><span class="mi">99</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">     </span><span class="mi">11</span><span class="w"> </span><span class="o">|</span><span class="w">        </span><span class="mi">99</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------+-----------+</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">userID</span><span class="p">,</span><span class="k">count</span><span class="p">(</span><span class="n">score</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">userID</span><span class="w"> </span><span class="k">having</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="n">score</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">1</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">userID</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">--------+--------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">userid</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="n">score</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------+--------------+</span>
-<span class="o">|</span><span class="w">      </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w">            </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------+--------------+</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">userID</span><span class="p">,</span><span class="k">count</span><span class="p">(</span><span class="n">score</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">userID</span><span class="o">&gt;</span><span class="mi">2</span><span class="w"> </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">userID</span><span class="w"> </span><span class="k">having</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="n">score</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">1</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">userID</span><span class="p">;</span>
-<span class="n">Empty</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span><span class="n">s</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">spID</span><span class="w"> </span><span class="k">asc</span><span class="w"> </span><span class="n">nulls</span><span class="w"> </span><span class="k">last</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------+--------+-------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">spid</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">userid</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">score</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+--------+-------+</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w">      </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w">     </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w">      </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w">     </span><span class="mi">5</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w">      </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w">     </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w">      </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w">     </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w">      </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w">     </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span><span class="w">      </span><span class="mi">6</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">10</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">5</span><span class="w"> </span><span class="o">|</span><span class="w">     </span><span class="mi">11</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">99</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="o">|</span><span class="w">      </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">99</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+--------+-------+</span>
-</code></pre></div>
-<h2 id="constraints"><strong>Constraints</strong></h2>
-<ol>
+<p>```sql src/main.sql
+CREATE TABLE t1 (spID INT, userID INT, score SMALLINT);
+INSERT INTO t1 VALUES (1,1,1);
+INSERT INTO t1 VALUES (2,2,2);
+INSERT INTO t1 VALUES (2,1,4);
+INSERT INTO t1 VALUES (3,3,3);
+INSERT INTO t1 VALUES (1,1,5);
+INSERT INTO t1 VALUES (4,6,10);
+INSERT INTO t1 VALUES (5,11,99);
+INSERT INTO t1 VALUES (NULL,0,99);</p>
+<p>mysql&gt; SELECT spID FROM t1;
++------+
+| spid |
++------+
+|    1 |
+|    2 |
+|    2 |
+|    3 |
+|    1 |
+|    4 |
+|    5 |
+| NULL |
++------+</p>
+<p>mysql&gt; SELECT DISTINCT spID FROM t1;
++------+
+| spid |
++------+
+|    1 |
+|    2 |
+|    3 |
+|    4 |
+|    5 |
+| NULL |
++------+</p>
+<p>mysql&gt; SELECT * FROM t1 WHERE spID&gt;2 AND userID &lt;2 || userID &gt;=2 OR userID &lt; 2 LIMIT 3;
++------+--------+-------+
+| spid | userid | score |
++------+--------+-------+
+| NULL |      0 |    99 |
+|    1 |      1 |     1 |
+|    2 |      2 |     2 |
++------+--------+-------+</p>
+<p>mysql&gt; SELECT userID, MAX(score) max_score FROM t1 WHERE userID &lt;2 || userID &gt; 3 GROUP BY userID ORDER BY max_score;
++--------+-----------+
+| userid | max_score |
++--------+-----------+
+|      1 |         5 |
+|      6 |        10 |
+|      0 |        99 |
+|     11 |        99 |
++--------+-----------+</p>
+<p>mysql&gt; SELECT userID, COUNT(score) FROM t1 GROUP BY userID HAVING COUNT(score)&gt;1 ORDER BY userID;
++--------+--------------+
+| userid | count(score) |
++--------+--------------+
+|      1 |            3 |
++--------+--------------+</p>
+<p>mysql&gt; SELECT userID, COUNT(score) FROM t1 WHERE userID&gt;2 GROUP BY userID HAVING COUNT(score)&gt;1 ORDER BY userID;
+Empty set (0.01 sec)</p>
+<p>mysql&gt; SELECT * FROM t1 ORDER BY spID ASC NULLS LAST;
++------+--------+-------+
+| spid | userid | score |
++------+--------+-------+
+|    1 |      1 |     1 |
+|    1 |      1 |     5 |
+|    2 |      2 |     2 |
+|    2 |      1 |     4 |
+|    3 |      3 |     3 |
+|    4 |      6 |    10 |
+|    5 |     11 |    99 |
+| NULL |      0 |    99 |
++------+--------+-------+
+```</p>
+<h2 id="limitations"><strong>Limitations</strong></h2>
+<ul>
 <li><code>SELECT...FOR UPDATE</code> currently only supports single-table queries.</li>
-<li><code>INTO OUTFILE</code> is limitedly support.</li>
-<li>When the table name is <code>DUAL</code>, it is not supported to execute <code>SELECT xx from DUAL</code> directly into the corresponding database (<code>USE DBNAME</code>), but you can specify the database name to query the table <code>DUAL</code> by using <code>SELECT xx from DBNAME.DUAL</code>.</li>
-</ol>
+<li>Partial support for <code>INTO OUTFILE</code>.</li>
+<li>When the table name is <code>DUAL</code>, directly querying it in the default database (<code>USE DBNAME</code>) with <code>SELECT xx FROM DUAL</code> is not supported. You must specify the database name as <code>SELECT xx FROM DBNAME.DUAL</code>.</li>
+</ul>
 
 
 

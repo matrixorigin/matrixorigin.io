@@ -4086,6 +4086,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Maintain/cdc/mo-mo/" class="md-nav__link">
+        From MatrixOne to MatrixOne
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -5545,6 +5559,20 @@
     <li class="md-nav__item">
       <a href="../../../../Reference/SQL-Reference/Data-Definition-Language/create-index-ivfflat/" class="md-nav__link">
         CREATE INDEX...USING IVFFLAT
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Reference/SQL-Reference/Data-Definition-Language/create-fulltext-index/" class="md-nav__link">
+        CREATE FULLTEXT INDEX
       </a>
     </li>
   
@@ -11981,6 +12009,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../Release-Notes/v25.2.1.0/" class="md-nav__link">
+        v25.2.1.0
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../Release-Notes/v25.2.0.3/" class="md-nav__link">
         v25.2.0.3
       </a>
@@ -12847,7 +12889,7 @@ FIELDS TERMINATED BY &#39;,&#39; OPTIONALLY ENCLOSED BY &#39;&quot;&#39; LINES T
 </ol>
 <h3 id="example-using-load-data-with-docker-version">Example using <code>Load data</code> with <code>docker</code> version</h3>
 <p>If you install MatrixOne by <code>docker</code>, the file system is inside the docker image by default. To work with local directory, you need to bind a local directory to the container. In the following example, the local file system path <code>~/tmp/docker_loaddata_demo/</code> is binded to the MatrixOne docker image, with a mapping to the <code>/ssb-dbgen-path</code> path inside the docker.
-We will walk you through the whole process of loading data with MatrixOne 2.0.3 docker version in this example.</p>
+We will walk you through the whole process of loading data with MatrixOne 2.1.0 docker version in this example.</p>
 <ol>
 <li>
 <p>Download the dataset file and store the data in <em>~/tmp/docker_loaddata_demo/</em>:</p>
@@ -12862,7 +12904,7 @@ wget https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/lineor
 </li>
 <li>
 <p>Use Docker to launch MatrixOne, and mount the directory <em>~/tmp/docker_loaddata_demo/</em> that stores data files to a directory in the container. The container directory is <em>/sb-dbgen-path</em> as an example:</p>
-<div class="highlight"><pre><span></span><code>sudo docker run --name matrixone --privileged -d -p 6001:6001 -v ~/tmp/docker_loaddata_demo/:/ssb-dbgen-path:rw matrixorigin/matrixone:2.0.3
+<div class="highlight"><pre><span></span><code>sudo docker run --name matrixone --privileged -d -p 6001:6001 -v ~/tmp/docker_loaddata_demo/:/ssb-dbgen-path:rw matrixorigin/matrixone:2.1.0
 </code></pre></div>
 </li>
 <li>

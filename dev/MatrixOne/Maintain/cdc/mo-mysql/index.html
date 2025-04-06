@@ -12,7 +12,7 @@
         <link rel="prev" href="../mocdc/">
       
       
-        <link rel="next" href="../../mount-data-by-docker/">
+        <link rel="next" href="../mo-mo/">
       
       <link rel="icon" href="../../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.1.21">
@@ -69,7 +69,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#matrixone-to-mysql-cdc-function" class="md-skip">
+        <a href="#matrixone-to-mysql-cdc-functionality" class="md-skip">
           Skip to content
         </a>
       
@@ -4006,44 +4006,58 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#scene-description" class="md-nav__link">
-    Scene description
+  <a href="#scenario-description" class="md-nav__link">
+    Scenario Description
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#operation-process" class="md-nav__link">
-    Operation process
+  <a href="#workflow" class="md-nav__link">
+    Workflow
   </a>
   
-    <nav class="md-nav" aria-label="Operation process">
+    <nav class="md-nav" aria-label="Workflow">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#create-table-structure" class="md-nav__link">
-    Create table structure
+  <a href="#create-pitr" class="md-nav__link">
+    Create PITR
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-table-and-insert-data-on-source" class="md-nav__link">
+    Create Table and Insert Data on Source
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-downstream-database" class="md-nav__link">
+    Create Downstream Database
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#create-mo_cdc-synchronization-task" class="md-nav__link">
-    Create mo_cdc synchronization task
+    Create mo_cdc Synchronization Task
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#incremental-synchronization-task" class="md-nav__link">
-    Incremental synchronization task
+    Incremental Synchronization Task
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#resume-upload-from-breakpoint" class="md-nav__link">
-    Resume upload from breakpoint
+  <a href="#checkpoint-recovery" class="md-nav__link">
+    Checkpoint Recovery
   </a>
   
 </li>
@@ -4054,8 +4068,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#apply-effects" class="md-nav__link">
-    Apply effects
+  <a href="#application-results" class="md-nav__link">
+    Application Results
   </a>
   
 </li>
@@ -4064,6 +4078,20 @@
   
 </nav>
       
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mo-mo/" class="md-nav__link">
+        From MatrixOne to MatrixOne
+      </a>
     </li>
   
 
@@ -5528,6 +5556,20 @@
     <li class="md-nav__item">
       <a href="../../../Reference/SQL-Reference/Data-Definition-Language/create-index-ivfflat/" class="md-nav__link">
         CREATE INDEX...USING IVFFLAT
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Language/create-fulltext-index/" class="md-nav__link">
+        CREATE FULLTEXT INDEX
       </a>
     </li>
   
@@ -11964,6 +12006,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../Release-Notes/v25.2.1.0/" class="md-nav__link">
+        v25.2.1.0
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../Release-Notes/v25.2.0.3/" class="md-nav__link">
         v25.2.0.3
       </a>
@@ -12646,44 +12702,58 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#scene-description" class="md-nav__link">
-    Scene description
+  <a href="#scenario-description" class="md-nav__link">
+    Scenario Description
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#operation-process" class="md-nav__link">
-    Operation process
+  <a href="#workflow" class="md-nav__link">
+    Workflow
   </a>
   
-    <nav class="md-nav" aria-label="Operation process">
+    <nav class="md-nav" aria-label="Workflow">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#create-table-structure" class="md-nav__link">
-    Create table structure
+  <a href="#create-pitr" class="md-nav__link">
+    Create PITR
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-table-and-insert-data-on-source" class="md-nav__link">
+    Create Table and Insert Data on Source
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-downstream-database" class="md-nav__link">
+    Create Downstream Database
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#create-mo_cdc-synchronization-task" class="md-nav__link">
-    Create mo_cdc synchronization task
+    Create mo_cdc Synchronization Task
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#incremental-synchronization-task" class="md-nav__link">
-    Incremental synchronization task
+    Incremental Synchronization Task
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#resume-upload-from-breakpoint" class="md-nav__link">
-    Resume upload from breakpoint
+  <a href="#checkpoint-recovery" class="md-nav__link">
+    Checkpoint Recovery
   </a>
   
 </li>
@@ -12694,8 +12764,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#apply-effects" class="md-nav__link">
-    Apply effects
+  <a href="#application-results" class="md-nav__link">
+    Application Results
   </a>
   
 </li>
@@ -12723,19 +12793,21 @@
   
 
 
-<h1 id="matrixone-to-mysql-cdc-function">MatrixOne to MySQL CDC function</h1>
-<h2 id="scene-description">Scene description</h2>
-<p>An online retail company uses MatrixOne as the production database for its order management system to store order data. In order to support the real-time analysis needs of the business (such as order quantity, sales trends, customer behavior, etc.), order data needs to be synchronized from MatrixOne to the MySQL analysis database in real time for use by the data analysis team and business systems. Through the <code>mo_cdc</code> tool, real-time synchronization of order data can be efficiently achieved, allowing the analysis system to obtain the latest order information at any time.</p>
-<p>-Source database (production database): The <code>orders</code> table in MatrixOne contains order data and records the details of each order, including order ID, customer ID, order time, order amount and status.
--Target database (analysis database): <code>orders_backup</code> table in MySQL, used for real-time statistics and analysis of order information. Ensure that the sales team can grasp sales dynamics in real time.
--Synchronization requirements: Use <code>mo_cdc</code> to synchronize data in MatrixOne's <code>orders</code> table to MySQL's <code>orders_backup</code> table in real time to ensure that the analysis system data is consistent with the production system.</p>
-<h2 id="operation-process">Operation process</h2>
-<h3 id="create-table-structure">Create table structure</h3>
-<p>Ensure that the table structures in the source database MatrixOne and the target database MySQL are identical to facilitate seamless data synchronization.</p>
+<h1 id="matrixone-to-mysql-cdc-functionality">MatrixOne to MySQL CDC Functionality</h1>
+<h2 id="scenario-description">Scenario Description</h2>
+<p>An online retail company uses MatrixOne as the production database for its order management system to store order data. To support real-time analytics requirements (such as order volume, sales trends, and customer behavior), order data needs to be synchronized in real-time from MatrixOne to a MySQL analytics database for use by the data analysis team and business systems. The <code>mo_cdc</code> tool enables efficient real-time synchronization of order data, ensuring the analytics system always has access to the latest order information.</p>
 <ul>
-<li><code>orders</code> table in MatrixOne:</li>
+<li><strong>Source Database (Production Database)</strong>: The <code>orders</code> table in MatrixOne, containing detailed order records, including order ID, customer ID, order date, order amount, and status.</li>
+<li><strong>Target Database (Analytics Database)</strong>: The <code>orders_backup</code> table in MySQL, used for real-time statistics and analysis of order information, ensuring the business team can monitor sales dynamics in real-time.</li>
+<li><strong>Synchronization Requirement</strong>: Use <code>mo_cdc</code> to synchronize data from the <code>orders</code> table in MatrixOne to the <code>orders_backup</code> table in MySQL in real-time, ensuring the analytics system remains consistent with the production system.</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">source_db</span><span class="p">.</span><span class="n">orders</span><span class="w"> </span><span class="p">(</span>
+<h2 id="workflow">Workflow</h2>
+<h3 id="create-pitr">Create PITR</h3>
+<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="n">pitr</span><span class="w"> </span><span class="n">pitr1</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">account</span><span class="w"> </span><span class="n">range</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="ss">&quot;h&quot;</span><span class="p">;</span>
+</code></pre></div>
+<h3 id="create-table-and-insert-data-on-source">Create Table and Insert Data on Source</h3>
+<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n">source_db</span><span class="p">;</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">source_db</span><span class="p">.</span><span class="n">orders</span><span class="w"> </span><span class="p">(</span>
 <span class="w">    </span><span class="n">order_id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
 <span class="w">    </span><span class="n">customer_id</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
 <span class="w">    </span><span class="n">order_date</span><span class="w"> </span><span class="n">DATETIME</span><span class="p">,</span>
@@ -12749,45 +12821,37 @@
 <span class="w"> </span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">104</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2024-04-20 09:15:00&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">200</span><span class="p">.</span><span class="mi">00</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Shipped&#39;</span><span class="p">),</span>
 <span class="w"> </span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">105</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2024-05-12 14:00:00&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">49</span><span class="p">.</span><span class="mi">99</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Delivered&#39;</span><span class="p">);</span>
 </code></pre></div>
-<ul>
-<li><code>orders_backup</code> table in MySQL:</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">analytics_db</span><span class="p">.</span><span class="n">orders_backup</span><span class="w"> </span><span class="p">(</span>
-<span class="w">    </span><span class="n">order_id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
-<span class="w">    </span><span class="n">customer_id</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
-<span class="w">    </span><span class="n">order_date</span><span class="w"> </span><span class="n">DATETIME</span><span class="p">,</span>
-<span class="w">    </span><span class="n">amount</span><span class="w"> </span><span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">),</span>
-<span class="w">    </span><span class="n">status</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
-<span class="p">);</span>
+<h3 id="create-downstream-database">Create Downstream Database</h3>
+<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n">analytics_db</span><span class="p">;</span>
 </code></pre></div>
-<h3 id="create-mo_cdc-synchronization-task">Create <code>mo_cdc</code> synchronization task</h3>
-<p>Create a synchronization task through the <code>mo_cdc</code> tool to push MatrixOne's order data to MySQL in real time.</p>
+<h3 id="create-mo_cdc-synchronization-task">Create <code>mo_cdc</code> Synchronization Task</h3>
+<p>Use the <code>mo_cdc</code> tool to create a synchronization task, pushing order data from MatrixOne to MySQL in real-time.</p>
 <div class="highlight"><pre><span></span><code>&gt;./mo_cdc<span class="w"> </span>task<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
-<span class="w">       </span>--task-name<span class="w"> </span><span class="s2">&quot;task1&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">       </span>--source-uri<span class="w"> </span><span class="s2">&quot;mysql://root:111@127.0.0.1:6001&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">       </span>--sink-type<span class="w"> </span><span class="s2">&quot;mysql&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">       </span>--sink-uri<span class="w"> </span><span class="s2">&quot;mysql://root:111@127.0.0.1:3306&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">       </span>--tables<span class="w"> </span><span class="s2">&quot;source_db.orders:analytics_db.orders_backup&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">       </span>--level<span class="w"> </span><span class="s2">&quot;account&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">       </span>--account<span class="w"> </span><span class="s2">&quot;sys&quot;</span>
+<span class="w">    </span>--task-name<span class="w"> </span><span class="s2">&quot;task1&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--source-uri<span class="w"> </span><span class="s2">&quot;mysql://root:111@127.0.0.1:6001&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--sink-type<span class="w"> </span><span class="s2">&quot;mysql&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--sink-uri<span class="w"> </span><span class="s2">&quot;mysql://root:111@127.0.0.1:3306&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--level<span class="w"> </span>table<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--tables<span class="w"> </span><span class="s2">&quot;source_db.orders:analytics_db.orders_backup&quot;</span><span class="w"> </span>
 </code></pre></div>
-<p>View task status</p>
+<p>Check task status.</p>
 <div class="highlight"><pre><span></span><code>&gt;<span class="w"> </span>./mo_cdc<span class="w"> </span>task<span class="w"> </span>show<span class="w"> </span><span class="se">\</span>
-<span class="w">       </span>--task-name<span class="w"> </span><span class="s2">&quot;task1&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">       </span>--source-uri<span class="w"> </span><span class="s2">&quot;mysql://root:111@127.0.0.1:6001&quot;</span>
+<span class="w">    </span>--task-name<span class="w"> </span><span class="s2">&quot;task1&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--source-uri<span class="w"> </span><span class="s2">&quot;mysql://root:111@127.0.0.1:6001&quot;</span>
 <span class="o">[</span>
 <span class="w">  </span><span class="o">{</span>
-<span class="w">    </span><span class="s2">&quot;task-id&quot;</span>:<span class="w"> </span><span class="s2">&quot;0192d76f-d89a-70b3-a60d-615c5f2fd33d&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;task-id&quot;</span>:<span class="w"> </span><span class="s2">&quot;0195db5c-6406-73d8-bbf6-25fb8b9dd45d&quot;</span>,
 <span class="w">    </span><span class="s2">&quot;task-name&quot;</span>:<span class="w"> </span><span class="s2">&quot;task1&quot;</span>,
 <span class="w">    </span><span class="s2">&quot;source-uri&quot;</span>:<span class="w"> </span><span class="s2">&quot;mysql://root:******@127.0.0.1:6001&quot;</span>,
 <span class="w">    </span><span class="s2">&quot;sink-uri&quot;</span>:<span class="w"> </span><span class="s2">&quot;mysql://root:******@127.0.0.1:3306&quot;</span>,
 <span class="w">    </span><span class="s2">&quot;state&quot;</span>:<span class="w"> </span><span class="s2">&quot;running&quot;</span>,
-<span class="w">    </span><span class="s2">&quot;checkpoint&quot;</span>:<span class="w"> </span><span class="s2">&quot;{\n  \&quot;source_db.orders\&quot;: 2024-10-29 16:43:00.318404 +0800 CST,\n}&quot;</span>,
-<span class="w">    </span><span class="s2">&quot;timestamp&quot;</span>:<span class="w"> </span><span class="s2">&quot;2024-10-29 16:43:01.299298 +0800 CST&quot;</span>
+<span class="w">    </span><span class="s2">&quot;err-msg&quot;</span>:<span class="w"> </span><span class="s2">&quot;&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;checkpoint&quot;</span>:<span class="w"> </span><span class="s2">&quot;{\n  \&quot;source_db.orders\&quot;: 2025-03-28 14:07:31.036987 +0800 CST,\n}&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;timestamp&quot;</span>:<span class="w"> </span><span class="s2">&quot;2025-03-28 14:07:31.376217 +0800 CST&quot;</span>
 <span class="w">  </span><span class="o">}</span>
-<span class="o">]</span><span class="w"> </span>
+<span class="o">]</span>
 </code></pre></div>
-<p>Connect to downstream mysql to view full data synchronization status</p>
+<p>Connect to the downstream MySQL to verify full data synchronization.</p>
 <div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">analytics_db</span><span class="p">.</span><span class="n">orders_backup</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">----------+-------------+---------------------+--------+------------+</span>
 <span class="o">|</span><span class="w"> </span><span class="n">order_id</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">customer_id</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">order_date</span><span class="w">          </span><span class="o">|</span><span class="w"> </span><span class="n">amount</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">status</span><span class="w">     </span><span class="o">|</span>
@@ -12798,10 +12862,10 @@
 <span class="o">|</span><span class="w">        </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span><span class="w">         </span><span class="mi">104</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">20</span><span class="w"> </span><span class="mi">09</span><span class="p">:</span><span class="mi">15</span><span class="p">:</span><span class="mi">00</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">200</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Shipped</span><span class="w">    </span><span class="o">|</span>
 <span class="o">|</span><span class="w">        </span><span class="mi">5</span><span class="w"> </span><span class="o">|</span><span class="w">         </span><span class="mi">105</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">12</span><span class="w"> </span><span class="mi">14</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="w"> </span><span class="o">|</span><span class="w">  </span><span class="mi">49</span><span class="p">.</span><span class="mi">99</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Delivered</span><span class="w">  </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">----------+-------------+---------------------+--------+------------+</span>
-<span class="mi">5</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+<span class="mi">5</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="incremental-synchronization-task">Incremental synchronization task</h3>
-<p>After the task is established, perform data change operations on the upstream MatrixOne</p>
+<h3 id="incremental-synchronization-task">Incremental Synchronization Task</h3>
+<p>After the task is established, perform data changes in the upstream MatrixOne.</p>
 <div class="highlight"><pre><span></span><code><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">source_db</span><span class="p">.</span><span class="n">orders</span><span class="w"> </span><span class="p">(</span><span class="n">order_id</span><span class="p">,</span><span class="w"> </span><span class="n">customer_id</span><span class="p">,</span><span class="w"> </span><span class="n">order_date</span><span class="p">,</span><span class="w"> </span><span class="n">amount</span><span class="p">,</span><span class="w"> </span><span class="n">status</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span>
 <span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">106</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2024-10-29 12:00:00&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">150</span><span class="p">.</span><span class="mi">00</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;New&#39;</span><span class="p">);</span>
 <span class="k">DELETE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">source_db</span><span class="p">.</span><span class="n">orders</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">order_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">6</span><span class="p">;</span>
@@ -12811,15 +12875,15 @@
 <span class="o">+</span><span class="c1">----------+-------------+---------------------+--------+------------+</span>
 <span class="o">|</span><span class="w"> </span><span class="n">order_id</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">customer_id</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">order_date</span><span class="w">          </span><span class="o">|</span><span class="w"> </span><span class="n">amount</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">status</span><span class="w">     </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">----------+-------------+---------------------+--------+------------+</span>
-<span class="o">|</span><span class="w">        </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span><span class="w">         </span><span class="mi">104</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">20</span><span class="w"> </span><span class="mi">09</span><span class="p">:</span><span class="mi">15</span><span class="p">:</span><span class="mi">00</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">200</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Delivered</span><span class="w">  </span><span class="o">|</span>
 <span class="o">|</span><span class="w">        </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w">         </span><span class="mi">101</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">15</span><span class="w"> </span><span class="mi">14</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">00</span><span class="w"> </span><span class="o">|</span><span class="w">  </span><span class="mi">99</span><span class="p">.</span><span class="mi">99</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Shipped</span><span class="w">    </span><span class="o">|</span>
 <span class="o">|</span><span class="w">        </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w">         </span><span class="mi">102</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">10</span><span class="w"> </span><span class="mi">10</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">149</span><span class="p">.</span><span class="mi">50</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Delivered</span><span class="w">  </span><span class="o">|</span>
 <span class="o">|</span><span class="w">        </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w">         </span><span class="mi">103</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">05</span><span class="w"> </span><span class="mi">16</span><span class="p">:</span><span class="mi">45</span><span class="p">:</span><span class="mi">00</span><span class="w"> </span><span class="o">|</span><span class="w">  </span><span class="mi">75</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Processing</span><span class="w"> </span><span class="o">|</span>
 <span class="o">|</span><span class="w">        </span><span class="mi">5</span><span class="w"> </span><span class="o">|</span><span class="w">         </span><span class="mi">105</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">12</span><span class="w"> </span><span class="mi">14</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="w"> </span><span class="o">|</span><span class="w">  </span><span class="mi">49</span><span class="p">.</span><span class="mi">99</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Delivered</span><span class="w">  </span><span class="o">|</span>
+<span class="o">|</span><span class="w">        </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span><span class="w">         </span><span class="mi">104</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">20</span><span class="w"> </span><span class="mi">09</span><span class="p">:</span><span class="mi">15</span><span class="p">:</span><span class="mi">00</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">200</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Delivered</span><span class="w">  </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">----------+-------------+---------------------+--------+------------+</span>
 <span class="mi">5</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 </code></pre></div>
-<p>Connect to downstream mysql to view incremental data synchronization status</p>
+<p>Connect to the downstream MySQL to verify incremental data synchronization.</p>
 <div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">analytics_db</span><span class="p">.</span><span class="n">orders_backup</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">----------+-------------+---------------------+--------+------------+</span>
 <span class="o">|</span><span class="w"> </span><span class="n">order_id</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">customer_id</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">order_date</span><span class="w">          </span><span class="o">|</span><span class="w"> </span><span class="n">amount</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">status</span><span class="w">     </span><span class="o">|</span>
@@ -12832,13 +12896,13 @@
 <span class="o">+</span><span class="c1">----------+-------------+---------------------+--------+------------+</span>
 <span class="mi">5</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="resume-upload-from-breakpoint">Resume upload from breakpoint</h3>
-<p>Now the mission is interrupted due to an accident.</p>
+<h3 id="checkpoint-recovery">Checkpoint Recovery</h3>
+<p>Now, the task is interrupted due to an unexpected event.</p>
 <div class="highlight"><pre><span></span><code>&gt;<span class="w"> </span>./mo_cdc<span class="w"> </span>task<span class="w"> </span>pause<span class="w"> </span><span class="se">\</span>
-<span class="w">       </span>--task-name<span class="w"> </span><span class="s2">&quot;task1&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">       </span>--source-uri<span class="w"> </span><span class="s2">&quot;mysql://root:111@127.0.0.1:6001&quot;</span>
+<span class="w">    </span>--task-name<span class="w"> </span><span class="s2">&quot;task1&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--source-uri<span class="w"> </span><span class="s2">&quot;mysql://root:111@127.0.0.1:6001&quot;</span>
 </code></pre></div>
-<p>During the task interruption, data continues to be inserted into the upstream MatrixOne.</p>
+<p>During the task interruption, continue inserting data into the upstream MatrixOne.</p>
 <div class="highlight"><pre><span></span><code><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">source_db</span><span class="p">.</span><span class="n">orders</span><span class="w"> </span><span class="p">(</span><span class="n">order_id</span><span class="p">,</span><span class="w"> </span><span class="n">customer_id</span><span class="p">,</span><span class="w"> </span><span class="n">order_date</span><span class="p">,</span><span class="w"> </span><span class="n">amount</span><span class="p">,</span><span class="w"> </span><span class="n">status</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span>
 <span class="p">(</span><span class="mi">11</span><span class="p">,</span><span class="w"> </span><span class="mi">111</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2024-06-15 08:30:00&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">250</span><span class="p">.</span><span class="mi">75</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Processing&#39;</span><span class="p">);</span>
 <span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">source_db</span><span class="p">.</span><span class="n">orders</span><span class="w"> </span><span class="p">(</span><span class="n">order_id</span><span class="p">,</span><span class="w"> </span><span class="n">customer_id</span><span class="p">,</span><span class="w"> </span><span class="n">order_date</span><span class="p">,</span><span class="w"> </span><span class="n">amount</span><span class="p">,</span><span class="w"> </span><span class="n">status</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span>
@@ -12850,23 +12914,23 @@
 <span class="o">+</span><span class="c1">----------+-------------+---------------------+--------+------------+</span>
 <span class="o">|</span><span class="w"> </span><span class="n">order_id</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">customer_id</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">order_date</span><span class="w">          </span><span class="o">|</span><span class="w"> </span><span class="n">amount</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">status</span><span class="w">     </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">----------+-------------+---------------------+--------+------------+</span>
-<span class="o">|</span><span class="w">        </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w">         </span><span class="mi">101</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">15</span><span class="w"> </span><span class="mi">14</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">00</span><span class="w"> </span><span class="o">|</span><span class="w">  </span><span class="mi">99</span><span class="p">.</span><span class="mi">99</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Shipped</span><span class="w">    </span><span class="o">|</span>
-<span class="o">|</span><span class="w">        </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w">         </span><span class="mi">102</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">10</span><span class="w"> </span><span class="mi">10</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">149</span><span class="p">.</span><span class="mi">50</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Delivered</span><span class="w">  </span><span class="o">|</span>
-<span class="o">|</span><span class="w">        </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w">         </span><span class="mi">103</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">05</span><span class="w"> </span><span class="mi">16</span><span class="p">:</span><span class="mi">45</span><span class="p">:</span><span class="mi">00</span><span class="w"> </span><span class="o">|</span><span class="w">  </span><span class="mi">75</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Processing</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">        </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span><span class="w">         </span><span class="mi">104</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">20</span><span class="w"> </span><span class="mi">09</span><span class="p">:</span><span class="mi">15</span><span class="p">:</span><span class="mi">00</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">200</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Delivered</span><span class="w">  </span><span class="o">|</span>
-<span class="o">|</span><span class="w">        </span><span class="mi">5</span><span class="w"> </span><span class="o">|</span><span class="w">         </span><span class="mi">105</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">12</span><span class="w"> </span><span class="mi">14</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="w"> </span><span class="o">|</span><span class="w">  </span><span class="mi">49</span><span class="p">.</span><span class="mi">99</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Delivered</span><span class="w">  </span><span class="o">|</span>
 <span class="o">|</span><span class="w">       </span><span class="mi">11</span><span class="w"> </span><span class="o">|</span><span class="w">         </span><span class="mi">111</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">06</span><span class="o">-</span><span class="mi">15</span><span class="w"> </span><span class="mi">08</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">00</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">250</span><span class="p">.</span><span class="mi">75</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Processing</span><span class="w"> </span><span class="o">|</span>
 <span class="o">|</span><span class="w">       </span><span class="mi">12</span><span class="w"> </span><span class="o">|</span><span class="w">         </span><span class="mi">112</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">07</span><span class="o">-</span><span class="mi">22</span><span class="w"> </span><span class="mi">15</span><span class="p">:</span><span class="mi">45</span><span class="p">:</span><span class="mi">00</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">399</span><span class="p">.</span><span class="mi">99</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Shipped</span><span class="w">    </span><span class="o">|</span>
 <span class="o">|</span><span class="w">       </span><span class="mi">13</span><span class="w"> </span><span class="o">|</span><span class="w">         </span><span class="mi">113</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">30</span><span class="w"> </span><span class="mi">10</span><span class="p">:</span><span class="mi">20</span><span class="p">:</span><span class="mi">00</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">599</span><span class="p">.</span><span class="mi">99</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Delivered</span><span class="w">  </span><span class="o">|</span>
+<span class="o">|</span><span class="w">        </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w">         </span><span class="mi">101</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">15</span><span class="w"> </span><span class="mi">14</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">00</span><span class="w"> </span><span class="o">|</span><span class="w">  </span><span class="mi">99</span><span class="p">.</span><span class="mi">99</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Shipped</span><span class="w">    </span><span class="o">|</span>
+<span class="o">|</span><span class="w">        </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w">         </span><span class="mi">102</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">10</span><span class="w"> </span><span class="mi">10</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">149</span><span class="p">.</span><span class="mi">50</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Delivered</span><span class="w">  </span><span class="o">|</span>
+<span class="o">|</span><span class="w">        </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w">         </span><span class="mi">103</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">05</span><span class="w"> </span><span class="mi">16</span><span class="p">:</span><span class="mi">45</span><span class="p">:</span><span class="mi">00</span><span class="w"> </span><span class="o">|</span><span class="w">  </span><span class="mi">75</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Processing</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w">        </span><span class="mi">5</span><span class="w"> </span><span class="o">|</span><span class="w">         </span><span class="mi">105</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">12</span><span class="w"> </span><span class="mi">14</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="w"> </span><span class="o">|</span><span class="w">  </span><span class="mi">49</span><span class="p">.</span><span class="mi">99</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Delivered</span><span class="w">  </span><span class="o">|</span>
+<span class="o">|</span><span class="w">        </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span><span class="w">         </span><span class="mi">104</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">20</span><span class="w"> </span><span class="mi">09</span><span class="p">:</span><span class="mi">15</span><span class="p">:</span><span class="mi">00</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">200</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Delivered</span><span class="w">  </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">----------+-------------+---------------------+--------+------------+</span>
-<span class="mi">8</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+<span class="mi">8</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 </code></pre></div>
-<p>Manual recovery tasks.</p>
+<p>Manually resume the task.</p>
 <div class="highlight"><pre><span></span><code>&gt;<span class="w"> </span>./mo_cdc<span class="w"> </span>task<span class="w"> </span>resume<span class="w"> </span><span class="se">\</span>
-<span class="w">       </span>--task-name<span class="w"> </span><span class="s2">&quot;task1&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">       </span>--source-uri<span class="w"> </span><span class="s2">&quot;mysql://root:111@127.0.0.1:6001&quot;</span>
+<span class="w">    </span>--task-name<span class="w"> </span><span class="s2">&quot;task1&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--source-uri<span class="w"> </span><span class="s2">&quot;mysql://root:111@127.0.0.1:6001&quot;</span>
 </code></pre></div>
-<p>Connect to the downstream mysql to check the resumed transmission status.</p>
+<p>Connect to the downstream MySQL to verify checkpoint recovery.</p>
 <div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">analytics_db</span><span class="p">.</span><span class="n">orders_backup</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">----------+-------------+---------------------+--------+------------+</span>
 <span class="o">|</span><span class="w"> </span><span class="n">order_id</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">customer_id</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">order_date</span><span class="w">          </span><span class="o">|</span><span class="w"> </span><span class="n">amount</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">status</span><span class="w">     </span><span class="o">|</span>
@@ -12882,8 +12946,12 @@
 <span class="o">+</span><span class="c1">----------+-------------+---------------------+--------+------------+</span>
 <span class="mi">8</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="apply-effects">Apply effects</h2>
-<p>Through this solution, retail companies can synchronize order data to the analysis database in real time to implement application scenarios such as order statistics, sales trend analysis, and customer behavior insights to support business decisions. At the same time, breakpoint resumption ensures data consistency when network delays or task interruptions occur, so that the data analysis system always maintains an accurate and reliable data source.</p>
+<h2 id="application-results">Application Results</h2>
+<p>Through this solution, the retail company achieves:</p>
+<ul>
+<li>Real-time synchronization of order data to the analytics database, enabling applications such as order statistics, sales trend analysis, and customer behavior insights to support business decisions.</li>
+<li>Data consistency during network delays or task interruptions via checkpoint recovery, ensuring the analytics system always has accurate and reliable data sources.</li>
+</ul>
 
 
 
@@ -12921,13 +12989,13 @@
         
         
           
-          <a href="../../mount-data-by-docker/" class="md-footer__link md-footer__link--next" aria-label="Next: Mount directory to Docker container" rel="next">
+          <a href="../mo-mo/" class="md-footer__link md-footer__link--next" aria-label="Next: From MatrixOne to MatrixOne" rel="next">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Mount directory to Docker container
+                From MatrixOne to MatrixOne
               </div>
             </div>
             <div class="md-footer__button md-icon">

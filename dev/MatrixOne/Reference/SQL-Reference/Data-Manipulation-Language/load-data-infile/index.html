@@ -3976,6 +3976,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Maintain/cdc/mo-mo/" class="md-nav__link">
+        From MatrixOne to MatrixOne
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -5451,6 +5465,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../Data-Definition-Language/create-fulltext-index/" class="md-nav__link">
+        CREATE FULLTEXT INDEX
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../Data-Definition-Language/create-table/" class="md-nav__link">
         CREATE TABLE
       </a>
@@ -6263,6 +6291,33 @@
           <li class="md-nav__item">
   <a href="#add-conditional-import-example" class="md-nav__link">
     Add conditional import example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-4-load-hdfs" class="md-nav__link">
+    Example 4: LOAD HDFS
+  </a>
+  
+    <nav class="md-nav" aria-label="Example 4: LOAD HDFS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simple-import-example_1" class="md-nav__link">
+    Simple Import Example
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conditional-import-example" class="md-nav__link">
+    Conditional Import Example
   </a>
   
 </li>
@@ -12101,6 +12156,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../Release-Notes/v25.2.1.0/" class="md-nav__link">
+        v25.2.1.0
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../Release-Notes/v25.2.0.3/" class="md-nav__link">
         v25.2.0.3
       </a>
@@ -12960,6 +13029,33 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#example-4-load-hdfs" class="md-nav__link">
+    Example 4: LOAD HDFS
+  </a>
+  
+    <nav class="md-nav" aria-label="Example 4: LOAD HDFS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simple-import-example_1" class="md-nav__link">
+    Simple Import Example
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conditional-import-example" class="md-nav__link">
+    Conditional Import Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -13000,7 +13096,7 @@
 <p>The LOAD DATA statement reads rows from a text file into a table at a very high speed. The file can be read from the server host or a <a href="../../../../Develop/import-data/bulk-load/load-s3/">S3 compatible object storage</a>. <code>LOAD DATA</code> is the complement of <a href="../../../../Develop/export-data/select-into-outfile/"><code>SELECT ... INTO OUTFILE</code></a>. To write data from a table to a file, use <code>SELECT ... INTO OUTFILE</code>. To read the file back into a table, use LOAD DATA. The syntax of the <code>FIELDS</code> and <code>LINES</code> clauses is the same for both statements.</p>
 <h2 id="syntax"><strong>Syntax</strong></h2>
 <div class="highlight"><pre><span></span><code>&gt; LOAD DATA [LOCAL]
-    INFILE &#39;&lt;file_name&gt;|&lt;stage://stage_name/filepath&gt;&#39;
+    INFILE &#39;&lt;file_name&gt;|&lt;stage://stage_name/filepath&gt;|hdfs&#39;
     INTO TABLE tbl_name
     [CHARACTER SET charset_name]
     [{FIELDS | COLUMNS}
@@ -13590,13 +13686,61 @@ load data infile {&#39;filepath&#39;=&#39;&lt;your-local-file-path&gt;/jsonline_
 <span class="o">+</span><span class="c1">------+------+</span>
 <span class="mi">2</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 </code></pre></div>
+<h3 id="example-4-load-hdfs">Example 4: LOAD HDFS</h3>
+<h4 id="simple-import-example_1">Simple Import Example</h4>
+<p>There is a file <code>t1.csv</code> under <code>/User/</code> in HDFS:</p>
+<div class="highlight"><pre><span></span><code><span class="o">(</span>base<span class="o">)</span><span class="w"> </span>admin@admindeMBP<span class="w"> </span><span class="nb">test</span><span class="w"> </span>%<span class="w"> </span>hdfs<span class="w"> </span>dfs<span class="w"> </span>-cat<span class="w"> </span>/user/t1.csv
+<span class="m">1</span><span class="w">   </span>a
+<span class="m">2</span><span class="w">   </span>b
+<span class="m">3</span><span class="w">   </span>c
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="p">(</span><span class="n">n1</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="n">n2</span><span class="w"> </span><span class="nb">text</span><span class="p">);</span>
+<span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">03</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">load</span><span class="w"> </span><span class="k">data</span><span class="w"> </span><span class="n">url</span><span class="w"> </span><span class="n">s3option</span><span class="w"> </span><span class="err">{</span><span class="s1">&#39;endpoint&#39;</span><span class="o">=</span><span class="s1">&#39;hdfs://127.0.0.1:9000&#39;</span><span class="p">,</span><span class="s1">&#39;filepath&#39;</span><span class="o">=</span><span class="s1">&#39;/user/t1.csv&#39;</span><span class="err">}</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
+<span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">15</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
+<span class="o">+</span><span class="c1">------+------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">n1</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">n2</span><span class="w">   </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">------+------+</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">a</span><span class="w">    </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">b</span><span class="w">    </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">c</span><span class="w">    </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">------+------+</span>
+<span class="mi">3</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="conditional-import-example">Conditional Import Example</h4>
+<p>You can append <code>IGNORE 1 LINES</code> at the end of the <code>LOAD DATA</code> statement to skip the first line of the data file.</p>
+<p>There is a file <code>t1.csv</code> under <code>/User/</code> in HDFS:</p>
+<div class="highlight"><pre><span></span><code><span class="o">(</span>base<span class="o">)</span><span class="w"> </span>admin@admindeMBP<span class="w"> </span><span class="nb">test</span><span class="w"> </span>%<span class="w"> </span>hdfs<span class="w"> </span>dfs<span class="w"> </span>-cat<span class="w"> </span>/user/t1.csv
+<span class="m">1</span><span class="w">   </span>a
+<span class="m">2</span><span class="w">   </span>b
+<span class="m">3</span><span class="w">   </span>c
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t2</span><span class="p">(</span><span class="n">n1</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="n">n2</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">10</span><span class="p">));</span>
+<span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">02</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">load</span><span class="w"> </span><span class="k">data</span><span class="w"> </span><span class="n">url</span><span class="w"> </span><span class="n">s3option</span><span class="w"> </span><span class="err">{</span><span class="s1">&#39;endpoint&#39;</span><span class="o">=</span><span class="s1">&#39;hdfs://127.0.0.1:9000&#39;</span><span class="p">,</span><span class="s1">&#39;filepath&#39;</span><span class="o">=</span><span class="s1">&#39;/user/t1.csv&#39;</span><span class="err">}</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="k">ignore</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">lines</span><span class="p">;</span>
+<span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">08</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t2</span><span class="p">;</span>
+<span class="o">+</span><span class="c1">------+------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">n1</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">n2</span><span class="w">   </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">------+------+</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">b</span><span class="w">    </span><span class="o">|</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">c</span><span class="w">    </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">------+------+</span>
+<span class="mi">2</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+</code></pre></div>
 <h2 id="constraints"><strong>Constraints</strong></h2>
 <ol>
-<li>The <code>REPLACE</code> and <code>IGNORE</code> modifiers control handling of new (input) rows that duplicate existing table rows on unique key values (<code>PRIMARY KEY</code> or <code>UNIQUE index</code> values) are not supported in MatrixOne yet.</li>
-<li>Input pre-pressing with <code>SET</code> is supported very limitedly. Only <code>SET columns_name=nullif(expr1,expr2)</code> is supported.</li>
-<li>When enabling the parallel loading, it must be ensured that each row of data in the file does not contain the specified line terminator, such as '\n'; otherwise, it will cause data errors during file loading.</li>
-<li>The parallel loading of files requires that the files be in uncompressed format, and parallel loading of files in compressed form is not currently supported.</li>
-<li>When you use <code>load data local</code>, you need to use the command line to connect to the MatrixOne service host: <code>mysql -h &lt;mo-host -ip&gt; -P 6001 -uroot -p111 --local-infile</code>.</li>
+<li>The <code>REPLACE</code> and <code>IGNORE</code> modifiers, which control the handling of new (input) rows that duplicate existing table rows on unique key values (<code>PRIMARY KEY</code> or <code>UNIQUE index</code> values), are not yet supported in MatrixOne.</li>
+<li>Input pre-processing with <code>SET</code> is very limited. Only <code>SET columns_name=nullif(expr1,expr2)</code> is supported.</li>
+<li>When enabling parallel loading, ensure that each row of data in the file does not contain the specified line terminator (e.g., <code>\n</code>); otherwise, it may cause data errors during file loading.</li>
+<li>Parallel loading of files requires uncompressed formats. Currently, parallel loading of compressed files is not supported.</li>
+<li>When using <code>load data local</code>, you must connect to the MatrixOne service host via the command line:<br />
+<code>mysql -h &lt;mo-host-ip&gt; -P 6001 -uroot -p111 --local-infile</code>.</li>
 </ol>
 
 

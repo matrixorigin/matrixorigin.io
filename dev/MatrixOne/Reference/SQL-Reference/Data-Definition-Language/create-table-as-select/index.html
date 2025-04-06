@@ -3976,6 +3976,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Maintain/cdc/mo-mo/" class="md-nav__link">
+        From MatrixOne to MatrixOne
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -5453,6 +5467,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../create-fulltext-index/" class="md-nav__link">
+        CREATE FULLTEXT INDEX
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../create-table/" class="md-nav__link">
         CREATE TABLE
       </a>
@@ -5509,14 +5537,14 @@
       
         <li class="md-nav__item">
   <a href="#syntax-structure" class="md-nav__link">
-    Syntax structure
+    Syntax Structure
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#grammatical-interpretation" class="md-nav__link">
-    Grammatical interpretation
+  <a href="#syntax-explanation" class="md-nav__link">
+    Syntax Explanation
   </a>
   
 </li>
@@ -11946,6 +11974,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../Release-Notes/v25.2.1.0/" class="md-nav__link">
+        v25.2.1.0
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../Release-Notes/v25.2.0.3/" class="md-nav__link">
         v25.2.0.3
       </a>
@@ -12636,14 +12678,14 @@
       
         <li class="md-nav__item">
   <a href="#syntax-structure" class="md-nav__link">
-    Syntax structure
+    Syntax Structure
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#grammatical-interpretation" class="md-nav__link">
-    Grammatical interpretation
+  <a href="#syntax-explanation" class="md-nav__link">
+    Syntax Explanation
   </a>
   
 </li>
@@ -12687,8 +12729,8 @@
 
 <h1 id="create-table-as-select">CREATE TABLE AS SELECT</h1>
 <h2 id="syntax-description">Syntax Description</h2>
-<p>The <code>CREATE TABLE AS SELECT</code> command creates a new table by copying column definitions and column data from an existing table specified in the <code>SELECT</code> query. However, it does not copy constraints, indexes, views, or other non-data attributes of the original table.</p>
-<h2 id="syntax-structure">Syntax structure</h2>
+<p>The <code>CREATE TABLE AS SELECT</code> command creates a new table by copying column definitions and data from existing tables specified in a <code>SELECT</code> query. However, it does not copy constraints, indexes, views, or other non-data attributes from the original table.</p>
+<h2 id="syntax-structure">Syntax Structure</h2>
 <div class="highlight"><pre><span></span><code>&gt; CREATE [TEMPORARY] TABLE [ IF NOT EXISTS ] table_name
 [ (column_name [, ...] ) ] AS {query}
 
@@ -12698,7 +12740,7 @@ SELECT
 [ALL | DISTINCT ]
 select_expr [, select_expr] [[AS] alias] ...
 [INTO variable [, ...]]
-[FROM table_references
+[FROM table_references[{as of timestamp &#39;YYYY-MM-DD HH:MM:SS&#39;}]]
 [WHERE where_condition]
 [GROUP BY {col_name | expr | position}
 [ASC | DESC]]
@@ -12707,70 +12749,39 @@ select_expr [, select_expr] [[AS] alias] ...
 [ASC | DESC]] [ NULLS { FIRST | LAST } ]
 [LIMIT {[offset,] row_count | row_count OFFSET offset}]
 </code></pre></div>
-<h2 id="grammatical-interpretation">Grammatical interpretation</h2>
+<h2 id="syntax-explanation">Syntax Explanation</h2>
 <ul>
-<li>
-<p>ALL: Default option to return all matching rows, including duplicate rows.</p>
-</li>
-<li>
-<p>DISTINCT: Indicates that only unique rows are returned, i.e. duplicate rows are removed.</p>
-</li>
-<li>
-<p>select_expr: Indicates the column or expression to select.</p>
-</li>
-<li>
-<p>AS alias: Specifies an alias for the selected column or expression.</p>
-</li>
-<li>
-<p>[INTO variable[, ...]: Used to store query results in a variable instead of returning them to the client.</p>
-</li>
-<li>
-<p>[FROM table_references]: Specifies which table or tables to retrieve data from. table_references can be a table name or a complex expression (such as a join) with multiple tables.</p>
-</li>
-<li>
-<p>[WHERE where_condition]: Used to filter the result set to return only rows that satisfy the where_condition condition.</p>
-</li>
-<li>
-<p>[GROUP BY {col_name | expr | position} [ASC | DESC]]: Used to group result sets by one or more columns or expressions; ASC and DESC are used to specify how rows within a group are sorted.</p>
-</li>
-<li>
-<p>[HAVING where_condition]: Filter groups after they are grouped. Usually used with GROUP BY to filter out groups that do not meet the criteria.</p>
-</li>
-<li>
-<p>[ORDER BY {col_name | expr | position} [ASC | DESC] [NULLS {FIRST | LAST}]: Used to sort result sets; ASC and DESC are used to specify sorting methods.</p>
-</li>
-<li>
-<p>[NULLS {FIRST | LAST}]: Used to specify how to handle the position of NULL values in the sort.</p>
-</li>
-<li>
-<p>[LIMIT {[offset,] row_count | row_count OFFSET offset}]: Used to limit the number of rows returned. offset specifies which row of the result set to return from, with 0 being the first row. row_count Specifies the number of rows returned.</p>
-</li>
+<li><strong>ALL</strong>: Default option, returns all matching rows including duplicates.</li>
+<li><strong>DISTINCT</strong>: Returns only unique rows (removes duplicates).</li>
+<li><strong>select_expr</strong>: Columns or expressions to select.</li>
+<li><strong>AS alias</strong>: Assigns an alias to the selected column or expression.</li>
+<li><strong>[INTO variable [, ...]]</strong>: Stores query results in variables instead of returning them to the client.</li>
+<li><strong>[FROM table_references]</strong>: Specifies the source table(s) for data retrieval. <code>table_references</code> can be a table name or a complex expression (e.g., joins). Optionally copies table data from a specific PITR timestamp.</li>
+<li><strong>[WHERE where_condition]</strong>: Filters results to rows satisfying the condition.</li>
+<li><strong>[GROUP BY {col_name | expr | position} [ASC | DESC]]</strong>: Groups results by specified columns/expressions. <code>ASC</code>/<code>DESC</code> defines sorting within groups.</li>
+<li><strong>[HAVING where_condition]</strong>: Filters groups after grouping (used with <code>GROUP BY</code>).</li>
+<li><strong>[ORDER BY {col_name | expr | position} [ASC | DESC] [NULLS {FIRST | LAST}]]</strong>: Sorts results. <code>NULLS FIRST</code>/<code>LAST</code> controls NULL value placement.</li>
+<li><strong>[LIMIT {[offset,] row_count | row_count OFFSET offset}]</strong>: Limits returned rows. <code>offset</code> specifies starting row (0 = first), <code>row_count</code> specifies number of rows.</li>
 </ul>
 <h2 id="permissions">Permissions</h2>
-<p>In <code>Matrixone</code>, executing the <code>CREATE TABLE AS SELECT</code> statement requires at least the following permissions:</p>
+<p>In <code>MatrixOne</code>, executing <code>CREATE TABLE AS SELECT</code> requires:</p>
 <ul>
-<li>
-<p><code>CREATE</code> permissions: Users need to have permissions to create tables, which can be done with <code>CREATE</code> permissions.</p>
-</li>
-<li>
-<p><code>INSERT</code> permission: Because the <code>CREATE TABLE AS SELECT</code> statement inserts the selected data into the new table, the user also needs to have permission to insert data into the target table. This can be done with <code>INSERT</code> privileges.</p>
-</li>
-<li>
-<p><code>SELECT</code> permission: Users need to be able to select data from the source data table, so they need to have SELECT permission.</p>
-</li>
+<li><strong>CREATE</strong> permission: To create tables.</li>
+<li><strong>INSERT</strong> permission: To insert data into the new table.</li>
+<li><strong>SELECT</strong> permission: To query source table(s).</li>
 </ul>
-<p>For more permission-related actions, check out the <a href="../../../access-control-type/">Matrixone permission classification</a> and <a href="../../Data-Control-Language/grant/">grant instructions</a>.</p>
+<p>For detailed permission operations, see <a href="../../../access-control-type/">MatrixOne Permission Types</a> and <a href="../../Data-Control-Language/grant/">GRANT</a>.</p>
 <h2 id="examples">Examples</h2>
 <ul>
-<li>Example 1</li>
+<li>Example 1: Copy entire table</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="nb">char</span><span class="p">(</span><span class="mi">5</span><span class="p">));</span>
-<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1&#39;</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;2&#39;</span><span class="p">),(</span><span class="mi">0</span><span class="n">x7fffffff</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;max&#39;</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">5</span><span class="p">));</span>
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1&#39;</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;2&#39;</span><span class="p">),(</span><span class="mi">0</span><span class="n">x7fffffff</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;max&#39;</span><span class="p">);</span>
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span><span class="c1">--Whole Table Replication</span>
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span><span class="w"> </span><span class="c1">-- Full table copy</span>
 <span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">02</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">desc</span><span class="w"> </span><span class="n">t2</span><span class="p">;</span>
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">DESC</span><span class="w"> </span><span class="n">t2</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">-------+---------+------+------+---------+-------+---------+</span>
 <span class="o">|</span><span class="w"> </span><span class="n">Field</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">Type</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="k">Null</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">Key</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="k">Default</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Extra</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">Comment</span><span class="w"> </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">-------+---------+------+------+---------+-------+---------+</span>
@@ -12779,7 +12790,7 @@ select_expr [, select_expr] [[AS] alias] ...
 <span class="o">+</span><span class="c1">-------+---------+------+------+---------+-------+---------+</span>
 <span class="mi">2</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t2</span><span class="p">;</span>
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t2</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">------------+------+</span>
 <span class="o">|</span><span class="w"> </span><span class="n">a</span><span class="w">          </span><span class="o">|</span><span class="w"> </span><span class="n">b</span><span class="w">    </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">------------+------+</span>
@@ -12790,15 +12801,15 @@ select_expr [, select_expr] [[AS] alias] ...
 <span class="mi">3</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 </code></pre></div>
 <ul>
-<li>Example 2</li>
+<li>Example 2: Column aliasing</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="nb">char</span><span class="p">(</span><span class="mi">5</span><span class="p">));</span>
-<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1&#39;</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;2&#39;</span><span class="p">),(</span><span class="mi">0</span><span class="n">x7fffffff</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;max&#39;</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">5</span><span class="p">));</span>
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1&#39;</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;2&#39;</span><span class="p">),(</span><span class="mi">0</span><span class="n">x7fffffff</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;max&#39;</span><span class="p">);</span>
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">test</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">alias_a</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span><span class="c1">--Specify an alias for the selection column</span>
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">test</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">alias_a</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span><span class="w"> </span><span class="c1">-- Column alias</span>
 <span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">02</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">desc</span><span class="w"> </span><span class="n">test</span><span class="p">;</span>
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">DESC</span><span class="w"> </span><span class="n">test</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">---------+---------+------+------+---------+-------+---------+</span>
 <span class="o">|</span><span class="w"> </span><span class="n">Field</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="k">Type</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="k">Null</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">Key</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="k">Default</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Extra</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">Comment</span><span class="w"> </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">---------+---------+------+------+---------+-------+---------+</span>
@@ -12806,7 +12817,7 @@ select_expr [, select_expr] [[AS] alias] ...
 <span class="o">+</span><span class="c1">---------+---------+------+------+---------+-------+---------+</span>
 <span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">test</span><span class="p">;</span>
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">test</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">------------+</span>
 <span class="o">|</span><span class="w"> </span><span class="n">alias_a</span><span class="w">    </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">------------+</span>
@@ -12817,15 +12828,15 @@ select_expr [, select_expr] [[AS] alias] ...
 <span class="mi">3</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 </code></pre></div>
 <ul>
-<li>Example 3</li>
+<li>Example 3: Copy schema only</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="nb">char</span><span class="p">(</span><span class="mi">5</span><span class="p">));</span>
-<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1&#39;</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;2&#39;</span><span class="p">),(</span><span class="mi">0</span><span class="n">x7fffffff</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;max&#39;</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">5</span><span class="p">));</span>
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1&#39;</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;2&#39;</span><span class="p">),(</span><span class="mi">0</span><span class="n">x7fffffff</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;max&#39;</span><span class="p">);</span>
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t3</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="mi">1</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span><span class="c1">--Copy only the fields, not the data</span>
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t3</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="mi">1</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="c1">-- Schema only</span>
 <span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">desc</span><span class="w"> </span><span class="n">t3</span><span class="p">;</span>
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">DESC</span><span class="w"> </span><span class="n">t3</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">-------+---------+------+------+---------+-------+---------+</span>
 <span class="o">|</span><span class="w"> </span><span class="n">Field</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">Type</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="k">Null</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">Key</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="k">Default</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Extra</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">Comment</span><span class="w"> </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">-------+---------+------+------+---------+-------+---------+</span>
@@ -12834,45 +12845,45 @@ select_expr [, select_expr] [[AS] alias] ...
 <span class="o">+</span><span class="c1">-------+---------+------+------+---------+-------+---------+</span>
 <span class="mi">2</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t3</span><span class="p">;</span>
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t3</span><span class="p">;</span>
 <span class="n">Empty</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 </code></pre></div>
 <ul>
-<li>Example 4</li>
+<li>Example 4: Aggregated values</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="nb">char</span><span class="p">(</span><span class="mi">5</span><span class="p">));</span>
-<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1&#39;</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;2&#39;</span><span class="p">),(</span><span class="mi">0</span><span class="n">x7fffffff</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;max&#39;</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">5</span><span class="p">));</span>
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1&#39;</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;2&#39;</span><span class="p">),(</span><span class="mi">0</span><span class="n">x7fffffff</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;max&#39;</span><span class="p">);</span>
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t4</span><span class="p">(</span><span class="n">n1</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="k">unique</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="k">max</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span><span class="c1">--Use the original table data aggregation values as columns in the new table</span>
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t4</span><span class="p">(</span><span class="n">n1</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">UNIQUE</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">MAX</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span><span class="w"> </span><span class="c1">-- Aggregated column</span>
 <span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">03</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">desc</span><span class="w"> </span><span class="n">t4</span><span class="p">;</span>
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">DESC</span><span class="w"> </span><span class="n">t4</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">--------+---------+------+------+---------+-------+---------+</span>
 <span class="o">|</span><span class="w"> </span><span class="n">Field</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="k">Type</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="k">Null</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">Key</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="k">Default</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Extra</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">Comment</span><span class="w"> </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">--------+---------+------+------+---------+-------+---------+</span>
 <span class="o">|</span><span class="w"> </span><span class="n">n1</span><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="nb">INT</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">YES</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">UNI</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w">    </span><span class="o">|</span><span class="w">       </span><span class="o">|</span><span class="w">         </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="k">max</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nb">INT</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">YES</span><span class="w">  </span><span class="o">|</span><span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w">    </span><span class="o">|</span><span class="w">       </span><span class="o">|</span><span class="w">         </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="k">MAX</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nb">INT</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">YES</span><span class="w">  </span><span class="o">|</span><span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w">    </span><span class="o">|</span><span class="w">       </span><span class="o">|</span><span class="w">         </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">--------+---------+------+------+---------+-------+---------+</span>
 <span class="mi">2</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t4</span><span class="p">;</span>
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t4</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">------+------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">n1</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="k">max</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="w">     </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">n1</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="k">MAX</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="w">     </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">------+------------+</span>
 <span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2147483647</span><span class="w"> </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">------+------------+</span>
 <span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 </code></pre></div>
 <ul>
-<li>Example 5</li>
+<li>Example 5: DISTINCT rows</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t5</span><span class="p">(</span><span class="n">n1</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="n">n2</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="n">n3</span><span class="w"> </span><span class="nb">int</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t5</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t5</span><span class="p">(</span><span class="n">n1</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span><span class="n">n2</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span><span class="n">n3</span><span class="w"> </span><span class="nb">INT</span><span class="p">);</span>
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">t5</span><span class="w"> </span><span class="k">VALUES</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t5_1</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="k">distinct</span><span class="w"> </span><span class="n">n1</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t5</span><span class="p">;</span><span class="c1">--Remove duplicate lines</span>
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t5_1</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">n1</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t5</span><span class="p">;</span><span class="w"> </span><span class="c1">-- Remove duplicates</span>
 <span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">02</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t5_1</span><span class="p">;</span>
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t5_1</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">------+</span>
 <span class="o">|</span><span class="w"> </span><span class="n">n1</span><span class="w">   </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">------+</span>
@@ -12882,15 +12893,15 @@ select_expr [, select_expr] [[AS] alias] ...
 <span class="mi">2</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 </code></pre></div>
 <ul>
-<li>Example 6</li>
+<li>Example 6: Sorted results</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t6</span><span class="p">(</span><span class="n">n1</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="n">n2</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="n">n3</span><span class="w"> </span><span class="nb">int</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t6</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">),(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t6</span><span class="p">(</span><span class="n">n1</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span><span class="n">n2</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span><span class="n">n3</span><span class="w"> </span><span class="nb">INT</span><span class="p">);</span>
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">t6</span><span class="w"> </span><span class="k">VALUES</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">),(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t6_1</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t6</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">n3</span><span class="p">;</span><span class="c1">--Sorting the result set</span>
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t6_1</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t6</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">n3</span><span class="p">;</span><span class="w"> </span><span class="c1">-- Sorted copy</span>
 <span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t6_1</span><span class="p">;</span>
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t6_1</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">------+------+------+</span>
 <span class="o">|</span><span class="w"> </span><span class="n">n1</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">n2</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">n3</span><span class="w">   </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">------+------+------+</span>
@@ -12901,16 +12912,15 @@ select_expr [, select_expr] [[AS] alias] ...
 <span class="mi">3</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 </code></pre></div>
 <ul>
-<li>Example 7</li>
+<li>Example 7: Grouped results</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t7</span><span class="p">(</span><span class="n">n1</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="n">n2</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="n">n3</span><span class="w"> </span><span class="nb">int</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t7</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">),(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t7</span><span class="p">(</span><span class="n">n1</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span><span class="n">n2</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span><span class="n">n3</span><span class="w"> </span><span class="nb">INT</span><span class="p">);</span>
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">t7</span><span class="w"> </span><span class="k">VALUES</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">),(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t7_1</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">n1</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t7</span><span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">n1</span><span class="w"> </span><span class="k">HAVING</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="n">n1</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">;</span><span class="c1">--Grouping of result sets</span>
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t7_1</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">n1</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t7</span><span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">n1</span><span class="w"> </span><span class="k">HAVING</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="n">n1</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="c1">-- Group filtering</span>
 <span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">02</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t7_1</span><span class="p">;</span>
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t7_1</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">------+</span>
 <span class="o">|</span><span class="w"> </span><span class="n">n1</span><span class="w">   </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">------+</span>
@@ -12920,91 +12930,91 @@ select_expr [, select_expr] [[AS] alias] ...
 <span class="mi">2</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 </code></pre></div>
 <ul>
-<li>Example 8</li>
+<li>Example 8: Limited rows</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t8</span><span class="p">(</span><span class="n">n1</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="n">n2</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="n">n3</span><span class="w"> </span><span class="nb">int</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t8</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">),(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+<p>```sql src/main.sql
+CREATE TABLE t8(n1 INT,n2 INT,n3 INT);
+INSERT INTO t8 VALUES(1,1,1),(2,2,2),(3,3,3);</p>
+<p>mysql&gt; CREATE TABLE t8_1 AS SELECT * FROM t8 LIMIT 1 OFFSET 1; -- Second row only
+Query OK, 1 row affected (0.01 sec)</p>
+<p>mysql&gt; SELECT * FROM t8_1;
++------+------+------+
+| n1   | n2   | n3   |
++------+------+------+
+|    2 |    2 |    2 |
++------+------+------+
+1 row in set (0.00 sec)
+<div class="highlight"><pre><span></span><code>- Example 9: Constraints handling
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t8_1</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t8</span><span class="w"> </span><span class="k">limit</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">offset</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="c1">--Specifies to return from the second row of the result set, and the number of rows to return is 1.</span>
+```sql
+CREATE TABLE t9 (a INT PRIMARY KEY, b VARCHAR(5) UNIQUE KEY);
+CREATE TABLE t9_1 (
+  a INT PRIMARY KEY,
+  b VARCHAR(5) UNIQUE,
+  c INT, 
+  d INT,
+  FOREIGN KEY(c) REFERENCES t9(a),
+  INDEX idx_d(d)
+);
+INSERT INTO t9 VALUES (101,&#39;abc&#39;),(102,&#39;def&#39;);
+INSERT INTO t9_1 VALUES (1,&#39;zs1&#39;,101,1),(2,&#39;zs2&#39;,102,1);
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t8_1</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------+------+------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">n1</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">n2</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">n3</span><span class="w">   </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+------+------+</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+------+------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
-<ul>
-<li>Example 9</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t9</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="k">primary</span><span class="w"> </span><span class="k">key</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="k">unique</span><span class="w"> </span><span class="k">key</span><span class="p">);</span>
-<span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t9_1</span><span class="w"> </span><span class="p">(</span>
-<span class="n">a</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="k">primary</span><span class="w"> </span><span class="k">key</span><span class="p">,</span>
-<span class="n">b</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="k">unique</span><span class="p">,</span>
-<span class="k">c</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="p">,</span><span class="w"> </span>
-<span class="n">d</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span>
-<span class="k">foreign</span><span class="w"> </span><span class="k">key</span><span class="p">(</span><span class="k">c</span><span class="p">)</span><span class="w"> </span><span class="k">references</span><span class="w"> </span><span class="n">t9</span><span class="p">(</span><span class="n">a</span><span class="p">),</span>
-<span class="k">INDEX</span><span class="w"> </span><span class="n">idx_d</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
-<span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t9</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">101</span><span class="p">,</span><span class="s1">&#39;abc&#39;</span><span class="p">),(</span><span class="mi">102</span><span class="p">,</span><span class="s1">&#39;def&#39;</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t9_1</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;zs1&#39;</span><span class="p">,</span><span class="mi">101</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;zs2&#39;</span><span class="p">,</span><span class="mi">102</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+mysql&gt; CREATE TABLE t9_2 AS SELECT * FROM t9_1; -- Constraints not copied
+Query OK, 2 rows affected (0.01 sec)
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t9_2</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t9_1</span><span class="p">;</span>
+mysql&gt; SHOW CREATE TABLE t9_1; -- Original table with constraints
++-------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table | Create Table                                                                                                                                                                                                                                                                                                   |
++-------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| t9_1  | CREATE TABLE `t9_1` (
+`a` INT NOT NULL,
+`b` VARCHAR(5) DEFAULT NULL,
+`c` INT DEFAULT NULL,
+`d` INT DEFAULT NULL,
+PRIMARY KEY (`a`),
+UNIQUE KEY `b` (`b`),
+KEY `idx_d` (`d`),
+CONSTRAINT `018f27eb-0b33-7289-a3c2-af479b1833b1` FOREIGN KEY (`c`) REFERENCES `t9` (`a`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) |
++-------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.01 sec)
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t9_1</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">-------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">Table</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">Create</span><span class="w"> </span><span class="k">Table</span><span class="w">                                                                                                                                                                                                                                                                                                   </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">t9_1</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="o">`</span><span class="n">t9_1</span><span class="o">`</span><span class="w"> </span><span class="p">(</span>
-<span class="o">`</span><span class="n">a</span><span class="o">`</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="o">`</span><span class="n">b</span><span class="o">`</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="o">`</span><span class="k">c</span><span class="o">`</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="o">`</span><span class="n">d</span><span class="o">`</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="o">`</span><span class="n">a</span><span class="o">`</span><span class="p">),</span>
-<span class="k">UNIQUE</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="o">`</span><span class="n">b</span><span class="o">`</span><span class="w"> </span><span class="p">(</span><span class="o">`</span><span class="n">b</span><span class="o">`</span><span class="p">),</span>
-<span class="k">KEY</span><span class="w"> </span><span class="o">`</span><span class="n">idx_d</span><span class="o">`</span><span class="w"> </span><span class="p">(</span><span class="o">`</span><span class="n">d</span><span class="o">`</span><span class="p">),</span>
-<span class="k">CONSTRAINT</span><span class="w"> </span><span class="o">`</span><span class="mi">018</span><span class="n">f27eb</span><span class="o">-</span><span class="mi">0</span><span class="n">b33</span><span class="o">-</span><span class="mi">7289</span><span class="o">-</span><span class="n">a3c2</span><span class="o">-</span><span class="n">af479b1833b1</span><span class="o">`</span><span class="w"> </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="o">`</span><span class="k">c</span><span class="o">`</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="o">`</span><span class="n">t9</span><span class="o">`</span><span class="w"> </span><span class="p">(</span><span class="o">`</span><span class="n">a</span><span class="o">`</span><span class="p">)</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">RESTRICT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">UPDATE</span><span class="w"> </span><span class="k">RESTRICT</span>
-<span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+mysql&gt; SHOW CREATE TABLE t9_2; -- New table lacks constraints
++-------+-------------------------------------------------------------------------------------------------------------------+
+| Table | Create Table                                                                                                      |
++-------+-------------------------------------------------------------------------------------------------------------------+
+| t9_2  | CREATE TABLE `t9_2` (
+`a` INT NOT NULL,
+`b` VARCHAR(5) DEFAULT NULL,
+`c` INT DEFAULT NULL,
+`d` INT DEFAULT NULL
+) |
++-------+-------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t9_2</span><span class="p">;</span><span class="c1">--If the source table has constraints or indexes, the new table created by CTAS will not have the constraints and indexes of the original table by default.</span>
-<span class="o">+</span><span class="c1">-------+-------------------------------------------------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">Table</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">Create</span><span class="w"> </span><span class="k">Table</span><span class="w">                                                                                                      </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+-------------------------------------------------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">t9_2</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="o">`</span><span class="n">t9_2</span><span class="o">`</span><span class="w"> </span><span class="p">(</span>
-<span class="o">`</span><span class="n">a</span><span class="o">`</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="o">`</span><span class="n">b</span><span class="o">`</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="o">`</span><span class="k">c</span><span class="o">`</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="o">`</span><span class="n">d</span><span class="o">`</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span>
-<span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+-------------------------------------------------------------------------------------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+-- Manually add constraints
+ALTER TABLE t9_2 ADD PRIMARY KEY (a);
+ALTER TABLE t9_2 ADD UNIQUE KEY (b);
+ALTER TABLE t9_2 ADD FOREIGN KEY (c) REFERENCES t9 (a);
+ALTER TABLE t9_2 ADD INDEX idx_d3 (d);
 
-<span class="c1">--If you want the new table to come with the original table with constraints and indexes, you can build the table by adding the</span>
-<span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t9_2</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
-<span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t9_2</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">UNIQUE</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">b</span><span class="p">);</span>
-<span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w">  </span><span class="n">t9_2</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="k">c</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">t9</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
-<span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t9_2</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_d3</span><span class="w"> </span><span class="p">(</span><span class="n">d</span><span class="p">);</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t9_2</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">Table</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">Create</span><span class="w"> </span><span class="k">Table</span><span class="w">                                                                                                                                                                                                                                                                                                    </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">t9_2</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="o">`</span><span class="n">t9_2</span><span class="o">`</span><span class="w"> </span><span class="p">(</span>
-<span class="o">`</span><span class="n">a</span><span class="o">`</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="o">`</span><span class="n">b</span><span class="o">`</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="o">`</span><span class="k">c</span><span class="o">`</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="o">`</span><span class="n">d</span><span class="o">`</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="o">`</span><span class="n">a</span><span class="o">`</span><span class="p">),</span>
-<span class="k">UNIQUE</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="o">`</span><span class="n">b</span><span class="o">`</span><span class="w"> </span><span class="p">(</span><span class="o">`</span><span class="n">b</span><span class="o">`</span><span class="p">),</span>
-<span class="k">KEY</span><span class="w"> </span><span class="o">`</span><span class="n">idx_d3</span><span class="o">`</span><span class="w"> </span><span class="p">(</span><span class="o">`</span><span class="n">d</span><span class="o">`</span><span class="p">),</span>
-<span class="k">CONSTRAINT</span><span class="w"> </span><span class="o">`</span><span class="mi">018</span><span class="n">f282d</span><span class="o">-</span><span class="mi">4563</span><span class="o">-</span><span class="mi">7</span><span class="n">e9d</span><span class="o">-</span><span class="mi">9</span><span class="n">be5</span><span class="o">-</span><span class="mi">79</span><span class="n">c0d0e8136d</span><span class="o">`</span><span class="w"> </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="o">`</span><span class="k">c</span><span class="o">`</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="o">`</span><span class="n">t9</span><span class="o">`</span><span class="w"> </span><span class="p">(</span><span class="o">`</span><span class="n">a</span><span class="o">`</span><span class="p">)</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">RESTRICT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">UPDATE</span><span class="w"> </span><span class="k">RESTRICT</span>
-<span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+mysql&gt; SHOW CREATE TABLE t9_2; -- With added constraints
++-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table | Create Table                                                                                                                                                                                                                                                                                                    |
++-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| t9_2  | CREATE TABLE `t9_2` (
+`a` INT NOT NULL,
+`b` VARCHAR(5) DEFAULT NULL,
+`c` INT DEFAULT NULL,
+`d` INT DEFAULT NULL,
+PRIMARY KEY (`a`),
+UNIQUE KEY `b` (`b`),
+KEY `idx_d3` (`d`),
+CONSTRAINT `018f282d-4563-7e9d-9be5-79c0d0e8136d` FOREIGN KEY (`c`) REFERENCES `t9` (`a`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) |
++-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+</code></pre></div></p>
 
 
 

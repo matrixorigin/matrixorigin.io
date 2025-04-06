@@ -69,7 +69,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#createpitr" class="md-skip">
+        <a href="#create-pitr" class="md-skip">
           Skip to content
         </a>
       
@@ -3976,6 +3976,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Maintain/cdc/mo-mo/" class="md-nav__link">
+        From MatrixOne to MatrixOne
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -5453,6 +5467,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../create-fulltext-index/" class="md-nav__link">
+        CREATE FULLTEXT INDEX
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../create-table/" class="md-nav__link">
         CREATE TABLE
       </a>
@@ -5558,22 +5586,22 @@
       
         <li class="md-nav__item">
   <a href="#syntax-description" class="md-nav__link">
-    Syntax description
+    Syntax Description
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#grammar-structure" class="md-nav__link">
-    Grammar structure
+  <a href="#syntax-structure" class="md-nav__link">
+    Syntax Structure
   </a>
   
-    <nav class="md-nav" aria-label="Grammar structure">
+    <nav class="md-nav" aria-label="Syntax Structure">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#grammar-explanation" class="md-nav__link">
-    Grammar explanation
+  <a href="#syntax-explanation" class="md-nav__link">
+    Syntax Explanation
   </a>
   
 </li>
@@ -5584,15 +5612,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
-    Example
+  <a href="#examples" class="md-nav__link">
+    Examples
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#limit" class="md-nav__link">
-    limit
+  <a href="#limitations" class="md-nav__link">
+    Limitations
   </a>
   
 </li>
@@ -11952,6 +11980,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../Release-Notes/v25.2.1.0/" class="md-nav__link">
+        v25.2.1.0
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../Release-Notes/v25.2.0.3/" class="md-nav__link">
         v25.2.0.3
       </a>
@@ -12635,22 +12677,22 @@
       
         <li class="md-nav__item">
   <a href="#syntax-description" class="md-nav__link">
-    Syntax description
+    Syntax Description
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#grammar-structure" class="md-nav__link">
-    Grammar structure
+  <a href="#syntax-structure" class="md-nav__link">
+    Syntax Structure
   </a>
   
-    <nav class="md-nav" aria-label="Grammar structure">
+    <nav class="md-nav" aria-label="Syntax Structure">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#grammar-explanation" class="md-nav__link">
-    Grammar explanation
+  <a href="#syntax-explanation" class="md-nav__link">
+    Syntax Explanation
   </a>
   
 </li>
@@ -12661,15 +12703,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
-    Example
+  <a href="#examples" class="md-nav__link">
+    Examples
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#limit" class="md-nav__link">
-    limit
+  <a href="#limitations" class="md-nav__link">
+    Limitations
   </a>
   
 </li>
@@ -12697,21 +12739,30 @@
   
 
 
-<h1 id="createpitr">CREATEPITR</h1>
-<h2 id="syntax-description">Syntax description</h2>
-<p>The <code>CREATE PITR</code> command is used to create a recovery point for Point-in-Time Recovery (PITR). Cluster administrators can create cluster-level or tenant-level pitrs, while tenant administrators can create tenant/database/table-level pitrs for the current tenant. The information of each pitr is only visible to the tenant that created the pitr, ensuring data isolation and security.</p>
-<h2 id="grammar-structure">Grammar structure</h2>
-<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="n">pitr</span><span class="w"> </span><span class="o">&lt;</span><span class="n">pitr_name</span><span class="o">&gt;</span><span class="w"> </span><span class="k">for</span>
-<span class="w">    </span><span class="p">[</span><span class="k">cluster</span><span class="p">]</span><span class="o">|</span><span class="p">[</span><span class="n">account</span><span class="w"> </span><span class="o">&lt;</span><span class="n">account_name</span><span class="o">&gt;</span><span class="p">]</span><span class="o">|</span><span class="p">[</span><span class="k">database</span><span class="w"> </span><span class="o">&lt;</span><span class="n">database_name</span><span class="o">&gt;</span><span class="p">]</span><span class="o">|</span><span class="p">[</span><span class="k">table</span><span class="w"> </span><span class="o">&lt;</span><span class="n">database_name</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="k">table_name</span><span class="o">&gt;</span><span class="p">]</span>
-<span class="w">    </span><span class="n">range</span><span class="w"> </span><span class="o">&lt;</span><span class="n">value</span><span class="o">&gt;&lt;</span><span class="n">unit</span><span class="o">&gt;</span>
+<h1 id="create-pitr">CREATE PITR</h1>
+<h2 id="syntax-description">Syntax Description</h2>
+<p>The <code>CREATE PITR</code> command is used to create Point-in-Time Recovery (PITR) restore points. Cluster administrators can create cluster-level or tenant-level PITRs, while tenant administrators can create PITRs for their current tenant at the tenant/database/table level. Each PITR's information is only visible to the tenant that created it, ensuring data isolation and security.</p>
+<h2 id="syntax-structure">Syntax Structure</h2>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="n">PITR</span><span class="w"> </span><span class="o">&lt;</span><span class="n">pitr_name</span><span class="o">&gt;</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span>
+<span class="w">    </span><span class="p">[</span><span class="k">CLUSTER</span><span class="p">]</span><span class="o">|</span><span class="p">[</span><span class="n">ACCOUNT</span><span class="w"> </span><span class="o">&lt;</span><span class="n">account_name</span><span class="o">&gt;</span><span class="p">]</span><span class="o">|</span><span class="p">[</span><span class="k">DATABASE</span><span class="w"> </span><span class="o">&lt;</span><span class="n">database_name</span><span class="o">&gt;</span><span class="p">]</span><span class="o">|</span><span class="p">[</span><span class="k">TABLE</span><span class="w"> </span><span class="o">&lt;</span><span class="n">database_name</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="k">table_name</span><span class="o">&gt;</span><span class="p">]</span>
+<span class="w">    </span><span class="n">RANGE</span><span class="w"> </span><span class="o">&lt;</span><span class="n">value</span><span class="o">&gt;&lt;</span><span class="n">unit</span><span class="o">&gt;</span>
 </code></pre></div>
-<h3 id="grammar-explanation">Grammar explanation</h3>
-<p><strong>range</strong>: int, time range value, 1-100.
-<strong>unit</strong>: string time range unit, optional range h (hour), d (day, default), mo (month), y (year)</p>
-<h2 id="example">Example</h2>
-<p><strong>Example 1: Cluster administrator creates pitr for cluster</strong></p>
-<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="n">pitr</span><span class="w"> </span><span class="n">cluster_pitr1</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="k">cluster</span><span class="w"> </span><span class="n">range</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="ss">&quot;d&quot;</span><span class="p">;</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="n">pitr</span><span class="p">;</span>
+<h3 id="syntax-explanation">Syntax Explanation</h3>
+<p><strong>RANGE</strong>:  </p>
+<ul>
+<li><code>value</code>: Integer, time range value (1-100).  </li>
+<li><code>unit</code>: String, time range unit. Options:  <ul>
+<li><code>h</code> (hours)  </li>
+<li><code>d</code> (days, default)  </li>
+<li><code>mo</code> (months)  </li>
+<li><code>y</code> (years)  </li>
+</ul>
+</li>
+</ul>
+<h2 id="examples">Examples</h2>
+<p><strong>Example 1: Cluster admin creates a cluster-level PITR</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="n">PITR</span><span class="w"> </span><span class="n">cluster_pitr1</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="k">CLUSTER</span><span class="w"> </span><span class="n">RANGE</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="ss">&quot;d&quot;</span><span class="p">;</span>
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SHOW</span><span class="w"> </span><span class="n">PITR</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">---------------+---------------------+---------------------+------------+--------------+---------------+------------+-------------+-----------+</span>
 <span class="o">|</span><span class="w"> </span><span class="n">PITR_NAME</span><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="n">CREATED_TIME</span><span class="w">        </span><span class="o">|</span><span class="w"> </span><span class="n">MODIFIED_TIME</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="n">PITR_LEVEL</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">ACCOUNT_NAME</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">DATABASE_NAME</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">TABLE_NAME</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">PITR_LENGTH</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">PITR_UNIT</span><span class="w"> </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">---------------+---------------------+---------------------+------------+--------------+---------------+------------+-------------+-----------+</span>
@@ -12719,11 +12770,11 @@
 <span class="o">+</span><span class="c1">---------------+---------------------+---------------------+------------+--------------+---------------+------------+-------------+-----------+</span>
 <span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 </code></pre></div>
-<p><strong>Example 2: Cluster administrator creates pitr for tenant</strong></p>
-<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="n">account</span><span class="w"> </span><span class="n">acc1</span><span class="w"> </span><span class="n">admin_name</span><span class="w"> </span><span class="s1">&#39;root&#39;</span><span class="w"> </span><span class="n">identified</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="s1">&#39;111&#39;</span><span class="p">;</span>
-<span class="k">create</span><span class="w"> </span><span class="n">account</span><span class="w"> </span><span class="n">acc2</span><span class="w"> </span><span class="n">admin_name</span><span class="w"> </span><span class="s1">&#39;root&#39;</span><span class="w"> </span><span class="n">identified</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="s1">&#39;111&#39;</span><span class="p">;</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="n">pitr</span><span class="w"> </span><span class="n">account_pitr1</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">account</span><span class="w"> </span><span class="n">acc1</span><span class="w"> </span><span class="n">range</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="ss">&quot;d&quot;</span><span class="p">;</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="n">pitr</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">pitr_name</span><span class="o">=</span><span class="s1">&#39;account_pitr1&#39;</span><span class="p">;</span>
+<p><strong>Example 2: Cluster admin creates a tenant-level PITR</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="n">ACCOUNT</span><span class="w"> </span><span class="n">acc1</span><span class="w"> </span><span class="n">ADMIN_NAME</span><span class="w"> </span><span class="s1">&#39;root&#39;</span><span class="w"> </span><span class="n">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;111&#39;</span><span class="p">;</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="n">ACCOUNT</span><span class="w"> </span><span class="n">acc2</span><span class="w"> </span><span class="n">ADMIN_NAME</span><span class="w"> </span><span class="s1">&#39;root&#39;</span><span class="w"> </span><span class="n">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;111&#39;</span><span class="p">;</span>
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="n">PITR</span><span class="w"> </span><span class="n">account_pitr1</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="n">ACCOUNT</span><span class="w"> </span><span class="n">acc1</span><span class="w"> </span><span class="n">RANGE</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="ss">&quot;d&quot;</span><span class="p">;</span>
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SHOW</span><span class="w"> </span><span class="n">PITR</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">pitr_name</span><span class="o">=</span><span class="s1">&#39;account_pitr1&#39;</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">---------------+---------------------+---------------------+------------+--------------+---------------+------------+-------------+-----------+</span>
 <span class="o">|</span><span class="w"> </span><span class="n">pitr_name</span><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="n">created_time</span><span class="w">        </span><span class="o">|</span><span class="w"> </span><span class="n">modified_time</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="n">pitr_level</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">account_name</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">database_name</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">table_name</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">pitr_length</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">pitr_unit</span><span class="w"> </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">---------------+---------------------+---------------------+------------+--------------+---------------+------------+-------------+-----------+</span>
@@ -12731,10 +12782,10 @@
 <span class="o">+</span><span class="c1">---------------+---------------------+---------------------+------------+--------------+---------------+------------+-------------+-----------+</span>
 <span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 </code></pre></div>
-<p><strong>Example 3: Tenant administrator creates pitr for tenant</strong></p>
-<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="n">pitr</span><span class="w"> </span><span class="n">account_pitr1</span><span class="w"> </span><span class="n">range</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="ss">&quot;h&quot;</span><span class="p">;</span>
+<p><strong>Example 3: Tenant admin creates a tenant-level PITR</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="n">PITR</span><span class="w"> </span><span class="n">account_pitr1</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="n">ACCOUNT</span><span class="w"> </span><span class="n">RANGE</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="ss">&quot;h&quot;</span><span class="p">;</span>
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="n">pitr</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">pitr_name</span><span class="o">=</span><span class="s1">&#39;account_pitr1&#39;</span><span class="p">;</span>
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SHOW</span><span class="w"> </span><span class="n">PITR</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">pitr_name</span><span class="o">=</span><span class="s1">&#39;account_pitr1&#39;</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">---------------+---------------------+---------------------+------------+--------------+---------------+------------+-------------+-----------+</span>
 <span class="o">|</span><span class="w"> </span><span class="n">pitr_name</span><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="n">created_time</span><span class="w">        </span><span class="o">|</span><span class="w"> </span><span class="n">modified_time</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="n">pitr_level</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">account_name</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">database_name</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">table_name</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">pitr_length</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">pitr_unit</span><span class="w"> </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">---------------+---------------------+---------------------+------------+--------------+---------------+------------+-------------+-----------+</span>
@@ -12742,11 +12793,11 @@
 <span class="o">+</span><span class="c1">---------------+---------------------+---------------------+------------+--------------+---------------+------------+-------------+-----------+</span>
 <span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 </code></pre></div>
-<p><strong>Example 4: Tenant administrator creates pitr for database</strong></p>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="n">pitr</span><span class="w"> </span><span class="n">db_pitr1</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n">db1</span><span class="w"> </span><span class="n">range</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="s1">&#39;y&#39;</span><span class="p">;</span>
+<p><strong>Example 4: Tenant admin creates a database-level PITR</strong></p>
+<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="n">PITR</span><span class="w"> </span><span class="n">db_pitr1</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">db1</span><span class="w"> </span><span class="n">RANGE</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="s1">&#39;y&#39;</span><span class="p">;</span>
 <span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="n">pitr</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">pitr_name</span><span class="o">=</span><span class="s1">&#39;db_pitr1&#39;</span><span class="p">;</span>
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SHOW</span><span class="w"> </span><span class="n">PITR</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">pitr_name</span><span class="o">=</span><span class="s1">&#39;db_pitr1&#39;</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">-----------+---------------------+---------------------+------------+--------------+---------------+------------+-------------+-----------+</span>
 <span class="o">|</span><span class="w"> </span><span class="n">pitr_name</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">created_time</span><span class="w">        </span><span class="o">|</span><span class="w"> </span><span class="n">modified_time</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="n">pitr_level</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">account_name</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">database_name</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">table_name</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">pitr_length</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">pitr_unit</span><span class="w"> </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">-----------+---------------------+---------------------+------------+--------------+---------------+------------+-------------+-----------+</span>
@@ -12754,11 +12805,11 @@
 <span class="o">+</span><span class="c1">-----------+---------------------+---------------------+------------+--------------+---------------+------------+-------------+-----------+</span>
 <span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 </code></pre></div>
-<p><strong>Example 5: Tenant administrator creates pitr for table</strong></p>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="n">pitr</span><span class="w"> </span><span class="n">tab_pitr1</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="k">database</span><span class="w">  </span><span class="n">db1</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="n">range</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="s1">&#39;y&#39;</span><span class="p">;</span>
+<p><strong>Example 5: Tenant admin creates a table-level PITR</strong></p>
+<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="n">PITR</span><span class="w"> </span><span class="n">tab_pitr1</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">db1</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="n">RANGE</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="s1">&#39;y&#39;</span><span class="p">;</span>
 <span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">02</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="n">pitr</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">pitr_name</span><span class="o">=</span><span class="s1">&#39;tab_pitr1&#39;</span><span class="p">;</span>
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SHOW</span><span class="w"> </span><span class="n">PITR</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">pitr_name</span><span class="o">=</span><span class="s1">&#39;tab_pitr1&#39;</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">-----------+---------------------+---------------------+------------+--------------+---------------+------------+-------------+-----------+</span>
 <span class="o">|</span><span class="w"> </span><span class="n">pitr_name</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">created_time</span><span class="w">        </span><span class="o">|</span><span class="w"> </span><span class="n">modified_time</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="n">pitr_level</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">account_name</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">database_name</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">table_name</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">pitr_length</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">pitr_unit</span><span class="w"> </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">-----------+---------------------+---------------------+------------+--------------+---------------+------------+-------------+-----------+</span>
@@ -12766,9 +12817,9 @@
 <span class="o">+</span><span class="c1">-----------+---------------------+---------------------+------------+--------------+---------------+------------+-------------+-----------+</span>
 <span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="limit">limit</h2>
+<h2 id="limitations">Limitations</h2>
 <ul>
-<li>Cluster administrators can only create tenant-level pitrs when creating pitrs for other tenants.</li>
+<li>Cluster administrators can only create tenant-level PITRs for other tenants.</li>
 </ul>
 
 

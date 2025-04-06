@@ -3976,6 +3976,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Maintain/cdc/mo-mo/" class="md-nav__link">
+        From MatrixOne to MatrixOne
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -5453,6 +5467,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../create-fulltext-index/" class="md-nav__link">
+        CREATE FULLTEXT INDEX
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../create-table/" class="md-nav__link">
         CREATE TABLE
       </a>
@@ -5698,28 +5726,28 @@
       
         <li class="md-nav__item">
   <a href="#syntax-description" class="md-nav__link">
-    Syntax description
+    Syntax Description
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#grammar-structure" class="md-nav__link">
-    Grammar structure
+  <a href="#syntax-structure" class="md-nav__link">
+    Syntax Structure
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
-    Example
+  <a href="#examples" class="md-nav__link">
+    Examples
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#limit" class="md-nav__link">
-    limit
+  <a href="#limitations" class="md-nav__link">
+    Limitations
   </a>
   
 </li>
@@ -11939,6 +11967,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../Release-Notes/v25.2.1.0/" class="md-nav__link">
+        v25.2.1.0
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../Release-Notes/v25.2.0.3/" class="md-nav__link">
         v25.2.0.3
       </a>
@@ -12622,28 +12664,28 @@
       
         <li class="md-nav__item">
   <a href="#syntax-description" class="md-nav__link">
-    Syntax description
+    Syntax Description
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#grammar-structure" class="md-nav__link">
-    Grammar structure
+  <a href="#syntax-structure" class="md-nav__link">
+    Syntax Structure
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
-    Example
+  <a href="#examples" class="md-nav__link">
+    Examples
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#limit" class="md-nav__link">
-    limit
+  <a href="#limitations" class="md-nav__link">
+    Limitations
   </a>
   
 </li>
@@ -12672,15 +12714,15 @@
 
 
 <h1 id="create-snapshot">CREATE SNAPSHOT</h1>
-<h2 id="syntax-description">Syntax description</h2>
-<p>The <code>CREATE SNAPSHOT</code> command is used to create a snapshot of the database. Cluster administrators can create cluster-level or tenant-level snapshots, while ordinary tenant administrators can create tenant-level snapshots for the current tenant. Each snapshot is only visible to the tenant that created it, ensuring data isolation and security.</p>
-<h2 id="grammar-structure">Grammar structure</h2>
-<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="n">snapshot</span><span class="w"> </span><span class="o">&lt;</span><span class="n">snapshot_name</span><span class="o">&gt;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="p">[</span><span class="k">cluster</span><span class="p">]</span><span class="o">|</span><span class="p">[</span><span class="n">account</span><span class="w"> </span><span class="o">&lt;</span><span class="n">account_name</span><span class="o">&gt;</span><span class="p">]</span>
+<h2 id="syntax-description">Syntax Description</h2>
+<p>The <code>CREATE SNAPSHOT</code> command is used to create database snapshots. Cluster administrators can create cluster-level or tenant-level snapshots, while regular tenant administrators can create snapshots at the tenant, database, or table level for their current tenant. Each snapshot is only visible to the tenant that created it, ensuring data isolation and security.</p>
+<h2 id="syntax-structure">Syntax Structure</h2>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="n">SNAPSHOT</span><span class="w"> </span><span class="o">&lt;</span><span class="n">snapshot_name</span><span class="o">&gt;</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="p">[</span><span class="k">CLUSTER</span><span class="p">]</span><span class="o">|</span><span class="p">[</span><span class="n">ACCOUNT</span><span class="w"> </span><span class="p">[</span><span class="o">&lt;</span><span class="n">account_name</span><span class="o">&gt;</span><span class="p">]]</span><span class="o">|</span><span class="p">[</span><span class="k">DATABASE</span><span class="w"> </span><span class="o">&lt;</span><span class="n">database_name</span><span class="o">&gt;</span><span class="p">]</span><span class="o">|</span><span class="p">[</span><span class="k">TABLE</span><span class="w"> </span><span class="o">&lt;</span><span class="n">database_name</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">tables_name</span><span class="o">&gt;</span><span class="p">]</span>
 </code></pre></div>
-<h2 id="example">Example</h2>
-<p><strong>Example 1: Cluster administrator creates a cluster snapshot for the cluster</strong></p>
-<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="n">snapshot</span><span class="w"> </span><span class="n">cluster_sp</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="k">cluster</span><span class="p">;</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="n">snapshots</span><span class="p">;</span>
+<h2 id="examples">Examples</h2>
+<p><strong>Example 1: Cluster admin creates a cluster-level snapshot</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="n">SNAPSHOT</span><span class="w"> </span><span class="n">cluster_sp</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="k">CLUSTER</span><span class="p">;</span>
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SHOW</span><span class="w"> </span><span class="n">SNAPSHOTS</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">---------------+----------------------------+----------------+--------------+---------------+------------+</span>
 <span class="o">|</span><span class="w"> </span><span class="n">SNAPSHOT_NAME</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w">                  </span><span class="o">|</span><span class="w"> </span><span class="n">SNAPSHOT_LEVEL</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">ACCOUNT_NAME</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">DATABASE_NAME</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">TABLE_NAME</span><span class="w"> </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">---------------+----------------------------+----------------+--------------+---------------+------------+</span>
@@ -12688,9 +12730,9 @@
 <span class="o">+</span><span class="c1">---------------+----------------------------+----------------+--------------+---------------+------------+</span>
 <span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 </code></pre></div>
-<p><strong>Example 2: Cluster administrator creates tenant snapshot for tenant</strong></p>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="n">snapshot</span><span class="w"> </span><span class="n">account_sp1</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">account</span><span class="w"> </span><span class="n">acc1</span><span class="p">;</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="n">snapshots</span><span class="p">;</span>
+<p><strong>Example 2: Cluster admin creates a tenant-level snapshot</strong></p>
+<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="n">SNAPSHOT</span><span class="w"> </span><span class="n">account_sp1</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="n">ACCOUNT</span><span class="w"> </span><span class="n">acc1</span><span class="p">;</span>
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SHOW</span><span class="w"> </span><span class="n">SNAPSHOTS</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">---------------+----------------------------+----------------+--------------+---------------+------------+</span>
 <span class="o">|</span><span class="w"> </span><span class="n">SNAPSHOT_NAME</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w">                  </span><span class="o">|</span><span class="w"> </span><span class="n">SNAPSHOT_LEVEL</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">ACCOUNT_NAME</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">DATABASE_NAME</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">TABLE_NAME</span><span class="w"> </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">---------------+----------------------------+----------------+--------------+---------------+------------+</span>
@@ -12698,23 +12740,49 @@
 <span class="o">+</span><span class="c1">---------------+----------------------------+----------------+--------------+---------------+------------+</span>
 <span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 </code></pre></div>
-<p><strong>Example 3: A normal tenant administrator creates a tenant snapshot for the tenant</strong></p>
-<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="n">snapshot</span><span class="w"> </span><span class="n">account_sp2</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">account</span><span class="w"> </span><span class="n">acc1</span><span class="p">;</span>
+<p><strong>Example 3: Tenant admin creates tenant-level snapshots</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="n">SNAPSHOT</span><span class="w"> </span><span class="n">account_sp2</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="n">ACCOUNT</span><span class="w"> </span><span class="n">acc1</span><span class="p">;</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="n">SNAPSHOT</span><span class="w"> </span><span class="n">account_sp3</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="n">ACCOUNT</span><span class="p">;</span>
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="n">snapshot</span><span class="w"> </span><span class="n">account_sp2</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">account</span><span class="w"> </span><span class="n">acc2</span><span class="p">;</span>
-<span class="n">ERROR</span><span class="w"> </span><span class="mi">20101</span><span class="w"> </span><span class="p">(</span><span class="n">HY000</span><span class="p">):</span><span class="w"> </span><span class="n">internal</span><span class="w"> </span><span class="n">error</span><span class="p">:</span><span class="w"> </span><span class="k">only</span><span class="w"> </span><span class="n">sys</span><span class="w"> </span><span class="n">tenant</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="n">tenant</span><span class="w"> </span><span class="k">level</span><span class="w"> </span><span class="n">snapshot</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">other</span><span class="w"> </span><span class="n">tenant</span><span class="c1">--Tenant administrators can only create snapshots for this tenant</span>
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="n">SNAPSHOT</span><span class="w"> </span><span class="n">account_sp2</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="n">ACCOUNT</span><span class="w"> </span><span class="n">acc2</span><span class="p">;</span>
+<span class="n">ERROR</span><span class="w"> </span><span class="mi">20101</span><span class="w"> </span><span class="p">(</span><span class="n">HY000</span><span class="p">):</span><span class="w"> </span><span class="n">internal</span><span class="w"> </span><span class="n">error</span><span class="p">:</span><span class="w"> </span><span class="k">only</span><span class="w"> </span><span class="n">sys</span><span class="w"> </span><span class="n">tenant</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="n">tenant</span><span class="w"> </span><span class="k">level</span><span class="w"> </span><span class="n">snapshot</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">other</span><span class="w"> </span><span class="n">tenant</span><span class="c1">--Tenant admins can only create snapshots for their own tenant</span>
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="n">snapshots</span><span class="p">;</span>
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SHOW</span><span class="w"> </span><span class="n">SNAPSHOTS</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">---------------+----------------------------+----------------+--------------+---------------+------------+</span>
 <span class="o">|</span><span class="w"> </span><span class="n">SNAPSHOT_NAME</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w">                  </span><span class="o">|</span><span class="w"> </span><span class="n">SNAPSHOT_LEVEL</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">ACCOUNT_NAME</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">DATABASE_NAME</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">TABLE_NAME</span><span class="w"> </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">---------------+----------------------------+----------------+--------------+---------------+------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">account_sp2</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">10</span><span class="w"> </span><span class="mi">11</span><span class="p">:</span><span class="mi">19</span><span class="p">:</span><span class="mi">12</span><span class="p">.</span><span class="mi">699093</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">account</span><span class="w">        </span><span class="o">|</span><span class="w"> </span><span class="n">acc1</span><span class="w">         </span><span class="o">|</span><span class="w">               </span><span class="o">|</span><span class="w">            </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">account_sp3</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="mi">2025</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">22</span><span class="w"> </span><span class="mi">08</span><span class="p">:</span><span class="mi">25</span><span class="p">:</span><span class="mi">49</span><span class="p">.</span><span class="mi">810746</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">account</span><span class="w">        </span><span class="o">|</span><span class="w"> </span><span class="n">acc1</span><span class="w">         </span><span class="o">|</span><span class="w">               </span><span class="o">|</span><span class="w">            </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">account_sp2</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="mi">2025</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">22</span><span class="w"> </span><span class="mi">08</span><span class="p">:</span><span class="mi">25</span><span class="p">:</span><span class="mi">49</span><span class="p">.</span><span class="mi">349699</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">account</span><span class="w">        </span><span class="o">|</span><span class="w"> </span><span class="n">acc1</span><span class="w">         </span><span class="o">|</span><span class="w">               </span><span class="o">|</span><span class="w">            </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">---------------+----------------------------+----------------+--------------+---------------+------------+</span>
+<span class="mi">2</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>Example 4: Tenant admin creates database-level snapshot</strong></p>
+<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="n">SNAPSHOT</span><span class="w"> </span><span class="n">db_sp1</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">db1</span><span class="p">;</span>
+<span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SHOW</span><span class="w"> </span><span class="n">SNAPSHOTS</span><span class="p">;</span>
+<span class="o">+</span><span class="c1">---------------+----------------------------+----------------+--------------+---------------+------------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">SNAPSHOT_NAME</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w">                  </span><span class="o">|</span><span class="w"> </span><span class="n">SNAPSHOT_LEVEL</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">ACCOUNT_NAME</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">DATABASE_NAME</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">TABLE_NAME</span><span class="w"> </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">---------------+----------------------------+----------------+--------------+---------------+------------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">db_sp1</span><span class="w">        </span><span class="o">|</span><span class="w"> </span><span class="mi">2025</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">22</span><span class="w"> </span><span class="mi">08</span><span class="p">:</span><span class="mi">31</span><span class="p">:</span><span class="mi">41</span><span class="p">.</span><span class="mi">020599</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">database</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="n">acc1</span><span class="w">         </span><span class="o">|</span><span class="w"> </span><span class="n">db1</span><span class="w">           </span><span class="o">|</span><span class="w">            </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">---------------+----------------------------+----------------+--------------+---------------+------------+</span>
+<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>Example 5: Tenant admin creates table-level snapshot</strong></p>
+<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="n">SNAPSHOT</span><span class="w"> </span><span class="n">tab_sp1</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">db1</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
+<span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SHOW</span><span class="w"> </span><span class="n">SNAPSHOTS</span><span class="p">;</span>
+<span class="o">+</span><span class="c1">---------------+----------------------------+----------------+--------------+---------------+------------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">SNAPSHOT_NAME</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w">                  </span><span class="o">|</span><span class="w"> </span><span class="n">SNAPSHOT_LEVEL</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">ACCOUNT_NAME</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">DATABASE_NAME</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">TABLE_NAME</span><span class="w"> </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">---------------+----------------------------+----------------+--------------+---------------+------------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">tab_sp1</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="mi">2025</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">22</span><span class="w"> </span><span class="mi">08</span><span class="p">:</span><span class="mi">32</span><span class="p">:</span><span class="mi">44</span><span class="p">.</span><span class="mi">532474</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">table</span><span class="w">          </span><span class="o">|</span><span class="w"> </span><span class="n">acc1</span><span class="w">         </span><span class="o">|</span><span class="w"> </span><span class="n">db1</span><span class="w">           </span><span class="o">|</span><span class="w"> </span><span class="n">t1</span><span class="w">         </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">---------------+----------------------------+----------------+--------------+---------------+------------+</span>
 <span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="limit">limit</h2>
+<h2 id="limitations">Limitations</h2>
 <ul>
-<li>Currently, only cluster-level and tenant-level snapshots are supported. Database-level and table-level snapshots are not supported.</li>
+<li>Cluster administrators can only create tenant-level snapshots for other tenants.</li>
 </ul>
 
 

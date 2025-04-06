@@ -3976,6 +3976,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Maintain/cdc/mo-mo/" class="md-nav__link">
+        From MatrixOne to MatrixOne
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -5453,6 +5467,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../create-fulltext-index/" class="md-nav__link">
+        CREATE FULLTEXT INDEX
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../create-table/" class="md-nav__link">
         CREATE TABLE
       </a>
@@ -5711,23 +5739,23 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#description" class="md-nav__link">
-    Description
+  <a href="#syntax-description" class="md-nav__link">
+    Syntax Description
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#syntax" class="md-nav__link">
-    Syntax
+  <a href="#syntax-structure" class="md-nav__link">
+    Syntax Structure
   </a>
   
-    <nav class="md-nav" aria-label="Syntax">
+    <nav class="md-nav" aria-label="Syntax Structure">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#explanations" class="md-nav__link">
-    Explanations
+  <a href="#syntax-explanation" class="md-nav__link">
+    Syntax Explanation
   </a>
   
 </li>
@@ -5745,8 +5773,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#constraints" class="md-nav__link">
-    Constraints
+  <a href="#limitations" class="md-nav__link">
+    Limitations
   </a>
   
 </li>
@@ -11952,6 +11980,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../Release-Notes/v25.2.1.0/" class="md-nav__link">
+        v25.2.1.0
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../Release-Notes/v25.2.0.3/" class="md-nav__link">
         v25.2.0.3
       </a>
@@ -12634,23 +12676,23 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#description" class="md-nav__link">
-    Description
+  <a href="#syntax-description" class="md-nav__link">
+    Syntax Description
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#syntax" class="md-nav__link">
-    Syntax
+  <a href="#syntax-structure" class="md-nav__link">
+    Syntax Structure
   </a>
   
-    <nav class="md-nav" aria-label="Syntax">
+    <nav class="md-nav" aria-label="Syntax Structure">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#explanations" class="md-nav__link">
-    Explanations
+  <a href="#syntax-explanation" class="md-nav__link">
+    Syntax Explanation
   </a>
   
 </li>
@@ -12668,8 +12710,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#constraints" class="md-nav__link">
-    Constraints
+  <a href="#limitations" class="md-nav__link">
+    Limitations
   </a>
   
 </li>
@@ -12698,9 +12740,9 @@
 
 
 <h1 id="alter-table"><strong>ALTER TABLE</strong></h1>
-<h2 id="description"><strong>Description</strong></h2>
-<p><code>ALTER TABLE</code> is used to modify the existing data table structure.</p>
-<h2 id="syntax"><strong>Syntax</strong></h2>
+<h2 id="syntax-description"><strong>Syntax Description</strong></h2>
+<p><code>ALTER TABLE</code> is used to modify the structure of an existing table.</p>
+<h2 id="syntax-structure"><strong>Syntax Structure</strong></h2>
 <div class="highlight"><pre><span></span><code>ALTER TABLE tbl_name
     [alter_option [, alter_option] ...]
 
@@ -12741,55 +12783,55 @@ table_option: {
   COMMENT [=] &#39;string&#39;
 }
 </code></pre></div>
-<h3 id="explanations"><strong>Explanations</strong></h3>
-<p>The explanations of each parameter are as the following:</p>
+<h3 id="syntax-explanation">Syntax Explanation</h3>
+<p>Below are explanations for each parameter:</p>
 <ol>
-<li><code>ALTER TABLE tbl_name</code>: Indicates modifying a table named <code>tbl_name</code>.</li>
+<li><code>ALTER TABLE tbl_name</code>: Modifies the table named <code>tbl_name</code>.</li>
 <li>
-<p><code>alter_option</code>: Indicates that one or more change options can be executed, separated by commas.</p>
+<p><code>alter_option</code>: Specifies one or more alteration options, separated by commas.</p>
 <ul>
 <li><code>table_options</code>: Used to set or modify table options, such as table comments (COMMENT).</li>
-<li><code>ADD [COLUMN] col_name column_definition [FIRST | AFTER col_name]</code>: Adds a new column to the table, specifying the position of the new column (before or after a particular column).</li>
-<li><code>ADD [COLUMN] (col_name column_definition, ...)</code>: Adds multiple new columns simultaneously.</li>
-<li><code>ADD {[INDEX | KEY] [index_name] [index_option] ...</code>: Adds an index, specifying the index name and index options (such as comments).</li>
+<li><code>ADD [COLUMN] col_name column_definition [FIRST | AFTER col_name]</code>: Adds a new column to the table, optionally specifying its position (before or after another column).</li>
+<li><code>ADD [COLUMN] (col_name column_definition,...)</code>: Adds multiple columns simultaneously.</li>
+<li><code>ADD {[INDEX | KEY] [index_name] [index_option] ...</code>: Adds an index, optionally specifying the index name and options (e.g., comments).</li>
 <li><code>ADD [CONSTRAINT] UNIQUE [INDEX | KEY] [index_name][index_option] ...</code>: Adds a UNIQUE constraint or UNIQUE index.</li>
-<li><code>ADD [CONSTRAINT] FOREIGN KEY [index_name] (col_name, ...) reference_definition</code>: Adds a FOREIGN KEY constraint.</li>
-<li><code>ADD [CONSTRAINT [symbol]] PRIMARY KEY [index_type] (key_part,...)</code>: Add a primary key constraint.</li>
-<li><code>CHANGE [COLUMN] old_col_name new_col_name column_definition [FIRST | AFTER col_name]</code>: Modify the column definition, column name and order.</li>
+<li><code>ADD [CONSTRAINT] FOREIGN KEY [index_name] (col_name,...) reference_definition</code>: Adds a FOREIGN KEY constraint.</li>
+<li><code>ADD [CONSTRAINT [symbol]] PRIMARY KEY [index_type] (key_part,...)</code>: Adds a PRIMARY KEY constraint.</li>
+<li><code>CHANGE [COLUMN] old_col_name new_col_name column_definition [FIRST | AFTER col_name]</code>: Modifies a column's definition, name, and position.</li>
 <li><code>ALTER INDEX index_name {VISIBLE | INVISIBLE}</code>: Changes the visibility of an index.</li>
 <li><code>DROP [COLUMN] col_name</code>: Drops a column.</li>
 <li><code>DROP {INDEX | KEY} index_name</code>: Drops an index.</li>
 <li><code>DROP FOREIGN KEY fk_symbol</code>: Drops a FOREIGN KEY constraint.</li>
-<li><code>DROP PRIMARY KEY</code>: Delete the primary key.</li>
+<li><code>DROP PRIMARY KEY</code>: Drops the PRIMARY KEY.</li>
 <li><code>RENAME [TO | AS] new_tbl_name</code>: Renames the table.</li>
-<li><code>MODIFY [COLUMN] col_name column_definition [FIRST | AFTER col_name]</code>: Modify column definition and order.</li>
-<li><code>RENAME COLUMN old_col_name TO new_col_name</code>: Rename a column.</li>
+<li><code>MODIFY [COLUMN] col_name column_definition [FIRST | AFTER col_name]</code>: Modifies a column's definition and position.</li>
+<li><code>RENAME COLUMN old_col_name TO new_col_name</code>: Renames a column.</li>
 </ul>
 </li>
 <li>
-<p><code>key_part</code>: Represents the components of an index, which can be column names (when creating an index on a text column, you might specify a length for the index to only consider a certain number of characters in that column. If you create an index using a column name without specifying a length, the index will use the entire column value as an index component. In some cases, this may result in reduced performance, especially when dealing with large text or binary data columns. Specifying a length is usually unnecessary for smaller data types, such as integers or dates.).</p>
+<p><code>key_part</code>: Specifies the components of an index. For text columns, you can optionally specify a length for the index. If no length is specified, the entire column value is used, which may impact performance for large text or binary columns.</p>
 </li>
-<li><code>index_option</code>: Represents index options, such as comments (COMMENT).</li>
-<li><code>table_options</code>: Represents table options, such as table comments (COMMENT).</li>
+<li><code>index_option</code>: Specifies index options, such as comments (COMMENT).</li>
+<li><code>table_options</code>: Specifies table options, such as comments (COMMENT).</li>
 <li><code>table_option</code>: Specific table options, such as comments (COMMENT).</li>
 </ol>
 <h2 id="examples"><strong>Examples</strong></h2>
 <ul>
-<li>Example 1:</li>
+<li>Example 1: Dropping a FOREIGN KEY constraint</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="c1">-- Create table f1 with two integer columns: fa (primary key) and fb (unique key)</span>
+<div class="highlight"><pre><span></span><code><span class="c1">-- Create table f1 with two integer columns: fa (PRIMARY KEY) and fb (UNIQUE KEY)</span>
 <span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">f1</span><span class="p">(</span><span class="n">fa</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="w"> </span><span class="n">fb</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">UNIQUE</span><span class="w"> </span><span class="k">KEY</span><span class="p">);</span>
 <span class="c1">-- Create table c1 with two integer columns: ca and cb</span>
 <span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">c1</span><span class="w"> </span><span class="p">(</span><span class="n">ca</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span><span class="w"> </span><span class="n">cb</span><span class="w"> </span><span class="nb">INT</span><span class="p">);</span>
-<span class="c1">-- Add a foreign key constraint named ffa to table c1, associating column ca of table c1 with column fa of table f1</span>
+<span class="c1">-- Add a FOREIGN KEY constraint named ffa to c1, linking column ca to f1.fa</span>
 <span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">c1</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">ffa</span><span class="w"> </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">ca</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">f1</span><span class="p">(</span><span class="n">fa</span><span class="p">);</span>
-<span class="c1">-- Insert a record into table f1: (2, 2)</span>
+<span class="c1">-- Insert a record into f1: (2, 2)</span>
 <span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">f1</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
-<span class="c1">-- Insert a record into table c1: (1, 1)</span>
+<span class="c1">-- Insert a record into c1: (1, 1)</span>
 <span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">c1</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
-<span class="c1">-- Insert a record into table c1: (2, 2)</span>
+<span class="c1">-- Insert a record into c1: (2, 2)</span>
 <span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">c1</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
-<span class="c1">-- Select all records from table c1 and order by column ca</span>
+<span class="c1">-- Select all records from c1, ordered by ca</span>
 <span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">ca</span><span class="p">,</span><span class="w"> </span><span class="n">cb</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">c1</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">ca</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">------+------+</span>
 <span class="o">|</span><span class="w"> </span><span class="n">ca</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">cb</span><span class="w">   </span><span class="o">|</span>
@@ -12797,11 +12839,11 @@ table_option: {
 <span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">------+------+</span>
 <span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-<span class="c1">-- Drop the foreign key constraint named ffa from table c1</span>
+<span class="c1">-- Drop the FOREIGN KEY constraint ffa from c1</span>
 <span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">c1</span><span class="w"> </span><span class="k">DROP</span><span class="w"> </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="n">ffa</span><span class="p">;</span>
-<span class="c1">-- Insert a record into table c1: (1, 1)</span>
+<span class="c1">-- Insert a record into c1: (1, 1)</span>
 <span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">c1</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
-<span class="c1">-- Select all records from table c1 and order by column ca</span>
+<span class="c1">-- Select all records from c1, ordered by ca</span>
 <span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">ca</span><span class="p">,</span><span class="w"> </span><span class="n">cb</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">c1</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">ca</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">------+------+</span>
 <span class="o">|</span><span class="w"> </span><span class="n">ca</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">cb</span><span class="w">   </span><span class="o">|</span>
@@ -12812,12 +12854,12 @@ table_option: {
 <span class="mi">2</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 </code></pre></div>
 <ul>
-<li>Example 2:</li>
+<li>Example 2: Adding a PRIMARY KEY</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="c1">-- Create a new table &#39;t1&#39; with columns a, b, c, and d. Column &#39;a&#39; is of type INTEGER, &#39;b&#39; is of type CHAR(10), &#39;c&#39; is of type DATE, and &#39;d&#39; is of type DECIMAL(7,2). A unique key is added on columns &#39;a&#39; and &#39;b&#39;.</span>
+<div class="highlight"><pre><span></span><code><span class="c1">-- Create table t1 with columns a (INTEGER), b (CHAR(10)), c (DATE), d (DECIMAL(7,2)), and a UNIQUE KEY on (a, b)</span>
 <span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">INTEGER</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span><span class="w"> </span><span class="k">c</span><span class="w"> </span><span class="nb">DATE</span><span class="p">,</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="k">UNIQUE</span><span class="w"> </span><span class="k">KEY</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">));</span>
 
-<span class="c1">-- Describe the structure of the &#39;t1&#39; table.</span>
+<span class="c1">-- View the structure of t1</span>
 <span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">desc</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">-------+--------------+------+------+---------+-------+---------+</span>
 <span class="o">|</span><span class="w"> </span><span class="n">Field</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">Type</span><span class="w">         </span><span class="o">|</span><span class="w"> </span><span class="k">Null</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">Key</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="k">Default</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Extra</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">Comment</span><span class="w"> </span><span class="o">|</span>
@@ -12829,12 +12871,12 @@ table_option: {
 <span class="o">+</span><span class="c1">-------+--------------+------+------+---------+-------+---------+</span>
 <span class="mi">4</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 
-<span class="c1">-- Insert three rows into the &#39;t1&#39; table.</span>
+<span class="c1">-- Insert three records into t1</span>
 <span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">VALUES</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;ab&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1980-12-17&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">800</span><span class="p">);</span>
 <span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">VALUES</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;ac&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1981-02-20&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">1600</span><span class="p">);</span>
 <span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">VALUES</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;ad&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1981-02-22&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">500</span><span class="p">);</span>
 
-<span class="c1">-- Display all the rows from the &#39;t1&#39; table.</span>
+<span class="c1">-- Display all records from t1</span>
 <span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">------+------+------------+---------+</span>
 <span class="o">|</span><span class="w"> </span><span class="n">a</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="n">b</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="k">c</span><span class="w">          </span><span class="o">|</span><span class="w"> </span><span class="n">d</span><span class="w">       </span><span class="o">|</span>
@@ -12845,11 +12887,11 @@ table_option: {
 <span class="o">+</span><span class="c1">------+------+------------+---------+</span>
 <span class="mi">3</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 
-<span class="c1">-- Alter the &#39;t1&#39; table to add a primary key &#39;pk1&#39; on columns &#39;a&#39; and &#39;b&#39;.</span>
+<span class="c1">-- Add a PRIMARY KEY named pk1 on columns (a, b)</span>
 <span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="k">primary</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="n">pk1</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">);</span>
 <span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">02</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 
-<span class="c1">-- Describe the modified structure of the &#39;t1&#39; table after adding the primary key.</span>
+<span class="c1">-- View the modified structure of t1</span>
 <span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">desc</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">-------+--------------+------+------+---------+-------+---------+</span>
 <span class="o">|</span><span class="w"> </span><span class="n">Field</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">Type</span><span class="w">         </span><span class="o">|</span><span class="w"> </span><span class="k">Null</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">Key</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="k">Default</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Extra</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">Comment</span><span class="w"> </span><span class="o">|</span>
@@ -12861,7 +12903,7 @@ table_option: {
 <span class="o">+</span><span class="c1">-------+--------------+------+------+---------+-------+---------+</span>
 <span class="mi">4</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 
-<span class="c1">-- Display all the rows from the &#39;t1&#39; table after adding the primary key.</span>
+<span class="c1">-- Display all records from t1 after adding the PRIMARY KEY</span>
 <span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">------+------+------------+---------+</span>
 <span class="o">|</span><span class="w"> </span><span class="n">a</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="n">b</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="k">c</span><span class="w">          </span><span class="o">|</span><span class="w"> </span><span class="n">d</span><span class="w">       </span><span class="o">|</span>
@@ -12873,7 +12915,7 @@ table_option: {
 <span class="mi">3</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 </code></pre></div>
 <ul>
-<li>Example 3:</li>
+<li>Example 3: Renaming a Column</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">10</span><span class="p">));</span>
 <span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">desc</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
@@ -12899,7 +12941,7 @@ table_option: {
 <span class="o">+</span><span class="c1">------+------+</span>
 <span class="mi">3</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 
-<span class="c1">-- Modify table &#39;t1&#39;, change column &#39;a&#39; name to &#39;x&#39;, and change datatype to VARCHAR(20).</span>
+<span class="c1">-- Rename column a to x and change its data type to VARCHAR(20)</span>
 <span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="n">change</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span>
 <span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 
@@ -12922,11 +12964,35 @@ table_option: {
 <span class="o">+</span><span class="c1">------+------+</span>
 <span class="mi">3</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="constraints">Constraints</h2>
+<ul>
+<li>Example 4: Renaming a Table</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">10</span><span class="p">));</span>
+
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="n">tables</span><span class="p">;</span>
+<span class="o">+</span><span class="c1">---------------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">Tables_in_db1</span><span class="w"> </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">---------------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">t1</span><span class="w">            </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">---------------+</span>
+<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">rename</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">t2</span><span class="p">;</span>
+<span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">03</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="n">tables</span><span class="p">;</span>
+<span class="o">+</span><span class="c1">---------------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">Tables_in_db1</span><span class="w"> </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">---------------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">t2</span><span class="w">            </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">---------------+</span>
+<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="limitations">Limitations</h2>
 <ol>
-<li>The clauses: <code>CHANGE [COLUMN]</code>, <code>MODIFY [COLUMN]</code>, <code>RENAME COLUMN</code>, <code>ADD [CONSTRAINT [symbol]] PRIMARY KEY</code>, <code>DROP PRIMARY KEY</code>, and <code>ALTER COLUMN ORDER BY</code> can be freely combined in <code>ALTER TABLE</code>, these are not supported to be used with other clauses for the time being.</li>
-<li>Temporary tables currently do not support using <code>ALTER TABLE</code> to modify the table structure.</li>
-<li>Tables created using <code>CREATE TABLE ... CLUSTER BY...</code> do not allow modifications to the table structure using <code>ALTER TABLE</code>.</li>
+<li>The following clauses: <code>CHANGE [COLUMN]</code>, <code>MODIFY [COLUMN]</code>, <code>RENAME COLUMN</code>, <code>ADD [CONSTRAINT [symbol]] PRIMARY KEY</code>, <code>DROP PRIMARY KEY</code>, and <code>ALTER COLUMN ORDER BY</code> can be freely combined in an <code>ALTER TABLE</code> statement but are currently not supported with other clauses.</li>
+<li>Temporary tables do not currently support structural modifications via <code>ALTER TABLE</code>.</li>
+<li>Tables created with <code>CREATE TABLE ... CLUSTER BY...</code> cannot be modified using <code>ALTER TABLE</code>.</li>
 </ol>
 
 
