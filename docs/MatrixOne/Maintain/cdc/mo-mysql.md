@@ -1,84 +1,81 @@
-# MatrixOne to MySQL CDC function
+# MatrixOne to MySQL CDC Functionality
 
-## Scene description
+## Scenario Description
 
-An online retail company uses MatrixOne as the production database for its order management system to store order data. In order to support the real-time analysis needs of the business (such as order quantity, sales trends, customer behavior, etc.), order data needs to be synchronized from MatrixOne to the MySQL analysis database in real time for use by the data analysis team and business systems. Through the `mo_cdc` tool, real-time synchronization of order data can be efficiently achieved, allowing the analysis system to obtain the latest order information at any time.
+An online retail company uses MatrixOne as the production database for its order management system to store order data. To support real-time analytics requirements (such as order volume, sales trends, and customer behavior), order data needs to be synchronized in real-time from MatrixOne to a MySQL analytics database for use by the data analysis team and business systems. The `mo_cdc` tool enables efficient real-time synchronization of order data, ensuring the analytics system always has access to the latest order information.
 
--Source database (production database): The `orders` table in MatrixOne contains order data and records the details of each order, including order ID, customer ID, order time, order amount and status.
--Target database (analysis database): `orders_backup` table in MySQL, used for real-time statistics and analysis of order information. Ensure that the sales team can grasp sales dynamics in real time.
--Synchronization requirements: Use `mo_cdc` to synchronize data in MatrixOne's `orders` table to MySQL's `orders_backup` table in real time to ensure that the analysis system data is consistent with the production system.
+- **Source Database (Production Database)**: The `orders` table in MatrixOne, containing detailed order records, including order ID, customer ID, order date, order amount, and status.
+- **Target Database (Analytics Database)**: The `orders_backup` table in MySQL, used for real-time statistics and analysis of order information, ensuring the business team can monitor sales dynamics in real-time.
+- **Synchronization Requirement**: Use `mo_cdc` to synchronize data from the `orders` table in MatrixOne to the `orders_backup` table in MySQL in real-time, ensuring the analytics system remains consistent with the production system.
 
-## Operation process
+## Workflow
 
-### Create table structure
+### Create PITR
 
-Ensure that the table structures in the source database MatrixOne and the target database MySQL are identical to facilitate seamless data synchronization.
+```sql
+create pitr pitr1 for account range 2 "h";
+```
 
-- `orders` table in MatrixOne:
+### Create Table and Insert Data on Source
 
-   ```sql
-   CREATE TABLE source_db.orders (
-       order_id INT PRIMARY KEY,
-       customer_id INT,
-       order_date DATETIME,
-       amount DECIMAL(10, 2),
-       status VARCHAR(20)
-   );
-   INSERT INTO source_db.orders (order_id, customer_id, order_date, amount, status) VALUES
-    (1, 101, '2024-01-15 14:30:00', 99.99, 'Shipped'),
-    (2, 102, '2024-02-10 10:00:00', 149.50, 'Delivered'),
-    (3, 103, '2024-03-05 16:45:00', 75.00, 'Processing'),
-    (4, 104, '2024-04-20 09:15:00', 200.00, 'Shipped'),
-    (5, 105, '2024-05-12 14:00:00', 49.99, 'Delivered');
-   ```
+```sql
+create database source_db;
+CREATE TABLE source_db.orders (
+    order_id INT PRIMARY KEY,
+    customer_id INT,
+    order_date DATETIME,
+    amount DECIMAL(10, 2),
+    status VARCHAR(20)
+);
+INSERT INTO source_db.orders (order_id, customer_id, order_date, amount, status) VALUES
+ (1, 101, '2024-01-15 14:30:00', 99.99, 'Shipped'),
+ (2, 102, '2024-02-10 10:00:00', 149.50, 'Delivered'),
+ (3, 103, '2024-03-05 16:45:00', 75.00, 'Processing'),
+ (4, 104, '2024-04-20 09:15:00', 200.00, 'Shipped'),
+ (5, 105, '2024-05-12 14:00:00', 49.99, 'Delivered');
+```
 
-- `orders_backup` table in MySQL:
+### Create Downstream Database
 
-   ```sql
-   CREATE TABLE analytics_db.orders_backup (
-       order_id INT PRIMARY KEY,
-       customer_id INT,
-       order_date DATETIME,
-       amount DECIMAL(10, 2),
-       status VARCHAR(20)
-   );
-   ```
+```sql
+create database analytics_db;
+```
 
-### Create `mo_cdc` synchronization task
+### Create `mo_cdc` Synchronization Task
 
-Create a synchronization task through the `mo_cdc` tool to push MatrixOne's order data to MySQL in real time.
+Use the `mo_cdc` tool to create a synchronization task, pushing order data from MatrixOne to MySQL in real-time.
 
 ```bash
 >./mo_cdc task create \
-       --task-name "task1" \
-       --source-uri "mysql://root:111@127.0.0.1:6001" \
-       --sink-type "mysql" \
-       --sink-uri "mysql://root:111@127.0.0.1:3306" \
-       --tables "source_db.orders:analytics_db.orders_backup" \
-       --level "account" \
-       --account "sys"
+    --task-name "task1" \
+    --source-uri "mysql://root:111@127.0.0.1:6001" \
+    --sink-type "mysql" \
+    --sink-uri "mysql://root:111@127.0.0.1:3306" \
+    --level table \
+    --tables "source_db.orders:analytics_db.orders_backup" 
 ```
 
-View task status
+Check task status.
 
 ```bash
 > ./mo_cdc task show \
-       --task-name "task1" \
-       --source-uri "mysql://root:111@127.0.0.1:6001"
+    --task-name "task1" \
+    --source-uri "mysql://root:111@127.0.0.1:6001"
 [
   {
-    "task-id": "0192d76f-d89a-70b3-a60d-615c5f2fd33d",
+    "task-id": "0195db5c-6406-73d8-bbf6-25fb8b9dd45d",
     "task-name": "task1",
     "source-uri": "mysql://root:******@127.0.0.1:6001",
     "sink-uri": "mysql://root:******@127.0.0.1:3306",
     "state": "running",
-    "checkpoint": "{\n  \"source_db.orders\": 2024-10-29 16:43:00.318404 +0800 CST,\n}",
-    "timestamp": "2024-10-29 16:43:01.299298 +0800 CST"
+    "err-msg": "",
+    "checkpoint": "{\n  \"source_db.orders\": 2025-03-28 14:07:31.036987 +0800 CST,\n}",
+    "timestamp": "2025-03-28 14:07:31.376217 +0800 CST"
   }
-] 
+]
 ```
 
-Connect to downstream mysql to view full data synchronization status
+Connect to the downstream MySQL to verify full data synchronization.
 
 ```sql
 mysql> select * from analytics_db.orders_backup;
@@ -91,12 +88,12 @@ mysql> select * from analytics_db.orders_backup;
 |        4 |         104 | 2024-04-20 09:15:00 | 200.00 | Shipped    |
 |        5 |         105 | 2024-05-12 14:00:00 |  49.99 | Delivered  |
 +----------+-------------+---------------------+--------+------------+
-5 rows in set (0.01 sec)
+5 rows in set (0.00 sec)
 ```
 
-### Incremental synchronization task
+### Incremental Synchronization Task
 
-After the task is established, perform data change operations on the upstream MatrixOne
+After the task is established, perform data changes in the upstream MatrixOne.
 
 ```sql
 INSERT INTO source_db.orders (order_id, customer_id, order_date, amount, status) VALUES
@@ -108,16 +105,16 @@ mysql> select * from source_db.orders;
 +----------+-------------+---------------------+--------+------------+
 | order_id | customer_id | order_date          | amount | status     |
 +----------+-------------+---------------------+--------+------------+
-|        4 |         104 | 2024-04-20 09:15:00 | 200.00 | Delivered  |
 |        1 |         101 | 2024-01-15 14:30:00 |  99.99 | Shipped    |
 |        2 |         102 | 2024-02-10 10:00:00 | 149.50 | Delivered  |
 |        3 |         103 | 2024-03-05 16:45:00 |  75.00 | Processing |
 |        5 |         105 | 2024-05-12 14:00:00 |  49.99 | Delivered  |
+|        4 |         104 | 2024-04-20 09:15:00 | 200.00 | Delivered  |
 +----------+-------------+---------------------+--------+------------+
 5 rows in set (0.00 sec)
 ```
 
-Connect to downstream mysql to view incremental data synchronization status
+Connect to the downstream MySQL to verify incremental data synchronization.
 
 ```sql
 mysql> select * from analytics_db.orders_backup;
@@ -133,17 +130,17 @@ mysql> select * from analytics_db.orders_backup;
 5 rows in set (0.00 sec)
 ```
 
-### Resume upload from breakpoint
+### Checkpoint Recovery
 
-Now the mission is interrupted due to an accident.
+Now, the task is interrupted due to an unexpected event.
 
 ```bash
 > ./mo_cdc task pause \
-       --task-name "task1" \
-       --source-uri "mysql://root:111@127.0.0.1:6001"
+    --task-name "task1" \
+    --source-uri "mysql://root:111@127.0.0.1:6001"
 ```
 
-During the task interruption, data continues to be inserted into the upstream MatrixOne.
+During the task interruption, continue inserting data into the upstream MatrixOne.
 
 ```sql
 INSERT INTO source_db.orders (order_id, customer_id, order_date, amount, status) VALUES
@@ -157,27 +154,27 @@ mysql> select * from source_db.orders;
 +----------+-------------+---------------------+--------+------------+
 | order_id | customer_id | order_date          | amount | status     |
 +----------+-------------+---------------------+--------+------------+
-|        1 |         101 | 2024-01-15 14:30:00 |  99.99 | Shipped    |
-|        2 |         102 | 2024-02-10 10:00:00 | 149.50 | Delivered  |
-|        3 |         103 | 2024-03-05 16:45:00 |  75.00 | Processing |
-|        4 |         104 | 2024-04-20 09:15:00 | 200.00 | Delivered  |
-|        5 |         105 | 2024-05-12 14:00:00 |  49.99 | Delivered  |
 |       11 |         111 | 2024-06-15 08:30:00 | 250.75 | Processing |
 |       12 |         112 | 2024-07-22 15:45:00 | 399.99 | Shipped    |
 |       13 |         113 | 2024-08-30 10:20:00 | 599.99 | Delivered  |
+|        1 |         101 | 2024-01-15 14:30:00 |  99.99 | Shipped    |
+|        2 |         102 | 2024-02-10 10:00:00 | 149.50 | Delivered  |
+|        3 |         103 | 2024-03-05 16:45:00 |  75.00 | Processing |
+|        5 |         105 | 2024-05-12 14:00:00 |  49.99 | Delivered  |
+|        4 |         104 | 2024-04-20 09:15:00 | 200.00 | Delivered  |
 +----------+-------------+---------------------+--------+------------+
-8 rows in set (0.01 sec)
+8 rows in set (0.00 sec)
 ```
 
-Manual recovery tasks.
+Manually resume the task.
 
 ```bash
 > ./mo_cdc task resume \
-       --task-name "task1" \
-       --source-uri "mysql://root:111@127.0.0.1:6001"
+    --task-name "task1" \
+    --source-uri "mysql://root:111@127.0.0.1:6001"
 ```
 
-Connect to the downstream mysql to check the resumed transmission status.
+Connect to the downstream MySQL to verify checkpoint recovery.
 
 ```sql
 mysql> select * from analytics_db.orders_backup;
@@ -196,6 +193,9 @@ mysql> select * from analytics_db.orders_backup;
 8 rows in set (0.00 sec)
 ```
 
-## Apply effects
+## Application Results
 
-Through this solution, retail companies can synchronize order data to the analysis database in real time to implement application scenarios such as order statistics, sales trend analysis, and customer behavior insights to support business decisions. At the same time, breakpoint resumption ensures data consistency when network delays or task interruptions occur, so that the data analysis system always maintains an accurate and reliable data source.
+Through this solution, the retail company achieves:
+
+- Real-time synchronization of order data to the analytics database, enabling applications such as order statistics, sales trend analysis, and customer behavior insights to support business decisions.
+- Data consistency during network delays or task interruptions via checkpoint recovery, ensuring the analytics system always has accurate and reliable data sources.

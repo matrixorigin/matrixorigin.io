@@ -1,24 +1,24 @@
 # RESTORE ... FROM SNAPSHOT
 
-## Syntax description
+## Syntax Description
 
-`RESTORE ... FROM SNAPSHOT` is used to restore data at the cluster/tenant/database/table level from a previously created cluster/tenant level snapshot.
+`RESTORE ... FROM SNAPSHOT` is used to restore data at the cluster/tenant/database/table level from previously created snapshots of the corresponding levels.
 
-## Grammar structure
+## Syntax Structure
 
-```
+```sql
 > RESTORE [CLUSTER]|[[ACCOUNT <account_name>] [DATABASE database_name [TABLE table_name]]]FROM SNAPSHOT <snapshot_name> [TO ACCOUNT <account_name>];
 ```
 
-## Example
+## Examples
 
-### Example 1: Restoring the cluster
+### Example 1: Restore Cluster
   
 ```sql
---Executed under tenants acc1, acc2
-create database db1;
+-- Execute in tenants acc1, acc2
+CREATE DATABASE db1;
 
-mysql> show databases;
+mysql> SHOW DATABASES;
 +--------------------+
 | Database           |
 +--------------------+
@@ -31,13 +31,13 @@ mysql> show databases;
 +--------------------+
 6 rows in set (0.01 sec)
 
---Execute under system tenant sys
-create snapshot cluster_sp1 for cluster;--Create a snapshot of the cluster
+-- Execute in system tenant sys
+CREATE SNAPSHOT cluster_sp1 FOR CLUSTER; -- Create cluster snapshot
 
---Executed under tenants acc1, acc2
-drop database db1;--Delete database db1
+-- Execute in tenants acc1, acc2
+DROP DATABASE db1; -- Drop database db1
 
-mysql> show databases;
+mysql> SHOW DATABASES;
 +--------------------+
 | Database           |
 +--------------------+
@@ -47,13 +47,13 @@ mysql> show databases;
 | system             |
 | system_metrics     |
 +--------------------+
-6 rows in set (0.01 sec)
+5 rows in set (0.01 sec)
 
---Execute under system tenant sys
-restore cluster FROM snapshot cluster_sp1;--Perform snapshot recovery on the cluster under the system tenant
+-- Execute in system tenant sys
+RESTORE CLUSTER FROM SNAPSHOT cluster_sp1; -- Restore cluster from snapshot
 
---Executed under tenants acc1, acc2
-mysql> show databases;--Recovery successful
+-- Execute in tenants acc1, acc2
+mysql> SHOW DATABASES; -- Restoration successful
 +--------------------+
 | Database           |
 +--------------------+
@@ -67,14 +67,14 @@ mysql> show databases;--Recovery successful
 6 rows in set (0.01 sec)
 ```
 
-### Example 2: Restoring a tenant
+### Example 2: Restore Tenant
 
 ```sql
---Executed under tenant acc1
-CREATE database db1;
-CREATE database db2;
+-- Execute in tenant acc1
+CREATE DATABASE db1;
+CREATE DATABASE db2;
 
-mysql> show databases;
+mysql> SHOW DATABASES;
 +--------------------+
 | Database           |
 +--------------------+
@@ -88,11 +88,11 @@ mysql> show databases;
 +--------------------+
 7 rows in set (0.00 sec)
 
-create snapshot acc1_snap1 for account acc1;--Create snapshot
-drop database db1;--Delete database db1,db2
-drop database db2;
+CREATE SNAPSHOT acc1_snap1 FOR ACCOUNT acc1; -- Create snapshot
+DROP DATABASE db1; -- Drop databases db1, db2
+DROP DATABASE db2;
 
-mysql> show databases;
+mysql> SHOW DATABASES;
 +--------------------+
 | Database           |
 +--------------------+
@@ -104,9 +104,9 @@ mysql> show databases;
 +--------------------+
 5 rows in set (0.01 sec)
 
-restore account acc1 FROM snapshot acc1_snap1;--Restoring a tenant-level snapshot
+RESTORE ACCOUNT acc1 FROM SNAPSHOT acc1_snap1; -- Restore tenant snapshot
 
-mysql> show databases;--Recovery successful
+mysql> SHOW DATABASES; -- Restoration successful
 +--------------------+
 | Database           |
 +--------------------+
@@ -121,13 +121,13 @@ mysql> show databases;--Recovery successful
 7 rows in set (0.01 sec)
 ```
 
-### Example 3: Restoring the database
+### Example 3: Restore Database
 
 ```sql
---Executed under tenant acc1
-CREATE database db1;
+-- Execute in tenant acc1
+CREATE DATABASE db1;
 
-mysql> show databases;
+mysql> SHOW DATABASES;
 +--------------------+
 | Database           |
 +--------------------+
@@ -138,12 +138,12 @@ mysql> show databases;
 | system             |
 | system_metrics     |
 +--------------------+
-7 rows in set (0.00 sec)
+6 rows in set (0.00 sec)
 
-create snapshot acc1_db_snap1 for account acc1;--Create snapshot
-drop database db1;--Delete database db1
+CREATE SNAPSHOT acc1_db_snap1 FOR ACCOUNT acc1; -- Create snapshot
+DROP DATABASE db1; -- Drop database db1
 
-mysql> show databases;
+mysql> SHOW DATABASES;
 +--------------------+
 | Database           |
 +--------------------+
@@ -153,11 +153,11 @@ mysql> show databases;
 | system             |
 | system_metrics     |
 +--------------------+
-6 rows in set (0.01 sec)
+5 rows in set (0.01 sec)
 
-restore account acc1 database db1 FROM snapshot acc1_db_snap1;--Restoring a database-level snapshot
+RESTORE ACCOUNT acc1 DATABASE db1 FROM SNAPSHOT acc1_db_snap1; -- Restore database snapshot
 
-mysql> show databases;--Recovery successful
+mysql> SHOW DATABASES; -- Restoration successful
 +--------------------+
 | Database           |
 +--------------------+
@@ -168,15 +168,15 @@ mysql> show databases;--Recovery successful
 | system             |
 | system_metrics     |
 +--------------------+
-7 rows in set (0.00 sec)
+6 rows in set (0.00 sec)
 ```
 
-### Example 4: Restoring a table
+### Example 4: Restore Table
 
 ```sql
---在租户 acc1 下执行
-CREATE TABLE t1(n1 int);
-INSERT INTO t1 values(1);
+-- Execute in tenant acc1
+CREATE TABLE t1(n1 INT);
+INSERT INTO t1 VALUES(1);
 
 mysql> SELECT * FROM t1;
 +------+
@@ -186,15 +186,15 @@ mysql> SELECT * FROM t1;
 +------+
 1 row in set (0.00 sec)
 
-create snapshot acc1_tab_snap1 for account acc1;--Create snapshot
-truncate TABLE t1;--Clear t1
+CREATE SNAPSHOT acc1_tab_snap1 FOR ACCOUNT acc1; -- Create snapshot
+TRUNCATE TABLE t1; -- Clear table t1
 
 mysql> SELECT * FROM t1;
 Empty set (0.01 sec)
 
-restore account acc1 database db1 TABLE t1 FROM snapshot acc1_tab_snap1;--Restore snapshot
+RESTORE ACCOUNT acc1 DATABASE db1 TABLE t1 FROM SNAPSHOT acc1_tab_snap1; -- Restore table snapshot
 
-mysql> SELECT * FROM t1;--Recovery successful
+mysql> SELECT * FROM t1; -- Restoration successful
 +------+
 | n1   |
 +------+
@@ -203,13 +203,13 @@ mysql> SELECT * FROM t1;--Recovery successful
 1 row in set (0.00 sec)
 ```
 
-### Example 5: System tenant restores ordinary tenant to ordinary tenant
+### Example 5: System Tenant Restores Regular Tenant to Itself
 
 ```sql
---Executed under tenant acc1
-create database db1;
+-- Execute in tenant acc1
+CREATE DATABASE db1;
 
-mysql> show databases;
+mysql> SHOW DATABASES;
 +--------------------+
 | Database           |
 +--------------------+
@@ -222,13 +222,13 @@ mysql> show databases;
 +--------------------+
 6 rows in set (0.01 sec)
 
---Execute under system tenant sys
-create snapshot acc1_snap1 for account acc1;--Create a snapshot for acc1
+-- Execute in system tenant sys
+CREATE SNAPSHOT acc1_snap1 FOR ACCOUNT acc1; -- Create snapshot for acc1
 
---Executed under tenant acc1
-drop database db1;--Delete database db1
+-- Execute in tenant acc1
+DROP DATABASE db1; -- Drop database db1
 
-mysql> show databases;
+mysql> SHOW DATABASES;
 +--------------------+
 | Database           |
 +--------------------+
@@ -238,13 +238,13 @@ mysql> show databases;
 | system             |
 | system_metrics     |
 +--------------------+
-6 rows in set (0.01 sec)
+5 rows in set (0.01 sec)
 
---Execute under system tenant sys
-restore account acc1 FROM snapshot acc1_snap1 TO account acc1;--在系统租户下对 acc1 进行快照恢复
+-- Execute in system tenant sys
+RESTORE ACCOUNT acc1 FROM SNAPSHOT acc1_snap1 TO ACCOUNT acc1; -- Restore snapshot to acc1
 
---Executed under tenant acc1
-mysql> show databases;--Recovery successful
+-- Execute in tenant acc1
+mysql> SHOW DATABASES; -- Restoration successful
 +--------------------+
 | Database           |
 +--------------------+
@@ -258,13 +258,13 @@ mysql> show databases;--Recovery successful
 6 rows in set (0.01 sec)
 ```
 
-### Example 6: System tenant restores normal tenant to new tenant
+### Example 6: System Tenant Restores Regular Tenant to New Tenant
 
 ```sql
---Execute under tenant acc1
-create database db1;
+-- Execute in tenant acc1
+CREATE DATABASE db1;
 
-mysql> show databases;
+mysql> SHOW DATABASES;
 +--------------------+
 | Database           |
 +--------------------+
@@ -277,13 +277,13 @@ mysql> show databases;
 +--------------------+
 6 rows in set (0.01 sec)
 
---Execute under system tenant sys
-create snapshot acc1_snap1 for account acc1;--Create a snapshot for acc1
+-- Execute in system tenant sys
+CREATE SNAPSHOT acc1_snap1 FOR ACCOUNT acc1; -- Create snapshot for acc1
 
---Executed under tenant acc1
-drop database db1;--Delete db1
+-- Execute in tenant acc1
+DROP DATABASE db1; -- Drop database db1
 
-mysql> show databases;
+mysql> SHOW DATABASES;
 +--------------------+
 | Database           |
 +--------------------+
@@ -293,14 +293,14 @@ mysql> show databases;
 | system             |
 | system_metrics     |
 +--------------------+
-6 rows in set (0.01 sec)
+5 rows in set (0.01 sec)
 
---Execute under system tenant sys
-create account acc2 ADMIN_NAME admin IDENTIFIED BY '111';--New tenants to be targeted need to be created in advance
-restore account acc1 FROM snapshot acc1_snap1 TO account acc2;--Perform snapshot recovery on acc1 under the system tenant and restore it to acc2
+-- Execute in system tenant sys
+CREATE ACCOUNT acc2 ADMIN_NAME admin IDENTIFIED BY '111'; -- Create target tenant first
+RESTORE ACCOUNT acc1 FROM SNAPSHOT acc1_snap1 TO ACCOUNT acc2; -- Restore acc1 snapshot to acc2
 
---Executed under tenant acc1
-mysql> show databases;
+-- Execute in tenant acc1
+mysql> SHOW DATABASES;
 +--------------------+
 | Database           |
 +--------------------+
@@ -312,8 +312,8 @@ mysql> show databases;
 +--------------------+
 5 rows in set (0.00 sec)
 
---Executed under tenant acc2
-mysql> show databases;--Revert to acc2
+-- Execute in tenant acc2
+mysql> SHOW DATABASES; -- Restored to acc2
 +--------------------+
 | Database           |
 +--------------------+
@@ -327,10 +327,8 @@ mysql> show databases;--Revert to acc2
 6 rows in set (0.01 sec)
 ```
 
-## limit
+## Limitations
 
-- Only tenant-level snapshots can be restored at the database/table level.
+- System tenant can only perform tenant-level restoration when restoring to a new tenant.
 
-- System tenant restoration from a normal tenant to a new tenant only allows tenant level restoration.
-
-- Only the system tenant can perform restore data to the new tenant, and only tenant-level restores are allowed. New tenants need to be created in advance. In order to avoid object conflicts, it is best to create new tenants.
+- Only system tenant can perform restoration to a new tenant, and only tenant-level restoration is allowed. The new tenant must be created in advance. To avoid object conflicts, it's recommended to use a newly created tenant.

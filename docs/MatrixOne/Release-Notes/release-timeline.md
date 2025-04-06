@@ -4,6 +4,7 @@ This document shows all the released MatrixOne versions in reverse chronological
 
 | **Version**                 | **Release Date** |
 | :-------------------------- | :--------------- |
+| [v25.2.1.0](v25.2.1.0.md)         | 2025/04/03       |
 | [v25.2.0.3](v25.2.0.3.md)         | 2025/03/12       |
 | [v25.2.0.2](v25.2.0.2.md)         | 2025/01/25       |
 | [v24.2.0.1](v24.2.0.1.md)         | 2024/12/10       |

@@ -1,18 +1,20 @@
-# mo_cdc data synchronization
+# mo_cdc Data Synchronization
 
-**CDC (Change Data Capture)**is a technology that captures data changes in the database in real time and can record insert, update and delete operations. It monitors database changes to achieve real-time synchronization and incremental processing of data to ensure data consistency between different systems. CDC is suitable for scenarios such as real-time data synchronization, data migration, disaster recovery and audit tracking. By reading transaction logs, it reduces the pressure of full data replication and improves system performance and efficiency. Its advantages include low latency, high real-time performance, flexible support for multiple databases and systems, and adaptability to changing large-scale data environments.
+**CDC (Change Data Capture)** is a technology that captures real-time changes in a database, recording insert, update, and delete operations. By monitoring database changes, it enables real-time data synchronization and incremental processing, ensuring consistency across different systems. CDC is suitable for scenarios such as real-time data synchronization, data migration, disaster recovery, and audit tracking. It reads transaction logs to reduce the pressure of full data replication and improves system performance and efficiency. Its advantages include low latency, high real-time capability, flexible support for multiple databases and systems, and adaptability to evolving large-scale data environments.
 
-MatrixOne supports table-level data synchronization through the `mo_cdc` utility. This chapter will introduce how to use `mo_cdc`.
+Before performing CDC synchronization, it is necessary to first establish PITR (Point-in-Time Recovery) capabilities covering the synchronization scope, with a recommended coverage of at least 2 hours of changes. This ensures that if the synchronization task is interrupted or encounters an exception, the system can backtrack and re-read the changed data, avoiding data loss or inconsistency.
+
+MatrixOne supports data synchronization at the tenant/database/table level through the `mo_cdc` utility. This section introduces the usage of `mo_cdc`.
 
 !!! note
-    mo_cdc is a data synchronization tool for enterprise-level services. You need to contact your MatrixOne account manager to obtain the tool download path.
+    `mo_cdc` is an enterprise-level data synchronization tool. You need to contact your MatrixOne account manager to obtain the download path.
 
-## Reference command guide
+## Command Reference Guide
 
-help -print reference guide
+`help` - Print the reference guide.
 
 ```bash
->./mo_cdc help
+(base) admin@admindeMBP mo-backup % ./mo_cdc help
 This command allows you to manage CDC Task, including task create, task show, task pause, task resume, task restart, and task drop.
 
 Usage:
@@ -30,9 +32,9 @@ Flags:
 Use "mo_cdc [command] --help" for more information about a command.
 ```
 
-## Create task
+## Create a Task
 
-### Grammar structure
+### Syntax
 
 ```
 mo_cdc task create
@@ -40,37 +42,53 @@ mo_cdc task create
     --source-uri 
     --sink-type 
     --sink-uri 
-    --tables 
     --level 
-    --account 
+      account|database|table
+    --databases
+    --tables 
     --no-full 
+    --start-ts
+    --end-ts
+    --start-ts 
+    --end-ts
+    --send-sql-timeout 
+    --max-sql-length 
+    --exclude
+    --error-handle-option
 ```
 
-**Parameter description**
+**Parameter Description**
 
-| Parameters | Description |
-| ----| ----|
-|task-name | Synchronization task name|
-|source-uri|Source (mo) connection string|
-|sink-type| Downstream type, currently supports mysql|
-|tables | The name of the table that needs to be synchronized, separate multiple table names with commas |
-|level | The range of tables selected for synchronization, currently only supports tenants|
-|account| Synchronized tenant, when level is account, you need to specify |
-|no-full| Optional, full volume is enabled by default, adding this parameter means full volume is turned off|
+| Parameter | Description |
+|  ----  | ----  |
+| `task-name` | Synchronization task name |
+| `source-uri` | Source (MatrixOne) connection string |
+| `sink-type` | Downstream type, currently supports `mysql` and `matrixone` |
+| `level` | Synchronization scope: `account`, `database`, or `table` |
+| `databases` | Optional, required when the scope is database-level |
+| `tables` | Optional, required when the scope is table-level |
+| `no-full` | Optional, enables full synchronization by default; adding this parameter disables it |
+| `start-ts` | Optional, starts pulling data from a specific timestamp in the database (must be earlier than the current time) |
+| `end-ts` | Optional, stops pulling data at a specified timestamp (must be later than `start-ts` if specified) |
+| `max-sql-length` | Optional, limits the length of a single SQL statement (defaults to the smaller of 4MB or the downstream `max_packet_size` variable) |
+| `exclude` | Optional, specifies objects to exclude (supports regex) |
+| `error-handle-option` | Optional, `stop` or `ignore`. Controls behavior when encountering errors during synchronization (default: `stop`; `ignore` skips the error and continues) |
 
-#### example
+#### Examples
 
 ```bash
->./mo_cdc task create --task-name "task1" --source-uri "mysql://root:111@127.0.0.1:6001" --sink-uri "mysql://root:111@127.0.0.1:3306" --sink-type "mysql" --tables "db1.t1:db1.t1,db1.t2:db1.t2" --level "account" --account "sys"
+>./mo_cdc task create --task-name "ms_task1" --source-uri "mysql://root:111@127.0.0.1:6001" --sink-uri "mysql://root:111@127.0.0.1:3306" --sink-type "mysql" --level table --tables "db1.t1:db1.t1"  
 
->./mo_cdc task create --task-name "task2" --source-uri "mysql://acc1:admin:111@127.0.0.1:6001" --sink-uri "mysql://root:111@127.0.0.1:3306" --sink-type "mysql" --tables "db1.table1:db2.tab1" --level "account" --account "acc1"
+>./mo_cdc task create --task-name "ms_task2" --source-uri "mysql://acc1:admin:111@127.0.0.1:6001" --sink-uri "mysql://root:111@127.0.0.1:3306" --sink-type "mysql" --level "account" 
+
+>./mo_cdc task create --task-name "mo_task1" --source-uri "mysql://root:111@127.0.0.1:6001" --sink-uri "mysql://root:111@10.222.xx.xx:6001" --sink-type "matrixone" --level database --databases "db1:db2" 
 ```
 
-## View tasks
+## View Tasks
 
-Viewing cdc tasks can only view tasks created by the currently connected user.
+Only tasks created by the current connected user can be viewed.
 
-### Grammar structure
+### Syntax
 
 ```
 mo_cdc task show
@@ -79,61 +97,84 @@ mo_cdc task show
     --task-name 
 ```
 
-**Parameter description**
+**Parameter Description**
 
-| Parameters | Description |
-| ----| ----|
-|source-uri|Source server address|
-|all| View all synchronization tasks|
-|task-name | Synchronization task name|
+| Parameter | Description |
+|  ----  | ----  |
+| `source-uri` | Source server address |
+| `all` | View all synchronization tasks |
+| `task-name` | Synchronization task name |
 
-**return information**
+**Response Fields**
 
 | Field | Description |
-| ----| ----|
-|task-id|task id|
-|task-name| Task name|
-|source-uri | Source server address |
-|sink-uri | Downstream identification resources|
-|state | task status, running or stopped|
-|checkpoint | synchronization progress|
-|timestamp | current timestamp|
+|  ----  | ----  |
+| `task-id` | Task ID |
+| `task-name` | Task name |
+| `source-uri` | Source server address |
+| `sink-uri` | Downstream resource identifier |
+| `state` | Task status (`running` or `stopped`) |
+| `checkpoint` | Synchronization progress |
+| `timestamp` | Current timestamp |
 
-#### Example
+#### Examples
 
 ```bash
-#View all sync tasks
->./mo_cdc task show "task1" --source-uri "mysql://root:111@127.0.0.1:6001"  --all
+# View all synchronization tasks
+> ./mo_cdc task show --source-uri "mysql://root:111@127.0.0.1:6001"  --all
 [
   {
-    "task-id": "0192bd8a-781b-776e-812a-3f4440fceff9",
+    "task-id": "0195db8d-1a36-73d0-9fa3-e37839638b4b",
+    "task-name": "mo_task1",
+    "source-uri": "mysql://root:******@127.0.0.1:6001",
+    "sink-uri": "mysql://root:******@10.222.xx.xx:6001",
+    "state": "running",
+    "err-msg": "",
+    "checkpoint": "{\n  \"db1.t1\": 2025-03-28 15:00:35.790209 +0800 CST,\n}",
+    "timestamp": "2025-03-28 15:00:36.207296 +0800 CST"
+  },
+  {
+    "task-id": "0195db5c-6406-73d8-bbf6-25fb8b9dd45d",
     "task-name": "task1",
     "source-uri": "mysql://root:******@127.0.0.1:6001",
     "sink-uri": "mysql://root:******@127.0.0.1:3306",
     "state": "running",
-    "checkpoint": "{\n  \"db1.t1\": 2024-10-24 16:12:56.254918 +0800 CST,\n  \"db1.t2\": 2024-10-24 16:12:56.376204 +0800 CST,\n}",
-    "timestamp": "2024-10-24 16:12:56.897015 +0800 CST"
+    "err-msg": "",
+    "checkpoint": "{\n  \"source_db.orders\": 2025-03-28 15:00:35.620173 +0800 CST,\n}",
+    "timestamp": "2025-03-28 15:00:36.207296 +0800 CST"
+  },
+  {
+    "task-id": "0195db82-7d6f-7f2a-a6d0-24cbe6ae8896",
+    "task-name": "ms_task1",
+    "source-uri": "mysql://root:******@127.0.0.1:6001",
+    "sink-uri": "mysql://root:******@127.0.0.1:3306",
+    "state": "running",
+    "err-msg": "",
+    "checkpoint": "{\n  \"db1.t1\": 2025-03-28 15:00:35.632194 +0800 CST,\n}",
+    "timestamp": "2025-03-28 15:00:36.207296 +0800 CST"
   }
 ]
 
-#View specific sync tasks
->./mo_cdc task show "task1" --source-uri "mysql://acc1:admin:111@127.0.0.1:6001"   --task-name "task2"
+
+# View a specific task
+>./mo_cdc task show --source-uri "mysql://acc1:admin:111@127.0.0.1:6001"   --task-name "ms_task2"
 [
   {
-    "task-id": "0192bd94-e716-73c4-860e-a392a0d68d6f",
-    "task-name": "task2",
+    "task-id": "0195db8c-c15a-742e-8d0d-598529ab3f1e",
+    "task-name": "ms_task2",
     "source-uri": "mysql://acc1:admin:******@127.0.0.1:6001",
     "sink-uri": "mysql://root:******@127.0.0.1:3306",
     "state": "running",
-    "checkpoint": "{\n  \"db1.table1\": 2024-10-24 16:14:43.552274 +0800 CST,\n}",
-    "timestamp": "2024-10-24 16:14:43.664386 +0800 CST"
+    "err-msg": "",
+    "checkpoint": "{\n  \"db1.t1\": 2025-03-28 15:01:44.030821 +0800 CST,\n  \"db1.table1\": 2025-03-28 15:01:43.998759 +0800 CST,\n}",
+    "timestamp": "2025-03-28 15:01:44.908341 +0800 CST"
   }
 ]
 ```
 
-## Pause task
+## Pause a Task
 
-### Grammar structure
+### Syntax
 
 ```
 mo_cdc task pause
@@ -142,29 +183,29 @@ mo_cdc task pause
     --task-name 
 ```
 
-**Parameter description**
+**Parameter Description**
 
-| Parameters | Description |
-| ----| ----|
-|source-uri|Source server address|
-|all| Pause all synchronization tasks|
-|task-name | Synchronization task name|
+| Parameter | Description |
+|  ----  | ----  |
+| `source-uri` | Source server address |
+| `all` | Pause all synchronization tasks |
+| `task-name` | Synchronization task name |
 
-#### Example
+#### Examples
 
 ```bash
-#Pause specific tasks
-./mo_cdc task pause  --source-uri "mysql://acc1:admin:111@127.0.0.1:6001" --task-name "task2"
+# Pause a specific task
+./mo_cdc task pause  --source-uri "mysql://acc1:admin:111@127.0.0.1:6001" --task-name "ms_task2"
 
-#Pause all tasks
-./mo_cdc task pause  --source-uri "mysql://acc1:admin:111@127.0.0.1:6001" --all
+# Pause all tasks
+./mo_cdc task pause --source-uri "mysql://root:111@127.0.0.1:6001"  --all
 ```
 
-## Recovery task
+## Resume a Task
 
-The task can only be resumed when its status is stopped, and the resume process will resume the upload from the breakpoint. If the task is suspended for longer than the GC retention period, operations during this period will not be synchronized, and the system will only synchronize the final data status of the task.
+A task can only be resumed if its status is `stopped`. The resumption process supports checkpoint recovery. If the pause duration exceeds the GC retention period, operations during that time will not be synchronized, and only the final data state will be synced.
 
-### Grammar structure
+### Syntax
 
 ```
 mo_cdc task resume
@@ -172,24 +213,24 @@ mo_cdc task resume
     --task-name 
 ```
 
-**Parameter description**
+**Parameter Description**
 
-| Parameters | Description |
-| ----| ----|
-|source-uri|Source server address|
-|task-name | Synchronization task name|
+| Parameter | Description |
+|  ----  | ----  |
+| `source-uri` | Source server address |
+| `task-name` | Synchronization task name |
 
-#### Example
+#### Examples
 
 ```bash
-./mo_cdc task resume  --source-uri "mysql://acc1:admin:111@127.0.0.1:6001" --task-name "task2"
+./mo_cdc task resume  --source-uri "mysql://acc1:admin:111@127.0.0.1:6001" --task-name "ms_task2"
 ```
 
-## Restart task
+## Restart a Task
 
-Restarting the cdc task will ignore the synchronization progress record before the task and restart the synchronization from the beginning.
+Restarting a CDC task ignores previous synchronization progress and starts from the beginning.
 
-### Grammar structure
+### Syntax
 
 ```
 mo_cdc task restart
@@ -197,22 +238,22 @@ mo_cdc task restart
     --task-name 
 ```
 
-**Parameter description**
+**Parameter Description**
 
-| Parameters | Description |
-| ----| ----|
-|source-uri|Source server address|
-|task-name | Synchronization task name|
+| Parameter | Description |
+|  ----  | ----  |
+| `source-uri` | Source server address |
+| `task-name` | Synchronization task name |
 
-#### Example
+#### Examples
 
 ```bash
-./mo_cdc task restart  --source-uri "mysql://acc1:admin:111@127.0.0.1:6001" --task-name "task2"
+./mo_cdc task restart  --source-uri "mysql://acc1:admin:111@127.0.0.1:6001" --task-name "ms_task2"
 ```
 
-## Delete task
+## Delete a Task
 
-### Grammar structure
+### Syntax
 
 ```
 mo_cdc task drop
@@ -221,20 +262,20 @@ mo_cdc task drop
     --task-name 
 ```
 
-**Parameter description**
+**Parameter Description**
 
-| Parameters | Description |
-| ----| ----|
-|source-uri|Source server address|
-|all|Delete all synchronization tasks|
-|task-name | Delete a synchronization task with a specific name |
+| Parameter | Description |
+|  ----  | ----  |
+| `source-uri` | Source server address |
+| `all` | Delete all synchronization tasks |
+| `task-name` | Delete a specific task |
 
-#### Example
+#### Examples
 
 ```bash
-#Delete specific tasks
-./mo_cdc task drop  --source-uri "mysql://acc1:admin:111@127.0.0.1:6001" --task-name "task2"
+# Delete a specific task
+./mo_cdc task drop  --source-uri "mysql://acc1:admin:111@127.0.0.1:6001" --task-name "ms_task2"
 
-#Delete all tasks
-./mo_cdc task drop  --source-uri "mysql://acc1:admin:111@127.0.0.1:6001" --all
+# Delete all tasks
+./mo_cdc task drop  --source-uri  "mysql://root:111@127.0.0.1:6001" --all
 ```
