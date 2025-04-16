@@ -1,21 +1,22 @@
-site_name: MatrixOne Docs
+site_name: OmniFabric Docs
 repo_name: cloudsigma/omnifabric-docs
 repo_url: https://github.com/cloudsigma/omnifabric-docs
-theme:
-  name: material
-  logo: assets/new-logo.png
-  features:
-    - content.code.copy
-    - content.action.edit
-    - navigation.instant
-    - navigation.tracking
-    - navigation.tabs
-    - navigation.tabs.sticky
-    - navigation.footer
-  palette:
-    scheme: mo
-  font:
-    text: Ubuntu
+theme: readthedocs
+# theme:
+#   name: material
+#   logo: assets/new-logo.png
+#   features:
+#     - content.code.copy
+#     - content.action.edit
+#     - navigation.instant
+#     - navigation.tracking
+#     - navigation.tabs
+#     - navigation.tabs.sticky
+#     - navigation.footer
+#   palette:
+#     scheme: mo
+#   font:
+#     text: Ubuntu
 plugins:
   - search:
       separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
