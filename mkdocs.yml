@@ -21,18 +21,18 @@ plugins:
   - search:
       separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
 edit_uri: edit/main/docs/
-extra_css:
-  - stylesheets/extra.css
-extra_javascript:
-  - javascripts/extra.js
-extra:
-  homepage: https://www.matrixorigin.io
-  version:
-    provider: mike
-  alternate:
-    - name: English
-      link: /en/
-      lang: en
+# extra_css:
+#   - stylesheets/extra.css
+# extra_javascript:
+#   - javascripts/extra.js
+# extra:
+#   homepage: https://www.matrixorigin.io
+#   version:
+#     provider: mike
+#   alternate:
+#     - name: English
+#       link: /en/
+#       lang: en
 markdown_extensions:
   - admonition
   - pymdownx.details
