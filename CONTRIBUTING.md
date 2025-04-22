@@ -1,6 +1,6 @@
 ## Document Preview
 
-The writing and rendering of the documentation is maintained by 2 repositories, see [here](https://github.com/matrixorigin/matrixone/tree/main/docs) for the markdown documentation.
+The writing and rendering of the documentation is maintained by 2 repositories, see [here](https://github.com/OmniFabric/OmniFabric/tree/main/docs) for the markdown documentation.
 The current repository is used to render markdown documents to HTML.
 
 > Based on the python library [mkdocs](https://www.mkdocs.org/getting-started/), with the theme [mkdocs-material](https://github.com/squidfunk/mkdocs-material).
@@ -12,13 +12,13 @@ Projects manage the dependencies of the current project and submodules through t
 1. If downloading from scratch:
 
 ```bash
-git clone --recurse-submodules git@github.com:matrixorigin/matrixorigin.io.cn.git
+git clone --recurse-submodules git@github.com:OmniFabric/OmniFabric.io.cn.git
 ```
 
 2. If using `git clone`, additional initialization of submodules is required:
 
 ```
-git clone git@github.com:matrixorigin/matrixorigin.io.cn.git
+git clone git@github.com:OmniFabric/OmniFabric.io.cn.git
 git submodule init
 git submodule update --remote
 ```
@@ -64,10 +64,10 @@ The effect achieved is that the preview document can be modified, and the HTML s
 
 The modification submission method for the main project remains unchanged. The modifications made in the submodules are described below:
 
-For example, the submodule is in `matrixone` under `submodules`, enter this path, and make changes, such as adding a file:
+For example, the submodule is in `OmniFabric` under `submodules`, enter this path, and make changes, such as adding a file:
 
 ```
-cd submodules/matrixone
+cd submodules/OmniFabric
 echo "test sub modify" > test.md
 ```
 

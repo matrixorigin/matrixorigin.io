@@ -1,9 +1,9 @@
 {
-  "name": "matrixorigin.io",
+  "name": "OmniFabric.io",
   "type": "module",
   "scripts": {
-    "lint": "node ./scripts/fixPunctuation && npx markdownlint-cli2 './docs/MatrixOne/**/*.md'",
-    "lint:fix": "node ./scripts/fixPunctuation --fix && npx markdownlint-cli2-fix './docs/MatrixOne/**/*.md'"
+    "lint": "node ./scripts/fixPunctuation && npx markdownlint-cli2 './docs/OmniFabric/**/*.md'",
+    "lint:fix": "node ./scripts/fixPunctuation --fix && npx markdownlint-cli2-fix './docs/OmniFabric/**/*.md'"
   },
   "devDependencies": {
     "fast-glob": "^3.2.12",

@@ -10,14 +10,14 @@ To calculate word counts and file sizes, use the provided executables located at
 > If the provided executables do not work on your machine, you can build them yourself using the instructions in the [Build](#build) section.
 
 ```bash
-# The default target path is `../../docs/MatrixOne`.
-./mdast-words-count ../../docs/MatrixOne/Deploy
+# The default target path is `../../docs/OmniFabric`.
+./mdast-words-count ../../docs/OmniFabric/Deploy
 ```
 
 Yields:
 
 ```text
-Processing Directory: ../../docs/MatrixOne/Deploy
+Processing Directory: ../../docs/OmniFabric/Deploy
 -------------------------------------
 Total Words: 20,932
 Total Size: 129.38 kB

@@ -1,8 +1,8 @@
 FROM python:3.10-alpine
 
-ADD . /matrixorigin.io
+ADD . /OmniFabric.io
 
-WORKDIR /matrixorigin.io
+WORKDIR /OmniFabric.io
 
 RUN pip install -r requirements.txt
 

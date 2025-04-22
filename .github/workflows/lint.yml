@@ -3,7 +3,7 @@ name: lint
 on:
   pull_request_target:
     types: [ opened, synchronize, reopened ]
-    branches: 
+    branches:
       - '*'
   workflow_dispatch:
 
@@ -22,13 +22,13 @@ jobs:
       uses: docker://avtodev/markdown-lint:v1 # fastest way
       with:
         config: './.markdownlint.yaml'
-        args: './docs/MatrixOne'
+        args: './docs/OmniFabric'
 
     - name: Install NodeJS
       uses: actions/setup-node@v3
       with:
         node-version: 18
-    
+
     - name: Install NodeJS Dependencies
       run: npm ci
 

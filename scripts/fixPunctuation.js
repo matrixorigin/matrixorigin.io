@@ -12,7 +12,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 const options = parseArgv(argv)
 
 /** The pattern to match docs.  */
-const DOCS_PATTERN = './docs/MatrixOne/**/*.md'
+const DOCS_PATTERN = './docs/OmniFabric/**/*.md'
 
 /**
  * Map of half or full width punctuations
@@ -58,7 +58,7 @@ const PUNCTUATION_MAP = [
 
 /**
  * Checker pattern.
- * @example  
+ * @example
  * `/，|、|。|？|：|；|‘|’|“|”|（|）|【|】|《|》|…{1, 2}/`
  */
 const CHECKER_PATTERN = new RegExp(

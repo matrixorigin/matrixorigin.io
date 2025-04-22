@@ -37,7 +37,7 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
     Ok(())
 }
 
-const DEFAULT_DIR_PATTERN: &str = "../../docs/MatrixOne";
+const DEFAULT_DIR_PATTERN: &str = "../../docs/OmniFabric";
 
 /// Iterates all the markdown doc files.
 fn iterate_md_docs(dir: &PathBuf) -> Result<(usize, usize), Box<dyn Error>> {
