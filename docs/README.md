@@ -21,6 +21,7 @@ Select one of the articles below to begin your OmniFabric journey. If you ...
 | [OmniFabric Introduction](OmniFabric/Overview/OmniFabric-introduction.md)  | [Install OmniFabric](OmniFabric/Get-Started/install-standalone-OmniFabric.md) | [Java CRUD demo](OmniFabric/Tutorial/develop-java-crud-demo.md)	|[SQL Reference](OmniFabric/Reference/SQL-Reference/Data-Definition-Language/create-database.md)|
 | [OmniFabric Architecture](OmniFabric/Overview/architecture/OmniFabric-architecture-design.md)  | [Basic SQL](OmniFabric/Get-Started/basic-sql.md) |[Python CRUD demo](OmniFabric/Tutorial/develop-python-crud-demo.md)|[Data Types](OmniFabric/Reference/Data-Types/data-types.md)|
 
+<!--
 ## **Continuous Improvement**
 
 Whether you're seeking fundamental concepts, step-by-step procedures, curated guides, or handy references, we're crafting content to accommodate your needs.
@@ -39,3 +40,4 @@ If you encounter any documentation issues, please feel free to create an Issue t
 The OmniFabric community on [GitHub](https://github.com/OmniFabric/OmniFabric) is dynamic, enthusiastic, and well-informed. Engage in discussions, express your viewpoints, propose features, and delve into the code.
 
 A similarly passionate community awaits you in the [OmniFabric Slack](https://OmniFabricworkspace.slack.com/) and [OmniFabric](https://www.OmniFabric.cn/tutorials) channel.
+-->
