@@ -74,16 +74,16 @@ nav:
         - OmniFabric vs. common OLTP databases: OmniFabric/Overview/OmniFabric-vs-other_databases/OmniFabric-vs-oltp.md
       - What's New: OmniFabric/Overview/whats-new.md
     - Getting Started:
-      - Deploy standalone OmniFabric:
-        - Overview: OmniFabric/Get-Started/install-standalone-OmniFabric.md
-        - Deploy on macOS:
-          - Building from source code: OmniFabric/Get-Started/install-on-macos/install-on-macos-method1.md
-          - Using binary package: OmniFabric/Get-Started/install-on-macos/install-on-macos-method2.md
-          - Using Docker: OmniFabric/Get-Started/install-on-macos/install-on-macos-method3.md
-        - Deploy on Linux:
-          - Building from source code: OmniFabric/Get-Started/install-on-linux/install-on-linux-method1.md
-          - Using binary package: OmniFabric/Get-Started/install-on-linux/install-on-linux-method2.md
-          - Using Docker: OmniFabric/Get-Started/install-on-linux/install-on-linux-method3.md
+      # - Deploy standalone OmniFabric:
+      #   - Overview: OmniFabric/Get-Started/install-standalone-OmniFabric.md
+      #   - Deploy on macOS:
+      #     - Building from source code: OmniFabric/Get-Started/install-on-macos/install-on-macos-method1.md
+      #     - Using binary package: OmniFabric/Get-Started/install-on-macos/install-on-macos-method2.md
+      #     - Using Docker: OmniFabric/Get-Started/install-on-macos/install-on-macos-method3.md
+      #   - Deploy on Linux:
+      #     - Building from source code: OmniFabric/Get-Started/install-on-linux/install-on-linux-method1.md
+      #     - Using binary package: OmniFabric/Get-Started/install-on-linux/install-on-linux-method2.md
+      #     - Using Docker: OmniFabric/Get-Started/install-on-linux/install-on-linux-method3.md
       - Basic SQL: OmniFabric/Get-Started/basic-sql.md
     - Developing Guide:
       - Connect to OmniFabric:
@@ -213,41 +213,41 @@ nav:
             - Writing Data from MongoDB to OmniFabric: OmniFabric/Develop/Ecological-Tools/Computing-Engine/Flink/flink-mongo-OmniFabric.md
             - Writing Data from TiDB to OmniFabric: OmniFabric/Develop/Ecological-Tools/Computing-Engine/Flink/flink-tidb-OmniFabric.md
             - Writing Data from Kafka to OmniFabric: OmniFabric/Develop/Ecological-Tools/Computing-Engine/Flink/flink-kafka-OmniFabric.md
-    - Deploying:
-      - Single OmniFabric with S3: OmniFabric/Deploy/deploy-OmniFabric-single-with-s3.md
-      - Plan OmniFabric Cluster Topology:
-        - Cluster Topology Planning Overview: OmniFabric/Deploy/deployment-topology/topology-overview.md
-        - Experience Environment Deployment Plan: OmniFabric/Deploy/deployment-topology/experience-deployment-topology.md
-        - Minimum Production Environment Deployment Plan: OmniFabric/Deploy/deployment-topology/minimal-deployment-topology.md
-        - Recommended Production Environment Deployment Plan: OmniFabric/Deploy/deployment-topology/recommended-prd-deployment-topology.md
-      - Cluster Deployment Guide:
-        - Kubernetes and object storage environment not deployed: OmniFabric/Deploy/deploy-OmniFabric-cluster/deploy-OmniFabric-cluster-without-k8.md
-        - Deployed Kubernetes and object storage environment: OmniFabric/Deploy/deploy-OmniFabric-cluster/deploy-OmniFabric-cluster-with-k8.md
-      - Cluster Operations Management:
-        - Starting and stopping: OmniFabric/Deploy/OmniFabric-start-stop.md
-        - Updating: OmniFabric/Deploy/update-OmniFabric-cluster.md
-        - Health check and resource monitoring: OmniFabric/Deploy/health-check-resource-monitoring.md
-        - Scaling: OmniFabric/Deploy/OmniFabric-cluster-Scale.md
-        - Managing CN Groups with Proxy: OmniFabric/Deploy/mgmt-cn-group-using-proxy.md
-        - Import data from local Minio to OmniFabric: OmniFabric/Deploy/import-data-from-minio-to-mo.md
-        - Operator Management: OmniFabric/Deploy/OmniFabric-Operator-mgmt.md
-    - Maintenance:
-      - Backup and Restore:
-        - OmniFabric Backup and Recovery Overview: OmniFabric/Maintain/backup-restore/backup-restore-overview.md
-        - Backup and Recovery Concepts: OmniFabric/Maintain/backup-restore/key-concepts.md
-        - Backup and Restore by using mo-dump: OmniFabric/Maintain/backup-restore/modump-backup-restore.md
-        - mo_br Backup and Recovery:
-          - mo_br guidelines for use: OmniFabric/Maintain/backup-restore/mobr-backup-restore/mobr.md
-          - mo_br regular physical backup recovery: OmniFabric/Maintain/backup-restore/mobr-backup-restore/mobr-physical-backup-restore.md
-          - mo_br snapshot backup recovery: OmniFabric/Maintain/backup-restore/mobr-backup-restore/mobr-snapshot-backup-restore.md
-          - mo_br pitr: OmniFabric/Maintain/backup-restore/mobr-backup-restore/mobr-pitr-backup-restore.md
-        - OmniFabric active/standby disaster recovery: OmniFabric/Maintain/backup-restore/active-standby.md
-      - cdc:
-          - mo_cdc guidelines for use: OmniFabric/Maintain/cdc/mocdc.md
-          - From OmniFabric to MySQL: OmniFabric/Maintain/cdc/mo-mysql.md
-          - From OmniFabric to OmniFabric: OmniFabric/Maintain/cdc/mo-mo.md
-      - Mount Data:
-        - Mount directory to Docker container: OmniFabric/Maintain/mount-data-by-docker.md
+    # - Deploying:
+    #   - Single OmniFabric with S3: OmniFabric/Deploy/deploy-OmniFabric-single-with-s3.md
+    #   - Plan OmniFabric Cluster Topology:
+    #     - Cluster Topology Planning Overview: OmniFabric/Deploy/deployment-topology/topology-overview.md
+    #     - Experience Environment Deployment Plan: OmniFabric/Deploy/deployment-topology/experience-deployment-topology.md
+    #     - Minimum Production Environment Deployment Plan: OmniFabric/Deploy/deployment-topology/minimal-deployment-topology.md
+    #     - Recommended Production Environment Deployment Plan: OmniFabric/Deploy/deployment-topology/recommended-prd-deployment-topology.md
+    #   - Cluster Deployment Guide:
+    #     - Kubernetes and object storage environment not deployed: OmniFabric/Deploy/deploy-OmniFabric-cluster/deploy-OmniFabric-cluster-without-k8.md
+    #     - Deployed Kubernetes and object storage environment: OmniFabric/Deploy/deploy-OmniFabric-cluster/deploy-OmniFabric-cluster-with-k8.md
+    #   - Cluster Operations Management:
+    #     - Starting and stopping: OmniFabric/Deploy/OmniFabric-start-stop.md
+    #     - Updating: OmniFabric/Deploy/update-OmniFabric-cluster.md
+    #     - Health check and resource monitoring: OmniFabric/Deploy/health-check-resource-monitoring.md
+    #     - Scaling: OmniFabric/Deploy/OmniFabric-cluster-Scale.md
+    #     - Managing CN Groups with Proxy: OmniFabric/Deploy/mgmt-cn-group-using-proxy.md
+    #     - Import data from local Minio to OmniFabric: OmniFabric/Deploy/import-data-from-minio-to-mo.md
+    #     - Operator Management: OmniFabric/Deploy/OmniFabric-Operator-mgmt.md
+    # - Maintenance:
+    #   - Backup and Restore:
+    #     - OmniFabric Backup and Recovery Overview: OmniFabric/Maintain/backup-restore/backup-restore-overview.md
+    #     - Backup and Recovery Concepts: OmniFabric/Maintain/backup-restore/key-concepts.md
+    #     - Backup and Restore by using mo-dump: OmniFabric/Maintain/backup-restore/modump-backup-restore.md
+    #     - mo_br Backup and Recovery:
+    #       - mo_br guidelines for use: OmniFabric/Maintain/backup-restore/mobr-backup-restore/mobr.md
+    #       - mo_br regular physical backup recovery: OmniFabric/Maintain/backup-restore/mobr-backup-restore/mobr-physical-backup-restore.md
+    #       - mo_br snapshot backup recovery: OmniFabric/Maintain/backup-restore/mobr-backup-restore/mobr-snapshot-backup-restore.md
+    #       - mo_br pitr: OmniFabric/Maintain/backup-restore/mobr-backup-restore/mobr-pitr-backup-restore.md
+    #     - OmniFabric active/standby disaster recovery: OmniFabric/Maintain/backup-restore/active-standby.md
+    #   - cdc:
+    #       - mo_cdc guidelines for use: OmniFabric/Maintain/cdc/mocdc.md
+    #       - From OmniFabric to MySQL: OmniFabric/Maintain/cdc/mo-mysql.md
+    #       - From OmniFabric to OmniFabric: OmniFabric/Maintain/cdc/mo-mo.md
+    #   - Mount Data:
+    #     - Mount directory to Docker container: OmniFabric/Maintain/mount-data-by-docker.md
     - Migrating:
       - Migrate data to OmniFabric Overview: OmniFabric/Migrate/migrate-overview.md
       - Migrate data from MySQL to OmniFabric: OmniFabric/Migrate/migrate-from-mysql-to-OmniFabric.md
@@ -716,7 +716,7 @@ nav:
       - Error Code: OmniFabric/Troubleshooting/error-code.md
     - FAQs:
       - Product FAQs: OmniFabric/FAQs/product-faqs.md
-      - Deployment FAQs: OmniFabric/FAQs/deployment-faqs.md
+      # - Deployment FAQs: OmniFabric/FAQs/deployment-faqs.md
       - SQL FAQs: OmniFabric/FAQs/sql-faqs.md
     - Release Notes:
       - Release Timeline: OmniFabric/Release-Notes/release-timeline.md
@@ -749,17 +749,17 @@ nav:
       - v22.0.2.0: OmniFabric/Release-Notes/v22.0.2.0.md
       - v21.0.1.0: OmniFabric/Release-Notes/v21.0.1.0.md
     - Glossary: OmniFabric/glossary.md
-    - Contribution Guide:
-      - Make Your First Contribution: OmniFabric/Contribution-Guide/make-your-first-contribution.md
-      - How to Contribute:
-        - Types of Contributions: OmniFabric/Contribution-Guide/How-to-Contribute/types-of-contributions.md
-        - Preparation: OmniFabric/Contribution-Guide/How-to-Contribute/preparation.md
-        - Report an Issue: OmniFabric/Contribution-Guide/How-to-Contribute/report-an-issue.md
-        - Contribute Code: OmniFabric/Contribution-Guide/How-to-Contribute/contribute-code.md
-        - Review a Pull Request: OmniFabric/Contribution-Guide/How-to-Contribute/review-a-pull-request.md
-        - Contribute Documentation: OmniFabric/Contribution-Guide/How-to-Contribute/contribute-documentation.md
-        - Make a Design: OmniFabric/Contribution-Guide/How-to-Contribute/make-a-design.md
-      - Code Style:
-        - Code of Conduct: OmniFabric/Contribution-Guide/Code-Style/code-of-conduct.md
-        - Code Comment Style: OmniFabric/Contribution-Guide/Code-Style/code-comment-style.md
-        - Commit & Pull Request Style: OmniFabric/Contribution-Guide/Code-Style/commit-pr-style.md
+    # - Contribution Guide:
+    #   - Make Your First Contribution: OmniFabric/Contribution-Guide/make-your-first-contribution.md
+    #   - How to Contribute:
+    #     - Types of Contributions: OmniFabric/Contribution-Guide/How-to-Contribute/types-of-contributions.md
+    #     - Preparation: OmniFabric/Contribution-Guide/How-to-Contribute/preparation.md
+    #     - Report an Issue: OmniFabric/Contribution-Guide/How-to-Contribute/report-an-issue.md
+    #     - Contribute Code: OmniFabric/Contribution-Guide/How-to-Contribute/contribute-code.md
+    #     - Review a Pull Request: OmniFabric/Contribution-Guide/How-to-Contribute/review-a-pull-request.md
+    #     - Contribute Documentation: OmniFabric/Contribution-Guide/How-to-Contribute/contribute-documentation.md
+    #     - Make a Design: OmniFabric/Contribution-Guide/How-to-Contribute/make-a-design.md
+    #   - Code Style:
+    #     - Code of Conduct: OmniFabric/Contribution-Guide/Code-Style/code-of-conduct.md
+    #     - Code Comment Style: OmniFabric/Contribution-Guide/Code-Style/code-comment-style.md
+    #     - Commit & Pull Request Style: OmniFabric/Contribution-Guide/Code-Style/commit-pr-style.md
