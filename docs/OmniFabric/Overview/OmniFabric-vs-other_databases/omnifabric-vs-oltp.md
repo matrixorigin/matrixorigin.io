@@ -24,7 +24,7 @@ OLTP databases can also be divided into centralized databases, distributed datab
 It is worth noting that there are no strict dividing criteria for these three classifications, and each database has gradually begun to integrate the capabilities of other route products as it has evolved in practice. Oracle's RAC architecture, for example, is a typical shared storage architecture with some scalability. Products like CockroachDB and TiDB are also evolving toward cloud-native and shared storage. In practice, OLTP is the most widely needed database scenario, and products along all three technical routes are also used by a large number of users.
 
 <div align="center">
-<img src=https://github.com/OmniFabric/artwork/blob/main/docs/overview/mo-other-database/oltp_category.png?raw=true width=80% heigth=80%/>
+<img src=https://github.com/matrixorigin/artwork/blob/main/docs/overview/mo-other-database/oltp_category.png?raw=true width=80% heigth=80%/>
 </div>
 
 ## OLTP Features of OmniFabric
@@ -44,7 +44,7 @@ There are two differences from Aurora:
 
 Of course, OmniFabric isn't limited to OLTP capabilities, and OmniFabric's ability to accommodate other loads is significantly different from Aurora's positioning.
 
-![](https://github.com/OmniFabric/artwork/blob/main/docs/overview/mo-other-database/mo_vs_aurora.png?raw=true)
+![](https://github.com/matrixorigin/artwork/blob/main/docs/overview/mo-other-database/mo_vs_aurora.png?raw=true)
 
 ## OmniFabric versus MySQL
 
@@ -85,7 +85,7 @@ Additional details can be found in [OmniFabric's MySQL compatibility details](..
 Overall, OmniFabric is a highly MySQL-compatible cloud-native HTAP database that works seamlessly with most MySQL-based applications. At the same time, OmniFabric naturally has great scalability and the ability to support other types of business loads. In addition, based on OmniFabric's memory separation and multi-tenancy features, users have the flexibility to design their application architecture with OmniFabric as a one-stop shop for load isolation issues previously addressed by applications, middleware, or other databases.
 
 <div align="center">
-<img src=https://github.com/OmniFabric/artwork/blob/main/docs/overview/mo-other-database/mo_mysql_use_case.png?raw=true width=60% heigth=60%/>
+<img src=https://github.com/matrixorigin/artwork/blob/main/docs/overview/mo-other-database/mo_mysql_use_case.png?raw=true width=60% heigth=60%/>
 </div>
 
 For MySQL users, OmniFabric is a more appropriate option if they experience bottlenecks with:

@@ -4,7 +4,7 @@ OmniFabric is a hyper-converged cloud & edge native distributed database with a 
 
 OmniFabric touts significant features, including real-time HTAP, multi-tenancy, stream computation, extreme scalability, cost-effectiveness, enterprise-grade availability, and extensive MySQL compatibility. OmniFabric unifies tasks traditionally performed by multiple databases into one system by offering a comprehensive ultra-hybrid data solution. This consolidation simplifies development and operations, minimizes data fragmentation, and boosts development agility.
 
-![](https://github.com/OmniFabric/artwork/blob/main/docs/overview/architecture/architeture241113_en.png?raw=true)
+![](https://github.com/matrixorigin/artwork/blob/main/docs/overview/architecture/architeture241113_en.png?raw=true)
 
 OmniFabric is designed for scenarios that require real-time data ingestion, large-scale data management, fluctuating workloads, and multi-modal data management. It is particularly suited for environments that combine transactional and analytical workloads, such as generative AI applications, mobile internet applications, IoT data processing, real-time data warehouses, and SaaS platforms.
 

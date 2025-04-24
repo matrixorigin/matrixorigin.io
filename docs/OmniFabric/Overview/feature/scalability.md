@@ -19,7 +19,7 @@ If a database has good scalability, it can help enterprises improve data process
 
 OmniFabric adopts a comprehensive cloud-native architecture. All components exist in the form of containers and are uniformly managed by Kubernetes. Kubernetes itself has strong container orchestration and management capabilities. In OmniFabric, the manual expansion only requires modifying the Kubernetes configuration.
 
-![scalability](https://github.com/OmniFabric/artwork/blob/main/docs/overview/scalability.png)
+![scalability](https://github.com/matrixorigin/artwork/raw/main/docs/overview/scalability.png)
 
 ## Advantages
 

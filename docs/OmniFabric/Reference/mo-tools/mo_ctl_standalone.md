@@ -2,6 +2,13 @@
 
 `mo_ctl` Standalone is a command-line tool that helps you with deployment installation, start-stop control, and database connectivity for Standalone OmniFabric.
 
+!!! note "Tool Naming Convention"
+    Regarding the OmniFabric(MO) tools The naming convention has been preserved for compatibility reasons:
+
+    - All tool names (like `mo_ctl`, `mo_tester`, etc.) are maintained as is these are legacy tool names that remain valid and functional
+
+    This naming convention is maintained to prevent breaking existing workflows and integrations. While the product has been rebranded, these tool names continue to work as before.
+
 ## Overview of features
 
 `mo_ctl`'s currently adapted operating systems are shown in the following table:

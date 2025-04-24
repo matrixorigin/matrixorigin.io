@@ -26,11 +26,11 @@ mysql> create database test;
 
 Choose **Spring Initializer**, and name the project as you want.
 
-![image-20221027094625081](https://github.com/OmniFabric/artwork/blob/main/docs/tutorial/hibernate/image-20221027094625081.png?raw=true)
+![image-20221027094625081](https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/hibernate/image-20221027094625081.png?raw=true)
 
 Choose **Spring Web**,  **JDBC API**,  **Spring Data JPA**, and **MySQL Driver** as dependencies for this project.
 
-![image-20221027101504418](https://github.com/OmniFabric/artwork/blob/main/docs/tutorial/hibernate/image-20221027101504418.png?raw=true)
+![image-20221027101504418](https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/hibernate/image-20221027101504418.png?raw=true)
 
 Click **Create**,  the project will be created. The dependencies are listed in the *pom.xml* file. Usually you don't need to modify anything.
 
@@ -183,7 +183,7 @@ mysql> INSERT INTO `book` (`id`, `author`, `category`, `name`, `pages`, `price`,
 
 After setting up the environment, we write code to implement a simple CRUD application. After finishing coding, you'll have a project structure as below. You can create these packages and java class in advance. We will code the Create, Update, Insert, Delete, Select operations for this demo application.
 
-![image-20221027105233860](https://github.com/OmniFabric/artwork/blob/main/docs/tutorial/hibernate/image-20221027105233860.png?raw=true)
+![image-20221027105233860](https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/hibernate/image-20221027105233860.png?raw=true)
 
 ### 1. BookStoreController.java
 
@@ -560,7 +560,7 @@ public class JpademoApplication {
 
 Build and test this project.
 
-![image-20221027110133726](https://github.com/OmniFabric/artwork/blob/main/docs/tutorial/hibernate/image-20221027110133726.png?raw=true)
+![image-20221027110133726](https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/hibernate/image-20221027110133726.png?raw=true)
 
 When you see the following example messages, the application is well launched; we can call REST endpoints using POSTMAN.
 
@@ -597,7 +597,7 @@ When you see the following example messages, the application is well launched; w
  http://localhost:8080/bookservice/books
 ```
 
-![image-20221027112426189](https://github.com/OmniFabric/artwork/blob/main/docs/tutorial/hibernate/image-20221027112426189.png?raw=true)
+![image-20221027112426189](https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/hibernate/image-20221027112426189.png?raw=true)
 
 ### 2. To Create New Book use following url with POST Request
 
@@ -618,7 +618,7 @@ Set content type as in header as `application/json`, set request body as raw wit
   }
 ```
 
-![image-20221027115733788](https://github.com/OmniFabric/artwork/blob/main/docs/tutorial/hibernate/image-20221027115733788.png?raw=true)
+![image-20221027115733788](https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/hibernate/image-20221027115733788.png?raw=true)
 
 ### 3. To get a particular book, use following url with `GET` request type in postman
 
@@ -626,7 +626,7 @@ Set content type as in header as `application/json`, set request body as raw wit
   http://localhost:8080/bookservice/books/<id>
 ```
 
-![image-20221027115844378](https://github.com/OmniFabric/artwork/blob/main/docs/tutorial/hibernate/image-20221027115844378.png?raw=true)
+![image-20221027115844378](https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/hibernate/image-20221027115844378.png?raw=true)
 
 ### 4. To update Book in database, use following url with `PUT` request type in postman
 
@@ -649,7 +649,7 @@ Set content type as in header as `application/json`, set request body as raw wit
   }
 ```
 
-![image-20221027120144112](https://github.com/OmniFabric/artwork/blob/main/docs/tutorial/hibernate/image-20221027120144112.png?raw=true)
+![image-20221027120144112](https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/hibernate/image-20221027120144112.png?raw=true)
 
 ### 5. To delete a particular Book from database, use following url with `DELETE` request type in postman
 
@@ -657,7 +657,7 @@ Set content type as in header as `application/json`, set request body as raw wit
   http://localhost:8080/bookservice/books/<id>
 ```
 
-![image-20221027120306830](https://github.com/OmniFabric/artwork/blob/main/docs/tutorial/hibernate/image-20221027120306830.png?raw=true)
+![image-20221027120306830](https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/hibernate/image-20221027120306830.png?raw=true)
 
 ```
 mysql> select * from book;

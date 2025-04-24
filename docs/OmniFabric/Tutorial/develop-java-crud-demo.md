@@ -17,7 +17,7 @@ mysql> create database test;
 * [JDK 8+ version](https://www.oracle.com/sg/java/technologies/javase/javase8-archive-downloads.html): Choose the version according to your OS.
 * [MySQL JDBC connector 8.0+ version](https://dev.mysql.com/downloads/connector/j/): It's recommanded to download the platform independent version, and unzip the downloaded file.
 
-![image-20220927102516885](https://github.com/OmniFabric/artwork/blob/main/docs/reference/jdbc_download.png?raw=true)
+![image-20220927102516885](https://github.com/matrixorigin/artwork/blob/main/docs/reference/jdbc_download.png?raw=true)
 
 !!! note
     We take IDEA as an IDE example to demonstrate the process, you are free to choose Eclipse or other IDE tools for the same purpose.
@@ -26,11 +26,11 @@ mysql> create database test;
 
 Launch IDEA, and create a new Java project as below:
 
-![image-20220927104740221](https://github.com/OmniFabric/artwork/blob/main/docs/reference/jdbc_create_project.png?raw=true)
+![image-20220927104740221](https://github.com/matrixorigin/artwork/blob/main/docs/reference/jdbc_create_project.png?raw=true)
 
 In your **Project Setting > Libraries**, import the *mysql-connector-java-8.0.30.jar* file.
 
-![image-20220927104904770](https://github.com/OmniFabric/artwork/blob/main/docs/reference/jdbc_import_library.png?raw=true)
+![image-20220927104904770](https://github.com/matrixorigin/artwork/blob/main/docs/reference/jdbc_import_library.png?raw=true)
 
 ## Write Java code to connect with OmniFabric
 
@@ -288,4 +288,4 @@ public class Select {
 
 Execution result:
 
-![image-20220927113440917](https://github.com/OmniFabric/artwork/blob/main/docs/reference/jdbc_select.png?raw=true)
+![image-20220927113440917](https://github.com/matrixorigin/artwork/blob/main/docs/reference/jdbc_select.png?raw=true)

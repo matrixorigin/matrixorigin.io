@@ -7,13 +7,13 @@ RAG, known as Retrieval-Augmented Generation, is a technology that combines info
 For example, when I asked GPT about the latest version of OmniFabric, it didn't give an answer.
 
 <div align="center">
-<img src=https://github.com/OmniFabric/artwork/blob/main/docs/tutorial/Vector/rag-1.png?raw=true width=80% heigth=80%/>
+<img src=https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/Vector/rag-1.png?raw=true width=80% heigth=80%/>
 </div>
 
 In addition, these models can sometimes produce misleading information and produce factually incorrect content. For example, when I asked Lu Xun about his relationship with Zhou Shuren, GPT started a serious nonsense.
 
 <div align="center">
-<img src=https://github.com/OmniFabric/artwork/blob/main/docs/tutorial/Vector/rag-2.png?raw=true width=80% heigth=80%/>
+<img src=https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/Vector/rag-2.png?raw=true width=80% heigth=80%/>
 </div>
 
 To solve the above problem, we can retrain the LLM model, but at a high cost. The main advantage of RAG, on the other hand, is that it avoids having to train again for specific tasks. Its high availability and low threshold make it one of the most popular scenarios in LLM systems, on which many LLM applications are built. The core idea of RAG is for the model to not only rely on what it learns during the training phase when generating responses, but also to utilize external, up-to-date, proprietary sources of information, so that users can optimize the output of the model by enriching the input with additional external knowledge bases based on the actual situation.
@@ -27,7 +27,7 @@ RAG's workflow typically consists of the following steps:
 The following is a flow chart for Native RAG:
 
 <div align="center">
-<img src=https://github.com/OmniFabric/artwork/blob/main/docs/tutorial/Vector/rag-3.png?raw=true width=80% heigth=80%/>
+<img src=https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/Vector/rag-3.png?raw=true width=80% heigth=80%/>
 </div>
 
 As you can see, the retrieval link plays a crucial role in the RAG architecture, and OmniFabric's ability to retrieve vectors provides powerful data retrieval support for building RAG applications.
