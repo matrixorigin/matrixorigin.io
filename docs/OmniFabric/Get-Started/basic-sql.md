@@ -1,15 +1,15 @@
-# Explore SQL with MatrixOne
+# Explore SQL with OmniFabric
 
-MatrixOne is compatible with MySQL, you can use MySQL statements directly in most of the cases. For unsupported features, see [MySQL Compatibility](../Overview/feature/mysql-compatibility.md), and for more information on connecting to MatriOne, see
-[Using client connect to the MatrixOne server](../Develop/connect-mo/database-client-tools.md).
+OmniFabric is compatible with MySQL, you can use MySQL statements directly in most of the cases. For unsupported features, see [MySQL Compatibility](../Overview/feature/mysql-compatibility.md), and for more information on connecting to MatriOne, see
+[Using client connect to the OmniFabric server](../Develop/connect-mo/database-client-tools.md).
 
 ## What is SQL?
 
 The Structured Query Language (SQL) is used to manage a relational database management system (RDBMS). The scope of SQL includes data insertion, query, update, and delete, database schema creation and modification, and data access control.
 
-## How many types SQL does MatrixOne have?
+## How many types SQL does OmniFabric have?
 
-SQL is divided into the following 6 types according to their functions in MatrixOne:
+SQL is divided into the following 6 types according to their functions in OmniFabric:
 
 - DDL (Data Definition Language): It is used to define database objects, including databases, tables, and views. Such as `CREATE`, `ALTER`, and `DROP`.
 
@@ -21,11 +21,11 @@ SQL is divided into the following 6 types according to their functions in Matrix
 
 - DCL (Data Control Language): It is used to define access privileges and security levels. Such as `CREATET ACCOUNT`, `DROP ACCOUNT`, and `GRANT`.
 
-- Other: Other types of management languages ​​in MatrixOne are not directly related to data and are a general term for the acquisition and modification of database parameters and resource allocation. Such as `SHOW`, `SET variable`, and `KILL`.
+- Other: Other types of management languages ​​in OmniFabric are not directly related to data and are a general term for the acquisition and modification of database parameters and resource allocation. Such as `SHOW`, `SET variable`, and `KILL`.
 
 ## Basic SQL about SHOW, CREATE and DROP a database
 
-A database in MatrixOne can be considered as a collection of objects such as tables<!--and indexes-->.
+A database in OmniFabric can be considered as a collection of objects such as tables<!--and indexes-->.
 
 - To show the list of databases, use the `SHOW DATABASES` statement:
 
