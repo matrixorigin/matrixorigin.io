@@ -2687,8 +2687,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#software-installation" class="md-nav__link">
-    Software installation
+  <a href="#environment-preparation" class="md-nav__link">
+    Environment Preparation
   </a>
   
 </li>
@@ -12716,8 +12716,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#software-installation" class="md-nav__link">
-    Software installation
+  <a href="#environment-preparation" class="md-nav__link">
+    Environment Preparation
   </a>
   
 </li>
@@ -12805,42 +12805,38 @@ In this chapter, we will combine the vector capabilities of MatrixOne with Strea
 <p><strong>Transformers</strong>: Transformers is an open source natural language processing library that provides a wide range of pre-trained models. Through the Transformers library, researchers and developers can easily use and integrate CLIP models into their projects.</p>
 <p><strong>CLIP</strong>: The CLIP model is a deep learning model released by OpenAI. The core is to unify text and images through contrastive learning methods, so that tasks such as image classification can be completed through text-image similarity without the need for Optimize tasks directly. It can be combined with a vector database to build a tool for image (text) search. High-dimensional vector representations of images are extracted through the CLIP model to capture their semantic and perceptual features, and then these images are encoded into an embedding space. At query time, a sample image is passed through the same CLIP encoder to obtain its embedding, performing a vector similarity search to efficiently find the top k closest database image vectors.</p>
 <p><strong>Streamlit</strong>: is an open source Python library designed to quickly build interactive and data-driven web applications. Its design goal is to be simple and easy to use. Developers can create interactive dashboards and interfaces with very little code, especially suitable for displaying machine learning models and data visualization.</p>
-<h3 id="software-installation">Software installation</h3>
-<p>Before you begin, make sure you have downloaded and installed the following software:</p>
+<h3 id="environment-preparation">Environment Preparation</h3>
+<p>Before you begin, ensure you have downloaded and installed the following software:  </p>
 <ul>
 <li>
-<p>Confirm that you have completed <a href="../../Get-Started/install-standalone-matrixone/">Stand-alone Deployment of MatrixOne</a>.</p>
+<p>Confirm that you have completed the <a href="../../Get-Started/install-standalone-matrixone/">Standalone Deployment of MatrixOne</a>.  </p>
 </li>
 <li>
-<p>Make sure you have installed <a href="https://www.python.org/downloads/">Python 3.8(or plus) version</a>. Use the following code to check the Python version to confirm the installation was successful:</p>
+<p>Confirm that you have installed <a href="https://www.python.org/downloads/">Python 3.8 (or later)</a>. Use the following command to verify the Python version and confirm successful installation:  </p>
 </li>
 </ul>
-<div class="highlight"><pre><span></span><code>python3 -V
+<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>-V<span class="w">  </span>
 </code></pre></div>
 <ul>
-<li>
-<p>Confirm that you have completed installing the MySQL client.</p>
-</li>
-<li>
-<p>Download and install the <code>pymysql</code> tool. Use the following code to download and install the <code>pymysql</code> tool:</p>
-</li>
+<li>Create a new Python virtual environment:  </li>
 </ul>
-<div class="highlight"><pre><span></span><code>pip install pymysql
+<div class="highlight"><pre><span></span><code><span class="c1"># Create venv  </span>
+python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv<span class="w">  </span>
+<span class="c1"># Activate the environment  </span>
+<span class="nb">source</span><span class="w"> </span>.venv/bin/activate<span class="w">  </span>
 </code></pre></div>
 <ul>
-<li>Download and install the <code>transformers</code> library. Use the following code to download and install the <code>transformers</code> library:</li>
+<li>Install dependencies:  </li>
 </ul>
-<div class="highlight"><pre><span></span><code>pip install transformers
+<p>Create a <code>requirements.txt</code> file with the following content:  </p>
+<div class="highlight"><pre><span></span><code>streamlit==1.45.0  
+pymysql==1.1.1  
+matplotlib==3.10.1  
+transformers==4.51.3  
+torch==2.7.0  
 </code></pre></div>
-<ul>
-<li>Download and install the <code>Pillow</code> library. Use the following code to download and install the <code>Pillow</code> library:</li>
-</ul>
-<div class="highlight"><pre><span></span><code>pip install pillow
-</code></pre></div>
-<ul>
-<li>Download and install the <code>streamlit</code> library. Use the following code to download and install the <code>Pillow</code> library:</li>
-</ul>
-<div class="highlight"><pre><span></span><code>pip install streamlit
+<p>Run the following command:  </p>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt<span class="w">  </span>
 </code></pre></div>
 <h2 id="build-the-application">Build the application</h2>
 <h3 id="create-table-and-enable-vector-index">Create table and enable vector index</h3>
@@ -12852,7 +12848,7 @@ In this chapter, we will combine the vector capabilities of MatrixOne with Strea
 <h3 id="build-the-application_1">Build the application</h3>
 <p>Create the python file pic_search_example.py and write the following content. This script mainly uses the CLIP model to extract the high-dimensional vector representation of the image, and then stores it in MatrixOne. At query time, a sample image is passed through the same CLIP encoder to obtain its embedding, performing a vector similarity search to efficiently find the top k closest database image vectors.</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">streamlit</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">st</span>
-<span class="n">importpymysql</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pymysql</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">PIL</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.image</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mpimg</span>
@@ -12881,7 +12877,7 @@ In this chapter, we will combine the vector capabilities of MatrixOne with Strea
     <span class="n">img_files</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">root</span><span class="p">,</span> <span class="n">dirs</span><span class="p">,</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="n">directory</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
-<span class="k">if</span> <span class="n">file</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.jpg&#39;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">file</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.jpg&#39;</span><span class="p">):</span>
                 <span class="n">full_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">file</span><span class="p">)</span>
                 <span class="n">img_files</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">full_path</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">img_files</span>
@@ -12893,7 +12889,7 @@ In this chapter, we will combine the vector capabilities of MatrixOne with Strea
         <span class="k">if</span> <span class="n">image</span><span class="o">.</span><span class="n">mode</span> <span class="o">!=</span> <span class="s1">&#39;RGBA&#39;</span><span class="p">:</span>
             <span class="n">image</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">&#39;RGBA&#39;</span><span class="p">)</span>
         <span class="n">inputs</span> <span class="o">=</span> <span class="n">processor</span><span class="p">(</span><span class="n">images</span><span class="o">=</span><span class="n">image</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s2">&quot;pt&quot;</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">img_features</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">get_image_features</span><span class="p">(</span><span class="n">inputs</span><span class="p">[</span><span class="s2">&quot;pixel_values&quot;</span><span class="p">])</span>
+        <span class="n">img_features</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">get_image_features</span><span class="p">(</span><span class="n">inputs</span><span class="p">[</span><span class="s2">&quot;pixel_values&quot;</span><span class="p">])</span>
         <span class="n">img_features</span> <span class="o">=</span> <span class="n">img_features</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
         <span class="n">embeddings</span> <span class="o">=</span> <span class="n">img_features</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="n">insert_sql</span> <span class="o">=</span> <span class="s2">&quot;INSERT INTO pic_tab(pic_path, embedding) VALUES (</span><span class="si">%s</span><span class="s2">, normalize_l2(</span><span class="si">%s</span><span class="s2">))&quot;</span>
@@ -12901,9 +12897,6 @@ In this chapter, we will combine the vector capabilities of MatrixOne with Strea
         <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">insert_sql</span><span class="p">,</span> <span class="n">data_to_insert</span><span class="p">)</span>
         <span class="n">image</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
-<span class="k">def</span><span class="w"> </span><span class="nf">create_idx</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-<span class="n">create_sql</span> <span class="o">=</span> <span class="s1">&#39;create index idx_pic using ivfflat on pic_tab(embedding) lists=</span><span class="si">%s</span><span class="s1"> op_type &quot;vector_l2_ops&quot;&#39;</span>
-    <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">create_sql</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
 
 <span class="c1"># Image-to-image search</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">img_search_img</span><span class="p">(</span><span class="n">img_path</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
@@ -12912,7 +12905,7 @@ In this chapter, we will combine the vector capabilities of MatrixOne with Strea
     <span class="n">img_features</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">get_image_features</span><span class="p">(</span><span class="o">**</span><span class="n">inputs</span><span class="p">)</span>
     <span class="n">img_features</span> <span class="o">=</span> <span class="n">img_features</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
     <span class="n">img_features</span> <span class="o">=</span> <span class="n">img_features</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">query_sql</span> <span class="o">=</span> <span class="s2">&quot;SELECT pic_path FROM pic_tab ORDER BY l2_distance(embedding, normalize_l2(</span><span class="si">%s</span><span class="s2">)) ASC LIMIT </span><span class="si">%s</span><span class="s2">&quot;</span>
+    <span class="n">query_sql</span> <span class="o">=</span> <span class="s2">&quot;SELECT pic_path FROM pic_tab ORDER BY l2_distance(embedding, normalize_l2(</span><span class="si">%s</span><span class="s2">)) ASC LIMIT </span><span class="si">%s</span><span class="s2">&quot;</span>
     <span class="n">data_to_query</span> <span class="o">=</span> <span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">img_features</span><span class="p">),</span> <span class="n">k</span><span class="p">)</span>
     <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query_sql</span><span class="p">,</span> <span class="n">data_to_query</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
@@ -12922,7 +12915,7 @@ In this chapter, we will combine the vector capabilities of MatrixOne with Strea
     <span class="n">inputs</span> <span class="o">=</span> <span class="n">processor</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">text</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s2">&quot;pt&quot;</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">text_features</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">get_text_features</span><span class="p">(</span><span class="n">inputs</span><span class="p">[</span><span class="s2">&quot;input_ids&quot;</span><span class="p">],</span> <span class="n">inputs</span><span class="p">[</span><span class="s2">&quot;attention_mask&quot;</span><span class="p">])</span>
     <span class="n">embeddings</span> <span class="o">=</span> <span class="n">text_features</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
-<span class="n">embeddings</span> <span class="o">=</span> <span class="n">embeddings</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">embeddings</span> <span class="o">=</span> <span class="n">embeddings</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">query_sql</span> <span class="o">=</span> <span class="s2">&quot;SELECT pic_path FROM pic_tab ORDER BY l2_distance(embedding, normalize_l2(</span><span class="si">%s</span><span class="s2">)) ASC LIMIT </span><span class="si">%s</span><span class="s2">&quot;</span>
     <span class="n">data_to_query</span> <span class="o">=</span> <span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">embeddings</span><span class="p">),</span> <span class="n">k</span><span class="p">)</span>
     <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query_sql</span><span class="p">,</span> <span class="n">data_to_query</span><span class="p">)</span>
@@ -12933,7 +12926,7 @@ In this chapter, we will combine the vector capabilities of MatrixOne with Strea
     <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">result_paths</span><span class="p">),</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
     <span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">result_path</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">result_paths</span><span class="p">):</span>
         <span class="n">image</span> <span class="o">=</span> <span class="n">mpimg</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">result_path</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="c1"># Read image</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">)</span> <span class="c1"># Display image</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">)</span> <span class="c1"># Display image</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span> <span class="c1"># Remove axes</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">result_path</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="c1"># Set subtitle</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span> <span class="c1"># Adjust subplot spacing</span>
@@ -12947,7 +12940,7 @@ In this chapter, we will combine the vector capabilities of MatrixOne with Strea
 
 <span class="c1"># Once user inputs path, search for images in the directory</span>
 <span class="k">if</span> <span class="n">directory_path</span><span class="p">:</span>
-<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">directory_path</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">directory_path</span><span class="p">):</span>
         <span class="n">jpg_files</span> <span class="o">=</span> <span class="n">find_img_files</span><span class="p">(</span><span class="n">directory_path</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">jpg_files</span><span class="p">:</span>
             <span class="n">st</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Found </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">jpg_files</span><span class="p">)</span><span class="si">}</span><span class="s2"> images in the directory.&quot;</span><span class="p">)</span>
@@ -12969,7 +12962,7 @@ In this chapter, we will combine the vector capabilities of MatrixOne with Strea
     <span class="k">if</span> <span class="n">st</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="s2">&quot;Search by image&quot;</span><span class="p">):</span>
         <span class="n">result</span> <span class="o">=</span> <span class="n">img_search_img</span><span class="p">(</span><span class="n">uploaded_file</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="c1"># Image-to-image search</span>
         <span class="k">if</span> <span class="n">result</span><span class="p">:</span>
-<span class="n">st</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="s2">&quot;Search successful. Results are displayed below:&quot;</span><span class="p">)</span>
+            <span class="n">st</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="s2">&quot;Search successful. Results are displayed below:&quot;</span><span class="p">)</span>
             <span class="n">show_img</span><span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="c1"># Display results</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">st</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;No matching results found.&quot;</span><span class="p">)</span>
@@ -12980,7 +12973,7 @@ In this chapter, we will combine the vector capabilities of MatrixOne with Strea
     <span class="n">result</span> <span class="o">=</span> <span class="n">text_search_img</span><span class="p">(</span><span class="n">text_input</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="c1"># Text-to-image search</span>
     <span class="k">if</span> <span class="n">result</span><span class="p">:</span>
         <span class="n">st</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="s2">&quot;Search successful. Results are displayed below:&quot;</span><span class="p">)</span>
-<span class="n">show_img</span><span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="c1"># Display results</span>
+        <span class="n">show_img</span><span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="c1"># Display results</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">st</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;No matching results found.&quot;</span><span class="p">)</span>
 </code></pre></div>
@@ -12994,7 +12987,7 @@ In this chapter, we will combine the vector capabilities of MatrixOne with Strea
 <li>Display the image results, use matplotlib to display the image path queried from the database, and display it on the Streamlit web interface.</li>
 </ol>
 <h3 id="running-results">Running results</h3>
-<div class="highlight"><pre><span></span><code>streamlit<span class="w"> </span>run<span class="w"> </span>pic_search_example.py
+<div class="highlight"><pre><span></span><code>streamlit<span class="w"> </span>run<span class="w"> </span>pic_search_example.py<span class="w"> </span>--server.fileWatcherType<span class="w"> </span>none
 </code></pre></div>
 <div align="center">
 <img src=https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/Vector/pic-search-1.png?raw=true width=60% heigth=60%/>
