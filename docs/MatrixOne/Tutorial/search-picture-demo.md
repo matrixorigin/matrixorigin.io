@@ -21,42 +21,43 @@ In this chapter, we will combine the vector capabilities of MatrixOne with Strea
 
 **Streamlit**: is an open source Python library designed to quickly build interactive and data-driven web applications. Its design goal is to be simple and easy to use. Developers can create interactive dashboards and interfaces with very little code, especially suitable for displaying machine learning models and data visualization.
 
-### Software installation
+### Environment Preparation  
 
-Before you begin, make sure you have downloaded and installed the following software:
+Before you begin, ensure you have downloaded and installed the following software:  
 
-- Confirm that you have completed [Stand-alone Deployment of MatrixOne](../Get-Started/install-standalone-matrixone.md).
+- Confirm that you have completed the [Standalone Deployment of MatrixOne](../Get-Started/install-standalone-matrixone.md).  
+  
+- Confirm that you have installed [Python 3.8 (or later)](https://www.python.org/downloads/). Use the following command to verify the Python version and confirm successful installation:  
+  
+```bash  
+python3 -V  
+```  
 
-- Make sure you have installed [Python 3.8(or plus) version](https://www.python.org/downloads/). Use the following code to check the Python version to confirm the installation was successful:
+- Create a new Python virtual environment:  
+  
+```bash  
+# Create venv  
+python3 -m venv .venv  
+# Activate the environment  
+source .venv/bin/activate  
+```  
 
-```
-python3 -V
-```
+- Install dependencies:  
+  
+Create a `requirements.txt` file with the following content:  
 
-- Confirm that you have completed installing the MySQL client.
+```  
+streamlit==1.45.0  
+pymysql==1.1.1  
+matplotlib==3.10.1  
+transformers==4.51.3  
+torch==2.7.0  
+```  
 
-- Download and install the `pymysql` tool. Use the following code to download and install the `pymysql` tool:
+Run the following command:  
 
-```
-pip install pymysql
-```
-
-- Download and install the `transformers` library. Use the following code to download and install the `transformers` library:
-
-```
-pip install transformers
-```
-
-- Download and install the `Pillow` library. Use the following code to download and install the `Pillow` library:
-
-```
-pip install pillow
-```
-
-- Download and install the `streamlit` library. Use the following code to download and install the `Pillow` library:
-
-```
-pip install streamlit
+```bash  
+pip install -r requirements.txt  
 ```
 
 ## Build the application
@@ -77,7 +78,7 @@ Create the python file pic_search_example.py and write the following content. Th
 
 ```python
 import streamlit as st
-importpymysql
+import pymysql
 from PIL import Image
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
@@ -106,7 +107,7 @@ def find_img_files(directory):
     img_files = []
     for root, dirs, files in os.walk(directory):
         for file in files:
-if file.lower().endswith('.jpg'):
+            if file.lower().endswith('.jpg'):
                 full_path = os.path.join(root, file)
                 img_files.append(full_path)
     return img_files
@@ -118,7 +119,7 @@ def storage_img(jpg_files):
         if image.mode != 'RGBA':
             image = image.convert('RGBA')
         inputs = processor(images=image, return_tensors="pt", padding=True)
-img_features = model.get_image_features(inputs["pixel_values"])
+        img_features = model.get_image_features(inputs["pixel_values"])
         img_features = img_features.detach().tolist()
         embeddings = img_features[0]
         insert_sql = "INSERT INTO pic_tab(pic_path, embedding) VALUES (%s, normalize_l2(%s))"
@@ -126,9 +127,6 @@ img_features = model.get_image_features(inputs["pixel_values"])
         cursor.execute(insert_sql, data_to_insert)
         image.close()
 
-def create_idx(n):
-create_sql = 'create index idx_pic using ivfflat on pic_tab(embedding) lists=%s op_type "vector_l2_ops"'
-    cursor.execute(create_sql, n)
 
 # Image-to-image search
 def img_search_img(img_path, k):
@@ -137,7 +135,7 @@ def img_search_img(img_path, k):
     img_features = model.get_image_features(**inputs)
     img_features = img_features.detach().tolist()
     img_features = img_features[0]
-query_sql = "SELECT pic_path FROM pic_tab ORDER BY l2_distance(embedding, normalize_l2(%s)) ASC LIMIT %s"
+    query_sql = "SELECT pic_path FROM pic_tab ORDER BY l2_distance(embedding, normalize_l2(%s)) ASC LIMIT %s"
     data_to_query = (str(img_features), k)
     cursor.execute(query_sql, data_to_query)
     return cursor.fetchall()
@@ -147,7 +145,7 @@ def text_search_img(text, k):
     inputs = processor(text=text, return_tensors="pt", padding=True)
     text_features = model.get_text_features(inputs["input_ids"], inputs["attention_mask"])
     embeddings = text_features.detach().tolist()
-embeddings = embeddings[0]
+    embeddings = embeddings[0]
     query_sql = "SELECT pic_path FROM pic_tab ORDER BY l2_distance(embedding, normalize_l2(%s)) ASC LIMIT %s"
     data_to_query = (str(embeddings), k)
     cursor.execute(query_sql, data_to_query)
@@ -158,7 +156,7 @@ def show_img(result_paths):
     fig, axes = plt.subplots(nrows=1, ncols=len(result_paths), figsize=(15, 5))
     for ax, result_path in zip(axes, result_paths):
         image = mpimg.imread(result_path[0]) # Read image
-ax.imshow(image) # Display image
+        ax.imshow(image) # Display image
         ax.axis('off') # Remove axes
         ax.set_title(result_path[0]) # Set subtitle
     plt.tight_layout() # Adjust subplot spacing
@@ -172,7 +170,7 @@ directory_path = st.text_input("Enter the local image directory")
 
 # Once user inputs path, search for images in the directory
 if directory_path:
-if os.path.exists(directory_path):
+    if os.path.exists(directory_path):
         jpg_files = find_img_files(directory_path)
         if jpg_files:
             st.success(f"Found {len(jpg_files)} images in the directory.")
@@ -194,7 +192,7 @@ if uploaded_file is not None:
     if st.button("Search by image"):
         result = img_search_img(uploaded_file, 3) # Image-to-image search
         if result:
-st.success("Search successful. Results are displayed below:")
+            st.success("Search successful. Results are displayed below:")
             show_img(result) # Display results
         else:
             st.error("No matching results found.")
@@ -205,7 +203,7 @@ if st.button("Search by text"):
     result = text_search_img(text_input, 3) # Text-to-image search
     if result:
         st.success("Search successful. Results are displayed below:")
-show_img(result) # Display results
+        show_img(result) # Display results
     else:
         st.error("No matching results found.")
 ```
@@ -222,7 +220,7 @@ show_img(result) # Display results
 ### Running results
 
 ```bash
-streamlit run pic_search_example.py
+streamlit run pic_search_example.py --server.fileWatcherType none
 ```
 
 <div align="center">
