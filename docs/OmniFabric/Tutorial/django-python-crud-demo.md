@@ -75,9 +75,7 @@ Before you begin, confirm that you have downloaded and installed the following s
 
     0.0.0.0 Let other computers connect to the development server, 8000 is the port number. If not, then the port number defaults to 8000.
 
-    Enter the ip of your server in your browser (here we enter the native IP address: 127.0.0.1:8000) and the port number. If it starts normally, the output is as follows:
-
-    ![](https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/django/django-1.png?raw=true)
+    Enter the ip of your server in your browser (here we enter the native IP address: 127.0.0.1:8000) and the port number. If it starts normally, you should see the Django welcome page.
 
 4. We found the DATABASES configuration item in the project's settings.py file and modified its information to:
 
@@ -153,12 +151,6 @@ class Book(models.Model):
 
 The Django model uses its own ORM. The above class name represents the database table name (*testmodel_book*) and inherits models.Model. Fields inside the class represent fields in the data table. Data types: AutoField (equivalent to int), CharField (equivalent to varchar), DecimalField (equivalent to decimal), DateField (equivalent to date), max_length parameter limits length.
 
-ORM correspondence table:
-
-<div align="center">
-<img src=https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/django/django-7.png?raw=true width=70% heigth=70%/>
-</div>
-
 Refer to: <https://docs.djangoproject.com/en/5.0/ref/models/fields/> for more model field types.
 
 - Run from the command line
@@ -211,11 +203,7 @@ urlpatterns = [
 python3 manage.py runserver 0.0.0.0:8000
 ```
 
-Enter the ip of your server in your browser (here we enter the native IP address: 127.0.0.1:8000) and the port number. If it starts normally, the output is as follows:
-
-<div align="center">
-<img src=https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/django/django-2.png?raw=true width=50% heigth=50%/>
-</div>
+Enter the ip of your server in your browser (here we enter the native IP address: 127.0.0.1:8000) and the port number. You should see a success message indicating that the data was added successfully.
 
 - Connecting to the database to query the data, you can see that the data was successfully inserted:
 
@@ -257,17 +245,9 @@ For more query related methods, refer to:<https://docs.djangoproject.com/en/5.0/
 python3 manage.py runserver 0.0.0.0:8000
 ```
 
-Enter the ip of your server in your browser (here we enter the native IP address: 127.0.0.1:8000) and the port number. If it starts normally, the output is as follows:
+Enter the ip of your server in your browser (here we enter the native IP address: 127.0.0.1:8000) and the port number. You should see a success message indicating that the query was successful.
 
-<div align="center">
-<img src=https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/django/django-3.png?raw=true width=50% heigth=50%/>
-</div>
-
-The command line results are:
-
-<div align="center">
-<img src=https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/django/django-4.png?raw=true width=50% heigth=50%/>
-</div>
+The command line will show the book details including id, title, price, publisher, and publication date.
 
 ## Update Data
 
@@ -295,11 +275,7 @@ path('', views.upd_book),
 python3 manage.py runserver 0.0.0.0:8000
 ```
 
-Enter the ip of your server in your browser (here we enter the native IP address: 127.0.0.1:8000) and the port number. If it starts normally, the output is as follows:
-
-<div align="center">
-<img src=https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/django/django-5.png?raw=true width=40% heigth=40%/>
-</div>
+Enter the ip of your server in your browser (here we enter the native IP address: 127.0.0.1:8000) and the port number. You should see a success message indicating that the update was successful.
 
 - Looking at the *testmodel\_book table*, you can see that the data was updated successfully:
 
@@ -337,11 +313,7 @@ path('', views.del_book),
 python3 manage.py runserver 0.0.0.0:8000
 ```
 
-Enter the ip of your server in your browser (here we enter the native IP address: 127.0.0.1:8000) and the port number. If it starts normally, the output is as follows:
-
-<div align="center">
-<img src=https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/django/django-6.png?raw=true width=50% heigth=50%/>
-</div>
+Enter the ip of your server in your browser (here we enter the native IP address: 127.0.0.1:8000) and the port number. You should see a success message indicating that the deletion was successful.
 
 - Looking at the *testmodel\_book table*, you can see that the data was successfully deleted.
 

@@ -25,11 +25,7 @@ mysql> create database test;
 
 Choose **Spring Initializer**, and name the project as you want.
 
-![image-20221026152318567](https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/mybatis/image-20221026152318567.png?raw=true)
-
 Choose **Spring Web**, **MyBatis Framework**, **JDBC API** and **MySQL Driver** as dependencies for this project.
-
-![image-20221026152447954](https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/mybatis/image-20221026152447954.png?raw=true)
 
 Click **Create**,  the project will be created. The dependencies are listed in the *pom.xml* file. Usually you don't need to modify anything.
 
@@ -159,9 +155,7 @@ server.port=8080
 
 ## Write Code
 
-After setting up the environment, we write code to implement a simple CRUD application. After finishing coding, you'll have a project structure as below. You can create these packages and java class in advance. We will code the Create, Update, Insert, Delete, Select operations for this demo application.
-
-![image-20221026155656694](https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/mybatis/image-20221026155656694.png?raw=true)
+After setting up the environment, we write code to implement a simple CRUD application. After finishing coding, you'll have a project structure with the following components. We will code the Create, Update, Insert, Delete, Select operations for this demo application.
 
 ### 1. UserController.java
 
@@ -463,11 +457,7 @@ public class MyBatisDemoApplication {
 
 ## Test
 
-Build and launch this project.
-
-![image-20221026161226923](https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/mybatis/image-20221026161226923.png?raw=true)
-
-When you see the following example messages, the application is well-launched, and you can open your browser and send HTTP requests.
+Build and launch this project. When you see the following example messages, the application is well-launched, and you can open your browser and send HTTP requests.
 
 ```
 2022-10-26 16:13:24.030  INFO 60253 --- [           main] c.e.mybatisdemo.MyBatisDemoApplication   : Starting MyBatisDemoApplication on username-macbookpro.local with PID 60253 (/Users/username/IdeaProjects/MyBatisDemo/target/classes started by username in /Users/username/IdeaProjects/MyBatisDemo)
@@ -490,9 +480,7 @@ Launch your browser and type the following url:
 http://localhost:8080/test/create
 ```
 
-![image-20221026161929338](https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/mybatis/image-20221026161929338.png?raw=true)
-
-In MySQL client, we can verify if the table has been successfully created.
+You should see a success message indicating that the table was created. In MySQL client, we can verify if the table has been successfully created:
 
 ```
 mysql> use test;
@@ -531,9 +519,7 @@ Launch your browser and type the following url:
 http://localhost:8080/test/add?username=tom&password=123456&address=shanghai
 ```
 
-![image-20221026162317800](https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/mybatis/image-20221026162317800.png?raw=true)
-
-In MySQL client, we can verify if the record is added.
+You should see a success message. In MySQL client, we can verify if the record is added:
 
 ```
 mysql> select * from user;
@@ -553,9 +539,7 @@ Launch your browser and type the following url:
 http://localhost:8080/test/selectUserByid?id=1
 ```
 
-![image-20221026162455058](https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/mybatis/image-20221026162455058.png?raw=true)
-
-We can directly get the queried result from the browser.
+You should see the user details in the response.
 
 ### 4. Test Update User
 
@@ -565,9 +549,7 @@ Launch your browser and type the following url:
 http://localhost:8080/test/update/username=tom&password=654321&address=beijing
 ```
 
-![image-20221026162613066](https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/mybatis/image-20221026162613066.png?raw=true)
-
-In MySQL client, we can verify if the record is updated.
+You should see a success message. In MySQL client, we can verify if the record is updated:
 
 ```
 mysql> select * from user;
@@ -587,9 +569,7 @@ Launch your browser and type the following url:
 http://localhost:8080/test/delete?id=1
 ```
 
-![image-20221026162756460](https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/mybatis/image-20221026162756460.png?raw=true)
-
-In MySQL client, we can verify if the record is deleted.
+You should see a success message. In MySQL client, we can verify if the record is deleted:
 
 ```
 mysql> select * from user;
