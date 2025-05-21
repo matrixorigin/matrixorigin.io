@@ -4,7 +4,7 @@
 
 The syntax structure execution result is a textual description of the plan selected for the `statement`, optionally annotated with execution statistics.
 
-The following is an example of an output structure using query analysis of a dataset in [TPCH]( ../../../../Test/performance-testing/TPCH-test-with-OmniFabric.md):
+The following is an example of an output structure using query analysis of a dataset in TPCH:
 
 ```
 explain SELECT * FROM customer WHERE c_nationkey = (SELECT n_nationkey FROM nation

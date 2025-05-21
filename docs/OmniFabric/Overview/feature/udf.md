@@ -19,10 +19,6 @@ In database management systems, user-defined functions (UDFs) are powerful featu
 
 In the current release, OmniFabric supports UDF using the Python language.
 
-For the base usage of UDF-python in OmniFabric, see [UDF-python base usage](../../Develop/udf/udf-python.md).
-
-For advanced usage of UDF-python in OmniFabric, see [UDF-python advanced usage](../../Develop/udf/udf-python-advanced.md).
-
 For specific parameters that OmniFabric creates for UDFs, see [Creating UDFs](../../Reference/SQL-Reference/Data-Definition-Language/create-function-python.md).
 
 For specific parameters for OmniFabric deletion of UDFs, see [Removing UDFs](../../Reference/SQL-Reference/Data-Definition-Language/drop-function.md).

@@ -4,10 +4,6 @@
 
 `cosine_similarity()` is a cosine similarity that measures the cosine value of the angle between two vectors, indicating their similarity by how close they are in multidimensional space, where 1 means exactly similar and -1 means completely different. Cosine similarity is calculated by dividing the inner product of two vectors by the product of their l2 norm.
 
-<div align="center">
-<img src=https://github.com/OmniFabric/artwork/blob/main/docs/reference/vector/cosine_similarity.png?raw=true width=50% heigth=50%/>
-</div>
-
 ## **Function syntax**
 
 ```

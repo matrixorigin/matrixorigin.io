@@ -2,7 +2,7 @@
 
 ## Syntax Description
 
-Vector indexes can be used to speed up KNN (K-Nearest Neighbors) queries on tables containing vector columns. OmniFabric currently supports IVFFLAT vector indexes with [`l2_distance`](../../Functions-and-Operators/Vector/l2_distance.md) metric.
+Vector indexes can be used to speed up KNN (K-Nearest Neighbors) queries on tables containing vector columns. OmniFabric currently supports IVFFLAT vector indexes with l2_distance metric.
 
 We can specify PROBE_LIMIT to determine the number of cluster centers to query. PROBE_LIMIT defaults to 1, that is, only 1 cluster center is scanned. But if you set it to a higher value, it scans for a larger number of cluster centers and vectors, which may degrade performance a little but increase accuracy. We can specify the appropriate number of probes to balance query speed and recall rate. The ideal values for PROBE_LIMIT are:
 

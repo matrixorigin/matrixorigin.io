@@ -1,7 +1,6 @@
 # Explore SQL with OmniFabric
 
-OmniFabric is compatible with MySQL, you can use MySQL statements directly in most of the cases. For unsupported features, see [MySQL Compatibility](../Overview/feature/mysql-compatibility.md), and for more information on connecting to MatriOne, see
-[Using client connect to the OmniFabric server](../Develop/connect-mo/database-client-tools.md).
+OmniFabric is compatible with MySQL, you can use MySQL statements directly in most of the cases. For unsupported features, see [MySQL Compatibility](../Overview/feature/mysql-compatibility.md).
 
 ## What is SQL?
 
@@ -25,7 +24,7 @@ SQL is divided into the following 6 types according to their functions in OmniFa
 
 ## Basic SQL about SHOW, CREATE and DROP a database
 
-A database in OmniFabric can be considered as a collection of objects such as tables<!--and indexes-->.
+A database in OmniFabric can be considered as a collection of objects such as tables.
 
 - To show the list of databases, use the `SHOW DATABASES` statement:
 
@@ -248,5 +247,3 @@ You have successfully granted the permission of `create table` in the database t
 ```sql
 DROP USER mouser;
 ```
-
-Privilege management is a huge but very useful function. For more information, see [Privilege Management](../Security/role-priviledge-management/about-privilege-management.md).

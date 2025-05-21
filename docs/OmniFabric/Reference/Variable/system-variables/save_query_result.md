@@ -89,7 +89,7 @@ The metadata information is as follows:
 | statement    | text      | SQL statement executed                        |
 | account_id   | uint32    | Account ID                                                      |
 | role_id      | uint32    | Character ID                                                       |
-| result_path  | text      | The default path to save the query result is OmniFabric folder mo-data/s3, if you want to change the default path, you need to change `data-dir = "mo-data/s3"` in the configuration file. If you need to change the default path, you need to change `data-dir = "mo-data/s3"` in the configuration file. For a description of the configuration file parameters, see [General Parameter Configuration](... /... /System-Parameters/system-parameter.md) |
+| result_path  | text      | The default path to save the query result is OmniFabric folder mo-data/s3, if you want to change the default path, you need to change `data-dir = "mo-data/s3"` in the configuration file. If you need to change the default path, you need to change `data-dir = "mo-data/s3"` in the configuration file. For a description of the configuration file parameters, see the system parameters documentation. |
 | created_time | timestamp | Creation time                                                     |
 | result_size  | float     | Result size in MB. |
 | tables       | text      | Tables used in SQL                       |
@@ -114,7 +114,7 @@ MODUMP QUERY_RESULT query_id INTO s3_path
 
 - query_id: is a string of UUIDs.
 
-- s3_path: is the path where the query result file is saved. The default save path is the OmniFabric folder mo-data/s3. To modify the default save path, modify `data-dir = "mo-data/s3"` in the configuration file. For a description of the profile parameters, see [General Parameters Configuration](../../System-Parameters/system-parameter.md)
+- s3_path: is the path where the query result file is saved. The default save path is the OmniFabric folder mo-data/s3. To modify the default save path, modify `data-dir = "mo-data/s3"` in the configuration file. For a description of the profile parameters, see the system parameters documentation.
 
    ```
    root@rootMacBook-Pro 02OmniFabric % cd OmniFabric/mo-data

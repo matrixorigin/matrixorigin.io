@@ -18,8 +18,8 @@ Select one of the articles below to begin your OmniFabric journey. If you ...
 
 |  Overview   | Get Started  | Developing Guide | Reference   |
 |  ----  | ----  |  ----  | ----  |
-| [OmniFabric Introduction](OmniFabric/Overview/OmniFabric-introduction.md)  | [Install OmniFabric](OmniFabric/Get-Started/install-standalone-OmniFabric.md) | [Java CRUD demo](OmniFabric/Tutorial/develop-java-crud-demo.md)	|[SQL Reference](OmniFabric/Reference/SQL-Reference/Data-Definition-Language/create-database.md)|
-| [OmniFabric Architecture](OmniFabric/Overview/architecture/OmniFabric-architecture-design.md)  | [Basic SQL](OmniFabric/Get-Started/basic-sql.md) |[Python CRUD demo](OmniFabric/Tutorial/develop-python-crud-demo.md)|[Data Types](OmniFabric/Reference/Data-Types/data-types.md)|
+| <!-- [OmniFabric Introduction](OmniFabric/Overview/OmniFabric-introduction.md) -->  | <!-- [Install OmniFabric](OmniFabric/Get-Started/install-standalone-OmniFabric.md) --> | [Java CRUD demo](OmniFabric/Tutorial/develop-java-crud-demo.md)	|[SQL Reference](OmniFabric/Reference/SQL-Reference/Data-Definition-Language/create-database.md)|
+| <!-- [OmniFabric Architecture](OmniFabric/Overview/architecture/OmniFabric-architecture-design.md) -->  | [Basic SQL](OmniFabric/Get-Started/basic-sql.md) |[Python CRUD demo](OmniFabric/Tutorial/develop-python-crud-demo.md)|[Data Types](OmniFabric/Reference/Data-Types/data-types.md)|
 
 <!--
 ## **Continuous Improvement**

@@ -22,7 +22,7 @@ RETURNS <result_data_type>  LANGUAGE SQL AS 'function_body'
 
 - `<arg_name> <arg_data_type>`: Used to specify parameters for custom functions, where only the name and type are used.
 
-- `RETURNS <result_data_type>`: The data type used to declare the return value of a custom function, see [Data Type Overview](../../../Reference/Data-Types/data-types.md) for the complete data type
+- `RETURNS <result_data_type>`: The data type used to declare the return value of a custom function. See the data types documentation for the complete list of supported data types.
 
 - `function_body`: The body part of the custom function. Users must use $1, $2, ... to reference parameters instead of the actual parameter name. The function body supports select statements and has unique return values. If the sql function body is not an expression and is a select statement on a table, the query should limit its results to 1 using limit 1 or an aggregate function without a group by clause.
 

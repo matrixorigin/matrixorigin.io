@@ -22,8 +22,6 @@ OmniFabric uses erasure coding for data redundancy checks and synchronizes trans
 
 The overall technical architecture of OmniFabric is shown in the figure below. We will introduce their high availability according to different component modules.
 
-![high-availability](https://github.com/matrixorigin/artwork/blob/main/docs/overview/high-availability.png?raw=true)
-
 ### Resource Scheduling Layer
 
 The technical architecture of OmniFabric is completely cloud-native. All technical components run on Kubernetes in a containerized form. The Kubernetes cluster can ensure continuous availability by adopting a multi-master and multi-slave deployment scheme. Specific deployment topology and system can refer to the [Kubernetes official scheme](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/ha-topology/).

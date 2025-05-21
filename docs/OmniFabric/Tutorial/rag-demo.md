@@ -16,14 +16,6 @@ RAG's workflow typically consists of the following steps:
 - Augment: Combines retrieved information or data sets with the LLM to enhance the performance of the LLM and the accuracy of the output.
 - Generate: Utilize LLM to generate new text or responses using retrieved information.
 
-The following is a flow chart for Native RAG:
-
-<div align="center">
-<img src=https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/Vector/rag-3.png?raw=true width=80% heigth=80%/>
-</div>
-
-As you can see, the retrieval link plays a crucial role in the RAG architecture, and OmniFabric's ability to retrieve vectors provides powerful data retrieval support for building RAG applications.
-
 ## Role of OmniFabric in RAG
 
 As a hyperconverged database, Matrxione comes with its own vector capabilities, which play an important role in RAG applications in the following ways:
@@ -54,7 +46,7 @@ Based on Ollama, this paper combines Llama2 and Mxbai-embed-large to quickly bui
 
 Before you begin, confirm that you have downloaded and installed the following software:
 
-- Verify that you have completed the [standalone deployment of](../Get-Started/install-standalone-OmniFabric.md) OmniFabric.
+- Verify that you have completed the standalone deployment of OmniFabric.
 
 - Verify that you have finished installing [Python 3.8 (or plus)](https://www.python.org/downloads/). Verify that the installation was successful by checking the Python version with the following code:
 
@@ -193,7 +185,7 @@ After enhancement, the model generates the correct answer.
 
 ## Reference Documents
 
-- [Vector Type](../Develop/Vector/vector_type.md)
-- [Vector retrieval](../Develop/Vector/vector_search.md)
+- Vector Type documentation
+- Vector retrieval documentation
 - [CREATE INDEX...USING IVFFLAT](../Reference/SQL-Reference/Data-Definition-Language/create-index-ivfflat.md)
 - [L2_DISTANCE()](../Reference/Functions-and-Operators/Vector/l2_distance.md)

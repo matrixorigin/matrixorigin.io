@@ -14,7 +14,7 @@ The `SAVE_FILE()` function is used to write content to the file pointed to by da
 
 | Parameters | Description |
 | ----| ----|
-| datalink_type_data | datalink type data can be converted using the [cast()](../../../Reference/Operators/operators/cast-functions-and-operators/cast/) function |
+| datalink_type_data | datalink type data can be converted using the [cast()](../../Operators/operators/cast-functions-and-operators/cast.md) function |
 | content | Need to write the content of the file pointed to by datalink |
 
 ## Example

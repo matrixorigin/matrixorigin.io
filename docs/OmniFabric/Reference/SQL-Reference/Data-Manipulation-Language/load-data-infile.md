@@ -2,7 +2,7 @@
 
 ## **Description**
 
-The LOAD DATA statement reads rows from a text file into a table at a very high speed. The file can be read from the server host or a [S3 compatible object storage](../../../Develop/import-data/bulk-load/load-s3.md). `LOAD DATA` is the complement of [`SELECT ... INTO OUTFILE`](../../../Develop/export-data/select-into-outfile.md). To write data from a table to a file, use `SELECT ... INTO OUTFILE`. To read the file back into a table, use LOAD DATA. The syntax of the `FIELDS` and `LINES` clauses is the same for both statements.
+The LOAD DATA statement reads rows from a text file into a table at a very high speed. The file can be read from the server host or a S3 compatible object storage. `LOAD DATA` is the complement of `SELECT ... INTO OUTFILE`. To write data from a table to a file, use `SELECT ... INTO OUTFILE`. To read the file back into a table, use LOAD DATA. The syntax of the `FIELDS` and `LINES` clauses is the same for both statements.
 
 ## **Syntax**
 
@@ -355,7 +355,6 @@ load data infile 'file_name' into table tbl_name PARALLEL 'TRUE' STRICT 'FALSE';
 ## Supported file formats
 
 In OmniFabric's current release, `LOAD DATA` supports CSV(comma-separated values) format and JSONLines format file.
-See full tutorials for loading [csv](../../../Develop/import-data/bulk-load/load-csv.md) and [jsonline](../../../Develop/import-data/bulk-load/load-jsonline.md).
 
 !!! note
     `LOAD DATA` supports importing `lz4`, `gz`, `bz2`, `zlib`, `flate`, and does not support importing compressed files ending with `.tar` or `.tar.xx`.
@@ -513,13 +512,13 @@ The *CSV* format loaded by OmniFabric conforms to the RFC4180 standard, and the 
 
 ## **Examples**
 
-The SSB Test is an example of LOAD DATA syntax. [Complete a SSB Test with OmniFabric](../../../Test/performance-testing/SSB-test-with-OmniFabric.md)
+The following is an example of LOAD DATA syntax:
 
 ```
-> LOAD DATA INFILE '/ssb-dbgen-path/lineorder_flat.tbl ' INTO TABLE lineorder_flat;
+> LOAD DATA INFILE '/path/to/lineorder_flat.tbl' INTO TABLE lineorder_flat;
 ```
 
-The above statement means: load the *lineorder_flat.tbl* data set under the directory path */ssb-dbgen-path/* into the OmniFabric data table *lineorder_flat*.
+The above statement means: load the *lineorder_flat.tbl* data set under the specified directory path into the OmniFabric data table *lineorder_flat*.
 
 You can also refer to the following syntax examples to quickly understand `LOAD DATA`:
 
@@ -637,7 +636,7 @@ mysql> select * from t1;
 As you can see, the query result ignores the first line and
 and ignores the common prefix aa.
 
-For more information on loding *csv*, see [Import the *.csv* data](../../../Develop/import-data/bulk-load/load-csv.md).
+For more information on loding *csv*, see the CSV import documentation.
 
 ### Example 2: LOAD JSONLines
 
@@ -702,7 +701,7 @@ mysql> select * from t1;
 
 As you can see, the query result ignores the first line.
 
-For more information on loding *JSONLines*, see [Import the JSONLines data](../../../Develop/import-data/bulk-load/load-jsonline.md).
+For more information on loding *JSONLines*, see the JSONLine import documentation.
 
 ### Example 3: LOAD Stage
 

@@ -62,8 +62,6 @@ create external table t(...) URL s3option{"endpoint"='<string>', "access_key_id"
 create external table ex_table_cpk(clo1 tinyint,clo2 smallint,clo3 int,clo4 bigint,clo5 tinyint unsigned,clo6 smallint unsigned,clo7 int unsigned,clo8 bigint unsigned,col9 float,col10 double,col11 varchar(255),col12 Date,col13 DateTime,col14 timestamp,col15 bool,col16 decimal(5,2),col17 text,col18 varchar(255),col19 varchar(255),col20 varchar(255))infile{"filepath"='$resources/external_table_file/cpk_table_1.csv'};
 ```
 
-For more information on creating an external table with an `s3option` mapping to an S3 file, see [Import the data from S3 Compatible object storage](../../../Develop/import-data/bulk-load/load-s3.md).
-
 ## **Constraints**
 
 OmniFabric only supports `select` on **EXTERNAL TABLE**, `delete`, `insert`, and `update` is not supported.

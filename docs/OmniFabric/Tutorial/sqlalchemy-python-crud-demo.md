@@ -13,7 +13,7 @@ A brief introduction about these softwares concerned:
 
 Before you start, make sure you have downloaded and installed the following software.
 
-1. Make sure you have already [installed and launched OmniFabric](../Get-Started/install-standalone-OmniFabric.md). Connect to OmniFabric and create a database by MySQL client.
+1. Make sure you have already installed and launched OmniFabric. Connect to OmniFabric and create a database by MySQL client.
 
     ```
     mysql> create database test;
@@ -42,7 +42,7 @@ Before you start, make sure you have downloaded and installed the following soft
     pip3 install faker -i https://pypi.tuna.tsinghua.edu.cn/simple
     ```
 
-As we have explained how to connect to OmniFabric by SQLAlchemy in the other [tutorial](../Develop/connect-mo/python-connect-to-OmniFabric.md), we will focus on the CRUD(Create, Read, Update, Delete) implementations in this tutorial.
+As we have explained how to connect to OmniFabric by SQLAlchemy in the other tutorial, we will focus on the CRUD(Create, Read, Update, Delete) implementations in this tutorial.
 
 ## Create
 

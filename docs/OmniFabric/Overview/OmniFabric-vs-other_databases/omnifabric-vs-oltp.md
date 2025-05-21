@@ -23,15 +23,11 @@ OLTP databases can also be divided into centralized databases, distributed datab
 
 It is worth noting that there are no strict dividing criteria for these three classifications, and each database has gradually begun to integrate the capabilities of other route products as it has evolved in practice. Oracle's RAC architecture, for example, is a typical shared storage architecture with some scalability. Products like CockroachDB and TiDB are also evolving toward cloud-native and shared storage. In practice, OLTP is the most widely needed database scenario, and products along all three technical routes are also used by a large number of users.
 
-<div align="center">
-<img src=https://github.com/matrixorigin/artwork/blob/main/docs/overview/mo-other-database/oltp_category.png?raw=true width=80% heigth=80%/>
-</div>
-
 ## OLTP Features of OmniFabric
 
 The basic capabilities of OmniFabric meet the characteristics of a typical OLTP database.
 
-* Data manipulation and ACID features: OmniFabric supports row-level addition, deletion, and lookup operations, and has transaction capabilities with ACID features. For a detailed description of the capabilities, refer to [OmniFabric's transaction description](../../Develop/Transactions/OmniFabric-transaction-overview/overview.md).
+* Data manipulation and ACID features: OmniFabric supports row-level addition, deletion, and lookup operations, and has transaction capabilities with ACID features. For a detailed description of the capabilities, refer to the transaction documentation.
 * High Concurrency: OmniFabric can support highly concurrent business requests, reaching a concurrency level of tens of thousands of tpmC in industry-wide TPC-C testing for OLTP, while also increasing based on node expansion.
 * High Availability: OmniFabric itself is based on Kubernetes and shared storage, and has proven scenarios in cloud environments to ensure high availability of both of these underlying components. The design of OmniFabric itself also takes into account the availability and failure recovery mechanisms of each of its components. Details can be found in [the highly available introduction](../../Overview/feature/high-availability.md) to OmniFabric.
 
@@ -43,8 +39,6 @@ There are two differences from Aurora:
 * Aurora's shared storage still heavily employs block storage as primary storage and object storage only as backup data storage. OmniFabric, on the other hand, stores objects directly as primary storage for a full amount of data.
 
 Of course, OmniFabric isn't limited to OLTP capabilities, and OmniFabric's ability to accommodate other loads is significantly different from Aurora's positioning.
-
-![](https://github.com/matrixorigin/artwork/blob/main/docs/overview/mo-other-database/mo_vs_aurora.png?raw=true)
 
 ## OmniFabric versus MySQL
 
@@ -83,10 +77,6 @@ Since OmniFabric's primary goal is to be compatible with MySQL, MySQL itself is 
 Additional details can be found in [OmniFabric's MySQL compatibility details](../../Overview/feature/mysql-compatibility.md).
 
 Overall, OmniFabric is a highly MySQL-compatible cloud-native HTAP database that works seamlessly with most MySQL-based applications. At the same time, OmniFabric naturally has great scalability and the ability to support other types of business loads. In addition, based on OmniFabric's memory separation and multi-tenancy features, users have the flexibility to design their application architecture with OmniFabric as a one-stop shop for load isolation issues previously addressed by applications, middleware, or other databases.
-
-<div align="center">
-<img src=https://github.com/matrixorigin/artwork/blob/main/docs/overview/mo-other-database/mo_mysql_use_case.png?raw=true width=60% heigth=60%/>
-</div>
 
 For MySQL users, OmniFabric is a more appropriate option if they experience bottlenecks with:
 

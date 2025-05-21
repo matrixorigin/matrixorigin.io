@@ -261,7 +261,7 @@ CREATE TABLE Orders (
 
 In the above example, when a customer is deleted from the `Customers` table, the associated order data will also be deleted through cascading, maintaining data integrity. Similarly, the `ON UPDATE` parameter can handle update operations.
 
-For more information on data integrity constraints, see [Data Integrity Constraints Overview](../../../Develop/schema-design/data-integrity/overview-of-integrity-constraint-types.md).
+For more information on data integrity constraints, see the data integrity constraints documentation.
 
 #### Cluster by
 
@@ -272,7 +272,7 @@ For more information on data integrity constraints, see [Data Integrity Constrai
 
 __Note:__ `Cluster by` cannot coexist with a primary key, or a syntax error will occur. `Cluster by` can only be specified when creating a table and does not support dynamic creation.
 
-For more information on using `Cluster by` for performing tuning, see [Using `Cluster by` for performance tuning](../../../Performance-Tuning/optimization-concepts/through-cluster-by.md).
+For more information on using `Cluster by` for performing tuning, see the performance tuning documentation.
 
 #### Table PARTITION and PARTITIONS
 

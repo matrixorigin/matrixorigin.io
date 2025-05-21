@@ -6,7 +6,7 @@
 
 Before you start, make sure you have downloaded and installed the following software.
 
-1. Make sure you have already [installed and launched OmniFabric](../Get-Started/install-standalone-OmniFabric.md).
+1. Make sure you have already installed and launched OmniFabric.
 2. Make sure you have already installed [Python 3.8(or plus) version](https://www.python.org/downloads/).
 
     ```
@@ -26,7 +26,7 @@ Before you start, make sure you have downloaded and installed the following soft
     pip3 install cryptography -i https://pypi.tuna.tsinghua.edu.cn/simple
     ```
 
-As we have explained how to connect to OmniFabric by pymysql in the other [tutorial](../Develop/connect-mo/python-connect-to-OmniFabric.md), we will focus on the CRUD(Create, Read, Update, Delete) implementations in this tutorial.
+As we have explained how to connect to OmniFabric by pymysql in the other tutorial, we will focus on the CRUD(Create, Read, Update, Delete) implementations in this tutorial.
 
 ## Create Table
 

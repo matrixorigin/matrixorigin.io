@@ -8,8 +8,6 @@ With the rapid popularization and diversified development of big data applicatio
 
 OmniFabric is specifically designed to solve the problem of mixed loads. OmniFabric can support OLTP and OLAP in the same cluster, achieving Hybrid Transaction and Analytical Processing (HTAP). Users no longer need to build two separate database systems for OLTP and OLAP, a single database can support mixed loads. This avoids the cost of building and maintaining two systems and the ETL process of synchronizing data from the OLTP system to the OLAP system. Users can easily handle business and analysis in the same cluster.
 
-![](https://github.com/matrixorigin/artwork/blob/main/docs/overview/high-cost-performance/HTAP.png?raw=true)
-
 ## Single Storage Engine Achieves HTAP
 
 In databases, achieving HTAP usually requires encapsulating an OLTP engine and an OLAP engine into a single database product. Although the conversion process between the two storage engines is hidden from the user, who only sees a unified SQL interface, the data is stored twice, once in each machine, and the cost of hardware and storage is not reduced.
@@ -17,8 +15,6 @@ In databases, achieving HTAP usually requires encapsulating an OLTP engine and a
 Different from the engine mentioned above encapsulation method, OmniFabric achieves HTAP using a single storage engine. As shown below, OmniFabric achieves single-engine HTAP by grouping other computing nodes (CN) and distinguishing between load-running links. When a user's application request enters the OmniFabric cluster, the Proxy module distributes OLAP-like requests to the CN group designed explicitly for OLAP. These requests usually need to read or write data on a large scale and interact directly with object storage via the CN nodes. For OLTP-like requests, such as small amounts of `INSERT`, `UPDATE`, and `DELETE`, these go through another group of CN designed explicitly for OLTP, and the TN nodes handle transaction information and write shared logs to LogService. TN also constantly compresses and merges small transactional data from LogService and writes them back to object storage.
 
 In summary, the data written into OmniFabric by users only exists once and is processed by a single storage engine, significantly reducing the cost of storage and computing hardware.
-
-![](https://github.com/matrixorigin/artwork/blob/main/docs/overview/high-cost-performance/HTAP-single-engine.png?raw=true)
 
 ## Flexible Resource Allocation Increases Utilization
 
@@ -31,15 +27,11 @@ When CRUD-type business requirements are high, you can allocate more CN nodes to
 
 Take the following diagram as an example; suppose that the user needs 3 computing nodes to handle OLTP business and 3 computing nodes to handle OLAP business. And these hardware resources are fully bound, i.e., nodes serving OLTP cannot provide services for OLAP and vice versa. Moreover, users' planning for machine resources often exceeds the upper limit of actual demand. However, the time to reach the total peak demand is quite limited in real business. If you plan to use the OmniFabric cluster to support these businesses, you can adjust to 4 computing nodes; typically, 3 nodes handle OLTP business, and 1 node takes OLAP business. Then, at the end of the month or other periods when the demand for analysis is high, you can adjust to 1 computing node to handle the OLTP business and 3 computing nodes to run the OLAP business; after the peak period, you can return to the original configuration, thereby improving machine resource utilization by 40%.
 
-![](https://github.com/matrixorigin/artwork/blob/main/docs/overview/high-cost-performance/usage-optimize.png?raw=true)
-
 ## Efficient and Low-Cost Object Storage
 
 At the storage level, OmniFabric mainly uses object storage. This storage uses the principle of erasure coding and only needs a redundancy as low as 33% to ensure the high availability of data. Compared with the standard method of providing high availability through multiple copies, erasure coding has a higher space utilization rate under the same reliability.
 
 In the OmniFabric cluster, take the minimum configuration recommended by the official Minio for private deployment (4 nodes × 4 disks) as an example; OmniFabric can support at least 4 disks as erasure coding disks and 12 disks as data disk architecture, with redundancy of 1.33.
-
-![](https://github.com/matrixorigin/artwork/blob/main/docs/overview/high-cost-performance/erasure-code.png?raw=true)
 
 In addition, object storage also supports low-cost storage media such as HDD disks. In usage scenarios where the demand for cluster computing performance is not high, and storage is the main focus, it can further reduce the usage cost.
 

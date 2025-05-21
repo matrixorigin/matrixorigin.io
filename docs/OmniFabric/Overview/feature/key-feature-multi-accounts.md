@@ -41,10 +41,6 @@ OmniFabric's distributed cluster adopts a Proxy module and CN resource group tec
 
 When a user connects, the connection will pass through the Proxy module. The Proxy will forward the connection to a CN in the corresponding CN resource group according to the account label information of the CN and select the CN with the lightest load according to the principle of load balancing. In the OmniFabric cluster architecture, CNs are deployed in containers, so CNs are isolated. A CN resource group a account, uses is a set of CNs tagged with the account. If resources are insufficient and need to be expanded, the CN resource group can be expanded horizontally to meet the demand without preempting the resources of other CN resource groups.
 
-The architecture diagram is as follows:
-
-![OmniFabric Architecture](https://github.com/matrixorigin/artwork/blob/main/docs/overview/multi-account-proxy.png?raw=true)
-
 ## Scenarios
 
 The multi-account capability of OmniFabric can show advantages in the following application scenarios.
@@ -57,8 +53,6 @@ Multi-account model design is critical in a SaaS application that serves many en
 
 Traditional multi-account architectures store and manage data for each account at the database level. There are usually multiple design patterns, such as a shared database pattern (each account shares a database but has its data tables/columns) or an independent database pattern (each account has its database).
 
-![](https://github.com/matrixorigin/artwork/blob/main/docs/overview/traditional-arch.png?raw=true)
-
 Both traditional models have specific challenges:
 
 - The account-shared database mode relies on the application layer to distinguish account logic by SQL and application layer code, and the isolation degree of data and resources is low. It is straightforward to seize the resources of other accounts when the load of a account suddenly increases significantly, resulting in a decline in the entire system's performance. However, only one set of database clusters is used in the account-shared database mode. The resource cost and operation and maintenance management difficulty are relatively low, and the upgrade/expansion/application change only needs to be done once to complete the global change.
@@ -68,7 +62,11 @@ Both traditional models have specific challenges:
 
 The multi-account capability of OmniFabric brings a new architectural approach. accounts still share a OmniFabric cluster, and unified account O&M and management can be performed through system accounts. In addition, the isolation of data and resources is realized through the built-in multi-account capability. Each account can independently expand and contract resources, further reducing the difficulty of operation and maintenance. This approach meets not only the requirements for isolation but also the requirements for low resource and operation and maintenance costs.
 
-<img width="1205" height="1686" style="max-width: min(100%, 16rem); display: block; margin: auto;" alt="mo-account-arch" src="https://github.com/matrixorigin/artwork/blob/main/docs/overview/mo-account-arch.png?raw=true">
+The OmniFabric architecture provides a balanced solution that combines the benefits of both traditional approaches:
+- High data isolation through account-specific resource groups
+- Low resource costs through shared infrastructure
+- High resource isolation through CN resource groups
+- Low operational complexity through centralized management
 
 |Multi-account mode|Data isolation degree|Resource cost|Resource isolation|Operation and maintenance complexity|
 |---|---|---|---|---|
@@ -82,17 +80,15 @@ Microservice application architecture is a software architectural pattern that i
 
 Unlike SaaS applications, microservice applications also face the problem of database sharing or independence. It is usually recommended to prepare a separate database for each microservice; this pattern is more suitable for microservice architecture because each service is developed, deployed, and scaled independently. Other services will not be affected when there is a need to upgrade or change the data schema. When a service needs to be expanded, the service can also be partially developed. In addition, if some services require unique database capabilities, such as Elastic Search or vector search, etc., this mode provides more flexible possibilities.
 
-![OmniFabric Architecture](https://github.com/matrixorigin/artwork/blob/main/docs/overview/microservice-arch.png?raw=true)
-
-However, microservices ultimately serve the same business, and data must be shared between different services, so they will also encounter the same dilemma as SaaS application multi-account.
-
-The multi-account capability provided by OmniFabric can well balance these two contradictions, which can not only ensure the independence of data and resource expansion of each microservice but also maintain a certain degree of sharing.
+The OmniFabric architecture supports microservices by providing:
+- Independent database instances for each microservice
+- Resource isolation through CN resource groups
+- Flexible scaling capabilities
+- Data sharing when needed through account-level permissions
 
 ### Group Subsidiaries/Business Units
 
 Many group companies separate operations with regional subsidiaries or business units, which often operate independently, with total production, sales, and technical support teams, and use their IT systems. However, the group company needs to fully grasp the business status of the subsidiaries, so the subsidiaries need to report a large amount of business data regularly.
-
-![OmniFabric Architecture](https://github.com/matrixorigin/artwork/blob/main/docs/overview/business.png?raw=true)
 
 This IT architecture faces precisely the same problem in terms of database design as the previous two scenarios, namely the trade-off between sharing and isolation. In addition, geographical location also needs to be considered in this scenario. Subsidiaries usually have their regional attributes and need to provide services nearby. For example, manufacturing companies are generally located in big cities such as Beijing, Shanghai, Guangzhou, and Shenzhen, but various factories may be scattered in second-and third-tier cities. These factories need to cooperate closely with systems such as ERP and MES. Therefore, these systems often need to be deployed locally in the factory, and the headquarters needs to grasp the situation of each factory, so these systems need to report data to the group company. The traditional deployment architecture usually adopts the method of independently deploying databases, while the application layer implements data synchronization and reporting.
 
@@ -102,5 +98,4 @@ The multi-account capability of OmniFabric can well solve the database sharing/i
 
 For more information on multi-account, see:
 
-- [Multi-Account Application Scenario](../../Security/role-priviledge-management/app-scenarios.md)
-- [Quick Start: Create accounts, Verify Resource Isolation](../../Security/how-tos/quick-start-create-account.md)
+<!-- Removed broken links to ../../Security/role-priviledge-management/app-scenarios.md and ../../Security/how-tos/quick-start-create-account.md -->

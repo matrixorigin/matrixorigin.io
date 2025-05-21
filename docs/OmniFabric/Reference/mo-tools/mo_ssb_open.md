@@ -7,7 +7,7 @@
 
 ## Pre-dependency
 
-- Finished [installing and starting](../../Get-Started/install-standalone-OmniFabric.md) OmniFabric
+OmniFabric
 - Environment encoding set to UTF-8
 - Installed wget
 - The bc command is installed

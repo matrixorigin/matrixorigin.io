@@ -6,10 +6,6 @@ The `NORMALIZE_L2()` function performs Euclidean normalization on vectors.
 
 The L2 norm is the square root of the sum of the squares of the vector elements, so the purpose of L2 normalization is to make the length (or norm) of the vector 1, which is often referred to as a unit vector. This normalization method is particularly useful in machine learning, especially when dealing with feature vectors. It can help standardize the scale of features and thus improve the performance of algorithms.
 
-<div align="center">
-<img src=https://github.com/OmniFabric/artwork/blob/main/docs/reference/vector/normalize_l2.png?raw=true width=50% heigth=50%/>
-</div>
-
 ## Function syntax
 
 ```

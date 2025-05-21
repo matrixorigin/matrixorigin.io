@@ -84,7 +84,7 @@ bash +x ./install.sh mo_ctl.zip
 
 ## Get started quickly
 
-The Deployment Standalone Edition of OmniFabric can be quickly installed by following these steps, and the detailed guide provides a view of the [Standalone Deployment OmniFabric](../Get-Started/install-standalone-OmniFabric.md).
+The Deployment Standalone Edition of OmniFabric can be quickly installed by following these steps, and the detailed guide provides a view of the standalone Deployment OmniFabric
 
 1. Use the command `mo_ctl help` to view the tool guide.
 

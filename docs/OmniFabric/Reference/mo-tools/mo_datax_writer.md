@@ -7,7 +7,7 @@
 
 ## Pre-dependency
 
-- Finished [installing and starting](../../Get-Started/install-standalone-OmniFabric.md) OmniFabric
+OmniFabric
 - Download [DataX Tools](https://datax-opensource.oss-cn-hangzhou.aliyuncs.com/202309/datax.tar.gz)
 - Download and install [MySQL](<https://www.mysql.com/downloads/>)
 - Finished installing [Python 3.8 (or plus)](https://www.python.org/downloads/)

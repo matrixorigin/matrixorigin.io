@@ -4,10 +4,6 @@
 
 The `l2_norm` function is used to calculate the `l2`/Euclidean norm. The `l2` norm is obtained by performing a square root operation on the sum of squares of the vector elements.
 
-<div align="center">
-<img src=https://github.com/OmniFabric/artwork/blob/main/docs/reference/vector/l2_norm.png?raw=true width=50% heigth=50%/>
-</div>
-
 ## **Function syntax**
 
 ```

@@ -77,7 +77,7 @@ Data Manipulation Language (DML) is used for database operations, including prog
 
 ### LOAD DATA Statement - Bulk Importing Data from Files into the Database
 
-- [LOAD DATA](Data-Manipulation-Language/load-data.md)
+<!-- Removed broken links to Data-Manipulation-Language/load-data.md and ../../Develop/export-data/modump.md -->
 
 ### REPLACE Statement - Replacing Rows
 
@@ -128,7 +128,7 @@ Data Query Language (DQL) is used to retrieve existing data in OmniFabric. It pr
 
 ### And internal commands corresponding to the modump tool
 
-- [Export Data](../../Develop/export-data/modump.md)
+<!-- Removed broken links to Data-Manipulation-Language/load-data.md and ../../Develop/export-data/modump.md -->
 
 ## TCL - Transaction Control Language
 

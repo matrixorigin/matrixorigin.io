@@ -2,7 +2,7 @@
 
 ## Setup your environment
 
-1. Make sure you have already [installed and launched OmniFabric](../Get-Started/install-standalone-OmniFabric.md).
+1. Make sure you have already installed and launched OmniFabric
 2. Make sure you have already installed [Golang 1.18 and plus](https://go.dev/dl/).
 
     ```

@@ -14,7 +14,7 @@ A simple introduction to related software:
 
 Before you begin, confirm that you have downloaded and installed the following software:
 
-- Verify that you have completed the [standalone deployment of](../Get-Started/install-standalone-OmniFabric.md) OmniFabric.
+- Verify that you have completed the standalone deployment of OmniFabric.
 
 - Verify that you have finished installing [Python 3.8 (or plus)](https://www.python.org/downloads/). Verify that the installation was successful by checking the Python version with the following code:
 

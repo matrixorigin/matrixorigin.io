@@ -4,7 +4,7 @@ Among the large and complex data technology stack and various database products,
 
 The database product closest to OmniFabric among the industry's existing database offerings is SingleStore, both of which use a unified storage model that supports the convergence of OLTP, OLAP, and a host of other data loads and data types, while also both having cloud native and flexible scalability as their core architectural capabilities.
 
-![mo_vs_singlestore](https://github.com/OmniFabric/artwork/blob/main/docs/overview/mo-other-database/mo_vs_singlestore.png?raw=true)
+Key differences between OmniFabric and SingleStore:
 
 - Architecturally, OmniFabric is a fully cloud-native and containerized database. OmniFabric draws on Snowflake's computational separation design for [cloud-native data warehouses](https://event.cwi.nl/lsde/papers/p215-dageville-snowflake.pdf), completely handing over storage to shared storage on the cloud, while fully building the compute layer into a stateless container. At the same time, to accommodate the processing of fast write requests by OLTP-type loads, OmniFabric adds the concepts of TN and LogService to support high-frequency writes with block storage, ensures high availability of write log WALs with Raft triple copy consistency guarantee, and asynchronously drops WALs into shared storage. Unlike SingleStore, which extends from the Share-nothing architecture to cloud-native memory separation, it only puts cold data in shared storage (see [SingleStore architecture paper](https://dl.acm.org/doi/pdf/10.1145/3514221.3526055)) and still requires data fragmentation and rebalancing. OmniFabric, on the other hand, is consistent with Snowflake and is entirely based on shared storage without any data fragmentation.
 

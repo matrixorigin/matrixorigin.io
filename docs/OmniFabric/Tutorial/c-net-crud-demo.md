@@ -4,8 +4,6 @@ This document will guide you through how to build a simple application using C# 
 
 ## Prepare before you start
 
-- Finished [installing and starting](../Get-Started/install-standalone-OmniFabric.md) OmniFabric
-
 - Installed [.NET Core SDK](https://dotnet.microsoft.com/zh-cn/download)
 
 - [MySQL Client](https://dev.mysql.com/downloads/installer/) installed

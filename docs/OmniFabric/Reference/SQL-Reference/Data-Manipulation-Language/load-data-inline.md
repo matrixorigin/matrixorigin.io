@@ -32,7 +32,7 @@ INTO TABLE tbl_name;
     ```
 
     !!! note
-        The login account in the above code section is the initial account. Please change the initial password promptly after logging into OmniFabric, see [Password Management](../../../Security/password-mgmt.md).
+        The login account in the above code section is the initial account. Please change the initial password promptly after logging into OmniFabric.
 
 2. Before executing `LOAD DATA INLINE` in OmniFabric, you need to create the completion data table `user` in OmniFabric in advance:
 

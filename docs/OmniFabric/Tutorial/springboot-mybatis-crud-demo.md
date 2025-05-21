@@ -15,12 +15,6 @@ A brief introduction about these softwares concerned:
 
 ### 1. Install and Launch OmniFabric
 
-Follow the [installation instruction and launch OmniFabric](../Get-Started/install-standalone-OmniFabric.md). Create a database `test` by MySQL client.
-
-```
-mysql> create database test;
-```
-
 ### 2. Create a new Spring Boot Project Using IntelliJ IDEA
 
 Choose **Spring Initializer**, and name the project as you want.

@@ -7,7 +7,7 @@
 
 ## Pre-dependency
 
-- Finished [installing and starting](../../Get-Started/install-standalone-OmniFabric.md) OmniFabric.
+OmniFabric.
 - Installed wget
 
 ## Install mo_ts_perf_test

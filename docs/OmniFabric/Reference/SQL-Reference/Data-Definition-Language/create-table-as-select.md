@@ -48,7 +48,7 @@ In `OmniFabric`, executing `CREATE TABLE AS SELECT` requires:
 - **INSERT** permission: To insert data into the new table.
 - **SELECT** permission: To query source table(s).
 
-For detailed permission operations, see [OmniFabric Permission Types](../../access-control-type.md) and [GRANT](../Data-Control-Language/grant.md).
+For detailed permission operations, see the permissions documentation and [GRANT](../Data-Control-Language/grant.md).
 
 ## Examples
 

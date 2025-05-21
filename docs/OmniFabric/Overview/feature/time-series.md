@@ -19,9 +19,3 @@ Currently there are a number of dedicated NoSQL time series databases in the ind
 OmniFabric's timing capabilities are reflected in:
 
 - Supports string, number, date and other data types common in traditional databases, but also supports JSON, vector and other types of new types of load, see [data types](../../Reference/Data-Types/data-types.md) for details.
-- Supports the creation of dedicated timing tables with timestamps as the primary key and arbitrary dimension/indicator columns as detailed in the [time window](../../Develop/read-data/window-function/time-window.md).
-- Provides common time window capabilities to downsample queries at different times, as detailed in [Time Window](../../Develop/read-data/window-function/time-window.md).
-- Supports interpolation capability for null values and provides interpolation methods for different policies, as detailed in the [time window](../../Develop/read-data/window-function/time-window.md).
-- Supports simple and complex query capabilities in a variety of traditional databases. Details can be found in [Single Table Query](../../Develop/read-data/query-data-single-table.md), [Multi Table Query](../../Develop/read-data/multitable-join-query.md), [Sub Query](../../Develop/read-data/subquery.md), [View](../../Develop/read-data/subquery.md), [CTE](../../Develop/read-data/cte.md).
-- Supports high speed [offline import](../../Develop/import-data/bulk-load/bulk-load-overview.md), [streaming data write](../../Develop/import-data/stream-load.md), [Insert into write](../../Develop/import-data/insert-data.md) and other ways.
-- Various types of [aggregate functions](../../Reference/Functions-and-Operators/Aggregate-Functions/count.md) are supported to satisfy the computation of time series data types.
