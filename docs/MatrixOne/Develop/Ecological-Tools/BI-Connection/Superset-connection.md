@@ -22,7 +22,7 @@ Before proceeding with this practice, you need to install and configure the foll
 
 - Docker, with a version of 23.0.1 or higher.
 - MatrixOne
-- Superset, recommended version 2.1.0.
+- Superset, recommended version 2.1.1.
 
 You can follow the steps in the following sections to install and configure them step by step.
 
