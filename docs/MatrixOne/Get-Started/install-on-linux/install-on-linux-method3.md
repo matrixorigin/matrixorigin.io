@@ -67,18 +67,18 @@ Create and run the container of MatrixOne
 
 It will pull the image from Docker Hub if not exists. You can choose to pull the stable version image or the develop version image.
 
-=== "Stable Version Image(2.1.0 version)"
+=== "Stable Version Image(2.2.0 version)"
 
       ```bash
-      docker pull matrixorigin/matrixone:2.1.0
-      docker run -d -p 6001:6001 --name matrixone matrixorigin/matrixone:2.1.0
+      docker pull matrixorigin/matrixone:2.2.0
+      docker run -d -p 6001:6001 --name matrixone matrixorigin/matrixone:2.2.0
       ```
 
       If you are using the network in mainland China, you can pull the MatrixOne stable version image on Alibaba Cloud:
 
       ```bash
-      docker pull registry.cn-shanghai.aliyuncs.com/matrixorigin/matrixone:2.1.0
-      docker run -d -p 6001:6001 --name matrixone registry.cn-shanghai.aliyuncs.com/matrixorigin/matrixone:2.1.0
+      docker pull registry.cn-shanghai.aliyuncs.com/matrixorigin/matrixone:2.2.0
+      docker run -d -p 6001:6001 --name matrixone registry.cn-shanghai.aliyuncs.com/matrixorigin/matrixone:2.2.0
       ```
 
 === "Develop Version Image"
@@ -102,7 +102,7 @@ It will pull the image from Docker Hub if not exists. You can choose to pull the
 If your Docker version is lower than 20.10.18 or the Docker client and server versions are inconsistent, upgrading to the latest stable version before attempting is recommended. If you choose to proceed with the current versions, you need to add the parameter `--privileged=true` to the `docker run` command, as shown below:
 
 ```bash
-docker run -d -p 6001:6001 --name matrixone --privileged=true matrixorigin/matrixone:2.1.0
+docker run -d -p 6001:6001 --name matrixone --privileged=true matrixorigin/matrixone:2.2.0
 ```
 
 !!! note
@@ -160,7 +160,7 @@ Depending on your needs, choose whether you want to keep your code up to date, o
 === "Get the MatrixOne(Stable Version) code to build"
 
      ```
-     mo_ctl deploy v2.1.0
+     mo_ctl deploy v2.2.0
      ```
 
 - Launch MatrixOne server
@@ -198,7 +198,7 @@ root@VM-16-2-debian:~# mo_ctl connect
 mysql: [Warning] Using a password on the command line interface can be insecure.
 Welcome to the MySQL monitor.  Commands end with ; or \g.
 Your MySQL connection id is 15
-Server version: 8.0.30-MatrixOne-v2.1.0 MatrixOne
+Server version: 8.0.30-MatrixOne-v2.2.0 MatrixOne
 
 Copyright (c) 2000, 2023, Oracle and/or its affiliates.
 
