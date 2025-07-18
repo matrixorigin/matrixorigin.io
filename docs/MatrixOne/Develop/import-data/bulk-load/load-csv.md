@@ -104,7 +104,7 @@ __Note__: A `csv`(comma-separated values) file is a delimited text file that use
 ### Example using `Load data` with `docker` version
 
 If you install MatrixOne by `docker`, the file system is inside the docker image by default. To work with local directory, you need to bind a local directory to the container. In the following example, the local file system path `~/tmp/docker_loaddata_demo/` is binded to the MatrixOne docker image, with a mapping to the `/ssb-dbgen-path` path inside the docker.
-We will walk you through the whole process of loading data with MatrixOne 2.2.0 docker version in this example.
+We will walk you through the whole process of loading data with MatrixOne 2.2.1 docker version in this example.
 
 1. Download the dataset file and store the data in *~/tmp/docker_loaddata_demo/*:
 
@@ -122,7 +122,7 @@ We will walk you through the whole process of loading data with MatrixOne 2.2.0 
 3. Use Docker to launch MatrixOne, and mount the directory *~/tmp/docker_loaddata_demo/* that stores data files to a directory in the container. The container directory is */sb-dbgen-path* as an example:
 
     ```
-    sudo docker run --name matrixone --privileged -d -p 6001:6001 -v ~/tmp/docker_loaddata_demo/:/ssb-dbgen-path:rw matrixorigin/matrixone:2.2.0
+    sudo docker run --name matrixone --privileged -d -p 6001:6001 -v ~/tmp/docker_loaddata_demo/:/ssb-dbgen-path:rw matrixorigin/matrixone:2.2.1
     ```
 
 4. Connect to MatrixOne server:
