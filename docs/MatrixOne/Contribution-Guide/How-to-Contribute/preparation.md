@@ -16,7 +16,7 @@ These introductions will help you go through you the key concepts and user detai
 
 ### Roadmap
 
-MatrixOne v25.2.2.1 has been released, you can see [Release Notes](../../Release-Notes/v25.2.2.1.md) know more information.
+MatrixOne v25.2.2.2 has been released, you can see [Release Notes](../../Release-Notes/v25.2.2.2.md) know more information.
 
 For the long-term project roadmap, please refer to [MatrixOne roadmap](https://github.com/matrixorigin/matrixone/issues/613) for a more general overview.
 

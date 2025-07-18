@@ -150,12 +150,12 @@ mo_ctl deploy help
 Usage         : mo_ctl deploy [mo_version] [force] # deploy mo onto the path configured
   [mo_version]: optional, specify an mo version to deploy
   [force]     : optional, if specified will delete all content under MO_PATH and deploy from beginning
-  e.g.        : mo_ctl deploy             # default, same as mo_ctl deploy 2.2.1
+  e.g.        : mo_ctl deploy             # default, same as mo_ctl deploy 2.2.2
               : mo_ctl deploy main        # deploy development latest version
               : mo_ctl deploy d29764a     # deploy development version d29764a
-              : mo_ctl deploy 2.2.1       # deploy stable verson 2.2.1
-              : mo_ctl deploy force       # delete all under MO_PATH and deploy verson 2.2.1
-              : mo_ctl deploy 2.2.1 force # delete all under MO_PATH and deploy stable verson 2.2.1 from beginning
+              : mo_ctl deploy 2.2.2       # deploy stable verson 2.2.2
+              : mo_ctl deploy force       # delete all under MO_PATH and deploy verson 2.2.2
+              : mo_ctl deploy 2.2.2 force # delete all under MO_PATH and deploy stable verson 2.2.2 from beginning
 ```
 
 ### start - Starts the MatrixOne service
@@ -295,7 +295,7 @@ Using `mo_ctl get_conf` will print a list of all parameters used by the current 
 | GCC_VERSION            | The version of gcc that precheck checks    |default 8.5.0   |
 | GO_VERSION             | The go version of the precheck check    |default 1.22.3  |
 | MO_GIT_URL             | MatrixOne source code pulling address   | default <https://github.com/matrixorigin/matrixone.git> |
-| MO_DEFAULT_VERSION     | The version of MatrixOne that is pulled by default | default 2.2.1    |
+| MO_DEFAULT_VERSION     | The version of MatrixOne that is pulled by default | default 2.2.2    |
 | GOPROXY                | GOPROXY address, generally used for domestic accelerated pull golang dependencies | default <https://goproxy.cn>,direct  |
 | STOP_INTERVAL          | Stop interval, wait time to detect service status after stopping service | default 5 seconds |
 | START_INTERVAL         | Startup interval, wait time to detect service status after starting the service | default 2 seconds   |
@@ -348,11 +348,11 @@ MatrixOne 0.8 and later can use `mo_ctl upgrade version` or `mo_ctl upgrade comm
 ```
 mo_ctl upgrade help
 Usage           : mo_ctl upgrade [version_commitid]   # upgrade or downgrade mo from current version to a target commit id or stable version
- [commitid]     : a commit id such as '38888f7', or a stable version such as '2.2.1'
+ [commitid]     : a commit id such as '38888f7', or a stable version such as '2.2.2'
                 : use 'latest' to upgrade to latest commit on main branch if you don't know the id
   e.g.          : mo_ctl upgrade 38888f7              # upgrade/downgrade to commit id 38888f7 on main branch
                 : mo_ctl upgrade latest               # upgrade/downgrade to latest commit on main branch
-                : mo_ctl upgrade 2.2.1               # upgrade/downgrade to stable version 2.2.1
+                : mo_ctl upgrade 2.2.2               # upgrade/downgrade to stable version 2.2.2
 ```
 
 ### watchdog - Keep MatrixOne alive
