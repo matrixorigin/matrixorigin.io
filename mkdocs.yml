@@ -61,6 +61,119 @@ nav:
       - What's New: OmniFabric/Overview/whats-new.md
     - Getting Started:
       - Basic SQL: OmniFabric/Get-Started/basic-sql.md
+    - Develop:
+      - Overview: OmniFabric/Develop/develop-overview.md
+      - Connect to OmniFabric:
+        - Database Client Tools: OmniFabric/Develop/connect-mo/database-client-tools.md
+        - Configure SSL Connection: OmniFabric/Develop/connect-mo/configure-mo-ssl-connection.md
+        - Connect with C#: OmniFabric/Develop/connect-mo/connect-to-OmniFabric-with-c#.md
+        - Connect with Go: OmniFabric/Develop/connect-mo/connect-to-OmniFabric-with-go.md
+        - Connect with Python: OmniFabric/Develop/connect-mo/python-connect-to-OmniFabric.md
+        - Java Connection:
+          - Connect with JDBC: OmniFabric/Develop/connect-mo/java-connect-to-OmniFabric/connect-mo-with-jdbc.md
+          - Connect with ORM: OmniFabric/Develop/connect-mo/java-connect-to-OmniFabric/connect-mo-with-orm.md
+      - Schema Design:
+        - Overview: OmniFabric/Develop/schema-design/overview.md
+        - Create Database: OmniFabric/Develop/schema-design/create-database.md
+        - Create Table: OmniFabric/Develop/schema-design/create-table.md
+        - Create Table AS SELECT: OmniFabric/Develop/schema-design/create-table-as-select.md
+        - Create Secondary Index: OmniFabric/Develop/schema-design/create-secondary-index.md
+        - Data Integrity:
+          - Auto Increment Integrity: OmniFabric/Develop/schema-design/data-integrity/auto-increment-integrity.md
+          - Foreign Key Constraints: OmniFabric/Develop/schema-design/data-integrity/foreign-key-constraints.md
+          - Not Null Constraints: OmniFabric/Develop/schema-design/data-integrity/not-null-constraints.md
+          - Primary Key Constraints: OmniFabric/Develop/schema-design/data-integrity/primary-key-constraints.md
+          - Unique Constraints: OmniFabric/Develop/schema-design/data-integrity/unique-constraints.md
+          - Check Constraints: OmniFabric/Develop/schema-design/data-integrity/check-constraints.md
+          - Default Constraints: OmniFabric/Develop/schema-design/data-integrity/default-constraints.md
+      - Import Data:
+        - Insert Data: OmniFabric/Develop/import-data/insert-data.md
+        - Delete Data: OmniFabric/Develop/import-data/delete-data.md
+        - Update Data: OmniFabric/Develop/import-data/update-data.md
+        - Prepared Statements: OmniFabric/Develop/import-data/prepared.md
+        - Bulk Load:
+          - Bulk Load Overview: OmniFabric/Develop/import-data/bulk-load/bulk-load-overview.md
+          - Load CSV: OmniFabric/Develop/import-data/bulk-load/load-csv.md
+          - Load JSON Lines: OmniFabric/Develop/import-data/bulk-load/load-jsonline.md
+          - Load S3: OmniFabric/Develop/import-data/bulk-load/load-s3.md
+          - Using Source: OmniFabric/Develop/import-data/bulk-load/using-source.md
+      - Read Data:
+        - Query Data from Single Table: OmniFabric/Develop/read-data/query-data-single-table.md
+        - Multi-table Join Queries: OmniFabric/Develop/read-data/multitable-join-query.md
+        - Common Table Expressions (CTE): OmniFabric/Develop/read-data/cte.md
+        - Subqueries: OmniFabric/Develop/read-data/subquery.md
+        - Views: OmniFabric/Develop/read-data/views.md
+        - Window Functions:
+          - Window Function Overview: OmniFabric/Develop/read-data/window-function/window-function.md
+          - Time Window: OmniFabric/Develop/read-data/window-function/time-window.md
+      - Export Data:
+        - SELECT INTO OUTFILE: OmniFabric/Develop/export-data/select-into-outfile.md
+        - mo-dump Tool: OmniFabric/Develop/export-data/modump.md
+      - Distinct Data:
+        - Count Distinct: OmniFabric/Develop/distinct-data/count-distinct.md
+        - Bitmap: OmniFabric/Develop/distinct-data/bitmap.md
+      - Transactions:
+        - Transaction Overview: OmniFabric/Develop/Transactions/common-transaction-overview.md
+        - OmniFabric Transaction Overview:
+          - Explicit Transaction: OmniFabric/Develop/Transactions/OmniFabric-transaction-overview/explicit-transaction.md
+          - Implicit Transaction: OmniFabric/Develop/Transactions/OmniFabric-transaction-overview/implicit-transaction.md
+          - Optimistic Transaction: OmniFabric/Develop/Transactions/OmniFabric-transaction-overview/optimistic-transaction.md
+          - Pessimistic Transaction: OmniFabric/Develop/Transactions/OmniFabric-transaction-overview/pessimistic-transaction.md
+          - Isolation Level: OmniFabric/Develop/Transactions/OmniFabric-transaction-overview/isolation-level.md
+          - MVCC: OmniFabric/Develop/Transactions/OmniFabric-transaction-overview/mvcc.md
+          - How to Use: OmniFabric/Develop/Transactions/OmniFabric-transaction-overview/how-to-use.md
+          - Transaction Management: OmniFabric/Develop/Transactions/OmniFabric-transaction-overview/transaction-management.md
+          - Transaction Monitoring: OmniFabric/Develop/Transactions/OmniFabric-transaction-overview/transaction-monitoring.md
+          - Transaction Troubleshooting: OmniFabric/Develop/Transactions/OmniFabric-transaction-overview/transaction-troubleshooting.md
+      - Publish-Subscribe:
+        - Publish-Subscribe Overview: OmniFabric/Develop/Publish-Subscribe/pub-sub-overview.md
+        - Multi-Account Overview: OmniFabric/Develop/Publish-Subscribe/multi-account-overview.md
+      - Vector:
+        - Vector Type: OmniFabric/Develop/Vector/vector_type.md
+        - Vector Search: OmniFabric/Develop/Vector/vector_search.md
+        - Cluster Centers: OmniFabric/Develop/Vector/cluster_centers.md
+      - UDF:
+        - UDF Python: OmniFabric/Develop/udf/udf-python.md
+        - UDF Python Advanced: OmniFabric/Develop/udf/udf-python-advanced.md
+      - Ecological Tools:
+        - BI Connection:
+          - FineBI Connection: OmniFabric/Develop/Ecological-Tools/BI-Connection/FineBI-connection.md
+          - Superset Connection: OmniFabric/Develop/Ecological-Tools/BI-Connection/Superset-connection.md
+          - Yonghong Connection: OmniFabric/Develop/Ecological-Tools/BI-Connection/yonghong-connection.md
+        - Computing Engine:
+          - Flink:
+            - Flink Kafka OmniFabric: OmniFabric/Develop/Ecological-Tools/Computing-Engine/Flink/flink-kafka-OmniFabric.md
+            - Flink Mongo OmniFabric: OmniFabric/Develop/Ecological-Tools/Computing-Engine/Flink/flink-mongo-OmniFabric.md
+            - Flink MySQL OmniFabric: OmniFabric/Develop/Ecological-Tools/Computing-Engine/Flink/flink-mysql-OmniFabric.md
+            - Flink Oracle OmniFabric: OmniFabric/Develop/Ecological-Tools/Computing-Engine/Flink/flink-oracle-OmniFabric.md
+            - Flink PostgreSQL OmniFabric: OmniFabric/Develop/Ecological-Tools/Computing-Engine/Flink/flink-postgresql-OmniFabric.md
+            - Flink SQL Server OmniFabric: OmniFabric/Develop/Ecological-Tools/Computing-Engine/Flink/flink-sqlserver-OmniFabric.md
+            - Flink TiDB OmniFabric: OmniFabric/Develop/Ecological-Tools/Computing-Engine/Flink/flink-tidb-OmniFabric.md
+            - Flink OmniFabric Sink: OmniFabric/Develop/Ecological-Tools/Computing-Engine/Flink/flink-OmniFabric-sink.md
+            - Flink OmniFabric Source: OmniFabric/Develop/Ecological-Tools/Computing-Engine/Flink/flink-OmniFabric-source.md
+          - Spark:
+            - Spark Doris OmniFabric: OmniFabric/Develop/Ecological-Tools/Computing-Engine/Spark/spark-doris-OmniFabric.md
+            - Spark Hive OmniFabric: OmniFabric/Develop/Ecological-Tools/Computing-Engine/Spark/spark-hive-OmniFabric.md
+            - Spark MySQL OmniFabric: OmniFabric/Develop/Ecological-Tools/Computing-Engine/Spark/spark-mysql-OmniFabric.md
+            - Spark OmniFabric: OmniFabric/Develop/Ecological-Tools/Computing-Engine/Spark/spark-OmniFabric.md
+        - ETL:
+          - DataX:
+            - DataX ClickHouse OmniFabric: OmniFabric/Develop/Ecological-Tools/Etl/DataX/datax-clickhouse-OmniFabric.md
+            - DataX Doris OmniFabric: OmniFabric/Develop/Ecological-Tools/Etl/DataX/datax-doris-OmniFabric.md
+            - DataX Elasticsearch OmniFabric: OmniFabric/Develop/Ecological-Tools/Etl/DataX/datax-elasticsearch-OmniFabric.md
+            - DataX Hive OmniFabric: OmniFabric/Develop/Ecological-Tools/Etl/DataX/datax-hive-OmniFabric.md
+            - DataX MySQL OmniFabric: OmniFabric/Develop/Ecological-Tools/Etl/DataX/datax-mysql-OmniFabric.md
+            - DataX Oracle OmniFabric: OmniFabric/Develop/Ecological-Tools/Etl/DataX/datax-oracle-OmniFabric.md
+            - DataX PostgreSQL OmniFabric: OmniFabric/Develop/Ecological-Tools/Etl/DataX/datax-postgresql-OmniFabric.md
+            - DataX SQL Server OmniFabric: OmniFabric/Develop/Ecological-Tools/Etl/DataX/datax-sqlserver-OmniFabric.md
+            - DataX TiDB OmniFabric: OmniFabric/Develop/Ecological-Tools/Etl/DataX/datax-tidb-OmniFabric.md
+            - DataX OmniFabric: OmniFabric/Develop/Ecological-Tools/Etl/DataX/datax-OmniFabric.md
+          - Seatunnel:
+            - Seatunnel Overview: OmniFabric/Develop/Ecological-Tools/Etl/Seatunnel/seatunnel-overview.md
+            - Seatunnel MySQL OmniFabric: OmniFabric/Develop/Ecological-Tools/Etl/Seatunnel/seatunnel-mysql-OmniFabric.md
+            - Seatunnel Oracle OmniFabric: OmniFabric/Develop/Ecological-Tools/Etl/Seatunnel/seatunnel-oracle-OmniFabric.md
+        - Scheduling Tools:
+          - DolphinScheduler: OmniFabric/Develop/Ecological-Tools/Scheduling-Tools/dolphinScheduler.md
     - Migrate:
       - Overview: OmniFabric/Migrate/migrate-overview.md
       - Migrate from MySQL: OmniFabric/Migrate/migrate-from-mysql-to-omnifabric.md
