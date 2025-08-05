@@ -67,7 +67,7 @@ In this tutorial, we will walk you through the process of loading a **.csv** fil
     This code example does not show account information such as access_key_id and secret_access_key because of account privacy.
     You can read this document to understand the main steps; specific data and account information will not be shown.
 
-1. Download the [data file](https://github.com/matrixorigin/OmniFabric/blob/main/test/distributed/resources/load_data/char_varchar_1.csv). Enter into **AWS S3 > buckets**, create a bucket **test-loading** with a public access and upload the file *char_varchar_1.csv*.
+1. Download the [data file](https://github.com/matrixorigin/matrixone/blob/main/test/distributed/resources/load_data/char_varchar_1.csv). Enter into **AWS S3 > buckets**, create a bucket **test-loading** with a public access and upload the file *char_varchar_1.csv*.
 
     <img src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/load_S3/create_bucket.png?raw=true"  style="zoom: 60%;" />
 
@@ -180,7 +180,7 @@ This tutorial will walk you through the whole process of creating an external ta
     This code example does not show account information such as access_key_id and secret_access_key because of account privacy.
     You can read this document to understand the main steps; specific data and account information will not be shown.
 
-1. Download the [data file](https://github.com/matrixorigin/OmniFabric/blob/main/test/distributed/resources/load_data/char_varchar_1.csv). Enter into **AWS S3 > buckets**, create a bucket **test-loading** with a public access and upload the file *char_varchar_1.csv*.
+1. Download the [data file](https://github.com/matrixorigin/matrixone/blob/main/test/distributed/resources/load_data/char_varchar_1.csv). Enter into **AWS S3 > buckets**, create a bucket **test-loading** with a public access and upload the file *char_varchar_1.csv*.
 
     <img src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/load_S3/create_bucket.png?raw=true"  style="zoom: 60%;" />
 

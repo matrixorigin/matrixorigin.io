@@ -15,7 +15,7 @@ OmniFabric
 ## Install mo_ssb_open
 
 ```bash
-wget https://github.com/OmniFabric/mo_ssb_open/archive/refs/tags/v1.0.1.zip unzip v1.0.1.zip
+wget https://github.com/matrixorigin/mo_ssb_open/archive/refs/tags/v1.0.1.zip unzip v1.0.1.zip
 ```
 
 ## Generate Data Set

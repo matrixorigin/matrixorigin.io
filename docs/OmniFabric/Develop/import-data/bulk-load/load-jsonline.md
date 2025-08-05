@@ -134,8 +134,8 @@ In this tutorial, we will guide you through loading two jsonline files with obje
 
 1. Prepare the data files. You can also download and use the *.jl* file we prepared. The data directory needs to be with in the same machine as OmniFabric server. The following steps are illustrated with sample data.
 
-    - Example data file 1:*[jsonline_object.jl](https://github.com/matrixorigin/OmniFabric/blob/main/test/distributed/resources/load_data/jsonline_object.jl)*
-    - Example data file  2:*[jsonline_array.jl](https://github.com/matrixorigin/OmniFabric/blob/main/test/distributed/resources/load_data/jsonline_array.jl)*
+    - Example data file 1:*[jsonline_object.jl](https://github.com/matrixorigin/matrixone/blob/main/test/distributed/resources/load_data/jsonline_object.jl)*
+- Example data file  2:*[jsonline_array.jl](https://github.com/matrixorigin/matrixone/blob/main/test/distributed/resources/load_data/jsonline_array.jl)*
 
 2. Open your terminal, enter into the directory where the *.jl* file resides, and run the following command line to display the contents of the file:
 

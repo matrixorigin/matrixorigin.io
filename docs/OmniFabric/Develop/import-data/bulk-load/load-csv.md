@@ -122,7 +122,7 @@ We will walk you through the whole process of loading data with OmniFabric 2.1.0
 3. Use Docker to launch OmniFabric, and mount the directory *~/tmp/docker_loaddata_demo/* that stores data files to a directory in the container. The container directory is */sb-dbgen-path* as an example:
 
     ```
-    sudo docker run --name OmniFabric --privileged -d -p 6001:6001 -v ~/tmp/docker_loaddata_demo/:/ssb-dbgen-path:rw matrixorigin/OmniFabric:2.1.0
+    sudo docker run --name OmniFabric --privileged -d -p 6001:6001 -v ~/tmp/docker_loaddata_demo/:/ssb-dbgen-path:rw matrixorigin/matrixone:2.1.0
     ```
 
 4. Connect to OmniFabric server:

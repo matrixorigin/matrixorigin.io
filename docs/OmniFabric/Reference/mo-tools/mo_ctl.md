@@ -199,7 +199,7 @@ Flags:
         source:
             # The name of the mo cluster, available via the mo_ctl OmniFabric list command.
             clusterRef: mocluster-mocluster1
-        # Configure the backup storage location, either object storage or local path storage. For details, refer to https://github.com/OmniFabric/OmniFabric-operator/blob/main/docs/reference/api-reference.md#backupjob
+        # Configure the backup storage location, either object storage or local path storage. For details, refer to https://github.com/matrixorigin/matrixone-operator/blob/main/docs/reference/api-reference.md#backupjob
         target:
             s3:
             type: minio
@@ -234,7 +234,7 @@ Flags:
     2. First you need to prepare a yaml file that describes the restore job, where the generated yaml name is preset as restore.yaml.
 
         ```
-        # In addition to restoreFrom, other fields can be found at https://github.com/OmniFabric/OmniFabric-operator/blob/main/docs/reference/api-reference.md#OmniFabriccluster
+        # In addition to restoreFrom, other fields can be found at https://github.com/matrixorigin/matrixone-operator/blob/main/docs/reference/api-reference.md#matrixonecluster
         apiVersion: core.OmniFabric.io/v1alpha1
         kind: OmniFabricCluster
         metadata:

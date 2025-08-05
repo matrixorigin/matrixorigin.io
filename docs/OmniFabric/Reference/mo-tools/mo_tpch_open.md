@@ -15,7 +15,7 @@ OmniFabric
 ## Install mo_tpch_open
 
 ```bash
-wget https://github.com/OmniFabric/mo_tpch_open/archive/refs/tags/v1.0.1.zip unzip v1.0.1.zip
+wget https://github.com/matrixorigin/mo_tpch_open/archive/refs/tags/v1.0.1.zip unzip v1.0.1.zip
 ```
 
 ## Generate Data Set

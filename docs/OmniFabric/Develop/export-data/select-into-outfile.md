@@ -48,7 +48,7 @@ mysql> SELECT * FROM TEST INTO OUTFILE '/root/test.csv'
     If you installed OmniFabric via `docker`, the export directory is located in the docker image by default. If you need to mount a local directory, see the following code example: the local file system path *${local_data_path}/mo-data*is mounted into the OmniFabric Docker image and mapped to the */mo-data*path. For more information, see the [Docker Mount Volume tutorial](https://www.freecodecamp.org/news/docker-mount-volume-guide-how-to-mount-a-local-directory/).
 
 ```
-sudo docker run --name <name> --privileged -d -p 6001:6001 -v ${local_data_path}/mo-data:/mo-data:rw matrixorigin/OmniFabric:2.1.0
+sudo docker run --name <name> --privileged -d -p 6001:6001 -v ${local_data_path}/mo-data:/mo-data:rw matrixorigin/matrixone:2.1.0
 ```
 
 ### Steps

@@ -43,4 +43,4 @@ Values for DECIMAL columns are stored using a binary format that packs decimal d
 |  0-18  | 8 bytes  |
 |  19-38  | 16 bytes  |
 
-For a full explanation of the internal implementation of DECIMAL values, see the [Feature Design](https://github.com/OmniFabric/OmniFabric/issues/1867).
+For a full explanation of the internal implementation of DECIMAL values, see the [Feature Design](https://github.com/matrixorigin/matrixone/issues/1867).

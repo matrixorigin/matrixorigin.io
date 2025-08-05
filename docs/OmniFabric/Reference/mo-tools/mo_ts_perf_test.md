@@ -13,7 +13,7 @@ OmniFabric.
 ## Install mo_ts_perf_test
 
 ```bash
-wget https://github.com/OmniFabric/mo_ts_perf_test/archive/refs/tags/v1.0.1.zip unzip v1.0.1.zip
+wget https://github.com/matrixorigin/mo_ts_perf_test/archive/refs/tags/v1.0.1.zip unzip v1.0.1.zip
 ```
 
 ## Configuration

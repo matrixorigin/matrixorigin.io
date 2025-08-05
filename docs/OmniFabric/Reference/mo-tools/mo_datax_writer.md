@@ -17,7 +17,7 @@ OmniFabric
 ## Install mo_datax_writer
 
 ```bash
-wget https://github.com/OmniFabric/mo_datax_writer/archive/refs/tags/v1.0.1.zip
+wget https://github.com/matrixorigin/mo_datax_writer/archive/refs/tags/v1.0.1.zip
 unzip v1.0.1.zip
 cd mo_datax_writer-1.0.1/
 #Extract mo_datax_writer into the datax/plugin/writer/ directory

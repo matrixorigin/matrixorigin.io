@@ -226,7 +226,7 @@ In some scenarios, we would expect the python function to receive multiple tuple
 
 ## Machine Learning Case: Credit Card Fraud Detection
 
-This section describes the use of python UDF in the machine learning inference pipeline, using Credit Card Fraud Detection as an example. (The code is detailed in [github-demo](https://github.com/matrixorigin/OmniFabric/tree/main/pkg/udf/pythonservice/demo) and includes the following files to be downloaded and written)
+This section describes the use of python UDF in the machine learning inference pipeline, using Credit Card Fraud Detection as an example. (The code is detailed in [github-demo](https://github.com/matrixorigin/matrixone/tree/main/pkg/udf/pythonservice/demo) and includes the following files to be downloaded and written)
 
 ### Environment Configuration
 
@@ -251,7 +251,7 @@ The data set contains transactions made by European cardholders using credit car
 
 Let's take the data according to 8: 1: The scale of 1 is divided into a training set, a validation set, and a test set. Since the training process is not the focus of this article, it is not covered too much here.
 
-We store the test set as new data emerging from the production process in the MO. [Click here to](https://github.com/matrixorigin/OmniFabric/blob/main/pkg/udf/pythonservice/demo/ddl.sql) get the `ddl.sql` file, import the data table with the following statement and some of the test data:
+We store the test set as new data emerging from the production process in the MO. [Click here to](https://github.com/matrixorigin/matrixone/blob/main/pkg/udf/pythonservice/demo/ddl.sql) get the `ddl.sql` file, import the data table with the following statement and some of the test data:
 
 ```sql
 source /your_download_path/ddl.sql
@@ -292,7 +292,7 @@ source /your_download_path/ddl.sql
     from .detection import detect
     ```
 
-3. [Click to download](https://github.com/matrixorigin/OmniFabric/blob/main/pkg/udf/pythonservice/demo/credit/model_with_scaler) the trained model `model_with_scaler`
+3. [Click to download](https://github.com/matrixorigin/matrixone/blob/main/pkg/udf/pythonservice/demo/credit/model_with_scaler) the trained model `model_with_scaler`
 
 4. Write `setup.py`:
 

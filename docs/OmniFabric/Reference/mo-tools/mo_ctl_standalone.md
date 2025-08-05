@@ -58,7 +58,7 @@ Depending on whether you have Internet access, you can choose to install the `mo
 wget https://raw.githubusercontent.com/OmniFabric/mo_ctl_standalone/main/install.sh && sudo bash +x ./install.sh
 
 # Alternate address
-wget https://ghproxy.com/https://github.com/OmniFabric/mo_ctl_standalone/blob/main/install.sh && sudo bash +x install.sh
+wget https://ghproxy.com/https://github.com/matrixorigin/mo_ctl_standalone/blob/main/install.sh && sudo bash +x install.sh
 ```
 
 For users running this command in a macOS environment, if you are a non-root user, run `install.sh` with the following statement:
@@ -72,10 +72,10 @@ sudo -u $(whoami) bash +x ./install.sh
 ```
 # 1. Download the installation script to your local computer before uploading it to the installation machine
 wget https://raw.githubusercontent.com/OmniFabric/mo_ctl_standalone/main/install.sh
-wget https://github.com/OmniFabric/mo_ctl_standalone/archive/refs/heads/main.zip -O mo_ctl.zip
+wget https://github.com/matrixorigin/mo_ctl_standalone/archive/refs/heads/main.zip -O mo_ctl.zip
 
 # If the original github address downloads too slowly, you can try downloading from the following mirror address:
-wget https://mirror.ghproxy.com/https://github.com/OmniFabric/mo_ctl_standalone/blob/main/install.sh
+wget https://mirror.ghproxy.com/https://github.com/matrixorigin/mo_ctl_standalone/blob/main/install.sh
 wget https://githubfast.com/OmniFabric/mo_ctl_standalone/archive/refs/heads/main.zip -O mo_ctl.zip
 
 # 2. Install from offline package
@@ -301,7 +301,7 @@ Using `mo_ctl get_conf` will print a list of all parameters used by the current 
 | CHECK_LIST             | precheck Required check dependencies     | The default is ("go" "gcc" "git" "mysql"). |
 | GCC_VERSION            | The version of gcc that precheck checks    |default 8.5.0   |
 | GO_VERSION             | The go version of the precheck check    |default 1.22.3  |
-| MO_GIT_URL             | OmniFabric source code pulling address   | default <https://github.com/OmniFabric/OmniFabric.git> |
+| MO_GIT_URL             | OmniFabric source code pulling address   | default <https://github.com/matrixorigin/matrixone.git> |
 | MO_DEFAULT_VERSION     | The version of OmniFabric that is pulled by default | default 2.1.0    |
 | GOPROXY                | GOPROXY address, generally used for domestic accelerated pull golang dependencies | default <https://goproxy.cn>,direct  |
 | STOP_INTERVAL          | Stop interval, wait time to detect service status after stopping service | default 5 seconds |

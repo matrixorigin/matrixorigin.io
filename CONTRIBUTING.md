@@ -1,6 +1,6 @@
 ## Document Preview
 
-The writing and rendering of the documentation is maintained by 2 repositories, see [here](https://github.com/OmniFabric/OmniFabric/tree/main/docs) for the markdown documentation.
+The writing and rendering of the documentation is maintained by 2 repositories, see [here](https://github.com/matrixorigin/matrixone/tree/main/docs) for the markdown documentation.
 The current repository is used to render markdown documents to HTML.
 
 > Based on the python library [mkdocs](https://www.mkdocs.org/getting-started/), with the theme [mkdocs-material](https://github.com/squidfunk/mkdocs-material).
