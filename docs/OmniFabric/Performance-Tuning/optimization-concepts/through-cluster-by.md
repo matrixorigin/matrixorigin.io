@@ -15,6 +15,7 @@ The following are some considerations when using `Cluster by`:
 The syntax for using `Cluster by` is as follows:
 
 - Single column syntax: `create table() cluster by col;`
+
 - Multi-column syntax: `create table() cluster by (col1, col2);`
 
 ## How to use `Cluster by` for performance tuning?
@@ -34,12 +35,15 @@ The steps for using `Cluster by` for performance tuning are as follows:
     ```sql
     create table t1(a int, b int, c varchar(10)) cluster by(a,b,c);
     desc t1;
+
     +-------+-------------+------+------+---------+-------+---------+
     | Field | Type        | Null | Key  | Default | Extra | Comment |
+
     +-------+-------------+------+------+---------+-------+---------+
     | a     | INT(32)     | YES  |      | NULL    |       |         |
     | b     | INT(32)     | YES  |      | NULL    |       |         |
     | c     | VARCHAR(10) | YES  |      | NULL    |       |         |
+
     +-------+-------------+------+------+---------+-------+---------+
     3 rows in set (0.02 sec)
     ```

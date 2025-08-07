@@ -16,11 +16,13 @@ The `DENSE_RANK()` function handles ties (i.e., two or more rows with the same v
 ```
 
 - The `PARTITION BY` clause is optional and divides the dataset into partitions; the rank is computed individually inside each partition.
+
 - The `ORDER BY` clause defines how the dataset is sorted, i.e., according to which column or columns to sort. You can specify ascending (ASC) or descending (DESC) sorting.
 
 ## **Examples**
 
 ```sql
+
 -- Create a new table, 'SalesTable' with three fields: 'Department', 'Employee', and 'Sales'
 CREATE TABLE SalesTable (
   Department VARCHAR(50),
@@ -38,15 +40,19 @@ INSERT INTO SalesTable (Department, Employee, Sales) VALUES
 ('HR', 'Charlie', 850);
 
 -- Query the 'SalesTable' table and return the employee's name, their sales, and their sales rank (using the 'DENSE_RANK()' function)
+
 -- In this query, the 'DENSE_RANK()' function ranks all employees in descending order of sales (specified by 'ORDER BY Sales DESC')
+
 -- If multiple employees have the same sales, they will get the same rank, and the rank of the next sales will not be skipped. So, if two employees are number one in sales, the next employee is number two, not number three.
 mysql> SELECT
   Employee,
   Sales,
   DENSE_RANK() OVER(ORDER BY Sales DESC) FROM
   SalesTable;
+
 +----------+-------+-----------------------------------------+
 | employee | sales | dense_rank() over (order by sales desc) |
+
 +----------+-------+-----------------------------------------+
 | Jane     |  1200 |                                       1 |
 | Bob      |  1100 |                                       2 |
@@ -54,6 +60,7 @@ mysql> SELECT
 | Alex     |   900 |                                       4 |
 | Charlie  |   850 |                                       5 |
 | Alice    |   800 |                                       6 |
+
 +----------+-------+-----------------------------------------+
 6 rows in set (0.01 sec)
 ```

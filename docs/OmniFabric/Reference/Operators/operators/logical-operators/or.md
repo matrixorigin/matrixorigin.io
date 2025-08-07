@@ -14,42 +14,57 @@ Logical `OR,||`. When both operands are non-NULL, the result is `true` if any op
 
 ```sql
 mysql> select 1 or 1;
+
 +--------+
 | 1 or 1 |
+
 +--------+
 | true   |
+
 +--------+
 1 row in set (0.01 sec)
 
 mysql> select 1 or 0;
+
 +--------+
 | 1 or 0 |
+
 +--------+
 | true   |
+
 +--------+
 1 row in set (0.00 sec)
 
 mysql> select 0 or 0;
+
 +--------+
 | 0 or 0 |
+
 +--------+
 | false  |
+
 +--------+
 1 row in set (0.01 sec)
 
 mysql> select 0 or null;
+
 +-----------+
 | 0 or null |
+
 +-----------+
 | NULL      |
+
 +-----------+
 1 row in set (0.00 sec)
 
 mysql> select 1 or null;
+
 +-----------+
 | 1 or null |
+
 +-----------+
 | true      |
+
 +-----------+
 1 row in set (0.00 sec)
 ```
@@ -59,14 +74,17 @@ create table t1 (a boolean,b bool);
 insert into t1 values (0,1),(true,false),(true,1),(0,false),(NULL,NULL);
 
 mysql> select a or b from t1;
+
 +--------+
 | a or b |
+
 +--------+
 | true   |
 | true   |
 | true   |
 | false  |
 | NULL   |
+
 +--------+
 5 rows in set (0.00 sec)
 ```

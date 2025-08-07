@@ -26,20 +26,25 @@ The STDDEV_POP(expr) function returns the population standard deviation of expr.
 > SELECT STDDEV_POP(RunScored) as Pop_Standard_Deviation FROM t1;
 > SELECT  STDDEV_POP(WicketsTaken) as Pop_Std_Dev_Wickets FROM t1;
 
-
 > SELECT STDDEV_POP(RunScored) as Pop_Standard_Deviation FROM t1;
+
 +------------------------+
 | Pop_Standard_Deviation |
+
 +------------------------+
 |                16.8762 |
+
 +------------------------+
 1 row in set (0.02 sec)
 
 > SELECT  STDDEV_POP(WicketsTaken) as Pop_Std_Dev_Wickets FROM t1;
+
 +---------------------+
 | Pop_Std_Dev_Wickets |
+
 +---------------------+
 |              0.9574 |
+
 +---------------------+
 1 row in set (0.01 sec)
 

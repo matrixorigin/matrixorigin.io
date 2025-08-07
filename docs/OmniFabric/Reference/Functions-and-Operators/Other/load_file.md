@@ -35,41 +35,52 @@ insert into t1 values (1, 'file:///Users/admin/case/t1.csv');
 insert into t1 values (2, 'stage://stage1//t1.csv');
 
 mysql> select * from t1;
+
 +------+---------------------------------+
 | col1 | col2                            |
+
 +------+---------------------------------+
 |    1 | file:///Users/admin/case/t1.csv |
 |    2 | stage://stage1//t1.csv          |
+
 +------+---------------------------------+
 2 rows in set (0.00 sec)
 
 mysql> select col1, load_file(col2) from t1;
+
 +------+-------------------------+
 | col1 | load_file(col2)         |
+
 +------+-------------------------+
 |    1 | this is a test message
  |
 |    2 | this is a test message
  |
+
 +------+-------------------------+
 2 rows in set (0.01 sec)
 
-
 mysql> select load_file(cast('file:///Users/admin/case/t1.csv' as datalink));
+
 +--------------------------------------------------------------+
 | load_file(cast(file:///Users/admin/case/t1.csv as datalink)) |
+
 +--------------------------------------------------------------+
 | this is a test message
                                       |
+
 +--------------------------------------------------------------+
 1 row in set (0.00 sec)
 
 mysql> select load_file(cast('stage://stage1//t1.csv' as datalink));
+
 +-----------------------------------------------------+
 | load_file(cast(stage://stage1//t1.csv as datalink)) |
+
 +-----------------------------------------------------+
 | this is a test message
                              |
+
 +-----------------------------------------------------+
 1 row in set (0.00 sec)
 ```

@@ -63,13 +63,20 @@ Calculates the number of deduplications for user\_id in case of user behavior an
 
 ```sql
 mysql> SELECT
+
     ->     behavior,
+
     ->     occur_year,
+
     ->     SUM(BITMAP_COUNT(bitmap))
+
     ->     FROM precompute
+
     ->     GROUP BY  behavior,occur_year;
+
 +----------+------------+---------------------------+
 | behavior | occur_year | sum(bitmap_count(bitmap)) |
+
 +----------+------------+---------------------------+
 | browser  | 2022       |                    939995 |
 | browser  | 2023       |                   1003173 |
@@ -77,12 +84,15 @@ mysql> SELECT
 | purchase | 2023       |                    660605 |
 | returns  | 2023       |                      4910 |
 | returns  | 2022       |                      4350 |
+
 +----------+------------+---------------------------+
 6 rows in set (0.01 sec)
 
 mysql> select behavior,occur_year,count(distinct user_id) from user_behavior_table group by behavior,occur_year;
+
 +----------+------------+---------------------------+
 | behavior | occur_year | sum(bitmap_count(bitmap)) |
+
 +----------+------------+---------------------------+
 | browser  | 2022       |                    939995 |
 | browser  | 2023       |                   1003173 |
@@ -90,6 +100,7 @@ mysql> select behavior,occur_year,count(distinct user_id) from user_behavior_tab
 | purchase | 2023       |                    660605 |
 | returns  | 2023       |                      4910 |
 | returns  | 2022       |                      4350 |
+
 +----------+------------+---------------------------+
 6 rows in set (3.26 sec)
 ```
@@ -98,29 +109,42 @@ Calculate the number of users viewing, purchasing, and returning items from 2022
 
 ```sql
 mysql> SELECT behavior, SUM(cnt) FROM (
+
     -> SELECT
+
     -> behavior,
+
     -> BITMAP_COUNT(BITMAP_OR_AGG(bitmap)) cnt
+
     -> FROM precompute
+
     -> GROUP BY behavior,bucket
+
     -> )
+
     -> GROUP BY behavior;
+
 +----------+----------+
 | behavior | sum(cnt) |
+
 +----------+----------+
 | browser  |  1003459 |
 | purchase |   780308 |
 | returns  |     9260 |
+
 +----------+----------+
 3 rows in set (0.01 sec)
 
 mysql> select behavior,count(distinct user_id) from user_behavior_table group by behavior;
+
 +----------+-------------------------+
 | behavior | count(distinct user_id) |
+
 +----------+-------------------------+
 | browser  |                 1003459 |
 | purchase |                  780308 |
 | returns  |                    9260 |
+
 +----------+-------------------------+
 3 rows in set (1.44 sec)
 ```
@@ -130,4 +154,5 @@ It is obviously more efficient to use `BITMAP` when comparing the return times o
 ## Reference Documents
 
 - [BITMAP](../../Reference/Functions-and-Operators/Aggregate-Functions/bitmap.md)
+
 - [COUNT](../../Reference/Functions-and-Operators/Aggregate-Functions/count.md)

@@ -28,7 +28,9 @@ You need to add a working node to the cluster, and the overall hardware configur
 Scaling of services refers to expanding or contracting the core component services within the OmniFabric cluster, such as Log Service, TN, and CN. Based on the architectural characteristics of OmniFabric, the following conditions apply to these service nodes:
 
 - Log Service has only 3 nodes.
+
 - TN has only 1 node.
+
 - The number of CN nodes is flexible.
 
 Therefore, scaling of Log Service and TN nodes is possible only through vertical scaling. However, CN nodes can be scaled both vertically and horizontally.
@@ -193,7 +195,9 @@ By default, Matrixone-operator does not configure topology rules for each compon
           mo-role: mo-cn
         # Set the uniform distribution within the scheduling range
         topologySpread:
+
           - topology.kubernetes.io/zone
+
           - kubernetes.io/hostname
     #Other content omitted
     ```

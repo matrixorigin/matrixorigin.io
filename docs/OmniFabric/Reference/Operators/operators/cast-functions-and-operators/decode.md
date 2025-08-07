@@ -21,10 +21,13 @@ The `DECODE()` function is used to decrypt data encoded by [`ENCODE()`](./encode
 
 ```SQL
 mysql> SELECT DECODE(ENCODE('hello', 'mysecretkey'), 'mysecretkey');
+
 +-------------------------------------------------+
 | DECODE(ENCODE(hello, mysecretkey), mysecretkey) |
+
 +-------------------------------------------------+
 | hello                                           |
+
 +-------------------------------------------------+
 1 row in set (0.00 sec)
 
@@ -38,10 +41,13 @@ INSERT INTO users (username, encrypted_password)
 VALUES ('john', ENCODE('password123', 'mysecretkey'));
 
 mysql> SELECT username, DECODE(encrypted_password, 'mysecretkey') AS decrypted_password FROM users WHERE username = 'john';
+
 +----------+--------------------+
 | username | decrypted_password |
+
 +----------+--------------------+
 | john     | password123        |
+
 +----------+--------------------+
 1 row in set (0.00 sec)
 ```

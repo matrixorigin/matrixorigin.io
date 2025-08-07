@@ -35,18 +35,24 @@ If all arguments to `FIELD()` are strings, all arguments are compared as strings
 
 ```sql
 mysql> SELECT FIELD('Bb', 'Aa', 'Bb', 'Cc', 'Dd', 'Ff');
+
 +-------------------------------+
 | field(Bb, Aa, Bb, Cc, Dd, Ff) |
+
 +-------------------------------+
 |                             2 |
+
 +-------------------------------+
 1 row in set (0.00 sec)
 
 mysql> SELECT FIELD('Gg', 'Aa', 'Bb', 'Cc', 'Dd', 'Ff');
+
 +-------------------------------+
 | field(Gg, Aa, Bb, Cc, Dd, Ff) |
+
 +-------------------------------+
 |                             0 |
+
 +-------------------------------+
 1 row in set (0.00 sec)
 ```
@@ -63,46 +69,58 @@ create table t(
 insert into t() values (1, 1.1, 2.2), (2, 3.3, 4.4), (0, 0, 0), (0, null, 0);
 
 mysql> select * from t;
+
 +------+------+------+
 | i    | f    | d    |
+
 +------+------+------+
 |    1 |  1.1 |  2.2 |
 |    2 |  3.3 |  4.4 |
 |    0 |    0 |    0 |
 |    0 | NULL |    0 |
+
 +------+------+------+
 4 rows in set (0.01 sec)
 
 mysql> select field(1, i, f, d) from t;
+
 +-------------------+
 | field(1, i, f, d) |
+
 +-------------------+
 |                 1 |
 |                 0 |
 |                 0 |
 |                 0 |
+
 +-------------------+
 4 rows in set (0.01 sec)
 
 mysql> select field(i, f, d, 0, 1, 2) from t;
+
 +-------------------------+
 | field(i, f, d, 0, 1, 2) |
+
 +-------------------------+
 |                       4 |
 |                       5 |
 |                       1 |
 |                       2 |
+
 +-------------------------+
 4 rows in set (0.01 sec)
 
 mysql> select field('1', f, d, 0, 1, 2) from t;
+
 +-------------------------+
 | field(1, f, d, 0, 1, 2) |
+
 +-------------------------+
 |                       4 |
 |                       4 |
 |                       4 |
 |                       4 |
+
 +-------------------------+
 4 rows in set (0.01 sec)
 ```

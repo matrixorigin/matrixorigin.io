@@ -20,18 +20,24 @@
 
 ```sql
 mysql> select ucase('hello');
+
 +--------------+
 | ucase(hello) |
+
 +--------------+
 | HELLO        |
+
 +--------------+
 1 row in set (0.03 sec)
 
 mysql> select ucase('a'),ucase('b'),ucase('c');
+
 +----------+----------+----------+
 | ucase(a) | ucase(b) | ucase(c) |
+
 +----------+----------+----------+
 | A        | B        | C        |
+
 +----------+----------+----------+
 1 row in set (0.03 sec)
 ```

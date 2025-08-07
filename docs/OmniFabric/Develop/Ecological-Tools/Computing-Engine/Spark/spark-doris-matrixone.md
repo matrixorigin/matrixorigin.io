@@ -7,9 +7,13 @@ In this chapter, we will cover the implementation of Doris bulk data writing to 
 This practice requires the installation and deployment of the following software environments:
 
 - Finished [installing and starting OmniFabric](../../../../Get-Started/install-standalone-matrixone.md).
+
 - Download and install [Doris](https://doris.apache.org/zh-CN/docs/dev/get-starting/quick-start/).
+
 - Download and install [IntelliJ IDEA version 2022.2.1 and above](https://www.jetbrains.com/idea/download/).
+
 - Download and install [JDK 8+](https://www.oracle.com/sg/java/technologies/javase/javase8-archive-downloads.html).
+
 - Download and install [MySQL Client 8.0.33](https://downloads.mysql.com/archives/get/p/23/file/mysql-server_8.0.33-1ubuntu23.04_amd64.deb-bundle.tar).
 
 ## Operational steps
@@ -121,7 +125,6 @@ Start IDEA and create a new Maven project, add the project dependencies, and the
             <artifactId>jackson-mapper-asl</artifactId>
             <version>1.9.13</version>
         </dependency>
-
 
         <dependency>
             <groupId>mysql</groupId>
@@ -236,8 +239,10 @@ Start IDEA and create a new Maven project, add the project dependencies, and the
 
     ```sql
     mysql> select * from sparkdemo.example_tbl;
+
     +---------+------------+--------+------+------+
     | user_id | date       | city   | age  | sex  |
+
     +---------+------------+--------+------+------+
     |   10000 | 2017-10-01 | 北京   |   20 |    0 |
     |   10000 | 2017-10-01 | 北京   |   20 |    0 |
@@ -246,6 +251,7 @@ Start IDEA and create a new Maven project, add the project dependencies, and the
     |   10003 | 2017-10-02 | 广州   |   32 |    0 |
     |   10004 | 2017-10-01 | 深圳   |   35 |    0 |
     |   10004 | 2017-10-03 | 深圳   |   35 |    0 |
+
     +---------+------------+--------+------+------+
     7 rows in set (0.01 sec)
     ```

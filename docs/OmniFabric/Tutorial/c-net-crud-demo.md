@@ -118,11 +118,14 @@ Use the Mysql client connection OmniFabric to query the Student table:
 
 ```sql
 mysql> select * from student;
+
 +------+-----------+------+---------+
 | id   | name      | age  | remark  |
+
 +------+-----------+------+---------+
 |    3 | Zhao Wu   |   30 | NULL    |
 |    1 | Zhang San |   22 | Updated |
+
 +------+--------+------+------------+
 2 rows in set (0.00 sec)
 ```

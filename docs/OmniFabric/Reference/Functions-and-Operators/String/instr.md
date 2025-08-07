@@ -35,10 +35,13 @@ The above query will return 0 because, in binary format, 'A' and 'a' are conside
 
 ```sql
 mysql> SELECT INSTR('foobarbar', 'bar');
+
 +-----------------------+
 | instr(foobarbar, bar) |
+
 +-----------------------+
 |                     4 |
+
 +-----------------------+
 1 row in set (0.01 sec)
 ```
@@ -46,12 +49,16 @@ mysql> SELECT INSTR('foobarbar', 'bar');
 - Example 2
 
 ```sql
+
 -- Using the INSTR function to find the first occurrence of 'o' in the string 'Hello World' will return 5, as 'o' first appears at the 5th position in 'Hello World'.
 mysql> SELECT INSTR('Hello World', 'o');
+
 +-----------------------+
 | instr(Hello World, o) |
+
 +-----------------------+
 |                     5 |
+
 +-----------------------+
 1 row in set (0.01 sec)
 ```
@@ -59,6 +66,7 @@ mysql> SELECT INSTR('Hello World', 'o');
 - Example 3
 
 ```sql
+
 -- Create a table named t1, which contains two VARCHAR type columns a and b
 CREATE TABLE t1(a VARCHAR, b VARCHAR);
 
@@ -67,24 +75,31 @@ INSERT INTO t1 VALUES('axa','x'),('abababa','qq'),('qwer','er');
 
 -- Select each row from table t1, then use the INSTR function to find the position at which the string in column b first appears in column a
 mysql> select instr(a,b) from t1;
+
 +-------------+
 | instr(a, b) |
+
 +-------------+
 |           2 |
 |           0 |
 |           3 |
+
 +-------------+
 3 rows in set (0.01 sec)
 
 -- Select each row from table t1, then use the INSTR function to find the position at which NULL first appears in column a
+
 -- Since NULL is an unknown value, this query will return NULL
 mysql> select instr(a,null) from t1;
+
 +----------------+
 | instr(a, null) |
+
 +----------------+
 |           NULL |
 |           NULL |
 |           NULL |
+
 +----------------+
 3 rows in set (0.00 sec)
 ```

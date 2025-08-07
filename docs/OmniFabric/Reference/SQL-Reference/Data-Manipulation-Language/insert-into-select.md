@@ -28,13 +28,16 @@ insert into t2 values(2, 'apptwo', 'CN');
 INSERT INTO t1 (name) SELECT appname FROM t2;
 
 mysql> select * from t1;
+
 +------+--------+
 | id   | name   |
+
 +------+--------+
 |    1 | a      |
 |    2 | b      |
 |    3 | c      |
 | NULL | appone |
 | NULL | apptwo |
+
 +------+--------+
 ```

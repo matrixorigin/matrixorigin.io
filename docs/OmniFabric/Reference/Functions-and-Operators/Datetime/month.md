@@ -22,10 +22,13 @@ Returns the month for date, in the range 1 to 12 for January to December, or 0 f
 
 ```sql
 mysql> SELECT MONTH('2008-02-03');
+
 +-------------------+
 | month(2008-02-03) |
+
 +-------------------+
 |                 2 |
+
 +-------------------+
 1 row in set (0.02 sec)
 ```
@@ -53,8 +56,10 @@ insert into t1 values (13,"2013-12-01", "2013-12-01 22:59:59", "2013-12-01", "20
 insert into t1 values (14,null, null, null, null);
 
 mysql> select month(d),month(dt) from t1;
+
 +----------+-----------+
 | month(d) | month(dt) |
+
 +----------+-----------+
 |        1 |         1 |
 |        1 |         1 |
@@ -72,12 +77,15 @@ mysql> select month(d),month(dt) from t1;
 |       11 |        11 |
 |       12 |        12 |
 |     NULL |      NULL |
+
 +----------+-----------+
 16 rows in set (0.01 sec)
 
 mysql> select month(c),month(vc) from t1;
+
 +----------+-----------+
 | month(c) | month(vc) |
+
 +----------+-----------+
 |       12 |        12 |
 |       12 |        12 |
@@ -95,6 +103,7 @@ mysql> select month(c),month(vc) from t1;
 |       11 |        11 |
 |       12 |        12 |
 |     NULL |      NULL |
+
 +----------+-----------+
 16 rows in set (0.01 sec)
 ```

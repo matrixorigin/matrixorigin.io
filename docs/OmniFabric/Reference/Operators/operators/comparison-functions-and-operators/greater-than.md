@@ -14,10 +14,13 @@ The `>` operator returns `true` only if the left-hand operand is greater than th
 
 ```sql
 mysql> SELECT 2 > 2;
+
 +-------+
 | 2 > 2 |
+
 +-------+
 | false |
+
 +-------+
 1 row in set (0.00 sec)
 ```
@@ -33,14 +36,17 @@ insert into t1 values (4,6,10);
 insert into t1 values (5,11,99);
 
 mysql> select spID,userID,score from t1 where spID>(userID-1);
+
 +------+--------+-------+
 | spid | userid | score |
+
 +------+--------+-------+
 |    1 |      1 |     1 |
 |    2 |      2 |     2 |
 |    2 |      1 |     4 |
 |    3 |      3 |     3 |
 |    1 |      1 |     5 |
+
 +------+--------+-------+
 5 rows in set (0.01 sec)
 ```

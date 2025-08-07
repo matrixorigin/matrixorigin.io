@@ -73,10 +73,13 @@ set global validate_password.special_char_count==xx;--Default is 1
 
 ```sql
 mysql> select @@global.validate_password;
+
 +---------------------+
 | @@validate_password |
+
 +---------------------+
 | 0                   |
+
 +---------------------+
 1 row in set (0.00 sec)
 
@@ -84,10 +87,13 @@ mysql> set global validate_password=1;
 Query OK, 0 rows affected (0.02 sec)
 
 mysql> select @@global.validate_password; --Reconnection takes effect
+
 +---------------------+
 | @@validate_password |
+
 +---------------------+
 | 1                   |
+
 +---------------------+
 1 row in set (0.00 sec)
 
@@ -97,10 +103,13 @@ mysql> select @@global.validate_password; --Reconnection takes effect
 
 ```sql
 mysql> select @@global.validate_password.changed_characters_percentage;
+
 +---------------------------------------------------+
 | @@validate_password.changed_characters_percentage |
+
 +---------------------------------------------------+
 | 0                                                 |
+
 +---------------------------------------------------+
 1 row in set (0.01 sec)
 
@@ -111,10 +120,13 @@ Query OK, 0 rows affected (0.02 sec)
 mysql>set global validate_password.changed_characters_percentage=80;--Set character proportion to 80%
 
 mysql> select @@global.validate_password.changed_characters_percentage; --Reconnection takes effect
+
 +---------------------------------------------------+
 | @@validate_password.changed_characters_percentage |
+
 +---------------------------------------------------+
 | 80                                                |
+
 +---------------------------------------------------+
 1 row in set (0.00 sec)
 
@@ -137,19 +149,25 @@ The following parameters need to enable validate_password.policy to take effect.
 
 ```sql
 mysql> select @@global.validate_password.policy;
+
 +----------------------------+
 | @@validate_password.policy |
+
 +----------------------------+
 | 0                          |
+
 +----------------------------+
 1 row in set (0.00 sec)
 set global validate_password.policy=1;
 
 mysql> select @@global.validate_password.policy;--Reconnection takes effect
+
 +----------------------------+
 | @@validate_password.policy |
+
 +----------------------------+
 | 1                          |
+
 +----------------------------+
 1 row in set (0.00 sec)
 ```
@@ -158,10 +176,13 @@ mysql> select @@global.validate_password.policy;--Reconnection takes effect
 
 ```sql
 mysql> select @@global.validate_password.length;
+
 +----------------------------+
 | @@validate_password.length |
+
 +----------------------------+
 | 8                          |
+
 +----------------------------+
 1 row in set (0.00 sec)
 
@@ -173,10 +194,13 @@ mysql> set global validate_password.length=9;
 Query OK, 0 rows affected (0.01 sec)
 
 mysql> select @@global.validate_password.length;
+
 +----------------------------+
 | @@validate_password.length |
+
 +----------------------------+
 | 9                          |
+
 +----------------------------+
 1 row in set (0.00 sec)
 
@@ -193,10 +217,13 @@ Query OK, 0 rows affected (0.02 sec)
 
 ```sql
 mysql> select @@global.validate_password.mixed_case_count;
+
 +--------------------------------------+
 | @@validate_password.mixed_case_count |
+
 +--------------------------------------+
 | 1                                    |
+
 +--------------------------------------+
 1 row in set (0.00 sec)
 
@@ -209,10 +236,13 @@ mysql> set global validate_password.mixed_case_count=2;
 Query OK, 0 rows affected (0.01 sec)
 
 mysql> select @@global.validate_password.mixed_case_count; --Reconnection takes effect
+
 +--------------------------------------+
 | @@validate_password.mixed_case_count |
+
 +--------------------------------------+
 | 2                                    |
+
 +--------------------------------------+
 1 row in set (0.00 sec)
 
@@ -229,10 +259,13 @@ Query OK, 0 rows affected (0.01 sec)
 
 ```sql
 mysql> select @@global.validate_password.number_count;
+
 +----------------------------------+
 | @@validate_password.number_count |
+
 +----------------------------------+
 | 1                                |
+
 +----------------------------------+
 1 row in set (0.00 sec)
 
@@ -244,10 +277,13 @@ mysql> set global validate_password.number_count=2;
 Query OK, 0 rows affected (0.01 sec)
 
 mysql> select @@global.validate_password.number_count;
+
 +----------------------------------+
 | @@validate_password.number_count |
+
 +----------------------------------+
 | 2                                |
+
 +----------------------------------+
 1 row in set (0.00 sec)
 
@@ -264,10 +300,13 @@ Query OK, 0 rows affected (0.01 sec)
 
 ```sql
 mysql> select @@global.validate_password.special_char_count;
+
 +----------------------------------------+
 | @@validate_password.special_char_count |
+
 +----------------------------------------+
 | 1                                      |
+
 +----------------------------------------+
 1 row in set (0.00 sec)
 
@@ -279,10 +318,13 @@ mysql> set global validate_password.special_char_count=2;
 Query OK, 0 rows affected (0.01 sec)
 
 mysql> select @@global.validate_password.special_char_count; --Effective after reconnection
+
 +----------------------------------------+
 | @@validate_password.special_char_count |
+
 +----------------------------------------+
 | 2                                      |
+
 +----------------------------------------+
 1 row in set (0.00 sec)
 

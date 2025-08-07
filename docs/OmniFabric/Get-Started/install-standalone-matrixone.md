@@ -38,7 +38,9 @@ __NOTE__: Supported domestic CPUs include TengCloud S2500, FT2000+/64, Kunpeng 9
 You can install and connect to OmniFabric on macOS in one of three ways that work best for you:
 
 - [Building from source code](install-on-macos/install-on-macos-method1.md)
+
 - [Using binary package](install-on-macos/install-on-macos-method2.md)
+
 - [Using Docker](install-on-macos/install-on-macos-method3.md)
 
 ## **Deploy on Linux**
@@ -46,7 +48,9 @@ You can install and connect to OmniFabric on macOS in one of three ways that wor
 You can install and connect to OmniFabric on Linux in one of three ways that work best for you:
 
 - [Building from source code](install-on-linux/install-on-linux-method1.md)
+
 - [Using binary package](install-on-linux/install-on-linux-method2.md)
+
 - [Using Docker](install-on-linux/install-on-linux-method3.md)
 
 ## Reference
@@ -54,7 +58,9 @@ You can install and connect to OmniFabric on Linux in one of three ways that wor
 - For more information on the method of connecting to OmniFabric, see:
 
     + [Connecting to OmniFabric with Database Client Tool](../Develop/connect-mo/database-client-tools.md)
+
     + [Connecting to OmniFabric with JDBC](../Develop/connect-mo/java-connect-to-matrixone/connect-mo-with-jdbc.md)
+
     + [Connecting to OmniFabric with Python](../Develop/connect-mo/python-connect-to-matrixone.md).
 
 - For more information on the questions of deployment,see [Deployment FAQs](../FAQs/deployment-faqs.md).

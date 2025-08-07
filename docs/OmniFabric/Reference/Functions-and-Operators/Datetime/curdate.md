@@ -17,26 +17,35 @@ The `CURDATE()` function returns the current date as a value in `YYYY-MM-DD` for
 
 ```sql
 mysql> SELECT CURDATE();
+
 +------------+
 | curdate()  |
+
 +------------+
 | 2023-02-02 |
+
 +------------+
 1 row in set (0.00 sec)
 
 mysql> SELECT CURDATE() + 0;
+
 +---------------+
 | curdate() + 0 |
+
 +---------------+
 |         19390 |
+
 +---------------+
 1 row in set (0.00 sec)
 
 mysql> select cast(now() as date)=curdate() q;
+
 +------+
 | q    |
+
 +------+
 | true |
+
 +------+
 1 row in set (0.01 sec)
 
@@ -44,12 +53,15 @@ create table t1 (a int);
 insert into t1 values (1),(2),(3);
 
 mysql> select cast(now() as date)=curdate() q from t1;
+
 +------+
 | q    |
+
 +------+
 | true |
 | true |
 | true |
+
 +------+
 3 rows in set (0.01 sec)
 ```

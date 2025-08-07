@@ -14,10 +14,13 @@ The `<>,!=` operator returns `true` only if the left-hand operand is not equal t
 
 ```sql
 mysql> SELECT 2 <> 2;
+
 +--------+
 | 2 != 2 |
+
 +--------+
 | false  |
+
 +--------+
 1 row in set (0.01 sec)
 ```
@@ -33,10 +36,13 @@ insert into t1 values (4,6,10);
 insert into t1 values (5,11,99);
 
 mysql> select userID,spID,score from t1 where userID=spID and userID<>score;
+
 +--------+------+-------+
 | userid | spid | score |
+
 +--------+------+-------+
 |      1 |    1 |     5 |
+
 +--------+------+-------+
 1 row in set (0.00 sec)
 ```

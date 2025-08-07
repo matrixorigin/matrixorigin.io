@@ -26,7 +26,7 @@ The output will include the function name, database name, type, creation time, a
 ## **Examples**
 
 ```sql
-create or replace function py_add(a int, b int) returns int language python as 
+create or replace function py_add(a int, b int) returns int language python as
 $$
 def add(a, b):
   return a + b
@@ -36,20 +36,26 @@ create function twosum (x float, y float) returns float language sql as 'select 
 create function helloworld () returns int language sql as 'select id from tbl1 limit 1';
 
 mysql> show function status;
+
 +------+-------------+----------+---------+---------------------+---------------------+---------------+---------+----------------------+----------------------+--------------------+
 | Db   | Name        | Type     | Definer | Modified            | Created             | Security_type | Comment | character_set_client | collation_connection | Database Collation |
+
 +------+-------------+----------+---------+---------------------+---------------------+---------------+---------+----------------------+----------------------+--------------------+
 | db1  | py_add      | FUNCTION | root    | 2024-01-16 08:00:21 | 2024-01-16 08:00:21 | DEFINER       |         | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
 | db1  | twosum      | FUNCTION | root    | 2024-01-16 08:00:39 | 2024-01-16 08:00:39 | DEFINER       |         | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
 | db1  | helloworld  | FUNCTION | root    | 2024-01-16 08:00:53 | 2024-01-16 08:00:53 | DEFINER       |         | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
+
 +------+-------------+----------+---------+---------------------+---------------------+---------------+---------+----------------------+----------------------+--------------------+
 3 rows in set (0.01 sec)
 
 mysql> show function status like 'two%';
+
 +------+--------+----------+---------+---------------------+---------------------+---------------+---------+----------------------+----------------------+--------------------+
 | Db   | Name   | Type     | Definer | Modified            | Created             | Security_type | Comment | character_set_client | collation_connection | Database Collation |
+
 +------+--------+----------+---------+---------------------+---------------------+---------------+---------+----------------------+----------------------+--------------------+
 | db1  | twosum | FUNCTION | root    | 2024-01-16 08:00:39 | 2024-01-16 08:00:39 | DEFINER       |         | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
+
 +------+--------+----------+---------+---------------------+---------------------+---------------+---------+----------------------+----------------------+--------------------+
 1 rows in set (0.01 sec)
 ```

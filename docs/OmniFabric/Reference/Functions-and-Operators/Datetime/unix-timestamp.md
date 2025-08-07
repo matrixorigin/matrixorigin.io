@@ -4,7 +4,7 @@
 
 If ``UNIX_TIMESTAMP()`` is called with no date argument, it returns a Unix timestamp representing seconds since '1970-01-01 00:00:00' UTC.
 
-If ``UNIX_TIMESTAMP()`` is called with a date argument, it returns the value of the argument as seconds since '1970-01-01 00:00:00' UTC. The server interprets date as a value in the session time zone and converts it to an internal Unix timestamp value in UTC.  
+If ``UNIX_TIMESTAMP()`` is called with a date argument, it returns the value of the argument as seconds since '1970-01-01 00:00:00' UTC. The server interprets date as a value in the session time zone and converts it to an internal Unix timestamp value in UTC.
 
 If you pass an out-of-range date to UNIX_TIMESTAMP(), it returns 0. If date is ``NULL``, it returns ``NULL``.
 
@@ -31,26 +31,35 @@ mysql> SET time_zone = 'MET';
 Query OK, 0 rows affected (0.01 sec)
 
 mysql> SELECT UNIX_TIMESTAMP('2005-03-27 03:00:00');
+
 +-------------------------------------+
 | unix_timestamp(2005-03-27 03:00:00) |
+
 +-------------------------------------+
 |                          1111885200 |
+
 +-------------------------------------+
 1 row in set (0.00 sec)
 
 mysql> SELECT UNIX_TIMESTAMP('2005-03-27 02:00:00');
+
 +-------------------------------------+
 | unix_timestamp(2005-03-27 02:00:00) |
+
 +-------------------------------------+
 |                          1111885200 |
+
 +-------------------------------------+
 1 row in set (0.00 sec)
 
 mysql> SELECT FROM_UNIXTIME(1111885200);
+
 +---------------------------+
 | from_unixtime(1111885200) |
+
 +---------------------------+
 | 2005-03-27 03:00:00       |
+
 +---------------------------+
 1 row in set (0.00 sec)
 ```
@@ -59,26 +68,35 @@ mysql> SELECT FROM_UNIXTIME(1111885200);
 
 ```sql
 mysql> SELECT UNIX_TIMESTAMP("2016-07-11");
+
 +----------------------------+
 | unix_timestamp(2016-07-11) |
+
 +----------------------------+
 |                 1468188000 |
+
 +----------------------------+
 1 row in set (0.00 sec)
 
 mysql> SELECT UNIX_TIMESTAMP('2015-11-13 10:20:19');
+
 +-------------------------------------+
 | unix_timestamp(2015-11-13 10:20:19) |
+
 +-------------------------------------+
 |                          1447406419 |
+
 +-------------------------------------+
 1 row in set (0.00 sec)
 
 mysql> SELECT UNIX_TIMESTAMP('2015-11-13 10:20:19.012');
+
 +-----------------------------------------+
 | unix_timestamp(2015-11-13 10:20:19.012) |
+
 +-----------------------------------------+
 |                       1447406419.012000 |
+
 +-----------------------------------------+
 1 row in set (0.00 sec)
 ```

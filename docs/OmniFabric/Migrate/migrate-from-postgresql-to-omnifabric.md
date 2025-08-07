@@ -41,7 +41,9 @@ Through DBeaver, the source data is obtained in batches, and then the data is in
 ### Preparation
 
 - Springboard machine with a graphical interface: it can connect to the source of Oracle and the target of OmniFabric.
+
 - Data Migration Tool: [Download DBeaver](https://dbeaver.io/download/) on the springboard machine.
+
 - DDL translation tool: download [pg2mysql](https://github.com/dolthub/pg2mysql) on the springboard machine, and note that the springboard machine needs to have a Python environment.
 
 ### Step 1: Migrate table structure
@@ -136,6 +138,7 @@ This chapter will guide you through importing to OmniFabric through offline file
 ### Preparation
 
 - Springboard machine with a graphical interface: it can be connected to the source end of PostgreSQL and the target end of OmniFabric.
+
 - Data Migration Tool: [Download DBeaver](https://dbeaver.io/download/) to the springboard machine.
 
 - Install `pgdump` in PostgreSQL server. If you are not familiar with how to use `pgdump`, see [pgdump tutorial](https://www.postgresql.org/docs/current/app-pgdump.html)

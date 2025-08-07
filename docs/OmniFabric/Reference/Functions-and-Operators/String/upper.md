@@ -20,18 +20,24 @@
 
 ```sql
 mysql> select upper('hello');
+
 +--------------+
 | upper(hello) |
+
 +--------------+
 | HELLO        |
+
 +--------------+
 1 row in set (0.03 sec)
 
 mysql> select upper('a'),upper('b'),upper('c');
+
 +----------+----------+----------+
 | upper(a) | upper(b) | upper(c) |
+
 +----------+----------+----------+
 | A        | B        | C        |
+
 +----------+----------+----------+
 1 row in set (0.03 sec)
 ```

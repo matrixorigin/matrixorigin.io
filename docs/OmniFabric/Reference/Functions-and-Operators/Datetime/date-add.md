@@ -25,10 +25,13 @@ create table t2(orderid int, productname varchar(20), orderdate datetime);
 insert into t2 values ('1','Jarl','2008-11-11 13:23:44.657');
 
 mysql> SELECT OrderId,DATE_ADD(OrderDate,INTERVAL 45 DAY) AS OrderPayDate FROM t2;
+
 +---------+---------------------+
 | orderid | orderpaydate        |
+
 +---------+---------------------+
 |       1 | 2008-12-26 13:23:45 |
+
 +---------+---------------------+
 ```
 

@@ -33,10 +33,13 @@ In OmniFabric, if the implicit transaction is enabled (`SET AUTOCOMMIT=0`), all 
 
 ```sql
 mysql> select @@SQL_SELECT_LIMIT;
+
 +----------------------+
 | @@SQL_SELECT_LIMIT   |
+
 +----------------------+
 | 18446744073709551615 |
+
 +----------------------+
 1 row in set (0.01 sec)
 
@@ -47,10 +50,13 @@ mysql> set SQL_SELECT_LIMIT = 1;
 Query OK, 0 rows affected (0.00 sec)
 
 mysql> select @@SQL_SELECT_LIMIT;
+
 +--------------------+
 | @@SQL_SELECT_LIMIT |
+
 +--------------------+
 |                  1 |
+
 +--------------------+
 1 row in set (0.01 sec)
 
@@ -58,10 +64,13 @@ mysql> rollback;
 Query OK, 0 rows affected (0.00 sec)
 
 mysql> select @@SQL_SELECT_LIMIT;
+
 +--------------------+
 | @@SQL_SELECT_LIMIT |
+
 +--------------------+
 |                  1 |
+
 +--------------------+
 1 row in set (0.00 sec)
 
@@ -72,10 +81,13 @@ mysql> set SQL_SELECT_LIMIT = default;
 Query OK, 0 rows affected (0.00 sec)
 
 mysql> select @@SQL_SELECT_LIMIT;
+
 +----------------------+
 | @@SQL_SELECT_LIMIT   |
+
 +----------------------+
 | 18446744073709551615 |
+
 +----------------------+
 1 row in set (0.00 sec)
 
@@ -83,10 +95,13 @@ mysql> rollback;
 Query OK, 0 rows affected (0.00 sec)
 
 mysql> select @@SQL_SELECT_LIMIT;
+
 +----------------------+
 | @@SQL_SELECT_LIMIT   |
+
 +----------------------+
 | 18446744073709551615 |
+
 +----------------------+
 1 row in set (0.00 sec)
 ```
@@ -95,10 +110,13 @@ mysql> select @@SQL_SELECT_LIMIT;
 
 ```sql
 mysql> select @@SQL_SELECT_LIMIT;
+
 +----------------------+
 | @@SQL_SELECT_LIMIT   |
+
 +----------------------+
 | 18446744073709551615 |
+
 +----------------------+
 1 row in set (0.01 sec)
 
@@ -109,10 +127,13 @@ mysql> set SQL_SELECT_LIMIT = 1;
 Query OK, 0 rows affected (0.00 sec)
 
 mysql> select @@SQL_SELECT_LIMIT;
+
 +--------------------+
 | @@SQL_SELECT_LIMIT |
+
 +--------------------+
 | 1                  |
+
 +--------------------+
 1 row in set (0.00 sec)
 
@@ -120,10 +141,13 @@ mysql> rollback;
 Query OK, 0 rows affected (0.00 sec)
 
 mysql> select @@SQL_SELECT_LIMIT;
+
 +--------------------+
 | @@SQL_SELECT_LIMIT |
+
 +--------------------+
 | 1                  |
+
 +--------------------+
 1 row in set (0.01 sec)
 
@@ -143,22 +167,29 @@ COMMIT;
 
 -- Check the AUTOCOMMIT parameters
 mysql> SHOW VARIABLES LIKE 'AUTOCOMMIT';
+
 +---------------+-------+
 | Variable_name | Value |
+
 +---------------+-------+
 | autocommit    | 1     |
+
 +---------------+-------+
 1 row in set (0.00 sec)
+
 -- Here an implicit transaction begins, with each DML committed immediately after execution with AUTOCOMMIT=.1
 insert into t1 values(4,5,6);
 
 -- Implicit transaction is committed automatically, and the table structure is shown below
 mysql> select * from t1;
+
 +------+------+------+
 | a    | b    | c    |
+
 +------+------+------+
 |    1 | 2    | 3    |
 |    4 | 5    | 6    |
+
 +------+------+------+
 2 rows in set (0.00 sec)
 ```

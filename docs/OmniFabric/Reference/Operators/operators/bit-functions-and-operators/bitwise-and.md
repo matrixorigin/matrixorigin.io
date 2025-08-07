@@ -20,21 +20,27 @@ The result type depends on whether the arguments are evaluated as binary strings
 
 ```sql
 mysql> SELECT 29 & 15;
+
 +---------+
 | 29 & 15 |
+
 +---------+
 |      13 |
+
 +---------+
 1 row in set (0.06 sec)
 
 CREATE TABLE bitwise (a_int_value INT NOT NULL,b_int_value INT NOT NULL);
-INSERT bitwise VALUES (170, 75);  
+INSERT bitwise VALUES (170, 75);
 
-mysql> SELECT a_int_value & b_int_value FROM bitwise;  
+mysql> SELECT a_int_value & b_int_value FROM bitwise;
+
 +---------------------------+
 | a_int_value & b_int_value |
+
 +---------------------------+
 |                        10 |
+
 +---------------------------+
 1 row in set (0.02 sec)
 ```

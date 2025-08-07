@@ -7,9 +7,13 @@ This tutorial completes a simple Demo based on **SpringBoot+Spring Data JPA+Omni
 A brief introduction about these softwares concerned:
 
 * Spring Data JPA: JPA is a specification that defines an API for object-relational mappings and for managing persistent objects. Spring Data JPA is an object–relational mapping tool for the Java programming language. It provides a framework for mapping an object-oriented domain model to a relational database.
+
 * Intellij IDEA: IntelliJ IDEA is a popular IDE for Java developers. It has a lot of plugins that can enhance our efficiency.
+
 * Maven: Maven is a powerful management tool in Java that can automatically download and import Jar file according to the configuration in the pom.xml file. This feature reduces the conflicts between different versions of Jar files.
+
 * Spring: Spring is one of the most popular frameworks in Java and more and more enterprise is using the Spring framework to build their project. Spring Boot is built on top of the conventional spring framework. So, it provides all the features of spring and is yet easier to use than spring.
+
 * Postman: Postman is an application used for API testing. It is an HTTP client that tests HTTP requests, utilizing a graphical user interface, through which we obtain different types of responses that need to be subsequently validated.
 
 ## Set up environment
@@ -174,11 +178,17 @@ mysql> INSERT INTO `book` (`id`, `author`, `category`, `name`, `pages`, `price`,
 After setting up the environment, we write code to implement a simple CRUD application. After finishing coding, you'll have a project structure as below. You can create these packages and java class in advance. We will code the Create, Update, Insert, Delete, Select operations for this demo application.
 
 The project structure will include the following main components:
+
 - BookStoreController.java (Controller layer)
+
 - BookStoreDAO.java (Data Access layer)
+
 - IBookStoreDAO.java (DAO Interface)
+
 - Book.java (Entity class)
+
 - IBookStoreService.java (Service Interface)
+
 - BookStoreService.java (Service Implementation)
 
 ### 1. BookStoreController.java
@@ -267,7 +277,9 @@ public class BookStoreDAO implements IBookStoreDAO {
     private EntityManager entityManager;
 
     /**
+
      * This method is responsible to get all books available in database and return it as List<Book>
+
      */
     @SuppressWarnings("unchecked")
     @Override
@@ -278,7 +290,9 @@ public class BookStoreDAO implements IBookStoreDAO {
     }
 
     /**
+
      * This method is responsible to get a particular Book detail by given book id
+
      */
     @Override
     public Book getBook(int bookId) {
@@ -287,7 +301,9 @@ public class BookStoreDAO implements IBookStoreDAO {
     }
 
     /**
+
      * This method is responsible to create new book in database
+
      */
     @Override
     public Book createBook(Book book) {
@@ -297,7 +313,9 @@ public class BookStoreDAO implements IBookStoreDAO {
     }
 
     /**
+
      * This method is responsible to update book detail in database
+
      */
     @Override
     public Book updateBook(int bookId, Book book) {
@@ -321,8 +339,11 @@ public class BookStoreDAO implements IBookStoreDAO {
     }
 
     /**
+
      * This method is responsible for deleting a particular(which id will be passed that record)
+
      * record from the database
+
      */
     @Override
     public boolean deleteBook(int bookId) {
@@ -339,8 +360,11 @@ public class BookStoreDAO implements IBookStoreDAO {
     }
 
     /**
+
      * This method will get the latest inserted record from the database and return the object of Book class
+
      * @return book
+
      */
     private Book getLastInsertedBook(){
         String hql = "from Book order by id DESC";
@@ -645,12 +669,15 @@ Set content type as in header as `application/json`, set request body as raw wit
 
 ```
 mysql> select * from book;
+
 +----+--------------------------+----------+----------------------------------+-------+-------+-------------+
 | id | author                   | category | name                             | pages | price | publication |
+
 +----+--------------------------+----------+----------------------------------+-------+-------+-------------+
 |  1 | Antoine de Saint-Exupery | Fantancy | The Little Prince                |   100 |    50 | Amazon      |
 |  2 | Anna Sewell              | Fantancy | Black Beauty                     |   134 |    12 | Amazon      |
 |  3 | Lewis Carroll            | Fantancy | Alice's Adventures in Wonderland |  1500 |   240 | Amazon      |
+
 +----+--------------------------+----------+----------------------------------+-------+-------+-------------+
 3 rows in set (0.02 sec)
 ```

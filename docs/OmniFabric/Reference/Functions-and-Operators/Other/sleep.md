@@ -2,7 +2,7 @@
 
 ## **Description**
 
-Sleeps (pauses) for the number of seconds given by the duration argument, then returns 0.  
+Sleeps (pauses) for the number of seconds given by the duration argument, then returns 0.
 
 ## **Syntax**
 
@@ -29,10 +29,13 @@ SLEEP(duration)
 
         ```sql
         mysql> select connection_id();
+
         +-----------------+
         | connection_id() |
+
         +-----------------+
         |            1476 |
+
         +-----------------+
         1 row in set (0.03 sec)
         mysql> select sleep(200);
@@ -49,10 +52,13 @@ SLEEP(duration)
 
         ```
         mysql> select sleep(200);
+
         +------------+
         | sleep(200) |
+
         +------------+
         |          1 |
+
         +------------+
         1 row in set (26.50 sec)
         ```
@@ -67,32 +73,42 @@ SLEEP(duration)
 ## **Examples**
 
 ```sql
+
 -- without interruption
 mysql> SELECT SLEEP(1);
+
 +----------+
 | sleep(1) |
+
 +----------+
 |        0 |
+
 +----------+
 1 row in set (1.01 sec)
 
 -- without interruption
 mysql> SELECT SLEEP(1000);
+
 +-------------+
 | sleep(1000) |
+
 +-------------+
 |           0 |
+
 +-------------+
 1 row in set (18 min 20.87 sec)
 
 create table t1 (a int,b int);
 insert into t1 values (1,1),(1,null);
 mysql> select sleep(a) from t1;
+
 +----------+
 | sleep(a) |
+
 +----------+
 |        0 |
 |        0 |
+
 +----------+
 2 rows in set (2.01 sec)
 ```

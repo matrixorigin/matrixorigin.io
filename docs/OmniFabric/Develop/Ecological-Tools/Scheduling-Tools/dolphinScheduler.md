@@ -40,18 +40,15 @@ OmniFabric supports integration with DolphinScheduler, a visual DAG workflow tas
 
     Use the default username `admin` and password `dolphinscheduler123`. Access the DolphinScheduler web user interface by visiting `http://ip:12345/dolphinscheduler/ui`, as shown below:
 
-
 4. Create a Data Source:
 
     Click on **Data Source Center > Create Data Source** and enter the OmniFabric data connection information. Afterward, click on **Test Connection**; if the connection is successful, click **OK** to save it:
-
 
 ### Step 2: Create a Project Workflow
 
 1. Create a Tenant:
 
     In the **Security Center**, click on **Create Tenant** and enter the tenant name, as shown below:
-
 
     !!! Note
         In a production environment, it is not recommended to use `root` as the tenant.
@@ -60,16 +57,13 @@ OmniFabric supports integration with DolphinScheduler, a visual DAG workflow tas
 
     In **Project Management**, click on **Create Project** and enter the project name, as shown below:
 
-
 3. Create a Workflow and Add Nodes:
 
     Click on the **Project Name** created in the previous step and then click on **Create Workflow**. Drag the **SQL** node from the left to the canvas on the right. Fill in the **Node Name**, **Data Source Information**, **SQL Type**, and **SQL Statement**, then click **OK**. As shown below:
 
     The node created in this step is for creating a table, and the SQL statement is used to create a table.
 
-
     Next, create **Insert Data** and **Query Data** nodes in a similar way. The dependency relationship between these three nodes is shown below, and you can manually connect them:
-
 
     The SQL statements for these three nodes are as follows:
 
@@ -89,24 +83,16 @@ OmniFabric supports integration with DolphinScheduler, a visual DAG workflow tas
 
     Connect these three nodes based on their dependency relationship, then click **Save**. Enter the **Workflow Name**, select the previously created **Tenant**, choose **Parallel** as the execution policy, and click **OK**.
 
-
     Once the workflow is created, you can see it in the **Workflow Relations** page with the status "Workflow Offline":
 
-
     Similarly, you can also see the defined workflow in the **Workflow Definitions** page with the status "Offline":
-
 
 4. Publish and Run the Workflow:
 
     A workflow must be published before it can be run. Click the **Publish** button to publish the workflow created earlier:
 
-
     After publishing, the workflow status will appear as follows:
-
 
     Next, click the **Run** button, set the configuration parameters before starting, and then click **OK**:
 
-
     Finally, return to the **Project Overview** to check whether the workflow and the three tasks below it have run successfully, as shown below:
-
-

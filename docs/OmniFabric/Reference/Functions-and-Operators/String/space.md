@@ -40,9 +40,12 @@ VALUES
 > INSERT INTO t1
 (Employee_name, Joining_Date ) values('     ','2014-12-01');
 > select * from t1 where Employee_name=space(5);
+
 +---------------+--------------+
 | Employee_name | Joining_Date |
+
 +---------------+--------------+
 |               | 2014-12-01   |
+
 +---------------+--------------+
 ```

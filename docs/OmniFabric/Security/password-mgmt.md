@@ -9,12 +9,15 @@ To protect the security of user passwords, OmniFabric supports password manageme
 OmniFabric recommends that users set complex passwords to ensure account security.
 
 - Suggested complexity: uppercase letters, lowercase letters, numbers, and special symbols.
+
 - Recommended length: no less than 12 characters.
 
 ## Modify Password Permissions
 
 - System Administrator (i.e., the root user): Has the highest authority. Can modify the password of the root user itself and the password of Accounts created by the root user.
+
 - Accounts: Have authority second only to the system administrator. They can modify their own password and the password of ordinary users created by the Account.
+
 - Other ordinary users: Can only modify their own passwords.
 
 For more information about permission levels, see [Privilege Control Types](../Reference/access-control-type.md).

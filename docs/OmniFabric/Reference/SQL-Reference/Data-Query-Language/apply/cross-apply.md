@@ -21,12 +21,15 @@ Query OK, 0 rows affected (0.03 sec)
 mysql> insert into t1 values(1,3),(1,-1);
 Query OK, 2 rows affected (0.00 sec)
 mysql> select *from t1 cross apply generate_series(t1.a,t1.b,1)g;
+
 +------+------+--------+
 | a | b | result |
+
 +------+------+--------+
 | 1 | 3 | 1 |
 | 1 | 3 | 2 |
 | 1 | 3 | 3 |
+
 +------+------+--------+
 3 rows in set (0.02 sec)
 ```

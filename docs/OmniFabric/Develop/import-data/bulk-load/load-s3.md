@@ -11,6 +11,7 @@ OmniFabric supports loading files from S3-compatible object storage services int
 In OmniFabric, there are two methods to import the data from S3-compatible object storage:
 
 * Use `Load data` with an s3option to load the file into OmniFabric. This method will load the data into OmniFabric, and all next queries will happen inside OmniFabric.
+
 * Create an `external table` with an s3option mapping to an S3 file, and query this external table directly. This method allows data access through an S3-compatible object storage service; each query's networking latency will be counted.
 
 ## Method 1: LOAD DATA
@@ -102,8 +103,10 @@ In this tutorial, we will walk you through the process of loading a **.csv** fil
 
     ```sql
     mysql> select * from t1;
+
     +-----------+-----------+-----------+-----------+
     | col1      | col2      | col3      | col4      |
+
     +-----------+-----------+-----------+-----------+
     | a         | b         | c         | d         |
     | a         | b         | c         | d         |
@@ -126,6 +129,7 @@ In this tutorial, we will walk you through the process of loading a **.csv** fil
     |           |           |           |           |
     | "         | "         | "         | "         |
     | ""        | ""        | ""        | ""        |
+
     +-----------+-----------+-----------+-----------+
     21 rows in set (0.03 sec)
     ```
@@ -209,8 +213,10 @@ This tutorial will walk you through the whole process of creating an external ta
 
     ```sql
     select * from t1;
+
     +-----------+-----------+-----------+-----------+
     | col1      | col2      | col3      | col4      |
+
     +-----------+-----------+-----------+-----------+
     | a         | b         | c         | d         |
     | a         | b         | c         | d         |
@@ -233,6 +239,7 @@ This tutorial will walk you through the whole process of creating an external ta
     |           |           |           |           |
     | "         | "         | "         | "         |
     | ""        | ""        | ""        | ""        |
+
     +-----------+-----------+-----------+-----------+
     21 rows in set (1.32 sec)
     ```

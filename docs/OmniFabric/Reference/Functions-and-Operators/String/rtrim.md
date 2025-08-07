@@ -26,7 +26,9 @@ This function RTRIM() returns the string with trailing space characters removed.
 
 +----------+-----------+
 | rtrim(a) | rtrim(b)  |
+
 +----------+-----------+
 | matrix   | OmniFabric |
+
 +----------+-----------+
 ```

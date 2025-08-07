@@ -7,9 +7,13 @@ This chapter describes how to write MySQL data to OmniFabric using Flink.
 This practice requires the installation and deployment of the following software environments:
 
 - Complete [standalone OmniFabric deployment](../../../../Get-Started/install-standalone-matrixone.md).
+
 - Download and install [lntelliJ IDEA (2022.2.1 or later version)](https://www.jetbrains.com/idea/download/).
+
 - Select the [JDK 8+ version](https://www.oracle.com/sg/java/technologies/javase/javase8-archive-downloads.html) version to download and install depending on your system environment.
+
 - Download and install [Flink](https://archive.apache.org/dist/flink/flink-1.17.0/flink-1.17.0-bin-scala_2.12.tgz) with a minimum supported version of 1.11.
+
 - Download and install [MySQL](https://downloads.mysql.com/archives/get/p/23/file/mysql-server_8.0.33-1ubuntu23.04_amd64.deb-bundle.tar), the recommended version is 8.0.33.
 
 ## Operational steps
@@ -19,18 +23,25 @@ This practice requires the installation and deployment of the following software
 1. Open IDEA, click **File > New > Project**, select **Spring Initializer**, and fill in the following configuration parameters:
 
     - **Name**:OmniFabric-flink-demo
+
     - **Location**:~\Desktop
+
     - **Language**:Java
+
     - **Type**:Maven
+
     - **Group**:com.example
+
     - **Artifact**:OmniFabric-flink-demo
+
     - **Package name**:com.OmniFabric.flink.demo
+
     - **JDK** 1.8
 
     An example configuration is shown in the following figure:
 
     <div align="center">
-    <img src=https://github.com/matrixorigin/artwork/blob/main/docs/develop/flink/OmniFabric-flink-demo.png?raw=true width=50% heigth=50%/>
+    <img src=https://github.com/matrixorigin/artwork/blob/main/docs/develop/flink/matrixone-flink-demo.png?raw=true width=50% heigth=50%/>
     </div>
 
 2. Add project dependencies, edit the `pom.xml` file in the root of your project, and add the following to the file:
@@ -125,9 +136,6 @@ This practice requires the installation and deployment of the following software
 
     </dependencies>
 
-
-
-
     <build>
         <plugins>
             <plugin>
@@ -195,8 +203,11 @@ After connecting to OmniFabric using a MySQL client, create the database you nee
     import java.text.SimpleDateFormat;
 
     /**
+
      * @author OmniFabric
+
      * @description
+
      */
     public class MoRead {
         private static String srcHost = "xx.xx.xx.xx";
@@ -269,6 +280,7 @@ You can now start migrating MySQL data to OmniFabric using Flink.
     On node3, connect node1's OmniFabric using a MySQL client. Since this example continues to use the `test` database from the example that read the OmniFabric data earlier, we need to first empty the data from the `person` table.
 
     ```sql
+
     -- on node3, connect node1's OmniFabric
     mysql -hxx.xx.xx.xx -P6001 -uroot -p111
     mysql> TRUNCATE TABLE test.person using the Mysql client;
@@ -280,7 +292,6 @@ You can now start migrating MySQL data to OmniFabric using Flink.
 
 ```java
 package com.OmniFabric.flink.demo.entity;
-
 
 import java.util.Date;
 
@@ -333,8 +344,11 @@ import org.apache.flink.types.Row;
 import java.sql.Date;
 
 /**
+
  * @author OmniFabric
+
  * @description
+
  */
 public class Mysql2Mo {
 
@@ -350,7 +364,6 @@ public class Mysql2Mo {
     private static String destPassword = "111";
     private static String destDataBase = "test";
     private static String destTable = "person";
-
 
     public static void main(String[] args) throws Exception {
 
@@ -420,12 +433,15 @@ Execute the following SQL query results in OmniFabric:
 
 ```sql
 mysql> select * from test.person;
+
 +------+---------+------------+
 | id   | name    | birthday   |
+
 +------+---------+------------+
 |    2 | lisi    | 2023-07-09 |
 |    3 | wangwu  | 2023-07-13 |
 |    4 | zhaoliu | 2023-08-08 |
+
 +------+---------+------------+
 3 rows in set (0.01 sec)
 ```

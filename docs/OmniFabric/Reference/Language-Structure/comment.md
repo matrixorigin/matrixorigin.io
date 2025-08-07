@@ -8,10 +8,13 @@ OmniFabric supports three comment styles:
 
    ```sql
    mysql> select 100-99;   # This comment continues to the end of line
+
    +----------+
    | 100 - 99 |
+
    +----------+
    |        1 |
+
    +----------+
    1 row in set (0.01 sec)
    ```
@@ -20,10 +23,13 @@ OmniFabric supports three comment styles:
 
    ```sql
    mysql> select 100-99;   -- This comment continues to the end of line
+
    +----------+
    | 100 - 99 |
+
    +----------+
    |        1 |
+
    +----------+
    1 row in set (0.01 sec)
    ```
@@ -32,10 +38,13 @@ OmniFabric supports three comment styles:
 
    ```sql
    mysql> select 100 /* this is an in-line comment */ -99;
+
    +----------+
    | 100 - 99 |
+
    +----------+
    |        1 |
+
    +----------+
    1 row in set (0.01 sec)
    ```
@@ -46,12 +55,17 @@ OmniFabric supports three comment styles:
    mysql> select 100
    /*
    this is an in-line comment
+
    */
+
    -99;
+
    +----------+
    | 100 - 99 |
+
    +----------+
    |        1 |
+
    +----------+
    1 row in set (0.01 sec)
    ```
@@ -62,10 +76,13 @@ OmniFabric supports three comment styles:
 
 ```sql
 mysql> select 100-99;   // This comment continues to the end of line
+
 +----------+
 | 100 - 99 |
+
 +----------+
 |        1 |
+
 +----------+
 1 row in set (0.03 sec)
 ```
@@ -74,11 +91,15 @@ Or:
 
 ```sql
 mysql> // This comment continues to the line
+
     -> select 100-99;
+
 +----------+
 | 100 - 99 |
+
 +----------+
 |        1 |
+
 +----------+
 ```
 

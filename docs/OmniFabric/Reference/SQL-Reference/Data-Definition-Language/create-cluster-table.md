@@ -28,6 +28,7 @@ This document describes how to set up cluster tables in a OmniFabric database.
 ## Examples
 
 ```sql
+
 --Create two tenants, test1 and test2
 mysql> create account test1 admin_name = 'root' identified by '111' open comment 'tenant_test';
 Query OK, 0 rows affected (0.44 sec)
@@ -46,12 +47,15 @@ Query OK, 0 rows affected (0.01 sec)
 
 --View tenant id
 mysql> select * from mo_account;
+
 +------------+--------------+--------+---------------------+----------------+---------+----------------+
 | account_id | account_name | status | created_time        | comments       | version | suspended_time |
+
 +------------+--------------+--------+---------------------+----------------+---------+----------------+
 |          0 | sys          | open   | 2024-01-11 08:56:57 | system account |       1 | NULL           |
 |          6 | test1        | open   | 2024-01-15 03:15:40 | tenant_test    |       7 | NULL           |
 |          7 | test2        | open   | 2024-01-15 03:15:48 | tenant_test    |       8 | NULL           |
+
 +------------+--------------+--------+---------------------+----------------+---------+----------------+
 3 rows in set (0.01 sec)
 
@@ -61,23 +65,29 @@ Query OK, 3 rows affected (0.01 sec)
 
 --Looking at the data for t1 in the sys tenant, you can see all the data including the `account_id` field
 mysql> select * from t1;
+
 +------+------------+
 | a    | account_id |
+
 +------+------------+
 |    1 |          6 |
 |    2 |          6 |
 |    3 |          6 |
+
 +------+------------+
 3 rows in set (0.00 sec)
 
 --Looking at the data for t1 in the test1 tenant, you can see data that is not in the `account_id` field
 mysql> select * from t1;
+
 +------+
 | a    |
+
 +------+
 |    1 |
 |    2 |
 |    3 |
+
 +------+
 3 rows in set (0.01 sec)
 
@@ -90,12 +100,15 @@ mysql> create view t1_view as select * from mo_catalog.t1;
 Query OK, 0 rows affected (0.01 sec)
 
 mysql> select * from t1_view;
+
 +------+
 | a    |
+
 +------+
 |    1 |
 |    2 |
 |    3 |
+
 +------+
 3 rows in set (0.00 sec)
 

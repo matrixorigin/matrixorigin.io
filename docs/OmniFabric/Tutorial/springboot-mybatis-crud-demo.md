@@ -7,8 +7,11 @@ This tutorial completes a simple Demo based on **SpringBoot+Mybatis+OmniFabric+I
 A brief introduction about these softwares concerned:
 
 * MyBatis: It is a popular persistence framework that can customize SQL and support for complex reports and advanced mappings. We only need to focus on the SQL itself in our project.
+
 * Intellij IDEA: IntelliJ IDEA is a popular IDE for Java developers. It has a lot of plugins that can enhance our efficiency.
+
 * Maven: Maven is a powerful management tool in Java that can automatically download and import Jar file according to the configuration in the pom.xml file. This feature reduces the conflicts between different versions of Jar files.
+
 * Spring: Spring is one of the most popular frameworks in Java and more and more enterprise is using the Spring framework to build their project. Spring Boot is built on top of the conventional spring framework. So, it provides all the features of spring and is yet easier to use than spring.
 
 ## Set up environment
@@ -483,16 +486,21 @@ You can turn off this feature to get a quicker startup with -A
 
 Database changed
 mysql> show tables;
+
 +----------------+
 | tables_in_test |
+
 +----------------+
 | user           |
+
 +----------------+
 1 row in set (0.00 sec)
 
 mysql> show create table user;
+
 +-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Table | Create Table                                                                                                                                                                                  |
+
 +-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | user  | CREATE TABLE `user` (
 `id` INT NOT NULL AUTO_INCREMENT,
@@ -501,6 +509,7 @@ mysql> show create table user;
 `address` VARCHAR(255) DEFAULT null,
 PRIMARY KEY (`id`)
 ) |
+
 +-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 1 row in set (0.01 sec)
 ```
@@ -517,10 +526,13 @@ You should see a success message. In MySQL client, we can verify if the record i
 
 ```
 mysql> select * from user;
+
 +------+----------+----------+----------+
 | id   | username | password | address  |
+
 +------+----------+----------+----------+
 |    1 | tom      | 123456   | shanghai |
+
 +------+----------+----------+----------+
 1 row in set (0.00 sec)
 ```
@@ -547,10 +559,13 @@ You should see a success message. In MySQL client, we can verify if the record i
 
 ```
 mysql> select * from user;
+
 +------+----------+----------+---------+
 | id   | username | password | address |
+
 +------+----------+----------+---------+
 |    1 | tom      | 654321   | beijing |
+
 +------+----------+----------+---------+
 1 row in set (0.00 sec)
 ```

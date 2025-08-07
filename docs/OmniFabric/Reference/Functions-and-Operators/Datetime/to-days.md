@@ -25,20 +25,27 @@ For dates with two-digit years, for example, when querying `SELECT TO_DAYS('08-1
 ## **Examples**
 
 ```sql
+
 -- The query will return an integer representing the number of days between the date '2023-07-12' and the start date of the Gregorian calendar.
 mysql> SELECT TO_DAYS('2023-07-12');
+
 +---------------------+
 | to_days(2023-07-12) |
+
 +---------------------+
 |              739078 |
+
 +---------------------+
 1 row in set (0.00 sec)
 
 mysql> SELECT TO_DAYS('2008-10-07'), TO_DAYS('08-10-07');
+
 +---------------------+-------------------+
 | to_days(2008-10-07) | to_days(08-10-07) |
+
 +---------------------+-------------------+
 |              733687 |              3202 |
+
 +---------------------+-------------------+
 1 row in set (0.00 sec)
 ```

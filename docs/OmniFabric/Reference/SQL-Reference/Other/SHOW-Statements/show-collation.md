@@ -15,26 +15,35 @@ This statement lists collations supported by OmniFabric. By default, the output 
 
 ```sql
 mysql> show collation;
+
 +-------------+---------+------+----------+---------+
 | Collation   | Charset | Id   | Compiled | Sortlen |
+
 +-------------+---------+------+----------+---------+
 | utf8mb4_bin | utf8mb4 |   46 | Yes      |       1 |
+
 +-------------+---------+------+----------+---------+
 1 row in set (0.00 sec)
 
 mysql> show collation like '%';
+
 +-------------+---------+------+----------+---------+
 | Collation   | Charset | Id   | Compiled | Sortlen |
+
 +-------------+---------+------+----------+---------+
 | utf8mb4_bin | utf8mb4 |   46 | Yes      |       1 |
+
 +-------------+---------+------+----------+---------+
 1 row in set (0.00 sec)
 
 mysql> show collation where 'Charset'='utf8mb4';
+
 +-------------+---------+------+----------+---------+
 | Collation   | Charset | Id   | Compiled | Sortlen |
+
 +-------------+---------+------+----------+---------+
 | utf8mb4_bin | utf8mb4 |   46 | Yes      |       1 |
+
 +-------------+---------+------+----------+---------+
 1 row in set (0.00 sec)
 ```

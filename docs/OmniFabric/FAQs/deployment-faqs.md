@@ -266,11 +266,14 @@ Suppose in your OmniFabric `mo.yaml` configuration file, the configuration of th
 ```yaml
 ## Only part of the code is shown
 ...
+
 - cacheVolume:
     size: 100Gi
   cnLabels:
+
   - key: workload
     values:
+
     - bk
 ...
 ```

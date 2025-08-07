@@ -48,12 +48,15 @@ Usually, transactions need to have four characteristics of ACID:
 
    ```
    select * from t1;
+
    +------+------+
    | a    | b    |
+
    +------+------+
    |    1 | a    |
    |    2 | b    |
    |    3 | c    |
+
    +------+------+
    ```
 
@@ -68,12 +71,15 @@ Usually, transactions need to have four characteristics of ACID:
 
    ```
    select * from t1;
+
    +------+------+
    | a    | b    |
+
    +------+------+
    |    1 | a    |
    |    2 | b    |
    |    3 | c    |
+
    +------+------+
    ```
 
@@ -87,11 +93,14 @@ Usually, transactions need to have four characteristics of ACID:
 
    ```
    select * from t1;
+
    +------+------+
    | a    | b    |
+
    +------+------+
    |    1 | a    |
    |    2 | b    |
+
    +------+------+
    ```
 
@@ -102,6 +111,7 @@ Usually, transactions need to have four characteristics of ACID:
 In a database, transactions are divided into the following categories:
 
 - According to whether there is a clear start and end, it is divided into **explicit transaction** and **implicit transaction**.
+
 - According to the use stage of the resource lock, it is divided into **optimistic transaction** and **pessimistic transaction**.
 
 These two types of transactions is not limited by each other. An explicit transaction can be an optimistic or pessimistic transaction, and a pessimistic transaction can be either an explicit or an implicit transaction.
@@ -125,8 +135,11 @@ At the beginning of a pessimistic transaction, it is assumed that there will be 
 Optimistic transactions and pessimistic transactions have the following advantages and disadvantages during use:
 
 - Optimistic transactions are more friendly to systems with fewer write operations and more read operations, avoiding deadlocks.
+
 - Optimistic transactions may fail after repeated retries due to conflicts when larger transactions are committed.
+
 - Pessimistic transactions are more friendly to systems with more write operations and avoid write-write conflicts from the database level.
+
 - Pessimistic transactions In a scenario with large concurrency, if a transaction with a long execution time appears, the system may be blocked, and the throughput will be affected.
 
 For more information on optimistic transactions in OmniFabric, see [Optimistic Transaction](matrixone-transaction-overview/optimistic-transaction.md).

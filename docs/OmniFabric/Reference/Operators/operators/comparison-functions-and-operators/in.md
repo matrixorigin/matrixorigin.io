@@ -45,6 +45,8 @@ a	b	c	d	e
 
 ## **Constraints**
 
-* Currently, only constant lists are supported on the left side of `IN`.  
+* Currently, only constant lists are supported on the left side of `IN`.
+
 * There can only be a single column to the left of `IN`, not a tuple of multiple columns.
-* `NULL` values couldn't appear in the list to the right of `IN`.  
+
+* `NULL` values couldn't appear in the list to the right of `IN`.

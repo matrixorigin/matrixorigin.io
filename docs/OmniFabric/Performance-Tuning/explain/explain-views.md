@@ -33,14 +33,17 @@ We have prepared a simple example to help you understand the execution plan for 
 
 > create view v1 as select * from (select * from t1) sub where id > 4;
 > select * from v1;
+
 +------+------+------+------+----------+---------+------+--------------+----------------+------------+---------------------+
 | id   | ti   | si   | bi   | fl       | dl      | de   | ch           | vch            | dd         | dt                  |
+
 +------+------+------+------+----------+---------+------+--------------+----------------+------------+---------------------+
 |    5 |    1 |    2 |    6 |    51.26 |    5126 |   51 | byebye       |  is subquery?  | 2022-04-28 | 2022-04-28 22:40:11 |
 |    6 |    3 |    2 |    1 |    632.1 |    6321 |  632 | good night   | maybe subquery | 2022-04-28 | 2022-04-28 22:40:11 |
 |    7 |    4 |    4 |    3 |  7443.11 |  744311 | 7443 | yes          | subquery       | 2022-04-28 | 2022-04-28 22:40:11 |
 |    8 |    7 |    5 |    8 |     8758 |  875800 | 8758 | nice to meet | just subquery  | 2022-04-28 | 2022-04-28 22:40:11 |
 |    9 |    8 |    4 |    9 | 9849.312 | 9849312 | 9849 | see you      | subquery       | 2022-04-28 | 2022-04-28 22:40:11 |
+
 +------+------+------+------+----------+---------+------+--------------+----------------+------------+---------------------+
 5 rows in set (0.01 sec)
 ```
@@ -49,14 +52,17 @@ As shown in the above example, a new VIEW named *v1* is created, then query the 
 
 ```sql
 > explain select * from v1;
+
 +--------------------------------------------------------------+
 | QUERY PLAN                                                   |
+
 +--------------------------------------------------------------+
 | Project                                                      |
 |   ->  Project                                                |
 |         ->  Project                                          |
 |               ->  Table Scan on db1.t1                       |
 |                     Filter Cond: (CAST(t1.id AS BIGINT) > 4) |
+
 +--------------------------------------------------------------+
 5 rows in set (0.00 sec)
 ```
@@ -75,13 +81,16 @@ The following query is executed similarly to the above:
 
 ```sql
 > explain select * from (select * from t1) sub where id > 4;
+
 +--------------------------------------------------------+
 | QUERY PLAN                                             |
+
 +--------------------------------------------------------+
 | Project                                                |
 |   ->  Project                                          |
 |         ->  Table Scan on db1.t1                       |
 |               Filter Cond: (CAST(t1.id AS BIGINT) > 4) |
+
 +--------------------------------------------------------+
 4 rows in set (0.03 sec)
 ```

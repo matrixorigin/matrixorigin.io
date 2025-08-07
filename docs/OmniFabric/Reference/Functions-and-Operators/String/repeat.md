@@ -21,18 +21,24 @@ Returns a string consisting of the string str repeated count times. If count is 
 
 ```sql
 mysql> SELECT repeat('abc', -1);
+
 +-----------------+
 | repeat(abc, -1) |
+
 +-----------------+
 |                 |
+
 +-----------------+
 1 row in set (0.00 sec)
 
 mysql> SELECT repeat('abc', 1), repeat('abc', 2), repeat('abc', 3);
+
 +----------------+----------------+----------------+
 | repeat(abc, 1) | repeat(abc, 2) | repeat(abc, 3) |
+
 +----------------+----------------+----------------+
 | abc            | abcabc         | abcabcabc      |
+
 +----------------+----------------+----------------+
 1 row in set (0.00 sec)
 ```

@@ -32,11 +32,14 @@ Query OK, 0 rows affected (0.04 sec)
 Query OK, 0 rows affected (0.03 sec)
 
 > SHOW GRANTS for mouser@localhost;
+
 +-------------------------------------------------------+
 | Grants for mouser@localhost                           |
+
 +-------------------------------------------------------+
 | GRANT create table ON database * `mouser`@`localhost` |
 | GRANT connect ON account  `mouser`@`localhost`        |
+
 +-------------------------------------------------------+
 2 rows in set (0.02 sec)
 
@@ -44,10 +47,13 @@ Query OK, 0 rows affected (0.03 sec)
 Query OK, 0 rows affected (0.04 sec)
 
 > SHOW GRANT for mouser@localhost;
+
 +------------------------------------------------+
 | Grants for mouser@localhost                    |
+
 +------------------------------------------------+
 | GRANT connect ON account  `mouser`@`localhost` |
+
 +------------------------------------------------+
 1 row in set (0.02 sec)
 ```

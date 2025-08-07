@@ -16,34 +16,46 @@ Logical `XOR`. Returns `NULL` if either operand is NULL. For non-NULL operands, 
 
 ```sql
 mysql> select 1 xor 1;
+
 +---------+
 | 1 xor 1 |
+
 +---------+
 | false   |
+
 +---------+
 1 row in set (0.01 sec)
 
 mysql> select 1 xor 0;
+
 +---------+
 | 1 xor 0 |
+
 +---------+
 | true    |
+
 +---------+
 1 row in set (0.00 sec)
 
 mysql> select 1 xor null;
+
 +------------+
 | 1 xor null |
+
 +------------+
 | NULL       |
+
 +------------+
 1 row in set (0.01 sec)
 
 mysql> select 1 xor 1 xor 1;
+
 +---------------+
 | 1 xor 1 xor 1 |
+
 +---------------+
 | true          |
+
 +---------------+
 1 row in set (0.00 sec)
 ```
@@ -53,14 +65,17 @@ create table t1 (a boolean,b bool);
 insert into t1 values (0,1),(true,false),(true,1),(0,false),(NULL,NULL);
 
 mysql> select a xor b from t1;
+
 +---------+
 | a xor b |
+
 +---------+
 | true    |
 | true    |
 | false   |
 | false   |
 | NULL    |
+
 +---------+
 5 rows in set (0.00 sec)
 ```

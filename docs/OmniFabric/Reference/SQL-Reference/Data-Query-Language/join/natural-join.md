@@ -22,10 +22,13 @@ INSERT INTO t1(id,desc1,desc2) VALUES(100,'desc11','desc12'),(101,'desc21','desc
 INSERT INTO t2(id,desc3,desc4) VALUES(101,'desc41','desc42'),(103,'desc51','desc52'),(105,'desc61','desc62');
 
 mysql> SELECT t1.id,t2.id,desc1,desc2,desc3,desc4 FROM t1 NATURAL JOIN t2;
+
 +------+------+--------+--------+--------+--------+
 | id   | id   | desc1  | desc2  | desc3  | desc4  |
+
 +------+------+--------+--------+--------+--------+
 |  101 |  101 | desc21 | desc22 | desc41 | desc42 |
+
 +------+------+--------+--------+--------+--------+
 1 row in set (0.00 sec)
 ```

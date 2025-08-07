@@ -35,10 +35,13 @@ insert into t3 values (6),(7),(3);
 mysql> select * from t3 where a = (select b from t2);
 ERROR 1105 (HY000): scalar subquery returns more than 1 row
 mysql> select * from t3 where a = (select distinct b from t2);
+
 +------+
 | a    |
+
 +------+
 |    7 |
+
 +------+
 1 rows in set (0.01 sec)
 

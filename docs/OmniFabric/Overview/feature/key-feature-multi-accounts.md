@@ -25,14 +25,19 @@ As an enterprise's business scales up and data volume continues to grow, alongsi
 The OmniFabric system contains two accounts: system (sys) and common accounts. The system account is built into the OmniFabric cluster, and the system will log in to this account by default after the cluster starts. The primary responsibilities of this account include:
 
 - Store and manage system tables related to the cluster.
+
 - Manage cluster-level functions, such as creating/deleting accounts, modifying system configuration, etc.
 
 In contrast, common accounts are created by system accounts. A common account can be regarded as a database instance, and the account name needs to be specified to connect. Common accounts have the following characteristics:
 
 - Possibility to create your user.
+
 - Can create databases, tables, and all other objects.
+
 - Have independent information_schema and other system databases.
+
 - Has independent system variables.
+
 - Possess other characteristics that a database instance should have.
 
 ### Multi-account resource isolation
@@ -56,6 +61,7 @@ Traditional multi-account architectures store and manage data for each account a
 Both traditional models have specific challenges:
 
 - The account-shared database mode relies on the application layer to distinguish account logic by SQL and application layer code, and the isolation degree of data and resources is low. It is straightforward to seize the resources of other accounts when the load of a account suddenly increases significantly, resulting in a decline in the entire system's performance. However, only one set of database clusters is used in the account-shared database mode. The resource cost and operation and maintenance management difficulty are relatively low, and the upgrade/expansion/application change only needs to be done once to complete the global change.
+
 - The account-independent database mode supports each account with an independent database instance. The isolation of resources and data is very high, but resource costs and O&M difficulties are increased. Unifying upgrades and other operation and maintenance actions will be very time-consuming when accounts exceed one hundred.
 
 #### OmniFabric Architecture
@@ -63,9 +69,13 @@ Both traditional models have specific challenges:
 The multi-account capability of OmniFabric brings a new architectural approach. accounts still share a OmniFabric cluster, and unified account O&M and management can be performed through system accounts. In addition, the isolation of data and resources is realized through the built-in multi-account capability. Each account can independently expand and contract resources, further reducing the difficulty of operation and maintenance. This approach meets not only the requirements for isolation but also the requirements for low resource and operation and maintenance costs.
 
 The OmniFabric architecture provides a balanced solution that combines the benefits of both traditional approaches:
+
 - High data isolation through account-specific resource groups
+
 - Low resource costs through shared infrastructure
+
 - High resource isolation through CN resource groups
+
 - Low operational complexity through centralized management
 
 |Multi-account mode|Data isolation degree|Resource cost|Resource isolation|Operation and maintenance complexity|
@@ -81,9 +91,13 @@ Microservice application architecture is a software architectural pattern that i
 Unlike SaaS applications, microservice applications also face the problem of database sharing or independence. It is usually recommended to prepare a separate database for each microservice; this pattern is more suitable for microservice architecture because each service is developed, deployed, and scaled independently. Other services will not be affected when there is a need to upgrade or change the data schema. When a service needs to be expanded, the service can also be partially developed. In addition, if some services require unique database capabilities, such as Elastic Search or vector search, etc., this mode provides more flexible possibilities.
 
 The OmniFabric architecture supports microservices by providing:
+
 - Independent database instances for each microservice
+
 - Resource isolation through CN resource groups
+
 - Flexible scaling capabilities
+
 - Data sharing when needed through account-level permissions
 
 ### Group Subsidiaries/Business Units

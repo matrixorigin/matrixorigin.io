@@ -14,10 +14,13 @@
 
 ```sql
 mysql> select current_role_name();
+
 +---------------------+
 | current_role_name() |
+
 +---------------------+
 | moadmin             |
+
 +---------------------+
 1 row in set (0.00 sec)
 ```

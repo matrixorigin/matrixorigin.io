@@ -9,7 +9,9 @@ With the expansion of business scale, the continuous growth of data volume, and 
 ## Advantages
 
 - **One-stop experience**: Satisfy all the needs for transaction processing (TP) and analytical processing (AP) within a single database, and users can enjoy a one-stop experience covering all TP and AP scenarios.
+
 - **Simplified integration work**: Users using OmniFabric only need to do a small amount of integration work to achieve extensive use of TP and AP scenarios, especially significantly reducing the complex ETL work from TP database synchronization to AP database.
+
 - **Cost-effective**: OmniFabric uses a single storage engine to implement HTAP; compared with traditional multi-engine solutions, users only need to maintain a set of clusters and store one set of data, which can significantly reduce hardware investment.
 
 ## Architecture
@@ -25,7 +27,9 @@ The overall technical architecture of OmniFabric adopts a separate architecture 
 As illustrated in the previous section, the storage system of OmniFabric is composed of shared storage for all data, a small number of shared logs, and a stateless cache on the computing nodes.
 
 - All data are stored in object storage, the primary storage for the entire database and the only location for data persistence. Object storage has the characteristics of being low-cost and nearly infinitely scalable.
+
 - The LogService provides shared log services for saving state information of transactions such as writes/updates across the entire cluster. It is the only component in the entire cluster with a state. Therefore, LogService must ensure high availability through three nodes using the distributed Raft protocol. However, it only retains transaction logs for a certain period, which we call Longtail. After some time, there will be TN to help compress historical logs and store them in S3. Therefore, Logtail can maintain a very slim data size, generally a few GB.
+
 - Each computing node CN has a cache. When a user queries for the first time, it will read related data from object storage and put it into the cache as hot data. When the customer queries the same content again, if the cache is hit, the query result will be returned to the user quickly. The technical feature of cold and hot data separation brought by the cache can refer to the data caching and cold-hot data separation architecture. In addition to reading data from object storage, CN nodes will also subscribe to Logtail data from LogService, and new updates in LogService will be pushed to CN immediately.
 
 ### Load Processing Link Isolation

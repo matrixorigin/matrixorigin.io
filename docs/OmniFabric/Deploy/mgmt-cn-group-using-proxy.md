@@ -47,7 +47,9 @@ To enable the Proxy component in the OmniFabric distributed cluster, you need to
       name: mo
       namespace: mo-hn
     spec:
+
     + proxy:
+
     +   replicas: 2 # For high availability, at least 2 replicas are required for the Proxy
     ```
 
@@ -115,21 +117,37 @@ The detailed steps are as follows:
       name: mo
       namespace: mo-hn
     spec:
+
     + cnGroups:
+
     + - name: cn-set1
+
     +  	replicas: 1
+
     +  	cnLabels:
+
     +  	- key: "cn-set1"
+
     +  	  values: ["1", "high"]
+
     +   - key: "account"
+
     +     values: ["acc1"]
+
     +
+
     + - name: cn-set2
+
     +  	replicas: 1
+
     +  	cnLabels:
+
     +   - key: "cn-set2"
+
     +			values: ["2", "medium"]
+
     +   - key: "account"
+
     +     values: ["acc2"]
     ```
 
@@ -176,8 +194,10 @@ In this chapter, assuming that account load isolation needs to be implemented fo
 1. Log into the OmniFabric cluster using the system account. For the username and password, please look at your company's *Database Administrator*. After logging into the OmniFabric cluster, create two new accounts, `acc1` and `acc2`:
 
     ```sql
+
     -- Create a new account acc1 with a password of 123456 (a simple password is set here, which is only used as an example)
     mysql> create account acc1 admin_name 'admin' identified by '123456';
+
     -- Create a new account acc2 with a password of 123456 (a simple password is set here, which is only used as an example)
     mysql> create account acc2 admin_name 'admin' identified by '123456';
     ```
@@ -189,23 +209,36 @@ In this chapter, assuming that account load isolation needs to be implemented fo
       name: mo
       namespace: mo-hn
     spec:
+
     + cnGroups:
+
     + - name: cn-set1
+
     +  	replicas: 1
+
     +  	cnLabels:
+
     +   - key: "account"
+
     +     values: ["acc1"]
+
     +
+
     + - name: cn-set2
+
     +  	replicas: 1
+
     +  	cnLabels:
+
     +   - key: "account"
+
     +     values: ["acc2"]
     ```
 
 3. Modify the `mo.yaml` file of the OmniFabric cluster, and label the two CN groups with `account:acc1` and `account:acc2` respectively, corresponding to the accounts named `acc1` and `acc2` respectively:
 
 ```sql
+
 -- acc1 account login OmniFabric
 root@HOST-10-206-134-7:~# mysql -h 10.96.1.153 -uacc1:admin -P6001 -p123456
 mysql: [Warning] Using a password on the command line interface can be insecure.
@@ -220,17 +253,22 @@ affiliates. Other names may be trademarks of their respective
 owners.
 
 Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
 -- acc1 checks which CN groups are used for login
 mysql> show backend servers;
+
 +--------------------------------------+-------------------------------------------------------+------------+------------------------------+
 | UUID                                 | Address                                               | Work State | Labels                       |
+
 +--------------------------------------+-------------------------------------------------------+------------+------------------------------+
 | 32333337-3966-3137-3032-613035306561 | mo-cn-set1-cn-0.mo-cn-set1-cn-headless.mo-hn.svc:6001 | Working    | account:acc1;cn-set1:1,high; |
+
 +--------------------------------------+-------------------------------------------------------+------------+------------------------------+
 1 row in set (0.00 sec)
 ```
 
 ```sql
+
 -- acc2 account login OmniFabric
 root@HOST-10-206-134-7:~# mysql -h 10.96.1.153 -uacc2:admin -P6001 -p123456
 mysql: [Warning] Using a password on the command line interface can be insecure.
@@ -245,12 +283,16 @@ affiliates. Other names may be trademarks of their respective
 owners.
 
 Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
 -- acc2 checks which CN groups are used for login
 mysql> show backend servers;
+
 +--------------------------------------+-------------------------------------------------------+------------+--------------------------------+
 | UUID                                 | Address                                               | Work State | Labels                         |
+
 +--------------------------------------+-------------------------------------------------------+------------+--------------------------------+
 | 33663265-3234-3365-3737-333030613535 | mo-cn-set2-cn-0.mo-cn-set2-cn-headless.mo-hn.svc:6001 | Working    | account:acc2;cn-set2:2,medium; |
+
 +--------------------------------------+-------------------------------------------------------+------------+--------------------------------+
 1 row in set (0.00 sec)
 ```
@@ -269,8 +311,11 @@ ERROR 1045 (28000): internal error: no available CN server
 For system accounts, OmniFabric will automatically select an appropriate CN group to connect in the following order:
 
 * Highest priority: Select the CN group configuring the `account` label as `sys`.
+
 * Second highest priority: Select the CN group configuring other labels but not the `account` label.
+
 * Medium priority: Select the CN group that has not configured labels.
+
 * Low priority: If none of the above CN groups exist, then choose randomly from the existing CN groups.
 
 Based on this principle, system accounts will prioritize the CN groups specifically reserved for themselves or not for other accounts. However, suppose the above conditions are not met. In that case, the system account might share a CN group with other accounts and thus cannot ensure load isolation between the system account and ordinary accounts.
@@ -291,19 +336,33 @@ metadata:
   name: mo
   namespace: mo-hn
 spec:
+
 + cnGroups:
+
 + - name: cn-set1
+
 +  	replicas: 1
+
 +  	cnLabels:
+
 +  	- key: "workload"
+
 +     # The load label is set to olap
+
 +  	  values: ["olap"]
+
 +
+
 + - name: cn-set2
+
 +  	replicas: 1
+
 +  	cnLabels:
+
 +   - key: "workload"
+
 +     # The load label is set to oltp
+
 +			values: ["oltp"]
 ```
 

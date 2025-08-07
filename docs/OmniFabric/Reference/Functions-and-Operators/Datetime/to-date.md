@@ -18,18 +18,21 @@
 | format  | Required.  A format string indicating the format of the return value.<br> If the format is omitted, this function returns a DATETIME value. <br>If the format is ``NULL``, this function returns ``NULL``.<br>If the format is supplied, the value returned is a VARCHAR. |
 
 !!! note  "<font size=4>note</font>"
-    <font size=3>The format string can contain literal characters and format specifiers beginning with %. Literal characters in ``format`` must match literally in str. Format specifiers in ``format`` must match a date or time part in ``str``.</font>  
+    <font size=3>The format string can contain literal characters and format specifiers beginning with %. Literal characters in ``format`` must match literally in str. Format specifiers in ``format`` must match a date or time part in ``str``.</font>
 
 ## **Examples**
 
 ```sql
 mysql> SELECT TO_DATE('2022-01-06 10:20:30','%Y-%m-%d %H:%i:%s') as result;
+
 +---------------------+
 | result              |
+
 +---------------------+
 | 2022-01-06 10:20:30 |
+
 +---------------------+
-1 row in set (0.00 sec)                 
+1 row in set (0.00 sec)
 ```
 
 ## **Constraints**

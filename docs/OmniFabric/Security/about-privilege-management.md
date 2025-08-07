@@ -96,7 +96,9 @@ After the cluster and account (Account) are created, OmniFabric will automatical
 In OmniFabric, the behavior details of roles are as follows:
 
 - A role can be granted multiple privileges.
+
 - A role can be granted to multiple users.
+
 - A role can pass its privileges to another role.
 
     + Use all the privileges of a role to another role; for example, pass all the privileges of role1 to role2, then role2 inherits the privileges of role1,
@@ -130,6 +132,7 @@ After completing the deployment of the OmniFabric cluster, *Tom* of the R&D depa
 2. *Tom* needs to create two accounts first, one is *BusinessAccount* and the other is *ElseAccount*.
 
     - The data resources within *BusinessAccount* are mainly used to develop the application *BusinessApp*.
+
     - Data resources within *ElseAccount* may be used for other business purposes.
 
 For the specific operation of resource isolation, please refer to [Quick Start: Create accounts, Verify Resource Isolation](../how-tos/quick-start-create-account.md).
@@ -161,5 +164,7 @@ After initializing the cluster or account, the system will automatically generat
 ## Quick Start
 
 - [Quick Start: Create accounts, Verify Resource Isolation](../how-tos/quick-start-create-account.md)
+
 - [Quick start: Create a new account, use the new account, creates users, create roles, and grant the privilege](../how-tos/quick-start-create-user.md)
+
 - Typical [Application Scenarios](app-scenarios.md)

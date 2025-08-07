@@ -20,10 +20,13 @@ Returns the length of the string str in bits. Returns `NULL` if str is `NULL`.
 
 ```SQL
 > SELECT BIT_LENGTH('text');
+
 +------------------+
 | bit_length(text) |
+
 +------------------+
 |               32 |
+
 +------------------+
 1 row in set (0.00 sec)
 ```

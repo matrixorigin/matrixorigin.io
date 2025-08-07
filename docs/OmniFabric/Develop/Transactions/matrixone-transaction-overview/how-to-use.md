@@ -45,6 +45,7 @@ rollback;
 In OmniFabric, there is a parameter `AUTOCOMMIT`, which determines whether there is a single SQL statement to be automatically committed as an independent transaction without `START TRANSACTION` or `BEGIN`. The syntax is as follows:
 
 ```sql
+
 -- Set the value of this parameter
 SET AUTOCOMMIT={on|off|0|1}
 SHOW VARIABLES LIKE 'AUTOCOMMIT';
@@ -53,6 +54,7 @@ SHOW VARIABLES LIKE 'AUTOCOMMIT';
 When this parameter is set to ON or 1, it means automatic submission. All single SQL statements not in `START TRANSACTION` or `BEGIN` will be automatically submitted when executed.
 
 ```sql
+
 -- Autocommit
 insert into t1 values(1,2,3);
 ```
@@ -61,6 +63,7 @@ When this parameter is set to OFF or 0, it is not automatically committed. All S
 
 ```sql
 insert into t1 values(1,2,3);
+
 -- Manual submission is required here
 COMMIT;
 ```

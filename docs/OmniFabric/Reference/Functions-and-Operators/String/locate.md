@@ -28,10 +28,13 @@ Regarding case, the `LOCATE()` function is case-insensitive.
 
 ```sql
 mysql> SELECT LOCATE('bar', 'footbarbar');
+
 +-------------------------+
 | locate(bar, footbarbar) |
+
 +-------------------------+
 |                       5 |
+
 +-------------------------+
 1 row in set (0.00 sec)
 ```
@@ -40,10 +43,13 @@ mysql> SELECT LOCATE('bar', 'footbarbar');
 
 ```sql
 mysql>SELECT LOCATE('bar', 'footbarbar',6);
+
 +----------------------------+
 | locate(bar, footbarbar, 6) |
+
 +----------------------------+
 |                          8 |
+
 +----------------------------+
 1 row in set (0.00 sec)
 ```
@@ -52,10 +58,13 @@ mysql>SELECT LOCATE('bar', 'footbarbar',6);
 
 ```sql
 mysql>SELECT SUBSTRING('hello world',LOCATE('o','hello world'),5);
+
 +---------------------------------------------------+
 | substring(hello world, locate(o, hello world), 5) |
+
 +---------------------------------------------------+
 | o wor                                             |
+
 +---------------------------------------------------+
 1 row in set (0.00 sec)
 ```
@@ -64,10 +73,13 @@ mysql>SELECT SUBSTRING('hello world',LOCATE('o','hello world'),5);
 
 ```sql
 mysql>select locate('a','ABC');
+
 +----------------+
 | locate(a, ABC) |
+
 +----------------+
 |              1 |
+
 +----------------+
 1 row in set (0.00 sec)
 ```

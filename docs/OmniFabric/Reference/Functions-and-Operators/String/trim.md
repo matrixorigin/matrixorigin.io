@@ -22,10 +22,13 @@ This function is multibyte safe. It returns NULL if any of its arguments are NUL
 
 ```SQL
 mysql> select trim(' abc '), trim('abc '), trim(' abc'), trim('abc');
+
 +-------------+------------+------------+-----------+
 | trim( abc ) | trim(abc ) | trim( abc) | trim(abc) |
+
 +-------------+------------+------------+-----------+
 | abc         | abc        | abc        | abc       |
+
 +-------------+------------+------------+-----------+
 1 row in set (0.00 sec)
 
@@ -37,38 +40,47 @@ insert into t1 values('啊啊o', 'o');
 insert into t1 values('啊啊o', '啊');
 insert into t1 values('啊啊o', 'o啊');
 mysql> select trim(both a from b) from t1;
+
 +---------------------+
 | trim(both a from b) |
+
 +---------------------+
 |                     |
 |                     |
 | o                   |
 | 啊                  |
 | o啊                 |
+
 +---------------------+
 5 rows in set (0.00 sec)
 
 mysql> select trim(leading a from b) from t1;
+
 +------------------------+
 | trim(leading a from b) |
+
 +------------------------+
 |                        |
 |                        |
 | o                      |
 | 啊                     |
 | o啊                    |
+
 +------------------------+
 5 rows in set (0.01 sec)
 
 mysql> select trim(trailing a from b) from t1;
+
 +-------------------------+
 | trim(trailing a from b) |
+
 +-------------------------+
 |                         |
 |                         |
 | o                       |
 | 啊                      |
 | o啊                     |
+
 +-------------------------+
 5 rows in set (0.00 sec)
 ```

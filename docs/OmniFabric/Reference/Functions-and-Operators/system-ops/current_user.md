@@ -14,10 +14,13 @@ SELECT CURRENT_USER();
 
 ```sql
 mysql> select current_user();
+
 +----------------+
 | current_user() |
+
 +----------------+
 | root@0.0.0.0   |
+
 +----------------+
 1 row in set (0.00 sec)
 ```

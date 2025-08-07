@@ -20,6 +20,7 @@ Returns whether to end with the specified suffix. Returns 1 if the string ends w
 ## **Returned Values**
 
 * 1, if the string ends with the specified suffix.
+
 * 0, if the string does not end with the specified suffix.
 
 ## **Examples**
@@ -35,8 +36,10 @@ Returns whether to end with the specified suffix. Returns 1 if the string ends w
 (5,'Riya Jain', 'IX'),
 (6,'Tapan Samanta', 'XI');
 > select a,endsWith(b,'a') from t1;
+
 +------+----------------+
 | a    | endswith(b, a) |
+
 +------+----------------+
 |    1 |              0 |
 |    2 |              1 |
@@ -44,12 +47,16 @@ Returns whether to end with the specified suffix. Returns 1 if the string ends w
 |    4 |              0 |
 |    5 |              0 |
 |    6 |              1 |
+
 +------+----------------+
 > select a,b,c from t1 where endswith(b,'a')=1 and endswith(c,'I')=1;
+
 +------+---------------+------+
 | a    | b             | c    |
+
 +------+---------------+------+
 |    3 | Aniket Sharma | XI   |
 |    6 | Tapan Samanta | XI   |
+
 +------+---------------+------+
 ```

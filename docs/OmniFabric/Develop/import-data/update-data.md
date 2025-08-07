@@ -13,20 +13,29 @@ There are two ways to update data: `UPDATE` and `INSERT ON DUPLICATE KEY UPDATE`
 The differences between the two are as follows:
 
 - **[`UPDATE`](../../Reference/SQL-Reference/Data-Manipulation-Language/update.md)**:
+
     - The UPDATE statement is used to update existing rows of data directly.
+
     - You need to specify the target table, columns to be updated, their corresponding new values, and the update conditions.
+
     - If the update conditions are met, the data of the existing rows will be modified.
+
     - No changes will be made if the update conditions are not met.
 
 - **[`INSERT ON DUPLICATE KEY UPDATE`](../../Reference/SQL-Reference/Data-Manipulation-Language/insert-on-duplicate.md)**:
+
     - INSERT ON DUPLICATE KEY UPDATE is an extension of the INSERT statement, used to handle duplicate keys when inserting new rows.
+
     - When there are duplicate keys in the inserted data, i.e., when the values of specific column(s) or combination of columns are the same as existing rows' key values, an UPDATE operation will be performed instead of inserting a new row.
+
     - You can specify the data to be inserted and the update operations to be performed when duplicate key conflicts occur in a single statement.
+
     - The specified update operations will update the corresponding columns for rows with duplicate keys.
 
 Key Differences:
 
 - The UPDATE statement is used to directly update existing rows, while the INSERT ON DUPLICATE KEY UPDATE statement is used to handle duplicate keys when inserting data.
+
 - The UPDATE statement requires you to specify the target table, columns to be updated, their corresponding new values, and the update conditions. The INSERT ON DUPLICATE KEY UPDATE statement allows you to specify the data to be inserted and the update operations in a single statement.
 
 ### `UPDATE`
@@ -59,15 +68,23 @@ During the data update process, specify the target table, the columns and values
 ```
 
 1. `INSERT INTO [db.]table [(c1, c2, c3)] VALUES (v11, v12, v13), (v21, v22, v23), ...`
+
    - The INSERT INTO statement inserts new rows into a table.
+
    - `[db.]` (optional) specifies the database name where the table is located. If not provided, the default is the current database.
+
    - `table` is the name of the target table where the data will be inserted.
+
    - `[(c1, c2, c3)]` (optional) specifies the columns to be inserted, enclosed in parentheses and separated by commas. If column names are not specified, it is assumed that all available columns in the table will be inserted.
+
    - The VALUES clause specifies the values to be inserted. Each value corresponds to its respective column and is separated by commas and enclosed in parentheses. Multiple rows of data can be inserted, with each row separated by commas.
 
 2. `[ON DUPLICATE KEY UPDATE column1 = value1, column2 = value2, column3 = value3, ...]`
+
    - The ON DUPLICATE KEY UPDATE clause handles duplicate keys when inserting data.
+
    - When there are duplicate keys in the inserted data, i.e., when the values of specific column(s) or combination of columns are the same as existing rows' key values, an UPDATE operation will be performed instead of inserting a new row.
+
    - `column1, column2, column3` represent the column names to be updated, and `value1, value2, value3` represent the corresponding values to be updated.
 
 This syntax allows you to insert one or multiple rows of data into the specified table.
@@ -81,6 +98,7 @@ When using the INSERT INTO statement, provide the corresponding column names and
 - Example 1: `UPDATE`
 
 ```sql
+
 -- Create table
 CREATE TABLE employees (
   id INT PRIMARY KEY,
@@ -99,14 +117,17 @@ VALUES (1, 'John Doe', 'HR', 5000),
 
 -- View initial data
 mysql> SELECT * FROM employees;
+
 +------+--------------+------------+---------+
 | id   | name         | department | salary  |
+
 +------+--------------+------------+---------+
 |    1 | John Doe     | HR         | 5000.00 |
 |    2 | Jane Smith   | Marketing  | 6000.00 |
 |    3 | Mike Johnson | IT         | 7000.00 |
 |    4 | Emily Brown  | Finance    | 8000.00 |
 |    5 | David Wilson | HR         | 5500.00 |
+
 +------+--------------+------------+---------+
 5 rows in set (0.01 sec)
 
@@ -120,14 +141,17 @@ Query OK, 2 rows affected (0.02 sec)
 
 -- View updated data
 mysql> SELECT * FROM employees;
+
 +------+--------------+------------+---------+
 | id   | name         | department | salary  |
+
 +------+--------------+------------+---------+
 |    2 | Jane Smith   | Marketing  | 6000.00 |
 |    3 | Mike Johnson | IT         | 7000.00 |
 |    4 | Emily Brown  | Finance    | 8000.00 |
 |    1 | John Doe     | HR         | 5500.00 |
 |    5 | David Wilson | HR         | 6050.00 |
+
 +------+--------------+------------+---------+
 5 rows in set (0.00 sec)
 ```
@@ -135,6 +159,7 @@ mysql> SELECT * FROM employees;
 - Example 2: `INSERT ... ON DUPLICATE KEY UPDATE`
 
 ```sql
+
 -- Create table
 CREATE TABLE students (
   id INT PRIMARY KEY,
@@ -152,13 +177,16 @@ VALUES (1, 'John Doe', 18, 'A'),
 
 -- View initial data
 mysql> SELECT * FROM students;
+
 +------+--------------+------+-------+
 | id   | name         | age  | grade |
+
 +------+--------------+------+-------+
 |    1 | John Doe     |   18 | A     |
 |    2 | Jane Smith   |   17 | B     |
 |    3 | Mike Johnson |   19 | A     |
 |    4 | Emily Brown  |   18 | A     |
+
 +------+--------------+------+-------+
 4 rows in set (0.01 sec)
 
@@ -170,13 +198,16 @@ Query OK, 1 row affected (0.01 sec)
 
 -- View updated data
 mysql> SELECT * FROM students;
+
 +------+--------------+------+-------+
 | id   | name         | age  | grade |
+
 +------+--------------+------+-------+
 |    1 | John Doe     |   18 | A     |
 |    3 | Mike Johnson |   19 | A     |
 |    4 | Emily Brown  |   18 | A     |
 |    2 | Jane Smith   |   18 | A     |
+
 +------+--------------+------+-------+
 4 rows in set (0.00 sec)
 ```

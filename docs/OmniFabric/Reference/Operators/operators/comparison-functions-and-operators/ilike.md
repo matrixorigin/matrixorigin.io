@@ -23,12 +23,15 @@ insert into t1 values ('abc'), ('ABC'), ('abC');
 select * from t1 where a ilike '%abC%';
 
 mysql> select * from t1 where a ilike '%abC%';
+
 +------+
 | a    |
+
 +------+
 | abc  |
 | ABC  |
 | abC  |
+
 +------+
 3 rows in set (0.01 sec)
 ```

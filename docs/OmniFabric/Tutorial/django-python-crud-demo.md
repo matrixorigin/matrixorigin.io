@@ -164,11 +164,14 @@ Go into the *test* database and see that the *testmodel\_book table* has been ge
 
 ```sql
 mysql> show tables;
+
 +-------------------+
 | Tables_in_test    |
+
 +-------------------+
 | django_migrations |
 | testmodel_book    |
+
 +-------------------+
 2 rows in set (0.01 sec)
 ```
@@ -209,10 +212,13 @@ Enter the ip of your server in your browser (here we enter the native IP address
 
 ```sql
 mysql> select * from testmodel_book;
+
 +------+-----------+-------+--------------------+------------+
 | id   | title     | price | publish            | pub_date   |
+
 +------+-----------+-------+--------------------+------------+
 |    1 | 白夜行     | 39.50 | 南海出版公司         | 2010-10-10 |
+
 +------+-----------+-------+--------------------+------------+
 1 row in set (0.00 sec)
 ```
@@ -281,10 +287,13 @@ Enter the ip of your server in your browser (here we enter the native IP address
 
 ```sql
 mysql> select * from testmodel_book;
+
 +------+-----------+-------+--------------------+------------+
 | id   | title     | price | publish            | pub_date   |
+
 +------+-----------+-------+--------------------+------------+
 |    1 | 白夜行     | 50.00 | 南海出版公司         | 2010-10-10 |
+
 +------+-----------+-------+--------------------+------------+
 1 row in set (0.00 sec)
 ```

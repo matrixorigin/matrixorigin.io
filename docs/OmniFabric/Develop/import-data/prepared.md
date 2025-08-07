@@ -50,6 +50,7 @@ EXECUTE stmt_name [USING @var_name [, @var_name] ...]
 ## Example
 
 ```sql
+
 -- Create table
 CREATE TABLE customers (
   id INT PRIMARY KEY,
@@ -72,10 +73,13 @@ mysql> SET @id = 2;
 Query OK, 0 rows affected (0.00 sec)
 
 mysql> EXECUTE stmt USING @id;
+
 +------+------------+------------------+
 | id   | name       | email            |
+
 +------+------------+------------------+
 |    2 | Jane Smith | jane@example.com |
+
 +------+------------+------------------+
 1 row in set (0.01 sec)
 

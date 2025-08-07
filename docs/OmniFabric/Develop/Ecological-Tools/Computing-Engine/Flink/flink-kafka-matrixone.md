@@ -7,10 +7,15 @@ This chapter describes how to write Kafka data to OmniFabric using Flink.
 This practice requires the installation and deployment of the following software environments:
 
 - Complete [standalone OmniFabric deployment](../../../../Get-Started/install-standalone-matrixone.md).
+
 - Download and install [lntelliJ IDEA (2022.2.1 or later version)](https://www.jetbrains.com/idea/download/).
+
 - Select the [JDK 8+ version](https://www.oracle.com/sg/java/technologies/javase/javase8-archive-downloads.html) version to download and install depending on your system environment.
+
 - Download and install [Kafka](https://archive.apache.org/dist/kafka/3.5.0/kafka_2.13-3.5.0.tgz).
+
 - Download and install [Flink](https://archive.apache.org/dist/flink/flink-1.17.0/flink-1.17.0-bin-scala_2.12.tgz) with a minimum supported version of 1.11.
+
 - Download and install the [MySQL Client](https://dev.mysql.com/downloads/mysql).
 
 ## Operational steps
@@ -95,7 +100,6 @@ socket.receive.buffer.bytes=102400
 # The maximum size of a request that the socket server will accept (protection against OOM)
 socket.request.max.bytes=104857600
 
-
 ############################# Log Basics #############################
 
 # A comma separated list of directories under which to store log files
@@ -168,7 +172,7 @@ $ bin/kafka-server-start.sh config/kraft/server.properties
 In order for Flink to read data from and write to OmniFabric, we need to first create a Kafka theme called "OmniFabric." Specify the listening address of the Kafka service as `xx.xx.xx.xx:9092` using the `--bootstrap-server` parameter in the following command:
 
 ```shell
-$ bin/kafka-topics.sh --create --topic OmniFabric --bootstrap-server xx.xx.xx.xx:9092
+$ bin/kafka-topics.sh --create --topic matrixone --bootstrap-server xx.xx.xx.xx:9092
 ```
 
 ### Step Three: Read OmniFabric Data
@@ -191,7 +195,7 @@ After connecting to the OmniFabric database, you need to do the following to cre
 
 ```java
 
-package com.OmniFabric.flink.demo.entity;
+package com.matrixone.flink.demo.entity;
 
 public class User {
 
@@ -226,10 +230,10 @@ public class User {
 ```
 
 ```java
-package com.OmniFabric.flink.demo;
+package com.matrixone.flink.demo;
 
 import com.alibaba.fastjson2.JSON;
-import com.OmniFabric.flink.demo.entity.User;
+import com.matrixone.flink.demo.entity.User;
 import org.apache.flink.api.common.eventtime.WatermarkStrategy;
 import org.apache.flink.api.common.serialization.AbstractDeserializationSchema;
 import org.apache.flink.connector.jdbc.JdbcExecutionOptions;
@@ -245,8 +249,11 @@ import org.apache.kafka.clients.consumer.OffsetResetStrategy;
 import java.nio.charset.StandardCharsets;
 
 /**
- * @author OmniFabric
+
+ * @author matrixone
+
  * @desc
+
  */
 public class Kafka2Mo {
 
@@ -346,14 +353,17 @@ Execute the following SQL query results in OmniFabric:
 
 ```sql
 mysql> select * from test.users;
+
 +------+-----------+------+
 | id   | name      | age  |
+
 +------+-----------+------+
 |   10 | xiaowang  |   22 |
 |   20 | xiaozhang |   24 |
 |   30 | xiaogao   |   18 |
 |   40 | xiaowu    |   20 |
 |   50 | xiaoli    |   42 |
+
 +------+-----------+------+
 5 rows in set (0.01 sec)
 ```

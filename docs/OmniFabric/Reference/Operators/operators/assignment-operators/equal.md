@@ -26,11 +26,14 @@ insert into t1 VALUES (1,1),(1,2);
 update t1 set a=2 where a=1 limit 1;
 
 mysql> select * from t1;
+
 +------+------+
 | a    | b    |
+
 +------+------+
 |    2 |    1 |
 |    1 |    2 |
+
 +------+------+
 2 rows in set (0.00 sec)
 ```

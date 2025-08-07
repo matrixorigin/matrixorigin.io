@@ -7,6 +7,7 @@ The `RAND()` function is used to generate a Float64 type random number between 0
 If you need to randomly select data from a table, you can use the `RAND()` function to generate a random number, and then use `ORDER BY` to sort the data in the table according to this random number. For example:
 
 ```sql
+
 -- Randomly retrieve all data from the table and sort it in a random order, the order of the query results may differ each time.
 SELECT * FROM table ORDER BY RAND();
 ```
@@ -29,10 +30,13 @@ SELECT * FROM table ORDER BY RAND();
 
 ```sql
 mysql> SELECT RAND();
+
 +---------------------+
 | rand()              |
+
 +---------------------+
 | 0.25193285156620004 |
+
 +---------------------+
 1 row in set (0.00 sec)
 ```
@@ -53,19 +57,25 @@ INSERT INTO Users (UserName, Email) VALUES
 
 -- Select a user's information randomly from the Users table.
 mysql> SELECT * FROM Users ORDER BY RAND() LIMIT 1;
+
 +------+----------+-----------------+
 | id   | username | email           |
+
 +------+----------+-----------------+
 |    4 | Bob      | bob@example.com | -- Bob's information is randomly selected.
+
 +------+----------+-----------------+
 1 row in set (0.01 sec)
 
 -- Execute the above query again, and another user may be selected.
 mysql> SELECT * FROM Users  ORDER BY RAND() LIMIT 1;
+
 +------+----------+-------------------+
 | id   | username | email             |
+
 +------+----------+-------------------+
 |    3 | Alice    | alice@example.com | -- Alice's information is randomly selected.
+
 +------+----------+-------------------+
 1 row in set (0.01 sec)
 ```

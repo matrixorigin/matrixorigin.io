@@ -32,10 +32,13 @@ mysql> SET @j = '"abc"';
 Query OK, 0 rows affected (0.00 sec)
 
 mysql> SELECT @j, JSON_UNQUOTE(@j);
+
 +-------+------------------+
 | @j    | json_unquote(@j) |
+
 +-------+------------------+
 | "abc" | abc              |
+
 +-------+------------------+
 1 row in set (0.00 sec)
 
@@ -43,18 +46,24 @@ mysql> SET @j = '[1, 2, 3]';
 Query OK, 0 rows affected (0.00 sec)
 
 mysql> SELECT @j, JSON_UNQUOTE(@j);
+
 +-----------+------------------+
 | @j        | json_unquote(@j) |
+
 +-----------+------------------+
 | [1, 2, 3] | [1, 2, 3]        |
+
 +-----------+------------------+
 1 row in set (0.00 sec)
 
 mysql> SELECT JSON_UNQUOTE('"\\t\\u0032"');
+
 +----------------------------+
 | json_unquote("\\t\\u0032") |
+
 +----------------------------+
 |       2                         |
+
 +----------------------------+
 1 row in set (0.00 sec)
 ```

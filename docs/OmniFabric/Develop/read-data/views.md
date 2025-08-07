@@ -33,11 +33,14 @@ Query the table *t00*:
 
 ```sql
 mysql> select * from t00;
+
 +------+
 | a    |
+
 +------+
 |    1 |
 |    2 |
+
 +------+
 ```
 
@@ -45,10 +48,13 @@ Query the table *t01*:
 
 ```sql
 mysql> select * from t01;
+
 +------+
 | a    |
+
 +------+
 |    1 |
+
 +------+
 ```
 
@@ -75,11 +81,14 @@ Once a view is created, you can use the `SELECT` statement to query the view jus
 
 ```sql
 mysql> SELECT * FROM v0;
+
 +------+------+
 | a    | b    |
+
 +------+------+
 |    1 |    1 |
 |    2 | NULL |
+
 +------+------+
 ```
 
@@ -89,10 +98,13 @@ Use the `SHOW CREATE TABLE|VIEW view_name` statement:
 
 ```sql
 mysql> SHOW CREATE VIEW v0;
+
 +------+----------------------------------------------------------------------------+
 | View | Create View                                                                |
+
 +------+----------------------------------------------------------------------------+
 | v0   | CREATE VIEW v0 AS SELECT t00.a, t01.a AS b FROM t00 LEFT JOIN t01 USING(a) |
+
 +------+----------------------------------------------------------------------------+
 1 row in set (0.00 sec)
 ```

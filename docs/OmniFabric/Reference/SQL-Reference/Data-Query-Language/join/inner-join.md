@@ -49,10 +49,12 @@ mysql> select city,libname1,count(libname1) as a from t3 join t1 on libname1=lib
 
 +----------+--------------------+------+
 | city     | libname1           | a    |
+
 +----------+--------------------+------+
 | NewYork  | NewYorkPublicLibra |    6 |
 | SanFran  | SanFransiscoPublic |    1 |
 | Berkeley | BerkeleyPublic1    |    1 |
 | Berkeley | BerkeleyPublic2    |    1 |
+
 +----------+--------------------+------+
 ```

@@ -76,10 +76,15 @@ Available Commands:
   registry    registry operations
 
 Flags:
+
       --config string       Specify the mo_ctl config file
+
   -d, --debug               turn on debug mode
+
   -h, --help                help for mo_ctl
+
       --kubeconfig string   Path to the kubeconfig file to use (default "/root/.kube/config")
+
       --logfile string      Specify the log file
 
 Use "mo_ctl [command] --help" for more information about a command.
@@ -97,6 +102,7 @@ Usage:
   mo_ctl precheck [flags]
 
 Flags:
+
   -h, --help   help for precheck
 ```
 
@@ -105,6 +111,7 @@ Flags:
 Use `mo_ctl install` to install k8s, OmniFabric, minio, and other applications on your computer (machine or virtual machine). You will need to contact your account manager for the download path to the mirror package before executing this command.
 
 - clusterimage.tar: for those who need to use `mo_ctl` to create a cluster and install related components with the base k8s component and the corresponding app component for OmniFabric
+
 - moappdistro.tar: for existing k8s clusters, requires component management using `mo_ctl` with OmniFabric and corresponding components
 
 ```
@@ -115,8 +122,11 @@ Usage:
   mo_ctl install [flags]
 
 Flags:
+
       --app       only install k8s app
+
       --dry-run   dry run
+
   -h, --help      help for install
 ```
 
@@ -132,9 +142,13 @@ Usage:
   mo_ctl destroy [flags]
 
 Flags:
+
       --configmap   get clusterfile from k8s configmap
+
       --dry-run     dry run
+
       --force       force destroy, no notice
+
   -h, --help        help for destroy
 ```
 
@@ -157,7 +171,9 @@ Available Commands:
   push        push (image | chart)
 
 Flags:
+
   -h, --help          help for registry
+
       --type string   registry type (image | chart) (default "image")
 ```
 
@@ -179,6 +195,7 @@ Available Commands:
   start       start backup OmniFabric cluster
 
 Flags:
+
   -h, --help   help for backup
 ```
 
@@ -263,6 +280,7 @@ Flags:
         cacheVolume:
             size: 10Gi
         cnGroups:
+
         - name: tp
         replicas: 1
         cacheVolume:
@@ -301,8 +319,12 @@ Available Commands:
   upgrade     upgrade OmniFabric (cluster | operator)
 
 Flags:
+
       --dry-run       dry run
+
   -h, --help          help for OmniFabric
+
       --name string   Specify OmniFabric cluster name
+
       --type string   Specify a type (cluster | operator) (default "cluster")
 ```

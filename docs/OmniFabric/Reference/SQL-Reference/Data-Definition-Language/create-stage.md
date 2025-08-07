@@ -7,7 +7,9 @@
 The following external storages are currently supported:
 
 - Amazon S3
+
 - MinIO
+
 - File System
 
 ## **Grammar structure**
@@ -36,16 +38,23 @@ URL= "stage://<stagename>[/path/]"
 - `StageParams (for MinIO/Amazon S3)`: Configuration parameters used to specify the stage where the object is stored as MinIO or S3.
 
     - `URL`: Specify a file path or directory in S3 storage
+
     - `CREDENTIALS`: This is a JSON object containing the credential information required to connect to the object storage service.
 
         + `access_key_id`: Access key ID used for authentication.
+
         + `secret_access_key`: The secret associated with the access key ID.
+
         + `aws_role`: optional, used to specify the role name if an IAM role is used. Roles can be configured on AWS to assign different permissions.
+
         + `aws_token`: Optional, security token used for temporary access to AWS services.
 
 + `aws_region`: Specifies the AWS region where Amazon S3 storage is located.
+
          + `compression`: optional, specifies the compression type of the file.
+
          + `provider`: Specify the cloud storage provider.
+
          + `endpint`: Specifies to connect to a custom or third-party S3 API-compatible service.
 
 - `StageParams (for File System)`: used to specify the configuration parameters of the stage stored in the file system.

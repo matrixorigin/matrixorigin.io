@@ -22,10 +22,13 @@ You can use the following statement to view the current values of the global, cl
 
 ```sql
 > SELECT @@global.time_zone, @@session.time_zone, @@global.system_time_zone;
+
 +-------------+-------------+--------------------+
 | @@time_zone | @@time_zone | @@system_time_zone |
+
 +-------------+-------------+--------------------+
 | timezone    | +08:00      | CST                |
+
 +-------------+-------------+--------------------+
 1 row in set (0.01 sec)
 ```
@@ -47,10 +50,13 @@ The session time zone setting does not affect values displayed by functions such
 
 ```sql
 > SELECT @@global.time_zone, @@session.time_zone, @@global.system_time_zone;
+
 +-------------+-------------+--------------------+
 | @@time_zone | @@time_zone | @@system_time_zone |
+
 +-------------+-------------+--------------------+
 | SYSTEM      | SYSTEM      | CST                |
+
 +-------------+-------------+--------------------+
 1 row in set (0.00 sec)
 
@@ -67,10 +73,13 @@ mysql> set @@time_zone = '+08:00';
 Query OK, 0 rows affected (0.00 sec)
 
 mysql> select * from t;
+
 +---------------------+---------------------+
 | ts                  | dt                  |
+
 +---------------------+---------------------+
 | 2017-09-30 19:11:11 | 2017-09-30 11:11:11 |
+
 +---------------------+---------------------+
 1 row in set (0.00 sec)
 ```
@@ -86,19 +95,25 @@ In this example, no matter how you adjust the value of the time zone, the value 
 
 ```sql
 > select now();
+
 +----------------------------+
 | now()                      |
+
 +----------------------------+
 | 2022-10-14 18:38:27.876181 |
+
 +----------------------------+
 1 row in set (0.00 sec)
 
 > show variables like "%time_zone%";
+
 +------------------+--------+
 | Variable_name    | Value  |
+
 +------------------+--------+
 | system_time_zone | CST    |
 | time_zone        | SYSTEM |
+
 +------------------+--------+
 2 rows in set (0.00 sec)
 ```
@@ -115,6 +130,7 @@ set time_zone = '+08:00';
 ```
 
 - `set global time_zone = '+08:00';`: Change the global time zone to Beijing time if we are in the east eight zones.
+
 - `set time_zone = '+08:00';`: Change the time zone of the current session.
 
 ## Constraints

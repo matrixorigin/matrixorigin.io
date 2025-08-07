@@ -28,10 +28,13 @@ The BIT_XOR(expr) function returns the bitwise XOR of all bits in expr.
       ('a',000),('b',001),('b',011);
 
 > select id, BIT_XOR(number) FROM t1 GROUP BY id;
+
 +------+-----------------+
 | id   | bit_xor(number) |
+
 +------+-----------------+
 | a    |             101 |
 | b    |              10 |
+
 +------+-----------------+
 ```

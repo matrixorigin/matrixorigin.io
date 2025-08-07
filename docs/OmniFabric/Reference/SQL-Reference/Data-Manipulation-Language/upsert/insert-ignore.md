@@ -20,15 +20,19 @@ CREATE TABLE user (
     name VARCHAR(50) NOT NULL,
     age INT(3) NOT NULL
 );
+
 -- Insert a new piece of data, the id doesn't exist, so enter the new data.
 mysql> INSERT IGNORE INTO user VALUES (1, 'Tom', 18);
 Query OK, 0 rows affected (0.02 sec)
 
 mysql> SELECT * FROM USER;
+
 +------+------+------+
 | id   | name | age  |
+
 +------+------+------+
 |    1 | Tom  |   18 |
+
 +------+------+------+
 1 row in set (0.01 sec)
 
@@ -37,10 +41,13 @@ mysql> INSERT IGNORE INTO user VALUES (1, 'Jane', 16);
 Query OK, 0 rows affected (0.00 sec)
 
 mysql> SELECT * FROM USER;
+
 +------+------+------+
 | id   | name | age  |
+
 +------+------+------+
 |    1 | Tom  |   18 |
+
 +------+------+------+
 1 row in set (0.01 sec)
 ```
@@ -48,5 +55,7 @@ mysql> SELECT * FROM USER;
 ## Limitations
 
 - `INSERT IGNORE` does not support writing `NULL` to `NOT NULL` columns.
+
 - `INSERT IGNORE` does not support incorrect data type conversions.
+
 - `INSERT IGNORE` does not support handling operations where inserted data in a partition table contains mismatched partition values.

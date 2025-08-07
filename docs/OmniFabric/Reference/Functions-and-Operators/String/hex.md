@@ -25,18 +25,24 @@ For a `NULL` argument, this function returns `NULL`.
 
 ```SQL
 > SELECT HEX('abc');
+
 +----------+
 | hex(abc) |
+
 +----------+
 | 616263   |
+
 +----------+
 1 row in set (0.00 sec)
 
 > SELECT HEX(255);
+
 +----------+
 | hex(255) |
+
 +----------+
 | FF       |
+
 +----------+
 1 row in set (0.00 sec)
 ```

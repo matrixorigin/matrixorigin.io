@@ -11,7 +11,9 @@ The `WITH` clause is used to specify Common Table Expressions, and the `WITH` cl
 **Use Cases**:
 
 - CTEs can reuse the same subquery in multiple places, avoiding redundant logic.
+
 - They can simplify recursive queries, such as querying tree-structured data.
+
 - Complex queries can be broken down into smaller parts using CTEs, making the query logic clearer and more understandable.
 
 **Common Table Expressions are divided into two types: non-recursive and recursive**:
@@ -59,6 +61,7 @@ SELECT ... FROM <query_name>;
 - `<query_definition>`: This consists of two parts in the context of a recursive CTE:
 
     + Initial part: Defines the recursion's initial condition and result set.
+
     + Recursive function: Defines how to recursively generate the next round of the result set from the initial result set.
 
 - `SELECT ... FROM <query_name>`: Use the name of the recursive CTE to query the recursive CTE.
@@ -86,6 +89,7 @@ Here's an example of using a recursive CTE to query the hierarchical relationshi
 
 ```sql
 WITH RECURSIVE EmployeeHierarchy AS (
+
     -- Anchor member: Find top-level employees
     SELECT EmployeeID, Name, ManagerID, 0 AS Level
     FROM Employee
@@ -105,7 +109,9 @@ FROM EmployeeHierarchy;
 In the above example:
 
 - The anchor member selects top-level employees (with `ManagerID` as NULL) and sets their level (`Level`) to 0.
+
 - The recursive member queries subordinate employees based on the previous round's results (`EmployeeHierarchy`), incrementing the level.
+
 - The final query uses `SELECT` to retrieve employee names and levels from the recursive CTE.
 
 Executing this query will provide information about the hierarchical relationship between employees and their subordinates. Both anchor and recursive members together form the structure of a recursive query. On the other hand, a non-recursive CTE is used to create a temporary result set with a single query definition, and you only need to reference this CTE in your query without concerning anchor and recursive members.
@@ -123,10 +129,15 @@ Executing this query will provide information about the hierarchical relationshi
 - **Unsupported Features**: Certain features are not allowed in the CTE_query_definition of a recursive member, including:
 
     + Using the `SELECT DISTINCT` keyword for distinct queries.
+
     + Using `GROUP BY` to group results.
+
     + Using `HAVING` to filter results after grouping.
+
     + Scalar aggregation applies an aggregate function (like `SUM`, `AVG`, etc.) to a set of rows and returns a single value.
+
     + Outer join operations like `LEFT`, `RIGHT`, and `OUTER JOIN` (though `INNER JOIN` is allowed).
+
     + Subqueries.
 
 ## **Examples**
@@ -153,11 +164,14 @@ mysql> WITH avg_salary AS (
        SELECT name, salary
        FROM employees
        JOIN avg_salary ON salary > avg_salary.avg_salary;
+
 +---------+--------+
 | name    | salary |
+
 +---------+--------+
 | Charlie |  75000 |
 | Eve     |  80000 |
+
 +---------+--------+
 2 rows in set (0.00 sec)
 ```
@@ -191,8 +205,10 @@ mysql> WITH RECURSIVE employee_hierarchy_cte (id, name, manager_id, level) AS (
 )
 SELECT name, level
 FROM employee_hierarchy_cte;
+
 +---------+-------+
 | name    | level |
+
 +---------+-------+
 | Alice   |     0 |
 | Bob     |     1 |
@@ -200,6 +216,7 @@ FROM employee_hierarchy_cte;
 | David   |     2 |
 | Eve     |     2 |
 | Frank   |     2 |
+
 +---------+-------+
 6 rows in set (0.00 sec)
 ```

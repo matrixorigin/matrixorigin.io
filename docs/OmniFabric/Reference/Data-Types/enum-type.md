@@ -28,7 +28,9 @@ CREATE TABLE table_name (
 ### Explanations
 
 - `ENUM` is a keyword used to declare an enumeration type.
+
 - value1 to valuen is the optional list of choices for this `ENUM` type. The value of a column using the `ENUM` type can only be one of the values listed above.
+
 - Enumeration values can be of type string, int, or time.
 
 __Note:__ You can have multiple enumeration values in the `ENUM` data type. However, it is recommended to keep the number of enumeration values below 20.
@@ -53,10 +55,13 @@ When inserting data into a field of an enumeration type, only predefined enumera
 
 ```sql
 INSERT INTO enumtable (id, color) VALUES ('01', 'red');
+
 -- 'red' is in the predefined list; the insertion was successful
 INSERT INTO enumtable (id, color) VALUES ('02', 'yellow');
+
 -- 'yellow' is not in the predefined list, an error will be generated
 INSERT INTO enumtable (id, color) VALUES ('03', NULL);
+
 -- The enumeration member does not define not null; the insertion is successful
 ```
 
@@ -64,6 +69,7 @@ In addition to enumeration values, data can be inserted into ENUM columns using 
 
 ```sql
 INSERT INTO enumtable (id, color) VALUES ('04', 2);
+
 -- Since the index of `green` is 2, this data is successfully inserted
 ```
 
@@ -83,6 +89,7 @@ When inserting a new row without specifying a value for the color column, OmniFa
 
 ```sql
 INSERT INTO enumtable (id) VALUES ('05');
+
 -- Here, the first enumeration member `red` will be assigned as the default value for the column with id 05
 ```
 

@@ -13,6 +13,7 @@ There are three parameters that have an impact on saving query results:
 ## Limitations
 
 - Only statements with returned results, such as `SELECT`, `SHOW`, `DESC`, `EXECUTE` statements, are supported for saving
+
 - For `SELECT` statements, only the results of `SELECT` statements that start fixedly with `/*cloud_user */` and `/*save_result */` are saved.
 
 ## Turn on the Save Query Results setting
@@ -20,6 +21,7 @@ There are three parameters that have an impact on saving query results:
 - Turn on save query results for current session only:
 
 ```sql
+
  -- defaults to off
  set save_query_result = on
  ```
@@ -27,6 +29,7 @@ There are three parameters that have an impact on saving query results:
 - To turn on saving query results globally:
 
 ```sql
+
 -- defaults to off
 set global save_query_result = on
 ```
@@ -38,6 +41,7 @@ Set the save time in hours.
 - Open query results save time only for current session:
 
 ```sql
+
 -- Defaults to 24
 set query_result_timeout = 48
 ```
@@ -45,6 +49,7 @@ set query_result_timeout = 48
 - To open query results globally save time:
 
 ```sql
+
 -- defaults to 24
 set global query_result_timeout = 48
 ```
@@ -58,6 +63,7 @@ Sets the maximum value in MB for a single query result.
 - Set a maximum value for query results only for the current session:
 
 ```sql
+
 -- defaults to 100
 set query_result_maxsize = 200
 ```
@@ -65,6 +71,7 @@ set query_result_maxsize = 200
 - Set the maximum value of query results for the global:
 
 ```sql
+
 -- defaults to 100
 set global query_result_maxsize = 200
 ```
@@ -145,34 +152,49 @@ mysql> set global query_result_maxsize = 200;
 mysql> create table t1 (a int);
 mysql> insert into t1 values(1);
 mysql> /* cloud_user */select a from t1;
+
 +------+
 | a    |
+
 +------+
 |    1 |
+
 +------+
 1 row in set (0.16 sec)
+
 -- Queries the ID of the most recently executed query in the current session
 mysql> select last_query_id();
+
 +--------------------------------------+
 | last_query_id()                      |
+
 +--------------------------------------+
 | f005ebc6-a3dc-11ee-bb76-26dd28356ef3 |
+
 +--------------------------------------+
 1 row in set (0.12 sec)
+
 -- Get results for this query ID
 mysql> select * from result_scan('f005ebc6-a3dc-11ee-bb76-26dd28356ef3') as t;
+
 +------+
 | a    |
+
 +------+
 |    1 |
+
 +------+
 1 row in set (0.01 sec)
+
 -- View metadata for this query ID
 mysql> select * from meta_scan('f005ebc6-a3dc-11ee-bb76-26dd28356ef3') as t;
+
 +--------------------------------------+------------------+------------+---------+---------------------------------------------------------------------+---------------------+----------------------+--------+---------+---------------------+-----------+
 | query_id                             | statement        | account_id | role_id | result_path                                                         | create_time         | result_size          | tables | user_id | expired_time        | ColumnMap |
+
 +--------------------------------------+------------------+------------+---------+---------------------------------------------------------------------+---------------------+----------------------+--------+---------+---------------------+-----------+
 | f005ebc6-a3dc-11ee-bb76-26dd28356ef3 | select a from t1 |          0 |       0 | SHARED:/query_result/sys_f005ebc6-a3dc-11ee-bb76-26dd28356ef3_1.blk | 2023-12-26 18:53:01 | 0.000003814697265625 | t1     |       0 | 2023-12-27 18:53:01 | a -> a    |
+
 +--------------------------------------+------------------+------------+---------+---------------------------------------------------------------------+---------------------+----------------------+--------+---------+---------------------+-----------+
 1 row in set (0.01 sec)
 
@@ -189,34 +211,46 @@ mysql> set global query_result_maxsize = 200;
 mysql> create table t1 (a int);
 mysql> insert into t1 values(1);
 mysql> /* save_result */select a from t1;
+
 +------+
 | a    |
+
 +------+
 |    1 |
+
 +------+
 1 row in set (0.02 sec)
 
 mysql> select last_query_id();
+
 +--------------------------------------+
 | last_query_id()                      |
+
 +--------------------------------------+
 | afc82394-a45e-11ee-bb9a-26dd28356ef3 |
+
 +--------------------------------------+
 1 row in set (0.00 sec)
 
 mysql> select * from result_scan('afc82394-a45e-11ee-bb9a-26dd28356ef3') as t;
+
 +------+
 | a    |
+
 +------+
 |    1 |
+
 +------+
 1 row in set (0.01 sec)
 
 mysql> select * from meta_scan('afc82394-a45e-11ee-bb9a-26dd28356ef3') as t;
+
 +--------------------------------------+------------------+------------+---------+---------------------------------------------------------------------+---------------------+----------------------+--------+---------+---------------------+-----------+
 | query_id                             | statement        | account_id | role_id | result_path                                                         | create_time         | result_size          | tables | user_id | expired_time        | ColumnMap |
+
 +--------------------------------------+------------------+------------+---------+---------------------------------------------------------------------+---------------------+----------------------+--------+---------+---------------------+-----------+
 | afc82394-a45e-11ee-bb9a-26dd28356ef3 | select a from t1 |          0 |       0 | SHARED:/query_result/sys_afc82394-a45e-11ee-bb9a-26dd28356ef3_1.blk | 2023-12-27 10:21:47 | 0.000003814697265625 | t1     |       0 | 2023-12-28 10:21:47 | a -> a    |
+
 +--------------------------------------+------------------+------------+---------+---------------------------------------------------------------------+---------------------+----------------------+--------+---------+---------------------+-----------+
 1 row in set (0.00 sec)
 ```
@@ -230,20 +264,26 @@ mysql> set global query_result_maxsize = 200;
 mysql> create table t1 (a int);
 mysql> insert into t1 values(1);
 mysql> show create table t1;
+
 +-------+--------------------------------------------+
 | Table | Create Table                               |
+
 +-------+--------------------------------------------+
 | t1    | CREATE TABLE `t1` (
 `a` INT DEFAULT NULL
 ) |
+
 +-------+--------------------------------------------+
 1 row in set (0.02 sec)
 
 mysql> select * from meta_scan(last_query_id()) as t;
+
 +--------------------------------------+----------------------+------------+---------+---------------------------------------------------------------------+---------------------+-----------------------+--------+---------+---------------------+----------------------------------------------+
 | query_id                             | statement            | account_id | role_id | result_path                                                         | create_time         | result_size           | tables | user_id | expired_time        | ColumnMap                                    |
+
 +--------------------------------------+----------------------+------------+---------+---------------------------------------------------------------------+---------------------+-----------------------+--------+---------+---------------------+----------------------------------------------+
 | 617647f4-a45c-11ee-bb97-26dd28356ef3 | show create table t1 |          0 |       0 | SHARED:/query_result/sys_617647f4-a45c-11ee-bb97-26dd28356ef3_1.blk | 2023-12-27 10:05:17 | 0.0000858306884765625 |        |       0 | 2023-12-28 10:05:17 | Table -> Table, Create Table -> Create Table |
+
 +--------------------------------------+----------------------+------------+---------+---------------------------------------------------------------------+---------------------+-----------------------+--------+---------+---------------------+----------------------------------------------+
 1 row in set (0.00 sec)
 ```
@@ -257,18 +297,24 @@ mysql> set global query_result_maxsize = 200;
 mysql> create table t1 (a int);
 mysql> insert into t1 values(1);
 mysql> desc t1;
+
 +-------+---------+------+------+---------+-------+---------+
 | Field | Type    | Null | Key  | Default | Extra | Comment |
+
 +-------+---------+------+------+---------+-------+---------+
 | a     | INT(32) | YES  |      | NULL    |       |         |
+
 +-------+---------+------+------+---------+-------+---------+
 1 row in set (0.03 sec)
 
 mysql> select * from meta_scan(last_query_id()) as t;
+
 +--------------------------------------+-----------+------------+---------+---------------------------------------------------------------------+---------------------+---------------------+------------+---------+---------------------+----------------------------------------------------------------------------------------------------------------+
 | query_id                             | statement | account_id | role_id | result_path                                                         | create_time         | result_size         | tables     | user_id | expired_time        | ColumnMap                                                                                                      |
+
 +--------------------------------------+-----------+------------+---------+---------------------------------------------------------------------+---------------------+---------------------+------------+---------+---------------------+----------------------------------------------------------------------------------------------------------------+
 | 143a54b6-a45d-11ee-bb97-26dd28356ef3 | desc t1   |          0 |       0 | SHARED:/query_result/sys_143a54b6-a45d-11ee-bb97-26dd28356ef3_1.blk | 2023-12-27 10:10:17 | 0.00016021728515625 | mo_columns |       0 | 2023-12-28 10:10:17 | Field -> Field, Type -> Type, Null -> Null, Key -> Key, Default -> Default, Extra -> Extra, Comment -> Comment |
+
 +--------------------------------------+-----------+------------+---------+---------------------------------------------------------------------+---------------------+---------------------+------------+---------+---------------------+----------------------------------------------------------------------------------------------------------------+
 1 row in set (0.00 sec)
 ```
@@ -289,18 +335,24 @@ mysql> PREPARE s2 FROM 'SELECT * FROM numbers WHERE si=?';
 Query OK, 0 rows affected (0.01 sec)
 
 mysql> EXECUTE s2 USING @si_min;
+
 +------+------+----------------------+
 | pk   | ui   | si                   |
+
 +------+------+----------------------+
 |    0 |    0 | -9223372036854775808 |
+
 +------+------+----------------------+
 1 row in set (0.02 sec)
 
 mysql> select * from meta_scan(last_query_id()) as t;
+
 +--------------------------------------+---------------------------------------------------------------------------------------------------+------------+---------+---------------------------------------------------------------------+---------------------+----------------------+--------+---------+---------------------+------------------------------+
 | query_id                             | statement                                                                                         | account_id | role_id | result_path                                                         | create_time         | result_size          | tables | user_id | expired_time        | ColumnMap                    |
+
 +--------------------------------------+---------------------------------------------------------------------------------------------------+------------+---------+---------------------------------------------------------------------+---------------------+----------------------+--------+---------+---------------------+------------------------------+
 | e83b8df2-a45d-11ee-bb98-26dd28356ef3 | EXECUTE s2 USING @si_min // SELECT * FROM numbers WHERE si=? ; SET @si_min = -9223372036854775808 |          0 |       0 | SHARED:/query_result/sys_e83b8df2-a45d-11ee-bb98-26dd28356ef3_1.blk | 2023-12-27 10:16:13 | 0.000019073486328125 |        |       0 | 2023-12-28 10:16:13 | pk -> pk, ui -> ui, si -> si |
+
 +--------------------------------------+---------------------------------------------------------------------------------------------------+------------+---------+---------------------------------------------------------------------+---------------------+----------------------+--------+---------+---------------------+------------------------------+
 1 row in set (0.00 sec)
 ```
@@ -314,10 +366,13 @@ mysql> set global query_result_maxsize = 200;
 mysql> create table t1 (a int);
 mysql> insert into t1 values(1);
 mysql> select * from t1;
+
 +------+
 | a    |
+
 +------+
 |    1 |
+
 +------+
 1 row in set (0.00 sec)
 

@@ -139,6 +139,7 @@ You can use the `AUTO_INCREMENT` attribute to define the starting value of an au
 For example, to create a table and define an auto-increment column with a starting value of 10, you can use the following SQL statement:
 
 ```sql
+
 -- set up
 create table t1(a int auto_increment primary key) auto_increment = 10;
 ```
@@ -201,11 +202,14 @@ First, create a parent table with field a as the primary key:
 create table t1(a int primary key,b varchar(5));
 insert into t1 values(101,'abc'),(102,'def');
 mysql> select * from t1;
+
 +------+------+
 | a    | b    |
+
 +------+------+
 |  101 | abc  |
 |  102 | def  |
+
 +------+------+
 2 rows in set (0.00 sec)
 ```
@@ -217,12 +221,15 @@ create table t2(a int ,b varchar(5),c int, foreign key(c) references t1(a));
 insert into t2 values(1,'zs1',101),(2,'zs2',102);
 insert into t2 values(3,'xyz',null);
 mysql> select * from t2;
+
 +------+------+------+
 | a    | b    | c    |
+
 +------+------+------+
 |    1 | zs1  |  101 |
 |    2 | zs2  |  102 |
 |    3 | xyz  | NULL |
+
 +------+------+------+
 3 rows in set (0.00 sec)
 ```
@@ -268,6 +275,7 @@ For more information on data integrity constraints, see the data integrity const
 `Cluster by` is a command used to optimize the physical arrangement of a table. When creating a table, the `Cluster by` command can physically sort the table based on a specified column for tables without a primary key. It will rearrange the data rows to match the order of values in that column. Using `Cluster by` improves query performance.
 
 - The syntax for a single column is: `create table() cluster by col;`
+
 - The syntax for multiple columns is: `create table() cluster by (col1, col2);`
 
 __Note:__ `Cluster by` cannot coexist with a primary key, or a syntax error will occur. `Cluster by` can only be specified when creating a table and does not support dynamic creation.
@@ -350,10 +358,13 @@ CREATE TABLE test(a int, b varchar(10));
 INSERT INTO test values(123, 'abc');
 
 mysql> SELECT * FROM test;
+
 +------+---------+
 |   a  |    b    |
+
 +------+---------+
 |  123 |   abc   |
+
 +------+---------+
 ```
 
@@ -363,13 +374,16 @@ mysql> SELECT * FROM test;
 create table t2 (a int, b int) comment = "fact table";
 
 mysql> show create table t2;
+
 +-------+---------------------------------------------------------------------------------------+
 | Table | Create Table                                                                          |
+
 +-------+---------------------------------------------------------------------------------------+
 | t2    | CREATE TABLE `t2` (
 `a` INT DEFAULT NULL,
 `b` INT DEFAULT NULL
 ) COMMENT='fact table',    |
+
 +-------+---------------------------------------------------------------------------------------+
 ```
 
@@ -379,13 +393,16 @@ mysql> show create table t2;
 create table t3 (a int comment 'Column comment', b int) comment = "table";
 
 mysql> SHOW CREATE TABLE t3;
+
 +-------+----------------------------------------------------------------------------------------------------------+
 | Table | Create Table                                                                                             |
+
 +-------+----------------------------------------------------------------------------------------------------------+
 | t3    | CREATE TABLE `t3` (
 `a` INT DEFAULT NULL COMMENT 'Column comment',
 `b` INT DEFAULT NULL
 ) COMMENT='table',     |
+
 +-------+----------------------------------------------------------------------------------------------------------+
 ```
 
@@ -395,14 +412,17 @@ mysql> SHOW CREATE TABLE t3;
 CREATE TABLE tp1 (col1 INT, col2 CHAR(5), col3 DATE) PARTITION BY KEY(col3) PARTITIONS 4;
 
 mysql> SHOW CREATE TABLE tp1;
+
 +-------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Table | Create Table                                                                                                                                             |
+
 +-------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
 | tp1   | CREATE TABLE `tp1` (
 `col1` INT DEFAULT NULL,
 `col2` CHAR(5) DEFAULT NULL,
 `col3` DATE DEFAULT NULL
 ) partition by key algorithm = 2 (col3) partitions 4 |
+
 +-------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
 1 row in set (0.00 sec)
 
@@ -410,14 +430,17 @@ mysql> SHOW CREATE TABLE tp1;
 CREATE TABLE tp2 (col1 INT, col2 CHAR(5), col3 DATE) PARTITION BY KEY(col3);
 
 mysql> SHOW CREATE TABLE tp2;
+
 +-------+---------------------------------------------------------------------------------------------------------------------------------------------+
 | Table | Create Table                                                                                                                                |
+
 +-------+---------------------------------------------------------------------------------------------------------------------------------------------+
 | tp2   | CREATE TABLE `tp2` (
 `col1` INT DEFAULT NULL,
 `col2` CHAR(5) DEFAULT NULL,
 `col3` DATE DEFAULT NULL
 ) partition by key algorithm = 2 (col3) |
+
 +-------+---------------------------------------------------------------------------------------------------------------------------------------------+
 1 row in set (0.00 sec)
 
@@ -429,16 +452,18 @@ CREATE TABLE tp3
     col3 DATE
 ) PARTITION BY KEY ALGORITHM = 1 (col3);
 
-
 mysql> show create table tp3;
+
 +-------+---------------------------------------------------------------------------------------------------------------------------------------------+
 | Table | Create Table                                                                                                                                |
+
 +-------+---------------------------------------------------------------------------------------------------------------------------------------------+
 | tp3   | CREATE TABLE `tp3` (
 `col1` INT DEFAULT NULL,
 `col2` CHAR(5) DEFAULT NULL,
 `col3` DATE DEFAULT NULL
 ) partition by key algorithm = 1 (col3) |
+
 +-------+---------------------------------------------------------------------------------------------------------------------------------------------+
 1 row in set (0.00 sec)
 
@@ -446,14 +471,17 @@ mysql> show create table tp3;
 CREATE TABLE tp4 (col1 INT, col2 CHAR(5), col3 DATE) PARTITION BY LINEAR KEY ALGORITHM = 1 (col3) PARTITIONS 5;
 
 mysql> SHOW CREATE TABLE tp4;
+
 +-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Table | Create Table                                                                                                                                                    |
+
 +-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | tp4   | CREATE TABLE `tp4` (
 `col1` INT DEFAULT NULL,
 `col2` CHAR(5) DEFAULT NULL,
 `col3` DATE DEFAULT NULL
 ) partition by linear key algorithm = 1 (col3) partitions 5 |
+
 +-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
 1 row in set (0.01 sec)
 
@@ -466,14 +494,17 @@ CREATE TABLE tp5
 ) PARTITION BY KEY(col1, col2) PARTITIONS 4;
 
 mysql> SHOW CREATE TABLE tp5;
+
 +-------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Table | Create Table                                                                                                                                                   |
+
 +-------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | tp5   | CREATE TABLE `tp5` (
 `col1` INT DEFAULT NULL,
 `col2` CHAR(5) DEFAULT NULL,
 `col3` DATE DEFAULT NULL
 ) partition by key algorithm = 2 (col1, col2) partitions 4 |
+
 +-------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
 1 row in set (0.01 sec)
 
@@ -487,8 +518,10 @@ CREATE TABLE tp6
 ) PARTITION BY KEY(col1) PARTITIONS 4;
 
 mysql> SHOW CREATE TABLE tp6;
+
 +-------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Table | Create Table                                                                                                                                                                        |
+
 +-------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | tp6   | CREATE TABLE `tp6` (
 `col1` INT NOT NULL,
@@ -497,6 +530,7 @@ mysql> SHOW CREATE TABLE tp6;
 `col4` INT NOT NULL,
 PRIMARY KEY (`col1`)
 ) partition by key algorithm = 2 (col1) partitions 4 |
+
 +-------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 1 row in set (0.01 sec)
 
@@ -508,13 +542,16 @@ CREATE TABLE tp7
 ) PARTITION BY HASH(col1);
 
 mysql> SHOW CREATE TABLE tp7;
+
 +-------+------------------------------------------------------------------------------------------------------+
 | Table | Create Table                                                                                         |
+
 +-------+------------------------------------------------------------------------------------------------------+
 | tp7   | CREATE TABLE `tp7` (
 `col1` INT DEFAULT NULL,
 `col2` CHAR(5) DEFAULT NULL
 ) partition by hash (col1) |
+
 +-------+------------------------------------------------------------------------------------------------------+
 1 row in set (0.01 sec)
 
@@ -526,13 +563,16 @@ CREATE TABLE tp8
 ) PARTITION BY HASH(col1) PARTITIONS 4;
 
 mysql> SHOW CREATE TABLE tp8;
+
 +-------+-------------------------------------------------------------------------------------------------------------------+
 | Table | Create Table                                                                                                      |
+
 +-------+-------------------------------------------------------------------------------------------------------------------+
 | tp8   | CREATE TABLE `tp8` (
 `col1` INT DEFAULT NULL,
 `col2` CHAR(5) DEFAULT NULL
 ) partition by hash (col1) partitions 4 |
+
 +-------+-------------------------------------------------------------------------------------------------------------------+
 1 row in set (0.00 sec)
 
@@ -545,14 +585,17 @@ CREATE TABLE tp9
 ) PARTITION BY HASH (YEAR(col3));
 
 mysql> SHOW CREATE TABLE tp9;
+
 +-------+------------------------------------------------------------------------------------------------------------------------------------------+
 | Table | Create Table                                                                                                                             |
+
 +-------+------------------------------------------------------------------------------------------------------------------------------------------+
 | tp9   | CREATE TABLE `tp9` (
 `col1` INT DEFAULT NULL,
 `col2` CHAR(5) DEFAULT NULL,
 `col3` DATETIME DEFAULT NULL
 ) partition by hash (year(col3)) |
+
 +-------+------------------------------------------------------------------------------------------------------------------------------------------+
 1 row in set (0.00 sec)
 
@@ -565,14 +608,17 @@ CREATE TABLE tp10
 ) PARTITION BY LINEAR HASH( YEAR(col3)) PARTITIONS 6;
 
 mysql> SHOW CREATE TABLE tp10;
+
 +-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Table | Create Table                                                                                                                                              |
+
 +-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
 | tp10  | CREATE TABLE `tp10` (
 `col1` INT DEFAULT NULL,
 `col2` CHAR(5) DEFAULT NULL,
 `col3` DATE DEFAULT NULL
 ) partition by linear hash (year(col3)) partitions 6 |
+
 +-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
 1 row in set (0.00 sec)
 
@@ -580,8 +626,10 @@ mysql> SHOW CREATE TABLE tp10;
 CREATE TABLE tp12 (col1 INT NOT NULL PRIMARY KEY, col2 DATE NOT NULL, col3 INT NOT NULL, col4 INT NOT NULL) PARTITION BY HASH(col1) PARTITIONS 4;
 
 mysql> SHOW CREATE TABLE tp12;
+
 +-------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Table | Create Table                                                                                                                                                            |
+
 +-------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | tp12  | CREATE TABLE `tp12` (
 `col1` INT NOT NULL,
@@ -590,6 +638,7 @@ mysql> SHOW CREATE TABLE tp12;
 `col4` INT NOT NULL,
 PRIMARY KEY (`col1`)
 ) partition by hash (col1) partitions 4 |
+
 +-------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 1 row in set (0.01 sec)
 ```
@@ -605,39 +654,48 @@ insert into t1 values (3, 'ccc');
 insert into t1(b) values ('bbb1111');
 
 mysql> select * from t1 order by a;
+
 +------+---------+
 | a    | b       |
+
 +------+---------+
 |    1 | bbb     |
 |    3 | ccc     |
 |    4 | bbb1111 |
+
 +------+---------+
 3 rows in set (0.01 sec)
 
 insert into t1 values (2, 'aaaa1111');
 
 mysql> select * from t1 order by a;
+
 +------+----------+
 | a    | b        |
+
 +------+----------+
 |    1 | bbb      |
 |    2 | aaaa1111 |
 |    3 | ccc      |
 |    4 | bbb1111  |
+
 +------+----------+
 4 rows in set (0.00 sec)
 
 insert into t1(b) values ('aaaa1111');
 
 mysql> select * from t1 order by a;
+
 +------+----------+
 | a    | b        |
+
 +------+----------+
 |    1 | bbb      |
 |    2 | aaaa1111 |
 |    3 | ccc      |
 |    4 | bbb1111  |
 |    5 | aaaa1111 |
+
 +------+----------+
 5 rows in set (0.01 sec)
 
@@ -645,8 +703,10 @@ insert into t1 values (100, 'xxxx');
 insert into t1(b) values ('xxxx');
 
 mysql> select * from t1 order by a;
+
 +------+----------+
 | a    | b        |
+
 +------+----------+
 |    1 | bbb      |
 |    2 | aaaa1111 |
@@ -655,6 +715,7 @@ mysql> select * from t1 order by a;
 |    5 | aaaa1111 |
 |  100 | xxxx     |
 |  101 | xxxx     |
+
 +------+----------+
 7 rows in set (0.00 sec)
 ```

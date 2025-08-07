@@ -7,7 +7,9 @@ This document introduces how to create tables using the SQL statement and the re
 Before reading this document, make sure that the following tasks are completed:
 
 - Build a OmniFabric Cluster in OmniFabric.
+
 - Read the [Database Schema Design Overview](overview.md).
+
 - The database has been created.
 
 ## What is a table
@@ -47,7 +49,9 @@ Column definitions typically take the following form.
 **Parameter description**
 
 - {column_name}: The column name.
+
 - {data_type}: The column data type.
+
 - {column_qualification}: Column qualifications.
 
 Suppose you need to create a table to store the *NATION* information in the *modatabase* database.
@@ -118,11 +122,14 @@ You can use `DEFAULT` together with supported SQL functions to move the calculat
 create table t1(a int default (1), b int);
 insert into t1(b) values(1), (1);
 > select * from t1;
+
 +------+------+
 | a    | b    |
+
 +------+------+
 |    1 |    1 |
 |    1 |    1 |
+
 +------+------+
 2 rows in set (0.01 sec)
 ```
@@ -132,6 +139,7 @@ The default value of a is 1.
 You can also set the default value to the time when the value was inserted; see the simple example below:
 
 ```sql
+
 -- Create the table and set the default value to the current time
 CREATE TABLE t2 (
     id INT PRIMARY KEY,
@@ -145,12 +153,15 @@ INSERT INTO t2 (id, name) VALUES
 (3, 'Mike');
 
 > SELECT * FROM t2;
+
 +------+------+---------------------+
 | id | name | created_at |
+
 +------+------+---------------------+
 | 1 | John | 2023-07-10 11:57:27 |
 | 2 | Jane | 2023-07-10 11:57:27 |
 | 3 | Mike | 2023-07-10 11:57:27 |
+
 +------+------+---------------------+
 3 rows in set (0.00 sec)
 ```
@@ -202,11 +213,14 @@ SHOW TABLES IN `modatabase`;
 Running results:
 
 ```
+
 +----------------------+
 | tables_in_modatabase |
+
 +----------------------+
 | nation               |
 | orders               |
+
 +----------------------+
 ```
 
@@ -237,8 +251,13 @@ This section provides guidelines you need to follow when creating a table.
 ### Guidelines to follow when selecting primary key
 
 - Define a primary key or unique index within the table.
+
 - Try to select meaningful columns as primary keys.
+
 - For performance reasons, try to avoid storing extra-wide tables. It is not recommended that the number of table fields is over 60 and that the total data size of a single row is over 64K. It is recommended to split fields with too much data length to another table.
+
 - It is not recommended to use complex data types.
+
 - For the fields to be joined, ensure that the data types are consistent and avoid implicit conversion.
+
 - Avoid defining primary keys on a single monotonic data column. If you use a single monotonic data column (for example, a column with the AUTO_INCREMENT attribute) to define the primary key, it might impact the write performance.

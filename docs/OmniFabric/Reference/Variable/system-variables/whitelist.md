@@ -5,8 +5,11 @@ OmniFabric supports the following variables for restricting only clients with sp
 1. **`validnode_checking`**: Control whether to enable the IP whitelist function. The value range of this variable is `ON` or `OFF`, and the default value is `OFF`.
 
 2. **`invited_nodes`**: Define the list of IP addresses allowed to connect to the MO database. The following formats are supported:
+
       - **Single IP address**: e.g. `(192.168.1.100, 192.168.1.101)`
+
       - **Wildcard**: `(*)` means allow all IP addresses to connect
+
       - **CIDR format**: For example `(192.168.1.100, 192.168.1.0/8, 192.168.0.0/32)`
 
       The default value of this variable is `*`, which means that all clients can connect by default.
@@ -31,18 +34,24 @@ set global invited_nodes=xx; --Default is *
 
 ```sql
 mysql> select @@global.validnode_checking;
+
 +----------------------+
 | @@validnode_checking |
+
 +----------------------+
 | 0                    |
+
 +----------------------+
 1 row in set (0.00 sec)
 
 mysql> select @@global.invited_nodes;
+
 +-----------------+
 | @@invited_nodes |
+
 +-----------------+
 | *               |
+
 +-----------------+
 1 row in set (0.00 sec)
 
@@ -70,7 +79,6 @@ owners.
 Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 
 mysql>
-
 
 --View IP
 root@host-10-222-4-8:~# hostname -I

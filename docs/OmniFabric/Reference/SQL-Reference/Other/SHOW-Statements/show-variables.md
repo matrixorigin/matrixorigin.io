@@ -21,8 +21,10 @@
 
 ```sql
 mysql> SHOW VARIABLES;
+
 +--------------------------+-----------------------------------------------------------------------------------------------------------------------+
 | Variable_name            | Value                                                                                                                 |
+
 +--------------------------+-----------------------------------------------------------------------------------------------------------------------+
 | auto_increment_increment | 1                                                                                                                     |
 | auto_increment_offset    | 1                                                                                                                     |
@@ -65,24 +67,31 @@ mysql> SHOW VARIABLES;
 | tx_read_only             | 0                                                                                                                     |
 | version_comment          | OmniFabric                                                                                                             |
 | wait_timeout             | 28800                                                                                                                 |
+
 +--------------------------+-----------------------------------------------------------------------------------------------------------------------+
 41 rows in set (0.01 sec)
 
 mysql> show variables like 'auto%';
+
 +--------------------------+-------+
 | Variable_name            | Value |
+
 +--------------------------+-------+
 | auto_increment_increment | 1     |
 | auto_increment_offset    | 1     |
 | autocommit               | 1     |
+
 +--------------------------+-------+
 3 rows in set (0.00 sec)
 
 mysql> show variables like 'auto_increment_increment';
+
 +--------------------------+-------+
 | Variable_name            | Value |
+
 +--------------------------+-------+
 | auto_increment_increment | 1     |
+
 +--------------------------+-------+
 1 row in set (0.00 sec)
 ```

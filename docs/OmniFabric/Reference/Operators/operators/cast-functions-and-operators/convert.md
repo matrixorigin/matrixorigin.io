@@ -28,17 +28,22 @@ Or:
 Currently, `convert` can support following conversion:
 
 * Conversion between numeric types, mainly including SIGNED, UNSIGNED, FLOAT, and DOUBLE type.
+
 * Numeric types to character CHAR type.
+
 * Numeric character types to numerical types(negative into SIGNED).
 
 ## **Examples**
 
 ```sql
 mysql> select convert(150,char);
+
 +-------------------+
 | cast(150 as char) |
+
 +-------------------+
 | 150               |
+
 +-------------------+
 1 row in set (0.01 sec)
 ```
@@ -48,11 +53,15 @@ CREATE TABLE t1(a tinyint);
 INSERT INTO t1 VALUES (127);
 
 mysql> SELECT 1 FROM
+
   -> (SELECT CONVERT(t2.a USING UTF8) FROM t1, t1 t2 LIMIT 1) AS s LIMIT 1;
+
 +------+
 | 1    |
+
 +------+
 |    1 |
+
 +------+
 1 row in set (0.00 sec)
 ```
@@ -60,6 +69,9 @@ mysql> SELECT 1 FROM
 ## **Constraints**
 
 * Non-numeric character types cannot be converted to numeric types.
+
 * Numeric and character types with formats of Data cannot be converted to Date.
+
 * Date and Datetime types cannot be converted to character types.
+
 * Date and Datetime cannot be converted to each other.

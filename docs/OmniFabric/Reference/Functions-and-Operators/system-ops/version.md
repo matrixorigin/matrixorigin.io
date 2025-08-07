@@ -14,10 +14,13 @@ The `VERSION()` function is used to retrieve the version information of the curr
 
 ```sql
 mysql> select version();
+
 +-----------+
 | version() |
+
 +-----------+
 | 0.8       |
+
 +-----------+
 1 row in set (0.00 sec)
 ```

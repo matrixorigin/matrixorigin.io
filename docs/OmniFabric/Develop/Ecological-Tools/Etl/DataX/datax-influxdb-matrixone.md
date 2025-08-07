@@ -7,12 +7,19 @@ This article describes how to write InfluxDB data offline to a OmniFabric databa
 Before you can start writing data to OmniFabric using DataX, you need to complete the installation of the following software:
 
 - Finished [installing and starting](../../../Get-Started/install-standalone-matrixone.md) OmniFabric.
+
 - Install [JDK 8+ version](https://www.oracle.com/sg/java/technologies/javase/javase8-archive-downloads.html).
+
 - Install [Python 3.8 (or plus)](https://www.python.org/downloads/).
+
 - Download the [DataX](https://datax-opensource.oss-cn-hangzhou.aliyuncs.com/202210/datax.tar.gz) installation package and unzip it.
+
 - Download and install [InfluxDB](https://www.influxdata.com/products/influxdb/).
-- Download [OmniFabricwriter.zip](https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/develop/Computing-Engine/datax-write/OmniFabricwriter.zip) and extract it to the `plugin/writer/` directory in the root of your DataX project.
+
+- Download [matrixonewriter.zip](https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/develop/Computing-Engine/datax-write/matrixonewriter.zip) and extract it to the `plugin/writer/` directory in the root of your DataX project.
+
 - Download [influxdbreader](https://github.com/wowiscrazy/InfluxDBReader-DataX) to the datax/plugin/reader path.
+
 - Install the <a href="https://dev.mysql.com/downloads/mysql" target="_blank">MySQL Client</a>.
 
 ## Steps
@@ -26,9 +33,11 @@ influx -host 'localhost' -port '8086'
 ```
 
 ```sql
+
 --Creating and using databases
 create database testDb;
 use testDb;
+
 --insert data
 insert air_condition_outdoor,home_id=0000000000000,sensor_id=0000000000034 temperature=0.0000000000000000,humidity=80.0000000000000000,battery_voltage=3.2000000000000002 1514764800000000000
 insert air_condition_outdoor,home_id=0000000000001,sensor_id=0000000000093 temperature=0.0000000000000000,humidity=80.0000000000000000,battery_voltage=3.2000000000000002 1514764800000000000

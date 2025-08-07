@@ -7,6 +7,7 @@ When using clustering algorithms, especially K-means, the number of clusters K r
 In the K-means algorithm, the choice of K has a great influence on the clustering results. Choosing the right K value can help you better understand the structure and pattern of your data. If the K value is not chosen properly, it can cause the following problems:
 
 - The K value is too small: it can cause different clusters to merge together, losing important patterns in the data.
+
 - K-values are too large: may result in over-segmentation of data, with each cluster containing very few data points, which may mask general trends in the data.
 
 OmniFabric provides a cluster center query to determine the K cluster centers of a vector column.
@@ -54,8 +55,10 @@ Suppose we have annual shopping data for a set of customers, including their ann
     INSERT INTO customer_table(in_ex) VALUES("[120,50]"),("[80,25]"),("[200,100]"),("[100,40]"),("[300,120]"),("[150,75]"),("[90,30]"),("[250,90]"),("[75,20]"),("[150,60]");
 
     mysql> select * from customer_table;
+
     +------+------------+
     | id   | in_ex      |
+
     +------+------------+
     |    1 | [120, 50]  |
     |    2 | [80, 25]   |
@@ -67,6 +70,7 @@ Suppose we have annual shopping data for a set of customers, including their ann
     |    8 | [250, 90]  |
     |    9 | [75, 20]   |
     |   10 | [150, 60]  |
+
     +------+------------+
     10 rows in set (0.01 sec)
     ```
@@ -75,10 +79,13 @@ Suppose we have annual shopping data for a set of customers, including their ann
 
     ```sql
     mysql> SELECT cluster_centers(in_ex kmeans '2,vector_l2_ops,random,false') AS centers FROM customer_table;
+
     +------------------------------------------------------------------------+
     | centers                                                                |
+
     +------------------------------------------------------------------------+
     | [ [109.28571428571428, 42.857142857142854],[250, 103.33333333333333] ] |
+
     +------------------------------------------------------------------------+
     1 row in set (0.00 sec)
     ```
@@ -108,14 +115,17 @@ A music streaming service wants to divide users into groups based on their prefe
     INSERT INTO music_table VALUES(1,"[5,2,3,1,4]"),(2,"[3,5,2,1,4]"),(3,"[4,3,5,1,2]"),(4,"[2,5,4,3,1]"),(5,"[5,4,3,2,5]");
 
     mysql> select * from music_table;
+
     +------+-----------------+
     | id   | grade           |
+
     +------+-----------------+
     |    1 | [5, 2, 3, 1, 4] |
     |    2 | [3, 5, 2, 1, 4] |
     |    3 | [4, 3, 5, 1, 2] |
     |    4 | [2, 5, 4, 3, 1] |
     |    5 | [5, 4, 3, 2, 5] |
+
     +------+-----------------+
     5 rows in set (0.01 sec)
     ```
@@ -124,14 +134,17 @@ A music streaming service wants to divide users into groups based on their prefe
 
     ```sql
     mysql> select normalize_l2(grade) from music_table;
+
     +---------------------------------------------------------------------------------------------------------+
     | normalize_l2(grade)                                                                                     |
+
     +---------------------------------------------------------------------------------------------------------+
     | [0.6741998624632421, 0.26967994498529685, 0.40451991747794525, 0.13483997249264842, 0.5393598899705937] |
     | [0.40451991747794525, 0.6741998624632421, 0.26967994498529685, 0.13483997249264842, 0.5393598899705937] |
     | [0.5393598899705937, 0.40451991747794525, 0.6741998624632421, 0.13483997249264842, 0.26967994498529685] |
     | [0.26967994498529685, 0.6741998624632421, 0.5393598899705937, 0.40451991747794525, 0.13483997249264842] |
     | [0.562543950463012, 0.4500351603704096, 0.3375263702778072, 0.2250175801852048, 0.562543950463012]      |
+
     +---------------------------------------------------------------------------------------------------------+
     5 rows in set (0.01 sec)
     ```
@@ -140,10 +153,13 @@ A music streaming service wants to divide users into groups based on their prefe
 
     ```sql
     mysql> SELECT cluster_centers(grade kmeans '2,vector_l2_ops,kmeansplusplus,true') AS centers FROM music_table;
+
     +------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
     | centers                                                                                                                                                                                                          |
+
     +------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
     | [ [0.3370999312316211, 0.6741998624632421, 0.40451991747794525, 0.26967994498529685, 0.3370999312316211],[0.5920345676322826, 0.3747450076112172, 0.4720820500729982, 0.16489917505683388, 0.4571945951396342] ] |
+
     +------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
     1 row in set (0.00 sec)
     ```

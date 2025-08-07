@@ -32,36 +32,48 @@ insert into t3 values (6),(7),(3);
 insert into t6 values (10,7),(null,7);
 
 mysql> select * from t3 where a <> any (select b from t2);
+
 +------+
 | a    |
+
 +------+
 |    6 |
 |    3 |
+
 +------+
 2 rows in set (0.00 sec)
 
 mysql> select * from t3 where a <> some (select b from t2);
+
 +------+
 | a    |
+
 +------+
 |    6 |
 |    3 |
+
 +------+
 2 rows in set (0.00 sec)
 
 mysql> select * from t3 where a = some (select b from t2);
+
 +------+
 | a    |
+
 +------+
 |    7 |
+
 +------+
 1 row in set (0.00 sec)
 
 mysql> select * from t3 where a = any (select b from t2);
+
 +------+
 | a    |
+
 +------+
 |    7 |
+
 +------+
 1 row in set (0.00 sec)
 

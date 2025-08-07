@@ -32,8 +32,10 @@ VALUES
 (5,'Riya Jain', 'IX'),
 (6,'Tapan Samanta', 'X');
 > SELECT Student_id, Student_name,LPAD(Student_Class, 10, ' _') AS LeftPaddedString FROM t1;
+
 +------------+-----------------+------------------+
 | Student_id | Student_name    | LeftPaddedString |
+
 +------------+-----------------+------------------+
 |          1 | Ananya Majumdar |  _ _ _ _IX       |
 |          2 | Anushka Samanta |  _ _ _ _ X       |
@@ -41,10 +43,13 @@ VALUES
 |          4 | Anik Das        |  _ _ _ _ X       |
 |          5 | Riya Jain       |  _ _ _ _IX       |
 |          6 | Tapan Samanta   |  _ _ _ _ X       |
+
 +------------+-----------------+------------------+
 > SELECT Student_id, lpad(Student_name,4,'new') AS LeftPaddedString FROM t1;
+
 +------------+------------------+
 | Student_id | LeftPaddedString |
+
 +------------+------------------+
 |          1 | Anan             |
 |          2 | Anus             |
@@ -52,10 +57,13 @@ VALUES
 |          4 | Anik             |
 |          5 | Riya             |
 |          6 | Tapa             |
+
 +------------+------------------+
 > SELECT Student_id, lpad(Student_name,-4,'new') AS LeftPaddedString FROM t1;
+
 +------------+------------------+
 | Student_id | LeftPaddedString |
+
 +------------+------------------+
 |          1 | NULL             |
 |          2 | NULL             |
@@ -63,10 +71,13 @@ VALUES
 |          4 | NULL             |
 |          5 | NULL             |
 |          6 | NULL             |
+
 +------------+------------------+
 > SELECT Student_id, lpad(Student_name,0,'new') AS LeftPaddedString FROM t1;
+
 +------------+------------------+
 | Student_id | LeftPaddedString |
+
 +------------+------------------+
 |          1 |                  |
 |          2 |                  |
@@ -74,5 +85,6 @@ VALUES
 |          4 |                  |
 |          5 |                  |
 |          6 |                  |
+
 +------------+------------------+
 ```

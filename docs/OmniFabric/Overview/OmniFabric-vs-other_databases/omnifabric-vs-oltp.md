@@ -7,8 +7,11 @@ OLTP refers to a business transaction-oriented database management system. The O
 The main features of an OLTP database are as follows:
 
 - ACID: The OLTP system must ensure that the entire transaction is properly logged. Transactions typically involve the execution of programs that perform multiple steps or operations. It may be done when all interested parties confirm a transaction, deliver a product/service, or make a certain number of updates to a particular table in the database. Transactions are only properly documented when all steps involved are performed and documented. If there are any errors in any one step, the entire transaction must be aborted and all steps removed from the system. Therefore, OLTP systems must comply with Atomicity, Consistency, Isolation, and Persistence (ACID) to ensure the accuracy of data in the system.
+
 - High Concurrency: The user base of OLTP systems can be very large, with many users attempting to access the same data simultaneously. The system must ensure that all users attempting to read or write to the system can do so simultaneously. Concurrency control ensures that two users accessing the same data in a database system at the same time will not be able to change that data, or that one user will have to wait for another user to complete processing before changing the data.
+
 - High availability: OLTP systems must always be available and ready to accept transactions. Failure to process a transaction may result in loss of revenue or legal implications. Transactions can be executed anywhere in the world at any time, so the system must be available 24/7.
+
 - Fine-grained data access: OLTP databases, which typically provide data access in units of records, support efficient add, delete, and change operations and provide fast transaction commit and rollback capabilities.
 
 - High reliability: OLTP systems must be resilient in the event of any hardware or software failure.
@@ -18,7 +21,9 @@ The main features of an OLTP database are as follows:
 OLTP databases can also be divided into centralized databases, distributed databases, and cloud-native databases depending on the architecture and technical route.
 
 * Most well-known OLTP databases are traditional centralized databases such as Oracle, Microsoft SQL Server, MySQL, PostgreSQL, DB2, etc. Most were born between 1980 and 2000.
+
 * Typical of Google's 2012 Spanner, the distributed OLTP database uses Share-nothing as the architecture core, scaling through multi-machine data slicing and computing, and distributed consistency through consistency protocols. This architecture is also referred to by many in the industry as NewSQL architecture, representing products such as CockroachDB, SAP HANA, TiDB, Oceanbase, etc.
+
 * There is also a technical route known as cloud-native OLTP databases such as Aurora, PolarDB, NeonDB, etc. Significantly different from the Share-nothing architecture is the adoption of a shared storage architecture with a more thorough separation of memory and scalability through storage systems with their own scalability in cloud computing systems. OmniFabric is also a cloud-native technology route.
 
 It is worth noting that there are no strict dividing criteria for these three classifications, and each database has gradually begun to integrate the capabilities of other route products as it has evolved in practice. Oracle's RAC architecture, for example, is a typical shared storage architecture with some scalability. Products like CockroachDB and TiDB are also evolving toward cloud-native and shared storage. In practice, OLTP is the most widely needed database scenario, and products along all three technical routes are also used by a large number of users.
@@ -28,7 +33,9 @@ It is worth noting that there are no strict dividing criteria for these three cl
 The basic capabilities of OmniFabric meet the characteristics of a typical OLTP database.
 
 * Data manipulation and ACID features: OmniFabric supports row-level addition, deletion, and lookup operations, and has transaction capabilities with ACID features. For a detailed description of the capabilities, refer to the transaction documentation.
+
 * High Concurrency: OmniFabric can support highly concurrent business requests, reaching a concurrency level of tens of thousands of tpmC in industry-wide TPC-C testing for OLTP, while also increasing based on node expansion.
+
 * High Availability: OmniFabric itself is based on Kubernetes and shared storage, and has proven scenarios in cloud environments to ensure high availability of both of these underlying components. The design of OmniFabric itself also takes into account the availability and failure recovery mechanisms of each of its components. Details can be found in [the highly available introduction](../../Overview/feature/high-availability.md) to OmniFabric.
 
 As shown in the figure above, OmniFabric belongs to the cloud-native technology route in terms of architectural and technical route classification and is closer to Aurora. The biggest advantage over the Share-nothing architecture is that both storage and compute can be used on demand once storage computing is separated.
@@ -36,6 +43,7 @@ As shown in the figure above, OmniFabric belongs to the cloud-native technology 
 There are two differences from Aurora:
 
 * Aurora exposes the write node to the user layer, where users can only write from a single node. OmniFabric, on the other hand, hides write processing from the internal TN and LogService, allowing all CN nodes to read and write for users.
+
 * Aurora's shared storage still heavily employs block storage as primary storage and object storage only as backup data storage. OmniFabric, on the other hand, stores objects directly as primary storage for a full amount of data.
 
 Of course, OmniFabric isn't limited to OLTP capabilities, and OmniFabric's ability to accommodate other loads is significantly different from Aurora's positioning.
@@ -81,14 +89,23 @@ Overall, OmniFabric is a highly MySQL-compatible cloud-native HTAP database that
 For MySQL users, OmniFabric is a more appropriate option if they experience bottlenecks with:
 
 * Single-table data reaches more than 10 million levels, and query performance slows down, requiring table-splitting operations.
+
 * The overall amount of data exceeds the terabyte level and MySQL needs to configure very expensive physical machines.
+
 * Need to do multi-table association classes, or aggregate analysis queries for larger single tables.
+
 * Requires large-scale real-time data writes, such as millions of pieces of data per second.
+
 * Need to do multi-tenant design at the application level, such as SaaS scenarios.
+
 * need to scale vertically on a regular basis as business application load changes.
+
 * Requires constant data transfer and collaboration.
+
 * It needs to be integrated into the K8s environment with the application framework to reduce operational complexity.
+
 * Need to do streaming data processing such as real-time data writing and processing.
+
 * Vector data needs to be stored and searched.
 
 In OmniFabric's technical blog, we also have more articles for reference on MySQL vs. OmniFabric and migration.

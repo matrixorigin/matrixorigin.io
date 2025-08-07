@@ -2,7 +2,7 @@
 
 ## **Description**
 
-The ROUND() function rounds a number to a specified number of decimal places.  
+The ROUND() function rounds a number to a specified number of decimal places.
 The function returns the nearest number of the specified order. In case when given number has equal distance to surrounding numbers, the function uses banker's rounding for float number types and rounds away from zero for the other number types (Decimal).
 
 ## **Syntax**
@@ -38,8 +38,10 @@ insert into t1 values(11,-20.500);
 insert into t1 values(12,-13.500);
 
 mysql> select a,round(b) from t1;
+
 +------+----------+
 | a    | round(b) |
+
 +------+----------+
 |    1 |        0 |
 |    2 |        0 |
@@ -53,12 +55,15 @@ mysql> select a,round(b) from t1;
 |   10 |      -20 |
 |   11 |      -20 |
 |   12 |      -14 |
+
 +------+----------+
 12 rows in set (0.00 sec)
 
 mysql> select a,round(b,-1) from t1;
+
 +------+--------------+
 | a    | round(b, -1) |
+
 +------+--------------+
 |    1 |            0 |
 |    2 |            0 |
@@ -72,12 +77,15 @@ mysql> select a,round(b,-1) from t1;
 |   10 |          -20 |
 |   11 |          -20 |
 |   12 |          -10 |
+
 +------+--------------+
 12 rows in set (0.01 sec)
 
 mysql> select round(a*b) from t1;
+
 +--------------+
 | round(a * b) |
+
 +--------------+
 |            0 |
 |            1 |
@@ -91,6 +99,7 @@ mysql> select round(a*b) from t1;
 |         -205 |
 |         -226 |
 |         -162 |
+
 +--------------+
 12 rows in set (0.01 sec)
 ```

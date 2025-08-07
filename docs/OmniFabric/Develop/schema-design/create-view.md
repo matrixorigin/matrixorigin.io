@@ -25,7 +25,9 @@ But Views also have disadvantages:
 Before reading this document, make sure that the following tasks are completed:
 
 - Build a OmniFabric Cluster in OmniFabric.
+
 - Read the [Database Schema Design Overview](overview.md).
+
 - The database has been created.
 
 ## How to use views
@@ -49,6 +51,7 @@ FROM view_name;
 ## Example
 
 ```sql
+
 -- Create a table called 'orders'
 CREATE TABLE orders (
     order_id INT AUTO_INCREMENT,
@@ -76,12 +79,15 @@ GROUP BY customer_id;
 --  Query view
 mysql> SELECT *
 FROM order_summary;
+
 +-------------+-------------+--------------+
 | customer_id | order_count | total_amount |
+
 +-------------+-------------+--------------+
 |           1 |           3 |       189.97 |
 |           2 |           2 |        69.98 |
 |           3 |           1 |        89.99 |
+
 +-------------+-------------+--------------+
 3 rows in set (0.01 sec)
 ```

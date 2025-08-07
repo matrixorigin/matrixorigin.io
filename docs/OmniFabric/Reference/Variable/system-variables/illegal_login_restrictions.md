@@ -3,12 +3,17 @@
 Today, when data security is increasingly important, reasonable connection control and password management strategies are the key to database protection. OmniFabric provides a series of global parameters designed to enhance connection security and password management to prevent malicious attacks and unauthorized access.
 
 - Connection control parameters
+
     - `connection_control_failed_connections_threshold`: This parameter sets the maximum number of failed connections allowed in a short period of time. When the threshold is exceeded, OmniFabric will reject further connection attempts from the client, effectively preventing brute force and malicious attacks.
+
     - `connection_control_max_connection_delay`: This parameter specifies the maximum delay time that the client needs to wait after the connection fails. This delay will be applied after the number of failed connections reaches a threshold to prevent further connection attempts and increase the cost of malicious attacks.
 
 - Password management parameters
+
     - `default_password_lifetime`: This parameter specifies the validity period of the user password in days. The default value is 0, which means the password will never expire. When the password expires, the user can still log in to the database, but cannot perform SQL operations unless the password is changed through `ALTER USER`.
+
     - `password_history`: This parameter restricts users from using recent password history when changing passwords. If set to 5, the user will not be able to reuse the last 5 passwords. This configuration can effectively avoid security risks caused by password reuse.
+
     - `password_reuse_interval`: This parameter controls the user's ability to reuse historical passwords within a specified time range after the password expires. The unit is days, and the default value is 0, which means no reuse check of historical passwords is performed.
 
 ## Check
@@ -39,18 +44,24 @@ set global password_reuse_interval=xx;--unit is days
 
 ```sql
 mysql> SELECT @@global.connection_control_failed_connections_threshold;
+
 +---------------------------------------------------+
 | @@connection_control_failed_connections_threshold |
+
 +---------------------------------------------------+
 | 3                                                 |
+
 +---------------------------------------------------+
 1 row in set (0.00 sec)
 
 mysql> SELECT @@global.connection_control_max_connection_delay;
+
 +-------------------------------------------+
 | @@connection_control_max_connection_delay |
+
 +-------------------------------------------+
 | 0                                         |
+
 +-------------------------------------------+
 1 row in set (0.00 sec)
 
@@ -59,18 +70,24 @@ set global connection_control_max_connection_delay=10000;
 
 --exit,Log out and reconnect
 mysql> SELECT @@global.connection_control_failed_connections_threshold;
+
 +---------------------------------------------------+
 | @@connection_control_failed_connections_threshold |
+
 +---------------------------------------------------+
 | 2                                                 |
+
 +---------------------------------------------------+
 1 row in set (0.00 sec)
 
 mysql> SELECT @@global.connection_control_max_connection_delay;
+
 +-------------------------------------------+
 | @@connection_control_max_connection_delay |
+
 +-------------------------------------------+
 | 10000                                     |
+
 +-------------------------------------------+
 1 row in set (0.00 sec)
 
@@ -123,20 +140,26 @@ mysql>
 
 ```sql
 mysql> SELECT @@global.default_password_lifetime;
+
 +-----------------------------+
 | @@default_password_lifetime |
+
 +-----------------------------+
 | 0                           |
+
 +-----------------------------+
 1 row in set (0.00 sec)
 
 set global default_password_lifetime=1;
 
 mysql> SELECT @@global.default_password_lifetime; --Effective after reconnection
+
 +-----------------------------+
 | @@default_password_lifetime |
+
 +-----------------------------+
 | 1                           |
+
 +-----------------------------+
 1 row in set (0.00 sec)
 ```
@@ -162,10 +185,13 @@ Wed Dec 25 18:30:02 CST 2024
 >mo_ctl connect
 
 mysql> select current_timestamp;
+
 +----------------------------+
 | current_timestamp()        |
+
 +----------------------------+
 | 2024-12-25 18:32:30.664877 |
+
 +----------------------------+
 1 row in set (0.00 sec)
 
@@ -188,25 +214,32 @@ Query OK, 1 row affected (0.03 sec)
 
 ```sql
 mysql> SELECT @@global.password_history;
+
 +--------------------+
 | @@password_history |
+
 +--------------------+
 | 0                  |
+
 +--------------------+
 1 row in set (0.00 sec)
 
 set global password_history=2;
 
 mysql> SELECT @@global.password_history;
+
 +--------------------+
 | @@password_history |
+
 +--------------------+
 | 2                  |
+
 +--------------------+
 1 row in set (0.01 sec)
 
 mysql> create user user2 identified by '111';
 Query OK, 0 rows affected (0.03 sec)
+
 --Change password to '123', successful
 mysql> alter user user2 identified by '123';
 Query OK, 0 rows affected (0.02 sec)
@@ -228,10 +261,13 @@ Query OK, 0 rows affected (0.01 sec)
 
 ```sql
 mysql> select @@global.password_reuse_interval;
+
 +---------------------------+
 | @@password_reuse_interval |
+
 +---------------------------+
 | 0                         |
+
 +---------------------------+
 1 row in set (0.00 sec)
 
@@ -239,10 +275,13 @@ mysql> set global password_reuse_interval=30;
 Query OK, 0 rows affected (0.00 sec)
 
 mysql> select @@global.password_reuse_interval; --Effective after reconnection
+
 +---------------------------+
 | @@password_reuse_interval |
+
 +---------------------------+
 | 30                        |
+
 +---------------------------+
 1 row in set (0.02 sec)
 

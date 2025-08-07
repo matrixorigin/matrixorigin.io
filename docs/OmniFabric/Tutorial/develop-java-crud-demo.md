@@ -8,6 +8,7 @@
 Before you start, make sure you have downloaded and installed the following software.
 
 * Install and deployed standalone OmniFabric
+
 * Create a database by MySQL client.
 
 ```
@@ -15,7 +16,9 @@ mysql> create database test;
 ```
 
 * [lntelliJ IDEA(2022.2.1 or later version)](https://www.jetbrains.com/idea/download/).
+
 * [JDK 8+ version](https://www.oracle.com/sg/java/technologies/javase/javase8-archive-downloads.html): Choose the version according to your OS.
+
 * [MySQL JDBC connector 8.0+ version](https://dev.mysql.com/downloads/connector/j/): It's recommanded to download the platform independent version, and unzip the downloaded file.
 
 ## Initialize a new Java project
@@ -113,8 +116,10 @@ Executing this code will create a table in the `test` database, then we verify i
 
 ```
 mysql> show create table student;
+
 +---------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Table   | Create Table                                                                                                                                                                                        |
+
 +---------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | student | CREATE TABLE `student` (
 `id` INT DEFAULT NULL,
@@ -124,6 +129,7 @@ mysql> show create table student;
 `age` INT DEFAULT NULL,
 PRIMARY KEY (`id`)
 ) |
+
 +---------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 1 row in set (0.01 sec)
 ```
@@ -176,10 +182,13 @@ Execution result:
 
 ```
 mysql> select * from student;
+
 +------+------+----------------+---------+------+
 | id   | name | email          | country | age  |
+
 +------+------+----------------+---------+------+
 |    1 | Tony | tony@gmail.com | US      |   20 |
+
 +------+------+----------------+---------+------+
 1 row in set (0.01 sec)
 ```
@@ -226,10 +235,13 @@ Execution result:
 
 ```
 mysql> select * from student;
+
 +------+------+----------------+---------+------+
 | id   | name | email          | country | age  |
+
 +------+------+----------------+---------+------+
 |    1 | Ram  | tony@gmail.com | US      |   20 |
+
 +------+------+----------------+---------+------+
 1 row in set (0.00 sec)
 ```

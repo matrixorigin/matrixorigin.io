@@ -65,5 +65,7 @@ SELECT a FROM b UNION (SELECT x FROM y LIMIT 10)
 For more information on the single syntax as above, see:
 
 - [UNION](union.md)
+
 - [INTERSECT](intersect.md)
+
 - [MINUS](minus.md)

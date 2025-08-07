@@ -13,7 +13,9 @@ You can delete data in three ways: `DROP TABLE`, `TRUNCATE TABLE`, and `DELETE F
 Here are the differences between them:
 
 - [`DELETE FROM`](../../Reference/SQL-Reference/Data-Manipulation-Language/delete.md): Use `DELETE FROM` to delete specific records.
+
 - [`TRUNCATE TABLE`](../../Reference/SQL-Reference/Data-Definition-Language/truncate-table.md): Use `TRUNCATE TABLE` when you want to keep the table structure, indexes, and constraints intact, but delete all records.
+
 - [`DROP TABLE`](../../Reference/SQL-Reference/Data-Definition-Language/drop-table.md): Use `DROP TABLE` when you no longer need the table.
 
 ### `DELETE`
@@ -44,6 +46,7 @@ TRUNCATE [TABLE] table_name;
 The `TRUNCATE` statement deletes all data in a table while preserving the table structure. It quickly clears the table without deleting rows one by one.
 
 - `[TABLE]` (optional) is a keyword that provides more explicit syntax but can be omitted in most database systems.
+
 - `table_name` is the name of the target table.
 
 ### `DROP`
@@ -55,7 +58,9 @@ DROP TABLE [IF EXISTS] [db.]name
 The `DROP TABLE` statement completely removes a table, including its structure and data, from the database.
 
 - `[IF EXISTS]` (optional) is a keyword that performs the deletion only if the table exists. An error will occur if omitted, and the table to be dropped does not exist.
+
 - `[db.]` (optional) specifies the database name where the table resides. If no database name is provided, the current database is assumed.
+
 - `name` is the name of the table to be dropped.
 
 ## Garbage Collection
@@ -69,6 +74,7 @@ By default, the garbage collection mechanism scans every 30 minutes. During each
 - Example 1
 
 ```sql
+
 -- Create table
 CREATE TABLE employees (
   id INT PRIMARY KEY,
@@ -85,13 +91,16 @@ VALUES (1, 'John Doe', 'HR'),
 
 -- View initial data
 mysql> SELECT * FROM employees;
+
 +------+--------------+------------+
 | id   | name         | department |
+
 +------+--------------+------------+
 |    1 | John Doe     | HR         |
 |    2 | Jane Smith   | Marketing  |
 |    3 | Mike Johnson | IT         |
 |    4 | Emily Brown  | Finance    |
+
 +------+--------------+------------+
 4 rows in set (0.01 sec)
 
@@ -101,12 +110,15 @@ Query OK, 1 row affected (0.01 sec)
 
 -- View data after the deletion
 mysql> SELECT * FROM employees;
+
 +------+-------------+------------+
 | id   | name        | department |
+
 +------+-------------+------------+
 |    1 | John Doe    | HR         |
 |    2 | Jane Smith  | Marketing  |
 |    4 | Emily Brown | Finance    |
+
 +------+-------------+------------+
 3 rows in set (0.00 sec)
 ```
@@ -114,6 +126,7 @@ mysql> SELECT * FROM employees;
 - Example 2
 
 ```sql
+
 -- Create table
 CREATE TABLE orders (
   order_id INT PRIMARY KEY,
@@ -131,14 +144,17 @@ VALUES (1, 'John Doe', '2022-01-01'),
 
 -- View initial data
 mysql> SELECT * FROM orders;
+
 +----------+---------------+------------+
 | order_id | customer_name | order_date |
+
 +----------+---------------+------------+
 |        1 | John Doe      | 2022-01-01 |
 |        2 | Jane Smith    | 2022-02-01 |
 |        3 | Mike Johnson  | 2022-03-01 |
 |        4 | Emily Brown   | 2022-04-01 |
 |        5 | David Wilson  | 2022-05-01 |
+
 +----------+---------------+------------+
 5 rows in set (0.01 sec)
 
@@ -153,12 +169,15 @@ Query OK, 2 rows affected (0.01 sec)
 
 -- View data after the deletion
 mysql> SELECT * FROM orders;
+
 +----------+---------------+------------+
 | order_id | customer_name | order_date |
+
 +----------+---------------+------------+
 |        3 | Mike Johnson  | 2022-03-01 |
 |        4 | Emily Brown   | 2022-04-01 |
 |        5 | David Wilson  | 2022-05-01 |
+
 +----------+---------------+------------+
 3 rows in set (0.01 sec)
 ```

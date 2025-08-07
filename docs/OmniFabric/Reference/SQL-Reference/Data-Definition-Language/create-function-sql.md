@@ -31,6 +31,7 @@ RETURNS <result_data_type>  LANGUAGE SQL AS 'function_body'
 **Example 1**
 
 ```sql
+
 --Creating an unparameterized sql custom function
 
 mysql> create table t1(n1 int);
@@ -43,10 +44,13 @@ mysql> CREATE FUNCTION t1_fun () RETURNS VARCHAR LANGUAGE SQL AS 'select n1 from
 Query OK, 0 rows affected (0.01 sec)
 
 mysql> select t1_fun();
+
 +----------+
 | t1_fun() |
+
 +----------+
 |        1 |
+
 +----------+
 1 row in set (0.01 sec)
 ```
@@ -54,15 +58,19 @@ mysql> select t1_fun();
 **Example 2**
 
 ```sql
+
 --Creating sql custom functions that return the sum of two arguments
 mysql> CREATE FUNCTION twoadd (x int, y int) RETURNS int LANGUAGE SQL AS 'select $1 + $2' ;
 Query OK, 0 rows affected (0.02 sec)
 
 mysql> select twoadd(1,2);
+
 +--------------+
 | twoadd(1, 2) |
+
 +--------------+
 |            3 |
+
 +--------------+
 1 row in set (0.00 sec)
 ```

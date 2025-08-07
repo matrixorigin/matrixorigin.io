@@ -8,6 +8,7 @@
 ## Pre-dependency
 
 OmniFabric.
+
 - Installed wget
 
 ## Install mo_ts_perf_test
@@ -35,7 +36,9 @@ loadFilePath = /root/soft/perf/
 **Configuration instructions:**
 
 - tablePrefix: When writing to multiple tables for lookup, the prefix of the table name, for example, with a value of d, will automatically create three tables: d0, d1, d2;
+
 - point_query_ts_condition: Filter criteria value for the ts field when querying for points;
+
 - loadFilePath: When importing for load data infile, the directory where the local csv file is to be imported; note: the loadFilePath path must be local to the MO database, that is: the csv file is to be placed on the server where the MO database is located.
 
 ## Perform write tests with mo-write
@@ -52,12 +55,19 @@ mo-write -T -r -n -retry -mode -txc -tType -wType -wType
 **Parameter description**
 
 - -T: Indicates the number of clients writing concurrently, which defaults to 7;
+
 - -r: Indicates the number of data rows submitted per write, default 10000;
+
 - -n: Indicates the total number of data rows to import per client, default 500,000;
+
 - -retry: Indicates the number of tests (eventually the average write speed is calculated automatically), default 1;
+
 - -mode: Indicates write mode, single for single table writes, multi for multi table writes, default multi;
+
 - -txc: Indicates the number of writes per transaction commit, value >=0, default 0 (0 means no transactions open);
+
 - -tType: Indicates the type of table written to, ts, tsPK, intPK, respectively, default ts, ts for a time series table without a primary key, tsPK for a time series table with a primary key, and intPK for a normal table with a primary key of type int;
+
 - -wType: Indicates the type of write, divided into insert, loadLine, loadFile, insert denotes insert into values for writing data, loadLine denotes load data inline for writing, and loadFile denotes load data infile for importing into a local csv file (local csv data file fetch: can be automatically generated in its parent data directory via sr-write).
 
 ### Examples

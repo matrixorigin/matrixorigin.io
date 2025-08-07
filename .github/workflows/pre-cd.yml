@@ -65,5 +65,5 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: |
-            OmniFabric/OmniFabric.io:${{ steps.date.outputs.date }}
-            ccr.ccs.tencentyun.com/mo-fronted/OmniFabric.io:${{ steps.date.outputs.date }}
+            matrixorigin/matrixorigin.io:${{ steps.date.outputs.date }}
+            ccr.ccs.tencentyun.com/mo-fronted/matrixorigin.io:${{ steps.date.outputs.date }}

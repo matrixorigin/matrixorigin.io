@@ -24,10 +24,13 @@ The function return value and type are the same as the return value and type of 
 
 ```sql
 mysql> select median(null);
+
 +--------------+
 | median(null) |
+
 +--------------+
 |         NULL |
+
 +--------------+
 1 row in set (0.00 sec)
 
@@ -36,49 +39,64 @@ create table t1 (a int,b int);
 insert into t1 values (1,null);
 
 mysql> select median(b) from t1;
+
 +-----------+
 | median(b) |
+
 +-----------+
 |      NULL |
+
 +-----------+
 1 row in set (0.01 sec)
 
 insert into t1 values (1,1);
 
 mysql> select median(b) from t1;
+
 +-----------+
 | median(b) |
+
 +-----------+
 |         1 |
+
 +-----------+
 1 row in set (0.01 sec)
 
 insert into t1 values (1,2);
 
 mysql> select median(b) from t1;
+
 +-----------+
 | median(b) |
+
 +-----------+
 |       1.5 |
+
 +-----------+
 1 row in set (0.01 sec)
 
 mysql> select median(b) from t1 group by a order by a;
+
 +-----------+
 | median(b) |
+
 +-----------+
 |       1.5 |
+
 +-----------+
 1 row in set (0.00 sec)
 
 insert into t1 values (2,1),(2,2),(2,3),(2,4);
 
 mysql> select median(b) from t1 group by a order by a;
+
 +-----------+
 | median(b) |
+
 +-----------+
 |       1.5 |
 |       2.5 |
+
 +-----------+
 2 rows in set (0.01 sec)
 ```

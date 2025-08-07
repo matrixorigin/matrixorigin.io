@@ -13,9 +13,12 @@ WHERE customer.c_nationkey  = nation.n_nationkey  AND nation.n_nationkey > 5);
 
 ```
 mysql> explain SELECT * FROM customer WHERE c_nationkey = (SELECT n_nationkey FROM nation
+
     -> WHERE customer.c_nationkey  = nation.n_nationkey  AND nation.n_nationkey > 5);
+
 +----------------------------------------------------------------------+
 | QUERY PLAN                                                           |
+
 +----------------------------------------------------------------------+
 | Project                                                              |
 |   ->  Filter                                                         |
@@ -27,6 +30,7 @@ mysql> explain SELECT * FROM customer WHERE c_nationkey = (SELECT n_nationkey FR
 |               ->  Table Scan on tpch.nation                          |
 |                     Filter Cond: (nation.n_nationkey > 5)            |
 |                     Block Filter Cond: (nation.n_nationkey > 5)      |
+
 +----------------------------------------------------------------------+
 10 rows in set (0.01 sec)
 ```
@@ -88,11 +92,14 @@ OmniFabric supports the following node types.
 
 ```sql
 mysql> explain  select abs(-1);
+
 +-------------------------------+
 | QUERY PLAN                    |
+
 +-------------------------------+
 | Project                       |
 |   ->  Values Scan "*VALUES*"  |
+
 +-------------------------------+
 2 rows in set (0.00 sec)
 ```
@@ -101,11 +108,14 @@ mysql> explain  select abs(-1);
 
 ```sql
 mysql> explain select * from customer;
+
 +-----------------------------------+
 | QUERY PLAN                        |
+
 +-----------------------------------+
 | Project                           |
 |   ->  Table Scan on tpch.customer |
+
 +-----------------------------------+
 2 rows in set (0.01 sec)
 ```
@@ -117,11 +127,14 @@ mysql> create external table extable(n1 int)infile{"filepath"='yourpath/xx.csv'}
 Query OK, 0 rows affected (0.03 sec)
 
 mysql> explain select * from extable;
+
 +------------------------------------+
 | QUERY PLAN                         |
+
 +------------------------------------+
 | Project                            |
 |   ->  External Scan on db1.extable |
+
 +------------------------------------+
 2 rows in set (0.01 sec)
 ```
@@ -136,8 +149,10 @@ mysql> insert into t3 values(1);
 Query OK, 1 row affected (0.01 sec)
 
 mysql> explain update t3 set n1=2;
+
 +-----------------------------------------------+
 | QUERY PLAN                                    |
+
 +-----------------------------------------------+
 | Plan 0:                                       |
 | Sink                                          |
@@ -156,6 +171,7 @@ mysql> explain update t3 set n1=2;
 |               ->  Project                     |
 |                     ->  Sink Scan             |
 |                           DataSource: Plan 0  |
+
 +-----------------------------------------------+
 17 rows in set (0.00 sec)
 ```
@@ -170,13 +186,20 @@ mysql> insert into t4 values(1,1),(2,2),(3,3);
 Query OK, 3 rows affected (0.01 sec)
 
 mysql> explain WITH RECURSIVE t4_1(n1_1) AS (
+
     ->     SELECT n1 FROM t4
+
     ->     UNION all
+
     ->     SELECT n1_1 FROM t4_1 WHERE n1_1=1
+
     -> )
+
     -> SELECT * FROM t4_1;
+
 +---------------------------------------------------------------------------------------------------+
 | QUERY PLAN                                                                                        |
+
 +---------------------------------------------------------------------------------------------------+
 | Plan 0:                                                                                           |
 | Sink                                                                                              |
@@ -197,6 +220,7 @@ mysql> explain WITH RECURSIVE t4_1(n1_1) AS (
 | Project                                                                                           |
 |   ->  Sink Scan                                                                                   |
 |         DataSource: Plan 2                                                                        |
+
 +---------------------------------------------------------------------------------------------------+
 19 rows in set (0.00 sec)
 ```
@@ -205,14 +229,17 @@ mysql> explain WITH RECURSIVE t4_1(n1_1) AS (
 
 ```sql
 mysql>  explain  SELECT count(*) FROM NATION group by N_NAME;
+
 +-------------------------------------------+
 | QUERY PLAN                                |
+
 +-------------------------------------------+
 | Project                                   |
 |   ->  Aggregate                           |
 |         Group Key: nation.n_name          |
 |         Aggregate Functions: starcount(1) |
 |         ->  Table Scan on tpch.nation     |
+
 +-------------------------------------------+
 5 rows in set (0.01 sec)
 ```
@@ -233,8 +260,10 @@ mysql> insert into t5 values(3),(4),(5);
 Query OK, 3 rows affected (0.01 sec)
 
 mysql> explain SELECT * FROM t5 LEFT JOIN t6 ON t5.n1 = t6.n1;
+
 +------------------------------------+
 | QUERY PLAN                         |
+
 +------------------------------------+
 | Project                            |
 |   ->  Join                         |
@@ -242,6 +271,7 @@ mysql> explain SELECT * FROM t5 LEFT JOIN t6 ON t5.n1 = t6.n1;
 |         Join Cond: (t5.n1 = t6.n1) |
 |         ->  Table Scan on tpch.t5  |
 |         ->  Table Scan on tpch.t6  |
+
 +------------------------------------+
 6 rows in set (0.00 sec)
 ```
@@ -250,13 +280,16 @@ mysql> explain SELECT * FROM t5 LEFT JOIN t6 ON t5.n1 = t6.n1;
 
 ```sql
 mysql> explain SELECT SAMPLE(c_address, 90 percent) FROM customer;
+
 +-----------------------------------------------------+
 | QUERY PLAN                                          |
+
 +-----------------------------------------------------+
 | Project                                             |
 |   ->  Sample                                        |
 |         Sample 90.00 Percent by: customer.c_address |
 |         ->  Table Scan on tpch.customer             |
+
 +-----------------------------------------------------+
 4 rows in set (0.00 sec)
 ```
@@ -265,13 +298,16 @@ mysql> explain SELECT SAMPLE(c_address, 90 percent) FROM customer;
 
 ```sql
 mysql> explain select * from customer order by c_custkey;
+
 +-----------------------------------------------+
 | QUERY PLAN                                    |
+
 +-----------------------------------------------+
 | Project                                       |
 |   ->  Sort                                    |
 |         Sort Key: customer.c_custkey INTERNAL |
 |         ->  Table Scan on tpch.customer       |
+
 +-----------------------------------------------+
 4 rows in set (0.00 sec)
 ```
@@ -286,8 +322,10 @@ mysql>  INSERT INTO t7 values(1,3),(2,2),(3,1);
 Query OK, 3 rows affected (0.01 sec)
 
 mysql> explain SELECT SUM(n1) OVER(PARTITION BY n2) AS sn1 FROM t7;
+
 +----------------------------------------------------------+
 | QUERY PLAN                                               |
+
 +----------------------------------------------------------+
 | Project                                                  |
 |   ->  Window                                             |
@@ -295,6 +333,7 @@ mysql> explain SELECT SUM(n1) OVER(PARTITION BY n2) AS sn1 FROM t7;
 |         ->  Partition                                    |
 |               Sort Key: t7.n2 INTERNAL                   |
 |               ->  Table Scan on tpch.t7                  |
+
 +----------------------------------------------------------+
 6 rows in set (0.01 sec)
 ```
@@ -312,8 +351,10 @@ mysql> INSERT INTO sensor_data VALUES('2023-08-01 00:05:00', 26.0);
 Query OK, 1 row affected (0.01 sec)
 
 mysql> explain select _wstart, _wend from sensor_data  interval(ts, 10, minute)  fill(prev);
+
 +---------------------------------------------------+
 | QUERY PLAN                                        |
+
 +---------------------------------------------------+
 | Project                                           |
 |   ->  Fill                                        |
@@ -323,6 +364,7 @@ mysql> explain select _wstart, _wend from sensor_data  interval(ts, 10, minute) 
 |               Sort Key: sensor_data.ts            |
 |               Aggregate Functions: _wstart, _wend |
 |               ->  Table Scan on db2.sensor_data   |
+
 +---------------------------------------------------+
 8 rows in set (0.00 sec)
 ```
@@ -331,8 +373,10 @@ mysql> explain select _wstart, _wend from sensor_data  interval(ts, 10, minute) 
 
 ```sql
 mysql> explain select * from t5 intersect select * from t6;
+
 +-----------------------------------------+
 | QUERY PLAN                              |
+
 +-----------------------------------------+
 | Project                                 |
 |   ->  Intersect                         |
@@ -340,6 +384,7 @@ mysql> explain select * from t5 intersect select * from t6;
 |               ->  Table Scan on tpch.t5 |
 |         ->  Project                     |
 |               ->  Table Scan on tpch.t6 |
+
 +-----------------------------------------+
 6 rows in set (0.00 sec)
 ```
@@ -348,8 +393,10 @@ mysql> explain select * from t5 intersect select * from t6;
 
 ```sql
 mysql> explain select * from t5 intersect all select * from t6;
+
 +-----------------------------------------+
 | QUERY PLAN                              |
+
 +-----------------------------------------+
 | Project                                 |
 |   ->  Intersect All                     |
@@ -357,6 +404,7 @@ mysql> explain select * from t5 intersect all select * from t6;
 |               ->  Table Scan on tpch.t5 |
 |         ->  Project                     |
 |               ->  Table Scan on tpch.t6 |
+
 +-----------------------------------------+
 6 rows in set (0.00 sec)
 ```
@@ -365,8 +413,10 @@ mysql> explain select * from t5 intersect all select * from t6;
 
 ```sql
 mysql> explain select * from t5 minus  select * from t6;
+
 +-----------------------------------------+
 | QUERY PLAN                              |
+
 +-----------------------------------------+
 | Project                                 |
 |   ->  Minus                             |
@@ -374,6 +424,7 @@ mysql> explain select * from t5 minus  select * from t6;
 |               ->  Table Scan on tpch.t5 |
 |         ->  Project                     |
 |               ->  Table Scan on tpch.t6 |
+
 +-----------------------------------------+
 6 rows in set (0.00 sec)
 ```
@@ -382,12 +433,15 @@ mysql> explain select * from t5 minus  select * from t6;
 
 ```sql
 mysql>  explain select * from unnest('{"a":1}') u;
+
 +-------------------------------------+
 | QUERY PLAN                          |
+
 +-------------------------------------+
 | Project                             |
 |   ->  Table Function on unnest      |
 |         ->  Values Scan "*VALUES*"  |
+
 +-------------------------------------+
 3 rows in set (0.10 sec)
 ```
@@ -399,8 +453,10 @@ mysql> CREATE TABLE t8(n1 int,n2 int UNIQUE key);
 Query OK, 0 rows affected (0.01 sec)
 
 mysql> explain INSERT INTO t8(n2) values(1);
+
 +---------------------------------------------------------------------------------+
 | QUERY PLAN                                                                      |
+
 +---------------------------------------------------------------------------------+
 | Plan 0:                                                                         |
 | Sink                                                                            |
@@ -429,6 +485,7 @@ mysql> explain INSERT INTO t8(n2) values(1);
 | Insert on tpch.t8                                                               |
 |   ->  Sink Scan                                                                 |
 |         DataSource: Plan 0                                                      |
+
 +---------------------------------------------------------------------------------+
 27 rows in set (0.01 sec)
 ```
@@ -440,8 +497,10 @@ mysql>  CREATE TABLE t9 ( n1 int , n2 int, KEY key2 (n2) USING BTREE);
 Query OK, 0 rows affected (0.02 sec)
 
 mysql>  explain INSERT INTO t9(n2) values(2);
+
 +--------------------------------------------------------------------------+
 | QUERY PLAN                                                               |
+
 +--------------------------------------------------------------------------+
 | Plan 0:                                                                  |
 | Sink                                                                     |
@@ -459,6 +518,7 @@ mysql>  explain INSERT INTO t9(n2) values(2);
 | Insert on tpch.t9                                                        |
 |   ->  Sink Scan                                                          |
 |         DataSource: Plan 0                                               |
+
 +--------------------------------------------------------------------------+
 16 rows in set (0.00 sec)
 ```

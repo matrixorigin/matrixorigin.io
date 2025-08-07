@@ -28,10 +28,13 @@ The BIT_OR(expr) function returns the bitwise OR of all bits in expr.
       ('a',000),('b',001),('b',011);
 
 > select id, BIT_OR(number) FROM t1 GROUP BY id;
+
 +------+----------------+
 | id   | bit_or(number) |
+
 +------+----------------+
 | a    |            111 |
 | b    |             11 |
+
 +------+----------------+
 ```

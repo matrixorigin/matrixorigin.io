@@ -25,18 +25,24 @@ drop table if exists vec_table;
 create table vec_table(a int, b vecf32(3), c vecf64(3));
 insert into vec_table values(1, "[1,2,3]", "[4,5,6]");
 mysql> select * from vec_table;
+
 +------+-----------+-----------+
 | a    | b         | c         |
+
 +------+-----------+-----------+
 |    1 | [1, 2, 3] | [4, 5, 6] |
+
 +------+-----------+-----------+
 1 row in set (0.00 sec)
 
 mysql> select sqrt(b) from vec_table;
+
 +---------------------------------------------+
 | sqrt(b)                                     |
+
 +---------------------------------------------+
 | [1, 1.4142135623730951, 1.7320508075688772] |
+
 +---------------------------------------------+
 1 row in set (0.00 sec)
 ```
@@ -68,18 +74,24 @@ drop table if exists vec_table;
 create table vec_table(a int, b vecf32(3), c vecf64(3));
 insert into vec_table values(1, "[-1,-2,3]", "[4,5,6]");
   mysql> select * from vec_table;
+
   +------+-------------+-----------+
   | a    | b           | c         |
+
   +------+-------------+-----------+
   |    1 | [-1, -2, 3] | [4, 5, 6] |
+
   +------+-------------+-----------+
   1 row in set (0.00 sec)
 
 mysql> select abs(b) from vec_table;
+
 +-----------+
 | abs(b)    |
+
 +-----------+
 | [1, 2, 3] |
+
 +-----------+
 1 row in set (0.01 sec)
 ```
@@ -99,6 +111,7 @@ The cast function is used to explicitly convert a vector from one vector type to
 #### Parameters
 
 - `vector`: Enter the vector.
+
 - `vector_type`: new vector type.
 
 #### Return Type
@@ -112,18 +125,24 @@ drop table if exists vec_table;
 create table vec_table(a int, b vecf32(3), c vecf64(3));
 insert into vec_table values(1, "[1,2,3]", "[4,5,6]");
 mysql> select * from vec_table;
+
 +------+-----------+-----------+
 | a    | b         | c         |
+
 +------+-----------+-----------+
 |    1 | [1, 2, 3] | [4, 5, 6] |
+
 +------+-----------+-----------+
 1 row in set (0.00 sec)
 
 mysql> select b + cast("[1,2,3]" as vecf32(3)) from vec_table;
+
 +--------------------------------+
 | b + cast([1,2,3] as vecf32(3)) |
+
 +--------------------------------+
 | [2, 4, 6]                      |
+
 +--------------------------------+
 1 row in set (0.00 sec)
 ```
@@ -151,18 +170,24 @@ drop table if exists vec_table;
 create table vec_table(a int, b vecf32(3), c vecf64(3));
 insert into vec_table values(1, "[1,2,3]", "[4,5,6]");
 mysql> select * from vec_table;
+
 +------+-----------+-----------+
 | a    | b         | c         |
+
 +------+-----------+-----------+
 |    1 | [1, 2, 3] | [4, 5, 6] |
+
 +------+-----------+-----------+
 1 row in set (0.00 sec)
 
 mysql> select summation(b) from vec_table;
+
 +--------------+
 | summation(b) |
+
 +--------------+
 |            6 |
+
 +--------------+
 1 row in set (0.00 sec)
 ```

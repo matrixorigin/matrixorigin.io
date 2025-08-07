@@ -22,10 +22,13 @@ Used to calculate the week number for a given date. This function returns an int
 
 ```sql
 mysql> SELECT WEEK('2008-02-20');
+
 +------------------+
 | week(2008-02-20) |
+
 +------------------+
 |                8 |
+
 +------------------+
 1 row in set (0.01 sec)
 ```
@@ -42,14 +45,17 @@ INSERT INTO t1 VALUES('2006-12-25');
 INSERT INTO t1 VALUES('2008-02-29');
 
 mysql> SELECT WEEK(c1) FROM t1;
+
 +----------+
 | week(c1) |
+
 +----------+
 |       52 |
 |       52 |
 |       52 |
 |       52 |
 |        9 |
+
 +----------+
 5 rows in set (0.00 sec)
 ```

@@ -20,7 +20,9 @@ The DELETE statement deletes rows from tbl_name and returns the number of delete
 #### Explanations
 
 - The conditions in the optional `WHERE` clause identify which rows to delete. With no `WHERE` clause, all rows are deleted.
+
 - If the `ORDER BY` clause is specified, the rows are deleted in the order that is specified.
+
 -The `LIMIT` clause places a limit on the number of rows that can be deleted.
 
 ## **Examples**
@@ -33,10 +35,13 @@ insert INTO t1 VALUES (1,1),(1,2);
 delete from t1 where a=1 limit 1;
 
 mysql> select * from t1;
+
 +------+------+
 | a    | b    |
+
 +------+------+
 |    1 |    2 |
+
 +------+------+
 ```
 
@@ -54,11 +59,14 @@ insert into t2 values(1), (2), (5);
 delete t1 from t1 join t2 where t1.a = 2;
 
 mysql> select * from t1;
+
 +------+
 | a    |
+
 +------+
 |    1 |
 |    4 |
+
 +------+
 2 rows in set (0.00 sec)
 ```
@@ -79,16 +87,22 @@ insert into t2 values(1),(2),(3);
 delete from db1.t2, db2.t1 using db1.t2 join db2.t1 on db1.t2.b = db2.t1.a where 2 > 1;
 
 mysql> select * from db1.t2;
+
 +------+
 | b    |
+
 +------+
 |    3 |
+
 +------+
 mysql> select * from db2.t1;
+
 +------+
 | a    |
+
 +------+
 |    4 |
+
 +------+
 1 row in set (0.00 sec)
 ```

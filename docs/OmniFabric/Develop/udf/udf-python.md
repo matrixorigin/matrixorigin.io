@@ -89,10 +89,13 @@ OmniFabric supports creating UDFs in SQL by writing function bodies directly in 
 
     ```sql
     select py_add(12345,23456);
+
     +-------------------------+
     |  py_add(12345, 23456)   |
+
     +-------------------------+
     |                   35801 |
+
     +-------------------------+
     1 row in set (0.02 sec)
     ```
@@ -111,6 +114,7 @@ Information about created UDF functions is saved in the metadata of OmniFabric. 
 
 ```mysql
 mysql> select * from mo_catalog.mo_user_defined_function\G
+
 *************************** 1. row ***************************
          function_id: 9000016
                 name: py_add

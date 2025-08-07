@@ -23,10 +23,13 @@ This function is multibyte safe.
 
 ```SQL
 mysql> select left('abcde', 3) from dual;
+
 +----------------+
 | left(abcde, 3) |
+
 +----------------+
 | abc            |
+
 +----------------+
 1 row in set (0.00 sec)
 
@@ -39,8 +42,10 @@ insert into t1 values('ABCDEFGHijklmn   ', -1);
 insert into t1 values('ABCDEFGH123456', -35627164);
 insert into t1 values('', 3);
 mysql> select left(str, len) from t1;
+
 +------------------+
 | left(str, len)   |
+
 +------------------+
 | abc              |
 |   A              |
@@ -48,12 +53,15 @@ mysql> select left(str, len) from t1;
 |                  |
 |                  |
 |                  |
+
 +------------------+
 6 rows in set (0.01 sec)
 
 mysql> select left('sdfsdfsdfsdf', len) from t1;
+
 +-------------------------+
 | left(sdfsdfsdfsdf, len) |
+
 +-------------------------+
 | sdf                     |
 | sdf                     |
@@ -61,6 +69,7 @@ mysql> select left('sdfsdfsdfsdf', len) from t1;
 |                         |
 |                         |
 | sdf                     |
+
 +-------------------------+
 6 rows in set (0.01 sec)
 ```

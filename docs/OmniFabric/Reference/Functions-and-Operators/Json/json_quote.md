@@ -20,25 +20,34 @@ select JSON_QUOTE(string_value);
 
 ```sql
 mysql> SELECT JSON_QUOTE('null'), JSON_QUOTE('"null"');
+
 +------------------+--------------------+
 | json_quote(null) | json_quote("null") |
+
 +------------------+--------------------+
 | "null"           | "\"null\""         |
+
 +------------------+--------------------+
 1 row in set (0.00 sec)
 mysql> SELECT JSON_QUOTE('[1, 2, 3]');
+
 +-----------------------+
 | json_quote([1, 2, 3]) |
+
 +-----------------------+
 | "[1, 2, 3]"           |
+
 +-----------------------+
 1 row in set (0.00 sec)
 
 mysql> SELECT JSON_QUOTE('hello world');
+
 +-------------------------+
 | json_quote(hello world) |
+
 +-------------------------+
 | "hello world"           |
+
 +-------------------------+
 1 row in set (0.00 sec)
 ```

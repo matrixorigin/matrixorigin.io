@@ -29,10 +29,13 @@ Returns 1 for an empty string or 0 for a non-empty string.
 > insert into t1 values('', 'abcd');
 > insert into t1 values('1111', '');
 > select empty(a),empty(b) from t1;
+
 +----------+----------+
 | empty(a) | empty(b) |
+
 +----------+----------+
 |        1 |        0 |
 |        0 |        1 |
+
 +----------+----------+
 ```

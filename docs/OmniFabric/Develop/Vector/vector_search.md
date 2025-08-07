@@ -11,7 +11,9 @@ Vector retrieval is the retrieval of K vectors (K-Nearest Neighbor, KNN) that ar
 OmniFabric currently supports vector retrieval using the following distance measure functions:
 
 - Cosine similarity function [`cosine_similarity`](../../Reference/Functions-and-Operators/Vector/cosine_similarity.md)
+
 - Cosine distance function [`cosine_distance`](../../Reference/Functions-and-Operators/Vector/cosine_distance.md)
+
 - L2 distance function [`l2_distance`](../../Reference/Functions-and-Operators/Vector/l2_distance.md)
 
 !!! note OmniFabric currently only supports fast KNN queries using vector indexes on the l2\_distance measure.
@@ -21,11 +23,17 @@ OmniFabric currently supports vector retrieval using the following distance meas
 Having vector capability in a database means that the database system has the ability to store, query, and analyze vector data. These vectors are often associated with complex data analysis, machine learning, and data mining tasks. Here are some application scenarios where the database has vector processing power:
 
 - **Generative AI applications**: These databases can serve as the backend for generative AI applications, enabling them to obtain nearest neighbor results based on user-supplied queries, improving output quality and relevance.
+
 - **Advanced object recognition**: They are invaluable for developing advanced object recognition platforms that recognize similarities between different data sets. This has practical applications in areas such as plagiarism detection, facial recognition and DNA matching.
+
 - **Personalized recommendation systems**: Vector databases can enhance recommendation systems by integrating user preferences and choices. This will result in more accurate and targeted recommendations that improve the user experience and engagement.
+
 - **Anomaly detection**: A vector database can be used to store feature vectors representing normal behavior. The anomaly can then be detected by comparing the input vector with the storage vector. This is useful in cybersecurity and industrial quality control.
+
 - **Marketing optimization**: Through the analysis and mining of user data, vector database can realize personalized recommendations, customer segmentation and market trend forecasting, and other functions to provide enterprises with accurate marketing strategies.
+
 - **Natural language processing**: Vector database can process large-scale text data, realize semantic similarity search, text classification, document clustering and other natural language processing tasks, widely used in intelligent customer service, public opinion analysis and other fields.
+
 - **Semantic Search and** Retrieval: In applications involving large language models, vector databases can store and retrieve massive amounts of text vectors, and intelligent text matching and semantic search can be achieved by calculating similarities between vectors.
 
 ## Examples
@@ -48,22 +56,28 @@ The Iris dataset is a well-known multi-class taxonomic dataset that can be searc
 
     ```sql
     mysql>  select * from iris_table order by l2_distance(attributes,"[4,3.3,3,0.9]") asc limit 1;
+
     +------------------+--------------------+
     | species          | attributes         |
+
     +------------------+--------------------+
     | Iris-versicolour | [4.9, 2.4, 3.3, 1] |
+
     +------------------+--------------------+
     1 row in set (0.00 sec)
 
     mysql>  select * from iris_table order by l2_distance(attributes,"[4,3.3,3,0.9]") asc limit 5;
+
     +------------------+----------------------+
     | species          | attributes           |
+
     +------------------+----------------------+
     | Iris-versicolour | [4.9, 2.4, 3.3, 1]   |
     | Iris-versicolour | [5.1, 2.5, 3, 1.1]   |
     | Iris-versicolour | [5, 2.3, 3.3, 1]     |
     | Iris-setosa      | [4.8, 3.4, 1.9, 0.2] |
     | Iris-versicolour | [5.2, 2.7, 3.9, 1.4] |
+
     +------------------+----------------------+
     5 rows in set (0.00 sec)
     ```

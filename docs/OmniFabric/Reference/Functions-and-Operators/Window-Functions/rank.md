@@ -16,11 +16,13 @@ The `RANK()` function has a unique behavior when it handles the case of equal va
 ```
 
 - The `PARTITION BY` clause is optional and divides the dataset into partitions; the rank is computed individually inside each partition.
+
 - The `ORDER BY` clause defines how the dataset is sorted, i.e., according to which column or columns to sort. You can specify ascending (ASC) or descending (DESC) sorting.
 
 ## **Examples**
 
 ```SQL
+
 -- Create a new table, 'SalesTable' with three fields: 'Department', 'Employee', and 'Sales'
 CREATE TABLE SalesTable (
   Department VARCHAR(50),
@@ -38,9 +40,13 @@ INSERT INTO SalesTable (Department, Employee, Sales) VALUES
 ('HR', 'Charlie', 850);
 
 -- Query the 'SalesTable' table and return each employee in each department, their sales, and the total sales of their department (DepartmentSales)
+
 -- will also return each employee's sales rank in their department (SalesRank)
+
 -- For the total sales, use the window function SUM(), and use 'OVER(PARTITION BY Department)' to calculate each department separately
+
 -- For sales ranking, use the window function RANK(), and use 'OVER(PARTITION BY Department ORDER BY Sales DESC)' to rank employees in each department in descending order by sales
+
 -- In the RANK() function, if two employees have the same sales, they get the same rank, and the next sales rank is skipped. For example, if two employees are number one in sales, the next sales rank is number three, not number two.
 mysql> SELECT
   Department,
@@ -50,8 +56,10 @@ mysql> SELECT
   RANK() OVER(PARTITION BY Department ORDER BY Sales DESC) AS SalesRank
 FROM
   SalesTable;
+
 +------------+----------+-------+-----------------+-----------+
 | department | employee | sales | DepartmentSales | SalesRank |
+
 +------------+----------+-------+-----------------+-----------+
 | HR         | Charlie  |   850 |            1650 |         1 |
 | HR         | Alice    |   800 |            1650 |         2 |
@@ -59,6 +67,7 @@ FROM
 | Marketing  | John     |  1000 |            2200 |         2 |
 | Sales      | Bob      |  1100 |            2000 |         1 |
 | Sales      | Alex     |   900 |            2000 |         2 |
+
 +------------+----------+-------+-----------------+-----------+
 6 rows in set (0.01 sec)
 ```

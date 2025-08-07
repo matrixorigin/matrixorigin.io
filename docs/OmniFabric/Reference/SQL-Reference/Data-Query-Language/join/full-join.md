@@ -49,12 +49,15 @@ insert into t1 values ('BerkeleyPublic2','Berkeley');
 insert into t1 values ('NYCLib','NewYork');
 
 mysql> select city,libname1,count(libname1) as a from t3 full join t1 on libname1=libname3 join t2 on isbn3=isbn2 group by city,libname1;
+
 +----------+--------------------+------+
 | city     | libname1           | a    |
+
 +----------+--------------------+------+
 | NewYork  | NewYorkPublicLibra |    6 |
 | SanFran  | SanFransiscoPublic |    1 |
 | Berkeley | BerkeleyPublic1    |    1 |
 | Berkeley | BerkeleyPublic2    |    1 |
+
 +----------+--------------------+------+
 ```

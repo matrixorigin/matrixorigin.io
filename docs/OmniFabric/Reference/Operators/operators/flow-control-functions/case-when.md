@@ -32,10 +32,13 @@ This `CASE` syntax returns the result for the first condition that is true. If n
 
 ```sql
 mysql> SELECT CASE WHEN 1>0 THEN 'true' ELSE 'false' END;
+
 +------------------------------------------+
 | case when 1 > 0 then true else false end |
+
 +------------------------------------------+
 | true                                     |
+
 +------------------------------------------+
 1 row in set (0.00 sec)
 ```
@@ -48,12 +51,15 @@ INSERT INTO t1 VALUES (1,1),(2,1),(3,2),(4,2),(5,3),(6,3);
 Query OK, 6 rows affected (0.01 sec)
 
 mysql> SELECT CASE WHEN AVG(a)>=0 THEN 'Positive' ELSE 'Negative' END FROM t1 GROUP BY b;
+
 +-------------------------------------------------------+
 | case when avg(a) >= 0 then Positive else Negative end |
+
 +-------------------------------------------------------+
 | Positive                                              |
 | Positive                                              |
 | Positive                                              |
+
 +-------------------------------------------------------+
 3 rows in set (0.00 sec)
 ```

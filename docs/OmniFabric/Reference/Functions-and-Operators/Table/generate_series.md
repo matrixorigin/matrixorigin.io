@@ -27,49 +27,62 @@ GENERATE_SERIES() can generate a sequence from the start value to the end value,
 -Example 1:
 
 ```sql
+
 --Generate a sequence of 1-5 integers
 mysql> select *from generate_series(5) g;
+
 +--------+
 | result |
+
 +--------+
 | 1 |
 | 2 |
 | 3 |
 | 4 |
 | 5 |
+
 +--------+
 5 rows in set (0.01 sec)
 
 --Generate a sequence of 2-5 integers
 mysql> select *from generate_series(2, 5) g;
+
 +--------+
 | result |
+
 +--------+
 | 2 |
 | 3 |
 | 4 |
 | 5 |
+
 +--------+
 4 rows in set (0.00 sec)
 
 --Generate a sequence of 1-5 integers and specify a step size of 2
 mysql> select *from generate_series(1, 5,2) g;
+
 +--------+
 | result |
+
 +--------+
 | 1 |
 | 3 |
 | 5 |
+
 +--------+
 3 rows in set (0.01 sec)
 
 --Generate date sequence
 mysql> select *from generate_series('2020-02-28 00:00:00','2021-03-01 00:01:00', '1 year') g;
+
 +---------------------+
 | result |
+
 +---------------------+
 | 2020-02-28 00:00:00 |
 | 2021-02-28 00:00:00 |
+
 +---------------------+
 2 rows in set (0.00 sec)
 ```

@@ -15,9 +15,13 @@ SQL window functions have a wide range of applications in a variety of business 
 - Most aggregate functions can also be used as window functions, for example, `SUM()`, `AVG()`, `COUNT()` These aggregate functions can be used with window functions to calculate the sum, average, or count of a column within a window. Aggregate functions and reference documentation for windowable functions supported by OmniFabric can be found at:
 
     * [AVG](../../../Reference/Functions-and-Operators/Aggregate-Functions/avg.md)
+
     * [COUNT](../../../Reference/Functions-and-Operators/Aggregate-Functions/count.md)
+
     * [MAX](../../../Reference/Functions-and-Operators/Aggregate-Functions/max.md)
+
     * [SUM](../../../Reference/Functions-and-Operators/Aggregate-Functions/sum.md)
+
     * [MIN](../../../Reference/Functions-and-Operators/Aggregate-Functions/min.md)
 
 - See the following table for other window functions:
@@ -61,8 +65,10 @@ SELECT
   RANK() OVER(PARTITION BY Department ORDER BY Sales DESC) AS SalesRank
 FROM
   SalesTable;
+
 +------------+----------+-------+-----------------+-----------+
 | department | employee | sales | DepartmentSales | SalesRank |
+
 +------------+----------+-------+-----------------+-----------+
 | HR         | Charlie  |   850 |            1650 |         1 |
 | HR         | Alice    |   800 |            1650 |         2 |
@@ -70,6 +76,7 @@ FROM
 | Marketing  | John     |  1000 |            2200 |         2 |
 | Sales      | Bob      |  1100 |            2000 |         1 |
 | Sales      | Alex     |   900 |            2000 |         2 |
+
 +------------+----------+-------+-----------------+-----------+
 6 rows in set (0.01 sec)
 ```

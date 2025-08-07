@@ -20,6 +20,7 @@ Returns 1 whether string starts with the specified prefix, otherwise it returns 
 ## **Returned Values**
 
 * 1, if the string starts with the specified prefix.
+
 * 0, if the string does not start with the specified prefix.
 
 ## **Examples**
@@ -35,8 +36,10 @@ Returns 1 whether string starts with the specified prefix, otherwise it returns 
 (5,'Riya Jain', 'IX'),
 (6,'Tapan Samanta', 'X');
 > select a,startswith(b,'An') from t1;
+
 +------+-------------------+
 | a    | startswith(b, An) |
+
 +------+-------------------+
 |    1 |                 1 |
 |    2 |                 1 |
@@ -44,11 +47,15 @@ Returns 1 whether string starts with the specified prefix, otherwise it returns 
 |    4 |                 1 |
 |    5 |                 0 |
 |    6 |                 0 |
+
 +------+-------------------+
 > select a,b,c from t1 where startswith(b,'An')=1 and startswith(c,'I')=1;
+
 +------+-----------------+------+
 | a    | b               | c    |
+
 +------+-----------------+------+
 |    1 | Ananya Majumdar | IX   |
+
 +------+-----------------+------+
 ```

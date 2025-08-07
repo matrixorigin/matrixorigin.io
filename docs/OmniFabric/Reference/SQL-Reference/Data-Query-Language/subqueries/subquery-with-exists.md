@@ -28,18 +28,24 @@ insert into t4 values (4,8),(3,8),(5,9);
 insert into t3 values (6),(7),(3);
 
 mysql> select * from t3 where exists (select * from t2 where t2.b=t3.a);
+
 +------+
 | a    |
+
 +------+
 |    7 |
+
 +------+
 1 row in set (0.00 sec)
 mysql> select * from t3 where not exists (select * from t2 where t2.b=t3.a);
+
 +------+
 | a    |
+
 +------+
 |    6 |
 |    3 |
+
 +------+
 2 rows in set (0.00 sec)
 ```

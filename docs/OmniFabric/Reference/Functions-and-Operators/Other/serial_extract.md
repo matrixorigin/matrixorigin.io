@@ -30,46 +30,61 @@ insert into vtab64(vecf64_3,vecf64_5) values ("[4,5,6]","[1,2,3,4,5]");
 insert into vtab64(vecf64_3,vecf64_5) values ("[7,8,9]","[2,3,4,5,6]");
 
 mysql> select * from vtab64;
+
 +------+-----------+-----------------+
 | id   | vecf64_3  | vecf64_5        |
+
 +------+-----------+-----------------+
 |    1 | NULL      | NULL            |
 |    2 | [2, 3, 4] | NULL            |
 |    3 | [4, 5, 6] | [1, 2, 3, 4, 5] |
 |    4 | [7, 8, 9] | [2, 3, 4, 5, 6] |
+
 +------+-----------+-----------------+
 4 rows in set (0.01 sec)
 
 --max(max(serial(id, `vecf64_3`, `vecf64_5`)) gets a maximum serialized value, and then normally the max obtained would be the record (4, [7, 8, 9], [2, 3, 4, 5, 6]), but the 1 represents the value in the second position, so that's [7, 8, 9].
 mysql> select serial_extract(max(serial(id, `vecf64_3`, `vecf64_5`)), 1 as vecf64(3)) as a from vtab64;
+
 +-----------+
 | a         |
+
 +-----------+
 | [7, 8, 9] |
+
 +-----------+
 1 row in set (0.01 sec)
 
 mysql> select serial_extract(min(serial(id, `vecf64_3`, `vecf64_5`)), 2 as vecf64(5)) as a from vtab64;
+
 +-----------------+
 | a               |
+
 +-----------------+
 | [1, 2, 3, 4, 5] |
+
 +-----------------+
 1 row in set (0.00 sec)
 
 mysql> select serial_extract(max(serial_full(cast(id as decimal), `vecf64_3`)), 0 as decimal) as a from vtab64;
+
 +------+
 | a    |
+
 +------+
 |    4 |
+
 +------+
 1 row in set (0.01 sec)
 
 mysql> select serial_extract(min(serial_full(cast(id as decimal), `vecf64_3`)), 1 as vecf64(3)) as a from vtab64;
+
 +------+
 | a    |
+
 +------+
 | NULL |
+
 +------+
 1 row in set (0.00 sec)
 ```

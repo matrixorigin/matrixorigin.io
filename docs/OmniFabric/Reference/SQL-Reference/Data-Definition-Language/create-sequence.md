@@ -59,6 +59,7 @@ Returns the current value in the sequence.
 Sets the current value in the sequence to n.
 
 - If b is set to true, the next call to `NEXTVAL` will return `n`.
+
 - If b is set to false, the next call to `NEXTVAL` will return `n+increment`.
 
 #### `LASTVAL()`
@@ -142,11 +143,14 @@ To use a sequence in a table, the following steps need to be completed:
 
     ```sql
     mysql> select * from my_table;
+
     +------+------+
     | id   | name |
+
     +------+------+
     |    1 | John |
     |    2 | Tom  |
+
     +------+------+
     2 rows in set (0.01 sec)
     ```
@@ -157,51 +161,69 @@ To use a sequence in a table, the following steps need to be completed:
 ## **Examples**
 
 ```sql
+
 -- Create a sequence named "seq_id" that starts from 1, increments by 1, and has a maximum value of 1000:
 CREATE SEQUENCE seq_id INCREMENT BY 1 MAXVALUE 1000 START with 1;
+
 -- After creating the sequence, the NEXTVAL function can be used to retrieve the next sequence value as shown below:
 mysql> SELECT NEXTVAL('seq_id');
+
 +-----------------+
 | nextval(seq_id) |
+
 +-----------------+
 | 1               |
+
 +-----------------+
 1 row in set (0.02 sec)
+
 -- This command will return the next value in the sequence (e.g., 1) and automatically increment the counter of the sequence.
 
 -- The CURRVAL function returns the current value.
 mysql> SELECT CURRVAL('seq_id');
+
 +-----------------+
 | currval(seq_id) |
+
 +-----------------+
 | 1               |
+
 +-----------------+
 1 row in set (0.01 sec)
 
 -- Returns the most recent value retrieved by NEXTVAL in the current session for any sequence.
 mysql> SELECT LASTVAL();
+
 +-----------+
 | lastval() |
+
 +-----------+
 | 1         |
+
 +-----------+
 1 row in set (0.00 sec)
 
 -- Set the current value to 30.
 mysql> SELECT SETVAL('seq_id', 30);
+
 +--------------------+
 | setval(seq_id, 30) |
+
 +--------------------+
 | 30                 |
+
 +--------------------+
 1 row in set (0.02 sec)
 
 -- The NEXTVAL function retrieves the next sequence value.
 mysql> SELECT NEXTVAL('seq_id');
+
 +-----------------+
 | nextval(seq_id) |
+
 +-----------------+
 | 31              |
+
 +-----------------+
 1 row in set (0.00 sec)
 ```

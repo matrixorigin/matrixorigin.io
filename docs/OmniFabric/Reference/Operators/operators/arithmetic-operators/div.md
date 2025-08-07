@@ -20,10 +20,13 @@ If either operand has a non-integer type, the operands are converted to `DECIMAL
 
 ```sql
 mysql> SELECT 5 DIV 2, -5 DIV 2, 5 DIV -2, -5 DIV -2;
+
 +---------+----------+----------+-----------+
 | 5 div 2 | -5 div 2 | 5 div -2 | -5 div -2 |
+
 +---------+----------+----------+-----------+
 |       2 |       -2 |       -2 |         2 |
+
 +---------+----------+----------+-----------+
 1 row in set (0.00 sec)
 ```
@@ -34,20 +37,26 @@ insert into t2 values (-3, 2);
 insert into t2 values (1, 2);
 
 mysql> select c1 DIV 3 from t2;
+
 +----------+
 | c1 div 3 |
+
 +----------+
 |       -1 |
 |        0 |
+
 +----------+
 2 rows in set (0.00 sec)
 
 mysql> select c1 DIV c2 from t2;
+
 +-----------+
 | c1 div c2 |
+
 +-----------+
 |        -1 |
 |         0 |
+
 +-----------+
 2 rows in set (0.00 sec)
 ```

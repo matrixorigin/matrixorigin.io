@@ -91,14 +91,17 @@ SHOW CREATE table person;
 Expected result:
 
 ```sql
+
 +--------+-----------------------------------------------------------------------------------------------------------------+
 | Table  | Create Table                                                                                                    |
+
 +--------+-----------------------------------------------------------------------------------------------------------------+
 | person | CREATE TABLE `person` (
 `id` INT DEFAULT NULL,
 `name` VARCHAR(255) DEFAULT NULL,
 `birthday` DATE DEFAULT NULL
 ) |
+
 +--------+-----------------------------------------------------------------------------------------------------------------+
 1 row in set (0.01 sec)
 ```
@@ -159,10 +162,13 @@ SELECT * FROM person;
 Expected result:
 
 ```sql
+
 +------+------+------------+
 | id   | name | birthday   |
+
 +------+------+------------+
 |    1 | tom  | 2017-09-12 |
+
 +------+------+------------+
 1 row in set (0.00 sec)
 ```
@@ -171,10 +177,13 @@ Expected result:
 
 ```sql
 SELECT name FROM person;
+
 +------+
 | name |
+
 +------+
 | tom  |
+
 +------+
 1 rows in set (0.00 sec)
 ```
@@ -188,10 +197,13 @@ SELECT * FROM person where id<5;
 Expected result:
 
 ```sql
+
 +------+------+------------+
 | id   | name | birthday   |
+
 +------+------+------------+
 |    1 | tom  | 2017-09-12 |
+
 +------+------+------------+
 1 row in set (0.00 sec)
 ```
@@ -231,11 +243,14 @@ GRANT create table on database * to role_r1;
 
 ```sql
 > SHOW GRANTS for mouser@localhost;
+
 +-------------------------------------------------------+
 | Grants for mouser@localhost                           |
+
 +-------------------------------------------------------+
 | GRANT create table ON database * `mouser`@`localhost` |
 | GRANT connect ON account  `mouser`@`localhost`        |
+
 +-------------------------------------------------------+
 2 rows in set (0.02 sec)
 ```

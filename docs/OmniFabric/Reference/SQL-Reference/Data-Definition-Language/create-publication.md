@@ -17,7 +17,9 @@ CREATE PUBLICATION <pubname>
 ## Grammar explanation
 
 - pubname: Publish name. The publication name must be different from the name of any existing publication in the current database.
+
 - database_name: The name of a database that already exists under the current tenant.
+
 - account_name: The tenant name of the publication can be obtained.
 
 ## **Example**

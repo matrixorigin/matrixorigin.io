@@ -11,8 +11,11 @@ The slow query log is disabled by default. To use the slow query log function, y
 OmniFabric slow query feature is available with the following basic information:
 
 - `statement`: indicates the SQL text that provides the complete SQL statement.
+
 - `request_at`: indicates the start time of the SQL statement.
+
 - `duration_second`: indicates the actual execution time of the SQL statement.
+
 - `exec_plan`: indicates the detailed execution plan of the SQL statement.
 
 To enable the slow query, execute the following SQL statements:
@@ -64,8 +67,10 @@ To query the error message of database, execute the following SQL statements:
 The query result example is as follows:
 
 ```sql
+
 +----------------------------+-------------------------------------------------------------------------+
 | timestamp                  | message                                                                 |
+
 +----------------------------+-------------------------------------------------------------------------+
 | 2022-11-28 14:47:31.324762 | error: SQL parser error: table "error_sql" does not exist               |
 | 2022-11-28 14:47:31.324837 | SQL parser error: table "error_sql" does not exist                      |
@@ -139,6 +144,7 @@ The query result example is as follows:
 | 2022-11-28 14:47:14.513831 | error: SQL parser error: table "statement_info" does not exist          |
 | 2022-11-28 14:47:14.513929 | SQL parser error: table "statement_info" does not exist                 |
 | 2022-11-28 14:47:14.513962 | query trace status                                                      |
+
 +----------------------------+-------------------------------------------------------------------------+
 72 rows in set (0.13 sec)
 ```
@@ -154,8 +160,10 @@ To query the error of SQL, execute the following SQL statements:
 The query result example is as follows:
 
 ```sql
+
 +----------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------+
 | time_stamp                 | statement                                                                                                                                                                                                                              | sql                                                     |
+
 +----------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------+
 | 2022-11-28 14:40:23.073188 | use mo_task                                                                                                                                                                                                                            | invalid database mo_task                                |
 | 2022-11-28 15:26:59.637130 | select * from mo_ts.error_sql                                                                                                                                                                                                          | SQL parser error: table "error_sql" does not exist      |
@@ -165,6 +173,7 @@ The query result example is as follows:
 | 2022-11-28 14:47:14.510060 | create view error_sql as select si.request_at as time_stamp, si.statement as sql, el.err_code from statement_info as si cross join error_info as el where si.statement_id = el.statement_id and user != "internal"                     | SQL parser error: table "statement_info" does not exist |
 | 2022-11-28 14:47:31.323884 | select * from mo_ts.error_sql                                                                                                                                                                                                          | SQL parser error: table "error_sql" does not exist      |
 | 2022-11-28 15:24:56.208171 | select * from mo_ts.error_sql                                                                                                                                                                                                          | SQL parser error: table "error_sql" does not exist      |
+
 +----------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------+
 8 rows in set (0.14 sec)
 ```

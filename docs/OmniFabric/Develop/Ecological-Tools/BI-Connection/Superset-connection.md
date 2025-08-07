@@ -21,7 +21,9 @@ This practice does not require high hardware specifications. A small virtual mac
 Before proceeding with this practice, you need to install and configure the following software environment:
 
 - Docker, with a version of 23.0.1 or higher.
+
 - OmniFabric
+
 - Superset, recommended version 2.1.0.
 
 You can follow the steps in the following sections to install and configure them step by step.
@@ -35,6 +37,7 @@ All software environments in this practice are based on Docker installation. You
 You can install and deploy OmniFabric based on your operating system environment by following these links:
 
 - Deploying OmniFabric using Docker in macOS environment: [Installation Guide](../../../Get-Started/install-on-macos/install-on-macos-method3.md)
+
 - Deploying OmniFabric using Docker in Linux environment: [Installation Guide](../../../Get-Started/install-on-linux/install-on-linux-method3.md)
 
 #### Installing Superset

@@ -8,10 +8,15 @@
 ## Pre-dependency
 
 OmniFabric
+
 - Download [DataX Tools](https://datax-opensource.oss-cn-hangzhou.aliyuncs.com/202309/datax.tar.gz)
+
 - Download and install [MySQL](<https://www.mysql.com/downloads/>)
+
 - Finished installing [Python 3.8 (or plus)](https://www.python.org/downloads/)
+
 - Installed wget
+
 - Set environment encoding to UTF-8
 
 ## Install mo_datax_writer
@@ -21,7 +26,7 @@ wget https://github.com/matrixorigin/mo_datax_writer/archive/refs/tags/v1.0.1.zi
 unzip v1.0.1.zip
 cd mo_datax_writer-1.0.1/
 #Extract mo_datax_writer into the datax/plugin/writer/ directory
-unzip OmniFabricwriter.zip -d ../datax/plugin/writer/
+unzip matrixonewriter.zip -d ../datax/plugin/writer/
 ```
 
 ## Initialize the OmniFabric data table
@@ -70,14 +75,17 @@ CREATE TABLE `user` (
 insert into user values('zhangsan',26,'Shanghai'),('lisi',24,'Chengdu'),('wangwu',28,'Xian'),('zhaoliu',22,'Beijing'),('tianqi',26,'Shenzhen');
 
 mysql> select * from user;
+
 +----------+------+----------+
 | name     | age  | city     |
+
 +----------+------+----------+
 | zhangsan |   26 | Shanghai |
 | lisi     |   24 | Chengdu  |
 | wangwu   |   28 | Xian     |
 | zhaoliu  |   22 | Beijing  |
 | tianqi   |   26 | Shenzhen |
+
 +----------+------+----------+
 5 rows in set (0.00 sec)
 ```
@@ -189,14 +197,17 @@ View the results in the OmniFabric database and see that the data has been synch
 
 ```sql
 mysql> select * from user;
+
 +----------+------+-----------+
 | name     | age  | city      |
+
 +----------+------+-----------+
 | zhangsan |   26 | Shanghai  |
 | lisi     |   24 | Chengdu   |
 | wangwu   |   28 | Xian      |
 | zhaoliu  |   22 | Beijing   |
 | tianqi   |   26 | Shenzhen  |
+
 +----------+------+-----------+
 5 rows in set (0.01 sec)
 ```

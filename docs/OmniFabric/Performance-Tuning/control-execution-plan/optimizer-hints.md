@@ -67,6 +67,7 @@ Among them, ORDERED specifies that the query should be connected in the order of
 ## Example
 
 ```sql
+
 -- Create a new table called orders
 CREATE TABLE order (
   order_id INT PRIMARY KEY,
@@ -74,6 +75,7 @@ CREATE TABLE order (
   order_date DATE,
   order_total DECIMAL(10, 2)
 );
+
 -- insert datas
 INSERT INTO order (order_id, customer_id, order_date, order_total)
 VALUES
@@ -81,6 +83,7 @@ VALUES
   (2, 102, '2022-05-09', 150.00),
   (3, 103, '2022-05-08', 200.00),
   (4, 104, '2022-05-07', 50.00);
+
 -- Query all orders of a customer and sort them in descending order by order date
 SELECT order_id, order_date, order_total
 FROM orders
@@ -91,6 +94,7 @@ ORDER BY order_date DESC;
 To optimize this query, we can use the following `hint` hints:
 
 ```sql
+
 -- Execute the query using an index called idx_customer_id created on the customer_id field
 SELECT /*+ INDEX(orders idx_customer_id) */ order_id, order_date, order_total
 FROM orders

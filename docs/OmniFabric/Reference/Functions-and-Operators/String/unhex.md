@@ -22,18 +22,24 @@ The characters in the argument string must be legal hexadecimal digits: '0' .. '
 
 ```SQL
 mysql> SELECT UNHEX('4d6174726978204f726967696e');
+
 +-----------------------------------+
 | unhex(4d6174726978204f726967696e) |
+
 +-----------------------------------+
 | Matrix Origin                     |
+
 +-----------------------------------+
 1 row in set (0.00 sec)
 
 mysql> select unhex(NULL);
+
 +-------------+
 | unhex(null) |
+
 +-------------+
 | NULL        |
+
 +-------------+
 1 row in set (0.00 sec)
 ```

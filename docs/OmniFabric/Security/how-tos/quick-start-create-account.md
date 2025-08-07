@@ -7,6 +7,7 @@ This document will guide you to use the cluster administrator to create two new 
 ## Before you start
 
 - OmniFabric cluster has been depolyed and connected.
+
 - You have obtained the cluster administrator user name and password (The default user name and password are root and 111 respectively).
 
 ## Steps
@@ -20,6 +21,7 @@ This document will guide you to use the cluster administrator to create two new 
 2. Create a new account:
 
     - The login username and password of account *a1* are: admin1, test123
+
     - The login username and password of account *a2* are: admin2, test456
 
     ```
@@ -40,11 +42,14 @@ This document will guide you to use the cluster administrator to create two new 
 
     ```
     mysql> select * from db1.t1;
+
     +------+----------+
     | c1   | c2       |
+
     +------+----------+
     |    1 | shanghai |
     |    2 | beijing  |
+
     +------+----------+
     2 rows in set (0.01 sec)
     ```
@@ -84,10 +89,13 @@ This document will guide you to use the cluster administrator to create two new 
     Query OK, 1 row affected (0.05 sec)
 
     mysql> select * from db1.t1;
+
     +------+-----------+
     | c1   | c2        |
+
     +------+-----------+
     |    3 | guangzhou |
+
     +------+-----------+
     1 row in set (0.01 sec)
     ```

@@ -15,10 +15,13 @@ FROM table_name;
 
 ```sql
 mysql> select -2;
+
 +------+
 | -2   |
+
 +------+
 |   -2 |
+
 +------+
 ```
 
@@ -28,11 +31,14 @@ insert into t2 values (-3, 2);
 insert into t2 values (1, 2);
 
 mysql> select -c1 from t2;
+
 +------+
 | -c1  |
+
 +------+
 |    3 |
 |   -1 |
+
 +------+
 2 rows in set (0.00 sec)
 ```

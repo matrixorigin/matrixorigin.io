@@ -25,43 +25,58 @@ See the [`DATE_FORMAT()`](date-format.md) function description for format specif
 
 ```sql
 mysql> SELECT STR_TO_DATE('2022-01-06 10:20:30','%Y-%m-%d %H:%i:%s') as result;
+
 +---------------------+
 | result              |
+
 +---------------------+
 | 2022-01-06 10:20:30 |
+
 +---------------------+
-1 row in set (0.00 sec) 
+1 row in set (0.00 sec)
 
 mysql> SELECT STR_TO_DATE('09:30:17','%h:%i:%s');
+
 +---------------------------------+
 | str_to_date(09:30:17, %h:%i:%s) |
+
 +---------------------------------+
 | 09:30:17                        |
+
 +---------------------------------+
 1 row in set (0.00 sec)
 
 -- Calculate the variance of the WicketsTaken columns
 mysql> SELECT str_to_date('2008-01-01',replace('yyyy-MM-dd','yyyy-MM-dd','%Y-%m-%d')) as result;
+
 +------------+
 | result     |
+
 +------------+
 | 2008-01-01 |
+
 +------------+
 1 row in set (0.00 sec)
 
 --The STR_TO_DATE function ignores the extra characters at the end of the input string str when parsing it according to the format string format
-mysql> SELECT STR_TO_DATE('25,5,2022 extra characters','%d,%m,%Y'); 
+mysql> SELECT STR_TO_DATE('25,5,2022 extra characters','%d,%m,%Y');
+
 +---------------------------------------------------+
 | str_to_date(25,5,2022 extra characters, %d,%m,%Y) |
+
 +---------------------------------------------------+
 | 2022-05-25                                        |
+
 +---------------------------------------------------+
 1 row in set (0.00 sec)
 
 mysql> SELECT STR_TO_DATE('2022','%Y');
+
 +-----------------------+
 | str_to_date(2022, %Y) |
+
 +-----------------------+
 | NULL                  |
+
 +-----------------------
 ```

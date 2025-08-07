@@ -20,10 +20,13 @@ This function ``OCT(N)`` returns a string representation of the octal value of *
 
 ```SQL
 SELECT OCT(12);
+
 +---------+
 | oct(12) |
+
 +---------+
 | 14.0000 |
+
 +---------+
 1 row in set (0.00 sec)
 ```

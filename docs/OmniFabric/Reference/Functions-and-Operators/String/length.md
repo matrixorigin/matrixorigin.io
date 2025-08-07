@@ -2,7 +2,7 @@
 
 ## **Description**
 
-The length() function returns the length of the string.  
+The length() function returns the length of the string.
 
 ## **Syntax**
 

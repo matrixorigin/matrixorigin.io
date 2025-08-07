@@ -7,6 +7,7 @@ This document describes how to create a database using SQL and various programmi
 Before creating a database, do the following:
 
 - Build a OmniFabric Cluster in OmniFabric.
+
 - Read the [Database Schema Design Overview](overview.md).
 
 ## What is database
@@ -34,8 +35,10 @@ SHOW DATABASES;
 The following is an example output:
 
 ```
+
 +--------------------+
 | Database           |
+
 +--------------------+
 | mo_catalog         |
 | system             |
@@ -43,6 +46,7 @@ The following is an example output:
 | mysql              |
 | information_schema |
 | modatabase         |
+
 +--------------------+
 ```
 

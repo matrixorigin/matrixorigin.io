@@ -28,10 +28,13 @@ The BIT_AND(expr) function returns the bitwise AND of all bits in expr.
       ('a',000),('b',001),('b',011);
 
 > select id, BIT_AND(number) FROM t1 GROUP BY id;
+
 +------+-----------------+
 | id   | bit_and(number) |
+
 +------+-----------------+
 | a    |               0 |
 | b    |               1 |
+
 +------+-----------------+
 ```

@@ -21,8 +21,10 @@ Database information is also available from the `INFORMATION_SCHEMA` SCHEMATA ta
 create database demo_1;
 
 mysql> show databases;
+
 +--------------------+
 | Database           |
+
 +--------------------+
 | mo_task            |
 | information_schema |
@@ -31,6 +33,7 @@ mysql> show databases;
 | system             |
 | demo_1         |
 | mo_catalog         |
+
 +--------------------+
 7 rows in set (0.00 sec)
 ```

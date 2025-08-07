@@ -32,7 +32,6 @@ create external table t(...) localfile{"filepath"='<string>', "compression"='<st
 ## Create a external table for a local file (if no compression format is specified, the format is auto, and the file format is automatically checked)
 create external table t(...) localfile{"filepath"='<string>'} FIELDS TERMINATED BY ',' ENCLOSED BY '\"' LINES TERMINATED BY '\n';
 
-
 ## Create a external table for an S3 file (specify the compression format)
 create external table t(...) URL s3option{"endpoint"='<string>', "access_key_id"='<string>', "secret_access_key"='<string>', "bucket"='<string>', "filepath"='<string>', "region"='<string>', "compression"='<string>'} FIELDS TERMINATED BY ',' ENCLOSED BY '\"' LINES TERMINATED BY '\n';
 

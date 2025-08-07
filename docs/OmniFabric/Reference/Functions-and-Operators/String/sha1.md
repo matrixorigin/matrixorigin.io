@@ -20,26 +20,35 @@ The `SHA1()/SHA()` function is an encrypted hash function that calculates and re
 
 ```SQL
 mysql> select sha1("hello world");
+
 +------------------------------------------+
 | sha1(hello world)                        |
+
 +------------------------------------------+
 | 2aae6c35c94fcfb415dbe95f408b9ce91ee846ed |
+
 +------------------------------------------+
 1 row in set (0.00 sec)
 
 mysql> select sha("hello world");
+
 +------------------------------------------+
 | sha(hello world)                         |
+
 +------------------------------------------+
 | 2aae6c35c94fcfb415dbe95f408b9ce91ee846ed |
+
 +------------------------------------------+
 1 row in set (0.00 sec)
 
 mysql> select sha1(null);
+
 +------------+
 | sha1(null) |
+
 +------------+
 | NULL       |
+
 +------------+
 1 row in set (0.00 sec)
 ```

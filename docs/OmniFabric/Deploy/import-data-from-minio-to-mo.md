@@ -50,7 +50,9 @@ Minio is managed in Kubernetes (K8s), and external services must be accessed thr
 When we installed Minio, we created a namespace named mostorage. We can find this endpoint through the following K8s commands.
 
 - `kubectl get svc -n ${ns}`: List all SVCs under this namespace.
+
 - `kubectl get pod -n${ns}`: List all Pods under this namespace.
+
 - `kubectl get ep -n ${ns}`: List all forwarding rule relationships under this namespace.
 
 Examples are as follows:
@@ -88,8 +90,11 @@ The access address of SVC is the terminal address that needs to be added to the 
 2. Referring to the syntax structure of Load S3, fill in the parameter information in the `Load` statement:
 
     - endpoint, access_key_id: the login account of minio
+
     - secret_access_key: the login password of minio)
+
     - bucket: the name of the bucket
+
     - filepath: the path to the imported file
 
     It should be noted that from the local Minio, a `"provider"="minio"` needs to be added to the parameter string to indicate that the underlying storage source is the local Minio, and finally form the following SQL statement.

@@ -7,8 +7,11 @@ In this chapter, we will cover the implementation of MySQL bulk data writing to 
 This practice requires the installation and deployment of the following software environments:
 
 - Finished [installing and starting](../../../../Get-Started/install-standalone-matrixone.md).
+
 - Download and install [IntelliJ IDEA version 2022.2.1 and above](https://www.jetbrains.com/idea/download/).
+
 - Download and install [JDK 8+](https://www.oracle.com/sg/java/technologies/javase/javase8-archive-downloads.html).
+
 - Download and install [MySQL](https://downloads.mysql.com/archives/get/p/23/file/mysql-server_8.0.33-1ubuntu23.04_amd64.deb-bundle.tar).
 
 ## Operational steps
@@ -18,12 +21,19 @@ This practice requires the installation and deployment of the following software
 1. Launch IDEA, click **File > New > Project**, select **Spring Initializer**, and fill in the following configuration parameters:
 
     - **Name**:mo-spark-demo
+
     - **Location**:~\Desktop
+
     - **Language**:Java
+
     - **Type**:Maven
+
     - **Group**:com.example
+
     - **Artiface**:omnifabric-spark-demo
+
     - **Package name**:com.omnifabric.demo
+
     - **JDK** 1.8
 
     <div align="center">
@@ -82,7 +92,6 @@ This practice requires the installation and deployment of the following software
             <version>1.9.13</version>
         </dependency>
 
-
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -107,10 +116,10 @@ After connecting to OmniFabric using a MySQL client, create the database you nee
     INSERT INTO test.person (id, name, birthday) VALUES(1, 'zhangsan', '2023-07-09'),(2, 'lisi', '2023-07-08'),(3, 'wangwu', '2023-07-12');
     ```
 
-2. Create a `OmniFabricRead.java` class in IDEA to read OmniFabric data using Spark:
+2. Create a `MoRead.java` class in IDEA to read OmniFabric data using Spark:
 
     ```java
-    package com.omnifabric.spark;
+    package com.matrixone.spark;
 
     import org.apache.spark.sql.Dataset;
     import org.apache.spark.sql.Row;
@@ -120,8 +129,11 @@ After connecting to OmniFabric using a MySQL client, create the database you nee
     import java.util.Properties;
 
     /**
+
      * @auther OmniFabric
+
      * @desc 读取 OmniFabric 数据
+
      */
     public class MoRead {
 
@@ -150,7 +162,7 @@ After connecting to OmniFabric using a MySQL client, create the database you nee
     }
     ```
 
-3. Run `OmniFabricRead.Main()` in IDEA with the following result:
+3. Run `MoRead.Main()` in IDEA with the following result:
 
     ![](https://github.com/matrixorigin/artwork/blob/main/docs/develop/spark/moread.png?raw=true)
 
@@ -173,6 +185,7 @@ You can now start migrating MySQL data to OmniFabric using Spark.
     On node3, connect to the local OmniFabric using a MySQL client. Since this example continues to use the `test` database from the example that read the OmniFabric data earlier, we need to first empty the data from the `person` table.
 
     ```sql
+
     -- On node3, connect to OmniFabric on node1 using the Mysql client
     mysql -hxx.xx.xx.xx -P6001 -uroot -p111
     mysql> TRUNCATE TABLE test.person;
@@ -183,7 +196,7 @@ You can now start migrating MySQL data to OmniFabric using Spark.
     Create `Person.java` and `Mysql2Mo.java` classes to read MySQL data using Spark. The `Mysql2Mo.java` class code can be referenced in the following example:
 
 ```java
-package com.OmniFabric.spark;
+package com.matrixone.spark;
 
 import org.apache.spark.api.java.function.MapFunction;
 import org.apache.spark.sql.*;
@@ -192,8 +205,11 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 /**
+
  * @auther OmniFabric
+
  * @desc
+
  */
 public class Mysql2Mo {
 
@@ -214,7 +230,6 @@ public class Mysql2Mo {
     private static String destPassword = "111";
     private static String destDataBase = "test";
     private static String destTable = "person";
-
 
     public static void main(String[] args) throws SQLException {
         SparkSession sparkSession = SparkSession.builder().appName(appName).master(master).getOrCreate();
@@ -257,11 +272,14 @@ Execute the following SQL in OmniFabric to view the execution results:
 
 ```sql
 select * from test.person;
+
 +------+---------------+------------+
 | id   | name          | birthday   |
+
 +------+---------------+------------+
 |    3 | spark_wangwu  | 2023-07-12 |
 |    4 | spark_zhaoliu | 2023-08-07 |
+
 +------+---------------+------------+
 2 rows in set (0.01 sec)
 ```

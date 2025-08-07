@@ -36,6 +36,7 @@ If you want to use a Python NumPy array, you can insert that NumPy array directl
 
 ```sql
 insert into t1 (a, b) values (2, cast(unhex("7e98b23e9e10383b2f41133f") as blob));
+
  -- "7e98b23e9e10383b2f41133f" for small-endian hexadecimal encoding of []float32{0.34881967, 0.0028086076, 0.5752134}
  ```
 
@@ -47,11 +48,14 @@ Vector columns can also be read in two formats.
 
 ```sql
 mysql> select a, b from t1;
+
 +------+---------------------------------------+
 | a    | b                                     |
+
 +------+---------------------------------------+
 |    1 | [1, 2, 3]                             |
 |    2 | [0.34881967, 0.0028086076, 0.5752134] |
+
 +------+---------------------------------------+
 2 rows in set (0.00 sec)
 ```
@@ -62,11 +66,14 @@ Binary format is useful if you need to read the vector result set directly into 
 
 ```sql
 mysql> select hex(b) from t1;
+
 +--------------------------+
 | hex(b)                   |
+
 +--------------------------+
 | 0000803f0000004000004040 |
 | 7e98b23e9e10383b2f41133f |
+
 +--------------------------+
 2 rows in set (0.00 sec)
 ```

@@ -7,10 +7,15 @@ This chapter describes how to write Oracle data to OmniFabric using Flink.
 This practice requires the installation and deployment of the following software environments:
 
 - Complete [standalone OmniFabric deployment](../../../../Get-Started/install-standalone-matrixone.md).
+
 - Download and install [lntelliJ IDEA (2022.2.1 or later version)](https://www.jetbrains.com/idea/download/).
+
 - Select the [JDK 8+ version](https://www.oracle.com/sg/java/technologies/javase/javase8-archive-downloads.html) version to download and install depending on your system environment.
+
 - Download and install [Flink](https://archive.apache.org/dist/flink/flink-1.17.0/flink-1.17.0-bin-scala_2.12.tgz) with a minimum supported version of 1.11.
+
 - Finished [installing Oracle 19c](https://www.oracle.com/database/technologies/oracle-database-software-downloads.html).
+
 - Download and install [MySQL](https://downloads.mysql.com/archives/get/p/23/file/mysql-server_8.0.33-1ubuntu23.04_amd64.deb-bundle.tar), the recommended version is 8.0.33.
 
 ## Operational steps
@@ -29,8 +34,10 @@ create table flinkcdc_empt
     COMM     NUMBER(7, 2),
     DEPTNO   NUMBER(2)
 )
+
 --Modify the FLINKCDC_EMPT table to support incremental logging
 ALTER TABLE scott.FLINKCDC_EMPT ADD SUPPLEMENTAL LOG DATA (ALL) COLUMNS;
+
 --Insert test data:
 INSERT INTO SCOTT.FLINKCDC_EMPT (EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO) VALUES(1, 'TURNER', 'SALESMAN', 7698, TIMESTAMP '2022-10-31 16:21:11.000000', 1500, 0, 30);
 INSERT INTO SCOTT.FLINKCDC_EMPT (EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO) VALUES(2, 'TURNER', 'SALESMAN', 7698, TIMESTAMP '2022-10-31 16:21:11.000000', 1500, 0, 30);
@@ -85,6 +92,7 @@ SET execution.checkpointing.interval = 3s;
 ### Create source/sink table with flink ddl
 
 ```sql
+
 -- Create source table (oracle)
 CREATE TABLE `oracle_source` (
     EMPNO bigint NOT NULL,
@@ -108,6 +116,7 @@ CREATE TABLE `oracle_source` (
      'debezium.database.tablename.case.insensitive'='false',
      'debezium.log.mining.strategy'='online_catalog'
     );
+
 -- Creating a sink table (mo)
 CREATE TABLE IF NOT EXISTS `oracle_sink` (
     EMPNO bigint NOT NULL,
@@ -127,6 +136,7 @@ CREATE TABLE IF NOT EXISTS `oracle_sink` (
   'password' = '111',
   'table-name' = 'oracle_empt'
 );
+
 -- Read and insert the source table data into the sink table.
 insert into `oracle_sink` select * from `oracle_source`;
 ```

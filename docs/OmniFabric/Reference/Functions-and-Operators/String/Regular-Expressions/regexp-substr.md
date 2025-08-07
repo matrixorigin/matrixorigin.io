@@ -23,27 +23,37 @@
 - `match_type`: The optional `match_type` argument is a string that may contain any or all the following characters specifying how to perform matching:
 
     + `'c'`: Case-sensitive matching by default.
+
     + `'i'`: Case-insensitive matching.
+
     + `'n'`: The `.` character matches line terminators. The default is for `.` matching to stop at the end of a line.
+
     + `'m'`: Multiple-line mode. Recognize line terminators within the string. The default behavior is to match line terminators only at the start and end of the string expression.
+
     + `'u'`: Unix-only line endings. Only the newline character is recognized as a line ending by the ., ^, and $ match operators.
 
 ## **Examples**
 
 ```SQL
 mysql> SELECT REGEXP_SUBSTR('1a 2b 3c', '[0-9]a');
+
 +---------------------------------+
 | regexp_substr(1a 2b 3c, [0-9]a) |
+
 +---------------------------------+
 | 1a                              |
+
 +---------------------------------+
 1 row in set (0.00 sec)
 
 mysql> SELECT REGEXP_SUBSTR('Lend for land', '^C') Result;
+
 +--------+
 | Result |
+
 +--------+
 | NULL   |
+
 +--------+
 1 row in set (0.00 sec)
 ```

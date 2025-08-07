@@ -7,11 +7,17 @@ This article describes how to write SQL Server data offline to a OmniFabric data
 Before you can start writing data to OmniFabric using DataX, you need to complete the installation of the following software:
 
 - Complete [standalone OmniFabric deployment](../../../../Get-Started/install-standalone-matrixone.md).
+
 - Install [JDK 8+ version](https://www.oracle.com/sg/java/technologies/javase/javase8-archive-downloads.html).
+
 - Install [Python 3.8 (or plus)](https://www.python.org/downloads/).
+
 - Download the [DataX](https://datax-opensource.oss-cn-hangzhou.aliyuncs.com/202210/datax.tar.gz) installation package and unzip it.
-- Download [OmniFabricwriter.zip](https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/develop/Computing-Engine/datax-write/OmniFabricwriter.zip) and extract it to the `plugin/writer/` directory in the root of your DataX project.
+
+- Download [matrixonewriter.zip](https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/develop/Computing-Engine/datax-write/matrixonewriter.zip) and extract it to the `plugin/writer/` directory in the root of your DataX project.
+
 - Completed [SQL Server 2022](https://www.microsoft.com/en-us/sql-server/sql-server-downloads).
+
 - Install the <a href="https://dev.mysql.com/downloads/mysql" target="_blank">MySQL Client</a>.
 
 ## Operational steps

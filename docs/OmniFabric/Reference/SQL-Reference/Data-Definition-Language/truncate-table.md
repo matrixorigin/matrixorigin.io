@@ -17,7 +17,9 @@ The `TRUNCATE TABLE` statement deletes all rows in a table without logging indiv
 The difference between `DROP TABLE`, `TRUNCATE TABLE`, and `DELETE TABLE`:
 
 - `DROP TABLE`: Use `DROP TABLE` when you no longer need the table.
+
 - `TRUNCATE TABLE`: Use `TRUNCATE TABLE` to keep the table, but delete all records.
+
 - `DELETE TABLE`: When you want to delete some records, use `DELETE TABLE`.
 
 ## **Syntax**
@@ -38,12 +40,15 @@ The TABLE keyword is optional. Use this to distinguish the `TRUNCATE TABLE` stat
 create table index_table_05 (col1 bigint not null auto_increment,col2 varchar(25),col3 int,col4 varchar(50),primary key (col1),unique key col2(col2),key num_id(col4));
 insert into index_table_05(col2,col3,col4) values ('apple',1,'10'),('store',2,'11'),('bread',3,'12');
 mysql> select * from index_table_05;
+
 +------+-------+------+------+
 | col1 | col2  | col3 | col4 |
+
 +------+-------+------+------+
 |    1 | apple |    1 | 10   |
 |    2 | store |    2 | 11   |
 |    3 | bread |    3 | 12   |
+
 +------+-------+------+------+
 3 rows in set (0.00 sec)
 

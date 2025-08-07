@@ -68,9 +68,13 @@ FIELDS TERMINATED BY '\t' ENCLOSED BY '"' ESCAPED BY '\\' LINES TERMINATED BY '\
 ```
 
 !!! note
+
     - `FIELDS TERMINATED BY '\t'`: with and only `\t` as delimiters.
+
     - `ENCLOSED BY '"'`: with and only `"` as the included character.
+
     - `ESCAPED BY '\\'`:use `\` as an escape character, and only as an escape character.
+
     - `LINES TERMINATED BY '\n'`: Use and only use `\n` or `\r\n` as the line separator.
 
 **FIELDS TERMINATED BY**
@@ -128,10 +132,13 @@ create table t1(n1 int,n2 varchar(255));
 load data infile 'Users/admin/test/case/data.txt' into table t1;
 
 mysql> select * from t1;
+
 +------+------+
 | n1   | n2   |
+
 +------+------+
 |    1 | a\b  |
+
 +------+------+
 1 row in set (0.00 sec)
 ```
@@ -154,10 +161,13 @@ create table t2(n1 int,n2 varchar(255));
 load data infile 'Users/admin/test/case/data.txt' into table t2 fields escaped by 'a';
 
 mysql> select * from t2;
+
 +------+------+
 | n1   | n2   |
+
 +------+------+
 |    1 | \\b  |
+
 +------+------+
 1 row in set (0.00 sec)
 ```
@@ -180,10 +190,13 @@ create table t3(n1 int,n2 varchar(255));
 load data infile 'Users/admin/test/case/data.txt' into table t3 fields escaped by '';
 
 mysql> SELECT * FROM t3;
+
 +------+------+
 | n1   | n2   |
+
 +------+------+
 |    1 | a\\b |
+
 +------+------+
 1 row in set (0.01 sec)
 ```
@@ -211,8 +224,10 @@ create table t4(n1 int,n2 varchar(255));
 load data infile 'Users/admin/test/case/data.txt' into table t4;
 
 mysql> select * from t1;
+
 +------+------+
 | n1   | n2   |
+
 +------+------+
 |    1 | a b  |
 |    2 | d  |
@@ -221,6 +236,7 @@ b  |
 b  | 4 | a
 |    5 | a	b  |
 |    6 | ab  |
+
 +------+------+
 6 rows in set (0.01 sec)
 ```
@@ -305,12 +321,15 @@ By setting the parameter, you can use `SET column_name=nullif(column_name,"null"
 
     ```sql
     select * from user;
+
     +------+-----------+------+
     | id   | user_name | sex  |
+
     +------+-----------+------+
     |    1 | weder     | man  |
     |    2 | tom       | man  |
     | null | wederTom  | man  |
+
     +------+-----------+------+
     ```
 
@@ -323,6 +342,7 @@ For example, for a large file of 2 G, use two threads to load; the second thread
 **Enable/Disable Parallel Loading Command Line Example**:
 
 ```sql
+
 --  Enable Parallel Loading
 load data infile 'file_name' into table tbl_name FIELDS TERMINATED BY '|' ENCLOSED BY '\"' LINES TERMINATED BY '\n' IGNORE 1 LINES PARALLEL 'TRUE';
 
@@ -345,6 +365,7 @@ OmniFabric supports the use of the STRICT parameter to specify the way to cut th
 **Example**:
 
 ```sql
+
 -- Enable pre-reading mode
 load data infile 'file_name' into table tbl_name PARALLEL 'TRUE' STRICT 'TRUE';
 
@@ -374,9 +395,11 @@ The *CSV* format loaded by OmniFabric conforms to the RFC4180 standard, and the 
 
     +---------+---------+---------+
     | col1    | col2    | col3    |
+
     +---------+---------+---------+
     | aaa     | b bb    | ccc     |
     | zzz     | yyy     | xxx     |
+
     +---------+---------+---------+
 
 2. The last record in the file can have a terminating newline or no terminating newline (CRLF):
@@ -390,9 +413,11 @@ The *CSV* format loaded by OmniFabric conforms to the RFC4180 standard, and the 
 
     +---------+---------+---------+
     | col1    | col2    | col3    |
+
     +---------+---------+---------+
     | aaa     | b bb    | ccc     |
     | zzz     | yyy     | xxx     |
+
     +---------+---------+---------+
 
 3. An optional header line appears as the first line of the file and has the same format as a standard record line. For example:
@@ -407,9 +432,11 @@ The *CSV* format loaded by OmniFabric conforms to the RFC4180 standard, and the 
 
     +------------+------------+------------+
     | field_name | field_name | field_name |
+
     +------------+------------+------------+
     | aaa        | bbb        | ccc        |
     | zzz        | yyy        | xxx        |
+
     +------------+------------+------------+
 
 4. In the header and each record, there may be one or more fields separated by commas. Whitespace within a field is part of the field and should not be ignored. A comma cannot follow the last field in each record. For example:
@@ -430,16 +457,20 @@ The *CSV* format loaded by OmniFabric conforms to the RFC4180 standard, and the 
 
     +---------+---------+---------+
     | col1    | col2    | col3    |
+
     +---------+---------+---------+
     | aaa     | bbb     | ccc     |
+
     +---------+---------+---------+
 
     Or:
 
     +---------+---------+---------+
     | col1    | col2    | col3    |
+
     +---------+---------+---------+
     | a aa    |  bbb    | cc c    |
+
     +---------+---------+---------+
 
 5. Each field can be enclosed in double quotes or not. Double quotes cannot appear inside a field if the field is not enclosed in double-quotes. For example:
@@ -462,9 +493,11 @@ The *CSV* format loaded by OmniFabric conforms to the RFC4180 standard, and the 
 
     +---------+---------+---------+
     | col1    | col2    | col3    |
+
     +---------+---------+---------+
     | aaa     | bbb     | ccc     |
     | zzz     | yyy     | xxx     |
+
     +---------+---------+---------+
 
 6. Fields containing line breaks (CRLF), double quotes, and commas should be enclosed in double-quotes. For example:
@@ -479,9 +512,11 @@ The *CSV* format loaded by OmniFabric conforms to the RFC4180 standard, and the 
 
     +---------+---------+---------+
     | col1    | col2    | col3    |
+
     +---------+---------+---------+
     | aaa     | b bb    | ccc     |
     | zzz     | yyy     | xxx     |
+
     +---------+---------+---------+
 
 7. If double quotation marks are used to enclose the field, then multiple double quotation marks appearing in the field must also be enclosed in double quotation marks; otherwise, the first quotation mark of two double quotation marks in the field will be parsed as an escape character, thus keep a single, double quote. For example:
@@ -506,8 +541,10 @@ The *CSV* format loaded by OmniFabric conforms to the RFC4180 standard, and the 
 
     +---------+---------+---------+
     | col1    | col2    | col3    |
+
     +---------+---------+---------+
     | aaa     | b""bb   | ccc     |
+
     +---------+---------+---------+
 
 ## **Examples**
@@ -558,10 +595,15 @@ mysql> drop table if exists t1;
 Query OK, 0 rows affected (0.01 sec)
 
 mysql> create table t1(
+
     -> col1 char(225),
+
     -> col2 varchar(225),
+
     -> col3 text,
+
     -> col4 varchar(225)
+
     -> );
 Query OK, 0 rows affected (0.02 sec)
 ```
@@ -576,8 +618,10 @@ The query result is as follows:
 
 ```
 mysql> select * from t1;
+
 +-----------+-----------+-----------+-----------+
 | col1      | col2      | col3      | col4      |
+
 +-----------+-----------+-----------+-----------+
 | a         | b         | c         | d         |
 | a         | b         | c         | d         |
@@ -599,6 +643,7 @@ mysql> select * from t1;
 |           |           |           |           |
 | "         | "         | "         | "         |
 | ""        | ""        | ""        | ""        |
+
 +-----------+-----------+-----------+-----------+
 20 rows in set (0.00 sec)
 ```
@@ -616,8 +661,10 @@ The query result is as follows:
 
 ```sql
 mysql> select * from t1;
+
 +---------+---------+---------+---------+
 | col1    | col2    | col3    | col4    |
+
 +---------+---------+---------+---------+
 | aa"aa   | bb"bb   | cc"cc   | dd"dd   |
 | aa""aa  | bb""bb  | cc""cc  | dd""dd  |
@@ -629,6 +676,7 @@ mysql> select * from t1;
 |         |         |         |         |
 | "       | "       | "       | "       |
 | ""      | ""      | ""      | ""      |
+
 +---------+---------+---------+---------+
 10 rows in set (0.00 sec)
 ```
@@ -669,11 +717,14 @@ The query result is as follows:
 
 ```sql
 mysql> select * from t1;
+
 +------+------+------+------------+---------------------+---------------------+------+--------+---------------------------------------+-------+-------+-------+
 | col1 | col2 | col3 | col4       | col5                | col6                | col7 | col8   | col9                                  | col10 | col11 | col12 |
+
 +------+------+------+------------+---------------------+---------------------+------+--------+---------------------------------------+-------+-------+-------+
 | true |    1 | var  | 2020-09-07 | 2020-09-07 00:00:00 | 2020-09-07 00:00:00 |   18 | 121.11 | ["1", 2, null, false, true, {"q": 1}] | 1qaz  | NULL  | NULL  |
 | true |    1 | var  | 2020-09-07 | 2020-09-07 00:00:00 | 2020-09-07 00:00:00 |   18 | 121.11 | {"b": ["a", "b", {"q": 4}], "c": 1}   | 1aza  | NULL  | NULL  |
+
 +------+------+------+------------+---------------------+---------------------+------+--------+---------------------------------------+-------+-------+-------+
 2 rows in set (0.00 sec)
 ```
@@ -691,10 +742,13 @@ The query result is as follows:
 
 ```sql
 mysql> select * from t1;
+
 +------+------+------+------------+---------------------+---------------------+------+--------+-------------------------------------+-------+-------+-------+
 | col1 | col2 | col3 | col4       | col5                | col6                | col7 | col8   | col9                                | col10 | col11 | col12 |
+
 +------+------+------+------------+---------------------+---------------------+------+--------+-------------------------------------+-------+-------+-------+
 | true |    1 | var  | 2020-09-07 | 2020-09-07 00:00:00 | 2020-09-07 00:00:00 |   18 | 121.11 | {"b": ["a", "b", {"q": 4}], "c": 1} | 1aza  | NULL  | NULL  |
+
 +------+------+------+------------+---------------------+---------------------+------+--------+-------------------------------------+-------+-------+-------+
 1 row in set (0.00 sec)
 ```
@@ -722,12 +776,15 @@ create stage stage_fs url = 'file:///Users/admin/test';
 load data infile 'stage://stage_fs/t1.csv' into table t1;
 
 mysql> select * from t1;
+
 +------+------+
 | n1   | n2   |
+
 +------+------+
 |    1 | a    |
 |    2 | b    |
 |    3 | c    |
+
 +------+------+
 3 rows in set (0.01 sec)
 ```
@@ -751,11 +808,14 @@ create stage stage_fs1 url = 'file:///Users/admin/test';
 load data infile 'stage://stage_fs1/t1.csv' into table t2 ignore 1 lines;
 
 mysql> select * from t2;
+
 +------+------+
 | n1   | n2   |
+
 +------+------+
 |    2 | b    |
 |    3 | c    |
+
 +------+------+
 2 rows in set (0.00 sec)
 ```
@@ -781,12 +841,15 @@ mysql> load data url s3option {'endpoint'='hdfs://127.0.0.1:9000','filepath'='/u
 Query OK, 3 rows affected (0.15 sec)
 
 mysql> select * from t1;
+
 +------+------+
 | n1   | n2   |
+
 +------+------+
 |    1 | a    |
 |    2 | b    |
 |    3 | c    |
+
 +------+------+
 3 rows in set (0.01 sec)
 ```
@@ -812,11 +875,14 @@ mysql> load data url s3option {'endpoint'='hdfs://127.0.0.1:9000','filepath'='/u
 Query OK, 2 rows affected (0.08 sec)
 
 mysql> select * from t2;
+
 +------+------+
 | n1   | n2   |
+
 +------+------+
 |    2 | b    |
 |    3 | c    |
+
 +------+------+
 2 rows in set (0.01 sec)
 ```

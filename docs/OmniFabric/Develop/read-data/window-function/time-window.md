@@ -33,9 +33,13 @@ When creating a timing table, the `ts` column can specify the precision of `time
 Parameter meaning in INTERVAL statement:
 
 * timestamp_col: timestamp column.
+
 * interval_val: length of the time window.
+
 * time_unit: unit of time (seconds, minutes, hours, days).
+
 * SLIDING (sliding_val): Optionally, specifies the time distance the window slides.
+
 * FILL(fill_method): Optionally, specifies how to populate the data within the window.
 
 INTERVAL (timestamp_col, interval_val) acts on the data to produce the equivalent time period interval_val window, and SLIDING is used to specify the sliding_val time distance the window slides forward.
@@ -47,9 +51,13 @@ INTERVAL (timestamp_col, interval_val) acts on the data to produce the equivalen
 Other instructions for use:
 
 - The INTERVAL and SLIDING clauses need to be used in conjunction with aggregate or select functions, which are currently supported in the time window: max, min, sum, avg, count aggregate functions.
+
 - The window width of the aggregation time period is specified by the keyword INTERVAL with a minimum interval of 1 second.
+
 - The time series increases strictly monotonously in the results returned by the time window.
+
 - interval\_val must be a positive integer.
+
 - When querying with INTERVAL, \_wstart(ts), \_wend(ts) are pseudo-columns generated from the window, the start and end times of the window, respectively.
 
 Example of use:
@@ -71,8 +79,10 @@ INSERT INTO sensor_data VALUES('2023-08-01 00:45:00', 38);
 INSERT INTO sensor_data VALUES('2023-08-01 00:50:00', 31);
 insert into sensor_data values('2023-07-31 23:55:00', 22);
 mysql> select _wstart, _wend, max(temperature), min(temperature) from sensor_data where ts > "2023-08-01 00:00:00.000" and ts < "2023-08-01 00:50:00" interval(ts, 10, minute) sliding(5, minute);
+
 +-------------------------+-------------------------+------------------+------------------+
 | _wstart                 | _wend                   | max(temperature) | min(temperature) |
+
 +-------------------------+-------------------------+------------------+------------------+
 | 2023-08-01 00:00:00.000 | 2023-08-01 00:10:00.000 |               26 |               26 |
 | 2023-08-01 00:05:00.000 | 2023-08-01 00:15:00.000 |               26 |               26 |
@@ -84,6 +94,7 @@ mysql> select _wstart, _wend, max(temperature), min(temperature) from sensor_dat
 | 2023-08-01 00:35:00.000 | 2023-08-01 00:45:00.000 |               28 |               28 |
 | 2023-08-01 00:40:00.000 | 2023-08-01 00:50:00.000 |               38 |               28 |
 | 2023-08-01 00:45:00.000 | 2023-08-01 00:55:00.000 |               38 |               38 |
+
 +-------------------------+-------------------------+------------------+------------------+
 10 rows in set (0.04 sec)
 
@@ -96,9 +107,13 @@ Missing values are often encountered when processing timing data. The interpolat
 OmniFabric offers several interpolation methods to accommodate different data processing needs:
 
 - FILL(NONE): No padding, i.e. column unchanged
+
 - FILL(VALUE, expr): Populate expr results
+
 - FILL(PREV): Populate data with previous non-NULL value
+
 - FILL(NEXT): Populate data with next non-NULL value
+
 - FILL(LINEAR): Linear interpolation padding based on nearest non-NULL value before and after
 
 Example of use:

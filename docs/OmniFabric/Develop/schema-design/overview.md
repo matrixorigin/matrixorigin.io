@@ -29,6 +29,7 @@ The indexes commonly used in databases include primary key indexes, secondary in
 There are two common types of indexes, namely:
 
 - **Primary Key**: Primary key index, that is, the index that identifies the primary key column. The primary key index uniquely identifies each row of data in the table.
+
 - **Secondary index**: Secondary index is the index identified on the non-primary key. The secondary index, also called a non-clustered index, is used to improve query performance and speed up data retrieval.
 
 ## Other supported logical objects

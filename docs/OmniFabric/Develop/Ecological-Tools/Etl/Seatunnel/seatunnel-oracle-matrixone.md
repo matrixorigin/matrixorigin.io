@@ -61,6 +61,7 @@ insert into employees_oracle values(2,'lisi');
 insert into employees_oracle values(3,'wangwu');
 insert into employees_oracle values(4,'oracle');
 COMMIT;
+
 --View table data:
 select * from employees_oracle;
 ```
@@ -84,8 +85,10 @@ Next, explain how to connect to OmniFabric using SeaTunnel's `connector-jdbc` co
 1. In SeaTunnel's `${SEATNUNNEL_HOME}/config/plugin_config` file, add the following:
 
     ```conf
+
     --connectors-v2--
     connector-jdbc
+
     --end--
     ```
 
@@ -148,8 +151,10 @@ Launch the SeaTunnel app by executing the following command:
 At the end of the SeaTunnel run, statistics similar to the following are displayed summarizing the time taken for this write, the total number of read data, the total number of writes, and the total number of write failures:
 
 ```shell
+
 ***********************************************
            Job Statistic Information
+
 ***********************************************
 Start Time : 2023-08-07 16:45:02
 End Time : 2023-08-07 16:45:05
@@ -157,6 +162,7 @@ Total Time(s) :                       3
 Total Read Count :                   4
 Total Write Count :                   4
 Total Failed Count :                   0
+
 ***********************************************
 ```
 

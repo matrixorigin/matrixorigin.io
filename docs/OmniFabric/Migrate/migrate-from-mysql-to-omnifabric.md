@@ -17,6 +17,7 @@ This chapter will guide you to use third-party tools - DBeaver to migrate data f
 ### Preparation
 
 - Springboard machine with a graphical interface: it can connect to the source of MySQL and the target of OmniFabric.
+
 - Data Migration Tool: [Download DBeaver](https://dbeaver.io/download/) on the springboard machine.
 
 ### Step 1: Migrate table structure
@@ -72,7 +73,9 @@ This chapter will guide you through importing to OmniFabric through offline file
 ### Preparation
 
 - Springboard machine with a graphical interface: it can be connected to the source end of MySQL and the target end of OmniFabric.
+
 - Data Migration Tool: [Download DBeaver](https://dbeaver.io/download/) to the springboard machine.
+
 - Install `mysqldump` in MySQL server. If you are not familiar with how to use `mysqldump`, see [mysqldump tutorial](https://simplebackups.com/blog/the-complete-mysqldump-guide-with-examples/)
 
 ### Step 1: Migrate table structure

@@ -22,18 +22,24 @@ Returns the current date and time as a value in `YYYY-MM-DD hh:mm:ss` or `YYYYMM
 
 ```sql
 mysql> SELECT CURRENT_TIMESTAMP();
+
 +----------------------------+
 | current_timestamp()        |
+
 +----------------------------+
 | 2022-09-21 11:46:44.153777 |
+
 +----------------------------+
 1 row in set (0.00 sec)
 
 mysql> SELECT NOW();
+
 +----------------------------+
 | now()                      |
+
 +----------------------------+
 | 2022-09-21 12:56:36.915961 |
+
 +----------------------------+
 1 row in set (0.01 sec)
 ```
@@ -44,11 +50,14 @@ insert into t1 select 1,1,1,now();
 insert into t1 select 2,0,0,null;
 
 mysql> select a,b,c,year(d) from t1;
+
 +------+------+------+---------+
 | a    | b    | c    | year(d) |
+
 +------+------+------+---------+
 |    1 |    1 |    1 |    2022 |
 |    2 |    0 |    0 |    NULL |
+
 +------+------+------+---------+
 2 rows in set (0.01 sec)
 ```

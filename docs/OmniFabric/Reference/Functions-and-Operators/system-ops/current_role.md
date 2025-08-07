@@ -14,10 +14,13 @@ SELECT CURRENT_ROLE();
 
 ```sql
 mysql> select current_role();
+
 +----------------+
 | current_role() |
+
 +----------------+
 | moadmin        |
+
 +----------------+
 1 row in set (0.00 sec)
 
@@ -27,10 +30,13 @@ grant all on database * to use_role_1;
 grant use_role_1 to root;
 set role use_role_1;
 mysql> select current_role();
+
 +----------------+
 | current_role() |
+
 +----------------+
 | use_role_1     |
+
 +----------------+
 1 row in set (0.00 sec)
 ```

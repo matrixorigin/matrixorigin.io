@@ -11,22 +11,28 @@ We have prepared a simple example to help you understand how to interpret an exe
 > create table a(a int);
 > insert into a values(1),(2),(3),(4),(5),(6),(7),(8);
 > select count(*) from a where a>=2 and a<=8;
+
 +----------+
 | count(*) |
+
 +----------+
 |        7 |
+
 +----------+
 1 row in set (0.00 sec)
 
 > explain select count(*) from a where a>=2 and a<=8;
+
 +-----------------------------------------------------------------------------------+
 | QUERY PLAN                                                                        |
+
 +-----------------------------------------------------------------------------------+
 | Project                                                                           |
 |   ->  Aggregate                                                                   |
 |         Aggregate Functions: starcount(1)                                         |
 |         ->  Table Scan on aab.a                                                   |
 |               Filter Cond: (CAST(a.a AS BIGINT) >= 2), (CAST(a.a AS BIGINT) <= 8) |
+
 +-----------------------------------------------------------------------------------+
 5 rows in set (0.00 sec)
 ```
@@ -57,8 +63,10 @@ With the above example, to get the actual execution time, you can either execute
 
 ```sql
 > explain analyze select count(*) from a where a>=2 and a<=8;
+
 +-------------------------------------------------------------------------------------------------------------------------------+
 | QUERY PLAN                                                                                                                    |
+
 +-------------------------------------------------------------------------------------------------------------------------------+
 | Project                                                                                                                       |
 |   Analyze: timeConsumed=0us inputRows=1 outputRows=1 inputSize=8bytes outputSize=8bytes memorySize=8bytes                     |
@@ -68,6 +76,7 @@ With the above example, to get the actual execution time, you can either execute
 |         ->  Table Scan on aab.a                                                                                               |
 |               Analyze: timeConsumed=6643us inputRows=31 outputRows=24 inputSize=96bytes outputSize=64bytes memorySize=64bytes |
 |               Filter Cond: (CAST(a.a AS BIGINT) >= 2), (CAST(a.a AS BIGINT) <= 8)                                             |
+
 +-------------------------------------------------------------------------------------------------------------------------------+
 8 rows in set (0.00 sec)
 ```
@@ -75,8 +84,11 @@ With the above example, to get the actual execution time, you can either execute
 Judging from the printed execution results, when performing aggregate calculations and scanning tables respectively, the following measurements are obtained, which can be used as reference items:
 
 - total time consumed: timeConsumed
+
 - inputRows/outputRows
+
 - inputSize/outputSize
+
 - memorySize
 
 With this information, you can analyze queries and understand why they behave the way they do, which can be explored in the following ways:

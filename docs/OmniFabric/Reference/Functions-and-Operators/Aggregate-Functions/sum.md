@@ -7,7 +7,7 @@ Aggregate function.
 The SUM() function calculates the sum of a set of values.
 
 !!! note  "<font size=4>note</font>"
-    <font size=3>NULL values are not counted.</font>  
+    <font size=3>NULL values are not counted.</font>
 
 ## **Syntax**
 
@@ -42,20 +42,26 @@ If there are no matching rows, SUM() returns NULL.
 > insert into tbl1 values (0,1,6,12,"c");
 
 > select sum(col_1c) from tbl1;
+
 +-------------+
 | sum(col_1c) |
+
 +-------------+
 |          21 |
+
 +-------------+
 
 > select sum(col_1d) as c1 from tbl1 where col_1d < 13 group by col_1e order by c1;
+
 +------+
 | c1   |
+
 +------+
 |    8 |
 |   10 |
 |   18 |
 |   21 |
+
 +------+
 
 ```
@@ -67,10 +73,13 @@ If there are no matching rows, SUM() returns NULL.
 > INSERT INTO t1 VALUES('iynfj', 1, 1, 1, 1);
 > INSERT INTO t1 VALUES('innfj', 2, 2, 2, 2);
 > SELECT SUM( DISTINCT b ) FROM t1 GROUP BY b;
+
 +-----------------+
 | sum(distinct b) |
+
 +-----------------+
 |               1 |
 |               2 |
+
 +-----------------+
 ```

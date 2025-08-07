@@ -12,12 +12,16 @@ For example, the following statement will define a variable named `@max_salary` 
 
 ```sql
 SET @max_salary = 100000;
+
 --View the value set by the @max_salary variable
 mysql> select @max_salary;
+
 +-------------+
 | @max_salary |
+
 +-------------+
 | 100000      |
+
 +-------------+
 1 row in set (0.01 sec)
 ```
@@ -46,18 +50,24 @@ Now let's define two variables, a and b:
 Query OK, 0 rows affected (0.00 sec)
 
 > select @a;
+
 +------+
 | @a   |
+
 +------+
 |    2 |
+
 +------+
 1 row in set (0.00 sec)
 
 > select @b;
+
 +------+
 | @b   |
+
 +------+
 |    3 |
+
 +------+
 1 row in set (0.00 sec)
 ```
@@ -72,10 +82,13 @@ Query OK, 0 rows affected (0.02 sec)
 Query OK, 1 row affected (0.02 sec)
 
 > select * from t1;
+
 +------+------+
 | a    | b    |
+
 +------+------+
 |    2 | 3    |
+
 +------+------+
 1 row in set (0.01 sec)
 ```

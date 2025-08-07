@@ -32,12 +32,15 @@ EXPLAIN SELECT * FROM t WHERE a = 1;
 **Return result**:
 
 ```sql
+
 +------------------------------------------------+
 | QUERY PLAN                                     |
+
 +------------------------------------------------+
 | Project                                        |
 |   ->  Table Scan on aab.t                      |
 |         Filter Cond: (CAST(t.a AS BIGINT) = 1) |
+
 +------------------------------------------------+
 ```
 
@@ -48,6 +51,7 @@ EXPLAIN SELECT * FROM t WHERE a = 1;
 - QUERY PLAN: the name of an operator.
 
     + Filter Cond:Filter conditions
+
     + Table Scan:scans the table
 
 - **Project** is the parent node of the executive order in the query process. The structure of the Project is tree-like, and the child node "flows into" the parent node after the calculation is completed. The parent, child, and sibling nodes may execute parts of the query in parallel.

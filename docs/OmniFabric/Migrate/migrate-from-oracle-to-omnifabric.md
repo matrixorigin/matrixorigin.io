@@ -41,6 +41,7 @@ Through DBeaver, the source data is obtained in batches, and then the data is in
 ### Preparation
 
 - Springboard machine with a graphical interface: it can connect to the source of Oracle and the target of OmniFabric.
+
 - Data Migration Tool: [Download DBeaver](https://dbeaver.io/download/) on the springboard machine.
 
 ### Step 1: Migrate table structure
@@ -120,6 +121,7 @@ This chapter will guide you through importing to OmniFabric through offline file
 ### Preparation
 
 - Springboard machine with a graphical interface: it can be connected to the source end of Oracle and the target end of OmniFabric.
+
 - Data Migration Tool: [Download DBeaver](https://dbeaver.io/download/) to the springboard machine.
 
 ### Step 1: Migrate table structure

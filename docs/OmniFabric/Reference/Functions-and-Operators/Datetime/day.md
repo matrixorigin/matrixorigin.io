@@ -20,10 +20,13 @@ Returns the day of the month for date, in the range 1 to 31, or 0 for dates such
 
 ```sql
 mysql> SELECT day('2007-02-03');
+
 +-----------------+
 | day(2007-02-03) |
+
 +-----------------+
 |               3 |
+
 +-----------------+
 1 row in set (0.01 sec)
 ```
@@ -37,14 +40,17 @@ INSERT INTO t3 VALUES('2006-12-25');
 INSERT INTO t3 VALUES('2008-02-29');
 
 mysql> SELECT day(c1) from t3;
+
 +---------+
 | day(c1) |
+
 +---------+
 |       1 |
 |      31 |
 |       1 |
 |      25 |
 |      29 |
+
 +---------+
 5 rows in set (0.01 sec)
 ```

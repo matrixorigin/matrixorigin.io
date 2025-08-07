@@ -21,7 +21,9 @@ The database's capability to manage vectors reflects its capacity to store, retr
 Before reading this document, make sure that the following tasks are completed:
 
 - Build a OmniFabric Cluster in OmniFabric.
+
 - Read the [Database Schema Design Overview](overview.md).
+
 - The database has been created.
 
 ## How to Use Vectors
@@ -64,11 +66,14 @@ Vector columns can also be read in two formats.
 
 ```sql
 mysql> select a, b from t1;
+
 +------+---------------------------------------+
 | a    | b                                     |
+
 +------+---------------------------------------+
 |    1 | [1, 2, 3]                             |
 |    2 | [0.34881967, 0.0028086076, 0.5752134] |
+
 +------+---------------------------------------+
 2 rows in set (0.00 sec)
 ```
@@ -79,11 +84,14 @@ The binary format is very useful if you need to directly read the vector result 
 
 ```sql
 mysql> select hex(b) from t1;
+
 +--------------------------+
 | hex(b)                   |
+
 +--------------------------+
 | 0000803f0000004000004040 |
 | 7e98b23e9e10383b2f41133f |
+
 +--------------------------+
 2 rows in set (0.00 sec)
 ```
@@ -95,6 +103,7 @@ Top K queries are a database query operation that retrieves the top K data items
 First, we create a table named `t1` that contains vector data `b` and insert some sample data. Then, we perform top K queries using the given SQL statements for `l1_distance`, `l2_distance`, cosine similarity, and cosine distance, limiting the results to the top 5 matches.
 
 ```sql
+
 -- Sample table 't1' with vector data 'b'
 CREATE TABLE t1 (
     id int,
@@ -105,8 +114,10 @@ CREATE TABLE t1 (
 INSERT INTO t1 (id,b) VALUES (1, '[1,2,3]'), (2, '[4,5,6]'), (3, '[2,1,1]'), (4, '[7,8,9]'), (5, '[2,2,2]'), (6, '[3,1,2]');
 
 mysql> select * from t1;
+
 +------+-----------+
 | id   | b         |
+
 +------+-----------+
 |    1 | [1, 2, 3] |
 |    2 | [4, 5, 6] |
@@ -114,58 +125,71 @@ mysql> select * from t1;
 |    4 | [7, 8, 9] |
 |    5 | [2, 2, 2] |
 |    6 | [3, 1, 2] |
+
 +------+-----------+
 6 rows in set (0.01 sec)
 
 -- Top K Queries using l1_distance
 mysql> SELECT * FROM t1 ORDER BY l1_norm(b - '[3,1,2]') LIMIT 5;
+
 +------+-----------+
 | id   | b         |
+
 +------+-----------+
 |    6 | [3, 1, 2] |
 |    5 | [2, 2, 2] |
 |    3 | [2, 1, 1] |
 |    1 | [1, 2, 3] |
 |    2 | [4, 5, 6] |
+
 +------+-----------+
 5 rows in set (0.00 sec)
 
 -- Top K Queries using l2_distance
 mysql> SELECT * FROM t1 ORDER BY l2_distance(b,'[3,1,2]') LIMIT 5;
+
 +------+-----------+
 | id   | b         |
+
 +------+-----------+
 |    6 | [3, 1, 2] |
 |    5 | [2, 2, 2] |
 |    3 | [2, 1, 1] |
 |    1 | [1, 2, 3] |
 |    2 | [4, 5, 6] |
+
 +------+-----------+
 5 rows in set (0.00 sec)
 
 -- Top K Queries using cosine similarity
 mysql> SELECT * FROM t1 ORDER BY cosine_similarity(b, '[3,1,2]') LIMIT 5;
+
 +------+-----------+
 | id   | b         |
+
 +------+-----------+
 |    1 | [1, 2, 3] |
 |    2 | [4, 5, 6] |
 |    4 | [7, 8, 9] |
 |    5 | [2, 2, 2] |
 |    3 | [2, 1, 1] |
+
 +------+-----------+
 5 rows in set (0.00 sec)
 
 -- Top K Queries using cosine distance
 mysql> SELECT * FROM t1 ORDER BY cosine_distance(b, '[3,1,2]') LIMIT 5;
+
 +------+-----------+
 | id   | b         |
+
 +------+-----------+
 |    6 | [3, 1, 2] |
 |    3 | [2, 1, 1] |
 |    5 | [2, 2, 2] |
 |    4 | [7, 8, 9] |
 |    2 | [4, 5, 6] |
+
 +------+-----------+
 5 rows in set (0.00 sec)
 ```
@@ -206,7 +230,9 @@ These queries demonstrate retrieving the top 5 vectors most similar to the given
 ## Constriants
 
 - Currently, OmniFabric Vector type supports float32 and float64 types.
+
 - Vector cannot be Primary Key or Unique Key.
+
 - Vector maximum dimension is 65535.
 
 ## Reference
@@ -214,12 +240,21 @@ These queries demonstrate retrieving the top 5 vectors most similar to the given
 For more documentation on vector functions, see:
 
 - [inner_product()](../../Reference/Functions-and-Operators/Vector/inner_product.md)
+
 - [l1_norm()](../../Reference/Functions-and-Operators/Vector/l1_norm.md)
+
 - [l2_norm()](../../Reference/Functions-and-Operators/Vector/l2_norm.md)
+
 - [l2_distance()](../../Reference/Functions-and-Operators/Vector/l2_distance.md)
+
 - [cosine_similarity()](../../Reference/Functions-and-Operators/Vector/cosine_similarity.md)
+
 - [cosine_distance()](../../Reference/Functions-and-Operators/Vector/cosine_distance.md)
+
 - [vector_dims()](../../Reference/Functions-and-Operators/Vector/vector_dims.md)
+
 - [normalize_l2()](../../Reference/Functions-and-Operators/Vector/normalize_l2.md)
+
 - [Arithemetic Operators](../../Reference/Functions-and-Operators/Vector/arithmetic.md)
+
 - [Misc Functions](../../Reference/Functions-and-Operators/Vector/misc.md)

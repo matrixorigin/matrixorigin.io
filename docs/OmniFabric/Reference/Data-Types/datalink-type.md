@@ -5,7 +5,9 @@ The `DATALINK` type is a special data type used to store links to documents (suc
 Use the `DATALINK` data type to:
 
 - Saves storage space: the document is actually stored in external storage (such as an object storage system), while the database only saves the link.
+
 - Convenient document access: By storing links, the system can quickly access documents without additional storage and processing.
+
 - Improve data operation efficiency: Avoid processing large files directly in the database, improving the speed and efficiency of data operations.
 
 ## Insert DATALINK type data
@@ -37,7 +39,7 @@ If you want to read the data pointed by `DATALINK` to a file link, you can use t
 There is a file `t1.csv` under `/Users/admin/case`
 
 ```bash
-(base) admin@192 case % cat t1.csv 
+(base) admin@192 case % cat t1.csv
 this is a test message
 ```
 
@@ -55,8 +57,10 @@ insert into test01 values (7, 'stage://stage01/t1.csv?offset=4');
 insert into test01 values (8, 'stage://stage01/t1.csv?offset=4&size=2');
 
 mysql> select * from test01;
+
 +------+-------------------------------------------------+
 | col1 | col2                                            |
+
 +------+-------------------------------------------------+
 |    1 | file:///Users/admin/case/t1.csv                 |
 |    2 | file:///Users/admin/case/t1.csv?size=2          |
@@ -66,12 +70,15 @@ mysql> select * from test01;
 |    6 | stage://stage01/t1.csv?size=2                   |
 |    7 | stage://stage01/t1.csv?offset=4                 |
 |    8 | stage://stage01/t1.csv?offset=4&size=2          |
+
 +------+-------------------------------------------------+
 8 rows in set (0.01 sec)
 
 mysql> select col1, load_file(col2) from test01;
+
 +------+-------------------------+
 | col1 | load_file(col2)         |
+
 +------+-------------------------+
 |    1 | this is a test message
  |
@@ -85,6 +92,7 @@ mysql> select col1, load_file(col2) from test01;
 |    7 |  is a test message
      |
 |    8 |  i                      |
+
 +------+-------------------------+
 8 rows in set (0.01 sec)
 ```

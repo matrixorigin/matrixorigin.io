@@ -59,31 +59,40 @@ insert into t3 values (6),(7),(3);
 insert into t6 values (10,7),(null,7);
 
 mysql> select * from t3 where a <> all (select b from t2);
+
 +------+
 | a    |
+
 +------+
 |    6 |
 |    3 |
+
 +------+
 2 rows in set (0.00 sec)
 
 mysql> select * from t4 where 5 > all (select a from t5);
+
 +------+------+
 | a    | b    |
+
 +------+------+
 |    4 |    8 |
 |    3 |    8 |
 |    5 |    9 |
+
 +------+------+
 3 rows in set (0.01 sec)
 
 mysql> select * from t3 where 10 > all (select b from t2);
+
 +------+
 | a    |
+
 +------+
 |    6 |
 |    7 |
 |    3 |
+
 +------+
 3 rows in set (0.00 sec)
 

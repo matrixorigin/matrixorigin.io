@@ -31,8 +31,10 @@ customer	student.csv	t1.csv		t2.txt		t3		user.txt
 create stage stage_test url = 'file:///Users/admin/case';
 
 mysql> select * from stage_list('stage://stage_test') as f;
+
 +-------------------------------+
 | file                          |
+
 +-------------------------------+
 | /Users/admin/case/customer    |
 | /Users/admin/case/student.csv |
@@ -40,15 +42,19 @@ mysql> select * from stage_list('stage://stage_test') as f;
 | /Users/admin/case/t2.txt      |
 | /Users/admin/case/t3          |
 | /Users/admin/case/user.txt    |
+
 +-------------------------------+
 6 rows in set (0.00 sec)
 
 mysql> select * from stage_list('stage://stage_test/t*') as f;
+
 +--------------------------+
 | file                     |
+
 +--------------------------+
 | /Users/admin/case/t1.csv |
 | /Users/admin/case/t2.txt |
+
 +--------------------------+
 2 rows in set (0.01 sec)
 

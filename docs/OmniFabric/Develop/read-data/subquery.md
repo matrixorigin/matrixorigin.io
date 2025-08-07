@@ -9,9 +9,13 @@ An subquery is a query within another SQL query. With subquery, the query result
 In most cases, there are five types of subqueries:
 
 - Scalar Subquery, such as `SELECT (SELECT s1 FROM t2) FROM t1`.
+
 - Derived Tables, such as `SELECT t1.s1 FROM (SELECT s1 FROM t2) t1`.
+
 - Existential Test, such as `WHERE NOT EXISTS(SELECT ... FROM t2)`, `WHERE t1.a IN (SELECT ... FROM t2)`.
+
 - Quantified Comparison, such as `WHERE t1.a = ANY(SELECT ... FROM t2)`, `WHERE t1.a = ANY(SELECT ... FROM t2)`.
+
 - Subquery as a comparison operator operand, such as `WHERE t1.a > (SELECT ... FROM t2)`.
 
 For more information on SQL statement, see [SUBQUERY](../../Reference/SQL-Reference/Data-Query-Language/subqueries/subquery.md).
@@ -178,8 +182,10 @@ mysql> select * from part where p_brand='Brand#21' and p_retailprice between 110
 Result is as below:
 
 ```sql
+
 +-----------------------------------+
 | p_name                            |
+
 +-----------------------------------+
 | olive chartreuse smoke pink tan   |
 | olive chartreuse smoke pink tan   |
@@ -191,6 +197,7 @@ Result is as below:
 | pink sienna dark bisque turquoise |
 | honeydew orchid cyan magenta pink |
 | honeydew orchid cyan magenta pink |
+
 +-----------------------------------+
 10 rows in set (0.06 sec)
 ```
@@ -216,8 +223,10 @@ select p_name from part join partsupp on P_PARTKEY=PS_PARTKEY where PS_SUPPLYCOS
 Result is as below:
 
 ```sql
+
 +------------------------------------+
 | p_name                             |
+
 +------------------------------------+
 | papaya red almond hot pink         |
 | turquoise hot smoke green pink     |
@@ -229,6 +238,7 @@ Result is as below:
 | pink white goldenrod ivory steel   |
 | cornsilk dim pink tan sienna       |
 | lavender navajo steel sandy pink   |
+
 +------------------------------------+
 10 rows in set (0.23 sec)
 ```

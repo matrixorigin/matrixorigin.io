@@ -40,6 +40,7 @@ In addition, object storage also supports low-cost storage media such as HDD dis
 When structured data is stored, the data structure of each column is the same. In the OmniFabric storage layer, data is stored in column format. This feature gives the data better compression characteristics:
 
 - Free compression algorithm: Each column is stored separately, and different columns can choose the most suitable compression algorithm for their data structure. These algorithms can use column data characteristics such as duplicate values, ordering, and data type-specific compression techniques to achieve better results. In contrast, the compression algorithms used by traditional row-store databases are often more general and fail to take full advantage of the characteristics of column data.
+
 - High redundancy of intra-column data: Column storage databases store data in the same column together so that similar values ​​will be clustered together, resulting in higher redundancy, allowing the compression algorithm to more effectively identify and compress the same or Similar data items, thus improving the compression ratio.
 
 The overall data compression rate of OmniFabric can be as low as 1%. The specific compression rate is affected by many factors, such as the data structure of the actual data and the degree of data redundancy.

@@ -41,17 +41,25 @@ The publish and subscribe function has a variety of typical application scenario
 ### Publishable/subscribeable permission scope
 
 - **Publisher (Pub)**Only ACCOUNTADMIN or MOADMIN roles can create publications and subscriptions.
+
 - **Subscriber (Sub)**has access to subscription data permissions operated by ACCOUNTADMIN or MOADMIN roles.
 
 ### Publish/subscribe data range
 
 - A **Publication**can only be associated with a single database.
+
 - Supports database-level and table-level publishing and subscription.
+
 - **Subscriber**only has read permissions on **Subscription Library**.
+
 - If **Publisher (Pub)**adjusts the publishing sharing scope, those **Subscribers (Sub)**that are not within the new scope will have a subscription library created, then the **Subscription library**Access will be invalid.
+
 - If **Publisher (Pub)**modifies the published content, then **Subscriber (Sub)**can see the update without additional operations.
+
 - If **publisher (Pub)**tries to delete an already published database, the deletion will not be successful.
+
 - If **Publisher (Pub)**deletes **Publish**, but the corresponding object in the subscription library still exists, then **Subscriber (Sub)**will trigger an error when accessing this object, which needs to be **Subscriber (Sub)**deletes the corresponding **Subscription**.
+
 - If **publisher (Pub)**deletes **publish object**, but the corresponding object in the subscription library still exists, then **subscriber (Sub)**will trigger an error when accessing this object, which requires The corresponding **subscription object**is deleted by **Subscriber**.
 
 ## Publish and subscribe example
@@ -70,6 +78,7 @@ create account acc2 admin_name = 'test_account' identified by '111';
     Create a central warehouse database under the `sys` tenant, containing inventory tables and product price lists, and insert some test data to verify the functionality.
 
     ```sql
+
     -- Create a central warehouse database
     create database central_warehouse_db;
     use central_warehouse_db;
@@ -113,45 +122,58 @@ create account acc2 admin_name = 'test_account' identified by '111';
 3. Subscribe to publications individually in branch tenants
 
     ```sql
+
     -- Subscribe to db_warehouse_pub in acc1
     create database db_warehouse_sub from sys publication db_warehouse_pub;
 
     mysql> show subscriptions;
+
     +------------------+-------------+----------------------+------------+-------------+---------------------+------------------+---------------------+--------+
     | pub_name         | pub_account | pub_database         | pub_tables | pub_comment | pub_time            | sub_name         | sub_time            | status |
+
     +------------------+-------------+----------------------+------------+-------------+---------------------+------------------+---------------------+--------+
     | db_warehouse_pub | sys         | central_warehouse_db | *          |             | 2024-10-15 11:58:04 | db_warehouse_sub | 2024-10-15 11:59:47 |      0 |
+
     +------------------+-------------+----------------------+------------+-------------+---------------------+------------------+---------------------+--------+
     1 row in set (0.01 sec)
 
     use db_warehouse_sub;
 
     mysql> show tables;
+
     +----------------------------+
     | Tables_in_db_warehouse_sub |
+
     +----------------------------+
     | inventory                  |
     | products                   |
+
     +----------------------------+
     2 rows in set (0.01 sec)
 
     mysql> select * from inventory;
+
     +------------+--------------+----------------+
     | product_id | product_name | stock_quantity |
+
     +------------+--------------+----------------+
     |          1 | Laptop       |            100 |
     |          2 | Smartphone   |            200 |
     |          3 | Tablet       |            150 |
+
     +------------+--------------+----------------+
     3 rows in set (0.01 sec)
 
     mysql> select * from products;
+
     +------------+--------------+--------+
     | product_id | product_name | price  |
+
     +------------+--------------+--------+
     |          1 | Laptop       | 999.99 |
     |          2 | Smartphone   | 599.99 |
     |          3 | Tablet       | 399.99 |
+
     +------------+--------------+--------+
     3 rows in set (0.01 sec)
 
@@ -159,30 +181,39 @@ create account acc2 admin_name = 'test_account' identified by '111';
     create database tab_products_sub from sys publication tab_products_pub;
 
     mysql> show subscriptions;
+
     +------------------+-------------+----------------------+------------+-------------+---------------------+------------------+---------------------+--------+
     | pub_name         | pub_account | pub_database         | pub_tables | pub_comment | pub_time            | sub_name         | sub_time            | status |
+
     +------------------+-------------+----------------------+------------+-------------+---------------------+------------------+---------------------+--------+
     | tab_products_pub | sys         | central_warehouse_db | products   |             | 2024-10-15 11:58:04 | tab_products_sub | 2024-10-15 13:59:22 |      0 |
+
     +------------------+-------------+----------------------+------------+-------------+---------------------+------------------+---------------------+--------+
     1 row in set (0.01 sec)
 
     use tab_products_sub;
 
     mysql> show tables;
+
     +----------------------------+
     | Tables_in_tab_products_sub |
+
     +----------------------------+
     | products                   |
+
     +----------------------------+
     1 row in set (0.01 sec)
 
     mysql> select * from products;
+
     +------------+--------------+--------+
     | product_id | product_name | price  |
+
     +------------+--------------+--------+
     |          1 | Laptop       | 999.99 |
     |          2 | Smartphone   | 599.99 |
     |          3 | Tablet       | 399.99 |
+
     +------------+--------------+--------+
     3 rows in set (0.01 sec)
     ```
@@ -192,6 +223,7 @@ create account acc2 admin_name = 'test_account' identified by '111';
     On the publishing side of data, the publishing and subscription mechanism will synchronize these changes to the subscribing side.
 
     ```sql
+
     -- Modify the inventory quantity in the inventory table
     UPDATE inventory SET stock_quantity = 80 WHERE product_id = 1;
 
@@ -199,21 +231,27 @@ create account acc2 admin_name = 'test_account' identified by '111';
     DELETE FROM products WHERE product_id = 2;
 
     mysql> select * from inventory;
+
     +------------+--------------+----------------+
     | product_id | product_name | stock_quantity |
+
     +------------+--------------+----------------+
     |          1 | Laptop       |             80 |
     |          2 | Smartphone   |            200 |
     |          3 | Tablet       |            150 |
+
     +------------+--------------+----------------+
     3 rows in set (0.00 sec)
 
     mysql> select * from products;
+
     +------------+--------------+--------+
     | product_id | product_name | price  |
+
     +------------+--------------+--------+
     |          1 | Laptop       | 999.99 |
     |          3 | Tablet       | 399.99 |
+
     +------------+--------------+--------+
     2 rows in set (0.01 sec)
     ```
@@ -221,25 +259,32 @@ create account acc2 admin_name = 'test_account' identified by '111';
 5. View changes on the subscription side
 
     ```sql
+
     -- Check stock availability in acc1
     mysql> select * from inventory ;
+
     +------------+--------------+----------------+
     | product_id | product_name | stock_quantity |
+
     +------------+--------------+----------------+
     |          1 | Laptop       |             80 |
     |          2 | Smartphone   |            200 |
     |          3 | Tablet       |            150 |
+
     +------------+--------------+----------------+
     3 rows in set (0.01 sec)
 
     -- Check product prices in acc2
 
     mysql> select * from products;
+
     +------------+--------------+--------+
     | product_id | product_name | price  |
+
     +------------+--------------+--------+
     |          1 | Laptop       | 999.99 |
     |          3 | Tablet       | 399.99 |
+
     +------------+--------------+--------+
     2 rows in set (0.01 sec)
     ```
@@ -249,6 +294,7 @@ create account acc2 admin_name = 'test_account' identified by '111';
     In some cases, when a warehouse is out of use, or data publishing no longer requires synchronization of a certain table, you can use DROP PUBLICATION to release the publishing relationship to prevent unnecessary resource consumption.
 
     ```sql
+
     -- Delete product price list publication
     drop publication tab_products_sub;
     ```
@@ -258,12 +304,17 @@ create account acc2 admin_name = 'test_account' identified by '111';
 ### Publisher reference documentation
 
 - [CREATE PUBLICATION](../../Reference/SQL-Reference/Data-Definition-Language/create-publication.md)
+
 - [ALTER PUBLICATION](../../Reference/SQL-Reference/Data-Definition-Language/alter-publication.md)
+
 - [DROP PUBLICATION](../../Reference/SQL-Reference/Data-Definition-Language/drop-publication.md)
+
 - [SHOW PUBLICATIONS](../../Reference/SQL-Reference/Other/SHOW-Statements/show-publications.md)
+
 - [SHOW CREATE PUBLICATION](../../Reference/SQL-Reference/Other/SHOW-Statements/show-create-publication.md)
 
 ### Subscriber Reference Documentation
 
 - [CREATE...FROM...PUBLICATION...](../../Reference/SQL-Reference/Data-Definition-Language/create-subscription.md)
+
 - [SHOW SUBSCRIPTIONS](../../Reference/SQL-Reference/Other/SHOW-Statements/show-subscriptions.md)

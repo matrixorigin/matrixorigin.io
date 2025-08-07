@@ -21,21 +21,27 @@ INSERT INTO tb1 VALUES (2, '2', 2.0);
 INSERT INTO tb1 VALUES (3, '3', 3.0);
 
 mysql> select * from tb1;
+
 +------+------+--------+
 | c1   | c2   | c3     |
+
 +------+------+--------+
 |    1 | 1    | 1.0000 |
 |    2 | 2    | 2.0000 |
 |    3 | 3    | 3.0000 |
+
 +------+------+--------+
 3 rows in set (0.03 sec)
 
 mysql> SELECT sc1, sc2, sc3 FROM (SELECT c1 AS sc1, c2 AS sc2, c3*3 AS sc3 FROM tb1) AS sb WHERE sc1 > 1;
+
 +------+------+--------+
 | sc1  | sc2  | sc3    |
+
 +------+------+--------+
 |    2 | 2    | 6.0000 |
 |    3 | 3    | 9.0000 |
+
 +------+------+--------+
 2 rows in set (0.02 sec)
 ```
@@ -71,13 +77,16 @@ insert into t1 values ('BerkeleyPublic2','Berkeley');
 insert into t1 values ('NYCLib','NewYork');
 
 mysql> select * from (select city,libname1,count(libname1) as a from t3 join t1 on libname1=libname3 join t2 on isbn3=isbn2 group by city,libname1) sub ;
+
 +----------+--------------------+------+
 | city     | libname1           | a    |
+
 +----------+--------------------+------+
 | NewYork  | NewYorkPublicLibra |    6 |
 | SanFran  | SanFransiscoPublic |    1 |
 | Berkeley | BerkeleyPublic1    |    1 |
 | Berkeley | BerkeleyPublic2    |    1 |
+
 +----------+--------------------+------+
 4 rows in set (0.00 sec)
 ```

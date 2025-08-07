@@ -352,11 +352,15 @@ The concept of multi-tenancy was introduced with OmniFabric version 0.6, and the
 `system_metrics` tables have more or less same column types, fields in these tables are described as follows:
 
 * collecttime:Collection time
+
 * value:  the value of the collecting metric
 
 - node: the OmniFabric node uuid
+
 - role: the OmniFabric node role, can be CN, TN or LOG.
+
 - account: default as "sys", the account who fires the SQL request.
+
 - type:SQL type, can be `select`, `insert`, `update`, `delete`, `other` types.
 
 ### `metric` table
@@ -374,21 +378,37 @@ The concept of multi-tenancy was introduced with OmniFabric version 0.6, and the
 The other tables are all views of the `metric` table:
 
 * `process_cpu_percent` table: Process CPU busy percentage.
+
 * `process_open_fs` table: Number of open file descriptors.
+
 * `process_resident_memory_bytes` table: Resident memory size in bytes.
+
 * `server_connection` table: Server connection numbers.
+
 * `sql_statement_errors` table: Counter of sql statements executed with errors.
+
 * `sql_statement_total` table: Counter of executed sql statement.
+
 * `sql_transaction_errors` table: Counter of transactional statements executed with errors.
+
 * `sql_statement_hotspot` table: records the most extended SQL query executed by each tenant within each minute. Only those SQL queries whose execution time does not exceed a certain aggregation threshold will be included in the statistics.
+
 * `sql_transaction_total` table: Counter of transactional sql statement.
+
 * `sys_cpu_combined_percent` table: System CPU busy percentage, average among all logical cores.
+
 * `sys_cpu_seconds_total` table: System CPU time spent in seconds, normalized by number of cores
+
 * `sys_disk_read_bytes` table: System disk read in bytes.
+
 * `sys_disk_write_bytes` table: System disk write in bytes.
+
 * `sys_memory_available` table: System memory available in bytes.
+
 * `sys_memory_used` table: System memory used in bytes.
+
 * `sys_net_recv_bytes` table: System net received in bytes.
+
 * `sys_net_sent_bytes` table: System net sent in bytes.
 
 ## `system` database
@@ -497,8 +517,11 @@ Many `INFORMATION_SCHEMA` tables have a corresponding `SHOW` command. The benefi
 The description of columns in the `CHARACTER_SETS` table is as follows:
 
 - `CHARACTER_SET_NAME`: The name of the character set.
+
 - `DEFAULT_COLLATE_NAME` The default collation name of the character set.
+
 - `DESCRIPTION` The description of the character set.
+
 - `MAXLEN` The maximum length required to store a character in this character set.
 
 ### `COLUMNS` table
@@ -506,30 +529,55 @@ The description of columns in the `CHARACTER_SETS` table is as follows:
 The description of columns in the `COLUMNS` table is as follows:
 
 - `TABLE_CATALOG`: The name of the catalog to which the table with the column belongs. The value is always `def`.
+
 - `TABLE_SCHEMA`: The name of the schema in which the table with the column is located.
+
 - `TABLE_NAME`: The name of the table with the column.
+
 - `COLUMN_NAME`: The name of the column.
+
 - `ORDINAL_POSITION`: The position of the column in the table.
+
 - `COLUMN_DEFAULT`: The default value of the column. If the explicit default value is `NULL`, or if the column definition does not include the `default` clause, this value is `NULL`.
+
 - `IS_NULLABLE`: Whether the column is nullable. If the column can store null values, this value is `YES`; otherwise, it is `NO`.
+
 - `DATA_TYPE`: The type of data in the column.
+
 - `CHARACTER_MAXIMUM_LENGTH`: For string columns, the maximum length in characters.
+
 - `CHARACTER_OCTET_LENGTH`: For string columns, the maximum length in bytes.
+
 - `NUMERIC_PRECISION`: The numeric precision of a number-type column.
+
 - `NUMERIC_SCALE`: The numeric scale of a number-type column.
+
 - `DATETIME_PRECISION`: For time-type columns, the fractional seconds precision.
+
 - `CHARACTER_SET_NAME`: The name of the character set of a string column.
+
 - `COLLATION_NAME`: The name of the collation of a string column.
+
 - `COLUMN_TYPE`: The column type.
+
 - `COLUMN_KEY`: Whether this column is indexed. This field might have the following values:
+
     - `Empty`: This column is not indexed, or this column is indexed and is the second column in a multi-column non-unique index.
+
     - `PRI`: This column is the primary key or one of multiple primary keys.
+
     - `UNI`: This column is the first column of the unique index.
+
     - `MUL`: The column is the first column of a non-unique index, in which a given value is allowed to occur for multiple times.
+
 - `EXTRA`: Any additional information of the given column.
+
 - `PRIVILEGES`: The privilege that the current user has on this column.
+
 - `COLUMN_COMMENT`: Comments contained in the column definition.
+
 - `GENERATION_EXPRESSION`: For generated columns, this value displays the expression used to calculate the column value. For non-generated columns, the value is empty.
+
 - `SRS_ID`: This value applies to spatial columns. It contains the column `SRID` value that indicates the spatial reference system for values stored in the column.
 
 ### `ENGINES` table
@@ -537,10 +585,15 @@ The description of columns in the `COLUMNS` table is as follows:
 The description of columns in the `ENGINES` table is as follows:
 
 - `ENGINES`: The name of the storage engine.
+
 - `SUPPORT`: The level of support that the server has on the storage engine.
+
 - `COMMENT`: The brief comment on the storage engine.
+
 - `TRANSACTIONS`: Whether the storage engine supports transactions.
+
 - `XA`: Whether the storage engine supports XA transactions.
+
 - `SAVEPOINTS`: Whether the storage engine supports `savepoints`.
 
 ### `PARTITIONS` view
@@ -548,28 +601,51 @@ The description of columns in the `ENGINES` table is as follows:
 The description of columns in the `PARTITIONS` View is as follows:
 
 - `TABLE_CATALOG`: The name of the catalog to which the table belongs. This value is always def.
+
 - `TABLE_SCHEMA`: The name of the schema (database) to which the table belongs.
+
 - `TABLE_NAME`: The name of the table containing the partition.
+
 - `PARTITION_NAME`: The name of the partition.
+
 - `SUBPARTITION_NAME`: If the `PARTITIONS` table row represents a subpartition, the name of subpartition; otherwise NULL.
+
 - `PARTITION_ORDINAL_POSITION`: All partitions are indexed in the same order as they are defined, with 1 being the number assigned to the first partition. The indexing can change as partitions are added, dropped, and reorganized; the number shown is this column reflects the current order, taking into account any indexing changes.
+
 - `SUBPARTITION_ORDINAL_POSITION`: Subpartitions within a given partition are also indexed and reindexed in the same manner as partitions are indexed within a table.
+
 - `PARTITION_METHOD`: One of the values `RANGE`, `LIST`, `HASH`, `LINEAR HASH`, `KEY`, or `LINEAR KEY`. __Note:__ OmniFabric does not currently support RANGE and LIST partitioning.
+
 - `SUBPARTITION_METHOD`: One of the values `HASH`, `LINEAR HASH`, `KEY`, or `LINEAR KEY`.
+
 - `PARTITION_EXPRESSION`: The expression for the partitioning function used in the `CREATE TABLE` or `ALTER TABLE` statement that created the table's current partitioning scheme.
+
 - `SUBPARTITION_EXPRESSION`: This works in the same fashion for the subpartitioning expression that defines the subpartitioning for a table as `PARTITION_EXPRESSION` does for the partitioning expression used to define a table's partitioning. If the table has no subpartitions, this column is `NULL`.
+
 - `PARTITION_DESCRIPTION`: This column is used for `RANGE` and `LIST` partitions. For a `RANGE` partition, it contains the value set in the partition's `VALUES LESS THAN` clause, which can be either an integer or `MAXVALUE`. For a `LIST` partition, this column contains the values defined in the partition's `VALUES IN` clause, which is a list of comma-separated integer values. For partitions whose `PARTITION_METHOD` is other than `RANGE` or `LIST`, this column is always `NULL`. __Note:__ OmniFabric does not currently support RANGE and LIST partitioning.
+
 - `TABLE_ROWS`: The number of table rows in the partition.
+
 - `AVG_ROW_LENGTH`: The average length of the rows stored in this partition or subpartition, in bytes. This is the same as `DATA_LENGTH` divided by `TABLE_ROWS`.
+
 - `DATA_LENGTH`: The total length of all rows stored in this partition or subpartition, in bytes; that is, the total number of bytes stored in the partition or subpartition.
+
 - `INDEX_LENGTH`: The length of the index file for this partition or subpartition, in bytes.
+
 - `DATA_FREE`: The number of bytes allocated to the partition or subpartition but not used.
+
 - `CREATE_TIME`: The time that the partition or subpartition was created.
+
 - `UPDATE_TIME`: The time that the partition or subpartition was last modified.
+
 - `CHECK_TIME`: The last time that the table to which this partition or subpartition belongs was checked.
+
 - `CHECKSUM`: The checksum value, if any; otherwise `NULL`.
+
 - `PARTITION_COMMENT`: The text of the comment, if the partition has one. If not, this value is empty. The maximum length for a partition comment is defined as 1024 characters, and the display width of the `PARTITION_COMMENT` column is also 1024, characters to match this limit.
+
 - `NODEGROUP`: This is the nodegroup to which the partition belongs.
+
 - `TABLESPACE_NAME`: The name of the tablespace to which the partition belongs. The value is always `DEFAULT`.
 
 ### `PROCESSLIST` view
@@ -577,21 +653,37 @@ The description of columns in the `PARTITIONS` View is as follows:
 Fields in the `PROCESSLIST` view are described as follows:
 
 - `NODE_ID`: CN node UUID
+
 - `CONN_ID`: ID of the user connection
+
 - `SESSION_ID`: ID of the session
+
 - `ACCOUNT`: tenant name
+
 - `USER`: user name
+
 - `HOST`: the listening address of the CN node
+
 - `DB`: the currently connected database
+
 - `SESSION_START`: session creation time
+
 - `COMMAND`: the MySQL protocol command for the statement
+
 - `INFO`: SQL statement being processed
+
 - `TXN_ID`: transaction ID
+
 - `STATEMENT_ID`: Statement ID
+
 - `STATEMENT_TYPE`: type of statement, Select/Update/Delete, etc.
+
 - `QUERY_TYPR`: query type, DQL/DDL/DML etc.
+
 - `SQL_SOURCE_TYPE`: SQL statement source type, external or internal SQL: external_sql/internal_sql
+
 - `QUERY_START`: Query start time.
+
 - `CLIENT_HOST`: client address
 
 ### `SCHEMATA` view
@@ -599,10 +691,15 @@ Fields in the `PROCESSLIST` view are described as follows:
 The `SCHEMATA` table provides information about databases. The table data is equivalent to the result of the `SHOW DATABASES` statement. Fields in the `SCHEMATA` table are described as follows:
 
 - `CATALOG_NAME`: The catalog to which the database belongs.
+
 - `SCHEMA_NAME`: The database name.
+
 - `DEFAULT_CHARACTER_SET_NAME`: The default character set of the database.
+
 - `DEFAULT_COLLATION_NAME`: The default collation of the database.
+
 - `SQL_PATH`: The value of this item is always `NULL`.
+
 - `DEFAULT_TABLE_ENCRYPTION`: defines the *default encryption* setting for databases and general tablespaces.
 
 ### `TABLES` table
@@ -610,25 +707,45 @@ The `SCHEMATA` table provides information about databases. The table data is equ
 The description of columns in the `TABLES` table is as follows:
 
 - `TABLE_CATALOG`: The name of the catalog which the table belongs to. The value is always `def`.
+
 - `TABLE_SCHEMA`: The name of the schema which the table belongs to.
+
 - `TABLE_NAME`: The name of the table.
+
 - `TABLE_TYPE`: The type of the table. The base table type is `BASE TABLE`, the view table type is `VIEW`, and the `INFORMATION_SCHEMA` table type is `SYSTEM VIEW`.
+
 - `ENGINE`: The type of the storage engine.
+
 - `VERSION`: Version. The value is `10` by default.
+
 - `ROW_FORMAT`: The row format. The value is `Compact`, `Fixed`, `Dynamic`, `Compressed`, `Redundant`.
+
 - `TABLE_ROWS`: The number of rows in the table in statistics. For `INFORMATION_SCHEMA` tables, `TABLE_ROWS` is `NULL`.
+
 - `AVG_ROW_LENGTH`: The average row length of the table. `AVG_ROW_LENGTH` = `DATA_LENGTH` / `TABLE_ROWS`.
+
 - `DATA_LENGTH`: Data length. `DATA_LENGTH` = `TABLE_ROWS` * the sum of storage lengths of the columns in the tuple.
+
 - `MAX_DATA_LENGTH`: The maximum data length. The value is currently `0`, which means the data length has no upper limit.
+
 - `INDEX_LENGTH`: The index length. `INDEX_LENGTH` = `TABLE_ROWS` * the sum of lengths of the columns in the index tuple.
+
 - `DATA_FREE`: Data fragment. The value is currently `0`.
+
 - `AUTO_INCREMENT`: The current step of the auto- increment primary key.
+
 - `CREATE_TIME`: The time at which the table is created.
+
 - `UPDATE_TIME`: The time at which the table is updated.
+
 - `CHECK_TIME`: The time at which the table is checked.
+
 - `TABLE_COLLATION`: The collation of strings in the table.
+
 - `CHECKSUM`: Checksum.
+
 - `CREATE_OPTIONS`: Creates options.
+
 - `TABLE_COMMENT`: The comments and notes of the table.
 
 ### `USER_PRIVILEGES` table
@@ -638,21 +755,33 @@ The `USER_PRIVILEGES` table provides information about global privileges.
 Fields in the `USER_PRIVILEGES` table are described as follows:
 
 - `GRANTEE`: The name of the granted user, which is in the format of `'user_name'@'host_name'`.
+
 - `TABLE_CATALOG`: The name of the catalog to which the table belongs. This value is always `def`.
+
 - `PRIVILEGE_TYPE`: The privilege type to be granted. Only one privilege type is shown in each row.
+
 - `IS_GRANTABLE`: If you have the `GRANT OPTION` privilege, the value is `YES`; otherwise, the value is `NO`.
 
 ### `VIEWS` view
 
 - `TABLE_CATALOG`: The name of the catalog the view belongs to. The value is `def`.
+
 - `TABLE_SCHEMA`: The name of the database to which the view belongs.
+
 - `TABLE_NAME`: The name of the view.
+
 - `VIEW_DEFINITION`: The `SELECT` statement that provides the view definition. It contains most of what you see in the "Create Table" column generated by `SHOW Create VIEW`.
+
 - `CHECK_OPTION`: The value of the `CHECK_OPTION` property. Values are `NONE`, `CASCADE`, or `LOCAL`.
+
 - `IS_UPDATABLE`: Set a flag called the view updatable flag when `CREATE VIEW`; if UPDATE and DELETE (and similar operations) are legal for the view, the flag is set to `YES(true)`. Otherwise, the flag is set to `NO(false)`.
+
 - `DEFINER`: The account of the user who created the view, in the format `username@hostname`.
+
 - `SECURITY_TYPE`: View the `SQL SECURITY` attribute. Values ​​are `DEFINER` or `INVOKER`.
+
 - `CHARACTER_SET_CLIENT`: The session value of the `character_set_client` system variable when the view was created.
+
 - `COLLATION_CONNECTION`: The session value of the `collation_connection` system variable when the view was created.
 
 ### `STATISTICS` view
@@ -660,19 +789,33 @@ Fields in the `USER_PRIVILEGES` table are described as follows:
 Obtain detailed information about database table indexes and statistics. For example, you can check whether an index is unique, understand the order of columns within an index, and estimate the number of unique values in an index.
 
 - `TABLE_CATALOG`: The catalog name of the table (always 'def').
+
 - `TABLE_SCHEMA`: The name of the database to which the table belongs.
+
 - `TABLE_NAME`: The name of the table.
+
 - `NON_UNIQUE`: Indicates whether the index allows duplicate values. If 0, the index is unique.
+
 - `INDEX_SCHEMA`: The database name to which the index belongs.
+
 - `INDEX_NAME`: The name of the index.
+
 - `SEQ_IN_INDEX`: The position of the column within the index.
+
 - `COLUMN_NAME`: The name of the column.
+
 - `COLLATION`: The collation of the column.
+
 - `CARDINALITY`: An estimated count of unique values in the index.
+
 - `SUB_PART`: The length of the index part. For the entire column, this value is NULL.
+
 - `PACKED`: Indicates whether compressed storage is used.
+
 - `NULLABLE`: Indicates whether the column allows NULL values.
+
 - `INDEX_TYPE`: The index type (e.g., BTREE, HASH, etc.).
+
 - `COMMENT`: Comment information about the index.
 
 ## `mysql` database
@@ -682,7 +825,11 @@ Obtain detailed information about database table indexes and statistics. For exa
 These system tables contain grant information about user accounts and their privileges:
 
 - `user`: user accounts, global privileges, and other non-privilege columns.
+
 - `db`: database-level privileges.
+
 - `tables_priv`: table-level privileges.
+
 - `columns_priv`: column-level privileges.
+
 - `procs_priv`: stored procedure and stored function privileges.

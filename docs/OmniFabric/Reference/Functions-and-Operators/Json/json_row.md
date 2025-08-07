@@ -21,13 +21,16 @@ insert into student values
     (4,'{"name": "lily", "age": 19, "score": 79,"gender": "female"}');
 
 mysql> select json_row(null,n2)  from student;
+
 +---------------------------------------------------------------------+
 | json_row(null, n2)                                                  |
+
 +---------------------------------------------------------------------+
 | [null,{"age": 18, "gender": "male", "name": "tom", "score": 90}]    |
 | [null,{"age": 20, "gender": "male", "name": "bob", "score": 80}]    |
 | [null,{"age": 17, "gender": "female", "name": "jane", "score": 95}] |
 | [null,{"age": 19, "gender": "female", "name": "lily", "score": 79}] |
+
 +---------------------------------------------------------------------+
-4 rows in set (0.00 sec) 
+4 rows in set (0.00 sec)
 ```

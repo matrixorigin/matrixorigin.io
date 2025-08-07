@@ -232,7 +232,11 @@ streamlit run pic_search_example.py
 ## Reference documentation
 
 - [Vector type](../Develop/Vector/vector_type.md)
+
 - [Vector Search](../Develop/Vector/vector_search.md)
+
 - [CREATE INDEX...USING IVFFLAT](../Reference/SQL-Reference/Data-Definition-Language/create-index-ivfflat.md)
+
 - [L2_DISTANCE()](../Reference/Functions-and-Operators/Vector/l2_distance.md)
+
 - [NORMALIZE_L2()](../Reference/Functions-and-Operators/Vector/normalize_l2.md)

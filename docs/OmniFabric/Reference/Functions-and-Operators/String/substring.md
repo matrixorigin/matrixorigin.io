@@ -44,22 +44,28 @@ estd date NOT NULL DEFAULT '2000-01-01'
 ('P008', 'Novel Publisher Ltd.', 'New Delhi', 'India', 'Bangalore', 10, '2000-01-01');
 
 > SELECT pub_name, SUBSTR(pub_name,4,5) FROM t1 WHERE country='USA';
+
 +--------------------------+------------------------+
 | pub_name                 | substr(pub_name, 4, 5) |
+
 +--------------------------+------------------------+
 | Jex Max Publication      |  Max                   |
 | Mountain Publication     | ntain                  |
 | Summer Night Publication | mer N                  |
+
 +--------------------------+------------------------+
 3 rows in set (0.04 sec)
 
 > SELECT pub_name, SUBSTR(pub_name,5) FROM t1 WHERE country='USA';
+
 +--------------------------+----------------------+
 | pub_name                 | substr(pub_name, 5)  |
+
 +--------------------------+----------------------+
 | Jex Max Publication      | Max Publication      |
 | Mountain Publication     | tain Publication     |
 | Summer Night Publication | er Night Publication |
+
 +--------------------------+----------------------+
 3 rows in set (0.03 sec)
 ```

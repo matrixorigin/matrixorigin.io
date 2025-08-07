@@ -27,7 +27,6 @@ CREATE TABLE example (
          PRIMARY KEY(id)
          );
 
-
 INSERT INTO example (text)
   VALUES ('Hello1'),
          ('Hello2'),
@@ -39,13 +38,16 @@ INSERT INTO example (text)
          ('example2');
 
 mysql> SELECT * FROM example WHERE text NOT REGEXP '[0-9]';
+
 +------+-------------+
 | id   | text        |
+
 +------+-------------+
 |    3 | World       |
 |    4 | HelloWorld  |
 |    5 | Hello_World |
 |    6 | example     |
+
 +------+-------------+
 4 rows in set (0.00 sec)
 ```

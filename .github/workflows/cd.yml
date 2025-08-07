@@ -84,7 +84,7 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: |
-            OmniFabric/OmniFabric.io:${{ inputs.branch }}_${{ github.sha }}
-            OmniFabric/OmniFabric.io:latest
-            ccr.ccs.tencentyun.com/mo-fronted/OmniFabric.io:${{ inputs.branch }}_${{ github.sha }}
-            ccr.ccs.tencentyun.com/mo-fronted/OmniFabric.io:latest
+            matrixorigin/matrixorigin.io:${{ inputs.branch }}_${{ github.sha }}
+            matrixorigin/matrixorigin.io:latest
+            ccr.ccs.tencentyun.com/mo-fronted/matrixorigin.io:${{ inputs.branch }}_${{ github.sha }}
+            ccr.ccs.tencentyun.com/mo-fronted/matrixorigin.io:latest

@@ -28,21 +28,27 @@ The following is an example of the *Hash Aggregation* operator:
 
 ```sql
 > SELECT /*+ HASH_AGG() */ count(*) FROM t1;
+
 +----------+
 | count(*) |
+
 +----------+
 |        9 |
+
 +----------+
 1 row in set (0.01 sec)
 
 mysql> EXPLAIN SELECT /*+ HASH_AGG() */ count(*) FROM t1;
+
 +-------------------------------------------+
 | QUERY PLAN                                |
+
 +-------------------------------------------+
 | Project                                   |
 |   ->  Aggregate                           |
 |         Aggregate Functions: starcount(1) |
 |         ->  Table Scan on db1.t1          |
+
 +-------------------------------------------+
 4 rows in set (0.01 sec)
 ```

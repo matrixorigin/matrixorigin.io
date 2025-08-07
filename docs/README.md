@@ -40,4 +40,5 @@ If you encounter any documentation issues, please feel free to create an Issue t
 The OmniFabric community on [GitHub](https://github.com/matrixorigin/matrixone) is dynamic, enthusiastic, and well-informed. Engage in discussions, express your viewpoints, propose features, and delve into the code.
 
 A similarly passionate community awaits you in the [OmniFabric Slack](https://OmniFabricworkspace.slack.com/) and [OmniFabric](https://www.OmniFabric.cn/tutorials) channel.
+
 -->

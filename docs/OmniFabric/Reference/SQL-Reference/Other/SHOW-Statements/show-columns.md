@@ -24,13 +24,16 @@ col3 varchar comment 'ZD5lTndyuEzw49gxR',
 col4 bool comment ''
 );
 mysql> show columns from t1;
+
 +-------+----------------+------+------+---------+-------+-------------------+
 | Field | Type           | Null | Key  | Default | Extra | Comment           |
+
 +-------+----------------+------+------+---------+-------+-------------------+
 | col1  | INT            | YES  |      | NULL    |       | First column      |
 | col2  | FLOAT          | YES  |      | NULL    |       | "%$^&*()_+@!      |
 | col3  | VARCHAR(65535) | YES  |      | NULL    |       | ZD5lTndyuEzw49gxR |
 | col4  | BOOL           | YES  |      | NULL    |       |                   |
+
 +-------+----------------+------+------+---------+-------+-------------------+
 4 rows in set (0.02 sec)
 ```

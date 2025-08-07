@@ -58,8 +58,10 @@ We have prepared a simple example to help you understand the execution plan for 
 
 ```sql
 > select * from t1 where t1.id in (select t2.id from t2 where t2.id>=3);
+
 +------+------+------+------+----------+---------+------+--------------+----------------+------------+---------------------+
 | id   | ti   | si   | bi   | fl       | dl      | de   | ch           | vch            | dd         | dt                  |
+
 +------+------+------+------+----------+---------+------+--------------+----------------+------------+---------------------+
 |    3 |    6 |    6 |    3 |  3663.21 |  366321 | 3663 | hi           | subquery       | 2022-04-28 | 2022-04-28 22:40:11 |
 |    4 |    7 |    1 |    5 |  4715.22 |  471522 | 4715 | good morning | my subquery    | 2022-04-28 | 2022-04-28 22:40:11 |
@@ -68,12 +70,15 @@ We have prepared a simple example to help you understand the execution plan for 
 |    7 |    4 |    4 |    3 |  7443.11 |  744311 | 7443 | yes          | subquery       | 2022-04-28 | 2022-04-28 22:40:11 |
 |    8 |    7 |    5 |    8 |     8758 |  875800 | 8758 | nice to meet | just subquery  | 2022-04-28 | 2022-04-28 22:40:11 |
 |    9 |    8 |    4 |    9 | 9849.312 | 9849312 | 9849 | see you      | subquery       | 2022-04-28 | 2022-04-28 22:40:11 |
+
 +------+------+------+------+----------+---------+------+--------------+----------------+------------+---------------------+
 7 rows in set (0.02 sec)
 
 > explain select * from t1 where t1.id in (select t2.id from t2 where t2.id>=3);
+
 +---------------------------------------------------------------+
 | QUERY PLAN                                                    |
+
 +---------------------------------------------------------------+
 | Project                                                       |
 |   ->  Join                                                    |
@@ -83,6 +88,7 @@ We have prepared a simple example to help you understand the execution plan for 
 |         ->  Project                                           |
 |               ->  Table Scan on db1.t2                        |
 |                     Filter Cond: (CAST(t2.id AS BIGINT) >= 3) |
+
 +---------------------------------------------------------------+
 8 rows in set (0.00 sec)
 ```
@@ -97,8 +103,10 @@ The execution sequence is as follows:
 
 ```sql
 > SELECT * FROM t1 WHERE id in (SELECT id FROM t2 WHERE t1.ti = t2.ti and t2.id>=4);
+
 +------+------+------+------+----------+---------+------+--------------+----------------+------------+---------------------+
 | id   | ti   | si   | bi   | fl       | dl      | de   | ch           | vch            | dd         | dt                  |
+
 +------+------+------+------+----------+---------+------+--------------+----------------+------------+---------------------+
 |    4 |    7 |    1 |    5 |  4715.22 |  471522 | 4715 | good morning | my subquery    | 2022-04-28 | 2022-04-28 22:40:11 |
 |    5 |    1 |    2 |    6 |    51.26 |    5126 |   51 | byebye       |  is subquery?  | 2022-04-28 | 2022-04-28 22:40:11 |
@@ -106,12 +114,15 @@ The execution sequence is as follows:
 |    7 |    4 |    4 |    3 |  7443.11 |  744311 | 7443 | yes          | subquery       | 2022-04-28 | 2022-04-28 22:40:11 |
 |    8 |    7 |    5 |    8 |     8758 |  875800 | 8758 | nice to meet | just subquery  | 2022-04-28 | 2022-04-28 22:40:11 |
 |    9 |    8 |    4 |    9 | 9849.312 | 9849312 | 9849 | see you      | subquery       | 2022-04-28 | 2022-04-28 22:40:11 |
+
 +------+------+------+------+----------+---------+------+--------------+----------------+------------+---------------------+
 6 rows in set (0.01 sec)
 
 mysql> explain SELECT * FROM t1 WHERE id in (SELECT id FROM t2 WHERE t1.ti = t2.ti and t2.id>=4);
+
 +---------------------------------------------------------------+
 | QUERY PLAN                                                    |
+
 +---------------------------------------------------------------+
 | Project                                                       |
 |   ->  Join                                                    |
@@ -121,6 +132,7 @@ mysql> explain SELECT * FROM t1 WHERE id in (SELECT id FROM t2 WHERE t1.ti = t2.
 |         ->  Project                                           |
 |               ->  Table Scan on db1.t2                        |
 |                     Filter Cond: (CAST(t2.id AS BIGINT) >= 4) |
+
 +---------------------------------------------------------------+
 8 rows in set (0.01 sec)
 ```

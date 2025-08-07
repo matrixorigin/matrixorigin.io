@@ -8,11 +8,14 @@ For example, we have a `student` table with the `id` column as the primary key:
 
 ```sql
 > desc student;
+
 +-------+-------------+------+------+---------+-------+---------+
 | Field | Type        | Null | Key  | Default | Extra | Comment |
+
 +-------+-------------+------+------+---------+-------+---------+
 | id    | INT(32)     | NO   | PRI  | NULL    |       |         |
 | name  | VARCHAR(50) | YES  |      | NULL    |       |         |
+
 +-------+-------------+------+------+---------+-------+---------+
 ```
 

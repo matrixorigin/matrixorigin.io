@@ -37,8 +37,10 @@ insert into t1 values(11,-20.500);
 insert into t1 values(12,-13.500);
 
 mysql> select a,floor(b) from t1;
+
 +------+----------+
 | a    | floor(b) |
+
 +------+----------+
 |    1 |        0 |
 |    2 |        0 |
@@ -52,20 +54,26 @@ mysql> select a,floor(b) from t1;
 |   10 |      -21 |
 |   11 |      -21 |
 |   12 |      -14 |
+
 +------+----------+
 12 rows in set (0.01 sec)
 
 mysql> select sum(floor(b)) from t1;
+
 +---------------+
 | sum(floor(b)) |
+
 +---------------+
 |            -6 |
+
 +---------------+
 1 row in set (0.00 sec)
 
 mysql> select a,sum(floor(b)) from t1 group by a order by a;
+
 +------+---------------+
 | a    | sum(floor(b)) |
+
 +------+---------------+
 |    1 |             0 |
 |    2 |             0 |
@@ -79,6 +87,7 @@ mysql> select a,sum(floor(b)) from t1 group by a order by a;
 |   10 |           -21 |
 |   11 |           -21 |
 |   12 |           -14 |
+
 +------+---------------+
 12 rows in set (0.00 sec)
 ```

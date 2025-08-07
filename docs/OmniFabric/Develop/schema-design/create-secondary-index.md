@@ -11,7 +11,9 @@ Secondary indexes can help speed up query operations, especially when querying l
 Before reading this document, make sure that the following tasks are completed:
 
 - Build a OmniFabric Cluster in OmniFabric.
+
 - Read the [Database Schema Design Overview](overview.md).
+
 - The database has been created.
 
 ## Use secondary index
@@ -46,18 +48,24 @@ CREATE TABLE users (id INT PRIMARY KEY,
   age INT,
   email VARCHAR(50)
 );
+
 -- create a secondary index on the table to speed up the speed of querying users by name
 CREATE INDEX idx_users_name ON users(name);
+
 -- Insert data
 INSERT INTO users VALUES ('1', 'John', '30', 'john@gmail.com');
 INSERT INTO users VALUES ('2', 'Tommy', '50', 'tom@gmail.com');
 INSERT INTO users VALUES ('3', 'Ann', '33', 'ann@gmail.com');
+
 -- Perform the following query, the database can use the secondary index to quickly find all users with the name 'John' without having to scan the entire table
 mysql> SELECT * FROM users WHERE name = 'John';
+
 +------+------+------+----------------+
 | id   | name | age  | email          |
+
 +------+------+------+----------------+
 |    1 | John |   30 | john@gmail.com |
+
 +------+------+------+----------------+
 1 row in set (0.00 sec)
 ```

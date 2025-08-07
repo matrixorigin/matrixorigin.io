@@ -36,18 +36,24 @@ Negative numbers start with the most recently-executed query in the session. For
 
 ```sql
 mysql> SELECT LAST_QUERY_ID(-1);
+
 +--------------------------------------+
 | last_query_id(-1)                    |
+
 +--------------------------------------+
 | af974680-b1b5-11ed-8eb9-5ad2460dea4f |
+
 +--------------------------------------+
 1 row in set (0.00 sec)
 
 mysql> SELECT LAST_QUERY_ID();
+
 +--------------------------------------+
 | last_query_id()                      |
+
 +--------------------------------------+
 | 550e4d44-b1b5-11ed-8eb9-5ad2460dea4f |
+
 +--------------------------------------+
 1 row in set (0.00 sec)
 ```

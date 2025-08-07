@@ -9,6 +9,7 @@ OmniFabric transactions follow the Standard Definition and Basic Characteristics
 In OmniFabric, transactions, like general transactions, are also divided into the following two categories:
 
 - According to whether there is a clear start and end, it is divided into explicit and implicit transactions.
+
 - Divided into optimistic and pessimistic transactions according to the use stage of resource locks.
 
 The classification of these two types of transactions is not limited by each other. An explicit transaction can be an optimistic or pessimistic transaction, and a pessimistic transaction can be either an explicit or an implicit transaction.
@@ -46,6 +47,7 @@ OmniFabric supports two isolation levels: **Read Committed** and **Snapshot Isol
 Read Committed is the default isolation level of OmniFabric after version 0.8, and it is also one of the four isolation levels in the SQL standard. Its most notable features are:
 
 - Between different transactions, only the data submitted by other transactions can be read, and the uncommitted data cannot be viewed.
+
 - The read-committed isolation level can effectively prevent dirty writes and dirty reads but cannot avoid non-repeatable reads and phantom reads.
 
 |Isolation Level|P0 Dirty Write|P1 Dirty Read|P4C Cursor Lost Update|P4 Lost Update|

@@ -3,7 +3,9 @@
 OmniFabric now supports the following Database client tools:
 
 - MySQL Client
+
 - Navicat
+
 - DBeaver
 
 ## Before you start
@@ -27,6 +29,7 @@ Make sure you have already [installed and launched OmniFabric](../../Get-Started
     Use the built-in test account for example:
 
     - user: root
+
     - password: 111
 
     ```
@@ -41,7 +44,7 @@ Make sure you have already [installed and launched OmniFabric](../../Get-Started
 
     ```
     Welcome to the MySQL monitor. Commands end with ; or \g. Your MySQL connection id is 1031
-    Server version: 8.0.30-OmniFabric-v2.1.0 OmniFabric
+    Server version: 8.0.30-MatrixOne-v2.1.0 MatrixOne
     Copyright (c) 2000, 2022, Oracle and/or its affiliates.
 
     Oracle is a registered trademark of Oracle Corporation and/or its affiliates. Other names may be trademarks of their respective owners.
@@ -67,10 +70,15 @@ For more information on deployment, see [Deployment FAQs](../../FAQs/deployment-
 3. Open Navicat, click **Connection > MySQL**, and fill in the following parameters in the pop-up window:
 
     - **Connction Name**: OmniFabric
+
     - **Host**: 127.0.0.1
+
     - **Port**: 6001
+
     - **User Name**: root
+
     - **Password**: 111
+
     - **Save password**:Yes
 
 4. Click **Save**, save the configuration.
@@ -98,10 +106,15 @@ For more information on deployment, see [Deployment FAQs](../../FAQs/deployment-
     Fill in the following parameters in the pop-up window. Click **Finish**, save the configuration.
 
     - **Host**: 127.0.0.1
+
     - **Port**: 6001
+
     - **Database**: OmniFabric
+
     - **User Name**: root
+
     - **Password**: 111
+
     - **Save password locally**: Yes
 
     ![dbeaver-connection](https://github.com/matrixorigin/artwork/blob/main/docs/develop/dbeaver-connection.png?raw=true)

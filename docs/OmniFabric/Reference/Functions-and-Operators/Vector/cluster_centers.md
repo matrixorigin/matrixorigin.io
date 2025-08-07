@@ -34,46 +34,63 @@ insert into points(coordinate) VALUES
  ("[-6.04929137,-7.73619342]"),
  ("[-6.27824322,7.22746302]");
 SET GLOBAL experimental_ivf_index = 1;--The parameter experimental_ivf_index needs to be set to 1 (default 0) to use vector indexes.
+
 --create index idx_t1 using ivfflat on points(coordinate)  lists=1 op_type "vector_l2_ops";
 
 -- Each point represents its coordinates on the x and y axes, querying the clustering centers, using Regular Kmeans
+
 --K-means++
 mysql>  SELECT cluster_centers(coordinate kmeans '2,vector_l2_ops,kmeansplusplus,false') AS centers FROM points;
+
 +----------------------------------------------------+
 | centers                                            |
+
 +----------------------------------------------------+
 | [ [-2.5097303, 5.640863],[-7.101406, -7.3195944] ] |
+
 +----------------------------------------------------+
 1 row in set (0.01 sec)
 
 --KMeans
 mysql>  SELECT cluster_centers(coordinate kmeans '2,vector_l2_ops,random,false') AS centers FROM points;
+
 +----------------------------------------------------+
 | centers                                            |
+
 +----------------------------------------------------+
 | [ [-6.362137, -0.09336702],[6.829682, 1.1648715] ] |
+
 +----------------------------------------------------+
 1 row in set (0.00 sec)
 
 -- Each point represents latitude and longitude coordinates to query the clustering center using Spherical Kmeans
 mysql> SELECT cluster_centers(coordinate kmeans '2,vector_l2_ops,kmeansplusplus,true') AS centers FROM points;
+
 +------------------------------------------------------+
 | centers                                              |
+
 +------------------------------------------------------+
 | [ [0.70710677, 0.70710677],[0.83512634, 0.5500581] ] |
+
 +------------------------------------------------------+
 1 row in set (0.00 sec)
 
 --Cluster centers within JSON-type data can be taken out in combination with CROSS JOIN and UNNEST syntax.
 mysql> SELECT value FROM  (
+
     -> SELECT cluster_centers(coordinate kmeans '2,vector_l2_ops,kmeansplusplus,false') AS centers FROM  points
-    -> ) AS subquery 
+
+    -> ) AS subquery
+
     -> CROSS JOIN  UNNEST(subquery.centers) AS u;
+
 +-------------------------+
 | value                   |
+
 +-------------------------+
 | [-2.5097303, 5.640863]  |
 | [-7.101406, -7.3195944] |
+
 +-------------------------+
 2 rows in set (0.00 sec)
 ```

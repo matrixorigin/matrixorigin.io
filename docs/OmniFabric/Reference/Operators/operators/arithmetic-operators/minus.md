@@ -18,10 +18,13 @@ The `-` operator is used for subtraction.
 
 ```sql
 mysql> select 1123.2333-1233.3331;
+
 +-----------------------+
 | 1123.2333 - 1233.3331 |
+
 +-----------------------+
 |   -110.09979999999996 |
+
 +-----------------------+
 1 row in set (0.00 sec)
 ```
@@ -32,20 +35,26 @@ insert into t2 values (-3, 2);
 insert into t2 values (1, 2);
 
 mysql> select c1-5 from t2;
+
 +--------+
 | c1 - 5 |
+
 +--------+
 |     -8 |
 |     -4 |
+
 +--------+
 2 rows in set (0.00 sec)
 
 mysql> select c1-c2 from t2;
+
 +---------+
 | c1 - c2 |
+
 +---------+
 |      -5 |
 |      -1 |
+
 +---------+
 2 rows in set (0.01 sec)
 ```

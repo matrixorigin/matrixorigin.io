@@ -26,20 +26,26 @@ insert into t1 values("ABC",1);
 insert into t1 values("DEF",NULL);
 
 mysql> select serial(a,b) from t1;--The query returns the serialized result of the combination of columns a and b. The output is NULL when there is a NULL value.
+
 +--------------+
 | serial(a, b) |
+
 +--------------+
 | FABC :    |
 | NULL         |
+
 +--------------+
 2 rows in set (0.00 sec)
 
 mysql> select serial(a,'hello') from t1;--The query returns the result of serializing the combination of column a and the value hello.
+
 +------------------+
 | serial(a, hello) |
+
 +------------------+
 | FABC Fhello    |
 | FDEF Fhello    |
+
 +------------------+
 2 rows in set (0.00 sec)
 ```

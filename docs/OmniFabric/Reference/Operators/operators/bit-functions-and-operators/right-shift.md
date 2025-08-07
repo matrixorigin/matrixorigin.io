@@ -22,26 +22,35 @@ Bits shifted off the end of the value are lost without warning, regardless of th
 
 ```sql
 mysql> select 1024 >> 2;
+
 +-----------+
 | 1024 >> 2 |
+
 +-----------+
 |       256 |
+
 +-----------+
 1 row in set (0.01 sec)
 
 mysql> select -5 >> 2;
+
 +---------+
 | -5 >> 2 |
+
 +---------+
 |      -2 |
+
 +---------+
 1 row in set (0.01 sec)
 
 mysql> select null >> 2;
+
 +-----------+
 | null >> 2 |
+
 +-----------+
 |      NULL |
+
 +-----------+
 1 row in set (0.00 sec)
 
@@ -49,11 +58,14 @@ create table t1(a int, b int unsigned);
 insert into t1 values (-1, 1), (-5, 5);
 
 mysql> select a >> 2, b >> 2 from t1;
+
 +--------+--------+
 | a >> 2 | b >> 2 |
+
 +--------+--------+
 |     -1 |      0 |
 |     -2 |      1 |
+
 +--------+--------+
 2 rows in set (0.01 sec)
 ```

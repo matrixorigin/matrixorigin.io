@@ -50,15 +50,25 @@ reference_option:
 In the above syntax structure of a foreign key constraint, the following are explanations for each parameter:
 
 - `child_table`: The name of the child table, which contains the foreign key.
+
 - `foreign_key_column`: The column's name in the child table references the parent table.
+
 - `data_type`: The data type of the foreign key column.
+
 - `parent_table`: The name of the referenced parent table.
+
 - `parent_key_column`: The name of the primary key column in the parent table establishing the relationship.
+
 - `[ON DELETE reference_option]`: An optional parameter used to specify actions to be taken when records in the parent table are deleted.
+
     + `RESTRICT`: If related foreign key data exists in the referenced table, deletion of data in the table is not allowed. This prevents accidental deletion of related data, ensuring data consistency.
+
     + `CASCADE`: When data in the referenced table is deleted, associated foreign key data is also deleted. This is used for cascading deletion of related data to maintain data integrity.
+
     + `SET NULL`: When data in the referenced table is deleted, the value of the foreign key column is set to NULL. This is used to retain foreign key data while disconnecting it from the referenced data upon deletion.
+
     + `NO ACTION`: Indicates no action is taken; it only checks for the existence of associated data. This is similar to `RESTRICT` but may have minor differences in some databases.
+
 - `[ON UPDATE reference_option]`: An optional parameter used to specify actions to be taken when records in the parent table are updated. Possible values are the same as `[ON DELETE reference_option]`.
 
 These parameters collectively define a foreign key constraint, ensuring the data integrity relationship between the child and parent tables.
@@ -68,6 +78,7 @@ These parameters collectively define a foreign key constraint, ensuring the data
 ### Example 1
 
 ```sql
+
 -- Create a table named t1, containing two columns: a and b. The column a is of type int and is set as the primary key, while the column b is of type varchar with a length of 5.
 create table t1(a int primary key, b varchar(5));
 
@@ -97,6 +108,7 @@ ERROR 20101 (HY000): internal error: Cannot add or update a child row: a foreign
 ### Example 2 - Foreign key self-reference
 
 ```sql
+
 -- Create a table named categories to store product categorization information.
 CREATE TABLE categories (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -112,8 +124,10 @@ mysql> INSERT INTO categories (name, parent_id) VALUES ('Laptops', 1),('Smartpho
 Query OK, 4 rows affected (0.01 sec)
 
 mysql> select * from categories;
+
 +------+-----------------+-----------+
 | id   | name            | parent_id |
+
 +------+-----------------+-----------+
 |    1 | Electronics     |      NULL |
 |    2 | Books           |      NULL |
@@ -121,6 +135,7 @@ mysql> select * from categories;
 |    4 | Smartphones     |         1 |
 |    5 | Science Fiction |         2 |
 |    6 | Mystery         |         2 |
+
 +------+-----------------+-----------+
 6 rows in set (0.01 sec)
 
@@ -131,6 +146,7 @@ mysql> select * from categories;
 ### Example 3 - Multi-column foreign key
 
 ```sql
+
 -- Creating a "Student" table to store student information
 CREATE TABLE Student (
     StudentID INT, -- Student ID field, integer
@@ -160,6 +176,7 @@ CREATE TABLE StudentCourse (
 ### Example 4 - Multi-level foreign key
 
 ```sql
+
 -- Creating a "Country" table to store country information
 CREATE TABLE Country (
     CountryID INT, -- Country ID field, integer

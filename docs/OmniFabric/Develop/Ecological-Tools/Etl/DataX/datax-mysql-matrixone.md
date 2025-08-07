@@ -7,10 +7,15 @@ This article describes how to write MySQL data offline to a OmniFabric database 
 Before you can start writing data to OmniFabric using DataX, you need to complete the installation of the following software:
 
 - Complete [standalone OmniFabric deployment](../../../../Get-Started/install-standalone-matrixone.md).
+
 - Install [JDK 8+ version](https://www.oracle.com/sg/java/technologies/javase/javase8-archive-downloads.html).
+
 - Install [Python 3.8 (or plus)](https://www.python.org/downloads/).
+
 - Download the [DataX](https://datax-opensource.oss-cn-hangzhou.aliyuncs.com/202210/datax.tar.gz) installation package and unzip it.
-- Download [OmniFabricwriter.zip](https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/develop/Computing-Engine/datax-write/OmniFabricwriter.zip) and extract it to the `plugin/writer/` directory in the root of your DataX project.
+
+- Download [matrixonewriter.zip](https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/develop/Computing-Engine/datax-write/matrixonewriter.zip) and extract it to the `plugin/writer/` directory in the root of your DataX project.
+
 - Download and install [MySQL](https://downloads.mysql.com/archives/get/p/23/file/mysql-server_8.0.33-1ubuntu23.04_amd64.deb-bundle.tar).
 
 ## Steps
@@ -120,13 +125,16 @@ python /opt/module/datax/bin/datax.py /opt/module/datax/job/mysql2mo.json
 
 ```sql
 mysql> select * from mysql_datax;
+
 +------+-------+--------+------+------------+--------+
 | id   | name  | salary | age  | entrytime  | gender |
+
 +------+-------+--------+------+------------+--------+
 |    1 | lisa  |  15660 |   30 | 2022-10-12 | 0      |
 |    2 | tom   |  15060 |   24 | 2021-11-10 | 1      |
 |    3 | jenny |  15000 |   28 | 2024-02-19 | 0      |
 |    4 | henry |  12660 |   24 | 2022-04-22 | 1      |
+
 +------+-------+--------+------+------------+--------+
 4 rows in set (0.00 sec)
 ```

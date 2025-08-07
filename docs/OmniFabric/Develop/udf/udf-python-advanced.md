@@ -80,10 +80,13 @@ Embedded UDFs write function bodies directly in SQL, which can inflate SQL state
 
     ```mysql
     select py_add_2(12345,23456);
+
     +-------------------------+
     |  py_add(12345, 23456)   |
+
     +-------------------------+
     |                   35801 |
+
     +-------------------------+
     1 row in set (0.02 sec)
     ```
@@ -164,10 +167,13 @@ WHL file is a standard built-in package format for python distribution that allo
 
     ```sql
     select py_add_3(12345,23456);
+
     +-------------------------+
     |  py_add(12345, 23456)   |
+
     +-------------------------+
     |                   35801 |
+
     +-------------------------+
     1 row in set (0.02 sec)
     ```
@@ -192,12 +198,15 @@ In some scenarios, we would expect the python function to receive multiple tuple
 
     ```mysql
     select * from grades;
+
     +---------+------+
     | chinese | math |
+
     +---------+------+
     |      97 |  100 |
     |      85 |   89 |
     |      79 |   99 |
+
     +---------+------+
     ```
 
@@ -213,12 +222,15 @@ In some scenarios, we would expect the python function to receive multiple tuple
 
     ```sql
     select py_add_4(chinese,math) as Total from grades;
+
     +-------+
     | Total |
+
     +-------+
     |   197 |
     |   174 |
     |   178 |
+
     +-------+
     ```
 
@@ -270,7 +282,6 @@ source /your_download_path/ddl.sql
 
     model\_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'model\_with\_scaler')
 
-
     def detect(featuresList: List\[List\[int]], amountList: List\[decimal.Decimal]) -> List\[bool]: model\_with\_scaler = joblib.load(model\_path)
 
         columns_features = np.array(featuresList)
@@ -279,7 +290,6 @@ source /your_download_path/ddl.sql
         data = np.concatenate((columns_features, column_amount), axis=1)
         predictions = model_with_scaler['model'].predict(data)
         return [pred == 1 for pred in predictions.tolist()]
-
 
     detect.vector = True
     ```
@@ -349,8 +359,10 @@ source /your_download_path/ddl.sql
     Output:
 
     ```sql
+
     +---------+----------+
     | id      | is_fraud |
+
     +---------+----------+
     |       1 | false    |
     |       2 | false    |
@@ -362,6 +374,7 @@ source /your_download_path/ddl.sql
     |       8 | true     |
     |       9 | false    |
     |      10 | false    |
+
     +---------+----------+
     ```
 

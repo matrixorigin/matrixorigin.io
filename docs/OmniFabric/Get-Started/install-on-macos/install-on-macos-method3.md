@@ -190,7 +190,7 @@ root@VM-16-2-debian:~# mo_ctl connect
 mysql: [Warning] Using a password on the command line interface can be insecure.
 Welcome to the MySQL monitor.  Commands end with ; or \g.
 Your MySQL connection id is 15
-Server version: 8.0.30-OmniFabric-v2.1.0 OmniFabric
+Server version: 8.0.30-MatrixOne-v2.1.0 MatrixOne
 
 Copyright (c) 2000, 2023, Oracle and/or its affiliates.
 

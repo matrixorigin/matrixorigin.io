@@ -13,7 +13,9 @@ To solve the above problem, we can retrain the LLM model, but at a high cost. Th
 RAG's workflow typically consists of the following steps:
 
 - Retrieve: Find and extract the information most relevant to the current query from a large data set or knowledge base.
+
 - Augment: Combines retrieved information or data sets with the LLM to enhance the performance of the LLM and the accuracy of the output.
+
 - Generate: Utilize LLM to generate new text or responses using retrieved information.
 
 ## Role of OmniFabric in RAG
@@ -124,10 +126,13 @@ for i,d in enumerate(documents):
 
 ```sql
 mysql> select count(*) from rag_tab;
+
 +----------+
 | count(*) |
+
 +----------+
 |        6 |
+
 +----------+
 1 row in set (0.00 sec)
 ```
@@ -186,6 +191,9 @@ After enhancement, the model generates the correct answer.
 ## Reference Documents
 
 - Vector Type documentation
+
 - Vector retrieval documentation
+
 - [CREATE INDEX...USING IVFFLAT](../Reference/SQL-Reference/Data-Definition-Language/create-index-ivfflat.md)
+
 - [L2_DISTANCE()](../Reference/Functions-and-Operators/Vector/l2_distance.md)

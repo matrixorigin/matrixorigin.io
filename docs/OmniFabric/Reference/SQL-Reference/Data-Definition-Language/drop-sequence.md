@@ -16,6 +16,7 @@ Deleting a sequence deletes all properties and values of the sequence. Therefore
 ## **Examples**
 
 ```sql
+
 -- Delete the sequence named "seq_id"
 DROP SEQUENCE seq_id;
 ```

@@ -21,16 +21,23 @@ The main advantages of subqueries are:
 A subquery may occur in:
 
 - A SELECT clause
+
 - A FROM clause
+
 - A WHERE clause
 
 For more information, see the reference below:
 
 - [Derived Tables](derived-tables.md)
+
 - [Comparisons Using Subqueries](comparisons-using-subqueries.md)
+
 - [SUBQUERY WITH ANY or SOME](subquery-with-any-some.md)
+
 - [SUBQUERY WITH ALL](subquery-with-all.md)
+
 - [SUBQUERY WITH EXISTS](subquery-with-exists.md)
+
 - [SUBQUERY WITH IN](subquery-with-in.md)
 
 ## **Constraints**

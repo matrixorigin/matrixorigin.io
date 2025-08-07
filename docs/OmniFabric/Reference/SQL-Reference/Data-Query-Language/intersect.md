@@ -30,19 +30,25 @@ insert into t2 values (3,4,5);
 insert into t2 values (1,2,1);
 
 mysql> select * from t1 intersect select * from t2;
+
 +------+------+------+
 | a    | b    | c    |
+
 +------+------+------+
 |    1 |    2 |    3 |
 |    3 |    4 |    5 |
+
 +------+------+------+
 2 rows in set (0.01 sec)
 
 mysql> select a, b from t1 intersect select b, c from t2;
+
 +------+------+
 | a    | b    |
+
 +------+------+
 |    4 |    5 |
+
 +------+------+
 1 row in set (0.01 sec)
 ```

@@ -7,9 +7,13 @@ The Auto-Increment Constraint is a feature in OmniFabric that automatically gene
 The Auto-Increment Constraint simplifies the generation and management of identifiers. When using an auto-increment column, there are a few things to keep in mind:
 
 - Auto-increment columns are usually used as primary keys, so their uniqueness should be ensured.
+
 - The data type of the auto-increment column should be chosen appropriately based on the requirements, typically an integer type.
+
 - The values of the auto-increment column are automatically generated when inserting new rows and cannot be manually specified.
+
 - The auto-increment values are unique within the table and automatically increment with subsequent insert operations.
+
 - The auto-increment value's starting value and increment step can be customized by modifying the table definition.
 
 Please use the auto-increment constraint to simplify the generation and management of identifiers based on the specific table structure and requirements, ensuring data integrity and uniqueness.
@@ -27,8 +31,11 @@ CREATE TABLE table_name (
 ```
 
 - `table_name`: The name of the table.
+
 - `column_name`: The column's name to be defined as auto-increment.
+
 - `data_type`: The data type of the column, usually an integer type such as `INT` or `BIGINT.`
+
 - `primary_key_column`: The primary key column of the table.
 
 ### Example
@@ -36,6 +43,7 @@ CREATE TABLE table_name (
 Here is an example of creating a table with an auto-increment column:
 
 ```sql
+
 -- Create an employees' table with an 'id' column defined as an auto-increment column. The 'id' column has a data type of 'INT' and the auto-increment constraint is specified using the 'AUTO_INCREMENT' keyword. The 'id' column is set as the table's primary key.
 CREATE TABLE employees (
   id INT AUTO_INCREMENT,
@@ -52,12 +60,15 @@ VALUES ('John Doe', 'HR'),
 
 -- The 'id' column values will be auto-incremented, generating a unique identifier value for each new row inserted.
 mysql> SELECT * FROM employees;
+
 +------+--------------+------------+
 | id   | name         | department |
+
 +------+--------------+------------+
 |    1 | John Doe     | HR         |
 |    2 | Jane Smith   | Marketing  |
 |    3 | Mike Johnson | IT         |
+
 +------+--------------+------------+
 3 rows in set (0.01 sec)
 ```

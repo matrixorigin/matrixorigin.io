@@ -22,10 +22,13 @@ Returns the weekday index for date (0 = Monday, 1 = Tuesday, … 6 = Sunday). Re
 
 ```sql
 mysql> SELECT WEEKDAY('2008-02-03 22:23:00');
+
 +------------------------------+
 | weekday(2008-02-03 22:23:00) |
+
 +------------------------------+
 |                            6 |
+
 +------------------------------+
 1 row in set (0.03 sec)
 ```
@@ -53,8 +56,10 @@ insert into t1 values (13,"2013-12-01", "2013-12-01 22:59:59", "2013-12-01", "20
 insert into t1 values (14,null, null, null, null);
 
 mysql> select weekday(d),weekday(dt) from t1;
+
 +------------+-------------+
 | weekday(d) | weekday(dt) |
+
 +------------+-------------+
 |          2 |           2 |
 |          6 |           6 |
@@ -72,12 +77,15 @@ mysql> select weekday(d),weekday(dt) from t1;
 |          6 |           6 |
 |          6 |           6 |
 |       NULL |        NULL |
+
 +------------+-------------+
 16 rows in set (0.01 sec)
 
 mysql> select weekday(c),weekday(vc) from t1;
+
 +------------+-------------+
 | weekday(c) | weekday(vc) |
+
 +------------+-------------+
 |          2 |           3 |
 |          2 |           3 |
@@ -95,6 +103,7 @@ mysql> select weekday(c),weekday(vc) from t1;
 |          6 |           6 |
 |          6 |           6 |
 |       NULL |        NULL |
+
 +------------+-------------+
 16 rows in set (0.02 sec)
 ```

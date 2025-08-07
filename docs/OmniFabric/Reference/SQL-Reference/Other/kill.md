@@ -21,10 +21,13 @@ The `KILL` statement terminates a running query or process.
 
 ```sql
 select connection_id();
+
 +-----------------+
 | connection_id() |
+
 +-----------------+
 |            1008 |
+
 +-----------------+
 1 row in set (0.00 sec)
 
@@ -41,5 +44,6 @@ mysql> show databases;
 ERROR 2013 (HY000): Lost connection to MySQL server during query
 No connection. Trying to reconnect...
 Connection id:    1180
+
 -- The connection has been disconnected, and the service has started to reconnect
 ```

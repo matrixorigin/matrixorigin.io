@@ -20,18 +20,24 @@
 
 ```sql
 mysql> select lcase('HELLO');
+
 +--------------+
 | lcase(HELLO) |
+
 +--------------+
 | hello        |
+
 +--------------+
 1 row in set (0.02 sec)
 
 mysql> select lcase('A'),lcase('B'),lcase('C');
+
 +----------+----------+----------+
 | lcase(A) | lcaser(B) | lcase(C) |
+
 +----------+----------+----------+
 | a        | b        | c        |
+
 +----------+----------+----------+
 1 row in set (0.03 sec)
 ```

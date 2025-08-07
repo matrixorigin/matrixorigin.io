@@ -8,8 +8,11 @@
 ## Pre-dependency
 
 OmniFabric
+
 - Set environment encoding to UTF-8
+
 - Installed wget
+
 - The bc command is installed
 
 ## Install mo_tpch_open
@@ -38,25 +41,45 @@ Generating a complete data set may take some time. When you are done, you can se
 root@host-10-222-4-8:~/soft/tpch/tpch-tools/bin/tpch-data# ls -l
 root@host-10-222-4-8:~/soft/tpch/mo_tpch_open-1.0.1/bin/tpch-data# ls -l
 total 1074936
+
 -rw-r--r-- 1 root root  24346144 Jun  7 03:16 customer.tbl
+
 -rw-r--r-- 1 root root 151051198 Jun  7 03:16 lineitem.tbl.1
+
 -rw-r--r-- 1 root root 152129724 Jun  7 03:16 lineitem.tbl.2
+
 -rw-r--r-- 1 root root 152344710 Jun  7 03:16 lineitem.tbl.3
+
 -rw-r--r-- 1 root root 152123661 Jun  7 03:16 lineitem.tbl.4
+
 -rw-r--r-- 1 root root 152213994 Jun  7 03:16 lineitem.tbl.5
+
 -rw-r--r-- 1 root root      2224 Jun  7 03:16 nation.tbl
+
 -rw-r--r-- 1 root root  34175478 Jun  7 03:16 orders.tbl.1
+
 -rw-r--r-- 1 root root  34463858 Jun  7 03:16 orders.tbl.2
+
 -rw-r--r-- 1 root root  34437453 Jun  7 03:16 orders.tbl.3
+
 -rw-r--r-- 1 root root  34445732 Jun  7 03:16 orders.tbl.4
+
 -rw-r--r-- 1 root root  34429640 Jun  7 03:16 orders.tbl.5
+
 -rw-r--r-- 1 root root  24135125 Jun  7 03:16 part.tbl
+
 -rw-r--r-- 1 root root  23677134 Jun  7 03:16 partsupp.tbl.1
+
 -rw-r--r-- 1 root root  23721079 Jun  7 03:16 partsupp.tbl.2
+
 -rw-r--r-- 1 root root  23808550 Jun  7 03:16 partsupp.tbl.3
+
 -rw-r--r-- 1 root root  23894802 Jun  7 03:16 partsupp.tbl.4
+
 -rw-r--r-- 1 root root  23883051 Jun  7 03:16 partsupp.tbl.5
+
 -rw-r--r-- 1 root root       389 Jun  7 03:16 region.tbl
+
 -rw-r--r-- 1 root root   1409184 Jun  7 03:16 supplier.tbl
 ```
 
@@ -87,8 +110,10 @@ Connect to OmniFabric to view and build table successfully.
 
 ```sql
 mysql> show tables;
+
 +----------------+
 | Tables_in_tpch |
+
 +----------------+
 | customer       |
 | lineitem       |
@@ -99,6 +124,7 @@ mysql> show tables;
 | region         |
 | revenue0       |
 | supplier       |
+
 +----------------+
 9 rows in set (0.00 sec)
 ```

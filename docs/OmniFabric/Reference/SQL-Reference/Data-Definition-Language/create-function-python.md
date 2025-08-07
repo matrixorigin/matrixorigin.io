@@ -57,6 +57,7 @@ To ensure that the data types used in writing Python UDF are consistent with tho
 **Example 1**
 
 ```sql
+
 --Sum of Two Numbers with python UDF
 create or replace function py_add(a int, b int) returns int language python as
 $$
@@ -67,10 +68,13 @@ handler 'add';
 
 --call function
 mysql> select py_add(1,2);
+
 +--------------+
 | py_add(1, 2) |
+
 +--------------+
 |            3 |
+
 +--------------+
 1 row in set (0.01 sec)
 ```
@@ -86,10 +90,13 @@ $$
 handler 'helloworld';
 
 mysql> select py_helloworld();
+
 +-----------------+
 | py_helloworld() |
+
 +-----------------+
 | helloworld!     |
+
 +-----------------+
 1 row in set (0.01 sec)
 ```

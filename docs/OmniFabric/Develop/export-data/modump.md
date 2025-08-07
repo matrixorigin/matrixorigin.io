@@ -3,6 +3,7 @@
 OmniFabric supports two ways to export data:
 
 - `SELECT INTO...OUTFILE`
+
 - `mo-dump`
 
 This document focuses on how to export data using `mo-dump`.
@@ -17,9 +18,11 @@ With the `mo-dump` tool, you must have access to the server running the OmniFabr
 
 ```bash
 ./mo-dump -u ${user} -p ${password} \
+
     -h ${host} -P ${port} -db ${database}\
     [--local-infile=true] [-csv]\
     [-no-data] [-tbl ${table}...]\
+
     -net-buffer-length ${net-buffer-length} > {importStatement.sql}
 ```
 

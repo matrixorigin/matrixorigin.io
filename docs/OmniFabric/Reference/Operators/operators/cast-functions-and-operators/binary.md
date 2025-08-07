@@ -28,10 +28,13 @@ INSERT INTO users (username, password) VALUES ('JohnDoe', 'Abcd123'), ('AliceSmi
 
 -- Use the BINARY() operator for password verification, and the BINARY password = 'Abcd123' part treats the password value as a binary string, so the comparison is case-sensitive. If the entered password matches a record in the database, the query will return the corresponding user id and username. Otherwise, an empty result will be returned.
 mysql> SELECT id, username FROM users WHERE username = 'JohnDoe' AND BINARY password = 'Abcd123';
+
 +------+----------+
 | id   | username |
+
 +------+----------+
 |    1 | JohnDoe  |
+
 +------+----------+
 1 row in set (0.00 sec)
 

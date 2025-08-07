@@ -65,9 +65,13 @@ The `WHERE` clause (if given) specifies one or more conditions that rows must sa
 Column names, column aliases, or column positions can be used in the `ORDER BY` and `GROUP BY` clauses to reference selected columns.
 
 !!! note
+
     - In `GROUP BY` or `HAVING` clauses, you cannot use one alias to define another alias.
+
     - In `GROUP BY` or `HAVING` clauses, the system first attempts to group or filter using column names. If no matching column name is found, it checks for aliases and uses them if available.
+
     - Avoid ambiguous column references when using aliases in `GROUP BY` or `HAVING` clauses. If multiple matching columns are found, an error will occur.
+
     - The `ORDER BY` clause first attempts to sort by aliases. If no alias is found, it then tries to sort by column names.
 
 #### `HAVING`
@@ -124,8 +128,10 @@ INSERT INTO t1 VALUES (5,11,99);
 INSERT INTO t1 VALUES (NULL,0,99);
 
 mysql> SELECT spID FROM t1;
+
 +------+
 | spid |
+
 +------+
 |    1 |
 |    2 |
@@ -135,11 +141,14 @@ mysql> SELECT spID FROM t1;
 |    4 |
 |    5 |
 | NULL |
+
 +------+
 
 mysql> SELECT DISTINCT spID FROM t1;
+
 +------+
 | spid |
+
 +------+
 |    1 |
 |    2 |
@@ -147,40 +156,52 @@ mysql> SELECT DISTINCT spID FROM t1;
 |    4 |
 |    5 |
 | NULL |
+
 +------+
 
 mysql> SELECT * FROM t1 WHERE spID>2 AND userID <2 || userID >=2 OR userID < 2 LIMIT 3;
+
 +------+--------+-------+
 | spid | userid | score |
+
 +------+--------+-------+
 | NULL |      0 |    99 |
 |    1 |      1 |     1 |
 |    2 |      2 |     2 |
+
 +------+--------+-------+
 
 mysql> SELECT userID, MAX(score) max_score FROM t1 WHERE userID <2 || userID > 3 GROUP BY userID ORDER BY max_score;
+
 +--------+-----------+
 | userid | max_score |
+
 +--------+-----------+
 |      1 |         5 |
 |      6 |        10 |
 |      0 |        99 |
 |     11 |        99 |
+
 +--------+-----------+
 
 mysql> SELECT userID, COUNT(score) FROM t1 GROUP BY userID HAVING COUNT(score)>1 ORDER BY userID;
+
 +--------+--------------+
 | userid | count(score) |
+
 +--------+--------------+
 |      1 |            3 |
+
 +--------+--------------+
 
 mysql> SELECT userID, COUNT(score) FROM t1 WHERE userID>2 GROUP BY userID HAVING COUNT(score)>1 ORDER BY userID;
 Empty set (0.01 sec)
 
 mysql> SELECT * FROM t1 ORDER BY spID ASC NULLS LAST;
+
 +------+--------+-------+
 | spid | userid | score |
+
 +------+--------+-------+
 |    1 |      1 |     1 |
 |    1 |      1 |     5 |
@@ -190,11 +211,14 @@ mysql> SELECT * FROM t1 ORDER BY spID ASC NULLS LAST;
 |    4 |      6 |    10 |
 |    5 |     11 |    99 |
 | NULL |      0 |    99 |
+
 +------+--------+-------+
 ```
 
 ## **Limitations**
 
 - `SELECT...FOR UPDATE` currently only supports single-table queries.
+
 - Partial support for `INTO OUTFILE`.
+
 - When the table name is `DUAL`, directly querying it in the default database (`USE DBNAME`) with `SELECT xx FROM DUAL` is not supported. You must specify the database name as `SELECT xx FROM DBNAME.DUAL`.

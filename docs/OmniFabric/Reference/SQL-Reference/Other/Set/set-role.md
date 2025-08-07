@@ -39,6 +39,7 @@ For a more intuitive understanding, you can refer to the following example:
 At this time, Tom's main role is an application developer, and Tom needs to call *administrator authority*, then Tom can use two methods:
 
 - To switch his role to *database administrator*, use the `SET ROLE role` statement.
+
 - To use all privileges of primary and secondary roles, use the `SET SECONDARY ROLE ALL` statement.
 
 The two statements are explained as follows:
@@ -76,14 +77,17 @@ Switching the current ROLE to a new role.
 > set secondary role all;
 #show the privileges of `use_user_1`
 > show grants for 'use_user_1'@'localhost';
+
 +-----------------------------------------------------------+
 | Grants for use_user_1@localhost                           |
+
 +-----------------------------------------------------------+
 | GRANT select ON table *.* `use_user_1`@`localhost`        |
 | GRANT insert ON table *.* `use_user_1`@`localhost`        |
 | GRANT update ON table *.* `use_user_1`@`localhost`        |
 | GRANT connect ON account  `use_user_1`@`localhost`        |
 | GRANT database all ON database * `use_user_1`@`localhost` |
+
 +-----------------------------------------------------------+
 5 rows in set (0.01 sec)
 #It can be seen that the `use_user_1` has the default privilege to connect to OmniFabric; it also has the `select`, `insert` and `update` privileges on all tables, and also has all the privileges on the database

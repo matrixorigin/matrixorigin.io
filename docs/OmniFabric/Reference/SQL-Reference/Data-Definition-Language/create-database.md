@@ -28,8 +28,10 @@ You can use [`SHOW DATABASES`](../Other/SHOW-Statements/show-databases.md) to ch
 
 ```sql
 mysql> show databases;
+
 +--------------------+
 | Database           |
+
 +--------------------+
 | mo_task            |
 | information_schema |
@@ -38,6 +40,7 @@ mysql> show databases;
 | system             |
 | test01             |
 | mo_catalog         |
+
 +--------------------+
 10 rows in set (0.01 sec)
 ```
@@ -47,4 +50,5 @@ You can see that the new database *test01* has been created in addition to the s
 ## **Constraints**
 
 - Only `UTF-8` CHARACTER SET is supported for now.
+
 - `CHARACTER SET`, `COLLATE`, `ENCRYPTION` can be used but don't work.

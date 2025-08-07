@@ -19,9 +19,7 @@ OmniFabric supports integration with the data visualization tool FineBI. This ar
 
 1. After logging into FineBI, select **Management System > Data Connection > Data Connection Management > New Data Connection** as shown below, then choose **MySQL**:
 
-
 2. Fill in the OmniFabric connection configuration, including the database name, host, port, username, and password. Other parameters can be left at their default settings. You can click the **Test Connection** button to verify if the connection is functional and then click **Save** :
-
 
 ## Creating Visual Reports Using OmniFabric Data
 
@@ -125,10 +123,10 @@ OmniFabric supports integration with the data visualization tool FineBI. This ar
 
     You can click the **Preview** button to view the results of the SQL query and then click **OK** to save it:
 
-
     Below are examples of all the query SQL used in this demo:
 
     ```sql
+
     -- Daily active users and order count
     select d,
     count(order_id) as order_num,
@@ -229,30 +227,24 @@ OmniFabric supports integration with the data visualization tool FineBI. This ar
 
     After saving the dataset, you need to click the **Update Data** button and wait for the data update to complete before proceeding with the analysis:
 
-
 4. Create Analytic Themes:
 
     The analytic theme in this example is used to visually present data for general retained users, important retained users, monthly ARPU, quarterly ARPU, active users in different periods, daily active users, monthly active users, and order counts. It assists in decision-making and improving business operations. Here are the specific steps to create an analytic theme:
 
     - Click **My Analysis**, then click **New Folder** to create and select a folder.
-    - Click **New Analytic Theme**, select the dataset created in the previous step, and then click **OK**.
 
+    - Click **New Analytic Theme**, select the dataset created in the previous step, and then click **OK**.
 
     __Note:__ You can use the **Batch Selection** feature to select multiple datasets for theme analysis.
 
-
     Click the **Add Component** button, choose the chart type, drag the fields from the left to the right as needed, double-click to modify the field visualization name, and change the component name below to describe the content of the report analyzed by the component:
-
 
 5. Assemble Dashboards:
 
     Click **Add Dashboard** to add the components you just created to the dashboard. You can freely drag and resize the components and change the component names below to describe the report's content analyzed by the component.
 
-
 6. Publish Dashboards:
 
     After assembling the dashboard, click **Publish**, set the publication name, publication node, and display platform. Then click **Confirm**, and your dashboard will be successfully published.
 
-
     Now, see the newly published dashboard under **Navigation** and see how it looks.
-

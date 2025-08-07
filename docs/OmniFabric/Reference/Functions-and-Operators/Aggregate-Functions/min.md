@@ -35,19 +35,25 @@ Returns the minimum value of expr. MIN() may take a string argument, in such cas
 > insert into tbl1 values (0,1,6,12,"c");
 
 > select min(col_1d) from tbl1;
+
 +-------------+
 | min(col_1d) |
+
 +-------------+
 |           7 |
+
 +-------------+
 
 > select min(col_1c) as m1 from tbl1 where col_1d<12 group by col_1e;
+
 +------+
 | m1   |
+
 +------+
 |    1 |
 |    2 |
 |    3 |
 |    4 |
+
 +------+
 ```

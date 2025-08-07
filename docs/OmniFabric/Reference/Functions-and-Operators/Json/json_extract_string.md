@@ -3,11 +3,13 @@
 ## **Function description**
 
 `JSON_EXTRACT_FLOAT64()` is used to extract the numeric value of the specified path from JSON data.
-  
+
 If comparing in where condition:
 
 - If the type is json object comparison, use [JSON EXTRACT()](./json_extract.md);
+
 - If the type is a string type, use [JSON_EXTRACT_STRING()](./json_extract_string.md);
+
 - If type is float or int, use `JSON_EXTRACT_FLOAT64()`.
 
 ## **Grammar structure**
@@ -50,22 +52,28 @@ insert into student values
     (3,'{"name": "jane", "age": 17, "score": 95,"gender": "female"}'),
     (4,'{"name": "lily", "age": 19, "score": 79,"gender": "female"}');
 
-mysql> select n1 from student where  json_extract_float64(n2,'$.age')=19;  
+mysql> select n1 from student where  json_extract_float64(n2,'$.age')=19;
+
 +------+
 | n1   |
+
 +------+
 |    4 |
+
 +------+
 1 row in set (0.00 sec)
 
-mysql> select json_extract_float64(n2,'$.age')=19 from student;  
+mysql> select json_extract_float64(n2,'$.age')=19 from student;
+
 +--------------------------------------+
 | json_extract_float64(n2, $.age) = 19 |
+
 +--------------------------------------+
 | false                                |
 | false                                |
 | false                                |
 | true                                 |
+
 +--------------------------------------+
 4 rows in set (0.00 sec)
 ```

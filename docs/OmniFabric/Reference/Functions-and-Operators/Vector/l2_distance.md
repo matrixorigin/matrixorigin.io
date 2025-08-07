@@ -19,20 +19,26 @@ drop table if exists vec_table;
 create table vec_table(a int, b vecf32(3), c vecf64(3));
 insert into vec_table values(1, "[1,2,3]", "[4,5,6]"),(2, "[1,1,1]", "[2,2,2]");
 mysql> select * from vec_table;
+
 +------+-----------+-----------+
 | a    | b         | c         |
+
 +------+-----------+-----------+
 |    1 | [1, 2, 3] | [4, 5, 6] |
 |    2 | [1, 1, 1] | [2, 2, 2] |
+
 +------+-----------+-----------+
 2 rows in set (0.00 sec)
 
 mysql> select l2_distance(b,c) from vec_table;
+
 +--------------------+
 | l2_distance(b, c)  |
+
 +--------------------+
 |  5.196152422706632 |
 | 1.7320508075688772 |
+
 +--------------------+
 2 rows in set (0.00 sec)
 ```

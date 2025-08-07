@@ -29,7 +29,9 @@ Note that temporary tables are not omnipotent, they also have some limitations, 
 Before reading this document, make sure that the following tasks are completed:
 
 - Build a OmniFabric Cluster in OmniFabric.
+
 - Read the [Database Schema Design Overview](overview.md).
+
 - The database has been created.
 
 ## How to use temporary tables
@@ -49,6 +51,7 @@ You can use the same table name for temporary and regular tables without conflic
 ## Example
 
 ```sql
+
 -- Create a temporary table 'temp_employees'
 CREATE TEMPORARY TABLE temp_employees (
     employee_id INT AUTO_INCREMENT, -- auto-increment employee ID
@@ -68,14 +71,17 @@ VALUES ('John', 'Doe', 'john.doe@example.com'),
 
 -- Query the temporary table to view all employee information
 SELECT * FROM temp_employees;
+
 +-------------+------------+-----------+--------------------------+
 | employee_id | first_name | last_name | email                    |
+
 +-------------+------------+-----------+--------------------------+
 |           1 | John       | Doe       | john.doe@example.com     |
 |           2 | Jane       | Doe       | jane.doe@example.com     |
 |           3 | Jim        | Smith     | jim.smith@example.com    |
 |           4 | Jack       | Johnson   | jack.johnson@example.com |
 |           5 | Jill       | Jackson   | jill.jackson@example.com |
+
 +-------------+------------+-----------+--------------------------+
 5 rows in set (0.01 sec)
 

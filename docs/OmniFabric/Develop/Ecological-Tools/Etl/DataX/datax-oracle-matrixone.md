@@ -7,11 +7,17 @@ This article describes how to write Oracle data offline to a OmniFabric database
 Before you can start writing data to OmniFabric using DataX, you need to complete the installation of the following software:
 
 - Complete [standalone OmniFabric deployment](../../../../Get-Started/install-standalone-matrixone.md).
+
 - Install [JDK 8+ version](https://www.oracle.com/sg/java/technologies/javase/javase8-archive-downloads.html).
+
 - Install [Python 3.8 (or plus)](https://www.python.org/downloads/).
+
 - Download the [DataX](https://datax-opensource.oss-cn-hangzhou.aliyuncs.com/202210/datax.tar.gz) installation package and unzip it.
-- Download [OmniFabricwriter.zip](https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/develop/Computing-Engine/datax-write/OmniFabricwriter.zip) and extract it to the `plugin/writer/` directory in the root of your DataX project.
+
+- Download [matrixonewriter.zip](https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/develop/Computing-Engine/datax-write/matrixonewriter.zip) and extract it to the `plugin/writer/` directory in the root of your DataX project.
+
 - Install [Oracle 19c](https://www.oracle.com/database/technologies/oracle-database-software-downloads.html).
+
 - Install the <a href="https://dev.mysql.com/downloads/mysql" target="_blank">MySQL Client</a>.
 
 ## Operational steps
@@ -41,11 +47,13 @@ create table employees_oracle(
   id number(5),
   name varchar(20)
 );
+
 --Insert sample data:
 insert into employees_oracle values(1,'zhangsan');
 insert into employees_oracle values(2,'lisi');
 insert into employees_oracle values(3,'wangwu');
 insert into employees_oracle values(4,'oracle');
+
 -- In sqlplus, transactions are not committed by default without exiting, so you need to commit the transaction manually after inserting the data (or perform the insertion with a tool such as DBeaver)
 COMMIT;
 ```
@@ -137,13 +145,16 @@ python /opt/module/datax/bin/datax.py /opt/module/datax/job/oracle2mo.json
 
 ```sql
 mysql> select * from oracle_datax;
+
 +------+----------+
 | id   | name     |
+
 +------+----------+
 |    1 | zhangsan |
 |    2 | lisi     |
 |    3 | wangwu   |
 |    4 | oracle   |
+
 +------+----------+
 4 rows in set (0.00 sec)
 ```

@@ -7,6 +7,7 @@
 `REPLACE` is typically used in tables with unique constraints.
 
 - The `REPLACE` statement requires that a primary key or unique index must be present in the table to determine if the same record already exists.
+
 - When inserting a new record using the `REPLACE` statement, if a record with the same primary key or unique index already exists, the old record is deleted and the new record is inserted, which may cause the value to change since it was added.
 
 ## **Grammar structure**
@@ -73,18 +74,24 @@ create table names(id int PRIMARY KEY,name VARCHAR(255),age int);
 -- Insert a row of data with id=1, name="Abby", age=24
 replace into names(id, name, age) values(1,"Abby", 24);
 mysql> select name, age from names where id = 1;
+
 +------+------+
 | name | age  |
+
 +------+------+
 | Abby |   24 |
+
 +------+------+
 1 row in set (0.00 sec)
 
 mysql> select * from names;
+
 +------+------+------+
 | id   | name | age  |
+
 +------+------+------+
 |    1 | Abby |   24 |
+
 +------+------+------+
 1 row in set (0.00 sec)
 
@@ -92,18 +99,24 @@ mysql> select * from names;
 replace into names(id, name, age) values(1,"Bobby", 25);
 
 mysql> select name, age from names where id = 1;
+
 +-------+------+
 | name  | age  |
+
 +-------+------+
 | Bobby |   25 |
+
 +-------+------+
 1 row in set (0.00 sec)
 
 mysql> select * from names;
+
 +------+-------+------+
 | id   | name  | age  |
+
 +------+-------+------+
 |    1 | Bobby |   25 |
+
 +------+-------+------+
 1 row in set (0.01 sec)
 
@@ -111,19 +124,25 @@ mysql> select * from names;
 replace into names set id = 2, name = "Ciro";
 
 mysql> select name, age from names where id = 2;
+
 +------+------+
 | name | age  |
+
 +------+------+
 | Ciro | NULL |
+
 +------+------+
 1 row in set (0.01 sec)
 
 mysql> select * from names;
+
 +------+-------+------+
 | id   | name  | age  |
+
 +------+-------+------+
 |    1 | Bobby |   25 |
 |    2 | Ciro  | NULL |
+
 +------+-------+------+
 2 rows in set (0.00 sec)
 
@@ -131,19 +150,25 @@ mysql> select * from names;
 replace into names set id = 2, name = "Ciro", age = 17;
 
 mysql> select name, age from names where id = 2;
+
 +------+------+
 | name | age  |
+
 +------+------+
 | Ciro |   17 |
+
 +------+------+
 1 row in set (0.01 sec)
 
 mysql> select * from names;
+
 +------+-------+------+
 | id   | name  | age  |
+
 +------+-------+------+
 |    1 | Bobby |   25 |
 |    2 | Ciro  |   17 |
+
 +------+-------+------+
 2 rows in set (0.01 sec)
 ```

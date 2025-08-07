@@ -23,15 +23,19 @@ CREATE TABLE user (
     name VARCHAR(50) NOT NULL,
     age INT(3) NOT NULL
 );
+
 -- Insert a new piece of data, the id doesn't exist, so enter the new data.
 INSERT INTO user (id, name, age) VALUES (1, 'Tom', 18)
 ON DUPLICATE KEY UPDATE name='Tom', age=18;
 
 mysql> select * from user;
+
 +------+------+------+
 | id   | name | age  |
+
 +------+------+------+
 |    1 | Tom  |   18 |
+
 +------+------+------+
 1 row in set (0.01 sec)
 
@@ -40,10 +44,13 @@ INSERT INTO user (id, name, age) VALUES (1, 'Tom', 18)
 ON DUPLICATE KEY UPDATE age=age+1;
 
 mysql> select * from user;
+
 +------+------+------+
 | id   | name | age  |
+
 +------+------+------+
 |    1 | Tom  |   19 |
+
 +------+------+------+
 1 row in set (0.00 sec)
 
@@ -52,11 +59,14 @@ INSERT INTO user (id, name, age) VALUES (2, 'Lucy', 20)
 ON DUPLICATE KEY UPDATE name='Lucy', age=20;
 
 mysql> select * from user;
+
 +------+------+------+
 | id   | name | age  |
+
 +------+------+------+
 |    1 | Tom  |   19 |
 |    2 | Lucy |   20 |
+
 +------+------+------+
 2 rows in set (0.01 sec)
 ```

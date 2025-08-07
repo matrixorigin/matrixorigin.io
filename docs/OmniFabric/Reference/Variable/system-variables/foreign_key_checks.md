@@ -25,6 +25,7 @@ SHOW session VARIABLES LIKE 'foreign_key_checks';
 Set foreign_key_checks in OmniFabric with the following command:
 
 ```sql
+
 --Global mode, reconnecting the database takes effect
 set global foreign_key_checks = 'xxx'
 
@@ -36,10 +37,13 @@ set session foreign_key_checks = 'xxx'
 
 ```sql
 mysql>  SELECT @@session.foreign_key_checks;
+
 +----------------------+
 | @@foreign_key_checks |
+
 +----------------------+
 | 1                    |
+
 +----------------------+
 1 row in set (0.00 sec)
 
@@ -55,10 +59,13 @@ ERROR 20101 (HY000): internal error: can not drop table 't2' referenced by some 
 
 set session foreign_key_checks =0;--Turn off foreign key constraint checking
 mysql>  SELECT @@session.foreign_key_checks;
+
 +----------------------+
 | @@foreign_key_checks |
+
 +----------------------+
 | 0                    |
+
 +----------------------+
 1 row in set (0.00 sec)
 
@@ -69,12 +76,15 @@ mysql> drop table t2;--When you turn off foreign key constraint checking, you ca
 Query OK, 0 rows affected (0.02 sec)
 
 mysql> show create table t1;--Delete the parent table and the foreign key constraints are also deleted
+
 +-------+--------------------------------------------+
 | Table | Create Table                               |
+
 +-------+--------------------------------------------+
 | t1    | CREATE TABLE `t1` (
 `b` INT DEFAULT NULL
 ) |
+
 +-------+--------------------------------------------+
 1 row in set (0.00 sec)
 
@@ -85,13 +95,16 @@ mysql> create table t2(n1 int,a int primary key);--Contains referenced primary k
 Query OK, 0 rows affected (0.01 sec)
 
 mysql> show create table t1;--After rebuilding t2, the foreign key relationship is automatically re-established
+
 +-------+-------------------------------------------------------------------------------------------------------------------------------------------+
 | Table | Create Table                                                                                                                              |
+
 +-------+-------------------------------------------------------------------------------------------------------------------------------------------+
 | t1    | CREATE TABLE `t1` (
 `b` INT DEFAULT NULL,
 CONSTRAINT `c1` FOREIGN KEY (`b`) REFERENCES `t2` (`a`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) |
+
 +-------+-------------------------------------------------------------------------------------------------------------------------------------------+
 1 row in set (0.00 sec)
 ```

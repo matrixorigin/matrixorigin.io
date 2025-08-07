@@ -7,8 +7,11 @@ OmniFabric displays YEAR values in the format YYYY, ranging from the year 0001 t
 YEAR accepts input values in various formats:
 
 - As 4-digit strings in the range '0001' to '9999'.
+
 - As 4-digit numbers in the range 0001 to 9999.
+
 - As 1- or 2-digit strings in the range '0' to '99'. For values in the range '0' to '00' and '00' to '99', OmniFabric automatically adds '00' as the prefix, resulting in values from '0000' to '0099'.
+
 - The result of functions that return a value acceptable in the context of YEAR, such as the `NOW()` function.
 
 ## Two-Digit Years in Dates
@@ -34,6 +37,7 @@ Let's assume we have a column named `event_date` with DATETIME type, containing 
 According to the rules, the two-digit year values in these dates are interpreted as:
 
 - 99-01-15 is interpreted as January 15th, 0099.
+
 - 23-05-06 is interpreted as May 6th, 0023.
 
 2. Interpreting dates in DATE type:
@@ -49,7 +53,9 @@ Let's assume we have a column named `birth_date` with DATE type containing the f
 According to the rules, the two-digit year values in these dates are interpreted as:
 
 - 95-08-21 is interpreted as August 21st, 0095.
+
 - 04-11-30 is interpreted as November 30th, 0004.
+
 - 88-03-17 is interpreted as March 17th, 0088.
 
 3. Interpreting dates in YEAR type:
@@ -65,5 +71,7 @@ Let's assume we have a column named `graduation_year` with YEAR type containing 
 According to the rules, the two-digit year values in these dates are interpreted as:
 
 - 65 is interpreted as the year 0065.
+
 - 78 is interpreted as the year 0078.
+
 - 03 is interpreted as the year 0003.

@@ -43,12 +43,15 @@ LES';--Turns off ONLY_FULL_GROUP_BY mode for the current session
 Query OK, 0 rows affected (0.02 sec)
 
 mysql> select * from student group by nation;--Turns off `ONLY_FULL_GROUP_BY` mode immediately in the current session
+
 +------+------+------+--------+
 | id   | name | age  | nation |
+
 +------+------+------+--------+
 |    1 | tom  |   18 | 上海   |
 |    3 | jen  |   20 | 北京   |
 |    5 | tim  |   20 | 广州   |
+
 +------+------+------+--------+
 3 rows in set (0.00 sec)
 
@@ -56,12 +59,15 @@ mysql> SET global sql_mode='ONLY_FULL_GROUP_BY';--Set the global ONLY_FULL_GROUP
 Query OK, 0 rows affected (0.02 sec)
 
 mysql> select * from student group by nation;--ONLY_FULL_GROUP_BY mode does not take effect, because you need to reconnect to the database for global mode to take effect.
+
 +------+------+------+--------+
 | id   | name | age  | nation |
+
 +------+------+------+--------+
 |    1 | tom  |   18 | 上海   |
 |    3 | jen  |   20 | 北京   |
 |    5 | tim  |   20 | 广州   |
+
 +------+------+------+--------+
 3 rows in set (0.00 sec)
 

@@ -24,19 +24,25 @@ INSERT INTO t1 VALUES('KL Rahul', 52, 0 ),('Hardik Pandya', 30, 1 ),('Ravindra J
 
 -- Calculate the variance of the RunScored column
 > SELECT VARIANCE(RunScored) as Pop_Standard_Variance FROM t1;
+
 +-----------------------+
 | Pop_Standard_Variance |
+
 +-----------------------+
 |     284.8055555555555 |
+
 +-----------------------+
 1 row in set (0.01 sec)
 
 -- Calculate the variance of the WicketsTaken column
 mysql> SELECT VARIANCE(WicketsTaken) as Pop_Std_Var_Wickets FROM t1;
+
 +---------------------+
 | Pop_Std_Var_Wickets |
+
 +---------------------+
 |  0.9166666666666665 |
+
 +---------------------+
 1 row in set (0.01 sec)
 ```

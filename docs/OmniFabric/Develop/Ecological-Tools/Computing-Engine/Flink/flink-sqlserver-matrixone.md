@@ -7,10 +7,15 @@ This chapter describes how to write SQL Server data to OmniFabric using Flink.
 This practice requires the installation and deployment of the following software environments:
 
 - Complete [standalone OmniFabric deployment](../../../../Get-Started/install-standalone-matrixone.md).
+
 - Download and install [lntelliJ IDEA (2022.2.1 or later version)](https://www.jetbrains.com/idea/download/).
+
 - Select the [JDK 8+ version](https://www.oracle.com/sg/java/technologies/javase/javase8-archive-downloads.html) version to download and install depending on your system environment.
+
 - Download and install [Flink](https://archive.apache.org/dist/flink/flink-1.17.0/flink-1.17.0-bin-scala_2.12.tgz) with a minimum supported version of 1.11.
+
 - Completed [SQL Server 2022](https://www.microsoft.com/en-us/sql-server/sql-server-downloads).
+
 - Download and install [MySQL](https://downloads.mysql.com/archives/get/p/23/file/mysql-server_8.0.33-1ubuntu23.04_amd64.deb-bundle.tar), the recommended version is 8.0.33.
 
 ## Operational steps
@@ -162,6 +167,7 @@ CREATE TABLE sqlserver_data (
 ### Create source/sink table with flink ddl
 
 ```sql
+
 -- Create source table
 CREATE TABLE sqlserver_source (
 id INT,

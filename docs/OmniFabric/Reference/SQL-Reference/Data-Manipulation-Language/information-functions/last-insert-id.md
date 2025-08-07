@@ -14,36 +14,48 @@ In MySQL, if you insert multiple rows using a single INSERT statement, LAST_INSE
 mysql> CREATE TABLE t (id INT AUTO_INCREMENT NOT NULL PRIMARY KEY, name VARCHAR(10) NOT NULL);
 mysql> INSERT INTO t VALUES (NULL, 'Bob');
 mysql> SELECT * FROM t;
+
 +----+------+
 | id | name |
+
 +----+------+
 |  1 | Bob  |
+
 +----+------+
 
 mysql> SELECT LAST_INSERT_ID();
+
 +------------------+
 | LAST_INSERT_ID() |
+
 +------------------+
 |                1 |
+
 +------------------+
 
 mysql> INSERT INTO t VALUES (NULL, 'Mary'), (NULL, 'Jane'), (NULL, 'Lisa');
 
 mysql> SELECT * FROM t;
+
 +----+------+
 | id | name |
+
 +----+------+
 |  1 | Bob  |
 |  2 | Mary |
 |  3 | Jane |
 |  4 | Lisa |
+
 +----+------+
 
 mysql> SELECT LAST_INSERT_ID();
+
 +------------------+
 | LAST_INSERT_ID() |
+
 +------------------+
 |                2 |
+
 +------------------+
 ```
 
@@ -61,49 +73,64 @@ LAST_INSERT_ID(), LAST_INSERT_ID(expr)
 create table t1(a int auto_increment primary key);
 insert into t1 values();
 mysql> select last_insert_id();
+
 +------------------+
 | last_insert_id() |
+
 +------------------+
 |                1 |
+
 +------------------+
 1 row in set (0.02 sec)
 
 insert into t1 values(11);
 insert into t1 values();
 mysql> select last_insert_id();
+
 +------------------+
 | last_insert_id() |
+
 +------------------+
 |               12 |
+
 +------------------+
 1 row in set (0.02 sec)
 
 insert into t1 values(null);
 mysql> select last_insert_id();
+
 +------------------+
 | last_insert_id() |
+
 +------------------+
 |               13 |
+
 +------------------+
 1 row in set (0.02 sec)
 
 create table t2(a int auto_increment primary key);
 insert into t2 values();
 mysql> select last_insert_id();
+
 +------------------+
 | last_insert_id() |
+
 +------------------+
 |                1 |
+
 +------------------+
 1 row in set (0.02 sec)
 
 insert into t2 values(100);
 insert into t2 values();
 mysql> select last_insert_id();
+
 +------------------+
 | last_insert_id() |
+
 +------------------+
 |              101 |
+
 +------------------+
 1 row in set (0.02 sec)
 ```

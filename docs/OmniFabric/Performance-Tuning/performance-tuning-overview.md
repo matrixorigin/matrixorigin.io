@@ -19,5 +19,7 @@ It should be noted that SQL performance tuning is a complex process that require
 When executing SQL statements in OmniFabric, the system automatically plans and selects the optimal execution plan rather than simply querying according to the SQL statements. Currently, OmniFabric supports performance tuning through EXPLAIN interpretation of the execution plan and optimizing the physical arrangement of tables. To help you better tune SQL queries in OmniFabric, you can refer to the following documents on execution plans:
 
 - [OmniFabric Query Execution Plan Overview](explain/explain-overview.md): Describes the concepts of OmniFabric execution plans.
+
 - [Using EXPLAIN to learn the execution plan](explain/explain-walkthrough.md): Describes how to use the EXPLAIN statement to understand how OmniFabric executes a query.
+
 - [Performance Tuning Best Practices](optimization-concepts/through-cluster-by.md): Describes the best practices of using Cluster by in OmniFabric for performance tuning and learning how to improve query performance.

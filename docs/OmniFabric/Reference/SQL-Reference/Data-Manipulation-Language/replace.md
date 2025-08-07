@@ -7,6 +7,7 @@
 `REPLACE` is typically used on tables with unique constraints.
 
 - The `REPLACE` statement requires that a primary key or unique index exist in the table to determine whether the same record exists.
+
 - When using the `REPLACE` statement to insert a new record, the old record will be deleted if a record with the same primary key or unique index already exists. Then a new record will be inserted, which may cause the value of the auto-increment column to change.
 
 ## **Syntax**
@@ -63,7 +64,9 @@ The following is an explanation of each parameter:
 8. `assignment_list`: Indicates the association of multiple column names and corresponding values, which is used to update the form—separate multiple column names and values ​​with commas.
 
 !!! note
+
     - When using the insert form, you can use the `VALUES` keyword followed by `value_list` means inserting one row of data.
+
     - When using the update form, use the `SET` keyword followed by `assignment_list` to specify the columns to update and the corresponding values.
 
 ## **Examples**
@@ -74,18 +77,24 @@ create table names(id int PRIMARY KEY,name VARCHAR(255),age int);
 -- Insert a row of data, id=1, name="Abby", age=24
 replace into names(id, name, age) values(1,"Abby", 24);
 mysql> select name, age from names where id = 1;
+
 +------+------+
 | name | age  |
+
 +------+------+
 | Abby |   24 |
+
 +------+------+
 1 row in set (0.00 sec)
 
 mysql> select * from names;
+
 +------+------+------+
 | id   | name | age  |
+
 +------+------+------+
 |    1 | Abby |   24 |
+
 +------+------+------+
 1 row in set (0.00 sec)
 
@@ -93,18 +102,24 @@ mysql> select * from names;
 replace into names(id, name, age) values(1,"Bobby", 25);
 
 mysql> select name, age from names where id = 1;
+
 +-------+------+
 | name  | age  |
+
 +-------+------+
 | Bobby |   25 |
+
 +-------+------+
 1 row in set (0.00 sec)
 
 mysql> select * from names;
+
 +------+-------+------+
 | id   | name  | age  |
+
 +------+-------+------+
 |    1 | Bobby |   25 |
+
 +------+-------+------+
 1 row in set (0.01 sec)
 
@@ -112,19 +127,25 @@ mysql> select * from names;
 replace into names set id = 2, name = "Ciro";
 
 mysql> select name, age from names where id = 2;
+
 +------+------+
 | name | age  |
+
 +------+------+
 | Ciro | NULL |
+
 +------+------+
 1 row in set (0.01 sec)
 
 mysql> select * from names;
+
 +------+-------+------+
 | id   | name  | age  |
+
 +------+-------+------+
 |    1 | Bobby |   25 |
 |    2 | Ciro  | NULL |
+
 +------+-------+------+
 2 rows in set (0.00 sec)
 
@@ -132,19 +153,25 @@ mysql> select * from names;
 replace into names set id = 2, name = "Ciro", age = 17;
 
 mysql> select name, age from names where id = 2;
+
 +------+------+
 | name | age  |
+
 +------+------+
 | Ciro |   17 |
+
 +------+------+
 1 row in set (0.01 sec)
 
 mysql> select * from names;
+
 +------+-------+------+
 | id   | name  | age  |
+
 +------+-------+------+
 |    1 | Bobby |   25 |
 |    2 | Ciro  |   17 |
+
 +------+-------+------+
 2 rows in set (0.01 sec)
 ```

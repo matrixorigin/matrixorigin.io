@@ -98,10 +98,13 @@ Using a different data type for a given parameter or user variable within a prep
 Empty set (0.01 sec)
 
 > select * from t13 where 3 in (select (1+2) union select 1);
+
 +------+
 | a    |
+
 +------+
 |    1 |
+
 +------+
 1 row in set (0.01 sec)
 
@@ -115,10 +118,13 @@ Empty set (0.01 sec)
 Query OK, 0 rows affected (0.00 sec)
 
 > execute st_18493;
+
 +------+
 | a    |
+
 +------+
 |    1 |
+
 +------+
 1 row in set (0.00 sec)
 

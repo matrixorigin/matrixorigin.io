@@ -17,9 +17,11 @@ It's worth noting that OmniFabric is a multi-tenant database, and the `set globa
 For documentation on static parameters, you can refer to:
 
 - [Standalone Common Parameters Configuration](standalone-configuration-settings.md)
+
 - [Distributed Common Parameters Configuration](distributed-configuration-settings.md)
 
 For documentation on dynamic parameters, you can refer to:
 
 - [System Variables Overview](../Variable/system-variables/system-variables-overview.md)
+
 - [Custom Variables](../Variable/custom-variable.md)

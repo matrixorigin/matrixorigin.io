@@ -20,27 +20,36 @@ The result type depends on whether the bit argument is evaluated as a binary str
 
 ```sql
 mysql> select ~-5;
+
 +--------+
 | ~ (-5) |
+
 +--------+
 |      4 |
+
 +--------+
 1 row in set (0.00 sec)
 
 mysql> select ~null;
+
 +-------+
 | ~null |
+
 +-------+
 |  NULL |
+
 +-------+
 1 row in set (0.00 sec)
 
 mysql> select ~a, ~b from t1;
+
 +------+----------------------+
 | ~a   | ~b                   |
+
 +------+----------------------+
 |    0 | 18446744073709551614 |
 |    4 | 18446744073709551610 |
+
 +------+----------------------+
 2 rows in set (0.00 sec)
 ```

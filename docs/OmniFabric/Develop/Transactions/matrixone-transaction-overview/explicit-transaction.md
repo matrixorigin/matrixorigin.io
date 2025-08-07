@@ -5,9 +5,13 @@ In OmniFabric's explicit transactions also obey the following rules:
 ## Explicit transaction rules
 
 - An explicit transaction starts and ends with `BEGIN...END` or `START TRANSACTION...COMMIT` or `ROLLBACK`.
+
 - In explicit transactions, DML (Data Manipulation Language) and DDL (Data Definition Language) can exist at the same time. All DDLs are supported.
+
 - In an explicit transaction, other explicit transactions cannot be nested. For example, if `START TANSACTIONS` is encountered after `START TANSACTIONS`, all statements between two `START TANSACTIONS` will be forced to commit, regardless of the value of `AUTOCOMMIT` 1 or 0.
+
 - In an explicit transaction, only DML and DDL can be included and cannot contain modification parameter configuration or management commands, such as `set [parameter] = [value]`, `create user,` and so on.
+
 - In an explicit transaction, if a write-write conflict occurs when a new transaction is started without an explicit commit or rollback, the previously uncommitted transaction will be rolled back, and an error will be reported.
 
 ## Differences from MySQL explicit transactions
@@ -50,11 +54,14 @@ Previous DML conflicts with existing constraints or data format. This transactio
 mysql> ROLLBACK;
 Query OK, 0 rows affected (0.00 sec)
 mysql> SELECT * FROM Accounts;
+
 +----------------+---------+
 | account_number | balance |
+
 +----------------+---------+
 |              1 |  900.00 |
 |              2 |  600.00 |
+
 +----------------+---------+
 2 rows in set (0.01 sec)
 ```
@@ -66,6 +73,7 @@ OmniFabric supports cross-database transaction behavior; here, we'll illustrate 
 First, let's create two databases (db1 and db2) along with their respective tables (table1 and table2):
 
 ```sql
+
 -- Create the db1 database
 CREATE DATABASE db1;
 USE db1;
@@ -90,6 +98,7 @@ CREATE TABLE table2 (
 Now, we have created two databases and their tables. Next, let's insert some data:
 
 ```sql
+
 -- Insert data into table1 in db1
 INSERT INTO db1.table1 (field1) VALUES (100), (200), (300);
 
@@ -100,6 +109,7 @@ INSERT INTO db2.table2 (field2) VALUES (500), (600), (700);
 We now have data in both databases. Moving on, let's execute a cross-database transaction to modify data in these two databases simultaneously:
 
 ```sql
+
 -- Start the cross-database transaction
 START TRANSACTION;
 

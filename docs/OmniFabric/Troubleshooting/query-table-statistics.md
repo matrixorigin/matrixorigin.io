@@ -20,17 +20,22 @@ SHOW TABLE_NUMBER FROM {DATABASE_NAME}
 
 ```sql
 mysql> show table_number from mo_catalog;
+
 +--------------------------------+
 | Number of tables in mo_catalog |
+
 +--------------------------------+
 |                             11 |
+
 +--------------------------------+
 
 -- Verify which tables in mo_catalog
 mysql> use mo_catalog;
 mysql> show tables;
+
 +----------------------------+
 | Tables_in_mo_catalog       |
+
 +----------------------------+
 | mo_user                    |
 | mo_account                 |
@@ -43,6 +48,7 @@ mysql> show tables;
 | mo_mysql_compatbility_mode |
 | mo_tables                  |
 | mo_database                |
+
 +----------------------------+
 11 rows in set (0.01 sec)
 ```
@@ -52,6 +58,7 @@ mysql> show tables;
 ```
 create database demo_1;
 use demo_1;
+
 -- Create three new tables
 CREATE TABLE t1(a bigint, b varchar(10), c varchar(10));
 CREATE TABLE t2(a bigint, b int);
@@ -59,10 +66,13 @@ CREATE TABLE t3(a int, b varchar(10), c varchar(10));
 
 -- Query out that there are three tables in the database demo_1
 mysql> show table_number from demo_1;
+
 +----------------------------+
 | Number of tables in demo_1 |
+
 +----------------------------+
 |                          3 |
+
 +----------------------------+
 1 row in set (0.01 sec)
 ```
@@ -83,24 +93,32 @@ SHOW COLUMN_NUMBER FROM {[DATABASE_NAME.]TABLE_NAME}
 use mo_catalog;
 use mo_user;
 mysql> show column_number from mo_user;
+
 +------------------------------+
 | Number of columns in mo_user |
+
 +------------------------------+
 |                           11 |
+
 +------------------------------+
 
 -- Or use the following command
 mysql> show column_number from mo_catalog.mo_user;
+
 +------------------------------+
 | Number of columns in mo_user |
+
 +------------------------------+
 |                           11 |
+
 +------------------------------+
 
 -- Verify which columns in the table
 mysql> desc mo_catalog.mo_user;
+
 +-----------------------+--------------+------+------+---------+-------+---------+
 | Field                 | Type         | Null | Key  | Default | Extra | Comment |
+
 +-----------------------+--------------+------+------+---------+-------+---------+
 | user_id               | INT          | YES  |      | NULL    |       |         |
 | user_host             | VARCHAR(100) | YES  |      | NULL    |       |         |
@@ -113,6 +131,7 @@ mysql> desc mo_catalog.mo_user;
 | creator               | INT          | YES  |      | NULL    |       |         |
 | owner                 | INT          | YES  |      | NULL    |       |         |
 | default_role          | INT          | YES  |      | NULL    |       |         |
+
 +-----------------------+--------------+------+------+---------+-------+---------+
 11 rows in set (0.01 sec)
 ```
@@ -140,10 +159,13 @@ col3 varchar
 insert into t1 values(1,1.11,'1.111'),(2,2.22,'1.222'),(3,0,'abc');
 
 mysql> show table_values from t1;
+
 +-----------+-----------+-----------+-----------+-----------+-----------+
 | max(col1) | min(col1) | max(col2) | min(col2) | max(col3) | min(col3) |
+
 +-----------+-----------+-----------+-----------+-----------+-----------+
 |         3 |         1 |      2.22 |         0 | abc       | 1.111     |
+
 +-----------+-----------+-----------+-----------+-----------+-----------+
 ```
 
@@ -160,12 +182,16 @@ SELECT MO_TABLE_ROWS({DATABASE_NAME},{TABLE_NAME})
 ### Example
 
 ```sql
+
 -- Query the total number of rows of mo_tables in mo_catalog
 mysql> select mo_table_rows('mo_catalog','mo_tables');
+
 +--------------------------------------+
 | mo_table_rows(mo_catalog, mo_tables) |
+
 +--------------------------------------+
 |                                   64 |
+
 +--------------------------------------+
 ```
 
@@ -182,11 +208,15 @@ SELECT MO_TABLE_SIZE({DATABASE_NAME},{TABLE_NAME})
 ### Example
 
 ```sql
+
 -- Query the storage space occupied by the table mo_tables in the database mo_catalog
 mysql> select mo_table_size('mo_catalog','mo_tables');
+
 +--------------------------------------+
 | mo_table_size(mo_catalog, mo_tables) |
+
 +--------------------------------------+
 |                                16128 |
+
 +--------------------------------------+
 ```

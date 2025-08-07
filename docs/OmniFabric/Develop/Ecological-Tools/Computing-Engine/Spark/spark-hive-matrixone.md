@@ -7,9 +7,13 @@ In this chapter, we will cover the implementation of Hive bulk data writing to O
 This practice requires the installation and deployment of the following software environments:
 
 - Finished [installing and starting OmniFabric](../../../../Get-Started/install-standalone-matrixone.md).
+
 - Download and install [IntelliJ IDEA version 2022.2.1 and above](https://www.jetbrains.com/idea/download/).
+
 - Download and install [JDK 8+](https://www.oracle.com/sg/java/technologies/javase/javase8-archive-downloads.html).
+
 - Importing data from Hive requires installing [Hadoop](http://archive.apache.org/dist/hadoop/core/hadoop-3.1.4/) and [Hive](https://dlcdn.apache.org/hive/hive-3.1.3/).
+
 - Download and install [MySQL Client 8.0.33](https://downloads.mysql.com/archives/get/p/23/file/mysql-server_8.0.33-1ubuntu23.04_amd64.deb-bundle.tar).
 
 ## Operational steps
@@ -19,16 +23,23 @@ This practice requires the installation and deployment of the following software
 1. Launch IDEA, click **File > New > Project**, select **Spring Initializer**, and fill in the following configuration parameters:
 
     - **Name**:mo-spark-demo
+
     - **Location**:~\Desktop
+
     - **Language**:Java
+
     - **Type**:Maven
+
     - **Group**:com.example
+
     - **Artiface**:OmniFabric-spark-demo
+
     - **Package name**:com.OmniFabric.demo
+
     - **JDK** 1.8
 
     <div align="center">
-    <img src=https://github.com/matrixorigin/artwork/blob/main/docs/develop/spark/OmniFabric-spark-demo.png?raw=true width=50% heigth=50%/>
+    <img src=https://github.com/matrixorigin/artwork/blob/main/docs/develop/spark/matrixone-spark-demo.png?raw=true width=50% heigth=50%/>
     </div>
 
 2. Add a project dependency and edit the contents of `pom.xml` in the project root as follows:
@@ -84,7 +95,6 @@ This practice requires the installation and deployment of the following software
             <version>1.9.13</version>
         </dependency>
 
-
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -135,7 +145,7 @@ Copy the three configuration files "etc/hadoop/core-site.xml" and "hdfs-site.xml
 Create a class called "Hive2Mo.java" in IntelliJ IDEA to use Spark to read data from Hive and write data to OmniFabric.
 
 ```java
-package com.OmniFabric.spark;
+package com.matrixone.spark;
 
 import org.apache.spark.sql.*;
 
@@ -143,13 +153,21 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 /**
+
  * @auther OmniFabric
+
  * @date 2022/2/9 10:02
+
  * @desc
+
  *
+
  * 1.在 hive 和 OmniFabric 中分别创建相应的表
+
  * 2.将 core-site.xml hdfs-site.xml 和 hive-site.xml 拷贝到 resources 目录下
+
  * 3.需要设置域名映射
+
  */
 public class Hive2Mo {
 
@@ -163,7 +181,6 @@ public class Hive2Mo {
     private static String destPassword = "111";
     private static String destDataBase = "test";
     private static String destTable = "users";
-
 
     public static void main(String[] args) throws SQLException {
         SparkSession sparkSession = SparkSession.builder()
@@ -195,12 +212,15 @@ Execute the following SQL in OmniFabric to view the execution results:
 
 ```sql
 mysql> select * from test.users;
+
 +------+----------+------+
 | id   | name     | age  |
+
 +------+----------+------+
 |    1 | zhangsan |   12 |
 |    2 | lisi     |   17 |
 |    3 | wangwu   |   19 |
+
 +------+----------+------+
 3 rows in set (0.00 sec)
 ```

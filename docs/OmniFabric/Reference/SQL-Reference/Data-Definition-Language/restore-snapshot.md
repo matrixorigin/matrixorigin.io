@@ -13,14 +13,17 @@
 ## Examples
 
 ### Example 1: Restore Cluster
-  
+
 ```sql
+
 -- Execute in tenants acc1, acc2
 CREATE DATABASE db1;
 
 mysql> SHOW DATABASES;
+
 +--------------------+
 | Database           |
+
 +--------------------+
 | db1                |
 | information_schema |
@@ -28,6 +31,7 @@ mysql> SHOW DATABASES;
 | mysql              |
 | system             |
 | system_metrics     |
+
 +--------------------+
 6 rows in set (0.01 sec)
 
@@ -38,14 +42,17 @@ CREATE SNAPSHOT cluster_sp1 FOR CLUSTER; -- Create cluster snapshot
 DROP DATABASE db1; -- Drop database db1
 
 mysql> SHOW DATABASES;
+
 +--------------------+
 | Database           |
+
 +--------------------+
 | information_schema |
 | mo_catalog         |
 | mysql              |
 | system             |
 | system_metrics     |
+
 +--------------------+
 5 rows in set (0.01 sec)
 
@@ -54,8 +61,10 @@ RESTORE CLUSTER FROM SNAPSHOT cluster_sp1; -- Restore cluster from snapshot
 
 -- Execute in tenants acc1, acc2
 mysql> SHOW DATABASES; -- Restoration successful
+
 +--------------------+
 | Database           |
+
 +--------------------+
 | db1                |
 | information_schema |
@@ -63,6 +72,7 @@ mysql> SHOW DATABASES; -- Restoration successful
 | mysql              |
 | system             |
 | system_metrics     |
+
 +--------------------+
 6 rows in set (0.01 sec)
 ```
@@ -70,13 +80,16 @@ mysql> SHOW DATABASES; -- Restoration successful
 ### Example 2: Restore Tenant
 
 ```sql
+
 -- Execute in tenant acc1
 CREATE DATABASE db1;
 CREATE DATABASE db2;
 
 mysql> SHOW DATABASES;
+
 +--------------------+
 | Database           |
+
 +--------------------+
 | db1                |
 | db2                |
@@ -85,6 +98,7 @@ mysql> SHOW DATABASES;
 | mysql              |
 | system             |
 | system_metrics     |
+
 +--------------------+
 7 rows in set (0.00 sec)
 
@@ -93,22 +107,27 @@ DROP DATABASE db1; -- Drop databases db1, db2
 DROP DATABASE db2;
 
 mysql> SHOW DATABASES;
+
 +--------------------+
 | Database           |
+
 +--------------------+
 | information_schema |
 | mo_catalog         |
 | mysql              |
 | system             |
 | system_metrics     |
+
 +--------------------+
 5 rows in set (0.01 sec)
 
 RESTORE ACCOUNT acc1 FROM SNAPSHOT acc1_snap1; -- Restore tenant snapshot
 
 mysql> SHOW DATABASES; -- Restoration successful
+
 +--------------------+
 | Database           |
+
 +--------------------+
 | db1                |
 | db2                |
@@ -117,6 +136,7 @@ mysql> SHOW DATABASES; -- Restoration successful
 | mysql              |
 | system             |
 | system_metrics     |
+
 +--------------------+
 7 rows in set (0.01 sec)
 ```
@@ -124,12 +144,15 @@ mysql> SHOW DATABASES; -- Restoration successful
 ### Example 3: Restore Database
 
 ```sql
+
 -- Execute in tenant acc1
 CREATE DATABASE db1;
 
 mysql> SHOW DATABASES;
+
 +--------------------+
 | Database           |
+
 +--------------------+
 | db1                |
 | information_schema |
@@ -137,6 +160,7 @@ mysql> SHOW DATABASES;
 | mysql              |
 | system             |
 | system_metrics     |
+
 +--------------------+
 6 rows in set (0.00 sec)
 
@@ -144,22 +168,27 @@ CREATE SNAPSHOT acc1_db_snap1 FOR ACCOUNT acc1; -- Create snapshot
 DROP DATABASE db1; -- Drop database db1
 
 mysql> SHOW DATABASES;
+
 +--------------------+
 | Database           |
+
 +--------------------+
 | information_schema |
 | mo_catalog         |
 | mysql              |
 | system             |
 | system_metrics     |
+
 +--------------------+
 5 rows in set (0.01 sec)
 
 RESTORE ACCOUNT acc1 DATABASE db1 FROM SNAPSHOT acc1_db_snap1; -- Restore database snapshot
 
 mysql> SHOW DATABASES; -- Restoration successful
+
 +--------------------+
 | Database           |
+
 +--------------------+
 | db1                |
 | information_schema |
@@ -167,6 +196,7 @@ mysql> SHOW DATABASES; -- Restoration successful
 | mysql              |
 | system             |
 | system_metrics     |
+
 +--------------------+
 6 rows in set (0.00 sec)
 ```
@@ -174,15 +204,19 @@ mysql> SHOW DATABASES; -- Restoration successful
 ### Example 4: Restore Table
 
 ```sql
+
 -- Execute in tenant acc1
 CREATE TABLE t1(n1 INT);
 INSERT INTO t1 VALUES(1);
 
 mysql> SELECT * FROM t1;
+
 +------+
 | n1   |
+
 +------+
 |    1 |
+
 +------+
 1 row in set (0.00 sec)
 
@@ -195,10 +229,13 @@ Empty set (0.01 sec)
 RESTORE ACCOUNT acc1 DATABASE db1 TABLE t1 FROM SNAPSHOT acc1_tab_snap1; -- Restore table snapshot
 
 mysql> SELECT * FROM t1; -- Restoration successful
+
 +------+
 | n1   |
+
 +------+
 |    1 |
+
 +------+
 1 row in set (0.00 sec)
 ```
@@ -206,12 +243,15 @@ mysql> SELECT * FROM t1; -- Restoration successful
 ### Example 5: System Tenant Restores Regular Tenant to Itself
 
 ```sql
+
 -- Execute in tenant acc1
 CREATE DATABASE db1;
 
 mysql> SHOW DATABASES;
+
 +--------------------+
 | Database           |
+
 +--------------------+
 | db1                |
 | information_schema |
@@ -219,6 +259,7 @@ mysql> SHOW DATABASES;
 | mysql              |
 | system             |
 | system_metrics     |
+
 +--------------------+
 6 rows in set (0.01 sec)
 
@@ -229,14 +270,17 @@ CREATE SNAPSHOT acc1_snap1 FOR ACCOUNT acc1; -- Create snapshot for acc1
 DROP DATABASE db1; -- Drop database db1
 
 mysql> SHOW DATABASES;
+
 +--------------------+
 | Database           |
+
 +--------------------+
 | information_schema |
 | mo_catalog         |
 | mysql              |
 | system             |
 | system_metrics     |
+
 +--------------------+
 5 rows in set (0.01 sec)
 
@@ -245,8 +289,10 @@ RESTORE ACCOUNT acc1 FROM SNAPSHOT acc1_snap1 TO ACCOUNT acc1; -- Restore snapsh
 
 -- Execute in tenant acc1
 mysql> SHOW DATABASES; -- Restoration successful
+
 +--------------------+
 | Database           |
+
 +--------------------+
 | db1                |
 | information_schema |
@@ -254,6 +300,7 @@ mysql> SHOW DATABASES; -- Restoration successful
 | mysql              |
 | system             |
 | system_metrics     |
+
 +--------------------+
 6 rows in set (0.01 sec)
 ```
@@ -261,12 +308,15 @@ mysql> SHOW DATABASES; -- Restoration successful
 ### Example 6: System Tenant Restores Regular Tenant to New Tenant
 
 ```sql
+
 -- Execute in tenant acc1
 CREATE DATABASE db1;
 
 mysql> SHOW DATABASES;
+
 +--------------------+
 | Database           |
+
 +--------------------+
 | db1                |
 | information_schema |
@@ -274,6 +324,7 @@ mysql> SHOW DATABASES;
 | mysql              |
 | system             |
 | system_metrics     |
+
 +--------------------+
 6 rows in set (0.01 sec)
 
@@ -284,14 +335,17 @@ CREATE SNAPSHOT acc1_snap1 FOR ACCOUNT acc1; -- Create snapshot for acc1
 DROP DATABASE db1; -- Drop database db1
 
 mysql> SHOW DATABASES;
+
 +--------------------+
 | Database           |
+
 +--------------------+
 | information_schema |
 | mo_catalog         |
 | mysql              |
 | system             |
 | system_metrics     |
+
 +--------------------+
 5 rows in set (0.01 sec)
 
@@ -301,21 +355,26 @@ RESTORE ACCOUNT acc1 FROM SNAPSHOT acc1_snap1 TO ACCOUNT acc2; -- Restore acc1 s
 
 -- Execute in tenant acc1
 mysql> SHOW DATABASES;
+
 +--------------------+
 | Database           |
+
 +--------------------+
 | information_schema |
 | mo_catalog         |
 | mysql              |
 | system             |
 | system_metrics     |
+
 +--------------------+
 5 rows in set (0.00 sec)
 
 -- Execute in tenant acc2
 mysql> SHOW DATABASES; -- Restored to acc2
+
 +--------------------+
 | Database           |
+
 +--------------------+
 | db1                |
 | information_schema |
@@ -323,6 +382,7 @@ mysql> SHOW DATABASES; -- Restored to acc2
 | mysql              |
 | system             |
 | system_metrics     |
+
 +--------------------+
 6 rows in set (0.01 sec)
 ```

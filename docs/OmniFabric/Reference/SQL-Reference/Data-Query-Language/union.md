@@ -58,18 +58,23 @@ INSERT INTO t1 VALUES (1),(2),(3);
 INSERT INTO t2 VALUES (2),(3),(4);
 
 mysql> SELECT id FROM t1 UNION SELECT id FROM t2;
+
 +------+
 | id   |
+
 +------+
 |    4 |
 |    1 |
 |    2 |
 |    3 |
+
 +------+
 
 mysql> SELECT id FROM t1 UNION ALL SELECT id FROM t2;
+
 +------+
 | id   |
+
 +------+
 |    1 |
 |    2 |
@@ -77,6 +82,7 @@ mysql> SELECT id FROM t1 UNION ALL SELECT id FROM t2;
 |    2 |
 |    3 |
 |    4 |
+
 +------+
 ```
 
@@ -89,10 +95,13 @@ CREATE TABLE t2 (a INT, b INT);
 INSERT INTO t2 VALUES ROW(1,2),ROW(3,4),ROW(11,2),ROW(10,3),ROW(15,8);
 
 mysql> (SELECT a FROM t1 WHERE a=10 AND B=1 ORDER BY a LIMIT 10) UNION (SELECT a FROM t2 WHERE a=11 AND B=2 ORDER BY a LIMIT 10);
+
 +------+
 | a    |
+
 +------+
 |   10 |
 |   11 |
+
 +------+
 ```

@@ -73,6 +73,7 @@ To test the SSL configuration, perform the following steps:
 
     ```
     mysql> status
+
     --------------
     mysql  Ver 8.0.28 for Linux on x86_64 (MySQL Community Server - GPL)
 
@@ -83,12 +84,13 @@ To test the SSL configuration, perform the following steps:
     Current pager:		stdout
     Using outfile:		''
     Using delimiter:	;
-    Server version:		8.0.30-OmniFabric-v2.1.0 OmniFabric
+    Server version:		8.0.30-MatrixOne-v2.1.0 MatrixOne
     Protocol version:	10
     Connection:		127.0.0.1 via TCP/IP
     Client characterset:	utf8mb4
     Server characterset:	utf8mb4
     TCP port:		6002
     Binary data as:		Hexadecimal
+
     --------------
     ```

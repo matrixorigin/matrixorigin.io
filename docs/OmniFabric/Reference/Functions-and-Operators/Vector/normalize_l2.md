@@ -19,18 +19,24 @@ drop table if exists vec_table;
 create table vec_table(a int, b vecf32(3), c vecf64(3));
 insert into vec_table values(1, "[1,2,3]", "[4,5,6]");
 mysql> select * from vec_table;
+
 +------+-----------+-----------+
 | a    | b         | c         |
+
 +------+-----------+-----------+
 |    1 | [1, 2, 3] | [4, 5, 6] |
+
 +------+-----------+-----------+
 1 row in set (0.00 sec)
 
 mysql> select normalize_l2(b) from vec_table;
+
 +-------------------------------------+
 | normalize_l2(b)                     |
+
 +-------------------------------------+
 | [0.26726124, 0.5345225, 0.80178374] |
+
 +-------------------------------------+
 1 row in set (0.00 sec)
 ```

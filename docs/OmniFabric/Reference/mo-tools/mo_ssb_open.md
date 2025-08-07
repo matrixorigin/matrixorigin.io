@@ -8,8 +8,11 @@
 ## Pre-dependency
 
 OmniFabric
+
 - Environment encoding set to UTF-8
+
 - Installed wget
+
 - The bc command is installed
 
 ## Install mo_ssb_open
@@ -33,14 +36,23 @@ Generating a complete data set may take some time. When you are done, you can se
 ```bash
 root@host-10-222-4-8:~/soft/ssb/mo_ssb_open-1.0.1/bin/ssb-data# ls -l
 total 604976
+
 -rwS--S--T 1 root root   2837046 Jun  7 03:31 customer.tbl
+
 -rw-r--r-- 1 root root    229965 Jun  7 03:31 date.tbl
+
 -rw-r--r-- 1 root root 118904702 Jun  7 03:31 lineorder.tbl.1
+
 -rw-r--r-- 1 root root 119996341 Jun  7 03:31 lineorder.tbl.2
+
 -rw-r--r-- 1 root root 120146777 Jun  7 03:31 lineorder.tbl.3
+
 -rw-r--r-- 1 root root 120000311 Jun  7 03:31 lineorder.tbl.4
+
 -rw-r--r-- 1 root root 120057972 Jun  7 03:31 lineorder.tbl.5
+
 -rw-r--r-- 1 root root  17139259 Jun  7 03:31 part.tbl
+
 -rw-r--r-- 1 root root    166676 Jun  7 03:31 supplier.tbl
 ```
 
@@ -71,8 +83,10 @@ Connect to OmniFabric to view and build table successfully.
 
 ```sql
 mysql> show tables;
+
 +----------------+
 | Tables_in_ssb  |
+
 +----------------+
 | customer       |
 | dates          |
@@ -80,6 +94,7 @@ mysql> show tables;
 | lineorder_flat |
 | part           |
 | supplier       |
+
 +----------------+
 6 rows in set (0.01 sec)
 ```

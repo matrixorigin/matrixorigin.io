@@ -21,9 +21,12 @@ This function ``FIND_IN_SET()`` returns a value in the range of 1 to *N* if the 
 
 ```SQL
 select find_in_set('b','a,b,c,d');
+
 +-------------------------+
 | find_in_set(b, a,b,c,d) |
+
 +-------------------------+
 |                       2 |
+
 +-------------------------+
 ```

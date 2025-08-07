@@ -36,6 +36,7 @@ object_type: {
 }
 
 priv_level: {
+
     *
   | *.*
   | db_name.*

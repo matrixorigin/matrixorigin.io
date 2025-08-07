@@ -44,8 +44,10 @@ Connect to OmniFabric using SeaTunnel's `connector-jdbc` connection plug-in.
 1. In SeaTunnel's `${SEATNUNNEL_HOME}/config/plugin_config` file, add the following:
 
     ```shell
+
     --connectors-v2--
     connector-jdbc
+
     --end--
     ```
 
@@ -110,8 +112,10 @@ Launch the SeaTunnel app by executing the following command:
 At the end of the SeaTunnel run, statistics similar to the following are displayed summarizing the time taken for this write, the total number of read data, the total number of writes, and the total number of write failures:
 
 ```shell
+
 ***********************************************
            Job Statistic Information
+
 ***********************************************
 Start Time                : 2023-08-07 16:45:02
 End Time                  : 2023-08-07 16:45:05
@@ -119,6 +123,7 @@ Total Time(s)             :                   3
 Total Read Count          :             5000000
 Total Write Count         :             5000000
 Total Failed Count        :                   0
+
 ***********************************************
 ```
 

@@ -11,6 +11,7 @@ OmniFabric supports the `LOAD DATA` command for importing csv and jsonline files
 According to the different file types, OmniFabric currently mainly supports importing *.csv* or jsonlines:
 
 - For how to import *.csv* format, see [Load csv format data](load-csv.md).
+
 - For how to import *.jl* format, see [Load jsonlines format data](load-jsonline.md).
 
 ### Import data from different data storage locations
@@ -18,6 +19,7 @@ According to the different file types, OmniFabric currently mainly supports impo
 According to the different data storage locations, OmniFabric supports *importing data from local* and *importing data from S3(Simple Storage Service)*.
 
 - For how to import data from local host, see [Load csv format data](load-csv.md) or [Load jsonlines format data](load-jsonline.md).
+
 - For how to import data from S3, see [Load data from S3](load-s3.md).
 
 ## `SOURCE`
@@ -29,4 +31,5 @@ OmniFabric supports using the `SOURCE` command to import the entire database str
 ## More import capabilities
 
 - OmniFabric supports the parallel loading of data files: when the data file is large, to improve the loading speed, OmniFabric also supports parallel loading, see the `LOAD DATA` parameter description for importing data.
+
 - In a OmniFabric distributed cluster, in addition to importing data locally and from the public cloud object storage S3 to OmniFabric, you can also import data through the local Minio component. For details, see [Import data from local Minio to OmniFabric](../../../Deploy/import-data-from-minio-to-mo.md)

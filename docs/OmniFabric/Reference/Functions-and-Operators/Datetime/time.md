@@ -20,10 +20,13 @@ Extracts the time part of the time or datetime expression expr and returns it as
 
 ```sql
 mysql> SELECT TIME('2003-12-31 01:02:03');
+
 +---------------------------+
 | time(2003-12-31 01:02:03) |
+
 +---------------------------+
 | 01:02:03                  |
+
 +---------------------------+
 1 row in set (0.01 sec)
 ```

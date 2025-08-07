@@ -20,18 +20,24 @@
 
 ```SQL
 mysql> select md5("hello world");
+
 +----------------------------------+
 | md5(hello world)                 |
+
 +----------------------------------+
 | 5eb63bbbe01eeed093cb22bb8f5acdc3 |
+
 +----------------------------------+
 1 row in set (0.00 sec)
 
 mysql> select md5(null);
+
 +-----------+
 | md5(null) |
+
 +-----------+
 | NULL      |
+
 +-----------+
 1 row in set (0.00 sec)
 ```

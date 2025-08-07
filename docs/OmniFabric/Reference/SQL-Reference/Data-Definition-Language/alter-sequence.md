@@ -35,14 +35,18 @@
 ## **Examples**
 
 ```sql
+
 -- Create a sequence called alter_seq_01, set the increment of the sequence to 2, set the minimum value of the sequence to 30 and the maximum value to 100, and enable the loop
 create sequence alter_seq_01 as smallint increment by 2 minvalue 30 maxvalue 100 cycle;
 
 mysql> show sequences;
+
 +--------------+-----------+
 | Names        | Data Type |
+
 +--------------+-----------+
 | alter_seq_01 | SMALLINT  |
+
 +--------------+-----------+
 1 row in set (0.00 sec)
 
@@ -50,10 +54,13 @@ mysql> alter sequence alter_seq_01 as bigint;
 Query OK, 0 rows affected (0.01 sec)
 
 mysql> show sequences;
+
 +--------------+-----------+
 | Names        | Data Type |
+
 +--------------+-----------+
 | alter_seq_01 | BIGINT    |
+
 +--------------+-----------+
 1 row in set (0.00 sec)
 
@@ -62,18 +69,24 @@ mysql> alter sequence alter_seq_01 no cycle;
 Query OK, 0 rows affected (0.01 sec)
 
 mysql> select nextval('alter_seq_01'),currval('alter_seq_01');
+
 +-----------------------+-----------------------+
 | nextval(alter_seq_01) | currval(alter_seq_01) |
+
 +-----------------------+-----------------------+
 | 30                    | 30                    |
+
 +-----------------------+-----------------------+
 1 row in set (0.01 sec)
 
 mysql> select nextval('alter_seq_01'),currval('alter_seq_01');
+
 +-----------------------+-----------------------+
 | nextval(alter_seq_01) | currval(alter_seq_01) |
+
 +-----------------------+-----------------------+
 | 32                    | 32                    |
+
 +-----------------------+-----------------------+
 1 row in set (0.00 sec)
 
@@ -82,18 +95,24 @@ mysql> alter sequence alter_seq_01 start with 40;
 Query OK, 0 rows affected (0.01 sec)
 
 mysql> select nextval('alter_seq_01'),currval('alter_seq_01');
+
 +-----------------------+-----------------------+
 | nextval(alter_seq_01) | currval(alter_seq_01) |
+
 +-----------------------+-----------------------+
 | 40                    | 40                    |
+
 +-----------------------+-----------------------+
 1 row in set (0.01 sec)
 
 mysql> select nextval('alter_seq_01'),currval('alter_seq_01');
+
 +-----------------------+-----------------------+
 | nextval(alter_seq_01) | currval(alter_seq_01) |
+
 +-----------------------+-----------------------+
 | 42                    | 42                    |
+
 +-----------------------+-----------------------+
 1 row in set (0.00 sec)
 
@@ -102,18 +121,24 @@ mysql> alter sequence alter_seq_01 increment by 3;
 Query OK, 0 rows affected (0.01 sec)
 
 mysql> select nextval('alter_seq_01'),currval('alter_seq_01');
+
 +-----------------------+-----------------------+
 | nextval(alter_seq_01) | currval(alter_seq_01) |
+
 +-----------------------+-----------------------+
 | 40                    | 40                    |
+
 +-----------------------+-----------------------+
 1 row in set (0.00 sec)
 
 mysql> select nextval('alter_seq_01'),currval('alter_seq_01');
+
 +-----------------------+-----------------------+
 | nextval(alter_seq_01) | currval(alter_seq_01) |
+
 +-----------------------+-----------------------+
 | 43                    | 43                    |
+
 +-----------------------+-----------------------+
 1 row in set (0.00 sec)
 ```

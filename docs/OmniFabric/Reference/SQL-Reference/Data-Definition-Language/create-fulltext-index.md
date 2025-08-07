@@ -11,6 +11,7 @@ OmniFabric supports full-text indexing, allowing users to perform efficient full
 By default, full-text indexing is disabled. You need to enable it using the following SQL command:
 
 ```sql
+
 -- Enable full-text indexing
 SET experimental_fulltext_index = 1; -- Default is 0 (disabled)
 ```
@@ -32,11 +33,17 @@ ON <table_name> (col1, col2, ...)
 ```
 
 - `index_name`: The name you wish to assign to the full-text index.
+
 - `table_name`: The name of the table on which to create the index.
+
 - `(col1, col2, ...)`: A list of columns to include in the full-text index.
+
 - `WITH PARSER`: Optional. Specifies the parser to use for indexing. Available options:
+
     - `default`: The default parser.
+
     - `ngram`: A parser supporting n-gram tokenization.
+
     - `json`: A parser specifically for JSON data.
 
 ### Performing Full-Text Searches
@@ -46,14 +53,19 @@ MATCH (col1, col2, ...) AGAINST (expr [search_modifier]);
 ```
 
 - `(col1, col2, ...)`: The columns to search.
+
 - `expr`: The search expression or keywords.
+
 - `search_modifier`: Optional. Specifies the search mode. Available options:
+
     - `IN NATURAL LANGUAGE MODE`: Performs a natural language search.
+
     - `IN BOOLEAN MODE`: Performs a Boolean search, allowing operators like `+`, `-`, and `*`.
 
 ## Examples
 
 ```sql
+
 -- Enable full-text indexing
 SET experimental_fulltext_index = 1;
 
@@ -81,8 +93,10 @@ mysql> CREATE FULLTEXT INDEX idx_json_data ON example_table (json_data) WITH PAR
 Query OK, 0 rows affected (0.01 sec)
 
 mysql> SHOW CREATE TABLE example_table;
+
 +---------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Table         | Create Table                                                                                                                                                                                                                                                                                                                                               |
+
 +---------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | example_table | CREATE TABLE `example_table` (
   `id` int NOT NULL,
@@ -94,33 +108,43 @@ mysql> SHOW CREATE TABLE example_table;
  FULLTEXT `idx_chinese_text`(`chinese_text`) WITH PARSER ngram,
  FULLTEXT `idx_json_data`(`json_data`) WITH PARSER json
 ) |
+
 +---------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 1 row in set (0.00 sec)
 
 -- Search for English text containing "world"
 mysql> SELECT * FROM example_table WHERE MATCH(english_text) AGAINST('world');
+
 +------+---------------+--------------+------------------------------+
 | id   | english_text  | chinese_text | json_data                    |
+
 +------+---------------+--------------+------------------------------+
 |    1 | Hello, world! | 你好世界     | {"age": 30, "name": "Alice"} |
+
 +------+---------------+--------------+------------------------------+
 1 row in set (0.02 sec)
 
 -- Search for Chinese text containing "你好"
 mysql> SELECT * FROM example_table WHERE MATCH(chinese_text) AGAINST('你好');
+
 +------+---------------+--------------+------------------------------+
 | id   | english_text  | chinese_text | json_data                    |
+
 +------+---------------+--------------+------------------------------+
 |    1 | Hello, world! | 你好世界     | {"age": 30, "name": "Alice"} |
+
 +------+---------------+--------------+------------------------------+
 1 row in set (0.01 sec)
 
 -- Search for JSON data containing "Alice"
 mysql> SELECT * FROM example_table WHERE MATCH(json_data) AGAINST('Alice');
+
 +------+---------------+--------------+------------------------------+
 | id   | english_text  | chinese_text | json_data                    |
+
 +------+---------------+--------------+------------------------------+
 |    1 | Hello, world! | 你好世界     | {"age": 30, "name": "Alice"} |
+
 +------+---------------+--------------+------------------------------+
 1 row in set (0.01 sec)
 
@@ -131,10 +155,13 @@ Query OK, 0 rows affected (0.00 sec)
 
 -- 1. Using the "+" operator: Must include "test"
 mysql> SELECT * FROM example_table WHERE MATCH(english_text) AGAINST('+test' IN BOOLEAN MODE);
+
 +------+-----------------+--------------------+----------------------------+
 | id   | english_text    | chinese_text       | json_data                  |
+
 +------+-----------------+--------------------+----------------------------+
 |    2 | This is a test. | 这是一个测试       | {"age": 25, "name": "Bob"} |
+
 +------+-----------------+--------------------+----------------------------+
 1 row in set (0.01 sec)
 
@@ -144,19 +171,25 @@ Empty set (0.00 sec)
 
 -- 3. Using the "*" operator: Matches words starting with "pow"
 mysql> SELECT * FROM example_table WHERE MATCH(english_text) AGAINST('pow*' IN BOOLEAN MODE);
+
 +------+-------------------------------+-----------------------+--------------------------------+
 | id   | english_text                  | chinese_text          | json_data                      |
+
 +------+-------------------------------+-----------------------+--------------------------------+
 |    3 | Full-text search is powerful. | 全文搜索很强大        | {"age": 35, "name": "Charlie"} |
+
 +------+-------------------------------+-----------------------+--------------------------------+
 1 row in set (0.01 sec)
 
 -- 4. Using double quotes "" to match the exact phrase "search is powerful"
 mysql> SELECT * FROM example_table WHERE MATCH(english_text) AGAINST('"search is powerful"' IN BOOLEAN MODE);
+
 +------+-------------------------------+-----------------------+--------------------------------+
 | id   | english_text                  | chinese_text          | json_data                      |
+
 +------+-------------------------------+-----------------------+--------------------------------+
 |    3 | Full-text search is powerful. | 全文搜索很强大        | {"age": 35, "name": "Charlie"} |
+
 +------+-------------------------------+-----------------------+--------------------------------+
 1 row in set (0.02 sec)
 ```

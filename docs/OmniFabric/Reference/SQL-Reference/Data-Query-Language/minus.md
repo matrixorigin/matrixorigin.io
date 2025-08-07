@@ -23,10 +23,13 @@ INSERT INTO t1 VALUES (1),(2),(3);
 INSERT INTO t2 VALUES (2),(3),(4);
 
 mysql> SELECT id FROM t1 MINUS SELECT id FROM t2;
+
 +------+
 | id   |
+
 +------+
 |    1 |
+
 +------+
 ```
 
@@ -48,19 +51,25 @@ insert into t2 values (3,4,5);
 insert into t2 values (1,2,1);
 
 mysql> select * from t1 minus select * from t2;
+
 +------+------+------+
 | a    | b    | c    |
+
 +------+------+------+
 |    1 |    1 |    2 |
 |    4 |    5 |    6 |
+
 +------+------+------+
 
 mysql> select a, b from t1 minus select b, c from t2;
+
 +------+------+
 | a    | b    |
+
 +------+------+
 |    3 |    4 |
 |    1 |    1 |
 |    1 |    2 |
+
 +------+------+
 ```

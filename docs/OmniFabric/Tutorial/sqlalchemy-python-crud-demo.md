@@ -7,6 +7,7 @@ This tutorial shows you how to build a simple Python+SQLAlchemy CRUD(Create, Rea
 A brief introduction about these softwares concerned:
 
 * SQLAlchemy: SQLAlchemy is a python library that facilitates the communication between Python programs and databases. Most of the times, this library is used as an Object Relational Mapper (ORM) tool that translates Python classes to tables on relational databases and automatically converts function calls to SQL statements.
+
 * Faker: Faker is a Python library that generates fake data. Fake data is often used for testing or filling databases with some dummy data.
 
 ### Setup your environment
@@ -74,7 +75,6 @@ session = Session()
 
 Base = declarative_base()
 
-
 class Customer(Base):
     __tablename__ = "Customer"
     id = Column(Integer, primary_key=True,autoincrement=True)
@@ -90,7 +90,6 @@ class Customer(Base):
 
     def __repr__(self):
         return "cname:"+self.cname +" caddress:"+self.caddress
-
 
 # Generate 10 Customer records
 Customers = [Customer(name= faker.name(),address = faker.address()) for i in range(10)]
@@ -115,15 +114,20 @@ Then we verify the table creation in MySQL client:
 
 ```
 mysql> show tables;
+
 +----------------+
 | tables_in_test |
+
 +----------------+
 | Customer       |
+
 +----------------+
 1 row in set (0.04 sec)
 mysql> select * from `Customer`;
+
 +------+------------------+-----------------------------------------------------+
 | id   | cname            | caddress                                            |
+
 +------+------------------+-----------------------------------------------------+
 |    1 | Wendy Luna       | 002 Brian Plaza
 Andrewhaven, SC 88456               |
@@ -145,6 +149,7 @@ Thompsonshire, NM 88077            |
 North Stefaniechester, WV 08221  |
 |   10 | Tristan Pierce   | 593 Blankenship Rapids
 New Jameshaven, SD 89585     |
+
 +------+------------------+-----------------------------------------------------+
 10 rows in set (0.03 sec)
 ```
@@ -195,7 +200,6 @@ class Customer(Base):
     def __repr__(self):
         return "cname:"+self.cname +" caddress:"+self.caddress
 
-
 # query all data
 customers = session.query(Customer).all()
 
@@ -215,42 +219,52 @@ Execute this file in a terminal with such command and we will see the query resu
 > python3 sqlalchemy_read.py
 cname:Wendy Luna caddress:002 Brian Plaza
 Andrewhaven, SC 88456
+
 --------------------------
 
 cname:Meagan Rodriguez caddress:USCGC Olson
 FPO AP 21249
+
 --------------------------
 
 cname:Angela Ramos caddress:029 Todd Curve Apt. 352
 Mooreville, FM 15950
+
 --------------------------
 
 cname:Lisa Bruce caddress:68103 Mackenzie Mountain
 North Andrew, UT 29853
+
 --------------------------
 
 cname:Julie Moore caddress:Unit 1117 Box 1029
 DPO AP 87468
+
 --------------------------
 
 cname:David Massey caddress:207 Wayne Groves Apt. 733
 Vanessashire, NE 34549
+
 --------------------------
 
 cname:David Mccann caddress:97274 Sanders Tunnel Apt. 480
 Anthonyberg, DC 06558
+
 --------------------------
 
 cname:Morgan Price caddress:57463 Lisa Drive
 Thompsonshire, NM 88077
+
 --------------------------
 
 cname:Samuel Griffin caddress:186 Patel Crossing
 North Stefaniechester, WV 08221
+
 --------------------------
 
 cname:Tristan Pierce caddress:593 Blankenship Rapids
 New Jameshaven, SD 89585
+
 --------------------------
 
 cname:David Mccann caddress:97274 Sanders Tunnel Apt. 480
@@ -292,14 +306,12 @@ class Customer(Base):
     def __repr__(self):
         return "cname:"+self.cname +" caddress:"+self.caddress
 
-
 customer = session.query(Customer).first()
 print(customer)
 print("\n---------------------\n")
 
 # Rename customer
 customer.cname = "Coby White"
-
 
 session.commit()
 
@@ -325,8 +337,10 @@ Then we verify the record being updated in MySQL client:
 
 ```
 mysql> select * from `Customer`;
+
 +------+------------------+-----------------------------------------------------+
 | id   | cname            | caddress                                            |
+
 +------+------------------+-----------------------------------------------------+
 |    1 | Coby White       | 002 Brian Plaza
 Andrewhaven, SC 88456               |
@@ -348,6 +362,7 @@ Thompsonshire, NM 88077            |
 North Stefaniechester, WV 08221  |
 |   10 | Tristan Pierce   | 593 Blankenship Rapids
 New Jameshaven, SD 89585     |
+
 +------+------------------+-----------------------------------------------------+
 10 rows in set (0.02 sec)
 ```
@@ -385,7 +400,6 @@ class Customer(Base):
     def __repr__(self):
         return "cname:"+self.cname +" caddress:"+self.caddress
 
-
 # delete the first record
 customer = session.query(Customer).first()
 
@@ -405,38 +419,47 @@ Execute this file in a terminal with such command and we will see the query resu
 > python3 sqlalchemy_delete.py
 cname:Meagan Rodriguez caddress:USCGC Olson
 FPO AP 21249
+
 --------------------------
 
 cname:Angela Ramos caddress:029 Todd Curve Apt. 352
 Mooreville, FM 15950
+
 --------------------------
 
 cname:Lisa Bruce caddress:68103 Mackenzie Mountain
 North Andrew, UT 29853
+
 --------------------------
 
 cname:Julie Moore caddress:Unit 1117 Box 1029
 DPO AP 87468
+
 --------------------------
 
 cname:David Massey caddress:207 Wayne Groves Apt. 733
 Vanessashire, NE 34549
+
 --------------------------
 
 cname:David Mccann caddress:97274 Sanders Tunnel Apt. 480
 Anthonyberg, DC 06558
+
 --------------------------
 
 cname:Morgan Price caddress:57463 Lisa Drive
 Thompsonshire, NM 88077
+
 --------------------------
 
 cname:Samuel Griffin caddress:186 Patel Crossing
 North Stefaniechester, WV 08221
+
 --------------------------
 
 cname:Tristan Pierce caddress:593 Blankenship Rapids
 New Jameshaven, SD 89585
+
 --------------------------
 ```
 
@@ -444,8 +467,10 @@ Then we verify the record being deleted in MySQL client:
 
 ```
 mysql> select * from `Customer`;
+
 +------+------------------+-----------------------------------------------------+
 | id   | cname            | caddress                                            |
+
 +------+------------------+-----------------------------------------------------+
 |    2 | Meagan Rodriguez | USCGC Olson
 FPO AP 21249                            |
@@ -465,6 +490,7 @@ Thompsonshire, NM 88077            |
 North Stefaniechester, WV 08221  |
 |   10 | Tristan Pierce   | 593 Blankenship Rapids
 New Jameshaven, SD 89585     |
+
 +------+------------------+-----------------------------------------------------+
 9 rows in set (0.04 sec)
 ```

@@ -188,11 +188,15 @@ We will walk you through the whole process of loading data with OmniFabric 2.1.0
     select count(*) from lineorder_flat;
     /*
         expected results:
+
      */
+
     +----------+
     | count(*) |
+
     +----------+
     | 10272594 |
+
     +----------+
     ```
 
@@ -201,4 +205,5 @@ We will walk you through the whole process of loading data with OmniFabric 2.1.0
 The loaded csv file format supports JSON. However, you need to ensure that the JSON does not contain field termination symbols. If the JSON does contain field termination symbols, wrap the JSON with double quotation marks. For example:
 
 - Right csv file example: `"{"a":1, "b":2}", 2`
+
 - Wrong csv file example: `{"a":1, "b":2}, 2`

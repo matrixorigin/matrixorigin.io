@@ -41,28 +41,37 @@ create table t1(a int,b text,c text);
 insert into t1 values(1,"a","bc"),(2,"ab","c"),(3,"aa","bb"),(3,"aa","bb");
 
 mysql> select group_concat(distinct a,b,c separator '|') from t1;
+
 +-----------------------------------+
 | group_concat(distinct a, b, c, |) |
+
 +-----------------------------------+
 | 1abc|2abc|3aabb                   |
+
 +-----------------------------------+
 1 row in set (0.01 sec)
 
 mysql> select group_concat(distinct b,c separator '|') from t1 group by a;
+
 +--------------------------------+
 | group_concat(distinct b, c, |) |
+
 +--------------------------------+
 | abc                            |
 | abc                            |
 | aabb                           |
+
 +--------------------------------+
 3 rows in set (0.01 sec)
 
 mysql> select group_concat(distinct b,c separator '|') from t1;
+
 +--------------------------------+
 | group_concat(distinct b, c, |) |
+
 +--------------------------------+
 | abc|abc|aabb                   |
+
 +--------------------------------+
 1 row in set (0.01 sec)
 ```

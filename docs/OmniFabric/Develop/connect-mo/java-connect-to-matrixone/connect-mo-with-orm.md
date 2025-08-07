@@ -25,9 +25,13 @@ MyBatis applications are built on top of the Spring Boot. For that, you need to 
 You need to store some of the given parameters inside the `application.properties`. Five properties usually need to be modified:
 
 - `spring.datasource.driver-class-name` : Driver name for MySQL connector.
+
 - `spring.datasource.url`: JDBC connection URL with its parameters.
+
 - `spring.datasource.username`: Database username.
+
 - `spring.datasource.password`: Database password.
+
 - `mybatis.mapper-locations` : Locations of Mapper XML config file.
 
 OmniFabric's recommended configuration is as below:
@@ -65,9 +69,13 @@ Spring Data JPA applications are built on top of the Spring Boot. For that, you 
 You need to store some of the given parameters inside the `application.properties`. Five properties usually need to be modified:
 
 - `spring.datasource.driver-class-name` : Driver name for MySQL connector.
+
 - `spring.datasource.url`: JDBC connection URL with its parameters.
+
 - `spring.datasource.username`: Database username.
+
 - `spring.datasource.password`: Database password.
+
 - `spring.jpa.properties.hibernate.dialect` : The SQL dialect makes Hibernate generate better SQL for the chosen database. OmniFabric only supports `org.hibernate.dialect.MySQLDialect`.
 
 * `spring.jpa.hibernate.ddl-auto`:This property takes an enum that controls the schema generation in a more controlled way. The possible options and effects are in the following table. OmniFabric only supports `none` and `validate`.

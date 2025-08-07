@@ -51,17 +51,13 @@ Prerequisite to understand Java Database Connectivity with OmniFabric, make sure
     import java.sql.DriverManager;
     import java.sql.SQLException;
 
-
-
     public class Main {
-
 
         private static String jdbcURL = "jdbc:mysql://127.0.0.1:6001/test";
         private static String jdbcUsername = "root";
         private static String jdbcPassword = "111";
 
         public static void main(String[] args) {
-
 
             try {
                 Connection connection = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);

@@ -14,10 +14,13 @@ If expr is less than or equal to min and expr is greater than or equal to max, N
 
 ```sql
 mysql> SELECT 2 NOT BETWEEN 1 AND 3, 2 NOT BETWEEN 3 and 1;
+
 +-----------------------+-----------------------+
 | 2 not between 1 and 3 | 2 not between 3 and 1 |
+
 +-----------------------+-----------------------+
 | false                 | true                  |
+
 +-----------------------+-----------------------+
 1 row in set (0.00 sec)
 ```
@@ -29,16 +32,22 @@ insert into t values(8894754949779693579,2);
 insert into t values(17790886498483827171,3);
 
 mysql> select count(*) from t where id>=8894754949779693574 and id =17790886498483827171 order by 1 asc;
+
 +----------+
 | count(*) |
+
 +----------+
 |        0 |
+
 +----------+
 mysql> select count(*) from t where id not between 8894754949779693574 and 17790886498483827171;
+
 +----------+
 | count(*) |
+
 +----------+
 |        3 |
+
 +----------+
 1 row in set (0.00 sec)
 ```

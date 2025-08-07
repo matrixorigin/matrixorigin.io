@@ -7,19 +7,20 @@
 ## **Grammar structure**
 
 ```sql
-CREATE DYNAMIC TABLE [IF NOT EXISTS] table_name 
+CREATE DYNAMIC TABLE [IF NOT EXISTS] table_name
 AS SELECT ... from stream_name ;
 ```
 
 ## Interpretation of grammar
 
 - table_name: Dynamic table name. The dynamic table name must be different from any existing dynamic table name in the current database.
+
 - stream_name: The name of the SOURCE that has been created.
 
 ## **Examples**
 
 ```sql
-create dynamic table dt_test as select * from stream_test; Query OK, 0 rows affected (0.01 sec) 
+create dynamic table dt_test as select * from stream_test; Query OK, 0 rows affected (0.01 sec)
 ```
 
 ## Limitations

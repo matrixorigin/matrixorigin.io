@@ -7,7 +7,7 @@
 ## **Grammar structure**
 
 ```sql
-CREATE [OR REPLACE] SOURCE [IF NOT EXISTS] stream_name 
+CREATE [OR REPLACE] SOURCE [IF NOT EXISTS] stream_name
 ( { column_name data_type [KEY | HEADERS | HEADER(key)] } [, ...] )
 WITH ( property_name = expression [, ...]);
 ```
@@ -15,8 +15,11 @@ WITH ( property_name = expression [, ...]);
 ## Interpretation of grammar
 
 - stream_name: SOURCE Name. The SOURCE name must be different from any existing SOURCE name in the current database.
+
 - column_name: Streaming data maps to column names in the SOURCE table.
+
 - data_type: column_name corresponds to the type of field in the data table.
+
 - property_name = expression: For specific configuration item names for streaming data mappings and corresponding values, the configurable items are as follows:
 
 | property_name | expression Description |
@@ -39,7 +42,7 @@ create source stream_test(c1 char(25),c2 varchar(500),c3 text,c4 tinytext,c5 med
     "topic"= 'test',
     "partition" = '0',
     "value"= 'json',
-    "bootstrap.servers"='127.0.0.1:9092'   
+    "bootstrap.servers"='127.0.0.1:9092'
 )
 Query OK, 0 rows affected (0.01 sec)
 ```

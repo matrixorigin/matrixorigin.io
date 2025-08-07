@@ -22,18 +22,22 @@ Reference: <https://dev.mysql.com/doc/refman/8.0/en/data-types.html>
 - TINYINT and TINYINT UNSIGNED
 
 ```sql
+
 -- Create a table named "inttable" with 2 attributes of a "tinyint", a "tinyint unsigned",
 create table inttable ( a tinyint not null default 1, tinyint8 tinyint unsigned primary key);
 insert into inttable (tinyint8) values (0),(255), (0xFE), (253);
 
 mysql> select * from inttable order by 2 asc;
+
 +------+----------+
 | a    | tinyint8 |
+
 +------+----------+
 |    1 |        0 |
 |    1 |      253 |
 |    1 |      254 |
 |    1 |      255 |
+
 +------+----------+
 4 rows in set (0.03 sec)
 ```
@@ -41,20 +45,24 @@ mysql> select * from inttable order by 2 asc;
 - SMALLINT and SMALLINT UNSIGNED
 
 ```sql
+
 -- Create a table named "inttable" with 2 attributes of a "smallint", a "smallint unsigned",
 drop table inttable;
 create table inttable ( a smallint not null default 1, smallint16 smallint unsigned);
 insert into inttable (smallint16) values (0),(65535), (0xFFFE), (65534), (65533);
 
 mysql> select * from inttable;
+
 +------+------------+
 | a    | smallint16 |
+
 +------+------------+
 |    1 |          0 |
 |    1 |      65535 |
 |    1 |      65534 |
 |    1 |      65534 |
 |    1 |      65533 |
+
 +------+------------+
 5 rows in set (0.01 sec)
 ```
@@ -62,20 +70,24 @@ mysql> select * from inttable;
 - INT and INT UNSIGNED
 
 ```sql
+
 -- Create a table named "inttable" with 2 attributes of a "int", a "int unsigned",
 drop table inttable;
 create table inttable ( a int not null default 1, int32 int unsigned primary key);
 insert into inttable (int32) values (0),(4294967295), (0xFFFFFFFE), (4294967293), (4294967291);
 
 mysql> select * from inttable order by a desc, 2 asc;
+
 +------+------------+
 | a    | int32      |
+
 +------+------------+
 |    1 |          0 |
 |    1 | 4294967291 |
 |    1 | 4294967293 |
 |    1 | 4294967294 |
 |    1 | 4294967295 |
+
 +------+------------+
 5 rows in set (0.01 sec)
 ```
@@ -83,17 +95,21 @@ mysql> select * from inttable order by a desc, 2 asc;
 - BIGINT and BIGINT UNSIGNED
 
 ```sql
+
 -- Create a table named "inttable" with 2 attributes of a "bigint", a "bigint unsigned",
 drop table inttable;
 create table inttable ( a bigint, big bigint primary key );
 insert into inttable values (122345515, 0xFFFFFFFFFFFFE), (1234567, 0xFFFFFFFFFFFF0);
 
 mysql> select * from inttable;
+
 +-----------+------------------+
 | a         | big              |
+
 +-----------+------------------+
 | 122345515 | 4503599627370494 |
 |   1234567 | 4503599627370480 |
+
 +-----------+------------------+
 2 rows in set (0.01 sec)
 ```
@@ -108,17 +124,21 @@ mysql> select * from inttable;
 ### **Examples**
 
 ```sql
+
 -- Create a table named "floatt1" with precision, a trailing zero is added when the number of bits falls short
 create table floatt1(a float(5, 2));
 insert into floatt1 values(1), (2.5), (3.56), (4.678);
 mysql> select * from floatt1;
+
 +------+
 | a    |
+
 +------+
 | 1.00 |
 | 2.50 |
 | 3.56 |
 | 4.68 |
+
 +------+
 4 rows in set (0.00 sec)
 
@@ -127,20 +147,26 @@ create table floattable ( a float not null default 1, big float(20,5) primary ke
 insert into floattable (big) values (-1),(12345678.901234567),(92233720368547.75807);
 
 mysql> select * from floattable order by a desc, big asc;
+
 +------+----------------------+
 | a    | big                  |
+
 +------+----------------------+
 |    1 |             -1.00000 |
 |    1 |       12345679.00000 |
 |    1 | 92233718038528.00000 |
+
 +------+----------------------+
 3 rows in set (0.01 sec)
 
 mysql> select min(big),max(big),max(big)-1 from floattable;
+
 +----------+----------------------+----------------+
 | min(big) | max(big)             | max(big) - 1   |
+
 +----------+----------------------+----------------+
 | -1.00000 | 92233718038528.00000 | 92233718038527 |
+
 +----------+----------------------+----------------+
 1 row in set (0.05 sec)
 ```
@@ -156,10 +182,13 @@ mysql> select min(big),max(big),max(big)-1 from floattable;
 ```sql
 create table t1 (a bit);
 mysql> desc  t1;--bit(M)  M DEFAULT 1
+
 +-------+--------+------+------+---------+-------+---------+
 | Field | Type   | Null | Key  | Default | Extra | Comment |
+
 +-------+--------+------+------+---------+-------+---------+
 | a     | BIT(1) | YES  |      | NULL    |       |         |
+
 +-------+--------+------+------+---------+-------+---------+
 1 row in set (0.01 sec)
 
@@ -169,11 +198,14 @@ create table t2 (a bit(8));
 insert into t2 values (0b1);
 insert into t2 values (b'1');
 mysql> select * from t2;
+
 +------------+
 | a          |
+
 +------------+
 | 0x01       |
 | 0x01       |
+
 +------------+
 2 rows in set (0.00 sec)
 
@@ -183,11 +215,14 @@ truncate table t2;
 insert into t2 values (0x10);
 insert into t2 values (x'10');
 mysql> select * from t2;
+
 +------------+
 | a          |
+
 +------------+
 | 0x10       |
 | 0x10       |
+
 +------------+
 2 rows in set (0.00 sec)
 
@@ -199,10 +234,13 @@ mysql> insert into t2 values (256);--The length of the binary representation of 
 ERROR 20301 (HY000): invalid input: data too long, type width = 8, val = 100000000
 
 mysql> select * from t2;
+
 +------------+
 | a          |
+
 +------------+
 | 0xFF       |
+
 +------------+
 1 row in set (0.00 sec)
 
@@ -211,10 +249,13 @@ truncate table t2;
 --Floating-point data will first be rounded to int type and then assigned according to the int type.
 insert into t2 values (2.1);--a = b'00000010'
 mysql> select * from t2;
+
 +------------+
 | a          |
+
 +------------+
 | 0x02       |
+
 +------------+
 1 row in set (0.00 sec)
 
@@ -226,10 +267,13 @@ mysql> insert into t2 values ('啊');--utf8('啊') = 0xe5958a;
 ERROR 20301 (HY000): invalid input: data too long, type width = 8, val = 111001011001010110001010
 
 mysql> select * from t2;
+
 +------------+
 | a          |
+
 +------------+
 | 0x61       |
+
 +------------+
 1 row in set (0.00 sec)
 ```
@@ -251,6 +295,7 @@ mysql> select * from t2;
 - CHAR and VARCHAR
 
 ```sql
+
 -- Create a table named "names" with 2 attributes of a "varchar" and a "char"
 create table names(name varchar(255),age char(255));
 insert into names(name, age) values('Abby', '24');
@@ -259,13 +304,16 @@ insert into names(name, age) values('Carol', "23");
 insert into names(name, age) values("Dora", "29");
 
 mysql> select name,age from names;
+
 +-------+------+
 | name  | age  |
+
 +-------+------+
 | Abby  | 24   |
 | Bob   | 25   |
 | Carol | 23   |
 | Dora  | 29   |
+
 +-------+------+
 4 rows in set (0.00 sec)
 ```
@@ -273,6 +321,7 @@ mysql> select name,age from names;
 - BINARY and VARBINARY
 
 ```sql
+
 -- Create a table named "names" with 2 attributes of a "varchar" and a "char"
 create table names(name varbinary(255),age binary(255));
 insert into names(name, age) values('Abby', '24');
@@ -281,13 +330,16 @@ insert into names(name, age) values('Carol', "23");
 insert into names(name, age) values("Dora", "29");
 
 mysql> select name,age from names;
+
 +--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | name         | age                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+
 +--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | 0x41626279   | 0x323400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 |
 | 0x426F62     | 0x323500000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 |
 | 0x4361726F6C | 0x323300000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 |
 | 0x446F7261   | 0x323900000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 |
+
 +--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 4 rows in set (0.01 sec)
 ```
@@ -295,6 +347,7 @@ mysql> select name,age from names;
 - TEXT
 
 ```sql
+
 -- Create a table named "texttest" with 1 attribute of a "text"
 create table texttest (a text);
 insert into texttest values('abcdef');
@@ -306,10 +359,13 @@ insert into texttest values('abcd_f');
 insert into texttest values('abcde_');
 
 mysql> select * from texttest where a like 'ab\_def' order by 1 asc;
+
 +--------+
 | a      |
+
 +--------+
 | ab_def |
+
 +--------+
 1 row in set (0.01 sec)
 ```
@@ -317,6 +373,7 @@ mysql> select * from texttest where a like 'ab\_def' order by 1 asc;
 - BLOB
 
 ```sql
+
 -- Create a table named "blobtest" with 1 attribute of a "blob"
 create table blobtest (a blob);
 insert into blobtest values('abcdef');
@@ -328,10 +385,13 @@ insert into blobtest values('abcd_f');
 insert into blobtest values('abcde_');
 
 mysql> select * from blobtest where a like 'ab\_def' order by 1 asc;
+
 +----------------+
 | a              |
+
 +----------------+
 | 0x61625F646566 |
+
 +----------------+
 1 row in set (0.01 sec)
 ```
@@ -339,14 +399,18 @@ mysql> select * from blobtest where a like 'ab\_def' order by 1 asc;
 - ENUM
 
 ```sql
+
 -- Create a table named "enumtest" with 1 attribute of a "enum"
 CREATE TABLE enumtest (color ENUM('red', 'green', 'blue'));
 INSERT INTO enumtest (color) VALUES ('red');
 mysql> SELECT * FROM enumtest WHERE color = 'green';
+
 +-------+
 | color |
+
 +-------+
 | green |
+
 +-------+
 1 row in set (0.01 sec)
 ```
@@ -361,16 +425,20 @@ mysql> SELECT * FROM enumtest WHERE color = 'green';
 ### **Examples**
 
 ```sql
+
 -- Create a table named "jsontest" with 1 attribute of a "json"
 create table jsontest (a json,b int);
 insert into jsontest values ('{"t1":"a"}',1),('{"t1":"b"}',2);
 
 mysql> select * from jsontest;
+
 +-------------+------+
 | a           | b    |
+
 +-------------+------+
 | {"t1": "a"} |    1 |
 | {"t1": "b"} |    2 |
+
 +-------------+------+
 2 rows in set (0.01 sec)
 ```
@@ -397,18 +465,22 @@ The Time and Date section type supports the following hint values when inserting
 - TIME
 
 ```sql
+
 -- Create a table named "timetest" with 1 attributes of a "time"
 create table time_02(t1 time);
 insert into time_02 values(200),(time'23:29:30'),({t'12:11:12'}),('');
 
 mysql> select * from time_02;
+
 +----------+
 | t1       |
+
 +----------+
 | 00:02:00 |
 | 23:29:30 |
 | 12:11:12 |
 | NULL     |
+
 +----------+
 4 rows in set (0.01 sec)
 ```
@@ -416,17 +488,21 @@ mysql> select * from time_02;
 - DATE
 
 ```sql
+
 -- Create a table named "datetest" with 1 attributes of a "date"
 create table datetest (a date not null, primary key(a));
 insert into datetest values ({d'2022-01-01'}), ('20220102'),(date'2022-01-03'),({d now()});
 mysql> select * from datetest;
+
 +------------+
 | a          |
+
 +------------+
 | 2022-01-01 |
 | 2022-01-02 |
 | 2022-01-03 |
 | 2024-03-19 |
+
 +------------+
 4 rows in set (0.00 sec)
 ```
@@ -434,18 +510,22 @@ mysql> select * from datetest;
 - DATETIME
 
 ```sql
+
 -- Create a table named "datetimetest" with 1 attributes of a "datetime"
 create table datetimetest (a datetime(0) not null, primary key(a));
 insert into datetimetest values ('20200101000000'), ('2022-01-02'), ('2022-01-02 00:00:01'), ('2022-01-02 00:00:01.512345');
 
 mysql> select * from datetimetest order by a asc;
+
 +---------------------+
 | a                   |
+
 +---------------------+
 | 2020-01-01 00:00:00 |
 | 2022-01-02 00:00:00 |
 | 2022-01-02 00:00:01 |
 | 2022-01-02 00:00:02 |
+
 +---------------------+
 4 rows in set (0.02 sec)
 ```
@@ -453,18 +533,22 @@ mysql> select * from datetimetest order by a asc;
 - TIMESTAMP
 
 ```sql
+
 -- Create a table named "timestamptest" with 1 attribute of a "timestamp"
 create table timestamptest (a timestamp(0) not null, primary key(a));
 insert into timestamptest values ('20200101000000'), (timestamp'2022-01-02 11:30:40'), ({ts'2022-01-02 00:00:01'}), ({ts current_timestamp});
 
 mysql> select * from timestamptest;
+
 +---------------------+
 | a                   |
+
 +---------------------+
 | 2020-01-01 00:00:00 |
 | 2022-01-02 11:30:40 |
 | 2022-01-02 00:00:01 |
 | 2024-03-19 17:22:08 |
+
 +---------------------+
 4 rows in set (0.00 sec)
 ```
@@ -479,19 +563,23 @@ mysql> select * from timestamptest;
 ### **Examples**
 
 ```sql
+
 -- Create a table named "booltest" with 2 attribute of a "boolean" and b "bool"
 create table booltest (a boolean,b bool);
 insert into booltest values (0,1),(true,false),(true,1),(0,false),(NULL,NULL);
 
 mysql> select * from booltest;
+
 +-------+-------+
 | a     | b     |
+
 +-------+-------+
 | false | true  |
 | true  | false |
 | true  | true  |
 | false | false |
 | NULL  | NULL  |
+
 +-------+-------+
 5 rows in set (0.00 sec)
 ```
@@ -506,15 +594,19 @@ mysql> select * from booltest;
 ### **Examples**
 
 ```sql
+
 -- Create a table named "decimalTest" with 2 attribute of a "decimal" and b "decimal"
 create table decimalTest(a decimal(6,3), b decimal(24,18));
 insert into decimalTest values(123.4567, 123456.1234567891411241355);
 
 mysql> select * from decimalTest;
+
 +---------+---------------------------+
 | a       | b                         |
+
 +---------+---------------------------+
 | 123.457 | 123456.123456789141124136 |
+
 +---------+---------------------------+
 1 row in set (0.01 sec)
 ```
@@ -528,6 +620,7 @@ mysql> select * from decimalTest;
 ### **Example**
 
 ```sql
+
 -- Create a new table named 't1' and set the 'a' column as UUID type, and set the 'a' column as the primary key
 create table t1(a uuid primary key);
 
@@ -536,19 +629,25 @@ insert into t1 values ​​(uuid());
 
 -- Query the length of the value of the 'a' column in the 't1' table converted to a string
 mysql> select length(cast(a as varchar)) from t1;
+
 +----------------------------+
 |length(cast(a as varchar))|
+
 +----------------------------+
 | 36 |
+
 +----------------------------+
 1 row in set (0.01 sec)
 
 -- Query all records in the t1 table, whose value is a UUID
 mysql> select * from t1;
+
 +----------------------------------------+
 | a |
+
 +----------------------------------------+
 | 948d8e4e-1b00-11ee-b656-5ad2460dea50 |
+
 +----------------------------------------+
 1 row in set (0.00 sec)
 ```
@@ -567,10 +666,13 @@ create table t1(n1 vecf32(3), n2 vecf64(2));
 insert into t1 values("[1,2,3]",'[4,5]');
 
 mysql> select * from t1;
+
 +-----------+--------+
 | n1        | n2     |
+
 +-----------+--------+
 | [1, 2, 3] | [4, 5] |
+
 +-----------+--------+
 1 row in set (0.00 sec)
 ```
@@ -597,8 +699,10 @@ insert into test01 values (7, 'stage://stage01/t1.csv?offset=4');
 insert into test01 values (8, 'stage://stage01/t1.csv?offset=4&size=2');
 
 mysql> select * from test01;
+
 +------+-------------------------------------------------+
 | col1 | col2                                            |
+
 +------+-------------------------------------------------+
 |    1 | file:///Users/admin/case/t1.csv                 |
 |    2 | file:///Users/admin/case/t1.csv?size=2          |
@@ -608,6 +712,7 @@ mysql> select * from test01;
 |    6 | stage://stage01/t1.csv?size=2                   |
 |    7 | stage://stage01/t1.csv?offset=4                 |
 |    8 | stage://stage01/t1.csv?offset=4&size=2          |
+
 +------+-------------------------------------------------+
 8 rows in set (0.01 sec)
 ```

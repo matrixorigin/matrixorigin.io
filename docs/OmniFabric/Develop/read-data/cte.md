@@ -7,7 +7,9 @@ Like derived tables, CTEs are not stored as objects and persist only for the dur
 **Use Cases**:
 
 - CTEs can reuse the same subquery in multiple places, avoiding redundant logic.
+
 - They can simplify recursive queries, such as querying tree-structured data.
+
 - Complex queries can be broken down into smaller parts using CTEs, making the query logic clearer and more understandable.
 
 **Common Table Expressions are divided into two types: non-recursive and recursive**:
@@ -74,8 +76,10 @@ WITH RECURSIVE EmployeeHierarchy AS (
     INNER JOIN EmployeeHierarchy eh ON e.MANAGER_ID = eh.EMPLOYEE_ID
 )
 SELECT * FROM EmployeeHierarchy;
+
 +-------------+--------+------------+-------+
 | employee_id | name   | manager_id | level |
+
 +-------------+--------+------------+-------+
 |           1 | Alice  |       NULL |     0 |
 |           2 | Bob    |          1 |     1 |
@@ -86,6 +90,7 @@ SELECT * FROM EmployeeHierarchy;
 |           7 | Grace  |          3 |     2 |
 |           8 | Hannah |          4 |     3 |
 |           9 | Ian    |          4 |     3 |
+
 +-------------+--------+------------+-------+
 9 rows in set (0.01 sec)
 ```
@@ -98,8 +103,10 @@ WITH EmployeeInfo AS (
     FROM EMPLOYEES
 )
 SELECT * FROM EmployeeInfo;
+
 +-------------+--------+------------+
 | employee_id | name   | manager_id |
+
 +-------------+--------+------------+
 |           1 | Alice  |       NULL |
 |           2 | Bob    |          1 |
@@ -110,6 +117,7 @@ SELECT * FROM EmployeeInfo;
 |           7 | Grace  |          3 |
 |           8 | Hannah |          4 |
 |           9 | Ian    |          4 |
+
 +-------------+--------+------------+
 9 rows in set (0.00 sec)
 ```

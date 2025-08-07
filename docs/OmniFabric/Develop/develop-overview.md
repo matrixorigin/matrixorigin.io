@@ -19,8 +19,13 @@ If you choose to use optimistic transactions, please add error handling and retr
 ## Reference
 
 * [Connect to OmniFabric](connect-mo/database-client-tools.md)
+
 * [Schema Design](schema-design/overview.md)
+
 * [Import Data](import-data/insert-data.md)
+
 * [Read Data](read-data/query-data-single-table.md)
+
 * [Transactions](Transactions/common-transaction-overview.md)
+
 * [Application Developing Tutorials](../Tutorial/develop-java-crud-demo.md)

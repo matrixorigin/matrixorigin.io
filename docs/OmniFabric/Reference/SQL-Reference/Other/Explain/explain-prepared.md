@@ -37,11 +37,14 @@ insert into t1 values(1);
 prepare st_t1 from 'select * from t1';
 
 mysql> explain force execute st_t1;
+
 +----------------------------+
 | QUERY PLAN                 |
+
 +----------------------------+
 | Project                    |
 |   ->  Table Scan on db1.t1 |
+
 +----------------------------+
 2 rows in set (0.01 sec)
 ```
@@ -55,18 +58,23 @@ prepare st from 'select * from t2 where col1 = ?';
 set @A = 1;
 
 mysql> explain force execute st using @A;
+
 +---------------------------------------------------+
 | QUERY PLAN                                        |
+
 +---------------------------------------------------+
 | Project                                           |
 |   ->  Table Scan on db1.t2                        |
 |         Filter Cond: (t2.col1 = cast('1' AS INT)) |
+
 +---------------------------------------------------+
 3 rows in set (0.00 sec)
 
 mysql> explain verbose force execute st using @A;
+
 +----------------------------------------------------------------------------------------+
 | QUERY PLAN                                                                             |
+
 +----------------------------------------------------------------------------------------+
 | Project (cost=1000.00 outcnt=1000.00 selectivity=1.0000 blockNum=1)                    |
 |   Output: t2.col1, t2.col2                                                             |
@@ -74,24 +82,30 @@ mysql> explain verbose force execute st using @A;
 |         Output: t2.col1, t2.col2                                                       |
 |         Table: 't2' (0:'col1', 1:'col2')                                               |
 |         Filter Cond: (t2.col1 = cast('1' AS INT))                                      |
+
 +----------------------------------------------------------------------------------------+
 6 rows in set (0.00 sec)
 
 mysql> explain analyze force execute st using @A;
+
 +-----------------------------------------------------------------------------------------------------------------------------------------------+
 | QUERY PLAN                                                                                                                                    |
+
 +-----------------------------------------------------------------------------------------------------------------------------------------------+
 | Project                                                                                                                                       |
 |   Analyze: timeConsumed=0ms waitTime=0ms inputRows=1 outputRows=1 InputSize=20bytes OutputSize=20bytes MemorySize=0bytes                      |
 |   ->  Table Scan on db1.t2                                                                                                                    |
 |         Analyze: timeConsumed=0ms waitTime=0ms inputBlocks=1 inputRows=1 outputRows=1 InputSize=20bytes OutputSize=20bytes MemorySize=21bytes |
 |         Filter Cond: (t2.col1 = 1)                                                                                                            |
+
 +-----------------------------------------------------------------------------------------------------------------------------------------------+
 5 rows in set (0.00 sec)
 
 mysql> explain analyze verbose force execute st using @A;
+
 +-----------------------------------------------------------------------------------------------------------------------------------------------+
 | QUERY PLAN                                                                                                                                    |
+
 +-----------------------------------------------------------------------------------------------------------------------------------------------+
 | Project (cost=1000.00 outcnt=1000.00 selectivity=1.0000 blockNum=1)                                                                           |
 |   Output: t2.col1, t2.col2                                                                                                                    |
@@ -101,6 +115,7 @@ mysql> explain analyze verbose force execute st using @A;
 |         Table: 't2' (0:'col1', 1:'col2')                                                                                                      |
 |         Analyze: timeConsumed=0ms waitTime=0ms inputBlocks=1 inputRows=1 outputRows=1 InputSize=20bytes OutputSize=20bytes MemorySize=21bytes |
 |         Filter Cond: (t2.col1 = 1)                                                                                                            |
+
 +-----------------------------------------------------------------------------------------------------------------------------------------------+
 8 rows in set (0.00 sec)
 ```

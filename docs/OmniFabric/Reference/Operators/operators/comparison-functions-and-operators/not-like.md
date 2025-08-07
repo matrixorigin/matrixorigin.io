@@ -7,6 +7,7 @@ The `NOT LIKE` operator is used in a WHERE clause to search for a specified patt
 There are two wildcards often used in conjunction with the `NOT LIKE` operator:
 
 * The percent sign (%) represents zero, one, or multiple characters.
+
 * The underscore sign (_) represents one, single character.
 
 ## **Syntax**
@@ -30,16 +31,22 @@ insert into t1 values('abcd_f');
 insert into t1 values('abcde_');
 
 mysql> select * from t1 where a not like 'a%';
+
 +--------+
 | a      |
+
 +--------+
 | _bcdef |
+
 +--------+
 mysql> select * from t1 where a not like "%d_\_";
+
 +--------+
 | a      |
+
 +--------+
 | abc_ef |
+
 +--------+
 1 row in set (0.01 sec)
 ```

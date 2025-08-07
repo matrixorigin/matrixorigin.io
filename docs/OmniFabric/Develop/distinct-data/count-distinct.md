@@ -11,6 +11,7 @@ Completed [standalone deployment of](../../Get-Started/install-standalone-matrix
 ## Examples
 
 ```sql
+
 --Create an orders table with two fields, customer_id and product_id, which represent the unique identifiers of the customer and the product, respectively.
 CREATE TABLE orders (
     order_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -35,19 +36,25 @@ VALUES
 
 --Calculate the number of different customers:
 mysql> SELECT COUNT(DISTINCT customer_id) AS unique_customer_count FROM orders;
+
 +-----------------------+
 | unique_customer_count |
+
 +-----------------------+
 |                     5 |
+
 +-----------------------+
 1 row in set (0.01 sec)
 
 --Calculate the quantities of different products:
 mysql> SELECT COUNT(DISTINCT product_id) AS unique_product_count FROM orders;
+
 +----------------------+
 | unique_product_count |
+
 +----------------------+
 |                    5 |
+
 +----------------------+
 1 row in set (0.01 sec)
 ```

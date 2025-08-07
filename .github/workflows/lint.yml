@@ -22,7 +22,7 @@ jobs:
       uses: docker://avtodev/markdown-lint:v1 # fastest way
       with:
         config: './.markdownlint.yaml'
-        args: './docs/OmniFabric'
+         args: './docs/MatrixOne'
 
     - name: Install NodeJS
       uses: actions/setup-node@v3

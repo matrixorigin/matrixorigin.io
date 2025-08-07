@@ -37,29 +37,38 @@ NaN if the input parameter is empty.
 > insert into tbl1 values (0,1,6,12,"c");
 
 > select avg(col_1c) from tbl1;
+
 +-------------+
 | avg(col_1c) |
+
 +-------------+
 |      3.5000 |
+
 +-------------+
 
 > select sum(col_1d) as s1,avg(col_1d) as a3 from tbl1 group by col_1e order by s1 desc;
+
 +------+---------+
 | s1   | a3      |
+
 +------+---------+
 |   21 | 10.5000 |
 |   18 |  9.0000 |
 |   10 | 10.0000 |
 |    8 |  8.0000 |
+
 +------+---------+
 
 > select avg(col_1d) as a1 from tbl1 where col_1d < 13 group by col_1e order by a1;
+
 +---------+
 | a1      |
+
 +---------+
 |  8.0000 |
 |  9.0000 |
 | 10.0000 |
 | 10.5000 |
+
 +---------+
 ```

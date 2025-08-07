@@ -22,26 +22,35 @@ You can decode a Base64 encoded string using the [`FROM_BASE64()`](from_base64.m
 
 ```SQL
 mysql> SELECT TO_BASE64('abc');
+
 +----------------+
 | to_base64(abc) |
+
 +----------------+
 | YWJj           |
+
 +----------------+
 1 row in set (0.00 sec)
 
 mysql> SELECT TO_BASE64(255);
+
 +----------------+
 | to_base64(255) |
+
 +----------------+
 | MjU1           |
+
 +----------------+
 1 row in set (0.00 sec)
 
 mysql> SELECT TO_BASE64(null);
+
 +-----------------+
 | to_base64(null) |
+
 +-----------------+
 | NULL            |
+
 +-----------------+
 1 row in set (0.01 sec)
 ```

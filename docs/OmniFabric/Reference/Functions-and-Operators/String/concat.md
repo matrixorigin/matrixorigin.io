@@ -23,18 +23,24 @@ CONCAT(str1,str2,...)
 
 ```SQL
 mysql> SELECT CONCAT('My', 'S', 'QL');
+
 +-------------------+
 | concat(My, S, QL) |
+
 +-------------------+
 | MySQL             |
+
 +-------------------+
 1 row in set (0.01 sec)
 
 mysql> SELECT CONCAT('My', NULL, 'QL');
+
 +----------------------+
 | concat(My, null, QL) |
+
 +----------------------+
 | NULL                 |
+
 +----------------------+
 1 row in set (0.00 sec)
 ```

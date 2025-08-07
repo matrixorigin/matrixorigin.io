@@ -25,43 +25,59 @@
 - `match_type`: The optional `match_type` argument is a string that may contain any or all the following characters specifying how to perform matching:
 
     + `'c'`: Case-sensitive matching by default.
+
     + `'i'`: Case-insensitive matching.
+
     + `'n'`: The `.` character matches line terminators. The default is for `.` matching to stop at the end of a line.
+
     + `'m'`: Multiple-line mode. Recognize line terminators within the string. The default behavior is to match line terminators only at the start and end of the string expression.
+
     + `'u'`: Unix-only line endings. Only the newline character is recognized as a line ending by the ., ^, and $ match operators.
 
 ## **Examples**
 
 ```SQL
 mysql> SELECT REGEXP_INSTR('Hello, my number is 12345.', '[0-9]+');
+
 +--------------------------------------------------+
 | regexp_instr(Hello, my number is 12345., [0-9]+) |
+
 +--------------------------------------------------+
 |                                               21 |
+
 +--------------------------------------------------+
 1 row in set (0.00 sec)
 
 mysql> SELECT REGEXP_INSTR('apple', 'z+');
+
 +-------------------------+
 | regexp_instr(apple, z+) |
+
 +-------------------------+
 |                       0 |
+
 +-------------------------+
 1 row in set (0.00 sec)
 
 mysql> SELECT REGEXP_INSTR('Hello, World!', 'World');
+
 +------------------------------------+
 | regexp_instr(Hello, World!, World) |
+
 +------------------------------------+
 |                                  8 |
+
 +------------------------------------+
 1 row in set (0.00 sec)
 
 mysql> SELECT REGEXP_INSTR('Hello, World! World!', 'World', 1, 2);
+
 +-------------------------------------------------+
 | regexp_instr(Hello, World! World!, World, 1, 2) |
+
 +-------------------------------------------------+
 |                                              15 |
+
 +-------------------------------------------------+
 1 row in set (0.00 sec)
 ```

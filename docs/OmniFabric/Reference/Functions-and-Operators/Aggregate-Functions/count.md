@@ -7,7 +7,7 @@ Aggregate function.
 The COUNT() function calculates the number of records returned by a select query.
 
 !!! note  "<font size=4>note</font>"
-    <font size=3>NULL values are not counted.</font>  
+    <font size=3>NULL values are not counted.</font>
 
 ## **Syntax**
 
@@ -42,16 +42,22 @@ If there are no matching rows, COUNT() returns 0.
 > insert into tbl1 values (0,1,6,12,"c");
 
 > select count(col_1b) from tbl1;
+
 +---------------+
 | count(col_1b) |
+
 +---------------+
 |             6 |
+
 +---------------+
 
 > select count(*) from tbl1 where col_1d<10;
+
 +----------+
 | count(*) |
+
 +----------+
 |        3 |
+
 +----------+
 ```

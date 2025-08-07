@@ -18,10 +18,13 @@ The `*` operator is used for multiplication.
 
 ```sql
 mysql> select 1123.2333*1233.3331;
+
 +-----------------------+
 | 1123.2333 * 1233.3331 |
+
 +-----------------------+
 |    1385320.8079122303 |
+
 +-----------------------+
 1 row in set (0.01 sec)
 ```
@@ -32,20 +35,26 @@ insert into t2 values (-3, 2);
 insert into t2 values (1, 2);
 
 mysql> select c1*2 from t2;
+
 +--------+
 | c1 * 2 |
+
 +--------+
 |     -6 |
 |      2 |
+
 +--------+
 2 rows in set (0.00 sec)
 
 mysql> select c1*c2 from t2;
+
 +---------+
 | c1 * c2 |
+
 +---------+
 |      -6 |
 |       2 |
+
 +---------+
 2 rows in set (0.01 sec)
 ```

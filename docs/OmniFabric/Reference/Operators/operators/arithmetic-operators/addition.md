@@ -18,10 +18,13 @@ The `+` operator is used for addition.
 
 ```sql
 mysql> select 1123.2333+1233.3331;
+
 +-----------------------+
 | 1123.2333 + 1233.3331 |
+
 +-----------------------+
 |             2356.5664 |
+
 +-----------------------+
 1 row in set (0.01 sec)
 ```
@@ -32,20 +35,26 @@ insert into t2 values (-3, 2);
 insert into t2 values (1, 2);
 
 mysql> select c1+5 from t2;
+
 +--------+
 | c1 + 5 |
+
 +--------+
 |      2 |
 |      6 |
+
 +--------+
 2 rows in set (0.00 sec)
 
 mysql> select c1+c2 from t2;
+
 +---------+
 | c1 + c2 |
+
 +---------+
 |      -1 |
 |       3 |
+
 +---------+
 2 rows in set (0.00 sec)
 ```

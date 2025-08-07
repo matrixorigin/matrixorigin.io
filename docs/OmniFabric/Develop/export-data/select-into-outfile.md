@@ -3,6 +3,7 @@
 OmniFabric supports the following two ways to export data:
 
 - `SELECT INTO...OUTFILE`
+
 - `mo-dump`
 
 This document mainly introduces how to use `SELECT INTO...OUTFILE` to export data.
@@ -15,6 +16,7 @@ The `SELECT...INTO OUTFILE` syntax is a combination of the `SELECT` syntax and `
 
 ```
 mysql> SELECT *FROM <table_name>
+
     -> INTO OUTFILE '<filepath>|<stage://stage_name>';
 ```
 
@@ -24,7 +26,9 @@ Use the following code to export the *TEST*table in *.csv*format. The following 
 
 ```
 mysql> SELECT * FROM TEST INTO OUTFILE '/root/test.csv'
+
    -> FIELDS TERMINATED BY ',' ENCLOSED BY '"'
+
    -> LINES TERMINATED BY '\r\n';
 ```
 
@@ -61,12 +65,15 @@ sudo docker run --name <name> --privileged -d -p 6001:6001 -v ${local_data_path}
     CREATE TABLE `user` (`id` int(11) ,`user_name` varchar(255) ,`sex` varchar(255));
     insert into user(id,user_name,sex) values('1', 'weder', 'man'), ('2', 'tom', 'man'), ('3', 'wederTom', 'man');
     select * from user;
+
     +------+-----------+------+
     | id   | user_name | sex  |
+
     +------+-----------+------+
     |    1 | weder     | man  |
     |    2 | tom       | man  |
     |    3 | wederTom  | man  |
+
     +------+-----------+------+
     ```
 

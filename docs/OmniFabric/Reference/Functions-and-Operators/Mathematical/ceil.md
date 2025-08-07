@@ -37,8 +37,10 @@ insert into t1 values(11,-20.500);
 insert into t1 values(12,-13.500);
 
 mysql> select a,ceil(b) from t1;
+
 +------+---------+
 | a    | ceil(b) |
+
 +------+---------+
 |    1 |       1 |
 |    2 |       1 |
@@ -52,14 +54,18 @@ mysql> select a,ceil(b) from t1;
 |   10 |     -20 |
 |   11 |     -20 |
 |   12 |     -13 |
+
 +------+---------+
 12 rows in set (0.01 sec)
 
 mysql> select sum(ceil(b)) from t1;
+
 +--------------+
 | sum(ceil(b)) |
+
 +--------------+
 |            6 |
+
 +--------------+
 1 row in set (0.01 sec)
 ```

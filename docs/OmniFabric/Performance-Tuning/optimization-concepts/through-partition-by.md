@@ -13,8 +13,11 @@ Partitioned tables can bring many benefits, such as faster query speed, optimize
 ## Scenarios for Partitioned Tables
 
 - Improving query performance by scanning only a portion of the table.
+
 - Improving write performance by inserting, updating, or deleting only a portion of the table data.
+
 - Batch deleting data within a specific range rather than performing an entire table operation.
+
 - Fine-tuning and managing data.
 
 ## What Performance Tuning can be done with Partitioned Tables?
@@ -38,8 +41,11 @@ Compared to full table access, the optimized access method will prioritize acces
 When using partitioned tables, the following prerequisites need to be considered:
 
 - The table has a large amount of data distributed according to some rules, such as by year or month.
+
 - Improved query performance is desired by scanning only a portion of the table.
+
 - Frequent data reads, and writes are limited to a specific range, while other fields have a lower frequency of reads and write.
+
 - Frequent data reads and writes typically have certain fixed filtering conditions.
 
 ### Choosing the Partition Key
@@ -49,6 +55,7 @@ The partition key is a key factor in physically dividing the table, and choosing
 When selecting a partition key, the following factors need to be considered:
 
 - High cardinality: A partition key with high cardinality will result in better data distribution and scalability. For example, for a table with student gender and age attributes, age has a higher cardinality than gender and is more suitable as the partition key.
+
 - Uniqueness: The partition key should be as unique as possible to avoid a partition becoming a standalone hotspot. Using a composite key can achieve uniqueness. For example, in a company, if more than half of the employees in different departments are in the same city, partitioning the town as the partition key will result in that department becoming a hotspot. However, using a composite key such as department ID + city ID can significantly reduce the probability of a hot partition.
 
 ### Establishing Partitioning Strategy
@@ -56,6 +63,7 @@ When selecting a partition key, the following factors need to be considered:
 Even if a column with high cardinality and uniqueness is selected as the partitioning key, hotspot partitions may still occur if the partitioning range is inappropriate. Therefore, more sophisticated management is required in the partitioning strategy.
 
 - Data distribution should be as evenly as possible to avoid extreme distribution. For example, if student age is used as the partitioning key, the company's age distribution needs to be evaluated to prevent overly concentrated age ranges in a partition. For instance, a school may have many students aged 18-22 but relatively few under 18 or over 22, so each age can be partitioned.
+
 - Add a random number to disperse the partition. Combine the partitioning key with a random number sequence in high-concurrency write scenarios. For example, in an order system, the number of orders for a particular item is very high. A random number sequence can be added when designing the table, with a value range of 1-10, and used as the partitioning key with the item type. Each time an order is written, a number from 1 to 10 is randomly generated, and these orders are randomly written to 10 partitions, reducing the likelihood of hotspot partitions.
 
 ## OmniFabric Partitioned Table Types
@@ -168,7 +176,9 @@ Composite partitioning is a variant of range partitioning and list partitioning 
 The types that can be used in composite partitioning include:
 
 - All integer types, including [UNSIGNED] SMALLINT/INT/BIGINT
+
 - Data types, including DATE and DATETIME
+
 - Character types, including CHAR, VARCHAR, BINARY, and VARBINARY.
 
 Range composite partitioning allows multiple types of columns to be combined, such as:
@@ -211,8 +221,11 @@ PARTITION BY LIST COLUMNS(a,floor(b),c) (
 1. The partition table does not support the following partitions for the time being:
 
     - Range partition: Only supports integer and date (date/datetime).
+
     - List partition: Only supports integers.
+
     - Hash partition: The HASH function only supports integers .
+
     - Composite partition: Only supports integers, dates, and strings.
 
 2. The partition table cannot be used for acceleration for now.

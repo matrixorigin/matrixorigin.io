@@ -7,12 +7,19 @@ This article describes how to write ElasticSearch data offline to a OmniFabric d
 Before you can start writing data to OmniFabric using DataX, you need to complete the installation of the following software:
 
 - Finished [installing and starting](../../../Get-Started/install-standalone-matrixone.md) OmniFabric.
+
 - Install [JDK 8+ version](https://www.oracle.com/sg/java/technologies/javase/javase8-archive-downloads.html).
+
 - Install [Python 3.8 (or plus)](https://www.python.org/downloads/).
+
 - Download the [DataX](https://datax-opensource.oss-cn-hangzhou.aliyuncs.com/202210/datax.tar.gz) installation package and unzip it.
+
 - Download and install [ElasticSearch](https://www.elastic.co/cn/downloads/elasticsearch).
-- Download [OmniFabricwriter.zip](https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/develop/Computing-Engine/datax-write/OmniFabricwriter.zip) and extract it to the `plugin/writer/` directory in the root of your DataX project.
+
+- Download [matrixonewriter.zip](https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/develop/Computing-Engine/datax-write/matrixonewriter.zip) and extract it to the `plugin/writer/` directory in the root of your DataX project.
+
 - Download [elasticsearchreader.zip](https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/datax_es_mo/elasticsearchreader.zip) and extract it to the datax/plugin/reader directory.
+
 - Install the <a href="https://dev.mysql.com/downloads/mysql" target="_blank">MySQL Client</a>.
 
 ## Steps
@@ -183,12 +190,15 @@ View the results in the target table in the OmniFabric database to confirm that 
 
 ```sql
 mysql> select * from mo.person;
+
 +------+-----------+------------+
 | id   | name      | birthday   |
+
 +------+-----------+------------+
 |    1 | OmniFabric | 1992-08-08 |
 |    2 | MO        | 1993-08-08 |
 |    3 | 墨墨      | 1994-08-08 |
+
 +------+-----------+------------+
 3 rows in set (0.00 sec)
 ```

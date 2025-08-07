@@ -14,8 +14,10 @@ Shows the list of tables in the currently selected database.
 
 ```sql
 > SHOW TABLES;
+
 +---------------+
 | name          |
+
 +---------------+
 | clusters      |
 | contributors  |
@@ -29,5 +31,6 @@ Shows the list of tables in the currently selected database.
 | settings      |
 | tables        |
 | tracing       |
+
 +---------------+
 ```

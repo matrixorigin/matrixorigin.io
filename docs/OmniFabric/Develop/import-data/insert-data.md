@@ -104,6 +104,7 @@ Copy all columns from one table to another table:
 ```
 INSERT INTO *table2*
 SELECT * FROM *table1
+
 *WHERE *condition*;
 ```
 

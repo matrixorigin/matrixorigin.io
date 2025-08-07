@@ -12,13 +12,13 @@ Projects manage the dependencies of the current project and submodules through t
 1. If downloading from scratch:
 
 ```bash
-git clone --recurse-submodules git@github.com:OmniFabric/OmniFabric.io.cn.git
+git clone --recurse-submodules git@github.com:matrixorigin/matrixorigin.io.cn.git
 ```
 
 2. If using `git clone`, additional initialization of submodules is required:
 
 ```
-git clone git@github.com:OmniFabric/OmniFabric.io.cn.git
+git clone git@github.com:matrixorigin/matrixorigin.io.cn.git
 git submodule init
 git submodule update --remote
 ```

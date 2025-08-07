@@ -26,7 +26,9 @@ This function LTRIM() returns the string with leading space characters removed.
 
 +----------+-----------+
 | ltrim(a) | ltrim(b)  |
+
 +----------+-----------+
 | matrix   | OmniFabric |
+
 +----------+-----------+
 ```
