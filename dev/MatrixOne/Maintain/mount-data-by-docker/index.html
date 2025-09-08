@@ -5567,6 +5567,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../Reference/SQL-Reference/Data-Definition-Language/create-index-hnsw/" class="md-nav__link">
+        CREATE INDEX...USING HNSW
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../Reference/SQL-Reference/Data-Definition-Language/create-fulltext-index/" class="md-nav__link">
         CREATE FULLTEXT INDEX
       </a>
@@ -5639,6 +5653,20 @@
     <li class="md-nav__item">
       <a href="../../Reference/SQL-Reference/Data-Definition-Language/create-cluster-table/" class="md-nav__link">
         CREATE CLUSTER TABLE
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Reference/SQL-Reference/Data-Definition-Language/create-clone/" class="md-nav__link">
+        CREATE CLONE
       </a>
     </li>
   
@@ -10346,6 +10374,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../Reference/Functions-and-Operators/String/strcmp/" class="md-nav__link">
+        STRCMP()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../Reference/Functions-and-Operators/String/substring/" class="md-nav__link">
         SUBSTRING()
       </a>
@@ -10449,17 +10491,17 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_11_5_2_5_39" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_11_5_2_5_40" >
       
       
       
-        <label class="md-nav__link" for="__nav_1_11_5_2_5_39" id="__nav_1_11_5_2_5_39_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_1_11_5_2_5_40" id="__nav_1_11_5_2_5_40_label" tabindex="0">
           Regular Expressions
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="6" aria-labelledby="__nav_1_11_5_2_5_39_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_1_11_5_2_5_39">
+      <nav class="md-nav" data-md-level="6" aria-labelledby="__nav_1_11_5_2_5_40_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1_11_5_2_5_40">
           <span class="md-nav__icon md-icon"></span>
           Regular Expressions
         </label>
@@ -12005,6 +12047,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../Release-Notes/v25.3.0.0/" class="md-nav__link">
+        v25.3.0.0
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../Release-Notes/v25.2.2.2/" class="md-nav__link">
         v25.2.2.2
       </a>
@@ -12827,7 +12883,7 @@ docker rm &lt;containerID&gt;
 </li>
 <li>
 <p>Mount the local <strong>empty directory</strong> to the Docker container directory <em>/mo-data</em>, execute the following command:</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>--name<span class="w"> </span>&lt;name&gt;<span class="w"> </span>--privileged<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">6001</span>:6001<span class="w"> </span>-v<span class="w"> </span><span class="si">${</span><span class="nv">local_data_path</span><span class="si">}</span>/mo-data:/mo-data:rw<span class="w"> </span>matrixorigin/matrixone:2.2.2
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>--name<span class="w"> </span>&lt;name&gt;<span class="w"> </span>--privileged<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">6001</span>:6001<span class="w"> </span>-v<span class="w"> </span><span class="si">${</span><span class="nv">local_data_path</span><span class="si">}</span>/mo-data:/mo-data:rw<span class="w"> </span>matrixorigin/matrixone:3.0.0
 </code></pre></div>
 <table>
 <thead>
@@ -12856,7 +12912,7 @@ docker rm &lt;containerID&gt;
 </li>
 <li>
 <p>To launch MatrixOne MatrixOne has not been running in Docker, execute the following command:</p>
-<div class="highlight"><pre><span></span><code>docker run -d -p 6001:6001 --name matrixone --privileged=true matrixorigin/matrixone:2.2.2
+<div class="highlight"><pre><span></span><code>docker run -d -p 6001:6001 --name matrixone --privileged=true matrixorigin/matrixone:3.0.0
 </code></pre></div>
 </li>
 <li>
@@ -12876,7 +12932,7 @@ docker rm &lt;containerID&gt;
 </li>
 <li>
 <p>Mount the configuration file to the Docker container directory and launch MatrixOne. Execute the following command:</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>--name<span class="w"> </span>&lt;name&gt;<span class="w"> </span>--privileged<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">6001</span>:6001<span class="w"> </span>-v<span class="w"> </span><span class="si">${</span><span class="nv">local_config_path</span><span class="si">}</span>/etc:/etc:rw<span class="w">  </span>--entrypoint<span class="w"> </span><span class="s2">&quot;/mo-service&quot;</span><span class="w"> </span>matrixorigin/matrixone:2.2.2<span class="w"> </span>-launch<span class="w"> </span>/etc/launch/launch.toml
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>--name<span class="w"> </span>&lt;name&gt;<span class="w"> </span>--privileged<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">6001</span>:6001<span class="w"> </span>-v<span class="w"> </span><span class="si">${</span><span class="nv">local_config_path</span><span class="si">}</span>/etc:/etc:rw<span class="w">  </span>--entrypoint<span class="w"> </span><span class="s2">&quot;/mo-service&quot;</span><span class="w"> </span>matrixorigin/matrixone:3.0.0<span class="w"> </span>-launch<span class="w"> </span>/etc/launch/launch.toml
 </code></pre></div>
 <table>
 <thead>

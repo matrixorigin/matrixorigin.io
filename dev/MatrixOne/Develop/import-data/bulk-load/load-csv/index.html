@@ -5625,6 +5625,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../Reference/SQL-Reference/Data-Definition-Language/create-index-hnsw/" class="md-nav__link">
+        CREATE INDEX...USING HNSW
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../Reference/SQL-Reference/Data-Definition-Language/create-fulltext-index/" class="md-nav__link">
         CREATE FULLTEXT INDEX
       </a>
@@ -5697,6 +5711,20 @@
     <li class="md-nav__item">
       <a href="../../../../Reference/SQL-Reference/Data-Definition-Language/create-cluster-table/" class="md-nav__link">
         CREATE CLUSTER TABLE
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Reference/SQL-Reference/Data-Definition-Language/create-clone/" class="md-nav__link">
+        CREATE CLONE
       </a>
     </li>
   
@@ -10404,6 +10432,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../Reference/Functions-and-Operators/String/strcmp/" class="md-nav__link">
+        STRCMP()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../Reference/Functions-and-Operators/String/substring/" class="md-nav__link">
         SUBSTRING()
       </a>
@@ -10507,17 +10549,17 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_11_5_2_5_39" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_11_5_2_5_40" >
       
       
       
-        <label class="md-nav__link" for="__nav_1_11_5_2_5_39" id="__nav_1_11_5_2_5_39_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_1_11_5_2_5_40" id="__nav_1_11_5_2_5_40_label" tabindex="0">
           Regular Expressions
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="6" aria-labelledby="__nav_1_11_5_2_5_39_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_1_11_5_2_5_39">
+      <nav class="md-nav" data-md-level="6" aria-labelledby="__nav_1_11_5_2_5_40_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1_11_5_2_5_40">
           <span class="md-nav__icon md-icon"></span>
           Regular Expressions
         </label>
@@ -12063,6 +12105,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../Release-Notes/v25.3.0.0/" class="md-nav__link">
+        v25.3.0.0
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../Release-Notes/v25.2.2.2/" class="md-nav__link">
         v25.2.2.2
       </a>
@@ -13014,7 +13070,7 @@ FIELDS TERMINATED BY &#39;,&#39; OPTIONALLY ENCLOSED BY &#39;&quot;&#39; LINES T
 </ol>
 <h3 id="example-using-load-data-with-docker-version">Example using <code>Load data</code> with <code>docker</code> version</h3>
 <p>If you install MatrixOne by <code>docker</code>, the file system is inside the docker image by default. To work with local directory, you need to bind a local directory to the container. In the following example, the local file system path <code>~/tmp/docker_loaddata_demo/</code> is binded to the MatrixOne docker image, with a mapping to the <code>/ssb-dbgen-path</code> path inside the docker.
-We will walk you through the whole process of loading data with MatrixOne 2.2.2 docker version in this example.</p>
+We will walk you through the whole process of loading data with MatrixOne 3.0.0 docker version in this example.</p>
 <ol>
 <li>
 <p>Download the dataset file and store the data in <em>~/tmp/docker_loaddata_demo/</em>:</p>
@@ -13029,7 +13085,7 @@ wget https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/lineor
 </li>
 <li>
 <p>Use Docker to launch MatrixOne, and mount the directory <em>~/tmp/docker_loaddata_demo/</em> that stores data files to a directory in the container. The container directory is <em>/sb-dbgen-path</em> as an example:</p>
-<div class="highlight"><pre><span></span><code>sudo docker run --name matrixone --privileged -d -p 6001:6001 -v ~/tmp/docker_loaddata_demo/:/ssb-dbgen-path:rw matrixorigin/matrixone:2.2.2
+<div class="highlight"><pre><span></span><code>sudo docker run --name matrixone --privileged -d -p 6001:6001 -v ~/tmp/docker_loaddata_demo/:/ssb-dbgen-path:rw matrixorigin/matrixone:3.0.0
 </code></pre></div>
 </li>
 <li>
