@@ -119,6 +119,7 @@ This document lists the functions supported in the latest version of MatrixOne.
 | [SPACE()](./String/space.md)                   | Returns a string of N spaces.|
 | [SPLIT_PART()](./String/split_part.md)         | Used to break a string into multiple parts based on a given separator character|
 | [STARTSWITH()](./String/startswith.md)         | The string returns 1 if it starts with the specified prefix, 0 otherwise.|
+| [STRCMP()](./String/strcpm.md)                  | Used to compare the size of two strings or check whether they are equal.|
 | [SUBSTRING()](./String/substring.md)           | Returns a substring starting at the specified position|
 | [SUBSTRING_INDEX()](./String/substring-index.md)| Get characters with different index bits, indexed by the separator.|
 | [TO_BASE64()](./String/to_base64.md)           | Used to convert strings to Base64 encoded strings|
