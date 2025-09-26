@@ -12226,6 +12226,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../Release-Notes/v25.3.0.1/" class="md-nav__link">
+        v25.3.0.1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../Release-Notes/v25.3.0.0/" class="md-nav__link">
         v25.3.0.0
       </a>
@@ -13445,12 +13459,12 @@ Usage         : mo_ctl precheck # check pre-requisites for mo_ctl
 Usage         : mo_ctl deploy [mo_version] [force] # deploy mo onto the path configured
   [mo_version]: optional, specify an mo version to deploy
   [force]     : optional, if specified will delete all content under MO_PATH and deploy from beginning
-  e.g.        : mo_ctl deploy             # default, same as mo_ctl deploy 3.0.0
+  e.g.        : mo_ctl deploy             # default, same as mo_ctl deploy 3.0.1
               : mo_ctl deploy main        # deploy development latest version
               : mo_ctl deploy d29764a     # deploy development version d29764a
-              : mo_ctl deploy 3.0.0       # deploy stable verson 3.0.0
-              : mo_ctl deploy force       # delete all under MO_PATH and deploy verson 3.0.0
-              : mo_ctl deploy 3.0.0 force # delete all under MO_PATH and deploy stable verson 3.0.0 from beginning
+              : mo_ctl deploy 3.0.1       # deploy stable verson 3.0.1
+              : mo_ctl deploy force       # delete all under MO_PATH and deploy verson 3.0.1
+              : mo_ctl deploy 3.0.1 force # delete all under MO_PATH and deploy stable verson 3.0.1 from beginning
 </code></pre></div>
 <h3 id="start-starts-the-matrixone-service">start - Starts the MatrixOne service</h3>
 <p>Start the MatrixOne service with <code>mo_ctl start</code>, with the startup file path under <code>MO_PATH</code>.</p>
@@ -13596,7 +13610,7 @@ Usage         : mo_ctl getconf [conf_list] # get configurations
 <tr>
 <td>MO_DEFAULT_VERSION</td>
 <td>The version of MatrixOne that is pulled by default</td>
-<td>default 3.0.0</td>
+<td>default 3.0.1</td>
 </tr>
 <tr>
 <td>GOPROXY</td>
@@ -13668,11 +13682,11 @@ Usage           : mo_ctl uninstall        # uninstall mo from path MO_PATH=/data
 <p>MatrixOne 0.8 and later can use <code>mo_ctl upgrade version</code> or <code>mo_ctl upgrade commitid</code> to upgrade or downgrade MatrixOne from the current version to a stable version or a commit id version.</p>
 <div class="highlight"><pre><span></span><code>mo_ctl upgrade help
 Usage           : mo_ctl upgrade [version_commitid]   # upgrade or downgrade mo from current version to a target commit id or stable version
- [commitid]     : a commit id such as &#39;38888f7&#39;, or a stable version such as &#39;3.0.0&#39;
+ [commitid]     : a commit id such as &#39;38888f7&#39;, or a stable version such as &#39;3.0.1&#39;
                 : use &#39;latest&#39; to upgrade to latest commit on main branch if you don&#39;t know the id
   e.g.          : mo_ctl upgrade 38888f7              # upgrade/downgrade to commit id 38888f7 on main branch
                 : mo_ctl upgrade latest               # upgrade/downgrade to latest commit on main branch
-                : mo_ctl upgrade 3.0.0               # upgrade/downgrade to stable version 3.0.0
+                : mo_ctl upgrade 3.0.1               # upgrade/downgrade to stable version 3.0.1
 </code></pre></div>
 <h3 id="watchdog-keep-matrixone-alive">watchdog - Keep MatrixOne alive</h3>
 <p>Use <code>mo_ctl watchdog [options]</code> to set a scheduled task to guarantee MatrixOne service availability, check the status of MatrixOne every minute, and automatically pull up the service if it is found to be aborted.</p>
