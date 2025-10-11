@@ -48,6 +48,9 @@ As a hyperconverged database, Matrxione comes with its own vector capabilities, 
 
 Based on Ollama, this paper combines Llama2 and Mxbai-embed-large to quickly build a Native RAG application using Matrixone's vector capabilities.
 
+!!! note "MatrixOne Python SDK Documentation"
+    This tutorial uses the MatrixOne Python SDK. For complete API reference and advanced features, please refer to the [MatrixOne Python SDK Documentation](https://matrixone.readthedocs.io/en/latest/).
+
 ## Prepare before you start
 
 ### Relevant knowledge
@@ -72,10 +75,10 @@ python3 -V
 
 - Verify that you have completed installing the MySQL client.
 
-- Download and install the `pymysql` tool. Download and install the `pymysql` tool using the following code:
+- Download and install the `matrixone-python-sdk`. Download and install using the following code:
 
 ```
-pip3 install pymysql 
+pip3 install matrixone-python-sdk
 ```
 
 - Verify that you have finished installing [ollama](https://ollama.com/download). Verify that the installation was successful by checking the ollama version with the following code:
@@ -92,48 +95,67 @@ ollama pull llama2 ollama pull mxbai-embed-large
 
 ## Build your app
 
-### Building table
+### Setup MatrixOne Client and Define Table Model
 
-Connect to MatrixOne and create a table called `rag_tab` to store text information and corresponding vector information.
-
-```sql
-create table rag_tab(content text,embedding vecf32(1024));
-```
-
-### Text vectorization stored to MatrixOne
-
-Create the python file rag\_example.py, slice and vectorize the textual information using the mxbai-embed-large embedding model, and save it to MatrixOne's `rag_tab` table.
+Create the python file rag\_example.py. First, we'll set up the MatrixOne client, define the data model using ORM, and create the table.
 
 ```python
 import ollama
-import pymysql.cursors
+from matrixone import Client
+from matrixone.orm import declarative_base
+from sqlalchemy import Column, Integer, Text
+from matrixone.sqlalchemy_ext import create_vector_column
 
-conn = pymysql.connect(
-        host='127.0.0.1',
-        port=6001,
-        user='root',
-        password = "111",
-        db='db1',
-        autocommit=True
-        )
-cursor = conn.cursor()
+# Create client and connect to MatrixOne
+client = Client()
+client.connect(
+    host='127.0.0.1',
+    port=6001,
+    user='root',
+    password='111',
+    database='db1'
+)
 
-#Generate embeddings
+# Define the RAG table model using MatrixOne ORM
+Base = declarative_base()
+
+class RagDocument(Base):
+    __tablename__ = 'rag_tab'
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    content = Column(Text, nullable=False)
+    embedding = create_vector_column(1024, "f32")
+
+# Create table
+client.create_table(RagDocument)
+```
+
+### Text Vectorization and Storage
+
+Next, we'll vectorize the textual information using the mxbai-embed-large embedding model and save it to MatrixOne's `rag_tab` table.
+
+```python
+# Document data
 documents = [
-"MatrixOne is a hyper-converged cloud & edge native distributed database with a structure that separates storage, computation, and transactions to form a consolidated HSTAP data engine. This engine enables a single database system to accommodate diverse business loads such as OLTP, OLAP, and stream computing. It also supports deployment and utilization across public, private, and edge clouds, ensuring compatibility with diverse infrastructures.",
-"MatrixOne touts significant features, including real-time HTAP, multi-tenancy, stream computation, extreme scalability, cost-effectiveness, enterprise-grade availability, and extensive MySQL compatibility. MatrixOne unifies tasks traditionally performed by multiple databases into one system by offering a comprehensive ultra-hybrid data solution. This consolidation simplifies development and operations, minimizes data fragmentation, and boosts development agility.",
-"MatrixOne is optimally suited for scenarios requiring real-time data input, large data scales, frequent load fluctuations, and a mix of procedural and analytical business operations. It caters to use cases such as mobile internet apps, IoT data applications, real-time data warehouses, SaaS platforms, and more.",
-"Matrix is a collection of complex or real numbers arranged in a rectangular array.",
-"The lastest version of MatrixOne is v25.3.0.1,released on 2025/09/26."
-"We are excited to announce MatrixOne v22.0.8.0 release on 2023/6/30."
+    "MatrixOne is a hyper-converged cloud & edge native distributed database with a structure that separates storage, computation, and transactions to form a consolidated HSTAP data engine. This engine enables a single database system to accommodate diverse business loads such as OLTP, OLAP, and stream computing. It also supports deployment and utilization across public, private, and edge clouds, ensuring compatibility with diverse infrastructures.",
+    "MatrixOne touts significant features, including real-time HTAP, multi-tenancy, stream computation, extreme scalability, cost-effectiveness, enterprise-grade availability, and extensive MySQL compatibility. MatrixOne unifies tasks traditionally performed by multiple databases into one system by offering a comprehensive ultra-hybrid data solution. This consolidation simplifies development and operations, minimizes data fragmentation, and boosts development agility.",
+    "MatrixOne is optimally suited for scenarios requiring real-time data input, large data scales, frequent load fluctuations, and a mix of procedural and analytical business operations. It caters to use cases such as mobile internet apps, IoT data applications, real-time data warehouses, SaaS platforms, and more.",
+    "Matrix is a collection of complex or real numbers arranged in a rectangular array.",
+    "The lastest version of MatrixOne is v25.3.0.1,released on 2025/09/26.",
+    "We are excited to announce MatrixOne v22.0.8.0 release on 2023/6/30."
 ]
 
-for i,d in enumerate(documents):
-  response = ollama.embeddings(model="mxbai-embed-large", prompt=d)
-  embedding = response["embedding"]
-  insert_sql = "insert into rag_tab(content,embedding) values (%s, %s)"
-  data_to_insert = (d, str(embedding))
-  cursor.execute(insert_sql, data_to_insert)
+# Generate embeddings and prepare data for batch insert
+rag_data = []
+for doc in documents:
+    response = ollama.embeddings(model="mxbai-embed-large", prompt=doc)
+    embedding = response["embedding"]
+    rag_data.append({
+        'content': doc,
+        'embedding': embedding
+    })
+
+# Batch insert data
+client.batch_insert(RagDocument, rag_data)
 ```
 
 ### View quantity in `rag_tab` table
@@ -150,45 +172,66 @@ mysql> select count(*) from rag_tab;
 
 As you can see, the data was successfully stored into the database.
 
-- Indexing (not required)
+### Create Vector Index (Optional but Recommended)
 
-In large-scale high-dimensional data retrieval, if a full search is used, the similarity calculation with each vector in the entire data set needs to be performed for each query, which results in significant performance overhead and latency. The use of vector index can effectively solve the above problems,by establishing efficient data structures and algorithms to optimize the search process,improve retrieval performance,reduce computing and storage costs,and enhance the user experience. Therefore, we build an IVF-FLAT vector index for the vector field
+In large-scale high-dimensional data retrieval, if a full search is used, the similarity calculation with each vector in the entire data set needs to be performed for each query, which results in significant performance overhead and latency. The use of vector index can effectively solve the above problems, by establishing efficient data structures and algorithms to optimize the search process, improve retrieval performance, reduce computing and storage costs, and enhance the user experience. Therefore, we build an IVF-FLAT vector index for the vector field.
 
-```sql
-SET GLOBAL experimental_ivf_index = 1; -- turn on vector index 
-create index idx_rag using ivfflat on rag_tab(embedding) lists=1 op_type "vector_l2_ops";
+```python
+# Create IVF-FLAT vector index using client API
+client.vector_ops.create_ivf(
+    RagDocument,
+    name='idx_rag_embedding',
+    column='embedding',
+    lists=100,
+    op_type='vector_l2_ops'
+)
 ```
 
-### Vector retrieval
+### Vector Retrieval
 
 Once the data is ready, you can search the database for the most similar content based on the questions we asked. This step relies heavily on the vector retrieval capabilities of MatrixOne, which supports multiple similarity searches, where we use `l2_distance` to retrieve and set the number of returned results to 3.
 
 ```python
+# Define the query question
 prompt = "What is the latest version of MatrixOne?"
 
+# Generate query embedding
 response = ollama.embeddings(
-  prompt=prompt,
-  model="mxbai-embed-large"
+    prompt=prompt,
+    model="mxbai-embed-large"
 )
-query_embedding= embedding = response["embedding"]
-query_sql = "select content from rag_tab order by l2_distance(embedding,%s) asc limit 3"
-data_to_query = str(query_embedding)
-cursor.execute(query_sql, data_to_query)
-data = cursor.fetchall()
+query_embedding = response["embedding"]
+
+# Perform vector similarity search using MatrixOne client
+results = client.query(
+    RagDocument.content,
+    RagDocument.embedding.l2_distance(query_embedding).label("distance")
+).order_by(
+    RagDocument.embedding.l2_distance(query_embedding)
+).limit(3).execute()
+
+# Extract content from results
+retrieved_docs = [row[0] for row in results.rows]
 ```
 
-### Enhanced generation
+### Enhanced Generation
 
 We combine what we retrieved in the previous step with LLM to generate an answer.
 
 ```python
-#enhance generate 
+# Combine retrieved documents as context
+context = " ".join(retrieved_docs)
+
+# Generate enhanced response using LLM
 output = ollama.generate(
-  model="llama2",
-  prompt=f"Using this data: {data}. Respond to this prompt: {prompt}"
+    model="llama2",
+    prompt=f"Using this data: {context}. Respond to this prompt: {prompt}"
 )
 
 print(output['response'])
+
+# Close database connection
+client.disconnect()
 ```
 
 Console output related answer:
