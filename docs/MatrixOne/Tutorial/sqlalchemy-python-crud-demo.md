@@ -74,7 +74,6 @@ session = Session()
 
 Base = declarative_base()
 
-
 class Customer(Base):
     __tablename__ = "Customer"
     id = Column(Integer, primary_key=True,autoincrement=True)
@@ -90,7 +89,6 @@ class Customer(Base):
 
     def __repr__(self):
         return "cname:"+self.cname +" caddress:"+self.caddress
-
 
 # Generate 10 Customer records
 Customers = [Customer(name= faker.name(),address = faker.address()) for i in range(10)]
@@ -195,7 +193,6 @@ class Customer(Base):
     def __repr__(self):
         return "cname:"+self.cname +" caddress:"+self.caddress
 
-
 # query all data
 customers = session.query(Customer).all()
 
@@ -292,14 +289,12 @@ class Customer(Base):
     def __repr__(self):
         return "cname:"+self.cname +" caddress:"+self.caddress
 
-
 customer = session.query(Customer).first()
 print(customer)
 print("\n---------------------\n")
 
 # Rename customer
 customer.cname = "Coby White"
-
 
 session.commit()
 
@@ -384,7 +379,6 @@ class Customer(Base):
 
     def __repr__(self):
         return "cname:"+self.cname +" caddress:"+self.caddress
-
 
 # delete the first record
 customer = session.query(Customer).first()

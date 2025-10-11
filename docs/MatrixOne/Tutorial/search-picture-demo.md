@@ -127,7 +127,6 @@ def storage_img(jpg_files):
         cursor.execute(insert_sql, data_to_insert)
         image.close()
 
-
 # Image-to-image search
 def img_search_img(img_path, k):
     image = Image.open(img_path)
