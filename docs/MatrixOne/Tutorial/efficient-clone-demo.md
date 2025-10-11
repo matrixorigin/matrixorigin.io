@@ -198,7 +198,7 @@ graph TD
 - MatrixOne Python SDK installed
 
 ```bash
-pip install matrixone-python
+pip3 install matrixone-python-sdk
 ```
 
 ### Import Required Libraries
