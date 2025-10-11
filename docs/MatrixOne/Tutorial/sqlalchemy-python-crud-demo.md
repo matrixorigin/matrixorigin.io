@@ -19,7 +19,7 @@ Before you start, make sure you have downloaded and installed the following soft
     mysql> create database test;
     ```
 
-2. Make sure you have already installed [Python 3.8(or plus) version](https://www.python.org/downloads/).  
+2. Make sure you have already installed [Python 3.8(or plus) version](https://www.python.org/downloads/).
 
     ```
     #To check with Python installation and its version
@@ -74,7 +74,6 @@ session = Session()
 
 Base = declarative_base()
 
-
 class Customer(Base):
     __tablename__ = "Customer"
     id = Column(Integer, primary_key=True,autoincrement=True)
@@ -90,7 +89,6 @@ class Customer(Base):
 
     def __repr__(self):
         return "cname:"+self.cname +" caddress:"+self.caddress
-
 
 # Generate 10 Customer records
 Customers = [Customer(name= faker.name(),address = faker.address()) for i in range(10)]
@@ -195,7 +193,6 @@ class Customer(Base):
     def __repr__(self):
         return "cname:"+self.cname +" caddress:"+self.caddress
 
-
 # query all data
 customers = session.query(Customer).all()
 
@@ -292,14 +289,12 @@ class Customer(Base):
     def __repr__(self):
         return "cname:"+self.cname +" caddress:"+self.caddress
 
-
 customer = session.query(Customer).first()
 print(customer)
 print("\n---------------------\n")
 
 # Rename customer
 customer.cname = "Coby White"
-
 
 session.commit()
 
@@ -311,7 +306,7 @@ print(customer)
 Execute this file in a terminal with such command and we will see the query result:
 
 ```
-> python3 sqlalchemy_update.py     
+> python3 sqlalchemy_update.py
 cname:Wendy Luna caddress:002 Brian Plaza
 Andrewhaven, SC 88456
 
@@ -385,7 +380,6 @@ class Customer(Base):
     def __repr__(self):
         return "cname:"+self.cname +" caddress:"+self.caddress
 
-
 # delete the first record
 customer = session.query(Customer).first()
 
@@ -402,7 +396,7 @@ for customer in customers:
 Execute this file in a terminal with such command and we will see the query result:
 
 ```
-> python3 sqlalchemy_delete.py         
+> python3 sqlalchemy_delete.py
 cname:Meagan Rodriguez caddress:USCGC Olson
 FPO AP 21249
 --------------------------

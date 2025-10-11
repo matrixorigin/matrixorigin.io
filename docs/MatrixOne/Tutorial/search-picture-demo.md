@@ -21,43 +21,43 @@ In this chapter, we will combine the vector capabilities of MatrixOne with Strea
 
 **Streamlit**: is an open source Python library designed to quickly build interactive and data-driven web applications. Its design goal is to be simple and easy to use. Developers can create interactive dashboards and interfaces with very little code, especially suitable for displaying machine learning models and data visualization.
 
-### Environment Preparation  
+### Environment Preparation
 
-Before you begin, ensure you have downloaded and installed the following software:  
+Before you begin, ensure you have downloaded and installed the following software:
 
-- Confirm that you have completed the [Standalone Deployment of MatrixOne](../Get-Started/install-standalone-matrixone.md).  
-  
-- Confirm that you have installed [Python 3.8 (or later)](https://www.python.org/downloads/). Use the following command to verify the Python version and confirm successful installation:  
-  
-```bash  
-python3 -V  
-```  
+- Confirm that you have completed the [Standalone Deployment of MatrixOne](../Get-Started/install-standalone-matrixone.md).
 
-- Create a new Python virtual environment:  
-  
-```bash  
-# Create venv  
-python3 -m venv .venv  
-# Activate the environment  
-source .venv/bin/activate  
-```  
+- Confirm that you have installed [Python 3.8 (or later)](https://www.python.org/downloads/). Use the following command to verify the Python version and confirm successful installation:
 
-- Install dependencies:  
-  
-Create a `requirements.txt` file with the following content:  
+```bash
+python3 -V
+```
 
-```  
-streamlit==1.45.0  
-pymysql==1.1.1  
-matplotlib==3.10.1  
-transformers==4.51.3  
-torch==2.7.0  
-```  
+- Create a new Python virtual environment:
 
-Run the following command:  
+```bash
+# Create venv
+python3 -m venv .venv
+# Activate the environment
+source .venv/bin/activate
+```
 
-```bash  
-pip install -r requirements.txt  
+- Install dependencies:
+
+Create a `requirements.txt` file with the following content:
+
+```
+streamlit==1.45.0
+pymysql==1.1.1
+matplotlib==3.10.1
+transformers==4.51.3
+torch==2.7.0
+```
+
+Run the following command:
+
+```bash
+pip install -r requirements.txt
 ```
 
 ## Build the application
@@ -126,7 +126,6 @@ def storage_img(jpg_files):
         data_to_insert = (file_path, str(embeddings))
         cursor.execute(insert_sql, data_to_insert)
         image.close()
-
 
 # Image-to-image search
 def img_search_img(img_path, k):

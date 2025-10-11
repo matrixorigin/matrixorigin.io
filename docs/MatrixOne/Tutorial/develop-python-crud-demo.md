@@ -1,4 +1,4 @@
-# Python CRUD demo
+# PyMySQL CRUD demo
 
 ## Before you start
 
@@ -7,7 +7,7 @@
 Before you start, make sure you have downloaded and installed the following software.
 
 1. Make sure you have already [installed and launched MatrixOne](../Get-Started/install-standalone-matrixone.md).
-2. Make sure you have already installed [Python 3.8(or plus) version](https://www.python.org/downloads/).  
+2. Make sure you have already installed [Python 3.8(or plus) version](https://www.python.org/downloads/).
 
     ```
     #To check with Python installation and its version

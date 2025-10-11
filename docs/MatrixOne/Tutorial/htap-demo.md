@@ -51,7 +51,7 @@ We create a real-time risk control and anti-fraud application example in the fin
 ### Create table
 
 Prepare a user table and transaction table
-  
+
 ```sql
 drop table transactions;
 drop table users;
@@ -107,7 +107,7 @@ account_balance = round(random.uniform(100, 10000), 2)
     except Exception as e:
         print(e)
 ```
-  
+
 ### Prepare transaction information data
 
 Transaction information is randomly generated through the program.

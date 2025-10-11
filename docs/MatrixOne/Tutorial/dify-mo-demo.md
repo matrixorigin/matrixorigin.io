@@ -1,61 +1,61 @@
-## Dify Platform Integration Guide for MatrixOne  
+## Dify Platform Integration Guide for MatrixOne
 
 This document describes how to integrate the Dify platform with the MatrixOne database, using MatrixOne as the vector storage backend for Dify.
 
-## Prerequisites  
+## Prerequisites
 
-### Install Git  
+### Install Git
 
-Install Git via the [official documentation](https://git-scm.com/download/mac).  
-Verify the installation by running `git version`. A successful installation will display output similar to the following:  
+Install Git via the [official documentation](https://git-scm.com/download/mac).
+Verify the installation by running `git version`. A successful installation will display output similar to the following:
 
 ```bash
 > git version
 git version 2.40.0
 ```
 
-### Install Docker  
+### Install Docker
 
-1. Click <a href="https://docs.docker.com/get-docker/" target="_blank">Get Docker</a> to visit the official Docker documentation page. Download and install Docker according to your operating system. It is recommended to use Docker version 20.10.18 or higher, and ensure the Docker client and server versions match.  
-2. After installation, verify the Docker version to confirm successful installation:  
+1. Click <a href="https://docs.docker.com/get-docker/" target="_blank">Get Docker</a> to visit the official Docker documentation page. Download and install Docker according to your operating system. It is recommended to use Docker version 20.10.18 or higher, and ensure the Docker client and server versions match.
+2. After installation, verify the Docker version to confirm successful installation:
 
     ```bash
     docker --version
-    ```  
+    ```
 
-    Example output for a successful installation:  
+    Example output for a successful installation:
 
     ```bash
     Docker version 20.10.18, build 100c701
-    ```  
+    ```
 
-3. Open your local Docker client and start Docker.  
+3. Open your local Docker client and start Docker.
 
 ## Steps
 
-### Obtain Dify Code  
+### Obtain Dify Code
 
-Clone the latest Dify source code to your local environment:  
+Clone the latest Dify source code to your local environment:
 
 ```bash
 git clone https://github.com/langgenius/dify.git
-```  
+```
 
-### Build Docker Image  
+### Build Docker Image
 
 ```bash
 cd dify/api
 docker build -t langgenius/dify-api:mo .
-```  
+```
 
-### Configure Environment  
+### Configure Environment
 
 ```bash
 cd ../docker
 cp .env.example .env
-```  
+```
 
-Edit the `.env` file to configure MatrixOne connection parameters:  
+Edit the `.env` file to configure MatrixOne connection parameters:
 
 ```bash
 VECTOR_STORE=matrixone # Set vector store type to matrixone (required)
@@ -64,32 +64,32 @@ MATRIXONE_PORT=6001 # Port number (optional)
 MATRIXONE_USER=dump # Username (optional)
 MATRIXONE_PASSWORD=111 # Password (optional)
 MATRIXONE_DATABASE=dify # Database name (optional)
-```  
+```
 
-### Modify Docker Compose Configuration  
+### Modify Docker Compose Configuration
 
-Edit the `docker-compose.yaml` file: Replace the `dify-api` image with `langgenius/dify-api:mo` (note: two locations require modification).  
+Edit the `docker-compose.yaml` file: Replace the `dify-api` image with `langgenius/dify-api:mo` (note: two locations require modification).
 
-### Start Dify Service  
+### Start Dify Service
 
 ```bash
 docker compose up -d
-```  
+```
 
-### Configure Dify Platform  
+### Configure Dify Platform
 
-1. Visit <http://localhost/install> to complete the initial setup.  
-2. Navigate to the settings page to configure the AI model:  
-      - Select the model provider.  
-      - Configure the API Key.  
-      - Choose the appropriate model.  
-3. Create a knowledge base:  
-      - Upload the required files.  
-      - Verify data import.  
-  
-![Alt text](../images/dify-mo-demo_4.png)  
+1. Visit <http://localhost/install> to complete the initial setup.
+2. Navigate to the settings page to configure the AI model:
+      - Select the model provider.
+      - Configure the API Key.
+      - Choose the appropriate model.
+3. Create a knowledge base:
+      - Upload the required files.
+      - Verify data import.
 
-### Verify Integration  
+![Alt text](../images/dify-mo-demo_4.png)
+
+### Verify Integration
 
 ```bash
 > mysql -u root -p111 -h 127.0.0.1 -P 6001
@@ -133,4 +133,4 @@ mysql> select count(*) from vector_index_6418005e_dfdb_4add_a5f8_c676fe6731b5_no
 +----------+
 1 row in set (0.00 sec)
 mysql>
-```  
+```

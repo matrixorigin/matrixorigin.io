@@ -38,7 +38,11 @@ extra:
 markdown_extensions:
   - admonition
   - pymdownx.details
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.tabbed:
       alternate_style: true
   - def_list
@@ -164,21 +168,6 @@ nav:
               - Vector Type: MatrixOne/Develop/Vector/vector_type.md
               - Vector Search: MatrixOne/Develop/Vector/vector_search.md
               - Cluster Centers: MatrixOne/Develop/Vector/cluster_centers.md
-          - Application Developing Tutorials:
-              - Java CRUD demo: MatrixOne/Tutorial/develop-java-crud-demo.md
-              - SpringBoot and JPA CRUD demo: MatrixOne/Tutorial/springboot-hibernate-crud-demo.md
-              - SpringBoot and MyBatis CRUD demo: MatrixOne/Tutorial/springboot-mybatis-crud-demo.md
-              - Python CRUD demo: MatrixOne/Tutorial/develop-python-crud-demo.md
-              - SQLAlchemy CRUD demo: MatrixOne/Tutorial/sqlalchemy-python-crud-demo.md
-              - Django CRUD demo: MatrixOne/Tutorial/django-python-crud-demo.md
-              - Golang CRUD demo: MatrixOne/Tutorial/develop-golang-crud-demo.md
-              - Gorm CRUD demo: MatrixOne/Tutorial/gorm-golang-crud-demo.md
-              - C# CRUD demo: MatrixOne/Tutorial/c-net-crud-demo.md
-              - TypeScript Basic Example: MatrixOne/Tutorial/typescript-crud-demo.md
-              - HTAP Application demo: MatrixOne/Tutorial/htap-demo.md
-              - Rag Application demo: MatrixOne/Tutorial/rag-demo.md
-              - Picture(Text)-to-Picture Search Application demo: MatrixOne/Tutorial/search-picture-demo.md
-              - Dify Integration Example with MatrixOne: MatrixOne/Tutorial/dify-mo-demo.md
           - Ecological Tools:
               - Message Queue Tools:
                   - Connecting MatrixOne with Kafka: MatrixOne/Develop/Ecological-Tools/Message-Queue/Kafka.md
@@ -218,6 +207,30 @@ nav:
                       - Writing Data from MongoDB to MatrixOne: MatrixOne/Develop/Ecological-Tools/Computing-Engine/Flink/flink-mongo-matrixone.md
                       - Writing Data from TiDB to MatrixOne: MatrixOne/Develop/Ecological-Tools/Computing-Engine/Flink/flink-tidb-matrixone.md
                       - Writing Data from Kafka to MatrixOne: MatrixOne/Develop/Ecological-Tools/Computing-Engine/Flink/flink-kafka-matrixone.md
+      - Tutorial:
+          - Java CRUD demo: MatrixOne/Tutorial/develop-java-crud-demo.md
+          - SpringBoot and JPA CRUD demo: MatrixOne/Tutorial/springboot-hibernate-crud-demo.md
+          - SpringBoot and MyBatis CRUD demo: MatrixOne/Tutorial/springboot-mybatis-crud-demo.md
+          - PyMySQL CRUD demo: MatrixOne/Tutorial/develop-python-crud-demo.md
+          - SQLAlchemy CRUD demo: MatrixOne/Tutorial/sqlalchemy-python-crud-demo.md
+          - Django CRUD demo: MatrixOne/Tutorial/django-python-crud-demo.md
+          - Golang CRUD demo: MatrixOne/Tutorial/develop-golang-crud-demo.md
+          - Gorm CRUD demo: MatrixOne/Tutorial/gorm-golang-crud-demo.md
+          - C# CRUD demo: MatrixOne/Tutorial/c-net-crud-demo.md
+          - TypeScript Basic Example: MatrixOne/Tutorial/typescript-crud-demo.md
+          - HTAP Application demo: MatrixOne/Tutorial/htap-demo.md
+          - RAG Application demo: MatrixOne/Tutorial/rag-demo.md
+          - Safe Production Upgrade with Instant Rollback: MatrixOne/Tutorial/snapshot-rollback-demo.md
+          - Instant Clone for Multi-Team Development: MatrixOne/Tutorial/efficient-clone-demo.md
+          - Pinecone-Compatible Vector Search: MatrixOne/Tutorial/pinecone-vector-demo.md
+          - IVF Index Health Monitoring: MatrixOne/Tutorial/ivf-index-health-demo.md
+          - HNSW Vector Index: MatrixOne/Tutorial/hnsw-vector-demo.md
+          - Hybrid Search (Vector + Fulltext + SQL): MatrixOne/Tutorial/hybrid-search-demo.md
+          - Fulltext Natural Search: MatrixOne/Tutorial/fulltext-natural-search-demo.md
+          - Fulltext Boolean Search: MatrixOne/Tutorial/fulltext-boolean-search-demo.md
+          - Fulltext JSON Search: MatrixOne/Tutorial/fulltext-json-search-demo.md
+          - Picture(Text)-to-Picture Search Application demo: MatrixOne/Tutorial/search-picture-demo.md
+          - Dify Integration Example with MatrixOne: MatrixOne/Tutorial/dify-mo-demo.md
       - Deploying:
           - Single MatrixOne with S3: MatrixOne/Deploy/deploy-matrixone-single-with-s3.md
           - Plan MatrixOne Cluster Topology:

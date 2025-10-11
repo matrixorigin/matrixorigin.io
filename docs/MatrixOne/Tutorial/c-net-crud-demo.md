@@ -17,7 +17,7 @@ This document will guide you through how to build a simple application using C# 
 Create an app using the dotnet command. For example, create a new app called myapp:
 
 ```
-dotnet new console -o myapp 
+dotnet new console -o myapp
 ```
 
 Then switch to the myapp directory
@@ -27,7 +27,7 @@ Then switch to the myapp directory
 Install the MySql.Data package using the NuGet package manager:
 
 ```
-dotnet add package MySql.Data 
+dotnet add package MySql.Data
 ```
 
 ### Step Three: Connect Matrixone for Action
@@ -35,9 +35,9 @@ dotnet add package MySql.Data
 Write code to connect to Matrixone, build a student table, and add, delete, and change lookups. Write the following code in the Program.cs file:
 
 ```
-using System; 
+using System;
 using MySql.Data.MySqlClient;
- 
+
 class Program {
 
     static void ExecuteSQL(MySqlConnection connection, string query)
@@ -90,11 +90,11 @@ class Program {
                 connection.Close();
                 Console.WriteLine("Disconnect succeeded!");
             }
- 
+
             //connection.Close();
         }
     }
-} 
+}
 ```
 
 ### Step Four: Run the Program
@@ -102,16 +102,16 @@ class Program {
 Execute the command `dotnet run` at the terminal:
 
 ```
-(base) admin@admindeMacBook-Pro myapp %dotnet run 
-A connection has been established. 
-Successfully inserted the data! 
-Successfully updated the data! 
-Successfully deleted the data! 
-Name: Zhao Wu, age: 30, Remarks: 
-Name: Zhang San, age: 22, Remarks: Updated 
-Data query succeeded! 
+(base) admin@admindeMacBook-Pro myapp %dotnet run
+A connection has been established.
+Successfully inserted the data!
+Successfully updated the data!
+Successfully deleted the data!
+Name: Zhao Wu, age: 30, Remarks:
+Name: Zhang San, age: 22, Remarks: Updated
+Data query succeeded!
 Ready to disconnect
-Disconnect succeeded! 
+Disconnect succeeded!
 ```
 
 ### Step five: Check the data

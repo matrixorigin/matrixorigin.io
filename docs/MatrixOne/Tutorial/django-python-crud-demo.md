@@ -19,7 +19,7 @@ Before you begin, confirm that you have downloaded and installed the following s
 - Verify that you have finished installing [Python 3.8 (or plus)](https://www.python.org/downloads/). Verify that the installation was successful by checking the Python version with the following code:
 
     ```
-    python3 -V 
+    python3 -V
     ```
 
 - Verify that you have completed installing the MySQL client.
@@ -27,7 +27,7 @@ Before you begin, confirm that you have downloaded and installed the following s
 - Verify that you have finished installing [Django](https://www.djangoproject.com/download/). Verify that the installation was successful by checking the Django version with the following code:
 
     ```
-    python3 -m django --version 
+    python3 -m django --version
     ```
 
 - Download and install the `pymysql` tool. Download and install the `pymysql` tool using the following code:
@@ -44,13 +44,13 @@ Before you begin, confirm that you have downloaded and installed the following s
 1. Connect to MatrixOne through a MySQL client. Create a new database named *test*.
 
     ```
-    mysql> create database test; 
+    mysql> create database test;
     ```
 
 2. Create the project `django_crud_matrixone`.
 
     ```
-    django-admin startproject django_crud_matrixone 
+    django-admin startproject django_crud_matrixone
     ```
 
     Once created we can look at the directory structure of the following project:
@@ -70,7 +70,7 @@ Before you begin, confirm that you have downloaded and installed the following s
 3. Next we start the server by entering the following command into the django\_crud\_matrixone directory:
 
     ```
-    python3 manage.py runserver 0.0.0.0:8000 
+    python3 manage.py runserver 0.0.0.0:8000
     ```
 
     0.0.0.0 Let other computers connect to the development server, 8000 is the port number. If not, then the port number defaults to 8000.
@@ -82,15 +82,15 @@ Before you begin, confirm that you have downloaded and installed the following s
 4. We found the DATABASES configuration item in the project's settings.py file and modified its information to:
 
     ```python
-     DATABASES = { 
-        'default': { 'ENGINE': 'django.db.backends.mysql', # database engine 
-        'NAME': 'test', # database name 
-        'HOST': '127.0.0.1', # database address, native ip address 127.0.0.1 
-        'PORT': 6001, # Port 
-        'USER': 'root', # database username 
-        'PASSWORD': '111', #database password 
-        } 
-    } 
+     DATABASES = {
+        'default': { 'ENGINE': 'django.db.backends.mysql', # database engine
+        'NAME': 'test', # database name
+        'HOST': '127.0.0.1', # database address, native ip address 127.0.0.1
+        'PORT': 6001, # Port
+        'USER': 'root', # database username
+        'PASSWORD': '111', #database password
+        }
+    }
     ```
 
 5. Next, tell Django to connect to the mysql database using the pymysql module, introduce the module and configure it in __init__.py in the same directory as settings.py:
@@ -133,7 +133,7 @@ Before you begin, confirm that you have downloaded and installed the following s
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "TestModel",                 #add this  
+    "TestModel",                 #add this
     ]
     ```
 
@@ -142,13 +142,13 @@ Before you begin, confirm that you have downloaded and installed the following s
 - Modify the TestModel/models.py file to define the information code for a *book table* as follows:
 
 ```python
-from django.db import models 
-class Book(models.Model): 
-    id = models.AutoField(primary_key=True) # id is created automatically and can be written manually 
-    title = models.CharField(max_length=32) # book name 
-    price = models.DecimalField(max_digits=5, decimal_places=2) # book price 
-    publish = models.CharField(max_length=32) # publisher name 
-    pub_date = models.DateField() # publication time 
+from django.db import models
+class Book(models.Model):
+    id = models.AutoField(primary_key=True) # id is created automatically and can be written manually
+    title = models.CharField(max_length=32) # book name
+    price = models.DecimalField(max_digits=5, decimal_places=2) # book price
+    publish = models.CharField(max_length=32) # publisher name
+    pub_date = models.DateField() # publication time
 ```
 
 The Django model uses its own ORM. The above class name represents the database table name (*testmodel_book*) and inherits models.Model. Fields inside the class represent fields in the data table. Data types: AutoField (equivalent to int), CharField (equivalent to varchar), DecimalField (equivalent to decimal), DateField (equivalent to date), max_length parameter limits length.
@@ -164,8 +164,8 @@ Refer to: <https://docs.djangoproject.com/en/5.0/ref/models/fields/> for more mo
 - Run from the command line
 
 ```bash
-python3 manage.py makemigrations TestModel # Generate the configuration file and put it in the migrations directory under the app 
-python3 manage.py migrate TestModel # Automatically generate the appropriate SQL statements based on the configuration file 
+python3 manage.py makemigrations TestModel # Generate the configuration file and put it in the migrations directory under the app
+python3 manage.py migrate TestModel # Automatically generate the appropriate SQL statements based on the configuration file
 ```
 
 Go into the *test* database and see that the *testmodel\_book table* has been generated. where a record of the operations performed is generated in the *django\_migrations table*.
@@ -184,12 +184,12 @@ mysql> show tables;
 ## Insert Data
 
 - Adding data requires the creation of objects first, and then through the ORM-supplied objects-supplied method create . Create a new views.py file in the django\_crud\_matrixone directory under the previously created django_crud_matrixone directory and enter the code:
-  
+
 ```
 from django.shortcuts import render,HttpResponse
-from TestModel import models 
+from TestModel import models
 def add_book(request):
-    books = models.Book.objects.create(title="白夜行",price=39.50,publish="南海出版公司",pub_date="2010-10-10") 
+    books = models.Book.objects.create(title="白夜行",price=39.50,publish="南海出版公司",pub_date="2010-10-10")
     return HttpResponse("<p>数据添加成功！</p>")
 ```
 
@@ -199,7 +199,7 @@ def add_book(request):
 from django.contrib import admin
 from django.urls import path
 from . import views
- 
+
 urlpatterns = [
     path('', views.add_book),
     ]
@@ -208,7 +208,7 @@ urlpatterns = [
 - Next we start the server by entering the following command into the django\_crud\_matrixone directory:
 
 ```
-python3 manage.py runserver 0.0.0.0:8000 
+python3 manage.py runserver 0.0.0.0:8000
 ```
 
 Enter the ip of your server in your browser (here we enter the native IP address: 127.0.0.1:8000) and the port number. If it starts normally, the output is as follows:
@@ -235,10 +235,10 @@ mysql> select * from testmodel_book;
 
 ```python
 def src_book(request):
-    books = models.Book.objects.all()#Use the all() method to query everything 
+    books = models.Book.objects.all()#Use the all() method to query everything
     for i in books:
        print(i.id,i.title,i.price,i.publish,i.pub_date)
-    return HttpResponse("<p>查找成功！</p>")  
+    return HttpResponse("<p>查找成功！</p>")
 ```
 
 For more query related methods, refer to:<https://docs.djangoproject.com/en/5.0/ref/models/querysets/>
