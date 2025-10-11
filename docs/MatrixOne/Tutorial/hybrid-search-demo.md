@@ -3,6 +3,7 @@
 ## Overview
 
 This tutorial demonstrates **advanced hybrid search** in MatrixOne Python SDK, combining:
+
 - 🔍 **Vector similarity search** (semantic search with IVF index)
 - 📝 **Fulltext search** (keyword search with BM25 algorithm)
 - 🔗 **JOIN operations** (multi-table queries)
@@ -12,6 +13,7 @@ This tutorial demonstrates **advanced hybrid search** in MatrixOne Python SDK, c
 **Why Hybrid Search?**
 
 Real-world applications rarely use just one search method. Hybrid search combines:
+
 - **Semantic understanding** from vector similarity
 - **Keyword precision** from fulltext search
 - **Structured filtering** from SQL conditions
@@ -664,8 +666,8 @@ for row in all_results:
 
 print("Top article in each category:")
 for category_name, row in category_top.items():
-    print(f"  {category_name}: {row.title}")
-    print(f"    Distance: {row.distance:.4f}")
+    print(f"{category_name}: {row.title}")
+    print(f"Distance: {row.distance:.4f}")
 ```
 
 **Use case:** Diverse recommendations across categories
@@ -821,7 +823,7 @@ results = client.query(
 
 for row in results:
     print(f"{row.category_name}: {row.article_count} articles")
-    print(f"  Avg rating: {row.avg_rating:.2f}, Total views: {row.total_views}")
+    print(f"Avg rating: {row.avg_rating:.2f}, Total views: {row.total_views}")
 ```
 
 ### HAVING Clause for Post-Aggregation Filtering
@@ -1083,4 +1085,3 @@ Hybrid search in MatrixOne enables powerful query combinations:
 ✅ **ORM-Style API**: Clean, maintainable code
 
 **Perfect for:** E-commerce, document management, job platforms, content discovery, recommendation systems - any application needing sophisticated search! 🚀
-

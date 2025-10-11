@@ -5,6 +5,7 @@
 This tutorial demonstrates **JSON parser capabilities for fulltext search** in MatrixOne Python SDK. The JSON parser enables fulltext search on JSON content, indexing **values** (not keys), allowing you to search structured data efficiently.
 
 **Key Features:**
+
 - 🔍 Search within JSON values (keys are not indexed)
 - 📦 Index product specifications stored as JSON
 - 👤 Search user preferences and settings
@@ -13,6 +14,7 @@ This tutorial demonstrates **JSON parser capabilities for fulltext search** in M
 - 📊 Perfect for semi-structured data
 
 **Perfect For:**
+
 - E-commerce product catalogs with varying specs
 - User profiles with custom preferences
 - Application configurations
@@ -48,15 +50,15 @@ from matrixone.orm import declarative_base
 from sqlalchemy import BigInteger, Column, String, Text, Float
 import json
 
-print("=" * 70)
+print("="* 70)
 print("MatrixOne JSON Parser Fulltext Search Demo")
-print("=" * 70)
+print("="* 70)
 
 # Connect to database
 host, port, user, password, database = get_connection_params(database='demo')
 client = Client()
 client.connect(host=host, port=port, user=user, password=password, database=database)
-print(f"✓ Connected to database")
+print(f"Connected to database")
 
 # Define table with JSON columns
 Base = declarative_base()
@@ -80,7 +82,7 @@ class Product(Base):
 client.fulltext_index.enable_fulltext()
 client.drop_table(Product)
 client.create_table(Product)
-print("✓ Table created with JSON indexes")
+print("Table created with JSON indexes")
 
 # Insert products with JSON data
 sample_products = [
@@ -104,7 +106,7 @@ sample_products = [
 ]
 
 client.batch_insert(Product, sample_products)
-print(f"✓ Inserted {len(sample_products)} products")
+print(f"Inserted {len(sample_products)} products")
 
 # Search in JSON specifications
 print("\nSearch for 'RGB' in specifications:")
@@ -113,7 +115,7 @@ results = client.query(Product).filter(
 ).execute()
 
 for row in results.fetchall():
-    print(f"  - {row.name}")
+    print(f"- {row.name}")
 
 # Search in JSON features
 print("\nSearch for 'wireless' technology:")
@@ -122,11 +124,11 @@ results = client.query(Product).filter(
 ).execute()
 
 for row in results.fetchall():
-    print(f"  - {row.name}")
+    print(f"- {row.name}")
 
 # Cleanup
 client.disconnect()
-print("\n✅ Demo completed!")
+print("\n Demo completed!")
 ```
 
 ## Key Concepts
@@ -548,6 +550,7 @@ class Document(Base):
 ### What Gets Indexed
 
 **✅ Indexed (JSON Values):**
+
 ```json
 {
     "processor": "Intel Core i9",  // "Intel Core i9" is indexed
@@ -557,6 +560,7 @@ class Document(Base):
 ```
 
 **❌ NOT Indexed (JSON Keys):**
+
 ```json
 {
     "processor": "...",  // "processor" key is NOT indexed
@@ -869,4 +873,3 @@ JSON parser fulltext search in MatrixOne provides:
 ✅ **Production Ready**: Perfect for e-commerce and SaaS applications
 
 **Key Insight:** Only JSON **values** are indexed, not keys. This makes it perfect for searching product attributes, user preferences, and configuration settings! 🚀
-

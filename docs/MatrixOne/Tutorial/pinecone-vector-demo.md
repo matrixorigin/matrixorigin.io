@@ -48,22 +48,22 @@ import numpy as np
 # Set random seed for reproducible results
 np.random.seed(42)
 
-print("=" * 70)
+print("="* 70)
 print("MatrixOne Pinecone Index Compatibility Demo")
-print("=" * 70)
+print("="* 70)
 
 # Step 1: Connect to database
 print("\nStep 1: Connect to MatrixOne Database")
-print("-" * 70)
+print("-"* 70)
 
 host, port, user, password, database = get_connection_params(database='demo')
 client = Client()
 client.connect(host=host, port=port, user=user, password=password, database=database)
-print(f"✓ Successfully connected to database: {host}:{port}/{database}")
+print(f"Successfully connected to database: {host}:{port}/{database}")
 
 # Step 2: Define table structure
 print("\nStep 2: Define Table Structure (16-dimensional vectors)")
-print("-" * 70)
+print("-"* 70)
 
 Base = declarative_base()
 
@@ -78,22 +78,22 @@ class DocumentTable(Base):
     score = Column(Float)
     embedding = create_vector_column(16, "f32")  # 16-dimensional vector
 
-print(f"✓ Defined table: {DocumentTable.__tablename__}")
-print(f"  - Primary key: id (BigInteger)")
-print(f"  - Fields: title, category, content, score")
-print(f"  - Vector: embedding (16-dimensional, float32)")
+print(f"Defined table: {DocumentTable.__tablename__}")
+print(f"- Primary key: id (BigInteger)")
+print(f"- Fields: title, category, content, score")
+print(f"- Vector: embedding (16-dimensional, float32)")
 
 # Step 3: Create table
 print("\nStep 3: Create Table")
-print("-" * 70)
+print("-"* 70)
 
 client.drop_table(DocumentTable)  # Drop old table if exists
 client.create_table(DocumentTable)
-print("✓ Table created successfully")
+print("Table created successfully")
 
 # Step 4: Prepare and insert initial records
 print("\nStep 4: Prepare 3 Initial Records")
-print("-" * 70)
+print("-"* 70)
 
 initial_documents = [
     {
@@ -123,11 +123,11 @@ initial_documents = [
 ]
 
 client.batch_insert(DocumentTable, initial_documents)
-print(f"✓ Successfully inserted {len(initial_documents)} initial records")
+print(f"Successfully inserted {len(initial_documents)} initial records")
 
 # Step 5: Create IVF vector index
 print("\nStep 5: Enable IVF and Create Vector Index")
-print("-" * 70)
+print("-"* 70)
 
 client.vector_ops.create_ivf(
     "pinecone_demo_docs",  # Table name
@@ -136,14 +136,14 @@ client.vector_ops.create_ivf(
     lists=2,               # Number of IVF lists
     op_type="vector_l2_ops"  # Use L2 distance
 )
-print("✓ IVF index created successfully")
+print("IVF index created successfully")
 
 # Step 6: Get Pinecone-compatible index object
 print("\nStep 6: Get Pinecone-Compatible Index Object")
-print("-" * 70)
+print("-"* 70)
 
 pinecone_index = client.get_pinecone_index("pinecone_demo_docs", "embedding")
-print("✓ Successfully obtained Pinecone-compatible index object")
+print("Successfully obtained Pinecone-compatible index object")
 ```
 
 ### Key Steps Explained
@@ -197,12 +197,12 @@ results = pinecone_index.query(
     include_metadata=True
 )
 
-print(f"✓ Query returned {len(results.matches)} results:")
+print(f"Query returned {len(results.matches)} results:")
 for i, match in enumerate(results.matches, 1):
-    print(f"  {i}. ID: {match.id}")
-    print(f"     Similarity score: {match.score:.4f}")
-    print(f"     Title: {match.metadata['title']}")
-    print(f"     Category: {match.metadata['category']}")
+    print(f"{i}. ID: {match.id}")
+    print(f"Similarity score: {match.score:.4f}")
+    print(f"Title: {match.metadata['title']}")
+    print(f"Category: {match.metadata['category']}")
 ```
 
 ### Query with Metadata Filters
@@ -219,7 +219,7 @@ results_ai = pinecone_index.query(
     include_metadata=True,
     filter={"category": "AI"}
 )
-print(f"✓ Found {len(results_ai.matches)} AI documents")
+print(f"Found {len(results_ai.matches)} AI documents")
 ```
 
 #### Range Filter
@@ -232,7 +232,7 @@ results_high_score = pinecone_index.query(
     include_metadata=True,
     filter={"score": {"$gte": 4.5}}
 )
-print(f"✓ Found {len(results_high_score.matches)} high-score documents")
+print(f"Found {len(results_high_score.matches)} high-score documents")
 ```
 
 #### AND Filter (Multiple Conditions)
@@ -308,7 +308,7 @@ upsert_data = [
 
 # Perform upsert
 pinecone_index.upsert(upsert_data)
-print(f"✓ Successfully upserted {len(upsert_data)} records")
+print(f"Successfully upserted {len(upsert_data)} records")
 ```
 
 ### Delete Operations
@@ -319,7 +319,7 @@ Delete vectors by ID:
 # Delete document with ID 5
 delete_ids = [5]
 pinecone_index.delete(delete_ids)
-print(f"✓ Successfully deleted document(s) with ID: {delete_ids}")
+print(f"Successfully deleted document(s) with ID: {delete_ids}")
 ```
 
 ### Get Index Statistics
@@ -328,9 +328,9 @@ Retrieve index information:
 
 ```python
 stats = pinecone_index.describe_index_stats()
-print(f"✓ Index statistics:")
-print(f"  - Total vector count: {stats.get('total_vector_count', 'N/A')}")
-print(f"  - Dimension: {stats.get('dimension', 'N/A')}")
+print(f"Index statistics:")
+print(f"- Total vector count: {stats.get('total_vector_count', 'N/A')}")
+print(f"- Dimension: {stats.get('dimension', 'N/A')}")
 ```
 
 ### Query with Vector Values
@@ -365,9 +365,9 @@ import numpy as np
 
 np.random.seed(42)
 
-print("=" * 70)
+print("="* 70)
 print("MatrixOne Pinecone Index Compatibility Demo")
-print("=" * 70)
+print("="* 70)
 
 # Connect to database
 host, port, user, password, database = get_connection_params()
@@ -440,7 +440,7 @@ results = pinecone_index.query(
     include_metadata=True
 )
 
-print(f"\n✓ Query returned {len(results.matches)} results")
+print(f"\n Query returned {len(results.matches)} results")
 
 # Query with filter
 results_ai = pinecone_index.query(
@@ -450,7 +450,7 @@ results_ai = pinecone_index.query(
     filter={"category": "AI"}
 )
 
-print(f"✓ Found {len(results_ai.matches)} AI documents")
+print(f"Found {len(results_ai.matches)} AI documents")
 
 # Upsert new data
 upsert_data = [
@@ -465,15 +465,15 @@ upsert_data = [
 ]
 
 pinecone_index.upsert(upsert_data)
-print(f"✓ Upserted {len(upsert_data)} records")
+print(f"Upserted {len(upsert_data)} records")
 
 # Get statistics
 stats = pinecone_index.describe_index_stats()
-print(f"✓ Total vectors: {stats.get('total_vector_count', 'N/A')}")
+print(f"Total vectors: {stats.get('total_vector_count', 'N/A')}")
 
 # Cleanup
 client.disconnect()
-print("\n✅ Demo completed!")
+print("\n Demo completed!")
 ```
 
 ## Key Features Demonstrated
@@ -481,14 +481,17 @@ print("\n✅ Demo completed!")
 ### ✨ Pinecone-Compatible API Capabilities
 
 1. **Get Pinecone Index Interface**
+
    ```python
    pinecone_index = client.get_pinecone_index(table_name, vector_column)
    ```
+
    - Wraps existing MatrixOne table with Pinecone API
    - Works with any table that has an IVF vector index
    - Supports 16-dimensional (or any dimension) float32 vectors
 
 2. **Query with Similarity Search**
+
    ```python
    results = pinecone_index.query(
        vector=query_vector,
@@ -498,6 +501,7 @@ print("\n✅ Demo completed!")
        filter={"category": "AI"}
    )
    ```
+
    - Returns `results.matches` list with `id`, `score`, `metadata`, `values`
    - Supports metadata filtering
    - Configurable result format
@@ -508,26 +512,32 @@ print("\n✅ Demo completed!")
    - Filter by any metadata field during query
 
 4. **Upsert Operations**
+
    ```python
    pinecone_index.upsert([
        {"id": 1, "title": "...", "embedding": [...]}
    ])
    ```
+
    - Batch insert/update with single API call
    - Automatic conflict resolution (update if ID exists)
    - All table columns mapped to metadata
 
 5. **Delete Operations**
+
    ```python
    pinecone_index.delete([1, 2, 3])
    ```
+
    - Delete specific vectors by ID
    - Supports batch deletion
 
 6. **Index Statistics**
+
    ```python
    stats = pinecone_index.describe_index_stats()
    ```
+
    - Get total vector count
    - Get index dimension
    - Check index health
@@ -766,4 +776,3 @@ pinecone_index = client.get_pinecone_index("my_table", "embedding")
 - [Vector Type Documentation](../Develop/Vector/vector_type.md)
 - [Vector Search Guide](../Develop/Vector/vector_search.md)
 - [CREATE INDEX IVFFLAT](../Reference/SQL-Reference/Data-Definition-Language/create-index-ivfflat.md)
-

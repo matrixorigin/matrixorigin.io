@@ -16,11 +16,13 @@ This tutorial demonstrates **IVF (Inverted File) index health monitoring and opt
 ### ❌ Problems with Early Index Creation
 
 **If you create an IVF index when:**
+
 - 📉 There is **no data** in the table
 - 📉 There is **very little data** (< 100 vectors)
 - 📉 Data volume is **much smaller** than expected production size
 
 **You may experience:**
+
 - 🔴 **Insufficient centroids**: Not enough data to properly initialize all centroids
 - 🔴 **Poor distribution**: Vectors clustered unevenly across centroids
 - 🔴 **Empty centroids**: Some centroids never get assigned any vectors
@@ -30,6 +32,7 @@ This tutorial demonstrates **IVF (Inverted File) index health monitoring and opt
 ### ✅ Recommended Approach
 
 **Best Practice:**
+
 1. ✅ Insert a representative amount of data first (at least 1000+ vectors)
 2. ✅ Then create the IVF index with appropriate `lists` parameter
 3. ✅ Use this health monitoring tool to evaluate index quality
@@ -53,6 +56,7 @@ client.vector_ops.create_ivf(table_name, index_name, column_name, lists=100)
 ### 🔍 How This Tool Helps
 
 This demo shows you how to:
+
 - **Detect** poor index health using `get_ivf_stats()`
 - **Evaluate** centroid distribution and balance ratio
 - **Decide** when index rebuild is necessary
@@ -61,11 +65,13 @@ This demo shows you how to:
 **Why Monitor IVF Index Health?**
 
 Even with proper initial creation, index health can degrade over time:
+
 - ⚠️ As you insert, update, or delete vector data
 - ⚠️ When data distribution changes
 - ⚠️ After bulk data imports
 
 **This Demo Covers:**
+
 - ✅ Create IVF index with configurable parameters
 - ✅ Monitor centroid distribution and load balance
 - ✅ Analyze health metrics and detect issues
@@ -104,15 +110,15 @@ import time
 
 np.random.seed(42)
 
-print("=" * 70)
+print("="* 70)
 print("MatrixOne IVF Index Health Check Demo")
-print("=" * 70)
+print("="* 70)
 
 # Connect to database
 host, port, user, password, database = get_connection_params(database='demo')
 client = Client()
 client.connect(host=host, port=port, user=user, password=password, database=database)
-print(f"✓ Connected to database")
+print(f"Connected to database")
 
 # Define table with 128-dimensional vectors
 Base = declarative_base()
@@ -139,7 +145,7 @@ initial_docs = [
 ]
 
 client.batch_insert(VectorDocument, initial_docs)
-print(f"✓ Inserted {len(initial_docs)} documents")
+print(f"Inserted {len(initial_docs)} documents")
 
 # Create IVF index
 client.vector_ops.create_ivf(
@@ -149,7 +155,7 @@ client.vector_ops.create_ivf(
     lists=10,
     op_type="vector_l2_ops"
 )
-print("✓ IVF index created with 10 lists")
+print("IVF index created with 10 lists")
 
 time.sleep(1)
 
@@ -165,19 +171,19 @@ min_count = min(centroid_counts) if centroid_counts else 0
 max_count = max(centroid_counts) if centroid_counts else 0
 balance_ratio = max_count / min_count if min_count > 0 else float('inf')
 
-print(f"\n📊 Index Health:")
-print(f"  - Total centroids: {total_centroids}")
-print(f"  - Total vectors: {total_vectors}")
-print(f"  - Balance ratio: {balance_ratio:.2f}")
+print(f"\n Index Health:")
+print(f"- Total centroids: {total_centroids}")
+print(f"- Total vectors: {total_vectors}")
+print(f"- Balance ratio: {balance_ratio:.2f}")
 
 if balance_ratio > 2.0:
-    print(f"  ⚠️  WARNING: Balance ratio high ({balance_ratio:.2f})")
+    print(f"WARNING: Balance ratio high ({balance_ratio:.2f})")
 else:
-    print(f"  ✅ PASS: Good balance")
+    print(f"PASS: Good balance")
 
 # Cleanup
 client.disconnect()
-print("\n✅ Demo completed!")
+print("\n Demo completed!")
 ```
 
 ## Key Concepts
@@ -204,6 +210,7 @@ stats = client.vector_ops.get_ivf_stats(table_name, vector_column)
 ```
 
 **Returns:**
+
 ```python
 {
     'database': 'demo',
@@ -230,6 +237,7 @@ balance_ratio = max_vectors_per_centroid / min_vectors_per_centroid
 ```
 
 **Health Levels:**
+
 - 🟢 **Excellent** (< 1.5): Optimal performance
 - 🟡 **Good** (1.5 - 2.0): Acceptable performance
 - 🟠 **Fair** (2.0 - 3.0): Monitor closely
@@ -242,6 +250,7 @@ utilization = total_vectors / total_centroids
 ```
 
 **Guidelines:**
+
 - 🔴 **Too Low** (< 5): Too many centroids, reduce `lists`
 - 🟢 **Optimal** (10 - 100): Good efficiency
 - 🟡 **High** (> 100): Consider more `lists`
@@ -266,9 +275,9 @@ balance_ratio = max_count / min_count
 
 print(f"Balance Ratio: {balance_ratio:.2f}")
 if balance_ratio > 2.0:
-    print("⚠️  WARNING: Index needs optimization")
+    print("WARNING: Index needs optimization")
 else:
-    print("✅ Index is healthy")
+    print("Index is healthy")
 ```
 
 ### Comprehensive Health Check
@@ -359,7 +368,7 @@ balance_after = calculate_balance_ratio(stats_after)
 
 # Compare
 if balance_after > balance_before * 1.2:
-    print("⚠️  Balance degraded by >20%, consider rebuild")
+    print("Balance degraded by >20%, consider rebuild")
 ```
 
 ## Index Rebuild Strategies
@@ -397,7 +406,7 @@ results = pinecone_index_new.query(test_vector, top_k=10)
 # Step 3: Drop old index only after verification
 if len(results.matches) > 0:
     client.vector_ops.drop(table_name, "idx_embedding_old")
-    print("✅ Old index dropped, new index active")
+    print("Old index dropped, new index active")
 ```
 
 ### Strategy 3: Scheduled Maintenance
@@ -410,10 +419,10 @@ def rebuild_if_needed():
     balance_ratio = calculate_balance_ratio(stats)
 
     if balance_ratio > 2.5:
-        print(f"⚠️  Balance ratio {balance_ratio:.2f}, rebuilding...")
+        print(f"Balance ratio {balance_ratio:.2f}, rebuilding...")
         rebuild_index(table_name, vector_column)
     else:
-        print(f"✅ Health OK (ratio: {balance_ratio:.2f})")
+        print(f"Health OK (ratio: {balance_ratio:.2f})")
 
 # Run daily at 2 AM
 schedule.every().day.at("02:00").do(rebuild_if_needed)
@@ -623,7 +632,7 @@ stats = client.vector_ops.get_ivf_stats(table_name, vector_column)
 versions = set(stats['distribution']['centroid_version'])
 
 if len(versions) > 1:
-    print(f"⚠️  Multiple versions found: {versions}")
+    print(f"Multiple versions found: {versions}")
     print("Waiting for index to stabilize...")
     time.sleep(5)
 
@@ -649,7 +658,7 @@ current_count = get_vector_count()
 growth_rate = (current_count - initial_count) / initial_count
 
 if growth_rate > 0.2:  # 20% growth
-    print(f"⚠️  Vector count grew by {growth_rate*100:.1f}%")
+    print(f"Vector count grew by {growth_rate*100:.1f}%")
     print("Rebuilding index for optimal performance...")
     rebuild_index(table_name, vector_column)
 ```
@@ -682,6 +691,7 @@ client.vector_ops.create_ivf(table_name, index_name, column_name, lists=optimal_
 **Why This Matters:**
 
 IVF index initialization uses the existing data to determine centroid positions. If you create the index on an empty or nearly-empty table:
+
 - Centroids may be positioned poorly
 - Future data won't be distributed evenly
 - Performance will suffer even with millions of vectors later
@@ -695,7 +705,7 @@ balance_ratio = max(counts) / min(counts)
 
 # Step 2: If ratio > 2.5, rebuild is needed
 if balance_ratio > 2.5:
-    print(f"⚠️  Index created too early! Balance ratio: {balance_ratio:.2f}")
+    print(f"Index created too early! Balance ratio: {balance_ratio:.2f}")
 
     # Step 3: Drop old index
     client.vector_ops.drop(table_name, old_index_name)
@@ -710,7 +720,7 @@ if balance_ratio > 2.5:
         lists=optimal_lists,
         op_type="vector_l2_ops"
     )
-    print(f"✅ Index rebuilt with {optimal_lists} lists")
+    print(f"Index rebuilt with {optimal_lists} lists")
 ```
 
 ### 2. Regular Monitoring
@@ -770,7 +780,7 @@ def rebuild_during_maintenance(client, table_name, vector_column):
     # Check if in maintenance window (e.g., 2-4 AM)
     current_hour = datetime.datetime.now().hour
     if not (2 <= current_hour < 4):
-        print("⏰ Outside maintenance window, skipping rebuild")
+        print("Outside maintenance window, skipping rebuild")
         return
 
     print("🔧 Maintenance window: Rebuilding index...")
@@ -790,7 +800,7 @@ def rebuild_during_maintenance(client, table_name, vector_column):
         op_type="vector_l2_ops"
     )
 
-    print(f"✅ Index rebuilt with {optimal_lists} lists")
+    print(f"Index rebuilt with {optimal_lists} lists")
 ```
 
 ### 4. Performance Testing
@@ -814,12 +824,12 @@ def test_query_performance(client, table_name, vector_column):
     p95_time = np.percentile(times, 95)
 
     print(f"Query Performance:")
-    print(f"  Avg: {avg_time*1000:.2f}ms")
-    print(f"  P95: {p95_time*1000:.2f}ms")
+    print(f"Avg: {avg_time*1000:.2f}ms")
+    print(f"P95: {p95_time*1000:.2f}ms")
 
     # Alert if too slow
     if p95_time > 0.1:  # 100ms threshold
-        print("⚠️  Queries too slow, check index health")
+        print("Queries too slow, check index health")
 ```
 
 ## Reference
@@ -841,4 +851,3 @@ IVF index health monitoring is essential for production vector search systems:
 ✅ **Automate**: Set up scheduled health checks and alerts
 
 **Golden Rule:** Monitor balance ratio and rebuild when it exceeds 2.5! 🚀
-

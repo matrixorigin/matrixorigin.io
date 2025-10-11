@@ -155,6 +155,7 @@ graph TD
 | 6️⃣ **Delete** | Clean up clones | 1s | Freed | No impact |
 
 **Key Points:**
+
 - 🟢 **Green**: Production database (untouched)
 - 🔵 **Blue**: Team clones (instant, isolated)
 - ⚪ **Gray**: Independent modifications
@@ -229,7 +230,7 @@ host, port, user, password, database = get_connection_params()
 client = Client()
 client.connect(host=host, port=port, user=user, password=password, database=database)
 
-print(f"✓ Connected to {host}:{port}/{database}")
+print(f"Connected to {host}:{port}/{database}")
 ```
 
 #### Create Production Database with Large Table
@@ -267,7 +268,7 @@ prod_client.connect(host=host, port=port, user=user, password=password, database
 
 # Create table
 prod_client.create_table(UserBehavior)
-print(f"✓ Created production table: {UserBehavior.__tablename__}")
+print(f"Created production table: {UserBehavior.__tablename__}")
 ```
 
 #### Insert Large Dataset
@@ -296,7 +297,7 @@ for i in range(1000):
 prod_client.batch_insert(UserBehavior, batch_data)
 
 total_records = prod_client.query(UserBehavior).count()
-print(f"✓ Production ready: {total_records:,} records (~100MB, represents 10GB+ in production)")
+print(f"Production ready: {total_records:,} records (~100MB, represents 10GB+ in production)")
 
 prod_client.disconnect()
 ```
@@ -319,9 +320,9 @@ client.clone.clone_database(
 )
 
 clone_time = time.time() - clone_start
-print(f"✓ Data Science clone completed in {clone_time:.2f} seconds")
-print(f"  ⚡ No data copied - metadata operation only")
-print(f"  💰 Storage: ~0 MB additional (Copy-on-Write)")
+print(f"Data Science clone completed in {clone_time:.2f} seconds")
+print(f"No data copied - metadata operation only")
+print(f"Storage: ~0 MB additional (Copy-on-Write)")
 ```
 
 #### Data Science Work: ML Model Training
@@ -333,7 +334,7 @@ ds_client.connect(host=host, port=port, user=user, password=password, database=d
 
 # Verify clone has same data
 ds_count = ds_client.query(UserBehavior).count()
-print(f"✓ DS clone verified: {ds_count:,} records")
+print(f"DS clone verified: {ds_count:,} records")
 
 # Add ML model predictions (triggers Copy-on-Write)
 for i in range(100):
@@ -341,9 +342,9 @@ for i in range(100):
         UserBehavior.id == i + 1
     ).update(price=999.99)  # Mark as processed by ML model
 
-print(f"✓ Updated 100 records with ML predictions")
-print(f"  💾 Only modified rows are stored (Copy-on-Write)")
-print(f"  🛡️ Production data: completely unaffected")
+print(f"Updated 100 records with ML predictions")
+print(f"Only modified rows are stored (Copy-on-Write)")
+print(f"Production data: completely unaffected")
 
 ds_client.disconnect()
 ```
@@ -361,8 +362,8 @@ client.clone.clone_database(
     source_db=prod_db
 )
 
-print(f"✓ QA clone created: {qa_db}")
-print(f"  🧪 QA can run destructive tests safely")
+print(f"QA clone created: {qa_db}")
+print(f"QA can run destructive tests safely")
 ```
 
 #### QA Work: Destructive Testing
@@ -378,10 +379,10 @@ qa_client.query(UserBehavior).filter(
 ).delete().execute()
 
 qa_count = qa_client.query(UserBehavior).count()
-print(f"✓ QA deleted purchase records for testing")
-print(f"  📊 QA database now: {qa_count:,} records")
-print(f"  🛡️ Production: unaffected")
-print(f"  🛡️ DS clone: unaffected")
+print(f"QA deleted purchase records for testing")
+print(f"QA database now: {qa_count:,} records")
+print(f"Production: unaffected")
+print(f"DS clone: unaffected")
 
 qa_client.disconnect()
 ```
@@ -399,7 +400,7 @@ client.clone.clone_database(
     source_db=prod_db
 )
 
-print(f"✓ Dev clone created: {dev_db}")
+print(f"Dev clone created: {dev_db}")
 ```
 
 #### Dev Work: Schema Changes and Testing
@@ -418,8 +419,8 @@ dev_client.vector_ops.create_ivf(
     op_type="vector_l2_ops"
 )
 
-print(f"✓ Created IVF index on embedding column")
-print(f"  🔬 Testing vector search performance")
+print(f"Created IVF index on embedding column")
+print(f"Testing vector search performance")
 
 # Insert test data
 test_records = []
@@ -439,8 +440,8 @@ for i in range(50):
 dev_client.batch_insert(UserBehavior, test_records)
 
 dev_count = dev_client.query(UserBehavior).count()
-print(f"✓ Dev inserted {len(test_records)} test records")
-print(f"  📊 Dev database: {dev_count:,} records")
+print(f"Dev inserted {len(test_records)} test records")
+print(f"Dev database: {dev_count:,} records")
 
 dev_client.disconnect()
 ```
@@ -455,12 +456,12 @@ prod_client.connect(host=host, port=port, user=user, password=password, database
 prod_count = prod_client.query(UserBehavior).count()
 test_users = prod_client.query(UserBehavior).filter(UserBehavior.user_id == 999).count()
 
-print(f"\n✅ Production Database Integrity Check:")
-print(f"  📊 Original records: {total_records:,}")
-print(f"  📊 Current records: {prod_count:,}")
-print(f"  ✅ Data integrity: {'PRESERVED' if prod_count == total_records else 'MODIFIED'}")
-print(f"  ✅ Test records: {test_users} (expected: 0)")
-print(f"\n🎯 All team clones are completely isolated!")
+print(f"\n Production Database Integrity Check:")
+print(f"Original records: {total_records:,}")
+print(f"Current records: {prod_count:,}")
+print(f"Data integrity: {'PRESERVED' if prod_count == total_records else 'MODIFIED'}")
+print(f"Test records: {test_users} (expected: 0)")
+print(f"\n All team clones are completely isolated!")
 
 prod_client.disconnect()
 ```
@@ -468,33 +469,33 @@ prod_client.disconnect()
 ### Phase 6: Storage Efficiency Analysis
 
 ```python
-print("\n" + "=" * 70)
+print("\n"+"="* 70)
 print("Storage Efficiency Comparison")
-print("=" * 70)
+print("="* 70)
 
-print("\n🐢 Traditional Copy Approach:")
-print(f"  Production: 10 GB")
-print(f"  DS Clone:   10 GB (full copy)")
-print(f"  QA Clone:   10 GB (full copy)")
-print(f"  Dev Clone:  10 GB (full copy)")
-print(f"  ─────────────────────")
-print(f"  Total:      40 GB 💸💸💸")
-print(f"  Time:       ~90 minutes (30 min × 3)")
+print("\n Traditional Copy Approach:")
+print(f"Production: 10 GB")
+print(f"DS Clone: 10 GB (full copy)")
+print(f"QA Clone: 10 GB (full copy)")
+print(f"Dev Clone: 10 GB (full copy)")
+print(f"─────────────────────")
+print(f"Total: 40 GB")
+print(f"Time: ~90 minutes (30 min × 3)")
 
-print("\n⚡ MatrixOne Clone (Copy-on-Write):")
-print(f"  Production: 10 GB")
-print(f"  DS Clone:   ~0 GB + 10 MB (modified data)")
-print(f"  QA Clone:   ~0 GB + 5 MB (modified data)")
-print(f"  Dev Clone:  ~0 GB + 8 MB (modified data)")
-print(f"  ─────────────────────")
-print(f"  Total:      ~10.023 GB 💰")
-print(f"  Time:       ~15 seconds (5 sec × 3)")
+print("\n MatrixOne Clone (Copy-on-Write):")
+print(f"Production: 10 GB")
+print(f"DS Clone: ~0 GB + 10 MB (modified data)")
+print(f"QA Clone: ~0 GB + 5 MB (modified data)")
+print(f"Dev Clone: ~0 GB + 8 MB (modified data)")
+print(f"─────────────────────")
+print(f"Total: ~10.023 GB")
+print(f"Time: ~15 seconds (5 sec × 3)")
 
-print("\n📊 Savings:")
-print(f"  💾 Storage: 75% saved (29.977 GB)")
-print(f"  ⚡ Time: 99.7% faster (89.75 min saved)")
-print(f"  💰 Cloud cost: ~75% reduction")
-print(f"  🚀 Team productivity: Unlimited!")
+print("\n Savings:")
+print(f"Storage: 75% saved (29.977 GB)")
+print(f"Time: 99.7% faster (89.75 min saved)")
+print(f"Cloud cost: ~75% reduction")
+print(f"Team productivity: Unlimited!")
 ```
 
 ### Phase 7: Independent Clone Deletion
@@ -502,16 +503,16 @@ print(f"  🚀 Team productivity: Unlimited!")
 ```python
 # Delete QA clone - production and other clones unaffected
 client.execute(f"DROP DATABASE {qa_db}")
-print(f"\n✓ Dropped QA database: {qa_db}")
+print(f"\n Dropped QA database: {qa_db}")
 
 # Verify production still intact
 prod_client = Client()
 prod_client.connect(host=host, port=port, user=user, password=password, database=prod_db)
 prod_count_final = prod_client.query(UserBehavior).count()
 
-print(f"✓ Production after QA clone deletion:")
-print(f"  📊 Records: {prod_count_final:,} (unchanged)")
-print(f"  ✅ Other clones (DS, Dev): still accessible")
+print(f"Production after QA clone deletion:")
+print(f"Records: {prod_count_final:,} (unchanged)")
+print(f"Other clones (DS, Dev): still accessible")
 
 prod_client.disconnect()
 ```
@@ -527,7 +528,7 @@ client.snapshots.create(
     database=prod_db
 )
 
-print(f"\n✓ Created snapshot: {snapshot_name}")
+print(f"\n Created snapshot: {snapshot_name}")
 
 # Simulate production getting new data (today's data)
 prod_client = Client()
@@ -549,8 +550,8 @@ for i in range(100):
 
 prod_client.batch_insert(UserBehavior, new_data)
 new_total = prod_client.query(UserBehavior).count()
-print(f"✓ Production received 100 new records")
-print(f"  📊 Production now: {new_total:,} records")
+print(f"Production received 100 new records")
+print(f"Production now: {new_total:,} records")
 
 prod_client.disconnect()
 
@@ -567,10 +568,10 @@ tt_client = Client()
 tt_client.connect(host=host, port=port, user=user, password=password, database=timetravel_db)
 tt_count = tt_client.query(UserBehavior).count()
 
-print(f"\n✓ Time-travel clone created:")
-print(f"  📅 Production (today): {new_total:,} records")
-print(f"  📅 Clone (snapshot): {tt_count:,} records")
-print(f"  ✅ Testing against historical data!")
+print(f"\n Time-travel clone created:")
+print(f"Production (today): {new_total:,} records")
+print(f"Clone (snapshot): {tt_count:,} records")
+print(f"Testing against historical data!")
 
 tt_client.disconnect()
 ```
@@ -590,6 +591,7 @@ client.clone.clone_database(
 ```
 
 **Use Cases:**
+
 - Quick test environment
 - Parallel development branches
 - Data Science experiments
@@ -607,6 +609,7 @@ client.clone.clone_database_with_snapshot(
 ```
 
 **Use Cases:**
+
 - Time-travel testing
 - Compare before/after states
 - Regression testing
@@ -764,11 +767,13 @@ Savings: 90% storage cost! 💰
 ### Snapshot Operations
 
 **Create Snapshot:**
+
 - ⚡ < 2 seconds for any size database
 - 📦 Metadata operation only
 - 💾 No storage overhead initially
 
 **Clone from Snapshot:**
+
 - ⚡ Same as regular clone (< 5 seconds)
 - 📅 Access historical data instantly
 - 💾 Copy-on-Write applies
@@ -785,7 +790,7 @@ for scientist in ["alice", "bob", "charlie"]:
         target_db=clone_db,
         source_db="production"
     )
-    print(f"✓ Created clone for {scientist}")
+    print(f"Created clone for {scientist}")
 
 # Result: 3 full production copies in 15 seconds
 # Storage: ~production size (not 3x!)
@@ -834,9 +839,9 @@ for variant in variants:
     # Run tests
     metrics = collect_metrics(clone_db)
 
-print(f"✓ 4 parallel A/B tests completed")
-print(f"  ⚡ Time: ~20 seconds")
-print(f"  💰 Storage: ~production size")
+print(f"4 parallel A/B tests completed")
+print(f"Time: ~20 seconds")
+print(f"Storage: ~production size")
 ```
 
 ### Use Case 4: CI/CD Pipeline Integration
@@ -878,11 +883,13 @@ def ci_pipeline(branch_name):
 **Symptoms:** Clone operation takes > 10 seconds
 
 **Possible Causes:**
+
 - Network latency
 - Database has many small files
 - First clone after MatrixOne restart
 
 **Solution:**
+
 ```python
 # Subsequent clones should be faster
 # First clone may take longer to warm up metadata
@@ -893,10 +900,12 @@ def ci_pipeline(branch_name):
 **Symptoms:** Error when trying to drop cloned database
 
 **Possible Causes:**
+
 - Active connections to clone
 - Clone being used by another process
 
 **Solution:**
+
 ```python
 # Disconnect all clients first
 client.disconnect()
@@ -910,10 +919,12 @@ client.execute(f"DROP DATABASE {clone_db}")
 **Symptoms:** Storage usage higher than expected with Copy-on-Write
 
 **Possible Causes:**
+
 - Many modifications to cloned data
 - Large bulk inserts/updates
 
 **Explanation:**
+
 ```python
 # Copy-on-Write stores deltas
 # If you modify 50% of cloned data, storage grows by 50%
@@ -927,6 +938,7 @@ client.execute(f"DROP DATABASE {clone_db}")
 ```
 
 **Solution:**
+
 - Drop clones you no longer need
 - Use snapshots for read-only historical access
 - Consider storage budget when planning modifications
@@ -936,26 +948,31 @@ client.execute(f"DROP DATABASE {clone_db}")
 **MatrixOne's Copy-on-Write cloning enables:**
 
 ✅ **Instant Cloning**
+
 - 1TB database cloned in < 5 seconds
 - No waiting for data copy
 - Perfect for rapid iteration
 
 ✅ **Storage Efficiency**
+
 - 10 clones ≈ 1x storage (not 10x!)
 - Copy-on-Write stores only changes
 - 75-90% storage savings
 
 ✅ **Team Productivity**
+
 - Each team gets isolated environment
 - No conflicts between teams
 - Parallel testing and development
 
 ✅ **Cost Reduction**
+
 - Massive cloud storage savings
 - Reduced infrastructure costs
 - Better resource utilization
 
 ✅ **CI/CD Friendly**
+
 - Fast test database provisioning
 - Parallel job execution
 - Automated workflows
@@ -981,6 +998,7 @@ client.execute("DROP DATABASE clone_db")
 ```
 
 **Perfect For:**
+
 - 👨‍💻 Multi-team development
 - 🧪 CI/CD pipelines
 - 📊 Data Science experiments
@@ -989,4 +1007,3 @@ client.execute("DROP DATABASE clone_db")
 - ⏰ Time-travel debugging
 
 Start leveraging MatrixOne's efficient cloning today and transform your team's workflow! 🚀
-

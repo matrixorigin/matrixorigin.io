@@ -5,6 +5,7 @@
 This tutorial demonstrates **Boolean mode fulltext search** in MatrixOne Python SDK. Boolean mode provides precise control over search logic using operators, perfect for advanced search interfaces and filtering.
 
 **Boolean Operators:**
+
 - ✅ **MUST (+)**: Required terms (AND logic)
 - ❌ **MUST_NOT (-)**: Excluded terms (NOT logic)
 - 📈 **ENCOURAGE**: Optional terms that boost relevance
@@ -12,6 +13,7 @@ This tutorial demonstrates **Boolean mode fulltext search** in MatrixOne Python 
 - 🔤 **PHRASE ("")**: Exact phrase matching
 
 **Perfect For:**
+
 - Advanced search interfaces
 - Precise query control
 - Power user features
@@ -46,15 +48,15 @@ from matrixone.sqlalchemy_ext import boolean_match
 from matrixone.orm import declarative_base
 from sqlalchemy import BigInteger, Column, String, Text, Integer, Float
 
-print("=" * 70)
+print("="* 70)
 print("MatrixOne Boolean Mode Fulltext Search Demo")
-print("=" * 70)
+print("="* 70)
 
 # Connect to database
 host, port, user, password, database = get_connection_params(database='demo')
 client = Client()
 client.connect(host=host, port=port, user=user, password=password, database=database)
-print(f"✓ Successfully connected to database")
+print(f"Successfully connected to database")
 
 # Define table structure
 Base = declarative_base()
@@ -81,7 +83,7 @@ client.fulltext_index.enable_fulltext()
 client.execute('SET ft_relevancy_algorithm = "BM25"')
 client.drop_table(Article)
 client.create_table(Article)
-print("✓ Table created with BM25 index")
+print("Table created with BM25 index")
 
 # Insert sample articles
 sample_articles = [
@@ -98,7 +100,7 @@ sample_articles = [
 ]
 
 client.batch_insert(Article, sample_articles)
-print(f"✓ Inserted {len(sample_articles)} articles")
+print(f"Inserted {len(sample_articles)} articles")
 
 # MUST search - both terms required
 print("\nMUST search: 'machine' AND 'learning'")
@@ -107,7 +109,7 @@ results = client.query(Article).filter(
 ).execute()
 
 for row in results.fetchall():
-    print(f"  - {row.title}")
+    print(f"- {row.title}")
 
 # MUST_NOT search - exclude terms
 print("\nMUST 'programming' but NOT 'legacy'")
@@ -118,11 +120,11 @@ results = client.query(Article).filter(
 ).execute()
 
 for row in results.fetchall():
-    print(f"  - {row.title}")
+    print(f"- {row.title}")
 
 # Cleanup
 client.disconnect()
-print("\n✅ Demo completed!")
+print("\n Demo completed!")
 ```
 
 ## Boolean Operators Explained
@@ -438,6 +440,7 @@ sample_articles = [
 ### When to Use Boolean Mode
 
 **Use Boolean mode when:**
+
 - ✅ You need precise control over term inclusion/exclusion
 - ✅ Building advanced search interfaces with filters
 - ✅ Users are familiar with search operators
@@ -447,6 +450,7 @@ sample_articles = [
 ### When to Use Natural Language Mode
 
 **Use Natural Language mode when:**
+
 - ✅ Building simple, user-friendly search boxes
 - ✅ Users are not technical (like Google search)
 - ✅ Automatic stopword removal is desired
@@ -773,8 +777,8 @@ Boolean mode fulltext search provides:
 ✅ **Professional**: Perfect for advanced search interfaces
 
 **Comparison:**
+
 - **Natural Language Mode**: User-friendly, automatic (like Google)
 - **Boolean Mode**: Powerful, precise (like advanced search)
 
 Choose based on your users' needs! 🚀
-

@@ -278,7 +278,7 @@ retrieved_docs_pinecone = [
 # Display results with similarity scores
 for i, match in enumerate(search_results['matches'], 1):
     print(f"\n--- Result {i} (Score: {match['score']:.4f}) ---")
-    print(match['metadata']['content'][:200] + "...")
+    print(match['metadata']['content'][:200] +"...")
 ```
 
 **Benefits of Pinecone-Compatible Interface:**

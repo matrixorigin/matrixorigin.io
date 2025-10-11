@@ -179,6 +179,7 @@ graph TD
 | **Migration** | - | Default values for existing data | Required |
 
 **Key Points:**
+
 - **Green boxes**: v1.0 stable state
 - **Yellow boxes**: v2.0 enhanced state
 - **Blue boxes**: New columns in v2.0
@@ -186,6 +187,7 @@ graph TD
 - **Dashed arrow ⬆️**: Rollback direction (using snapshot)
 
 **Key Features:**
+
 - ⚡ **Instant Snapshots**: Create backup in seconds (even for TB-scale databases)
 - 🔄 **Fast Restore**: Rollback entire database quickly
 - ✅ **Data Integrity**: Preserve exact state including schema
@@ -251,9 +253,9 @@ from sqlalchemy import BigInteger, Column, String, Integer, Float, Text
 from datetime import datetime
 import time
 
-print("=" * 80)
+print("="* 80)
 print("Database Snapshot Demo: System Upgrade and Rollback")
-print("=" * 80)
+print("="* 80)
 
 # Connect
 host, port, user, password, database = get_connection_params(database='demo')
@@ -284,7 +286,7 @@ for product in v1_products:
     client.insert(ProductV1, product)
 
 v1_count = client.query(ProductV1).count()
-print(f"✓ v1.0 System: {v1_count} products")
+print(f"v1.0 System: {v1_count} products")
 
 # Create snapshot before upgrade
 snapshot_name = f"pre_upgrade_v1_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
@@ -293,11 +295,11 @@ client.snapshots.create(
     level=SnapshotLevel.DATABASE,
     database=database
 )
-print(f"✓ Snapshot created: {snapshot_name}")
+print(f"Snapshot created: {snapshot_name}")
 
 # Upgrade to v2.0 (with problems)
 # ... schema changes, data migration ...
-print("⚠️  Upgrade problem detected!")
+print("Upgrade problem detected!")
 
 # Clone for verification
 # ⚡ INSTANT: Even 1TB database clones in seconds!
@@ -308,9 +310,9 @@ client.clone.clone_database_with_snapshot(
     source_db=database,
     snapshot_name=snapshot_name
 )
-print(f"✓ Cloned snapshot to {verify_db} for verification")
-print(f"  - Clone completed in seconds (even for TB-scale databases)")
-print(f"  - No storage duplication - still using same storage!")
+print(f"Cloned snapshot to {verify_db} for verification")
+print(f"- Clone completed in seconds (even for TB-scale databases)")
+print(f"- No storage duplication - still using same storage!")
 
 # Restore database
 client.restore.restore_database(
@@ -318,12 +320,12 @@ client.restore.restore_database(
     account_name='sys',
     database_name=database
 )
-print(f"✓ Database restored to v1.0!")
+print(f"Database restored to v1.0!")
 
 # Cleanup
 client.snapshots.delete(snapshot_name)
 client.disconnect()
-print("✅ Demo completed!")
+print("Demo completed!")
 ```
 
 ## Upgrade and Rollback Workflow
@@ -359,7 +361,7 @@ v1_products = [
 for product in v1_products:
     client.insert(ProductV1, product)
 
-print(f"✓ v1.0 System deployed with {len(v1_products)} products")
+print(f"v1.0 System deployed with {len(v1_products)} products")
 ```
 
 ### Phase 2: Create Snapshot
@@ -380,10 +382,11 @@ client.snapshots.create(
     database=database
 )
 
-print(f"✓ Snapshot created: {snapshot_name}")
+print(f"Snapshot created: {snapshot_name}")
 ```
 
 **Snapshot Levels:**
+
 - `SnapshotLevel.ACCOUNT` - Entire account
 - `SnapshotLevel.DATABASE` - Single database (recommended for upgrades)
 - `SnapshotLevel.TABLE` - Single table
@@ -395,10 +398,10 @@ print(f"✓ Snapshot created: {snapshot_name}")
 snapshot_info = client.snapshots.get(snapshot_name)
 
 print(f"Snapshot details:")
-print(f"  - Name: {snapshot_info.name}")
-print(f"  - Created: {snapshot_info.created_at}")
-print(f"  - Level: {snapshot_info.level}")
-print(f"  - Database: {snapshot_info.database}")
+print(f"- Name: {snapshot_info.name}")
+print(f"- Created: {snapshot_info.created_at}")
+print(f"- Level: {snapshot_info.level}")
+print(f"- Database: {snapshot_info.database}")
 ```
 
 ### Phase 3: Perform Upgrade
@@ -427,7 +430,7 @@ class ProductV2(Base):
     review_count = Column(Integer)      # NEW
 
 client.create_table(ProductV2)
-print("✓ Upgraded to v2.0 schema")
+print("Upgraded to v2.0 schema")
 ```
 
 #### Migrate Data
@@ -447,7 +450,7 @@ for old_product in v1_data:
     }
     client.insert(ProductV2, v2_product)
 
-print(f"✓ Migrated {len(v1_data)} products to v2.0")
+print(f"Migrated {len(v1_data)} products to v2.0")
 ```
 
 ### Phase 4: Problem Detection
@@ -465,7 +468,7 @@ app_ok = test_application_endpoints()
 perf_ok = run_performance_tests()
 
 if not (integrity_ok and app_ok and perf_ok):
-    print("⚠️  CRITICAL: Upgrade validation failed!")
+    print("CRITICAL: Upgrade validation failed!")
     print("Decision: ROLLBACK to v1.0 using snapshot")
 ```
 
@@ -485,9 +488,9 @@ client.clone.clone_database_with_snapshot(
     snapshot_name=snapshot_name
 )
 
-print(f"✓ Created verification database: {verify_db}")
-print(f"  - Clone completed in < 5 seconds (metadata operation)")
-print(f"  - Storage: No additional cost until you modify data")
+print(f"Created verification database: {verify_db}")
+print(f"- Clone completed in < 5 seconds (metadata operation)")
+print(f"- Storage: No additional cost until you modify data")
 ```
 
 #### Test Cloned Database
@@ -510,7 +513,7 @@ laptop = verify_client.query(ProductV1).filter(
 ).first()
 
 if laptop and laptop.price == 1500:
-    print("✓ Snapshot verification passed!")
+    print("Snapshot verification passed!")
 else:
     print("✗ Snapshot verification failed!")
 
@@ -530,12 +533,12 @@ success = client.restore.restore_database(
 )
 
 if success:
-    print(f"✓ Database restored successfully!")
-    print(f"  - {database} rolled back to v1.0")
+    print(f"Database restored successfully!")
+    print(f"- {database} rolled back to v1.0")
 
     # Verify restore
     restored_count = client.query(ProductV1).count()
-    print(f"  - Product count: {restored_count}")
+    print(f"- Product count: {restored_count}")
 else:
     print("✗ Restore failed")
 ```
@@ -601,7 +604,7 @@ print(f"Database: {snapshot_info.database}")
 
 ```python
 client.snapshots.delete("snapshot_name")
-print("✓ Snapshot deleted")
+print("Snapshot deleted")
 ```
 
 ## Restore Operations
@@ -659,13 +662,13 @@ def safe_production_upgrade():
             raise Exception("Validation failed")
 
         # Success - keep snapshot for 7 days
-        print("✓ Upgrade successful")
+        print("Upgrade successful")
 
     except Exception as e:
         # Rollback
         print(f"✗ Upgrade failed: {e}")
         restore_from_snapshot(snapshot)
-        print("✓ Rolled back to previous version")
+        print("Rolled back to previous version")
 ```
 
 ### 2. Schema Migrations
@@ -824,7 +827,7 @@ def safe_restore(client, snapshot_name, database_name):
             snapshot_name=snapshot_name,
             database_name=database_name
         )
-        print("✓ Restore successful")
+        print("Restore successful")
     else:
         print("✗ Verification failed, restore aborted")
 
@@ -902,7 +905,7 @@ def production_upgrade_checklist():
 
     # Check all items
     if all(checklist.values()):
-        print("✓ All pre-upgrade checks passed")
+        print("All pre-upgrade checks passed")
         return True
     else:
         print("✗ Pre-upgrade checks failed")
@@ -964,6 +967,7 @@ client.clone.clone_database_with_snapshot(...)
 ### Snapshot Operations
 
 **Create Snapshot:**
+
 - ⚡ Nearly instant (metadata operation)
 - 📦 No data copy - uses storage layer snapshots
 - 💾 Minimal storage overhead (copy-on-write)
@@ -993,11 +997,13 @@ Savings: 50% storage cost + 99% faster! 🎯
 ```
 
 **Restore Database:**
+
 - ⚡ Instant operation
 - 🔄 Atomic - either succeeds completely or fails
 - 📊 No data copying - pointer updates only
 
 **Clone from Snapshot:**
+
 - ⚡ Fast operation
 - 📦 Creates independent database copy
 - 🔒 Original snapshot unchanged
@@ -1049,13 +1055,13 @@ def blue_green_deployment(client, database_name, new_version):
     if validate_upgrade(green_db):
         # Step 5: Switch traffic to green
         switch_application_to_database(green_db)
-        print(f"✓ Switched to {green_db}")
+        print(f"Switched to {green_db}")
 
         # Keep blue for quick rollback if needed
     else:
         # Upgrade failed, cleanup green
         client.execute(f"DROP DATABASE {green_db}")
-        print("✓ Rollback completed, still on blue")
+        print("Rollback completed, still on blue")
 ```
 
 ## Reference
@@ -1079,6 +1085,7 @@ Database snapshots in MatrixOne enable safe production operations:
 **Golden Rule:** Always create a snapshot before major changes! 🛡️
 
 **Workflow:**
+
 1. 📸 Create snapshot
 2. 🔍 Verify snapshot (clone + test)
 3. 🚀 Perform upgrade/change
@@ -1086,4 +1093,3 @@ Database snapshots in MatrixOne enable safe production operations:
 5. 🔄 Restore if problems detected (instant rollback!)
 
 Perfect for production deployments, schema migrations, and any high-risk database operations! 🚀
-

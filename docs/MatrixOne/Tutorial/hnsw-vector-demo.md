@@ -5,12 +5,14 @@
 This tutorial demonstrates **HNSW (Hierarchical Navigable Small World)** vector indexing in MatrixOne Python SDK. HNSW is a graph-based approximate nearest neighbor search algorithm that provides excellent search performance with high recall rates.
 
 **HNSW Advantages:**
+
 - ⚡ **Very Fast Search**: Superior query performance
 - 🎯 **High Recall**: >99% accuracy for nearest neighbor search
 - 🚀 **No Training Required**: Unlike IVF, no clustering training needed
 - 📊 **Predictable Performance**: Consistent query latency
 
 **HNSW Characteristics:**
+
 - 🔒 **Read-Only (Current Limitation)**: Cannot insert/update/delete after index creation
 - 🔑 **BigInteger Primary Key Required**: Must use `BigInteger` type
 - 💾 **Higher Memory Usage**: Graph structure requires more memory than IVF
@@ -59,15 +61,15 @@ import time
 
 np.random.seed(42)
 
-print("=" * 70)
+print("="* 70)
 print("MatrixOne HNSW Vector Index Demo")
-print("=" * 70)
+print("="* 70)
 
 # Connect to database
 host, port, user, password, database = get_connection_params(database='demo')
 client = Client()
 client.connect(host=host, port=port, user=user, password=password, database=database)
-print(f"✓ Connected to database")
+print(f"Connected to database")
 
 # Define table with BigInteger primary key (HNSW requirement!)
 Base = declarative_base()
@@ -80,7 +82,7 @@ class Document(Base):
     category = Column(String(100))
     embedding = create_vector_column(64, "f32")
 
-print(f"✓ Defined table with BigInteger primary key (HNSW requirement)")
+print(f"Defined table with BigInteger primary key (HNSW requirement)")
 
 # Create table
 client.drop_table(Document)
@@ -98,7 +100,7 @@ documents = [
 ]
 
 client.batch_insert(Document, documents)
-print(f"✓ Inserted {len(documents)} documents (BEFORE creating index)")
+print(f"Inserted {len(documents)} documents (BEFORE creating index)")
 
 # Enable HNSW and create index
 client.vector_ops.enable_hnsw()
@@ -112,7 +114,7 @@ client.vector_ops.create_hnsw(
     ef_search=50,
     op_type="vector_l2_ops"
 )
-print("✓ HNSW index created")
+print("HNSW index created")
 
 # Search with ORM-style query
 query_vector = np.random.rand(64).astype(np.float32).tolist()
@@ -122,13 +124,13 @@ results = client.query(
     Document.embedding.l2_distance(query_vector).label('distance')
 ).order_by('distance').limit(5).all()
 
-print(f"\n✓ Found {len(results)} similar documents:")
+print(f"\n Found {len(results)} similar documents:")
 for i, row in enumerate(results, 1):
-    print(f"  {i}. ID: {row.id}, Distance: {row.distance:.4f}")
+    print(f"{i}. ID: {row.id}, Distance: {row.distance:.4f}")
 
 # Cleanup
 client.disconnect()
-print("\n✅ Demo completed!")
+print("\n Demo completed!")
 ```
 
 ## Key Concepts
@@ -178,11 +180,11 @@ def update_data_with_hnsw(client, Model, new_data):
 
     # Step 1: Drop existing HNSW index
     client.vector_ops.drop(table_name, "idx_hnsw")
-    print("✓ Dropped HNSW index")
+    print("Dropped HNSW index")
 
     # Step 2: Now you can modify data
     client.batch_insert(Model, new_data)
-    print("✓ Inserted new data")
+    print("Inserted new data")
 
     # Step 3: Recreate HNSW index
     client.vector_ops.create_hnsw(
@@ -190,7 +192,7 @@ def update_data_with_hnsw(client, Model, new_data):
         m=16, ef_construction=200, ef_search=50,
         op_type="vector_l2_ops"
     )
-    print("✓ HNSW index recreated")
+    print("HNSW index recreated")
 
 # Future (when incremental update is available):
 # Just insert data directly, index will update asynchronously!
@@ -286,6 +288,7 @@ for row in results:
 ```
 
 **Advantages of ORM Method:**
+
 - ✅ Support filters (`.filter(Document.category == "Tech")`)
 - ✅ Easy sorting and pagination
 - ✅ Type-safe attribute access
@@ -465,6 +468,7 @@ for k in [5, 10, 20, 50]:
 ### When to Use HNSW
 
 ✅ **Use HNSW when:**
+
 - Static or infrequently updated datasets
 - High recall requirements (>99%)
 - Fast search is critical
@@ -474,6 +478,7 @@ for k in [5, 10, 20, 50]:
 ### When to Use IVF
 
 ✅ **Use IVF when:**
+
 - Frequently updated datasets
 - Need insert/update/delete operations
 - Large datasets with memory constraints
@@ -519,22 +524,22 @@ client.vector_ops.create_hnsw(
 **m = Number of connections per node**
 
 - **m = 4-8**: Fast search, lower recall (~95%)
-  - Construction: Very fast
-  - Search: Very fast
-  - Memory: Low
-  - Use: Approximate search OK
+    - Construction: Very fast
+    - Search: Very fast
+    - Memory: Low
+    - Use: Approximate search OK
 
 - **m = 16**: Balanced (default, ~99% recall)
-  - Construction: Medium
-  - Search: Fast
-  - Memory: Medium
-  - Use: **Recommended for most cases**
+    - Construction: Medium
+    - Search: Fast
+    - Memory: Medium
+    - Use: **Recommended for most cases**
 
 - **m = 32-64**: High recall (~99.5%+)
-  - Construction: Slow
-  - Search: Medium
-  - Memory: High
-  - Use: Precision-critical applications
+    - Construction: Slow
+    - Search: Medium
+    - Memory: High
+    - Use: Precision-critical applications
 
 ### ef_construction Parameter Guide
 
@@ -624,11 +629,11 @@ def update_hnsw_index(client, Model, new_data):
 
     # 1. Drop existing HNSW index
     client.vector_ops.drop(table_name, "idx_hnsw")
-    print("✓ Dropped HNSW index (now table is writable)")
+    print("Dropped HNSW index (now table is writable)")
 
     # 2. Insert/update/delete data
     client.batch_insert(Model, new_data)
-    print("✓ Modified data")
+    print("Modified data")
 
     # 3. Recreate HNSW index
     client.vector_ops.create_hnsw(
@@ -636,17 +641,18 @@ def update_hnsw_index(client, Model, new_data):
         m=16, ef_construction=200, ef_search=50,
         op_type="vector_l2_ops"
     )
-    print("✅ HNSW index rebuilt with new data")
+    print("HNSW index rebuilt with new data")
 
 # Future (when incremental update is released):
 def update_hnsw_index_future(client, Model, new_data):
     """Future: Direct insert with async index update"""
     # Just insert - index will update asynchronously!
     client.batch_insert(Model, new_data)
-    print("✅ Data inserted, index updating in background")
+    print("Data inserted, index updating in background")
 ```
 
 **Interim Solution:** If you need frequent updates, consider:
+
 - Using **IVF index** instead (supports dynamic updates)
 - Scheduling periodic HNSW rebuilds (e.g., nightly)
 - Maintaining a separate "pending" table for new data, merge periodically
@@ -672,7 +678,7 @@ for metric_name, metric_func in metrics:
 
     print(f"\n{metric_name} Distance:")
     for i, row in enumerate(results[:3], 1):
-        print(f"  {i}. ID: {row.id}, Distance: {row.distance:.4f}")
+        print(f"{i}. ID: {row.id}, Distance: {row.distance:.4f}")
 ```
 
 ### Combined Filters
@@ -875,11 +881,13 @@ HNSW vector indexing in MatrixOne provides:
 🔄 **Future: Incremental Updates**: Async update support coming soon!
 
 **Current Best Use Cases:**
+
 - Static datasets (catalogs, knowledge bases)
 - Infrequently updated data (nightly/weekly refreshes)
 - High-performance read-heavy workloads
 
 **After Incremental Update Release:**
+
 - Dynamic datasets with async updates
 - Real-time data ingestion with background indexing
 - Continuous data growth scenarios
@@ -889,4 +897,3 @@ HNSW vector indexing in MatrixOne provides:
 ---
 
 **Development Roadmap:** Once incremental update support is released, HNSW will combine the best of both worlds - superior search performance of HNSW with the flexibility of dynamic updates!
-

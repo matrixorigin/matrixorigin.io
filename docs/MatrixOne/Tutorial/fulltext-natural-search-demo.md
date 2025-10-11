@@ -5,6 +5,7 @@
 This tutorial demonstrates **Natural Language mode fulltext search** in MatrixOne Python SDK. Natural Language mode provides a user-friendly search experience similar to Google search, with automatic features like stopword removal, word stemming, and natural relevance scoring.
 
 **Perfect For:**
+
 - User-facing search boxes
 - Content management systems
 - Documentation search
@@ -12,6 +13,7 @@ This tutorial demonstrates **Natural Language mode fulltext search** in MatrixOn
 - FAQ systems
 
 **Key Features:**
+
 - 🔍 Search like Google - no special operators needed
 - 🤖 Automatic stopword removal ("the", "is", "how", "to", etc.)
 - 📊 Natural relevance scoring with BM25 algorithm
@@ -46,15 +48,15 @@ from matrixone.sqlalchemy_ext import natural_match
 from matrixone.orm import declarative_base
 from sqlalchemy import BigInteger, Column, String, Text, Integer, Float
 
-print("=" * 70)
+print("="* 70)
 print("MatrixOne Natural Language Fulltext Search Demo")
-print("=" * 70)
+print("="* 70)
 
 # Step 1: Connect to database
 host, port, user, password, database = get_connection_params(database='demo')
 client = Client()
 client.connect(host=host, port=port, user=user, password=password, database=database)
-print(f"✓ Successfully connected to database: {host}:{port}/{database}")
+print(f"Successfully connected to database: {host}:{port}/{database}")
 
 # Step 2: Define table structure
 Base = declarative_base()
@@ -77,14 +79,14 @@ class Article(Base):
                      algorithm=FulltextAlgorithmType.BM25),
     )
 
-print(f"✓ Defined table with BM25 fulltext index on (title, content)")
+print(f"Defined table with BM25 fulltext index on (title, content)")
 
 # Step 3: Create table
 client.fulltext_index.enable_fulltext()
 client.execute('SET ft_relevancy_algorithm = "BM25"')
 client.drop_table(Article)
 client.create_table(Article)
-print("✓ Table created successfully")
+print("Table created successfully")
 
 # Step 4: Insert sample articles
 sample_articles = [
@@ -102,7 +104,7 @@ sample_articles = [
 ]
 
 client.batch_insert(Article, sample_articles)
-print(f"✓ Successfully inserted {len(sample_articles)} articles")
+print(f"Successfully inserted {len(sample_articles)} articles")
 
 # Step 5: Simple keyword search
 print("\nSearch: 'machine learning'")
@@ -111,11 +113,11 @@ results = client.query(Article).filter(
 ).execute()
 
 for row in results.fetchall():
-    print(f"  - [{row.id}] {row.title}")
+    print(f"- [{row.id}] {row.title}")
 
 # Cleanup
 client.disconnect()
-print("\n✅ Demo completed!")
+print("\n Demo completed!")
 ```
 
 ## Key Concepts
@@ -347,6 +349,7 @@ sample_articles = [
 ### Natural Language Mode (This Demo)
 
 **Advantages:**
+
 - ✅ User-friendly - search like Google
 - ✅ Automatic stopword removal
 - ✅ No operators needed
@@ -354,6 +357,7 @@ sample_articles = [
 - ✅ Perfect for end-user search boxes
 
 **Example:**
+
 ```python
 # Just type naturally
 natural_match(Article.title, Article.content, query="how to learn python")
@@ -362,11 +366,13 @@ natural_match(Article.title, Article.content, query="how to learn python")
 ### Boolean Mode (Advanced)
 
 **Advantages:**
+
 - ✅ Precise control with operators (+, -, *)
 - ✅ Required/excluded terms
 - ✅ Wildcard searches
 
 **Example:**
+
 ```python
 # Advanced operators
 boolean_match(Article.title, Article.content, query="+python -beginner")
@@ -599,4 +605,3 @@ Natural Language fulltext search in MatrixOne provides:
 ✅ **Powerful**: Multi-column search with relevance ranking
 
 Perfect for building search features in your applications! 🚀
-
