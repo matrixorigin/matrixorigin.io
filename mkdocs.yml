@@ -38,7 +38,11 @@ extra:
 markdown_extensions:
   - admonition
   - pymdownx.details
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.tabbed:
       alternate_style: true
   - def_list
@@ -215,7 +219,8 @@ nav:
           - C# CRUD demo: MatrixOne/Tutorial/c-net-crud-demo.md
           - TypeScript Basic Example: MatrixOne/Tutorial/typescript-crud-demo.md
           - HTAP Application demo: MatrixOne/Tutorial/htap-demo.md
-          - Rag Application demo: MatrixOne/Tutorial/rag-demo.md
+          - RAG Application demo: MatrixOne/Tutorial/rag-demo.md
+          - Safe Production Upgrade with Instant Rollback: MatrixOne/Tutorial/snapshot-rollback-demo.md
           - Pinecone-Compatible Vector Search: MatrixOne/Tutorial/pinecone-vector-demo.md
           - IVF Index Health Monitoring: MatrixOne/Tutorial/ivf-index-health-demo.md
           - HNSW Vector Index: MatrixOne/Tutorial/hnsw-vector-demo.md
