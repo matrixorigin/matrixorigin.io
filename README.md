@@ -54,267 +54,61 @@ We appreciate your feedback! If you find any documentation issues:
 
 ## 🚀 Quick Start
 
-### ⚡ Using Makefile (Recommended)
+### Prerequisites
 
-We provide a convenient Makefile for all common tasks. Get started in seconds:
+- Python 3.8+
+- Node.js 18+ and pnpm
 
-```bash
-# 📖 Show all available commands
-make help
-
-# 📦 Install all dependencies (Python + Node.js)
-make install
-
-# 🌐 Start local preview server
-make serve
-```
-
-Then open **[http://127.0.0.1:8000](http://127.0.0.1:8000)** in your browser to see the documentation!
-
-#### 🔥 Most Common Commands
+### Get Started
 
 ```bash
-make serve      # 🌐 Start dev server with live reload
-make build      # 🏗️  Build static site  
-make lint       # ✅ Check code style
-make lint-fix   # 🔧 Auto-fix issues
-make clean      # 🧹 Clean build files
-make check      # 🚦 Pre-commit check (lint + build)
-```
-
-### 🛠️ Manual Setup (Alternative)
-
-If you prefer to run commands manually:
-
-```bash
-# 1️⃣ Install Python dependencies
-pip3 install -r requirements.txt
-
-# 2️⃣ Install Node.js dependencies  
-npm install
-
-# 3️⃣ Start local server
-mkdocs serve
-
-# Or use your conda environment
-/path/to/your/python -m mkdocs serve
-```
-
-## 📋 Available Commands
-
-### 🎯 Development Commands
-
-| Command | Description |
-|---------|-------------|
-| `make serve` | 🌐 Start development server with auto-reload |
-| `make serve-custom ADDR=0.0.0.0:8080` | 🌐 Start server on custom address |
-| `make build` | 🏗️ Build static documentation site |
-| `make build-strict` | 🔒 Build with strict mode (warnings = errors) |
-| `make clean` | 🧹 Remove build artifacts and caches |
-| `make watch` | 👀 Watch files and rebuild on changes |
-
-### ✅ Quality Assurance
-
-| Command | Description |
-|---------|-------------|
-| `make lint` | ✅ Run all linting checks |
-| `make lint-fix` | 🔧 Auto-fix linting issues |
-| `make test` | 🧪 Run tests (lint checks) |
-| `make check` | 🚦 Quick check (lint + build) |
-| `make validate` | ✔️ Validate mkdocs.yml syntax |
-
-### 📦 Dependency Management
-
-| Command | Description |
-|---------|-------------|
-| `make install` | 📦 Install all dependencies |
-| `make install-python` | 🐍 Install Python dependencies only |
-| `make install-node` | 📗 Install Node.js dependencies only |
-| `make upgrade` | ⬆️ Upgrade all dependencies |
-
-### 🔍 Utilities
-
-| Command | Description |
-|---------|-------------|
-| `make version` | 📌 Show installed tool versions |
-| `make count-pages` | 🔢 Count total documentation pages |
-| `make list-files` | 📄 List all markdown files |
-| `make new-page PAGE=path/to/page.md` | ➕ Create new documentation page |
-
-## 🏗️ Project Structure
-
-```
-matrixorigin.io/
-├── docs/                    # Documentation source files
-│   ├── MatrixOne/          # Main documentation content
-│   │   ├── Tutorial/       # Tutorials and demos
-│   │   ├── Get-Started/    # Getting started guides
-│   │   ├── Develop/        # Development guides
-│   │   ├── Deploy/         # Deployment guides
-│   │   ├── Reference/      # API and SQL reference
-│   │   └── ...
-│   ├── assets/             # Images and static files
-│   ├── stylesheets/        # Custom CSS
-│   └── javascripts/        # Custom JavaScript
-├── mkdocs.yml              # MkDocs configuration
-├── Makefile                # Build automation
-├── requirements.txt        # Python dependencies
-├── package.json            # Node.js dependencies
-└── scripts/                # Build scripts
-```
-
-## 🛠️ Tech Stack
-
-| Tool | Purpose | Version |
-|------|---------|---------|
-| **MkDocs** | Static site generator | 9.1.21 |
-| **Material for MkDocs** | Documentation theme | Latest |
-| **Python** | Runtime environment | 3.7+ |
-| **Node.js** | JavaScript tooling | 14+ |
-| **mike** | Documentation versioning | 1.1.2 |
-
-## 📝 Typical Workflow
-
-### 1️⃣ **Setup Environment** (First Time)
-
-```bash
-# Clone the repository
-git clone https://github.com/matrixorigin/matrixorigin.io.git
-cd matrixorigin.io
-
 # Install dependencies
 make install
+
+# Start development server
+make serve
 ```
 
-### 2️⃣ **Preview Changes** (While Editing)
+Open **[http://127.0.0.1:8000](http://127.0.0.1:8000)** to preview the documentation.
+
+### Common Commands
+
+| Command | Description |
+|---------|-------------|
+| `make install` | Install all dependencies |
+| `make serve` | Start local server |
+| `make build` | Build static site |
+| `make lint` | Check code style |
+| `make lint-fix` | Auto-fix style issues |
+| `make clean` | Clean build artifacts |
+
+Run `make help` to see all available commands.
+
+## 📝 Development Workflow
 
 ```bash
-# Start local server
+# 1. Make changes to documentation files
+
+# 2. Preview your changes locally
 make serve
 
-# Server will auto-reload when you save changes
-# Access at http://127.0.0.1:8000
-```
+# 3. Before committing, run checks
+make lint-fix   # Auto-fix style issues
+make check      # Lint + build test
 
-### 3️⃣ **Before Committing**
-
-```bash
-# Run quality checks
-make check
-
-# Or run individual checks
-make lint        # Check style
-make lint-fix    # Auto-fix issues
-make validate    # Validate config
-make build       # Test build
-```
-
-### 4️⃣ **Submit Changes**
-
-```bash
-# Commit your changes
+# 4. Commit and push
 git add .
-git commit -m "Your descriptive message"
-git push origin your-branch
-
-# Create Pull Request on GitHub
+git commit -m "Your message"
+git push
 ```
-
-## 📖 Documentation Guidelines
-
-### Writing Style
-
-- ✅ Use clear, concise language
-- ✅ Include code examples
-- ✅ Add screenshots where helpful
-- ✅ Link to related documents
-- ❌ Avoid jargon without explanation
-- ❌ Don't assume prior knowledge
-
-### File Naming
-
-- Use lowercase with hyphens: `my-new-feature.md`
-- Be descriptive: `connect-to-matrixone.md` not `connect.md`
-- Group related files in directories
-
-### Adding New Pages
-
-1. Create markdown file in appropriate directory
-2. Add entry to `mkdocs.yml` navigation
-3. Test locally with `make serve`
-4. Run `make check` before committing
-
-Example:
-
-```bash
-# Create new page
-make new-page PAGE=docs/MatrixOne/Tutorial/my-tutorial.md
-
-# Add to mkdocs.yml under nav section
-# Then preview
-make serve
-```
-
-## 🔧 Troubleshooting
-
-### Server won't start
-
-**Issue:** Port 8000 already in use
-
-**Solution:** Use custom port
-```bash
-make serve-custom ADDR=127.0.0.1:8001
-```
-
-### Build fails
-
-**Issue:** Missing dependencies
-
-**Solution:** Reinstall dependencies
-```bash
-make clean
-make install
-make build
-```
-
-### Linting errors
-
-**Issue:** Markdown formatting issues
-
-**Solution:** Auto-fix most issues
-```bash
-make lint-fix
-```
-
-## 📊 Repository Statistics
-
-- 📄 **Total Pages:** 629+
-- 🌍 **Languages:** English, 中文
-- 📚 **Categories:** Tutorial, Reference, Guides, FAQs
-- 🔄 **Updates:** Continuous integration with main MatrixOne repository
 
 ## 🤝 Contributing
 
-We welcome contributions! Here's how you can help:
-
-- 📝 **Improve existing docs** - Fix typos, clarify explanations
-- ➕ **Add new content** - Tutorials, examples, use cases
-- 🐛 **Report issues** - Found a problem? Let us know
-- 🌐 **Translate** - Help with localization
-- ⭐ **Star the repo** - Show your support!
-
-**Read our full [Contributing Guide](CONTRIBUTING.md) for details.**
-
-## 📬 Get Help
-
-- 💬 [GitHub Discussions](https://github.com/matrixorigin/matrixone/discussions) - Ask questions
-- 🐛 [Issue Tracker](https://github.com/matrixorigin/matrixorigin.io/issues) - Report bugs
-- 📧 [Community](https://matrixorigin.io/community) - Join our community
-- 📖 [Documentation](https://docs.matrixorigin.cn/en/) - Full docs
+We welcome contributions! See [Contributing Guide](CONTRIBUTING.md) for details.
 
 ## 📜 License
 
-This project is licensed under the **Apache License 2.0** - see the [LICENSE](LICENSE) file for details.
+Apache License 2.0 - see [LICENSE](LICENSE) for details.
 
 ---
 

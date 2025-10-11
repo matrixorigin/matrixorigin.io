@@ -10,6 +10,9 @@
 PYTHON := python3
 PIP := pip3
 
+# Node.js package manager
+PNPM := pnpm
+
 # MkDocs executable
 MKDOCS := mkdocs
 
@@ -32,7 +35,7 @@ install: ## Install all dependencies (Python + Node.js)
 	$(PIP) install -r requirements.txt
 	@echo "$(GREEN)✓ Python dependencies installed$(NC)"
 	@echo "$(BLUE)Installing Node.js dependencies...$(NC)"
-	npm install
+	$(PNPM) install
 	@echo "$(GREEN)✓ Node.js dependencies installed$(NC)"
 	@echo "$(GREEN)✓ All dependencies installed successfully!$(NC)"
 
@@ -43,7 +46,7 @@ install-python: ## Install Python dependencies only
 
 install-node: ## Install Node.js dependencies only
 	@echo "$(BLUE)Installing Node.js dependencies...$(NC)"
-	npm install
+	$(PNPM) install
 	@echo "$(GREEN)✓ Node.js dependencies installed$(NC)"
 
 serve: ## Start local development server (with auto-reload)
@@ -79,18 +82,12 @@ clean: ## Clean build artifacts and caches
 
 lint: ## Run linting checks (markdown and punctuation)
 	@echo "$(BLUE)Running linting checks...$(NC)"
-	@echo "$(YELLOW)1. Checking punctuation...$(NC)"
-	node ./scripts/fixPunctuation.js
-	@echo "$(YELLOW)2. Checking markdown style...$(NC)"
-	npx markdownlint-cli2 './docs/MatrixOne/**/*.md'
+	$(PNPM) run lint
 	@echo "$(GREEN)✓ Linting completed!$(NC)"
 
 lint-fix: ## Auto-fix linting issues
 	@echo "$(BLUE)Auto-fixing linting issues...$(NC)"
-	@echo "$(YELLOW)1. Fixing punctuation...$(NC)"
-	node ./scripts/fixPunctuation.js --fix
-	@echo "$(YELLOW)2. Fixing markdown style...$(NC)"
-	npx markdownlint-cli2-fix './docs/MatrixOne/**/*.md'
+	$(PNPM) run lint:fix
 	@echo "$(GREEN)✓ Linting fixes applied!$(NC)"
 
 test: lint ## Run all tests (currently just linting)
@@ -149,14 +146,14 @@ version: ## Show installed versions
 	@echo "  Python:  $$($(PYTHON) --version 2>&1 | cut -d' ' -f2)"
 	@echo "  pip:     $$($(PIP) --version | cut -d' ' -f2)"
 	@echo "  Node:    $$(node --version 2>/dev/null || echo 'Not installed')"
-	@echo "  npm:     $$(npm --version 2>/dev/null || echo 'Not installed')"
+	@echo "  pnpm:    $$($(PNPM) --version 2>/dev/null || echo 'Not installed')"
 	@echo "  MkDocs:  $$($(MKDOCS) --version 2>&1 | cut -d' ' -f3 || echo 'Not installed')"
 
 upgrade: ## Upgrade dependencies
 	@echo "$(BLUE)Upgrading Python dependencies...$(NC)"
 	$(PIP) install --upgrade -r requirements.txt
 	@echo "$(BLUE)Upgrading Node.js dependencies...$(NC)"
-	npm update
+	$(PNPM) update
 	@echo "$(GREEN)✓ Dependencies upgraded!$(NC)"
 
 dev: install serve ## Setup dev environment and start server
