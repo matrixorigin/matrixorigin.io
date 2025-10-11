@@ -162,10 +162,3 @@ upgrade: ## Upgrade dependencies
 dev: install serve ## Setup dev environment and start server
 	@echo "$(GREEN)✓ Development environment ready!$(NC)"
 
-# Quick aliases
-s: serve ## Alias for 'serve'
-b: build ## Alias for 'build'
-c: clean ## Alias for 'clean'
-l: lint ## Alias for 'lint'
-lf: lint-fix ## Alias for 'lint-fix'
-

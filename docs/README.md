@@ -4,6 +4,55 @@ Welcome to the MatrixOne documentation center!
 
 This center holds related concepts and technical architecture introductions, product features, user guides, and reference manuals to help you work with MatrixOne.
 
+## 🚀 Quick Start
+
+Get started with MatrixOne in minutes:
+
+### 1️⃣ Install MatrixOne
+
+Choose your preferred installation method:
+
+- **[Docker Installation](MatrixOne/Get-Started/install-on-macos/install-on-macos-method3.md)** (Recommended) - Fastest way to get started
+- **[Binary Package](MatrixOne/Get-Started/install-on-macos/install-on-macos-method2.md)** - Direct installation
+- **[Build from Source](MatrixOne/Get-Started/install-on-macos/install-on-macos-method1.md)** - For developers
+
+### 2️⃣ Connect and Query
+
+After installation, connect to MatrixOne and run your first query:
+
+```sql
+-- Connect via MySQL client
+mysql -h 127.0.0.1 -P 6001 -u root -p
+
+-- Create a database
+CREATE DATABASE quickstart;
+USE quickstart;
+
+-- Create a table
+CREATE TABLE users (
+    id INT PRIMARY KEY,
+    name VARCHAR(50),
+    email VARCHAR(100)
+);
+
+-- Insert data
+INSERT INTO users VALUES (1, 'Alice', 'alice@example.com');
+
+-- Query data
+SELECT * FROM users;
+```
+
+### 3️⃣ Explore Tutorials
+
+Try our hands-on tutorials:
+
+- **[PyMySQL CRUD Demo](MatrixOne/Tutorial/develop-python-crud-demo.md)** - Python database operations
+- **[Vector Search](MatrixOne/Tutorial/pinecone-vector-demo.md)** - AI-powered similarity search
+- **[Fulltext Search](MatrixOne/Tutorial/fulltext-natural-search-demo.md)** - Powerful text search
+- **[RAG Application](MatrixOne/Tutorial/rag-demo.md)** - Build AI applications
+
+---
+
 ## **Recommended articles**
 
 Select one of the articles below to begin your MatrixOne journey. If you ...

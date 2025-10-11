@@ -19,12 +19,28 @@
 
 This repository contains all the source files for the **MatrixOne documentation website**. 
 
-**MatrixOne** is a future-oriented **hyperconverged cloud & edge native DBMS** that supports:
-- 🔄 **Transactional workloads** (OLTP)
-- 📊 **Analytical workloads** (OLAP)  
-- 🌊 **Streaming workloads**
+### What is MatrixOne?
 
-Built with a simplified and distributed database engine, MatrixOne works seamlessly across multiple datacenters, clouds, edges, and heterogeneous infrastructures.
+**MatrixOne** is a **hyperconverged cloud-edge native database** designed to consolidate transactional (TP), analytical (AP), and streaming workloads into a single system. It features:
+
+#### 🎯 Core Capabilities
+
+- **🔄 Hyper-Converged Engine**: Single database supporting OLTP, OLAP, time-series, and machine learning workloads
+- **☁️ Cloud-Edge Native**: Deploy across public clouds, private clouds, edge, and on-premises with seamless scalability
+- **⚡ Extreme Performance**: Vectorized execution engine with high-performance distributed transactions
+- **🌍 Multi-Tenancy**: Complete tenant isolation with independent resource management
+- **📊 Real-time HTAP**: Handle mixed transactional and analytical workloads with real-time consistency
+- **🔌 MySQL Compatibility**: Compatible with MySQL protocol and syntax for easy migration
+
+#### 💡 Key Benefits
+
+- **Simplify Architecture**: Replace multiple databases (MySQL, PostgreSQL, ClickHouse, etc.) with one unified system
+- **Reduce Costs**: Lower infrastructure and operational costs through consolidation
+- **Accelerate Development**: Faster development with unified data platform
+- **Ensure Consistency**: Global distributed transactions guarantee data consistency
+- **Scale Effortlessly**: Separate storage and compute for elastic scaling
+
+MatrixOne is ideal for scenarios requiring real-time data processing, large-scale analytics, multi-cloud deployment, and mixed workloads.
 
 ### 🌐 Live Documentation
 
@@ -124,16 +140,6 @@ mkdocs serve
 | `make count-pages` | 🔢 Count total documentation pages |
 | `make list-files` | 📄 List all markdown files |
 | `make new-page PAGE=path/to/page.md` | ➕ Create new documentation page |
-
-### ⚡ Quick Aliases
-
-| Alias | Full Command | Description |
-|-------|--------------|-------------|
-| `make s` | `make serve` | 🌐 Start server |
-| `make b` | `make build` | 🏗️ Build docs |
-| `make c` | `make clean` | 🧹 Clean up |
-| `make l` | `make lint` | ✅ Run lint |
-| `make lf` | `make lint-fix` | 🔧 Fix issues |
 
 ## 🏗️ Project Structure
 
