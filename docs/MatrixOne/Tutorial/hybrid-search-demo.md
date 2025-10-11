@@ -19,6 +19,83 @@ Real-world applications rarely use just one search method. Hybrid search combine
 
 All queries use **client.query() ORM-style API** for clean, maintainable code.
 
+## 📑 Query Patterns Index
+
+This demo covers the following hybrid search patterns:
+
+### 🔍 Basic Hybrid Patterns
+
+1. **[Vector + WHERE Conditions](#pattern-1-vector--where-conditions)**
+   - Vector similarity + rating filter
+   - Vector similarity + views filter
+   - Vector similarity + category filter
+
+2. **[Fulltext + WHERE Conditions](#pattern-2-fulltext--where-conditions)**
+   - Keyword search + category filter
+   - Keyword search + quality filter
+   - Keyword search + author filter
+
+3. **[Vector + Fulltext Combination](#pattern-3-vector--fulltext-combination)**
+   - Semantic similarity + keyword match
+   - Distance threshold + keyword presence
+   - Multiple keyword requirements with similarity
+
+### 🔗 JOIN-Based Patterns
+
+4. **[Vector Search + JOIN](#pattern-4-vector-search--join)**
+   - Vector search with category enrichment
+   - Filter by joined table columns
+   - Multi-table vector queries
+
+5. **[Fulltext Search + JOIN](#pattern-5-fulltext-search--join)**
+   - Keyword search with category info
+   - Two-step: fulltext then JOIN
+   - Filter by related table data
+
+6. **[Triple Hybrid (Vector + Fulltext + WHERE)](#pattern-6-triple-hybrid)**
+   - All three methods combined
+   - Multi-condition filtering
+   - Complex business logic queries
+
+### 📊 Advanced Query Patterns
+
+7. **[CTE (Common Table Expressions)](#using-ctes-common-table-expressions)**
+   - Reusable subqueries with WITH clause
+   - Multi-level query composition
+   - Performance optimization
+
+8. **[Subquery Patterns](#using-subqueries)**
+   - Nested SELECT statements
+   - IN clause with subqueries
+   - GROUP BY + HAVING in subqueries
+
+9. **[Multi-Step Query Composition](#multi-step-query-composition)**
+   - Two-step: fulltext → vector
+   - Set intersection (Python)
+   - Result enrichment
+
+10. **[Aggregation Queries](#sql-aggregation-examples)**
+    - GROUP BY with vector/fulltext
+    - COUNT, AVG, SUM aggregates
+    - HAVING clause filters
+
+11. **[Advanced Ranking Strategies](#advanced-ranking-strategies)**
+    - Combined score (rating + distance)
+    - Multi-factor weighted ranking
+    - Custom scoring formulas
+
+### 🎯 Specialized Patterns
+
+12. **[Top N Per Group](#top-articles-per-category)**
+    - Best match per category
+    - Deduplication strategies
+    - Window function alternatives
+
+13. **[Intersection Queries](#intersection-queries)**
+    - AND logic across search types
+    - Set operations in Python
+    - Multiple criteria matching
+
 !!! note "MatrixOne Python SDK Documentation"
     For complete API reference, see [MatrixOne Python SDK Documentation](https://matrixone.readthedocs.io/en/latest/)
 
@@ -198,29 +275,73 @@ results = client.query(
 
 ### Pattern 1: Vector + WHERE Conditions
 
-Combine semantic search with structured filters:
+Combine semantic search with structured filters.
+
+#### Example 1.1: Vector Similarity + Rating Filter
 
 ```python
-# Find similar articles with rating >= 4.7
+# Find similar articles with high ratings
 results = client.query(
     Article.id,
     Article.title,
     Article.rating,
     Article.embedding.l2_distance(query_vector).label('distance')
 ).filter(
-    Article.rating >= 4.7  # SQL WHERE condition
+    Article.rating >= 4.7  # Quality filter
 ).order_by('distance').limit(10).all()
 ```
 
+**Use case:** Find high-quality content similar to user's interests
+
+#### Example 1.2: Vector Similarity + Views Filter
+
+```python
+# Find similar AND popular articles
+results = client.query(
+    Article.id,
+    Article.title,
+    Article.views,
+    Article.embedding.l2_distance(query_vector).label('distance')
+).filter(
+    Article.views > 2000  # Popularity filter
+).order_by('distance').limit(10).all()
+```
+
+**Use case:** Recommend popular content that matches user preferences
+
+#### Example 1.3: Vector Similarity + Multiple Filters
+
+```python
+# Combine multiple WHERE conditions
+results = client.query(
+    Article.id,
+    Article.title,
+    Article.embedding.l2_distance(query_vector).label('distance')
+).filter(
+    Article.category_id == 1
+).filter(
+    Article.rating >= 4.5
+).filter(
+    Article.views > 1000
+).order_by('distance').all()
+```
+
+**Use case:** Narrow search to specific segment with multiple criteria
+
+---
+
 ### Pattern 2: Fulltext + WHERE Conditions
 
-Combine keyword search with filters:
+Combine keyword search with structured filters.
+
+#### Example 2.1: Keyword Search + Category Filter
 
 ```python
 # Find "learning" articles in AI category
 results = client.query(
     Article.id,
-    Article.title
+    Article.title,
+    Article.category_id
 ).filter(
     boolean_match(Article.title, Article.content).must("learning")
 ).filter(
@@ -228,9 +349,49 @@ results = client.query(
 ).all()
 ```
 
+**Use case:** Category-specific keyword search
+
+#### Example 2.2: Keyword Search + Quality Filter
+
+```python
+# Find "Python" articles with high ratings
+results = client.query(
+    Article.id,
+    Article.title,
+    Article.rating
+).filter(
+    boolean_match(Article.title, Article.content).must("Python")
+).filter(
+    Article.rating >= 4.7
+).all()
+```
+
+**Use case:** Find quality content for specific keywords
+
+#### Example 2.3: Keyword Search + Author Filter
+
+```python
+# Find articles by specific author with keyword
+results = client.query(
+    Article.id,
+    Article.title,
+    Article.author
+).filter(
+    boolean_match(Article.title, Article.content).must("machine learning")
+).filter(
+    Article.author == "Alice Johnson"
+).all()
+```
+
+**Use case:** Author-specific content discovery
+
+---
+
 ### Pattern 3: Vector + Fulltext Combination
 
-Combine both semantic and keyword search:
+Combine semantic understanding with keyword precision.
+
+#### Example 3.1: Semantic Similarity + Keyword Match
 
 ```python
 # Semantically similar AND contains "Python"
@@ -241,16 +402,41 @@ results = client.query(
 ).filter(
     boolean_match(Article.title, Article.content).must("Python")  # Keyword
 ).filter(
-    Article.embedding.l2_distance(query_vector) < 10.0  # Similarity threshold
+    Article.embedding.l2_distance(query_vector) < 10.0  # Similarity
 ).order_by('distance').all()
 ```
 
-### Pattern 4: Vector Search + JOIN
+**Use case:** Find relevant content that mentions specific terms
 
-Enrich vector search with related table data:
+#### Example 3.2: Multiple Keywords + Similarity
 
 ```python
-# Vector search with category names
+# Must contain keywords AND be semantically similar
+results = client.query(
+    Article.id,
+    Article.title,
+    Article.embedding.l2_distance(query_vector).label('distance')
+).filter(
+    boolean_match(Article.title, Article.content)
+    .must("learning")
+    .encourage("neural", "deep")
+).filter(
+    Article.embedding.l2_distance(query_vector) < 8.0
+).order_by('distance').all()
+```
+
+**Use case:** Precise topic matching with semantic relevance
+
+---
+
+### Pattern 4: Vector Search + JOIN
+
+Enrich vector search results with relational data.
+
+#### Example 4.1: Vector Search with Category Info
+
+```python
+# Vector search + JOIN to get category names
 results = client.query(
     Article.id,
     Article.title,
@@ -261,29 +447,87 @@ results = client.query(
 ).order_by('distance').limit(10).all()
 ```
 
-### Pattern 5: Fulltext + JOIN
+**Use case:** Display category names in search results
 
-Combine keyword search with relational data:
+#### Example 4.2: Filter by Joined Table Columns
 
 ```python
-# Search "development" with category info
+# Filter by category name (not category_id)
 results = client.query(
     Article.id,
     Article.title,
-    Category.name.label('category_name')
+    Category.name.label('category_name'),
+    Article.embedding.l2_distance(query_vector).label('distance')
 ).join(
     Category, Article.category_id == Category.cat_id
 ).filter(
-    boolean_match(Article.title, Article.content).must("development")
-).all()
+    Category.name == "AI & Machine Learning"  # Filter on joined table
+).order_by('distance').all()
 ```
 
-### Pattern 6: Triple Hybrid (Vector + Fulltext + WHERE)
+**Use case:** Category-based filtering with display names
 
-Combine all three search methods:
+#### Example 4.3: Multi-Table Vector Query
 
 ```python
-# Semantic + keyword + quality filter
+# Join multiple tables
+results = client.query(
+    Article.title,
+    Category.name.label('category'),
+    Author.name.label('author'),
+    Article.embedding.l2_distance(query_vector).label('distance')
+).join(
+    Category, Article.category_id == Category.cat_id
+).join(
+    Author, Article.author_id == Author.id
+).order_by('distance').limit(20).all()
+```
+
+**Use case:** Rich search results with full context
+
+---
+
+### Pattern 5: Fulltext Search + JOIN
+
+Combine keyword search with table relationships.
+
+#### Example 5.1: Fulltext + Category JOIN
+
+```python
+# Two-step: fulltext search then JOIN for enrichment
+# Step 1: Get IDs from fulltext search
+fulltext_results = client.query(
+    Article.id,
+    Article.title
+).filter(
+    boolean_match(Article.title, Article.content).must("development")
+).all()
+
+# Step 2: JOIN with category on filtered IDs
+article_ids = [r.id for r in fulltext_results]
+if article_ids:
+    results = client.query(
+        Article.title,
+        Category.name.label('category_name')
+    ).join(
+        Category, Article.category_id == Category.cat_id
+    ).filter(
+        Article.id.in_(article_ids)
+    ).all()
+```
+
+**Use case:** Enrich keyword search with category context
+
+---
+
+### Pattern 6: Triple Hybrid
+
+The most powerful pattern - combine all three methods.
+
+#### Example 6.1: Vector + Fulltext + Quality Filter
+
+```python
+# All three conditions must be satisfied
 results = client.query(
     Article.id,
     Article.title,
@@ -292,13 +536,141 @@ results = client.query(
 ).filter(
     boolean_match(Article.title, Article.content).must("learning")  # Fulltext
 ).filter(
-    Article.rating >= 4.7  # Quality
+    Article.rating >= 4.7  # Quality filter
 ).filter(
-    Article.embedding.l2_distance(query_vector) < 10.0  # Similarity
+    Article.embedding.l2_distance(query_vector) < 10.0  # Vector similarity
 ).order_by('distance').all()
 ```
 
+**Use case:** High-precision search with multiple quality signals
+
+#### Example 6.2: Vector + Fulltext + JOIN + Filters (Multi-Step)
+
+```python
+# Step 1: Fulltext with quality filter
+fulltext_matches = client.query(
+    Article.id
+).filter(
+    boolean_match(Article.title, Article.content).must("Python")
+).filter(
+    Article.rating >= 4.5
+).all()
+
+# Step 2: Vector + JOIN on fulltext results
+article_ids = [r.id for r in fulltext_matches]
+if article_ids:
+    results = client.query(
+        Article.title,
+        Category.name.label('category'),
+        Article.embedding.l2_distance(query_vector).label('distance')
+    ).join(
+        Category, Article.category_id == Category.cat_id
+    ).filter(
+        Article.id.in_(article_ids)
+    ).filter(
+        Category.name.in_(["Programming", "Data Science"])
+    ).order_by('distance').all()
+```
+
+**Use case:** Complex business logic with multiple data sources
+
+---
+
 ## Advanced Query Techniques
+
+### Intersection Queries
+
+Find articles matching ALL criteria using set operations.
+
+#### AND Logic Across Search Types
+
+```python
+# Find articles matching BOTH fulltext AND vector criteria
+
+# Step 1: Fulltext search - get all articles containing "learning"
+fulltext_ids = [r.id for r in client.query(Article.id).filter(
+    boolean_match(Article.title, Article.content).must("learning")
+).all()]
+
+# Step 2: Vector search - get all articles within distance threshold
+vector_results = client.query(
+    Article.id,
+    Article.embedding.l2_distance(query_vector).label('distance')
+).filter(
+    Article.embedding.l2_distance(query_vector) < 6.0
+).all()
+vector_ids = [r.id for r in vector_results]
+
+# Step 3: Find intersection (articles matching BOTH)
+intersection_ids = set(fulltext_ids) & set(vector_ids)
+
+# Step 4: Get full details
+if intersection_ids:
+    results = client.query(
+        Article.id,
+        Article.title,
+        Article.rating,
+        Article.embedding.l2_distance(query_vector).label('distance')
+    ).filter(
+        Article.id.in_(list(intersection_ids))
+    ).order_by('distance').all()
+```
+
+**Use case:** Strict matching - must satisfy all search criteria
+
+#### Union Logic (OR)
+
+```python
+# Find articles matching ANY criteria
+fulltext_ids = set(get_fulltext_ids())
+vector_ids = set(get_vector_ids())
+
+# Union
+union_ids = fulltext_ids | vector_ids
+
+results = client.query(Article).filter(
+    Article.id.in_(list(union_ids))
+).all()
+```
+
+**Use case:** Broad matching - satisfy any search criteria
+
+---
+
+### Top Articles Per Category
+
+Get best match from each category.
+
+#### Example: Closest Article in Each Category
+
+```python
+# Get all articles with distances and category info
+all_results = client.query(
+    Article.id,
+    Article.title,
+    Article.category_id,
+    Category.name.label('category_name'),
+    Article.rating,
+    Article.embedding.l2_distance(query_vector).label('distance')
+).join(
+    Category, Article.category_id == Category.cat_id
+).order_by('distance').all()
+
+# Find top article per category (in Python)
+category_top = {}
+for row in all_results:
+    if row.category_name not in category_top:
+        category_top[row.category_name] = row
+
+print("Top article in each category:")
+for category_name, row in category_top.items():
+    print(f"  {category_name}: {row.title}")
+    print(f"    Distance: {row.distance:.4f}")
+```
+
+**Use case:** Diverse recommendations across categories
+
+---
 
 ### Using CTEs (Common Table Expressions)
 
@@ -327,6 +699,8 @@ results = client.query(
     Article.rating >= 4.7  # Matches CTE filter
 ).order_by('distance').limit(3).all()
 ```
+
+---
 
 ### Using Subqueries
 
