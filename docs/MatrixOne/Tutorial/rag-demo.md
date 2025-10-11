@@ -214,6 +214,81 @@ results = client.query(
 retrieved_docs = [row[0] for row in results.rows]
 ```
 
+### Alternative: Using Pinecone-Compatible Interface
+
+The MatrixOne Python SDK also provides a Pinecone-compatible interface for vector operations, making it easy for developers familiar with Pinecone to migrate or integrate with MatrixOne. This interface offers a simplified API for common vector search operations.
+
+#### Setup Pinecone-Compatible Vector Store
+
+```python
+from matrixone.vector_store import MatrixOneVectorStore
+
+# Initialize the Pinecone-compatible vector store
+vector_store = MatrixOneVectorStore(
+    client=client,
+    table_name='rag_tab',
+    vector_column='embedding',
+    content_column='content',
+    dimension=1024
+)
+```
+
+#### Insert Documents with Pinecone-Style API
+
+```python
+# Prepare documents with embeddings (Pinecone-style)
+vectors_data = []
+for i, doc in enumerate(documents):
+    response = ollama.embeddings(model="mxbai-embed-large", prompt=doc)
+    embedding = response["embedding"]
+    vectors_data.append({
+        'id': str(i + 1),
+        'values': embedding,
+        'metadata': {'content': doc}
+    })
+
+# Upsert vectors (Pinecone-compatible method)
+vector_store.upsert(vectors=vectors_data)
+```
+
+#### Query with Pinecone-Style Interface
+
+```python
+# Generate query embedding
+prompt = "What is the latest version of MatrixOne?"
+response = ollama.embeddings(
+    prompt=prompt,
+    model="mxbai-embed-large"
+)
+query_embedding = response["embedding"]
+
+# Perform similarity search using Pinecone-compatible query
+search_results = vector_store.query(
+    vector=query_embedding,
+    top_k=3,
+    include_metadata=True
+)
+
+# Extract content from Pinecone-style results
+retrieved_docs_pinecone = [
+    match['metadata']['content'] 
+    for match in search_results['matches']
+]
+
+# Display results with similarity scores
+for i, match in enumerate(search_results['matches'], 1):
+    print(f"\n--- Result {i} (Score: {match['score']:.4f}) ---")
+    print(match['metadata']['content'][:200] + "...")
+```
+
+**Benefits of Pinecone-Compatible Interface:**
+
+- 🔄 **Easy Migration**: Familiar API for developers coming from Pinecone
+- 🚀 **Simplified Operations**: Cleaner syntax for common vector operations
+- 📊 **Automatic Scoring**: Built-in similarity score calculation
+- 🔍 **Metadata Support**: Easy inclusion of metadata in search results
+- 💡 **Developer-Friendly**: Intuitive methods like `upsert()` and `query()`
+
 ### Enhanced Generation
 
 We combine what we retrieved in the previous step with LLM to generate an answer.
