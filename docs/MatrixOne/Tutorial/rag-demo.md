@@ -70,7 +70,7 @@ Before you begin, confirm that you have downloaded and installed the following s
 - Verify that you have finished installing [Python 3.8 (or plus)](https://www.python.org/downloads/). Verify that the installation was successful by checking the Python version with the following code:
 
 ```
-python3 -V 
+python3 -V
 ```
 
 - Verify that you have completed installing the MySQL client.
@@ -84,13 +84,13 @@ pip3 install matrixone-python-sdk
 - Verify that you have finished installing [ollama](https://ollama.com/download). Verify that the installation was successful by checking the ollama version with the following code:
 
 ```
-ollama -v 
+ollama -v
 ```
 
 - Download the LLM model `llama2` and embedding model `mxbai-embed-large`:
 
 ```
-ollama pull llama2 ollama pull mxbai-embed-large 
+ollama pull llama2 ollama pull mxbai-embed-large
 ```
 
 ## Build your app
@@ -140,7 +140,7 @@ documents = [
     "MatrixOne touts significant features, including real-time HTAP, multi-tenancy, stream computation, extreme scalability, cost-effectiveness, enterprise-grade availability, and extensive MySQL compatibility. MatrixOne unifies tasks traditionally performed by multiple databases into one system by offering a comprehensive ultra-hybrid data solution. This consolidation simplifies development and operations, minimizes data fragmentation, and boosts development agility.",
     "MatrixOne is optimally suited for scenarios requiring real-time data input, large data scales, frequent load fluctuations, and a mix of procedural and analytical business operations. It caters to use cases such as mobile internet apps, IoT data applications, real-time data warehouses, SaaS platforms, and more.",
     "Matrix is a collection of complex or real numbers arranged in a rectangular array.",
-    "The lastest version of MatrixOne is v25.3.0.1,released on 2025/09/26.",
+    "The lastest version of MatrixOne is v25.3.0.2,released on 2025/09/26.",
     "We are excited to announce MatrixOne v22.0.8.0 release on 2023/6/30."
 ]
 
@@ -271,7 +271,7 @@ search_results = vector_store.query(
 
 # Extract content from Pinecone-style results
 retrieved_docs_pinecone = [
-    match['metadata']['content'] 
+    match['metadata']['content']
     for match in search_results['matches']
 ]
 
@@ -312,7 +312,7 @@ client.disconnect()
 Console output related answer:
 
 ```
-Based on the provided data, the latest version of MatrixOne is v25.3.0.1, which was released on 2025/09/26. 
+Based on the provided data, the latest version of MatrixOne is v25.3.0.2, which was released on 2025/10/11.
 ```
 
 After enhancement, the model generates the correct answer.
