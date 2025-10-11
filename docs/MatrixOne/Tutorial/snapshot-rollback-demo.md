@@ -38,47 +38,47 @@ graph TD
     Start([Start: Production v1.0])
     Deploy1[Deploy v1.0 System<br>5 products, simple schema]
     Snapshot[Create Snapshot<br>pre_upgrade_v1<br>Instant operation]
-    
+
     Upgrade[Upgrade to v2.0<br>Add 4 new columns<br>Migrate data]
     NewFeatures[Add v2.0 Features<br>Ratings, reviews<br>2 new products]
-    
+
     Validate{Validate<br>Upgrade?}
-    
+
     Problem[Problem Detected<br>Integrity errors<br>Category issues]
     Production[Production v2.0<br>Keep running]
-    
+
     Clone[Clone Snapshot<br>Create verify DB<br>Test before restore]
     VerifyOK{Snapshot<br>Valid?}
-    
+
     Restore[Restore Database<br>restore_database API<br>Instant rollback]
     Alert[Alert Team<br>Manual recovery]
-    
+
     Restored[Restored to v1.0<br>5 products<br>Original schema]
     Cleanup[Cleanup<br>Drop verify DB<br>Delete snapshot]
-    
+
     EndRollback([End: Safe Rollback])
     EndSuccess([End: Successful Upgrade])
-    
+
     Start --> Deploy1
     Deploy1 --> Snapshot
     Snapshot --> Upgrade
     Upgrade --> NewFeatures
     NewFeatures --> Validate
-    
+
     Validate -->|Failed| Problem
     Validate -->|Success| Production
-    
+
     Problem --> Clone
     Clone --> VerifyOK
-    
+
     VerifyOK -->|Yes| Restore
     VerifyOK -->|No| Alert
-    
+
     Restore --> Restored
     Restored --> Cleanup
     Cleanup --> EndRollback
     Production --> EndSuccess
-    
+
     style Start fill:#e1f5e1
     style Snapshot fill:#fff3cd
     style Problem fill:#f8d7da
@@ -113,17 +113,17 @@ graph TD
     V1_Col3["price: Integer"]
     V1_Col4["stock: Integer"]
     V1_Info["Total: 4 columns<br>Data: 5 products"]
-    
+
     V1_Header --> V1_Table
     V1_Table --> V1_Col1
     V1_Table --> V1_Col2
     V1_Table --> V1_Col3
     V1_Table --> V1_Col4
     V1_Table --> V1_Info
-    
+
     Arrow1["⬇️ UPGRADE<br>Schema Migration<br>Data Migration"]
     V1_Info --> Arrow1
-    
+
     V2_Header["v2.0 Schema - Enhanced Product System"]
     V2_Table["products table"]
     V2_Col1["id: BigInteger PK"]
@@ -135,7 +135,7 @@ graph TD
     V2_Col7["rating: Float NEW"]
     V2_Col8["review_count: Integer NEW"]
     V2_Info["Total: 8 columns +4 new<br>Data: 7 products +2 new"]
-    
+
     Arrow1 --> V2_Header
     V2_Header --> V2_Table
     V2_Table --> V2_Col1
@@ -147,15 +147,15 @@ graph TD
     V2_Table --> V2_Col7
     V2_Table --> V2_Col8
     V2_Table --> V2_Info
-    
+
     Arrow2["⬆️ ROLLBACK<br>Restore from Snapshot<br>Instant Operation"]
     V2_Info -.-> Arrow2
     Arrow2 -.-> V1_Info
-    
+
     style V1_Header fill:#d4edda,stroke:#28a745,stroke-width:3px
     style V1_Table fill:#c3e6cb
     style V1_Info fill:#d4edda
-    
+
     style V2_Header fill:#fff3cd,stroke:#ffc107,stroke-width:3px
     style V2_Table fill:#ffeeba
     style V2_Col3 fill:#d1ecf1
@@ -163,7 +163,7 @@ graph TD
     style V2_Col7 fill:#d1ecf1
     style V2_Col8 fill:#d1ecf1
     style V2_Info fill:#fff3cd
-    
+
     style Arrow1 fill:#fff,stroke:#28a745,stroke-width:2px
     style Arrow2 fill:#fff,stroke:#dc3545,stroke-width:2px,stroke-dasharray: 5 5
 ```
@@ -195,27 +195,27 @@ graph TD
 
 !!! success "MatrixOne's Copy-on-Write Technology"
     **How It Works:**
-    
+
     When you create a snapshot or clone:
-    
+
     - ✅ **No data copying**: Only metadata is created (< 1 second)
     - ✅ **No storage doubling**: 1TB database → snapshot still uses 1TB
     - ✅ **Instant operation**: TB-scale clones complete in seconds
     - ✅ **Efficient writes**: Only new changes consume additional storage
-    
+
     **Example:**
     ```
     Original DB: 1TB data
     Create Snapshot: 1TB (same storage, instant)
     Clone Database: 1TB (still same storage!)
-    
+
     After modifications:
     - Write 10GB to clone → Total storage: 1.01TB (not 2TB!)
     - Only deltas are stored
     ```
-    
+
     **Production Benefits:**
-    
+
     - 🏢 Create unlimited test environments from production snapshots
     - 💵 No 2x storage cost penalty
     - ⚡ Instant database provisioning for QA/staging
@@ -336,7 +336,7 @@ print("✅ Demo completed!")
 class ProductV1(Base):
     """v1.0: Simple product table"""
     __tablename__ = "products"
-    
+
     id = Column(BigInteger, primary_key=True, autoincrement=True)
     name = Column(String(200))
     price = Column(Integer)
@@ -416,7 +416,7 @@ client.drop_table(ProductV1)
 class ProductV2(Base):
     """v2.0: Enhanced product table"""
     __tablename__ = "products"
-    
+
     id = Column(BigInteger, primary_key=True, autoincrement=True)
     name = Column(String(200))
     category = Column(String(100))      # NEW
@@ -496,7 +496,7 @@ print(f"  - Storage: No additional cost until you modify data")
 # Connect to verification database
 verify_client = Client()
 verify_client.connect(
-    host=host, port=port, user=user, 
+    host=host, port=port, user=user,
     password=password, database=verify_db
 )
 
@@ -532,7 +532,7 @@ success = client.restore.restore_database(
 if success:
     print(f"✓ Database restored successfully!")
     print(f"  - {database} rolled back to v1.0")
-    
+
     # Verify restore
     restored_count = client.query(ProductV1).count()
     print(f"  - Product count: {restored_count}")
@@ -648,19 +648,19 @@ client.execute("ALTER DATABASE mydb_restored RENAME TO mydb")
 def safe_production_upgrade():
     # Before upgrade
     snapshot = create_pre_deployment_snapshot()
-    
+
     # Perform upgrade
     try:
         upgrade_database()
         upgrade_application()
-        
+
         # Validate
         if not validate_upgrade():
             raise Exception("Validation failed")
-            
+
         # Success - keep snapshot for 7 days
         print("✓ Upgrade successful")
-        
+
     except Exception as e:
         # Rollback
         print(f"✗ Upgrade failed: {e}")
@@ -736,40 +736,40 @@ client.clone.clone_database_with_snapshot(
 
 !!! tip "Use Copy-on-Write to Your Advantage"
     **MatrixOne's secret weapon: Unlimited free clones!**
-    
+
     Since clones use copy-on-write (no storage overhead), you can:
-    
+
     ```python
     # Create multiple test environments at NO COST
     production_snapshot = "prod_20250110"
-    
+
     # QA environment - instant, free
     client.clone.clone_database_with_snapshot(
         target_db="qa_env",
         source_db="production",
         snapshot_name=production_snapshot
     )  # ⚡ 5 seconds, 💰 0 storage cost
-    
+
     # Staging environment - instant, free
     client.clone.clone_database_with_snapshot(
         target_db="staging_env",
         source_db="production",
         snapshot_name=production_snapshot
     )  # ⚡ 5 seconds, 💰 0 storage cost
-    
+
     # Developer environment - instant, free
     client.clone.clone_database_with_snapshot(
         target_db="dev_env",
         source_db="production",
         snapshot_name=production_snapshot
     )  # ⚡ 5 seconds, 💰 0 storage cost
-    
+
     # Result: 3 full copies of production (1TB each)
     # Traditional cost: 4TB storage (1 prod + 3 copies)
     # MatrixOne cost: 1TB storage! (copy-on-write magic)
     # Savings: 75% storage cost! 💰💰💰
     ```
-    
+
     **Production Use Cases:**
     - ✅ Create unlimited test environments from prod snapshots
     - ✅ Give each developer their own full production dataset
@@ -783,7 +783,7 @@ client.clone.clone_database_with_snapshot(
 def generate_snapshot_name(purpose, version=None):
     """Generate descriptive snapshot name"""
     timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
-    
+
     if version:
         return f"{purpose}_v{version}_{timestamp}"
     else:
@@ -802,7 +802,7 @@ snapshot_name = generate_snapshot_name("daily_backup")
 ```python
 def safe_restore(client, snapshot_name, database_name):
     """Safely restore with verification"""
-    
+
     # Step 1: Clone for verification
     verify_db = f"{database_name}_verify"
     client.clone.clone_database_with_snapshot(
@@ -810,14 +810,14 @@ def safe_restore(client, snapshot_name, database_name):
         source_db=database_name,
         snapshot_name=snapshot_name
     )
-    
+
     # Step 2: Verify cloned database
     verify_client = Client()
     verify_client.connect(database=verify_db)
-    
+
     is_valid = verify_database(verify_client)
     verify_client.disconnect()
-    
+
     # Step 3: Restore only if verification passed
     if is_valid:
         client.restore.restore_database(
@@ -827,7 +827,7 @@ def safe_restore(client, snapshot_name, database_name):
         print("✓ Restore successful")
     else:
         print("✗ Verification failed, restore aborted")
-    
+
     # Step 4: Cleanup verification database
     client.execute(f"DROP DATABASE {verify_db}")
 ```
@@ -837,12 +837,12 @@ def safe_restore(client, snapshot_name, database_name):
 ```python
 def cleanup_old_snapshots(client, retention_days=7):
     """Delete snapshots older than retention period"""
-    
+
     from datetime import datetime, timedelta
-    
+
     all_snapshots = client.snapshots.list()
     cutoff_date = datetime.now() - timedelta(days=retention_days)
-    
+
     for snapshot in all_snapshots:
         if snapshot.created_at < cutoff_date:
             client.snapshots.delete(snapshot.name)
@@ -872,7 +872,7 @@ save_snapshot_metadata(snapshot_metadata)
 ```python
 def production_upgrade_checklist():
     """Pre-upgrade checklist"""
-    
+
     checklist = {
         "snapshot_created": False,
         "snapshot_verified": False,
@@ -880,26 +880,26 @@ def production_upgrade_checklist():
         "stakeholders_notified": False,
         "maintenance_window": False
     }
-    
+
     # 1. Create snapshot
     snapshot = client.snapshots.create(...)
     checklist["snapshot_created"] = True
-    
+
     # 2. Verify snapshot
     if verify_snapshot(snapshot):
         checklist["snapshot_verified"] = True
-    
+
     # 3. Prepare rollback procedure
     document_rollback_steps()
     checklist["rollback_plan"] = True
-    
+
     # 4. Notify stakeholders
     send_notifications()
     checklist["stakeholders_notified"] = True
-    
+
     # 5. Confirm maintenance window
     checklist["maintenance_window"] = is_in_maintenance_window()
-    
+
     # Check all items
     if all(checklist.values()):
         print("✓ All pre-upgrade checks passed")
@@ -1023,34 +1023,34 @@ before_bulk_delete(create_snapshot)
 ```python
 def blue_green_deployment(client, database_name, new_version):
     """Deploy new version using blue-green pattern"""
-    
+
     # Current database is "blue" (production)
     blue_db = database_name
     green_db = f"{database_name}_green"
-    
+
     # Step 1: Create snapshot of blue
     snapshot = client.snapshots.create(
         name=f"blue_backup_{new_version}",
         level=SnapshotLevel.DATABASE,
         database=blue_db
     )
-    
+
     # Step 2: Clone blue to green
     client.clone.clone_database_with_snapshot(
         target_db=green_db,
         source_db=blue_db,
         snapshot_name=snapshot.name
     )
-    
+
     # Step 3: Upgrade green database
     upgrade_database(green_db, new_version)
-    
+
     # Step 4: Test green database
     if validate_upgrade(green_db):
         # Step 5: Switch traffic to green
         switch_application_to_database(green_db)
         print(f"✓ Switched to {green_db}")
-        
+
         # Keep blue for quick rollback if needed
     else:
         # Upgrade failed, cleanup green
@@ -1069,12 +1069,12 @@ def blue_green_deployment(client, database_name, new_version):
 
 Database snapshots in MatrixOne enable safe production operations:
 
-✅ **Instant Snapshots**: Create backup in seconds, not hours  
-✅ **Fast Rollback**: Restore entire database instantly  
-✅ **Zero Data Loss**: Exact point-in-time recovery  
-✅ **Schema + Data**: Both code and data preserved  
-✅ **Verify Before Restore**: Clone to test snapshot validity  
-✅ **Efficient Storage**: Copy-on-write, minimal overhead  
+✅ **Instant Snapshots**: Create backup in seconds, not hours
+✅ **Fast Rollback**: Restore entire database instantly
+✅ **Zero Data Loss**: Exact point-in-time recovery
+✅ **Schema + Data**: Both code and data preserved
+✅ **Verify Before Restore**: Clone to test snapshot validity
+✅ **Efficient Storage**: Copy-on-write, minimal overhead
 
 **Golden Rule:** Always create a snapshot before major changes! 🛡️
 

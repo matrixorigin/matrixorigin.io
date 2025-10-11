@@ -8,7 +8,7 @@ This tutorial demonstrates **Boolean mode fulltext search** in MatrixOne Python 
 - ✅ **MUST (+)**: Required terms (AND logic)
 - ❌ **MUST_NOT (-)**: Excluded terms (NOT logic)
 - 📈 **ENCOURAGE**: Optional terms that boost relevance
-- 📉 **DISCOURAGE (~)**: Terms that reduce relevance  
+- 📉 **DISCOURAGE (~)**: Terms that reduce relevance
 - 🔤 **PHRASE ("")**: Exact phrase matching
 
 **Perfect For:**
@@ -62,7 +62,7 @@ Base = declarative_base()
 class Article(Base):
     """Article table with BM25 fulltext search"""
     __tablename__ = "boolean_search_articles"
-    
+
     id = Column(BigInteger, primary_key=True)
     title = Column(String(200))
     content = Column(Text)
@@ -70,9 +70,9 @@ class Article(Base):
     author = Column(String(100))
     views = Column(Integer)
     rating = Column(Float)
-    
+
     __table_args__ = (
-        FulltextIndex("idx_article_search", ["title", "content"], 
+        FulltextIndex("idx_article_search", ["title", "content"],
                      algorithm=FulltextAlgorithmType.BM25),
     )
 
@@ -475,7 +475,7 @@ class Product(Base):
     description = Column(Text)
     brand = Column(String(100))
     price = Column(Float)
-    
+
     __table_args__ = (
         FulltextIndex("idx_product_search", ["name", "description"],
                      algorithm=FulltextAlgorithmType.BM25),
@@ -500,7 +500,7 @@ class JobPosting(Base):
     title = Column(String(200))
     description = Column(Text)
     requirements = Column(Text)
-    
+
     __table_args__ = (
         FulltextIndex("idx_job_search", ["title", "description", "requirements"],
                      algorithm=FulltextAlgorithmType.BM25),
@@ -523,7 +523,7 @@ class ResearchPaper(Base):
     title = Column(String(500))
     abstract = Column(Text)
     keywords = Column(String(500))
-    
+
     __table_args__ = (
         FulltextIndex("idx_paper_search", ["title", "abstract", "keywords"],
                      algorithm=FulltextAlgorithmType.BM25),
@@ -766,11 +766,11 @@ results = client.query(
 
 Boolean mode fulltext search provides:
 
-✅ **Precise Control**: Use +, -, ~ operators for exact logic  
-✅ **Complex Queries**: Combine multiple operators  
-✅ **Phrase Matching**: Exact phrase search with ""  
-✅ **Relevance Tuning**: ENCOURAGE/DISCOURAGE for ranking  
-✅ **Professional**: Perfect for advanced search interfaces  
+✅ **Precise Control**: Use +, -, ~ operators for exact logic
+✅ **Complex Queries**: Combine multiple operators
+✅ **Phrase Matching**: Exact phrase search with ""
+✅ **Relevance Tuning**: ENCOURAGE/DISCOURAGE for ranking
+✅ **Professional**: Perfect for advanced search interfaces
 
 **Comparison:**
 - **Natural Language Mode**: User-friendly, automatic (like Google)

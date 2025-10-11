@@ -17,14 +17,14 @@ This tutorial demonstrates **HNSW (Hierarchical Navigable Small World)** vector 
 
 !!! info "Future Enhancement: Incremental Updates Coming Soon"
     **Good News:** MatrixOne will soon support **incremental updates** for HNSW indexes!
-    
+
     - 🔄 **Async Index Updates**: New vectors will be added to the index asynchronously
     - ➕ **Insert Support**: You'll be able to insert new vectors after index creation
     - 🔧 **Update Support**: Modify existing vectors without rebuilding the entire index
     - 🗑️ **Delete Support**: Remove vectors from the index
-    
+
     **Current Status:** This feature is under development and not yet available. For now, HNSW indexes remain read-only after creation. Once the index is created, you cannot insert or modify data without dropping and rebuilding the index.
-    
+
     **Workaround for Now:** Use IVF index if you need dynamic updates, or plan to rebuild HNSW index periodically.
 
 !!! note "MatrixOne Python SDK Documentation"
@@ -74,7 +74,7 @@ Base = declarative_base()
 
 class Document(Base):
     __tablename__ = "hnsw_demo_docs"
-    
+
     id = Column(BigInteger, primary_key=True)  # Must be BigInteger!
     title = Column(String(200))
     category = Column(String(100))
@@ -149,7 +149,7 @@ class Document(Base):
 
 !!! warning "Current Limitation: Read-Only Index"
     **IMPORTANT:** In the current version, once an HNSW index is created, the table becomes read-only for that indexed column. You cannot insert, update, or delete vectors.
-    
+
     **Future Update:** Incremental update support with async index updates is coming soon!
 
 ```python
@@ -161,7 +161,7 @@ client.vector_ops.create_hnsw(...)       # Then create index
 
 # ❌ After index creation, CANNOT (until incremental update is released):
 # - Insert new vectors
-# - Update existing vectors  
+# - Update existing vectors
 # - Delete vectors
 
 # ✅ To modify data (Current Workaround):
@@ -175,15 +175,15 @@ client.vector_ops.create_hnsw(...)       # Then create index
 ```python
 def update_data_with_hnsw(client, Model, new_data):
     """Update data when using HNSW index (current version)"""
-    
+
     # Step 1: Drop existing HNSW index
     client.vector_ops.drop(table_name, "idx_hnsw")
     print("✓ Dropped HNSW index")
-    
+
     # Step 2: Now you can modify data
     client.batch_insert(Model, new_data)
     print("✓ Inserted new data")
-    
+
     # Step 3: Recreate HNSW index
     client.vector_ops.create_hnsw(
         Model, "idx_hnsw_v2", "embedding",
@@ -441,7 +441,7 @@ for k in [5, 10, 20, 50]:
         Document.embedding.l2_distance(query_vector).label('distance')
     ).order_by('distance').limit(k).all()
     elapsed = (time.time() - start) * 1000
-    
+
     print(f"K={k}: {elapsed:.2f}ms")
 ```
 
@@ -487,19 +487,19 @@ for k in [5, 10, 20, 50]:
 ```python
 def get_hnsw_parameters(vector_count, use_case):
     """Get recommended HNSW parameters based on use case"""
-    
+
     if use_case == "fast":
         # Optimize for speed
         return {"m": 8, "ef_construction": 100, "ef_search": 20}
-    
+
     elif use_case == "balanced":
         # Balance speed and recall (recommended)
         return {"m": 16, "ef_construction": 200, "ef_search": 50}
-    
+
     elif use_case == "high_recall":
         # Optimize for accuracy
         return {"m": 32, "ef_construction": 400, "ef_search": 100}
-    
+
     else:
         # Default
         return {"m": 16, "ef_construction": 200, "ef_search": 50}
@@ -526,7 +526,7 @@ client.vector_ops.create_hnsw(
 
 - **m = 16**: Balanced (default, ~99% recall)
   - Construction: Medium
-  - Search: Fast  
+  - Search: Fast
   - Memory: Medium
   - Use: **Recommended for most cases**
 
@@ -546,7 +546,7 @@ client.vector_ops.create_hnsw(
 
 **Rule of thumb:** Higher ef_construction improves index quality but increases build time linearly.
 
-### ef_search Parameter Guide  
+### ef_search Parameter Guide
 
 **ef_search = Candidate list size during search**
 
@@ -613,7 +613,7 @@ op_type="vector_ip_ops"  # Inner product
 
 !!! warning "Read-Only Index in Current Version"
     **Current Limitation:** HNSW indexes are read-only. Once created, you cannot insert, update, or delete vectors without dropping the index.
-    
+
     **Coming Soon:** Incremental update support with asynchronous index updates will be available in a future release!
 
 **Current Workaround:** Drop, modify, rebuild
@@ -621,15 +621,15 @@ op_type="vector_ip_ops"  # Inner product
 ```python
 def update_hnsw_index(client, Model, new_data):
     """Update HNSW index with new data (current version workaround)"""
-    
+
     # 1. Drop existing HNSW index
     client.vector_ops.drop(table_name, "idx_hnsw")
     print("✓ Dropped HNSW index (now table is writable)")
-    
+
     # 2. Insert/update/delete data
     client.batch_insert(Model, new_data)
     print("✓ Modified data")
-    
+
     # 3. Recreate HNSW index
     client.vector_ops.create_hnsw(
         Model, "idx_hnsw_v2", "embedding",
@@ -669,7 +669,7 @@ for metric_name, metric_func in metrics:
         Document.id,
         metric_func(query_vector).label('distance')
     ).order_by('distance').limit(5).all()
-    
+
     print(f"\n{metric_name} Distance:")
     for i, row in enumerate(results[:3], 1):
         print(f"  {i}. ID: {row.id}, Distance: {row.distance:.4f}")
@@ -866,12 +866,12 @@ results = client.query(
 
 HNSW vector indexing in MatrixOne provides:
 
-✅ **Superior Performance**: Fastest vector search with >99% recall  
-✅ **No Training Required**: Direct index construction, no clustering  
-✅ **Predictable Latency**: Consistent query performance  
-✅ **High Quality Results**: Excellent accuracy for nearest neighbor search  
-⚠️ **Read-Only (Current)**: Insert data before creating index  
-⚠️ **BigInteger Primary Key**: Required for HNSW to work  
+✅ **Superior Performance**: Fastest vector search with >99% recall
+✅ **No Training Required**: Direct index construction, no clustering
+✅ **Predictable Latency**: Consistent query performance
+✅ **High Quality Results**: Excellent accuracy for nearest neighbor search
+⚠️ **Read-Only (Current)**: Insert data before creating index
+⚠️ **BigInteger Primary Key**: Required for HNSW to work
 🔄 **Future: Incremental Updates**: Async update support coming soon!
 
 **Current Best Use Cases:**

@@ -63,14 +63,14 @@ Base = declarative_base()
 
 class Product(Base):
     __tablename__ = "json_demo_products"
-    
+
     id = Column(BigInteger, primary_key=True)
     name = Column(String(200))
     category = Column(String(100))
     price = Column(Float)
     specifications = Column(Text)  # JSON format
     features = Column(Text)  # JSON format
-    
+
     __table_args__ = (
         FulltextIndex("idx_specs", "specifications", parser="json"),
         FulltextIndex("idx_features", "features", parser="json"),
@@ -140,11 +140,11 @@ from matrixone import FulltextIndex
 
 class Product(Base):
     __tablename__ = "products"
-    
+
     id = Column(BigInteger, primary_key=True)
     specifications = Column(Text)  # Store JSON as TEXT
     features = Column(Text)        # Store JSON as TEXT
-    
+
     __table_args__ = (
         # JSON parser indexes values, not keys
         FulltextIndex("idx_specs", "specifications", parser="json"),
@@ -491,7 +491,7 @@ results = client.query(Product).filter(
 # Products with varying specifications
 class Product(Base):
     specifications = Column(Text)  # Different specs per category
-    
+
     __table_args__ = (
         FulltextIndex("idx_specs", "specifications", parser="json"),
     )
@@ -507,7 +507,7 @@ class Product(Base):
 # User preferences vary by user
 class UserProfile(Base):
     preferences = Column(Text)  # Flexible JSON preferences
-    
+
     __table_args__ = (
         FulltextIndex("idx_prefs", "preferences", parser="json"),
     )
@@ -521,7 +521,7 @@ class UserProfile(Base):
 # Config structures vary by app
 class AppConfig(Base):
     config_data = Column(Text)  # JSON configuration
-    
+
     __table_args__ = (
         FulltextIndex("idx_config", "config_data", parser="json"),
     )
@@ -536,7 +536,7 @@ class AppConfig(Base):
 class Document(Base):
     metadata = Column(Text)  # JSON metadata
     tags = Column(Text)     # JSON tags
-    
+
     __table_args__ = (
         FulltextIndex("idx_meta", "metadata", parser="json"),
         FulltextIndex("idx_tags", "tags", parser="json"),
@@ -861,12 +861,12 @@ sample_configs = [
 
 JSON parser fulltext search in MatrixOne provides:
 
-✅ **Flexible Schema**: Handle varying product specifications  
-✅ **Value Indexing**: Search JSON values efficiently  
-✅ **Combined Filters**: Mix JSON search with WHERE conditions  
-✅ **Multiple Tables**: Products, users, configs with different JSON structures  
-✅ **Boolean Operators**: Use MUST, MUST_NOT, ENCOURAGE in JSON  
-✅ **Production Ready**: Perfect for e-commerce and SaaS applications  
+✅ **Flexible Schema**: Handle varying product specifications
+✅ **Value Indexing**: Search JSON values efficiently
+✅ **Combined Filters**: Mix JSON search with WHERE conditions
+✅ **Multiple Tables**: Products, users, configs with different JSON structures
+✅ **Boolean Operators**: Use MUST, MUST_NOT, ENCOURAGE in JSON
+✅ **Production Ready**: Perfect for e-commerce and SaaS applications
 
 **Key Insight:** Only JSON **values** are indexed, not keys. This makes it perfect for searching product attributes, user preferences, and configuration settings! 🚀
 

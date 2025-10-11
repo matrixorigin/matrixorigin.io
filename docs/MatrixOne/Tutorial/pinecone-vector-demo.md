@@ -14,7 +14,7 @@ This tutorial demonstrates how to use MatrixOne Python SDK's **Pinecone-compatib
 
 !!! note "MatrixOne Python SDK Documentation"
     For complete API reference and advanced features, please refer to:
-    
+
     - [MatrixOne Python SDK Documentation](https://matrixone.readthedocs.io/en/latest/)
     - [GitHub Repository](https://github.com/matrixorigin/matrixone/tree/main/clients/python)
     - [Test Examples](https://github.com/matrixorigin/matrixone/blob/main/clients/python/tests/online/test_pinecone_filter.py)
@@ -70,7 +70,7 @@ Base = declarative_base()
 class DocumentTable(Base):
     """Document table with 16-dimensional vectors"""
     __tablename__ = "pinecone_demo_docs"
-    
+
     id = Column(BigInteger, primary_key=True)
     title = Column(String(200))
     category = Column(String(100))

@@ -19,7 +19,7 @@ Before you start, make sure you have downloaded and installed the following soft
     mysql> create database test;
     ```
 
-2. Make sure you have already installed [Python 3.8(or plus) version](https://www.python.org/downloads/).  
+2. Make sure you have already installed [Python 3.8(or plus) version](https://www.python.org/downloads/).
 
     ```
     #To check with Python installation and its version
@@ -311,7 +311,7 @@ print(customer)
 Execute this file in a terminal with such command and we will see the query result:
 
 ```
-> python3 sqlalchemy_update.py     
+> python3 sqlalchemy_update.py
 cname:Wendy Luna caddress:002 Brian Plaza
 Andrewhaven, SC 88456
 
@@ -402,7 +402,7 @@ for customer in customers:
 Execute this file in a terminal with such command and we will see the query result:
 
 ```
-> python3 sqlalchemy_delete.py         
+> python3 sqlalchemy_delete.py
 cname:Meagan Rodriguez caddress:USCGC Olson
 FPO AP 21249
 --------------------------

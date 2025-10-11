@@ -62,7 +62,7 @@ Base = declarative_base()
 class Article(Base):
     """Article table with BM25 fulltext search"""
     __tablename__ = "natural_search_articles"
-    
+
     id = Column(BigInteger, primary_key=True)
     title = Column(String(200))
     content = Column(Text)
@@ -71,9 +71,9 @@ class Article(Base):
     tags = Column(String(500))
     views = Column(Integer)
     rating = Column(Float)
-    
+
     __table_args__ = (
-        FulltextIndex("idx_article_search", ["title", "content"], 
+        FulltextIndex("idx_article_search", ["title", "content"],
                      algorithm=FulltextAlgorithmType.BM25),
     )
 
@@ -130,11 +130,11 @@ Base = declarative_base()
 
 class Article(Base):
     __tablename__ = "articles"
-    
+
     id = Column(BigInteger, primary_key=True)
     title = Column(String(200))
     content = Column(Text)
-    
+
     # Define fulltext index on multiple columns
     __table_args__ = (
         FulltextIndex(
@@ -202,7 +202,7 @@ results = client.query(Article).filter(
     natural_match(Article.title, Article.content, query="how to learn python")
 ).execute()
 
-# "what", "is" are ignored, searches for "machine" and "learning"  
+# "what", "is" are ignored, searches for "machine" and "learning"
 results = client.query(Article).filter(
     natural_match(Article.title, Article.content, query="what is machine learning")
 ).execute()
@@ -215,8 +215,8 @@ Works with long, natural language queries:
 ```python
 results = client.query(Article).filter(
     natural_match(
-        Article.title, 
-        Article.content, 
+        Article.title,
+        Article.content,
         query="beginner tutorial for learning programming"
     )
 ).execute()
@@ -390,7 +390,7 @@ BM25 provides better relevance than TF-IDF for most use cases:
 
 ```python
 __table_args__ = (
-    FulltextIndex("idx_search", ["title", "content"], 
+    FulltextIndex("idx_search", ["title", "content"],
                  algorithm=FulltextAlgorithmType.BM25),  # ✅ Recommended
 )
 ```
@@ -436,7 +436,7 @@ class BlogPost(Base):
     title = Column(String(200))
     content = Column(Text)
     excerpt = Column(Text)
-    
+
     __table_args__ = (
         FulltextIndex("idx_blog_search", ["title", "content", "excerpt"],
                      algorithm=FulltextAlgorithmType.BM25),
@@ -451,7 +451,7 @@ class Product(Base):
     name = Column(String(200))
     description = Column(Text)
     features = Column(Text)
-    
+
     __table_args__ = (
         FulltextIndex("idx_product_search", ["name", "description", "features"],
                      algorithm=FulltextAlgorithmType.BM25),
@@ -466,7 +466,7 @@ class Documentation(Base):
     title = Column(String(200))
     content = Column(Text)
     keywords = Column(String(500))
-    
+
     __table_args__ = (
         FulltextIndex("idx_docs_search", ["title", "content", "keywords"],
                      algorithm=FulltextAlgorithmType.BM25),
@@ -480,7 +480,7 @@ class FAQ(Base):
     __tablename__ = "faqs"
     question = Column(String(500))
     answer = Column(Text)
-    
+
     __table_args__ = (
         FulltextIndex("idx_faq_search", ["question", "answer"],
                      algorithm=FulltextAlgorithmType.BM25),
@@ -541,7 +541,7 @@ results = client.query(Article).filter(
 
 # Just pass the query as-is
 results = client.query(Article).filter(
-    natural_match(Article.title, Article.content, 
+    natural_match(Article.title, Article.content,
                  query="state-of-the-art Python 3.9")
 ).execute()
 ```
@@ -592,11 +592,11 @@ results = client.query(Article).filter(
 
 Natural Language fulltext search in MatrixOne provides:
 
-✅ **User-Friendly**: Search like Google, no operators needed  
-✅ **Intelligent**: Automatic stopword removal and stemming  
-✅ **Flexible**: Combine with WHERE, ORDER BY, LIMIT  
-✅ **Fast**: BM25 algorithm with fulltext indexing  
-✅ **Powerful**: Multi-column search with relevance ranking  
+✅ **User-Friendly**: Search like Google, no operators needed
+✅ **Intelligent**: Automatic stopword removal and stemming
+✅ **Flexible**: Combine with WHERE, ORDER BY, LIMIT
+✅ **Fast**: BM25 algorithm with fulltext indexing
+✅ **Powerful**: Multi-column search with relevance ranking
 
 Perfect for building search features in your applications! 🚀
 

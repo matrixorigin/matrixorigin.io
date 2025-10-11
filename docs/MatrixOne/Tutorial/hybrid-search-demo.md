@@ -143,7 +143,7 @@ class Category(Base):
 
 class Article(Base):
     __tablename__ = "hybrid_articles"
-    
+
     id = Column(BigInteger, primary_key=True)
     title = Column(String(200))
     content = Column(Text)
@@ -152,9 +152,9 @@ class Article(Base):
     views = Column(Integer)
     rating = Column(Float)
     embedding = create_vector_column(128, "f32")
-    
+
     __table_args__ = (
-        FulltextIndex("idx_fulltext", ["title", "content"], 
+        FulltextIndex("idx_fulltext", ["title", "content"],
                      algorithm=FulltextAlgorithmType.BM25),
     )
 
@@ -233,15 +233,15 @@ Create tables with BOTH vector and fulltext indexes:
 ```python
 class Article(Base):
     __tablename__ = "articles"
-    
+
     # Standard columns
     id = Column(BigInteger, primary_key=True)
     title = Column(String(200))
     content = Column(Text)
-    
+
     # Vector column for semantic search
     embedding = create_vector_column(128, "f32")
-    
+
     # Fulltext index for keyword search
     __table_args__ = (
         FulltextIndex("idx_fulltext", ["title", "content"],
@@ -849,7 +849,7 @@ class Product(Base):
     price = Column(Float)
     brand_id = Column(BigInteger)
     embedding = create_vector_column(128, "f32")
-    
+
     __table_args__ = (
         FulltextIndex("idx_ft", ["name", "description"]),
     )
@@ -1075,12 +1075,12 @@ results = client.query(...).filter(
 
 Hybrid search in MatrixOne enables powerful query combinations:
 
-✅ **Vector + Fulltext**: Semantic and keyword search together  
-✅ **JOIN Operations**: Enrich results with related tables  
-✅ **SQL Filters**: Standard WHERE, GROUP BY, HAVING  
-✅ **CTEs**: Complex query composition  
-✅ **Custom Ranking**: Combine multiple factors  
-✅ **ORM-Style API**: Clean, maintainable code  
+✅ **Vector + Fulltext**: Semantic and keyword search together
+✅ **JOIN Operations**: Enrich results with related tables
+✅ **SQL Filters**: Standard WHERE, GROUP BY, HAVING
+✅ **CTEs**: Complex query composition
+✅ **Custom Ranking**: Combine multiple factors
+✅ **ORM-Style API**: Clean, maintainable code
 
 **Perfect for:** E-commerce, document management, job platforms, content discovery, recommendation systems - any application needing sophisticated search! 🚀
 

@@ -35,7 +35,7 @@ Your organization has large production databases, and multiple teams need isolat
 Production DB (1TB) → Full Copy → Storage Explosion
 
 Team 1: Copy 1TB (30 min) → 2TB total storage
-Team 2: Copy 1TB (30 min) → 3TB total storage  
+Team 2: Copy 1TB (30 min) → 3TB total storage
 Team 3: Copy 1TB (30 min) → 4TB total storage
 
 Result: 4TB storage, 90 minutes, $$$$ costs
@@ -99,38 +99,38 @@ Result: ~1.02TB storage, 15 seconds, 💰 75% savings!
 ```mermaid
 graph TD
     Production["🏢 Production Database<br>1TB - User Behavior Logs<br>Millions of rows"]
-    
+
     Snapshot["📸 Optional: Snapshot<br>Point-in-time backup<br>< 1 second"]
-    
+
     DSClone["📊 Data Science Clone<br>⚡ 5 seconds<br>💰 +10MB storage"]
     QAClone["🧪 QA Clone<br>⚡ 5 seconds<br>💰 +5MB storage"]
     DevClone["👨‍💻 Dev Clone<br>⚡ 5 seconds<br>💰 +8MB storage"]
     TTClone["⏰ Time-Travel Clone<br>From snapshot<br>💰 +0MB storage"]
-    
+
     DSWork["ML Model Training<br>Modify 100 rows<br>Add predictions"]
     QAWork["Integration Tests<br>Delete test data<br>Run destructive tests"]
     DevWork["Schema Changes<br>Add indexes<br>Insert test data"]
     TTWork["Historical Testing<br>Yesterday's data<br>Regression tests"]
-    
+
     DSDelete["🗑️ Delete DS Clone<br>Production unaffected"]
     QADelete["🗑️ Delete QA Clone<br>Other clones unaffected"]
     DevDelete["🗑️ Delete Dev Clone<br>Work independently"]
-    
+
     Production --> Snapshot
     Production --> DSClone
     Production --> QAClone
     Production --> DevClone
     Snapshot --> TTClone
-    
+
     DSClone --> DSWork
     QAClone --> QAWork
     DevClone --> DevWork
     TTClone --> TTWork
-    
+
     DSWork --> DSDelete
     QAWork --> QADelete
     DevWork --> DevDelete
-    
+
     style Production fill:#d4edda,stroke:#28a745,stroke-width:3px
     style Snapshot fill:#fff3cd
     style DSClone fill:#d1ecf1
@@ -162,26 +162,26 @@ graph TD
 
 !!! success "Copy-on-Write Magic"
     **How It Works:**
-    
+
     When you clone a database:
-    
+
     1. ✅ **No data copying**: Only metadata created (< 5 seconds)
     2. ✅ **Shared storage**: All clones read from same underlying data
     3. ✅ **Write isolation**: Modified data stored separately (Copy-on-Write)
     4. ✅ **Independent lifecycle**: Delete clones without affecting source
-    
+
     **Example:**
     ```
     Production: 1TB
     + DS Clone: 0MB (shared read)
     + QA Clone: 0MB (shared read)
     + Dev Clone: 0MB (shared read)
-    
+
     After work:
     + DS modifies 100 rows → +10MB
     + QA deletes 500 rows → +5MB
     + Dev adds 200 rows → +8MB
-    
+
     Total storage: 1.023TB (not 4TB!)
     Savings: 75% storage cost 💰
     ```
@@ -245,7 +245,7 @@ Base = declarative_base()
 class UserBehavior(Base):
     """Large production table: user behavior logs"""
     __tablename__ = "user_behavior"
-    
+
     id = Column(BigInteger, primary_key=True, autoincrement=True)
     user_id = Column(BigInteger)
     product_id = Column(BigInteger)
@@ -647,13 +647,13 @@ client.snapshots.delete("my_snapshot")
     def run_test_suite():
         """Create fresh clone for each test run"""
         test_db = f"test_run_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
-        
+
         # Clone production
         client.clone.clone_database(
             target_db=test_db,
             source_db="production"
         )
-        
+
         # Run tests
         try:
             run_tests_on(test_db)
@@ -667,16 +667,16 @@ client.snapshots.delete("my_snapshot")
 !!! tip "Parallel CI Jobs"
     ```python
     # Each CI job gets its own clone - no storage penalty!
-    
+
     # Job 1: Unit tests
     client.clone.clone_database(target_db="ci_job_1", source_db="prod")
-    
+
     # Job 2: Integration tests
     client.clone.clone_database(target_db="ci_job_2", source_db="prod")
-    
+
     # Job 3: Performance tests
     client.clone.clone_database(target_db="ci_job_3", source_db="prod")
-    
+
     # Total time: ~15 seconds for all 3
     # Total storage: ~production size (not 3x!)
     ```
@@ -691,7 +691,7 @@ client.snapshots.delete("my_snapshot")
         level=SnapshotLevel.DATABASE,
         database="production"
     )
-    
+
     # Clone from last week's snapshot for regression test
     client.clone.clone_database_with_snapshot(
         target_db="regression_test",
@@ -707,10 +707,10 @@ client.snapshots.delete("my_snapshot")
     def cleanup_old_clones(prefix="test_", days_old=7):
         """Drop clones older than N days"""
         cutoff = datetime.now() - timedelta(days=days_old)
-        
+
         # List all databases
         databases = client.execute("SHOW DATABASES")
-        
+
         for db in databases:
             if db['name'].startswith(prefix):
                 # Check creation time and drop if old
@@ -827,13 +827,13 @@ for variant in variants:
         target_db=clone_db,
         source_db="production"
     )
-    
+
     # Apply variant-specific changes
     apply_variant_changes(clone_db, variant)
-    
+
     # Run tests
     metrics = collect_metrics(clone_db)
-    
+
 print(f"✓ 4 parallel A/B tests completed")
 print(f"  ⚡ Time: ~20 seconds")
 print(f"  💰 Storage: ~production size")
@@ -846,24 +846,24 @@ print(f"  💰 Storage: ~production size")
 
 def ci_pipeline(branch_name):
     """CI pipeline with isolated database"""
-    
+
     # 1. Create test database for this branch
     test_db = f"ci_{branch_name}_{int(time.time())}"
-    
+
     client.clone.clone_database(
         target_db=test_db,
         source_db="production_snapshot"
     )
-    
+
     # 2. Run migrations
     apply_migrations(test_db)
-    
+
     # 3. Run tests
     test_results = run_test_suite(test_db)
-    
+
     # 4. Clean up
     client.execute(f"DROP DATABASE {test_db}")
-    
+
     return test_results
 
 # Each PR gets isolated test environment

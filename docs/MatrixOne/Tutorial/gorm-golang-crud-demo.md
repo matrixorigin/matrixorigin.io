@@ -157,7 +157,7 @@ func main() {
 	}
 
 	db.Create(users)
-	
+
 }
 
 ```
@@ -222,7 +222,7 @@ func main() {
 	// auto create table
 	db.AutoMigrate(&USER{})
 
-  // **Query—— String condition** 
+  // **Query—— String condition**
 	res := USER{}
 	tx := db.Where("CNAME = ? ", "zhang").Find(&USER{}).Scan(&res)
 	if tx.Error != nil {
@@ -287,7 +287,7 @@ func main() {
 	// auto create table
 	db.AutoMigrate(&USER{})
 
-  // **Update** 
+  // **Update**
 	aUser := USER{}
 	tx := db.Where("CNAME = ? ", "zhang").Find(&USER{}).Scan(&aUser)
 	if tx.Error != nil {
@@ -363,7 +363,7 @@ func main() {
 	// auto create table
 	db.AutoMigrate(&USER{})
 
-  // **Delete** 
+  // **Delete**
 	aUser := USER{}
 	tx := db.Where("CNAME = ? ", "zhang").Find(&USER{}).Scan(&aUser)
 	if tx.Error != nil {
