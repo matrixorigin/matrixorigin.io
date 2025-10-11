@@ -1,4 +1,4 @@
-# Python CRUD demo
+# PyMySQL CRUD demo
 
 ## Before you start
 
