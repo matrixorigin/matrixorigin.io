@@ -41,7 +41,7 @@ Make sure you have already [installed and launched MatrixOne](../../Get-Started/
 
     ```
     Welcome to the MySQL monitor. Commands end with ; or \g. Your MySQL connection id is 1031
-    Server version: 8.0.30-MatrixOne-v3.0.1 MatrixOne
+    Server version: 8.0.30-MatrixOne-v3.0.2 MatrixOne
     Copyright (c) 2000, 2022, Oracle and/or its affiliates.
 
     Oracle is a registered trademark of Oracle Corporation and/or its affiliates. Other names may be trademarks of their respective owners.
