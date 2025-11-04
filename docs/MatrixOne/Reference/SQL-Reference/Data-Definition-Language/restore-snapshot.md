@@ -1,13 +1,13 @@
-# RESTORE ... FROM SNAPSHOT
+# RESTORE ... SNAPSHOT
 
 ## Syntax Description
 
-`RESTORE ... FROM SNAPSHOT` is used to restore data at the cluster/tenant/database/table level from previously created snapshots of the corresponding levels.
+`RESTORE ... SNAPSHOT` is used to restore data at the cluster/tenant/database/table level from previously created snapshots of the corresponding levels.
 
 ## Syntax Structure
 
 ```sql
-RESTORE CLUSTER FROM SNAPSHOT <snapshot_name>;
+RESTORE CLUSTER {SNAPSHOT = <snapshot_name>};
 
 RESTORE ACCOUNT <account_name> {SNAPSHOT = <snapshot_name>} [TO ACCOUNT <target_account_name>];
 
@@ -59,7 +59,7 @@ mysql> SHOW DATABASES;
 5 rows in set (0.01 sec)
 
 -- Execute in system tenant sys
-RESTORE CLUSTER FROM SNAPSHOT cluster_sp1; -- Restore cluster from snapshot
+RESTORE CLUSTER {SNAPSHOT = "cluster_sp1"}; -- Restore cluster from snapshot
 
 -- Execute in tenants acc1, acc2
 mysql> SHOW DATABASES; -- Restoration successful
