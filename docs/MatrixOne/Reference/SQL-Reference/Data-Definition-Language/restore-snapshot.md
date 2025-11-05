@@ -1,14 +1,23 @@
-# RESTORE ... FROM SNAPSHOT
+# RESTORE ... SNAPSHOT
 
 ## Syntax Description
 
-`RESTORE ... FROM SNAPSHOT` is used to restore data at the cluster/tenant/database/table level from previously created snapshots of the corresponding levels.
+`RESTORE ... SNAPSHOT` is used to restore data at the cluster/tenant/database/table level from previously created snapshots of the corresponding levels.
 
 ## Syntax Structure
 
 ```sql
-> RESTORE [CLUSTER]|[[ACCOUNT <account_name>] [DATABASE database_name [TABLE table_name]]]FROM SNAPSHOT <snapshot_name> [TO ACCOUNT <account_name>];
+RESTORE CLUSTER {SNAPSHOT = <snapshot_name>};
+
+RESTORE ACCOUNT <account_name> {SNAPSHOT = <snapshot_name>} [TO ACCOUNT <target_account_name>];
+
+RESTORE DATABASE [<account_name>.]<database_name> {SNAPSHOT = <snapshot_name>} [TO ACCOUNT <target_account_name>];
+
+RESTORE TABLE [<account_name>.]<database_name>.<table_name> {SNAPSHOT = <snapshot_name>} [TO ACCOUNT <target_account_name>];
 ```
+
+- `RESTORE DATABASE` and `RESTORE TABLE` default to the current account when `<account_name>.` is omitted. Use the dotted form when restoring objects owned by another account.
+- The snapshot clause also accepts the legacy form `FROM SNAPSHOT <snapshot_name>` or `{SNAPSHOT = "<snapshot_name>"}`.
 
 ## Examples
 
@@ -50,7 +59,7 @@ mysql> SHOW DATABASES;
 5 rows in set (0.01 sec)
 
 -- Execute in system tenant sys
-RESTORE CLUSTER FROM SNAPSHOT cluster_sp1; -- Restore cluster from snapshot
+RESTORE CLUSTER {SNAPSHOT = "cluster_sp1"}; -- Restore cluster from snapshot
 
 -- Execute in tenants acc1, acc2
 mysql> SHOW DATABASES; -- Restoration successful
@@ -104,7 +113,7 @@ mysql> SHOW DATABASES;
 +--------------------+
 5 rows in set (0.01 sec)
 
-RESTORE ACCOUNT acc1 FROM SNAPSHOT acc1_snap1; -- Restore tenant snapshot
+RESTORE ACCOUNT acc1 {SNAPSHOT = acc1_snap1}; -- Restore tenant snapshot
 
 mysql> SHOW DATABASES; -- Restoration successful
 +--------------------+
@@ -155,7 +164,8 @@ mysql> SHOW DATABASES;
 +--------------------+
 5 rows in set (0.01 sec)
 
-RESTORE ACCOUNT acc1 DATABASE db1 FROM SNAPSHOT acc1_db_snap1; -- Restore database snapshot
+-- Execute in system tenant sys
+RESTORE DATABASE acc1.db1 {SNAPSHOT = acc1_db_snap1}; -- Restore database snapshot
 
 mysql> SHOW DATABASES; -- Restoration successful
 +--------------------+
@@ -192,7 +202,8 @@ TRUNCATE TABLE t1; -- Clear table t1
 mysql> SELECT * FROM t1;
 Empty set (0.01 sec)
 
-RESTORE ACCOUNT acc1 DATABASE db1 TABLE t1 FROM SNAPSHOT acc1_tab_snap1; -- Restore table snapshot
+-- Execute in system tenant sys
+RESTORE TABLE acc1.db1.t1 {SNAPSHOT = acc1_tab_snap1}; -- Restore table snapshot
 
 mysql> SELECT * FROM t1; -- Restoration successful
 +------+
@@ -241,7 +252,7 @@ mysql> SHOW DATABASES;
 5 rows in set (0.01 sec)
 
 -- Execute in system tenant sys
-RESTORE ACCOUNT acc1 FROM SNAPSHOT acc1_snap1 TO ACCOUNT acc1; -- Restore snapshot to acc1
+RESTORE ACCOUNT acc1 {SNAPSHOT = acc1_snap1} TO ACCOUNT acc1; -- Restore snapshot to acc1
 
 -- Execute in tenant acc1
 mysql> SHOW DATABASES; -- Restoration successful
@@ -297,7 +308,7 @@ mysql> SHOW DATABASES;
 
 -- Execute in system tenant sys
 CREATE ACCOUNT acc2 ADMIN_NAME admin IDENTIFIED BY '111'; -- Create target tenant first
-RESTORE ACCOUNT acc1 FROM SNAPSHOT acc1_snap1 TO ACCOUNT acc2; -- Restore acc1 snapshot to acc2
+RESTORE ACCOUNT acc1 {SNAPSHOT = acc1_snap1} TO ACCOUNT acc2; -- Restore acc1 snapshot to acc2
 
 -- Execute in tenant acc1
 mysql> SHOW DATABASES;
