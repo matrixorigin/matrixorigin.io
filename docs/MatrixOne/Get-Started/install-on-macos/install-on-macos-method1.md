@@ -44,7 +44,7 @@ To install and use the stand-alone MatrixOne through source code, you need to de
 3. To verify whether **GCC/Clang** is installed, please execute the code `gcc -v`. When **GCC** is installed successfully, the example code line is as follows:
 
     ```
-    Apple clang version 14.0.3 (clang-1403.0.22.14.1)
+    Apple clang version 14.0.3 (clang-1403.0.32.14.1)
     Target: arm64-apple-darwin22.5.0
     Thread model: posix
     InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
@@ -170,7 +170,7 @@ GCC_VERSION="8.5.0"
 CLANG_VERSION="13.0"
 GO_VERSION="1.22"
 MO_GIT_URL="https://github.com/matrixorigin/matrixone.git"
-MO_DEFAULT_VERSION="v3.0.2"
+MO_DEFAULT_VERSION="v3.0.3"
 GOPROXY="https://goproxy.cn,direct"
 STOP_INTERVAL="5"
 START_INTERVAL="2"
@@ -205,7 +205,7 @@ Depending on your needs, choose whether you want to keep your code up to date, o
 === "Get the MatrixOne(Stable Version) code to build"
 
      ```
-     mo_ctl deploy v3.0.2
+     mo_ctl deploy v3.0.3
      ```
 
 ## Step 4: Launch MatrixOne server
@@ -242,7 +242,7 @@ This command will invoke the MySQL Client tool to connect to the MatrixOne servi
 mysql: [Warning] Using a password on the command line interface can be insecure.
 Welcome to the MySQL monitor.  Commands end with ; or \g.
 Your MySQL connection id is 15
-Server version: 8.0.30-MatrixOne-v3.0.2 MatrixOne
+Server version: 8.0.30-MatrixOne-v3.0.3 MatrixOne
 
 Copyright (c) 2000, 2023, Oracle and/or its affiliates.
 
