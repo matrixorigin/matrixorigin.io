@@ -66,6 +66,6 @@ select * from tool;
 
 ## Constraints
 
-MatrixOne v25.3.0.3 version already supports MySQL table creation statements, so you can smoothly migrate MySQL tables to MatrixOne. However, it should be noted that during the migration process, some keywords incompatible with MySQL, such as `engine=`, will be automatically ignored in MatrixOne and will not affect the migration of the table structure.
+MatrixOne v25.3.0.4 version already supports MySQL table creation statements, so you can smoothly migrate MySQL tables to MatrixOne. However, it should be noted that during the migration process, some keywords incompatible with MySQL, such as `engine=`, will be automatically ignored in MatrixOne and will not affect the migration of the table structure.
 
 However, it should be noted that although MatrixOne supports MySQL table creation statements, manual modification is still required if the migrated table contains incompatible data types, triggers, functions, or stored procedures. For more detailed compatibility information, see [MySQL Compatibility](../../../Overview/feature/mysql-compatibility.md).
