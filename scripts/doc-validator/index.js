@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 
 /**
- * MatrixOne 文档验证工具
- * 
- * 功能：
- * - SQL 语法检查
- * - SQL 执行测试（可选）
- * - Dead Link 检查（使用已有的 markdown-link-check）
+ * MatrixOne Documentation Validation Tool
+ *
+ * Features:
+ * - SQL syntax checking
+ * - SQL execution testing (optional)
+ * - Dead link checking (using existing markdown-link-check)
  */
 
 import { Command } from 'commander'
@@ -23,98 +23,105 @@ import { Reporter } from './utils/reporter.js'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
 /**
- * 主程序
+ * Main entry.
  */
 async function main() {
   const program = new Command()
   
   program
     .name('validate-docs')
-    .description('MatrixOne 文档验证工具')
+    .description('MatrixOne Documentation Validation Tool')
     .version('1.0.0')
-    .option('-c, --changed-only', '只检查变更的文件', false)
-    .option('-l, --limit <number>', '限制检查的文件数量（用于快速测试）', parseInt)
-    .option('--check <type>', '检查类型: syntax|all', 'syntax')
-    .option('--db-host <host>', '数据库主机', config.defaultDbConfig.host)
-    .option('--db-port <port>', '数据库端口', config.defaultDbConfig.port)
-    .option('--db-user <user>', '数据库用户', config.defaultDbConfig.user)
-    .option('--db-password <password>', '数据库密码', config.defaultDbConfig.password)
-    .option('--verbose', '显示详细信息', false)
+    .argument('[files...]', 'File paths to check (optional)')
+    .option('-c, --changed-only', 'Only check changed files', false)
+    .option('-l, --limit <number>', 'Limit the number of files to check (for quick testing)', parseInt)
+    .option('--check <type>', 'Check type: syntax|execution|all', 'syntax')
+    .option('--db-host <host>', 'Database host', config.defaultDbConfig.host)
+    .option('--db-port <port>', 'Database port', config.defaultDbConfig.port)
+    .option('--db-user <user>', 'Database user', config.defaultDbConfig.user)
+    .option('--db-password <password>', 'Database password', config.defaultDbConfig.password)
+    .option('--verbose', 'Show detailed information', false)
     .parse(process.argv)
 
   const options = program.opts()
-  
-  // 初始化报告器
+  const specifiedFiles = program.args
+
+  // Initialize reporter
   const reporter = new Reporter()
-  
-  console.log('🚀 MatrixOne 文档验证工具')
+
+  console.log('🚀 MatrixOne Documentation Validation Tool')
   console.log('='.repeat(60))
-  
-  // 确定要检查的文件
+
+  // Determine files to check
   let filesToCheck = []
-  
-  if (options.changedOnly) {
+
+  if (specifiedFiles.length > 0) {
+    // Use files specified from command line
+    console.log('📝 Check mode: Specified files')
+    filesToCheck = specifiedFiles
+    console.log(`📄 Found ${filesToCheck.length} file(s)\n`)
+  } else if (options.changedOnly) {
     if (!isGitRepository()) {
-      console.error('❌ 错误: 不在 Git 仓库中，无法使用 --changed-only 选项')
+      console.error('❌ Error: Not in a Git repository, cannot use --changed-only option')
       process.exit(1)
     }
-    
-    console.log('📝 检查模式: 仅变更文件')
+
+    console.log('📝 Check mode: Changed files only')
     filesToCheck = getChangedFiles('main')
-    
+
     if (filesToCheck.length === 0) {
-      console.log('✅ 没有变更的 Markdown 文件')
+      console.log('✅ No changed Markdown files')
       process.exit(0)
     }
-    
-    console.log(`📄 找到 ${filesToCheck.length} 个变更的文件\n`)
+
+    console.log(`📄 Found ${filesToCheck.length} changed file(s)\n`)
   } else {
-    console.log('📝 检查模式: 全部文件')
+    console.log('📝 Check mode: All files')
     filesToCheck = await glob(config.docsPattern)
-    console.log(`📄 找到 ${filesToCheck.length} 个文件`)
+    console.log(`📄 Found ${filesToCheck.length} file(s)`)
   }
-  
-  // 应用 limit 限制
+
+  // Apply limit restriction
   if (options.limit && options.limit > 0) {
     const originalCount = filesToCheck.length
     filesToCheck = filesToCheck.slice(0, options.limit)
-    console.log(`⚡ 限制检查数量: ${filesToCheck.length} 个文件（总共 ${originalCount} 个）`)
+    console.log(`⚡ Limiting check: ${filesToCheck.length} file(s) (total: ${originalCount})`)
   }
-  
+
   console.log()
   reporter.setTotalFiles(filesToCheck.length)
-  
-  // 执行检查
-  console.log('🔍 开始检查...\n')
-  
-  // 1. SQL 语法检查
+
+  // Run checks
+  console.log('🔍 Starting checks...\n')
+
+  // 1. SQL syntax checking
   if (options.check === 'syntax' || options.check === 'all') {
-    console.log('📋 SQL 语法检查:')
+    console.log('📋 SQL Syntax Check:')
     console.log('-'.repeat(60))
-    
+
     const syntaxChecker = new SqlSyntaxChecker()
-    
+
     for (const file of filesToCheck) {
       const result = await syntaxChecker.checkFile(file)
-      
+
       if (options.verbose) {
-        console.log(`   检查: ${file} (SQL: ${result.sqlCount})`)
+        console.log(`   Checking: ${file} (SQL: ${result.sqlCount})`)
       }
-      
+
       if (result.sqlCount === 0) {
-        // 文件中没有 SQL，跳过报告
+        // No SQL in file, skip reporting
         continue
       }
-      
+
       reporter.addFileResult(file, result.passed, result.errors)
     }
-    
+
     console.log()
   }
-  
-  // 2. SQL 执行测试（Phase 4 功能）
-  if (options.check === 'all') {
-    console.log('🏃 SQL 执行测试:')
+
+  // 2. SQL execution testing (Phase 4.1 feature)
+  if (options.check === 'execution' || options.check === 'all') {
+    console.log('🏃 SQL Execution Test:')
     console.log('-'.repeat(60))
     
     const dbConfig = {
@@ -125,22 +132,78 @@ async function main() {
     }
     
     const sqlRunner = new SqlRunner(dbConfig)
-    // sqlRunner.enable()  // 暂不启用
+    sqlRunner.enable()
     
-    reporter.addWarning('SQL 执行测试功能暂未实现（Phase 4）')
-    console.log()
+    try {
+      const connected = await sqlRunner.connect()
+      if (!connected) {
+        reporter.addWarning('Unable to connect to MatrixOne database, skipping execution tests')
+        reporter.addWarning(`Please ensure database is running at ${dbConfig.host}:${dbConfig.port}`)
+        console.log()
+      } else {
+        console.log(`✓ Connected to MatrixOne (${dbConfig.host}:${dbConfig.port})`)
+        console.log()
+
+        for (const file of filesToCheck) {
+          const result = await sqlRunner.checkFile(file)
+
+          if (options.verbose) {
+            console.log(`   Checking: ${file} (SQL: ${result.sqlCount}, Statements: ${result.totalStatements || 0})`)
+          }
+
+          if (result.sqlCount === 0) continue
+
+          // Prepare statistics
+          const stats = {
+            successes: result.successes ? result.successes.length : 0,
+            warningDetails: result.warnings || [],  // Pass full warning details (including status)
+            totalStatements: result.totalStatements || 0
+          }
+
+          // Only pass real errors to reporter, WARNINGs don't affect pass status
+          reporter.addFileResult(file, result.passed, result.errors || [], stats)
+
+          if (result.successes && result.successes.length > 0 && options.verbose) {
+            console.log(`      ✓ Success: ${result.successes.length}`)
+          }
+          if (result.warnings && result.warnings.length > 0) {
+            console.log(`      ⚠ Warnings: ${result.warnings.length}`)
+            // Show detailed WARNINGs
+            if (options.verbose) {
+              result.warnings.forEach(w => {
+                console.log(`         - ${w.message}`)
+                // Show WARNING_FAIL details
+                if (w.status === 'WARNING_FAIL' && w.detail) {
+                  console.log(`           Reason: ${w.detail}`)
+                }
+                if (w.sql) {
+                  console.log(`           SQL: ${w.sql.substring(0, 60)}...`)
+                }
+              })
+            }
+          }
+        }
+
+        console.log()
+      }
+    } catch (error) {
+      reporter.addWarning(`SQL execution test error: ${error.message}`)
+      console.log()
+    } finally {
+      await sqlRunner.disconnect()
+    }
   }
-  
-  // 生成报告
+
+  // Generate report
   const results = reporter.generateReport()
-  
-  // 退出
+
+  // Exit
   process.exit(reporter.getExitCode())
 }
 
-// 运行主程序
+// Run main program
 main().catch(error => {
-  console.error('❌ 发生错误:', error)
+  console.error('❌ Error occurred:', error)
   process.exit(1)
 })
 

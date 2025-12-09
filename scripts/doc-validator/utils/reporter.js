@@ -1,150 +1,200 @@
 /**
- * Reporter - 生成检查结果报告
+ * Reporter - Generate check result reports
  */
 
 /**
- * 报告类
+ * Reporter Class
  */
 export class Reporter {
-  constructor() {
-    this.results = {
-      totalFiles: 0,
-      checkedFiles: 0,
-      passedFiles: 0,
-      failedFiles: 0,
-      errors: [],
-      warnings: []
-    }
-    this.startTime = Date.now()
-  }
-
-  /**
-   * 添加文件检查结果
-   * @param {string} filePath - 文件路径
-   * @param {boolean} passed - 是否通过
-   * @param {Array} errors - 错误列表
-   */
-  addFileResult(filePath, passed, errors = []) {
-    this.results.checkedFiles++
-    
-    if (passed) {
-      this.results.passedFiles++
-      console.log(`✅ ${filePath}`)
-    } else {
-      this.results.failedFiles++
-      console.log(`❌ ${filePath}`)
-      
-      errors.forEach(error => {
-        this.results.errors.push({
-          filePath,
-          ...error
-        })
-        
-        const location = error.line 
-          ? `${filePath}:${error.line}` 
-          : filePath
-        
-        console.log(`   📌 ${location}`)
-        console.log(`      ${error.message}`)
-        if (error.sql) {
-          console.log(`      SQL: ${error.sql.substring(0, 100)}${error.sql.length > 100 ? '...' : ''}`)
+    constructor() {
+        this.results = {
+            totalFiles: 0,
+            checkedFiles: 0,
+            passedFiles: 0,
+            failedFiles: 0,
+            errors: [],
+            warnings: [],
+            successes: 0,  // Number of successfully executed SQL statements
+            warningOk: 0,  // Warnings (only missing context, ignorable)
+            warningFail: 0,  // Warnings (potential issues, need manual check)
+            totalStatements: 0  // Total number of SQL statements
         }
-      })
+        this.startTime = Date.now()
     }
-  }
 
-  /**
-   * 添加警告
-   * @param {string} message - 警告消息
-   */
-  addWarning(message) {
-    this.results.warnings.push(message)
-    console.warn(`⚠️  ${message}`)
-  }
+    /**
+     * Add file check result
+     * @param {string} filePath - File path
+     * @param {boolean} passed - Whether passed the check
+     * @param {Array} errors - Error list
+     * @param {Object} stats - Statistics {successes, warnings, totalStatements, warningDetails}
+     */
+    addFileResult(filePath, passed, errors = [], stats = {}) {
+        this.results.checkedFiles++
 
-  /**
-   * 设置总文件数
-   * @param {number} total - 总文件数
-   */
-  setTotalFiles(total) {
-    this.results.totalFiles = total
-  }
+        // Accumulate statistics
+        if (stats.successes) this.results.successes += stats.successes
+        if (stats.totalStatements) this.results.totalStatements += stats.totalStatements
 
-  /**
-   * 生成最终报告
-   * @returns {object} 报告结果
-   */
-  generateReport() {
-    const duration = ((Date.now() - this.startTime) / 1000).toFixed(2)
-    
-    console.log('\n' + '='.repeat(60))
-    console.log('📊 文档验证报告')
-    console.log('='.repeat(60))
-    console.log(`扫描文件总数: ${this.results.totalFiles}`)
-    console.log(`包含SQL的文件: ${this.results.checkedFiles}`)
-    console.log(`  ├─ ✅ 通过: ${this.results.passedFiles}`)
-    console.log(`  └─ ❌ 失败: ${this.results.failedFiles}`)
-    const noSqlFiles = this.results.totalFiles - this.results.checkedFiles
-    if (noSqlFiles > 0) {
-      console.log(`无SQL的文件: ${noSqlFiles}`)
-    }
-    console.log(`⚠️  警告: ${this.results.warnings.length}`)
-    console.log(`🕐 耗时: ${duration}s`)
-    console.log('='.repeat(60))
-    
-    if (this.results.errors.length > 0) {
-      console.log(`\n发现 ${this.results.errors.length} 个错误:\n`)
-      
-      // 按文件分组错误
-      const errorsByFile = {}
-      this.results.errors.forEach(error => {
-        if (!errorsByFile[error.filePath]) {
-          errorsByFile[error.filePath] = []
+        // Count two types of warnings
+        if (stats.warningDetails && Array.isArray(stats.warningDetails)) {
+            stats.warningDetails.forEach(warning => {
+                if (warning.status === 'WARNING_OK') {
+                    this.results.warningOk++
+                } else if (warning.status === 'WARNING_FAIL') {
+                    this.results.warningFail++
+                }
+            })
         }
-        errorsByFile[error.filePath].push(error)
-      })
-      
-      // 输出每个文件的错误
-      Object.entries(errorsByFile).forEach(([filePath, errors]) => {
-        console.log(`📄 ${filePath} (${errors.length} 个错误)`)
-        errors.forEach((error, index) => {
-          const location = error.line ? `:${error.line}` : ''
-          console.log(`   ${index + 1}. ${error.message}`)
-          if (error.sql) {
-            console.log(`      SQL: ${error.sql.substring(0, 80)}...`)
-          }
-        })
-        console.log()
-      })
-    }
-    
-    if (this.results.warnings.length > 0) {
-      console.log(`\n⚠️  ${this.results.warnings.length} 个警告:\n`)
-      this.results.warnings.forEach((warning, index) => {
-        console.log(`   ${index + 1}. ${warning}`)
-      })
-      console.log()
-    }
-    
-    return this.results
-  }
 
-  /**
-   * 判断是否有错误
-   * @returns {boolean} 是否有错误
-   */
-  hasErrors() {
-    return this.results.failedFiles > 0
-  }
+        if (passed) {
+            this.results.passedFiles++
+            console.log(`✅ ${filePath}`)
 
-  /**
-   * 获取退出码
-   * @returns {number} 退出码（0 表示成功，1 表示失败）
-   */
-  getExitCode() {
-    return this.hasErrors() ? 1 : 0
-  }
+            // Show SQL execution statistics
+            const totalWarnings = (stats.warningDetails ? stats.warningDetails.length : 0)
+            if (stats.successes || totalWarnings || errors.length) {
+                console.log(`   ✅ Success: ${stats.successes || 0} | ⚠️ Warnings: ${totalWarnings} | ❌ Errors: ${errors.length}`)
+            }
+        } else {
+            this.results.failedFiles++
+            console.log(`❌ ${filePath}`)
+
+            // Show SQL execution statistics
+            const totalWarnings = (stats.warningDetails ? stats.warningDetails.length : 0)
+            if (stats.successes || totalWarnings || errors.length) {
+                console.log(`   ✅ Success: ${stats.successes || 0} | ⚠️ Warnings: ${totalWarnings} | ❌ Errors: ${errors.length}`)
+            }
+
+            errors.forEach(error => {
+                this.results.errors.push({
+                    filePath,
+                    ...error
+                })
+
+                const location = error.line
+                    ? `${filePath}:${error.line}`
+                    : filePath
+
+                console.log(`   📌 ${location}`)
+                console.log(`      ${error.message}`)
+                if (error.sql) {
+                    console.log(`      SQL: ${error.sql.substring(0, 100)}${error.sql.length > 100 ? '...' : ''}`)
+                }
+            })
+        }
+    }
+
+    /**
+     * Add warning
+     * @param {string} message - Warning message
+     */
+    addWarning(message) {
+        this.results.warnings.push(message)
+        console.warn(`⚠️  ${message}`)
+    }
+
+    /**
+     * Set total number of files
+     * @param {number} total - Total number of files
+     */
+    setTotalFiles(total) {
+        this.results.totalFiles = total
+    }
+
+    /**
+     * Generate final report
+     * @returns {object} Report results
+     */
+    generateReport() {
+        const duration = ((Date.now() - this.startTime) / 1000).toFixed(2)
+
+        console.log('\n' + '='.repeat(60))
+        console.log('📊 Documentation Validation Report')
+        console.log('='.repeat(60))
+        console.log(`Total files scanned: ${this.results.totalFiles}`)
+        console.log(`Files with SQL: ${this.results.checkedFiles}`)
+
+        // Show SQL execution statistics
+        if (this.results.totalStatements > 0) {
+            console.log('\n📈 SQL Execution Statistics:')
+            console.log(`  ├─ ✅ Successfully executed: ${this.results.successes}`)
+            console.log(`  ├─ ⚠️  Warnings (missing tables only, ignorable): ${this.results.warningOk}`)
+            console.log(`  ├─ ⚠️  Warnings (need manual check): ${this.results.warningFail}`)
+            console.log(`  ├─ ❌ Errors: ${this.results.errors.length}`)
+            console.log(`  └─ 📊 Total: ${this.results.totalStatements} SQL statements`)
+            console.log()
+        }
+
+        // Show file pass/fail status
+        console.log('📁 File Check Results:')
+        console.log(`  ├─ ✅ Passed: ${this.results.passedFiles}`)
+        console.log(`  └─ ❌ Failed: ${this.results.failedFiles}`)
+
+        const noSqlFiles = this.results.totalFiles - this.results.checkedFiles
+        if (noSqlFiles > 0) {
+            console.log(`  └─ 📄 Files without SQL: ${noSqlFiles}`)
+        }
+
+        if (this.results.warnings.length > 0) {
+            console.log(`⚠️  System Warnings: ${this.results.warnings.length}`)
+        }
+
+        console.log(`🕐 Duration: ${duration}s`)
+        console.log('='.repeat(60))
+
+        if (this.results.errors.length > 0) {
+            console.log(`\nFound ${this.results.errors.length} errors:\n`)
+
+            // Group errors by file
+            const errorsByFile = {}
+            this.results.errors.forEach(error => {
+                if (!errorsByFile[error.filePath]) {
+                    errorsByFile[error.filePath] = []
+                }
+                errorsByFile[error.filePath].push(error)
+            })
+
+            // Output errors for each file
+            Object.entries(errorsByFile).forEach(([filePath, errors]) => {
+                console.log(`📄 ${filePath} (${errors.length} errors)`)
+                errors.forEach((error, index) => {
+                    const location = error.line ? `:${error.line}` : ''
+                    console.log(`   ${index + 1}. ${error.message}`)
+                    if (error.sql) {
+                        console.log(`      SQL: ${error.sql.substring(0, 80)}...`)
+                    }
+                })
+                console.log()
+            })
+        }
+
+        if (this.results.warnings.length > 0) {
+            console.log(`\n⚠️  ${this.results.warnings.length} warnings:\n`)
+            this.results.warnings.forEach((warning, index) => {
+                console.log(`   ${index + 1}. ${warning}`)
+            })
+            console.log()
+        }
+
+        return this.results
+    }
+
+    /**
+     * Check if there are any errors
+     * @returns {boolean} Whether there are errors
+     */
+    hasErrors() {
+        return this.results.failedFiles > 0
+    }
+
+    /**
+     * Get exit code
+     * @returns {number} Exit code (0 for success, 1 for failure)
+     */
+    getExitCode() {
+        return this.hasErrors() ? 1 : 0
+    }
 }
 
 export default Reporter
-
