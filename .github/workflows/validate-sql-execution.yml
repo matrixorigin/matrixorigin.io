@@ -76,8 +76,9 @@ jobs:
           --name mo-test
           --health-cmd "mysql -h 127.0.0.1 -P 6001 -u root -p111 -e 'SELECT 1'"
           --health-interval 10s
-          --health-timeout 5s
-          --health-retries 12
+          --health-timeout 10s
+          --health-retries 15
+          --health-start-period 30s
 
     steps:
       - name: Checkout code
@@ -99,17 +100,17 @@ jobs:
       - name: Wait for MatrixOne to be ready
         run: |
           echo "⏳ Waiting for MatrixOne ${{ matrix.version }} to be ready..."
-          for i in {1..60}; do
+          for i in {1..30}; do
             if docker exec mo-test mysql -h 127.0.0.1 -P 6001 -u root -p111 -e "SELECT 1" &> /dev/null; then
               echo "✅ MatrixOne is ready!"
-              break
+              docker exec mo-test mysql -h 127.0.0.1 -P 6001 -u root -p111 -e "SELECT VERSION()"
+              exit 0
             fi
-            echo "Attempt $i/60: Not ready yet..."
+            echo "Attempt $i/30: Not ready yet..."
             sleep 3
           done
-
-          # Verify connection
-          docker exec mo-test mysql -h 127.0.0.1 -P 6001 -u root -p111 -e "SELECT VERSION()"
+          echo "❌ MatrixOne failed to become ready"
+          exit 1
 
       - name: Validate SQL execution in changed files
         if: github.event_name == 'pull_request'
