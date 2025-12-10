@@ -89,28 +89,47 @@ jobs:
           echo "🚀 Starting MatrixOne ${{ matrix.version }}..."
           docker run -d \
             --name mo-test \
+            --privileged \
             -p 6001:6001 \
+            -e MO_DEBUG_NO_PROXY=1 \
             matrixorigin/matrixone:${{ matrix.version }}
 
           echo "✅ Container started, waiting for database to be ready..."
+          echo "📊 Container resource limits:"
+          docker stats --no-stream mo-test
 
       - name: Wait for MatrixOne to be ready
         run: |
           echo "⏳ Waiting for MatrixOne ${{ matrix.version }} to be ready..."
 
-          # Wait up to 3 minutes (60 attempts × 3 seconds)
-          for i in {1..60}; do
+          # Check if container is running
+          if ! docker ps | grep -q mo-test; then
+            echo "❌ Container is not running!"
+            docker ps -a | grep mo-test
+            exit 1
+          fi
+
+          # Wait up to 5 minutes (100 attempts × 3 seconds)
+          for i in {1..100}; do
+            # Check MySQL connection
             if docker exec mo-test mysql -h 127.0.0.1 -P 6001 -u root -p111 -e "SELECT 1" &> /dev/null 2>&1; then
               echo "✅ MatrixOne is ready after $((i * 3)) seconds!"
               docker exec mo-test mysql -h 127.0.0.1 -P 6001 -u root -p111 -e "SELECT VERSION()"
               exit 0
             fi
-            echo "Attempt $i/60: Database not ready yet, waiting..."
+
+            # Print progress every 10 attempts (30 seconds)
+            if [ $((i % 10)) -eq 0 ]; then
+              echo "[$((i * 3))s] Still waiting... (attempt $i/100)"
+              echo "📋 Recent log (last 5 lines):"
+              docker logs --tail 5 mo-test 2>&1 | grep -E "(INFO|ERROR|Server Listening)" || echo "No relevant logs"
+            fi
+
             sleep 3
           done
 
-          echo "❌ MatrixOne failed to become ready after 3 minutes"
-          echo "📋 Container logs:"
+          echo "❌ MatrixOne failed to become ready after 5 minutes"
+          echo "📋 Full container logs:"
           docker logs mo-test
           exit 1
 
