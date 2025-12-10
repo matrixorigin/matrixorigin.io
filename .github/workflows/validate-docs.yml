@@ -19,29 +19,24 @@ jobs:
           repository: ${{ github.event.pull_request.head.repo.full_name }}
           ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 0
-      
+
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
           cache: 'npm'
-      
+
       - name: Install dependencies
         run: npm ci
-      
+
       - name: Validate SQL in changed files
         if: github.event_name == 'pull_request'
         run: |
-          echo "🔍 检查 PR 中变更的文档..."
+          echo "🔍 Checking modified documents in PR..."
           npm run validate-docs:changed
-      
+
       - name: Validate all documents (Manual)
         if: github.event_name == 'workflow_dispatch'
         run: |
-          echo "🔍 全量检查所有文档..."
+          echo "🔍 Full validation of all documents..."
           npm run validate-docs
-
-
-
-
-
