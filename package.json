@@ -8,6 +8,7 @@
     "check:links:quiet": "find docs/MatrixOne -name '*.md' -print0 | xargs -0 -n1 markdown-link-check -q -c .markdown-link-check.json",
     "check:links:sample": "find docs/MatrixOne -name '*.md' | head -10 | xargs -n1 markdown-link-check -c .markdown-link-check.json",
     "check:links:changed": "git diff --name-only origin/main | grep '\\.md$' | xargs -r markdown-link-check -c .markdown-link-check.json",
+    "check:links:files": "markdown-link-check -c .markdown-link-check.json",
     "validate-docs": "node ./scripts/doc-validator/index.js",
     "validate-docs:changed": "node ./scripts/doc-validator/index.js --changed-only",
     "validate-docs:sample": "node ./scripts/doc-validator/index.js --limit 50",

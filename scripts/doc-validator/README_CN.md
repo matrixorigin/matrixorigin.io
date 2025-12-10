@@ -107,6 +107,12 @@ npm run detect-versions -- docs/MatrixOne/Develop/SQL/ddl.md
 ### 基础命令
 
 ```bash
+# 检查指定文件的链接
+npm run check:links:files -- <文件路径>
+
+# 检查多个文件
+npm run check:links:files -- <文件1> <文件2> <文件3>
+
 # 检查所有文档的链接（慢，完整）
 npm run check:links
 
@@ -123,6 +129,9 @@ npm run check:links:changed
 ### 推荐使用
 
 ```bash
+# 日常开发 - 检查单个文件
+npm run check:links:files -- docs/MatrixOne/Overview/matrixone-introduction.md
+
 # 日常开发 - 检查你的修改
 npm run check:links:changed
 ```
@@ -179,22 +188,6 @@ npm run validate-docs:sample
 
 ## 🚀 SQL 执行验证
 
-### 基础命令
-
-```bash
-# 验证指定文件的 SQL（需要 MatrixOne 数据库）
-npm run validate-docs:execution -- <文件路径>
-
-# 只检查变更的文件 ⭐ (最常用)
-npm run validate-docs:execution:changed
-
-# 全量检查（检查所有文档）
-npm run validate-docs:all
-
-# 详细输出模式（显示每条 SQL 的执行结果）
-npm run validate-docs:execution -- <文件路径> --verbose
-```
-
 ### 环境准备
 
 ```bash
@@ -216,6 +209,23 @@ docker run -d -p 6001:6001 --name mo-test matrixorigin/matrixone:latest
 # 方法3: 本地安装的 MatrixOne
 # 确保运行在 127.0.0.1:6001，用户名 root，密码 111
 ```
+
+### 基础命令
+
+```bash
+# 验证指定文件的 SQL（需要 MatrixOne 数据库）
+npm run validate-docs:execution -- <文件路径>
+
+# 只检查变更的文件 ⭐ (最常用)
+npm run validate-docs:execution:changed
+
+# 全量检查（检查所有文档）
+npm run validate-docs:all
+
+# 详细输出模式（显示每条 SQL 的执行结果）
+npm run validate-docs:execution -- <文件路径> --verbose
+```
+
 
 ### 数据库管理命令
 
