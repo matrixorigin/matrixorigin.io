@@ -100,15 +100,23 @@ make check      # Lint + build test
 git add .
 git commit -m "Your message"
 
-# 5. Run documentation checks on changed files
-npm run check:links:changed           # Check for dead links
-npm run validate-docs:changed         # Check SQL syntax
+# 5. Check for dead links
+npm run check:links:changed          
 
-# 6. (Optional) Run SQL execution tests
+# 6. Check SQL syntax
+npm run validate-docs:changed        
+
+# 7. (Optional) Run SQL execution tests
+
 # Requires MatrixOne database running
-npm run mo:start                      # Start database
-npm run validate-docs:execution:changed  # Validate SQL execution
-npm run mo:stop                       # Stop database
+# Start the v1.2.0 version of the MO database, default to the latest version without parameters
+npm run mo:start -- v1.2.0           
+
+# Validate SQL execution
+npm run validate-docs:execution:changed  
+
+# Stop database
+npm run mo:stop                       
 
 # 7. Push to remote
 git push
