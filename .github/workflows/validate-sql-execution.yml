@@ -98,6 +98,12 @@ jobs:
           echo "📊 Container resource limits:"
           docker stats --no-stream mo-test
 
+      - name: Install MySQL client
+        run: |
+          echo "📦 Installing MySQL client..."
+          sudo apt-get update
+          sudo apt-get install -y mysql-client
+
       - name: Wait for MatrixOne to be ready
         run: |
           echo "⏳ Waiting for MatrixOne ${{ matrix.version }} to be ready..."
@@ -111,18 +117,18 @@ jobs:
 
           # Wait up to 5 minutes (100 attempts × 3 seconds)
           for i in {1..100}; do
-            # Check MySQL connection
-            if docker exec mo-test mysql -h 127.0.0.1 -P 6001 -u root -p111 -e "SELECT 1" &> /dev/null 2>&1; then
+            # Check MySQL connection from host
+            if mysql -h 127.0.0.1 -P 6001 -u root -p111 -e "SELECT 1" &> /dev/null 2>&1; then
               echo "✅ MatrixOne is ready after $((i * 3)) seconds!"
-              docker exec mo-test mysql -h 127.0.0.1 -P 6001 -u root -p111 -e "SELECT VERSION()"
+              mysql -h 127.0.0.1 -P 6001 -u root -p111 -e "SELECT VERSION()"
               exit 0
             fi
 
             # Print progress every 10 attempts (30 seconds)
             if [ $((i % 10)) -eq 0 ]; then
               echo "[$((i * 3))s] Still waiting... (attempt $i/100)"
-              echo "📋 Recent log (last 5 lines):"
-              docker logs --tail 5 mo-test 2>&1 | grep -E "(INFO|ERROR|Server Listening)" || echo "No relevant logs"
+              echo "📋 Checking port 6001 status:"
+              nc -zv 127.0.0.1 6001 || echo "Port not accessible yet"
             fi
 
             sleep 3
