@@ -1,6 +1,42 @@
-# MatrixOne 文档验证工具 - 可用命令清单
+# MatrixOne 文档验证工具
 
-**快速参考** - 所有可用的命令
+## 📖 简介
+
+这是一个专为 MatrixOne 文档设计的自动化验证工具，帮助贡献者在提交 PR 前发现并修复文档中的问题。
+
+### 核心功能
+
+- 🔗 **Dead Link 检查** - 自动检测文档中的失效链接
+- 📝 **SQL 语法检测** - 验证文档中 SQL 代码块的语法正确性（使用 node-sql-parser）
+- 🚀 **SQL 执行验证** - 连接真实 MatrixOne 数据库，执行 SQL 并对比预期结果
+- 🔍 **版本检测** - 智能识别文档需要的 MatrixOne 版本，CI 自动使用对应版本测试
+- 🎯 **标点符号检查** - 统一文档中的标点符号规范
+
+### 为什么需要这个工具？
+
+- ✅ **提前发现错误** - 在 PR 合并前自动检测，避免错误进入主分支
+- ✅ **降低维护成本** - 减少人工 review 的工作量，专注于内容质量
+- ✅ **保证文档质量** - 确保所有 SQL 示例都能正确执行
+- ✅ **零学习成本** - 对贡献者透明，无需额外配置，CI 自动运行
+
+### 快速开始
+
+```bash
+# 1. 检查你修改的文档（最常用）
+npm run validate-docs:changed
+
+# 2. 检查链接
+npm run check:links:changed
+
+# 3. SQL 执行验证（需要先启动 MatrixOne）
+npm run mo:start                           # 启动数据库
+npm run validate-docs:execution:changed    # 验证 SQL
+npm run mo:stop                            # 停止数据库
+```
+
+---
+
+**详细命令参考** - 所有可用的命令
 
 ---
 
