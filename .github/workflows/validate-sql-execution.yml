@@ -67,19 +67,6 @@ jobs:
       matrix: ${{ fromJson(needs.detect-versions.outputs.matrix) }}
       fail-fast: false  # Continue testing other versions even if one fails
 
-    services:
-      matrixone:
-        image: matrixorigin/matrixone:${{ matrix.version }}
-        ports:
-          - 6001:6001
-        options: >-
-          --name mo-test
-          --health-cmd "mysql -h 127.0.0.1 -P 6001 -u root -p111 -e 'SELECT 1'"
-          --health-interval 10s
-          --health-timeout 10s
-          --health-retries 15
-          --health-start-period 30s
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -97,19 +84,34 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Start MatrixOne container
+        run: |
+          echo "🚀 Starting MatrixOne ${{ matrix.version }}..."
+          docker run -d \
+            --name mo-test \
+            -p 6001:6001 \
+            matrixorigin/matrixone:${{ matrix.version }}
+
+          echo "✅ Container started, waiting for database to be ready..."
+
       - name: Wait for MatrixOne to be ready
         run: |
           echo "⏳ Waiting for MatrixOne ${{ matrix.version }} to be ready..."
-          for i in {1..30}; do
-            if docker exec mo-test mysql -h 127.0.0.1 -P 6001 -u root -p111 -e "SELECT 1" &> /dev/null; then
-              echo "✅ MatrixOne is ready!"
+
+          # Wait up to 3 minutes (60 attempts × 3 seconds)
+          for i in {1..60}; do
+            if docker exec mo-test mysql -h 127.0.0.1 -P 6001 -u root -p111 -e "SELECT 1" &> /dev/null 2>&1; then
+              echo "✅ MatrixOne is ready after $((i * 3)) seconds!"
               docker exec mo-test mysql -h 127.0.0.1 -P 6001 -u root -p111 -e "SELECT VERSION()"
               exit 0
             fi
-            echo "Attempt $i/30: Not ready yet..."
+            echo "Attempt $i/60: Database not ready yet, waiting..."
             sleep 3
           done
-          echo "❌ MatrixOne failed to become ready"
+
+          echo "❌ MatrixOne failed to become ready after 3 minutes"
+          echo "📋 Container logs:"
+          docker logs mo-test
           exit 1
 
       - name: Validate SQL execution in changed files
@@ -129,3 +131,10 @@ jobs:
         run: |
           echo "📋 MatrixOne logs:"
           docker logs mo-test
+
+      - name: Cleanup MatrixOne container
+        if: always()
+        run: |
+          echo "🧹 Cleaning up MatrixOne container..."
+          docker stop mo-test || true
+          docker rm mo-test || true
