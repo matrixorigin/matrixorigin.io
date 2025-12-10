@@ -1,0 +1,130 @@
+name: Validate SQL Execution
+
+on:
+  pull_request:
+    paths:
+      - 'docs/**/*.md'
+      - 'scripts/doc-validator/**'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'MatrixOne version to test (leave empty for auto-detect)'
+        required: false
+        type: string
+
+jobs:
+  # Step 1: Detect required versions
+  detect-versions:
+    name: Detect Required MO Versions
+    runs-on: ubuntu-latest
+    outputs:
+      versions: ${{ steps.detect.outputs.versions }}
+      matrix: ${{ steps.detect.outputs.matrix }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Detect versions from changed files
+        id: detect
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ -n "${{ inputs.version }}" ]; then
+            # Manual trigger with specific version
+            echo "versions=[\"${{ inputs.version }}\"]" >> $GITHUB_OUTPUT
+            echo "matrix={\"version\":[\"${{ inputs.version }}\"]}" >> $GITHUB_OUTPUT
+          else
+            # Auto-detect from changed files
+            RESULT=$(node ./scripts/doc-validator/detect-versions.js --changed-only)
+            VERSIONS=$(echo "$RESULT" | jq -c '.versions')
+            echo "versions=$VERSIONS" >> $GITHUB_OUTPUT
+            echo "matrix={\"version\":$VERSIONS}" >> $GITHUB_OUTPUT
+
+            echo "📋 Detected versions:"
+            echo "$RESULT" | jq '.versions'
+          fi
+
+  # Step 2: Test SQL execution for each version
+  validate-sql:
+    name: SQL Validation (MO ${{ matrix.version }})
+    runs-on: ubuntu-latest
+    needs: detect-versions
+    if: needs.detect-versions.outputs.versions != '[]'
+
+    strategy:
+      matrix: ${{ fromJson(needs.detect-versions.outputs.matrix) }}
+      fail-fast: false  # Continue testing other versions even if one fails
+
+    services:
+      matrixone:
+        image: matrixorigin/matrixone:${{ matrix.version }}
+        ports:
+          - 6001:6001
+        options: >-
+          --name mo-test
+          --health-cmd "mysql -h 127.0.0.1 -P 6001 -u root -p111 -e 'SELECT 1'"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Wait for MatrixOne to be ready
+        run: |
+          echo "⏳ Waiting for MatrixOne ${{ matrix.version }} to be ready..."
+          for i in {1..30}; do
+            if docker exec mo-test mysql -h 127.0.0.1 -P 6001 -u root -p111 -e "SELECT 1" &> /dev/null; then
+              echo "✅ MatrixOne is ready!"
+              break
+            fi
+            echo "Attempt $i/30: Not ready yet..."
+            sleep 2
+          done
+
+          # Verify connection
+          docker exec mo-test mysql -h 127.0.0.1 -P 6001 -u root -p111 -e "SELECT VERSION()"
+
+      - name: Validate SQL execution in changed files
+        if: github.event_name == 'pull_request'
+        run: |
+          echo "🔍 Validating SQL execution with MatrixOne ${{ matrix.version }}"
+          npm run validate-docs:execution:changed -- --db-host 127.0.0.1 --db-port 6001 --db-user root --db-password 111
+
+      - name: Validate all documents (Manual)
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          echo "🔍 Full SQL execution validation with MatrixOne ${{ matrix.version }}"
+          npm run validate-docs:execution -- --db-host 127.0.0.1 --db-port 6001 --db-user root --db-password 111
+
+      - name: Show MatrixOne logs on failure
+        if: failure()
+        run: |
+          echo "📋 MatrixOne logs:"
+          docker logs mo-test

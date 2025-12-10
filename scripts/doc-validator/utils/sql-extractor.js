@@ -437,7 +437,7 @@ function extractVersionFromContext(lines, currentIndex) {
         // <!-- version: v1.2 -->
         // <!-- mo-version: v1.2 -->
         // **Version**: v1.2
-        const versionMatch = line.match(/(?:version|mo-version):\s*(v?[\d.]+)/i)
+        const versionMatch = line.match(/(?:version|mo-version).*?:\s*(v?[\d.]+)/i)
         if (versionMatch) {
             return versionMatch[1]
         }
