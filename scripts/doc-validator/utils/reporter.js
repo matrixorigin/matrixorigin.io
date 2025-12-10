@@ -17,6 +17,7 @@ export class Reporter {
             successes: 0,  // Number of successfully executed SQL statements
             warningOk: 0,  // Warnings (only missing context, ignorable)
             warningFail: 0,  // Warnings (potential issues, need manual check)
+            skipped: 0,  // Skipped statements (admin commands)
             totalStatements: 0  // Total number of SQL statements
         }
         this.startTime = Date.now()
