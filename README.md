@@ -96,11 +96,25 @@ make serve
 make lint-fix   # Auto-fix style issues
 make check      # Lint + build test
 
-# 4. Commit and push
+# 4. Commit your changes
 git add .
 git commit -m "Your message"
+
+# 5. Run documentation checks on changed files
+npm run check:links:changed           # Check for dead links
+npm run validate-docs:changed         # Check SQL syntax
+
+# 6. (Optional) Run SQL execution tests
+# Requires MatrixOne database running
+npm run mo:start                      # Start database
+npm run validate-docs:execution:changed  # Validate SQL execution
+npm run mo:stop                       # Stop database
+
+# 7. Push to remote
 git push
 ```
+
+> 💡 **Tip**: For more detailed usage and advanced options, see [Documentation Validation Tool Guide](scripts/doc-validator/README.md).
 
 ## 🤝 Contributing
 

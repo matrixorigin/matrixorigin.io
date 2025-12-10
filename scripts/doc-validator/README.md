@@ -21,17 +21,62 @@ This is an automated validation tool designed specifically for MatrixOne documen
 
 ### Quick Start
 
-```bash
-# 1. Check documents you modified (most commonly used)
-npm run validate-docs:changed
+**Scenario 1: Check a Single File**
 
-# 2. Check links
+```bash
+# Replace <file-path> with your file path, for example:
+# docs/MatrixOne/Develop/import-data/bulk-load/load-data.md
+
+# 1. Check dead links
+npm run check:links:files -- <file-path>
+
+# 2. Check SQL syntax
+npm run validate-docs -- <file-path>
+
+# 3. Check SQL execution (requires MatrixOne database)
+npm run mo:start                          # Start database
+npm run validate-docs:execution -- <file-path> --verbose
+npm run mo:stop                           # Stop database
+```
+
+**Scenario 2: Check All Changed Files**
+
+```bash
+# 1. Check dead links in changed files
 npm run check:links:changed
 
-# 3. SQL execution validation (requires MatrixOne to be started first)
-npm run mo:start                           # Start database
-npm run validate-docs:execution:changed    # Validate SQL
-npm run mo:stop                            # Stop database
+# 2. Check SQL syntax in changed files
+npm run validate-docs:changed
+
+# 3. Check SQL execution in changed files (requires MatrixOne database)
+npm run mo:start                          # Start database
+npm run validate-docs:execution:changed   # Validate SQL
+npm run mo:stop                           # Stop database
+```
+
+**Scenario 3: Start MatrixOne Database**
+
+```bash
+# Method 1: Start with latest version (default)
+npm run mo:start
+
+# Method 2: Start with specific version
+npm run mo:start -- v1.2.0                # Specific version
+npm run mo:start -- 1.1.0                 # Without 'v' prefix
+npm run mo:start -- nightly               # Nightly build
+
+# Method 3: Use environment variable to specify version
+MO_VERSION=v1.2.0 npm run mo:start
+
+# Method 4: Manually start with Docker
+docker run -d -p 6001:6001 --name mo-test matrixorigin/matrixone:latest
+docker run -d -p 6001:6001 --name mo-test matrixorigin/matrixone:v1.2.0
+
+# Database management commands
+npm run mo:status                         # Check database status
+npm run mo:test                           # Test database connection
+npm run mo:stop                           # Stop database
+docker logs mo-test                       # View database logs
 ```
 
 ---
