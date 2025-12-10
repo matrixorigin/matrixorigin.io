@@ -372,6 +372,32 @@ export const config = {
         ]
     },
 
+    // SQL result validation configuration
+    resultValidation: {
+        // Enable result validation feature
+        enabled: true,
+
+        // Default validation mode: 'syntax-only' or 'strict'
+        // - syntax-only: Only validate SQL syntax (default)
+        // - strict: Validate both syntax and execution results
+        defaultMode: 'syntax-only',
+
+        // Strict mode comparison options
+        strictMode: {
+            // Ignore whitespace differences when comparing strings
+            compareWhitespace: false,
+
+            // Case-insensitive comparison for string values
+            compareCaseInsensitive: true,
+
+            // Precision for floating-point number comparison
+            floatPrecision: 0.0001
+        },
+
+        // Auto-enable strict mode if expected results are defined
+        autoEnableStrict: true
+    },
+
     // Report configuration
     report: {
         // Whether to show detailed information

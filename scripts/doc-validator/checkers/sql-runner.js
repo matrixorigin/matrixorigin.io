@@ -194,26 +194,44 @@ export class SqlRunner {
         const results = []
         const statements = splitSqlStatements(block.sql)
 
+        // Determine validation mode
+        // Priority: explicit mode > has expected results > default (syntax-only)
+        let validationMode = block.validationMode || 'syntax-only'
+
+        // Auto-enable strict mode if ANY expected results are defined:
+        // 1. Extracted output from document (MySQL inline or separated format)
+        // 2. Manual Expected-* annotations (Expected-Rows, Expected-Value, etc.)
+        const hasExpectedResults = block.expectedResults && Object.keys(block.expectedResults).length > 0
+        if (hasExpectedResults && validationMode === 'syntax-only') {
+            validationMode = 'strict'
+        }
+
         for (let i = 0; i < statements.length; i++) {
             const statement = statements[i]
 
             if (!statement.trim()) continue
             if (this.isComment(statement)) continue
 
-            const result = await this.validateSql(statement, block.startLine + i)
+            const result = await this.validateSql(
+                statement,
+                block.startLine + i,
+                validationMode,
+                block.expectedResults || {}
+            )
 
             results.push({
                 ...result,
                 line: block.startLine,
                 sql: statement.length > 100 ? statement.substring(0, 100) + '...' : statement,
-                version: block.version
+                version: block.version,
+                validationMode
             })
         }
 
         return results
     }
 
-    async validateSql(sql, line) {
+    async validateSql(sql, line, validationMode = 'syntax-only', expectedResults = {}) {
         const sqlType = this.detectSqlType(sql)
 
         // Special handling for administrative commands (at least check syntax)
@@ -223,14 +241,28 @@ export class SqlRunner {
 
         // Phase 3 does not use whitelist, directly validate all SQL with MO official parser
         // Note: Whitelist functionality is still retained in Phase 3 (sql-syntax.js)
-        return await this.validateWithMO(sql, sqlType, line)
+        return await this.validateWithMO(sql, sqlType, line, validationMode, expectedResults)
     }
 
-    async validateWithMO(sql, sqlType, line) {
+    async validateWithMO(sql, sqlType, line, validationMode = 'syntax-only', expectedResults = {}) {
         // DDL statements are executed directly without EXPLAIN (to create context)
         if (sqlType === SQL_TYPES.DDL) {
             try {
-                await this.dbManager.query(sql)
+                const result = await this.dbManager.query(sql)
+
+                // In strict mode, validate expected results
+                if (validationMode === 'strict' && Object.keys(expectedResults).length > 0) {
+                    const comparison = this.compareResults(result, expectedResults, sqlType)
+                    if (!comparison.matched) {
+                        return {
+                            status: VALIDATION_STATUS.ERROR,
+                            message: `Result validation failed: ${comparison.reason}`,
+                            type: sqlType,
+                            detail: comparison.reason
+                        }
+                    }
+                }
+
                 return {
                     status: VALIDATION_STATUS.SUCCESS,
                     message: 'DDL executed successfully',
@@ -260,22 +292,51 @@ export class SqlRunner {
             }
         }
 
-        // DML and QUERY use EXPLAIN to check
-        try {
-            // Check if SQL is already an EXPLAIN statement to avoid adding EXPLAIN repeatedly
-            const isExplainQuery = /^\s*EXPLAIN\s+/i.test(sql)
-            const queryToRun = isExplainQuery ? sql : `EXPLAIN ${sql}`
+        // DML and QUERY: use different strategies based on validation mode
+        if (validationMode === 'strict' && Object.keys(expectedResults).length > 0) {
+            // Strict mode: execute SQL and validate results
+            try {
+                const result = await this.dbManager.query(sql)
 
-            await this.dbManager.query(queryToRun)
+                // Compare results with expected
+                const comparison = this.compareResults(result, expectedResults, sqlType)
+                if (!comparison.matched) {
+                    return {
+                        status: VALIDATION_STATUS.ERROR,
+                        message: `Result validation failed: ${comparison.reason}`,
+                        type: sqlType,
+                        detail: comparison.reason
+                    }
+                }
 
-            return {
-                status: VALIDATION_STATUS.SUCCESS,
-                message: 'Syntax and semantic validation passed',
-                type: sqlType
+                return {
+                    status: VALIDATION_STATUS.SUCCESS,
+                    message: 'SQL executed successfully and result matches expected',
+                    type: sqlType
+                }
+
+            } catch (execError) {
+                return await this.validateSyntaxOnly(sql, sqlType, execError)
             }
 
-        } catch (explainError) {
-            return await this.validateSyntaxOnly(sql, sqlType, explainError)
+        } else {
+            // Syntax-only mode: use EXPLAIN to check
+            try {
+                // Check if SQL is already an EXPLAIN statement to avoid adding EXPLAIN repeatedly
+                const isExplainQuery = /^\s*EXPLAIN\s+/i.test(sql)
+                const queryToRun = isExplainQuery ? sql : `EXPLAIN ${sql}`
+
+                await this.dbManager.query(queryToRun)
+
+                return {
+                    status: VALIDATION_STATUS.SUCCESS,
+                    message: 'Syntax and semantic validation passed',
+                    type: sqlType
+                }
+
+            } catch (explainError) {
+                return await this.validateSyntaxOnly(sql, sqlType, explainError)
+            }
         }
     }
 
@@ -966,6 +1027,307 @@ export class SqlRunner {
         return trimmed.startsWith('--') ||
             trimmed.startsWith('#') ||
             trimmed.startsWith('/*')
+    }
+
+    /**
+     * Compare actual query results with expected results
+     * @param {Array|object} actualResult - Actual query result from database
+     * @param {object} expectedResults - Expected results configuration
+     * @param {string} sqlType - SQL statement type
+     * @returns {object} Comparison result
+     */
+    compareResults(actualResult, expectedResults, sqlType) {
+        // If no expected results defined, skip comparison
+        if (!expectedResults || Object.keys(expectedResults).length === 0) {
+            return { matched: true, reason: 'No expected results defined' }
+        }
+
+        // Handle DML operations (INSERT, UPDATE, DELETE)
+        if (sqlType === SQL_TYPES.DML) {
+            if (expectedResults.affectedRows !== undefined) {
+                const actualAffected = actualResult.affectedRows || 0
+                if (actualAffected !== expectedResults.affectedRows) {
+                    return {
+                        matched: false,
+                        reason: `Expected ${expectedResults.affectedRows} affected rows, but got ${actualAffected}`
+                    }
+                }
+            }
+            return { matched: true }
+        }
+
+        // Handle SELECT queries
+        if (sqlType === SQL_TYPES.QUERY) {
+            const rows = Array.isArray(actualResult) ? actualResult : []
+
+            // Check row count
+            if (expectedResults.rows !== undefined) {
+                if (rows.length !== expectedResults.rows) {
+                    return {
+                        matched: false,
+                        reason: `Expected ${expectedResults.rows} rows, but got ${rows.length}`
+                    }
+                }
+            }
+
+            // Check single value (for COUNT, single column single row)
+            if (expectedResults.value !== undefined) {
+                if (rows.length === 0) {
+                    return {
+                        matched: false,
+                        reason: `Expected value ${expectedResults.value}, but got no rows`
+                    }
+                }
+
+                const firstRow = rows[0]
+                const firstValue = Object.values(firstRow)[0]
+
+                if (!this.valuesMatch(firstValue, expectedResults.value, expectedResults.precision)) {
+                    return {
+                        matched: false,
+                        reason: `Expected value ${expectedResults.value}, but got ${firstValue}`
+                    }
+                }
+            }
+
+            // Check multiple values (for single row with multiple columns)
+            if (expectedResults.values !== undefined && Array.isArray(expectedResults.values)) {
+                if (rows.length === 0) {
+                    return {
+                        matched: false,
+                        reason: `Expected values ${expectedResults.values.join(', ')}, but got no rows`
+                    }
+                }
+
+                const firstRow = rows[0]
+                const actualValues = Object.values(firstRow)
+
+                if (actualValues.length !== expectedResults.values.length) {
+                    return {
+                        matched: false,
+                        reason: `Expected ${expectedResults.values.length} columns, but got ${actualValues.length}`
+                    }
+                }
+
+                for (let i = 0; i < expectedResults.values.length; i++) {
+                    if (!this.valuesMatch(actualValues[i], expectedResults.values[i], expectedResults.precision)) {
+                        return {
+                            matched: false,
+                            reason: `Column ${i}: expected ${expectedResults.values[i]}, but got ${actualValues[i]}`
+                        }
+                    }
+                }
+            }
+
+            // Check contains (check if result contains certain values)
+            if (expectedResults.contains !== undefined && Array.isArray(expectedResults.contains)) {
+                const allValues = rows.flatMap(row => Object.values(row).map(String))
+
+                for (const expectedValue of expectedResults.contains) {
+                    if (!allValues.some(v => v.includes(expectedValue))) {
+                        return {
+                            matched: false,
+                            reason: `Expected result to contain "${expectedValue}", but it was not found`
+                        }
+                    }
+                }
+            }
+
+            // Check full output (table format)
+            if (expectedResults.output !== undefined) {
+                // Use the new table comparison functionality
+                const comparison = this.compareTableOutput(rows, expectedResults.output)
+                if (!comparison.matched) {
+                    return comparison
+                }
+            }
+
+            return { matched: true }
+        }
+
+        // Handle DDL operations
+        if (sqlType === SQL_TYPES.DDL) {
+            if (expectedResults.success !== undefined) {
+                // For DDL, success is determined by whether it executed without error
+                // This check happens before we get here
+                return { matched: true }
+            }
+            return { matched: true }
+        }
+
+        return { matched: true }
+    }
+
+    /**
+     * Compare two values with optional precision for floating point numbers
+     * @param {any} actual - Actual value
+     * @param {any} expected - Expected value
+     * @param {number} precision - Precision for floating point comparison
+     * @returns {boolean} Whether values match
+     */
+    valuesMatch(actual, expected, precision = 0.0001) {
+        // Handle null/undefined
+        if (actual === null && (expected === null || expected === 'NULL')) return true
+        if (actual === null || expected === null) return false
+
+        // Convert to strings for comparison
+        const actualStr = String(actual).trim()
+        const expectedStr = String(expected).trim()
+
+        // Exact match
+        if (actualStr === expectedStr) return true
+
+        // Case-insensitive match
+        if (actualStr.toLowerCase() === expectedStr.toLowerCase()) return true
+
+        // Try numeric comparison
+        const actualNum = parseFloat(actual)
+        const expectedNum = parseFloat(expected)
+
+        if (!isNaN(actualNum) && !isNaN(expectedNum)) {
+            // Handle approximate comparison (for floats)
+            if (expectedStr.startsWith('~')) {
+                const expectedValue = parseFloat(expectedStr.substring(1))
+                return Math.abs(actualNum - expectedValue) <= precision
+            }
+
+            // Exact numeric comparison
+            return Math.abs(actualNum - expectedNum) <= precision
+        }
+
+        return false
+    }
+
+    /**
+     * Parse table output string (MySQL-style table format)
+     * Example input:
+     * +----+-------+-----+
+     * | id | name  | age |
+     * +----+-------+-----+
+     * |  1 | Alice |  25 |
+     * |  2 | Bob   |  30 |
+     * +----+-------+-----+
+     *
+     * @param {string} tableStr - Table string
+     * @returns {object} { columns: [...], rows: [...] }
+     */
+    parseTableOutput(tableStr) {
+        const lines = tableStr.split('\n').filter(l => l.trim())
+
+        // Filter out border lines (+----+)
+        const contentLines = lines.filter(l => !l.match(/^\s*\+[-+]+\+\s*$/))
+
+        if (contentLines.length === 0) {
+            return { columns: [], rows: [] }
+        }
+
+        // First content line is header
+        const headerLine = contentLines[0]
+        const columns = this.parseTableRow(headerLine)
+
+        // Rest are data rows
+        const rows = []
+        for (let i = 1; i < contentLines.length; i++) {
+            const values = this.parseTableRow(contentLines[i])
+            if (values.length === columns.length) {
+                const row = {}
+                columns.forEach((col, idx) => {
+                    row[col] = values[idx]
+                })
+                rows.push(row)
+            }
+        }
+
+        return { columns, rows }
+    }
+
+    /**
+     * Parse a single table row (extract values between pipes)
+     * Example: "| id | name  | age |" -> ["id", "name", "age"]
+     *
+     * @param {string} line - Table row line
+     * @returns {Array<string>} Array of cell values
+     */
+    parseTableRow(line) {
+        // Split by | and remove first/last empty elements
+        const parts = line.split('|').slice(1, -1)
+        return parts.map(p => p.trim())
+    }
+
+    /**
+     * Compare table output with actual query results
+     *
+     * @param {Array} actualRows - Actual query result rows
+     * @param {string} expectedTableStr - Expected table output string
+     * @returns {object} { matched: boolean, reason: string }
+     */
+    compareTableOutput(actualRows, expectedTableStr) {
+        // Check for "Empty set" format
+        if (/^\s*Empty\s+set/i.test(expectedTableStr.trim())) {
+            // Expected empty result
+            if (actualRows.length === 0) {
+                return { matched: true }
+            } else {
+                return {
+                    matched: false,
+                    reason: `Expected empty result set, but got ${actualRows.length} rows`
+                }
+            }
+        }
+
+        // Parse expected table
+        const expected = this.parseTableOutput(expectedTableStr)
+
+        if (expected.rows.length === 0) {
+            // Could not parse, but check if actual is also empty
+            if (actualRows.length === 0) {
+                return { matched: true, reason: 'Both expected and actual are empty' }
+            }
+            return { matched: false, reason: 'Could not parse expected table output' }
+        }
+
+        // Check row count
+        if (actualRows.length !== expected.rows.length) {
+            return {
+                matched: false,
+                reason: `Expected ${expected.rows.length} rows, but got ${actualRows.length}`
+            }
+        }
+
+        // Check column count (use first row)
+        if (actualRows.length > 0) {
+            const actualColCount = Object.keys(actualRows[0]).length
+            const expectedColCount = expected.columns.length
+
+            if (actualColCount !== expectedColCount) {
+                return {
+                    matched: false,
+                    reason: `Expected ${expectedColCount} columns, but got ${actualColCount}`
+                }
+            }
+        }
+
+        // Compare each row
+        for (let i = 0; i < expected.rows.length; i++) {
+            const expectedRow = expected.rows[i]
+            const actualRow = actualRows[i]
+
+            // Compare each column value
+            for (const col of expected.columns) {
+                const expectedVal = expectedRow[col]
+                const actualVal = actualRow[col]
+
+                // Use existing valuesMatch for flexible comparison
+                if (!this.valuesMatch(actualVal, expectedVal)) {
+                    return {
+                        matched: false,
+                        reason: `Row ${i + 1}, column '${col}': expected '${expectedVal}', but got '${actualVal}'`
+                    }
+                }
+            }
+        }
+
+        return { matched: true }
     }
 }
 
