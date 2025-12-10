@@ -25,6 +25,8 @@ export class SqlSyntaxChecker {
      */
     async checkFile(filePath) {
         const errors = []
+        let totalStatements = 0
+        let successes = 0
 
         try {
             // Extract SQL code blocks
@@ -34,20 +36,26 @@ export class SqlSyntaxChecker {
                 return {
                     passed: true,
                     errors: [],
-                    sqlCount: 0
+                    sqlCount: 0,
+                    totalStatements: 0,
+                    successes: 0
                 }
             }
 
             // Check each SQL code block
             for (const block of sqlBlocks) {
-                const blockErrors = await this.checkSqlBlock(block)
-                errors.push(...blockErrors)
+                const blockResult = await this.checkSqlBlock(block)
+                errors.push(...blockResult.errors)
+                totalStatements += blockResult.totalStatements
+                successes += blockResult.successes
             }
 
             return {
                 passed: errors.length === 0,
                 errors,
-                sqlCount: sqlBlocks.length
+                sqlCount: sqlBlocks.length,
+                totalStatements,
+                successes
             }
         } catch (error) {
             return {
@@ -57,7 +65,9 @@ export class SqlSyntaxChecker {
                     message: `File processing error: ${error.message}`,
                     type: 'file_error'
                 }],
-                sqlCount: 0
+                sqlCount: 0,
+                totalStatements: 0,
+                successes: 0
             }
         }
     }
@@ -65,11 +75,13 @@ export class SqlSyntaxChecker {
     /**
      * Check a single SQL code block
      * @param {object} block - SQL code block
-     * @returns {Promise<Array>} Error list
+     * @returns {Promise<object>} Result with errors, totalStatements, and successes
      */
     async checkSqlBlock(block) {
         const errors = []
         const statements = splitSqlStatements(block.sql)
+        let totalStatements = 0
+        let successes = 0
 
         for (let i = 0; i < statements.length; i++) {
             const statement = statements[i]
@@ -84,6 +96,8 @@ export class SqlSyntaxChecker {
                 continue
             }
 
+            totalStatements++
+
             // Check syntax
             const error = await this.checkSqlStatement(statement, block.startLine + i)
             if (error) {
@@ -93,10 +107,16 @@ export class SqlSyntaxChecker {
                     sql: statement,
                     version: block.version
                 })
+            } else {
+                successes++
             }
         }
 
-        return errors
+        return {
+            errors,
+            totalStatements,
+            successes
+        }
     }
 
     /**

@@ -21,6 +21,7 @@ export class Reporter {
             totalStatements: 0  // Total number of SQL statements
         }
         this.startTime = Date.now()
+        this.isExecutionValidation = false  // Track if this is execution validation
     }
 
     /**
@@ -37,8 +38,9 @@ export class Reporter {
         if (stats.successes) this.results.successes += stats.successes
         if (stats.totalStatements) this.results.totalStatements += stats.totalStatements
 
-        // Count two types of warnings
+        // Count two types of warnings (only for execution validation)
         if (stats.warningDetails && Array.isArray(stats.warningDetails)) {
+            this.isExecutionValidation = true  // Mark as execution validation
             stats.warningDetails.forEach(warning => {
                 if (warning.status === 'WARNING_OK') {
                     this.results.warningOk++
@@ -52,19 +54,31 @@ export class Reporter {
             this.results.passedFiles++
             console.log(`✅ ${filePath}`)
 
-            // Show SQL execution statistics
+            // Show statistics (different format for syntax check vs execution validation)
             const totalWarnings = (stats.warningDetails ? stats.warningDetails.length : 0)
-            if (stats.successes || totalWarnings || errors.length) {
+            const isExecutionValidation = stats.warningDetails !== undefined
+
+            if (isExecutionValidation && (stats.successes || totalWarnings || errors.length)) {
+                // Execution validation: show success, warnings, errors
                 console.log(`   ✅ Success: ${stats.successes || 0} | ⚠️ Warnings: ${totalWarnings} | ❌ Errors: ${errors.length}`)
+            } else if (!isExecutionValidation && stats.totalStatements) {
+                // Syntax check: show success and errors only (no warnings)
+                console.log(`   ✅ Success: ${stats.successes || 0} | ❌ Errors: ${errors.length}`)
             }
         } else {
             this.results.failedFiles++
             console.log(`❌ ${filePath}`)
 
-            // Show SQL execution statistics
+            // Show statistics (different format for syntax check vs execution validation)
             const totalWarnings = (stats.warningDetails ? stats.warningDetails.length : 0)
-            if (stats.successes || totalWarnings || errors.length) {
+            const isExecutionValidation = stats.warningDetails !== undefined
+
+            if (isExecutionValidation && (stats.successes || totalWarnings || errors.length)) {
+                // Execution validation: show success, warnings, errors
                 console.log(`   ✅ Success: ${stats.successes || 0} | ⚠️ Warnings: ${totalWarnings} | ❌ Errors: ${errors.length}`)
+            } else if (!isExecutionValidation && stats.totalStatements) {
+                // Syntax check: show success and errors only (no warnings)
+                console.log(`   ✅ Success: ${stats.successes || 0} | ❌ Errors: ${errors.length}`)
             }
 
             errors.forEach(error => {
@@ -116,8 +130,8 @@ export class Reporter {
         console.log(`Total files scanned: ${this.results.totalFiles}`)
         console.log(`Files with SQL: ${this.results.checkedFiles}`)
 
-        // Show SQL execution statistics
-        if (this.results.totalStatements > 0) {
+        // Show SQL execution statistics (only for execution validation)
+        if (this.isExecutionValidation && this.results.totalStatements > 0) {
             console.log('\n📈 SQL Execution Statistics:')
             console.log(`  ├─ ✅ Successfully executed: ${this.results.successes}`)
             console.log(`  ├─ ⚠️  Warnings (missing tables only, ignorable): ${this.results.warningOk}`)

@@ -113,7 +113,13 @@ async function main() {
         continue
       }
 
-      reporter.addFileResult(file, result.passed, result.errors)
+      // Prepare statistics for syntax check
+      const stats = {
+        totalStatements: result.totalStatements || 0,
+        successes: result.successes || 0
+      }
+
+      reporter.addFileResult(file, result.passed, result.errors, stats)
     }
 
     console.log()
