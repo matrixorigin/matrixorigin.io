@@ -36,6 +36,12 @@ npm run check:links:changed
 ### 基础命令
 
 ```bash
+# 检查指定文件的 SQL 语法
+npm run validate-docs -- <文件路径>
+
+# 检查多个文件
+npm run validate-docs -- <文件1> <文件2> <文件3>
+
 # 检查所有文档的 SQL 语法（慢，完整）
 npm run validate-docs
 
@@ -61,6 +67,9 @@ npm run validate-docs -- --help
 ### 推荐使用
 
 ```bash
+# 日常开发 - 检查单个文件
+npm run validate-docs -- docs/MatrixOne/Develop/import-data/bulk-load/load-data.md
+
 # 日常开发 - 检查你的修改
 npm run validate-docs:changed
 
