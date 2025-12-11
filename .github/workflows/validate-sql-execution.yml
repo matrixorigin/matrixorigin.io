@@ -143,13 +143,13 @@ jobs:
         if: github.event_name == 'pull_request'
         run: |
           echo "🔍 Validating SQL execution with MatrixOne ${{ matrix.version }}"
-          npm run validate-docs:execution:changed -- --db-host 127.0.0.1 --db-port 6001 --db-user root --db-password 111
+          npm run validate-docs-execution:changed -- --db-host 127.0.0.1 --db-port 6001 --db-user root --db-password 111
 
       - name: Validate all documents (Manual)
         if: github.event_name == 'workflow_dispatch'
         run: |
           echo "🔍 Full SQL execution validation with MatrixOne ${{ matrix.version }}"
-          npm run validate-docs:execution -- --db-host 127.0.0.1 --db-port 6001 --db-user root --db-password 111
+          npm run validate-docs-execution -- --db-host 127.0.0.1 --db-port 6001 --db-user root --db-password 111
 
       - name: Show MatrixOne logs on failure
         if: failure()
