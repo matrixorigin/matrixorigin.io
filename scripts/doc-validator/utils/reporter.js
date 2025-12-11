@@ -14,10 +14,7 @@ export class Reporter {
             failedFiles: 0,
             errors: [],
             warnings: [],
-            successes: 0,  // Number of successfully executed SQL statements
-            warningOk: 0,  // Warnings (only missing context, ignorable)
-            warningFail: 0,  // Warnings (potential issues, need manual check)
-            skipped: 0,  // Skipped statements (admin commands)
+            successes: 0,  // Number of successfully executed/validated SQL statements
             totalStatements: 0  // Total number of SQL statements
         }
         this.startTime = Date.now()
@@ -29,7 +26,7 @@ export class Reporter {
      * @param {string} filePath - File path
      * @param {boolean} passed - Whether passed the check
      * @param {Array} errors - Error list
-     * @param {Object} stats - Statistics {successes, warnings, totalStatements, warningDetails}
+     * @param {Object} stats - Statistics {successes, totalStatements}
      */
     addFileResult(filePath, passed, errors = [], stats = {}) {
         this.results.checkedFiles++
@@ -37,47 +34,22 @@ export class Reporter {
         // Accumulate statistics
         if (stats.successes) this.results.successes += stats.successes
         if (stats.totalStatements) this.results.totalStatements += stats.totalStatements
-
-        // Count two types of warnings (only for execution validation)
-        if (stats.warningDetails && Array.isArray(stats.warningDetails)) {
-            this.isExecutionValidation = true  // Mark as execution validation
-            stats.warningDetails.forEach(warning => {
-                if (warning.status === 'WARNING_OK') {
-                    this.results.warningOk++
-                } else if (warning.status === 'WARNING_FAIL') {
-                    this.results.warningFail++
-                }
-            })
-        }
+        if (stats.totalStatements) this.isExecutionValidation = true
 
         if (passed) {
             this.results.passedFiles++
             console.log(`✅ ${filePath}`)
 
-            // Show statistics (different format for syntax check vs execution validation)
-            const totalWarnings = (stats.warningDetails ? stats.warningDetails.length : 0)
-            const isExecutionValidation = stats.warningDetails !== undefined
-
-            if (isExecutionValidation && (stats.successes || totalWarnings || errors.length)) {
-                // Execution validation: show success, warnings, errors
-                console.log(`   ✅ Success: ${stats.successes || 0} | ⚠️ Warnings: ${totalWarnings} | ❌ Errors: ${errors.length}`)
-            } else if (!isExecutionValidation && stats.totalStatements) {
-                // Syntax check: show success and errors only (no warnings)
+            // Show statistics
+            if (stats.totalStatements) {
                 console.log(`   ✅ Success: ${stats.successes || 0} | ❌ Errors: ${errors.length}`)
             }
         } else {
             this.results.failedFiles++
             console.log(`❌ ${filePath}`)
 
-            // Show statistics (different format for syntax check vs execution validation)
-            const totalWarnings = (stats.warningDetails ? stats.warningDetails.length : 0)
-            const isExecutionValidation = stats.warningDetails !== undefined
-
-            if (isExecutionValidation && (stats.successes || totalWarnings || errors.length)) {
-                // Execution validation: show success, warnings, errors
-                console.log(`   ✅ Success: ${stats.successes || 0} | ⚠️ Warnings: ${totalWarnings} | ❌ Errors: ${errors.length}`)
-            } else if (!isExecutionValidation && stats.totalStatements) {
-                // Syntax check: show success and errors only (no warnings)
+            // Show statistics
+            if (stats.totalStatements) {
                 console.log(`   ✅ Success: ${stats.successes || 0} | ❌ Errors: ${errors.length}`)
             }
 
@@ -132,12 +104,10 @@ export class Reporter {
 
         // Show SQL execution statistics (only for execution validation)
         if (this.isExecutionValidation && this.results.totalStatements > 0) {
-            console.log('\n📈 SQL Execution Statistics:')
-            console.log(`  ├─ ✅ Successfully executed: ${this.results.successes}`)
-            console.log(`  ├─ ⚠️  Warnings (missing tables only, ignorable): ${this.results.warningOk}`)
-            console.log(`  ├─ ⚠️  Warnings (need manual check): ${this.results.warningFail}`)
-            console.log(`  ├─ ❌ Errors: ${this.results.errors.length}`)
-            console.log(`  └─ 📊 Total: ${this.results.totalStatements} SQL statements`)
+            console.log('\n📊 SQL Validation Statistics:')
+            console.log(`  ├─ ✅ Passed: ${this.results.successes}`)
+            console.log(`  ├─ ❌ Failed: ${this.results.errors.length}`)
+            console.log(`  └─ 📈 Total: ${this.results.totalStatements} SQL statements`)
             console.log()
         }
 

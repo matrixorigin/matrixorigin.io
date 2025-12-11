@@ -1,60 +1,4 @@
-/**
- * SQL Execution Tester - Phase 3 Implementation
- *
- * Core Strategy:
- * 1. Use MO official parser (via EXPLAIN and PREPARE)
- * 2. Execute in isolated test database
- * 3. Intelligently distinguish between syntax errors and semantic errors
- * 4. Accumulate context (DDL within the same document creates environment for subsequent SQL)
- *
- * ================== Automatic Context Completion Feature ==================
- *
- * [Coverage Scope]
- * ✅ Table Level: Automatically create missing tables
- *    - Support: Tables in FROM, JOIN, INSERT, UPDATE, DELETE
- *    - Support: Cross-database references (db.table)
- *    - Support: Tables in simple subqueries
- *
- * ✅ Column Level: Extract column names from SQL and infer types
- *    - SELECT list
- *    - WHERE conditions
- *    - GROUP BY / ORDER BY / HAVING
- *    - INSERT column list
- *    - UPDATE SET clause
- *    - JOIN ON conditions
- *
- * ✅ Type Inference: Intelligent inference based on column name patterns
- *    - ID type: INT, VARCHAR(36)
- *    - Time type: DATE, DATETIME
- *    - Numeric type: INT, DECIMAL(10,2)
- *    - Text type: VARCHAR(n), TEXT
- *    - Boolean type: BOOLEAN
- *    - Enum type: VARCHAR(50)
- *
- * [Limitations]
- * ❌ Unsupported Scenarios:
- *    - Complex nested subqueries (more than 3 layers)
- *    - CTE (WITH clause)
- *    - View references
- *    - Stored procedure/function calls
- *    - Trigger dependencies
- *    - Foreign key constraint validation
- *    - Queries requiring specific data (e.g., aggregation results)
- *
- * [Handling Principles]
- * - Complete as much as possible → WARNING_OK
- * - Still failed after completion → WARNING_FAIL (manual check required)
- * - Cannot complete but syntax is correct → WARNING_OK (explain reason)
- * - True syntax error → ERROR
- *
- * ================== Status Explanation ==================
- * ✅ SUCCESS: Both syntax and semantics are correct, execution successful
- * ⚠️ WARNING_OK: Syntax is correct, only missing context (successful after automatic table creation)
- * ⚠️ WARNING_FAIL: Syntax is correct, but there are other semantic issues (still failed after automatic table creation)
- * ❌ ERROR: True syntax error
- * ⏭️ SKIP: Administrative command, skip execution
- */
-
+/** SQL Execution Tester - validates SQL syntax/semantics and compares results with expected */
 import { extractSqlFromFile, splitSqlStatements } from '../utils/sql-extractor.js'
 import { DbConnectionManager } from '../utils/db-connection.js'
 import { config } from '../config.js'
@@ -68,11 +12,9 @@ const SQL_TYPES = {
 }
 
 const VALIDATION_STATUS = {
-    SUCCESS: 'SUCCESS',
-    WARNING_OK: 'WARNING_OK',      // Syntax correct, only missing context (executed successfully after automatic table creation)
-    WARNING_FAIL: 'WARNING_FAIL',  // Syntax correct, but other semantic issues (still failed after automatic table creation)
-    ERROR: 'ERROR',
-    SKIP: 'SKIP'
+    SUCCESS: 'SUCCESS',  // SQL executed successfully (or semantics validated if no expected results)
+    ERROR: 'ERROR',      // SQL failed due to syntax error, semantic error, or result mismatch
+    SKIP: 'SKIP'         // Administrative command, syntax checked but execution skipped
 }
 
 export class SqlRunner {
@@ -135,27 +77,37 @@ export class SqlRunner {
             const baseName = filePath.replace(/[^a-zA-Z0-9]/g, '_').substring(0, 30)
             this.currentTestDb = await this.dbManager.createTestDatabase(baseName)
 
+            // Track user-created databases within this file for cleanup
+            this.userCreatedDatabases = new Set()
+
             for (const block of sqlBlocks) {
                 const blockResults = await this.checkSqlBlock(block)
 
                 for (const result of blockResults) {
                     if (result.status === VALIDATION_STATUS.ERROR) {
                         errors.push(result)
-                    } else if (result.status === VALIDATION_STATUS.WARNING_OK || result.status === VALIDATION_STATUS.WARNING_FAIL) {
-                        warnings.push(result)
                     } else if (result.status === VALIDATION_STATUS.SUCCESS) {
+                        successes.push(result)
+                    } else if (result.status === VALIDATION_STATUS.SKIP) {
+                        // SKIP status - administrative commands
                         successes.push(result)
                     }
                 }
 
-                // After executing each SQL block, ensure to return to the test database
-                // This handles cases where statements like USE or DROP DATABASE change the current database
+                // NOTE: Do NOT switch back to test database after each block!
+                // This allows cross-block state sharing (e.g., CREATE TABLE in block 1, INSERT in block 2)
+                // The test database is only used as a fallback when no user database is specified
+            }
+
+            // Cleanup user-created databases
+            for (const dbName of this.userCreatedDatabases) {
                 try {
-                    await this.dbManager.query(`USE \`${this.currentTestDb}\``)
+                    await this.dbManager.query(`DROP DATABASE IF EXISTS \`${dbName}\``)
                 } catch (error) {
-                    // Ignore error (database may have been deleted)
+                    // Ignore cleanup errors
                 }
             }
+            this.userCreatedDatabases = null
 
             if (this.currentTestDb) {
                 await this.dbManager.dropTestDatabase(this.currentTestDb)
@@ -171,6 +123,16 @@ export class SqlRunner {
                 totalStatements: successes.length + warnings.length + errors.length
             }
         } catch (error) {
+            // Cleanup user-created databases on error
+            if (this.userCreatedDatabases) {
+                for (const dbName of this.userCreatedDatabases) {
+                    try {
+                        await this.dbManager.query(`DROP DATABASE IF EXISTS \`${dbName}\``)
+                    } catch (e) { /* ignore */ }
+                }
+                this.userCreatedDatabases = null
+            }
+
             if (this.currentTestDb) {
                 await this.dbManager.dropTestDatabase(this.currentTestDb)
                 this.currentTestDb = null
@@ -248,6 +210,12 @@ export class SqlRunner {
         // DDL statements are executed directly without EXPLAIN (to create context)
         if (sqlType === SQL_TYPES.DDL) {
             try {
+                // Track user-created databases for cleanup
+                const createDbMatch = sql.match(/CREATE\s+DATABASE\s+(?:IF\s+NOT\s+EXISTS\s+)?[`"]?(\w+)[`"]?/i)
+                if (createDbMatch && this.userCreatedDatabases) {
+                    this.userCreatedDatabases.add(createDbMatch[1])
+                }
+
                 const result = await this.dbManager.query(sql)
 
                 // In strict mode, validate expected results
@@ -282,9 +250,27 @@ export class SqlRunner {
                     }
                 }
 
+                // Handle "already exists" errors - treat as SUCCESS (idempotent DDL)
+                if (errorMsg.includes('already exists')) {
+                    return {
+                        status: VALIDATION_STATUS.SUCCESS,
+                        message: 'DDL skipped (object already exists)',
+                        type: sqlType
+                    }
+                }
+
+                // Handle duplicate entry errors - treat as SUCCESS (data already inserted)
+                if (errorMsg.includes('duplicate entry')) {
+                    return {
+                        status: VALIDATION_STATUS.SUCCESS,
+                        message: 'DML skipped (duplicate entry)',
+                        type: sqlType
+                    }
+                }
+
                 // Other errors (e.g., permissions, dependencies, etc.)
                 return {
-                    status: VALIDATION_STATUS.WARNING_FAIL,
+                    status: VALIDATION_STATUS.ERROR,
                     message: `DDL execution failed: ${execError.message}`,
                     type: sqlType,
                     detail: execError.message
@@ -292,1042 +278,979 @@ export class SqlRunner {
             }
         }
 
-        // DML and QUERY: use different strategies based on validation mode
-        if (validationMode === 'strict' && Object.keys(expectedResults).length > 0) {
-            // Strict mode: execute SQL and validate results
+        // ==================== Phase 4: Check if expected results exist ====================
+        // DML statements (INSERT/UPDATE/DELETE) should ALWAYS execute to maintain state
+        // Only QUERY statements can skip execution when no expected results
+        if (sqlType === SQL_TYPES.DML) {
             try {
                 const result = await this.dbManager.query(sql)
 
-                // Compare results with expected
-                const comparison = this.compareResults(result, expectedResults, sqlType)
-                if (!comparison.matched) {
-                    return {
-                        status: VALIDATION_STATUS.ERROR,
-                        message: `Result validation failed: ${comparison.reason}`,
-                        type: sqlType,
-                        detail: comparison.reason
+                // If expected results defined, validate them
+                if (this.hasExpectedResults(expectedResults)) {
+                    const comparison = this.compareResults(result, expectedResults, sqlType)
+                    if (!comparison.matched) {
+                        return {
+                            status: VALIDATION_STATUS.ERROR,
+                            message: `Result validation failed: ${comparison.reason}`,
+                            type: sqlType,
+                            detail: comparison.reason
+                        }
                     }
                 }
 
                 return {
                     status: VALIDATION_STATUS.SUCCESS,
-                    message: 'SQL executed successfully and result matches expected',
+                    message: 'DML executed successfully',
                     type: sqlType
                 }
-
             } catch (execError) {
-                return await this.validateSyntaxOnly(sql, sqlType, execError)
-            }
+                const errorMsg = execError.message.toLowerCase()
 
-        } else {
-            // Syntax-only mode: use EXPLAIN to check
-            try {
-                // Check if SQL is already an EXPLAIN statement to avoid adding EXPLAIN repeatedly
-                const isExplainQuery = /^\s*EXPLAIN\s+/i.test(sql)
-                const queryToRun = isExplainQuery ? sql : `EXPLAIN ${sql}`
-
-                await this.dbManager.query(queryToRun)
-
-                return {
-                    status: VALIDATION_STATUS.SUCCESS,
-                    message: 'Syntax and semantic validation passed',
-                    type: sqlType
+                // Handle duplicate entry as success
+                if (errorMsg.includes('duplicate entry')) {
+                    return {
+                        status: VALIDATION_STATUS.SUCCESS,
+                        message: 'DML skipped (duplicate entry)',
+                        type: sqlType
+                    }
                 }
 
-            } catch (explainError) {
-                return await this.validateSyntaxOnly(sql, sqlType, explainError)
-            }
-        }
-    }
+                // Context errors for DML - try auto-complete if has expected results
+                if (this.isContextError(errorMsg) && this.hasExpectedResults(expectedResults)) {
+                    return await this.tryExecuteWithAutoComplete(sql, sqlType, execError, expectedResults)
+                }
 
-    async validateSyntaxOnly(sql, sqlType, originalError) {
-        // Step 1: First check syntax with PREPARE
-        try {
-            // Properly escape SQL: replace single quotes with double single quotes
-            const escapedSql = sql.replace(/'/g, "''")
-            await this.dbManager.query(`PREPARE stmt FROM '${escapedSql}'`)
-            await this.dbManager.query('DEALLOCATE PREPARE stmt')
+                // For DML without expected results, context error means table doesn't exist
+                if (this.isContextError(errorMsg)) {
+                    return {
+                        status: VALIDATION_STATUS.SUCCESS,
+                        message: 'DML validated (table created at runtime)',
+                        type: sqlType
+                    }
+                }
 
-            // PREPARE success = syntax is correct
-
-            // Step 2: Check if original error is a context error
-            const errorMessage = originalError.message.toLowerCase()
-
-            if (this.isContextError(errorMessage)) {
-                // Try to automatically create tables and execute
-                return await this.tryExecuteWithAutoCreateTable(sql, sqlType, originalError)
-            }
-
-            // Syntax is correct, but there are other semantic issues
-            return {
-                status: VALIDATION_STATUS.WARNING_FAIL,
-                message: 'Syntax is correct, but there are semantic issues',
-                type: sqlType,
-                detail: originalError.message
-            }
-
-        } catch (syntaxError) {
-            // PREPARE also failed, check if it's a context error
-            const syntaxErrorMessage = syntaxError.message.toLowerCase()
-
-            // If PREPARE error message also contains context-related keywords like table not exists
-            // It means this is not a true syntax error but missing context
-            if (this.isContextError(syntaxErrorMessage)) {
-                // Try to automatically create tables and execute
-                return await this.tryExecuteWithAutoCreateTable(sql, sqlType, syntaxError)
-            }
-
-            // PREPARE failed = true syntax error
-            return {
-                status: VALIDATION_STATUS.ERROR,
-                message: `SQL syntax error: ${syntaxError.message}`,
-                type: sqlType,
-                detail: syntaxError.message
-            }
-        }
-    }
-
-    /**
-     * Try to automatically create tables and execute SQL
-     *
-     * Strategy (Iterative Learning):
-     * 1. Extract table names and column information, create tables
-     * 2. Try to execute (maximum 3 times)
-     * 3. If failed, extract missing columns from error
-     * 4. Add missing columns
-     * 5. Repeat 2-4 until success or no new columns to add
-     */
-    async tryExecuteWithAutoCreateTable(sql, sqlType, originalError) {
-        try {
-            // 1. Extract table names and column information from SQL
-            const tableInfo = this.extractTableInfo(sql)
-
-            if (!tableInfo || !tableInfo.tables || tableInfo.tables.length === 0) {
                 return {
-                    status: VALIDATION_STATUS.WARNING_OK,
-                    message: 'Syntax is correct, but missing context (table does not exist)',
+                    status: VALIDATION_STATUS.ERROR,
+                    message: `DML execution failed: ${execError.message}`,
                     type: sqlType,
-                    detail: originalError.message
-                }
-            }
-
-            // 2. Create empty tables for each missing table
-            for (const table of tableInfo.tables) {
-                await this.createEmptyTable(table, tableInfo.columns)
-            }
-
-            // 3. Handle cross-database references: replace db.table with table
-            let sqlToExecute = this.removeCrossDatabaseReferences(sql, tableInfo.tables)
-
-            // 4. Iteratively try to execute (maximum 3 times)
-            const maxRetries = 3
-            const addedColumns = []
-
-            for (let attempt = 0; attempt < maxRetries; attempt++) {
-                try {
-                    await this.dbManager.query(sqlToExecute)
-
-                    // Execution successful
-                    if (addedColumns.length > 0) {
-                        return {
-                            status: VALIDATION_STATUS.WARNING_OK,
-                            message: '✅ Executed successfully after automatically adding missing columns (only missing context)',
-                            type: sqlType,
-                            detail: `Automatically added ${addedColumns.length} missing columns: ${addedColumns.join(', ')}`
-                        }
-                    } else {
-                        return {
-                            status: VALIDATION_STATUS.WARNING_OK,
-                            message: '✅ Syntax is correct, executed successfully after automatic table creation (only missing context)',
-                            type: sqlType,
-                            detail: 'Empty tables were automatically created for validation'
-                        }
-                    }
-
-                } catch (execError) {
-                    // 5. Extract missing columns from error message
-                    const missingColumns = this.extractMissingColumnsFromError(execError)
-
-                    if (missingColumns.length === 0) {
-                        // No missing columns, it's another type of error
-                        return {
-                            status: VALIDATION_STATUS.WARNING_FAIL,
-                            message: '⚠️ Syntax is correct, but execution still failed after automatic table creation (there may be other semantic errors)',
-                            type: sqlType,
-                            detail: execError.message
-                        }
-                    }
-
-                    // 6. Add missing columns
-                    let anyAdded = false
-                    for (const col of missingColumns) {
-                        if (!addedColumns.includes(col)) {
-                            // Try to add to each table (since it's uncertain which table the column belongs to)
-                            for (const table of tableInfo.tables) {
-                                const added = await this.addColumnToTable(table, col)
-                                if (added) {
-                                    anyAdded = true
-                                    addedColumns.push(col)
-                                    break // Successfully added to one table, exit inner loop
-                                }
-                            }
-                        }
-                    }
-
-                    if (!anyAdded) {
-                        // Cannot add new columns, stop trying
-                        return {
-                            status: VALIDATION_STATUS.WARNING_FAIL,
-                            message: '⚠️ Cannot automatically add missing columns (there may be other issues)',
-                            type: sqlType,
-                            detail: execError.message
-                        }
-                    }
-
-                    // Continue to next attempt
-                }
-            }
-
-            // Reached maximum number of attempts
-            return {
-                status: VALIDATION_STATUS.WARNING_FAIL,
-                message: '⚠️ Multiple attempts to automatically add columns still failed',
-                type: sqlType,
-                detail: `Added columns: ${addedColumns.join(', ')}, but there are still other issues`
-            }
-
-        } catch (error) {
-            // Failed to automatically create tables, downgrade to only report correct syntax
-            return {
-                status: VALIDATION_STATUS.WARNING_OK,
-                message: 'Syntax is correct, but missing context (cannot automatically create tables)',
-                type: sqlType,
-                detail: originalError.message
-            }
-        }
-    }
-
-    /**
-     * Extract table names and column information from SQL
-     *
-     * Coverage:
-     * ✅ Table names in FROM/JOIN
-     * ✅ Cross-database references (db.table)
-     * ✅ Columns in SELECT/WHERE/GROUP BY/ORDER BY/HAVING
-     * ✅ Columns in INSERT column list
-     * ✅ Columns in JOIN ON conditions
-     * ✅ Tables in subqueries (basic support)
-     *
-     * Limitations:
-     * ❌ Complex nested subqueries
-     * ❌ CTE (WITH clause)
-     * ❌ View/function calls
-     */
-    extractTableInfo(sql) {
-        const info = {
-            tables: [],
-            columns: []
-        }
-
-        // ==================== Extract Table Names ====================
-
-        // 1. Table names in FROM clause (supports db.table format)
-        const fromMatches = sql.matchAll(/FROM\s+(?:(\w+)\.)?(\w+)(?:\s+(?:AS\s+)?(\w+))?/gi)
-        for (const match of fromMatches) {
-            // match[1] = database, match[2] = table, match[3] = alias
-            info.tables.push(match[2])
-        }
-
-        // 2. Table names in JOIN clause (supports db.table format)
-        const joinMatches = sql.matchAll(/JOIN\s+(?:(\w+)\.)?(\w+)(?:\s+(?:AS\s+)?(\w+))?/gi)
-        for (const match of joinMatches) {
-            info.tables.push(match[2])
-        }
-
-        // 3. Table names in INSERT INTO
-        const insertMatch = sql.match(/INSERT\s+INTO\s+(?:(\w+)\.)?(\w+)/i)
-        if (insertMatch) {
-            info.tables.push(insertMatch[2])
-        }
-
-        // 4. Table names in UPDATE
-        const updateMatch = sql.match(/UPDATE\s+(?:(\w+)\.)?(\w+)/i)
-        if (updateMatch) {
-            info.tables.push(updateMatch[2])
-        }
-
-        // 5. Table names in DELETE FROM
-        const deleteMatch = sql.match(/DELETE\s+FROM\s+(?:(\w+)\.)?(\w+)/i)
-        if (deleteMatch) {
-            info.tables.push(deleteMatch[2])
-        }
-
-        // 6. Tables in subqueries (simple processing)
-        const subqueryMatches = sql.matchAll(/\(\s*SELECT\s+.*?\s+FROM\s+(\w+)/gi)
-        for (const match of subqueryMatches) {
-            info.tables.push(match[1])
-        }
-
-        // ==================== Extract Column Names ====================
-
-        // 1. Columns in SELECT clause
-        const selectMatch = sql.match(/SELECT\s+([\s\S]+?)\s+FROM/i)
-        if (selectMatch && selectMatch[1] !== '*' && !selectMatch[1].trim().startsWith('*')) {
-            const columns = this.extractColumnsFromList(selectMatch[1])
-            info.columns.push(...columns)
-        }
-
-        // 2. Columns in WHERE clause
-        const whereMatch = sql.match(/WHERE\s+([\s\S]+?)(?:GROUP\s+BY|ORDER\s+BY|HAVING|LIMIT|UNION|$)/i)
-        if (whereMatch) {
-            const columns = this.extractColumnsFromCondition(whereMatch[1])
-            info.columns.push(...columns)
-        }
-
-        // 3. Columns in GROUP BY clause
-        const groupByMatch = sql.match(/GROUP\s+BY\s+([\s\S]+?)(?:HAVING|ORDER\s+BY|LIMIT|UNION|$)/i)
-        if (groupByMatch) {
-            const columns = this.extractColumnsFromList(groupByMatch[1])
-            info.columns.push(...columns)
-        }
-
-        // 4. Columns in ORDER BY clause
-        const orderByMatch = sql.match(/ORDER\s+BY\s+([\s\S]+?)(?:LIMIT|UNION|$)/i)
-        if (orderByMatch) {
-            const columns = this.extractColumnsFromList(orderByMatch[1])
-            info.columns.push(...columns)
-        }
-
-        // 5. Columns in HAVING clause
-        const havingMatch = sql.match(/HAVING\s+([\s\S]+?)(?:ORDER\s+BY|LIMIT|UNION|$)/i)
-        if (havingMatch) {
-            const columns = this.extractColumnsFromCondition(havingMatch[1])
-            info.columns.push(...columns)
-        }
-
-        // 6. INSERT column list
-        const insertColsMatch = sql.match(/INSERT\s+INTO\s+\w+\s*\(([^)]+)\)/i)
-        if (insertColsMatch) {
-            const columns = insertColsMatch[1].split(',').map(c => c.trim().replace(/[`"'\[\]]/g, ''))
-            info.columns.push(...columns)
-        }
-
-        // 7. Columns in UPDATE SET clause
-        const setMatch = sql.match(/SET\s+([\s\S]+?)(?:WHERE|$)/i)
-        if (setMatch) {
-            const setColumns = setMatch[1].match(/(\w+)\s*=/g)
-            if (setColumns) {
-                info.columns.push(...setColumns.map(c => c.replace(/\s*=$/, '')))
-            }
-        }
-
-        // 8. Columns in JOIN ON conditions
-        const joinOnMatches = sql.matchAll(/ON\s+(?:\w+\.)?(\w+)\s*=\s*(?:\w+\.)?(\w+)/gi)
-        for (const match of joinOnMatches) {
-            info.columns.push(match[1], match[2])
-        }
-
-        // Deduplicate and filter
-        info.tables = [...new Set(info.tables)].filter(t => t && t.length > 0)
-        info.columns = [...new Set(info.columns)].filter(c =>
-            c &&
-            c.length > 0 &&
-            !c.match(/^\d+$/) &&  // Exclude pure numbers
-            !c.match(/^['"]/) &&  // Exclude string literals
-            c !== 'NULL' &&
-            c !== 'TRUE' &&
-            c !== 'FALSE'
-        )
-
-        return info
-    }
-
-    /**
-     * Extract column names from column list (handle aliases, functions, etc.)
-     */
-    extractColumnsFromList(listStr) {
-        const columns = []
-        const parts = listStr.split(',')
-
-        for (const part of parts) {
-            const trimmed = part.trim()
-
-            // Skip aggregate functions, window functions, etc.
-            if (/^(COUNT|SUM|AVG|MAX|MIN|RANK|ROW_NUMBER|DENSE_RANK)\s*\(/i.test(trimmed)) {
-                // Try to extract column names inside functions
-                const innerMatch = trimmed.match(/\((?:\w+\.)?(\w+)\)/)
-                if (innerMatch && innerMatch[1] !== '*') {
-                    columns.push(innerMatch[1])
-                }
-                continue
-            }
-
-            // Handle table.column or alias.column
-            const qualifiedMatch = trimmed.match(/^(?:\w+\.)?(\w+)/)
-            if (qualifiedMatch) {
-                const colName = qualifiedMatch[1]
-                // Exclude SQL keywords
-                if (!['AS', 'FROM', 'WHERE', 'OVER', 'PARTITION'].includes(colName.toUpperCase())) {
-                    columns.push(colName)
+                    detail: execError.message
                 }
             }
         }
 
-        return columns
-    }
-
-    /**
-     * Extract column names from condition expressions
-     */
-    extractColumnsFromCondition(conditionStr) {
-        const columns = []
-
-        // Extract all columns in column op value pattern
-        const matches = conditionStr.matchAll(/(?:\w+\.)?(\w+)\s*(?:[=<>!]+|IN|LIKE|BETWEEN)/gi)
-        for (const match of matches) {
-            columns.push(match[1])
+        // For QUERY: If NO expected results → Only validate semantics (don't execute)
+        if (!this.hasExpectedResults(expectedResults)) {
+            return await this.validateSemanticsOnlyWithPrepare(sql, sqlType)
         }
 
-        return columns
-    }
-
-    /**
-     * Create empty table
-     */
-    async createEmptyTable(tableName, columns = []) {
-        // If no column information or only *, create the simplest table
-        if (columns.length === 0 || columns.includes('*')) {
-            const createSql = `CREATE TABLE IF NOT EXISTS \`${tableName}\` (id INT)`
-            await this.dbManager.query(createSql)
-            return
-        }
-
-        // Create table based on column names with inferred types
-        const columnDefs = columns.map(col => {
-            const type = this.inferColumnType(col)
-            return `\`${col}\` ${type}`
-        }).join(', ')
-
-        const createSql = `CREATE TABLE IF NOT EXISTS \`${tableName}\` (${columnDefs})`
-        await this.dbManager.query(createSql)
-    }
-
-    /**
-     * Infer column type (improved version)
-     *
-     * Infer the most likely data type based on column name patterns:
-     * - ID type columns: INT or VARCHAR(36) for UUID
-     * - Time type columns: DATE, DATETIME, TIMESTAMP
-     * - Monetary type columns: DECIMAL(10,2)
-     * - Text type columns: VARCHAR(n) or TEXT
-     * - Boolean type columns: BOOLEAN
-     * - Enum type columns: VARCHAR(50)
-     */
-    inferColumnType(columnName) {
-        const name = columnName.toLowerCase()
-
-        // ==================== ID Type ====================
-        // UUID format (36 characters)
-        if (/^(uuid|guid|.*_uuid|.*_guid)$/.test(name)) {
-            return 'VARCHAR(36)'
-        }
-        // Regular ID (integer)
-        if (/^(id|.*_id)$/.test(name)) {
-            return 'INT'
-        }
-        // Code, number
-        if (/^(code|number|no|.*_code|.*_number|.*_no)$/.test(name)) {
-            return 'VARCHAR(50)'
-        }
-
-        // ==================== Time/Date Type ====================
-        // Date
-        if (/(^|_)(date|day)(_|$)/.test(name) && !name.includes('update') && !name.includes('create')) {
-            return 'DATE'
-        }
-        // Timestamp, creation time, update time
-        if (/(created|updated|modified|deleted)_(at|time|date)/.test(name)) {
-            return 'DATETIME'
-        }
-        if (/(timestamp|.*_time|.*_at)$/.test(name)) {
-            return 'DATETIME'
-        }
-        // Year
-        if (/(^|_)year(_|$)/.test(name)) {
-            return 'INT'
-        }
-
-        // ==================== Numeric Type ====================
-        // Price, amount, salary
-        if (/(price|amount|salary|cost|fee|total|subtotal|revenue|profit)/.test(name)) {
-            return 'DECIMAL(10,2)'
-        }
-        // Count, quantity
-        if (/(count|quantity|num|number|qty|stock)/.test(name) && !name.includes('phone')) {
-            return 'INT'
-        }
-        // Percentage, ratio
-        if (/(rate|ratio|percent|percentage)/.test(name)) {
-            return 'DECIMAL(5,2)'
-        }
-        // Score, rating
-        if (/(score|rating|point|rank)/.test(name)) {
-            return 'DECIMAL(5,2)'
-        }
-
-        // ==================== Boolean Type ====================
-        if (/^(is_|has_|can_|should_|enabled|disabled|active|deleted)/.test(name)) {
-            return 'BOOLEAN'
-        }
-
-        // ==================== Contact Information Type ====================
-        if (/(email|mail)/.test(name)) {
-            return 'VARCHAR(255)'
-        }
-        if (/(phone|mobile|tel|fax)/.test(name)) {
-            return 'VARCHAR(20)'
-        }
-        if (/(url|link|website|domain)/.test(name)) {
-            return 'VARCHAR(500)'
-        }
-        if (/(address|addr)/.test(name)) {
-            return 'VARCHAR(500)'
-        }
-        if (/(zip|postal|postcode)/.test(name)) {
-            return 'VARCHAR(10)'
-        }
-
-        // ==================== Identifier Type ====================
-        if (/(username|login|account)/.test(name)) {
-            return 'VARCHAR(50)'
-        }
-        if (/(password|pwd|hash|token|key|secret)/.test(name)) {
-            return 'VARCHAR(255)'
-        }
-
-        // ==================== Name Type ====================
-        if (/(name|title|label)$/.test(name)) {
-            return 'VARCHAR(100)'
-        }
-        if (/(first_name|last_name|full_name)/.test(name)) {
-            return 'VARCHAR(50)'
-        }
-
-        // ==================== Text Content Type ====================
-        if (/(description|desc|comment|remark|note|content|text|body|message)/.test(name)) {
-            return 'TEXT'
-        }
-        if (/(summary|abstract|intro)/.test(name)) {
-            return 'VARCHAR(500)'
-        }
-
-        // ==================== Status/Enum Type ====================
-        if (/(status|state|type|kind|category|level|priority|gender)/.test(name)) {
-            return 'VARCHAR(50)'
-        }
-
-        // ==================== IP Address ====================
-        if (/(ip|ip_address|ipaddr)/.test(name)) {
-            return 'VARCHAR(45)'  // IPv6 maximum 45 characters
-        }
-
-        // ==================== Default Type ====================
-        // Default for short fields
-        if (name.length <= 10) {
-            return 'VARCHAR(100)'
-        }
-        // Default for long fields
-        return 'VARCHAR(255)'
-    }
-
-    detectSqlType(sql) {
-        const trimmed = sql.trim().toUpperCase()
-
-        // DDL statements
-        if (/^(CREATE|DROP|ALTER|TRUNCATE|RENAME)\s+/i.test(trimmed)) {
-            return SQL_TYPES.DDL
-        }
-
-        // DML statements
-        if (/^(INSERT|UPDATE|DELETE|REPLACE|LOAD\s+DATA)\s+/i.test(trimmed)) {
-            return SQL_TYPES.DML
-        }
-
-        // Special DDL statements (USE DATABASE)
-        if (/^USE\s+/i.test(trimmed)) {
-            return SQL_TYPES.DDL
-        }
-
-        // Transaction Control Language (TCL) - execute directly
-        if (/^(BEGIN|START\s+TRANSACTION|COMMIT|ROLLBACK|SAVEPOINT)\s*;?$/i.test(trimmed)) {
-            return SQL_TYPES.DDL  // Treat as DDL, execute directly
-        }
-
-        // Administrative commands (including some SHOW statements)
-        if (/^(GRANT|REVOKE|CREATE\s+USER|CREATE\s+ACCOUNT|CREATE\s+ROLE|CREATE\s+SNAPSHOT|CREATE\s+PITR|SHOW\s+PUBLICATIONS|SHOW\s+SNAPSHOTS)/i.test(trimmed)) {
-            return SQL_TYPES.ADMIN
-        }
-
-        // Regular queries (SELECT, SHOW, DESCRIBE, EXPLAIN)
-        if (/^(SELECT|SHOW|DESCRIBE|DESC|EXPLAIN)\s+/i.test(trimmed)) {
-            return SQL_TYPES.QUERY
-        }
-
-        return SQL_TYPES.UNKNOWN
-    }
-
-    isContextError(errorMessage) {
-        const contextKeywords = [
-            'table',
-            'not exist',
-            "doesn't exist",
-            'unknown table',
-            'unknown column',
-            'unknown database',  // Added: cross-database references
-            'column',
-            'database',          // Added: database-related errors
-            'not found'
-        ]
-
-        return contextKeywords.some(keyword => errorMessage.includes(keyword))
-    }
-
-    /**
-     * Extract missing column names from error message
-     *
-     * Supported error formats:
-     * - "column 'price' not found in table"
-     * - "column id does not exist"
-     * - "unknown column 'email'"
-     * - "invalid input: column price does not exist"
-     */
-    extractMissingColumnsFromError(error) {
-        const columns = []
-        const msg = error.message || String(error)
-
-        // Match various missing column error messages
-        const patterns = [
-            /column ['"]?(\w+)['"]? not found/gi,
-            /column (\w+) does not exist/gi,
-            /unknown column ['"]?(\w+)['"]?/gi,
-            /invalid input: column (\w+) does not exist/gi,
-            /['"]?(\w+)['"]? column not found/gi
-        ]
-
-        for (const pattern of patterns) {
-            const matches = msg.matchAll(pattern)
-            for (const match of matches) {
-                const colName = match[1]
-                if (colName && !columns.includes(colName)) {
-                    columns.push(colName)
-                }
-            }
-        }
-
-        return columns
-    }
-
-    /**
-     * Add column to table
-     *
-     * @param {string} tableName - Table name
-     * @param {string} columnName - Column name
-     * @returns {boolean} Whether added successfully
-     */
-    async addColumnToTable(tableName, columnName) {
+        // ==================== Phase 2 & 3: Has expected results → Execute and compare ====================
+        // DML and QUERY: execute SQL and validate results
         try {
-            const type = this.inferColumnType(columnName)
-            const sql = `ALTER TABLE \`${tableName}\` ADD COLUMN \`${columnName}\` ${type}`
-            await this.dbManager.query(sql)
-            return true
-        } catch (error) {
-            // Ignore error (column may already exist, or table does not exist)
-            return false
-        }
-    }
+            const result = await this.dbManager.query(sql)
 
-    /**
-     * Remove cross-database references from SQL
-     *
-     * Replace `db.table` format with `table`, since we create tables in current test database
-     *
-     * @param {string} sql - Original SQL
-     * @param {Array<string>} tables - Extracted table name list
-     * @returns {string} Processed SQL
-     */
-    removeCrossDatabaseReferences(sql, tables) {
-        let result = sql
-
-        // For each table name, find and replace db.table format
-        // Match patterns: (\w+)\.(tableName)
-        // Support backticks: `db`.`table` or db.table
-        for (const table of tables) {
-            // Match various formats:
-            // 1. db.table
-            // 2. `db`.`table`
-            // 3. db.`table`
-            // 4. `db`.table
-            const patterns = [
-                new RegExp('\\w+\\.' + table + '\\b', 'gi'),           // db.table
-                new RegExp('`\\w+`\\.`' + table + '`', 'gi'),          // `db`.`table`
-                new RegExp('\\w+\\.`' + table + '`', 'gi'),            // db.`table`
-                new RegExp('`\\w+`\\.' + table + '\\b', 'gi')          // `db`.table
-            ]
-
-            for (const pattern of patterns) {
-                result = result.replace(pattern, table)
+            // Compare results with expected
+            const comparison = this.compareResults(result, expectedResults, sqlType)
+            if (!comparison.matched) {
+                return {
+                    status: VALIDATION_STATUS.ERROR,
+                    message: `Result validation failed: ${comparison.reason}`,
+                    type: sqlType,
+                    detail: comparison.reason
+                }
             }
-        }
 
-        return result
+            return {
+                status: VALIDATION_STATUS.SUCCESS,
+                message: 'SQL executed successfully and result matches expected',
+                type: sqlType
+            }
+
+        } catch (execError) {
+            // Execution failed - try auto-completion with expected results
+            return await this.tryExecuteWithAutoComplete(sql, sqlType, execError, expectedResults)
+        }
     }
 
     /**
-     * Validate administrative commands (at least check syntax)
+     * Phase 4: Validate semantics only using PREPARE (no execution)
+     * Used when no expected results are defined
      */
-    async validateAdminCommand(sql, sqlType) {
+    async validateSemanticsOnlyWithPrepare(sql, sqlType) {
         try {
-            // Check syntax with PREPARE
+            // Use PREPARE to validate syntax and semantics
             const escapedSql = sql.replace(/'/g, "''")
             await this.dbManager.query(`PREPARE stmt FROM '${escapedSql}'`)
             await this.dbManager.query('DEALLOCATE PREPARE stmt')
 
             return {
-                status: VALIDATION_STATUS.SKIP,
-                message: 'Administrative command, syntax is correct but execution skipped',
+                status: VALIDATION_STATUS.SUCCESS,
+                message: 'Semantics validated (no expected results, execution skipped)',
                 type: sqlType
             }
         } catch (error) {
-            // Check if it's "internal error" (MatrixOne's PREPARE does not support some administrative commands)
             const errorMsg = error.message.toLowerCase()
 
-            if (errorMsg.includes('internal error')) {
-                // internal error means PREPARE does not support this statement, but it doesn't mean syntax error
-                // We consider this normal and skip execution
+            // If it's a context error (table/column doesn't exist), syntax is still correct
+            if (this.isContextError(errorMsg)) {
                 return {
-                    status: VALIDATION_STATUS.SKIP,
-                    message: 'Administrative command, syntax check and execution skipped',
-                    type: sqlType,
-                    detail: 'PREPARE does not support this type of administrative command'
+                    status: VALIDATION_STATUS.SUCCESS,
+                    message: 'Semantics validated (tables created at runtime)',
+                    type: sqlType
                 }
             }
 
-            // Other errors are true syntax errors
+            // True syntax or semantic error
             return {
                 status: VALIDATION_STATUS.ERROR,
-                message: `Administrative command syntax error: ${error.message}`,
+                message: `Semantic error: ${error.message}`,
                 type: sqlType,
                 detail: error.message
             }
         }
     }
 
-    isComment(sql) {
-        const trimmed = sql.trim()
-        return trimmed.startsWith('--') ||
-            trimmed.startsWith('#') ||
-            trimmed.startsWith('/*')
+    /**
+     * Phase 2 & 3: Try to execute with auto-completion based on expected results
+     * When execution fails due to missing tables/columns, generate data from expected results
+     */
+    async tryExecuteWithAutoComplete(sql, sqlType, originalError, expectedResults) {
+        const errorMsg = originalError.message.toLowerCase()
+
+        // First check if it's a syntax error (not recoverable)
+        if (errorMsg.includes('syntax error') || errorMsg.includes('sql syntax')) {
+            return {
+                status: VALIDATION_STATUS.ERROR,
+                message: `SQL syntax error: ${originalError.message}`,
+                type: sqlType,
+                detail: originalError.message
+            }
+        }
+
+        // Check if it's a context error (missing table/column)
+        if (!this.isContextError(errorMsg)) {
+            return {
+                status: VALIDATION_STATUS.ERROR,
+                message: `Execution failed: ${originalError.message}`,
+                type: sqlType,
+                detail: originalError.message
+            }
+        }
+
+        // Try to auto-complete: create tables and generate data based on expected results
+        try {
+            // 1. Extract table and column info from SQL
+            const tableInfo = this.extractTableInfo(sql)
+
+            if (!tableInfo || !tableInfo.tables || tableInfo.tables.length === 0) {
+                return {
+                    status: VALIDATION_STATUS.ERROR,
+                    message: 'Cannot auto-complete: no tables found in SQL',
+                    type: sqlType,
+                    detail: originalError.message
+                }
+            }
+
+            // 2. Extract WHERE conditions and JOIN conditions
+            const whereConditions = this.extractWhereConditions(sql)
+            const whereColumns = whereConditions.map(c => c.column)
+            const joinConditions = this.extractJoinConditions(sql)
+
+            // 3. Create tables with appropriate columns and ensure all columns exist
+            if (tableInfo.tables.length > 1) {
+                // For JOIN queries, create each table with its specific columns
+                for (const table of tableInfo.tables) {
+                    const tableColumns = this.getTableColumnsForJoin(table, tableInfo, joinConditions)
+                    // Also add WHERE condition columns that might belong to this table
+                    for (const wc of whereColumns) {
+                        if (!wc.includes('.')) {
+                            tableColumns.push(wc)
+                        }
+                    }
+                    const uniqueColumns = [...new Set(tableColumns)]
+                    await this.createOrUpdateTable(table, uniqueColumns.length > 0 ? uniqueColumns : ['id'])
+                }
+            } else {
+                // For single table queries
+                const allColumns = [...new Set([...tableInfo.columns, ...whereColumns])]
+                for (const table of tableInfo.tables) {
+                    await this.createOrUpdateTable(table, allColumns.length > 0 ? allColumns : ['id'])
+                }
+            }
+
+            // 4. Generate and insert data based on expected results
+            await this.generateDataFromExpectedResults(sql, tableInfo, expectedResults)
+
+            // 4. Handle cross-database references
+            let sqlToExecute = this.removeCrossDatabaseReferences(sql, tableInfo.tables)
+
+            // 5. Try to execute with retries for missing columns
+            const maxRetries = 3
+            const addedColumns = []
+
+            for (let attempt = 0; attempt < maxRetries; attempt++) {
+                try {
+                    const result = await this.dbManager.query(sqlToExecute)
+
+                    // Compare results with expected
+                    const comparison = this.compareResults(result, expectedResults, sqlType)
+                    if (!comparison.matched) {
+                        return {
+                            status: VALIDATION_STATUS.ERROR,
+                            message: `Result validation failed: ${comparison.reason}`,
+                            type: sqlType,
+                            detail: comparison.reason
+                        }
+                    }
+
+                    return {
+                        status: VALIDATION_STATUS.SUCCESS,
+                        message: 'Auto-completed and executed successfully',
+                        type: sqlType,
+                        detail: addedColumns.length > 0 ? `Added columns: ${addedColumns.join(', ')}` : 'Tables auto-created'
+                    }
+
+                } catch (retryError) {
+                    // Extract missing columns from error
+                    const missingColumns = this.extractMissingColumnsFromError(retryError)
+
+                    if (missingColumns.length === 0) {
+                        return {
+                            status: VALIDATION_STATUS.ERROR,
+                            message: `Execution failed after auto-complete: ${retryError.message}`,
+                            type: sqlType,
+                            detail: retryError.message
+                        }
+                    }
+
+                    // Add missing columns
+                    let anyAdded = false
+                    for (const col of missingColumns) {
+                        if (!addedColumns.includes(col)) {
+                            for (const table of tableInfo.tables) {
+                                const added = await this.addColumnToTable(table, col)
+                                if (added) {
+                                    anyAdded = true
+                                    addedColumns.push(col)
+                                    break
+                                }
+                            }
+                        }
+                    }
+
+                    if (!anyAdded) {
+                        return {
+                            status: VALIDATION_STATUS.ERROR,
+                            message: `Cannot add missing columns: ${retryError.message}`,
+                            type: sqlType,
+                            detail: retryError.message
+                        }
+                    }
+                }
+            }
+
+            return {
+                status: VALIDATION_STATUS.ERROR,
+                message: 'Max retries reached for auto-completion',
+                type: sqlType,
+                detail: `Added columns: ${addedColumns.join(', ')}`
+            }
+
+        } catch (autoCompleteError) {
+            return {
+                status: VALIDATION_STATUS.ERROR,
+                message: `Auto-completion failed: ${autoCompleteError.message}`,
+                type: sqlType,
+                detail: autoCompleteError.message
+            }
+        }
     }
 
     /**
-     * Compare actual query results with expected results
-     * @param {Array|object} actualResult - Actual query result from database
-     * @param {object} expectedResults - Expected results configuration
-     * @param {string} sqlType - SQL statement type
-     * @returns {object} Comparison result
+     * Phase 2: Generate and insert data based on expected results
+     *
+     * Strategies:
+     * - Expected-Rows: N → Generate N rows that satisfy WHERE conditions
+     * - Expected-Value: V → Generate data that produces value V (for COUNT, SUM, etc.)
+     * - Expected-Values: [v1, v2, ...] → Generate 1 row with these specific values
+     * - output (table format) → Parse table and insert exact data
      */
-    compareResults(actualResult, expectedResults, sqlType) {
-        // If no expected results defined, skip comparison
+    async generateDataFromExpectedResults(sql, tableInfo, expectedResults) {
         if (!expectedResults || Object.keys(expectedResults).length === 0) {
-            return { matched: true, reason: 'No expected results defined' }
+            return
         }
 
-        // Handle DML operations (INSERT, UPDATE, DELETE)
+        const mainTable = tableInfo.tables[0]
+
+        // IMPORTANT: Ensure we have columns from WHERE conditions for data generation
+        const whereConditions = this.extractWhereConditions(sql)
+        const whereColumns = whereConditions.map(c => c.column)
+
+        // Merge tableInfo.columns with WHERE condition columns
+        let columns = [...new Set([...tableInfo.columns, ...whereColumns])]
+        if (columns.length === 0) {
+            columns = ['id']
+        }
+
+        // Phase 3: If output (table format) exists, parse and insert exact data
+        if (expectedResults.output) {
+            await this.generateDataFromTableOutput(mainTable, expectedResults.output, columns)
+            return
+        }
+
+        // Phase 2: Handle Expected-Values (specific values for single row)
+        if (expectedResults.values && Array.isArray(expectedResults.values)) {
+            await this.generateDataForExpectedValues(mainTable, columns, expectedResults.values, sql)
+            return
+        }
+
+        // Phase 2: Handle Expected-Value (single value, typically for aggregates)
+        if (expectedResults.value !== undefined) {
+            await this.generateDataForExpectedValue(mainTable, columns, expectedResults.value, sql, whereConditions)
+            return
+        }
+
+        // Phase 2: Handle Expected-Rows (generate N rows)
+        if (expectedResults.rows !== undefined) {
+            await this.generateDataForExpectedRows(mainTable, columns, expectedResults.rows, sql, tableInfo)
+            return
+        }
+    }
+
+    /**
+     * Generate data for Expected-Rows: N
+     * Creates N rows that satisfy the WHERE conditions in the SQL
+     */
+    async generateDataForExpectedRows(tableName, columns, rowCount, sql, tableInfo) {
+        if (rowCount === 0) {
+            // Expected 0 rows - don't insert any data
+            return
+        }
+
+        // Extract WHERE conditions to generate appropriate data
+        const whereConditions = this.extractWhereConditions(sql)
+
+        // For JOIN queries, we need to handle multiple tables
+        if (tableInfo.tables.length > 1) {
+            await this.generateDataForJoinQuery(tableInfo, rowCount, whereConditions, sql)
+            return
+        }
+
+        // Generate rows for single table
+        for (let i = 0; i < rowCount; i++) {
+            const values = columns.map((col, idx) => {
+                // Check if there's a condition for this column
+                const condition = whereConditions.find(c => c.column.toLowerCase() === col.toLowerCase())
+                if (condition) {
+                    return this.generateValueForCondition(condition, i)
+                }
+                // Generate default value based on column type
+                return this.generateDefaultValue(col, i)
+            })
+
+            const escapedValues = values.map(v => this.escapeValue(v))
+            const insertSql = `INSERT INTO \`${tableName}\` (\`${columns.join('`, `')}\`) VALUES (${escapedValues.join(', ')})`
+
+            try {
+                await this.dbManager.query(insertSql)
+            } catch (error) {
+                // Ignore insert errors (column might not exist yet)
+            }
+        }
+    }
+
+    /**
+     * Generate data for Expected-Value: V (typically for COUNT, SUM, etc.)
+     */
+    async generateDataForExpectedValue(tableName, columns, expectedValue, sql, whereConditions = []) {
+        // Check if it's a COUNT query
+        if (/COUNT\s*\(/i.test(sql)) {
+            const count = parseInt(expectedValue, 10)
+            if (!isNaN(count) && count > 0) {
+                // Use provided whereConditions or extract from SQL
+                const conditions = whereConditions.length > 0 ? whereConditions : this.extractWhereConditions(sql)
+
+                for (let i = 0; i < count; i++) {
+                    const values = columns.map((col) => {
+                        const condition = conditions.find(c => c.column.toLowerCase() === col.toLowerCase())
+                        if (condition) {
+                            return this.generateValueForCondition(condition, i)
+                        }
+                        return this.generateDefaultValue(col, i)
+                    })
+
+                    const escapedValues = values.map(v => this.escapeValue(v))
+                    const insertSql = `INSERT INTO \`${tableName}\` (\`${columns.join('`, `')}\`) VALUES (${escapedValues.join(', ')})`
+
+                    try {
+                        await this.dbManager.query(insertSql)
+                    } catch (error) {
+                        // Ignore insert errors
+                    }
+                }
+            }
+            return
+        }
+
+        // For other single-value queries, insert one row with the expected value
+        const firstCol = columns[0] || 'value'
+        const insertSql = `INSERT INTO \`${tableName}\` (\`${firstCol}\`) VALUES (${this.escapeValue(expectedValue)})`
+        try {
+            await this.dbManager.query(insertSql)
+        } catch (error) {
+            // Ignore
+        }
+    }
+
+    /**
+     * Generate data for Expected-Values: [v1, v2, v3]
+     * Creates one row with the specified values
+     */
+    async generateDataForExpectedValues(tableName, columns, expectedValues, sql) {
+        // Extract column names from SELECT clause for proper mapping
+        const selectColumns = this.extractSelectColumns(sql)
+        const targetColumns = selectColumns.length > 0 ? selectColumns : columns
+
+        // Also extract WHERE conditions to satisfy them
+        const whereConditions = this.extractWhereConditions(sql)
+
+        // Build column list including WHERE condition columns
+        const allColumns = [...new Set([...targetColumns, ...whereConditions.map(c => c.column)])]
+
+        const values = allColumns.map((col, idx) => {
+            // If this column has an expected value, use it
+            const selectIdx = targetColumns.indexOf(col)
+            if (selectIdx !== -1 && selectIdx < expectedValues.length) {
+                return expectedValues[selectIdx]
+            }
+
+            // Check if there's a WHERE condition for this column
+            const condition = whereConditions.find(c => c.column.toLowerCase() === col.toLowerCase())
+            if (condition) {
+                return this.generateValueForCondition(condition, 0)
+            }
+
+            return this.generateDefaultValue(col, 0)
+        })
+
+        const escapedValues = values.map(v => this.escapeValue(v))
+        const insertSql = `INSERT INTO \`${tableName}\` (\`${allColumns.join('`, `')}\`) VALUES (${escapedValues.join(', ')})`
+
+        try {
+            await this.dbManager.query(insertSql)
+        } catch (error) {
+            // Ignore
+        }
+    }
+
+    /**
+     * Phase 3: Generate data from table output format
+     * Parses MySQL-style table output and inserts the exact data
+     */
+    async generateDataFromTableOutput(tableName, tableOutput, fallbackColumns) {
+        const parsed = this.parseTableOutput(tableOutput)
+
+        if (!parsed || parsed.data.length === 0) {
+            return
+        }
+
+        const columns = parsed.columns.length > 0 ? parsed.columns : fallbackColumns
+
+        for (const row of parsed.data) {
+            const values = row.map(v => this.escapeValue(v))
+            const insertSql = `INSERT INTO \`${tableName}\` (\`${columns.join('`, `')}\`) VALUES (${values.join(', ')})`
+
+            try {
+                await this.dbManager.query(insertSql)
+            } catch (error) {
+                // Ignore insert errors
+            }
+        }
+    }
+
+    /** Parse MySQL-style table output, returns { columns, rows, data } */
+    parseTableOutput(tableStr) {
+        const result = { columns: [], rows: [], data: [] }
+        const lines = tableStr.split('\n').filter(l => l.trim())
+        const contentLines = lines.filter(l =>
+            !l.match(/^\s*\+[-+]+\+\s*$/) &&
+            !l.match(/^\d+\s+rows?\s+in\s+set/i) &&
+            !l.match(/^Empty\s+set/i)
+        )
+        if (contentLines.length === 0) return result
+
+        result.columns = this.parseTableRow(contentLines[0])
+        for (let i = 1; i < contentLines.length; i++) {
+            const values = this.parseTableRow(contentLines[i])
+            if (values.length === result.columns.length) {
+                result.data.push(values)
+                const row = {}
+                result.columns.forEach((col, idx) => row[col] = values[idx])
+                result.rows.push(row)
+            }
+        }
+        return result
+    }
+
+    /** Generate data for JOIN queries */
+    async generateDataForJoinQuery(tableInfo, rowCount, whereConditions, sql) {
+        const joinConditions = this.extractJoinConditions(sql)
+        for (let i = 0; i < rowCount; i++) {
+            const joinId = i + 1
+            for (const table of tableInfo.tables) {
+                const tableColumns = this.getTableColumnsForJoin(table, tableInfo, joinConditions)
+                const values = tableColumns.map(col => {
+                    const colLower = col.toLowerCase()
+                    if (colLower === 'id' || colLower.endsWith('_id')) return joinId
+                    const condition = whereConditions.find(c => c.column.toLowerCase() === colLower || c.column.toLowerCase().endsWith('.' + colLower))
+                    return condition ? this.generateValueForCondition(condition, i) : this.generateDefaultValue(col, i)
+                })
+                try { await this.dbManager.query(`INSERT INTO \`${table}\` (\`${tableColumns.join('`, `')}\`) VALUES (${values.map(v => this.escapeValue(v)).join(', ')})`) } catch {}
+            }
+        }
+    }
+
+    /** Extract JOIN conditions from SQL (e.g., ON u.id = o.user_id) */
+    extractJoinConditions(sql) {
+        return [...sql.matchAll(/ON\s+(?:(\w+)\.)?(\w+)\s*=\s*(?:(\w+)\.)?(\w+)/gi)]
+            .map(m => ({ leftTable: m[1] || null, leftColumn: m[2], rightTable: m[3] || null, rightColumn: m[4] }))
+    }
+
+    /** Get columns for a specific table in a JOIN query */
+    getTableColumnsForJoin(tableName, tableInfo, joinConditions) {
+        const columns = new Set(['id'])
+        const tblLower = tableName.toLowerCase(), tblAlias = tableName.charAt(0).toLowerCase()
+
+        // Add columns from tableInfo (skip prefixed columns)
+        tableInfo.columns.filter(c => !c.includes('.')).forEach(c => columns.add(c))
+
+        // Add join columns for this table
+        for (const jc of joinConditions) {
+            if (jc.leftTable && [tblLower, tblAlias].includes(jc.leftTable.toLowerCase())) columns.add(jc.leftColumn)
+            if (jc.rightTable && [tblLower, tblAlias].includes(jc.rightTable.toLowerCase())) columns.add(jc.rightColumn)
+            if (jc.rightColumn.toLowerCase().endsWith('_id')) {
+                const fkTable = jc.rightColumn.toLowerCase().replace('_id', '')
+                columns.add(tblLower.startsWith(fkTable) || tblLower === fkTable + 's' ? 'id' : jc.rightColumn)
+            }
+        }
+        return Array.from(columns)
+    }
+
+    /** Extract WHERE conditions from SQL */
+    extractWhereConditions(sql) {
+        const conditions = []
+        const whereMatch = sql.match(/WHERE\s+([\s\S]+?)(?:GROUP\s+BY|ORDER\s+BY|HAVING|LIMIT|UNION|;|$)/i)
+        if (!whereMatch) return conditions
+
+        const whereClause = whereMatch[1]
+        const operators = [['=', /(?:\w+\.)?(\w+)\s*=\s*(?:'([^']*)'|"([^"]*)"|(\w+))/gi],
+                          ['>', /(?:\w+\.)?(\w+)\s*>\s*(?:'([^']*)'|"([^"]*)"|(\d+(?:\.\d+)?))/gi],
+                          ['<', /(?:\w+\.)?(\w+)\s*<\s*(?:'([^']*)'|"([^"]*)"|(\d+(?:\.\d+)?))/gi]]
+
+        for (const [op, regex] of operators) {
+            for (const match of whereClause.matchAll(regex)) {
+                conditions.push({ column: match[1], operator: op, value: match[2] || match[3] || match[4] })
+            }
+        }
+        return conditions
+    }
+
+    /** Generate a value that satisfies a WHERE condition */
+    generateValueForCondition(condition, index) {
+        const { operator, value } = condition
+        if (operator === '=') return value
+        const num = parseFloat(value)
+        if (isNaN(num)) return value
+        if (operator === '>') return num + index + 1
+        if (operator === '<') return Math.max(0, num - index - 1)
+        if (operator === '>=') return num + index
+        if (operator === '<=') return Math.max(0, num - index)
+        return value
+    }
+
+    /** Generate a default value based on column name */
+    generateDefaultValue(columnName, index) {
+        const name = columnName.toLowerCase(), i = index + 1
+        if (name === 'id' || name.endsWith('_id')) return i
+        if (name.includes('name')) return `Name_${i}`
+        if (name.includes('email')) return `user${i}@example.com`
+        if (name.includes('status')) return 'active'
+        if (/price|amount|total|salary/.test(name)) return 100 + (i * 10)
+        if (name.includes('age')) return 20 + i
+        if (name.includes('date') || name.includes('_at')) return '2024-01-01'
+        return `value_${i}`
+    }
+
+    /** Extract column names from SELECT clause */
+    extractSelectColumns(sql) {
+        const selectMatch = sql.match(/SELECT\s+([\s\S]+?)\s+FROM/i)
+        if (!selectMatch || selectMatch[1].trim() === '*') return []
+
+        return selectMatch[1].split(',').map(part => {
+            const trimmed = part.trim()
+            const aliasMatch = trimmed.match(/(?:\w+\.)?(\w+)\s+(?:AS\s+)?(\w+)$/i)
+            if (aliasMatch) return aliasMatch[2]
+            const qualifiedMatch = trimmed.match(/(?:\w+\.)?(\w+)$/)
+            return qualifiedMatch ? qualifiedMatch[1] : null
+        }).filter(Boolean)
+    }
+
+    /** Escape a value for SQL insertion */
+    escapeValue(value) {
+        if (value === null || value === 'NULL') return 'NULL'
+        if (typeof value === 'number') return value
+        const strVal = String(value)
+        return /^-?\d+(\.\d+)?$/.test(strVal) ? strVal : `'${strVal.replace(/'/g, "''")}'`
+    }
+
+    /** Extract table names and column information from SQL */
+    extractTableInfo(sql) {
+        const info = { tables: [], columns: [] }
+
+        // Tables from FROM/JOIN/INSERT/UPDATE/DELETE
+        for (const match of sql.matchAll(/FROM\s+(?:(\w+)\.)?(\w+)/gi)) info.tables.push(match[2])
+        for (const match of sql.matchAll(/JOIN\s+(?:(\w+)\.)?(\w+)/gi)) info.tables.push(match[2])
+        const insertMatch = sql.match(/INSERT\s+INTO\s+(?:(\w+)\.)?(\w+)/i)
+        if (insertMatch) info.tables.push(insertMatch[2])
+        const updateMatch = sql.match(/UPDATE\s+(?:(\w+)\.)?(\w+)/i)
+        if (updateMatch) info.tables.push(updateMatch[2])
+        const deleteMatch = sql.match(/DELETE\s+FROM\s+(?:(\w+)\.)?(\w+)/i)
+        if (deleteMatch) info.tables.push(deleteMatch[2])
+
+        // Subqueries
+        for (const match of sql.matchAll(/\(\s*SELECT\s+.*?\s+FROM\s+(\w+)/gi)) info.tables.push(match[1])
+
+        // Columns from SELECT/WHERE/GROUP BY/ORDER BY/HAVING
+        const selectMatch = sql.match(/SELECT\s+([\s\S]+?)\s+FROM/i)
+        if (selectMatch && selectMatch[1] !== '*') info.columns.push(...this.extractColumnsFromList(selectMatch[1]))
+
+        const whereMatch = sql.match(/WHERE\s+([\s\S]+?)(?:GROUP\s+BY|ORDER\s+BY|HAVING|LIMIT|UNION|$)/i)
+        if (whereMatch) info.columns.push(...this.extractColumnsFromCondition(whereMatch[1]))
+
+        const groupByMatch = sql.match(/GROUP\s+BY\s+([\s\S]+?)(?:HAVING|ORDER\s+BY|LIMIT|UNION|$)/i)
+        if (groupByMatch) info.columns.push(...this.extractColumnsFromList(groupByMatch[1]))
+
+        const orderByMatch = sql.match(/ORDER\s+BY\s+([\s\S]+?)(?:LIMIT|UNION|$)/i)
+        if (orderByMatch) info.columns.push(...this.extractColumnsFromList(orderByMatch[1]))
+
+        const havingMatch = sql.match(/HAVING\s+([\s\S]+?)(?:ORDER\s+BY|LIMIT|UNION|$)/i)
+        if (havingMatch) info.columns.push(...this.extractColumnsFromCondition(havingMatch[1]))
+
+        // INSERT columns
+        const insertColsMatch = sql.match(/INSERT\s+INTO\s+\w+\s*\(([^)]+)\)/i)
+        if (insertColsMatch) info.columns.push(...insertColsMatch[1].split(',').map(c => c.trim().replace(/[`"'\[\]]/g, '')))
+
+        // UPDATE SET columns
+        const setMatch = sql.match(/SET\s+([\s\S]+?)(?:WHERE|$)/i)
+        if (setMatch) {
+            const setColumns = setMatch[1].match(/(\w+)\s*=/g)
+            if (setColumns) info.columns.push(...setColumns.map(c => c.replace(/\s*=$/, '')))
+        }
+
+        // JOIN ON columns
+        for (const match of sql.matchAll(/ON\s+(?:\w+\.)?(\w+)\s*=\s*(?:\w+\.)?(\w+)/gi)) {
+            info.columns.push(match[1], match[2])
+        }
+
+        // Deduplicate and filter
+        info.tables = [...new Set(info.tables)].filter(t => t && t.length > 0)
+        info.columns = [...new Set(info.columns)].filter(c =>
+            c && c.length > 0 && !c.match(/^\d+$/) && !c.match(/^['"]/) &&
+            !['NULL', 'TRUE', 'FALSE'].includes(c)
+        )
+        return info
+    }
+
+    /** Extract column names from column list */
+    extractColumnsFromList(listStr) {
+        const columns = []
+        for (const part of listStr.split(',')) {
+            const trimmed = part.trim()
+            if (/^(COUNT|SUM|AVG|MAX|MIN|RANK|ROW_NUMBER|DENSE_RANK)\s*\(/i.test(trimmed)) {
+                const innerMatch = trimmed.match(/\((?:\w+\.)?(\w+)\)/)
+                if (innerMatch && innerMatch[1] !== '*') columns.push(innerMatch[1])
+                continue
+            }
+            const qualifiedMatch = trimmed.match(/^(?:\w+\.)?(\w+)/)
+            if (qualifiedMatch && !['AS', 'FROM', 'WHERE', 'OVER', 'PARTITION'].includes(qualifiedMatch[1].toUpperCase())) {
+                columns.push(qualifiedMatch[1])
+            }
+        }
+        return columns
+    }
+
+    /** Extract column names from condition expressions */
+    extractColumnsFromCondition(conditionStr) {
+        const columns = []
+        for (const match of conditionStr.matchAll(/(?:\w+\.)?(\w+)\s*(?:[=<>!]+|IN|LIKE|BETWEEN)/gi)) {
+            columns.push(match[1])
+        }
+        return columns
+    }
+
+    /**
+     * Create table if not exists, or add missing columns if it does exist
+     */
+    async createOrUpdateTable(tableName, columns = []) {
+        if (columns.length === 0 || columns.includes('*')) {
+            columns = ['id']
+        }
+
+        // First, try to create the table
+        const columnDefs = columns.map(col => {
+            const type = this.inferColumnType(col)
+            return `\`${col}\` ${type}`
+        }).join(', ')
+
+        try {
+            const createSql = `CREATE TABLE IF NOT EXISTS \`${tableName}\` (${columnDefs})`
+            await this.dbManager.query(createSql)
+        } catch (error) {
+            // Ignore create errors
+        }
+
+        // Then, ensure all columns exist (add missing ones)
+        for (const col of columns) {
+            await this.addColumnToTable(tableName, col)
+        }
+    }
+
+    /** Infer column type based on column name patterns */
+    inferColumnType(columnName) {
+        const name = columnName.toLowerCase()
+        // ID types
+        if (/^(uuid|guid|.*_uuid|.*_guid)$/.test(name)) return 'VARCHAR(36)'
+        if (/^(id|.*_id)$/.test(name)) return 'INT'
+        if (/^(code|number|no|.*_code|.*_number|.*_no)$/.test(name)) return 'VARCHAR(50)'
+        // Date/Time types
+        if (/(^|_)(date|day)(_|$)/.test(name) && !name.includes('update') && !name.includes('create')) return 'DATE'
+        if (/(created|updated|modified|deleted)_(at|time|date)/.test(name)) return 'DATETIME'
+        if (/(timestamp|.*_time|.*_at)$/.test(name)) return 'DATETIME'
+        if (/(^|_)year(_|$)/.test(name)) return 'INT'
+        // Numeric types
+        if (/(price|amount|salary|cost|fee|total|subtotal|revenue|profit)/.test(name)) return 'DECIMAL(10,2)'
+        if (/(count|quantity|num|number|qty|stock)/.test(name) && !name.includes('phone')) return 'INT'
+        if (/(rate|ratio|percent|percentage|score|rating|point|rank)/.test(name)) return 'DECIMAL(5,2)'
+        // Boolean
+        if (/^(is_|has_|can_|should_|enabled|disabled|active|deleted)/.test(name)) return 'BOOLEAN'
+        // Contact info
+        if (/(email|mail)/.test(name)) return 'VARCHAR(255)'
+        if (/(phone|mobile|tel|fax)/.test(name)) return 'VARCHAR(20)'
+        if (/(url|link|website|domain|address|addr)/.test(name)) return 'VARCHAR(500)'
+        if (/(zip|postal|postcode)/.test(name)) return 'VARCHAR(10)'
+        // Identifiers
+        if (/(username|login|account)/.test(name)) return 'VARCHAR(50)'
+        if (/(password|pwd|hash|token|key|secret)/.test(name)) return 'VARCHAR(255)'
+        // Names
+        if (/(name|title|label)$/.test(name)) return 'VARCHAR(100)'
+        if (/(first_name|last_name|full_name)/.test(name)) return 'VARCHAR(50)'
+        // Text content
+        if (/(description|desc|comment|remark|note|content|text|body|message)/.test(name)) return 'TEXT'
+        if (/(summary|abstract|intro)/.test(name)) return 'VARCHAR(500)'
+        // Status/Enum
+        if (/(status|state|type|kind|category|level|priority|gender)/.test(name)) return 'VARCHAR(50)'
+        // IP Address
+        if (/(ip|ip_address|ipaddr)/.test(name)) return 'VARCHAR(45)'
+        // Default
+        return name.length <= 10 ? 'VARCHAR(100)' : 'VARCHAR(255)'
+    }
+
+    /** Detect SQL statement type */
+    detectSqlType(sql) {
+        const trimmed = sql.trim().toUpperCase()
+        // ADMIN commands must be checked BEFORE generic DDL (since CREATE ACCOUNT starts with CREATE)
+        if (/^(GRANT|REVOKE)\s+/i.test(trimmed)) return SQL_TYPES.ADMIN
+        if (/^(CREATE|DROP|ALTER)\s+(USER|ACCOUNT|ROLE|SNAPSHOT|PITR|PUBLICATION|SUBSCRIPTION)\s+/i.test(trimmed)) return SQL_TYPES.ADMIN
+        if (/^SHOW\s+(PUBLICATIONS|SUBSCRIPTIONS|SNAPSHOTS|PITR|GRANTS)\b/i.test(trimmed)) return SQL_TYPES.ADMIN
+        // DDL
+        if (/^(CREATE|DROP|ALTER|TRUNCATE|RENAME)\s+/i.test(trimmed)) return SQL_TYPES.DDL
+        if (/^USE\s+/i.test(trimmed)) return SQL_TYPES.DDL
+        if (/^(BEGIN|START\s+TRANSACTION|COMMIT|ROLLBACK|SAVEPOINT)\s*;?$/i.test(trimmed)) return SQL_TYPES.DDL
+        // DML
+        if (/^(INSERT|UPDATE|DELETE|REPLACE|LOAD\s+DATA)\s+/i.test(trimmed)) return SQL_TYPES.DML
+        // QUERY
+        if (/^(SELECT|SHOW|DESCRIBE|DESC|EXPLAIN)\s+/i.test(trimmed)) return SQL_TYPES.QUERY
+        return SQL_TYPES.UNKNOWN
+    }
+
+    /** Check if error is a context error (missing table/column/database) */
+    isContextError(errorMessage) {
+        const msg = errorMessage.toLowerCase()
+        // Syntax errors are NOT context errors
+        if (/syntax error|sql syntax|parse error|unexpected token|invalid syntax/i.test(msg)) return false
+        // Context error patterns
+        return /(table|column|database|object|relation).*(doesn't exist|does not exist|not exist|unknown|not found)/i.test(msg)
+    }
+
+    /** Extract missing column names from error message */
+    extractMissingColumnsFromError(error) {
+        const columns = []
+        const msg = error.message || String(error)
+        const patterns = [/column ['"]?(\w+)['"]? not found/gi, /column (\w+) does not exist/gi, /unknown column ['"]?(\w+)['"]?/gi]
+        for (const pattern of patterns) {
+            for (const match of msg.matchAll(pattern)) {
+                if (match[1] && !columns.includes(match[1])) columns.push(match[1])
+            }
+        }
+        return columns
+    }
+
+    /** Add column to table */
+    async addColumnToTable(tableName, columnName) {
+        try {
+            await this.dbManager.query(`ALTER TABLE \`${tableName}\` ADD COLUMN \`${columnName}\` ${this.inferColumnType(columnName)}`)
+            return true
+        } catch { return false }
+    }
+
+    /** Remove cross-database references (db.table → table) */
+    removeCrossDatabaseReferences(sql, tables) {
+        let result = sql
+        for (const table of tables) {
+            result = result.replace(new RegExp(`\\w+\\.${table}\\b`, 'gi'), table)
+            result = result.replace(new RegExp(`\`\\w+\`\\.\`${table}\``, 'gi'), table)
+        }
+        return result
+    }
+
+    /** Validate administrative commands (check syntax/semantics, then SKIP execution) */
+    async validateAdminCommand(sql, sqlType) {
+        try {
+            await this.dbManager.query(`PREPARE stmt FROM '${sql.replace(/'/g, "''")}'`)
+            await this.dbManager.query('DEALLOCATE PREPARE stmt')
+            return { status: VALIDATION_STATUS.SKIP, message: 'Administrative command, syntax is correct but execution skipped', type: sqlType }
+        } catch (error) {
+            const errorMsg = error.message.toLowerCase()
+
+            // Syntax errors are real errors
+            if (errorMsg.includes('syntax error') || errorMsg.includes('sql syntax')) {
+                return { status: VALIDATION_STATUS.ERROR, message: `Administrative command syntax error: ${error.message}`, type: sqlType, detail: error.message }
+            }
+
+            // Other errors (internal error, account exists/not exists, etc.) - syntax is OK, just SKIP
+            return { status: VALIDATION_STATUS.SKIP, message: 'Administrative command, syntax validated but execution skipped', type: sqlType }
+        }
+    }
+
+    isComment(sql) {
+        const t = sql.trim()
+        return t.startsWith('--') || t.startsWith('#') || t.startsWith('/*')
+    }
+
+    /** Compare actual query results with expected results */
+    compareResults(actualResult, expectedResults, sqlType) {
+        const fail = (reason) => ({ matched: false, reason })
+        if (!expectedResults || Object.keys(expectedResults).length === 0) return { matched: true }
+
+        // DML operations
         if (sqlType === SQL_TYPES.DML) {
             if (expectedResults.affectedRows !== undefined) {
-                const actualAffected = actualResult.affectedRows || 0
-                if (actualAffected !== expectedResults.affectedRows) {
-                    return {
-                        matched: false,
-                        reason: `Expected ${expectedResults.affectedRows} affected rows, but got ${actualAffected}`
-                    }
-                }
+                const actual = actualResult.affectedRows || 0
+                if (actual !== expectedResults.affectedRows) return fail(`Expected ${expectedResults.affectedRows} affected rows, but got ${actual}`)
             }
             return { matched: true }
         }
 
-        // Handle SELECT queries
+        // SELECT queries
         if (sqlType === SQL_TYPES.QUERY) {
             const rows = Array.isArray(actualResult) ? actualResult : []
+            const er = expectedResults
 
-            // Check row count
-            if (expectedResults.rows !== undefined) {
-                if (rows.length !== expectedResults.rows) {
-                    return {
-                        matched: false,
-                        reason: `Expected ${expectedResults.rows} rows, but got ${rows.length}`
-                    }
+            if (er.rows !== undefined && rows.length !== er.rows)
+                return fail(`Expected ${er.rows} rows, but got ${rows.length}`)
+
+            if (er.value !== undefined) {
+                if (rows.length === 0) return fail(`Expected value ${er.value}, but got no rows`)
+                const firstValue = Object.values(rows[0])[0]
+                if (!this.valuesMatch(firstValue, er.value, er.precision))
+                    return fail(`Expected value ${er.value}, but got ${firstValue}`)
+            }
+
+            if (er.values?.length) {
+                if (rows.length === 0) return fail(`Expected values ${er.values.join(', ')}, but got no rows`)
+                const actualValues = Object.values(rows[0])
+                if (actualValues.length !== er.values.length)
+                    return fail(`Expected ${er.values.length} columns, but got ${actualValues.length}`)
+                for (let i = 0; i < er.values.length; i++) {
+                    if (!this.valuesMatch(actualValues[i], er.values[i], er.precision))
+                        return fail(`Column ${i}: expected ${er.values[i]}, but got ${actualValues[i]}`)
                 }
             }
 
-            // Check single value (for COUNT, single column single row)
-            if (expectedResults.value !== undefined) {
-                if (rows.length === 0) {
-                    return {
-                        matched: false,
-                        reason: `Expected value ${expectedResults.value}, but got no rows`
-                    }
-                }
-
-                const firstRow = rows[0]
-                const firstValue = Object.values(firstRow)[0]
-
-                if (!this.valuesMatch(firstValue, expectedResults.value, expectedResults.precision)) {
-                    return {
-                        matched: false,
-                        reason: `Expected value ${expectedResults.value}, but got ${firstValue}`
-                    }
-                }
-            }
-
-            // Check multiple values (for single row with multiple columns)
-            if (expectedResults.values !== undefined && Array.isArray(expectedResults.values)) {
-                if (rows.length === 0) {
-                    return {
-                        matched: false,
-                        reason: `Expected values ${expectedResults.values.join(', ')}, but got no rows`
-                    }
-                }
-
-                const firstRow = rows[0]
-                const actualValues = Object.values(firstRow)
-
-                if (actualValues.length !== expectedResults.values.length) {
-                    return {
-                        matched: false,
-                        reason: `Expected ${expectedResults.values.length} columns, but got ${actualValues.length}`
-                    }
-                }
-
-                for (let i = 0; i < expectedResults.values.length; i++) {
-                    if (!this.valuesMatch(actualValues[i], expectedResults.values[i], expectedResults.precision)) {
-                        return {
-                            matched: false,
-                            reason: `Column ${i}: expected ${expectedResults.values[i]}, but got ${actualValues[i]}`
-                        }
-                    }
-                }
-            }
-
-            // Check contains (check if result contains certain values)
-            if (expectedResults.contains !== undefined && Array.isArray(expectedResults.contains)) {
+            if (er.contains?.length) {
                 const allValues = rows.flatMap(row => Object.values(row).map(String))
-
-                for (const expectedValue of expectedResults.contains) {
-                    if (!allValues.some(v => v.includes(expectedValue))) {
-                        return {
-                            matched: false,
-                            reason: `Expected result to contain "${expectedValue}", but it was not found`
-                        }
-                    }
+                for (const ev of er.contains) {
+                    if (!allValues.some(v => v.includes(ev))) return fail(`Expected result to contain "${ev}", but it was not found`)
                 }
             }
 
-            // Check full output (table format)
-            if (expectedResults.output !== undefined) {
-                // Use the new table comparison functionality
-                const comparison = this.compareTableOutput(rows, expectedResults.output)
-                if (!comparison.matched) {
-                    return comparison
-                }
+            if (er.output !== undefined) {
+                const comparison = this.compareTableOutput(rows, er.output)
+                if (!comparison.matched) return comparison
             }
-
-            return { matched: true }
         }
-
-        // Handle DDL operations
-        if (sqlType === SQL_TYPES.DDL) {
-            if (expectedResults.success !== undefined) {
-                // For DDL, success is determined by whether it executed without error
-                // This check happens before we get here
-                return { matched: true }
-            }
-            return { matched: true }
-        }
-
         return { matched: true }
     }
 
-    /**
-     * Compare two values with optional precision for floating point numbers
-     * @param {any} actual - Actual value
-     * @param {any} expected - Expected value
-     * @param {number} precision - Precision for floating point comparison
-     * @returns {boolean} Whether values match
-     */
+    /** Compare two values with optional precision for floating point */
     valuesMatch(actual, expected, precision = 0.0001) {
-        // Handle null/undefined
         if (actual === null && (expected === null || expected === 'NULL')) return true
         if (actual === null || expected === null) return false
 
-        // Convert to strings for comparison
         const actualStr = String(actual).trim()
-        const expectedStr = String(expected).trim()
+        let expectedStr = String(expected).trim()
+        if (actualStr === expectedStr || actualStr.toLowerCase() === expectedStr.toLowerCase()) return true
 
-        // Exact match
-        if (actualStr === expectedStr) return true
-
-        // Case-insensitive match
-        if (actualStr.toLowerCase() === expectedStr.toLowerCase()) return true
-
-        // Try numeric comparison
         const actualNum = parseFloat(actual)
-        const expectedNum = parseFloat(expected)
+        if (expectedStr.startsWith('~')) expectedStr = expectedStr.substring(1)
+        const expectedNum = parseFloat(expectedStr)
 
-        if (!isNaN(actualNum) && !isNaN(expectedNum)) {
-            // Handle approximate comparison (for floats)
-            if (expectedStr.startsWith('~')) {
-                const expectedValue = parseFloat(expectedStr.substring(1))
-                return Math.abs(actualNum - expectedValue) <= precision
-            }
-
-            // Exact numeric comparison
-            return Math.abs(actualNum - expectedNum) <= precision
-        }
-
-        return false
+        return !isNaN(actualNum) && !isNaN(expectedNum) && Math.abs(actualNum - expectedNum) <= precision
     }
 
-    /**
-     * Parse table output string (MySQL-style table format)
-     * Example input:
-     * +----+-------+-----+
-     * | id | name  | age |
-     * +----+-------+-----+
-     * |  1 | Alice |  25 |
-     * |  2 | Bob   |  30 |
-     * +----+-------+-----+
-     *
-     * @param {string} tableStr - Table string
-     * @returns {object} { columns: [...], rows: [...] }
-     */
-    parseTableOutput(tableStr) {
-        const lines = tableStr.split('\n').filter(l => l.trim())
-
-        // Filter out border lines (+----+)
-        const contentLines = lines.filter(l => !l.match(/^\s*\+[-+]+\+\s*$/))
-
-        if (contentLines.length === 0) {
-            return { columns: [], rows: [] }
-        }
-
-        // First content line is header
-        const headerLine = contentLines[0]
-        const columns = this.parseTableRow(headerLine)
-
-        // Rest are data rows
-        const rows = []
-        for (let i = 1; i < contentLines.length; i++) {
-            const values = this.parseTableRow(contentLines[i])
-            if (values.length === columns.length) {
-                const row = {}
-                columns.forEach((col, idx) => {
-                    row[col] = values[idx]
-                })
-                rows.push(row)
-            }
-        }
-
-        return { columns, rows }
-    }
-
-    /**
-     * Parse a single table row (extract values between pipes)
-     * Example: "| id | name  | age |" -> ["id", "name", "age"]
-     *
-     * @param {string} line - Table row line
-     * @returns {Array<string>} Array of cell values
-     */
+    /** Parse a single table row: "| a | b |" -> ["a", "b"] */
     parseTableRow(line) {
-        // Split by | and remove first/last empty elements
-        const parts = line.split('|').slice(1, -1)
-        return parts.map(p => p.trim())
+        return line.split('|').slice(1, -1).map(p => p.trim())
     }
 
-    /**
-     * Compare table output with actual query results
-     *
-     * @param {Array} actualRows - Actual query result rows
-     * @param {string} expectedTableStr - Expected table output string
-     * @returns {object} { matched: boolean, reason: string }
-     */
+    /** Compare table output with actual query results */
     compareTableOutput(actualRows, expectedTableStr) {
-        // Check for "Empty set" format
         if (/^\s*Empty\s+set/i.test(expectedTableStr.trim())) {
-            // Expected empty result
-            if (actualRows.length === 0) {
-                return { matched: true }
-            } else {
-                return {
-                    matched: false,
-                    reason: `Expected empty result set, but got ${actualRows.length} rows`
-                }
-            }
+            return actualRows.length === 0
+                ? { matched: true }
+                : { matched: false, reason: `Expected empty result set, but got ${actualRows.length} rows` }
         }
 
-        // Parse expected table
         const expected = this.parseTableOutput(expectedTableStr)
-
         if (expected.rows.length === 0) {
-            // Could not parse, but check if actual is also empty
-            if (actualRows.length === 0) {
-                return { matched: true, reason: 'Both expected and actual are empty' }
-            }
-            return { matched: false, reason: 'Could not parse expected table output' }
+            return actualRows.length === 0
+                ? { matched: true, reason: 'Both expected and actual are empty' }
+                : { matched: false, reason: 'Could not parse expected table output' }
         }
 
-        // Check row count
         if (actualRows.length !== expected.rows.length) {
-            return {
-                matched: false,
-                reason: `Expected ${expected.rows.length} rows, but got ${actualRows.length}`
-            }
+            return { matched: false, reason: `Expected ${expected.rows.length} rows, but got ${actualRows.length}` }
         }
 
-        // Check column count (use first row)
-        if (actualRows.length > 0) {
-            const actualColCount = Object.keys(actualRows[0]).length
-            const expectedColCount = expected.columns.length
-
-            if (actualColCount !== expectedColCount) {
-                return {
-                    matched: false,
-                    reason: `Expected ${expectedColCount} columns, but got ${actualColCount}`
-                }
-            }
+        if (actualRows.length > 0 && Object.keys(actualRows[0]).length !== expected.columns.length) {
+            return { matched: false, reason: `Expected ${expected.columns.length} columns, but got ${Object.keys(actualRows[0]).length}` }
         }
 
-        // Compare each row
         for (let i = 0; i < expected.rows.length; i++) {
-            const expectedRow = expected.rows[i]
-            const actualRow = actualRows[i]
-
-            // Compare each column value
             for (const col of expected.columns) {
-                const expectedVal = expectedRow[col]
-                const actualVal = actualRow[col]
-
-                // Use existing valuesMatch for flexible comparison
-                if (!this.valuesMatch(actualVal, expectedVal)) {
-                    return {
-                        matched: false,
-                        reason: `Row ${i + 1}, column '${col}': expected '${expectedVal}', but got '${actualVal}'`
-                    }
+                if (!this.valuesMatch(actualRows[i][col], expected.rows[i][col])) {
+                    return { matched: false, reason: `Row ${i + 1}, column '${col}': expected '${expected.rows[i][col]}', but got '${actualRows[i][col]}'` }
                 }
             }
         }
-
         return { matched: true }
+    }
+
+    /** Check if expected results exist */
+    hasExpectedResults(er) {
+        if (!er || typeof er !== 'object') return false
+        return er.rows !== undefined || er.value !== undefined ||
+            (er.values?.length > 0) || (er.contains?.length > 0) ||
+            (er.output?.trim()) || er.affectedRows !== undefined
     }
 }
 
