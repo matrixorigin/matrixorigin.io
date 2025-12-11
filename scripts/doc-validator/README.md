@@ -31,11 +31,11 @@ This is an automated validation tool designed specifically for MatrixOne documen
 npm run check:links:files -- <file-path>
 
 # 2. Check SQL syntax
-npm run validate-docs -- <file-path>
+npm run validate-docs:files -- <file-path>
 
 # 3. Check SQL execution (requires MatrixOne database)
 npm run mo:start                          # Start database
-npm run validate-docs:execution -- <file-path> --verbose
+npm run validate-docs-execution:files -- <file-path> --verbose
 npm run mo:stop                           # Stop database
 ```
 
@@ -50,7 +50,7 @@ npm run validate-docs:changed
 
 # 3. Check SQL execution in changed files (requires MatrixOne database)
 npm run mo:start                          # Start database
-npm run validate-docs:execution:changed   # Validate SQL
+npm run validate-docs-execution:changed   # Validate SQL
 npm run mo:stop                           # Stop database
 ```
 
@@ -189,10 +189,10 @@ npm run check:links:changed
 
 ```bash
 # Check SQL syntax in specific files
-npm run validate-docs -- <file-path>
+npm run validate-docs:files -- <file-path>
 
 # Check SQL syntax in multiple files
-npm run validate-docs -- <file1> <file2> <file3>
+npm run validate-docs:files -- <file1> <file2> <file3>
 
 # Check SQL syntax in all documents (slow, complete)
 npm run validate-docs
@@ -259,16 +259,16 @@ docker run -d -p 6001:6001 --name mo-test matrixorigin/matrixone:latest
 
 ```bash
 # Validate SQL in specific files (requires MatrixOne database)
-npm run validate-docs:execution -- <file-path>
+npm run validate-docs-execution:files -- <file-path>
 
 # Only check changed files ⭐ (most commonly used)
-npm run validate-docs:execution:changed
+npm run validate-docs-execution:changed
 
 # Full check (check all documents)
 npm run validate-docs:all
 
 # Verbose output mode (show execution results for each SQL)
-npm run validate-docs:execution -- <file-path> --verbose
+npm run validate-docs-execution:files -- <file-path> --verbose
 ```
 
 ### Database Management Commands
@@ -302,14 +302,14 @@ docker ps | grep mo-test
 
 ```bash
 # Custom database connection
-npm run validate-docs:execution -- <file> \
+npm run validate-docs-execution:files -- <file> \
   --db-host 192.168.1.100 \
   --db-port 6001 \
   --db-user root \
   --db-password 111
 
 # View help
-npm run validate-docs:execution -- --help
+npm run validate-docs-execution -- --help
 ```
 
 ### Explanation of Execution Results
@@ -335,10 +335,10 @@ After execution validation, the report will display the following statistics:
 
 ```bash
 # Daily development - validate SQL in modified files
-npm run validate-docs:execution -- docs/MatrixOne/Develop/import-data/bulk-load/load-data.md --verbose
+npm run validate-docs-execution:files -- docs/MatrixOne/Develop/import-data/bulk-load/load-data.md --verbose
 
 # Validate test files
-npm run validate-docs:execution -- docs/MatrixOne/Test/context-completion-test.md
+npm run validate-docs-execution:files -- docs/MatrixOne/Test/context-completion-test.md
 ```
 
 ---
