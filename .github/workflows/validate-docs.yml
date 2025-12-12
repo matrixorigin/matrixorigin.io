@@ -26,7 +26,15 @@ jobs:
           node-version: 18
           cache: 'npm'
 
+      # Setup Go for native SQL syntax checking with MatrixOne official parser
+      # If Go is not available, fallback to node-sql-parser + whitelist
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.23'
+
       - name: Install dependencies
+        # npm install will auto-build syntax-checker if Go is available
         run: npm ci
 
       - name: Validate SQL in changed files

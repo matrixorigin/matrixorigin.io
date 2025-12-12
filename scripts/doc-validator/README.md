@@ -19,6 +19,38 @@ This is an automated validation tool designed specifically for MatrixOne documen
 - ✅ **Ensure Documentation Quality** - Guarantee all SQL examples can be executed correctly
 - ✅ **Zero Learning Curve** - Transparent to contributors, no additional configuration required, and CI runs automatically
 
+### Prerequisites
+
+- **Node.js** (required) - v18 or higher
+- **Go** (optional) - For enhanced SQL syntax checking with MatrixOne official parser
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/matrixorigin/matrixorigin.io.git
+cd matrixorigin.io
+
+# Install dependencies (this will also build the syntax checker if Go is available)
+npm install
+```
+
+During `npm install`, you will see one of the following:
+
+```
+# If Go is installed:
+✅ Go environment found: go version go1.25.4 darwin/amd64
+🔨 Building syntax-checker...
+✅ Build successful!
+   Will use MatrixOne official parser for syntax checking
+
+# If Go is NOT installed:
+⚠️  Go environment not found
+   Will use fallback mode (node-sql-parser + whitelist)
+```
+
+Both modes work correctly - Go is optional but recommended for more accurate syntax checking.
+
 ### Quick Start
 
 **Scenario 1: Check a Single File**
