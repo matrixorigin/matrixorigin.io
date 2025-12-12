@@ -1,27 +1,161 @@
 /**
  * SQL Syntax Checker
+ * Supports two modes:
+ * 1. Native mode: Uses MatrixOne official SQL parser (requires Go environment)
+ * 2. Fallback mode: Uses node-sql-parser + whitelist (no Go required)
  */
 
+import { spawn } from 'child_process'
+import { existsSync, readFileSync } from 'fs'
+import path from 'path'
+import { fileURLToPath } from 'url'
 import NodeSqlParser from 'node-sql-parser'
 import { extractSqlFromFile, splitSqlStatements } from '../utils/sql-extractor.js'
 import { config } from '../config.js'
 
-const { Parser } = NodeSqlParser
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+
+// Paths
+const SYNTAX_CHECKER_DIR = path.join(__dirname, '..', 'syntax-checker')
+const SYNTAX_CHECKER_BINARY = path.join(SYNTAX_CHECKER_DIR, 'syntax-checker')
+const BUILD_STATUS_FILE = path.join(SYNTAX_CHECKER_DIR, '.build-status.json')
+
+/**
+ * Detect which mode to use
+ */
+function detectMode() {
+    // Check build status file
+    if (existsSync(BUILD_STATUS_FILE)) {
+        try {
+            const status = JSON.parse(readFileSync(BUILD_STATUS_FILE, 'utf-8'))
+            if (status.mode === 'native' && existsSync(SYNTAX_CHECKER_BINARY)) {
+                return { mode: 'native', info: status }
+            }
+            return { mode: 'fallback', info: status }
+        } catch {
+            // Fall through to binary check
+        }
+    }
+
+    // Direct binary check
+    if (existsSync(SYNTAX_CHECKER_BINARY)) {
+        return { mode: 'native', info: { mode: 'native', reason: 'Binary exists' } }
+    }
+
+    return { mode: 'fallback', info: { mode: 'fallback', reason: 'No build status or binary' } }
+}
 
 /**
  * SQL Syntax Checker Class
+ * Automatically selects the best available mode
  */
 export class SqlSyntaxChecker {
     constructor() {
-        // Initialize SQL parser with MySQL dialect
-        this.parser = new Parser()
-        this.dialect = 'mysql'
+        const detection = detectMode()
+        this.mode = detection.mode
+        this.modeInfo = detection.info
+
+        if (this.mode === 'native') {
+            this.checkerPath = SYNTAX_CHECKER_BINARY
+        } else {
+            // Fallback: use node-sql-parser
+            const { Parser } = NodeSqlParser
+            this.parser = new Parser()
+            this.dialect = 'mysql'
+        }
+    }
+
+    /**
+     * Get current mode description for reporting
+     */
+    getModeDescription() {
+        if (this.mode === 'native') {
+            return '🚀 Using MatrixOne official parser (native mode)'
+        }
+        return '📦 Using node-sql-parser + whitelist (fallback mode)'
+    }
+
+    /**
+     * Check SQL syntax using MatrixOne official parser (native mode)
+     */
+    async checkWithNativeParser(statements) {
+        return new Promise((resolve, reject) => {
+            const child = spawn(this.checkerPath, [], {
+                stdio: ['pipe', 'pipe', 'pipe']
+            })
+
+            let stdout = ''
+            let stderr = ''
+
+            child.stdout.on('data', (data) => {
+                stdout += data.toString()
+            })
+
+            child.stderr.on('data', (data) => {
+                stderr += data.toString()
+            })
+
+            child.on('close', (code) => {
+                if (stderr && code !== 0) {
+                    reject(new Error(`syntax-checker error: ${stderr}`))
+                    return
+                }
+
+                try {
+                    const response = JSON.parse(stdout)
+                    resolve(response.results || [])
+                } catch (e) {
+                    reject(new Error(`Failed to parse syntax-checker output: ${stdout}`))
+                }
+            })
+
+            child.on('error', (err) => {
+                reject(new Error(`Failed to spawn syntax-checker: ${err.message}`))
+            })
+
+            const request = JSON.stringify({ statements })
+            child.stdin.write(request)
+            child.stdin.end()
+        })
+    }
+
+    /**
+     * Check SQL syntax using node-sql-parser + whitelist (fallback mode)
+     */
+    checkWithFallbackParser(sql) {
+        // First check whitelist
+        if (this.isInMatrixOneWhitelist(sql)) {
+            return { valid: true, sql }
+        }
+
+        try {
+            this.parser.astify(sql, { database: this.dialect })
+            return { valid: true, sql }
+        } catch (error) {
+            return {
+                valid: false,
+                error: error.message,
+                sql
+            }
+        }
+    }
+
+    /**
+     * Check if SQL is in MatrixOne whitelist (for fallback mode)
+     */
+    isInMatrixOneWhitelist(sql) {
+        const whitelist = config.syntaxCheck.matrixoneWhitelist || []
+        for (const pattern of whitelist) {
+            if (pattern.test(sql)) {
+                return true
+            }
+        }
+        return false
     }
 
     /**
      * Check SQL syntax in a single file
-     * @param {string} filePath - File path
-     * @returns {Promise<object>} Check result
      */
     async checkFile(filePath) {
         const errors = []
@@ -29,7 +163,6 @@ export class SqlSyntaxChecker {
         let successes = 0
 
         try {
-            // Extract SQL code blocks
             const sqlBlocks = extractSqlFromFile(filePath)
 
             if (sqlBlocks.length === 0) {
@@ -42,7 +175,6 @@ export class SqlSyntaxChecker {
                 }
             }
 
-            // Check each SQL code block
             for (const block of sqlBlocks) {
                 const blockResult = await this.checkSqlBlock(block)
                 errors.push(...blockResult.errors)
@@ -74,102 +206,110 @@ export class SqlSyntaxChecker {
 
     /**
      * Check a single SQL code block
-     * @param {object} block - SQL code block
-     * @returns {Promise<object>} Result with errors, totalStatements, and successes
      */
     async checkSqlBlock(block) {
         const errors = []
-        const statements = splitSqlStatements(block.sql)
-        let totalStatements = 0
+        const rawStatements = splitSqlStatements(block.sql)
+
+        const statements = []
+        const statementLines = []
+
+        for (let i = 0; i < rawStatements.length; i++) {
+            const statement = rawStatements[i]
+            if (!statement.trim() || this.isComment(statement)) {
+                continue
+            }
+            statements.push(statement)
+            statementLines.push(block.startLine + i)
+        }
+
+        if (statements.length === 0) {
+            return { errors: [], totalStatements: 0, successes: 0 }
+        }
+
+        let results
+
+        if (this.mode === 'native') {
+            // Native mode: batch check with MatrixOne parser
+            try {
+                results = await this.checkWithNativeParser(statements)
+            } catch (error) {
+                return {
+                    errors: statements.map((sql, i) => ({
+                        line: statementLines[i],
+                        message: `Parser error: ${error.message}`,
+                        type: 'parser_error',
+                        sql,
+                        version: block.version
+                    })),
+                    totalStatements: statements.length,
+                    successes: 0
+                }
+            }
+        } else {
+            // Fallback mode: check one by one with node-sql-parser
+            results = statements.map(sql => this.checkWithFallbackParser(sql))
+        }
+
         let successes = 0
-
-        for (let i = 0; i < statements.length; i++) {
-            const statement = statements[i]
-
-            // Skip empty statements
-            if (!statement.trim()) {
-                continue
-            }
-
-            // Skip comments
-            if (this.isComment(statement)) {
-                continue
-            }
-
-            totalStatements++
-
-            // Check syntax
-            const error = await this.checkSqlStatement(statement, block.startLine + i)
-            if (error) {
+        for (let i = 0; i < results.length; i++) {
+            const result = results[i]
+            if (result.valid) {
+                successes++
+            } else {
                 errors.push({
-                    ...error,
-                    line: block.startLine,
-                    sql: statement,
+                    line: statementLines[i],
+                    message: `SQL syntax error: ${this.formatError(result.error)}`,
+                    type: 'syntax_error',
+                    detail: result.error,
+                    sql: result.sql,
                     version: block.version
                 })
-            } else {
-                successes++
             }
         }
 
         return {
             errors,
-            totalStatements,
+            totalStatements: statements.length,
             successes
         }
     }
 
     /**
      * Check a single SQL statement
-     * @param {string} sql - SQL statement
-     * @param {number} line - Line number
-     * @returns {Promise<object|null>} Error object or null
      */
     async checkSqlStatement(sql, line) {
-        // First check if it's in MatrixOne whitelist
-        if (this.isInMatrixOneWhitelist(sql)) {
-            // In whitelist, skip syntax check
-            return null
+        let result
+
+        if (this.mode === 'native') {
+            try {
+                const results = await this.checkWithNativeParser([sql])
+                result = results[0]
+            } catch (error) {
+                return {
+                    line,
+                    message: `Parser error: ${error.message}`,
+                    type: 'parser_error'
+                }
+            }
+        } else {
+            result = this.checkWithFallbackParser(sql)
         }
 
-        try {
-            // Parse SQL using node-sql-parser
-            const ast = this.parser.astify(sql, { database: this.dialect })
-
-            // If parsing succeeds, syntax is correct
-            return null
-        } catch (error) {
-            // Parsing failed, syntax error exists
+        if (result && !result.valid) {
             return {
                 line,
-                message: `SQL syntax error: ${this.formatError(error.message)}`,
+                message: `SQL syntax error: ${this.formatError(result.error)}`,
                 type: 'syntax_error',
-                detail: error.message
-            }
-        }
-    }
-
-    /**
-     * Check if SQL is in MatrixOne whitelist
-     * @param {string} sql - SQL statement
-     * @returns {boolean} Whether it's in the whitelist
-     */
-    isInMatrixOneWhitelist(sql) {
-        const whitelist = config.syntaxCheck.matrixoneWhitelist || []
-
-        for (const pattern of whitelist) {
-            if (pattern.test(sql)) {
-                return true
+                detail: result.error
             }
         }
 
-        return false
+        return null
     }
 
     /**
      * Determine if the text is a comment
-     * @param {string} sql - SQL text
-     * @returns {boolean} Whether it's a comment
      */
     isComment(sql) {
         const trimmed = sql.trim()
@@ -180,22 +320,20 @@ export class SqlSyntaxChecker {
 
     /**
      * Format error message
-     * @param {string} message - Original error message
-     * @returns {string} Formatted error message
      */
     formatError(message) {
-        // Simplify error message for better readability
-        if (message.includes('Expected')) {
-            return message.split('\n')[0]
+        if (message && message.includes('syntax error')) {
+            const match = message.match(/syntax error at line \d+ column \d+ near "([^"]+)"/)
+            if (match) {
+                return `syntax error near "${match[1]}"`
+            }
         }
-        return message
+        return message || 'Unknown error'
     }
 }
 
 /**
  * Check multiple files
- * @param {Array<string>} files - List of file paths
- * @returns {Promise<Map>} Mapping from file path to check result
  */
 export async function checkFiles(files) {
     const checker = new SqlSyntaxChecker()

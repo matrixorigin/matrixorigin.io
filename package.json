@@ -2,6 +2,7 @@
   "name": "matrixorigin.io",
   "type": "module",
   "scripts": {
+    "postinstall": "node scripts/doc-validator/syntax-checker/build.js",
     "lint": "node ./scripts/fixPunctuation && npx markdownlint-cli2 './docs/MatrixOne/**/*.md'",
     "lint:fix": "node ./scripts/fixPunctuation --fix && npx markdownlint-cli2-fix './docs/MatrixOne/**/*.md'",
     "check:links": "find docs/MatrixOne -name '*.md' -print0 | xargs -0 -n1 markdown-link-check -c .markdown-link-check.json",
