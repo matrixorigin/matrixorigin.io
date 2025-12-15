@@ -100,13 +100,16 @@ make check      # Lint + build test
 git add .
 git commit -m "Your message"
 
-# 5. Check for dead links
+# 5. Install npm dependencies (required for link/SQL checks)
+npm install
+
+# 6. Check for dead links
 npm run check:links:changed          
 
-# 6. Check SQL syntax
+# 7. Check SQL syntax
 npm run validate-docs:changed        
 
-# 7. (Optional) Run SQL execution tests
+# 8. (Optional) Run SQL execution tests
 
 # Requires MatrixOne database running
 # Start the v1.2.0 version of the MO database, default to the latest version without parameters
@@ -118,7 +121,7 @@ npm run validate-docs:execution:changed
 # Stop database
 npm run mo:stop                       
 
-# 7. Push to remote
+# 9. Push to remote
 git push
 ```
 
