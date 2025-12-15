@@ -1,0 +1,48 @@
+name: Validate SQL in Documentation
+
+on:
+  pull_request:
+    paths:
+      - 'docs/**/*.md'
+      - 'scripts/doc-validator/**'
+  workflow_dispatch:
+
+jobs:
+  validate-sql:
+    name: SQL Syntax Validation
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      # Setup Go for native SQL syntax checking with MatrixOne official parser
+      # If Go is not available, fallback to node-sql-parser + whitelist
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: 'scripts/doc-validator/syntax-checker/go.mod'
+
+      - name: Install dependencies
+        # npm install will auto-build syntax-checker if Go is available
+        run: npm ci
+
+      - name: Validate SQL in changed files
+        if: github.event_name == 'pull_request'
+        run: |
+          echo "🔍 Checking modified documents in PR..."
+          npm run validate-docs:changed
+
+      - name: Validate all documents (Manual)
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          echo "🔍 Full validation of all documents..."
+          npm run validate-docs

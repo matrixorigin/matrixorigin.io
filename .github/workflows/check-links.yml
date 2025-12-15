@@ -1,0 +1,73 @@
+name: Check Dead Links
+
+on:
+  pull_request:
+    paths:
+      - 'docs/MatrixOne/**/*.md'
+  workflow_dispatch:
+
+jobs:
+  check-links:
+    name: Check Markdown Links
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Check Links in Changed Files
+        if: github.event_name == 'pull_request'
+        run: |
+          echo "Checking links in changed files..."
+          git fetch origin ${{ github.base_ref }}
+          CHANGED_FILES=$(git diff --name-only origin/${{ github.base_ref }}...HEAD | grep '\.md$' || true)
+
+          if [ -z "$CHANGED_FILES" ]; then
+            echo "No markdown files changed."
+            exit 0
+          fi
+
+          echo "Changed files:"
+          echo "$CHANGED_FILES"
+
+          # Check internal links (strict - CI fails if broken)
+          echo ""
+          echo "========== Checking Internal Links (strict) =========="
+          INTERNAL_FAILED=0
+          for file in $CHANGED_FILES; do
+            if [ -f "$file" ]; then
+              echo "Checking: $file"
+              npx markdown-link-check "$file" -c .markdown-link-check-internal.json || INTERNAL_FAILED=1
+            fi
+          done
+
+          # Check external links (warning only - CI won't fail)
+          echo ""
+          echo "========== Checking External Links (warning only) =========="
+          for file in $CHANGED_FILES; do
+            if [ -f "$file" ]; then
+              echo "Checking: $file"
+              npx markdown-link-check "$file" -c .markdown-link-check.json || echo "⚠️  External link issues in $file (warning only)"
+            fi
+          done
+
+          if [ $INTERNAL_FAILED -eq 1 ]; then
+            echo ""
+            echo "❌ Internal link check failed!"
+            exit 1
+          fi
+
+          echo ""
+          echo "✅ All internal links are valid!"
+
+      - name: Check All Links (Manual Trigger)
+        if: github.event_name == 'workflow_dispatch'
+        run: npm run check:links
+
