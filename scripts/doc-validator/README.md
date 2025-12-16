@@ -10,17 +10,10 @@ This is an automated validation tool designed specifically for MatrixOne documen
 - 📝 **SQL Syntax Checking** - Validate the syntax correctness of SQL code blocks in documents (using node-sql-parser)
 - 🚀 **SQL Execution Validation** - Automatically fetch MatrixOne images and validate SQL execution against real database
 - 🎯 **Punctuation Checking** - Unify punctuation standards in documents
-
-### Why Do We Need This Tool?
-
-- ✅ **Catch Errors Early** - Automatically detect issues before PR merging to prevent errors from entering the main branch
-- ✅ **Reduce Maintenance Costs** - Reduce manual review workload and focus on content quality
-- ✅ **Ensure Documentation Quality** - Guarantee all SQL examples can be executed correctly
-- ✅ **Zero Learning Curve** - Transparent to contributors, no additional configuration required, and CI runs automatically
-
+- 
 ### Prerequisites
 
-- **Node.js** (required) - v18 or higher
+- **Node.js** (required) - v20 or higher
 - **Go** (optional) - For enhanced SQL syntax checking with MatrixOne official parser
 
 ### Installation
@@ -50,9 +43,10 @@ During `npm install`, you will see one of the following:
 
 Both modes work correctly - Go is optional but recommended for more accurate syntax checking.
 
-### Quick Start
+[//]: # (### Quick Start)
 
----
+[//]: # ()
+[//]: # (---)
 
 **Detailed Command Reference** - All available commands
 
@@ -203,19 +197,21 @@ npm run validate-multi -- --max-versions 1 --verbose --stop-on-success
 After execution validation, the report will display the following statistics:
 
 ```
-📈 SQL Execution Statistics:
-  ├─ ✅ Successfully executed: N       # Syntax and semantics correct, execution successful
-  ├─ ⚠️  Warnings (missing tables only, ignorable): N   # Syntax correct, only missing tables/columns (tool automatically creates tables for validation, can be ignored)
-  ├─ ⚠️  Warnings (need manual check): N   # Syntax correct, but other semantic issues exist (requires manual check)
-  ├─ ❌ Errors: N                      # True syntax errors (must be fixed)
-  └─ 📊 Total: N SQL statements
+📊 SQL Validation Statistics:
+  ├─ ✅ Passed: N
+  ├─ ❌ Failed: N
+  └─ 📈 Total: N SQL statements
+
+📁 File Check Results:
+  ├─ ✅ Passed: N
+  └─ ❌ Failed: N
 ```
 
-**Status Explanations**:
-- ✅ **Successfully executed**: SQL is completely correct and executed successfully
-- ⚠️ **Warnings (missing tables only, ignorable)**: SQL syntax is correct, but there are no table creation statements in the document. The tool will automatically create empty tables to verify syntax, which can be ignored
-- ⚠️ **Warnings (need manual check)**: SQL syntax is correct, but execution still fails even after automatic table creation. May have permission, dependency, or other semantic issues that require manual check
-- ❌ **Errors**: True SQL syntax errors that must be fixed
+**Error Types**:
+- **SQL syntax error**: SQL parser detected syntax errors (e.g., typos, missing keywords)
+- **Semantic error**: SQL syntax is correct but execution failed (e.g., unknown database, ambiguous column)
+- **DML execution failed**: Data manipulation failed (e.g., type mismatch, constraint violation)
+- **Result validation failed**: SQL executed but results don't match expected output
 
 ### How It Works
 
@@ -226,13 +222,3 @@ After execution validation, the report will display the following statistics:
 5. **Result Reporting**: Any version passes = overall pass
 
 ---
-
-## 🎯 Punctuation Checking
-
-```bash
-# Check punctuation
-npm run lint
-
-# Automatically fix punctuation
-npm run lint:fix
-```
