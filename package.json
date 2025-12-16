@@ -24,7 +24,10 @@
     "mo:start": "bash ./scripts/mo-test-env.sh start",
     "mo:stop": "bash ./scripts/mo-test-env.sh stop",
     "mo:status": "bash ./scripts/mo-test-env.sh status",
-    "mo:test": "bash ./scripts/mo-test-env.sh test"
+    "mo:test": "bash ./scripts/mo-test-env.sh test",
+    "validate-multi": "node ./scripts/doc-validator/validate-multi.js",
+    "validate-multi:changed": "node ./scripts/doc-validator/validate-multi.js --changed-only",
+    "validate-multi:dry-run": "node ./scripts/doc-validator/validate-multi.js --dry-run"
   },
   "devDependencies": {
     "commander": "^12.0.0",

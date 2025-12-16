@@ -56,21 +56,38 @@ function extractVersionFromFile(filePath) {
 /**
  * Detect versions from multiple files
  * @param {Array<string>} files - List of file paths
+ * @param {object} options - Options
+ * @param {boolean} options.requireVersion - Require version annotation (default: true)
  * @returns {object} Version detection result
  */
-function detectVersions(files) {
+function detectVersions(files, options = {}) {
+    const { requireVersion = true } = options
     const filesByVersion = {}
     const versions = new Set()
+    const filesWithoutVersion = []
 
     for (const file of files) {
-        const version = extractVersionFromFile(file) || 'latest'
+        const version = extractVersionFromFile(file)
 
-        versions.add(version)
-
-        if (!filesByVersion[version]) {
-            filesByVersion[version] = []
+        if (!version) {
+            if (requireVersion) {
+                filesWithoutVersion.push(file)
+                continue
+            }
+            // Fallback to 'latest' only when requireVersion is false
+            const fallbackVersion = 'latest'
+            versions.add(fallbackVersion)
+            if (!filesByVersion[fallbackVersion]) {
+                filesByVersion[fallbackVersion] = []
+            }
+            filesByVersion[fallbackVersion].push(file)
+        } else {
+            versions.add(version)
+            if (!filesByVersion[version]) {
+                filesByVersion[version] = []
+            }
+            filesByVersion[version].push(file)
         }
-        filesByVersion[version].push(file)
     }
 
     return {
@@ -80,7 +97,8 @@ function detectVersions(files) {
             if (b === 'latest') return 1
             return b.localeCompare(a)
         }),
-        filesByVersion
+        filesByVersion,
+        filesWithoutVersion
     }
 }
 
