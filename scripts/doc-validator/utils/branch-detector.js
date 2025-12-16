@@ -7,7 +7,11 @@ import { execSync } from 'node:child_process'
 
 /**
  * Get the target branch for testing
- * Priority: command line option > CI environment variable > local git branch
+ * Priority: command line option > CI environment variable (source branch) > local git branch
+ *
+ * For CI PR scenarios, we use the SOURCE branch (GITHUB_HEAD_REF), not the target branch.
+ * This ensures that a PR for "3.0.2-docs" branch tests against MO's "3.0.2-docs" branch,
+ * not the PR's target branch (e.g., "main").
  *
  * @param {Object} options - Options object
  * @param {string} [options.branch] - Explicitly specified branch name
@@ -20,9 +24,10 @@ export function getTargetBranch(options = {}) {
     }
 
     // Priority 2: CI environment variables
-    // GitHub Actions: GITHUB_BASE_REF (for PRs) or GITHUB_REF_NAME (for push)
-    if (process.env.GITHUB_BASE_REF) {
-        return process.env.GITHUB_BASE_REF
+    // GitHub Actions PR: use GITHUB_HEAD_REF (source branch of the PR)
+    // This is the branch that contains the changes, e.g., "3.0.2-docs"
+    if (process.env.GITHUB_HEAD_REF) {
+        return process.env.GITHUB_HEAD_REF
     }
 
     // For push events, extract branch from GITHUB_REF
