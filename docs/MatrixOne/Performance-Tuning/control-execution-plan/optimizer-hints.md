@@ -101,3 +101,7 @@ ORDER BY order_date DESC;
 ## Constraints
 
 Currently `/*+ HINT_NAME(t1, t2) */` only implements the syntax, and cannot control the execution plan for now.
+
+## See Also
+
+- [enable_remap_hint](../../Reference/Variable/system-variables/enable-remap-hint.md): A system variable that enables query rewrite hints, allowing you to map table names to custom SELECT queries using JSON-formatted comments.
