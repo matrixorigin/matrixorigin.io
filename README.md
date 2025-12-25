@@ -84,6 +84,56 @@ Open **[http://127.0.0.1:8000](http://127.0.0.1:8000)** to preview the documenta
 
 Run `make help` to see all available commands.
 
+## 🔍 Documentation Validation Tool
+
+This repository includes a documentation validation tool that automatically checks SQL syntax and execution in documentation files.
+
+### Quick Usage
+
+  ```bash
+  # Multi-version SQL execution test
+  npm run validate-multi -- --changed-only
+
+  # Test specific file with specific branch
+  npm run validate-multi -- --branch main docs/MatrixOne/xxx.md
+```
+  Important: Branch Naming Requirement
+
+  The tool fetches images from the https://github.com/matrixorigin/matrixone based on branch/tag names.
+
+  To use SQL execution testing, you must ensure:
+
+  1. Your local branch name matches a branch/tag name in the matrixone repository, OR
+  2. Use --branch <name> parameter to specify a valid matrixone branch/tag name
+```
+  # Example: Your local branch is "my-feature", but you want to test against MO's main branch
+  npm run validate-multi -- --branch main --changed-only
+
+  # Example: Test against a specific MO version tag
+  npm run validate-multi -- --branch v1.2.0 docs/MatrixOne/xxx.md
+```
+  ⚠️ Note: Branch names between the documentation repository and matrixone repository are not automatically mapped. If your local branch name doesn't exist in the matrixone repository, you must specify --branch 
+  explicitly.
+
+  How It Works
+
+  1. Branch Detection: Uses current git branch name or --branch parameter
+  2. Fetch Commits: Gets recent commits from matrixone repository for that branch
+  3. Find Images: Checks Docker image availability (Docker Hub first, Tencent Cloud TCR as fallback)
+  4. Run Tests: Starts MatrixOne container and validates SQL execution
+  5. Report: Any version passes = overall pass
+
+  Common Options
+
+  | Option             | Description                                                     |
+  |--------------------|-----------------------------------------------------------------|
+  | --branch <name>    | Specify matrixone branch/tag name (default: current git branch) |
+  | --changed-only     | Only test changed files                                         |
+  | --max-versions <n> | Maximum versions to test (default: 5)                           |
+  | --verbose          | Show detailed output                                            |
+
+  💡 For more details, see [Documentation Validation Tool Guide](scripts/doc-validator/README.md)
+
 ## 📝 Development Workflow
 
 ```bash
@@ -111,15 +161,7 @@ npm run validate-docs:changed
 
 # 8. (Optional) Run SQL execution tests
 
-# Requires MatrixOne database running
-# Start the v1.2.0 version of the MO database, default to the latest version without parameters
-npm run mo:start -- v1.2.0           
-
-# Validate SQL execution
-npm run validate-docs:execution:changed  
-
-# Stop database
-npm run mo:stop                       
+npm run validate-multi -- --changed-only                   
 
 # 9. Push to remote
 git push

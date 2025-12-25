@@ -2,7 +2,9 @@ version: '3.8'
 
 services:
   matrixone:
-    image: matrixorigin/matrixone:${MO_VERSION:-latest}
+    # MO_IMAGE takes priority over MO_VERSION
+    # Usage: MO_IMAGE=xxx docker-compose up  OR  MO_VERSION=v1.2.0 docker-compose up
+    image: ${MO_IMAGE:-matrixorigin/matrixone:${MO_VERSION:-latest}}
     container_name: mo-test
     ports:
       - "6001:6001"

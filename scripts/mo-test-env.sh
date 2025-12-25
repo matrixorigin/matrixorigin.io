@@ -8,9 +8,53 @@ COMPOSE_FILE="docker-compose.test.yml"
 CONTAINER_NAME="mo-test"
 MAX_WAIT=60
 
-# Default version is latest, can be overridden by parameter or environment variable
-# Priority: command line parameter > environment variable > latest
-export MO_VERSION="${2:-${MO_VERSION:-latest}}"
+# Parse command line arguments
+# Usage:
+#   ./mo-test-env.sh start                                    # Use latest
+#   ./mo-test-env.sh start v1.2.0                             # Use specific version
+#   ./mo-test-env.sh start --image matrixorigin/matrixone:commit-abc1234
+#   ./mo-test-env.sh start --image ccr.ccs.tencentyun.com/matrixone-dev/matrixone:commit-abc1234
+
+ACTION="${1:-}"
+shift || true
+
+# Initialize variables
+MO_IMAGE_ARG=""
+MO_VERSION_ARG=""
+
+# Parse remaining arguments
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        --image)
+            MO_IMAGE_ARG="$2"
+            shift 2
+            ;;
+        *)
+            # Treat as version if not a flag
+            MO_VERSION_ARG="$1"
+            shift
+            ;;
+    esac
+done
+
+# Determine final image
+# Priority: --image > version arg > MO_IMAGE env > MO_VERSION env > latest
+if [ -n "$MO_IMAGE_ARG" ]; then
+    export MO_IMAGE="$MO_IMAGE_ARG"
+    export MO_VERSION=""  # Clear version when using full image
+    DISPLAY_IMAGE="$MO_IMAGE"
+elif [ -n "$MO_VERSION_ARG" ]; then
+    export MO_VERSION="$MO_VERSION_ARG"
+    export MO_IMAGE=""  # Let docker-compose use MO_VERSION
+    DISPLAY_IMAGE="matrixorigin/matrixone:${MO_VERSION}"
+elif [ -n "${MO_IMAGE:-}" ]; then
+    DISPLAY_IMAGE="$MO_IMAGE"
+elif [ -n "${MO_VERSION:-}" ]; then
+    DISPLAY_IMAGE="matrixorigin/matrixone:${MO_VERSION}"
+else
+    export MO_VERSION="latest"
+    DISPLAY_IMAGE="matrixorigin/matrixone:latest"
+fi
 
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
@@ -22,13 +66,14 @@ print_warning() { echo -e "${YELLOW}⚠${NC} $1"; }
 print_error() { echo -e "${RED}✗${NC} $1"; }
 
 start_mo() {
-    echo "🚀 Starting MatrixOne test instance (version: ${MO_VERSION})..."
+    echo "🚀 Starting MatrixOne test instance..."
+    echo "   Image: ${DISPLAY_IMAGE}"
     if docker ps -a --format '{{.Names}}' | grep -q "^${CONTAINER_NAME}$"; then
         print_warning "Container already exists, stopping old container first..."
         docker-compose -f "$COMPOSE_FILE" down
     fi
     docker-compose -f "$COMPOSE_FILE" up -d
-    print_success "Container started (matrixorigin/matrixone:${MO_VERSION})"
+    print_success "Container started (${DISPLAY_IMAGE})"
     echo "⏳ Waiting for MatrixOne to start completely..."
     wait_for_mo
 }
@@ -125,10 +170,22 @@ test_mo() {
     fi
 }
 
-case "${1:-}" in
+case "${ACTION}" in
     start) start_mo ;;
     stop) stop_mo ;;
     status) status_mo ;;
     test) test_mo ;;
-    *) echo "Usage: $0 {start|stop|status|test}"; exit 1 ;;
+    *)
+        echo "Usage: $0 {start|stop|status|test} [options]"
+        echo ""
+        echo "Options:"
+        echo "  --image <image>    Use specific Docker image (e.g., matrixorigin/matrixone:commit-abc1234)"
+        echo "  <version>          Use specific version tag (e.g., v1.2.0, latest)"
+        echo ""
+        echo "Examples:"
+        echo "  $0 start                                    # Use latest"
+        echo "  $0 start v1.2.0                             # Use version v1.2.0"
+        echo "  $0 start --image matrixorigin/matrixone:commit-abc1234"
+        exit 1
+        ;;
 esac
