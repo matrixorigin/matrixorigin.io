@@ -38,21 +38,37 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y mysql-client
 
-      - name: Run SQL Execution Validation
+      - name: Start MatrixOne Database
         run: |
-          echo "🚀 Starting SQL Execution Validation"
-          echo "============================================================"
+          echo "🚀 Starting MatrixOne database..."
+          npm run db:start
 
-          # Build command arguments
-          ARGS="--changed-only --verbose"
+      - name: Wait for Database Ready
+        run: |
+          echo "⏳ Waiting for database to be ready..."
+          MAX_RETRIES=30
+          RETRY_COUNT=0
 
-          # Add branch if specified
-          if [ -n "${{ inputs.branch }}" ]; then
-            ARGS="$ARGS --branch ${{ inputs.branch }}"
+          while [ $RETRY_COUNT -lt $MAX_RETRIES ]; do
+            if npm run db:test 2>/dev/null; then
+              echo "✅ Database is ready!"
+              break
+            fi
+            RETRY_COUNT=$((RETRY_COUNT + 1))
+            echo "Attempt $RETRY_COUNT/$MAX_RETRIES - waiting 10s..."
+            sleep 10
+          done
+
+          if [ $RETRY_COUNT -eq $MAX_RETRIES ]; then
+            echo "❌ Database failed to start"
+            exit 1
           fi
 
-          echo "📋 Running: npm run validate-multi -- $ARGS"
-          npm run validate-multi -- $ARGS
+      - name: Run SQL Execution Validation
+        run: |
+          echo "🔍 Starting SQL Execution Validation"
+          echo "============================================================"
+          npm run check:sql-exec:changed
 
       - name: Show Docker logs on failure
         if: failure()
@@ -64,5 +80,4 @@ jobs:
         if: always()
         run: |
           echo "🧹 Cleaning up..."
-          docker stop mo-test 2>/dev/null || true
-          docker rm mo-test 2>/dev/null || true
+          npm run db:stop || true
