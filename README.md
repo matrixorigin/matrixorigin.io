@@ -86,53 +86,28 @@ Run `make help` to see all available commands.
 
 ## 🔍 Documentation Validation Tool
 
-This repository includes a documentation validation tool that automatically checks SQL syntax and execution in documentation files.
+This repository includes a documentation validation tool for Dead Link, SQL syntax, and SQL execution checking.
 
 ### Quick Usage
 
-  ```bash
-  # Multi-version SQL execution test
-  npm run validate-multi -- --changed-only
+```bash
+# 🔗 Dead Link 检测
+npm run check:links:file docs/MatrixOne/xxx.md      # 单文件
+npm run check:links:changed                          # 变更文件
 
-  # Test specific file with specific branch
-  npm run validate-multi -- --branch main docs/MatrixOne/xxx.md
+# 🧾 SQL 语法检测
+npm run check:sql-syntax:file docs/MatrixOne/xxx.md # 单文件
+npm run check:sql-syntax:changed                     # 变更文件
+
+# ▶️ SQL 执行检测
+npm run db:start                                     # 启动数据库
+npm run db:start 3.0.4                               # 启动指定版本
+npm run check:sql-exec:file docs/MatrixOne/xxx.md   # 单文件
+npm run check:sql-exec:changed                       # 变更文件
+npm run db:stop                                      # 停止数据库
 ```
-  Important: Branch Naming Requirement
 
-  The tool fetches images from the https://github.com/matrixorigin/matrixone based on branch/tag names.
-
-  To use SQL execution testing, you must ensure:
-
-  1. Your local branch name matches a branch/tag name in the matrixone repository, OR
-  2. Use --branch <name> parameter to specify a valid matrixone branch/tag name
-```
-  # Example: Your local branch is "my-feature", but you want to test against MO's main branch
-  npm run validate-multi -- --branch main --changed-only
-
-  # Example: Test against a specific MO version tag
-  npm run validate-multi -- --branch v1.2.0 docs/MatrixOne/xxx.md
-```
-  ⚠️ Note: Branch names between the documentation repository and matrixone repository are not automatically mapped. If your local branch name doesn't exist in the matrixone repository, you must specify --branch 
-  explicitly.
-
-  How It Works
-
-  1. Branch Detection: Uses current git branch name or --branch parameter
-  2. Fetch Commits: Gets recent commits from matrixone repository for that branch
-  3. Find Images: Checks Docker image availability (Docker Hub first, Tencent Cloud TCR as fallback)
-  4. Run Tests: Starts MatrixOne container and validates SQL execution
-  5. Report: Any version passes = overall pass
-
-  Common Options
-
-  | Option             | Description                                                     |
-  |--------------------|-----------------------------------------------------------------|
-  | --branch <name>    | Specify matrixone branch/tag name (default: current git branch) |
-  | --changed-only     | Only test changed files                                         |
-  | --max-versions <n> | Maximum versions to test (default: 5)                           |
-  | --verbose          | Show detailed output                                            |
-
-  💡 For more details, see [Documentation Validation Tool Guide](scripts/doc-validator/README.md)
+💡 For more details, see [Documentation Validation Tool Guide](scripts/doc-validator/README.md)
 
 ## 📝 Development Workflow
 
@@ -154,14 +129,15 @@ git commit -m "Your message"
 npm install
 
 # 6. Check for dead links
-npm run check:links:changed          
+npm run check:links:changed
 
 # 7. Check SQL syntax
-npm run validate-docs:changed        
+npm run check:sql-syntax:changed
 
 # 8. (Optional) Run SQL execution tests
-
-npm run validate-multi -- --changed-only                   
+npm run db:start
+npm run check:sql-exec:changed
+npm run db:stop
 
 # 9. Push to remote
 git push
