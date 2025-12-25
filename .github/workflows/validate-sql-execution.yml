@@ -1,4 +1,4 @@
-name: Multi-Version SQL Validation
+name: Validate SQL Execution
 
 on:
   pull_request:
@@ -8,18 +8,13 @@ on:
   workflow_dispatch:
     inputs:
       branch:
-        description: 'Target branch for matrixone repo (leave empty for auto-detect)'
+        description: 'Target branch for image selection (leave empty for auto-detect)'
         required: false
-        type: string
-      max_versions:
-        description: 'Maximum number of versions to test'
-        required: false
-        default: '3'
         type: string
 
 jobs:
-  validate-multi-version:
-    name: Multi-Version SQL Validation
+  validate-sql:
+    name: SQL Execution Validation
     runs-on: ubuntu-latest
 
     steps:
@@ -43,30 +38,18 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y mysql-client
 
-      - name: Run Multi-Version Validation
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Run SQL Execution Validation
         run: |
-          echo "🚀 Starting Multi-Version SQL Validation"
+          echo "🚀 Starting SQL Execution Validation"
           echo "============================================================"
 
           # Build command arguments
-          ARGS="--changed-only"
+          ARGS="--changed-only --verbose"
 
           # Add branch if specified
           if [ -n "${{ inputs.branch }}" ]; then
             ARGS="$ARGS --branch ${{ inputs.branch }}"
           fi
-
-          # Add max versions
-          MAX_VERSIONS="${{ inputs.max_versions }}"
-          if [ -z "$MAX_VERSIONS" ]; then
-            MAX_VERSIONS="3"
-          fi
-          ARGS="$ARGS --max-versions $MAX_VERSIONS"
-
-          # Add verbose for better CI output
-          ARGS="$ARGS --verbose"
 
           echo "📋 Running: npm run validate-multi -- $ARGS"
           npm run validate-multi -- $ARGS
