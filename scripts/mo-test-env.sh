@@ -15,6 +15,8 @@ COMPOSE_FILE="docker-compose.test.yml"
 CONTAINER_NAME="mo-test"
 DOCKER_HUB_REPO="matrixorigin/matrixone"
 DOCKER_HUB_API="https://hub.docker.com/v2/repositories/matrixorigin/matrixone/tags"
+ALIYUN_REPO="registry.cn-shanghai.aliyuncs.com/matrixorigin/matrixone"
+FALLBACK_NIGHTLY_TAG="nightly-d4051aeb"
 
 # Colors
 GREEN='\033[0;32m'
@@ -34,21 +36,26 @@ VERSION_ARG="${2:-}"
 
 # Get latest nightly tag from Docker Hub
 get_latest_nightly() {
-    print_info "Fetching latest nightly tag from Docker Hub..."
+    print_info "Fetching latest nightly tag from Docker Hub..." >&2
 
     # Query Docker Hub API for tags starting with "nightly-"
+    local api_response
     local latest_nightly
-    latest_nightly=$(curl -s "${DOCKER_HUB_API}?page_size=50&ordering=last_updated" | \
-        grep -o '"name":"nightly-[^"]*"' | \
-        head -1 | \
-        sed 's/"name":"//;s/"//')
 
-    if [ -z "$latest_nightly" ]; then
-        print_error "Failed to fetch latest nightly tag"
-        return 1
+    api_response=$(curl -s --connect-timeout 10 --max-time 30 "${DOCKER_HUB_API}?page_size=20&name=nightly" 2>/dev/null)
+
+    if [ -n "$api_response" ]; then
+        # Extract first nightly tag name from JSON response
+        latest_nightly=$(echo "$api_response" | grep -o '"name":"nightly-[^"]*"' | head -1 | sed 's/"name":"//;s/"$//')
     fi
 
-    echo "$latest_nightly"
+    if [ -n "$latest_nightly" ]; then
+        echo "$latest_nightly"
+    else
+        # Fallback to hardcoded nightly tag
+        print_warning "API failed, using fallback nightly tag: ${FALLBACK_NIGHTLY_TAG}" >&2
+        echo "$FALLBACK_NIGHTLY_TAG"
+    fi
 }
 
 # Check if a Docker image exists on Docker Hub
@@ -65,23 +72,24 @@ image_exists() {
     fi
 }
 
-# Resolve which image to use
+# Resolve which image tag to use
 # - With version arg: try release first, fallback to nightly
 # - Without version arg: use latest nightly
-resolve_image() {
+# Returns: tag only (not full image path)
+resolve_image_tag() {
     local version="$1"
 
     if [ -n "$version" ]; then
         # Version specified, try release first
-        print_info "Checking release image: ${DOCKER_HUB_REPO}:${version}"
+        print_info "Checking release tag: ${version}" >&2
 
         if image_exists "$version"; then
-            print_success "Release image found: ${version}"
-            echo "${DOCKER_HUB_REPO}:${version}"
+            print_success "Release tag found: ${version}" >&2
+            echo "${version}"
             return 0
         else
-            print_warning "Release image not found: ${version}"
-            print_info "Falling back to latest nightly..."
+            print_warning "Release tag not found: ${version}" >&2
+            print_info "Falling back to latest nightly..." >&2
         fi
     fi
 
@@ -90,12 +98,54 @@ resolve_image() {
     nightly_tag=$(get_latest_nightly)
 
     if [ -z "$nightly_tag" ]; then
-        print_error "Could not determine nightly tag"
+        print_error "Could not determine nightly tag" >&2
         return 1
     fi
 
-    print_success "Using nightly: ${nightly_tag}"
-    echo "${DOCKER_HUB_REPO}:${nightly_tag}"
+    print_success "Using nightly: ${nightly_tag}" >&2
+    echo "${nightly_tag}"
+}
+
+# Try to pull image, returns 0 on success, 1 on failure
+try_pull() {
+    local image="$1"
+
+    print_info "Pulling ${image}..." >&2
+
+    if docker pull "$image" >&2; then
+        return 0
+    else
+        return 1
+    fi
+}
+
+# Pull image with fallback: Docker Hub -> Aliyun
+pull_image_with_fallback() {
+    local tag="$1"
+    local dockerhub_image="${DOCKER_HUB_REPO}:${tag}"
+    local aliyun_image="${ALIYUN_REPO}:${tag}"
+
+    # Try Docker Hub first
+    print_info "Trying Docker Hub: ${dockerhub_image}" >&2
+    if try_pull "$dockerhub_image"; then
+        print_success "Pulled from Docker Hub" >&2
+        echo "$dockerhub_image"
+        return 0
+    fi
+
+    # Fallback to Aliyun
+    echo "" >&2
+    print_warning "Docker Hub failed, trying Aliyun mirror..." >&2
+    print_info "Trying Aliyun: ${aliyun_image}" >&2
+    if try_pull "$aliyun_image"; then
+        print_success "Pulled from Aliyun mirror" >&2
+        echo "$aliyun_image"
+        return 0
+    fi
+
+    # Both failed
+    print_error "Failed to pull from both Docker Hub and Aliyun" >&2
+    return 1
 }
 
 start_mo() {
@@ -103,22 +153,19 @@ start_mo() {
     echo "🚀 Starting MatrixOne Test Environment"
     echo "============================================================"
 
-    # Step 1: Resolve image
+    # Step 1: Resolve image tag
     echo ""
-    echo "📌 Step 1: Resolving Docker image..."
+    echo "📌 Step 1: Resolving image tag..."
 
-    local image
-    image=$(resolve_image "$VERSION_ARG")
+    local tag
+    tag=$(resolve_image_tag "$VERSION_ARG")
 
-    if [ -z "$image" ]; then
-        print_error "Failed to resolve Docker image"
+    if [ -z "$tag" ]; then
+        print_error "Failed to resolve image tag"
         exit 1
     fi
 
-    echo "   Final image: ${image}"
-
-    # Export for docker-compose
-    export MO_IMAGE="$image"
+    echo "   Tag: ${tag}"
 
     # Step 2: Clean up old container
     echo ""
@@ -131,16 +178,20 @@ start_mo() {
         print_success "No existing container"
     fi
 
-    # Step 3: Pull image
+    # Step 3: Pull image (with fallback to Aliyun)
     echo ""
     echo "📥 Step 3: Pulling Docker image..."
 
-    if docker pull "$image"; then
-        print_success "Image pulled successfully"
-    else
-        print_error "Failed to pull image: ${image}"
+    local image
+    image=$(pull_image_with_fallback "$tag")
+
+    if [ -z "$image" ]; then
+        print_error "Failed to pull image"
         exit 1
     fi
+
+    # Export for docker-compose
+    export MO_IMAGE="$image"
 
     # Step 4: Start container
     echo ""
