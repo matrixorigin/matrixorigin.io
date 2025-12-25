@@ -1,0 +1,88 @@
+name: Check Dead Links
+
+on:
+  pull_request:
+    paths:
+      - 'docs/**/*.md'
+  workflow_dispatch:
+
+jobs:
+  check-links:
+    name: Dead Link Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v44
+        with:
+          files: |
+            docs/**/*.md
+
+      - name: Check dead links in changed files
+        if: steps.changed-files.outputs.any_changed == 'true'
+        run: |
+          echo "🔗 Checking dead links in changed markdown files..."
+          echo "============================================================"
+
+          INTERNAL_FAILED=0
+          EXTERNAL_WARNINGS=0
+
+          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+            echo ""
+            echo "📄 Checking: $file"
+            echo "------------------------------------------------------------"
+
+            # Run link check and capture output
+            OUTPUT=$(npx markdown-link-check -c .markdown-link-check.json "$file" 2>&1) || true
+            echo "$OUTPUT"
+
+            # Check for dead internal links (relative paths like ./ or ../)
+            if echo "$OUTPUT" | grep -E "^\s*\[✖\].*\.(\.\/|\.\.\/|[^h][^t][^t][^p])" | grep -v "^http" > /dev/null 2>&1; then
+              INTERNAL_FAILED=1
+            fi
+
+            # Check for dead internal links (files without http)
+            if echo "$OUTPUT" | grep -E "^\s*\[✖\].*→ Status: 400" > /dev/null 2>&1; then
+              INTERNAL_FAILED=1
+            fi
+
+            # Count external link warnings
+            EXT_COUNT=$(echo "$OUTPUT" | grep -c "^\s*\[✖\].*https\?://" 2>/dev/null || echo "0")
+            if [ "$EXT_COUNT" -gt 0 ]; then
+              EXTERNAL_WARNINGS=$((EXTERNAL_WARNINGS + EXT_COUNT))
+            fi
+          done
+
+          echo ""
+          echo "============================================================"
+          echo "📊 Summary:"
+
+          if [ $EXTERNAL_WARNINGS -gt 0 ]; then
+            echo "⚠️  External link warnings: $EXTERNAL_WARNINGS (not blocking)"
+          fi
+
+          if [ $INTERNAL_FAILED -eq 1 ]; then
+            echo "❌ Internal dead links found! CI failed."
+            exit 1
+          else
+            echo "✅ All internal links are valid!"
+          fi
+
+      - name: No files to check
+        if: steps.changed-files.outputs.any_changed != 'true'
+        run: echo "📝 No markdown files changed, skipping link check."
