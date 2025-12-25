@@ -173,7 +173,7 @@ start_mo() {
 
     if docker ps -a --format '{{.Names}}' | grep -q "^${CONTAINER_NAME}$"; then
         print_warning "Container '${CONTAINER_NAME}' exists, removing..."
-        docker-compose -f "$COMPOSE_FILE" down 2>/dev/null || true
+        docker compose -f "$COMPOSE_FILE" down 2>/dev/null || true
     else
         print_success "No existing container"
     fi
@@ -190,14 +190,14 @@ start_mo() {
         exit 1
     fi
 
-    # Export for docker-compose
+    # Export for docker compose
     export MO_IMAGE="$image"
 
     # Step 4: Start container
     echo ""
     echo "🐳 Step 4: Starting container..."
 
-    docker-compose -f "$COMPOSE_FILE" up -d
+    docker compose -f "$COMPOSE_FILE" up -d
     print_success "Container started"
 
     # Step 5: Wait for database
@@ -271,13 +271,13 @@ wait_for_mo() {
 
 stop_mo() {
     echo "🛑 Stopping MatrixOne..."
-    docker-compose -f "$COMPOSE_FILE" down 2>/dev/null || true
+    docker compose -f "$COMPOSE_FILE" down 2>/dev/null || true
     print_success "Stopped"
 }
 
 status_mo() {
     echo "📊 MatrixOne Status:"
-    docker-compose -f "$COMPOSE_FILE" ps
+    docker compose -f "$COMPOSE_FILE" ps
 }
 
 test_mo() {
