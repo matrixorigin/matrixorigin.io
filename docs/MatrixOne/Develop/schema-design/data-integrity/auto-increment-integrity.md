@@ -8,7 +8,7 @@ The Auto-Increment Constraint simplifies the generation and management of identi
 
 - Auto-increment columns are usually used as primary keys, so their uniqueness should be ensured.
 - The data type of the auto-increment column should be chosen appropriately based on the requirements, typically an integer type.
-- The values of the auto-increment column are automatically generated when inserting new rows and cannot be manually specified.
+- The values of the auto-increment column are automatically generated when inserting new rows. Manual insertion is possible but may cause duplicate entry issues (see [Manual Insert and Duplicate Entry Issue](#manual-insert-and-duplicate-entry-issue)).
 - The auto-increment values are unique within the table and automatically increment with subsequent insert operations.
 - The auto-increment value's starting value and increment step can be customized by modifying the table definition.
 
@@ -61,6 +61,52 @@ mysql> SELECT * FROM employees;
 +------+--------------+------------+
 3 rows in set (0.01 sec)
 ```
+
+## Manual Insert and Duplicate Entry Issue
+
+When you manually insert values into an AUTO_INCREMENT column, you may encounter a **Duplicate entry** error.
+
+**Cause**: MatrixOne uses a distributed auto-increment service. Manually inserted values do not immediately update the auto-increment counter, which may cause subsequently auto-generated values to conflict with manually inserted values.
+
+```sql
+CREATE TABLE t (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(50));
+
+INSERT INTO t (name) VALUES ('Alice');        -- Auto-generates id=1
+INSERT INTO t (id, name) VALUES (5, 'Bob');   -- Manually inserts id=5
+INSERT INTO t (name) VALUES ('Charlie');      -- May error: Duplicate entry '5'
+```
+
+### Solutions
+
+#### 1. Set Starting Value When Creating Table (Recommended)
+
+```sql
+-- Reserve ID range to avoid conflicts
+CREATE TABLE t (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(50)) AUTO_INCREMENT = 1000;
+
+-- Manually insert data with values less than the starting value
+INSERT INTO t (id, name) VALUES (1, 'System'), (100, 'Admin');
+-- Auto-inserts will start from 1000
+INSERT INTO t (name) VALUES ('User1');  -- id=1000
+```
+
+#### 2. Insertion Strategy to Avoid Conflicts
+
+```sql
+-- Check if the value already exists
+SELECT COUNT(*) FROM t WHERE id = 5;
+
+-- Or use a sufficiently large manual value, far from the auto-increment range
+INSERT INTO t (id, name) VALUES (999999, 'Manual');
+```
+
+### Best Practices
+
+| Scenario | Recommendation | Example |
+|----------|----------------|---------|
+| Data Migration | Set an appropriate starting value when creating the table | `AUTO_INCREMENT = 10000` |
+| Reserved System IDs | Reserve a small range, start auto-increment from a larger value | Reserve 1-100, start auto-increment from 101 |
+| Occasional Manual Insert | Use large values far from the auto-increment range | Use values like 999999 for manual inserts |
 
 ## Constraints
 
