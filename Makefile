@@ -1,7 +1,7 @@
 # Makefile for MatrixOne Documentation
 # =====================================
 
-.PHONY: help install serve build clean lint lint-fix test
+.PHONY: help install install-python install-node serve serve-custom build build-strict clean lint lint-fix test check validate list-files count-pages watch version upgrade dev new-page check-links check-links-file check-links-changed check-sql-syntax check-sql-syntax-file check-sql-syntax-changed check-sql-exec check-sql-exec-file check-sql-exec-changed db-start db-stop db-status db-test check-all validate-all pre-commit setup
 
 # Default target
 .DEFAULT_GOAL := help
@@ -93,11 +93,151 @@ lint-fix: ## Auto-fix linting issues
 test: lint ## Run all tests (currently just linting)
 	@echo "$(GREEN)✓ All tests passed!$(NC)"
 
-check: ## Quick check (build + lint)
+check: ## Quick check (lint + build)
 	@echo "$(BLUE)Running quick check...$(NC)"
 	@$(MAKE) lint
 	@$(MAKE) build-strict
 	@echo "$(GREEN)✓ Quick check completed!$(NC)"
+
+# ============================================
+# Link Checking Commands
+# ============================================
+
+check-links: ## Check dead links in all markdown files
+	@echo "$(BLUE)Checking dead links in all files...$(NC)"
+	@$(PNPM) run check:links:files
+	@echo "$(GREEN)✓ Link check completed!$(NC)"
+
+check-links-file: ## Check dead links in a specific file (use FILE=path/to/file.md)
+	@if [ -z "$(FILE)" ]; then \
+		echo "$(RED)Error: FILE variable required$(NC)"; \
+		echo "$(YELLOW)Usage: make check-links-file FILE=docs/MatrixOne/xxx.md$(NC)"; \
+		exit 1; \
+	fi
+	@echo "$(BLUE)Checking dead links in $(FILE)...$(NC)"
+	@$(PNPM) run check:links:file $(FILE)
+	@echo "$(GREEN)✓ Link check completed!$(NC)"
+
+check-links-changed: ## Check dead links in changed files only
+	@echo "$(BLUE)Checking dead links in changed files...$(NC)"
+	@$(PNPM) run check:links:changed
+	@echo "$(GREEN)✓ Link check completed!$(NC)"
+
+# ============================================
+# SQL Syntax Checking Commands
+# ============================================
+
+check-sql-syntax: ## Check SQL syntax in all markdown files
+	@echo "$(BLUE)Checking SQL syntax in all files...$(NC)"
+	@$(PNPM) run check:sql-syntax:files
+	@echo "$(GREEN)✓ SQL syntax check completed!$(NC)"
+
+check-sql-syntax-file: ## Check SQL syntax in a specific file (use FILE=path/to/file.md)
+	@if [ -z "$(FILE)" ]; then \
+		echo "$(RED)Error: FILE variable required$(NC)"; \
+		echo "$(YELLOW)Usage: make check-sql-syntax-file FILE=docs/MatrixOne/xxx.md$(NC)"; \
+		exit 1; \
+	fi
+	@echo "$(BLUE)Checking SQL syntax in $(FILE)...$(NC)"
+	@$(PNPM) run check:sql-syntax:file $(FILE)
+	@echo "$(GREEN)✓ SQL syntax check completed!$(NC)"
+
+check-sql-syntax-changed: ## Check SQL syntax in changed files only
+	@echo "$(BLUE)Checking SQL syntax in changed files...$(NC)"
+	@$(PNPM) run check:sql-syntax:changed
+	@echo "$(GREEN)✓ SQL syntax check completed!$(NC)"
+
+# ============================================
+# SQL Execution Checking Commands
+# ============================================
+
+check-sql-exec: ## Check SQL execution in all markdown files (requires database)
+	@echo "$(BLUE)Checking SQL execution in all files...$(NC)"
+	@echo "$(YELLOW)Note: This requires a running database$(NC)"
+	@$(PNPM) run check:sql-exec:files
+	@echo "$(GREEN)✓ SQL execution check completed!$(NC)"
+
+check-sql-exec-file: ## Check SQL execution in a specific file (use FILE=path/to/file.md)
+	@if [ -z "$(FILE)" ]; then \
+		echo "$(RED)Error: FILE variable required$(NC)"; \
+		echo "$(YELLOW)Usage: make check-sql-exec-file FILE=docs/MatrixOne/xxx.md$(NC)"; \
+		exit 1; \
+	fi
+	@echo "$(BLUE)Checking SQL execution in $(FILE)...$(NC)"
+	@$(PNPM) run check:sql-exec:file $(FILE)
+	@echo "$(GREEN)✓ SQL execution check completed!$(NC)"
+
+check-sql-exec-changed: ## Check SQL execution in changed files only (requires database)
+	@echo "$(BLUE)Checking SQL execution in changed files...$(NC)"
+	@echo "$(YELLOW)Note: This requires a running database$(NC)"
+	@$(PNPM) run check:sql-exec:changed
+	@echo "$(GREEN)✓ SQL execution check completed!$(NC)"
+
+# ============================================
+# Database Management Commands
+# ============================================
+
+db-start: ## Start MatrixOne test database (use VERSION=3.0.4 for specific version)
+	@echo "$(BLUE)Starting MatrixOne test database...$(NC)"
+	@if [ -n "$(VERSION)" ]; then \
+		$(PNPM) run db:start $(VERSION); \
+	else \
+		$(PNPM) run db:start; \
+	fi
+	@echo "$(GREEN)✓ Database started!$(NC)"
+
+db-stop: ## Stop MatrixOne test database
+	@echo "$(BLUE)Stopping MatrixOne test database...$(NC)"
+	@$(PNPM) run db:stop
+	@echo "$(GREEN)✓ Database stopped!$(NC)"
+
+db-status: ## Check MatrixOne test database status
+	@echo "$(BLUE)Checking database status...$(NC)"
+	@$(PNPM) run db:status
+
+db-test: ## Test MatrixOne database connection
+	@echo "$(BLUE)Testing database connection...$(NC)"
+	@$(PNPM) run db:test
+
+# ============================================
+# Comprehensive Check Commands
+# ============================================
+
+check-all: ## Run all checks (lint + links + SQL syntax)
+	@echo "$(BLUE)Running all checks...$(NC)"
+	@echo "$(YELLOW)========================================$(NC)"
+	@$(MAKE) lint
+	@echo ""
+	@$(MAKE) check-links-changed
+	@echo ""
+	@$(MAKE) check-sql-syntax-changed
+	@echo ""
+	@echo "$(GREEN)✓ All checks completed!$(NC)"
+
+validate-all: ## Run full validation (lint + build + links + SQL syntax)
+	@echo "$(BLUE)Running full validation...$(NC)"
+	@echo "$(YELLOW)========================================$(NC)"
+	@$(MAKE) lint
+	@echo ""
+	@$(MAKE) build-strict
+	@echo ""
+	@$(MAKE) check-links-changed
+	@echo ""
+	@$(MAKE) check-sql-syntax-changed
+	@echo ""
+	@echo "$(GREEN)✓ Full validation completed!$(NC)"
+
+pre-commit: ## Run pre-commit checks (lint-fix + check-all)
+	@echo "$(BLUE)Running pre-commit checks...$(NC)"
+	@echo "$(YELLOW)========================================$(NC)"
+	@$(MAKE) lint-fix
+	@echo ""
+	@$(MAKE) check-all
+	@echo ""
+	@echo "$(GREEN)✓ Pre-commit checks completed!$(NC)"
+
+setup: install validate ## Complete setup (install + validate configuration)
+	@echo "$(GREEN)✓ Setup completed!$(NC)"
 
 deploy: ## Deploy documentation (requires proper setup)
 	@echo "$(BLUE)Deploying documentation...$(NC)"
