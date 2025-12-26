@@ -1,5 +1,5 @@
 /** SQL Execution Tester - validates SQL syntax/semantics and compares results with expected */
-import { extractSqlFromFile, splitSqlStatements } from '../utils/sql-extractor.js'
+import { extractSqlFromFile, splitSqlStatements, splitSqlStatementsWithAnnotations, parseAnnotationsToExpectedResults } from '../utils/sql-extractor.js'
 import { DbConnectionManager } from '../utils/db-connection.js'
 import { config } from '../config.js'
 
@@ -155,33 +155,50 @@ export class SqlRunner {
 
     async checkSqlBlock(block) {
         const results = []
-        const statements = splitSqlStatements(block.sql)
+        // Use new function that preserves per-statement annotations
+        const statementsWithAnnotations = splitSqlStatementsWithAnnotations(block.sql)
 
-        // Determine validation mode
-        // Priority: explicit mode > has expected results > default (syntax-only)
-        let validationMode = block.validationMode || 'syntax-only'
+        // Block-level validation mode (can be overridden per-statement)
+        const blockValidationMode = block.validationMode || 'syntax-only'
 
-        // Auto-enable strict mode if ANY expected results are defined:
-        // 1. Extracted output from document (MySQL inline or separated format)
-        // 2. Manual Expected-* annotations (Expected-Rows, Expected-Value, etc.)
-        const hasExpectedResults = block.expectedResults && Object.keys(block.expectedResults).length > 0
-        if (hasExpectedResults && validationMode === 'syntax-only') {
-            validationMode = 'strict'
-        }
+        // Block-level expected results (used for output comparison from separated format)
+        const blockExpectedResults = block.expectedResults || {}
 
-        for (let i = 0; i < statements.length; i++) {
-            const statement = statements[i]
+        for (let i = 0; i < statementsWithAnnotations.length; i++) {
+            const { sql: statement, annotations } = statementsWithAnnotations[i]
 
             if (!statement.trim()) continue
             if (this.isComment(statement)) continue
             // Skip syntax templates (e.g., <table_name>, col1, col2, ..., [optional])
             if (this.isSyntaxTemplate(statement)) continue
 
+            // Parse per-statement annotations to get expected results
+            const parsed = parseAnnotationsToExpectedResults(annotations)
+
+            // Merge: per-statement annotations take priority over block-level
+            // But if no per-statement annotations, fall back to block-level (for separated format output)
+            let expectedResults = parsed.expectedResults
+            let validationMode = parsed.validationMode || blockValidationMode
+
+            // If this is the last statement and block has output, use block's output
+            // (This handles the separated format where output follows the SQL block)
+            if (i === statementsWithAnnotations.length - 1 &&
+                blockExpectedResults.output &&
+                Object.keys(expectedResults).length === 0) {
+                expectedResults = blockExpectedResults
+            }
+
+            // Auto-enable strict mode if ANY expected results are defined
+            const hasExpectedResults = Object.keys(expectedResults).length > 0
+            if (hasExpectedResults && validationMode === 'syntax-only') {
+                validationMode = 'strict'
+            }
+
             const result = await this.validateSql(
                 statement,
                 block.startLine + i,
                 validationMode,
-                block.expectedResults || {}
+                expectedResults
             )
 
             results.push({
@@ -370,30 +387,34 @@ export class SqlRunner {
             }
         }
 
-        // For QUERY: If NO expected results → Only validate semantics (don't execute)
-        if (!this.hasExpectedResults(expectedResults)) {
-            return await this.validateSemanticsOnlyWithPrepare(sql, sqlType)
-        }
-
-        // ==================== Phase 2 & 3: Has expected results → Execute and compare ====================
-        // DML and QUERY: execute SQL and validate results
+        // ==================== QUERY statements: Always execute ====================
+        // Execute all QUERY statements directly (no PREPARE validation)
+        // This is more reliable as MO's PREPARE has bugs with some statement types
         try {
             const result = await this.dbManager.query(sql)
 
-            // Compare results with expected
-            const comparison = this.compareResults(result, expectedResults, sqlType)
-            if (!comparison.matched) {
+            // If expected results defined, compare them
+            if (this.hasExpectedResults(expectedResults)) {
+                const comparison = this.compareResults(result, expectedResults, sqlType)
+                if (!comparison.matched) {
+                    return {
+                        status: VALIDATION_STATUS.ERROR,
+                        message: `Result validation failed: ${comparison.reason}`,
+                        type: sqlType,
+                        detail: comparison.reason
+                    }
+                }
                 return {
-                    status: VALIDATION_STATUS.ERROR,
-                    message: `Result validation failed: ${comparison.reason}`,
-                    type: sqlType,
-                    detail: comparison.reason
+                    status: VALIDATION_STATUS.SUCCESS,
+                    message: 'SQL executed successfully and result matches expected',
+                    type: sqlType
                 }
             }
 
+            // No expected results - just verify execution succeeded
             return {
                 status: VALIDATION_STATUS.SUCCESS,
-                message: 'SQL executed successfully and result matches expected',
+                message: 'SQL executed successfully',
                 type: sqlType
             }
 
@@ -408,45 +429,28 @@ export class SqlRunner {
                 }
             }
 
-            // Execution failed - try auto-completion with expected results
-            return await this.tryExecuteWithAutoComplete(sql, sqlType, execError, expectedResults)
-        }
-    }
+            const errorMsg = execError.message.toLowerCase()
 
-    /**
-     * Phase 4: Validate semantics only using PREPARE (no execution)
-     * Used when no expected results are defined
-     */
-    async validateSemanticsOnlyWithPrepare(sql, sqlType) {
-        try {
-            // Use PREPARE to validate syntax and semantics
-            const escapedSql = sql.replace(/'/g, "''")
-            await this.dbManager.query(`PREPARE stmt FROM '${escapedSql}'`)
-            await this.dbManager.query('DEALLOCATE PREPARE stmt')
-
-            return {
-                status: VALIDATION_STATUS.SUCCESS,
-                message: 'Semantics validated (no expected results, execution skipped)',
-                type: sqlType
-            }
-        } catch (error) {
-            const errorMsg = error.message.toLowerCase()
-
-            // If it's a context error (table/column doesn't exist), syntax is still correct
+            // Context errors (missing table/column) - syntax is OK, table created at runtime
             if (this.isContextError(errorMsg)) {
                 return {
                     status: VALIDATION_STATUS.SUCCESS,
-                    message: 'Semantics validated (tables created at runtime)',
+                    message: 'Query validated (tables created at runtime)',
                     type: sqlType
                 }
             }
 
-            // True syntax or semantic error
+            // If has expected results, try auto-completion
+            if (this.hasExpectedResults(expectedResults)) {
+                return await this.tryExecuteWithAutoComplete(sql, sqlType, execError, expectedResults)
+            }
+
+            // Real error
             return {
                 status: VALIDATION_STATUS.ERROR,
-                message: `Semantic error: ${error.message}`,
+                message: `Query execution failed: ${execError.message}`,
                 type: sqlType,
-                detail: error.message
+                detail: execError.message
             }
         }
     }
@@ -1155,7 +1159,9 @@ export class SqlRunner {
         // SESSION commands (SET statements) - cannot be PREPAREd in MO
         if (/^SET\s+/i.test(trimmed)) return SQL_TYPES.SESSION
         // DDL (including SNAPSHOT - must be executed to create test context)
+        // Also includes DATA BRANCH statements which cannot be PREPAREd
         if (/^(CREATE|DROP|ALTER|TRUNCATE|RENAME)\s+/i.test(trimmed)) return SQL_TYPES.DDL
+        if (/^DATA\s+BRANCH\s+/i.test(trimmed)) return SQL_TYPES.DDL
         if (/^USE\s+/i.test(trimmed)) return SQL_TYPES.DDL
         if (/^(BEGIN|START\s+TRANSACTION|COMMIT|ROLLBACK|SAVEPOINT)\s*;?$/i.test(trimmed)) return SQL_TYPES.DDL
         // DML

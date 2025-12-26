@@ -538,6 +538,143 @@ export function splitSqlStatements(sql) {
 }
 
 /**
+ * Split SQL text into statements with their preceding annotations
+ * Each statement includes the Expected-* annotations that apply to it
+ * @param {string} sql - SQL text
+ * @returns {Array<{sql: string, annotations: string[]}>} Array of statements with annotations
+ */
+export function splitSqlStatementsWithAnnotations(sql) {
+    const results = []
+    const lines = sql.split('\n')
+    let currentStatement = ''
+    let currentAnnotations = []
+
+    for (const line of lines) {
+        const trimmedLine = line.trim()
+
+        // Skip empty lines
+        if (!trimmedLine) {
+            continue
+        }
+
+        // Collect annotation comments (-- Expected-*, -- @validator-mode, etc.)
+        if (trimmedLine.startsWith('--') || trimmedLine.startsWith('#')) {
+            // Check if this is an Expected-* or @validator-* annotation
+            if (/--\s*(Expected-|@validator-)/i.test(trimmedLine)) {
+                currentAnnotations.push(trimmedLine)
+            }
+            continue
+        }
+
+        // Skip lines starting with MySQL command line prompt
+        if (trimmedLine.startsWith('mysql>') || trimmedLine.startsWith('>')) {
+            const sqlPart = trimmedLine.replace(/^(mysql>|>)\s*/, '')
+            if (sqlPart) {
+                currentStatement += sqlPart + '\n'
+            }
+            continue
+        }
+
+        // Skip output results (tables, query results, etc.)
+        if (shouldSkipLine(trimmedLine)) {
+            continue
+        }
+
+        currentStatement += line + '\n'
+
+        // Consider a statement complete if line ends with semicolon
+        if (trimmedLine.endsWith(';')) {
+            if (currentStatement.trim()) {
+                results.push({
+                    sql: currentStatement.trim(),
+                    annotations: [...currentAnnotations]
+                })
+            }
+            currentStatement = ''
+            currentAnnotations = []  // Reset annotations for next statement
+        }
+    }
+
+    // Add the last statement (if not ending with semicolon)
+    if (currentStatement.trim()) {
+        results.push({
+            sql: currentStatement.trim(),
+            annotations: [...currentAnnotations]
+        })
+    }
+
+    return results
+}
+
+/**
+ * Parse annotations to extract expected results for a single statement
+ * @param {string[]} annotations - Array of annotation comment lines
+ * @returns {object} Expected results object
+ */
+export function parseAnnotationsToExpectedResults(annotations) {
+    const result = {
+        validationMode: null,
+        expectedResults: {}
+    }
+
+    for (const line of annotations) {
+        const trimmed = line.trim()
+
+        // Extract validation mode
+        const modeMatch = trimmed.match(/--\s*@validator-mode:\s*(strict|syntax-only)/i)
+        if (modeMatch) {
+            result.validationMode = modeMatch[1].toLowerCase()
+        }
+
+        // Extract Expected-Rows
+        const rowsMatch = trimmed.match(/--\s*Expected-Rows:\s*(\d+)/i)
+        if (rowsMatch) {
+            result.expectedResults.rows = parseInt(rowsMatch[1], 10)
+        }
+
+        // Extract Expected-Value
+        const valueMatch = trimmed.match(/--\s*Expected-Value:\s*(.+)/i)
+        if (valueMatch) {
+            const value = valueMatch[1].trim()
+            result.expectedResults.value = value === 'NULL' ? null : value
+        }
+
+        // Extract Expected-Values
+        const valuesMatch = trimmed.match(/--\s*Expected-Values:\s*(.+)/i)
+        if (valuesMatch) {
+            result.expectedResults.values = valuesMatch[1].split(',').map(v => v.trim())
+        }
+
+        // Extract Expected-Contains
+        const containsMatch = trimmed.match(/--\s*Expected-Contains:\s*(.+)/i)
+        if (containsMatch) {
+            result.expectedResults.contains = result.expectedResults.contains || []
+            result.expectedResults.contains.push(containsMatch[1].trim())
+        }
+
+        // Extract Expected-AffectedRows
+        const affectedMatch = trimmed.match(/--\s*Expected-AffectedRows:\s*(\d+)/i)
+        if (affectedMatch) {
+            result.expectedResults.affectedRows = parseInt(affectedMatch[1], 10)
+        }
+
+        // Extract Expected-Precision
+        const precisionMatch = trimmed.match(/--\s*Expected-Precision:\s*([\d.]+)/i)
+        if (precisionMatch) {
+            result.expectedResults.precision = parseFloat(precisionMatch[1])
+        }
+
+        // Extract Expected-Success
+        const successMatch = trimmed.match(/--\s*Expected-Success:\s*(true|false)/i)
+        if (successMatch) {
+            result.expectedResults.success = successMatch[1].toLowerCase() === 'true'
+        }
+    }
+
+    return result
+}
+
+/**
  * Determine if a line should be skipped (non-SQL statement)
  * @param {string} line - Line content
  * @returns {boolean} Whether to skip the line
