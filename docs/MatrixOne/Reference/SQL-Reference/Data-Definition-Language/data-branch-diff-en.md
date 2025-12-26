@@ -5,6 +5,7 @@
 The `DATA BRANCH DIFF` statement is used to compare data differences between two tables. This feature is similar to Git's diff command and can display insert, delete, and update operations between two data branches.
 
 The system automatically identifies the Lowest Common Ancestor (LCA) between two tables and calculates differences based on it. The difference results include:
+
 - **INSERT**: Rows that exist in the target table but not in the base table
 - **DELETE**: Rows that exist in the base table but not in the target table
 - **UPDATE**: Rows with the same primary key in both tables but different values in other columns
@@ -330,6 +331,7 @@ DROP STAGE my_stage;
 ```
 
 Advantages of using Stage:
+
 - **Security**: No need to expose AK/SK in every SQL statement; administrators configure once
 - **Convenience**: Encapsulate complex URL paths into simple object names
 - **Cross-cluster sync**: Source writes to object storage, target reads and executes directly

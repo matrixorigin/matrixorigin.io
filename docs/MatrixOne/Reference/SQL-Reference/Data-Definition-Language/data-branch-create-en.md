@@ -68,10 +68,12 @@ You can specify the data point in time using the following methods:
 | Use Cases | Data version management, multi-branch collaborative development | Simple data backup, one-time copy |
 
 **Recommendation**:
+
 - If you need to perform data difference comparison (DIFF) or data merging (MERGE) later, use `DATA BRANCH CREATE`
 - If you only need simple data copying without tracking data lineage, you can use `CREATE CLONE`
 
 > **Note**: Tables without data lineage (such as those created via `CREATE CLONE` or created independently) can also perform DIFF/MERGE operations, but with the following limitations:
+>
 > 1. **Lower Performance**: Without branch metadata, the system cannot leverage lineage relationships to optimize difference calculation, requiring full data comparison
 > 2. **Cannot Reflect Lineage**: The difference results cannot reflect the evolution history and source relationships between data
 
