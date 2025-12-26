@@ -8,6 +8,16 @@ tags
 nohup.out
 site
 node_modules
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.pytest_cache/
+
 # Build status files (machine-specific)
 scripts/doc-validator/syntax-checker/.build-status.json
 
