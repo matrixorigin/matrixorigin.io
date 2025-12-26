@@ -73,18 +73,23 @@ The system automatically detects the branch relationship between two tables:
 Compare two tables without a common ancestor:
 
 ```sql
+-- Expected-Rows: 0
 CREATE DATABASE test;
+-- Expected-Rows: 0
 USE test;
 
--- Create two independent tables
-CREATE TABLE t1 (a INT PRIMARY KEY, b VARCHAR(10));
-INSERT INTO t1 VALUES (1, '1'), (2, '2'), (3, '3');
+-- Expected-Rows: 0
+CREATE TABLE test.t1 (a INT PRIMARY KEY, b VARCHAR(10));
+-- Expected-Rows: 0
+INSERT INTO test.t1 VALUES (1, '1'), (2, '2'), (3, '3');
 
-CREATE TABLE t2 (a INT PRIMARY KEY, b VARCHAR(10));
-INSERT INTO t2 VALUES (1, '1'), (2, '2'), (4, '4');
+-- Expected-Rows: 0
+CREATE TABLE test.t2 (a INT PRIMARY KEY, b VARCHAR(10));
+-- Expected-Rows: 0
+INSERT INTO test.t2 VALUES (1, '1'), (2, '2'), (4, '4');
 
--- Compare differences
-DATA BRANCH DIFF t2 AGAINST t1;
+-- Expected-Rows: 2
+DATA BRANCH DIFF test.t2 AGAINST test.t1;
 +-------------------+--------+------+------+
 | diff t2 against t1 | flag   | a    | b    |
 +-------------------+--------+------+------+
@@ -92,8 +97,8 @@ DATA BRANCH DIFF t2 AGAINST t1;
 | t1                | INSERT |    3 | 3    |
 +-------------------+--------+------+------+
 
--- Reverse comparison
-DATA BRANCH DIFF t1 AGAINST t2;
+-- Expected-Rows: 2
+DATA BRANCH DIFF test.t1 AGAINST test.t2;
 +-------------------+--------+------+------+
 | diff t1 against t2 | flag   | a    | b    |
 +-------------------+--------+------+------+
@@ -101,26 +106,32 @@ DATA BRANCH DIFF t1 AGAINST t2;
 | t2                | INSERT |    4 | 4    |
 +-------------------+--------+------+------+
 
-DROP TABLE t1;
-DROP TABLE t2;
+-- Expected-Rows: 0
+DROP TABLE test.t1;
+-- Expected-Rows: 0
+DROP TABLE test.t2;
 ```
 
 ### Example 2: Compare Branch Tables (With Common Ancestor)
 
 ```sql
--- Create base table
-CREATE TABLE t0 (a INT PRIMARY KEY, b INT);
-INSERT INTO t0 VALUES (1, 1), (2, 2), (3, 3);
+-- Expected-Rows: 0
+CREATE TABLE test.t0 (a INT PRIMARY KEY, b INT);
+-- Expected-Rows: 0
+INSERT INTO test.t0 VALUES (1, 1), (2, 2), (3, 3);
 
--- Create two branches from t0
-DATA BRANCH CREATE TABLE t1 FROM t0;
-INSERT INTO t1 VALUES (4, 4);
+-- Expected-Rows: 0
+DATA BRANCH CREATE TABLE test.t1 FROM test.t0;
+-- Expected-Rows: 0
+INSERT INTO test.t1 VALUES (4, 4);
 
-DATA BRANCH CREATE TABLE t2 FROM t0;
-INSERT INTO t2 VALUES (5, 5);
+-- Expected-Rows: 0
+DATA BRANCH CREATE TABLE test.t2 FROM test.t0;
+-- Expected-Rows: 0
+INSERT INTO test.t2 VALUES (5, 5);
 
--- Compare differences between two branches
-DATA BRANCH DIFF t2 AGAINST t1;
+-- Expected-Rows: 2
+DATA BRANCH DIFF test.t2 AGAINST test.t1;
 +-------------------+--------+------+------+
 | diff t2 against t1 | flag   | a    | b    |
 +-------------------+--------+------+------+
@@ -128,39 +139,47 @@ DATA BRANCH DIFF t2 AGAINST t1;
 | t1                | INSERT |    4 |    4 |
 +-------------------+--------+------+------+
 
-DROP TABLE t0;
-DROP TABLE t1;
-DROP TABLE t2;
+-- Expected-Rows: 0
+DROP TABLE test.t0;
+-- Expected-Rows: 0
+DROP TABLE test.t1;
+-- Expected-Rows: 0
+DROP TABLE test.t2;
 ```
 
 ### Example 3: Compare Using Snapshots
 
 ```sql
--- Create table and insert data
-CREATE TABLE t1 (a INT PRIMARY KEY, b INT);
-INSERT INTO t1 VALUES (1, 1), (2, 2);
+-- Expected-Rows: 0
+CREATE TABLE test.t1 (a INT PRIMARY KEY, b INT);
+-- Expected-Rows: 0
+INSERT INTO test.t1 VALUES (1, 1), (2, 2);
 
--- Create snapshot
+-- Expected-Rows: 0
 CREATE SNAPSHOT sp1 FOR TABLE test t1;
 
--- Continue modifying data
-INSERT INTO t1 VALUES (3, 3);
-UPDATE t1 SET b = 10 WHERE a = 1;
+-- Expected-Rows: 0
+INSERT INTO test.t1 VALUES (3, 3);
+-- Expected-Rows: 1
+UPDATE test.t1 SET b = 10 WHERE a = 1;
 
--- Create another snapshot
+-- Expected-Rows: 0
 CREATE SNAPSHOT sp2 FOR TABLE test t1;
 
--- Compare differences between two snapshots
-DATA BRANCH DIFF t1{SNAPSHOT='sp2'} AGAINST t1{SNAPSHOT='sp1'};
+-- Expected-Rows: 1
+DATA BRANCH DIFF test.t1{SNAPSHOT='sp2'} AGAINST test.t1{SNAPSHOT='sp1'};
 +--------------------+--------+------+------+
 | diff t1 against t1 | flag   | a    | b    |
 +--------------------+--------+------+------+
 | t1                 | INSERT |    3 |    3 |
 +--------------------+--------+------+------+
 
+-- Expected-Rows: 0
 DROP SNAPSHOT sp1;
+-- Expected-Rows: 0
 DROP SNAPSHOT sp2;
-DROP TABLE t1;
+-- Expected-Rows: 0
+DROP TABLE test.t1;
 ```
 
 !!! note
@@ -169,36 +188,47 @@ DROP TABLE t1;
 ### Example 4: Get Only Difference Count
 
 ```sql
-CREATE TABLE t1 (a INT PRIMARY KEY, b INT);
-INSERT INTO t1 SELECT result, result FROM generate_series(1, 1000) g;
+-- Expected-Rows: 0
+CREATE TABLE test.t1 (a INT PRIMARY KEY, b INT);
+-- Expected-Rows: 0
+INSERT INTO test.t1 SELECT result, result FROM generate_series(1, 1000) g;
 
-DATA BRANCH CREATE TABLE t2 FROM t1;
-INSERT INTO t2 SELECT result, result FROM generate_series(1001, 2000) g;
-DELETE FROM t2 WHERE a <= 100;
+-- Expected-Rows: 0
+DATA BRANCH CREATE TABLE test.t2 FROM test.t1;
+-- Expected-Rows: 0
+INSERT INTO test.t2 SELECT result, result FROM generate_series(1001, 2000) g;
+-- Expected-Rows: 100
+DELETE FROM test.t2 WHERE a <= 100;
 
--- Get only difference count
-DATA BRANCH DIFF t2 AGAINST t1 OUTPUT COUNT;
+-- Expected-Rows: 1
+DATA BRANCH DIFF test.t2 AGAINST test.t1 OUTPUT COUNT;
 +----------+
 | COUNT(*) |
 +----------+
 |     1100 |
 +----------+
 
-DROP TABLE t1;
-DROP TABLE t2;
+-- Expected-Rows: 0
+DROP TABLE test.t1;
+-- Expected-Rows: 0
+DROP TABLE test.t2;
 ```
 
 ### Example 5: Limit Returned Rows
 
 ```sql
-CREATE TABLE t1 (a INT PRIMARY KEY, b INT);
-INSERT INTO t1 SELECT result, result FROM generate_series(1, 100) g;
+-- Expected-Rows: 0
+CREATE TABLE test.t1 (a INT PRIMARY KEY, b INT);
+-- Expected-Rows: 0
+INSERT INTO test.t1 SELECT result, result FROM generate_series(1, 100) g;
 
-DATA BRANCH CREATE TABLE t2 FROM t1;
-INSERT INTO t2 SELECT result, result FROM generate_series(101, 200) g;
+-- Expected-Rows: 0
+DATA BRANCH CREATE TABLE test.t2 FROM test.t1;
+-- Expected-Rows: 0
+INSERT INTO test.t2 SELECT result, result FROM generate_series(101, 200) g;
 
--- Limit to first 5 difference rows
-DATA BRANCH DIFF t2 AGAINST t1 OUTPUT LIMIT 5;
+-- Expected-Rows: 5
+DATA BRANCH DIFF test.t2 AGAINST test.t1 OUTPUT LIMIT 5;
 +--------------------+--------+------+------+
 | diff t2 against t1 | flag   | a    | b    |
 +--------------------+--------+------+------+
@@ -209,8 +239,10 @@ DATA BRANCH DIFF t2 AGAINST t1 OUTPUT LIMIT 5;
 | t2                 | INSERT |  156 |  156 |
 +--------------------+--------+------+------+
 
-DROP TABLE t1;
-DROP TABLE t2;
+-- Expected-Rows: 0
+DROP TABLE test.t1;
+-- Expected-Rows: 0
+DROP TABLE test.t2;
 ```
 
 !!! note
@@ -219,27 +251,32 @@ DROP TABLE t2;
 ### Example 6: Export Differences as SQL File
 
 ```sql
-CREATE TABLE t1 (a INT PRIMARY KEY, b INT);
-INSERT INTO t1 VALUES (1, 1), (2, 2);
+-- Expected-Rows: 0
+CREATE TABLE test.t1 (a INT PRIMARY KEY, b INT);
+-- Expected-Rows: 0
+INSERT INTO test.t1 VALUES (1, 1), (2, 2);
 
-DATA BRANCH CREATE TABLE t2 FROM t1;
-INSERT INTO t2 VALUES (3, 3);
-UPDATE t2 SET b = 10 WHERE a = 1;
-DELETE FROM t2 WHERE a = 2;
+-- Expected-Rows: 0
+DATA BRANCH CREATE TABLE test.t2 FROM test.t1;
+-- Expected-Rows: 0
+INSERT INTO test.t2 VALUES (3, 3);
+-- Expected-Rows: 1
+UPDATE test.t2 SET b = 10 WHERE a = 1;
+-- Expected-Rows: 1
+DELETE FROM test.t2 WHERE a = 2;
 
--- Export differences to local file
-DATA BRANCH DIFF t2 AGAINST t1 OUTPUT FILE '/tmp/diff_output/';
+-- Expected-Success: false
+DATA BRANCH DIFF test.t2 AGAINST test.t1 OUTPUT FILE '/tmp/diff_output/';
 +------------------------------------------+------------------------------------------+
 | FILE SAVED TO                            | HINT                                     |
 +------------------------------------------+------------------------------------------+
 | /tmp/diff_output/diff_t2_t1_20241225.sql | DELETE FROM test.t1, REPLACE INTO test.t1 |
 +------------------------------------------+------------------------------------------+
 
--- The generated SQL file contains executable DELETE and REPLACE statements
--- These statements can be executed on t1 to synchronize data
-
-DROP TABLE t1;
-DROP TABLE t2;
+-- Expected-Rows: 0
+DROP TABLE test.t1;
+-- Expected-Rows: 0
+DROP TABLE test.t2;
 ```
 
 #### Output File Types
@@ -262,6 +299,7 @@ mysql -h <mo_host> -P <mo_port> -u <user> -p <db_name> < diff_t2_t1_20241225.sql
 **Import CSV file (full sync)**:
 
 ```sql
+-- Expected-Success: false
 LOAD DATA LOCAL INFILE '/tmp/diff_output/diff_xxx.csv'
 INTO TABLE test.t1
 FIELDS ENCLOSED BY '"' ESCAPED BY '\\' TERMINATED BY ','
@@ -273,19 +311,22 @@ LINES TERMINATED BY '\n';
 Stage is a logical object in MatrixOne for connecting to external storage (such as S3, HDFS). You can output difference files directly to object storage for cross-cluster/cross-environment data synchronization.
 
 ```sql
--- Create Stage (connect to S3)
+-- Expected-Rows: 0
 CREATE STAGE my_stage URL = 's3://my-bucket/diff-output/?region=us-east-1&access_key_id=xxx&secret_access_key=yyy';
 
--- Output differences to Stage
-DATA BRANCH DIFF t2 AGAINST t1 OUTPUT FILE 'stage://my_stage/';
+-- Expected-Success: false
+DATA BRANCH DIFF test.t2 AGAINST test.t1 OUTPUT FILE 'stage://my_stage/';
 +-------------------------------------------------+------------------------------------------+
 | FILE SAVED TO                                   | HINT                                     |
 +-------------------------------------------------+------------------------------------------+
 | stage://my_stage/diff_t2_t1_20241225.sql        | DELETE FROM test.t1, REPLACE INTO test.t1 |
 +-------------------------------------------------+------------------------------------------+
 
--- View file content on Stage (without downloading)
+-- Expected-Success: false
 SELECT load_file(CAST('stage://my_stage/diff_t2_t1_20241225.sql' AS DATALINK));
+
+-- Expected-Rows: 0
+DROP STAGE my_stage;
 ```
 
 Advantages of using Stage:
@@ -296,17 +337,24 @@ Advantages of using Stage:
 ### Example 7: Detect Update Operations
 
 ```sql
-CREATE TABLE t0 (a INT PRIMARY KEY, b INT, c INT);
-INSERT INTO t0 SELECT result, result, result FROM generate_series(1, 100) g;
+-- Expected-Rows: 0
+CREATE TABLE test.t0 (a INT PRIMARY KEY, b INT, c INT);
+-- Expected-Rows: 0
+INSERT INTO test.t0 SELECT result, result, result FROM generate_series(1, 100) g;
 
-DATA BRANCH CREATE TABLE t1 FROM t0;
-UPDATE t1 SET c = c + 1 WHERE a IN (1, 50, 100);
+-- Expected-Rows: 0
+DATA BRANCH CREATE TABLE test.t1 FROM test.t0;
+-- Expected-Rows: 3
+UPDATE test.t1 SET c = c + 1 WHERE a IN (1, 50, 100);
 
-DATA BRANCH CREATE TABLE t2 FROM t0;
-UPDATE t2 SET c = c + 2 WHERE a IN (1, 25, 75);
+-- Expected-Rows: 0
+DATA BRANCH CREATE TABLE test.t2 FROM test.t0;
+-- Expected-Rows: 3
+UPDATE test.t2 SET c = c + 2 WHERE a IN (1, 25, 75);
 
 -- Compare differences, will detect conflicting updates
-DATA BRANCH DIFF t2 AGAINST t1;
+-- Expected-Rows: 6
+DATA BRANCH DIFF test.t2 AGAINST test.t1;
 +--------------------+--------+------+------+------+
 | diff t2 against t1 | flag   | a    | b    | c    |
 +--------------------+--------+------+------+------+
@@ -318,35 +366,45 @@ DATA BRANCH DIFF t2 AGAINST t1;
 | t1                 | UPDATE |  100 |  100 |  101 |
 +--------------------+--------+------+------+------+
 
-DROP TABLE t0;
-DROP TABLE t1;
-DROP TABLE t2;
+-- Expected-Rows: 0
+DROP TABLE test.t0;
+-- Expected-Rows: 0
+DROP TABLE test.t1;
+-- Expected-Rows: 0
+DROP TABLE test.t2;
 ```
 
 ### Example 8: Difference Comparison for Composite Primary Key Tables
 
 ```sql
-CREATE TABLE orders (
+-- Expected-Rows: 0
+CREATE TABLE test.orders (
     tenant_id INT,
     order_code VARCHAR(8),
     amount DECIMAL(12,2),
     PRIMARY KEY (tenant_id, order_code)
 );
 
-INSERT INTO orders VALUES
+-- Expected-Rows: 0
+INSERT INTO test.orders VALUES
     (100, 'A100', 120.50),
     (100, 'A101', 80.00),
     (101, 'B200', 305.75);
 
-DATA BRANCH CREATE TABLE orders_branch FROM orders;
+-- Expected-Rows: 0
+DATA BRANCH CREATE TABLE test.orders_branch FROM test.orders;
 
 -- Make modifications on branch
-UPDATE orders_branch SET amount = 130.50 WHERE tenant_id = 100 AND order_code = 'A100';
-DELETE FROM orders_branch WHERE tenant_id = 100 AND order_code = 'A101';
-INSERT INTO orders_branch VALUES (102, 'C300', 512.25);
+-- Expected-Rows: 1
+UPDATE test.orders_branch SET amount = 130.50 WHERE tenant_id = 100 AND order_code = 'A100';
+-- Expected-Rows: 1
+DELETE FROM test.orders_branch WHERE tenant_id = 100 AND order_code = 'A101';
+-- Expected-Rows: 0
+INSERT INTO test.orders_branch VALUES (102, 'C300', 512.25);
 
 -- Compare differences
-DATA BRANCH DIFF orders_branch AGAINST orders;
+-- Expected-Rows: 3
+DATA BRANCH DIFF test.orders_branch AGAINST test.orders;
 +-----------------------------------+--------+-----------+------------+--------+
 | diff orders_branch against orders | flag   | tenant_id | order_code | amount |
 +-----------------------------------+--------+-----------+------------+--------+
@@ -355,8 +413,11 @@ DATA BRANCH DIFF orders_branch AGAINST orders;
 | orders_branch                     | INSERT |       102 | C300       | 512.25 |
 +-----------------------------------+--------+-----------+------------+--------+
 
-DROP TABLE orders;
-DROP TABLE orders_branch;
+-- Expected-Rows: 0
+DROP TABLE test.orders;
+-- Expected-Rows: 0
+DROP TABLE test.orders_branch;
+-- Expected-Rows: 0
 DROP DATABASE test;
 ```
 

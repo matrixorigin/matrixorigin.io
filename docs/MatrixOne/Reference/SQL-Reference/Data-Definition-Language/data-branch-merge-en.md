@@ -62,22 +62,31 @@ Conflicts occur when:
 ### Example 1: Simple Merge (No Conflicts)
 
 ```sql
+-- Expected-Rows: 0
 CREATE DATABASE test;
+-- Expected-Rows: 0
 USE test;
 
 -- Create base table
-CREATE TABLE t0 (a INT PRIMARY KEY, b INT);
-INSERT INTO t0 VALUES (1, 1), (2, 2), (3, 3);
+-- Expected-Rows: 0
+CREATE TABLE test.t0 (a INT PRIMARY KEY, b INT);
+-- Expected-Rows: 0
+INSERT INTO test.t0 VALUES (1, 1), (2, 2), (3, 3);
 
 -- Create two branches
-DATA BRANCH CREATE TABLE t1 FROM t0;
-INSERT INTO t1 VALUES (4, 4);
+-- Expected-Rows: 0
+DATA BRANCH CREATE TABLE test.t1 FROM test.t0;
+-- Expected-Rows: 0
+INSERT INTO test.t1 VALUES (4, 4);
 
-DATA BRANCH CREATE TABLE t2 FROM t0;
-INSERT INTO t2 VALUES (5, 5);
+-- Expected-Rows: 0
+DATA BRANCH CREATE TABLE test.t2 FROM test.t0;
+-- Expected-Rows: 0
+INSERT INTO test.t2 VALUES (5, 5);
 
 -- View differences
-DATA BRANCH DIFF t2 AGAINST t1;
+-- Expected-Rows: 2
+DATA BRANCH DIFF test.t2 AGAINST test.t1;
 +--------------------+--------+------+------+
 | diff t2 against t1 | flag   | a    | b    |
 +--------------------+--------+------+------+
@@ -86,10 +95,12 @@ DATA BRANCH DIFF t2 AGAINST t1;
 +--------------------+--------+------+------+
 
 -- Merge t2 into t1
-DATA BRANCH MERGE t2 INTO t1;
+-- Expected-Rows: 0
+DATA BRANCH MERGE test.t2 INTO test.t1;
 
 -- Verify merge result
-SELECT * FROM t1 ORDER BY a;
+-- Expected-Rows: 5
+SELECT * FROM test.t1 ORDER BY a;
 +------+------+
 | a    | b    |
 +------+------+
@@ -100,27 +111,37 @@ SELECT * FROM t1 ORDER BY a;
 |    5 |    5 |
 +------+------+
 
-DROP TABLE t0;
-DROP TABLE t1;
-DROP TABLE t2;
+-- Expected-Rows: 0
+DROP TABLE test.t0;
+-- Expected-Rows: 0
+DROP TABLE test.t1;
+-- Expected-Rows: 0
+DROP TABLE test.t2;
 ```
 
 ### Example 2: Handling INSERT Conflicts
 
 ```sql
 -- Create base table
-CREATE TABLE t0 (a INT PRIMARY KEY, b INT);
-INSERT INTO t0 VALUES (1, 1), (2, 2);
+-- Expected-Rows: 0
+CREATE TABLE test.t0 (a INT PRIMARY KEY, b INT);
+-- Expected-Rows: 0
+INSERT INTO test.t0 VALUES (1, 1), (2, 2);
 
 -- Create two branches, both insert rows with same primary key but different values
-DATA BRANCH CREATE TABLE t1 FROM t0;
-INSERT INTO t1 VALUES (3, 3);
+-- Expected-Rows: 0
+DATA BRANCH CREATE TABLE test.t1 FROM test.t0;
+-- Expected-Rows: 0
+INSERT INTO test.t1 VALUES (3, 3);
 
-DATA BRANCH CREATE TABLE t2 FROM t0;
-INSERT INTO t2 VALUES (3, 4);
+-- Expected-Rows: 0
+DATA BRANCH CREATE TABLE test.t2 FROM test.t0;
+-- Expected-Rows: 0
+INSERT INTO test.t2 VALUES (3, 4);
 
 -- View differences
-DATA BRANCH DIFF t2 AGAINST t1;
+-- Expected-Rows: 2
+DATA BRANCH DIFF test.t2 AGAINST test.t1;
 +-------------------+--------+------+------+
 | diff t2 against t1 | flag   | a    | b    |
 +-------------------+--------+------+------+
@@ -129,12 +150,15 @@ DATA BRANCH DIFF t2 AGAINST t1;
 +-------------------+--------+------+------+
 
 -- Default behavior: error on conflict
-DATA BRANCH MERGE t2 INTO t1;
+-- Expected-Success: false
+DATA BRANCH MERGE test.t2 INTO test.t1;
 -- ERROR: conflict: t2 INSERT and t1 INSERT on pk(3) with different values
 
 -- Use SKIP: skip conflict, keep t1's data
-DATA BRANCH MERGE t2 INTO t1 WHEN CONFLICT SKIP;
-SELECT * FROM t1 ORDER BY a;
+-- Expected-Rows: 0
+DATA BRANCH MERGE test.t2 INTO test.t1 WHEN CONFLICT SKIP;
+-- Expected-Rows: 3
+SELECT * FROM test.t1 ORDER BY a;
 +------+------+
 | a    | b    |
 +------+------+
@@ -144,8 +168,10 @@ SELECT * FROM t1 ORDER BY a;
 +------+------+
 
 -- Use ACCEPT: accept t2's data
-DATA BRANCH MERGE t2 INTO t1 WHEN CONFLICT ACCEPT;
-SELECT * FROM t1 ORDER BY a;
+-- Expected-Rows: 0
+DATA BRANCH MERGE test.t2 INTO test.t1 WHEN CONFLICT ACCEPT;
+-- Expected-Rows: 3
+SELECT * FROM test.t1 ORDER BY a;
 +------+------+
 | a    | b    |
 +------+------+
@@ -154,25 +180,34 @@ SELECT * FROM t1 ORDER BY a;
 |    3 |    4 |
 +------+------+
 
-DROP TABLE t0;
-DROP TABLE t1;
-DROP TABLE t2;
+-- Expected-Rows: 0
+DROP TABLE test.t0;
+-- Expected-Rows: 0
+DROP TABLE test.t1;
+-- Expected-Rows: 0
+DROP TABLE test.t2;
 ```
 
 ### Example 3: Handling UPDATE Conflicts
 
 ```sql
 -- Create base table
-CREATE TABLE t1 (a INT PRIMARY KEY, b INT);
-INSERT INTO t1 VALUES (1, 1), (2, 2);
+-- Expected-Rows: 0
+CREATE TABLE test.t1 (a INT PRIMARY KEY, b INT);
+-- Expected-Rows: 0
+INSERT INTO test.t1 VALUES (1, 1), (2, 2);
 
 -- Create branch and make different updates
-DATA BRANCH CREATE TABLE t2 FROM t1;
-UPDATE t2 SET b = b + 2 WHERE a = 1;
-UPDATE t1 SET b = b + 1 WHERE a = 1;
+-- Expected-Rows: 0
+DATA BRANCH CREATE TABLE test.t2 FROM test.t1;
+-- Expected-Rows: 1
+UPDATE test.t2 SET b = b + 2 WHERE a = 1;
+-- Expected-Rows: 1
+UPDATE test.t1 SET b = b + 1 WHERE a = 1;
 
 -- View differences
-DATA BRANCH DIFF t2 AGAINST t1;
+-- Expected-Rows: 2
+DATA BRANCH DIFF test.t2 AGAINST test.t1;
 +--------------------+--------+------+------+
 | diff t2 against t1 | flag   | a    | b    |
 +--------------------+--------+------+------+
@@ -181,8 +216,10 @@ DATA BRANCH DIFF t2 AGAINST t1;
 +--------------------+--------+------+------+
 
 -- Use SKIP: keep t1's update
-DATA BRANCH MERGE t2 INTO t1 WHEN CONFLICT SKIP;
-SELECT * FROM t1 ORDER BY a;
+-- Expected-Rows: 0
+DATA BRANCH MERGE test.t2 INTO test.t1 WHEN CONFLICT SKIP;
+-- Expected-Rows: 2
+SELECT * FROM test.t1 ORDER BY a;
 +------+------+
 | a    | b    |
 +------+------+
@@ -191,8 +228,10 @@ SELECT * FROM t1 ORDER BY a;
 +------+------+
 
 -- Use ACCEPT: accept t2's update
-DATA BRANCH MERGE t2 INTO t1 WHEN CONFLICT ACCEPT;
-SELECT * FROM t1 ORDER BY a;
+-- Expected-Rows: 0
+DATA BRANCH MERGE test.t2 INTO test.t1 WHEN CONFLICT ACCEPT;
+-- Expected-Rows: 2
+SELECT * FROM test.t1 ORDER BY a;
 +------+------+
 | a    | b    |
 +------+------+
@@ -200,22 +239,29 @@ SELECT * FROM t1 ORDER BY a;
 |    2 |    2 |
 +------+------+
 
-DROP TABLE t1;
-DROP TABLE t2;
+-- Expected-Rows: 0
+DROP TABLE test.t1;
+-- Expected-Rows: 0
+DROP TABLE test.t2;
 ```
 
 ### Example 4: Merge Without Common Ancestor
 
 ```sql
 -- Create two independent tables
-CREATE TABLE t1 (a INT PRIMARY KEY, b INT);
-INSERT INTO t1 VALUES (1, 1), (2, 2);
+-- Expected-Rows: 0
+CREATE TABLE test.t1 (a INT PRIMARY KEY, b INT);
+-- Expected-Rows: 0
+INSERT INTO test.t1 VALUES (1, 1), (2, 2);
 
-CREATE TABLE t2 (a INT PRIMARY KEY, b INT);
-INSERT INTO t2 VALUES (1, 2), (3, 3);
+-- Expected-Rows: 0
+CREATE TABLE test.t2 (a INT PRIMARY KEY, b INT);
+-- Expected-Rows: 0
+INSERT INTO test.t2 VALUES (1, 2), (3, 3);
 
 -- View differences
-DATA BRANCH DIFF t2 AGAINST t1;
+-- Expected-Rows: 4
+DATA BRANCH DIFF test.t2 AGAINST test.t1;
 +--------------------+--------+------+------+
 | diff t2 against t1 | flag   | a    | b    |
 +--------------------+--------+------+------+
@@ -226,8 +272,10 @@ DATA BRANCH DIFF t2 AGAINST t1;
 +--------------------+--------+------+------+
 
 -- Merge with SKIP
-DATA BRANCH MERGE t2 INTO t1 WHEN CONFLICT SKIP;
-SELECT * FROM t1 ORDER BY a;
+-- Expected-Rows: 0
+DATA BRANCH MERGE test.t2 INTO test.t1 WHEN CONFLICT SKIP;
+-- Expected-Rows: 3
+SELECT * FROM test.t1 ORDER BY a;
 +------+------+
 | a    | b    |
 +------+------+
@@ -237,8 +285,10 @@ SELECT * FROM t1 ORDER BY a;
 +------+------+
 
 -- Merge with ACCEPT
-DATA BRANCH MERGE t2 INTO t1 WHEN CONFLICT ACCEPT;
-SELECT * FROM t1 ORDER BY a;
+-- Expected-Rows: 0
+DATA BRANCH MERGE test.t2 INTO test.t1 WHEN CONFLICT ACCEPT;
+-- Expected-Rows: 3
+SELECT * FROM test.t1 ORDER BY a;
 +------+------+
 | a    | b    |
 +------+------+
@@ -247,30 +297,42 @@ SELECT * FROM t1 ORDER BY a;
 |    3 |    3 |
 +------+------+
 
-DROP TABLE t1;
-DROP TABLE t2;
+-- Expected-Rows: 0
+DROP TABLE test.t1;
+-- Expected-Rows: 0
+DROP TABLE test.t2;
 ```
 
 ### Example 5: Complex Merge Scenario
 
 ```sql
 -- Create base table
-CREATE TABLE t0 (a INT PRIMARY KEY, b VARCHAR(10));
-INSERT INTO t0 SELECT result, 't0' FROM generate_series(1, 100) g;
+-- Expected-Rows: 0
+CREATE TABLE test.t0 (a INT PRIMARY KEY, b VARCHAR(10));
+-- Expected-Rows: 0
+INSERT INTO test.t0 SELECT result, 't0' FROM generate_series(1, 100) g;
 
 -- Create multiple branches with different modifications
-DATA BRANCH CREATE TABLE t1 FROM t0;
-UPDATE t1 SET b = 't1' WHERE a IN (1, 20, 40, 60, 80, 100);
+-- Expected-Rows: 0
+DATA BRANCH CREATE TABLE test.t1 FROM test.t0;
+-- Expected-Rows: 6
+UPDATE test.t1 SET b = 't1' WHERE a IN (1, 20, 40, 60, 80, 100);
 
-DATA BRANCH CREATE TABLE t2 FROM t0;
-UPDATE t2 SET b = 't2' WHERE a IN (2, 22, 42, 62, 82);
+-- Expected-Rows: 0
+DATA BRANCH CREATE TABLE test.t2 FROM test.t0;
+-- Expected-Rows: 5
+UPDATE test.t2 SET b = 't2' WHERE a IN (2, 22, 42, 62, 82);
 
-DATA BRANCH CREATE TABLE t3 FROM t0;
-UPDATE t3 SET b = 't3' WHERE a IN (3, 23, 43, 63, 83);
+-- Expected-Rows: 0
+DATA BRANCH CREATE TABLE test.t3 FROM test.t0;
+-- Expected-Rows: 5
+UPDATE test.t3 SET b = 't3' WHERE a IN (3, 23, 43, 63, 83);
 
 -- Merge into t0 sequentially
-DATA BRANCH MERGE t1 INTO t0;
-SELECT COUNT(*) AS cnt, b FROM t0 GROUP BY b ORDER BY cnt;
+-- Expected-Rows: 0
+DATA BRANCH MERGE test.t1 INTO test.t0;
+-- Expected-Rows: 2
+SELECT COUNT(*) AS cnt, b FROM test.t0 GROUP BY b ORDER BY cnt;
 +-----+------+
 | cnt | b    |
 +-----+------+
@@ -278,8 +340,10 @@ SELECT COUNT(*) AS cnt, b FROM t0 GROUP BY b ORDER BY cnt;
 |  94 | t0   |
 +-----+------+
 
-DATA BRANCH MERGE t2 INTO t0;
-SELECT COUNT(*) AS cnt, b FROM t0 GROUP BY b ORDER BY cnt;
+-- Expected-Rows: 0
+DATA BRANCH MERGE test.t2 INTO test.t0;
+-- Expected-Rows: 3
+SELECT COUNT(*) AS cnt, b FROM test.t0 GROUP BY b ORDER BY cnt;
 +-----+------+
 | cnt | b    |
 +-----+------+
@@ -288,8 +352,10 @@ SELECT COUNT(*) AS cnt, b FROM t0 GROUP BY b ORDER BY cnt;
 |  89 | t0   |
 +-----+------+
 
-DATA BRANCH MERGE t3 INTO t0;
-SELECT COUNT(*) AS cnt, b FROM t0 GROUP BY b ORDER BY cnt;
+-- Expected-Rows: 0
+DATA BRANCH MERGE test.t3 INTO test.t0;
+-- Expected-Rows: 4
+SELECT COUNT(*) AS cnt, b FROM test.t0 GROUP BY b ORDER BY cnt;
 +-----+------+
 | cnt | b    |
 +-----+------+
@@ -299,54 +365,75 @@ SELECT COUNT(*) AS cnt, b FROM t0 GROUP BY b ORDER BY cnt;
 |  84 | t0   |
 +-----+------+
 
-DROP TABLE t0;
-DROP TABLE t1;
-DROP TABLE t2;
-DROP TABLE t3;
+-- Expected-Rows: 0
+DROP TABLE test.t0;
+-- Expected-Rows: 0
+DROP TABLE test.t1;
+-- Expected-Rows: 0
+DROP TABLE test.t2;
+-- Expected-Rows: 0
+DROP TABLE test.t3;
 ```
 
 ### Example 6: Merge with NULL Values
 
 ```sql
 -- Create table with NULL values
-CREATE TABLE payout_template (
+-- Expected-Rows: 0
+CREATE TABLE test.payout_template (
     batch_id INT PRIMARY KEY,
     region VARCHAR(8),
     amount DECIMAL(12,2),
     reviewer VARCHAR(20)
 );
 
-INSERT INTO payout_template VALUES
+-- Expected-Rows: 0
+INSERT INTO test.payout_template VALUES
     (10, 'east', 1200.50, 'amy'),
     (20, 'west', NULL, NULL),
     (30, NULL, 4800.00, 'leo');
 
 -- Create two branches
-DATA BRANCH CREATE TABLE payout_stage FROM payout_template;
-DATA BRANCH CREATE TABLE payout_ops FROM payout_template;
+-- Expected-Rows: 0
+DATA BRANCH CREATE TABLE test.payout_stage FROM test.payout_template;
+-- Expected-Rows: 0
+DATA BRANCH CREATE TABLE test.payout_ops FROM test.payout_template;
 
 -- Modify on stage branch
-UPDATE payout_stage SET amount = NULL, reviewer = NULL WHERE batch_id = 10;
-UPDATE payout_stage SET reviewer = 'nina' WHERE batch_id = 20;
+-- Expected-Rows: 1
+UPDATE test.payout_stage SET amount = NULL, reviewer = NULL WHERE batch_id = 10;
+-- Expected-Rows: 1
+UPDATE test.payout_stage SET reviewer = 'nina' WHERE batch_id = 20;
 
 -- Modify on ops branch
-UPDATE payout_ops SET amount = 1250.75 WHERE batch_id = 10;
-UPDATE payout_ops SET amount = NULL WHERE batch_id = 30;
+-- Expected-Rows: 1
+UPDATE test.payout_ops SET amount = 1250.75 WHERE batch_id = 10;
+-- Expected-Rows: 1
+UPDATE test.payout_ops SET amount = NULL WHERE batch_id = 30;
 
 -- View differences
-DATA BRANCH DIFF payout_stage AGAINST payout_ops;
+-- Expected-Rows: 6
+DATA BRANCH DIFF test.payout_stage AGAINST test.payout_ops;
 
 -- Merge with SKIP
-DATA BRANCH MERGE payout_stage INTO payout_ops WHEN CONFLICT SKIP;
-SELECT batch_id, region, amount, reviewer FROM payout_ops ORDER BY batch_id;
+-- Expected-Rows: 0
+DATA BRANCH MERGE test.payout_stage INTO test.payout_ops WHEN CONFLICT SKIP;
+-- Expected-Rows: 3
+SELECT batch_id, region, amount, reviewer FROM test.payout_ops ORDER BY batch_id;
 
 -- Merge with ACCEPT
-DATA BRANCH MERGE payout_stage INTO payout_ops WHEN CONFLICT ACCEPT;
-SELECT batch_id, region, amount, reviewer FROM payout_ops ORDER BY batch_id;
+-- Expected-Rows: 0
+DATA BRANCH MERGE test.payout_stage INTO test.payout_ops WHEN CONFLICT ACCEPT;
+-- Expected-Rows: 3
+SELECT batch_id, region, amount, reviewer FROM test.payout_ops ORDER BY batch_id;
 
-DROP TABLE payout_template;
-DROP TABLE payout_stage;
-DROP TABLE payout_ops;
+-- Expected-Rows: 0
+DROP TABLE test.payout_template;
+-- Expected-Rows: 0
+DROP TABLE test.payout_stage;
+-- Expected-Rows: 0
+DROP TABLE test.payout_ops;
+-- Expected-Rows: 0
 DROP DATABASE test;
 ```
 
