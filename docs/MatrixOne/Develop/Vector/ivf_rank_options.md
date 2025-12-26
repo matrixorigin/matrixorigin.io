@@ -11,8 +11,8 @@ When performing vector similarity search using IVF (Inverted File) indexes, Matr
 SELECT column_list
 FROM table_name
 ORDER BY distance_function(vector_column, query_vector) ASC
-BY RANK WITH OPTION 'mode = <mode>'
-LIMIT k;
+LIMIT k
+BY RANK WITH OPTION 'mode = <mode>';
 ```
 
 ### Parameters
@@ -38,8 +38,8 @@ In pre-ranking mode, the IVF index is used to filter candidate vectors **before*
 SELECT id, content, l2_distance(embedding, '[1.0, 2.0, 3.0, 4.0]') AS distance
 FROM documents
 ORDER BY l2_distance(embedding, '[1.0, 2.0, 3.0, 4.0]') ASC
-BY RANK WITH OPTION 'mode = pre'
-LIMIT 10;
+LIMIT 10
+BY RANK WITH OPTION 'mode = pre';
 ```
 
 ### `mode = force` (Force Mode)
@@ -57,8 +57,8 @@ In force mode, the system **forces** the use of the IVF index for ranking, regar
 SELECT id, content, l2_distance(embedding, '[1.0, 2.0, 3.0, 4.0]') AS distance
 FROM documents
 ORDER BY l2_distance(embedding, '[1.0, 2.0, 3.0, 4.0]') ASC
-BY RANK WITH OPTION 'mode = force'
-LIMIT 10;
+LIMIT 10
+BY RANK WITH OPTION 'mode = force';
 ```
 
 ### `mode = post` (Post-ranking Mode)
@@ -76,8 +76,8 @@ In post-ranking mode, the rank function is applied **after** the IVF index has r
 SELECT id, content, l2_distance(embedding, '[1.0, 2.0, 3.0, 4.0]') AS distance
 FROM documents
 ORDER BY l2_distance(embedding, '[1.0, 2.0, 3.0, 4.0]') ASC
-BY RANK WITH OPTION 'mode = post'
-LIMIT 10;
+LIMIT 10
+BY RANK WITH OPTION 'mode = post';
 ```
 
 ## Comparison of Modes
@@ -126,22 +126,22 @@ SET @PROBE_LIMIT = 1;
 SELECT id, name, l2_distance(embedding, '[0.1, 0.2, 0.3, 0.4]') AS distance
 FROM products
 ORDER BY l2_distance(embedding, '[0.1, 0.2, 0.3, 0.4]') ASC
-BY RANK WITH OPTION 'mode = pre'
-LIMIT 3;
+LIMIT 3
+BY RANK WITH OPTION 'mode = pre';
 
 -- Guaranteed index usage (force mode)
 SELECT id, name, l2_distance(embedding, '[0.1, 0.2, 0.3, 0.4]') AS distance
 FROM products
 ORDER BY l2_distance(embedding, '[0.1, 0.2, 0.3, 0.4]') ASC
-BY RANK WITH OPTION 'mode = force'
-LIMIT 3;
+LIMIT 3
+BY RANK WITH OPTION 'mode = force';
 
 -- High-accuracy search (post-ranking)
 SELECT id, name, l2_distance(embedding, '[0.1, 0.2, 0.3, 0.4]') AS distance
 FROM products
 ORDER BY l2_distance(embedding, '[0.1, 0.2, 0.3, 0.4]') ASC
-BY RANK WITH OPTION 'mode = post'
-LIMIT 3;
+LIMIT 3
+BY RANK WITH OPTION 'mode = post';
 ```
 
 ## Best Practices
@@ -163,8 +163,8 @@ SET @PROBE_LIMIT = 10;
 SELECT id, name, l2_distance(embedding, '[0.1, 0.2, 0.3, 0.4]') AS distance
 FROM products
 ORDER BY l2_distance(embedding, '[0.1, 0.2, 0.3, 0.4]') ASC
-BY RANK WITH OPTION 'mode = post'
-LIMIT 5;
+LIMIT 5
+BY RANK WITH OPTION 'mode = post';
 ```
 
 ```sql
@@ -174,8 +174,8 @@ SET @PROBE_LIMIT = 1;
 SELECT id, name, l2_distance(embedding, '[0.1, 0.2, 0.3, 0.4]') AS distance
 FROM products
 ORDER BY l2_distance(embedding, '[0.1, 0.2, 0.3, 0.4]') ASC
-BY RANK WITH OPTION 'mode = pre'
-LIMIT 5;
+LIMIT 5
+BY RANK WITH OPTION 'mode = pre';
 ```
 
 ### Performance Tuning

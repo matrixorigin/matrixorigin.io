@@ -11,8 +11,8 @@ The `BY RANK WITH OPTION` clause is used in vector similarity search queries to 
 SELECT column_list
 FROM table_name
 ORDER BY distance_function(vector_column, query_vector) ASC
-BY RANK WITH OPTION 'mode = <mode>'
-LIMIT k;
+LIMIT k
+BY RANK WITH OPTION 'mode = <mode>';
 ```
 
 ## Parameters
@@ -38,22 +38,22 @@ LIMIT k;
 SELECT id, name, l2_distance(embedding, '[1.0, 2.0, 3.0, 4.0]') AS distance
 FROM products
 ORDER BY l2_distance(embedding, '[1.0, 2.0, 3.0, 4.0]') ASC
-BY RANK WITH OPTION 'mode = pre'
-LIMIT 10;
+LIMIT 10
+BY RANK WITH OPTION 'mode = pre';
 
 -- Force mode to ensure index usage
 SELECT id, name, l2_distance(embedding, '[1.0, 2.0, 3.0, 4.0]') AS distance
 FROM products
 ORDER BY l2_distance(embedding, '[1.0, 2.0, 3.0, 4.0]') ASC
-BY RANK WITH OPTION 'mode = force'
-LIMIT 10;
+LIMIT 10
+BY RANK WITH OPTION 'mode = force';
 
 -- Post-ranking mode for highest accuracy
 SELECT id, name, l2_distance(embedding, '[1.0, 2.0, 3.0, 4.0]') AS distance
 FROM products
 ORDER BY l2_distance(embedding, '[1.0, 2.0, 3.0, 4.0]') ASC
-BY RANK WITH OPTION 'mode = post'
-LIMIT 10;
+LIMIT 10
+BY RANK WITH OPTION 'mode = post';
 ```
 
 ### Complete Example
@@ -86,8 +86,8 @@ SET @PROBE_LIMIT = 1;
 SELECT id, title, l2_distance(embedding, '[0.1, 0.2, 0.3, 0.4]') AS distance
 FROM documents
 ORDER BY l2_distance(embedding, '[0.1, 0.2, 0.3, 0.4]') ASC
-BY RANK WITH OPTION 'mode = post'
-LIMIT 3;
+LIMIT 3
+BY RANK WITH OPTION 'mode = post';
 ```
 
 ## Limitations
