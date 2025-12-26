@@ -8,12 +8,7 @@ MatrixOne supports full-text indexing, allowing users to perform efficient full-
 
 ### Enabling Full-Text Indexing
 
-By default, full-text indexing is disabled. You need to enable it using the following SQL command:
-
-```sql
--- Enable full-text indexing
-SET experimental_fulltext_index = 1; -- Default is 0 (disabled)
-```
+Full-text indexing is enabled by default. You can now create and use full-text indexes without any additional configuration.
 
 ### Selecting the Boolean Mode Relevance Algorithm
 
@@ -54,9 +49,6 @@ MATCH (col1, col2, ...) AGAINST (expr [search_modifier]);
 ## Examples
 
 ```sql
--- Enable full-text indexing
-SET experimental_fulltext_index = 1;
-
 CREATE TABLE example_table (
     id INT PRIMARY KEY,
     english_text TEXT,       -- English text
