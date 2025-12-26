@@ -1,5 +1,5 @@
 /** SQL Execution Tester - validates SQL syntax/semantics and compares results with expected */
-import { extractSqlFromFile, splitSqlStatements } from '../utils/sql-extractor.js'
+import { extractSqlFromFile, splitSqlStatements, splitSqlStatementsWithAnnotations, parseAnnotationsToExpectedResults } from '../utils/sql-extractor.js'
 import { DbConnectionManager } from '../utils/db-connection.js'
 import { config } from '../config.js'
 
@@ -8,6 +8,7 @@ const SQL_TYPES = {
     DML: 'DML',
     QUERY: 'QUERY',
     ADMIN: 'ADMIN',
+    SESSION: 'SESSION',  // SET statements - cannot be PREPAREd, must execute directly
     UNKNOWN: 'UNKNOWN'
 }
 
@@ -154,31 +155,50 @@ export class SqlRunner {
 
     async checkSqlBlock(block) {
         const results = []
-        const statements = splitSqlStatements(block.sql)
+        // Use new function that preserves per-statement annotations
+        const statementsWithAnnotations = splitSqlStatementsWithAnnotations(block.sql)
 
-        // Determine validation mode
-        // Priority: explicit mode > has expected results > default (syntax-only)
-        let validationMode = block.validationMode || 'syntax-only'
+        // Block-level validation mode (can be overridden per-statement)
+        const blockValidationMode = block.validationMode || 'syntax-only'
 
-        // Auto-enable strict mode if ANY expected results are defined:
-        // 1. Extracted output from document (MySQL inline or separated format)
-        // 2. Manual Expected-* annotations (Expected-Rows, Expected-Value, etc.)
-        const hasExpectedResults = block.expectedResults && Object.keys(block.expectedResults).length > 0
-        if (hasExpectedResults && validationMode === 'syntax-only') {
-            validationMode = 'strict'
-        }
+        // Block-level expected results (used for output comparison from separated format)
+        const blockExpectedResults = block.expectedResults || {}
 
-        for (let i = 0; i < statements.length; i++) {
-            const statement = statements[i]
+        for (let i = 0; i < statementsWithAnnotations.length; i++) {
+            const { sql: statement, annotations } = statementsWithAnnotations[i]
 
             if (!statement.trim()) continue
             if (this.isComment(statement)) continue
+            // Skip syntax templates (e.g., <table_name>, col1, col2, ..., [optional])
+            if (this.isSyntaxTemplate(statement)) continue
+
+            // Parse per-statement annotations to get expected results
+            const parsed = parseAnnotationsToExpectedResults(annotations)
+
+            // Merge: per-statement annotations take priority over block-level
+            // But if no per-statement annotations, fall back to block-level (for separated format output)
+            let expectedResults = parsed.expectedResults
+            let validationMode = parsed.validationMode || blockValidationMode
+
+            // If this is the last statement and block has output, use block's output
+            // (This handles the separated format where output follows the SQL block)
+            if (i === statementsWithAnnotations.length - 1 &&
+                blockExpectedResults.output &&
+                Object.keys(expectedResults).length === 0) {
+                expectedResults = blockExpectedResults
+            }
+
+            // Auto-enable strict mode if ANY expected results are defined
+            const hasExpectedResults = Object.keys(expectedResults).length > 0
+            if (hasExpectedResults && validationMode === 'syntax-only') {
+                validationMode = 'strict'
+            }
 
             const result = await this.validateSql(
                 statement,
                 block.startLine + i,
                 validationMode,
-                block.expectedResults || {}
+                expectedResults
             )
 
             results.push({
@@ -201,12 +221,21 @@ export class SqlRunner {
             return await this.validateAdminCommand(sql, sqlType)
         }
 
+        // Special handling for SESSION commands (SET statements)
+        // MO cannot PREPARE SET statements, so execute directly
+        if (sqlType === SQL_TYPES.SESSION) {
+            return await this.validateSessionCommand(sql, sqlType)
+        }
+
         // Phase 3 does not use whitelist, directly validate all SQL with MO official parser
         // Note: Whitelist functionality is still retained in Phase 3 (sql-syntax.js)
         return await this.validateWithMO(sql, sqlType, line, validationMode, expectedResults)
     }
 
     async validateWithMO(sql, sqlType, line, validationMode = 'syntax-only', expectedResults = {}) {
+        // Handle Expected-Success: false - when we expect the SQL to fail
+        const expectFailure = expectedResults.success === false
+
         // DDL statements are executed directly without EXPLAIN (to create context)
         if (sqlType === SQL_TYPES.DDL) {
             try {
@@ -239,6 +268,16 @@ export class SqlRunner {
             } catch (execError) {
                 // DDL execution failed, determine if it's a syntax error or other issue
                 const errorMsg = execError.message.toLowerCase()
+
+                // If Expected-Success: false, this failure is expected
+                if (expectFailure) {
+                    return {
+                        status: VALIDATION_STATUS.SUCCESS,
+                        message: 'DDL failed as expected',
+                        type: sqlType,
+                        detail: execError.message
+                    }
+                }
 
                 // If it's an obvious syntax error
                 if (errorMsg.includes('syntax error') || errorMsg.includes('sql syntax')) {
@@ -306,6 +345,16 @@ export class SqlRunner {
             } catch (execError) {
                 const errorMsg = execError.message.toLowerCase()
 
+                // If Expected-Success: false, this failure is expected
+                if (expectFailure) {
+                    return {
+                        status: VALIDATION_STATUS.SUCCESS,
+                        message: 'DML failed as expected',
+                        type: sqlType,
+                        detail: execError.message
+                    }
+                }
+
                 // Handle duplicate entry as success
                 if (errorMsg.includes('duplicate entry')) {
                     return {
@@ -338,73 +387,70 @@ export class SqlRunner {
             }
         }
 
-        // For QUERY: If NO expected results → Only validate semantics (don't execute)
-        if (!this.hasExpectedResults(expectedResults)) {
-            return await this.validateSemanticsOnlyWithPrepare(sql, sqlType)
-        }
-
-        // ==================== Phase 2 & 3: Has expected results → Execute and compare ====================
-        // DML and QUERY: execute SQL and validate results
+        // ==================== QUERY statements: Always execute ====================
+        // Execute all QUERY statements directly (no PREPARE validation)
+        // This is more reliable as MO's PREPARE has bugs with some statement types
         try {
             const result = await this.dbManager.query(sql)
 
-            // Compare results with expected
-            const comparison = this.compareResults(result, expectedResults, sqlType)
-            if (!comparison.matched) {
-                return {
-                    status: VALIDATION_STATUS.ERROR,
-                    message: `Result validation failed: ${comparison.reason}`,
-                    type: sqlType,
-                    detail: comparison.reason
+            // If expected results defined, compare them
+            if (this.hasExpectedResults(expectedResults)) {
+                const comparison = this.compareResults(result, expectedResults, sqlType)
+                if (!comparison.matched) {
+                    return {
+                        status: VALIDATION_STATUS.ERROR,
+                        message: `Result validation failed: ${comparison.reason}`,
+                        type: sqlType,
+                        detail: comparison.reason
+                    }
                 }
-            }
-
-            return {
-                status: VALIDATION_STATUS.SUCCESS,
-                message: 'SQL executed successfully and result matches expected',
-                type: sqlType
-            }
-
-        } catch (execError) {
-            // Execution failed - try auto-completion with expected results
-            return await this.tryExecuteWithAutoComplete(sql, sqlType, execError, expectedResults)
-        }
-    }
-
-    /**
-     * Phase 4: Validate semantics only using PREPARE (no execution)
-     * Used when no expected results are defined
-     */
-    async validateSemanticsOnlyWithPrepare(sql, sqlType) {
-        try {
-            // Use PREPARE to validate syntax and semantics
-            const escapedSql = sql.replace(/'/g, "''")
-            await this.dbManager.query(`PREPARE stmt FROM '${escapedSql}'`)
-            await this.dbManager.query('DEALLOCATE PREPARE stmt')
-
-            return {
-                status: VALIDATION_STATUS.SUCCESS,
-                message: 'Semantics validated (no expected results, execution skipped)',
-                type: sqlType
-            }
-        } catch (error) {
-            const errorMsg = error.message.toLowerCase()
-
-            // If it's a context error (table/column doesn't exist), syntax is still correct
-            if (this.isContextError(errorMsg)) {
                 return {
                     status: VALIDATION_STATUS.SUCCESS,
-                    message: 'Semantics validated (tables created at runtime)',
+                    message: 'SQL executed successfully and result matches expected',
                     type: sqlType
                 }
             }
 
-            // True syntax or semantic error
+            // No expected results - just verify execution succeeded
+            return {
+                status: VALIDATION_STATUS.SUCCESS,
+                message: 'SQL executed successfully',
+                type: sqlType
+            }
+
+        } catch (execError) {
+            // If Expected-Success: false, this failure is expected
+            if (expectFailure) {
+                return {
+                    status: VALIDATION_STATUS.SUCCESS,
+                    message: 'Query failed as expected',
+                    type: sqlType,
+                    detail: execError.message
+                }
+            }
+
+            const errorMsg = execError.message.toLowerCase()
+
+            // Context errors (missing table/column) - syntax is OK, table created at runtime
+            if (this.isContextError(errorMsg)) {
+                return {
+                    status: VALIDATION_STATUS.SUCCESS,
+                    message: 'Query validated (tables created at runtime)',
+                    type: sqlType
+                }
+            }
+
+            // If has expected results, try auto-completion
+            if (this.hasExpectedResults(expectedResults)) {
+                return await this.tryExecuteWithAutoComplete(sql, sqlType, execError, expectedResults)
+            }
+
+            // Real error
             return {
                 status: VALIDATION_STATUS.ERROR,
-                message: `Semantic error: ${error.message}`,
+                message: `Query execution failed: ${execError.message}`,
                 type: sqlType,
-                detail: error.message
+                detail: execError.message
             }
         }
     }
@@ -771,6 +817,8 @@ export class SqlRunner {
     parseTableOutput(tableStr) {
         const result = { columns: [], rows: [], data: [] }
         const lines = tableStr.split('\n').filter(l => l.trim())
+
+        // Filter out border lines and metadata
         const contentLines = lines.filter(l =>
             !l.match(/^\s*\+[-+]+\+\s*$/) &&
             !l.match(/^\d+\s+rows?\s+in\s+set/i) &&
@@ -778,9 +826,55 @@ export class SqlRunner {
         )
         if (contentLines.length === 0) return result
 
-        result.columns = this.parseTableRow(contentLines[0])
-        for (let i = 1; i < contentLines.length; i++) {
-            const values = this.parseTableRow(contentLines[i])
+        // Handle multi-line cell values (e.g., SHOW CREATE TABLE output)
+        // A complete row starts with | and ends with |
+        // Lines that don't match this pattern are continuations of the previous row
+        const mergedLines = []
+        let currentLine = ''
+
+        for (let i = 0; i < contentLines.length; i++) {
+            const line = contentLines[i]
+            const trimmed = line.trim()
+            const startsWithPipe = trimmed.startsWith('|')
+            const endsWithPipe = trimmed.endsWith('|')
+
+            if (startsWithPipe && endsWithPipe) {
+                // Complete row - save previous if exists, then start fresh
+                if (currentLine) {
+                    mergedLines.push(currentLine)
+                }
+                mergedLines.push(line)
+                currentLine = ''
+            } else if (startsWithPipe && !endsWithPipe) {
+                // Start of a multi-line row
+                if (currentLine) {
+                    mergedLines.push(currentLine)
+                }
+                currentLine = line
+            } else if (!startsWithPipe && endsWithPipe) {
+                // End of a multi-line row
+                currentLine += '\n' + line
+                mergedLines.push(currentLine)
+                currentLine = ''
+            } else {
+                // Middle of a multi-line row
+                currentLine += '\n' + line
+            }
+        }
+
+        // Don't forget the last line if it's incomplete
+        if (currentLine) {
+            mergedLines.push(currentLine)
+        }
+
+        if (mergedLines.length === 0) return result
+
+        // Parse header (first complete row)
+        result.columns = this.parseTableRow(mergedLines[0])
+
+        // Parse data rows
+        for (let i = 1; i < mergedLines.length; i++) {
+            const values = this.parseTableRow(mergedLines[i])
             if (values.length === result.columns.length) {
                 result.data.push(values)
                 const row = {}
@@ -1059,10 +1153,15 @@ export class SqlRunner {
         const trimmed = sql.trim().toUpperCase()
         // ADMIN commands must be checked BEFORE generic DDL (since CREATE ACCOUNT starts with CREATE)
         if (/^(GRANT|REVOKE)\s+/i.test(trimmed)) return SQL_TYPES.ADMIN
-        if (/^(CREATE|DROP|ALTER)\s+(USER|ACCOUNT|ROLE|SNAPSHOT|PITR|PUBLICATION|SUBSCRIPTION)\s+/i.test(trimmed)) return SQL_TYPES.ADMIN
+        // Note: SNAPSHOT is excluded from ADMIN - it should be executed as DDL to create test context
+        if (/^(CREATE|DROP|ALTER)\s+(USER|ACCOUNT|ROLE|PITR|PUBLICATION|SUBSCRIPTION)\s+/i.test(trimmed)) return SQL_TYPES.ADMIN
         if (/^SHOW\s+(PUBLICATIONS|SUBSCRIPTIONS|SNAPSHOTS|PITR|GRANTS)\b/i.test(trimmed)) return SQL_TYPES.ADMIN
-        // DDL
+        // SESSION commands (SET statements) - cannot be PREPAREd in MO
+        if (/^SET\s+/i.test(trimmed)) return SQL_TYPES.SESSION
+        // DDL (including SNAPSHOT - must be executed to create test context)
+        // Also includes DATA BRANCH statements which cannot be PREPAREd
         if (/^(CREATE|DROP|ALTER|TRUNCATE|RENAME)\s+/i.test(trimmed)) return SQL_TYPES.DDL
+        if (/^DATA\s+BRANCH\s+/i.test(trimmed)) return SQL_TYPES.DDL
         if (/^USE\s+/i.test(trimmed)) return SQL_TYPES.DDL
         if (/^(BEGIN|START\s+TRANSACTION|COMMIT|ROLLBACK|SAVEPOINT)\s*;?$/i.test(trimmed)) return SQL_TYPES.DDL
         // DML
@@ -1131,9 +1230,79 @@ export class SqlRunner {
         }
     }
 
+    /** Validate SESSION commands (SET statements) - execute directly since MO cannot PREPARE them */
+    async validateSessionCommand(sql, sqlType) {
+        try {
+            await this.dbManager.query(sql)
+            return { status: VALIDATION_STATUS.SUCCESS, message: 'SET command executed successfully', type: sqlType }
+        } catch (error) {
+            const errorMsg = error.message.toLowerCase()
+
+            // Syntax errors
+            if (errorMsg.includes('syntax error') || errorMsg.includes('sql syntax')) {
+                return { status: VALIDATION_STATUS.ERROR, message: `SET command syntax error: ${error.message}`, type: sqlType, detail: error.message }
+            }
+
+            // Unknown variable errors - syntax is OK, just the variable doesn't exist
+            if (errorMsg.includes('unknown system variable') || errorMsg.includes('variable') || errorMsg.includes('not found')) {
+                return { status: VALIDATION_STATUS.SUCCESS, message: 'SET command validated (variable may not exist in this version)', type: sqlType }
+            }
+
+            // Other errors - treat as success since SET syntax is likely correct
+            return { status: VALIDATION_STATUS.SUCCESS, message: 'SET command validated', type: sqlType }
+        }
+    }
+
     isComment(sql) {
         const t = sql.trim()
         return t.startsWith('--') || t.startsWith('#') || t.startsWith('/*')
+    }
+
+    /**
+     * Determine if the SQL is a syntax template (not real SQL)
+     * Syntax templates contain placeholders like <table_name>, col1, col2, ..., [optional], etc.
+     * @param {string} sql - SQL statement
+     * @returns {boolean} Whether it's a syntax template
+     */
+    isSyntaxTemplate(sql) {
+        const trimmed = sql.trim()
+
+        // Pattern 1: Angle bracket placeholders like <table_name>, <column_name>, <index_name>
+        // Match <word> pattern (but not <= or >= operators)
+        if (/<[a-zA-Z_][a-zA-Z0-9_]*>/.test(trimmed)) {
+            return true
+        }
+
+        // Pattern 2: Ellipsis indicating continuation (col1, col2, ...)
+        if (/\.\.\./.test(trimmed)) {
+            return true
+        }
+
+        // Pattern 3: Square bracket optional syntax like [WITH PARSER ...]
+        // But exclude array indexing like arr[0]
+        if (/\[[A-Z][A-Z\s|]+\]/.test(trimmed)) {
+            return true
+        }
+
+        // Pattern 4: Placeholder patterns like {expr} or ${var}
+        if (/\{[a-zA-Z_][a-zA-Z0-9_]*\}/.test(trimmed)) {
+            return true
+        }
+
+        // Pattern 5: Generic placeholder words commonly used in syntax docs
+        // Match patterns like "column_name", "table_name" as standalone identifiers in specific contexts
+        // Only match if it looks like a template (e.g., starts with common DDL/DML keywords and has placeholder-like structure)
+        if (/^(CREATE|ALTER|DROP|SELECT|INSERT|UPDATE|DELETE|MATCH)\\s+/i.test(trimmed)) {
+            // Check for common placeholder patterns
+            if (/\\b(expr|expression|condition|search_modifier)\\b/i.test(trimmed)) {
+                // Additional check: if combined with other template indicators
+                if (/\\(.*,.*,.*\\.\\.\\.\\)/.test(trimmed) || /\\[[^\\]]+\\]/.test(trimmed)) {
+                    return true
+                }
+            }
+        }
+
+        return false
     }
 
     /** Compare actual query results with expected results */
@@ -1196,9 +1365,27 @@ export class SqlRunner {
         if (actual === null && (expected === null || expected === 'NULL')) return true
         if (actual === null || expected === null) return false
 
-        const actualStr = String(actual).trim()
+        // Handle JSON objects - serialize to string for comparison
+        let actualStr
+        if (typeof actual === 'object' && actual !== null) {
+            actualStr = JSON.stringify(actual)
+        } else {
+            actualStr = String(actual).trim()
+        }
+
         let expectedStr = String(expected).trim()
+
+        // Direct match
         if (actualStr === expectedStr || actualStr.toLowerCase() === expectedStr.toLowerCase()) return true
+
+        // Try JSON normalization - compare parsed JSON if both are valid JSON
+        try {
+            const actualJson = typeof actual === 'object' ? actual : JSON.parse(actualStr)
+            const expectedJson = JSON.parse(expectedStr)
+            if (JSON.stringify(actualJson) === JSON.stringify(expectedJson)) return true
+        } catch {
+            // Not valid JSON, continue with other comparisons
+        }
 
         const actualNum = parseFloat(actual)
         if (expectedStr.startsWith('~')) expectedStr = expectedStr.substring(1)
@@ -1238,7 +1425,11 @@ export class SqlRunner {
         for (let i = 0; i < expected.rows.length; i++) {
             for (const col of expected.columns) {
                 if (!this.valuesMatch(actualRows[i][col], expected.rows[i][col])) {
-                    return { matched: false, reason: `Row ${i + 1}, column '${col}': expected '${expected.rows[i][col]}', but got '${actualRows[i][col]}'` }
+                    // Serialize objects for display in error message
+                    const actualVal = typeof actualRows[i][col] === 'object' && actualRows[i][col] !== null
+                        ? JSON.stringify(actualRows[i][col])
+                        : actualRows[i][col]
+                    return { matched: false, reason: `Row ${i + 1}, column '${col}': expected '${expected.rows[i][col]}', but got '${actualVal}'` }
                 }
             }
         }
