@@ -44,6 +44,9 @@ export function extractSqlFromContent(content, filePath = '') {
 
         if (!block.isSql) continue
 
+        // Skip blocks marked with validator-ignore
+        if (block.ignored) continue
+
         // Check if it's a genuine SQL code block (not mixed with Shell commands)
         if (!isPureSqlBlock(block.content)) continue
 
@@ -134,10 +137,13 @@ function collectAllCodeBlocks(lines, filePath) {
         const lineNumber = i + 1
 
         // Detect code block start
-        const codeBlockStart = line.match(/^\s*```(\w+)?(?::(\w+(?:-\w+)*))?/)
+        const codeBlockStart = line.match(/^(\s*)```(\w+)?(?::(\w+(?:-\w+)*))?/)
         if (codeBlockStart && !inCodeBlock) {
-            const language = codeBlockStart[1] || ''
-            const mode = codeBlockStart[2] || null
+            const language = codeBlockStart[2] || ''
+            const mode = codeBlockStart[3] || null
+
+            // Check for validator-ignore comment on the same line or previous line
+            const shouldIgnore = checkValidatorIgnore(line, lines, i)
 
             inCodeBlock = true
             currentBlock = {
@@ -150,7 +156,8 @@ function collectAllCodeBlocks(lines, filePath) {
                 ),
                 version: extractVersionFromContext(lines, i),
                 validationMode: mode,
-                filePath
+                filePath,
+                ignored: shouldIgnore
             }
             continue
         }
@@ -173,6 +180,33 @@ function collectAllCodeBlocks(lines, filePath) {
     }
 
     return blocks
+}
+
+/**
+ * Check if a code block should be ignored by the validator
+ * Supports formats:
+ * - <!-- validator-ignore --> on the line before the code block
+ * - ```sql <!-- validator-ignore --> on the same line
+ * @param {string} currentLine - Current line (code block start)
+ * @param {Array} lines - All lines
+ * @param {number} currentIndex - Current line index
+ * @returns {boolean} Whether to ignore this block
+ */
+function checkValidatorIgnore(currentLine, lines, currentIndex) {
+    // Check same line: ```sql <!-- validator-ignore -->
+    if (/<!--\s*validator-ignore\s*-->/.test(currentLine)) {
+        return true
+    }
+
+    // Check previous line: <!-- validator-ignore -->
+    if (currentIndex > 0) {
+        const prevLine = lines[currentIndex - 1].trim()
+        if (/^<!--\s*validator-ignore\s*-->$/.test(prevLine)) {
+            return true
+        }
+    }
+
+    return false
 }
 
 /**

@@ -34,6 +34,34 @@ pnpm run check:sql-syntax:files docs/MatrixOne/Test/test-pass.md docs/MatrixOne/
 pnpm run check:sql-syntax:changed
 ```
 
+#### Skipping Syntax Templates
+
+The validator automatically detects and skips common syntax template patterns:
+
+- **Angle bracket placeholders**: `<table_name>`, `<column_name>`, `<index_name>`
+- **Ellipsis patterns**: `col1, col2, ...` or `(expr1, expr2, ...)`
+- **Optional syntax markers**: `[WITH PARSER ...]`, `[ASC | DESC]`
+- **Curly brace placeholders**: `{expr}`, `{value}`
+
+For code blocks that cannot be auto-detected, use the `validator-ignore` comment:
+
+```markdown
+<!-- validator-ignore -->
+```sql
+CREATE FULLTEXT INDEX <index_name>
+ON <table_name> (col1, col2, ...)
+[WITH PARSER (default | ngram | json)];
+\```
+```
+
+Or inline:
+
+```markdown
+```sql <!-- validator-ignore -->
+MATCH (col1, col2, ...) AGAINST (expr [search_modifier]);
+\```
+```
+
 ---
 
 ### ▶️ SQL Execution Validation
