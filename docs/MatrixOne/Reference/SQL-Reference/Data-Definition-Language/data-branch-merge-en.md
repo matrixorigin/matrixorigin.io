@@ -39,6 +39,7 @@ conflict_option:
 ### Conflict Definition
 
 Conflicts occur when:
+
 - Both branches make different modifications to rows with the same primary key (UPDATE conflict)
 - Both branches insert rows with the same primary key but different values (INSERT conflict)
 
