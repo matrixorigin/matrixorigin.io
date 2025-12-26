@@ -216,6 +216,9 @@ export class SqlRunner {
     }
 
     async validateWithMO(sql, sqlType, line, validationMode = 'syntax-only', expectedResults = {}) {
+        // Handle Expected-Success: false - when we expect the SQL to fail
+        const expectFailure = expectedResults.success === false
+
         // DDL statements are executed directly without EXPLAIN (to create context)
         if (sqlType === SQL_TYPES.DDL) {
             try {
@@ -248,6 +251,16 @@ export class SqlRunner {
             } catch (execError) {
                 // DDL execution failed, determine if it's a syntax error or other issue
                 const errorMsg = execError.message.toLowerCase()
+
+                // If Expected-Success: false, this failure is expected
+                if (expectFailure) {
+                    return {
+                        status: VALIDATION_STATUS.SUCCESS,
+                        message: 'DDL failed as expected',
+                        type: sqlType,
+                        detail: execError.message
+                    }
+                }
 
                 // If it's an obvious syntax error
                 if (errorMsg.includes('syntax error') || errorMsg.includes('sql syntax')) {
@@ -315,6 +328,16 @@ export class SqlRunner {
             } catch (execError) {
                 const errorMsg = execError.message.toLowerCase()
 
+                // If Expected-Success: false, this failure is expected
+                if (expectFailure) {
+                    return {
+                        status: VALIDATION_STATUS.SUCCESS,
+                        message: 'DML failed as expected',
+                        type: sqlType,
+                        detail: execError.message
+                    }
+                }
+
                 // Handle duplicate entry as success
                 if (errorMsg.includes('duplicate entry')) {
                     return {
@@ -375,6 +398,16 @@ export class SqlRunner {
             }
 
         } catch (execError) {
+            // If Expected-Success: false, this failure is expected
+            if (expectFailure) {
+                return {
+                    status: VALIDATION_STATUS.SUCCESS,
+                    message: 'Query failed as expected',
+                    type: sqlType,
+                    detail: execError.message
+                }
+            }
+
             // Execution failed - try auto-completion with expected results
             return await this.tryExecuteWithAutoComplete(sql, sqlType, execError, expectedResults)
         }
@@ -1116,11 +1149,12 @@ export class SqlRunner {
         const trimmed = sql.trim().toUpperCase()
         // ADMIN commands must be checked BEFORE generic DDL (since CREATE ACCOUNT starts with CREATE)
         if (/^(GRANT|REVOKE)\s+/i.test(trimmed)) return SQL_TYPES.ADMIN
-        if (/^(CREATE|DROP|ALTER)\s+(USER|ACCOUNT|ROLE|SNAPSHOT|PITR|PUBLICATION|SUBSCRIPTION)\s+/i.test(trimmed)) return SQL_TYPES.ADMIN
+        // Note: SNAPSHOT is excluded from ADMIN - it should be executed as DDL to create test context
+        if (/^(CREATE|DROP|ALTER)\s+(USER|ACCOUNT|ROLE|PITR|PUBLICATION|SUBSCRIPTION)\s+/i.test(trimmed)) return SQL_TYPES.ADMIN
         if (/^SHOW\s+(PUBLICATIONS|SUBSCRIPTIONS|SNAPSHOTS|PITR|GRANTS)\b/i.test(trimmed)) return SQL_TYPES.ADMIN
         // SESSION commands (SET statements) - cannot be PREPAREd in MO
         if (/^SET\s+/i.test(trimmed)) return SQL_TYPES.SESSION
-        // DDL
+        // DDL (including SNAPSHOT - must be executed to create test context)
         if (/^(CREATE|DROP|ALTER|TRUNCATE|RENAME)\s+/i.test(trimmed)) return SQL_TYPES.DDL
         if (/^USE\s+/i.test(trimmed)) return SQL_TYPES.DDL
         if (/^(BEGIN|START\s+TRANSACTION|COMMIT|ROLLBACK|SAVEPOINT)\s*;?$/i.test(trimmed)) return SQL_TYPES.DDL
