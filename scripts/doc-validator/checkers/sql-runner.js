@@ -173,6 +173,8 @@ export class SqlRunner {
 
             if (!statement.trim()) continue
             if (this.isComment(statement)) continue
+            // Skip syntax templates (e.g., <table_name>, col1, col2, ..., [optional])
+            if (this.isSyntaxTemplate(statement)) continue
 
             const result = await this.validateSql(
                 statement,
@@ -1134,6 +1136,53 @@ export class SqlRunner {
     isComment(sql) {
         const t = sql.trim()
         return t.startsWith('--') || t.startsWith('#') || t.startsWith('/*')
+    }
+
+    /**
+     * Determine if the SQL is a syntax template (not real SQL)
+     * Syntax templates contain placeholders like <table_name>, col1, col2, ..., [optional], etc.
+     * @param {string} sql - SQL statement
+     * @returns {boolean} Whether it's a syntax template
+     */
+    isSyntaxTemplate(sql) {
+        const trimmed = sql.trim()
+
+        // Pattern 1: Angle bracket placeholders like <table_name>, <column_name>, <index_name>
+        // Match <word> pattern (but not <= or >= operators)
+        if (/<[a-zA-Z_][a-zA-Z0-9_]*>/.test(trimmed)) {
+            return true
+        }
+
+        // Pattern 2: Ellipsis indicating continuation (col1, col2, ...)
+        if (/\.\.\./.test(trimmed)) {
+            return true
+        }
+
+        // Pattern 3: Square bracket optional syntax like [WITH PARSER ...]
+        // But exclude array indexing like arr[0]
+        if (/\[[A-Z][A-Z\s|]+\]/.test(trimmed)) {
+            return true
+        }
+
+        // Pattern 4: Placeholder patterns like {expr} or ${var}
+        if (/\{[a-zA-Z_][a-zA-Z0-9_]*\}/.test(trimmed)) {
+            return true
+        }
+
+        // Pattern 5: Generic placeholder words commonly used in syntax docs
+        // Match patterns like "column_name", "table_name" as standalone identifiers in specific contexts
+        // Only match if it looks like a template (e.g., starts with common DDL/DML keywords and has placeholder-like structure)
+        if (/^(CREATE|ALTER|DROP|SELECT|INSERT|UPDATE|DELETE|MATCH)\\s+/i.test(trimmed)) {
+            // Check for common placeholder patterns
+            if (/\\b(expr|expression|condition|search_modifier)\\b/i.test(trimmed)) {
+                // Additional check: if combined with other template indicators
+                if (/\\(.*,.*,.*\\.\\.\\.\\)/.test(trimmed) || /\\[[^\\]]+\\]/.test(trimmed)) {
+                    return true
+                }
+            }
+        }
+
+        return false
     }
 
     /** Compare actual query results with expected results */
