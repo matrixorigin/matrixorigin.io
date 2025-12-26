@@ -82,29 +82,32 @@ You can specify the data point in time using the following methods:
 Create a data branch from an existing table:
 
 ```sql
--- Create source table and insert data
+-- Expected-Rows: 0
 CREATE DATABASE test;
+-- Expected-Rows: 0
 USE test;
 
-CREATE TABLE orders (
+-- Expected-Rows: 0
+CREATE TABLE test.orders (
     order_id INT PRIMARY KEY,
     customer_name VARCHAR(50),
     amount DECIMAL(10,2)
 );
 
-INSERT INTO orders VALUES 
+-- Expected-Rows: 0
+INSERT INTO test.orders VALUES 
     (1, 'Alice', 100.00),
     (2, 'Bob', 200.00),
     (3, 'Charlie', 300.00);
 
--- Create branch table (database name can be omitted after USE)
-DATA BRANCH CREATE TABLE orders_dev FROM orders;
+-- Expected-Rows: 0
+DATA BRANCH CREATE TABLE test.orders_dev FROM test.orders;
 
--- You can also explicitly specify the database name
+-- Expected-Rows: 0
 DATA BRANCH CREATE TABLE test.orders_dev2 FROM test.orders;
 
--- Verify branch table data
-SELECT * FROM orders_dev;
+-- Expected-Rows: 3
+SELECT * FROM test.orders_dev;
 +----------+---------------+--------+
 | order_id | customer_name | amount |
 +----------+---------------+--------+
@@ -113,12 +116,13 @@ SELECT * FROM orders_dev;
 |        3 | Charlie       | 300.00 |
 +----------+---------------+--------+
 
--- Modify branch table without affecting source table
-UPDATE orders_dev SET amount = 150.00 WHERE order_id = 1;
-INSERT INTO orders_dev VALUES (4, 'David', 400.00);
+-- Expected-Rows: 1
+UPDATE test.orders_dev SET amount = 150.00 WHERE order_id = 1;
+-- Expected-Rows: 0
+INSERT INTO test.orders_dev VALUES (4, 'David', 400.00);
 
--- Source table data remains unchanged
-SELECT * FROM orders;
+-- Expected-Rows: 3
+SELECT * FROM test.orders;
 +----------+---------------+--------+
 | order_id | customer_name | amount |
 +----------+---------------+--------+
@@ -127,8 +131,8 @@ SELECT * FROM orders;
 |        3 | Charlie       | 300.00 |
 +----------+---------------+--------+
 
--- If target table already exists, an error will be raised
-DATA BRANCH CREATE TABLE orders_dev FROM orders;
+-- Expected-Success: false
+DATA BRANCH CREATE TABLE test.orders_dev FROM test.orders;
 -- ERROR: table orders_dev already exists
 ```
 
@@ -137,27 +141,29 @@ DATA BRANCH CREATE TABLE orders_dev FROM orders;
 Create a data branch from a specific point in time using a snapshot:
 
 ```sql
--- Create source table and insert initial data
-CREATE TABLE products (
+-- Expected-Rows: 0
+CREATE TABLE test.products (
     product_id INT PRIMARY KEY,
     name VARCHAR(50),
     price DECIMAL(10,2)
 );
 
-INSERT INTO products VALUES (1, 'Phone', 999.00), (2, 'Laptop', 1999.00);
+-- Expected-Rows: 0
+INSERT INTO test.products VALUES (1, 'Phone', 999.00), (2, 'Laptop', 1999.00);
 
--- Create snapshot
+-- Expected-Rows: 0
 CREATE SNAPSHOT sp_products FOR TABLE test products;
 
--- Continue modifying source table
-INSERT INTO products VALUES (3, 'Tablet', 599.00);
-UPDATE products SET price = 899.00 WHERE product_id = 1;
+-- Expected-Rows: 0
+INSERT INTO test.products VALUES (3, 'Tablet', 599.00);
+-- Expected-Rows: 1
+UPDATE test.products SET price = 899.00 WHERE product_id = 1;
 
--- Create branch from snapshot (get data at snapshot time)
-DATA BRANCH CREATE TABLE products_snapshot FROM products{SNAPSHOT='sp_products'};
+-- Expected-Rows: 0
+DATA BRANCH CREATE TABLE test.products_snapshot FROM test.products{SNAPSHOT='sp_products'};
 
--- Branch table contains data at snapshot time
-SELECT * FROM products_snapshot;
+-- Expected-Rows: 2
+SELECT * FROM test.products_snapshot;
 +------------+--------+---------+
 | product_id | name   | price   |
 +------------+--------+---------+
@@ -165,7 +171,7 @@ SELECT * FROM products_snapshot;
 |          2 | Laptop | 1999.00 |
 +------------+--------+---------+
 
--- Cleanup
+-- Expected-Rows: 0
 DROP SNAPSHOT sp_products;
 ```
 
@@ -174,22 +180,26 @@ DROP SNAPSHOT sp_products;
 Create a branch of an entire database:
 
 ```sql
--- Create source database and tables
+-- Expected-Rows: 0
 CREATE DATABASE source_db;
+-- Expected-Rows: 0
 USE source_db;
 
-CREATE TABLE users (id INT PRIMARY KEY, name VARCHAR(50));
-CREATE TABLE logs (id INT PRIMARY KEY, message VARCHAR(100));
+-- Expected-Rows: 0
+CREATE TABLE source_db.users (id INT PRIMARY KEY, name VARCHAR(50));
+-- Expected-Rows: 0
+CREATE TABLE source_db.logs (id INT PRIMARY KEY, message VARCHAR(100));
 
-INSERT INTO users VALUES (1, 'User1'), (2, 'User2');
-INSERT INTO logs VALUES (1, 'Log entry 1');
+-- Expected-Rows: 0
+INSERT INTO source_db.users VALUES (1, 'User1'), (2, 'User2');
+-- Expected-Rows: 0
+INSERT INTO source_db.logs VALUES (1, 'Log entry 1');
 
--- Create database branch
+-- Expected-Rows: 0
 DATA BRANCH CREATE DATABASE dev_db FROM source_db;
 
--- Verify branch database
-USE dev_db;
-SHOW TABLES;
+-- Expected-Rows: 2
+SHOW TABLES FROM dev_db;
 +------------------+
 | Tables_in_dev_db |
 +------------------+
@@ -197,7 +207,8 @@ SHOW TABLES;
 | users            |
 +------------------+
 
-SELECT * FROM users;
+-- Expected-Rows: 2
+SELECT * FROM dev_db.users;
 +----+-------+
 | id | name  |
 +----+-------+
@@ -209,19 +220,22 @@ SELECT * FROM users;
 ### Example 4: Create Database Branch from Snapshot
 
 ```sql
--- Create snapshot
+-- Expected-Rows: 0
 CREATE SNAPSHOT sp_source FOR DATABASE source_db;
 
--- Modify source database
+-- Expected-Rows: 0
 USE source_db;
-INSERT INTO users VALUES (3, 'User3');
+-- Expected-Rows: 0
+INSERT INTO source_db.users VALUES (3, 'User3');
 
 -- Create branch from snapshot
+-- Expected-Rows: 0
 DATA BRANCH CREATE DATABASE backup_db FROM source_db{SNAPSHOT='sp_source'};
 
--- Branch database contains data at snapshot time
+-- Expected-Rows: 0
 USE backup_db;
-SELECT * FROM users;
+-- Expected-Rows: 2
+SELECT * FROM backup_db.users;
 +----+-------+
 | id | name  |
 +----+-------+
@@ -229,7 +243,7 @@ SELECT * FROM users;
 |  2 | User2 |
 +----+-------+
 
--- Cleanup
+-- Expected-Rows: 0
 DROP SNAPSHOT sp_source;
 ```
 
@@ -238,24 +252,30 @@ DROP SNAPSHOT sp_source;
 Create new branches from existing branches:
 
 ```sql
+-- Expected-Rows: 0
 USE test;
 
--- Create base table
-CREATE TABLE base_table (a INT PRIMARY KEY, b INT);
-INSERT INTO base_table VALUES (1, 1), (2, 2), (3, 3);
+-- Expected-Rows: 0
+CREATE TABLE test.base_table (a INT PRIMARY KEY, b INT);
+-- Expected-Rows: 0
+INSERT INTO test.base_table VALUES (1, 1), (2, 2), (3, 3);
 
--- Create first-level branch
-DATA BRANCH CREATE TABLE branch_level1 FROM base_table;
-INSERT INTO branch_level1 VALUES (4, 4);
+-- Expected-Rows: 0
+DATA BRANCH CREATE TABLE test.branch_level1 FROM test.base_table;
+-- Expected-Rows: 0
+INSERT INTO test.branch_level1 VALUES (4, 4);
 
--- Create second-level branch from first-level branch
-DATA BRANCH CREATE TABLE branch_level2 FROM branch_level1;
-INSERT INTO branch_level2 VALUES (5, 5);
+-- Expected-Rows: 0
+DATA BRANCH CREATE TABLE test.branch_level2 FROM test.branch_level1;
+-- Expected-Rows: 0
+INSERT INTO test.branch_level2 VALUES (5, 5);
 
--- Each table has independent data
-SELECT COUNT(*) FROM base_table;
-SELECT COUNT(*) FROM branch_level1;
-SELECT COUNT(*) FROM branch_level2;
+-- Expected-Rows: 1
+SELECT COUNT(*) FROM test.base_table;
+-- Expected-Rows: 1
+SELECT COUNT(*) FROM test.branch_level1;
+-- Expected-Rows: 1
+SELECT COUNT(*) FROM test.branch_level2;
 ```
 
 ## Notes

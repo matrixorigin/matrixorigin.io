@@ -1,3 +1,5 @@
+<!-- version: v3.0.4 -->
+
 # DATA BRANCH DELETE
 
 ## Description
@@ -54,25 +56,27 @@ DATA BRANCH DELETE DATABASE database_name
 ### Example 1: Delete Table Branch
 
 ```sql
--- Create test environment
+-- Expected-Rows: 0
 CREATE DATABASE test_db;
+-- Expected-Rows: 0
 USE test_db;
 
--- Create source table
-CREATE TABLE base_table (
+-- Expected-Rows: 0
+CREATE TABLE test_db.base_table (
     id INT PRIMARY KEY,
     name VARCHAR(50)
 );
-INSERT INTO base_table VALUES (1, 'Alice'), (2, 'Bob');
+-- Expected-Rows: 0
+INSERT INTO test_db.base_table VALUES (1, 'Alice'), (2, 'Bob');
 
--- Create snapshot
+-- Expected-Rows: 0
 CREATE SNAPSHOT sp_base FOR TABLE test_db base_table;
 
--- Create branch table
-DATA BRANCH CREATE TABLE branch_table FROM base_table{SNAPSHOT='sp_base'};
+-- Expected-Rows: 0
+DATA BRANCH CREATE TABLE test_db.branch_table FROM test_db.base_table{SNAPSHOT='sp_base'};
 
--- Verify branch table exists
-SHOW TABLES;
+-- Expected-Rows: 2
+SHOW TABLES FROM test_db;
 +-----------------+
 | Tables_in_test_db |
 +-----------------+
@@ -80,8 +84,7 @@ SHOW TABLES;
 | branch_table    |
 +-----------------+
 
--- View branch metadata (table_deleted is false)
--- Note: mo_branch_metadata table is only accessible by sys tenant
+-- Expected-Rows: 1
 SELECT table_id, table_deleted 
 FROM mo_catalog.mo_branch_metadata 
 WHERE table_id = (
@@ -89,41 +92,44 @@ WHERE table_id = (
     WHERE reldatabase = 'test_db' AND relname = 'branch_table'
 );
 
--- Delete branch table
+-- Expected-Rows: 0
 DATA BRANCH DELETE TABLE test_db.branch_table;
 
--- Verify table is deleted
-SHOW TABLES;
+-- Expected-Rows: 1
+SHOW TABLES FROM test_db;
 +-----------------+
 | Tables_in_test_db |
 +-----------------+
 | base_table      |
 +-----------------+
 
--- View branch metadata (table_deleted changed to true)
--- Note: Table is deleted but metadata record is preserved
-
--- Cleanup
+-- Expected-Rows: 0
 DROP SNAPSHOT sp_base;
+-- Expected-Rows: 0
 DROP DATABASE test_db;
 ```
 
 ### Example 2: Delete Database Branch
 
 ```sql
--- Create source database
+-- Expected-Rows: 0
 CREATE DATABASE source_db;
+-- Expected-Rows: 0
 USE source_db;
 
-CREATE TABLE t1 (a INT PRIMARY KEY);
-CREATE TABLE t2 (a INT PRIMARY KEY);
-INSERT INTO t1 VALUES (1), (2);
-INSERT INTO t2 VALUES (3), (4);
+-- Expected-Rows: 0
+CREATE TABLE source_db.t1 (a INT PRIMARY KEY);
+-- Expected-Rows: 0
+CREATE TABLE source_db.t2 (a INT PRIMARY KEY);
+-- Expected-Rows: 0
+INSERT INTO source_db.t1 VALUES (1), (2);
+-- Expected-Rows: 0
+INSERT INTO source_db.t2 VALUES (3), (4);
 
--- Create database branch
+-- Expected-Rows: 0
 DATA BRANCH CREATE DATABASE branch_db FROM source_db;
 
--- Verify branch database exists
+-- Expected-Rows: 1
 SHOW DATABASES LIKE 'branch_db';
 +--------------------+
 | Database (branch_db) |
@@ -131,8 +137,9 @@ SHOW DATABASES LIKE 'branch_db';
 | branch_db          |
 +--------------------+
 
-USE branch_db;
-SHOW TABLES;
+-- Expected-Rows: 0
+-- Expected-Rows: 2
+SHOW TABLES FROM branch_db;
 +-------------------+
 | Tables_in_branch_db |
 +-------------------+
@@ -140,39 +147,42 @@ SHOW TABLES;
 | t2                |
 +-------------------+
 
--- Delete database branch
+-- Expected-Rows: 0
 DATA BRANCH DELETE DATABASE branch_db;
 
--- Verify database is deleted
+-- Expected-Rows: 0
 SHOW DATABASES LIKE 'branch_db';
--- Empty result
 
--- Cleanup
+-- Expected-Rows: 0
 DROP DATABASE source_db;
 ```
 
 ### Example 3: Metadata Status After Branch Deletion
 
 ```sql
--- Create test environment
+-- Expected-Rows: 0
 CREATE DATABASE br_meta_db;
+-- Expected-Rows: 0
 USE br_meta_db;
 
-CREATE TABLE base_tbl (a INT PRIMARY KEY, b VARCHAR(10));
-INSERT INTO base_tbl VALUES (1, 'a'), (2, 'b');
+-- Expected-Rows: 0
+CREATE TABLE br_meta_db.base_tbl (a INT PRIMARY KEY, b VARCHAR(10));
+-- Expected-Rows: 0
+INSERT INTO br_meta_db.base_tbl VALUES (1, 'a'), (2, 'b');
 
+-- Expected-Rows: 0
 CREATE SNAPSHOT sp_base_tbl FOR TABLE br_meta_db base_tbl;
 
--- Create branch table
-DATA BRANCH CREATE TABLE branch_tbl FROM base_tbl{SNAPSHOT='sp_base_tbl'};
+-- Expected-Rows: 0
+DATA BRANCH CREATE TABLE br_meta_db.branch_tbl FROM br_meta_db.base_tbl{SNAPSHOT='sp_base_tbl'};
 
--- Get branch table ID
+-- Expected-Rows: 0
 SET @branch_tbl_id = (
     SELECT rel_id FROM mo_catalog.mo_tables
     WHERE reldatabase = 'br_meta_db' AND relname = 'branch_tbl'
 );
 
--- View metadata status before deletion
+-- Expected-Rows: 1
 SELECT table_deleted FROM mo_catalog.mo_branch_metadata 
 WHERE table_id = @branch_tbl_id;
 +---------------+
@@ -181,10 +191,10 @@ WHERE table_id = @branch_tbl_id;
 | false         |
 +---------------+
 
--- Delete branch table
+-- Expected-Rows: 0
 DATA BRANCH DELETE TABLE br_meta_db.branch_tbl;
 
--- View metadata status after deletion
+-- Expected-Rows: 1
 SELECT table_deleted FROM mo_catalog.mo_branch_metadata 
 WHERE table_id = @branch_tbl_id;
 +---------------+
@@ -193,37 +203,44 @@ WHERE table_id = @branch_tbl_id;
 | true          |
 +---------------+
 
--- Cleanup
+-- Expected-Rows: 0
 DROP SNAPSHOT sp_base_tbl;
+-- Expected-Rows: 0
 DROP DATABASE br_meta_db;
 ```
 
 ### Example 4: Batch Delete All Branch Tables in a Database
 
 ```sql
--- Create source database
+-- Expected-Rows: 0
 CREATE DATABASE src_db;
+-- Expected-Rows: 0
 USE src_db;
 
-CREATE TABLE t1 (a INT PRIMARY KEY);
-CREATE TABLE t2 (a INT PRIMARY KEY);
-INSERT INTO t1 VALUES (1);
-INSERT INTO t2 VALUES (2);
+-- Expected-Rows: 0
+CREATE TABLE src_db.t1 (a INT PRIMARY KEY);
+-- Expected-Rows: 0
+CREATE TABLE src_db.t2 (a INT PRIMARY KEY);
+-- Expected-Rows: 0
+INSERT INTO src_db.t1 VALUES (1);
+-- Expected-Rows: 0
+INSERT INTO src_db.t2 VALUES (2);
 
--- Create database branch
+-- Expected-Rows: 0
 DATA BRANCH CREATE DATABASE dst_db FROM src_db;
 
--- Get IDs of all tables in branch database
+-- Expected-Rows: 0
 SET @dst_t1_id = (
     SELECT rel_id FROM mo_catalog.mo_tables
     WHERE reldatabase = 'dst_db' AND relname = 't1'
 );
+-- Expected-Rows: 0
 SET @dst_t2_id = (
     SELECT rel_id FROM mo_catalog.mo_tables
     WHERE reldatabase = 'dst_db' AND relname = 't2'
 );
 
--- View status before deletion
+-- Expected-Rows: 2
 SELECT table_deleted FROM mo_catalog.mo_branch_metadata
 WHERE table_id IN (@dst_t1_id, @dst_t2_id)
 ORDER BY table_id;
@@ -234,10 +251,10 @@ ORDER BY table_id;
 | false         |
 +---------------+
 
--- Delete entire database branch
+-- Expected-Rows: 0
 DATA BRANCH DELETE DATABASE dst_db;
 
--- View status after deletion (all tables marked as deleted)
+-- Expected-Rows: 2
 SELECT table_deleted FROM mo_catalog.mo_branch_metadata
 WHERE table_id IN (@dst_t1_id, @dst_t2_id)
 ORDER BY table_id;
@@ -248,7 +265,7 @@ ORDER BY table_id;
 | true          |
 +---------------+
 
--- Cleanup
+-- Expected-Rows: 0
 DROP DATABASE src_db;
 ```
 
