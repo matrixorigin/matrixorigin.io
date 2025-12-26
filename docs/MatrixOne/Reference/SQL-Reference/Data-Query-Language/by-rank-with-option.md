@@ -6,8 +6,9 @@ The `BY RANK WITH OPTION` clause is used in vector similarity search queries to 
 
 ## Syntax Structure
 
+<!-- validator-ignore -->
 ```sql
-SELECT ...
+SELECT column_list
 FROM table_name
 ORDER BY distance_function(vector_column, query_vector) ASC
 BY RANK WITH OPTION 'mode = <mode>'
@@ -34,23 +35,23 @@ LIMIT k;
 
 ```sql
 -- Pre-ranking mode for fastest query
-SELECT id, name, l2_distance(embedding, '[1.0, 2.0, 3.0]') AS distance
+SELECT id, name, l2_distance(embedding, '[1.0, 2.0, 3.0, 4.0]') AS distance
 FROM products
-ORDER BY l2_distance(embedding, '[1.0, 2.0, 3.0]') ASC
+ORDER BY l2_distance(embedding, '[1.0, 2.0, 3.0, 4.0]') ASC
 BY RANK WITH OPTION 'mode = pre'
 LIMIT 10;
 
 -- Force mode to ensure index usage
-SELECT id, name, l2_distance(embedding, '[1.0, 2.0, 3.0]') AS distance
+SELECT id, name, l2_distance(embedding, '[1.0, 2.0, 3.0, 4.0]') AS distance
 FROM products
-ORDER BY l2_distance(embedding, '[1.0, 2.0, 3.0]') ASC
+ORDER BY l2_distance(embedding, '[1.0, 2.0, 3.0, 4.0]') ASC
 BY RANK WITH OPTION 'mode = force'
 LIMIT 10;
 
 -- Post-ranking mode for highest accuracy
-SELECT id, name, l2_distance(embedding, '[1.0, 2.0, 3.0]') AS distance
+SELECT id, name, l2_distance(embedding, '[1.0, 2.0, 3.0, 4.0]') AS distance
 FROM products
-ORDER BY l2_distance(embedding, '[1.0, 2.0, 3.0]') ASC
+ORDER BY l2_distance(embedding, '[1.0, 2.0, 3.0, 4.0]') ASC
 BY RANK WITH OPTION 'mode = post'
 LIMIT 10;
 ```
@@ -65,28 +66,28 @@ SET GLOBAL experimental_ivf_index = 1;
 CREATE TABLE documents (
     id BIGINT PRIMARY KEY,
     title VARCHAR(200),
-    embedding VECF32(128)
+    embedding VECF32(4)
 );
 
 -- Insert sample data
-INSERT INTO documents VALUES 
-    (1, 'Document A', '[0.1, 0.2, ...]'),
-    (2, 'Document B', '[0.3, 0.4, ...]');
+INSERT INTO documents VALUES (1, 'Document A', '[0.1, 0.2, 0.3, 0.4]');
+INSERT INTO documents VALUES (2, 'Document B', '[0.5, 0.6, 0.7, 0.8]');
+INSERT INTO documents VALUES (3, 'Document C', '[0.2, 0.3, 0.4, 0.5]');
 
 -- Create IVF index
 CREATE INDEX idx_docs_embedding 
 USING IVFFLAT ON documents(embedding) 
-LISTS=100 OP_TYPE "vector_l2_ops";
+LISTS=2 OP_TYPE "vector_l2_ops";
 
 -- Set probe limit
-SET @PROBE_LIMIT = 10;
+SET @PROBE_LIMIT = 1;
 
 -- Query with rank option
-SELECT id, title, l2_distance(embedding, @query_vector) AS distance
+SELECT id, title, l2_distance(embedding, '[0.1, 0.2, 0.3, 0.4]') AS distance
 FROM documents
-ORDER BY l2_distance(embedding, @query_vector) ASC
+ORDER BY l2_distance(embedding, '[0.1, 0.2, 0.3, 0.4]') ASC
 BY RANK WITH OPTION 'mode = post'
-LIMIT 20;
+LIMIT 3;
 ```
 
 ## Limitations

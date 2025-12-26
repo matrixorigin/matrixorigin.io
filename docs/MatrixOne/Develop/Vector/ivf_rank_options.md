@@ -6,8 +6,9 @@ When performing vector similarity search using IVF (Inverted File) indexes, Matr
 
 ## Syntax
 
+<!-- validator-ignore -->
 ```sql
-SELECT ...
+SELECT column_list
 FROM table_name
 ORDER BY distance_function(vector_column, query_vector) ASC
 BY RANK WITH OPTION 'mode = <mode>'
@@ -34,9 +35,9 @@ In pre-ranking mode, the IVF index is used to filter candidate vectors **before*
 
 ```sql
 -- Example: Pre-ranking mode
-SELECT id, content, l2_distance(embedding, '[1.0, 2.0, 3.0, ...]') AS distance
+SELECT id, content, l2_distance(embedding, '[1.0, 2.0, 3.0, 4.0]') AS distance
 FROM documents
-ORDER BY l2_distance(embedding, '[1.0, 2.0, 3.0, ...]') ASC
+ORDER BY l2_distance(embedding, '[1.0, 2.0, 3.0, 4.0]') ASC
 BY RANK WITH OPTION 'mode = pre'
 LIMIT 10;
 ```
@@ -53,9 +54,9 @@ In force mode, the system **forces** the use of the IVF index for ranking, regar
 
 ```sql
 -- Example: Force mode
-SELECT id, content, l2_distance(embedding, '[1.0, 2.0, 3.0, ...]') AS distance
+SELECT id, content, l2_distance(embedding, '[1.0, 2.0, 3.0, 4.0]') AS distance
 FROM documents
-ORDER BY l2_distance(embedding, '[1.0, 2.0, 3.0, ...]') ASC
+ORDER BY l2_distance(embedding, '[1.0, 2.0, 3.0, 4.0]') ASC
 BY RANK WITH OPTION 'mode = force'
 LIMIT 10;
 ```
@@ -72,9 +73,9 @@ In post-ranking mode, the rank function is applied **after** the IVF index has r
 
 ```sql
 -- Example: Post-ranking mode
-SELECT id, content, l2_distance(embedding, '[1.0, 2.0, 3.0, ...]') AS distance
+SELECT id, content, l2_distance(embedding, '[1.0, 2.0, 3.0, 4.0]') AS distance
 FROM documents
-ORDER BY l2_distance(embedding, '[1.0, 2.0, 3.0, ...]') ASC
+ORDER BY l2_distance(embedding, '[1.0, 2.0, 3.0, 4.0]') ASC
 BY RANK WITH OPTION 'mode = post'
 LIMIT 10;
 ```
@@ -99,49 +100,48 @@ SET GLOBAL experimental_ivf_index = 1;
 CREATE TABLE products (
     id BIGINT PRIMARY KEY,
     name VARCHAR(200),
-    description TEXT,
-    embedding VECF32(128)
+    embedding VECF32(4)
 );
 
--- Insert data (example with 10000 products)
-INSERT INTO products VALUES 
-    (1, 'Product A', 'Description A', '[0.1, 0.2, ...]'),
-    (2, 'Product B', 'Description B', '[0.3, 0.4, ...]'),
-    -- ... more data
-;
+-- Insert sample data
+INSERT INTO products VALUES (1, 'Product A', '[0.1, 0.2, 0.3, 0.4]');
+INSERT INTO products VALUES (2, 'Product B', '[0.5, 0.6, 0.7, 0.8]');
+INSERT INTO products VALUES (3, 'Product C', '[0.2, 0.3, 0.4, 0.5]');
+INSERT INTO products VALUES (4, 'Product D', '[0.9, 0.8, 0.7, 0.6]');
+INSERT INTO products VALUES (5, 'Product E', '[0.3, 0.4, 0.5, 0.6]');
 
 -- Create IVF index
 CREATE INDEX idx_products_embedding 
 USING IVFFLAT ON products(embedding) 
-LISTS=100 OP_TYPE "vector_l2_ops";
+LISTS=2 OP_TYPE "vector_l2_ops";
 
 -- Set probe limit for query
-SET @PROBE_LIMIT = 10;
+SET @PROBE_LIMIT = 1;
 ```
 
 ### Query Examples
 
 ```sql
 -- Fast approximate search (pre-ranking)
-SELECT id, name, l2_distance(embedding, @query_vector) AS distance
+SELECT id, name, l2_distance(embedding, '[0.1, 0.2, 0.3, 0.4]') AS distance
 FROM products
-ORDER BY l2_distance(embedding, @query_vector) ASC
+ORDER BY l2_distance(embedding, '[0.1, 0.2, 0.3, 0.4]') ASC
 BY RANK WITH OPTION 'mode = pre'
-LIMIT 20;
+LIMIT 3;
 
 -- Guaranteed index usage (force mode)
-SELECT id, name, l2_distance(embedding, @query_vector) AS distance
+SELECT id, name, l2_distance(embedding, '[0.1, 0.2, 0.3, 0.4]') AS distance
 FROM products
-ORDER BY l2_distance(embedding, @query_vector) ASC
+ORDER BY l2_distance(embedding, '[0.1, 0.2, 0.3, 0.4]') ASC
 BY RANK WITH OPTION 'mode = force'
-LIMIT 20;
+LIMIT 3;
 
 -- High-accuracy search (post-ranking)
-SELECT id, name, l2_distance(embedding, @query_vector) AS distance
+SELECT id, name, l2_distance(embedding, '[0.1, 0.2, 0.3, 0.4]') AS distance
 FROM products
-ORDER BY l2_distance(embedding, @query_vector) ASC
+ORDER BY l2_distance(embedding, '[0.1, 0.2, 0.3, 0.4]') ASC
 BY RANK WITH OPTION 'mode = post'
-LIMIT 20;
+LIMIT 3;
 ```
 
 ## Best Practices
@@ -158,22 +158,24 @@ The `@PROBE_LIMIT` variable controls how many centroids are scanned. Combine it 
 
 ```sql
 -- High accuracy configuration
-SET @PROBE_LIMIT = 50;  -- Scan more centroids
+SET @PROBE_LIMIT = 10;
 
-SELECT * FROM products
-ORDER BY l2_distance(embedding, @query_vector) ASC
+SELECT id, name, l2_distance(embedding, '[0.1, 0.2, 0.3, 0.4]') AS distance
+FROM products
+ORDER BY l2_distance(embedding, '[0.1, 0.2, 0.3, 0.4]') ASC
 BY RANK WITH OPTION 'mode = post'
-LIMIT 10;
+LIMIT 5;
 ```
 
 ```sql
 -- High speed configuration
-SET @PROBE_LIMIT = 5;  -- Scan fewer centroids
+SET @PROBE_LIMIT = 1;
 
-SELECT * FROM products
-ORDER BY l2_distance(embedding, @query_vector) ASC
+SELECT id, name, l2_distance(embedding, '[0.1, 0.2, 0.3, 0.4]') AS distance
+FROM products
+ORDER BY l2_distance(embedding, '[0.1, 0.2, 0.3, 0.4]') ASC
 BY RANK WITH OPTION 'mode = pre'
-LIMIT 10;
+LIMIT 5;
 ```
 
 ### Performance Tuning
