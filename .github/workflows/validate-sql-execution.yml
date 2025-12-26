@@ -1,0 +1,83 @@
+name: Validate SQL Execution
+
+on:
+  pull_request:
+    paths:
+      - 'docs/**/*.md'
+      - 'scripts/doc-validator/**'
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Target branch for image selection (leave empty for auto-detect)'
+        required: false
+        type: string
+
+jobs:
+  validate-sql:
+    name: SQL Execution Validation
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install MySQL client
+        run: |
+          echo "📦 Installing MySQL client..."
+          sudo apt-get update
+          sudo apt-get install -y mysql-client
+
+      - name: Start MatrixOne Database
+        run: |
+          echo "🚀 Starting MatrixOne database..."
+          npm run db:start
+
+      - name: Wait for Database Ready
+        run: |
+          echo "⏳ Waiting for database to be ready..."
+          MAX_RETRIES=30
+          RETRY_COUNT=0
+
+          while [ $RETRY_COUNT -lt $MAX_RETRIES ]; do
+            if npm run db:test 2>/dev/null; then
+              echo "✅ Database is ready!"
+              break
+            fi
+            RETRY_COUNT=$((RETRY_COUNT + 1))
+            echo "Attempt $RETRY_COUNT/$MAX_RETRIES - waiting 10s..."
+            sleep 10
+          done
+
+          if [ $RETRY_COUNT -eq $MAX_RETRIES ]; then
+            echo "❌ Database failed to start"
+            exit 1
+          fi
+
+      - name: Run SQL Execution Validation
+        run: |
+          echo "🔍 Starting SQL Execution Validation"
+          echo "============================================================"
+          npm run check:sql-exec:changed
+
+      - name: Show Docker logs on failure
+        if: failure()
+        run: |
+          echo "📋 Docker container logs (if any):"
+          docker logs mo-test 2>/dev/null || echo "No container logs available"
+
+      - name: Cleanup
+        if: always()
+        run: |
+          echo "🧹 Cleaning up..."
+          npm run db:stop || true

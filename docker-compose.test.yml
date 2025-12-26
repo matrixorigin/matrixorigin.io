@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  matrixone:
+    # MO_IMAGE takes priority over MO_VERSION
+    # Usage: MO_IMAGE=xxx docker-compose up  OR  MO_VERSION=v1.2.0 docker-compose up
+    image: ${MO_IMAGE:-matrixorigin/matrixone:${MO_VERSION:-latest}}
+    container_name: mo-test
+    ports:
+      - "6001:6001"
+    environment:
+      - MO_CONF_DEFAULT_USER=root
+      - MO_CONF_DEFAULT_PASSWORD=111
+    healthcheck:
+      test: ["CMD-SHELL", "mysql -h127.0.0.1 -P6001 -uroot -p111 -e 'SELECT 1' || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+    restart: unless-stopped
+
