@@ -3,7 +3,7 @@
 # MatrixOne Test Environment Management Script
 #
 # Usage:
-#   ./mo-test-env.sh start              # Pull latest nightly and start
+#   ./mo-test-env.sh start              # Try latest commit from Tencent TCR, fallback to Docker Hub nightly
 #   ./mo-test-env.sh start 3.0.4        # Try release 3.0.4, fallback to latest nightly
 #   ./mo-test-env.sh stop               # Stop container
 #   ./mo-test-env.sh status             # Show container status
@@ -16,6 +16,8 @@ CONTAINER_NAME="mo-test"
 DOCKER_HUB_REPO="matrixorigin/matrixone"
 DOCKER_HUB_API="https://hub.docker.com/v2/repositories/matrixorigin/matrixone/tags"
 ALIYUN_REPO="registry.cn-shanghai.aliyuncs.com/matrixorigin/matrixone"
+TENCENT_TCR_REPO="ccr.ccs.tencentyun.com/matrixone-dev/matrixone"
+MO_GITHUB_API="https://api.github.com/repos/matrixorigin/matrixone/commits?sha=main&per_page=5"
 FALLBACK_NIGHTLY_TAG="nightly-d4051aeb"
 
 # Colors
@@ -33,6 +35,58 @@ print_info() { echo -e "${CYAN}ℹ${NC} $1"; }
 # Parse command line arguments
 ACTION="${1:-}"
 VERSION_ARG="${2:-}"
+
+# Get latest commits from MatrixOne main branch and try to pull from Tencent TCR
+# Tries latest 5 commits, returns first successful image pull
+# Returns: full image path if successful, empty string if failed
+get_latest_mo_commit_image() {
+    print_info "Fetching latest 5 commits from MatrixOne main branch..." >&2
+
+    local api_response
+
+    api_response=$(curl -s --connect-timeout 10 --max-time 30 "${MO_GITHUB_API}" 2>/dev/null)
+
+    if [ -z "$api_response" ]; then
+        print_warning "Failed to fetch from GitHub API" >&2
+        return 1
+    fi
+
+    # Extract top-level commit SHAs from JSON response (4-space indented "sha" fields)
+    # Use first 7 characters to match git rev-parse --short HEAD default
+    local commit_shas
+    commit_shas=$(echo "$api_response" | grep -E '^    "sha":' | sed 's/.*"sha": "//;s/".*//' | cut -c1-7)
+
+    if [ -z "$commit_shas" ]; then
+        print_warning "Failed to parse commit SHAs from GitHub API response" >&2
+        return 1
+    fi
+
+    # Try each commit in order (latest first)
+    local commit_count=0
+    while IFS= read -r commit_sha; do
+        commit_count=$((commit_count + 1))
+
+        if [ -z "$commit_sha" ]; then
+            continue
+        fi
+
+        print_info "[${commit_count}/5] Trying commit: ${commit_sha}" >&2
+
+        local tcr_image="${TENCENT_TCR_REPO}:commit-${commit_sha}"
+
+        # Try to pull from Tencent TCR
+        if docker pull "$tcr_image" >&2 2>&1; then
+            print_success "Pulled from Tencent TCR: commit-${commit_sha}" >&2
+            echo "$tcr_image"
+            return 0
+        else
+            print_warning "Image not available: commit-${commit_sha}" >&2
+        fi
+    done <<< "$commit_shas"
+
+    print_warning "No available image found in latest 5 commits" >&2
+    return 1
+}
 
 # Get latest nightly tag from Docker Hub
 get_latest_nightly() {
@@ -153,23 +207,11 @@ start_mo() {
     echo "🚀 Starting MatrixOne Test Environment"
     echo "============================================================"
 
-    # Step 1: Resolve image tag
+    local image=""
+
+    # Step 1: Clean up old container first
     echo ""
-    echo "📌 Step 1: Resolving image tag..."
-
-    local tag
-    tag=$(resolve_image_tag "$VERSION_ARG")
-
-    if [ -z "$tag" ]; then
-        print_error "Failed to resolve image tag"
-        exit 1
-    fi
-
-    echo "   Tag: ${tag}"
-
-    # Step 2: Clean up old container
-    echo ""
-    echo "🧹 Step 2: Cleaning up old container..."
+    echo "🧹 Step 1: Cleaning up old container..."
 
     if docker ps -a --format '{{.Names}}' | grep -q "^${CONTAINER_NAME}$"; then
         print_warning "Container '${CONTAINER_NAME}' exists, removing..."
@@ -178,12 +220,33 @@ start_mo() {
         print_success "No existing container"
     fi
 
-    # Step 3: Pull image (with fallback to Aliyun)
+    # Step 2: Try to get image (priority: Tencent TCR with latest commit > Docker Hub nightly > Aliyun)
     echo ""
-    echo "📥 Step 3: Pulling Docker image..."
+    echo "📥 Step 2: Pulling Docker image..."
 
-    local image
-    image=$(pull_image_with_fallback "$tag")
+    # Priority 1: Try latest commit from Tencent TCR (if no version specified)
+    if [ -z "$VERSION_ARG" ]; then
+        echo ""
+        print_info "Trying to get latest commit image from Tencent TCR..."
+        image=$(get_latest_mo_commit_image) || true
+    fi
+
+    # Priority 2: Fall back to Docker Hub nightly / Aliyun
+    if [ -z "$image" ]; then
+        echo ""
+        print_info "Falling back to Docker Hub / Aliyun..."
+
+        local tag
+        tag=$(resolve_image_tag "$VERSION_ARG")
+
+        if [ -z "$tag" ]; then
+            print_error "Failed to resolve image tag"
+            exit 1
+        fi
+
+        echo "   Tag: ${tag}"
+        image=$(pull_image_with_fallback "$tag")
+    fi
 
     if [ -z "$image" ]; then
         print_error "Failed to pull image"
@@ -193,16 +256,16 @@ start_mo() {
     # Export for docker compose
     export MO_IMAGE="$image"
 
-    # Step 4: Start container
+    # Step 3: Start container
     echo ""
-    echo "🐳 Step 4: Starting container..."
+    echo "🐳 Step 3: Starting container..."
 
     docker compose -f "$COMPOSE_FILE" up -d
     print_success "Container started"
 
-    # Step 5: Wait for database
+    # Step 4: Wait for database
     echo ""
-    echo "⏳ Step 5: Waiting for database to be ready..."
+    echo "⏳ Step 4: Waiting for database to be ready..."
 
     if wait_for_mo; then
         echo ""
@@ -331,14 +394,14 @@ case "${ACTION}" in
         echo ""
         echo "Commands:"
         echo "  start [version]  Start MatrixOne container"
+        echo "                   - Without version: try latest commit from Tencent TCR, fallback to Docker Hub nightly"
         echo "                   - With version: try release, fallback to nightly"
-        echo "                   - Without version: use latest nightly"
         echo "  stop             Stop and remove container"
         echo "  status           Show container status"
         echo "  test             Test database connection"
         echo ""
         echo "Examples:"
-        echo "  $0 start              # Latest nightly"
+        echo "  $0 start              # Latest commit from Tencent TCR or Docker Hub nightly"
         echo "  $0 start 3.0.4        # Release 3.0.4 or fallback to nightly"
         echo "  $0 stop"
         echo "  $0 test"
