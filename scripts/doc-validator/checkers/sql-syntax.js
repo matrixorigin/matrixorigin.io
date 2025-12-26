@@ -374,9 +374,10 @@ export class SqlSyntaxChecker {
      */
     formatError(message) {
         if (message && message.includes('syntax error')) {
-            const match = message.match(/syntax error at line \d+ column \d+ near "([^"]+)"/)
+            // Extract "syntax error at line X column Y near "..."" part
+            const match = message.match(/syntax error at line \d+ column \d+ near "[^"]*"/)
             if (match) {
-                return `syntax error near "${match[1]}"`
+                return match[0]
             }
         }
         return message || 'Unknown error'
