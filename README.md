@@ -92,19 +92,19 @@ This repository includes a documentation validation tool for Dead Link, SQL synt
 
 ```bash
 # 🔗 Dead Link 检测
-npm run check:links:file docs/MatrixOne/xxx.md      # 单文件
-npm run check:links:changed                          # 变更文件
+pnpm run check:links:file docs/MatrixOne/xxx.md      # 单文件
+pnpm run check:links:changed                          # 变更文件
 
 # 🧾 SQL 语法检测
-npm run check:sql-syntax:file docs/MatrixOne/xxx.md # 单文件
-npm run check:sql-syntax:changed                     # 变更文件
+pnpm run check:sql-syntax:file docs/MatrixOne/xxx.md # 单文件
+pnpm run check:sql-syntax:changed                     # 变更文件
 
 # ▶️ SQL 执行检测
-npm run db:start                                     # 启动数据库
-npm run db:start 3.0.4                               # 启动指定版本
-npm run check:sql-exec:file docs/MatrixOne/xxx.md   # 单文件
-npm run check:sql-exec:changed                       # 变更文件
-npm run db:stop                                      # 停止数据库
+pnpm run db:start                                     # 启动数据库
+pnpm run db:start 3.0.4                               # 启动指定版本
+pnpm run check:sql-exec:file docs/MatrixOne/xxx.md   # 单文件
+pnpm run check:sql-exec:changed                       # 变更文件
+pnpm run db:stop                                      # 停止数据库
 ```
 
 💡 For more details, see [Documentation Validation Tool Guide](scripts/doc-validator/README.md)
@@ -125,19 +125,19 @@ make check      # Lint + build test
 git add .
 git commit -m "Your message"
 
-# 5. Install npm dependencies (required for link/SQL checks)
-npm install
+# 5. Install dependencies (required for link/SQL checks)
+make install
 
 # 6. Check for dead links
-npm run check:links:changed
+pnpm run check:links:changed
 
 # 7. Check SQL syntax
-npm run check:sql-syntax:changed
+pnpm run check:sql-syntax:changed
 
 # 8. (Optional) Run SQL execution tests
-npm run db:start
-npm run check:sql-exec:changed
-npm run db:stop
+pnpm run db:start
+pnpm run check:sql-exec:changed
+pnpm run db:stop
 
 # 9. Push to remote
 git push

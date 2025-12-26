@@ -8,13 +8,13 @@ A documentation validation tool that supports **Dead Link checking**, **SQL synt
 
 ```bash
 # Single file
-npm run check:links:file docs/MatrixOne/Test/test-pass.md
+pnpm run check:links:file docs/MatrixOne/Test/test-pass.md
 
 # Multiple files
-npm run check:links:files docs/MatrixOne/Test/test-pass.md docs/MatrixOne/Test/test-fail.md
+pnpm run check:links:files docs/MatrixOne/Test/test-pass.md docs/MatrixOne/Test/test-fail.md
 
 # Changed files
-npm run check:links:changed
+pnpm run check:links:changed
 ```
 
 ---
@@ -25,13 +25,13 @@ Validates the **syntactic correctness** of SQL statements in documentation witho
 
 ```bash
 # Single file
-npm run check:sql-syntax:file docs/MatrixOne/Test/test-pass.md
+pnpm run check:sql-syntax:file docs/MatrixOne/Test/test-pass.md
 
 # Multiple files
-npm run check:sql-syntax:files docs/MatrixOne/Test/test-pass.md docs/MatrixOne/Test/test-fail.md
+pnpm run check:sql-syntax:files docs/MatrixOne/Test/test-pass.md docs/MatrixOne/Test/test-fail.md
 
 # Changed files
-npm run check:sql-syntax:changed
+pnpm run check:sql-syntax:changed
 ```
 
 ---
@@ -42,21 +42,21 @@ Verifies the **executability and execution results** of SQL statements against a
 
 ```bash
 # Start database (latest nightly)
-npm run db:start
+pnpm run db:start
 
 # Start a specific version (prefer release, fallback to nightly)
-npm run db:start 3.0.4
+pnpm run db:start 3.0.4
 
 # Single file
-npm run check:sql-exec:file docs/MatrixOne/Test/test-pass.md
+pnpm run check:sql-exec:file docs/MatrixOne/Test/test-pass.md
 
 # Multiple files
-npm run check:sql-exec:files docs/MatrixOne/Test/test-pass.md docs/MatrixOne/Test/test-fail.md
+pnpm run check:sql-exec:files docs/MatrixOne/Test/test-pass.md docs/MatrixOne/Test/test-fail.md
 
 # Changed files
-npm run check:sql-exec:changed
+pnpm run check:sql-exec:changed
 
 # Stop database
-npm run db:stop
+pnpm run db:stop
 ```
 

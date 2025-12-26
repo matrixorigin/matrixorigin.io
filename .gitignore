@@ -8,3 +8,11 @@ tags
 nohup.out
 site
 node_modules
+# Build status files (machine-specific)
+scripts/doc-validator/syntax-checker/.build-status.json
+
+# Compiled binaries (build artifacts)
+scripts/doc-validator/syntax-checker/syntax-checker
+scripts/mdast-words-count/mdast-words-count
+scripts/mdast-words-count/mdast-words-count.exe
+scripts/mdast-words-count/mdast-words-count_*

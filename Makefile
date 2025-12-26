@@ -35,7 +35,7 @@ install: ## Install all dependencies (Python + Node.js)
 	$(PIP) install -r requirements.txt
 	@echo "$(GREEN)✓ Python dependencies installed$(NC)"
 	@echo "$(BLUE)Installing Node.js dependencies...$(NC)"
-	$(PNPM) install
+	$(PNPM) install --frozen-lockfile
 	@echo "$(GREEN)✓ Node.js dependencies installed$(NC)"
 	@echo "$(GREEN)✓ All dependencies installed successfully!$(NC)"
 
@@ -46,7 +46,7 @@ install-python: ## Install Python dependencies only
 
 install-node: ## Install Node.js dependencies only
 	@echo "$(BLUE)Installing Node.js dependencies...$(NC)"
-	$(PNPM) install
+	$(PNPM) install --frozen-lockfile
 	@echo "$(GREEN)✓ Node.js dependencies installed$(NC)"
 
 serve: ## Start local development server (with auto-reload)

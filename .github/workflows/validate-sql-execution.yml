@@ -27,10 +27,28 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.0
+          run_install: false
+
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - name: Setup pnpm cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
 
       - name: Install dependencies
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
       - name: Install MySQL client
         run: |
@@ -41,7 +59,7 @@ jobs:
       - name: Start MatrixOne Database
         run: |
           echo "🚀 Starting MatrixOne database..."
-          npm run db:start
+          pnpm run db:start
 
       - name: Wait for Database Ready
         run: |
@@ -50,7 +68,7 @@ jobs:
           RETRY_COUNT=0
 
           while [ $RETRY_COUNT -lt $MAX_RETRIES ]; do
-            if npm run db:test 2>/dev/null; then
+            if pnpm run db:test 2>/dev/null; then
               echo "✅ Database is ready!"
               break
             fi
@@ -68,7 +86,7 @@ jobs:
         run: |
           echo "🔍 Starting SQL Execution Validation"
           echo "============================================================"
-          npm run check:sql-exec:changed
+          pnpm run check:sql-exec:changed
 
       - name: Show Docker logs on failure
         if: failure()
@@ -80,4 +98,4 @@ jobs:
         if: always()
         run: |
           echo "🧹 Cleaning up..."
-          npm run db:stop || true
+          pnpm run db:stop || true
