@@ -283,7 +283,7 @@ export class SqlRunner {
                 if (errorMsg.includes('syntax error') || errorMsg.includes('sql syntax')) {
                     return {
                         status: VALIDATION_STATUS.ERROR,
-                        message: `SQL syntax error: ${execError.message}`,
+                        message: this.formatError(execError.message),
                         type: sqlType,
                         detail: execError.message
                     }
@@ -310,7 +310,7 @@ export class SqlRunner {
                 // Other errors (e.g., permissions, dependencies, etc.)
                 return {
                     status: VALIDATION_STATUS.ERROR,
-                    message: `DDL execution failed: ${execError.message}`,
+                    message: `DDL execution failed: ${this.formatError(execError.message)}`,
                     type: sqlType,
                     detail: execError.message
                 }
@@ -380,7 +380,7 @@ export class SqlRunner {
 
                 return {
                     status: VALIDATION_STATUS.ERROR,
-                    message: `DML execution failed: ${execError.message}`,
+                    message: `DML execution failed: ${this.formatError(execError.message)}`,
                     type: sqlType,
                     detail: execError.message
                 }
@@ -448,7 +448,7 @@ export class SqlRunner {
             // Real error
             return {
                 status: VALIDATION_STATUS.ERROR,
-                message: `Query execution failed: ${execError.message}`,
+                message: `Query execution failed: ${this.formatError(execError.message)}`,
                 type: sqlType,
                 detail: execError.message
             }
@@ -1442,6 +1442,30 @@ export class SqlRunner {
         return er.rows !== undefined || er.value !== undefined ||
             (er.values?.length > 0) || (er.contains?.length > 0) ||
             (er.output?.trim()) || er.affectedRows !== undefined
+    }
+
+    /**
+     * Format error message to be more concise
+     * Removes verbose prefix and extracts key information
+     */
+    formatError(message) {
+        if (!message) return 'Unknown error'
+
+        // Extract "syntax error at line X column Y near "..."" from verbose MO error
+        if (message.includes('syntax error')) {
+            const match = message.match(/syntax error at line \d+ column \d+ near "[^"]*"/)
+            if (match) {
+                return match[0]
+            }
+        }
+
+        // Remove "SQL parser error: " prefix if present
+        message = message.replace(/^SQL parser error:\s*/i, '')
+
+        // Remove verbose MO syntax error prefix
+        message = message.replace(/^You have an error in your SQL syntax;[^.]+\.\s*/i, '')
+
+        return message
     }
 }
 

@@ -38,20 +38,13 @@ export class Reporter {
 
         if (passed) {
             this.results.passedFiles++
-            console.log(`✅ ${filePath}`)
-
-            // Show statistics
-            if (stats.totalStatements) {
-                console.log(`   ✅ Success: ${stats.successes || 0} | ❌ Errors: ${errors.length}`)
-            }
+            const stmtCount = stats.totalStatements || 0
+            console.log(`✅ ${filePath} (${stmtCount} statements)`)
         } else {
             this.results.failedFiles++
-            console.log(`❌ ${filePath}`)
-
-            // Show statistics
-            if (stats.totalStatements) {
-                console.log(`   ✅ Success: ${stats.successes || 0} | ❌ Errors: ${errors.length}`)
-            }
+            const passedCount = stats.successes || 0
+            const errorCount = errors.length
+            console.log(`❌ ${filePath} (${passedCount} passed, ${errorCount} errors)`)
 
             errors.forEach(error => {
                 this.results.errors.push({
@@ -59,14 +52,17 @@ export class Reporter {
                     ...error
                 })
 
-                const location = error.line
-                    ? `${filePath}:${error.line}`
-                    : filePath
+                // Display line number and SQL
+                const lineNum = error.line ? `:${error.line}` : ''
+                const sql = error.sql
+                    ? error.sql.replace(/\n/g, ' ').substring(0, 80) + (error.sql.length > 80 ? '...' : '')
+                    : ''
+                console.log(`   ${lineNum}  ${sql}`)
 
-                console.log(`   📌 ${location}`)
-                console.log(`      ${error.message}`)
-                if (error.sql) {
-                    console.log(`      SQL: ${error.sql.substring(0, 100)}${error.sql.length > 100 ? '...' : ''}`)
+                // Display error message on next line with indent
+                if (error.message) {
+                    const errMsg = error.message.replace(/^SQL syntax error: /, '')
+                    console.log(`        ${errMsg}`)
                 }
             })
         }
@@ -99,68 +95,30 @@ export class Reporter {
         console.log('\n' + '='.repeat(60))
         console.log('📊 Documentation Validation Report')
         console.log('='.repeat(60))
-        console.log(`Total files scanned: ${this.results.totalFiles}`)
+        console.log(`Files scanned:  ${this.results.totalFiles}`)
         console.log(`Files with SQL: ${this.results.checkedFiles}`)
-
-        // Show SQL execution statistics (only for execution validation)
-        if (this.isExecutionValidation && this.results.totalStatements > 0) {
-            console.log('\n📊 SQL Validation Statistics:')
-            console.log(`  ├─ ✅ Passed: ${this.results.successes}`)
-            console.log(`  ├─ ❌ Failed: ${this.results.errors.length}`)
-            console.log(`  └─ 📈 Total: ${this.results.totalStatements} SQL statements`)
-            console.log()
-        }
-
-        // Show file pass/fail status
-        console.log('📁 File Check Results:')
         console.log(`  ├─ ✅ Passed: ${this.results.passedFiles}`)
         console.log(`  └─ ❌ Failed: ${this.results.failedFiles}`)
 
-        const noSqlFiles = this.results.totalFiles - this.results.checkedFiles
-        if (noSqlFiles > 0) {
-            console.log(`  └─ 📄 Files without SQL: ${noSqlFiles}`)
+        // Show SQL statement statistics
+        if (this.results.totalStatements > 0) {
+            console.log()
+            console.log(`SQL statements: ${this.results.totalStatements}`)
+            console.log(`  ├─ ✅ Passed: ${this.results.successes}`)
+            console.log(`  └─ ❌ Failed: ${this.results.errors.length}`)
         }
 
         if (this.results.warnings.length > 0) {
-            console.log(`⚠️  System Warnings: ${this.results.warnings.length}`)
-        }
-
-        console.log(`🕐 Duration: ${duration}s`)
-        console.log('='.repeat(60))
-
-        if (this.results.errors.length > 0) {
-            console.log(`\nFound ${this.results.errors.length} errors:\n`)
-
-            // Group errors by file
-            const errorsByFile = {}
-            this.results.errors.forEach(error => {
-                if (!errorsByFile[error.filePath]) {
-                    errorsByFile[error.filePath] = []
-                }
-                errorsByFile[error.filePath].push(error)
-            })
-
-            // Output errors for each file
-            Object.entries(errorsByFile).forEach(([filePath, errors]) => {
-                console.log(`📄 ${filePath} (${errors.length} errors)`)
-                errors.forEach((error, index) => {
-                    const location = error.line ? `:${error.line}` : ''
-                    console.log(`   ${index + 1}. ${error.message}`)
-                    if (error.sql) {
-                        console.log(`      SQL: ${error.sql.substring(0, 80)}...`)
-                    }
-                })
-                console.log()
-            })
-        }
-
-        if (this.results.warnings.length > 0) {
-            console.log(`\n⚠️  ${this.results.warnings.length} warnings:\n`)
+            console.log()
+            console.log(`⚠️  Warnings: ${this.results.warnings.length}`)
             this.results.warnings.forEach((warning, index) => {
                 console.log(`   ${index + 1}. ${warning}`)
             })
-            console.log()
         }
+
+        console.log()
+        console.log(`🕐 Duration: ${duration}s`)
+        console.log('='.repeat(60))
 
         return this.results
     }
