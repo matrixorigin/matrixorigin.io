@@ -23,7 +23,6 @@ The ideal values for LISTS are:
 ## Examples
 
 ```sql
-SET GLOBAL experimental_ivf_index = 1;--The parameter experimental_ivf_index needs to be set to 1 (default 0) to use vector indexes.
 drop table if exists t1;
 create table t1(n1 int,n2  vecf32(3));
 insert into t1 values(1,"[1,2,3]"),(2,"[2,3,4]"),(3,"[3,4,5]");

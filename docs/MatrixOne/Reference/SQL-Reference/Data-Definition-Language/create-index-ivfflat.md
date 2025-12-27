@@ -36,8 +36,6 @@ __NOTE__:
 ## Examples
 
 ```sql
---The parameter experimental_ivf_index needs to be set to 1 (default 0) to use vector indexes.
-SET GLOBAL experimental_ivf_index = 1;
 drop table if exists t1;
 create table t1(coordinate vecf32(2),class char);
 -- There are seven points, each representing its coordinates on the x and y axes, and each point's class is labeled A or B.
