@@ -17,7 +17,7 @@ DOCKER_HUB_REPO="matrixorigin/matrixone"
 DOCKER_HUB_API="https://hub.docker.com/v2/repositories/matrixorigin/matrixone/tags"
 ALIYUN_REPO="registry.cn-shanghai.aliyuncs.com/matrixorigin/matrixone"
 TENCENT_TCR_REPO="ccr.ccs.tencentyun.com/matrixone-dev/matrixone"
-MO_GITHUB_API="https://api.github.com/repos/matrixorigin/matrixone/commits?sha=main&per_page=5"
+MO_GITHUB_API_BASE="https://api.github.com/repos/matrixorigin/matrixone"
 FALLBACK_NIGHTLY_TAG="nightly-d4051aeb"
 
 # Colors
@@ -36,41 +36,134 @@ print_info() { echo -e "${CYAN}ℹ${NC} $1"; }
 ACTION="${1:-}"
 VERSION_ARG="${2:-}"
 
-# Get latest commits from MatrixOne main branch and try to pull from Tencent TCR
-# Tries latest 5 commits, returns first successful image pull
+# Find the latest x.x-dev branch (e.g., 3.0-dev > 2.2-dev)
+# Returns: branch name (e.g., "3.0-dev") or empty if not found
+get_latest_dev_branch() {
+    local branches_response
+    branches_response=$(curl -s --connect-timeout 10 --max-time 30 "${MO_GITHUB_API_BASE}/branches?per_page=100" 2>/dev/null)
+
+    if [ -z "$branches_response" ]; then
+        return 1
+    fi
+
+    # Extract branch names matching x.x-dev pattern, sort by version number descending
+    local latest_dev
+    latest_dev=$(echo "$branches_response" | grep '"name":' | grep '\-dev"' | \
+        sed 's/.*"name": "//;s/".*//' | \
+        sort -t. -k1,1nr -k2,2nr | \
+        head -1)
+
+    if [ -n "$latest_dev" ]; then
+        echo "$latest_dev"
+        return 0
+    fi
+
+    return 1
+}
+
+# Fetch commits from a branch with timestamp
+# Returns: lines of "timestamp sha branch" format
+fetch_branch_commits() {
+    local branch="$1"
+    local api_url="${MO_GITHUB_API_BASE}/commits?sha=${branch}&per_page=5"
+
+    local response
+    response=$(curl -s --connect-timeout 10 --max-time 30 "$api_url" 2>/dev/null)
+
+    if [ -z "$response" ]; then
+        return 1
+    fi
+
+    # Extract commit SHA and date, output as "ISO_DATE SHORT_SHA BRANCH"
+    # The date field appears as "date": "2024-01-15T10:30:00Z"
+    echo "$response" | \
+        grep -E '("sha":|"date":)' | \
+        paste - - | \
+        grep -E '"sha":.*"date":' | \
+        sed 's/.*"sha": "\([^"]*\)".*"date": "\([^"]*\)".*/\2 \1/' | \
+        while read -r date sha; do
+            # Output: ISO date + short SHA (7 chars) + branch name
+            echo "$date ${sha:0:7} $branch"
+        done
+}
+
+# Get latest commits from MatrixOne main and latest dev branch
+# Merges, deduplicates, sorts by time, and tries to pull from Tencent TCR
 # Returns: full image path if successful, empty string if failed
 get_latest_mo_commit_image() {
-    print_info "Fetching latest 5 commits from MatrixOne main branch..." >&2
+    print_info "Fetching commits from main and latest dev branch..." >&2
 
-    local api_response
+    local all_commits=""
 
-    api_response=$(curl -s --connect-timeout 10 --max-time 30 "${MO_GITHUB_API}" 2>/dev/null)
+    # Fetch from main branch
+    print_info "Fetching from main branch..." >&2
+    local main_commits
+    main_commits=$(fetch_branch_commits "main")
+    if [ -n "$main_commits" ]; then
+        all_commits="$main_commits"
+        print_success "Got commits from main" >&2
+    else
+        print_warning "Failed to fetch from main branch" >&2
+    fi
 
-    if [ -z "$api_response" ]; then
-        print_warning "Failed to fetch from GitHub API" >&2
+    # Find and fetch from latest dev branch
+    local dev_branch
+    dev_branch=$(get_latest_dev_branch)
+    if [ -n "$dev_branch" ]; then
+        print_info "Found latest dev branch: ${dev_branch}" >&2
+        local dev_commits
+        dev_commits=$(fetch_branch_commits "$dev_branch")
+        if [ -n "$dev_commits" ]; then
+            if [ -n "$all_commits" ]; then
+                all_commits="${all_commits}"$'\n'"${dev_commits}"
+            else
+                all_commits="$dev_commits"
+            fi
+            print_success "Got commits from ${dev_branch}" >&2
+        else
+            print_warning "Failed to fetch from ${dev_branch}" >&2
+        fi
+    else
+        print_warning "No dev branch found" >&2
+    fi
+
+    if [ -z "$all_commits" ]; then
+        print_warning "Failed to fetch commits from any branch" >&2
         return 1
     fi
 
-    # Extract top-level commit SHAs from JSON response (4-space indented "sha" fields)
-    # Use first 7 characters to match git rev-parse --short HEAD default
-    local commit_shas
-    commit_shas=$(echo "$api_response" | grep -E '^    "sha":' | sed 's/.*"sha": "//;s/".*//' | cut -c1-7)
+    # Sort by timestamp (newest first), deduplicate by SHA, take top 5
+    # Note: Using sort -uk2,2 for macOS compatibility instead of awk
+    local sorted_commits
+    sorted_commits=$(echo "$all_commits" | sort -rk1 | sort -uk2,2 | sort -rk1 | head -5)
 
-    if [ -z "$commit_shas" ]; then
-        print_warning "Failed to parse commit SHAs from GitHub API response" >&2
+    if [ -z "$sorted_commits" ]; then
+        print_warning "No commits after deduplication" >&2
         return 1
     fi
+
+    print_info "Top 5 commits (sorted by time):" >&2
+    echo "$sorted_commits" | while read -r date sha branch; do
+        echo "   ${sha} ${date} (${branch})" >&2
+    done
 
     # Try each commit in order (latest first)
+    # Note: Using for loop instead of while to avoid subshell issues
     local commit_count=0
-    while IFS= read -r commit_sha; do
+    local commit_array
+    commit_array=$(echo "$sorted_commits")
+
+    while IFS= read -r line; do
         commit_count=$((commit_count + 1))
+        local date=$(echo "$line" | cut -d' ' -f1)
+        local commit_sha=$(echo "$line" | cut -d' ' -f2)
+        local branch=$(echo "$line" | cut -d' ' -f3)
 
         if [ -z "$commit_sha" ]; then
             continue
         fi
 
-        print_info "[${commit_count}/5] Trying commit: ${commit_sha}" >&2
+        print_info "[${commit_count}/5] Trying commit: ${commit_sha} (${branch})" >&2
 
         local tcr_image="${TENCENT_TCR_REPO}:commit-${commit_sha}"
 
@@ -82,7 +175,7 @@ get_latest_mo_commit_image() {
         else
             print_warning "Image not available: commit-${commit_sha}" >&2
         fi
-    done <<< "$commit_shas"
+    done <<< "$commit_array"
 
     print_warning "No available image found in latest 5 commits" >&2
     return 1
