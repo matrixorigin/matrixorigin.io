@@ -12,6 +12,9 @@ on:
         required: false
         type: string
 
+env:
+  TENCENT_TCR_REPO: ccr.ccs.tencentyun.com/matrixone-dev/matrixone
+
 jobs:
   validate-sql:
     name: SQL Execution Validation
@@ -58,37 +61,129 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y mysql-client
 
-      - name: Start MatrixOne Database
+      - name: Run SQL Validation with Branch Fallback
         run: |
-          echo "🚀 Starting MatrixOne database..."
-          pnpm run db:start
+          echo "🔍 Starting SQL Execution Validation with Branch Fallback"
+          echo "============================================================"
 
-      - name: Wait for Database Ready
-        run: |
-          echo "⏳ Waiting for database to be ready..."
-          MAX_RETRIES=30
-          RETRY_COUNT=0
+          # Get sorted commit list
+          echo "📋 Fetching commit list from main and dev branches..."
+          COMMITS=$(bash ./scripts/mo-test-env.sh get-commits)
 
-          while [ $RETRY_COUNT -lt $MAX_RETRIES ]; do
-            if pnpm run db:test 2>/dev/null; then
-              echo "✅ Database is ready!"
-              break
-            fi
-            RETRY_COUNT=$((RETRY_COUNT + 1))
-            echo "Attempt $RETRY_COUNT/$MAX_RETRIES - waiting 10s..."
-            sleep 10
-          done
-
-          if [ $RETRY_COUNT -eq $MAX_RETRIES ]; then
-            echo "❌ Database failed to start"
+          if [ -z "$COMMITS" ]; then
+            echo "❌ Failed to fetch commits"
             exit 1
           fi
 
-      - name: Run SQL Execution Validation
-        run: |
-          echo "🔍 Starting SQL Execution Validation"
-          echo "============================================================"
-          pnpm run check:sql-exec:changed
+          echo "Available commits:"
+          echo "$COMMITS" | while read -r sha branch; do
+            echo "  - $sha ($branch)"
+          done
+          echo ""
+
+          # Track which branches have been tested
+          TESTED_MAIN=false
+          TESTED_DEV=false
+          LAST_FAILED_BRANCH=""
+          TEST_PASSED=false
+
+          # Iterate through commits
+          while IFS= read -r line; do
+            SHA=$(echo "$line" | cut -d' ' -f1)
+            BRANCH=$(echo "$line" | cut -d' ' -f2)
+
+            if [ -z "$SHA" ]; then
+              continue
+            fi
+
+            # Skip if this branch type already failed and we're looking at the same branch
+            if [ -n "$LAST_FAILED_BRANCH" ] && [ "$BRANCH" = "$LAST_FAILED_BRANCH" ]; then
+              echo "⏭️  Skipping $SHA ($BRANCH) - already tested this branch"
+              continue
+            fi
+
+            echo ""
+            echo "============================================================"
+            echo "🧪 Testing commit: $SHA ($BRANCH)"
+            echo "============================================================"
+
+            IMAGE="${TENCENT_TCR_REPO}:commit-${SHA}"
+
+            # Try to start database with this image
+            echo "🚀 Starting MatrixOne with $IMAGE..."
+            if ! bash ./scripts/mo-test-env.sh start-image "$IMAGE"; then
+              echo "⚠️  Failed to start database with $SHA, trying next..."
+              continue
+            fi
+
+            # Wait for database to be ready
+            echo "⏳ Waiting for database to be ready..."
+            MAX_RETRIES=30
+            RETRY_COUNT=0
+            DB_READY=false
+
+            while [ $RETRY_COUNT -lt $MAX_RETRIES ]; do
+              if pnpm run db:test 2>/dev/null; then
+                echo "✅ Database is ready!"
+                DB_READY=true
+                break
+              fi
+              RETRY_COUNT=$((RETRY_COUNT + 1))
+              echo "Attempt $RETRY_COUNT/$MAX_RETRIES - waiting 10s..."
+              sleep 10
+            done
+
+            if [ "$DB_READY" = false ]; then
+              echo "⚠️  Database failed to start with $SHA, trying next..."
+              pnpm run db:stop || true
+              continue
+            fi
+
+            # Run SQL validation
+            echo ""
+            echo "🔍 Running SQL Execution Validation..."
+            if pnpm run check:sql-exec:changed; then
+              echo ""
+              echo "============================================================"
+              echo "✅ SQL Validation PASSED with $SHA ($BRANCH)"
+              echo "============================================================"
+              TEST_PASSED=true
+              pnpm run db:stop || true
+              break
+            else
+              echo ""
+              echo "⚠️  SQL Validation FAILED with $SHA ($BRANCH)"
+
+              # Mark this branch as tested
+              if [ "$BRANCH" = "main" ]; then
+                TESTED_MAIN=true
+              else
+                TESTED_DEV=true
+              fi
+              LAST_FAILED_BRANCH="$BRANCH"
+
+              # Check if both branches have been tested
+              if [ "$TESTED_MAIN" = true ] && [ "$TESTED_DEV" = true ]; then
+                echo ""
+                echo "============================================================"
+                echo "❌ Both main and dev branches have been tested and failed"
+                echo "============================================================"
+                pnpm run db:stop || true
+                exit 1
+              fi
+
+              echo "🔄 Will try another branch..."
+              pnpm run db:stop || true
+            fi
+          done <<< "$COMMITS"
+
+          if [ "$TEST_PASSED" = false ]; then
+            echo ""
+            echo "============================================================"
+            echo "❌ No available commit passed the SQL validation"
+            echo "============================================================"
+            exit 1
+          fi
 
       - name: Show Docker logs on failure
         if: failure()
