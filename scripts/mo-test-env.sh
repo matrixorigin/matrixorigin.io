@@ -466,10 +466,121 @@ test_mo() {
     fi
 }
 
+# Get sorted commit list for CI use
+# Output format: sha branch (one per line, sorted by time descending)
+get_commits() {
+    local all_commits=""
+
+    # Fetch from main branch (silently)
+    local main_commits
+    main_commits=$(fetch_branch_commits "main" 2>/dev/null)
+    if [ -n "$main_commits" ]; then
+        all_commits="$main_commits"
+    fi
+
+    # Find and fetch from latest dev branch
+    local dev_branch
+    dev_branch=$(get_latest_dev_branch 2>/dev/null)
+    if [ -n "$dev_branch" ]; then
+        local dev_commits
+        dev_commits=$(fetch_branch_commits "$dev_branch" 2>/dev/null)
+        if [ -n "$dev_commits" ]; then
+            if [ -n "$all_commits" ]; then
+                all_commits="${all_commits}"$'\n'"${dev_commits}"
+            else
+                all_commits="$dev_commits"
+            fi
+        fi
+    fi
+
+    if [ -z "$all_commits" ]; then
+        echo "Failed to fetch commits" >&2
+        return 1
+    fi
+
+    # Sort by timestamp (newest first), deduplicate by SHA
+    # Output format: sha branch (without timestamp)
+    echo "$all_commits" | sort -rk1 | sort -uk2,2 | sort -rk1 | \
+        while read -r date sha branch; do
+            echo "$sha $branch"
+        done
+}
+
+# Start with a specific image
+start_with_image() {
+    local image="$1"
+
+    if [ -z "$image" ]; then
+        print_error "No image specified"
+        return 1
+    fi
+
+    echo "============================================================"
+    echo "🚀 Starting MatrixOne with image: ${image}"
+    echo "============================================================"
+
+    # Clean up old container first
+    echo ""
+    echo "🧹 Cleaning up old container..."
+
+    if docker ps -a --format '{{.Names}}' | grep -q "^${CONTAINER_NAME}$"; then
+        docker compose -f "$COMPOSE_FILE" down 2>/dev/null || true
+    fi
+    print_success "Cleanup done"
+
+    # Pull the image
+    echo ""
+    echo "📥 Pulling image..."
+    if ! docker pull "$image"; then
+        print_error "Failed to pull image: ${image}"
+        return 1
+    fi
+    print_success "Image pulled"
+
+    # Export for docker compose
+    export MO_IMAGE="$image"
+
+    # Start container
+    echo ""
+    echo "🐳 Starting container..."
+
+    docker compose -f "$COMPOSE_FILE" up -d
+    print_success "Container started"
+
+    # Wait for database
+    echo ""
+    echo "⏳ Waiting for database to be ready..."
+
+    if wait_for_mo; then
+        echo ""
+        echo "============================================================"
+        print_success "MatrixOne is ready!"
+        echo "   Image: ${image}"
+        echo "   Host: 127.0.0.1"
+        echo "   Port: 6001"
+        echo "============================================================"
+        return 0
+    else
+        echo ""
+        echo "============================================================"
+        print_error "MatrixOne failed to start"
+        echo "============================================================"
+        return 1
+    fi
+}
+
 # Main
 case "${ACTION}" in
     start)
         start_mo
+        ;;
+    start-image)
+        # Start with a specific image (used by CI)
+        start_with_image "$VERSION_ARG"
+        ;;
+    get-commits)
+        # Get sorted commit list (used by CI)
+        get_commits
         ;;
     stop)
         stop_mo
@@ -483,12 +594,14 @@ case "${ACTION}" in
     *)
         echo "MatrixOne Test Environment"
         echo ""
-        echo "Usage: $0 {start|stop|status|test} [version]"
+        echo "Usage: $0 {start|stop|status|test|get-commits|start-image} [version/image]"
         echo ""
         echo "Commands:"
         echo "  start [version]  Start MatrixOne container"
         echo "                   - Without version: try latest commit from Tencent TCR, fallback to Docker Hub nightly"
         echo "                   - With version: try release, fallback to nightly"
+        echo "  start-image IMG  Start with a specific Docker image (for CI use)"
+        echo "  get-commits      Get sorted commit list from main and dev branches"
         echo "  stop             Stop and remove container"
         echo "  status           Show container status"
         echo "  test             Test database connection"
@@ -496,6 +609,8 @@ case "${ACTION}" in
         echo "Examples:"
         echo "  $0 start              # Latest commit from Tencent TCR or Docker Hub nightly"
         echo "  $0 start 3.0.4        # Release 3.0.4 or fallback to nightly"
+        echo "  $0 start-image ccr.ccs.tencentyun.com/matrixone-dev/matrixone:commit-abc1234"
+        echo "  $0 get-commits        # List available commits"
         echo "  $0 stop"
         echo "  $0 test"
         exit 1
