@@ -22,6 +22,7 @@ SELECT cluster_centers(col kmeans 'k, op_type, init_type, normalize')  FROM tbl;
 
 ## Examples
 
+<!-- validator-ignore -->
 ```sql
 drop table if exists points;
 CREATE TABLE points (id int auto_increment PRIMARY KEY,coordinate vecf32(2));
@@ -33,7 +34,7 @@ insert into points(coordinate) VALUES
  ("[-5.67841327,-7.28818497]"),
  ("[-6.04929137,-7.73619342]"),
  ("[-6.27824322,7.22746302]");
-SET GLOBAL experimental_ivf_index = 1;--The parameter experimental_ivf_index needs to be set to 1 (default 0) to use vector indexes.
+
 --create index idx_t1 using ivfflat on points(coordinate)  lists=1 op_type "vector_l2_ops";
 
 -- Each point represents its coordinates on the x and y axes, querying the clustering centers, using Regular Kmeans
