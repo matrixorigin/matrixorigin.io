@@ -48,9 +48,9 @@ mysql> show create table t1;
 | Table | Create Table                                                                                                                                                           |
 +-------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | t1    | CREATE TABLE `t1` (
-`coordinate` VECF32(2) DEFAULT NULL,
-`class` CHAR(1) DEFAULT NULL,
-KEY `idx_t1` USING ivfflat (`coordinate`) lists = 1  op_type 'vector_l2_ops' 
+  `coordinate` vecf32(2) DEFAULT NULL,
+  `class` char(1) DEFAULT NULL,
+  KEY `idx_t1` USING ivfflat (`coordinate`) lists = 1  op_type 'vector_l2_ops' 
 ) |
 +-------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 1 row in set (0.01 sec)
@@ -59,7 +59,7 @@ mysql> show index from t1;
 +-------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+-----------------------------------------+---------+------------+
 | Table | Non_unique | Key_name | Seq_in_index | Column_name | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment | Index_comment | Index_params                            | Visible | Expression |
 +-------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+-----------------------------------------+---------+------------+
-| t1    |          1 | idx_t1   |            1 | coordinate  | A         |           0 | NULL     | NULL   | YES  | ivfflat    |         |               | {"lists":"1","op_type":"vector_l2_ops"} | YES     | NULL       |
+| t1    |          1 | idx_t1   |            1 | coordinate  | A         |           0 | NULL     | NULL   | YES  | ivfflat    |         |               | {"lists":"1","op_type":"vector_l2_ops"} | YES     | coordinate |
 +-------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+-----------------------------------------+---------+------------+
 1 row in set (0.01 sec)
 
