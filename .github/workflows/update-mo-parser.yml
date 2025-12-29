@@ -1,0 +1,100 @@
+name: Update MO Parser
+
+on:
+  schedule:
+    # 每 3 天运行一次 (UTC 时间 00:00)
+    - cron: '0 0 */3 * *'
+  workflow_dispatch:
+    # 支持手动触发
+
+jobs:
+  update-parser:
+    name: Update MatrixOne SQL Parser
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+
+      - name: Get current MO version
+        id: current
+        working-directory: scripts/doc-validator/syntax-checker
+        run: |
+          CURRENT=$(grep 'github.com/matrixorigin/matrixone' go.mod | head -1 | awk '{print $2}')
+          echo "version=$CURRENT" >> $GITHUB_OUTPUT
+          echo "📌 Current MO version: $CURRENT"
+
+      - name: Update to latest MO main branch
+        working-directory: scripts/doc-validator/syntax-checker
+        run: |
+          echo "🔄 Updating MatrixOne parser to latest main..."
+          go get github.com/matrixorigin/matrixone@main
+          go mod tidy
+
+      - name: Get new MO version
+        id: new
+        working-directory: scripts/doc-validator/syntax-checker
+        run: |
+          NEW=$(grep 'github.com/matrixorigin/matrixone' go.mod | head -1 | awk '{print $2}')
+          echo "version=$NEW" >> $GITHUB_OUTPUT
+          echo "📌 New MO version: $NEW"
+
+      - name: Build syntax checker
+        working-directory: scripts/doc-validator/syntax-checker
+        run: |
+          echo "🔨 Building syntax checker..."
+          go build -o syntax-checker .
+          echo "✅ Build successful"
+
+      - name: Test syntax checker
+        working-directory: scripts/doc-validator/syntax-checker
+        run: |
+          echo "🧪 Testing syntax checker..."
+          echo '{"statements": ["SELECT 1", "CREATE TABLE t1 (id INT)"]}' | ./syntax-checker
+          echo "✅ Test passed"
+
+      - name: Check for changes
+        id: changes
+        run: |
+          if git diff --quiet scripts/doc-validator/syntax-checker/go.mod scripts/doc-validator/syntax-checker/go.sum; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "📭 No changes detected"
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "📬 Changes detected"
+          fi
+
+      - name: Create Pull Request
+        if: steps.changes.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore: update MatrixOne SQL parser"
+          title: "chore: Update MatrixOne SQL Parser"
+          body: |
+            ## 🔄 Auto-update MatrixOne SQL Parser
+
+            This PR updates the MatrixOne SQL parser to the latest version from the main branch.
+
+            ### Changes
+            - **Previous version**: `${{ steps.current.outputs.version }}`
+            - **New version**: `${{ steps.new.outputs.version }}`
+
+            ### Why?
+            Keeping the SQL parser up-to-date ensures that new SQL syntax features in MatrixOne are properly validated in documentation.
+
+            ---
+            🤖 This PR was automatically created by the [Update MO Parser](.github/workflows/update-mo-parser.yml) workflow.
+          branch: auto/update-mo-parser
+          delete-branch: true
+          labels: |
+            automated
+            dependencies
+          reviewers: flypiggyyoyoyo
