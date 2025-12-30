@@ -167,6 +167,7 @@ nav:
           - Vector:
               - Vector Type: MatrixOne/Develop/Vector/vector_type.md
               - Vector Search: MatrixOne/Develop/Vector/vector_search.md
+              - IVF Rank Options: MatrixOne/Develop/Vector/ivf_rank_options.md
               - Cluster Centers: MatrixOne/Develop/Vector/cluster_centers.md
           - Ecological Tools:
               - Message Queue Tools:
@@ -362,6 +363,10 @@ nav:
                   - CREATE SOURCE: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-source.md
                   - CREATE DYNAMIC TABLE: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-dynamic-table.md
                   - CREATE SNAPSHOT: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-snapshot.md
+                  - CREATE BRANCH: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/data-branch-create-en.md
+                  - DELETE BRANCH: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/data-branch-delete-en.md
+                  - DIFF BRANCH: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/data-branch-diff-en.md
+                  - MERGE BRANCH: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/data-branch-merge-en.md
                   - ALTER TABLE: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/alter-table.md
                   - ALTER TABLE ... ALTER REINDEX: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/alter-reindex.md
                   - ALTER PITR: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/alter-pitr.md
@@ -412,6 +417,7 @@ nav:
                       - OUTER JOIN: MatrixOne/Reference/SQL-Reference/Data-Query-Language/join/outer-join.md
                       - NATURAL JOIN: MatrixOne/Reference/SQL-Reference/Data-Query-Language/join/natural-join.md
                   - SELECT: MatrixOne/Reference/SQL-Reference/Data-Query-Language/select.md
+                  - BY RANK WITH OPTION: MatrixOne/Reference/SQL-Reference/Data-Query-Language/by-rank-with-option.md
                   - SUBQUERY:
                       - SUBQUERY Overview: MatrixOne/Reference/SQL-Reference/Data-Query-Language/subqueries/subquery.md
                       - Derived Tables: MatrixOne/Reference/SQL-Reference/Data-Query-Language/subqueries/derived-tables.md
