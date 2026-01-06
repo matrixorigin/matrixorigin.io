@@ -55,10 +55,12 @@ mysql> SELECT * FROM temp_t1;
 - **Example 2: Shadowing a regular table**
 
 ```sql
-CREATE TABLE t1 (a INT); -- Regular table
+-- Regular table
+CREATE TABLE t1 (a INT);
 INSERT INTO t1 VALUES (1);
 
-CREATE TEMPORARY TABLE t1 (b INT); -- Temporary table with same name
+-- Temporary table with same name
+CREATE TEMPORARY TABLE t1 (b INT);
 INSERT INTO t1 VALUES (2);
 
 mysql> SELECT * FROM t1;
