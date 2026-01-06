@@ -117,6 +117,7 @@ For more detailed syntax explanations, see the following content.
 You can use the `TEMPORARY` keyword when creating a table. A `TEMPORARY` table is visible only within the current session, and is dropped automatically when the session is closed.
 
 Key behaviors of temporary tables:
+
 - **Shadowing**: If a temporary table has the same name as a regular table, the temporary table takes precedence for DML and inspection commands (like `DESC`).
 - **Persistence**: Data in temporary tables is stored in memory and is not persistent.
 - **ALTER support**: Only index-related `ALTER` operations are supported.

@@ -36,7 +36,7 @@ column_definition: {
 
 ## **Examples**
 
--   **Example 1: Create and use a temporary table**
+- **Example 1: Create and use a temporary table**
 
 ```sql
 CREATE TEMPORARY TABLE temp_t1 (a INT, b VARCHAR(10));
@@ -52,7 +52,7 @@ mysql> SELECT * FROM temp_t1;
 -- The table will be automatically dropped when the session ends.
 ```
 
--   **Example 2: Shadowing a regular table**
+- **Example 2: Shadowing a regular table**
 
 ```sql
 CREATE TABLE t1 (a INT); -- Regular table
@@ -79,5 +79,5 @@ mysql> DESC t1;
 
 ## **Constraints**
 
-1.  Temporary tables currently do not support `FOREIGN KEY` constraints.
-2.  Except for index-related operations, other `ALTER TABLE` operations (like changing columns or renaming the table) are not supported for temporary tables.
+1. Temporary tables currently do not support `FOREIGN KEY` constraints.
+2. Except for index-related operations, other `ALTER TABLE` operations (like changing columns or renaming the table) are not supported for temporary tables.
