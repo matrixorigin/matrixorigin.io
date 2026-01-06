@@ -257,5 +257,5 @@ mysql> show tables;
 ## Limitations
 
 1. The following clauses: `CHANGE [COLUMN]`, `MODIFY [COLUMN]`, `RENAME COLUMN`, `ADD [CONSTRAINT [symbol]] PRIMARY KEY`, `DROP PRIMARY KEY`, and `ALTER COLUMN ORDER BY` can be freely combined in an `ALTER TABLE` statement but are currently not supported with other clauses.
-2. Temporary tables do not currently support structural modifications via `ALTER TABLE`.
+2. Temporary tables only support index-related operations (e.g., `ADD INDEX`, `DROP INDEX`) via `ALTER TABLE`. Other structural modifications are not yet supported.
 3. Tables created with `CREATE TABLE ... CLUSTER BY...` cannot be modified using `ALTER TABLE`.

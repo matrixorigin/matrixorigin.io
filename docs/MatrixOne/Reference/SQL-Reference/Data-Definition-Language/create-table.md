@@ -114,11 +114,14 @@ For more detailed syntax explanations, see the following content.
 
 #### Temporary Tables
 
-You can use the `TEMPORARY` keyword when creating a table. A `TEMPORARY` table is visible only within the current session, and is dropped automatically when the session is closed. This means that two different sessions can use the same temporary table name without conflicting with each other or with an existing non-TEMPORARY table of the same name. (The existing table is hidden until the temporary table is dropped.)
+You can use the `TEMPORARY` keyword when creating a table. A `TEMPORARY` table is visible only within the current session, and is dropped automatically when the session is closed.
 
-Dropping a database does automatically drop any `TEMPORARY` tables created within that database.
+Key behaviors of temporary tables:
+- **Shadowing**: If a temporary table has the same name as a regular table, the temporary table takes precedence for DML and inspection commands (like `DESC`).
+- **Persistence**: Data in temporary tables is stored in memory and is not persistent.
+- **ALTER support**: Only index-related `ALTER` operations are supported.
 
-The creating session can perform any operation on the table, such as `DROP TABLE`, `INSERT`, `UPDATE`, or `SELECT`.
+For more information, see [CREATE TEMPORARY TABLE](create-temporary-table.md).
 
 #### COMMENT
 
