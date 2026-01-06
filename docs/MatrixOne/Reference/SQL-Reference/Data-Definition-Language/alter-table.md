@@ -82,8 +82,10 @@ Below are explanations for each parameter:
 
 ```sql
 -- Create table f1 with two integer columns: fa (PRIMARY KEY) and fb (UNIQUE KEY)
+drop table if exists f1;
 CREATE TABLE f1(fa INT PRIMARY KEY, fb INT UNIQUE KEY);
 -- Create table c1 with two integer columns: ca and cb
+drop table if exists c1;
 CREATE TABLE c1 (ca INT, cb INT);
 -- Add a FOREIGN KEY constraint named ffa to c1, linking column ca to f1.fa
 ALTER TABLE c1 ADD CONSTRAINT ffa FOREIGN KEY (ca) REFERENCES f1(fa);
@@ -120,6 +122,7 @@ mysql> select ca, cb from c1 order by ca;
 
 ```sql
 -- Create table t1 with columns a (INTEGER), b (CHAR(10)), c (DATE), d (DECIMAL(7,2)), and a UNIQUE KEY on (a, b)
+drop table if exists t1;
 CREATE TABLE t1(a INTEGER, b CHAR(10), c DATE, d DECIMAL(7,2), UNIQUE KEY(a, b));
 
 -- View the structure of t1

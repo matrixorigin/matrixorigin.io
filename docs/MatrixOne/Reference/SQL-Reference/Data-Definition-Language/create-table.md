@@ -202,6 +202,7 @@ The following is an example to illustrate the association of parent and child ta
 First, create a parent table with field a as the primary key:
 
 ```sql
+drop table if exists t1;
 create table t1(a int primary key,b varchar(5));
 insert into t1 values(101,'abc'),(102,'def');
 mysql> select * from t1;
@@ -217,6 +218,7 @@ mysql> select * from t1;
 Then create a child table with field c as the foreign key, associated with parent table field a:
 
 ```sql
+drop table if exists t2;
 create table t2(a int ,b varchar(5),c int, foreign key(c) references t1(a));
 insert into t2 values(1,'zs1',101),(2,'zs2',102);
 insert into t2 values(3,'xyz',null);
@@ -250,11 +252,13 @@ See the example below:
 Suppose there are two tables, `Orders` and `Customers`, where the `Orders` table has a foreign key column `customer_id` referencing the `id` column in the `Customers` table. If, when a customer is deleted from the `Customers` table, you also want to delete the associated order data, you can use `ON DELETE CASCADE`.
 
 ```sql
+drop table if exists Customers;
 CREATE TABLE Customers (
     id INT PRIMARY KEY,
     name VARCHAR(50)
 );
 
+drop table if exists Orders;
 CREATE TABLE Orders (
     id INT PRIMARY KEY,
     order_number VARCHAR(10),
@@ -364,6 +368,7 @@ mysql> SELECT * FROM test;
 - Example 2: Add comments when creating a table
 
 ```sql
+drop table if exists t2;
 create table t2 (a int, b int) comment = "fact table";
 
 mysql> show create table t2;
@@ -380,6 +385,7 @@ mysql> show create table t2;
 - Example 3: Add comments to columns when creating tables
 
 ```sql
+drop table if exists t3;
 create table t3 (a int comment 'Column comment', b int) comment = "table";
 
 mysql> SHOW CREATE TABLE t3;

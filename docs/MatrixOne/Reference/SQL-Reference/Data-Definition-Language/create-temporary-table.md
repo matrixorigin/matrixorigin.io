@@ -39,10 +39,10 @@ column_definition: {
 - **Example 1: Create and use a temporary table**
 
 ```sql
-CREATE TEMPORARY TABLE temp_t1 (a INT, b VARCHAR(10));
-INSERT INTO temp_t1 VALUES (1, 'abc');
+CREATE TEMPORARY TABLE temp_t_unique_1 (a INT, b VARCHAR(10));
+INSERT INTO temp_t_unique_1 VALUES (1, 'abc');
 
-mysql> SELECT * FROM temp_t1;
+mysql> SELECT * FROM temp_t_unique_1;
 +------+------+
 | a    | b    |
 +------+------+
@@ -54,16 +54,18 @@ mysql> SELECT * FROM temp_t1;
 
 - **Example 2: Shadowing a regular table**
 
-```sql
+Note: The following behavior (shadowing) depends on the session-level mapping.
+
+```
 -- Regular table
-CREATE TABLE t1 (a INT);
-INSERT INTO t1 VALUES (1);
+CREATE TABLE t1_shadow_test (a INT);
+INSERT INTO t1_shadow_test VALUES (1);
 
 -- Temporary table with same name
-CREATE TEMPORARY TABLE t1 (b INT);
-INSERT INTO t1 VALUES (2);
+CREATE TEMPORARY TABLE t1_shadow_test (b INT);
+INSERT INTO t1_shadow_test VALUES (2);
 
-mysql> SELECT * FROM t1;
+mysql> SELECT * FROM t1_shadow_test;
 +------+
 | b    |
 +------+
@@ -71,7 +73,7 @@ mysql> SELECT * FROM t1;
 +------+
 -- The temporary table shadows the regular table.
 
-mysql> DESC t1;
+mysql> DESC t1_shadow_test;
 +-------+---------+------+------+---------+-------+---------+
 | Field | Type    | Null | Key  | Default | Extra | Comment |
 +-------+---------+------+------+---------+-------+---------+
