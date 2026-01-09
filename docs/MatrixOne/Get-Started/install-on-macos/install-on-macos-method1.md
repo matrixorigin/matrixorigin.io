@@ -170,7 +170,7 @@ GCC_VERSION="8.5.0"
 CLANG_VERSION="13.0"
 GO_VERSION="1.22"
 MO_GIT_URL="https://github.com/matrixorigin/matrixone.git"
-MO_DEFAULT_VERSION="v3.0.4"
+MO_DEFAULT_VERSION="v3.0.5"
 GOPROXY="https://goproxy.cn,direct"
 STOP_INTERVAL="5"
 START_INTERVAL="2"
@@ -205,7 +205,7 @@ Depending on your needs, choose whether you want to keep your code up to date, o
 === "Get the MatrixOne(Stable Version) code to build"
 
      ```
-     mo_ctl deploy v3.0.4
+     mo_ctl deploy v3.0.5
      ```
 
 ## Step 4: Launch MatrixOne server
@@ -242,7 +242,7 @@ This command will invoke the MySQL Client tool to connect to the MatrixOne servi
 mysql: [Warning] Using a password on the command line interface can be insecure.
 Welcome to the MySQL monitor.  Commands end with ; or \g.
 Your MySQL connection id is 15
-Server version: 8.0.30-MatrixOne-v3.0.4 MatrixOne
+Server version: 8.0.30-MatrixOne-v3.0.5 MatrixOne
 
 Copyright (c) 2000, 2023, Oracle and/or its affiliates.
 
