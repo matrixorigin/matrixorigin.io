@@ -2458,6 +2458,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../Develop/Vector/ivf_rank_options/" class="md-nav__link">
+        IVF Rank Options
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../Develop/Vector/cluster_centers/" class="md-nav__link">
         Cluster Centers
       </a>
@@ -5317,6 +5331,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Reference/Variable/system-variables/enable-remap-hint/" class="md-nav__link">
+        Enable remap hint
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -5999,6 +6027,62 @@
     <li class="md-nav__item">
       <a href="../../Reference/SQL-Reference/Data-Definition-Language/create-snapshot/" class="md-nav__link">
         CREATE SNAPSHOT
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Reference/SQL-Reference/Data-Definition-Language/data-branch-create-en/" class="md-nav__link">
+        CREATE BRANCH
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Reference/SQL-Reference/Data-Definition-Language/data-branch-delete-en/" class="md-nav__link">
+        DELETE BRANCH
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Reference/SQL-Reference/Data-Definition-Language/data-branch-diff-en/" class="md-nav__link">
+        DIFF BRANCH
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Reference/SQL-Reference/Data-Definition-Language/data-branch-merge-en/" class="md-nav__link">
+        MERGE BRANCH
       </a>
     </li>
   
@@ -6830,23 +6914,37 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../../Reference/SQL-Reference/Data-Query-Language/by-rank-with-option/" class="md-nav__link">
+        BY RANK WITH OPTION
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
     
     <li class="md-nav__item md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_4_4_4" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_4_4_5" >
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_4_4_4" id="__nav_1_12_4_4_4_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_1_12_4_4_5" id="__nav_1_12_4_4_5_label" tabindex="0">
           SUBQUERY
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_1_12_4_4_4_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_1_12_4_4_4">
+      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_1_12_4_4_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1_12_4_4_5">
           <span class="md-nav__icon md-icon"></span>
           SUBQUERY
         </label>
@@ -6982,17 +7080,17 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_4_4_6" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_4_4_7" >
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_4_4_6" id="__nav_1_12_4_4_6_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_1_12_4_4_7" id="__nav_1_12_4_4_7_label" tabindex="0">
           Combining Queries
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_1_12_4_4_6_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_1_12_4_4_6">
+      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_1_12_4_4_7_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1_12_4_4_7">
           <span class="md-nav__icon md-icon"></span>
           Combining Queries
         </label>
@@ -13203,7 +13301,6 @@ torch==2.7.0
 <h3 id="create-table-and-enable-vector-index">Create table and enable vector index</h3>
 <p>Connect to MatrixOne and create a table named <code>pic_tab</code> to store picture path information and corresponding vector information.</p>
 <div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">pic_tab</span><span class="p">(</span><span class="n">pic_path</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">200</span><span class="p">),</span><span class="w"> </span><span class="n">embedding</span><span class="w"> </span><span class="n">vecf64</span><span class="p">(</span><span class="mi">512</span><span class="p">));</span>
-<span class="k">SET</span><span class="w"> </span><span class="k">GLOBAL</span><span class="w"> </span><span class="n">experimental_ivf_index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
 <span class="k">create</span><span class="w"> </span><span class="k">index</span><span class="w"> </span><span class="n">idx_pic</span><span class="w"> </span><span class="k">using</span><span class="w"> </span><span class="n">ivfflat</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">pic_tab</span><span class="p">(</span><span class="n">embedding</span><span class="p">)</span><span class="w"> </span><span class="n">lists</span><span class="o">=</span><span class="mi">3</span><span class="w"> </span><span class="n">op_type</span><span class="w"> </span><span class="ss">&quot;vector_l2_ops&quot;</span>
 </code></pre></div>
 <h3 id="build-the-application_1">Build the application</h3>

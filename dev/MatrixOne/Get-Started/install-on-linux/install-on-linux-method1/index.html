@@ -2594,6 +2594,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../Develop/Vector/ivf_rank_options/" class="md-nav__link">
+        IVF Rank Options
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../Develop/Vector/cluster_centers/" class="md-nav__link">
         Cluster Centers
       </a>
@@ -5349,6 +5363,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/Variable/system-variables/enable-remap-hint/" class="md-nav__link">
+        Enable remap hint
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -6031,6 +6059,62 @@
     <li class="md-nav__item">
       <a href="../../../Reference/SQL-Reference/Data-Definition-Language/create-snapshot/" class="md-nav__link">
         CREATE SNAPSHOT
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Language/data-branch-create-en/" class="md-nav__link">
+        CREATE BRANCH
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Language/data-branch-delete-en/" class="md-nav__link">
+        DELETE BRANCH
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Language/data-branch-diff-en/" class="md-nav__link">
+        DIFF BRANCH
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Reference/SQL-Reference/Data-Definition-Language/data-branch-merge-en/" class="md-nav__link">
+        MERGE BRANCH
       </a>
     </li>
   
@@ -6862,23 +6946,37 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../../../Reference/SQL-Reference/Data-Query-Language/by-rank-with-option/" class="md-nav__link">
+        BY RANK WITH OPTION
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
     
     <li class="md-nav__item md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_4_4_4" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_4_4_5" >
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_4_4_4" id="__nav_1_12_4_4_4_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_1_12_4_4_5" id="__nav_1_12_4_4_5_label" tabindex="0">
           SUBQUERY
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_1_12_4_4_4_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_1_12_4_4_4">
+      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_1_12_4_4_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1_12_4_4_5">
           <span class="md-nav__icon md-icon"></span>
           SUBQUERY
         </label>
@@ -7014,17 +7112,17 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_4_4_6" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_4_4_7" >
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_4_4_6" id="__nav_1_12_4_4_6_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_1_12_4_4_7" id="__nav_1_12_4_4_7_label" tabindex="0">
           Combining Queries
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_1_12_4_4_6_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_1_12_4_4_6">
+      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_1_12_4_4_7_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1_12_4_4_7">
           <span class="md-nav__icon md-icon"></span>
           Combining Queries
         </label>
@@ -13388,7 +13486,7 @@ GCC_VERSION=&quot;8.5.0&quot;
 CLANG_VERSION=&quot;13.0&quot;
 GO_VERSION=&quot;1.22&quot;
 MO_GIT_URL=&quot;https://github.com/matrixorigin/matrixone.git&quot;
-MO_DEFAULT_VERSION=&quot;v3.0.4&quot;
+MO_DEFAULT_VERSION=&quot;v3.0.5&quot;
 GOPROXY=&quot;https://goproxy.cn,direct&quot;
 STOP_INTERVAL=&quot;5&quot;
 START_INTERVAL=&quot;2&quot;
@@ -13401,7 +13499,7 @@ PPROF_PROFILE_DURATION=&quot;30&quot;
 <p>Generally, the parameters that need to be adjusted are as follows:</p>
 <div class="highlight"><pre><span></span><code>mo_ctl set_conf MO_PATH=&quot;yourpath&quot; # Set custom MatrixOne download path
 mo_ctl set_conf MO_GIT_URL=&quot;https://githubfast.com/matrixorigin/matrixone.git&quot; # For the problem of slow downloading from the original GitHub address, set image download address
-mo_ctl set_conf MO_DEFAULT_VERSION=&quot;v3.0.4&quot; # Set the version of MatrixOne downloaded
+mo_ctl set_conf MO_DEFAULT_VERSION=&quot;v3.0.5&quot; # Set the version of MatrixOne downloaded
 mo_ctl set_conf MO_DEPLOY_MODE=git  # Deployment Configuration
 </code></pre></div>
 <h2 id="step-3-get-matrixone-code">Step 3: Get MatrixOne code</h2>
@@ -13414,7 +13512,7 @@ mo_ctl set_conf MO_DEPLOY_MODE=git  # Deployment Configuration
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>mo_ctl deploy v3.0.4
+<div class="highlight"><pre><span></span><code>mo_ctl deploy v3.0.5
 </code></pre></div>
 </div>
 </div>
@@ -13445,7 +13543,7 @@ mo_ctl set_conf MO_DEPLOY_MODE=git  # Deployment Configuration
 mysql: [Warning] Using a password on the command line interface can be insecure.
 Welcome to the MySQL monitor.  Commands end with ; or \g.
 Your MySQL connection id is 15
-Server version: 8.0.30-MatrixOne-v3.0.4 MatrixOne
+Server version: 8.0.30-MatrixOne-v3.0.5 MatrixOne
 
 Copyright (c) 2000, 2023, Oracle and/or its affiliates.
 

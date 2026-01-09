@@ -2458,6 +2458,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../Develop/Vector/ivf_rank_options/" class="md-nav__link">
+        IVF Rank Options
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../Develop/Vector/cluster_centers/" class="md-nav__link">
         Cluster Centers
       </a>
@@ -5265,6 +5279,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Reference/Variable/system-variables/enable-remap-hint/" class="md-nav__link">
+        Enable remap hint
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -5947,6 +5975,62 @@
     <li class="md-nav__item">
       <a href="../../Reference/SQL-Reference/Data-Definition-Language/create-snapshot/" class="md-nav__link">
         CREATE SNAPSHOT
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Reference/SQL-Reference/Data-Definition-Language/data-branch-create-en/" class="md-nav__link">
+        CREATE BRANCH
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Reference/SQL-Reference/Data-Definition-Language/data-branch-delete-en/" class="md-nav__link">
+        DELETE BRANCH
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Reference/SQL-Reference/Data-Definition-Language/data-branch-diff-en/" class="md-nav__link">
+        DIFF BRANCH
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Reference/SQL-Reference/Data-Definition-Language/data-branch-merge-en/" class="md-nav__link">
+        MERGE BRANCH
       </a>
     </li>
   
@@ -6778,23 +6862,37 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../../Reference/SQL-Reference/Data-Query-Language/by-rank-with-option/" class="md-nav__link">
+        BY RANK WITH OPTION
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
     
     <li class="md-nav__item md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_4_4_4" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_4_4_5" >
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_4_4_4" id="__nav_1_12_4_4_4_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_1_12_4_4_5" id="__nav_1_12_4_4_5_label" tabindex="0">
           SUBQUERY
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_1_12_4_4_4_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_1_12_4_4_4">
+      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_1_12_4_4_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1_12_4_4_5">
           <span class="md-nav__icon md-icon"></span>
           SUBQUERY
         </label>
@@ -6930,17 +7028,17 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_4_4_6" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_4_4_7" >
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_4_4_6" id="__nav_1_12_4_4_6_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_1_12_4_4_7" id="__nav_1_12_4_4_7_label" tabindex="0">
           Combining Queries
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_1_12_4_4_6_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_1_12_4_4_6">
+      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_1_12_4_4_7_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1_12_4_4_7">
           <span class="md-nav__icon md-icon"></span>
           Combining Queries
         </label>
@@ -13065,7 +13163,7 @@ docker rm &lt;containerID&gt;
 </li>
 <li>
 <p>Mount the local <strong>empty directory</strong> to the Docker container directory <em>/mo-data</em>, execute the following command:</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>--name<span class="w"> </span>&lt;name&gt;<span class="w"> </span>--privileged<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">6001</span>:6001<span class="w"> </span>-v<span class="w"> </span><span class="si">${</span><span class="nv">local_data_path</span><span class="si">}</span>/mo-data:/mo-data:rw<span class="w"> </span>matrixorigin/matrixone:3.0.4
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>--name<span class="w"> </span>&lt;name&gt;<span class="w"> </span>--privileged<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">6001</span>:6001<span class="w"> </span>-v<span class="w"> </span><span class="si">${</span><span class="nv">local_data_path</span><span class="si">}</span>/mo-data:/mo-data:rw<span class="w"> </span>matrixorigin/matrixone:3.0.5
 </code></pre></div>
 <table>
 <thead>
@@ -13094,7 +13192,7 @@ docker rm &lt;containerID&gt;
 </li>
 <li>
 <p>To launch MatrixOne MatrixOne has not been running in Docker, execute the following command:</p>
-<div class="highlight"><pre><span></span><code>docker run -d -p 6001:6001 --name matrixone --privileged=true matrixorigin/matrixone:3.0.4
+<div class="highlight"><pre><span></span><code>docker run -d -p 6001:6001 --name matrixone --privileged=true matrixorigin/matrixone:3.0.5
 </code></pre></div>
 </li>
 <li>
@@ -13114,7 +13212,7 @@ docker rm &lt;containerID&gt;
 </li>
 <li>
 <p>Mount the configuration file to the Docker container directory and launch MatrixOne. Execute the following command:</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>--name<span class="w"> </span>&lt;name&gt;<span class="w"> </span>--privileged<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">6001</span>:6001<span class="w"> </span>-v<span class="w"> </span><span class="si">${</span><span class="nv">local_config_path</span><span class="si">}</span>/etc:/etc:rw<span class="w">  </span>--entrypoint<span class="w"> </span><span class="s2">&quot;/mo-service&quot;</span><span class="w"> </span>matrixorigin/matrixone:3.0.4<span class="w"> </span>-launch<span class="w"> </span>/etc/launch/launch.toml
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>--name<span class="w"> </span>&lt;name&gt;<span class="w"> </span>--privileged<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">6001</span>:6001<span class="w"> </span>-v<span class="w"> </span><span class="si">${</span><span class="nv">local_config_path</span><span class="si">}</span>/etc:/etc:rw<span class="w">  </span>--entrypoint<span class="w"> </span><span class="s2">&quot;/mo-service&quot;</span><span class="w"> </span>matrixorigin/matrixone:3.0.5<span class="w"> </span>-launch<span class="w"> </span>/etc/launch/launch.toml
 </code></pre></div>
 <table>
 <thead>
