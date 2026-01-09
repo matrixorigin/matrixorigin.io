@@ -82,15 +82,16 @@ Below are explanations for each parameter:
 
 ```sql
 -- Create table f1 with two integer columns: fa (PRIMARY KEY) and fb (UNIQUE KEY)
+drop table if exists c1;
+drop table if exists f1;
 CREATE TABLE f1(fa INT PRIMARY KEY, fb INT UNIQUE KEY);
 -- Create table c1 with two integer columns: ca and cb
+drop table if exists c1;
 CREATE TABLE c1 (ca INT, cb INT);
 -- Add a FOREIGN KEY constraint named ffa to c1, linking column ca to f1.fa
 ALTER TABLE c1 ADD CONSTRAINT ffa FOREIGN KEY (ca) REFERENCES f1(fa);
 -- Insert a record into f1: (2, 2)
 INSERT INTO f1 VALUES (2, 2);
--- Insert a record into c1: (1, 1)
-INSERT INTO c1 VALUES (1, 1);
 -- Insert a record into c1: (2, 2)
 INSERT INTO c1 VALUES (2, 2);
 -- Select all records from c1, ordered by ca
@@ -120,6 +121,7 @@ mysql> select ca, cb from c1 order by ca;
 
 ```sql
 -- Create table t1 with columns a (INTEGER), b (CHAR(10)), c (DATE), d (DECIMAL(7,2)), and a UNIQUE KEY on (a, b)
+drop table if exists t1;
 CREATE TABLE t1(a INTEGER, b CHAR(10), c DATE, d DECIMAL(7,2), UNIQUE KEY(a, b));
 
 -- View the structure of t1
@@ -181,6 +183,8 @@ mysql> select * from t1;
 - Example 3: Renaming a Column
 
 ```sql
+drop table if exists t2;
+drop table if exists t1;
 CREATE TABLE t1 (a INTEGER PRIMARY KEY, b CHAR(10));
 mysql> desc t1;
 +-------+----------+------+------+---------+-------+---------+
@@ -232,6 +236,8 @@ mysql> select * from t1;
 - Example 4: Renaming a Table
 
 ```sql
+drop table if exists t2;
+drop table if exists t1;
 CREATE TABLE t1 (a INTEGER PRIMARY KEY, b CHAR(10));
 
 mysql> show tables;
@@ -257,5 +263,5 @@ mysql> show tables;
 ## Limitations
 
 1. The following clauses: `CHANGE [COLUMN]`, `MODIFY [COLUMN]`, `RENAME COLUMN`, `ADD [CONSTRAINT [symbol]] PRIMARY KEY`, `DROP PRIMARY KEY`, and `ALTER COLUMN ORDER BY` can be freely combined in an `ALTER TABLE` statement but are currently not supported with other clauses.
-2. Temporary tables do not currently support structural modifications via `ALTER TABLE`.
+2. Temporary tables only support index-related operations (e.g., `ADD INDEX`, `DROP INDEX`) via `ALTER TABLE`. Other structural modifications are not yet supported.
 3. Tables created with `CREATE TABLE ... CLUSTER BY...` cannot be modified using `ALTER TABLE`.
