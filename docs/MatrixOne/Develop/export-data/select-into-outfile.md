@@ -94,6 +94,7 @@ sudo docker run --name <name> --privileged -d -p 6001:6001 -v ${local_data_path}
 
     - Export to file system stage
 
+    <!-- validator-ignore -->
     ```sql
     create stage stage_fs url = 'file:///Users/admin/test';
     select * from user into outfile 'stage://stage_fs/user.csv';
@@ -101,8 +102,8 @@ sudo docker run --name <name> --privileged -d -p 6001:6001 -v ${local_data_path}
 
     - Export to S3 stage
 
+    <!-- validator-ignore -->
     ```sql
-    -- norun
     -- Create S3 Stage
     CREATE STAGE my_s3_stage
     URL = 's3://bucket/path/'
