@@ -342,14 +342,24 @@ function parseMysqlInlineFormat(sqlText) {
 
         // If we have a current statement and haven't started output yet
         if (currentStatement !== null && !inOutput) {
-            // Check if this line starts output (table border, pipe, or result stats)
+            // Check if this line is a single-line result (no table output follows)
+            const isSingleLineResult = /^\d+\s+(row|rows)\s+in\s+set/i.test(trimmed) ||
+                                       /^Query\s+OK/i.test(trimmed) ||
+                                       /^Empty\s+set/i.test(trimmed)
+
+            if (isSingleLineResult) {
+                // Single-line result - collect and immediately end output
+                currentOutput.push(line)
+                inMultiLineSQL = false
+                // Don't set inOutput=true since output is complete
+                continue
+            }
+
+            // Check if this line starts table output (border or pipe)
             if (/^[+\-]+$/.test(trimmed) ||
                 /^\|.*\|$/.test(trimmed) ||
-                /^\d+\s+(row|rows)\s+in\s+set/i.test(trimmed) ||
-                /^Query\s+OK/i.test(trimmed) ||
-                /^Empty\s+set/i.test(trimmed) ||
                 /^Records:/i.test(trimmed)) {
-                // This is output
+                // This is table output - start collecting
                 inOutput = true
                 inMultiLineSQL = false
                 currentOutput.push(line)
@@ -379,7 +389,38 @@ function parseMysqlInlineFormat(sqlText) {
 
         // Accumulate output if we're in output mode
         if (inOutput) {
+            // Check if this line is a result stats line (marks end of output)
+            const isResultStatsLine = /^\d+\s+(row|rows)\s+in\s+set/i.test(trimmed) ||
+                                      /^Query\s+OK/i.test(trimmed) ||
+                                      /^Empty\s+set/i.test(trimmed)
+
             currentOutput.push(line)
+
+            // If we hit a result stats line, end output collection
+            if (isResultStatsLine) {
+                inOutput = false
+            }
+            continue
+        }
+
+        // After output ends, check if this is a new SQL statement (without mysql> prefix)
+        if (currentStatement !== null && isQueryWithOutput && !inOutput &&
+            /^(CREATE|INSERT|UPDATE|DELETE|DROP|ALTER|TRUNCATE|USE|SET)\s+/i.test(trimmed)) {
+            // Save current query with its output
+            const fullSql = setupSql.length > 0
+                ? setupSql.join('\n') + '\n' + currentStatement.trim()
+                : currentStatement.trim()
+            statements.push({
+                sql: fullSql,
+                expectedOutput: currentOutput.length > 0 ? currentOutput.join('\n') : null
+            })
+            // Reset and start new setup statement
+            setupSql = []
+            currentOutput = []
+            currentStatement = trimmed
+            inMultiLineSQL = true
+            isQueryWithOutput = false
+            continue
         }
     }
 
