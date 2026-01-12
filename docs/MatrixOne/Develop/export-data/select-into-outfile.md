@@ -102,6 +102,7 @@ sudo docker run --name <name> --privileged -d -p 6001:6001 -v ${local_data_path}
     - Export to S3 stage
 
     ```sql
+    -- norun
     -- Create S3 Stage
     CREATE STAGE my_s3_stage
     URL = 's3://bucket/path/'
