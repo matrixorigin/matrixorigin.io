@@ -105,7 +105,7 @@ sudo docker run --name <name> --privileged -d -p 6001:6001 -v ${local_data_path}
     -- Create S3 Stage
     CREATE STAGE my_s3_stage
     URL = 's3://bucket/path/'
-    CREDENTIALS = {'AWS_KEY_ID'='your_key_id', 'AWS_SECRET_KEY'='your_secret_key', 'AWS_REGION'='us-west-2', 'PROVIDER'='Amazon'};
+    CREDENTIALS = {'AWS_KEY_ID'='your_key_id', 'AWS_SECRET_KEY'='your_secret_key', 'AWS_REGION'='us-west-2', 'PROVIDER'='Amazon', 'ENDPOINT'='s3.us-west-2.amazonaws.com'};
 
     -- Export CSV to S3
     SELECT * FROM user INTO OUTFILE 'stage://my_s3_stage/user.csv';
