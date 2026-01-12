@@ -342,14 +342,24 @@ function parseMysqlInlineFormat(sqlText) {
 
         // If we have a current statement and haven't started output yet
         if (currentStatement !== null && !inOutput) {
-            // Check if this line starts output (table border, pipe, or result stats)
+            // Check if this line is a single-line result (no table output follows)
+            const isSingleLineResult = /^\d+\s+(row|rows)\s+in\s+set/i.test(trimmed) ||
+                                       /^Query\s+OK/i.test(trimmed) ||
+                                       /^Empty\s+set/i.test(trimmed)
+
+            if (isSingleLineResult) {
+                // Single-line result - collect and immediately end output
+                currentOutput.push(line)
+                inMultiLineSQL = false
+                // Don't set inOutput=true since output is complete
+                continue
+            }
+
+            // Check if this line starts table output (border or pipe)
             if (/^[+\-]+$/.test(trimmed) ||
                 /^\|.*\|$/.test(trimmed) ||
-                /^\d+\s+(row|rows)\s+in\s+set/i.test(trimmed) ||
-                /^Query\s+OK/i.test(trimmed) ||
-                /^Empty\s+set/i.test(trimmed) ||
                 /^Records:/i.test(trimmed)) {
-                // This is output
+                // This is table output - start collecting
                 inOutput = true
                 inMultiLineSQL = false
                 currentOutput.push(line)
