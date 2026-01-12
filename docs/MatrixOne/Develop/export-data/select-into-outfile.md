@@ -14,9 +14,15 @@ Table data can be exported to a text file or stage on the host using the `SELECT
 The `SELECT...INTO OUTFILE` syntax is a combination of the `SELECT` syntax and `INTO OUTFILE filename`. The default output format is the same as the `LOAD DATA` command.
 
 ```
-mysql> SELECT *FROM <table_name>
-    -> INTO OUTFILE '<filepath>|<stage://stage_name>';
+mysql> SELECT * FROM <table_name>
+    -> INTO OUTFILE '<filepath>|<stage://stage_name>'
+    -> [FORMAT '<format>'];
 ```
+
+**Supported formats:**
+
+- `csv` (default): Export data in CSV format
+- `parquet`: Export data in Parquet format
 
 You can change the output format using a variety of forms and options to represent how columns and records are referenced and separated.
 
@@ -86,11 +92,28 @@ sudo docker run --name <name> --privileged -d -p 6001:6001 -v ${local_data_path}
     select * from user into outfile 'mo-data/export_datatable.txt';
     ```
 
-    - export to satge
+    - Export to file system stage
 
+    <!-- validator-ignore -->
     ```sql
     create stage stage_fs url = 'file:///Users/admin/test';
     select * from user into outfile 'stage://stage_fs/user.csv';
+    ```
+
+    - Export to S3 stage
+
+    <!-- validator-ignore -->
+    ```sql
+    -- Create S3 Stage
+    CREATE STAGE my_s3_stage
+    URL = 's3://bucket/path/'
+    CREDENTIALS = {'AWS_KEY_ID'='your_key_id', 'AWS_SECRET_KEY'='your_secret_key', 'AWS_REGION'='us-west-2', 'PROVIDER'='Amazon', 'ENDPOINT'='s3.us-west-2.amazonaws.com'};
+
+    -- Export CSV to S3
+    SELECT * FROM user INTO OUTFILE 'stage://my_s3_stage/user.csv';
+
+    -- Export Parquet to S3
+    SELECT * FROM user INTO OUTFILE 'stage://my_s3_stage/user.parquet' FORMAT 'parquet';
     ```
   
 3. Check the export status:
