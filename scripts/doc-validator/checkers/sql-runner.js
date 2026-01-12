@@ -1362,7 +1362,9 @@ export class SqlRunner {
 
     /** Compare two values with optional precision for floating point */
     valuesMatch(actual, expected, precision = 0.0001) {
-        if (actual === null && (expected === null || expected === 'NULL')) return true
+        // Handle null comparison (case-insensitive for string 'null'/'NULL')
+        if (actual === null && (expected === null || (typeof expected === 'string' && expected.toLowerCase() === 'null'))) return true
+        if (expected === null && (actual === null || (typeof actual === 'string' && actual.toLowerCase() === 'null'))) return true
         if (actual === null || expected === null) return false
 
         // Handle JSON objects - serialize to string for comparison
