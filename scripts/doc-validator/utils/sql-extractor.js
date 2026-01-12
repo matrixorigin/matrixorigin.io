@@ -379,7 +379,38 @@ function parseMysqlInlineFormat(sqlText) {
 
         // Accumulate output if we're in output mode
         if (inOutput) {
+            // Check if this line is a result stats line (marks end of output)
+            const isResultStatsLine = /^\d+\s+(row|rows)\s+in\s+set/i.test(trimmed) ||
+                                      /^Query\s+OK/i.test(trimmed) ||
+                                      /^Empty\s+set/i.test(trimmed)
+
             currentOutput.push(line)
+
+            // If we hit a result stats line, end output collection
+            if (isResultStatsLine) {
+                inOutput = false
+            }
+            continue
+        }
+
+        // After output ends, check if this is a new SQL statement (without mysql> prefix)
+        if (currentStatement !== null && isQueryWithOutput && !inOutput &&
+            /^(CREATE|INSERT|UPDATE|DELETE|DROP|ALTER|TRUNCATE|USE|SET)\s+/i.test(trimmed)) {
+            // Save current query with its output
+            const fullSql = setupSql.length > 0
+                ? setupSql.join('\n') + '\n' + currentStatement.trim()
+                : currentStatement.trim()
+            statements.push({
+                sql: fullSql,
+                expectedOutput: currentOutput.length > 0 ? currentOutput.join('\n') : null
+            })
+            // Reset and start new setup statement
+            setupSql = []
+            currentOutput = []
+            currentStatement = trimmed
+            inMultiLineSQL = true
+            isQueryWithOutput = false
+            continue
         }
     }
 
