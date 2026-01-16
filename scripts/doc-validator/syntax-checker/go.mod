@@ -2,7 +2,7 @@ module mo-sql-checker
 
 go 1.25.4
 
-require github.com/matrixorigin/matrixone v0.7.1-0.20260112085443-5a25a1400802
+require github.com/matrixorigin/matrixone v0.7.1-0.20260115174703-8eb6511d5ced
 
 require (
 	github.com/alibabacloud-go/debug v1.0.1 // indirect
