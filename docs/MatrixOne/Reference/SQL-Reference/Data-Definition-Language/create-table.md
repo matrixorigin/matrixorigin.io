@@ -114,11 +114,15 @@ For more detailed syntax explanations, see the following content.
 
 #### Temporary Tables
 
-You can use the `TEMPORARY` keyword when creating a table. A `TEMPORARY` table is visible only within the current session, and is dropped automatically when the session is closed. This means that two different sessions can use the same temporary table name without conflicting with each other or with an existing non-TEMPORARY table of the same name. (The existing table is hidden until the temporary table is dropped.)
+You can use the `TEMPORARY` keyword when creating a table. A `TEMPORARY` table is visible only within the current session, and is dropped automatically when the session is closed.
 
-Dropping a database does automatically drop any `TEMPORARY` tables created within that database.
+Key behaviors of temporary tables:
 
-The creating session can perform any operation on the table, such as `DROP TABLE`, `INSERT`, `UPDATE`, or `SELECT`.
+- **Shadowing**: If a temporary table has the same name as a regular table, the temporary table takes precedence for DML and inspection commands (like `DESC`).
+- **Persistence**: Data in temporary tables is stored in memory and is not persistent.
+- **ALTER support**: Only index-related `ALTER` operations are supported.
+
+For more information, see [CREATE TEMPORARY TABLE](create-temporary-table.md).
 
 #### COMMENT
 
@@ -140,6 +144,7 @@ For example, to create a table and define an auto-increment column with a starti
 
 ```sql
 -- set up
+drop table if exists t1;
 create table t1(a int auto_increment primary key) auto_increment = 10;
 ```
 
@@ -198,6 +203,8 @@ The following is an example to illustrate the association of parent and child ta
 First, create a parent table with field a as the primary key:
 
 ```sql
+drop table if exists t2;
+drop table if exists t1;
 create table t1(a int primary key,b varchar(5));
 insert into t1 values(101,'abc'),(102,'def');
 mysql> select * from t1;
@@ -224,7 +231,7 @@ mysql> select * from t2;
 |    2 | zs2  |  102 |
 |    3 | xyz  | NULL |
 +------+------+------+
-3 rows in set (0.00 sec)
+2 rows in set (0.00 sec)
 ```
 
 In addition, `[ON DELETE reference_option]` and `[ON UPDATE reference_option]` are used when defining a foreign key relationship to specify actions to be taken when records in the parent table are deleted or updated. These two parameters are primarily used to maintain data integrity and consistency:
@@ -246,11 +253,13 @@ See the example below:
 Suppose there are two tables, `Orders` and `Customers`, where the `Orders` table has a foreign key column `customer_id` referencing the `id` column in the `Customers` table. If, when a customer is deleted from the `Customers` table, you also want to delete the associated order data, you can use `ON DELETE CASCADE`.
 
 ```sql
+drop table if exists Customers;
 CREATE TABLE Customers (
     id INT PRIMARY KEY,
     name VARCHAR(50)
 );
 
+drop table if exists Orders;
 CREATE TABLE Orders (
     id INT PRIMARY KEY,
     order_number VARCHAR(10),
@@ -346,6 +355,7 @@ The number of partitions may optionally be specified with a PARTITIONS num claus
 - Example 1: Create a common table
 
 ```sql
+drop table if exists test;
 CREATE TABLE test(a int, b varchar(10));
 INSERT INTO test values(123, 'abc');
 
@@ -360,6 +370,7 @@ mysql> SELECT * FROM test;
 - Example 2: Add comments when creating a table
 
 ```sql
+drop table if exists t2;
 create table t2 (a int, b int) comment = "fact table";
 
 mysql> show create table t2;
@@ -367,15 +378,16 @@ mysql> show create table t2;
 | Table | Create Table                                                                          |
 +-------+---------------------------------------------------------------------------------------+
 | t2    | CREATE TABLE `t2` (
-`a` INT DEFAULT NULL,
-`b` INT DEFAULT NULL
-) COMMENT='fact table',    |
+  `a` int DEFAULT NULL,
+  `b` int DEFAULT NULL
+) COMMENT='fact table' |
 +-------+---------------------------------------------------------------------------------------+
 ```
 
 - Example 3: Add comments to columns when creating tables
 
 ```sql
+drop table if exists t3;
 create table t3 (a int comment 'Column comment', b int) comment = "table";
 
 mysql> SHOW CREATE TABLE t3;
@@ -383,15 +395,16 @@ mysql> SHOW CREATE TABLE t3;
 | Table | Create Table                                                                                             |
 +-------+----------------------------------------------------------------------------------------------------------+
 | t3    | CREATE TABLE `t3` (
-`a` INT DEFAULT NULL COMMENT 'Column comment',
-`b` INT DEFAULT NULL
-) COMMENT='table',     |
+  `a` int DEFAULT NULL COMMENT 'Column comment',
+  `b` int DEFAULT NULL
+) COMMENT='table' |
 +-------+----------------------------------------------------------------------------------------------------------+
 ```
 
 - Example 4: Create a common partitioned table
 
 ```sql
+drop table if exists tp1;
 CREATE TABLE tp1 (col1 INT, col2 CHAR(5), col3 DATE) PARTITION BY KEY(col3) PARTITIONS 4;
 
 mysql> SHOW CREATE TABLE tp1;
@@ -399,14 +412,15 @@ mysql> SHOW CREATE TABLE tp1;
 | Table | Create Table                                                                                                                                             |
 +-------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
 | tp1   | CREATE TABLE `tp1` (
-`col1` INT DEFAULT NULL,
-`col2` CHAR(5) DEFAULT NULL,
-`col3` DATE DEFAULT NULL
+  `col1` int DEFAULT NULL,
+  `col2` char(5) DEFAULT NULL,
+  `col3` date DEFAULT NULL
 ) partition by key algorithm = 2 (col3) partitions 4 |
 +-------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
 1 row in set (0.00 sec)
 
 -- do not specify the number of partitions
+drop table if exists tp2;
 CREATE TABLE tp2 (col1 INT, col2 CHAR(5), col3 DATE) PARTITION BY KEY(col3);
 
 mysql> SHOW CREATE TABLE tp2;
@@ -414,14 +428,15 @@ mysql> SHOW CREATE TABLE tp2;
 | Table | Create Table                                                                                                                                |
 +-------+---------------------------------------------------------------------------------------------------------------------------------------------+
 | tp2   | CREATE TABLE `tp2` (
-`col1` INT DEFAULT NULL,
-`col2` CHAR(5) DEFAULT NULL,
-`col3` DATE DEFAULT NULL
+  `col1` int DEFAULT NULL,
+  `col2` char(5) DEFAULT NULL,
+  `col3` date DEFAULT NULL
 ) partition by key algorithm = 2 (col3) |
 +-------+---------------------------------------------------------------------------------------------------------------------------------------------+
 1 row in set (0.00 sec)
 
 -- Specify partition algorithm
+drop table if exists tp3;
 CREATE TABLE tp3
 (
     col1 INT,
@@ -435,14 +450,15 @@ mysql> show create table tp3;
 | Table | Create Table                                                                                                                                |
 +-------+---------------------------------------------------------------------------------------------------------------------------------------------+
 | tp3   | CREATE TABLE `tp3` (
-`col1` INT DEFAULT NULL,
-`col2` CHAR(5) DEFAULT NULL,
-`col3` DATE DEFAULT NULL
+  `col1` int DEFAULT NULL,
+  `col2` char(5) DEFAULT NULL,
+  `col3` date DEFAULT NULL
 ) partition by key algorithm = 1 (col3) |
 +-------+---------------------------------------------------------------------------------------------------------------------------------------------+
 1 row in set (0.00 sec)
 
 -- Specify partition algorithm and the number of partitions
+drop table if exists tp4;
 CREATE TABLE tp4 (col1 INT, col2 CHAR(5), col3 DATE) PARTITION BY LINEAR KEY ALGORITHM = 1 (col3) PARTITIONS 5;
 
 mysql> SHOW CREATE TABLE tp4;
@@ -450,14 +466,15 @@ mysql> SHOW CREATE TABLE tp4;
 | Table | Create Table                                                                                                                                                    |
 +-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | tp4   | CREATE TABLE `tp4` (
-`col1` INT DEFAULT NULL,
-`col2` CHAR(5) DEFAULT NULL,
-`col3` DATE DEFAULT NULL
+  `col1` int DEFAULT NULL,
+  `col2` char(5) DEFAULT NULL,
+  `col3` date DEFAULT NULL
 ) partition by linear key algorithm = 1 (col3) partitions 5 |
 +-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
 1 row in set (0.01 sec)
 
 -- Multi-column partition
+drop table if exists tp5;
 CREATE TABLE tp5
 (
     col1 INT,
@@ -470,14 +487,15 @@ mysql> SHOW CREATE TABLE tp5;
 | Table | Create Table                                                                                                                                                   |
 +-------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | tp5   | CREATE TABLE `tp5` (
-`col1` INT DEFAULT NULL,
-`col2` CHAR(5) DEFAULT NULL,
-`col3` DATE DEFAULT NULL
+  `col1` int DEFAULT NULL,
+  `col2` char(5) DEFAULT NULL,
+  `col3` date DEFAULT NULL
 ) partition by key algorithm = 2 (col1, col2) partitions 4 |
 +-------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
 1 row in set (0.01 sec)
 
 -- Create a primary key column partition
+drop table if exists tp6;
 CREATE TABLE tp6
 (
     col1 INT  NOT NULL PRIMARY KEY,
@@ -491,16 +509,17 @@ mysql> SHOW CREATE TABLE tp6;
 | Table | Create Table                                                                                                                                                                        |
 +-------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | tp6   | CREATE TABLE `tp6` (
-`col1` INT NOT NULL,
-`col2` DATE NOT NULL,
-`col3` INT NOT NULL,
-`col4` INT NOT NULL,
-PRIMARY KEY (`col1`)
+  `col1` int NOT NULL,
+  `col2` date NOT NULL,
+  `col3` int NOT NULL,
+  `col4` int NOT NULL,
+  PRIMARY KEY (`col1`)
 ) partition by key algorithm = 2 (col1) partitions 4 |
 +-------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 1 row in set (0.01 sec)
 
 -- Create HASH partition
+drop table if exists tp7;
 CREATE TABLE tp7
 (
     col1 INT,
@@ -512,13 +531,14 @@ mysql> SHOW CREATE TABLE tp7;
 | Table | Create Table                                                                                         |
 +-------+------------------------------------------------------------------------------------------------------+
 | tp7   | CREATE TABLE `tp7` (
-`col1` INT DEFAULT NULL,
-`col2` CHAR(5) DEFAULT NULL
+  `col1` int DEFAULT NULL,
+  `col2` char(5) DEFAULT NULL
 ) partition by hash (col1) |
 +-------+------------------------------------------------------------------------------------------------------+
 1 row in set (0.01 sec)
 
 -- Specifies the number of HASH partitions when creating hash partition
+drop table if exists tp8;
 CREATE TABLE tp8
 (
     col1 INT,
@@ -530,13 +550,14 @@ mysql> SHOW CREATE TABLE tp8;
 | Table | Create Table                                                                                                      |
 +-------+-------------------------------------------------------------------------------------------------------------------+
 | tp8   | CREATE TABLE `tp8` (
-`col1` INT DEFAULT NULL,
-`col2` CHAR(5) DEFAULT NULL
+  `col1` int DEFAULT NULL,
+  `col2` char(5) DEFAULT NULL
 ) partition by hash (col1) partitions 4 |
 +-------+-------------------------------------------------------------------------------------------------------------------+
 1 row in set (0.00 sec)
 
 -- specify the partition granularity when creating a partition
+drop table if exists tp9;
 CREATE TABLE tp9
 (
     col1 INT,
@@ -549,14 +570,15 @@ mysql> SHOW CREATE TABLE tp9;
 | Table | Create Table                                                                                                                             |
 +-------+------------------------------------------------------------------------------------------------------------------------------------------+
 | tp9   | CREATE TABLE `tp9` (
-`col1` INT DEFAULT NULL,
-`col2` CHAR(5) DEFAULT NULL,
-`col3` DATETIME DEFAULT NULL
+  `col1` int DEFAULT NULL,
+  `col2` char(5) DEFAULT NULL,
+  `col3` datetime DEFAULT NULL
 ) partition by hash (year(col3)) |
 +-------+------------------------------------------------------------------------------------------------------------------------------------------+
 1 row in set (0.00 sec)
 
 -- specify the partition granularity and number of partitions when creating a partition
+drop table if exists tp10;
 CREATE TABLE tp10
 (
     col1 INT,
@@ -569,14 +591,15 @@ mysql> SHOW CREATE TABLE tp10;
 | Table | Create Table                                                                                                                                              |
 +-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
 | tp10  | CREATE TABLE `tp10` (
-`col1` INT DEFAULT NULL,
-`col2` CHAR(5) DEFAULT NULL,
-`col3` DATE DEFAULT NULL
+  `col1` int DEFAULT NULL,
+  `col2` char(5) DEFAULT NULL,
+  `col3` date DEFAULT NULL
 ) partition by linear hash (year(col3)) partitions 6 |
 +-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
 1 row in set (0.00 sec)
 
 -- Use the primary key column as the HASH partition when creating a partition
+drop table if exists tp12;
 CREATE TABLE tp12 (col1 INT NOT NULL PRIMARY KEY, col2 DATE NOT NULL, col3 INT NOT NULL, col4 INT NOT NULL) PARTITION BY HASH(col1) PARTITIONS 4;
 
 mysql> SHOW CREATE TABLE tp12;
@@ -584,11 +607,11 @@ mysql> SHOW CREATE TABLE tp12;
 | Table | Create Table                                                                                                                                                            |
 +-------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | tp12  | CREATE TABLE `tp12` (
-`col1` INT NOT NULL,
-`col2` DATE NOT NULL,
-`col3` INT NOT NULL,
-`col4` INT NOT NULL,
-PRIMARY KEY (`col1`)
+  `col1` int NOT NULL,
+  `col2` date NOT NULL,
+  `col3` int NOT NULL,
+  `col4` int NOT NULL,
+  PRIMARY KEY (`col1`)
 ) partition by hash (col1) partitions 4 |
 +-------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 1 row in set (0.01 sec)
@@ -597,6 +620,7 @@ PRIMARY KEY (`col1`)
 - Example 5: Primary key auto increment
 
 ```sql
+drop table if exists t2;
 drop table if exists t1;
 create table t1(a bigint primary key auto_increment,
     b varchar(10));
