@@ -96,16 +96,16 @@ The Debian11.1 version does not have MySQL Client installed by default, so it ne
 
      ```bash
      mkdir -p /root/matrixone & cd /root/
-     wget https://github.com/matrixorigin/matrixone/releases/download/v3.0.5/mo-v3.0.5-linux-x86_64.zip
-     unzip -d matrixone/ mo-v3.0.5-linux-x86_64.zip
+     wget https://github.com/matrixorigin/matrixone/releases/download/v3.0.6/mo-v3.0.6-linux-x86_64.zip
+     unzip -d matrixone/ mo-v3.0.6-linux-x86_64.zip
      ```
 
      Binary for ARM architecture system:
 
      ```bash
      mkdir -p /root/matrixone & cd /root/
-     wget https://github.com/matrixorigin/matrixone/releases/download/v3.0.5/mo-v3.0.5-linux-arm64.zip
-     unzip -d matrixone/ mo-v3.0.5-linux-arm64.zip
+     wget https://github.com/matrixorigin/matrixone/releases/download/v3.0.6/mo-v3.0.6-linux-arm64.zip
+     unzip -d matrixone/ mo-v3.0.6-linux-arm64.zip
      ```
 
 === "**Downloading method 2: Using `curl` to install binary packages**"
@@ -114,21 +114,21 @@ The Debian11.1 version does not have MySQL Client installed by default, so it ne
 
      ```bash
      mkdir -p /root/matrixone & cd /root/
-     curl -OL https://github.com/matrixorigin/matrixone/releases/download/v3.0.5/mo-v3.0.5-linux-x86_64.zip
-     unzip -d matrixone/ mo-v3.0.5-linux-x86_64.zip
+     curl -OL https://github.com/matrixorigin/matrixone/releases/download/v3.0.6/mo-v3.0.6-linux-x86_64.zip
+     unzip -d matrixone/ mo-v3.0.6-linux-x86_64.zip
      ```
 
      Binary for ARM architecture system:
 
      ```bash
      mkdir -p /root/matrixone & cd /root/
-     curl -OL https://github.com/matrixorigin/matrixone/releases/download/v3.0.5/mo-v3.0.5-linux-arm64.zip
-     unzip -d matrixone/ mo-v3.0.5-linux-arm64.zip
+     curl -OL https://github.com/matrixorigin/matrixone/releases/download/v3.0.6/mo-v3.0.6-linux-arm64.zip
+     unzip -d matrixone/ mo-v3.0.6-linux-arm64.zip
      ```
 
 === "**Downloading method 3: Go to the page and download**"
 
-     If you want a more intuitive way to download the page, go to the [version 3.0.5](https://github.com/matrixorigin/matrixone/releases/tag/v3.0.5), pull down to find the **Assets** column, and click the installation package *mo-v3.0.5-linux-x86_64.zip* or *mo-v3.0.5-linux-arm64.zip* can be downloaded.
+     If you want a more intuitive way to download the page, go to the [version 3.0.6](https://github.com/matrixorigin/matrixone/releases/tag/v3.0.6), pull down to find the **Assets** column, and click the installation package *mo-v3.0.6-linux-x86_64.zip* or *mo-v3.0.6-linux-arm64.zip* can be downloaded.
 
 ## Step 3: Install the mo_ctl tool
 
@@ -147,8 +147,8 @@ wget https://raw.githubusercontent.com/matrixorigin/mo_ctl_standalone/main/insta
 The parameters that need to be adjusted are as follows:
 
 ````
-mo_ctl set_conf MO_PATH="/yourpath/mo-v3.0.5-xx-xx" # Set the MO_PATH to the directory where the binary files are extracted
-mo_ctl set_conf MO_CONF_FILE="/yourpath/mo-v3.0.5-xx-xx/etc/launch/launch.toml" # Set the MO_CONF_FILE path
+mo_ctl set_conf MO_PATH="/yourpath/mo-v3.0.6-xx-xx" # Set the MO_PATH to the directory where the binary files are extracted
+mo_ctl set_conf MO_CONF_FILE="/yourpath/mo-v3.0.6-xx-xx/etc/launch/launch.toml" # Set the MO_CONF_FILE path
 mo_ctl set_conf MO_DEPLOY_MODE=binary  #Deployment Configuration
 ````
 
@@ -156,17 +156,17 @@ mo_ctl set_conf MO_DEPLOY_MODE=binary  #Deployment Configuration
 
 Launch the MatrixOne service through the `mo_ctl start` command.
 
-If the operation is regular, the following log will appear. The relevant operation logs of MatrixOne will be in `/yourpath/mo-v3.0.5-xx-xx/matrixone/logs/`.
+If the operation is regular, the following log will appear. The relevant operation logs of MatrixOne will be in `/yourpath/mo-v3.0.6-xx-xx/matrixone/logs/`.
 
 ```
 root@VM-16-2-debian:~# mo_ctl start
 2024-03-07 14:34:04.942 UTC+0800    [INFO]    No mo-service is running
 2024-03-07 14:34:04.998 UTC+0800    [INFO]    Get conf succeeded: MO_DEPLOY_MODE="binary"
 2024-03-07 14:34:05.024 UTC+0800    [INFO]    GO memory limit(Mi): 14745
-2024-03-07 14:34:05.072 UTC+0800    [INFO]    Starting mo-service: cd /Users/admin/mo-v3.0.5-linux-arm64/ && GOMEMLIMIT=14745MiB /Users/admin/mo-v3.0.5-linux-arm64/mo-service -daemon -debug-http :9876 -launch /Users/admin/mo-v3.0.5-linux-arm64/etc/launch/launch.toml >/Users/admin/mo-v3.0.5-linux-arm64/matrixone/logs/stdout-20240307_143405.log 2>/Users/admin/mo-v3.0.5-linux-arm64/matrixone/logs/stderr-20240307_143405.log
+2024-03-07 14:34:05.072 UTC+0800    [INFO]    Starting mo-service: cd /Users/admin/mo-v3.0.6-linux-arm64/ && GOMEMLIMIT=14745MiB /Users/admin/mo-v3.0.6-linux-arm64/mo-service -daemon -debug-http :9876 -launch /Users/admin/mo-v3.0.6-linux-arm64/etc/launch/launch.toml >/Users/admin/mo-v3.0.6-linux-arm64/matrixone/logs/stdout-20240307_143405.log 2>/Users/admin/mo-v3.0.6-linux-arm64/matrixone/logs/stderr-20240307_143405.log
 2024-03-07 14:34:05.137 UTC+0800    [INFO]    Wait for 2 seconds
 2024-03-07 14:34:07.261 UTC+0800    [INFO]    At least one mo-service is running. Process info: 
-  501 27145     1   0  2:34下午 ??         0:00.18 /Users/admin/mo-v3.0.5-linux-arm64/mo-service -daemon -debug-http :9876 -launch /Users/admin/mo-v3.0.5-linux-arm64/etc/launch/launch.toml
+  501 27145     1   0  2:34下午 ??         0:00.18 /Users/admin/mo-v3.0.6-linux-arm64/mo-service -daemon -debug-http :9876 -launch /Users/admin/mo-v3.0.6-linux-arm64/etc/launch/launch.toml
 2024-03-07 14:34:07.284 UTC+0800    [INFO]    List of pid(s): 
 27145
 2024-03-07 14:34:07.308 UTC+0800    [INFO]    Start succeeded
@@ -188,7 +188,7 @@ root@VM-16-2-debian:~# mo_ctl connect
 2024-03-07 14:34:59.942 UTC+0800    [INFO]    Ok, connecting for user ... 
 Welcome to the MySQL monitor.  Commands end with ; or \g.
 Your MySQL connection id is 426
-Server version: 8.0.30-MatrixOne-v3.0.5 MatrixOne
+Server version: 8.0.30-MatrixOne-v3.0.6 MatrixOne
 
 Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
 

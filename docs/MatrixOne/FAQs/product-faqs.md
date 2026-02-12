@@ -29,7 +29,7 @@ Both MatrixOne 0.8.0 and above can be upgraded directly from a lower version to 
 
 Is MatrixOne stable **now? Which version is recommended?**
 
-MatrixOne is now available in version v26.3.0.5. We've done a lot of optimization work on stability, and it's ready to be used in the production business.
+MatrixOne is now available in version v26.3.0.6. We've done a lot of optimization work on stability, and it's ready to be used in the production business.
 
 **Is there a cloud version of MatrixOne? Want a quick test to see**.
 
