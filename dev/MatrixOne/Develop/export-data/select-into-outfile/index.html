@@ -13194,9 +13194,15 @@
 <p>Table data can be exported to a text file or stage on the host using the <code>SELECT...INTO OUTFILE</code> syntax.</p>
 <h2 id="grammar-structure">Grammar structure</h2>
 <p>The <code>SELECT...INTO OUTFILE</code> syntax is a combination of the <code>SELECT</code> syntax and <code>INTO OUTFILE filename</code>. The default output format is the same as the <code>LOAD DATA</code> command.</p>
-<div class="highlight"><pre><span></span><code>mysql&gt; SELECT *FROM &lt;table_name&gt;
-    -&gt; INTO OUTFILE &#39;&lt;filepath&gt;|&lt;stage://stage_name&gt;&#39;;
+<div class="highlight"><pre><span></span><code>mysql&gt; SELECT * FROM &lt;table_name&gt;
+    -&gt; INTO OUTFILE &#39;&lt;filepath&gt;|&lt;stage://stage_name&gt;&#39;
+    -&gt; [FORMAT &#39;&lt;format&gt;&#39;];
 </code></pre></div>
+<p><strong>Supported formats:</strong></p>
+<ul>
+<li><code>csv</code> (default): Export data in CSV format</li>
+<li><code>parquet</code>: Export data in Parquet format</li>
+</ul>
 <p>You can change the output format using a variety of forms and options to represent how columns and records are referenced and separated.</p>
 <p>Use the following code to export the <em>TEST</em>table in <em>.csv</em>format. The following lines of code are displayed with carriage returns and line feeds:</p>
 <div class="highlight"><pre><span></span><code>mysql&gt; SELECT * FROM TEST INTO OUTFILE &#39;/root/test.csv&#39;
@@ -13225,7 +13231,7 @@
 <p class="admonition-title">Note</p>
 <p>If you installed MatrixOne via <code>docker</code>, the export directory is located in the docker image by default. If you need to mount a local directory, see the following code example: the local file system path <em>${local_data_path}/mo-data</em>is mounted into the MatrixOne Docker image and mapped to the <em>/mo-data</em>path. For more information, see the <a href="https://www.freecodecamp.org/news/docker-mount-volume-guide-how-to-mount-a-local-directory/">Docker Mount Volume tutorial</a>.</p>
 </div>
-<div class="highlight"><pre><span></span><code>sudo docker run --name &lt;name&gt; --privileged -d -p 6001:6001 -v ${local_data_path}/mo-data:/mo-data:rw matrixorigin/matrixone:3.0.5
+<div class="highlight"><pre><span></span><code>sudo docker run --name &lt;name&gt; --privileged -d -p 6001:6001 -v ${local_data_path}/mo-data:/mo-data:rw matrixorigin/matrixone:3.0.6
 </code></pre></div>
 <h3 id="steps">Steps</h3>
 <ol>
@@ -13261,11 +13267,28 @@ Use Docker to install and start MatrixOne, and export to the directory path of y
 select * from user into outfile 'mo-data/export_datatable.txt';
 ```
 
-- export to satge
+- Export to file system stage
 
+&lt;!-- validator-ignore --&gt;
 ```sql
 create stage stage_fs url = 'file:///Users/admin/test';
 select * from user into outfile 'stage://stage_fs/user.csv';
+```
+
+- Export to S3 stage
+
+&lt;!-- validator-ignore --&gt;
+```sql
+-- Create S3 Stage
+CREATE STAGE my_s3_stage
+URL = 's3://bucket/path/'
+CREDENTIALS = {'AWS_KEY_ID'='your_key_id', 'AWS_SECRET_KEY'='your_secret_key', 'AWS_REGION'='us-west-2', 'PROVIDER'='Amazon', 'ENDPOINT'='s3.us-west-2.amazonaws.com'};
+
+-- Export CSV to S3
+SELECT * FROM user INTO OUTFILE 'stage://my_s3_stage/user.csv';
+
+-- Export Parquet to S3
+SELECT * FROM user INTO OUTFILE 'stage://my_s3_stage/user.parquet' FORMAT 'parquet';
 ```
 </code></pre>
 <ol>
