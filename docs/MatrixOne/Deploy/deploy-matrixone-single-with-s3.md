@@ -736,7 +736,7 @@ cnservices = [
 
 ```bash
 #Configure cn.toml, tn.toml and log.toml first.
-mo_ctl set_conf MO_CONTAINER_IMAGE=matrixorigin/matrixone/3.0.6 #Setting up mirroring
+mo_ctl set_conf MO_CONTAINER_IMAGE=matrixorigin/matrixone/3.0.7 #Setting up mirroring
 mo_ctl set_conf MO_CONTAINER_NAME=mo # Setting the container name
 mo_ctl set_conf MO_CONTAINER_CONF_HOST_PATH=/data/mo_confs/ # Set the directory on the host machine where the mo configuration file is stored
 mo_ctl set_conf MO_CONTAINER_CONF_CON_FILE="/etc/launch.toml" # Set the path to the configuration file inside the container when the container starts up
