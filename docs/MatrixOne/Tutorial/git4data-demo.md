@@ -209,7 +209,7 @@ Result:
 **You can also directly compare the differences between two branches:**
 
 ```sql
-DATA BRANCH DIFF orders_risk AGAINST orders_promo;
+-- DATA BRANCH DIFF orders_risk AGAINST orders_promo;
 ```
 
 This shows all differing rows between the two branches, helping you anticipate potential conflicts before merging.
@@ -219,7 +219,7 @@ This shows all differing rows between the two branches, helping you anticipate p
     For large tables, you can first use `OUTPUT COUNT` to understand the scale of differences:
 
     ```sql
-    DATA BRANCH DIFF orders_risk AGAINST orders OUTPUT COUNT;
+    -- DATA BRANCH DIFF orders_risk AGAINST orders OUTPUT COUNT;
     ```
 
     You can also use `OUTPUT LIMIT 10` to view only the first 10 rows of differences.
@@ -230,7 +230,7 @@ If you need to bring changes to another environment (e.g., syncing from staging 
 
 ```sql
 -- Export to local directory (execute before merge to ensure the patch reflects the original branch changes)
-DATA BRANCH DIFF orders_risk AGAINST orders OUTPUT FILE '/tmp/diff_output/';
+-- DATA BRANCH DIFF orders_risk AGAINST orders OUTPUT FILE '/tmp/diff_output/';
 ```
 
 The system will generate a `.sql` file (for incremental scenarios) or a `.csv` file (for full scenarios), and tell you the file path and usage instructions.
@@ -246,10 +246,10 @@ You can also export to object storage (via Stage):
 
 ```sql
 -- Create a Stage pointing to S3
-CREATE STAGE my_stage URL = 's3://my-bucket/diffs/?region=us-east-1&access_key_id=<ak>&secret_access_key=<sk>';
+-- CREATE STAGE my_stage URL = 's3://my-bucket/diffs/?region=us-east-1&access_key_id=<ak>&secret_access_key=<sk>';
 
 -- Export to Stage
-DATA BRANCH DIFF orders_risk AGAINST orders OUTPUT FILE 'stage://my_stage/';
+-- DATA BRANCH DIFF orders_risk AGAINST orders OUTPUT FILE 'stage://my_stage/';
 ```
 
 ### Step 6: Merge Branches into the Main Table
@@ -289,7 +289,7 @@ Now merge the operations branch. Note that the operations branch also modified `
 **Default behavior — error on conflict:**
 
 ```sql
-DATA BRANCH MERGE orders_promo INTO orders;
+-- DATA BRANCH MERGE orders_promo INTO orders;
 -- ERROR: conflict on pk(1002)
 ```
 
@@ -375,7 +375,7 @@ DROP DATABASE demo_branch;
 In addition to table-level branches, you can also create branches for an entire database, copying all tables at once:
 
 ```sql
-DATA BRANCH CREATE DATABASE dev_db FROM prod_db;
+-- DATA BRANCH CREATE DATABASE dev_db FROM prod_db;
 
 -- Freely modify within dev_db without affecting prod_db
 -- Merge back after modifications are complete
@@ -386,9 +386,9 @@ DATA BRANCH CREATE DATABASE dev_db FROM prod_db;
 Create a branch from a specific historical point in time, suitable for "going back to yesterday's data for analysis":
 
 ```sql
-CREATE SNAPSHOT sp_yesterday FOR TABLE mydb mytable;
+-- CREATE SNAPSHOT sp_yesterday FOR TABLE mydb mytable;
 -- ... time passes, data changes ...
-DATA BRANCH CREATE TABLE mytable_analysis FROM mytable{SNAPSHOT='sp_yesterday'};
+-- DATA BRANCH CREATE TABLE mytable_analysis FROM mytable{SNAPSHOT='sp_yesterday'};
 ```
 
 ### Multi-Level Branches
@@ -396,9 +396,9 @@ DATA BRANCH CREATE TABLE mytable_analysis FROM mytable{SNAPSHOT='sp_yesterday'};
 Branches can create further branches, forming a multi-level structure:
 
 ```sql
-DATA BRANCH CREATE TABLE branch_v1 FROM main_table;
+-- DATA BRANCH CREATE TABLE branch_v1 FROM main_table;
 -- Modify on branch_v1...
-DATA BRANCH CREATE TABLE branch_v2 FROM branch_v1;
+-- DATA BRANCH CREATE TABLE branch_v2 FROM branch_v1;
 -- Continue modifying on branch_v2...
 ```
 
