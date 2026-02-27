@@ -12,7 +12,7 @@ MatrixOne's **Data Branch** feature turns data change management into an enginee
 
 This tutorial will guide you from scratch through a complete hands-on scenario to learn all the core operations of Data Branch.
 
-> **Version Requirement**: The Data Branch feature is available in MatrixOne v3.0.
+> **Version Requirement**: The Data Branch feature is available in MatrixOne v3.0 and above.
 
 ## Core Concepts
 
@@ -350,11 +350,14 @@ Unlike a regular `DROP TABLE`, `DATA BRANCH DELETE` retains metadata records in 
 If issues are discovered after merging, you can use the snapshot to return to the initial state:
 
 ```sql
--- v3.0-dev syntax
-RESTORE ACCOUNT sys DATABASE demo_branch TABLE orders FROM SNAPSHOT sp_orders_v1;
+RESTORE TABLE sys.demo_branch.orders{SNAPSHOT='sp_orders_v1'};
 ```
 
-> **Note**: This tutorial is based on v3.0-dev, using `FROM SNAPSHOT` with an explicitly specified ACCOUNT (typically `sys`).
+> **Note**: The syntax above is for MatrixOne versions after v3.0. For v3.0, use the following syntax:
+> ```sql
+> -- v3.0 syntax
+> -- RESTORE ACCOUNT sys DATABASE demo_branch TABLE orders FROM SNAPSHOT sp_orders_v1;
+> ```
 
 This is the value of snapshots — turning "rollback" from a high-risk operation into a routine action.
 
