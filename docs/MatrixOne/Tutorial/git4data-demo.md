@@ -12,7 +12,7 @@ MatrixOne's **Data Branch** feature turns data change management into an enginee
 
 This tutorial will guide you from scratch through a complete hands-on scenario to learn all the core operations of Data Branch.
 
-> **Version Requirement**: The Data Branch feature is available in MatrixOne v3.0 and above.
+> **Version Requirement**: The Data Branch feature is available in MatrixOne v3.0.
 
 ## Core Concepts
 
@@ -39,7 +39,7 @@ Main Table → Snapshot → Create Branch → Independent Modifications → Diff
 
 Before you begin, make sure:
 
-- You have completed [Standalone MatrixOne Deployment](../Get-Started/install-standalone-matrixone.md)
+- You have a MatrixOne v3.0 instance and can connect to it
 - You have installed the MySQL client and can connect to MatrixOne
 
 Connect to MatrixOne:
