@@ -215,10 +215,13 @@ DATA BRANCH DIFF orders_risk AGAINST orders_promo;
 This shows all differing rows between the two branches, helping you anticipate potential conflicts before merging.
 
 !!! tip
+
     For large tables, you can first use `OUTPUT COUNT` to understand the scale of differences:
+
     ```sql
     DATA BRANCH DIFF orders_risk AGAINST orders OUTPUT COUNT;
     ```
+
     You can also use `OUTPUT LIMIT 10` to view only the first 10 rows of differences.
 
 **Export differences as a patch file:**
