@@ -39,7 +39,7 @@ Main Table → Snapshot → Create Branch → Independent Modifications → Diff
 
 Before you begin, make sure:
 
-- You have a MatrixOne v3.0 instance and can connect to it
+- You have a MatrixOne v3.0 or above instance and can connect to it
 - You have installed the MySQL client and can connect to MatrixOne
 
 Connect to MatrixOne:
