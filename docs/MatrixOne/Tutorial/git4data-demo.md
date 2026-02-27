@@ -354,6 +354,7 @@ RESTORE TABLE sys.demo_branch.orders{SNAPSHOT='sp_orders_v1'};
 ```
 
 > **Note**: The syntax above is for MatrixOne versions after v3.0. For v3.0, use the following syntax:
+>
 > ```sql
 > -- v3.0 syntax
 > -- RESTORE ACCOUNT sys DATABASE demo_branch TABLE orders FROM SNAPSHOT sp_orders_v1;
