@@ -431,9 +431,9 @@ Branches can create further branches, forming a multi-level structure:
 
 ## Reference Documentation
 
-- [DATA BRANCH CREATE](../Reference/SQL-Reference/Data-Definition-Language/data-branch-create.md)
-- [DATA BRANCH DIFF](../Reference/SQL-Reference/Data-Definition-Language/data-branch-diff.md)
-- [DATA BRANCH MERGE](../Reference/SQL-Reference/Data-Definition-Language/data-branch-merge.md)
-- [DATA BRANCH DELETE](../Reference/SQL-Reference/Data-Definition-Language/data-branch-delete.md)
+- [DATA BRANCH CREATE](../Reference/SQL-Reference/Data-Definition-Language/data-branch-create-en.md)
+- [DATA BRANCH DIFF](../Reference/SQL-Reference/Data-Definition-Language/data-branch-diff-en.md)
+- [DATA BRANCH MERGE](../Reference/SQL-Reference/Data-Definition-Language/data-branch-merge-en.md)
+- [DATA BRANCH DELETE](../Reference/SQL-Reference/Data-Definition-Language/data-branch-delete-en.md)
 - [CREATE SNAPSHOT](../Reference/SQL-Reference/Data-Definition-Language/create-snapshot.md)
 - [RESTORE SNAPSHOT](../Reference/SQL-Reference/Data-Definition-Language/restore-snapshot.md)
