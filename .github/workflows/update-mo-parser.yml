@@ -1,11 +1,11 @@
 name: Update MO Parser
 
 on:
-  schedule:
-    # 每 3 天运行一次 (UTC 时间 00:00)
-    - cron: '0 0 */3 * *'
+  # schedule:
+  #   # 每 3 天运行一次 (UTC 时间 00:00)
+  #   - cron: '0 0 */3 * *'
   workflow_dispatch:
-    # 支持手动触发
+    # 支持手动触发（自动调度已关闭）
 
 jobs:
   update-parser:
