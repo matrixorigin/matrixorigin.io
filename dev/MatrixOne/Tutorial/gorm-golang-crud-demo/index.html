@@ -3414,13 +3414,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#inserting-data" class="md-nav__link">
-    Inserting Data
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#querying-data" class="md-nav__link">
     Querying Data
   </a>
@@ -13174,13 +13167,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#inserting-data" class="md-nav__link">
-    Inserting Data
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#querying-data" class="md-nav__link">
     Querying Data
   </a>
@@ -13301,68 +13287,72 @@ go get -u gorm.io/driver/mysql
 <div class="highlight"><pre><span></span><code>go run gorm_create.go
 </code></pre></div>
 <p>You can use a MySQL client to verify if the table has been successfully created.</p>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="n">tables</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">----------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">Tables_in_test</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">users</span><span class="w">          </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
-<h2 id="inserting-data">Inserting Data</h2>
-<p>In the following example, you will be guided on how to insert two records into the users table that was created earlier. The ID column is assumed to be auto-incremented, but you can also specify a fixed value.</p>
-<p>Create a new text file named <code>gorm_insert.go</code> and copy the following code into the file:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
-<span class="kn">import</span><span class="w"> </span><span class="p">(</span>
-<span class="w">    </span><span class="s">&quot;fmt&quot;</span>
+<p>```sql <!-- validator-ignore-exec -->
+mysql&gt; show tables;
++----------------+
+| Tables_in_test |
++----------------+
+| users          |
++----------------+
+1 row in set (0.01 sec)
+<div class="highlight"><pre><span></span><code>## Inserting Data
 
-<span class="w">    </span><span class="s">&quot;gorm.io/driver/mysql&quot;</span>
-<span class="w">    </span><span class="s">&quot;gorm.io/gorm&quot;</span>
-<span class="w">    </span><span class="s">&quot;gorm.io/gorm/logger&quot;</span>
-<span class="p">)</span>
-<span class="c1">// user model</span>
-<span class="kd">type</span><span class="w"> </span><span class="nx">USER</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">ID</span><span class="w">       </span><span class="kt">uint</span><span class="w"> </span><span class="s">`gorm:&quot;primaryKey&quot;`</span>
-<span class="w">    </span><span class="nx">CNAME</span><span class="w">    </span><span class="kt">string</span>
-<span class="w">    </span><span class="nx">CADDRESS</span><span class="w"> </span><span class="kt">string</span>
-<span class="p">}</span>
+In the following example, you will be guided on how to insert two records into the users table that was created earlier. The ID column is assumed to be auto-incremented, but you can also specify a fixed value.
 
-<span class="kd">func</span><span class="w"> </span><span class="nx">getDBConn</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="nx">gorm</span><span class="p">.</span><span class="nx">DB</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">dsn</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="s">&quot;root:111@tcp(127.0.0.1:6001)/test?charset=utf8mb4&amp;parseTime=True&amp;loc=Local&quot;</span><span class="w"> </span><span class="c1">//MO</span>
-<span class="w">    </span><span class="nx">db</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">gorm</span><span class="p">.</span><span class="nx">Open</span><span class="p">(</span><span class="nx">mysql</span><span class="p">.</span><span class="nx">Open</span><span class="p">(</span><span class="nx">dsn</span><span class="p">),</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">gorm</span><span class="p">.</span><span class="nx">Config</span><span class="p">{})</span>
-<span class="w">    </span><span class="c1">// get connection</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Database Connection Failed&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">//Connection failed</span>
-<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Database Connection Succeed&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">//Connection succeed</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">db</span>
-<span class="p">}</span>
+Create a new text file named `gorm_insert.go` and copy the following code into the file:
 
-<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">//get *gorm.DB</span>
-<span class="w">    </span><span class="nx">db</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">getDBConn</span><span class="p">()</span>
+```go
+package main
+import (
+    &quot;fmt&quot;
 
-<span class="w">    </span><span class="c1">// auto create table</span>
-<span class="w">    </span><span class="nx">db</span><span class="p">.</span><span class="nx">AutoMigrate</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">USER</span><span class="p">{})</span>
+    &quot;gorm.io/driver/mysql&quot;
+    &quot;gorm.io/gorm&quot;
+    &quot;gorm.io/gorm/logger&quot;
+)
+// user model
+type USER struct {
+    ID       uint `gorm:&quot;primaryKey&quot;`
+    CNAME    string
+    CADDRESS string
+}
 
-<span class="w">  </span><span class="c1">// **Insert users**</span>
-<span class="w">    </span><span class="nx">users</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="p">[]</span><span class="nx">USER</span><span class="p">{</span>
-<span class="w">        </span><span class="p">{</span>
-<span class="w">            </span><span class="c1">// ID: 1, //autoincrement</span>
-<span class="w">            </span><span class="nx">CNAME</span><span class="p">:</span><span class="w">    </span><span class="s">&quot;lili&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="nx">CADDRESS</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Shanghai&quot;</span><span class="p">},</span>
-<span class="w">        </span><span class="p">{</span>
-<span class="w">            </span><span class="nx">ID</span><span class="p">:</span><span class="w">       </span><span class="mi">111</span><span class="p">,</span>
-<span class="w">            </span><span class="nx">CNAME</span><span class="p">:</span><span class="w">    </span><span class="s">&quot;zhang&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="nx">CADDRESS</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Biejing&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="p">},</span>
-<span class="w">    </span><span class="p">}</span>
+func getDBConn() *gorm.DB {
+    dsn := &quot;root:111@tcp(127.0.0.1:6001)/test?charset=utf8mb4&amp;parseTime=True&amp;loc=Local&quot; //MO
+    db, err := gorm.Open(mysql.Open(dsn), &amp;gorm.Config{})
+    // get connection
+    if err != nil {
+        fmt.Println(&quot;Database Connection Failed&quot;) //Connection failed
+    } else {
+        fmt.Println(&quot;Database Connection Succeed&quot;) //Connection succeed
+    }
+    return db
+}
 
-<span class="w">    </span><span class="nx">db</span><span class="p">.</span><span class="nx">Create</span><span class="p">(</span><span class="nx">users</span><span class="p">)</span>
+func main() {
+    //get *gorm.DB
+    db := getDBConn()
 
-<span class="p">}</span>
-</code></pre></div>
+    // auto create table
+    db.AutoMigrate(&amp;USER{})
+
+  // **Insert users**
+    users := []USER{
+        {
+            // ID: 1, //autoincrement
+            CNAME:    &quot;lili&quot;,
+            CADDRESS: &quot;Shanghai&quot;},
+        {
+            ID:       111,
+            CNAME:    &quot;zhang&quot;,
+            CADDRESS: &quot;Biejing&quot;,
+        },
+    }
+
+    db.Create(users)
+
+}
+</code></pre></div></p>
 <p>Open your terminal and execute the following command to run the  <em>go</em>  file:</p>
 <div class="highlight"><pre><span></span><code>go run gorm_insert.go
 </code></pre></div>

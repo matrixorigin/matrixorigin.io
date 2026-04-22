@@ -13498,31 +13498,33 @@ partition_definition:
 </ul>
 <p>The following is an example to illustrate the association of parent and child tables through FOREIGN KEY and PRIMARY KEY:</p>
 <p>First, create a parent table with field a as the primary key:</p>
-<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="k">primary</span><span class="w"> </span><span class="k">key</span><span class="p">,</span><span class="n">b</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">5</span><span class="p">));</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">101</span><span class="p">,</span><span class="s1">&#39;abc&#39;</span><span class="p">),(</span><span class="mi">102</span><span class="p">,</span><span class="s1">&#39;def&#39;</span><span class="p">);</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------+------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">a</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="n">b</span><span class="w">    </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+------+</span>
-<span class="o">|</span><span class="w">  </span><span class="mi">101</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">abc</span><span class="w">  </span><span class="o">|</span>
-<span class="o">|</span><span class="w">  </span><span class="mi">102</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">def</span><span class="w">  </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+------+</span>
-<span class="mi">2</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
-<p>Then create a child table with field c as the foreign key, associated with parent table field a:</p>
-<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t2</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="p">,</span><span class="n">b</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span><span class="k">c</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="k">foreign</span><span class="w"> </span><span class="k">key</span><span class="p">(</span><span class="k">c</span><span class="p">)</span><span class="w"> </span><span class="k">references</span><span class="w"> </span><span class="n">t1</span><span class="p">(</span><span class="n">a</span><span class="p">));</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;zs1&#39;</span><span class="p">,</span><span class="mi">101</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;zs2&#39;</span><span class="p">,</span><span class="mi">102</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="s1">&#39;xyz&#39;</span><span class="p">,</span><span class="k">null</span><span class="p">);</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t2</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------+------+------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">a</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="n">b</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="k">c</span><span class="w">    </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+------+------+</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">zs1</span><span class="w">  </span><span class="o">|</span><span class="w">  </span><span class="mi">101</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">zs2</span><span class="w">  </span><span class="o">|</span><span class="w">  </span><span class="mi">102</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">xyz</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+------+------+</span>
-<span class="mi">3</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+<p>```sql <!-- validator-ignore-exec -->
+create table t1(a int primary key,b varchar(5));
+insert into t1 values(101,'abc'),(102,'def');
+mysql&gt; select * from t1;
++------+------+
+| a    | b    |
++------+------+
+|  101 | abc  |
+|  102 | def  |
++------+------+
+2 rows in set (0.00 sec)
+<div class="highlight"><pre><span></span><code>Then create a child table with field c as the foreign key, associated with parent table field a:
+
+```sql &lt;!-- validator-ignore-exec --&gt;
+create table t2(a int ,b varchar(5),c int, foreign key(c) references t1(a));
+insert into t2 values(1,&#39;zs1&#39;,101),(2,&#39;zs2&#39;,102);
+insert into t2 values(3,&#39;xyz&#39;,null);
+mysql&gt; select * from t2;
++------+------+------+
+| a    | b    | c    |
++------+------+------+
+|    1 | zs1  |  101 |
+|    2 | zs2  |  102 |
+|    3 | xyz  | NULL |
++------+------+------+
+3 rows in set (0.00 sec)
+</code></pre></div></p>
 <p>In addition, <code>[ON DELETE reference_option]</code> and <code>[ON UPDATE reference_option]</code> are used when defining a foreign key relationship to specify actions to be taken when records in the parent table are deleted or updated. These two parameters are primarily used to maintain data integrity and consistency:</p>
 <ul>
 <li>
@@ -13641,301 +13643,278 @@ CREATE TABLE t1 (col1 INT, col2 CHAR(5), col3 DATETIME)
 <ul>
 <li>Example 2: Add comments when creating a table</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="nb">int</span><span class="p">)</span><span class="w"> </span><span class="k">comment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">&quot;fact table&quot;</span><span class="p">;</span>
+<p>```sql <!-- validator-ignore-exec -->
+create table t2 (a int, b int) comment = "fact table";</p>
+<p>mysql&gt; show create table t2;
++-------+---------------------------------------------------------------------------------------+
+| Table | Create Table                                                                          |
++-------+---------------------------------------------------------------------------------------+
+| t2    | CREATE TABLE <code>t2</code> (
+<code>a</code> INT DEFAULT NULL,
+<code>b</code> INT DEFAULT NULL
+) COMMENT='fact table',    |
++-------+---------------------------------------------------------------------------------------+
+<div class="highlight"><pre><span></span><code>- Example 3: Add comments to columns when creating tables
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t2</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">-------+---------------------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">Table</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">Create</span><span class="w"> </span><span class="k">Table</span><span class="w">                                                                          </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+---------------------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">t2</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="o">`</span><span class="n">t2</span><span class="o">`</span><span class="w"> </span><span class="p">(</span>
-<span class="o">`</span><span class="n">a</span><span class="o">`</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="o">`</span><span class="n">b</span><span class="o">`</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span>
-<span class="p">)</span><span class="w"> </span><span class="k">COMMENT</span><span class="o">=</span><span class="s1">&#39;fact table&#39;</span><span class="p">,</span><span class="w">    </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+---------------------------------------------------------------------------------------+</span>
-</code></pre></div>
-<ul>
-<li>Example 3: Add comments to columns when creating tables</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t3</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="k">comment</span><span class="w"> </span><span class="s1">&#39;Column comment&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="nb">int</span><span class="p">)</span><span class="w"> </span><span class="k">comment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">&quot;table&quot;</span><span class="p">;</span>
+```sql &lt;!-- validator-ignore-exec --&gt;
+create table t3 (a int comment &#39;Column comment&#39;, b int) comment = &quot;table&quot;;
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SHOW</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t3</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">-------+----------------------------------------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">Table</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">Create</span><span class="w"> </span><span class="k">Table</span><span class="w">                                                                                             </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+----------------------------------------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">t3</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="o">`</span><span class="n">t3</span><span class="o">`</span><span class="w"> </span><span class="p">(</span>
-<span class="o">`</span><span class="n">a</span><span class="o">`</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">COMMENT</span><span class="w"> </span><span class="s1">&#39;Column comment&#39;</span><span class="p">,</span>
-<span class="o">`</span><span class="n">b</span><span class="o">`</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span>
-<span class="p">)</span><span class="w"> </span><span class="k">COMMENT</span><span class="o">=</span><span class="s1">&#39;table&#39;</span><span class="p">,</span><span class="w">     </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+----------------------------------------------------------------------------------------------------------+</span>
-</code></pre></div>
+mysql&gt; SHOW CREATE TABLE t3;
++-------+----------------------------------------------------------------------------------------------------------+
+| Table | Create Table                                                                                             |
++-------+----------------------------------------------------------------------------------------------------------+
+| t3    | CREATE TABLE `t3` (
+`a` INT DEFAULT NULL COMMENT &#39;Column comment&#39;,
+`b` INT DEFAULT NULL
+) COMMENT=&#39;table&#39;,     |
++-------+----------------------------------------------------------------------------------------------------------+
+</code></pre></div></p>
 <ul>
 <li>Example 4: Create a common partitioned table</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">tp1</span><span class="w"> </span><span class="p">(</span><span class="n">col1</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span><span class="w"> </span><span class="n">col2</span><span class="w"> </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span><span class="w"> </span><span class="n">col3</span><span class="w"> </span><span class="nb">DATE</span><span class="p">)</span><span class="w"> </span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">KEY</span><span class="p">(</span><span class="n">col3</span><span class="p">)</span><span class="w"> </span><span class="n">PARTITIONS</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span>
+<p>```sql <!-- validator-ignore-exec -->
+CREATE TABLE tp1 (col1 INT, col2 CHAR(5), col3 DATE) PARTITION BY KEY(col3) PARTITIONS 4;</p>
+<p>mysql&gt; SHOW CREATE TABLE tp1;
++-------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table | Create Table                                                                                                                                             |
++-------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
+| tp1   | CREATE TABLE <code>tp1</code> (
+<code>col1</code> INT DEFAULT NULL,
+<code>col2</code> CHAR(5) DEFAULT NULL,
+<code>col3</code> DATE DEFAULT NULL
+) partition by key algorithm = 2 (col3) partitions 4 |
++-------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)</p>
+<p>-- do not specify the number of partitions
+CREATE TABLE tp2 (col1 INT, col2 CHAR(5), col3 DATE) PARTITION BY KEY(col3);</p>
+<p>mysql&gt; SHOW CREATE TABLE tp2;
++-------+---------------------------------------------------------------------------------------------------------------------------------------------+
+| Table | Create Table                                                                                                                                |
++-------+---------------------------------------------------------------------------------------------------------------------------------------------+
+| tp2   | CREATE TABLE <code>tp2</code> (
+<code>col1</code> INT DEFAULT NULL,
+<code>col2</code> CHAR(5) DEFAULT NULL,
+<code>col3</code> DATE DEFAULT NULL
+) partition by key algorithm = 2 (col3) |
++-------+---------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)</p>
+<p>-- Specify partition algorithm
+CREATE TABLE tp3
+(
+    col1 INT,
+    col2 CHAR(5),
+    col3 DATE
+) PARTITION BY KEY ALGORITHM = 1 (col3);</p>
+<p>mysql&gt; show create table tp3;
++-------+---------------------------------------------------------------------------------------------------------------------------------------------+
+| Table | Create Table                                                                                                                                |
++-------+---------------------------------------------------------------------------------------------------------------------------------------------+
+| tp3   | CREATE TABLE <code>tp3</code> (
+<code>col1</code> INT DEFAULT NULL,
+<code>col2</code> CHAR(5) DEFAULT NULL,
+<code>col3</code> DATE DEFAULT NULL
+) partition by key algorithm = 1 (col3) |
++-------+---------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)</p>
+<p>-- Specify partition algorithm and the number of partitions
+CREATE TABLE tp4 (col1 INT, col2 CHAR(5), col3 DATE) PARTITION BY LINEAR KEY ALGORITHM = 1 (col3) PARTITIONS 5;</p>
+<p>mysql&gt; SHOW CREATE TABLE tp4;
++-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table | Create Table                                                                                                                                                    |
++-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| tp4   | CREATE TABLE <code>tp4</code> (
+<code>col1</code> INT DEFAULT NULL,
+<code>col2</code> CHAR(5) DEFAULT NULL,
+<code>col3</code> DATE DEFAULT NULL
+) partition by linear key algorithm = 1 (col3) partitions 5 |
++-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.01 sec)</p>
+<p>-- Multi-column partition
+CREATE TABLE tp5
+(
+    col1 INT,
+    col2 CHAR(5),
+    col3 DATE
+) PARTITION BY KEY(col1, col2) PARTITIONS 4;</p>
+<p>mysql&gt; SHOW CREATE TABLE tp5;
++-------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table | Create Table                                                                                                                                                   |
++-------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| tp5   | CREATE TABLE <code>tp5</code> (
+<code>col1</code> INT DEFAULT NULL,
+<code>col2</code> CHAR(5) DEFAULT NULL,
+<code>col3</code> DATE DEFAULT NULL
+) partition by key algorithm = 2 (col1, col2) partitions 4 |
++-------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.01 sec)</p>
+<p>-- Create a primary key column partition
+CREATE TABLE tp6
+(
+    col1 INT  NOT NULL PRIMARY KEY,
+    col2 DATE NOT NULL,
+    col3 INT  NOT NULL,
+    col4 INT  NOT NULL
+) PARTITION BY KEY(col1) PARTITIONS 4;</p>
+<p>mysql&gt; SHOW CREATE TABLE tp6;
++-------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table | Create Table                                                                                                                                                                        |
++-------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| tp6   | CREATE TABLE <code>tp6</code> (
+<code>col1</code> INT NOT NULL,
+<code>col2</code> DATE NOT NULL,
+<code>col3</code> INT NOT NULL,
+<code>col4</code> INT NOT NULL,
+PRIMARY KEY (<code>col1</code>)
+) partition by key algorithm = 2 (col1) partitions 4 |
++-------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.01 sec)</p>
+<p>-- Create HASH partition
+CREATE TABLE tp7
+(
+    col1 INT,
+    col2 CHAR(5)
+) PARTITION BY HASH(col1);</p>
+<p>mysql&gt; SHOW CREATE TABLE tp7;
++-------+------------------------------------------------------------------------------------------------------+
+| Table | Create Table                                                                                         |
++-------+------------------------------------------------------------------------------------------------------+
+| tp7   | CREATE TABLE <code>tp7</code> (
+<code>col1</code> INT DEFAULT NULL,
+<code>col2</code> CHAR(5) DEFAULT NULL
+) partition by hash (col1) |
++-------+------------------------------------------------------------------------------------------------------+
+1 row in set (0.01 sec)</p>
+<p>-- Specifies the number of HASH partitions when creating hash partition
+CREATE TABLE tp8
+(
+    col1 INT,
+    col2 CHAR(5)
+) PARTITION BY HASH(col1) PARTITIONS 4;</p>
+<p>mysql&gt; SHOW CREATE TABLE tp8;
++-------+-------------------------------------------------------------------------------------------------------------------+
+| Table | Create Table                                                                                                      |
++-------+-------------------------------------------------------------------------------------------------------------------+
+| tp8   | CREATE TABLE <code>tp8</code> (
+<code>col1</code> INT DEFAULT NULL,
+<code>col2</code> CHAR(5) DEFAULT NULL
+) partition by hash (col1) partitions 4 |
++-------+-------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)</p>
+<p>-- specify the partition granularity when creating a partition
+CREATE TABLE tp9
+(
+    col1 INT,
+    col2 CHAR(5),
+    col3 DATETIME
+) PARTITION BY HASH (YEAR(col3));</p>
+<p>mysql&gt; SHOW CREATE TABLE tp9;
++-------+------------------------------------------------------------------------------------------------------------------------------------------+
+| Table | Create Table                                                                                                                             |
++-------+------------------------------------------------------------------------------------------------------------------------------------------+
+| tp9   | CREATE TABLE <code>tp9</code> (
+<code>col1</code> INT DEFAULT NULL,
+<code>col2</code> CHAR(5) DEFAULT NULL,
+<code>col3</code> DATETIME DEFAULT NULL
+) partition by hash (year(col3)) |
++-------+------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)</p>
+<p>-- specify the partition granularity and number of partitions when creating a partition
+CREATE TABLE tp10
+(
+    col1 INT,
+    col2 CHAR(5),
+    col3 DATE
+) PARTITION BY LINEAR HASH( YEAR(col3)) PARTITIONS 6;</p>
+<p>mysql&gt; SHOW CREATE TABLE tp10;
++-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table | Create Table                                                                                                                                              |
++-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+| tp10  | CREATE TABLE <code>tp10</code> (
+<code>col1</code> INT DEFAULT NULL,
+<code>col2</code> CHAR(5) DEFAULT NULL,
+<code>col3</code> DATE DEFAULT NULL
+) partition by linear hash (year(col3)) partitions 6 |
++-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)</p>
+<p>-- Use the primary key column as the HASH partition when creating a partition
+CREATE TABLE tp12 (col1 INT NOT NULL PRIMARY KEY, col2 DATE NOT NULL, col3 INT NOT NULL, col4 INT NOT NULL) PARTITION BY HASH(col1) PARTITIONS 4;</p>
+<p>mysql&gt; SHOW CREATE TABLE tp12;
++-------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table | Create Table                                                                                                                                                            |
++-------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| tp12  | CREATE TABLE <code>tp12</code> (
+<code>col1</code> INT NOT NULL,
+<code>col2</code> DATE NOT NULL,
+<code>col3</code> INT NOT NULL,
+<code>col4</code> INT NOT NULL,
+PRIMARY KEY (<code>col1</code>)
+) partition by hash (col1) partitions 4 |
++-------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.01 sec)
+<div class="highlight"><pre><span></span><code>- Example 5: Primary key auto increment
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SHOW</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">tp1</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">-------+----------------------------------------------------------------------------------------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">Table</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">Create</span><span class="w"> </span><span class="k">Table</span><span class="w">                                                                                                                                             </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+----------------------------------------------------------------------------------------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">tp1</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="o">`</span><span class="n">tp1</span><span class="o">`</span><span class="w"> </span><span class="p">(</span>
-<span class="o">`</span><span class="n">col1</span><span class="o">`</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="o">`</span><span class="n">col2</span><span class="o">`</span><span class="w"> </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="o">`</span><span class="n">col3</span><span class="o">`</span><span class="w"> </span><span class="nb">DATE</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span>
-<span class="p">)</span><span class="w"> </span><span class="n">partition</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="n">algorithm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="p">(</span><span class="n">col3</span><span class="p">)</span><span class="w"> </span><span class="n">partitions</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+----------------------------------------------------------------------------------------------------------------------------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+```sql &lt;!-- validator-ignore-exec --&gt;
+drop table if exists t1;
+create table t1(a bigint primary key auto_increment,
+    b varchar(10));
+insert into t1(b) values (&#39;bbb&#39;);
+insert into t1 values (3, &#39;ccc&#39;);
+insert into t1(b) values (&#39;bbb1111&#39;);
 
-<span class="c1">-- do not specify the number of partitions</span>
-<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">tp2</span><span class="w"> </span><span class="p">(</span><span class="n">col1</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span><span class="w"> </span><span class="n">col2</span><span class="w"> </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span><span class="w"> </span><span class="n">col3</span><span class="w"> </span><span class="nb">DATE</span><span class="p">)</span><span class="w"> </span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">KEY</span><span class="p">(</span><span class="n">col3</span><span class="p">);</span>
+mysql&gt; select * from t1 order by a;
++------+---------+
+| a    | b       |
++------+---------+
+|    1 | bbb     |
+|    3 | ccc     |
+|    4 | bbb1111 |
++------+---------+
+3 rows in set (0.01 sec)
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SHOW</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">tp2</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">-------+---------------------------------------------------------------------------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">Table</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">Create</span><span class="w"> </span><span class="k">Table</span><span class="w">                                                                                                                                </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+---------------------------------------------------------------------------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">tp2</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="o">`</span><span class="n">tp2</span><span class="o">`</span><span class="w"> </span><span class="p">(</span>
-<span class="o">`</span><span class="n">col1</span><span class="o">`</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="o">`</span><span class="n">col2</span><span class="o">`</span><span class="w"> </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="o">`</span><span class="n">col3</span><span class="o">`</span><span class="w"> </span><span class="nb">DATE</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span>
-<span class="p">)</span><span class="w"> </span><span class="n">partition</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="n">algorithm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="p">(</span><span class="n">col3</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+---------------------------------------------------------------------------------------------------------------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+insert into t1 values (2, &#39;aaaa1111&#39;);
 
-<span class="c1">-- Specify partition algorithm</span>
-<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">tp3</span>
-<span class="p">(</span>
-<span class="w">    </span><span class="n">col1</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
-<span class="w">    </span><span class="n">col2</span><span class="w"> </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span>
-<span class="w">    </span><span class="n">col3</span><span class="w"> </span><span class="nb">DATE</span>
-<span class="p">)</span><span class="w"> </span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="n">ALGORITHM</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">(</span><span class="n">col3</span><span class="p">);</span>
+mysql&gt; select * from t1 order by a;
++------+----------+
+| a    | b        |
++------+----------+
+|    1 | bbb      |
+|    2 | aaaa1111 |
+|    3 | ccc      |
+|    4 | bbb1111  |
++------+----------+
+4 rows in set (0.00 sec)
 
+insert into t1(b) values (&#39;aaaa1111&#39;);
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">tp3</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">-------+---------------------------------------------------------------------------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">Table</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">Create</span><span class="w"> </span><span class="k">Table</span><span class="w">                                                                                                                                </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+---------------------------------------------------------------------------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">tp3</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="o">`</span><span class="n">tp3</span><span class="o">`</span><span class="w"> </span><span class="p">(</span>
-<span class="o">`</span><span class="n">col1</span><span class="o">`</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="o">`</span><span class="n">col2</span><span class="o">`</span><span class="w"> </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="o">`</span><span class="n">col3</span><span class="o">`</span><span class="w"> </span><span class="nb">DATE</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span>
-<span class="p">)</span><span class="w"> </span><span class="n">partition</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="n">algorithm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">(</span><span class="n">col3</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+---------------------------------------------------------------------------------------------------------------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+mysql&gt; select * from t1 order by a;
++------+----------+
+| a    | b        |
++------+----------+
+|    1 | bbb      |
+|    2 | aaaa1111 |
+|    3 | ccc      |
+|    4 | bbb1111  |
+|    5 | aaaa1111 |
++------+----------+
+5 rows in set (0.01 sec)
 
-<span class="c1">-- Specify partition algorithm and the number of partitions</span>
-<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">tp4</span><span class="w"> </span><span class="p">(</span><span class="n">col1</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span><span class="w"> </span><span class="n">col2</span><span class="w"> </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span><span class="w"> </span><span class="n">col3</span><span class="w"> </span><span class="nb">DATE</span><span class="p">)</span><span class="w"> </span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">LINEAR</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="n">ALGORITHM</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">(</span><span class="n">col3</span><span class="p">)</span><span class="w"> </span><span class="n">PARTITIONS</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+insert into t1 values (100, &#39;xxxx&#39;);
+insert into t1(b) values (&#39;xxxx&#39;);
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SHOW</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">tp4</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">Table</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">Create</span><span class="w"> </span><span class="k">Table</span><span class="w">                                                                                                                                                    </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">tp4</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="o">`</span><span class="n">tp4</span><span class="o">`</span><span class="w"> </span><span class="p">(</span>
-<span class="o">`</span><span class="n">col1</span><span class="o">`</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="o">`</span><span class="n">col2</span><span class="o">`</span><span class="w"> </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="o">`</span><span class="n">col3</span><span class="o">`</span><span class="w"> </span><span class="nb">DATE</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span>
-<span class="p">)</span><span class="w"> </span><span class="n">partition</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">linear</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="n">algorithm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">(</span><span class="n">col3</span><span class="p">)</span><span class="w"> </span><span class="n">partitions</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="c1">-- Multi-column partition</span>
-<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">tp5</span>
-<span class="p">(</span>
-<span class="w">    </span><span class="n">col1</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
-<span class="w">    </span><span class="n">col2</span><span class="w"> </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span>
-<span class="w">    </span><span class="n">col3</span><span class="w"> </span><span class="nb">DATE</span>
-<span class="p">)</span><span class="w"> </span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">KEY</span><span class="p">(</span><span class="n">col1</span><span class="p">,</span><span class="w"> </span><span class="n">col2</span><span class="p">)</span><span class="w"> </span><span class="n">PARTITIONS</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SHOW</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">tp5</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">-------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">Table</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">Create</span><span class="w"> </span><span class="k">Table</span><span class="w">                                                                                                                                                   </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">tp5</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="o">`</span><span class="n">tp5</span><span class="o">`</span><span class="w"> </span><span class="p">(</span>
-<span class="o">`</span><span class="n">col1</span><span class="o">`</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="o">`</span><span class="n">col2</span><span class="o">`</span><span class="w"> </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="o">`</span><span class="n">col3</span><span class="o">`</span><span class="w"> </span><span class="nb">DATE</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span>
-<span class="p">)</span><span class="w"> </span><span class="n">partition</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="n">algorithm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="p">(</span><span class="n">col1</span><span class="p">,</span><span class="w"> </span><span class="n">col2</span><span class="p">)</span><span class="w"> </span><span class="n">partitions</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="c1">-- Create a primary key column partition</span>
-<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">tp6</span>
-<span class="p">(</span>
-<span class="w">    </span><span class="n">col1</span><span class="w"> </span><span class="nb">INT</span><span class="w">  </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
-<span class="w">    </span><span class="n">col2</span><span class="w"> </span><span class="nb">DATE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="w">    </span><span class="n">col3</span><span class="w"> </span><span class="nb">INT</span><span class="w">  </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="w">    </span><span class="n">col4</span><span class="w"> </span><span class="nb">INT</span><span class="w">  </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span>
-<span class="p">)</span><span class="w"> </span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">KEY</span><span class="p">(</span><span class="n">col1</span><span class="p">)</span><span class="w"> </span><span class="n">PARTITIONS</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SHOW</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">tp6</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">-------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">Table</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">Create</span><span class="w"> </span><span class="k">Table</span><span class="w">                                                                                                                                                                        </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">tp6</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="o">`</span><span class="n">tp6</span><span class="o">`</span><span class="w"> </span><span class="p">(</span>
-<span class="o">`</span><span class="n">col1</span><span class="o">`</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="o">`</span><span class="n">col2</span><span class="o">`</span><span class="w"> </span><span class="nb">DATE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="o">`</span><span class="n">col3</span><span class="o">`</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="o">`</span><span class="n">col4</span><span class="o">`</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="o">`</span><span class="n">col1</span><span class="o">`</span><span class="p">)</span>
-<span class="p">)</span><span class="w"> </span><span class="n">partition</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="n">algorithm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="p">(</span><span class="n">col1</span><span class="p">)</span><span class="w"> </span><span class="n">partitions</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="c1">-- Create HASH partition</span>
-<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">tp7</span>
-<span class="p">(</span>
-<span class="w">    </span><span class="n">col1</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
-<span class="w">    </span><span class="n">col2</span><span class="w"> </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-<span class="p">)</span><span class="w"> </span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">HASH</span><span class="p">(</span><span class="n">col1</span><span class="p">);</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SHOW</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">tp7</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">-------+------------------------------------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">Table</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">Create</span><span class="w"> </span><span class="k">Table</span><span class="w">                                                                                         </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+------------------------------------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">tp7</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="o">`</span><span class="n">tp7</span><span class="o">`</span><span class="w"> </span><span class="p">(</span>
-<span class="o">`</span><span class="n">col1</span><span class="o">`</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="o">`</span><span class="n">col2</span><span class="o">`</span><span class="w"> </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span>
-<span class="p">)</span><span class="w"> </span><span class="n">partition</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">hash</span><span class="w"> </span><span class="p">(</span><span class="n">col1</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+------------------------------------------------------------------------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="c1">-- Specifies the number of HASH partitions when creating hash partition</span>
-<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">tp8</span>
-<span class="p">(</span>
-<span class="w">    </span><span class="n">col1</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
-<span class="w">    </span><span class="n">col2</span><span class="w"> </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-<span class="p">)</span><span class="w"> </span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">HASH</span><span class="p">(</span><span class="n">col1</span><span class="p">)</span><span class="w"> </span><span class="n">PARTITIONS</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SHOW</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">tp8</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">-------+-------------------------------------------------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">Table</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">Create</span><span class="w"> </span><span class="k">Table</span><span class="w">                                                                                                      </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+-------------------------------------------------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">tp8</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="o">`</span><span class="n">tp8</span><span class="o">`</span><span class="w"> </span><span class="p">(</span>
-<span class="o">`</span><span class="n">col1</span><span class="o">`</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="o">`</span><span class="n">col2</span><span class="o">`</span><span class="w"> </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span>
-<span class="p">)</span><span class="w"> </span><span class="n">partition</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">hash</span><span class="w"> </span><span class="p">(</span><span class="n">col1</span><span class="p">)</span><span class="w"> </span><span class="n">partitions</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+-------------------------------------------------------------------------------------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="c1">-- specify the partition granularity when creating a partition</span>
-<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">tp9</span>
-<span class="p">(</span>
-<span class="w">    </span><span class="n">col1</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
-<span class="w">    </span><span class="n">col2</span><span class="w"> </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span>
-<span class="w">    </span><span class="n">col3</span><span class="w"> </span><span class="n">DATETIME</span>
-<span class="p">)</span><span class="w"> </span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">HASH</span><span class="w"> </span><span class="p">(</span><span class="k">YEAR</span><span class="p">(</span><span class="n">col3</span><span class="p">));</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SHOW</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">tp9</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">-------+------------------------------------------------------------------------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">Table</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">Create</span><span class="w"> </span><span class="k">Table</span><span class="w">                                                                                                                             </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+------------------------------------------------------------------------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">tp9</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="o">`</span><span class="n">tp9</span><span class="o">`</span><span class="w"> </span><span class="p">(</span>
-<span class="o">`</span><span class="n">col1</span><span class="o">`</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="o">`</span><span class="n">col2</span><span class="o">`</span><span class="w"> </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="o">`</span><span class="n">col3</span><span class="o">`</span><span class="w"> </span><span class="n">DATETIME</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span>
-<span class="p">)</span><span class="w"> </span><span class="n">partition</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">hash</span><span class="w"> </span><span class="p">(</span><span class="k">year</span><span class="p">(</span><span class="n">col3</span><span class="p">))</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+------------------------------------------------------------------------------------------------------------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="c1">-- specify the partition granularity and number of partitions when creating a partition</span>
-<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">tp10</span>
-<span class="p">(</span>
-<span class="w">    </span><span class="n">col1</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
-<span class="w">    </span><span class="n">col2</span><span class="w"> </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span>
-<span class="w">    </span><span class="n">col3</span><span class="w"> </span><span class="nb">DATE</span>
-<span class="p">)</span><span class="w"> </span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">LINEAR</span><span class="w"> </span><span class="n">HASH</span><span class="p">(</span><span class="w"> </span><span class="k">YEAR</span><span class="p">(</span><span class="n">col3</span><span class="p">))</span><span class="w"> </span><span class="n">PARTITIONS</span><span class="w"> </span><span class="mi">6</span><span class="p">;</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SHOW</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">tp10</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">Table</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">Create</span><span class="w"> </span><span class="k">Table</span><span class="w">                                                                                                                                              </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">tp10</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="o">`</span><span class="n">tp10</span><span class="o">`</span><span class="w"> </span><span class="p">(</span>
-<span class="o">`</span><span class="n">col1</span><span class="o">`</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="o">`</span><span class="n">col2</span><span class="o">`</span><span class="w"> </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="o">`</span><span class="n">col3</span><span class="o">`</span><span class="w"> </span><span class="nb">DATE</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span>
-<span class="p">)</span><span class="w"> </span><span class="n">partition</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">linear</span><span class="w"> </span><span class="n">hash</span><span class="w"> </span><span class="p">(</span><span class="k">year</span><span class="p">(</span><span class="n">col3</span><span class="p">))</span><span class="w"> </span><span class="n">partitions</span><span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="c1">-- Use the primary key column as the HASH partition when creating a partition</span>
-<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">tp12</span><span class="w"> </span><span class="p">(</span><span class="n">col1</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="w"> </span><span class="n">col2</span><span class="w"> </span><span class="nb">DATE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"> </span><span class="n">col3</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"> </span><span class="n">col4</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">)</span><span class="w"> </span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">HASH</span><span class="p">(</span><span class="n">col1</span><span class="p">)</span><span class="w"> </span><span class="n">PARTITIONS</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SHOW</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">tp12</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">-------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">Table</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">Create</span><span class="w"> </span><span class="k">Table</span><span class="w">                                                                                                                                                            </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">tp12</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="o">`</span><span class="n">tp12</span><span class="o">`</span><span class="w"> </span><span class="p">(</span>
-<span class="o">`</span><span class="n">col1</span><span class="o">`</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="o">`</span><span class="n">col2</span><span class="o">`</span><span class="w"> </span><span class="nb">DATE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="o">`</span><span class="n">col3</span><span class="o">`</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="o">`</span><span class="n">col4</span><span class="o">`</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="o">`</span><span class="n">col1</span><span class="o">`</span><span class="p">)</span>
-<span class="p">)</span><span class="w"> </span><span class="n">partition</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">hash</span><span class="w"> </span><span class="p">(</span><span class="n">col1</span><span class="p">)</span><span class="w"> </span><span class="n">partitions</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
-<ul>
-<li>Example 5: Primary key auto increment</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="k">drop</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
-<span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">bigint</span><span class="w"> </span><span class="k">primary</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="n">auto_increment</span><span class="p">,</span>
-<span class="w">    </span><span class="n">b</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">10</span><span class="p">));</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;bbb&#39;</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;ccc&#39;</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;bbb1111&#39;</span><span class="p">);</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">a</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------+---------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">a</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="n">b</span><span class="w">       </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+---------+</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">bbb</span><span class="w">     </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">ccc</span><span class="w">     </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">bbb1111</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+---------+</span>
-<span class="mi">3</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;aaaa1111&#39;</span><span class="p">);</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">a</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------+----------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">a</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="n">b</span><span class="w">        </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+----------+</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">bbb</span><span class="w">      </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">aaaa1111</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">ccc</span><span class="w">      </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">bbb1111</span><span class="w">  </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+----------+</span>
-<span class="mi">4</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;aaaa1111&#39;</span><span class="p">);</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">a</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------+----------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">a</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="n">b</span><span class="w">        </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+----------+</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">bbb</span><span class="w">      </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">aaaa1111</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">ccc</span><span class="w">      </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">bbb1111</span><span class="w">  </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">5</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">aaaa1111</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+----------+</span>
-<span class="mi">5</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;xxxx&#39;</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;xxxx&#39;</span><span class="p">);</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">a</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------+----------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">a</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="n">b</span><span class="w">        </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+----------+</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">bbb</span><span class="w">      </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">aaaa1111</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">ccc</span><span class="w">      </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">bbb1111</span><span class="w">  </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">5</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">aaaa1111</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">  </span><span class="mi">100</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">xxxx</span><span class="w">     </span><span class="o">|</span>
-<span class="o">|</span><span class="w">  </span><span class="mi">101</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">xxxx</span><span class="w">     </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+----------+</span>
-<span class="mi">7</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+mysql&gt; select * from t1 order by a;
++------+----------+
+| a    | b        |
++------+----------+
+|    1 | bbb      |
+|    2 | aaaa1111 |
+|    3 | ccc      |
+|    4 | bbb1111  |
+|    5 | aaaa1111 |
+|  100 | xxxx     |
+|  101 | xxxx     |
++------+----------+
+7 rows in set (0.00 sec)
+</code></pre></div></p>
 <h2 id="constraints"><strong>Constraints</strong></h2>
 <ol>
 <li>Currently, it is not supported to use the <code>ALTER TABLE table_name DROP PRIMARY KEY</code> statement to drop the primary key from a table.</li>

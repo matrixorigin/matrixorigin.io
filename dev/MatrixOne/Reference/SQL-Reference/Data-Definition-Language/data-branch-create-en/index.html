@@ -13542,6 +13542,7 @@
 <h2 id="examples">Examples</h2>
 <h3 id="example-1-create-table-branch-basic-usage">Example 1: Create Table Branch (Basic Usage)</h3>
 <p>Create a data branch from an existing table:</p>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="c1">-- Expected-Rows: 0</span>
 <span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">test</span><span class="p">;</span>
 <span class="c1">-- Expected-Rows: 0</span>
@@ -13597,6 +13598,7 @@
 </code></pre></div>
 <h3 id="example-2-create-table-branch-from-snapshot">Example 2: Create Table Branch from Snapshot</h3>
 <p>Create a data branch from a specific point in time using a snapshot:</p>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="c1">-- Expected-Rows: 0</span>
 <span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">test</span><span class="p">.</span><span class="n">products</span><span class="w"> </span><span class="p">(</span>
 <span class="w">    </span><span class="n">product_id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
@@ -13632,6 +13634,7 @@
 </code></pre></div>
 <h3 id="example-3-create-database-branch">Example 3: Create Database Branch</h3>
 <p>Create a branch of an entire database:</p>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="c1">-- Expected-Rows: 0</span>
 <span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">source_db</span><span class="p">;</span>
 <span class="c1">-- Expected-Rows: 0</span>
@@ -13669,6 +13672,7 @@
 <span class="o">+</span><span class="c1">----+-------+</span>
 </code></pre></div>
 <h3 id="example-4-create-database-branch-from-snapshot">Example 4: Create Database Branch from Snapshot</h3>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="c1">-- Expected-Rows: 0</span>
 <span class="k">CREATE</span><span class="w"> </span><span class="n">SNAPSHOT</span><span class="w"> </span><span class="n">sp_source</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">source_db</span><span class="p">;</span>
 
@@ -13697,6 +13701,7 @@
 </code></pre></div>
 <h3 id="example-5-multi-level-branching">Example 5: Multi-level Branching</h3>
 <p>Create new branches from existing branches:</p>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="c1">-- Expected-Rows: 0</span>
 <span class="n">USE</span><span class="w"> </span><span class="n">test</span><span class="p">;</span>
 

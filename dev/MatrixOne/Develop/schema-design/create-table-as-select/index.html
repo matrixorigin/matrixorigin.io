@@ -13237,56 +13237,54 @@
 <h2 id="how-to-use-ctas">How to use CTAS</h2>
 <h3 id="grammar">Grammar</h3>
 <p><code>CTAS</code> statements typically take the following form:</p>
-<p><code>sql CREATE [TEMPORARY] TABLE table_name as select</code></p>
+<div class="highlight"><pre><span></span><code>CREATE [TEMPORARY] TABLE table_name AS SELECT ...
+</code></pre></div>
 <p>See chapter <a href="../../../Reference/SQL-Reference/Data-Definition-Language/create-table-as-select/">Create Table As Select</a> for more syntax descriptions</p>
 <h3 id="cases">Cases</h3>
 <p>Suppose we have an e-commerce platform and we want to create a data table to analyze the details of each order including order number, customer ID, order date, product ID, product quantity and product price.</p>
-<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">orders</span><span class="p">(</span>
-<span class="n">order_id</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="n">auto_increment</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
-<span class="n">customer_id</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span>
-<span class="n">order_date</span><span class="w"> </span><span class="nb">date</span><span class="p">,</span>
-<span class="n">product_id</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span>
-<span class="n">quantity</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span>
-<span class="n">price</span><span class="w"> </span><span class="nb">float</span>
-<span class="p">);</span>
-
-<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">orders</span><span class="p">(</span><span class="n">customer_id</span><span class="p">,</span><span class="n">order_date</span><span class="p">,</span><span class="n">product_id</span><span class="p">,</span><span class="n">quantity</span><span class="p">,</span><span class="n">price</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span><span class="ss">&quot;2023-04-01&quot;</span><span class="p">,</span><span class="mi">5001</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">19</span><span class="p">.</span><span class="mi">99</span><span class="p">);</span>
-<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">orders</span><span class="p">(</span><span class="n">customer_id</span><span class="p">,</span><span class="n">order_date</span><span class="p">,</span><span class="n">product_id</span><span class="p">,</span><span class="n">quantity</span><span class="p">,</span><span class="n">price</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span><span class="ss">&quot;2023-04-02&quot;</span><span class="p">,</span><span class="mi">5002</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">29</span><span class="p">.</span><span class="mi">99</span><span class="p">);</span>
-<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">orders</span><span class="p">(</span><span class="n">customer_id</span><span class="p">,</span><span class="n">order_date</span><span class="p">,</span><span class="n">product_id</span><span class="p">,</span><span class="n">quantity</span><span class="p">,</span><span class="n">price</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span><span class="ss">&quot;2023-04-03&quot;</span><span class="p">,</span><span class="mi">5001</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">19</span><span class="p">.</span><span class="mi">99</span><span class="p">);</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">orders</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">----------+-------------+------------+------------+----------+-------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">order_id</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">customer_id</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">order_date</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">product_id</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">quantity</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">price</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------+-------------+------------+------------+----------+-------+</span>
-<span class="o">|</span><span class="w">        </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w">          </span><span class="mi">30</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2023</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">01</span><span class="w"> </span><span class="o">|</span><span class="w">       </span><span class="mi">5001</span><span class="w"> </span><span class="o">|</span><span class="w">        </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">19</span><span class="p">.</span><span class="mi">99</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">        </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w">          </span><span class="mi">40</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2023</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">02</span><span class="w"> </span><span class="o">|</span><span class="w">       </span><span class="mi">5002</span><span class="w"> </span><span class="o">|</span><span class="w">        </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">29</span><span class="p">.</span><span class="mi">99</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">        </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w">          </span><span class="mi">30</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2023</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">03</span><span class="w"> </span><span class="o">|</span><span class="w">       </span><span class="mi">5001</span><span class="w"> </span><span class="o">|</span><span class="w">        </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">19</span><span class="p">.</span><span class="mi">99</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------+-------------+------------+------------+----------+-------+</span>
-<span class="mi">3</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="c1">--For analysis purposes, we want to calculate the total price for each order and create a new table containing the order number, customer ID, order date, and total order price.</span>
-<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">orders_analysis</span><span class="w"> </span><span class="k">AS</span>
-<span class="k">SELECT</span><span class="w"> </span>
-<span class="w">    </span><span class="n">order_id</span><span class="p">,</span>
-<span class="w">    </span><span class="n">customer_id</span><span class="p">,</span>
-<span class="w">    </span><span class="n">order_date</span><span class="p">,</span>
-<span class="w">    </span><span class="n">product_id</span><span class="p">,</span>
-<span class="w">    </span><span class="n">quantity</span><span class="p">,</span>
-<span class="w">    </span><span class="n">price</span><span class="p">,</span>
-<span class="w">     </span><span class="k">CAST</span><span class="p">((</span><span class="n">quantity</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">price</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="nb">float</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">total_price</span>
-<span class="k">FROM</span><span class="w"> </span>
-<span class="w">    </span><span class="n">orders</span><span class="p">;</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">orders_analysis</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">----------+-------------+------------+------------+----------+-------+-------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">order_id</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">customer_id</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">order_date</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">product_id</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">quantity</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">price</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">total_price</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------+-------------+------------+------------+----------+-------+-------------+</span>
-<span class="o">|</span><span class="w">        </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w">          </span><span class="mi">30</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2023</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">01</span><span class="w"> </span><span class="o">|</span><span class="w">       </span><span class="mi">5001</span><span class="w"> </span><span class="o">|</span><span class="w">        </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">19</span><span class="p">.</span><span class="mi">99</span><span class="w"> </span><span class="o">|</span><span class="w">       </span><span class="mi">39</span><span class="p">.</span><span class="mi">98</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">        </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w">          </span><span class="mi">40</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2023</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">02</span><span class="w"> </span><span class="o">|</span><span class="w">       </span><span class="mi">5002</span><span class="w"> </span><span class="o">|</span><span class="w">        </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">29</span><span class="p">.</span><span class="mi">99</span><span class="w"> </span><span class="o">|</span><span class="w">       </span><span class="mi">29</span><span class="p">.</span><span class="mi">99</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">        </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w">          </span><span class="mi">30</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2023</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">03</span><span class="w"> </span><span class="o">|</span><span class="w">       </span><span class="mi">5001</span><span class="w"> </span><span class="o">|</span><span class="w">        </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">19</span><span class="p">.</span><span class="mi">99</span><span class="w"> </span><span class="o">|</span><span class="w">       </span><span class="mi">19</span><span class="p">.</span><span class="mi">99</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------+-------------+------------+------------+----------+-------+-------------+</span>
-<span class="mi">3</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+<p>```sql <!-- validator-ignore-exec -->
+CREATE TABLE orders(
+order_id int auto_increment PRIMARY KEY,
+customer_id int,
+order_date date,
+product_id int,
+quantity int,
+price float
+);</p>
+<p>INSERT INTO orders(customer_id,order_date,product_id,quantity,price) values(30,"2023-04-01",5001,2,19.99);
+INSERT INTO orders(customer_id,order_date,product_id,quantity,price) values(40,"2023-04-02",5002,1,29.99);
+INSERT INTO orders(customer_id,order_date,product_id,quantity,price) values(30,"2023-04-03",5001,1,19.99);</p>
+<p>mysql&gt; select * from orders;
++----------+-------------+------------+------------+----------+-------+
+| order_id | customer_id | order_date | product_id | quantity | price |
++----------+-------------+------------+------------+----------+-------+
+|        1 |          30 | 2023-04-01 |       5001 |        2 | 19.99 |
+|        2 |          40 | 2023-04-02 |       5002 |        1 | 29.99 |
+|        3 |          30 | 2023-04-03 |       5001 |        1 | 19.99 |
++----------+-------------+------------+------------+----------+-------+
+3 rows in set (0.00 sec)</p>
+<p>--For analysis purposes, we want to calculate the total price for each order and create a new table containing the order number, customer ID, order date, and total order price.
+CREATE TABLE orders_analysis AS
+SELECT 
+    order_id,
+    customer_id,
+    order_date,
+    product_id,
+    quantity,
+    price,
+     CAST((quantity * price) AS float) AS total_price
+FROM 
+    orders;</p>
+<p>mysql&gt; select * from orders_analysis;
++----------+-------------+------------+------------+----------+-------+-------------+
+| order_id | customer_id | order_date | product_id | quantity | price | total_price |
++----------+-------------+------------+------------+----------+-------+-------------+
+|        1 |          30 | 2023-04-01 |       5001 |        2 | 19.99 |       39.98 |
+|        2 |          40 | 2023-04-02 |       5002 |        1 | 29.99 |       29.99 |
+|        3 |          30 | 2023-04-03 |       5001 |        1 | 19.99 |       19.99 |
++----------+-------------+------------+------------+----------+-------+-------------+
+3 rows in set (0.00 sec)
+```</p>
 <p>In this example, the CTAS statement not only copies the columns in the original table, but also adds a new calculated column, total_price, which calculates the total price of the order line item by multiplying the number of products per order by the price. This gives us a new table suitable for sales analysis that can be used directly to generate reports or for further data analysis.</p>
 <p>This example demonstrates the power of CTAS in data conversion and preparation, which facilitates data analysis by allowing us to clean and convert data while creating new tables.</p>
 

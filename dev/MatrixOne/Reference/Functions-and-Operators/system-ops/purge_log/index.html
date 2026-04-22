@@ -13213,48 +13213,48 @@
 <ul>
 <li>Example 1:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="c1">-- Delete the statement_info type logs before 2023-06-30</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">purge_log</span><span class="p">(</span><span class="s1">&#39;statement_info&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2023-06-30&#39;</span><span class="p">)</span><span class="w"> </span><span class="n">a</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">a</span><span class="w">    </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">0</span><span class="w">    </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
-<ul>
-<li>Example 2:</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="c1">-- Query the time and quantity of metric log collection</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="nb">date</span><span class="p">(</span><span class="n">collecttime</span><span class="p">),</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">system_metrics</span><span class="p">.</span><span class="n">metric</span><span class="w"> </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="nb">date</span><span class="p">(</span><span class="n">collecttime</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">-------------------+----------+</span>
-<span class="o">|</span><span class="w"> </span><span class="nb">date</span><span class="p">(</span><span class="n">collecttime</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------------------+----------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">2023</span><span class="o">-</span><span class="mi">07</span><span class="o">-</span><span class="mi">07</span><span class="w">        </span><span class="o">|</span><span class="w">    </span><span class="mi">20067</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">2023</span><span class="o">-</span><span class="mi">07</span><span class="o">-</span><span class="mi">06</span><span class="w">        </span><span class="o">|</span><span class="w">    </span><span class="mi">30246</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">2023</span><span class="o">-</span><span class="mi">07</span><span class="o">-</span><span class="mi">05</span><span class="w">        </span><span class="o">|</span><span class="w">    </span><span class="mi">27759</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------------------+----------+</span>
-<span class="mi">3</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+<p>```sql <!-- validator-ignore-exec -->
+-- Delete the statement_info type logs before 2023-06-30
+mysql&gt; select purge_log('statement_info', '2023-06-30') a;
++------+
+| a    |
++------+
+| 0    |
++------+
+1 row in set (0.01 sec)
+<div class="highlight"><pre><span></span><code>- Example 2:
 
-<span class="c1">-- Delete rawlog, statement_info, and metric logs before 2023-07-06</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">purge_log</span><span class="p">(</span><span class="s1">&#39;rawlog, statement_info, metric&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2023-07-06&#39;</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">-------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">purge_log</span><span class="p">(</span><span class="n">rawlog</span><span class="p">,</span><span class="w"> </span><span class="n">statement_info</span><span class="p">,</span><span class="w"> </span><span class="n">metric</span><span class="p">,</span><span class="w"> </span><span class="mi">2023</span><span class="o">-</span><span class="mi">07</span><span class="o">-</span><span class="mi">06</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------------------------------------------------------+</span>
-<span class="o">|</span><span class="w">                                                     </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------------------------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">33</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+```sql &lt;!-- validator-ignore-exec --&gt;
+-- Query the time and quantity of metric log collection
+mysql&gt; select date(collecttime), count(1) from system_metrics.metric group by date(collecttime);
++-------------------+----------+
+| date(collecttime) | count(1) |
++-------------------+----------+
+| 2023-07-07        |    20067 |
+| 2023-07-06        |    30246 |
+| 2023-07-05        |    27759 |
++-------------------+----------+
+3 rows in set (0.00 sec)
 
-<span class="c1">-- Query the number of metric logs for the three days of 2023-07-05, 2023-07-06 and 2023-07-07 again</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="nb">date</span><span class="p">(</span><span class="n">collecttime</span><span class="p">),</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">system_metrics</span><span class="p">.</span><span class="n">metric</span><span class="w"> </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="nb">date</span><span class="p">(</span><span class="n">collecttime</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">-------------------+----------+</span>
-<span class="o">|</span><span class="w"> </span><span class="nb">date</span><span class="p">(</span><span class="n">collecttime</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------------------+----------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">2023</span><span class="o">-</span><span class="mi">07</span><span class="o">-</span><span class="mi">06</span><span class="w">        </span><span class="o">|</span><span class="w">    </span><span class="mi">30246</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">2023</span><span class="o">-</span><span class="mi">07</span><span class="o">-</span><span class="mi">07</span><span class="w">        </span><span class="o">|</span><span class="w">    </span><span class="mi">20121</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------------------+----------+</span>
-<span class="mi">2</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+-- Delete rawlog, statement_info, and metric logs before 2023-07-06
+mysql&gt; select purge_log(&#39;rawlog, statement_info, metric&#39;, &#39;2023-07-06&#39;);
++-------------------------------------------------------+
+| purge_log(rawlog, statement_info, metric, 2023-07-06) |
++-------------------------------------------------------+
+|                                                     0 |
++-------------------------------------------------------+
+1 row in set (0.33 sec)
+
+-- Query the number of metric logs for the three days of 2023-07-05, 2023-07-06 and 2023-07-07 again
+mysql&gt; select date(collecttime), count(1) from system_metrics.metric group by date(collecttime);
++-------------------+----------+
+| date(collecttime) | count(1) |
++-------------------+----------+
+| 2023-07-06        |    30246 |
+| 2023-07-07        |    20121 |
++-------------------+----------+
+2 rows in set (0.01 sec)
+</code></pre></div></p>
 
 
 

@@ -13167,46 +13167,43 @@
 <div class="highlight"><pre><span></span><code>&gt; DROP INDEX index_name ON tbl_name
 </code></pre></div>
 <h2 id="examples"><strong>Examples</strong></h2>
-<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t5</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="k">unique</span><span class="w"> </span><span class="k">key</span><span class="p">(</span><span class="n">a</span><span class="p">));</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t5</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">-------+----------------------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">Table</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">Create</span><span class="w"> </span><span class="k">Table</span><span class="w">                                                                           </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+----------------------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">t5</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="o">`</span><span class="n">t5</span><span class="o">`</span><span class="w"> </span><span class="p">(</span>
-<span class="o">`</span><span class="n">a</span><span class="o">`</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="o">`</span><span class="n">b</span><span class="o">`</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="k">UNIQUE</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="o">`</span><span class="n">a</span><span class="o">`</span><span class="w"> </span><span class="p">(</span><span class="o">`</span><span class="n">a</span><span class="o">`</span><span class="p">)</span>
-<span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+----------------------------------------------------------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="k">create</span><span class="w"> </span><span class="k">index</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">t5</span><span class="p">(</span><span class="n">b</span><span class="p">);</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t5</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">-------+-------------------------------------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">Table</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">Create</span><span class="w"> </span><span class="k">Table</span><span class="w">                                                                                          </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+-------------------------------------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">t5</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="o">`</span><span class="n">t5</span><span class="o">`</span><span class="w"> </span><span class="p">(</span>
-<span class="o">`</span><span class="n">a</span><span class="o">`</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="o">`</span><span class="n">b</span><span class="o">`</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="k">UNIQUE</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="o">`</span><span class="n">a</span><span class="o">`</span><span class="w"> </span><span class="p">(</span><span class="o">`</span><span class="n">a</span><span class="o">`</span><span class="p">),</span>
-<span class="k">KEY</span><span class="w"> </span><span class="o">`</span><span class="n">b</span><span class="o">`</span><span class="w"> </span><span class="p">(</span><span class="o">`</span><span class="n">b</span><span class="o">`</span><span class="p">)</span>
-<span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+-------------------------------------------------------------------------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">02</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="k">drop</span><span class="w"> </span><span class="k">index</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">t5</span><span class="p">;</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t5</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">-------+----------------------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">Table</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">Create</span><span class="w"> </span><span class="k">Table</span><span class="w">                                                                           </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+----------------------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">t5</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="o">`</span><span class="n">t5</span><span class="o">`</span><span class="w"> </span><span class="p">(</span>
-<span class="o">`</span><span class="n">a</span><span class="o">`</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="o">`</span><span class="n">b</span><span class="o">`</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="k">UNIQUE</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="o">`</span><span class="n">a</span><span class="o">`</span><span class="w"> </span><span class="p">(</span><span class="o">`</span><span class="n">a</span><span class="o">`</span><span class="p">)</span>
-<span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+----------------------------------------------------------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">02</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+<p><code>``sql &lt;!-- validator-ignore-exec --&gt;
+create table t5(a int, b int, unique key(a));
+mysql&gt; show create table t5;
++-------+----------------------------------------------------------------------------------------+
+| Table | Create Table                                                                           |
++-------+----------------------------------------------------------------------------------------+
+| t5    | CREATE TABLE</code>t5<code>(</code>a<code>INT DEFAULT NULL,</code>b<code>INT DEFAULT NULL,
+UNIQUE KEY</code>a<code>(</code>a`)
+) |
++-------+----------------------------------------------------------------------------------------+
+1 row in set (0.01 sec)</p>
+<p>create index b on t5(b);
+mysql&gt; show create table t5;
++-------+-------------------------------------------------------------------------------------------------------+
+| Table | Create Table                                                                                          |
++-------+-------------------------------------------------------------------------------------------------------+
+| t5    | CREATE TABLE <code>t5</code> (
+<code>a</code> INT DEFAULT NULL,
+<code>b</code> INT DEFAULT NULL,
+UNIQUE KEY <code>a</code> (<code>a</code>),
+KEY <code>b</code> (<code>b</code>)
+) |
++-------+-------------------------------------------------------------------------------------------------------+
+1 row in set (0.02 sec)</p>
+<p>drop index b on t5;
+mysql&gt; show create table t5;
++-------+----------------------------------------------------------------------------------------+
+| Table | Create Table                                                                           |
++-------+----------------------------------------------------------------------------------------+
+| t5    | CREATE TABLE <code>t5</code> (
+<code>a</code> INT DEFAULT NULL,
+<code>b</code> INT DEFAULT NULL,
+UNIQUE KEY <code>a</code> (<code>a</code>)
+) |
++-------+----------------------------------------------------------------------------------------+
+1 row in set (0.02 sec)
+```</p>
 
 
 

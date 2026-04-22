@@ -13169,16 +13169,16 @@
 <div class="highlight"><pre><span></span><code>&gt; SHOW CREATE VIEW view_name
 </code></pre></div>
 <h2 id="examples"><strong>Examples</strong></h2>
-<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">test_table</span><span class="p">(</span><span class="n">col1</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">col2</span><span class="w"> </span><span class="nb">float</span><span class="p">,</span><span class="w"> </span><span class="n">col3</span><span class="w"> </span><span class="n">bool</span><span class="p">,</span><span class="w"> </span><span class="n">col4</span><span class="w"> </span><span class="nb">Date</span><span class="p">,</span><span class="w"> </span><span class="n">col5</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">255</span><span class="p">),</span><span class="w"> </span><span class="n">col6</span><span class="w"> </span><span class="nb">text</span><span class="p">);</span>
-<span class="k">create</span><span class="w"> </span><span class="k">view</span><span class="w"> </span><span class="n">test_view</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">test_table</span><span class="p">;</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">view</span><span class="w"> </span><span class="n">test_view</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">-----------+---------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">View</span><span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="k">Create</span><span class="w"> </span><span class="k">View</span><span class="w">                                       </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-----------+---------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">test_view</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">view</span><span class="w"> </span><span class="n">test_view</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">test_table</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-----------+---------------------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+<p><code>sql &lt;!-- validator-ignore-exec --&gt;
+create table test_table(col1 int, col2 float, col3 bool, col4 Date, col5 varchar(255), col6 text);
+create view test_view as select * from test_table;
+mysql&gt; show create view test_view;
++-----------+---------------------------------------------------+
+| View      | Create View                                       |
++-----------+---------------------------------------------------+
+| test_view | create view test_view as select * from test_table |
++-----------+---------------------------------------------------+
+1 row in set (0.01 sec)</code></p>
 
 
 

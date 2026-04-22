@@ -12123,26 +12123,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#the-number-of-columns-in-the-table" class="md-nav__link">
-    The number of columns in the table
-  </a>
-  
-    <nav class="md-nav" aria-label="The number of columns in the table">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#example_1" class="md-nav__link">
-    Example
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#the-maximum-and-minimum-values-contained-in-all-columns-in-the-table" class="md-nav__link">
     The maximum and minimum values ​​contained in all columns in the table
   </a>
@@ -12151,27 +12131,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#example_2" class="md-nav__link">
-    Example
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#the-total-number-of-rows-of-data-in-the-table" class="md-nav__link">
-    The total number of rows of data in the table
-  </a>
-  
-    <nav class="md-nav" aria-label="The total number of rows of data in the table">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#example_3" class="md-nav__link">
+  <a href="#example_1" class="md-nav__link">
     Example
   </a>
   
@@ -12191,7 +12151,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#example_4" class="md-nav__link">
+  <a href="#example_2" class="md-nav__link">
     Example
   </a>
   
@@ -13212,26 +13172,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#the-number-of-columns-in-the-table" class="md-nav__link">
-    The number of columns in the table
-  </a>
-  
-    <nav class="md-nav" aria-label="The number of columns in the table">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#example_1" class="md-nav__link">
-    Example
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#the-maximum-and-minimum-values-contained-in-all-columns-in-the-table" class="md-nav__link">
     The maximum and minimum values ​​contained in all columns in the table
   </a>
@@ -13240,27 +13180,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#example_2" class="md-nav__link">
-    Example
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#the-total-number-of-rows-of-data-in-the-table" class="md-nav__link">
-    The total number of rows of data in the table
-  </a>
-  
-    <nav class="md-nav" aria-label="The total number of rows of data in the table">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#example_3" class="md-nav__link">
+  <a href="#example_1" class="md-nav__link">
     Example
   </a>
   
@@ -13280,7 +13200,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#example_4" class="md-nav__link">
+  <a href="#example_2" class="md-nav__link">
     Example
   </a>
   
@@ -13326,44 +13246,41 @@
 <ul>
 <li><strong>Example 1</strong>: Check the total number of tables in the system database mo_catalog:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="n">table_number</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">mo_catalog</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">--------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="nb">Number</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">tables</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">mo_catalog</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------------------------------+</span>
-<span class="o">|</span><span class="w">                             </span><span class="mi">11</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------------------------------+</span>
-
-<span class="c1">-- Verify which tables in mo_catalog</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="n">use</span><span class="w"> </span><span class="n">mo_catalog</span><span class="p">;</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="n">tables</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">----------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">Tables_in_mo_catalog</span><span class="w">       </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">mo_user</span><span class="w">                    </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">mo_account</span><span class="w">                 </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">mo_role</span><span class="w">                    </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">mo_user_grant</span><span class="w">              </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">mo_role_grant</span><span class="w">              </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">mo_role_privs</span><span class="w">              </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">mo_user_defined_function</span><span class="w">   </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">mo_columns</span><span class="w">                 </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">mo_mysql_compatbility_mode</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">mo_tables</span><span class="w">                  </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">mo_database</span><span class="w">                </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------------------+</span>
-<span class="mi">11</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+<p>```sql <!-- validator-ignore-exec -->
+mysql&gt; show table_number from mo_catalog;
++--------------------------------+
+| Number of tables in mo_catalog |
++--------------------------------+
+|                             11 |
++--------------------------------+</p>
+<p>-- Verify which tables in mo_catalog
+mysql&gt; use mo_catalog;
+mysql&gt; show tables;
++----------------------------+
+| Tables_in_mo_catalog       |
++----------------------------+
+| mo_user                    |
+| mo_account                 |
+| mo_role                    |
+| mo_user_grant              |
+| mo_role_grant              |
+| mo_role_privs              |
+| mo_user_defined_function   |
+| mo_columns                 |
+| mo_mysql_compatbility_mode |
+| mo_tables                  |
+| mo_database                |
++----------------------------+
+11 rows in set (0.01 sec)
+<div class="highlight"><pre><span></span><code>- **Example 2**: Create a new database, and create new tables, check the number of tables in the specific database:
 </code></pre></div>
-<ul>
-<li><strong>Example 2</strong>: Create a new database, and create new tables, check the number of tables in the specific database:</li>
-</ul>
-<div class="highlight"><pre><span></span><code>create database demo_1;
+create database demo_1;
 use demo_1;
 -- Create three new tables
 CREATE TABLE t1(a bigint, b varchar(10), c varchar(10));
 CREATE TABLE t2(a bigint, b int);
-CREATE TABLE t3(a int, b varchar(10), c varchar(10));
-
--- Query out that there are three tables in the database demo_1
+CREATE TABLE t3(a int, b varchar(10), c varchar(10));</p>
+<p>-- Query out that there are three tables in the database demo_1
 mysql&gt; show table_number from demo_1;
 +----------------------------+
 | Number of tables in demo_1 |
@@ -13371,98 +13288,104 @@ mysql&gt; show table_number from demo_1;
 |                          3 |
 +----------------------------+
 1 row in set (0.01 sec)
-</code></pre></div>
-<h2 id="the-number-of-columns-in-the-table">The number of columns in the table</h2>
-<p>This command shows the total number of columns in the specified table.</p>
-<p><strong>Syntax</strong>:</p>
-<div class="highlight"><pre><span></span><code>SHOW COLUMN_NUMBER FROM {[DATABASE_NAME.]TABLE_NAME}
-</code></pre></div>
-<h3 id="example_1">Example</h3>
-<div class="highlight"><pre><span></span><code><span class="n">use</span><span class="w"> </span><span class="n">mo_catalog</span><span class="p">;</span>
-<span class="n">use</span><span class="w"> </span><span class="n">mo_user</span><span class="p">;</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="n">column_number</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">mo_user</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="nb">Number</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">columns</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">mo_user</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------------------+</span>
-<span class="o">|</span><span class="w">                           </span><span class="mi">11</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------------------+</span>
+<div class="highlight"><pre><span></span><code>## The number of columns in the table
 
-<span class="c1">-- Or use the following command</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="n">column_number</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">mo_catalog</span><span class="p">.</span><span class="n">mo_user</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="nb">Number</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">columns</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">mo_user</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------------------+</span>
-<span class="o">|</span><span class="w">                           </span><span class="mi">11</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------------------+</span>
+This command shows the total number of columns in the specified table.
 
-<span class="c1">-- Verify which columns in the table</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">desc</span><span class="w"> </span><span class="n">mo_catalog</span><span class="p">.</span><span class="n">mo_user</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">-----------------------+--------------+------+------+---------+-------+---------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">Field</span><span class="w">                 </span><span class="o">|</span><span class="w"> </span><span class="k">Type</span><span class="w">         </span><span class="o">|</span><span class="w"> </span><span class="k">Null</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">Key</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="k">Default</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Extra</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">Comment</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-----------------------+--------------+------+------+---------+-------+---------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">user_id</span><span class="w">               </span><span class="o">|</span><span class="w"> </span><span class="nb">INT</span><span class="w">          </span><span class="o">|</span><span class="w"> </span><span class="n">YES</span><span class="w">  </span><span class="o">|</span><span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w">    </span><span class="o">|</span><span class="w">       </span><span class="o">|</span><span class="w">         </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">user_host</span><span class="w">             </span><span class="o">|</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">YES</span><span class="w">  </span><span class="o">|</span><span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w">    </span><span class="o">|</span><span class="w">       </span><span class="o">|</span><span class="w">         </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">user_name</span><span class="w">             </span><span class="o">|</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">300</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">YES</span><span class="w">  </span><span class="o">|</span><span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w">    </span><span class="o">|</span><span class="w">       </span><span class="o">|</span><span class="w">         </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">authentication_string</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">YES</span><span class="w">  </span><span class="o">|</span><span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w">    </span><span class="o">|</span><span class="w">       </span><span class="o">|</span><span class="w">         </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">status</span><span class="w">                </span><span class="o">|</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">YES</span><span class="w">  </span><span class="o">|</span><span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w">    </span><span class="o">|</span><span class="w">       </span><span class="o">|</span><span class="w">         </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">created_time</span><span class="w">          </span><span class="o">|</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="n">YES</span><span class="w">  </span><span class="o">|</span><span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w">    </span><span class="o">|</span><span class="w">       </span><span class="o">|</span><span class="w">         </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">expired_time</span><span class="w">          </span><span class="o">|</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="n">YES</span><span class="w">  </span><span class="o">|</span><span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w">    </span><span class="o">|</span><span class="w">       </span><span class="o">|</span><span class="w">         </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">login_type</span><span class="w">            </span><span class="o">|</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">YES</span><span class="w">  </span><span class="o">|</span><span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w">    </span><span class="o">|</span><span class="w">       </span><span class="o">|</span><span class="w">         </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">creator</span><span class="w">               </span><span class="o">|</span><span class="w"> </span><span class="nb">INT</span><span class="w">          </span><span class="o">|</span><span class="w"> </span><span class="n">YES</span><span class="w">  </span><span class="o">|</span><span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w">    </span><span class="o">|</span><span class="w">       </span><span class="o">|</span><span class="w">         </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="k">owner</span><span class="w">                 </span><span class="o">|</span><span class="w"> </span><span class="nb">INT</span><span class="w">          </span><span class="o">|</span><span class="w"> </span><span class="n">YES</span><span class="w">  </span><span class="o">|</span><span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w">    </span><span class="o">|</span><span class="w">       </span><span class="o">|</span><span class="w">         </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">default_role</span><span class="w">          </span><span class="o">|</span><span class="w"> </span><span class="nb">INT</span><span class="w">          </span><span class="o">|</span><span class="w"> </span><span class="n">YES</span><span class="w">  </span><span class="o">|</span><span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w">    </span><span class="o">|</span><span class="w">       </span><span class="o">|</span><span class="w">         </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-----------------------+--------------+------+------+---------+-------+---------+</span>
-<span class="mi">11</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+**Syntax**:
 </code></pre></div>
+SHOW COLUMN_NUMBER FROM {[DATABASE_NAME.]TABLE_NAME}
+<div class="highlight"><pre><span></span><code>### Example
+
+```sql &lt;!-- validator-ignore-exec --&gt;
+use mo_catalog;
+use mo_user;
+mysql&gt; show column_number from mo_user;
++------------------------------+
+| Number of columns in mo_user |
++------------------------------+
+|                           11 |
++------------------------------+
+
+-- Or use the following command
+mysql&gt; show column_number from mo_catalog.mo_user;
++------------------------------+
+| Number of columns in mo_user |
++------------------------------+
+|                           11 |
++------------------------------+
+
+-- Verify which columns in the table
+mysql&gt; desc mo_catalog.mo_user;
++-----------------------+--------------+------+------+---------+-------+---------+
+| Field                 | Type         | Null | Key  | Default | Extra | Comment |
++-----------------------+--------------+------+------+---------+-------+---------+
+| user_id               | INT          | YES  |      | NULL    |       |         |
+| user_host             | VARCHAR(100) | YES  |      | NULL    |       |         |
+| user_name             | VARCHAR(300) | YES  |      | NULL    |       |         |
+| authentication_string | VARCHAR(100) | YES  |      | NULL    |       |         |
+| status                | VARCHAR(8)   | YES  |      | NULL    |       |         |
+| created_time          | TIMESTAMP    | YES  |      | NULL    |       |         |
+| expired_time          | TIMESTAMP    | YES  |      | NULL    |       |         |
+| login_type            | VARCHAR(16)  | YES  |      | NULL    |       |         |
+| creator               | INT          | YES  |      | NULL    |       |         |
+| owner                 | INT          | YES  |      | NULL    |       |         |
+| default_role          | INT          | YES  |      | NULL    |       |         |
++-----------------------+--------------+------+------+---------+-------+---------+
+11 rows in set (0.01 sec)
+</code></pre></div></p>
 <h2 id="the-maximum-and-minimum-values-contained-in-all-columns-in-the-table">The maximum and minimum values ​​contained in all columns in the table</h2>
 <p>This command shows the maximum and minimum values ​​of each column in the specified table.</p>
 <p><strong>Note:</strong> If the data types of the column values ​​in the specified table are inconsistent, the sorting rules are: numbers are sorted according to the size of numbers; dates are sorted according to time; characters are sorted according to ASCII code; when several data types are mixed, then First convert to character type, and then sort according to ASCII code.</p>
 <p><strong>Syntax</strong>:</p>
 <div class="highlight"><pre><span></span><code>SHOW TABLE_VALUES FROM {[DATABASE_NAME.]TABLE_NAME}
 </code></pre></div>
-<h3 id="example_2">Example</h3>
-<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="p">(</span>
-<span class="n">col1</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span>
-<span class="n">col2</span><span class="w"> </span><span class="nb">float</span><span class="p">,</span>
-<span class="n">col3</span><span class="w"> </span><span class="nb">varchar</span>
-<span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">.</span><span class="mi">11</span><span class="p">,</span><span class="s1">&#39;1.111&#39;</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">.</span><span class="mi">22</span><span class="p">,</span><span class="s1">&#39;1.222&#39;</span><span class="p">),(</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;abc&#39;</span><span class="p">);</span>
+<h3 id="example_1">Example</h3>
+<p>```sql <!-- validator-ignore-exec -->
+create table t1(
+col1 int,
+col2 float,
+col3 varchar
+);
+insert into t1 values(1,1.11,'1.111'),(2,2.22,'1.222'),(3,0,'abc');</p>
+<p>mysql&gt; show table_values from t1;
++-----------+-----------+-----------+-----------+-----------+-----------+
+| max(col1) | min(col1) | max(col2) | min(col2) | max(col3) | min(col3) |
++-----------+-----------+-----------+-----------+-----------+-----------+
+|         3 |         1 |      2.22 |         0 | abc       | 1.111     |
++-----------+-----------+-----------+-----------+-----------+-----------+
+<div class="highlight"><pre><span></span><code>## The total number of rows of data in the table
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="n">table_values</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">-----------+-----------+-----------+-----------+-----------+-----------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">max</span><span class="p">(</span><span class="n">col1</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">min</span><span class="p">(</span><span class="n">col1</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">max</span><span class="p">(</span><span class="n">col2</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">min</span><span class="p">(</span><span class="n">col2</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">max</span><span class="p">(</span><span class="n">col3</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">min</span><span class="p">(</span><span class="n">col3</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-----------+-----------+-----------+-----------+-----------+-----------+</span>
-<span class="o">|</span><span class="w">         </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w">         </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w">      </span><span class="mi">2</span><span class="p">.</span><span class="mi">22</span><span class="w"> </span><span class="o">|</span><span class="w">         </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">abc</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="mi">1</span><span class="p">.</span><span class="mi">111</span><span class="w">     </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-----------+-----------+-----------+-----------+-----------+-----------+</span>
+This command shows the total number of rows of data in a table in the database.
+
+**Syntax**:
 </code></pre></div>
-<h2 id="the-total-number-of-rows-of-data-in-the-table">The total number of rows of data in the table</h2>
-<p>This command shows the total number of rows of data in a table in the database.</p>
-<p><strong>Syntax</strong>:</p>
-<div class="highlight"><pre><span></span><code>SELECT MO_TABLE_ROWS({DATABASE_NAME},{TABLE_NAME})
-</code></pre></div>
-<h3 id="example_3">Example</h3>
-<div class="highlight"><pre><span></span><code><span class="c1">-- Query the total number of rows of mo_tables in mo_catalog</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">mo_table_rows</span><span class="p">(</span><span class="s1">&#39;mo_catalog&#39;</span><span class="p">,</span><span class="s1">&#39;mo_tables&#39;</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">--------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">mo_table_rows</span><span class="p">(</span><span class="n">mo_catalog</span><span class="p">,</span><span class="w"> </span><span class="n">mo_tables</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------------------------------------+</span>
-<span class="o">|</span><span class="w">                                   </span><span class="mi">64</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------------------------------------+</span>
-</code></pre></div>
+SELECT MO_TABLE_ROWS({DATABASE_NAME},{TABLE_NAME})
+<div class="highlight"><pre><span></span><code>### Example
+
+```sql &lt;!-- validator-ignore-exec --&gt;
+-- Query the total number of rows of mo_tables in mo_catalog
+mysql&gt; select mo_table_rows(&#39;mo_catalog&#39;,&#39;mo_tables&#39;);
++--------------------------------------+
+| mo_table_rows(mo_catalog, mo_tables) |
++--------------------------------------+
+|                                   64 |
++--------------------------------------+
+</code></pre></div></p>
 <h2 id="the-space-occupied-by-the-table-in-storage">The space occupied by the table in storage</h2>
 <p>This command shows the storage space occupied by a specific table in the database can be obtained, and the unit is the number of bytes.</p>
 <p><strong>Syntax</strong>:</p>
 <div class="highlight"><pre><span></span><code>SELECT MO_TABLE_SIZE({DATABASE_NAME},{TABLE_NAME})
 </code></pre></div>
-<h3 id="example_4">Example</h3>
-<div class="highlight"><pre><span></span><code><span class="c1">-- Query the storage space occupied by the table mo_tables in the database mo_catalog</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">mo_table_size</span><span class="p">(</span><span class="s1">&#39;mo_catalog&#39;</span><span class="p">,</span><span class="s1">&#39;mo_tables&#39;</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">--------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">mo_table_size</span><span class="p">(</span><span class="n">mo_catalog</span><span class="p">,</span><span class="w"> </span><span class="n">mo_tables</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------------------------------------+</span>
-<span class="o">|</span><span class="w">                                </span><span class="mi">16128</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------------------------------------+</span>
-</code></pre></div>
+<h3 id="example_2">Example</h3>
+<p><code>sql &lt;!-- validator-ignore-exec --&gt;
+-- Query the storage space occupied by the table mo_tables in the database mo_catalog
+mysql&gt; select mo_table_size('mo_catalog','mo_tables');
++--------------------------------------+
+| mo_table_size(mo_catalog, mo_tables) |
++--------------------------------------+
+|                                16128 |
++--------------------------------------+</code></p>
 
 
 

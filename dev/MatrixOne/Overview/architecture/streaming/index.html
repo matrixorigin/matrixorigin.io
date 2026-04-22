@@ -13194,18 +13194,21 @@
 <span class="k">WITH</span><span class="w"> </span><span class="p">(</span><span class="n">property_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">expression</span><span class="w"> </span><span class="p">[,</span><span class="w"> </span><span class="p">...]);</span>
 </code></pre></div>
 <p>For example, you can refer to the following examples:</p>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">EXTERNAL</span><span class="w"> </span><span class="n">STREAM</span><span class="w"> </span><span class="n">STUDENTS</span><span class="w"> </span><span class="p">(</span><span class="n">ID</span><span class="w"> </span><span class="n">STRING</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="w"> </span><span class="n">SCORE</span><span class="w"> </span><span class="nb">INT</span><span class="p">)</span>
 <span class="k">WITH</span><span class="w"> </span><span class="p">(</span><span class="n">kafka_topic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;students_topic&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">value_format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;JSON&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">partitions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span>
 </code></pre></div>
 <p>Or:</p>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="n">STREAM</span><span class="w"> </span><span class="n">STUDENTS</span><span class="w"> </span><span class="p">(</span><span class="n">ID</span><span class="w"> </span><span class="n">STRING</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="w"> </span><span class="n">SCORE</span><span class="w"> </span><span class="nb">INT</span><span class="p">)</span>
 </code></pre></div>
 <p>You can also query streams and connect them with other tables and materialized views, as shown below:</p>
-<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">STUDENTS</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">rank</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+<!-- validator-ignore -->
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">STUDENTS</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="o">`</span><span class="n">rank</span><span class="o">`</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
 </code></pre></div>
 <p>Additionally, you can insert new events, as demonstrated below:</p>
-<div class="highlight"><pre><span></span><code><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">foo</span><span class="w"> </span><span class="p">(</span><span class="n">ROWTIME</span><span class="p">,</span><span class="w"> </span><span class="n">KEY_COL</span><span class="p">,</span><span class="w"> </span><span class="n">COL_A</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">1510923225000</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;key&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;A&#39;</span><span class="p">);</span>
-</code></pre></div>
+<p><code>sql &lt;!-- validator-ignore-exec --&gt;
+INSERT INTO foo (ROWTIME, KEY_COL, COL_A) VALUES (1510923225000, 'key', 'A');</code></p>
 
 
 

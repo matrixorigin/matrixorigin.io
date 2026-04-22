@@ -1908,22 +1908,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#sort-results" class="md-nav__link">
-    Sort results
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#limit-the-number-of-query-results" class="md-nav__link">
     Limit the number of query results
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#aggregate-queries" class="md-nav__link">
-    Aggregate queries
   </a>
   
 </li>
@@ -13183,22 +13169,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#sort-results" class="md-nav__link">
-    Sort results
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#limit-the-number-of-query-results" class="md-nav__link">
     Limit the number of query results
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#aggregate-queries" class="md-nav__link">
-    Aggregate queries
   </a>
   
 </li>
@@ -13279,20 +13251,24 @@
 </code></pre></div>
 <h2 id="filter-results">Filter results</h2>
 <p>To filter query results, you can use the <code>WHERE</code> statement.</p>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">token_count</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">25</span><span class="p">;</span>
+<p>```sql <!-- validator-ignore-exec -->
+mysql&gt; SELECT * FROM token_count WHERE id = 25;
+<div class="highlight"><pre><span></span><code>Result is as below:
 </code></pre></div>
-<p>Result is as below:</p>
-<div class="highlight"><pre><span></span><code>+------+----------------------------------+-------+------+-------+---------------------+
++------+----------------------------------+-------+------+-------+---------------------+
 | id   | token                            | count | qty  | phone | times               |
 +------+----------------------------------+-------+------+-------+---------------------+
 |   25 | 4d75906f3c37ecff478a1eb56637aa09 |     4 | 6500 | y     | 1999-12-23 17:29:12 |
 +------+----------------------------------+-------+------+-------+---------------------+
-</code></pre></div>
-<h2 id="sort-results">Sort results</h2>
-<p>To sort query results, you can use the <code>ORDER BY</code> statement.</p>
-<p>For example, the following SQL statement can be used to sort the data in the <em>token_count</em> table in descending order (DESC) by <em>times</em> column.</p>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">token</span><span class="p">,</span><span class="w"> </span><span class="n">times</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">token_count</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">times</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><code>## Sort results
+
+To sort query results, you can use the `ORDER BY` statement.
+
+For example, the following SQL statement can be used to sort the data in the *token_count* table in descending order (DESC) by *times* column.
+
+```sql &lt;!-- validator-ignore-exec --&gt;
+mysql&gt; SELECT id, token, times FROM token_count ORDER BY times DESC;
+</code></pre></div></p>
 <p>Result is as below:</p>
 <div class="highlight"><pre><span></span><code>+------+----------------------------------+---------------------+
 | id   | token                            | times               |
@@ -13312,10 +13288,11 @@
 </code></pre></div>
 <h2 id="limit-the-number-of-query-results">Limit the number of query results</h2>
 <p>To limit the number of query results, you can use the <code>LIMIT</code> statement.</p>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">token</span><span class="p">,</span><span class="w"> </span><span class="n">times</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">token_count</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">times</span><span class="w"> </span><span class="k">DESC</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+<p>```sql <!-- validator-ignore-exec -->
+mysql&gt; SELECT id, token, times FROM token_count ORDER BY times DESC LIMIT 5;
+<div class="highlight"><pre><span></span><code>Result is as below:
 </code></pre></div>
-<p>Result is as below:</p>
-<div class="highlight"><pre><span></span><code>+------+----------------------------------+---------------------+
++------+----------------------------------+---------------------+
 | id   | token                            | times               |
 +------+----------------------------------+---------------------+
 |   29 | a71250b7ed780f6ef3185bfffe027983 | 1999-12-27 09:45:05 |
@@ -13324,12 +13301,15 @@
 |   27 | a71250b7ed780f6ef3185bfffe027983 | 1999-12-27 09:44:24 |
 |   24 | 4d75906f3c37ecff478a1eb56637aa09 | 1999-12-23 17:29:12 |
 +------+----------------------------------+---------------------+
-</code></pre></div>
-<h2 id="aggregate-queries">Aggregate queries</h2>
-<p>To have a better understanding of the overall data situation, you can use the <code>GROUP BY</code> statement to aggregate query results.</p>
-<p>For example, you can group basic information by <code>id</code>, <code>count</code>, and <code>times</code> columns and count them separately:</p>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="k">count</span><span class="p">,</span><span class="w"> </span><span class="n">times</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">token_count</span><span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="k">count</span><span class="p">,</span><span class="w"> </span><span class="n">times</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">times</span><span class="w"> </span><span class="k">DESC</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><code>## Aggregate queries
+
+To have a better understanding of the overall data situation, you can use the `GROUP BY` statement to aggregate query results.
+
+For example, you can group basic information by `id`, `count`, and `times` columns and count them separately:
+
+```sql &lt;!-- validator-ignore-exec --&gt;
+mysql&gt; SELECT id, count, times FROM token_count GROUP BY id, count, times ORDER BY times DESC LIMIT 5;
+</code></pre></div></p>
 <p>Result is as below:</p>
 <div class="highlight"><pre><span></span><code>+------+-------+---------------------+
 | id   | count | times               |

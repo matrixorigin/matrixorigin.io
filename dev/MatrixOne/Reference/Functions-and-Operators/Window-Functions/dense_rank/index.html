@@ -13177,42 +13177,41 @@
 <li>The <code>ORDER BY</code> clause defines how the dataset is sorted, i.e., according to which column or columns to sort. You can specify ascending (ASC) or descending (DESC) sorting.</li>
 </ul>
 <h2 id="examples"><strong>Examples</strong></h2>
-<div class="highlight"><pre><span></span><code><span class="c1">-- Create a new table, &#39;SalesTable&#39; with three fields: &#39;Department&#39;, &#39;Employee&#39;, and &#39;Sales&#39;</span>
-<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">SalesTable</span><span class="w"> </span><span class="p">(</span>
-<span class="w">  </span><span class="n">Department</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span>
-<span class="w">  </span><span class="n">Employee</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span>
-<span class="w">  </span><span class="n">Sales</span><span class="w"> </span><span class="nb">INT</span>
-<span class="p">);</span>
-
-<span class="c1">-- Insert data into the &#39;SalesTable&#39; table; each row contains a department (Department), an employee (Employee), and their sales (Sales)</span>
-<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">SalesTable</span><span class="w"> </span><span class="p">(</span><span class="n">Department</span><span class="p">,</span><span class="w"> </span><span class="n">Employee</span><span class="p">,</span><span class="w"> </span><span class="n">Sales</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span>
-<span class="p">(</span><span class="s1">&#39;Marketing&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;John&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">1000</span><span class="p">),</span>
-<span class="p">(</span><span class="s1">&#39;Marketing&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Jane&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">1200</span><span class="p">),</span>
-<span class="p">(</span><span class="s1">&#39;Sales&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Alex&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">900</span><span class="p">),</span>
-<span class="p">(</span><span class="s1">&#39;Sales&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Bob&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">1100</span><span class="p">),</span>
-<span class="p">(</span><span class="s1">&#39;HR&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Alice&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">800</span><span class="p">),</span>
-<span class="p">(</span><span class="s1">&#39;HR&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Charlie&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">850</span><span class="p">);</span>
-
-<span class="c1">-- Query the &#39;SalesTable&#39; table and return the employee&#39;s name, their sales, and their sales rank (using the &#39;DENSE_RANK()&#39; function)</span>
-<span class="c1">-- In this query, the &#39;DENSE_RANK()&#39; function ranks all employees in descending order of sales (specified by &#39;ORDER BY Sales DESC&#39;)</span>
-<span class="c1">-- If multiple employees have the same sales, they will get the same rank, and the rank of the next sales will not be skipped. So, if two employees are number one in sales, the next employee is number two, not number three.</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span>
-<span class="w">  </span><span class="n">Employee</span><span class="p">,</span>
-<span class="w">  </span><span class="n">Sales</span><span class="p">,</span>
-<span class="w">  </span><span class="n">DENSE_RANK</span><span class="p">()</span><span class="w"> </span><span class="n">OVER</span><span class="p">(</span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">Sales</span><span class="w"> </span><span class="k">DESC</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span>
-<span class="w">  </span><span class="n">SalesTable</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">----------+-------+-----------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">employee</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">sales</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">dense_rank</span><span class="p">()</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="p">(</span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">sales</span><span class="w"> </span><span class="k">desc</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------+-------+-----------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">Jane</span><span class="w">     </span><span class="o">|</span><span class="w">  </span><span class="mi">1200</span><span class="w"> </span><span class="o">|</span><span class="w">                                       </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">Bob</span><span class="w">      </span><span class="o">|</span><span class="w">  </span><span class="mi">1100</span><span class="w"> </span><span class="o">|</span><span class="w">                                       </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">John</span><span class="w">     </span><span class="o">|</span><span class="w">  </span><span class="mi">1000</span><span class="w"> </span><span class="o">|</span><span class="w">                                       </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">Alex</span><span class="w">     </span><span class="o">|</span><span class="w">   </span><span class="mi">900</span><span class="w"> </span><span class="o">|</span><span class="w">                                       </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">Charlie</span><span class="w">  </span><span class="o">|</span><span class="w">   </span><span class="mi">850</span><span class="w"> </span><span class="o">|</span><span class="w">                                       </span><span class="mi">5</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">Alice</span><span class="w">    </span><span class="o">|</span><span class="w">   </span><span class="mi">800</span><span class="w"> </span><span class="o">|</span><span class="w">                                       </span><span class="mi">6</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------+-------+-----------------------------------------+</span>
-<span class="mi">6</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+<p>```sql <!-- validator-ignore-exec -->
+-- Create a new table, 'SalesTable' with three fields: 'Department', 'Employee', and 'Sales'
+CREATE TABLE SalesTable (
+  Department VARCHAR(50),
+  Employee VARCHAR(50),
+  Sales INT
+);</p>
+<p>-- Insert data into the 'SalesTable' table; each row contains a department (Department), an employee (Employee), and their sales (Sales)
+INSERT INTO SalesTable (Department, Employee, Sales) VALUES
+('Marketing', 'John', 1000),
+('Marketing', 'Jane', 1200),
+('Sales', 'Alex', 900),
+('Sales', 'Bob', 1100),
+('HR', 'Alice', 800),
+('HR', 'Charlie', 850);</p>
+<p>-- Query the 'SalesTable' table and return the employee's name, their sales, and their sales rank (using the 'DENSE_RANK()' function)
+-- In this query, the 'DENSE_RANK()' function ranks all employees in descending order of sales (specified by 'ORDER BY Sales DESC')
+-- If multiple employees have the same sales, they will get the same rank, and the rank of the next sales will not be skipped. So, if two employees are number one in sales, the next employee is number two, not number three.
+mysql&gt; SELECT
+  Employee,
+  Sales,
+  DENSE_RANK() OVER(ORDER BY Sales DESC) FROM
+  SalesTable;
++----------+-------+-----------------------------------------+
+| employee | sales | dense_rank() over (order by sales desc) |
++----------+-------+-----------------------------------------+
+| Jane     |  1200 |                                       1 |
+| Bob      |  1100 |                                       2 |
+| John     |  1000 |                                       3 |
+| Alex     |   900 |                                       4 |
+| Charlie  |   850 |                                       5 |
+| Alice    |   800 |                                       6 |
++----------+-------+-----------------------------------------+
+6 rows in set (0.01 sec)
+```</p>
 
 
 

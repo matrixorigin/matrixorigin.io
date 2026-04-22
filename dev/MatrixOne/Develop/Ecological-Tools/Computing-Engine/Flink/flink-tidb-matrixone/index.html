@@ -3241,13 +3241,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#creating-a-target-table-in-matrixone" class="md-nav__link">
-    Creating a Target Table in MatrixOne
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#switch-to-the-flink-directory-and-start-the-cluster" class="md-nav__link">
     Switch to the flink directory and start the cluster
   </a>
@@ -13217,13 +13210,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#creating-a-target-table-in-matrixone" class="md-nav__link">
-    Creating a Target Table in MatrixOne
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#switch-to-the-flink-directory-and-start-the-cluster" class="md-nav__link">
     Switch to the flink directory and start the cluster
   </a>
@@ -13318,38 +13304,39 @@
 <p>Copy the <code>Flink CDC connector</code> and the corresponding Jar packages for <code>flink-connector-jdbc_2.12-1.13.6.jar</code> and <code>mysql-connector-j-8.0.33.jar</code> to <code>flink-1.13.6/lib/</code>.</p>
 <p>If flink is already started, you need to restart flink and load the effective jar package.</p>
 <h3 id="create-a-table-in-tidb-and-insert-data">Create a table in TiDB and insert data</h3>
-<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">EMPQ_cdc</span>
-<span class="p">(</span>
-<span class="w">    </span><span class="n">empno</span><span class="w">    </span><span class="nb">bigint</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">,</span>
-<span class="w">    </span><span class="n">ename</span><span class="w">    </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span>
-<span class="w">    </span><span class="n">job</span><span class="w">      </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">9</span><span class="p">),</span>
-<span class="w">    </span><span class="n">mgr</span><span class="w">      </span><span class="nb">int</span><span class="p">,</span>
-<span class="w">    </span><span class="n">hiredate</span><span class="w">  </span><span class="nb">DATE</span><span class="p">,</span>
-<span class="w">    </span><span class="n">sal</span><span class="w">      </span><span class="nb">decimal</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span>
-<span class="w">    </span><span class="n">comm</span><span class="w">   </span><span class="nb">decimal</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span>
-<span class="w">    </span><span class="n">deptno</span><span class="w">   </span><span class="nb">int</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>
-<span class="w">    </span><span class="k">primary</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="p">(</span><span class="n">empno</span><span class="p">)</span>
-<span class="p">)</span><span class="n">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">CHARSET</span><span class="o">=</span><span class="n">utf8mb4</span><span class="p">;</span>
+<p>```sql <!-- validator-ignore-exec -->
+create table EMPQ_cdc
+(
+    empno    bigint not null,
+    ename    VARCHAR(10),
+    job      VARCHAR(9),
+    mgr      int,
+    hiredate  DATE,
+    sal      decimal(7,2),
+    comm   decimal(7,2),
+    deptno   int(2),
+    primary key (empno)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;</p>
+<p>INSERT  into empq VALUES (1,"张三","sale",1,'2024-01-01',1000,NULL,1);
+INSERT  into empq VALUES (2,"李四","develop",2,'2024-03-05',5000,NULL,2);
+INSERT  into empq VALUES (3,"王五","hr",3,'2024-03-18',2000,NULL,2);
+INSERT  into empq VALUES (4,"赵六","pm",4,'2024-03-11',2000,NULL,3);
+<div class="highlight"><pre><span></span><code>### Creating a Target Table in MatrixOne
 
-<span class="k">INSERT</span><span class="w">  </span><span class="k">into</span><span class="w"> </span><span class="n">empq</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="ss">&quot;张三&quot;</span><span class="p">,</span><span class="ss">&quot;sale&quot;</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;2024-01-01&#39;</span><span class="p">,</span><span class="mi">1000</span><span class="p">,</span><span class="k">NULL</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
-<span class="k">INSERT</span><span class="w">  </span><span class="k">into</span><span class="w"> </span><span class="n">empq</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="ss">&quot;李四&quot;</span><span class="p">,</span><span class="ss">&quot;develo,&quot;</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;2024-03-05&#39;</span><span class="p">,</span><span class="mi">5000</span><span class="p">,</span><span class="k">NULL</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
-<span class="k">INSERT</span><span class="w">  </span><span class="k">into</span><span class="w"> </span><span class="n">empq</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="ss">&quot;王五&quot;</span><span class="p">,</span><span class="ss">&quot;hr&quot;</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="s1">&#39;2024-03-18&#39;</span><span class="p">,</span><span class="mi">2000</span><span class="p">,</span><span class="k">NULL</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
-<span class="k">INSERT</span><span class="w">  </span><span class="k">into</span><span class="w"> </span><span class="n">empq</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="ss">&quot;赵六&quot;</span><span class="p">,</span><span class="ss">&quot;pm&quot;</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="s1">&#39;2024-03-11&#39;</span><span class="p">,</span><span class="mi">2000</span><span class="p">,</span><span class="k">NULL</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
-</code></pre></div>
-<h3 id="creating-a-target-table-in-matrixone">Creating a Target Table in MatrixOne</h3>
-<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">EMPQ</span>
-<span class="p">(</span>
-<span class="w">    </span><span class="n">empno</span><span class="w">    </span><span class="nb">bigint</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">,</span>
-<span class="w">    </span><span class="n">ename</span><span class="w">    </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span>
-<span class="w">    </span><span class="n">job</span><span class="w">      </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">9</span><span class="p">),</span>
-<span class="w">    </span><span class="n">mgr</span><span class="w">      </span><span class="nb">int</span><span class="p">,</span>
-<span class="w">    </span><span class="n">hiredate</span><span class="w">  </span><span class="nb">DATE</span><span class="p">,</span>
-<span class="w">    </span><span class="n">sal</span><span class="w">      </span><span class="nb">decimal</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span>
-<span class="w">    </span><span class="n">comm</span><span class="w">   </span><span class="nb">decimal</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span>
-<span class="w">    </span><span class="n">deptno</span><span class="w">   </span><span class="nb">int</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>
-<span class="w">    </span><span class="k">primary</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="p">(</span><span class="n">empno</span><span class="p">)</span>
-<span class="p">);</span>
-</code></pre></div>
+```sql
+create table EMPQ
+(
+    empno    bigint not null,
+    ename    VARCHAR(10),
+    job      VARCHAR(9),
+    mgr      int,
+    hiredate  DATE,
+    sal      decimal(7,2),
+    comm   decimal(7,2),
+    deptno   int(2),
+    primary key (empno)
+);
+</code></pre></div></p>
 <h3 id="switch-to-the-flink-directory-and-start-the-cluster">Switch to the flink directory and start the cluster</h3>
 <div class="highlight"><pre><span></span><code>./bin/start-cluster.sh<span class="w"> </span>
 </code></pre></div>
@@ -13357,53 +13344,53 @@
 <div class="highlight"><pre><span></span><code>./bin/sql-client.sh<span class="w"> </span>
 </code></pre></div>
 <h3 id="turn-on-checkpoint">Turn on checkpoint</h3>
-<div class="highlight"><pre><span></span><code><span class="k">SET</span><span class="w"> </span><span class="n">execution</span><span class="p">.</span><span class="n">checkpointing</span><span class="p">.</span><span class="nb">interval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="n">s</span><span class="p">;</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code>SET execution.checkpointing.interval = 3s; 
 </code></pre></div>
 <h3 id="create-source-and-sink-tables-using-flink-ddl">Create source and sink tables using flink ddl</h3>
 <p>The build table statement is in smt/result/flink-create.all.sql.</p>
-<div class="highlight"><pre><span></span><code><span class="c1">-- Creating Test Libraries</span>
-<span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="o">`</span><span class="n">default_catalog</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">test</span><span class="o">`</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code>-- Creating Test Libraries
+CREATE DATABASE IF NOT EXISTS `default_catalog`.`test`;
 
-<span class="c1">-- Create source table</span>
-<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="o">`</span><span class="n">default_catalog</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">test</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">EMPQ_src</span><span class="o">`</span><span class="w"> </span><span class="p">(</span>
-<span class="o">`</span><span class="n">empno</span><span class="o">`</span><span class="w"> </span><span class="nb">BIGINT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w">                                                 </span>
-<span class="o">`</span><span class="n">ename</span><span class="o">`</span><span class="w"> </span><span class="n">STRING</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w">                                                   </span>
-<span class="o">`</span><span class="n">job</span><span class="o">`</span><span class="w"> </span><span class="n">STRING</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w">                                                      </span>
-<span class="o">`</span><span class="n">mgr</span><span class="o">`</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w">                                                      </span>
-<span class="o">`</span><span class="n">hiredate</span><span class="o">`</span><span class="w"> </span><span class="nb">DATE</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w">                                                         </span>
-<span class="o">`</span><span class="n">sal</span><span class="o">`</span><span class="w"> </span><span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w">                                             </span>
-<span class="o">`</span><span class="n">comm</span><span class="o">`</span><span class="w"> </span><span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w">                                                     </span>
-<span class="o">`</span><span class="n">deptno</span><span class="o">`</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w">                                                        </span>
-<span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">(</span><span class="o">`</span><span class="n">empno</span><span class="o">`</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="n">ENFORCED</span>
-<span class="p">)</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="p">(</span>
-<span class="w">    </span><span class="s1">&#39;connector&#39;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;tidb-cdc&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="s1">&#39;database-name&#39;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;test&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="s1">&#39;table-name&#39;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;EMPQ_cdc&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="s1">&#39;pd-addresses&#39;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;xx.xx.xx.xx:2379&#39;</span>
-<span class="p">);</span>
+-- Create source table
+CREATE TABLE IF NOT EXISTS `default_catalog`.`test`.`EMPQ_src` (
+`empno` BIGINT NOT NULL,                                                 
+`ename` STRING NULL,                                                   
+`job` STRING NULL,                                                      
+`mgr` INT NULL,                                                      
+`hiredate` DATE NULL,                                                         
+`sal` DECIMAL(7, 2) NULL,                                             
+`comm` DECIMAL(7, 2) NULL,                                                     
+`deptno` INT NULL,                                                        
+PRIMARY KEY(`empno`) NOT ENFORCED
+) with (
+    &#39;connector&#39; = &#39;tidb-cdc&#39;,
+    &#39;database-name&#39; = &#39;test&#39;,
+    &#39;table-name&#39; = &#39;EMPQ_cdc&#39;,
+    &#39;pd-addresses&#39; = &#39;xx.xx.xx.xx:2379&#39;
+);
 
-<span class="c1">-- Creating a sink table</span>
-<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="o">`</span><span class="n">default_catalog</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">test</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">EMPQ_sink</span><span class="o">`</span><span class="w"> </span><span class="p">(</span><span class="w">           </span>
-<span class="o">`</span><span class="n">empno</span><span class="o">`</span><span class="w"> </span><span class="nb">BIGINT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w">                                                     </span>
-<span class="o">`</span><span class="n">ename</span><span class="o">`</span><span class="w"> </span><span class="n">STRING</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w">                                                     </span>
-<span class="o">`</span><span class="n">job</span><span class="o">`</span><span class="w"> </span><span class="n">STRING</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w">                                                        </span>
-<span class="o">`</span><span class="n">mgr</span><span class="o">`</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w">                                                         </span>
-<span class="o">`</span><span class="n">hiredate</span><span class="o">`</span><span class="w"> </span><span class="nb">DATE</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w">                                                          </span>
-<span class="o">`</span><span class="n">sal</span><span class="o">`</span><span class="w"> </span><span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w">                                               </span>
-<span class="o">`</span><span class="n">comm</span><span class="o">`</span><span class="w"> </span><span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w">                                                             </span>
-<span class="o">`</span><span class="n">deptno</span><span class="o">`</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w">                                                           </span>
-<span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">(</span><span class="o">`</span><span class="n">empno</span><span class="o">`</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="n">ENFORCED</span>
-<span class="p">)</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="p">(</span>
-<span class="s1">&#39;connector&#39;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;jdbc&#39;</span><span class="p">,</span>
-<span class="s1">&#39;url&#39;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;jdbc:mysql://xx.xx.xx.xx:6001/test&#39;</span><span class="p">,</span>
-<span class="s1">&#39;driver&#39;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;com.mysql.cj.jdbc.Driver&#39;</span><span class="p">,</span>
-<span class="s1">&#39;username&#39;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;root&#39;</span><span class="p">,</span>
-<span class="s1">&#39;password&#39;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;111&#39;</span><span class="p">,</span>
-<span class="s1">&#39;table-name&#39;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;empq&#39;</span>
-<span class="p">);</span>
+-- Creating a sink table
+CREATE TABLE IF NOT EXISTS `default_catalog`.`test`.`EMPQ_sink` (           
+`empno` BIGINT NOT NULL,                                                     
+`ename` STRING NULL,                                                     
+`job` STRING NULL,                                                        
+`mgr` INT NULL,                                                         
+`hiredate` DATE NULL,                                                          
+`sal` DECIMAL(7, 2) NULL,                                               
+`comm` DECIMAL(7, 2) NULL,                                                             
+`deptno` INT NULL,                                                           
+PRIMARY KEY(`empno`) NOT ENFORCED
+) with (
+&#39;connector&#39; = &#39;jdbc&#39;,
+&#39;url&#39; = &#39;jdbc:mysql://xx.xx.xx.xx:6001/test&#39;,
+&#39;driver&#39; = &#39;com.mysql.cj.jdbc.Driver&#39;,
+&#39;username&#39; = &#39;root&#39;,
+&#39;password&#39; = &#39;111&#39;,
+&#39;table-name&#39; = &#39;empq&#39;
+);
 </code></pre></div>
 <h3 id="importing-tidb-data-into-matrixone">Importing TiDB data into MatrixOne</h3>
-<div class="highlight"><pre><span></span><code><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="o">`</span><span class="n">default_catalog</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">test</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">EMPQ_sink</span><span class="o">`</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="o">`</span><span class="n">default_catalog</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">test</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">EMPQ_src</span><span class="o">`</span><span class="p">;</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code>INSERT INTO `default_catalog`.`test`.`EMPQ_sink` SELECT * FROM `default_catalog`.`test`.`EMPQ_src`; 
 </code></pre></div>
 <h3 id="query-correspondence-table-data-in-matrixone">Query correspondence table data in Matrixone</h3>
 <div class="highlight"><pre><span></span><code><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">EMPQ</span><span class="p">;</span><span class="w"> </span>
@@ -13414,8 +13401,8 @@
 
 <p>Data can be found to have been imported</p>
 <h3 id="delete-a-piece-of-data-in-tidb">Delete a piece of data in TiDB</h3>
-<div class="highlight"><pre><span></span><code><span class="k">delete</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">EMPQ_cdc</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">empno</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="w"> </span>
-</code></pre></div>
+<p><code>sql &lt;!-- validator-ignore-exec --&gt;
+delete from EMPQ_cdc where empno=1;</code></p>
 <div align="center">
     <img src=https://github.com/matrixorigin/artwork/blob/main/docs/develop/flink/flink-tidb-02.jpg?raw=true width=50% heigth=50%/>
 </div>

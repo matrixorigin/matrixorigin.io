@@ -13234,7 +13234,7 @@ pip3 install cryptography -i https://pypi.tuna.tsinghua.edu.cn/simple
 <li>
 <p>Execute this python file in the command line terminal.</p>
 <div class="highlight"><pre><span></span><code>&gt; python3 pymysql_connect_matrixone.py
-Database version : 8.0.30-MatrixOne-v3.0.9
+Database version : 8.0.30-MatrixOne-v3.0.10
 </code></pre></div>
 </li>
 </ol>
@@ -13251,10 +13251,10 @@ pip3 install sqlalchemy -i https://pypi.tuna.tsinghua.edu.cn/simple
 </li>
 <li>
 <p>Connect to MatrixOne by MySQL client. Create a new database named <em>test</em>, a new table named <em>student</em> and insert two records.</p>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n">test</span><span class="p">;</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="n">use</span><span class="w"> </span><span class="n">test</span><span class="p">;</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">student</span><span class="w"> </span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="nb">int</span><span class="p">);</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">student</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="ss">&quot;tom&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">11</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="ss">&quot;alice&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;10&quot;</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n">test</span><span class="p">;</span>
+<span class="n">use</span><span class="w"> </span><span class="n">test</span><span class="p">;</span>
+<span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">student</span><span class="w"> </span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="nb">int</span><span class="p">);</span>
+<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">student</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="ss">&quot;tom&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">11</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="ss">&quot;alice&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;10&quot;</span><span class="p">);</span>
 </code></pre></div>
 </li>
 <li>

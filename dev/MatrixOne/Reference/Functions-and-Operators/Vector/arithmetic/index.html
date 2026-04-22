@@ -13479,41 +13479,39 @@
 <div class="highlight"><pre><span></span><code>&gt; SELECT para1 / para2
 </code></pre></div>
 <h3 id="examples_1"><strong>Examples</strong></h3>
-<div class="highlight"><pre><span></span><code><span class="k">drop</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="n">vec_table</span><span class="p">;</span>
-<span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">vec_table</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="n">vecf32</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span><span class="w"> </span><span class="k">c</span><span class="w"> </span><span class="n">vecf64</span><span class="p">(</span><span class="mi">3</span><span class="p">));</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">vec_table</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;[1,2,3]&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;[4,5,6]&quot;</span><span class="p">);</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">vec_table</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------+-----------+-----------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">a</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="n">b</span><span class="w">         </span><span class="o">|</span><span class="w"> </span><span class="k">c</span><span class="w">         </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+-----------+-----------+</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">]</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+-----------+-----------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">b</span><span class="o">/</span><span class="n">b</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">vec_table</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">-----------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">b</span><span class="w">     </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-----------+</span>
-<span class="o">|</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-----------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="k">cast</span><span class="p">(</span><span class="ss">&quot;[1,2,3]&quot;</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">vecf32</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">vec_table</span><span class="p">;;</span>
-<span class="o">+</span><span class="c1">--------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">cast</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">vecf32</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w">                      </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">b</span><span class="o">/</span><span class="mi">2</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">vec_table</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">---------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="w">         </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">.</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">.</span><span class="mi">5</span><span class="p">]</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+<p>```sql <!-- validator-ignore-exec -->
+drop table if exists vec_table;
+create table vec_table(a int, b vecf32(3), c vecf64(3));
+insert into vec_table values(1, "[1,2,3]", "[4,5,6]");
+mysql&gt; select * from vec_table;
++------+-----------+-----------+
+| a    | b         | c         |
++------+-----------+-----------+
+|    1 | [1, 2, 3] | [4, 5, 6] |
++------+-----------+-----------+
+1 row in set (0.00 sec)</p>
+<p>mysql&gt; select b/b from vec_table;
++-----------+
+| b / b     |
++-----------+
+| [1, 1, 1] |
++-----------+
+1 row in set (0.00 sec)</p>
+<p>mysql&gt; select cast("[1,2,3]" as vecf32(3)) / b from vec_table;;
++--------------------------------+
+| cast([1,2,3] as vecf32(3)) / b |
++--------------------------------+
+| [1, 1, 1]                      |
++--------------------------------+
+1 row in set (0.00 sec)</p>
+<p>mysql&gt; select b/2 from vec_table;
++---------------+
+| b / 2         |
++---------------+
+| [0.5, 1, 1.5] |
++---------------+
+1 row in set (0.00 sec)
+```</p>
 <h3 id="restrictions_1"><strong>Restrictions</strong></h3>
 <ul>
 <li>The denominator element is not allowed to be 0, otherwise an error is generated.</li>

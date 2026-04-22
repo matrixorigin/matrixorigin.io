@@ -13167,9 +13167,10 @@
 <div class="highlight"><pre><span></span><code>&gt; DROP STAGE [IF EXISTS] {stage_name};
 </code></pre></div>
 <h2 id="example"><strong>Example</strong></h2>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="n">stage</span><span class="w"> </span><span class="n">stage_fs</span><span class="w"> </span><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;file:///Users/admin/test&#39;</span><span class="p">;</span>
+<!-- validator-ignore -->
+<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="n">stage</span><span class="w"> </span><span class="n">stage_fs</span><span class="w"> </span><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;file:///Users/admin/test&#39;</span><span class="p">;</span>
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="k">drop</span><span class="w"> </span><span class="n">stage</span><span class="w"> </span><span class="n">stage_fs</span><span class="p">;</span>
+<span class="k">drop</span><span class="w"> </span><span class="n">stage</span><span class="w"> </span><span class="n">stage_fs</span><span class="p">;</span>
 </code></pre></div>
 
 

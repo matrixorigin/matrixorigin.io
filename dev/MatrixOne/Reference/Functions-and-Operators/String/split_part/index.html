@@ -13223,31 +13223,31 @@
 <ul>
 <li>Example 2</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="c1">-- Create a new table &#39;t1&#39; with three columns: &#39;a&#39; (varchar type), &#39;b&#39; (varchar type), and &#39;c&#39; (int type).</span>
-<span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">varchar</span><span class="p">,</span><span class="n">b</span><span class="w"> </span><span class="nb">varchar</span><span class="p">,</span><span class="k">c</span><span class="w"> </span><span class="nb">int</span><span class="p">);</span>
-<span class="c1">-- Insert multiple rows of data into the &#39;t1&#39; table</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="s1">&#39;axbxc&#39;</span><span class="p">,</span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="s1">&#39;axbxcxd&#39;</span><span class="p">,</span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">),(</span><span class="s1">&#39;axbxcxd&#39;</span><span class="p">,</span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="mi">3</span><span class="p">),(</span><span class="s1">&#39;axbxcxd&#39;</span><span class="p">,</span><span class="s1">&#39;xc&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="s1">&#39;axbxcxd&#39;</span><span class="p">,</span><span class="s1">&#39;xc&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">),(</span><span class="s1">&#39;axbxcxd&#39;</span><span class="p">,</span><span class="s1">&#39;xc&#39;</span><span class="p">,</span><span class="mi">3</span><span class="p">),(</span><span class="s1">&#39;axbxcxd&#39;</span><span class="p">,</span><span class="s1">&#39;asas&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="s1">&#39;axbxcxd&#39;</span><span class="p">,</span><span class="s1">&#39;asas&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">),(</span><span class="k">null</span><span class="p">,</span><span class="s1">&#39;asas&#39;</span><span class="p">,</span><span class="mi">3</span><span class="p">),(</span><span class="s1">&#39;axbxcxd&#39;</span><span class="p">,</span><span class="k">null</span><span class="p">,</span><span class="mi">3</span><span class="p">),(</span><span class="s1">&#39;axbxcxd&#39;</span><span class="p">,</span><span class="s1">&#39;asas&#39;</span><span class="p">,</span><span class="k">null</span><span class="p">),(</span><span class="s1">&#39;axxx&#39;</span><span class="p">,</span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="s1">&#39;axxx&#39;</span><span class="p">,</span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
-<span class="c1">-- Query uses the split_part function to process each row in the &#39;t1&#39; table. For each row, it splits the value of the &#39;a&#39; column into multiple parts (using the value of the &#39;b&#39; column as the delimiter) and then returns the specified part (designated by the value of the &#39;c&#39; column). For example, for the first row of data (&#39;axbxc&#39;, &#39;x&#39;, 1), it returns &#39;a&#39; because &#39;a&#39; is the first part of the string &#39;axbxc&#39; split on the basis of the &#39;x&#39; delimiter.</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">split_part</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="k">c</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">---------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">split_part</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="k">c</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">a</span><span class="w">                   </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">b</span><span class="w">                   </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="k">c</span><span class="w">                   </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">axb</span><span class="w">                 </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">xd</span><span class="w">                  </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w">                </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">axbxcxd</span><span class="w">             </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w">                </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w">                </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w">                </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w">                </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">a</span><span class="w">                   </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w">                </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------------------+</span>
-<span class="mi">13</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+<p><code>sql &lt;!-- validator-ignore-exec --&gt;
+-- Create a new table 't1' with three columns: 'a' (varchar type), 'b' (varchar type), and 'c' (int type).
+create table t1(a varchar,b varchar,c int);
+-- Insert multiple rows of data into the 't1' table
+insert into t1 values('axbxc','x',1),('axbxcxd','x',2),('axbxcxd','x',3),('axbxcxd','xc',1),('axbxcxd','xc',2),('axbxcxd','xc',3),('axbxcxd','asas',1),('axbxcxd','asas',2),(null,'asas',3),('axbxcxd',null,3),('axbxcxd','asas',null),('axxx','x',1),('axxx','x',2);
+-- Query uses the split_part function to process each row in the 't1' table. For each row, it splits the value of the 'a' column into multiple parts (using the value of the 'b' column as the delimiter) and then returns the specified part (designated by the value of the 'c' column). For example, for the first row of data ('axbxc', 'x', 1), it returns 'a' because 'a' is the first part of the string 'axbxc' split on the basis of the 'x' delimiter.
+mysql&gt; select split_part(a,b,c) from t1;
++---------------------+
+| split_part(a, b, c) |
++---------------------+
+| a                   |
+| b                   |
+| c                   |
+| axb                 |
+| xd                  |
+| NULL                |
+| axbxcxd             |
+| NULL                |
+| NULL                |
+| NULL                |
+| NULL                |
+| a                   |
+| NULL                |
++---------------------+
+13 rows in set (0.01 sec)</code></p>
 
 
 

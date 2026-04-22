@@ -13258,17 +13258,19 @@ Compact data storage. When storing "ENUM" in MatrixOne, only the numerical index
 <p>The above statement will create a table named <code>enumtable</code>, which contains an enum type field named <code>color</code>. The value of the <code>color</code> field must be one of <code>red</code>, <code>green</code>, or <code>blue</code>. At the same time, according to the order of column definition, the indexes of <code>red</code>, <code>green</code>, and <code>blue</code> are 1, 2, and 3, respectively.</p>
 <h3 id="insert-enum-values">Insert ENUM values</h3>
 <p>When inserting data into a field of an enumeration type, only predefined enumeration values ​​or <code>NULL</code> can be inserted. An error is raised if the inserted value is not in the predefined list. For example:</p>
-<div class="highlight"><pre><span></span><code><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">enumtable</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;01&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;red&#39;</span><span class="p">);</span>
-<span class="c1">-- &#39;red&#39; is in the predefined list; the insertion was successful</span>
-<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">enumtable</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;02&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;yellow&#39;</span><span class="p">);</span>
-<span class="c1">-- &#39;yellow&#39; is not in the predefined list, an error will be generated</span>
-<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">enumtable</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;03&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">NULL</span><span class="p">);</span>
-<span class="c1">-- The enumeration member does not define not null; the insertion is successful</span>
-</code></pre></div>
-<p>In addition to enumeration values, data can be inserted into ENUM columns using numeric indexes on enumeration members. For example:</p>
-<div class="highlight"><pre><span></span><code><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">enumtable</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;04&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
-<span class="c1">-- Since the index of `green` is 2, this data is successfully inserted</span>
-</code></pre></div>
+<p>```sql <!-- validator-ignore-exec -->
+INSERT INTO enumtable (id, color) VALUES ('01', 'red');
+-- 'red' is in the predefined list; the insertion was successful
+INSERT INTO enumtable (id, color) VALUES ('02', 'yellow');
+-- 'yellow' is not in the predefined list, an error will be generated
+INSERT INTO enumtable (id, color) VALUES ('03', NULL);
+-- The enumeration member does not define not null; the insertion is successful
+<div class="highlight"><pre><span></span><code>In addition to enumeration values, data can be inserted into ENUM columns using numeric indexes on enumeration members. For example:
+
+```sql
+INSERT INTO enumtable (id, color) VALUES (&#39;04&#39;, 2);
+-- Since the index of `green` is 2, this data is successfully inserted
+</code></pre></div></p>
 <ul>
 <li><strong>NON-NULL CONSTRAINT FOR ENUM RESTRICTIONS</strong></li>
 </ul>
@@ -13286,8 +13288,8 @@ Compact data storage. When storing "ENUM" in MatrixOne, only the numerical index
 <h2 id="features-that-are-different-from-mysql">Features that are different from MySQL</h2>
 <p>Unlike MySQL, MatrixOne's ENUM type can only be compared with the string type in the WHERE condition.</p>
 <p>You can see this example:</p>
-<div class="highlight"><pre><span></span><code><span class="k">update</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="n">status</span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">status</span><span class="o">=</span><span class="s1">&#39;Processing&#39;</span><span class="p">;</span><span class="o">`</span>
-</code></pre></div>
+<p><code>sql &lt;!-- validator-ignore-exec --&gt;
+update orders set status= 2 where status='Processing';</code></p>
 <p>In this example, you must update the <code>status</code> to 2 for the row whose <code>status</code> is <code>Processing</code>. Due to the nature of the ENUM type, MatrixOne implicitly converts 2 to the string <code>2</code> in the WHERE condition, which is then compared with <code>Processing</code>.</p>
 <h2 id="constraints">Constraints</h2>
 <ol>

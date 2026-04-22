@@ -13241,6 +13241,7 @@ URL= &quot;stage://&lt;stagename&gt;[/path/]&quot;
 </li>
 </ul>
 <h2 id="example"><strong>Example</strong></h2>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="n">stage</span><span class="w"> </span><span class="n">stage_fs</span><span class="w"> </span><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;file:///Users/admin/test&#39;</span><span class="w"> </span><span class="k">comment</span><span class="o">=</span><span class="s1">&#39;this is a stage&#39;</span><span class="p">;</span>
 
 <span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">mo_catalog</span><span class="p">.</span><span class="n">mo_stages</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">stage_name</span><span class="o">=</span><span class="s1">&#39;stage_fs&#39;</span><span class="p">;</span>

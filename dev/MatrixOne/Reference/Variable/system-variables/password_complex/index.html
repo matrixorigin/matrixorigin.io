@@ -5274,13 +5274,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#validate_passwordchanged_characters_percentage" class="md-nav__link">
-    validate_password.changed_characters_percentage
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#validate_passwordpolicy-and-its-related-parameters" class="md-nav__link">
     validate_password.policy and its related parameters
   </a>
@@ -5289,22 +5282,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#validate_passwordlength" class="md-nav__link">
-    validate_password.length
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#validate_passwordmixed_case_count" class="md-nav__link">
     validate_password.mixed_case_count
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#validate_passwordnumber_count" class="md-nav__link">
-    validate_password.number_count
   </a>
   
 </li>
@@ -13207,13 +13186,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#validate_passwordchanged_characters_percentage" class="md-nav__link">
-    validate_password.changed_characters_percentage
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#validate_passwordpolicy-and-its-related-parameters" class="md-nav__link">
     validate_password.policy and its related parameters
   </a>
@@ -13222,22 +13194,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#validate_passwordlength" class="md-nav__link">
-    validate_password.length
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#validate_passwordmixed_case_count" class="md-nav__link">
     validate_password.mixed_case_count
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#validate_passwordnumber_count" class="md-nav__link">
-    validate_password.number_count
   </a>
   
 </li>
@@ -13343,219 +13301,216 @@
 </code></pre></div>
 <h2 id="set-up">set up</h2>
 <p>After setting, you need to exit and reconnect to take effect.</p>
-<div class="highlight"><pre><span></span><code><span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">validate_password</span><span class="o">=</span><span class="n">xx</span><span class="p">;</span><span class="w"> </span><span class="c1">--Default is 0</span>
-<span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">validate_password</span><span class="p">.</span><span class="n">changed_characters_percentage</span><span class="o">=</span><span class="n">xx</span><span class="p">;</span><span class="w"> </span><span class="c1">--Default is 0</span>
-<span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">validate_password</span><span class="p">.</span><span class="n">check_user_name</span><span class="o">=</span><span class="n">xx</span><span class="p">;</span><span class="c1">--Default is 1</span>
-<span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">validate_password</span><span class="p">.</span><span class="n">policy</span><span class="o">=</span><span class="n">xx</span><span class="p">;</span><span class="c1">--Default is 0</span>
-<span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">validate_password</span><span class="p">.</span><span class="k">length</span><span class="o">=</span><span class="n">xx</span><span class="p">;</span><span class="c1">--Default is 8</span>
-<span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">validate_password</span><span class="p">.</span><span class="n">mixed_case_count</span><span class="o">=</span><span class="n">xx</span><span class="p">;</span><span class="c1">--Default is 1</span>
-<span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">validate_password</span><span class="p">.</span><span class="n">number_count</span><span class="o">=</span><span class="n">xx</span><span class="p">;</span><span class="c1">--Default is 1</span>
-<span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">validate_password</span><span class="p">.</span><span class="n">special_char_count</span><span class="o">==</span><span class="n">xx</span><span class="p">;</span><span class="c1">--Default is 1</span>
+<div class="highlight"><pre><span></span><code>set global validate_password=xx; --Default is 0
+set global validate_password.changed_characters_percentage=xx; --Default is 0
+set global validate_password.check_user_name=xx; -- Default is 1
+set global validate_password.policy=xx; -- Default is 0
+set global validate_password.length=xx; -- Default is 8
+set global validate_password.mixed_case_count=xx; -- Default is 1
+set global validate_password.number_count=xx; -- Default is 1
+set global validate_password.special_char_count==xx; -- Default is 1
 </code></pre></div>
 <h2 id="example">Example</h2>
 <h3 id="validate_password">validate_password</h3>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">@@</span><span class="k">global</span><span class="p">.</span><span class="n">validate_password</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">---------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="o">@@</span><span class="n">validate_password</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">0</span><span class="w">                   </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+<p>```sql <!-- validator-ignore-exec -->
+mysql&gt; select @@global.validate_password;
++---------------------+
+| @@validate_password |
++---------------------+
+| 0                   |
++---------------------+
+1 row in set (0.00 sec)</p>
+<p>mysql&gt; set global validate_password=1;
+Query OK, 0 rows affected (0.02 sec)</p>
+<p>mysql&gt; select @@global.validate_password;
+-- Reconnection takes effect
++---------------------+
+| @@validate_password |
++---------------------+
+| 1                   |
++---------------------+
+1 row in set (0.00 sec)</p>
+<div class="highlight"><pre><span></span><code>### validate_password.changed_characters_percentage
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">validate_password</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
-<span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">02</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+```sql &lt;!-- validator-ignore-exec --&gt;
+mysql&gt; select @@global.validate_password.changed_characters_percentage;
++---------------------------------------------------+
+| @@validate_password.changed_characters_percentage |
++---------------------------------------------------+
+| 0                                                 |
++---------------------------------------------------+
+1 row in set (0.01 sec)
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">@@</span><span class="k">global</span><span class="p">.</span><span class="n">validate_password</span><span class="p">;</span><span class="w"> </span><span class="c1">--Reconnection takes effect</span>
-<span class="o">+</span><span class="c1">---------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="o">@@</span><span class="n">validate_password</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">1</span><span class="w">                   </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
-<h3 id="validate_passwordchanged_characters_percentage">validate_password.changed_characters_percentage</h3>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">@@</span><span class="k">global</span><span class="p">.</span><span class="n">validate_password</span><span class="p">.</span><span class="n">changed_characters_percentage</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">---------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="o">@@</span><span class="n">validate_password</span><span class="p">.</span><span class="n">changed_characters_percentage</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">0</span><span class="w">                                                 </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------------------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+# Create user u1, character ratio is 0%, created successfully
+mysql&gt; create user u1 identified by &#39;12345678&#39;;
+Query OK, 0 rows affected (0.02 sec)
 
-<span class="o">#</span><span class="w"> </span><span class="k">Create</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="n">u1</span><span class="p">,</span><span class="w"> </span><span class="nb">character</span><span class="w"> </span><span class="n">ratio</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="mi">0</span><span class="o">%</span><span class="p">,</span><span class="w"> </span><span class="n">created</span><span class="w"> </span><span class="n">successfully</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="n">u1</span><span class="w"> </span><span class="n">identified</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="s1">&#39;12345678&#39;</span><span class="p">;</span>
-<span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">02</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+mysql&gt;set global validate_password.changed_characters_percentage=80; -- Set character proportion to 80%
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">validate_password</span><span class="p">.</span><span class="n">changed_characters_percentage</span><span class="o">=</span><span class="mi">80</span><span class="p">;</span><span class="c1">--Set character proportion to 80%</span>
+mysql&gt; select @@global.validate_password.changed_characters_percentage; -- Reconnection takes effect
++---------------------------------------------------+
+| @@validate_password.changed_characters_percentage |
++---------------------------------------------------+
+| 80                                                |
++---------------------------------------------------+
+1 row in set (0.00 sec)
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">@@</span><span class="k">global</span><span class="p">.</span><span class="n">validate_password</span><span class="p">.</span><span class="n">changed_characters_percentage</span><span class="p">;</span><span class="w"> </span><span class="c1">--Reconnection takes effect</span>
-<span class="o">+</span><span class="c1">---------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="o">@@</span><span class="n">validate_password</span><span class="p">.</span><span class="n">changed_characters_percentage</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">80</span><span class="w">                                                </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------------------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+# Create user u2, character ratio is 0%, creation failed
+mysql&gt; create user u2 identified by &#39;12345678&#39;;
+ERROR 20301 (HY000): invalid input: Password &#39;12345678&#39; does not contain enough changed characters
 
-<span class="o">#</span><span class="w"> </span><span class="k">Create</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="n">u2</span><span class="p">,</span><span class="w"> </span><span class="nb">character</span><span class="w"> </span><span class="n">ratio</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="mi">0</span><span class="o">%</span><span class="p">,</span><span class="w"> </span><span class="n">creation</span><span class="w"> </span><span class="n">failed</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="n">u2</span><span class="w"> </span><span class="n">identified</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="s1">&#39;12345678&#39;</span><span class="p">;</span>
-<span class="n">ERROR</span><span class="w"> </span><span class="mi">20301</span><span class="w"> </span><span class="p">(</span><span class="n">HY000</span><span class="p">):</span><span class="w"> </span><span class="n">invalid</span><span class="w"> </span><span class="k">input</span><span class="p">:</span><span class="w"> </span><span class="n">Password</span><span class="w"> </span><span class="s1">&#39;12345678&#39;</span><span class="w"> </span><span class="n">does</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="n">contain</span><span class="w"> </span><span class="n">enough</span><span class="w"> </span><span class="n">changed</span><span class="w"> </span><span class="n">characters</span>
+# Create user u2, characters account for 20%, creation failed
+mysql&gt; create user u2 identified by &#39;12345678ab&#39;;
+ERROR 20301 (HY000): invalid input: Password &#39;12345678ab&#39; does not contain enough changed characters
 
-<span class="o">#</span><span class="w"> </span><span class="k">Create</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="n">u2</span><span class="p">,</span><span class="w"> </span><span class="n">characters</span><span class="w"> </span><span class="n">account</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="mi">20</span><span class="o">%</span><span class="p">,</span><span class="w"> </span><span class="n">creation</span><span class="w"> </span><span class="n">failed</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="n">u2</span><span class="w"> </span><span class="n">identified</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="s1">&#39;12345678ab&#39;</span><span class="p">;</span>
-<span class="n">ERROR</span><span class="w"> </span><span class="mi">20301</span><span class="w"> </span><span class="p">(</span><span class="n">HY000</span><span class="p">):</span><span class="w"> </span><span class="n">invalid</span><span class="w"> </span><span class="k">input</span><span class="p">:</span><span class="w"> </span><span class="n">Password</span><span class="w"> </span><span class="s1">&#39;12345678ab&#39;</span><span class="w"> </span><span class="n">does</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="n">contain</span><span class="w"> </span><span class="n">enough</span><span class="w"> </span><span class="n">changed</span><span class="w"> </span><span class="n">characters</span>
-
-<span class="o">#</span><span class="w"> </span><span class="k">Create</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="n">u2</span><span class="p">,</span><span class="w"> </span><span class="n">characters</span><span class="w"> </span><span class="n">account</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="mi">80</span><span class="o">%</span><span class="p">,</span><span class="w"> </span><span class="n">created</span><span class="w"> </span><span class="n">successfully</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="n">u4</span><span class="w"> </span><span class="n">identified</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="s1">&#39;12abdefhij&#39;</span><span class="p">;</span>
-<span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+# Create user u2, characters account for 80%, created successfully
+mysql&gt; create user u4 identified by &#39;12abdefhij&#39;;
+Query OK, 0 rows affected (0.01 sec)
 </code></pre></div>
 <h3 id="validate_passwordpolicy-and-its-related-parameters">validate_password.policy and its related parameters</h3>
 <p>The following parameters need to enable validate_password.policy to take effect.</p>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">@@</span><span class="k">global</span><span class="p">.</span><span class="n">validate_password</span><span class="p">.</span><span class="n">policy</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">----------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="o">@@</span><span class="n">validate_password</span><span class="p">.</span><span class="n">policy</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">0</span><span class="w">                          </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-<span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">validate_password</span><span class="p">.</span><span class="n">policy</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+<p>```sql <!-- validator-ignore-exec -->
+mysql&gt; select @@global.validate_password.policy;
++----------------------------+
+| @@validate_password.policy |
++----------------------------+
+| 0                          |
++----------------------------+
+1 row in set (0.00 sec)
+set global validate_password.policy=1;</p>
+<p>mysql&gt; select @@global.validate_password.policy;
+-- Reconnection takes effect
++----------------------------+
+| @@validate_password.policy |
++----------------------------+
+| 1                          |
++----------------------------+
+1 row in set (0.00 sec)
+<div class="highlight"><pre><span></span><code>#### validate_password.length
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">@@</span><span class="k">global</span><span class="p">.</span><span class="n">validate_password</span><span class="p">.</span><span class="n">policy</span><span class="p">;</span><span class="c1">--Reconnection takes effect</span>
-<span class="o">+</span><span class="c1">----------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="o">@@</span><span class="n">validate_password</span><span class="p">.</span><span class="n">policy</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">1</span><span class="w">                          </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
-<h4 id="validate_passwordlength">validate_password.length</h4>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">@@</span><span class="k">global</span><span class="p">.</span><span class="n">validate_password</span><span class="p">.</span><span class="k">length</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">----------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="o">@@</span><span class="n">validate_password</span><span class="p">.</span><span class="k">length</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">8</span><span class="w">                          </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+```sql &lt;!-- validator-ignore-exec --&gt;
+mysql&gt; select @@global.validate_password.length;
++----------------------------+
+| @@validate_password.length |
++----------------------------+
+| 8                          |
++----------------------------+
+1 row in set (0.00 sec)
 
-<span class="o">#</span><span class="w"> </span><span class="k">Create</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="n">u3</span><span class="p">,</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">password</span><span class="w"> </span><span class="k">length</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">creation</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">successful</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="n">u3</span><span class="w"> </span><span class="n">identified</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="s1">&#39;Pass123!&#39;</span><span class="p">;</span>
-<span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+# Create user u3, the password length is 8, the creation is successful
+mysql&gt; create user u3 identified by &#39;Pass123!&#39;;
+Query OK, 0 rows affected (0.01 sec)
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">validate_password</span><span class="p">.</span><span class="k">length</span><span class="o">=</span><span class="mi">9</span><span class="p">;</span>
-<span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+mysql&gt; set global validate_password.length=9;
+Query OK, 0 rows affected (0.01 sec)
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">@@</span><span class="k">global</span><span class="p">.</span><span class="n">validate_password</span><span class="p">.</span><span class="k">length</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">----------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="o">@@</span><span class="n">validate_password</span><span class="p">.</span><span class="k">length</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">9</span><span class="w">                          </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+mysql&gt; select @@global.validate_password.length;
++----------------------------+
+| @@validate_password.length |
++----------------------------+
+| 9                          |
++----------------------------+
+1 row in set (0.00 sec)
 
-<span class="o">#</span><span class="w"> </span><span class="k">Create</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="n">u4</span><span class="p">,</span><span class="w"> </span><span class="n">password</span><span class="w"> </span><span class="k">length</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="n">creation</span><span class="w"> </span><span class="n">failed</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="n">u4</span><span class="w"> </span><span class="n">identified</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="s1">&#39;Pass123!&#39;</span><span class="p">;</span>
-<span class="n">ERROR</span><span class="w"> </span><span class="mi">20301</span><span class="w"> </span><span class="p">(</span><span class="n">HY000</span><span class="p">):</span><span class="w"> </span><span class="n">invalid</span><span class="w"> </span><span class="k">input</span><span class="p">:</span><span class="w"> </span><span class="n">Password</span><span class="w"> </span><span class="s1">&#39;Pass123!&#39;</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">too</span><span class="w"> </span><span class="n">short</span><span class="p">,</span><span class="w"> </span><span class="n">require</span><span class="w"> </span><span class="k">at</span><span class="w"> </span><span class="n">least</span><span class="w"> </span><span class="mi">9</span><span class="w"> </span><span class="n">characters</span>
+# Create user u4, password length is 8, creation failed
+mysql&gt; create user u4 identified by &#39;Pass123!&#39;;
+ERROR 20301 (HY000): invalid input: Password &#39;Pass123!&#39; is too short, require at least 9 characters
 
-<span class="o">#</span><span class="w"> </span><span class="k">Create</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="n">u4</span><span class="p">,</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">password</span><span class="w"> </span><span class="k">length</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">creation</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">successful</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="n">u4</span><span class="w"> </span><span class="n">identified</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="s1">&#39;Pass1234!&#39;</span><span class="p">;</span>
-<span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">02</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+# Create user u4, the password length is 9, the creation is successful
+mysql&gt; create user u4 identified by &#39;Pass1234!&#39;;
+Query OK, 0 rows affected (0.02 sec)
+</code></pre></div></p>
 <h4 id="validate_passwordmixed_case_count">validate_password.mixed_case_count</h4>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">@@</span><span class="k">global</span><span class="p">.</span><span class="n">validate_password</span><span class="p">.</span><span class="n">mixed_case_count</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">--------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="o">@@</span><span class="n">validate_password</span><span class="p">.</span><span class="n">mixed_case_count</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">1</span><span class="w">                                    </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+<p>```sql <!-- validator-ignore-exec -->
+mysql&gt; select @@global.validate_password.mixed_case_count;
++--------------------------------------+
+| @@validate_password.mixed_case_count |
++--------------------------------------+
+| 1                                    |
++--------------------------------------+
+1 row in set (0.00 sec)</p>
+<p>-- Create user u4, the password contains one uppercase letter and one lowercase letter, the creation is successful
+mysql&gt; create user u4 identified by 'Pa12345!';
+Query OK, 0 rows affected (0.01 sec)</p>
+<p>-- Set validate_password.mixed_case_count to 2
+mysql&gt; set global validate_password.mixed_case_count=2;
+Query OK, 0 rows affected (0.01 sec)</p>
+<p>mysql&gt; select @@global.validate_password.mixed_case_count; -- Reconnection takes effect
++--------------------------------------+
+| @@validate_password.mixed_case_count |
++--------------------------------------+
+| 2                                    |
++--------------------------------------+
+1 row in set (0.00 sec)</p>
+<p>-- Create user u5. The password contains one uppercase letter and one lowercase letter. The creation failed.
+mysql&gt; create user u5 identified by 'Pa12345!';
+ERROR 20301 (HY000): invalid input: Password 'Pa12345!' does not meet the Lowercase requirements</p>
+<p>-- Create user u5. The password contains two uppercase letters and two lowercase letters. The creation failed.
+mysql&gt; create user u5 identified by 'PPaa123!';
+Query OK, 0 rows affected (0.01 sec)
+<div class="highlight"><pre><span></span><code>#### validate_password.number_count
 
-<span class="c1">--Create user u4, the password contains one uppercase letter and one lowercase letter, the creation is successful</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="n">u4</span><span class="w"> </span><span class="n">identified</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="s1">&#39;Pa12345!&#39;</span><span class="p">;</span>
-<span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+```sql &lt;!-- validator-ignore-exec --&gt;
+mysql&gt; select @@global.validate_password.number_count;
++----------------------------------+
+| @@validate_password.number_count |
++----------------------------------+
+| 1                                |
++----------------------------------+
+1 row in set (0.00 sec)
 
-<span class="c1">--Set validate_password.mixed_case_count to 2</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">validate_password</span><span class="p">.</span><span class="n">mixed_case_count</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span>
-<span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+-- Create user u6, the password contains 1 number, the creation is successful
+mysql&gt; create user u6 identified by &#39;Password1!&#39;;
+Query OK, 0 rows affected (0.01 sec)
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">@@</span><span class="k">global</span><span class="p">.</span><span class="n">validate_password</span><span class="p">.</span><span class="n">mixed_case_count</span><span class="p">;</span><span class="w"> </span><span class="c1">--Reconnection takes effect</span>
-<span class="o">+</span><span class="c1">--------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="o">@@</span><span class="n">validate_password</span><span class="p">.</span><span class="n">mixed_case_count</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">2</span><span class="w">                                    </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+mysql&gt; set global validate_password.number_count=2;
+Query OK, 0 rows affected (0.01 sec)
 
-<span class="c1">--Create user u5. The password contains one uppercase letter and one lowercase letter. The creation failed.</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="n">u5</span><span class="w"> </span><span class="n">identified</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="s1">&#39;Pa12345!&#39;</span><span class="p">;</span>
-<span class="n">ERROR</span><span class="w"> </span><span class="mi">20301</span><span class="w"> </span><span class="p">(</span><span class="n">HY000</span><span class="p">):</span><span class="w"> </span><span class="n">invalid</span><span class="w"> </span><span class="k">input</span><span class="p">:</span><span class="w"> </span><span class="n">Password</span><span class="w"> </span><span class="s1">&#39;Pa12345!&#39;</span><span class="w"> </span><span class="n">does</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="n">meet</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">Lowercase</span><span class="w"> </span><span class="n">requirements</span>
+mysql&gt; select @@global.validate_password.number_count;
++----------------------------------+
+| @@validate_password.number_count |
++----------------------------------+
+| 2                                |
++----------------------------------+
+1 row in set (0.00 sec)
 
-<span class="c1">--Create user u5. The password contains two uppercase letters and two lowercase letters. The creation failed.</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="n">u5</span><span class="w"> </span><span class="n">identified</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="s1">&#39;PPaa123!&#39;</span><span class="p">;</span>
-<span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
-<h4 id="validate_passwordnumber_count">validate_password.number_count</h4>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">@@</span><span class="k">global</span><span class="p">.</span><span class="n">validate_password</span><span class="p">.</span><span class="n">number_count</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">----------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="o">@@</span><span class="n">validate_password</span><span class="p">.</span><span class="n">number_count</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">1</span><span class="w">                                </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+-- Create user u7, the password contains a number, the creation failed
+mysql&gt; create user u7 identified by &#39;Password1!&#39;;
+ERROR 20301 (HY000): invalid input: Password &#39;Password1!&#39; does not meet the Number requirements
 
-<span class="c1">--Create user u6, the password contains 1 number, the creation is successful</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="n">u6</span><span class="w"> </span><span class="n">identified</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="s1">&#39;Password1!&#39;</span><span class="p">;</span>
-<span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">validate_password</span><span class="p">.</span><span class="n">number_count</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span>
-<span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">@@</span><span class="k">global</span><span class="p">.</span><span class="n">validate_password</span><span class="p">.</span><span class="n">number_count</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">----------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="o">@@</span><span class="n">validate_password</span><span class="p">.</span><span class="n">number_count</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">2</span><span class="w">                                </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="c1">--Create user u7, the password contains a number, the creation failed</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="n">u7</span><span class="w"> </span><span class="n">identified</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="s1">&#39;Password1!&#39;</span><span class="p">;</span>
-<span class="n">ERROR</span><span class="w"> </span><span class="mi">20301</span><span class="w"> </span><span class="p">(</span><span class="n">HY000</span><span class="p">):</span><span class="w"> </span><span class="n">invalid</span><span class="w"> </span><span class="k">input</span><span class="p">:</span><span class="w"> </span><span class="n">Password</span><span class="w"> </span><span class="s1">&#39;Password1!&#39;</span><span class="w"> </span><span class="n">does</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="n">meet</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="nb">Number</span><span class="w"> </span><span class="n">requirements</span>
-
-<span class="c1">--Create user u7, the password contains two numbers, the creation is successful</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="n">u7</span><span class="w"> </span><span class="n">identified</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="s1">&#39;Password12!&#39;</span><span class="p">;</span>
-<span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+-- Create user u7, the password contains two numbers, the creation is successful
+mysql&gt; create user u7 identified by &#39;Password12!&#39;;
+Query OK, 0 rows affected (0.01 sec)
+</code></pre></div></p>
 <h4 id="validate_passwordspecial_char_count">validate_password.special_char_count</h4>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">@@</span><span class="k">global</span><span class="p">.</span><span class="n">validate_password</span><span class="p">.</span><span class="n">special_char_count</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">----------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="o">@@</span><span class="n">validate_password</span><span class="p">.</span><span class="n">special_char_count</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">1</span><span class="w">                                      </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="c1">--Create user u8, the password contains a special character, the creation is successful</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="n">u8</span><span class="w"> </span><span class="n">identified</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="s1">&#39;Password123!&#39;</span><span class="p">;</span>
-<span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">validate_password</span><span class="p">.</span><span class="n">special_char_count</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span>
-<span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">@@</span><span class="k">global</span><span class="p">.</span><span class="n">validate_password</span><span class="p">.</span><span class="n">special_char_count</span><span class="p">;</span><span class="w"> </span><span class="c1">--Effective after reconnection</span>
-<span class="o">+</span><span class="c1">----------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="o">@@</span><span class="n">validate_password</span><span class="p">.</span><span class="n">special_char_count</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">2</span><span class="w">                                      </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="c1">--Create user u9. The password contains a special character and the creation fails.</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="n">u9</span><span class="w"> </span><span class="n">identified</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="s1">&#39;Password123!&#39;</span><span class="p">;</span>
-<span class="n">ERROR</span><span class="w"> </span><span class="mi">20301</span><span class="w"> </span><span class="p">(</span><span class="n">HY000</span><span class="p">):</span><span class="w"> </span><span class="n">invalid</span><span class="w"> </span><span class="k">input</span><span class="p">:</span><span class="w"> </span><span class="n">Password</span><span class="w"> </span><span class="s1">&#39;Password123!&#39;</span><span class="w"> </span><span class="n">does</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="n">meet</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">Special</span><span class="w"> </span><span class="nb">Char</span><span class="w"> </span><span class="n">requirements</span>
-
-<span class="c1">--Create user u9, the password contains two special characters, the creation is successful</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="n">u9</span><span class="w"> </span><span class="n">identified</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="s1">&#39;Password123!!&#39;</span><span class="p">;</span>
-<span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+<p>```sql <!-- validator-ignore-exec -->
+mysql&gt; select @@global.validate_password.special_char_count;
++----------------------------------------+
+| @@validate_password.special_char_count |
++----------------------------------------+
+| 1                                      |
++----------------------------------------+
+1 row in set (0.00 sec)</p>
+<p>-- Create user u8, the password contains a special character, the creation is successful
+mysql&gt; create user u8 identified by 'Password123!';
+Query OK, 0 rows affected (0.01 sec)</p>
+<p>mysql&gt; set global validate_password.special_char_count=2;
+Query OK, 0 rows affected (0.01 sec)</p>
+<p>mysql&gt; select @@global.validate_password.special_char_count;
+-- Effective after reconnection
++----------------------------------------+
+| @@validate_password.special_char_count |
++----------------------------------------+
+| 2                                      |
++----------------------------------------+
+1 row in set (0.00 sec)</p>
+<p>--Create user u9. The password contains a special character and the creation fails.
+mysql&gt; create user u9 identified by 'Password123!';
+ERROR 20301 (HY000): invalid input: Password 'Password123!' does not meet the Special Char requirements</p>
+<p>--Create user u9, the password contains two special characters, the creation is successful
+mysql&gt; create user u9 identified by 'Password123!!';
+Query OK, 0 rows affected (0.01 sec)
+```</p>
 
 
 

@@ -13585,6 +13585,7 @@
 </ul>
 <h3 id="character-set">CHARACTER SET</h3>
 <p>If the file content uses a different character set than the default, you can use <code>CHARACTER SET</code> to specify the character set. For example, you can use <code>CHARACTER SET utf8</code> to specify the character set of the imported content as utf8:</p>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="k">LOAD</span><span class="w"> </span><span class="k">DATA</span><span class="w"> </span><span class="n">INFILE</span><span class="w"> </span><span class="s1">&#39;/tmp/test.txt&#39;</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">table1</span><span class="w"> </span><span class="k">IGNORE</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">LINES</span><span class="p">;</span>
 </code></pre></div>
 <div class="admonition note">
@@ -13670,6 +13671,7 @@
 1   a\\b
 </code></pre></div>
 <p>Connect mo than execute the following statement to import the data.txt contents to t1:</p>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="p">(</span><span class="n">n1</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="n">n2</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">255</span><span class="p">));</span>
 <span class="k">load</span><span class="w"> </span><span class="k">data</span><span class="w"> </span><span class="n">infile</span><span class="w"> </span><span class="s1">&#39;Users/admin/test/case/data.txt&#39;</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
 
@@ -13690,6 +13692,7 @@
 1   a\\b
 </code></pre></div>
 <p>Connect mo than execute the following statement to import the data.txt contents to t2:</p>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t2</span><span class="p">(</span><span class="n">n1</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="n">n2</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">255</span><span class="p">));</span>
 <span class="k">load</span><span class="w"> </span><span class="k">data</span><span class="w"> </span><span class="n">infile</span><span class="w"> </span><span class="s1">&#39;Users/admin/test/case/data.txt&#39;</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="n">fields</span><span class="w"> </span><span class="n">escaped</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="p">;</span>
 
@@ -13710,6 +13713,7 @@
 1   a\\b
 </code></pre></div>
 <p>Connect mo than execute the following statement to import the data.txt contents to t3:</p>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t3</span><span class="p">(</span><span class="n">n1</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="n">n2</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">255</span><span class="p">));</span>
 <span class="k">load</span><span class="w"> </span><span class="k">data</span><span class="w"> </span><span class="n">infile</span><span class="w"> </span><span class="s1">&#39;Users/admin/test/case/data.txt&#39;</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t3</span><span class="w"> </span><span class="n">fields</span><span class="w"> </span><span class="n">escaped</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">;</span>
 
@@ -13735,6 +13739,7 @@
 6   a\Zb
 </code></pre></div>
 <p>Connect mo than execute the following statement to import the data.txt contents to t4:</p>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t4</span><span class="p">(</span><span class="n">n1</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="n">n2</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">255</span><span class="p">));</span>
 <span class="k">load</span><span class="w"> </span><span class="k">data</span><span class="w"> </span><span class="n">infile</span><span class="w"> </span><span class="s1">&#39;Users/admin/test/case/data.txt&#39;</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t4</span><span class="p">;</span>
 
@@ -13799,8 +13804,8 @@ null,wederTom,&quot;man&quot;
 </li>
 <li>
 <p>Load <code>test.txt</code> into the table <code>user</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="k">LOAD</span><span class="w"> </span><span class="k">DATA</span><span class="w"> </span><span class="n">INFILE</span><span class="w"> </span><span class="s1">&#39;/tmp/test.txt&#39;</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">id</span><span class="o">=</span><span class="k">nullif</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="ss">&quot;null&quot;</span><span class="p">);</span>
-</code></pre></div>
+<p><code>sql &lt;!-- validator-ignore-exec --&gt;
+LOAD DATA INFILE '/tmp/test.txt' INTO TABLE user SET id=nullif(id,"null");</code></p>
 </li>
 <li>
 <p>The result of the talbe is as below:</p>
@@ -13819,6 +13824,7 @@ null,wederTom,&quot;man&quot;
 <p>For a sizeable well-formed file, such as a <em>JSOLLines</em> file or a <em>CSV</em> file with no line breaks in a line of data, you can use <code>PARALLEL</code> to load the file in parallel to speed up the loading.</p>
 <p>For example, for a large file of 2 G, use two threads to load; the second thread first splits and locates the 1G position, then reads and loads backward. In this way, two threads can read large files at the same time, and each thread can read 1G of data.</p>
 <p><strong>Enable/Disable Parallel Loading Command Line Example</strong>:</p>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="c1">--  Enable Parallel Loading</span>
 <span class="k">load</span><span class="w"> </span><span class="k">data</span><span class="w"> </span><span class="n">infile</span><span class="w"> </span><span class="s1">&#39;file_name&#39;</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">tbl_name</span><span class="w"> </span><span class="n">FIELDS</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;|&#39;</span><span class="w"> </span><span class="n">ENCLOSED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;\&quot;&#39;</span><span class="w"> </span><span class="n">LINES</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;\n&#39;</span><span class="w"> </span><span class="k">IGNORE</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">LINES</span><span class="w"> </span><span class="n">PARALLEL</span><span class="w"> </span><span class="s1">&#39;TRUE&#39;</span><span class="p">;</span>
 
@@ -13836,6 +13842,7 @@ null,wederTom,&quot;man&quot;
 <h3 id="strict">STRICT</h3>
 <p>MatrixOne supports the use of the STRICT parameter to specify the way to cut the file in parallel, which is only valid when PARALLEL is TRUE. The default value of STRICT is TRUE, which indicates that the cut is done using read-ahead detection, which not only relies on the line breaks for the segmentation, but also performs a read-ahead to verify that it matches the column definitions of the table, and will process it as a valid segmentation point only if the data meets the column definitions. Only if the data matches the column definition will it be processed as a valid split point. When the parameter is FALSE, it will use the newline character (default is '\n') to cut in the parallel import of the cut file, and in the case of data with newline character, there may be an error in the cut.</p>
 <p><strong>Example</strong>:</p>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="c1">-- Enable pre-reading mode</span>
 <span class="k">load</span><span class="w"> </span><span class="k">data</span><span class="w"> </span><span class="n">infile</span><span class="w"> </span><span class="s1">&#39;file_name&#39;</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">tbl_name</span><span class="w"> </span><span class="n">PARALLEL</span><span class="w"> </span><span class="s1">&#39;TRUE&#39;</span><span class="w"> </span><span class="k">STRICT</span><span class="w"> </span><span class="s1">&#39;TRUE&#39;</span><span class="p">;</span>
 
@@ -13994,6 +14001,7 @@ aa&quot;aa|bb&quot;bb|cc&quot;cc|dd&quot;dd
 &quot;&quot;&quot;&quot;&quot;&quot;|&quot;&quot;&quot;&quot;&quot;&quot;|&quot;&quot;&quot;&quot;&quot;&quot;|&quot;&quot;&quot;&quot;&quot;&quot;
 </code></pre></div>
 <p>Create a table named t1 in MatrixOne:</p>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">drop</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
 <span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 
@@ -14006,6 +14014,7 @@ aa&quot;aa|bb&quot;bb|cc&quot;cc|dd&quot;dd
 <span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">02</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 </code></pre></div>
 <p>Load the data file into table t1:</p>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="k">load</span><span class="w"> </span><span class="k">data</span><span class="w"> </span><span class="n">infile</span><span class="w"> </span><span class="s1">&#39;&lt;your-local-file-path&gt;/char_varchar.csv&#39;</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="n">fields</span><span class="w"> </span><span class="n">terminated</span><span class="w"> </span><span class="k">by</span><span class="s1">&#39;|&#39;</span><span class="p">;</span>
 </code></pre></div>
 <p>The query result is as follows:</p>
@@ -14038,10 +14047,12 @@ aa&quot;aa|bb&quot;bb|cc&quot;cc|dd&quot;dd
 </code></pre></div>
 <h3 id="add-conditional-example">Add conditional Example</h3>
 <p>Following the example above, you can modify the <code>LOAD DATA</code> statement and add <code>LINES STARTING BY 'aa' ignore 10 lines;</code> at the end of the statement to experience the difference:</p>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="k">delete</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
 <span class="k">load</span><span class="w"> </span><span class="k">data</span><span class="w"> </span><span class="n">infile</span><span class="w"> </span><span class="s1">&#39;&lt;your-local-file-path&gt;/char_varchar.csv&#39;</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="n">fields</span><span class="w"> </span><span class="n">terminated</span><span class="w"> </span><span class="k">by</span><span class="s1">&#39;|&#39;</span><span class="w"> </span><span class="n">LINES</span><span class="w"> </span><span class="n">STARTING</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;aa&#39;</span><span class="w"> </span><span class="k">ignore</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="n">lines</span><span class="p">;</span>
 </code></pre></div>
 <p>The query result is as follows:</p>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">---------+---------+---------+---------+</span>
 <span class="o">|</span><span class="w"> </span><span class="n">col1</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="n">col2</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="n">col3</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="n">col4</span><span class="w">    </span><span class="o">|</span>
@@ -14069,6 +14080,7 @@ and ignores the common prefix aa.</p>
 [&quot;true&quot;,&quot;1&quot;,&quot;var&quot;,&quot;2020-09-07&quot;,&quot;2020-09-07 00:00:00&quot;,&quot;2020-09-07 00:00:00&quot;,&quot;18&quot;,&quot;121.11&quot;,{&quot;c&quot;:1,&quot;b&quot;:[&quot;a&quot;,&quot;b&quot;,{&quot;q&quot;:4}]},&quot;1aza&quot;,null,null]
 </code></pre></div>
 <p>Create a table named t1 in MatrixOne:</p>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">drop</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
 <span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 
@@ -14079,6 +14091,7 @@ and ignores the common prefix aa.</p>
 <div class="highlight"><pre><span></span><code>load data infile {&#39;filepath&#39;=&#39;&lt;your-local-file-path&gt;/jsonline_array.jl&#39;,&#39;format&#39;=&#39;jsonline&#39;,&#39;jsondata&#39;=&#39;array&#39;} into table t1;
 </code></pre></div>
 <p>The query result is as follows:</p>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">------+------+------+------------+---------------------+---------------------+------+--------+---------------------------------------+-------+-------+-------+</span>
 <span class="o">|</span><span class="w"> </span><span class="n">col1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">col2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">col3</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">col4</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="n">col5</span><span class="w">                </span><span class="o">|</span><span class="w"> </span><span class="n">col6</span><span class="w">                </span><span class="o">|</span><span class="w"> </span><span class="n">col7</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">col8</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">col9</span><span class="w">                                  </span><span class="o">|</span><span class="w"> </span><span class="n">col10</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">col11</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">col12</span><span class="w"> </span><span class="o">|</span>
@@ -14094,6 +14107,7 @@ and ignores the common prefix aa.</p>
 load data infile {&#39;filepath&#39;=&#39;&lt;your-local-file-path&gt;/jsonline_array.jl&#39;,&#39;format&#39;=&#39;jsonline&#39;,&#39;jsondata&#39;=&#39;array&#39;} into table t1 ignore 1 lines;
 </code></pre></div>
 <p>The query result is as follows:</p>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">------+------+------+------------+---------------------+---------------------+------+--------+-------------------------------------+-------+-------+-------+</span>
 <span class="o">|</span><span class="w"> </span><span class="n">col1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">col2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">col3</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">col4</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="n">col5</span><span class="w">                </span><span class="o">|</span><span class="w"> </span><span class="n">col6</span><span class="w">                </span><span class="o">|</span><span class="w"> </span><span class="n">col7</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">col8</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">col9</span><span class="w">                                </span><span class="o">|</span><span class="w"> </span><span class="n">col10</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">col11</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">col12</span><span class="w"> </span><span class="o">|</span>
@@ -14112,6 +14126,7 @@ load data infile {&#39;filepath&#39;=&#39;&lt;your-local-file-path&gt;/jsonline_
 <span class="m">2</span><span class="w">   </span>b
 <span class="m">3</span><span class="w">   </span>c
 </code></pre></div>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="p">(</span><span class="n">n1</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="n">n2</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">10</span><span class="p">));</span>
 <span class="k">create</span><span class="w"> </span><span class="n">stage</span><span class="w"> </span><span class="n">stage_fs</span><span class="w"> </span><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;file:///Users/admin/test&#39;</span><span class="p">;</span>
 <span class="k">load</span><span class="w"> </span><span class="k">data</span><span class="w"> </span><span class="n">infile</span><span class="w"> </span><span class="s1">&#39;stage://stage_fs/t1.csv&#39;</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
@@ -14134,6 +14149,7 @@ load data infile {&#39;filepath&#39;=&#39;&lt;your-local-file-path&gt;/jsonline_
 <span class="m">2</span><span class="w">   </span>b
 <span class="m">3</span><span class="w">   </span>c
 </code></pre></div>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t2</span><span class="p">(</span><span class="n">n1</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="n">n2</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">10</span><span class="p">));</span>
 <span class="k">create</span><span class="w"> </span><span class="n">stage</span><span class="w"> </span><span class="n">stage_fs1</span><span class="w"> </span><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;file:///Users/admin/test&#39;</span><span class="p">;</span>
 <span class="k">load</span><span class="w"> </span><span class="k">data</span><span class="w"> </span><span class="n">infile</span><span class="w"> </span><span class="s1">&#39;stage://stage_fs1/t1.csv&#39;</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="k">ignore</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">lines</span><span class="p">;</span>
@@ -14155,6 +14171,7 @@ load data infile {&#39;filepath&#39;=&#39;&lt;your-local-file-path&gt;/jsonline_
 <span class="m">2</span><span class="w">   </span>b
 <span class="m">3</span><span class="w">   </span>c
 </code></pre></div>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="p">(</span><span class="n">n1</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="n">n2</span><span class="w"> </span><span class="nb">text</span><span class="p">);</span>
 <span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">03</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 
@@ -14179,6 +14196,7 @@ load data infile {&#39;filepath&#39;=&#39;&lt;your-local-file-path&gt;/jsonline_
 <span class="m">2</span><span class="w">   </span>b
 <span class="m">3</span><span class="w">   </span>c
 </code></pre></div>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t2</span><span class="p">(</span><span class="n">n1</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="n">n2</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">10</span><span class="p">));</span>
 <span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">02</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 

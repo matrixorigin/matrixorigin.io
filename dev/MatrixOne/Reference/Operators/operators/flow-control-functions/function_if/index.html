@@ -13210,49 +13210,50 @@
 </li>
 </ul>
 <h2 id="examples"><strong>Examples</strong></h2>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">IF</span><span class="p">(</span><span class="mi">1</span><span class="o">&gt;</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">-----------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-----------------+</span>
-<span class="o">|</span><span class="w">               </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-----------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">IF</span><span class="p">(</span><span class="mi">1</span><span class="o">&lt;</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;yes&#39;</span><span class="p">,</span><span class="s1">&#39;no&#39;</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">--------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">yes</span><span class="p">,</span><span class="w"> </span><span class="k">no</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">yes</span><span class="w">                </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">st</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">);</span>
-<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="s1">&#39;A&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="s1">&#39;aa&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="s1">&#39;AA&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="s1">&#39;aaa&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="s1">&#39;BBB&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+<p>```sql <!-- validator-ignore-exec -->
+mysql&gt; SELECT IF(1&gt;2,2,3);
++-----------------+
+| if(1 &gt; 2, 2, 3) |
++-----------------+
+|               3 |
++-----------------+
+1 row in set (0.01 sec)
+mysql&gt; SELECT IF(1&lt;2,'yes','no');
++--------------------+
+| if(1 &lt; 2, yes, no) |
++--------------------+
+| yes                |
++--------------------+
+1 row in set (0.00 sec)
+<div class="highlight"><pre><span></span><code>```sql
+CREATE TABLE t1 (st varchar(255) NOT NULL, u int(11) NOT NULL);
+INSERT INTO t1 VALUES (&#39;a&#39;,1),(&#39;A&#39;,1),(&#39;aa&#39;,1),(&#39;AA&#39;,1),(&#39;a&#39;,1),(&#39;aaa&#39;,0),(&#39;BBB&#39;,0);
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">u</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">st</span><span class="p">,</span><span class="n">st</span><span class="p">)</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">s</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">s</span><span class="w">    </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">A</span><span class="w">    </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">AA</span><span class="w">   </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">BBB</span><span class="w">  </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">a</span><span class="w">    </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">a</span><span class="w">    </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">aa</span><span class="w">   </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">aaa</span><span class="w">  </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+</span>
-<span class="mi">7</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+mysql&gt; select if(u=1,st,st) s from t1 order by s;
++------+
+| s    |
++------+
+| A    |
+| AA   |
+| BBB  |
+| a    |
+| a    |
+| aa   |
+| aaa  |
++------+
+7 rows in set (0.00 sec)
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">u</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">st</span><span class="p">,</span><span class="n">st</span><span class="p">)</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">st</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="ss">&quot;%a%&quot;</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">s</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">s</span><span class="w">    </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">a</span><span class="w">    </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">a</span><span class="w">    </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">aa</span><span class="w">   </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">aaa</span><span class="w">  </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+</span>
-<span class="mi">4</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+mysql&gt; select if(u=1,st,st) s from t1 where st like &quot;%a%&quot; order by s;
++------+
+| s    |
++------+
+| a    |
+| a    |
+| aa   |
+| aaa  |
++------+
+4 rows in set (0.00 sec)
+</code></pre></div></p>
 <h2 id="constraints"><strong>Constraints</strong></h2>
 <p>Parameters BIGINT and VARCHAR are not supported with the function 'if'.</p>
 

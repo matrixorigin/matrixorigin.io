@@ -13227,24 +13227,23 @@
 </ul>
 <p>A detailed data type conversion rule can be refered to <a href="../../../../Data-Types/data-type-conversion/">Data Conversion Rule</a>.</p>
 <h2 id="examples"><strong>Examples</strong></h2>
-<div class="highlight"><pre><span></span><code><span class="k">drop</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
-<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="n">b</span><span class="w"> </span><span class="nb">float</span><span class="p">,</span><span class="k">c</span><span class="w"> </span><span class="nb">char</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="n">d</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">15</span><span class="p">));</span>
-<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">.</span><span class="mi">5</span><span class="p">,</span><span class="s1">&#39;1&#39;</span><span class="p">,</span><span class="s1">&#39;-2&#39;</span><span class="p">);</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">CAST</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="nb">FLOAT</span><span class="p">)</span><span class="w"> </span><span class="n">a_cast</span><span class="p">,</span><span class="k">CAST</span><span class="p">(</span><span class="n">b</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">UNSIGNED</span><span class="p">)</span><span class="w"> </span><span class="n">b_cast</span><span class="p">,</span><span class="k">CAST</span><span class="p">(</span><span class="k">c</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">SIGNED</span><span class="p">)</span><span class="w"> </span><span class="n">c_cast</span><span class="p">,</span><span class="w"> </span><span class="k">CAST</span><span class="p">(</span><span class="n">d</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">SIGNED</span><span class="p">)</span><span class="w"> </span><span class="n">d_cast</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">--------+--------+--------+--------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">a_cast</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">b_cast</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">c_cast</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">d_cast</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------+--------+--------+--------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">1</span><span class="p">.</span><span class="mi">0000</span><span class="w"> </span><span class="o">|</span><span class="w">      </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w">      </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w">     </span><span class="o">-</span><span class="mi">2</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------+--------+--------+--------+</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">CAST</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="nb">CHAR</span><span class="p">)</span><span class="w"> </span><span class="n">a_cast</span><span class="p">,</span><span class="w"> </span><span class="k">CAST</span><span class="p">(</span><span class="n">b</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="nb">CHAR</span><span class="p">)</span><span class="w"> </span><span class="n">b_cast</span><span class="p">,</span><span class="k">CAST</span><span class="p">(</span><span class="k">c</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">DOUBLE</span><span class="p">)</span><span class="w"> </span><span class="n">c_cast</span><span class="p">,</span><span class="w"> </span><span class="k">CAST</span><span class="p">(</span><span class="n">d</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="nb">FLOAT</span><span class="p">)</span><span class="w"> </span><span class="n">d_cast</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">--------+--------+--------+---------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">a_cast</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">b_cast</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">c_cast</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">d_cast</span><span class="w">  </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------+--------+--------+---------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">1</span><span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="mi">1</span><span class="p">.</span><span class="mi">5</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="mi">1</span><span class="p">.</span><span class="mi">0000</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="o">-</span><span class="mi">2</span><span class="p">.</span><span class="mi">0000</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------+--------+--------+---------+</span>
-</code></pre></div>
+<p>```sql <!-- validator-ignore-exec -->
+drop table if exists t1;
+CREATE TABLE t1 (a int,b float,c char(1),d varchar(15));
+INSERT INTO t1 VALUES (1,1.5,'1','-2');</p>
+<p>mysql&gt; SELECT CAST(a AS FLOAT) a_cast,CAST(b AS UNSIGNED) b_cast,CAST(c AS SIGNED) c_cast, CAST(d AS SIGNED) d_cast from t1;
++--------+--------+--------+--------+
+| a_cast | b_cast | c_cast | d_cast |
++--------+--------+--------+--------+
+| 1.0000 |      1 |      1 |     -2 |
++--------+--------+--------+--------+</p>
+<p>mysql&gt; SELECT CAST(a AS CHAR) a_cast, CAST(b AS CHAR) b_cast,CAST(c AS DOUBLE) c_cast, CAST(d AS FLOAT) d_cast from t1;
++--------+--------+--------+---------+
+| a_cast | b_cast | c_cast | d_cast  |
++--------+--------+--------+---------+
+| 1      | 1.5    | 1.0000 | -2.0000 |
++--------+--------+--------+---------+
+```</p>
 <h2 id="constraints"><strong>Constraints</strong></h2>
 <ul>
 <li>Non-numeric character types cannot be converted to numeric types.</li>

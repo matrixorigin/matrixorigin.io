@@ -13168,10 +13168,10 @@
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The dates <code>0000-00-00</code> and <code>0000-01-01</code> are considered invalid. MatrixOne year queries should start from <code>0001</code>. When querying <code>0000-00-00</code> and <code>0000-01-01</code>, <code>TO_SECONDS()</code> returns an error message:</p>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">TO_SECONDS</span><span class="p">(</span><span class="s1">&#39;0000-00-00&#39;</span><span class="p">);</span>
-<span class="n">ERROR</span><span class="w"> </span><span class="mi">20301</span><span class="w"> </span><span class="p">(</span><span class="n">HY000</span><span class="p">):</span><span class="w"> </span><span class="n">invalid</span><span class="w"> </span><span class="k">input</span><span class="p">:</span><span class="w"> </span><span class="n">invalid</span><span class="w"> </span><span class="n">datetime</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="mi">0000</span><span class="o">-</span><span class="mi">00</span><span class="o">-</span><span class="mi">00</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">TO_SECONDS</span><span class="p">(</span><span class="s1">&#39;0000-01-01&#39;</span><span class="p">);</span>
-<span class="n">ERROR</span><span class="w"> </span><span class="mi">20301</span><span class="w"> </span><span class="p">(</span><span class="n">HY000</span><span class="p">):</span><span class="w"> </span><span class="n">invalid</span><span class="w"> </span><span class="k">input</span><span class="p">:</span><span class="w"> </span><span class="n">invalid</span><span class="w"> </span><span class="n">datetime</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="mi">0000</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span>
+<div class="highlight"><pre><span></span><code>mysql&gt; SELECT TO_SECONDS(&#39;0000-00-00&#39;);
+ERROR 20301 (HY000): invalid input: invalid datetime value 0000-00-00
+mysql&gt; SELECT TO_SECONDS(&#39;0000-01-01&#39;);
+ERROR 20301 (HY000): invalid input: invalid datetime value 0000-01-01
 </code></pre></div>
 </div>
 <p>Similar to the <code>TO_DAYS()</code> function, for example, when querying <code>SELECT TO_SECONDS('08-10-07');</code>, MatrixOne automatically fills the year 08 to 0008, which is different from MySQL. For more information, see <a href="../../../Data-Types/date-time-data-types/year-type/">Two-Digit Years in Dates</a>.</p>
@@ -13180,38 +13180,36 @@
 </code></pre></div>
 <p><code>expr</code> is a date or datetime value and can be of type <code>DATETIME</code>, <code>DATE</code>, or <code>TIMESTAMP</code>.</p>
 <h2 id="examples"><strong>Examples</strong></h2>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">TO_SECONDS</span><span class="p">(</span><span class="s1">&#39;0001-01-01&#39;</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">to_seconds</span><span class="p">(</span><span class="mi">0001</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------------+</span>
-<span class="o">|</span><span class="w">               </span><span class="mi">31622400</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">TO_SECONDS</span><span class="p">(</span><span class="s1">&#39;2023-07-12 08:30:00&#39;</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">---------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">to_seconds</span><span class="p">(</span><span class="mi">2023</span><span class="o">-</span><span class="mi">07</span><span class="o">-</span><span class="mi">12</span><span class="w"> </span><span class="mi">08</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">00</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------------------------------+</span>
-<span class="o">|</span><span class="w">                     </span><span class="mi">63856369800</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">TO_SECONDS</span><span class="p">(</span><span class="s1">&#39;2007-10-07&#39;</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">to_seconds</span><span class="p">(</span><span class="mi">2007</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">07</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------------+</span>
-<span class="o">|</span><span class="w">            </span><span class="mi">63358934400</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">TO_SECONDS</span><span class="p">(</span><span class="s1">&#39;97-10-07&#39;</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">----------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">to_seconds</span><span class="p">(</span><span class="mi">97</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">07</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------------+</span>
-<span class="o">|</span><span class="w">           </span><span class="mi">3085257600</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+<p>```sql <!-- validator-ignore-exec -->
+mysql&gt; SELECT TO_SECONDS('0001-01-01');
++------------------------+
+| to_seconds(0001-01-01) |
++------------------------+
+|               31622400 |
++------------------------+
+1 row in set (0.00 sec)</p>
+<p>mysql&gt; SELECT TO_SECONDS('2023-07-12 08:30:00');
++---------------------------------+
+| to_seconds(2023-07-12 08:30:00) |
++---------------------------------+
+|                     63856369800 |
++---------------------------------+
+1 row in set (0.00 sec)</p>
+<p>mysql&gt; SELECT TO_SECONDS('2007-10-07');
++------------------------+
+| to_seconds(2007-10-07) |
++------------------------+
+|            63358934400 |
++------------------------+
+1 row in set (0.00 sec)</p>
+<p>mysql&gt; SELECT TO_SECONDS('97-10-07');
++----------------------+
+| to_seconds(97-10-07) |
++----------------------+
+|           3085257600 |
++----------------------+
+1 row in set (0.00 sec)
+```</p>
 
 
 

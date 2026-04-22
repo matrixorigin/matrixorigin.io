@@ -13195,7 +13195,7 @@
 <p>The <code>RAND()</code> function is used to generate a Float64 type random number between 0 and 1. It does not accept any arguments and generates a random number that is unpredictable and non-repeating each time it is called.</p>
 <p>If you need to randomly select data from a table, you can use the <code>RAND()</code> function to generate a random number, and then use <code>ORDER BY</code> to sort the data in the table according to this random number. For example:</p>
 <div class="highlight"><pre><span></span><code><span class="c1">-- Randomly retrieve all data from the table and sort it in a random order, the order of the query results may differ each time.</span>
-<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">RAND</span><span class="p">();</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="o">`</span><span class="k">table</span><span class="o">`</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">RAND</span><span class="p">();</span>
 </code></pre></div>
 <h2 id="syntax"><strong>Syntax</strong></h2>
 <div class="highlight"><pre><span></span><code>&gt; RAND([seed])
@@ -13219,46 +13219,46 @@
 <ul>
 <li>Example 1</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">RAND</span><span class="p">();</span>
-<span class="o">+</span><span class="c1">---------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">rand</span><span class="p">()</span><span class="w">              </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="mi">25193285156620004</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
-<ul>
-<li>Example 2</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Users</span><span class="w"> </span><span class="p">(</span>
-<span class="w">    </span><span class="n">ID</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="p">,</span>
-<span class="w">    </span><span class="n">UserName</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="w">    </span><span class="n">Email</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">));</span>
+<p>```sql <!-- validator-ignore-exec -->
+mysql&gt; SELECT RAND();
++---------------------+
+| rand()              |
++---------------------+
+| 0.25193285156620004 |
++---------------------+
+1 row in set (0.00 sec)
+<div class="highlight"><pre><span></span><code>- Example 2
 
-<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">Users</span><span class="w"> </span><span class="p">(</span><span class="n">UserName</span><span class="p">,</span><span class="w"> </span><span class="n">Email</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span>
-<span class="w">    </span><span class="p">(</span><span class="s1">&#39;John&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;john@example.com&#39;</span><span class="p">),</span>
-<span class="w">    </span><span class="p">(</span><span class="s1">&#39;Jane&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;jane@example.com&#39;</span><span class="p">),</span>
-<span class="w">    </span><span class="p">(</span><span class="s1">&#39;Alice&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;alice@example.com&#39;</span><span class="p">),</span>
-<span class="w">    </span><span class="p">(</span><span class="s1">&#39;Bob&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;bob@example.com&#39;</span><span class="p">);</span>
+```sql &lt;!-- validator-ignore-exec --&gt;
+CREATE TABLE Users (
+    ID INT PRIMARY KEY AUTO_INCREMENT,
+    UserName VARCHAR(255) NOT NULL,
+    Email VARCHAR(255));
 
-<span class="c1">-- Select a user&#39;s information randomly from the Users table.</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Users</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">RAND</span><span class="p">()</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------+----------+-----------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">id</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">username</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">email</span><span class="w">           </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+----------+-----------------+</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Bob</span><span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="n">bob</span><span class="o">@</span><span class="n">example</span><span class="p">.</span><span class="n">com</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="c1">-- Bob&#39;s information is randomly selected.</span>
-<span class="o">+</span><span class="c1">------+----------+-----------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+INSERT INTO Users (UserName, Email) VALUES
+    (&#39;John&#39;, &#39;john@example.com&#39;),
+    (&#39;Jane&#39;, &#39;jane@example.com&#39;),
+    (&#39;Alice&#39;, &#39;alice@example.com&#39;),
+    (&#39;Bob&#39;, &#39;bob@example.com&#39;);
 
-<span class="c1">-- Execute the above query again, and another user may be selected.</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Users</span><span class="w">  </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">RAND</span><span class="p">()</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------+----------+-------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">id</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">username</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">email</span><span class="w">             </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+----------+-------------------+</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Alice</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="n">alice</span><span class="o">@</span><span class="n">example</span><span class="p">.</span><span class="n">com</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="c1">-- Alice&#39;s information is randomly selected.</span>
-<span class="o">+</span><span class="c1">------+----------+-------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+-- Select a user&#39;s information randomly from the Users table.
+mysql&gt; SELECT * FROM Users ORDER BY RAND() LIMIT 1;
++------+----------+-----------------+
+| id   | username | email           |
++------+----------+-----------------+
+|    4 | Bob      | bob@example.com | -- Bob&#39;s information is randomly selected.
++------+----------+-----------------+
+1 row in set (0.01 sec)
+
+-- Execute the above query again, and another user may be selected.
+mysql&gt; SELECT * FROM Users  ORDER BY RAND() LIMIT 1;
++------+----------+-------------------+
+| id   | username | email             |
++------+----------+-------------------+
+|    3 | Alice    | alice@example.com | -- Alice&#39;s information is randomly selected.
++------+----------+-------------------+
+1 row in set (0.01 sec)
+</code></pre></div></p>
 <h2 id="constraints"><strong>Constraints</strong></h2>
 <p>MatrixOne does not currently support specifying the seed value for the RAND(seed) function (i.e., the seed parameter).</p>
 

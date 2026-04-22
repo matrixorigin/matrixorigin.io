@@ -13199,22 +13199,22 @@
 </tbody>
 </table>
 <h2 id="examples"><strong>Examples</strong></h2>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">UNHEX</span><span class="p">(</span><span class="s1">&#39;4d6174726978204f726967696e&#39;</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">-----------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">unhex</span><span class="p">(</span><span class="mi">4</span><span class="n">d6174726978204f726967696e</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-----------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">Matrix</span><span class="w"> </span><span class="n">Origin</span><span class="w">                     </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-----------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">unhex</span><span class="p">(</span><span class="k">NULL</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">-------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">unhex</span><span class="p">(</span><span class="k">null</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w">        </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+<p>```SQL <!-- validator-ignore-exec -->
+mysql&gt; SELECT UNHEX('4d6174726978204f726967696e');
++-----------------------------------+
+| unhex(4d6174726978204f726967696e) |
++-----------------------------------+
+| Matrix Origin                     |
++-----------------------------------+
+1 row in set (0.00 sec)</p>
+<p>mysql&gt; select unhex(NULL);
++-------------+
+| unhex(null) |
++-------------+
+| NULL        |
++-------------+
+1 row in set (0.00 sec)
+```</p>
 
 
 

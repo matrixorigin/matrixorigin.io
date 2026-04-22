@@ -1963,13 +1963,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#drop-view" class="md-nav__link">
-    Drop view
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -13196,13 +13189,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#drop-view" class="md-nav__link">
-    Drop view
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -13270,7 +13256,7 @@
 </code></pre></div>
 <h2 id="create-a-view">Create a view</h2>
 <p>A complex query can be defined as a view with the CREATE VIEW statement. The syntax is as follows:</p>
-<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">VIEW</span><span class="w"> </span><span class="n">view_name</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">query</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code>CREATE VIEW view_name AS query;
 </code></pre></div>
 <p>you cannot create a view with the same name as an existing view or table.</p>
 <p><strong>Example</strong>:</p>
@@ -13289,18 +13275,21 @@
 </code></pre></div>
 <h2 id="get-view-related-information">Get view related information</h2>
 <p>Use the <code>SHOW CREATE TABLE|VIEW view_name</code> statement:</p>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SHOW</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">VIEW</span><span class="w"> </span><span class="n">v0</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------+----------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">View</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">Create</span><span class="w"> </span><span class="k">View</span><span class="w">                                                                </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+----------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">v0</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">VIEW</span><span class="w"> </span><span class="n">v0</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">t00</span><span class="p">.</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">t01</span><span class="p">.</span><span class="n">a</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t00</span><span class="w"> </span><span class="k">LEFT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">t01</span><span class="w"> </span><span class="k">USING</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+----------------------------------------------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
-<h2 id="drop-view">Drop view</h2>
-<p>Use the <code>DROP VIEW view_name;</code> statement to drop a view.</p>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">DROP</span><span class="w"> </span><span class="k">VIEW</span><span class="w"> </span><span class="n">v0</span><span class="p">;</span>
-</code></pre></div>
+<p>```sql <!-- validator-ignore-exec -->
+mysql&gt; SHOW CREATE VIEW v0;
++------+----------------------------------------------------------------------------+
+| View | Create View                                                                |
++------+----------------------------------------------------------------------------+
+| v0   | CREATE VIEW v0 AS SELECT t00.a, t01.a AS b FROM t00 LEFT JOIN t01 USING(a) |
++------+----------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+<div class="highlight"><pre><span></span><code>## Drop view
+
+Use the `DROP VIEW view_name;` statement to drop a view.
+
+```sql
+mysql&gt; DROP VIEW v0;
+</code></pre></div></p>
 
 
 

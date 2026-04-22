@@ -13210,22 +13210,22 @@
 </li>
 </ul>
 <h2 id="examples"><strong>Examples</strong></h2>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">REGEXP_SUBSTR</span><span class="p">(</span><span class="s1">&#39;1a 2b 3c&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;[0-9]a&#39;</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">---------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">regexp_substr</span><span class="p">(</span><span class="mi">1</span><span class="n">a</span><span class="w"> </span><span class="mi">2</span><span class="n">b</span><span class="w"> </span><span class="mi">3</span><span class="k">c</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="p">]</span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">1</span><span class="n">a</span><span class="w">                              </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">REGEXP_SUBSTR</span><span class="p">(</span><span class="s1">&#39;Lend for land&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;^C&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">Result</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">--------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">Result</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w">   </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+<p>```SQL <!-- validator-ignore-exec -->
+mysql&gt; SELECT REGEXP_SUBSTR('1a 2b 3c', '[0-9]a');
++---------------------------------+
+| regexp_substr(1a 2b 3c, [0-9]a) |
++---------------------------------+
+| 1a                              |
++---------------------------------+
+1 row in set (0.00 sec)</p>
+<p>mysql&gt; SELECT REGEXP_SUBSTR('Lend for land', '^C') Result;
++--------+
+| Result |
++--------+
+| NULL   |
++--------+
+1 row in set (0.00 sec)
+```</p>
 
 
 

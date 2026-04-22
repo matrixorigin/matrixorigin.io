@@ -13292,9 +13292,11 @@
 </ul>
 <h2 id="workflow">Workflow</h2>
 <h3 id="create-pitr">Create PITR</h3>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="n">pitr</span><span class="w"> </span><span class="n">pitr_activity</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">account</span><span class="w"> </span><span class="n">range</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="ss">&quot;h&quot;</span><span class="p">;</span>
 </code></pre></div>
 <h3 id="create-table-and-insert-data-on-source">Create Table and Insert Data on Source</h3>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">production_db</span><span class="p">;</span>
 <span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">production_db</span><span class="p">.</span><span class="n">user_activities</span><span class="w"> </span><span class="p">(</span>
 <span class="w">    </span><span class="n">activity_id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
@@ -13309,6 +13311,7 @@
 <span class="w">    </span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">1003</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;comment&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2024-01-02 14:30:00&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;mobile&#39;</span><span class="p">);</span>
 </code></pre></div>
 <h3 id="create-downstream-database">Create Downstream Database</h3>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">analytics_db</span><span class="p">;</span>
 </code></pre></div>
 <h3 id="create-mo_cdc-synchronization-task">Create <code>mo_cdc</code> Synchronization Task</h3>
@@ -13339,6 +13342,7 @@
 </code></pre></div>
 <h3 id="verify-full-synchronization">Verify Full Synchronization</h3>
 <p>Connect to the downstream MatrixOne to check full data synchronization.</p>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">analytics_db</span><span class="p">.</span><span class="n">analytics_activities</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">-------------+---------+---------------+---------------------+---------+</span>
 <span class="o">|</span><span class="w"> </span><span class="n">activity_id</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">user_id</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">activity_type</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">timestamp</span><span class="w">           </span><span class="o">|</span><span class="w"> </span><span class="n">device</span><span class="w">  </span><span class="o">|</span>
@@ -13351,11 +13355,13 @@
 </code></pre></div>
 <h3 id="incremental-synchronization-task">Incremental Synchronization Task</h3>
 <p>After the task is established, perform data changes in the upstream MatrixOne.</p>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">production_db</span><span class="p">.</span><span class="n">user_activities</span><span class="w"> </span><span class="k">VALUES</span>
 <span class="w">    </span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">1004</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;share&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2024-01-03 16:45:00&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;desktop&#39;</span><span class="p">);</span>
 <span class="k">UPDATE</span><span class="w"> </span><span class="n">production_db</span><span class="p">.</span><span class="n">user_activities</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">activity_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;logout&#39;</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">activity_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
 </code></pre></div>
 <p>Connect to the downstream MatrixOne to check incremental data synchronization.</p>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">analytics_db</span><span class="p">.</span><span class="n">analytics_activities</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">-------------+---------+---------------+---------------------+---------+</span>
 <span class="o">|</span><span class="w"> </span><span class="n">activity_id</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">user_id</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">activity_type</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">timestamp</span><span class="w">           </span><span class="o">|</span><span class="w"> </span><span class="n">device</span><span class="w">  </span><span class="o">|</span>
@@ -13374,6 +13380,7 @@
 <span class="w">    </span>--source-uri<span class="w"> </span><span class="s2">&quot;mysql://root:111@127.0.0.1:6001&quot;</span>
 </code></pre></div>
 <p>During the task interruption, continue inserting data into the upstream MatrixOne.</p>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">production_db</span><span class="p">.</span><span class="n">user_activities</span><span class="w"> </span><span class="k">VALUES</span>
 <span class="w">    </span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">1005</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;login&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2024-01-04 08:00:00&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;mobile&#39;</span><span class="p">);</span>
 
@@ -13395,6 +13402,7 @@
 <span class="w">    </span>--source-uri<span class="w"> </span><span class="s2">&quot;mysql://root:111@127.0.0.1:6001&quot;</span>
 </code></pre></div>
 <p>Connect to the downstream MySQL to verify checkpoint recovery.</p>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="c1">-- The downstream should include data inserted during the interruption.</span>
 <span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">analytics_db</span><span class="p">.</span><span class="n">analytics_activities</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">-------------+---------+---------------+---------------------+---------+</span>

@@ -7989,22 +7989,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#example-2" class="md-nav__link">
-    Example 2
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#example-3" class="md-nav__link">
     Example 3
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-4" class="md-nav__link">
-    Example 4
   </a>
   
 </li>
@@ -13201,22 +13187,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#example-2" class="md-nav__link">
-    Example 2
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#example-3" class="md-nav__link">
     Example 3
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-4" class="md-nav__link">
-    Example 4
   </a>
   
 </li>
@@ -13398,144 +13370,140 @@ date - INTERVAL expr unit
 <ul>
 <li>Temporal intervals are used for <code>DATE_ADD()</code> and <code>DATE_SUB()</code>:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">DATE_SUB</span><span class="p">(</span><span class="s1">&#39;2018-05-01&#39;</span><span class="p">,</span><span class="nb">INTERVAL</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">YEAR</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">-----------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">date_sub</span><span class="p">(</span><span class="mi">2018</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">01</span><span class="p">,</span><span class="w"> </span><span class="nb">interval</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="k">year</span><span class="p">))</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-----------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">2017</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">01</span><span class="w">                              </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-----------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+<p>```SQL <!-- validator-ignore-exec -->
+mysql&gt; SELECT DATE_SUB('2018-05-01',INTERVAL 1 YEAR);
++-----------------------------------------+
+| date_sub(2018-05-01, interval(1, year)) |
++-----------------------------------------+
+| 2017-05-01                              |
++-----------------------------------------+
+1 row in set (0.00 sec)</p>
+<p>mysql&gt; SELECT DATE_ADD('2020-12-31 23:59:59', INTERVAL 1 SECOND);
++----------------------------------------------------+
+| date_add(2020-12-31 23:59:59, interval(1, second)) |
++----------------------------------------------------+
+| 2021-01-01 00:00:00                                |
++----------------------------------------------------+
+1 row in set (0.01 sec)</p>
+<p>mysql&gt; SELECT DATE_ADD('2018-12-31 23:59:59', INTERVAL 1 DAY);
++-------------------------------------------------+
+| date_add(2018-12-31 23:59:59, interval(1, day)) |
++-------------------------------------------------+
+| 2019-01-01 23:59:59                             |
++-------------------------------------------------+
+1 row in set (0.00 sec)</p>
+<p>mysql&gt; SELECT DATE_ADD('2100-12-31 23:59:59', INTERVAL '1:1' MINUTE_SECOND);
++-------------------------------------------------------------+
+| date_add(2100-12-31 23:59:59, interval(1:1, minute_second)) |
++-------------------------------------------------------------+
+| 2101-01-01 00:01:00                                         |
++-------------------------------------------------------------+
+1 row in set (0.00 sec)</p>
+<p>mysql&gt; SELECT DATE_SUB('2025-01-01 00:00:00', INTERVAL '1 1:1:1' DAY_SECOND);
++--------------------------------------------------------------+
+| date_sub(2025-01-01 00:00:00, interval(1 1:1:1, day_second)) |
++--------------------------------------------------------------+
+| 2024-12-30 22:58:59                                          |
++--------------------------------------------------------------+
+1 row in set (0.00 sec)</p>
+<p>mysql&gt; SELECT DATE_ADD('1900-01-01 00:00:00', INTERVAL '-1 10' DAY_HOUR);
++----------------------------------------------------------+
+| date_add(1900-01-01 00:00:00, interval(-1 10, day_hour)) |
++----------------------------------------------------------+
+| 1899-12-30 14:00:00.000000                               |
++----------------------------------------------------------+
+1 row in set (0.00 sec)</p>
+<p>mysql&gt; SELECT DATE_SUB('1998-01-02', INTERVAL 31 DAY);
++-----------------------------------------+
+| date_sub(1998-01-02, interval(31, day)) |
++-----------------------------------------+
+| 1997-12-02                              |
++-----------------------------------------+
+1 row in set (0.00 sec)</p>
+<p>mysql&gt; SELECT DATE_ADD('1992-12-31 23:59:59.000002', INTERVAL '1.999999' SECOND_MICROSECOND);
++------------------------------------------------------------------------------+
+| date_add(1992-12-31 23:59:59.000002, interval(1.999999, second_microsecond)) |
++------------------------------------------------------------------------------+
+| 1993-01-01 00:00:01.000001                                                   |
++------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+<div class="highlight"><pre><span></span><code>### Example 2
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">DATE_ADD</span><span class="p">(</span><span class="s1">&#39;2020-12-31 23:59:59&#39;</span><span class="p">,</span><span class="w"> </span><span class="nb">INTERVAL</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">SECOND</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">----------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">date_add</span><span class="p">(</span><span class="mi">2020</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">31</span><span class="w"> </span><span class="mi">23</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mi">59</span><span class="p">,</span><span class="w"> </span><span class="nb">interval</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="k">second</span><span class="p">))</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">2021</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="w"> </span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="w">                                </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+- Using INTERVAL together with the `+` or `-` operator
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">DATE_ADD</span><span class="p">(</span><span class="s1">&#39;2018-12-31 23:59:59&#39;</span><span class="p">,</span><span class="w"> </span><span class="nb">INTERVAL</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">DAY</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">-------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">date_add</span><span class="p">(</span><span class="mi">2018</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">31</span><span class="w"> </span><span class="mi">23</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mi">59</span><span class="p">,</span><span class="w"> </span><span class="nb">interval</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="k">day</span><span class="p">))</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">2019</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="w"> </span><span class="mi">23</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mi">59</span><span class="w">                             </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------------------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+```sql &lt;!-- validator-ignore-exec --&gt;
+mysql&gt; SELECT &#39;2018-12-31 23:59:59&#39; + INTERVAL 1 SECOND;
++-------------------------------------------+
+| 2018-12-31 23:59:59 + interval(1, second) |
++-------------------------------------------+
+| 2019-01-01 00:00:00                       |
++-------------------------------------------+
+1 row in set (0.00 sec)
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">DATE_ADD</span><span class="p">(</span><span class="s1">&#39;2100-12-31 23:59:59&#39;</span><span class="p">,</span><span class="w"> </span><span class="nb">INTERVAL</span><span class="w"> </span><span class="s1">&#39;1:1&#39;</span><span class="w"> </span><span class="n">MINUTE_SECOND</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">-------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">date_add</span><span class="p">(</span><span class="mi">2100</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">31</span><span class="w"> </span><span class="mi">23</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mi">59</span><span class="p">,</span><span class="w"> </span><span class="nb">interval</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">minute_second</span><span class="p">))</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">2101</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="w"> </span><span class="mi">00</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">00</span><span class="w">                                         </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------------------------------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+mysql&gt; SELECT INTERVAL 1 DAY + &#39;2018-12-31&#39;;
++-------------------------------+
+| interval(1, day) + 2018-12-31 |
++-------------------------------+
+| 2019-01-01                    |
++-------------------------------+
+1 row in set (0.00 sec)
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">DATE_SUB</span><span class="p">(</span><span class="s1">&#39;2025-01-01 00:00:00&#39;</span><span class="p">,</span><span class="w"> </span><span class="nb">INTERVAL</span><span class="w"> </span><span class="s1">&#39;1 1:1:1&#39;</span><span class="w"> </span><span class="n">DAY_SECOND</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">--------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">date_sub</span><span class="p">(</span><span class="mi">2025</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="w"> </span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">,</span><span class="w"> </span><span class="nb">interval</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">day_second</span><span class="p">))</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">30</span><span class="w"> </span><span class="mi">22</span><span class="p">:</span><span class="mi">58</span><span class="p">:</span><span class="mi">59</span><span class="w">                                          </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------------------------------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">DATE_ADD</span><span class="p">(</span><span class="s1">&#39;1900-01-01 00:00:00&#39;</span><span class="p">,</span><span class="w"> </span><span class="nb">INTERVAL</span><span class="w"> </span><span class="s1">&#39;-1 10&#39;</span><span class="w"> </span><span class="n">DAY_HOUR</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">----------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">date_add</span><span class="p">(</span><span class="mi">1900</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="w"> </span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">,</span><span class="w"> </span><span class="nb">interval</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="n">day_hour</span><span class="p">))</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">1899</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">30</span><span class="w"> </span><span class="mi">14</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">.</span><span class="mi">000000</span><span class="w">                               </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------------------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">DATE_SUB</span><span class="p">(</span><span class="s1">&#39;1998-01-02&#39;</span><span class="p">,</span><span class="w"> </span><span class="nb">INTERVAL</span><span class="w"> </span><span class="mi">31</span><span class="w"> </span><span class="k">DAY</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">-----------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">date_sub</span><span class="p">(</span><span class="mi">1998</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">02</span><span class="p">,</span><span class="w"> </span><span class="nb">interval</span><span class="p">(</span><span class="mi">31</span><span class="p">,</span><span class="w"> </span><span class="k">day</span><span class="p">))</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-----------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">1997</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">02</span><span class="w">                              </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-----------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">DATE_ADD</span><span class="p">(</span><span class="s1">&#39;1992-12-31 23:59:59.000002&#39;</span><span class="p">,</span><span class="w"> </span><span class="nb">INTERVAL</span><span class="w"> </span><span class="s1">&#39;1.999999&#39;</span><span class="w"> </span><span class="n">SECOND_MICROSECOND</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">------------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">date_add</span><span class="p">(</span><span class="mi">1992</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">31</span><span class="w"> </span><span class="mi">23</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mi">59</span><span class="p">.</span><span class="mi">000002</span><span class="p">,</span><span class="w"> </span><span class="nb">interval</span><span class="p">(</span><span class="mi">1</span><span class="p">.</span><span class="mi">999999</span><span class="p">,</span><span class="w"> </span><span class="n">second_microsecond</span><span class="p">))</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">1993</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="w"> </span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">01</span><span class="p">.</span><span class="mi">000001</span><span class="w">                                                   </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------------------------------------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
-<h3 id="example-2">Example 2</h3>
-<ul>
-<li>Using INTERVAL together with the <code>+</code> or <code>-</code> operator</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="s1">&#39;2018-12-31 23:59:59&#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">INTERVAL</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">SECOND</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">-------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">2018</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">31</span><span class="w"> </span><span class="mi">23</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mi">59</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">interval</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="k">second</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">2019</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="w"> </span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="w">                       </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="nb">INTERVAL</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">DAY</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;2018-12-31&#39;</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">-------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="nb">interval</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="k">day</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2018</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">31</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">2019</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="w">                    </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="s1">&#39;2025-01-01&#39;</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nb">INTERVAL</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">SECOND</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">----------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">2025</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nb">interval</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="k">second</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">31</span><span class="w"> </span><span class="mi">23</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mi">59</span><span class="w">              </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+mysql&gt; SELECT &#39;2025-01-01&#39; - INTERVAL 1 SECOND;
++----------------------------------+
+| 2025-01-01 - interval(1, second) |
++----------------------------------+
+| 2024-12-31 23:59:59              |
++----------------------------------+
+1 row in set (0.00 sec)
+</code></pre></div></p>
 <h3 id="example-3">Example 3</h3>
 <p>If you add to or subtract from a date value something that contains a time part, the result is automatically converted to a datetime value:</p>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">DATE_ADD</span><span class="p">(</span><span class="s1">&#39;2023-01-01&#39;</span><span class="p">,</span><span class="w"> </span><span class="nb">INTERVAL</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">DAY</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">----------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">date_add</span><span class="p">(</span><span class="mi">2023</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="p">,</span><span class="w"> </span><span class="nb">interval</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="k">day</span><span class="p">))</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">2023</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">02</span><span class="w">                             </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+<p>```sql <!-- validator-ignore-exec -->
+mysql&gt; SELECT DATE_ADD('2023-01-01', INTERVAL 1 DAY);
++----------------------------------------+
+| date_add(2023-01-01, interval(1, day)) |
++----------------------------------------+
+| 2023-01-02                             |
++----------------------------------------+
+1 row in set (0.00 sec)</p>
+<p>mysql&gt; SELECT DATE_ADD('2023-01-01', INTERVAL 1 HOUR);
++-----------------------------------------+
+| date_add(2023-01-01, interval(1, hour)) |
++-----------------------------------------+
+| 2023-01-01 01:00:00                     |
++-----------------------------------------+
+1 row in set (0.01 sec)
+<div class="highlight"><pre><span></span><code>### Example 4
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">DATE_ADD</span><span class="p">(</span><span class="s1">&#39;2023-01-01&#39;</span><span class="p">,</span><span class="w"> </span><span class="nb">INTERVAL</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">HOUR</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">-----------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">date_add</span><span class="p">(</span><span class="mi">2023</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="p">,</span><span class="w"> </span><span class="nb">interval</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">hour</span><span class="p">))</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-----------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">2023</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="w"> </span><span class="mi">01</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="w">                     </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-----------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
-<h3 id="example-4">Example 4</h3>
-<p>If you add MONTH, YEAR_MONTH, or YEAR and the resulting date has a day that is larger than the maximum day for the new month, the day is adjusted to the maximum days in the new month:</p>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">DATE_ADD</span><span class="p">(</span><span class="s1">&#39;2019-01-30&#39;</span><span class="p">,</span><span class="w"> </span><span class="nb">INTERVAL</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">MONTH</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">date_add</span><span class="p">(</span><span class="mi">2019</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">30</span><span class="p">,</span><span class="w"> </span><span class="nb">interval</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="k">month</span><span class="p">))</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">2019</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">28</span><span class="w">                               </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+If you add MONTH, YEAR_MONTH, or YEAR and the resulting date has a day that is larger than the maximum day for the new month, the day is adjusted to the maximum days in the new month:
+
+```sql &lt;!-- validator-ignore-exec --&gt;
+mysql&gt; SELECT DATE_ADD(&#39;2019-01-30&#39;, INTERVAL 1 MONTH);
++------------------------------------------+
+| date_add(2019-01-30, interval(1, month)) |
++------------------------------------------+
+| 2019-02-28                               |
++------------------------------------------+
+1 row in set (0.00 sec)
+</code></pre></div></p>
 <h3 id="example-5">Example 5</h3>
 <p>Date arithmetic operations require complete dates and do not work with incomplete dates such as '2016-07-00' or badly malformed dates:</p>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">DATE_ADD</span><span class="p">(</span><span class="s1">&#39;2016-07-00&#39;</span><span class="p">,</span><span class="w"> </span><span class="nb">INTERVAL</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">DAY</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">----------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">date_add</span><span class="p">(</span><span class="mi">2016</span><span class="o">-</span><span class="mi">07</span><span class="o">-</span><span class="mi">00</span><span class="p">,</span><span class="w"> </span><span class="nb">interval</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="k">day</span><span class="p">))</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w">                                   </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="s1">&#39;2005-03-32&#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">INTERVAL</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">MONTH</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">---------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">2005</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">32</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">interval</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="k">month</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w">                            </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+<p>```sql <!-- validator-ignore-exec -->
+mysql&gt; SELECT DATE_ADD('2016-07-00', INTERVAL 1 DAY);
++----------------------------------------+
+| date_add(2016-07-00, interval(1, day)) |
++----------------------------------------+
+| NULL                                   |
++----------------------------------------+
+1 row in set (0.00 sec)</p>
+<p>mysql&gt; SELECT '2005-03-32' + INTERVAL 1 MONTH;
++---------------------------------+
+| 2005-03-32 + interval(1, month) |
++---------------------------------+
+| NULL                            |
++---------------------------------+
+1 row in set (0.00 sec)
+```</p>
 
 
 

@@ -13300,6 +13300,7 @@
 </ul>
 <h2 id="operational-steps">Operational steps</h2>
 <h3 id="create-libraries-tables-and-insert-data-in-sql-server">Create libraries, tables, and insert data in SQL Server</h3>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n">sstomo</span><span class="p">;</span>
 <span class="n">use</span><span class="w"> </span><span class="n">sstomo</span><span class="p">;</span>
 <span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">sqlserver_data</span><span class="w"> </span><span class="p">(</span>
@@ -13322,7 +13323,9 @@
 <ol>
 <li>
 <p>Verify that the current user has sysadmin privileges turned on Queries for the current user permissions. The CDC (Change Data Capture) feature must be enabled for the database to be a member of the sysadmin fixed server role. query the sa user for sysadmin by the following command</p>
-<p><code>sql exec sp_helpsrvrolemember 'sysadmin';</code></p>
+<p><!-- validator-ignore -->
+<div class="highlight"><pre><span></span><code><span class="k">exec</span><span class="w"> </span><span class="n">sp_helpsrvrolemember</span><span class="w"> </span><span class="s1">&#39;sysadmin&#39;</span><span class="p">;</span>
+</code></pre></div></p>
 <p><div align="center">
     <img src=https://github.com/matrixorigin/artwork/blob/main/docs/develop/flink/flink-sqlserver-01.jpg?raw=true width=70% heigth=70%/>
 </div></p>
@@ -13334,24 +13337,29 @@
 </div></p>
 <p>Remarks: 0: means not enabled; 1: means enabled</p>
 <p>If not, execute the following sql open:</p>
+<p><!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="n">use</span><span class="w"> </span><span class="n">sstomo</span><span class="p">;</span><span class="w"> </span><span class="k">exec</span><span class="w"> </span><span class="n">sys</span><span class="p">.</span><span class="n">sp_cdc_enable_db</span><span class="p">;</span><span class="w"> </span>
-</code></pre></div>
+</code></pre></div></p>
 </li>
 <li>
 <p>Query whether the table has CDC (Change Data Capture) enabled</p>
-<div class="highlight"><pre><span></span><code><span class="k">select</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="n">is_tracked_by_cdc</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">sys</span><span class="p">.</span><span class="n">tables</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;sqlserver_data&#39;</span><span class="p">;</span><span class="w"> </span>
-</code></pre></div>
-<p><div align="center">
-    <img src=https://github.com/matrixorigin/artwork/blob/main/docs/develop/flink/flink-sqlserver-03.jpg?raw=true width=50% heigth=50%/>
-</div></p>
-<p>Remarks: 0: means not enabled; 1: means enabled If not, execute the following sql to turn it on:</p>
-<div class="highlight"><pre><span></span><code><span class="n">use</span><span class="w"> </span><span class="n">sstomo</span><span class="p">;</span>
-<span class="k">exec</span><span class="w"> </span><span class="n">sys</span><span class="p">.</span><span class="n">sp_cdc_enable_table</span><span class="w"> </span>
-<span class="o">@</span><span class="n">source_schema</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;dbo&#39;</span><span class="p">,</span><span class="w"> </span>
-<span class="o">@</span><span class="n">source_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;sqlserver_data&#39;</span><span class="p">,</span><span class="w"> </span>
-<span class="o">@</span><span class="n">role_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"> </span>
-<span class="o">@</span><span class="n">supports_net_changes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-</code></pre></div>
+<p>```sql <!-- validator-ignore-exec -->
+select name,is_tracked_by_cdc from sys.tables where name = 'sqlserver_data'; 
+<div class="highlight"><pre><span></span><code>&lt;div align=&quot;center&quot;&gt;
+    &lt;img src=https://github.com/matrixorigin/artwork/blob/main/docs/develop/flink/flink-sqlserver-03.jpg?raw=true width=50% heigth=50%/&gt;
+&lt;/div&gt;
+
+Remarks: 0: means not enabled; 1: means enabled If not, execute the following sql to turn it on:
+
+&lt;!-- validator-ignore --&gt;
+```sql
+use sstomo;
+exec sys.sp_cdc_enable_table 
+@source_schema = &#39;dbo&#39;, 
+@source_name = &#39;sqlserver_data&#39;, 
+@role_name = NULL, 
+@supports_net_changes = 0;
+</code></pre></div></p>
 </li>
 <li>
 <p>Table sqlserver_data Start CDC (Change Data Capture) Feature Configuration Completed</p>
@@ -13363,8 +13371,9 @@
 <li>
 <p>Verify that the CDC agent starts properly</p>
 <p>Execute the following command to see if the CDC agent is on:</p>
+<p><!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="k">exec</span><span class="w"> </span><span class="n">master</span><span class="p">.</span><span class="n">dbo</span><span class="p">.</span><span class="n">xp_servicecontrol</span><span class="w"> </span><span class="n">N</span><span class="s1">&#39;QUERYSTATE&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="s1">&#39;SQLSERVERAGENT&#39;</span><span class="p">;</span><span class="w"> </span>
-</code></pre></div>
+</code></pre></div></p>
 <p>If the status is <code>Stopped</code>, you need to turn on the CDC agent.</p>
 <p><div align="center">
     <img src=https://github.com/matrixorigin/artwork/blob/main/docs/develop/flink/flink-sqlserver-05.jpg?raw=true width=50% heigth=50%/>
@@ -13414,6 +13423,7 @@
 </li>
 </ol>
 <h3 id="create-sourcesink-table-with-flink-ddl">Create source/sink table with flink ddl</h3>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="c1">-- Create source table</span>
 <span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">sqlserver_source</span><span class="w"> </span><span class="p">(</span>
 <span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
@@ -13462,6 +13472,7 @@
 
 <h3 id="inserting-data-to-sql-server">Inserting data to SQL Server</h3>
 <p>Insert 3 pieces of data into the SqlServer table sqlserver_data:</p>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">sstomo</span><span class="p">.</span><span class="n">dbo</span><span class="p">.</span><span class="n">sqlserver_data</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="p">,</span><span class="w"> </span><span class="n">entrytime</span><span class="p">,</span><span class="w"> </span><span class="n">gender</span><span class="p">)</span>
 <span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Liss12a&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2010-10-12&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;0&#39;</span><span class="p">),</span>
 <span class="w">      </span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;12233s&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">26</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2013-10-12&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;0&#39;</span><span class="p">),</span>
@@ -13476,6 +13487,7 @@
 
 <h3 id="deleting-incremental-data-in-sql-server">Deleting incremental data in SQL Server</h3>
 <p>Delete two rows with ids 3 and 4 in SQL Server:</p>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="k">delete</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">sstomo</span><span class="p">.</span><span class="n">dbo</span><span class="p">.</span><span class="n">sqlserver_data</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="k">in</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">);</span><span class="w"> </span>
 </code></pre></div>
 <p>Query table data in mo, these two rows have been deleted synchronously:</p>
@@ -13485,6 +13497,7 @@
 
 <h3 id="adding-new-data-to-sql-server">Adding new data to SQL Server</h3>
 <p>Update two rows of data in a SqlServer table:</p>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="k">update</span><span class="w"> </span><span class="n">sstomo</span><span class="p">.</span><span class="n">dbo</span><span class="p">.</span><span class="n">sqlserver_data</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">18</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="k">in</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span><span class="w"> </span>
 </code></pre></div>
 <p>Query table data in MatrixOne, the two rows have been updated in sync:</p>

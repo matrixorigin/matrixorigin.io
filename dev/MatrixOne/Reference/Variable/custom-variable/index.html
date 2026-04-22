@@ -13150,19 +13150,21 @@
 </code></pre></div>
 <p><code>@variable_name</code> is the name of the custom variable, and <code>value</code> is the value to be assigned to the variable. Once defined, the variable can be used in the SQL statement instead of the actual value.</p>
 <p>For example, the following statement will define a variable named <code>@max_salary</code> and set it to 100000:</p>
-<div class="highlight"><pre><span></span><code><span class="k">SET</span><span class="w"> </span><span class="o">@</span><span class="n">max_salary</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100000</span><span class="p">;</span>
-<span class="c1">--View the value set by the @max_salary variable</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">@</span><span class="n">max_salary</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">-------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="o">@</span><span class="n">max_salary</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">100000</span><span class="w">      </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
-<p>When using a custom variable, you can include it in an SQL statement and reference it as <code>@variable_name</code>. For example, the following statement will return all employee records whose salary is less than <code>@max_salary</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">employees</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">salary</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="o">@</span><span class="n">max_salary</span><span class="p">;</span>
-</code></pre></div>
+<p>```sql <!-- validator-ignore-exec -->
+SET @max_salary = 100000;
+--View the value set by the @max_salary variable
+mysql&gt; select @max_salary;
++-------------+
+| @max_salary |
++-------------+
+| 100000      |
++-------------+
+1 row in set (0.01 sec)
+<div class="highlight"><pre><span></span><code>When using a custom variable, you can include it in an SQL statement and reference it as `@variable_name`. For example, the following statement will return all employee records whose salary is less than `@max_salary`:
+
+```sql
+SELECT * FROM employees WHERE salary &lt; @max_salary;
+</code></pre></div></p>
 <p>You can affect the result of an SQL query by changing the value of a custom variable. For example, the following statement will change the value of <code>@max_salary</code> and return a new query result:</p>
 <div class="highlight"><pre><span></span><code><span class="k">SET</span><span class="w"> </span><span class="o">@</span><span class="n">max_salary</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">80000</span><span class="p">;</span>
 <span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">employees</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">salary</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="o">@</span><span class="n">max_salary</span><span class="p">;</span>

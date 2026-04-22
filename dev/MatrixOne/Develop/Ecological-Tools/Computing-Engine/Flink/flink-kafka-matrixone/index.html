@@ -13543,18 +13543,18 @@ $<span class="w"> </span>bin/kafka-server-start.sh<span class="w"> </span>config
 <p><img alt="" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/flink/message.png?raw=true" /></p>
 <h3 id="step-five-view-implementation-results">Step Five: View Implementation Results</h3>
 <p>Execute the following SQL query results in MatrixOne:</p>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">test</span><span class="p">.</span><span class="n">users</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------+-----------+------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">id</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">name</span><span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="n">age</span><span class="w">  </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+-----------+------+</span>
-<span class="o">|</span><span class="w">   </span><span class="mi">10</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">xiaowang</span><span class="w">  </span><span class="o">|</span><span class="w">   </span><span class="mi">22</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">   </span><span class="mi">20</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">xiaozhang</span><span class="w"> </span><span class="o">|</span><span class="w">   </span><span class="mi">24</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">   </span><span class="mi">30</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">xiaogao</span><span class="w">   </span><span class="o">|</span><span class="w">   </span><span class="mi">18</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">   </span><span class="mi">40</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">xiaowu</span><span class="w">    </span><span class="o">|</span><span class="w">   </span><span class="mi">20</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">   </span><span class="mi">50</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">xiaoli</span><span class="w">    </span><span class="o">|</span><span class="w">   </span><span class="mi">42</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+-----------+------+</span>
-<span class="mi">5</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+<p><code>sql &lt;!-- validator-ignore-exec --&gt;
+mysql&gt; select * from test.users;
++------+-----------+------+
+| id   | name      | age  |
++------+-----------+------+
+|   10 | xiaowang  |   22 |
+|   20 | xiaozhang |   24 |
+|   30 | xiaogao   |   18 |
+|   40 | xiaowu    |   20 |
+|   50 | xiaoli    |   42 |
++------+-----------+------+
+5 rows in set (0.01 sec)</code></p>
 
 
 

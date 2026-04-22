@@ -13214,22 +13214,22 @@ CONCAT(str1,str2,...)
 </tbody>
 </table>
 <h2 id="examples"><strong>Examples</strong></h2>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">CONCAT</span><span class="p">(</span><span class="s1">&#39;My&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;S&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;QL&#39;</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">-------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">concat</span><span class="p">(</span><span class="n">My</span><span class="p">,</span><span class="w"> </span><span class="n">S</span><span class="p">,</span><span class="w"> </span><span class="n">QL</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">MySQL</span><span class="w">             </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">CONCAT</span><span class="p">(</span><span class="s1">&#39;My&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;QL&#39;</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">----------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">concat</span><span class="p">(</span><span class="n">My</span><span class="p">,</span><span class="w"> </span><span class="k">null</span><span class="p">,</span><span class="w"> </span><span class="n">QL</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w">                 </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+<p>```SQL <!-- validator-ignore-exec -->
+mysql&gt; SELECT CONCAT('My', 'S', 'QL');
++-------------------+
+| concat(My, S, QL) |
++-------------------+
+| MySQL             |
++-------------------+
+1 row in set (0.01 sec)</p>
+<p>mysql&gt; SELECT CONCAT('My', NULL, 'QL');
++----------------------+
+| concat(My, null, QL) |
++----------------------+
+| NULL                 |
++----------------------+
+1 row in set (0.00 sec)
+```</p>
 <h2 id="constraints"><strong>Constraints</strong></h2>
 <p>Currently, CONCAT() doesn't support quoted strings and numeric argument.</p>
 

@@ -13233,7 +13233,7 @@
 <h2 id="prepare-before-you-start">Prepare before you start</h2>
 <p>Before you can start writing data to MatrixOne using DataX, you need to complete the installation of the following software:</p>
 <ul>
-<li>Finished <a href="../../../Get-Started/install-standalone-matrixone.md">installing and starting</a> MatrixOne.</li>
+<li>Finished <a href="../../../../../Get-Started/install-standalone-matrixone/">installing and starting</a> MatrixOne.</li>
 <li>Install <a href="https://www.oracle.com/sg/java/technologies/javase/javase8-archive-downloads.html">JDK 8+ version</a>.</li>
 <li>Install <a href="https://www.python.org/downloads/">Python 3.8 (or plus)</a>.</li>
 <li>Download the <a href="https://datax-opensource.oss-cn-hangzhou.aliyuncs.com/202210/datax.tar.gz">DataX</a> installation package and unzip it.</li>
@@ -13243,43 +13243,38 @@
 </ul>
 <h2 id="steps">Steps</h2>
 <h3 id="log-in-to-the-clickhouse-database-to-create-test-data">Log in to the clickhouse database to create test data</h3>
-<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n">source_ck_database</span><span class="p">;</span>
-<span class="n">use</span><span class="w"> </span><span class="n">source_ck_database</span><span class="p">;</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code>create database source_ck_database;
+use source_ck_database; 
 
-<span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="n">student</span><span class="p">(</span>
-<span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="w"> </span><span class="n">Int64</span><span class="w"> </span><span class="k">COMMENT</span><span class="w"> </span><span class="s1">&#39;学生 id&#39;</span><span class="p">,</span><span class="w"> </span>
-<span class="o">`</span><span class="n">name</span><span class="o">`</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="k">COMMENT</span><span class="w"> </span><span class="s1">&#39;学生姓名&#39;</span><span class="p">,</span>
-<span class="o">`</span><span class="n">birthday</span><span class="o">`</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="k">COMMENT</span><span class="w"> </span><span class="s1">&#39;学生出生日期&#39;</span><span class="p">,</span>
-<span class="o">`</span><span class="k">class</span><span class="o">`</span><span class="w"> </span><span class="n">Int64</span><span class="w"> </span><span class="k">COMMENT</span><span class="w"> </span><span class="s1">&#39;学生班级编号&#39;</span><span class="p">,</span>
-<span class="o">`</span><span class="n">grade</span><span class="o">`</span><span class="w"> </span><span class="n">Int64</span><span class="w"> </span><span class="k">COMMENT</span><span class="w"> </span><span class="s1">&#39;学生年级编号&#39;</span><span class="p">,</span>
-<span class="o">`</span><span class="n">score</span><span class="o">`</span><span class="w"> </span><span class="nb">decimal</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">COMMENT</span><span class="w"> </span><span class="s1">&#39;学生成绩&#39;</span>
-<span class="p">)</span><span class="w"> </span><span class="n">engine</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MergeTree</span><span class="w"> </span>
-<span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
+create table if not exists student(
+`id` Int64 COMMENT &#39;学生 id&#39;, 
+`name` String COMMENT &#39;学生姓名&#39;,
+`birthday` String COMMENT &#39;学生出生日期&#39;,
+`class` Int64 COMMENT &#39;学生班级编号&#39;,
+`grade` Int64 COMMENT &#39;学生年级编号&#39;,
+`score` decimal(18,0) COMMENT &#39;学生成绩&#39;
+) engine = MergeTree 
+order by id;
 </code></pre></div>
 <h3 id="importing-data-using-datax">Importing data using datax</h3>
 <h4 id="using-clickhousereader">Using clickhousereader</h4>
 <p>Note: Datax cannot synchronize table structures, so you need to create the table MatrixOne build statement in MatrixOne in advance:</p>
-<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w">  </span><span class="n">datax_db</span><span class="p">.</span><span class="o">`</span><span class="n">datax_ckreader_ck_student</span><span class="o">`</span><span class="w"> </span><span class="p">(</span>
-<span class="w">  </span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="w"> </span><span class="nb">bigint</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">COMMENT</span><span class="w"> </span><span class="ss">&quot;&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="o">`</span><span class="n">name</span><span class="o">`</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">COMMENT</span><span class="w"> </span><span class="ss">&quot;&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="o">`</span><span class="n">birthday</span><span class="o">`</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">COMMENT</span><span class="w"> </span><span class="ss">&quot;&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="o">`</span><span class="k">class</span><span class="o">`</span><span class="w"> </span><span class="nb">bigint</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">COMMENT</span><span class="w"> </span><span class="ss">&quot;&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="o">`</span><span class="n">grade</span><span class="o">`</span><span class="w"> </span><span class="nb">bigint</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">COMMENT</span><span class="w"> </span><span class="ss">&quot;&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="o">`</span><span class="n">score</span><span class="o">`</span><span class="w"> </span><span class="nb">decimal</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">COMMENT</span><span class="w"> </span><span class="ss">&quot;&quot;</span>
-<span class="p">);</span><span class="w"> </span>
+<p><code>``sql &lt;!-- validator-ignore-exec --&gt;
+CREATE TABLE  datax_db.</code>datax_ckreader_ck_student<code>(</code>id<code>bigint(20) NULL COMMENT "",</code>name<code>varchar(100) NULL COMMENT "",</code>birthday<code>varchar(100) NULL COMMENT "",</code>class<code>bigint(20) NULL COMMENT "",</code>grade<code>bigint(20) NULL COMMENT "",</code>score` decimal(18, 0) NULL COMMENT ""
+); </p>
+<p>CREATE TABLE  datax_db.<code>datax_rdbmsreader_ck_student</code> (
+  <code>id</code> bigint(20) NULL COMMENT "",
+  <code>name</code> varchar(100) NULL COMMENT "",
+  <code>birthday</code> varchar(100) NULL COMMENT "",
+  <code>class</code> bigint(20) NULL COMMENT "",
+  <code>grade</code> bigint(20) NULL COMMENT "",
+  <code>score</code> decimal(18, 0) NULL COMMENT ""
+); 
+<div class="highlight"><pre><span></span><code>Upload clikchousereader to the $DATAX\_HOME/plugin/reader directory Unzip the installation package:
 
-<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w">  </span><span class="n">datax_db</span><span class="p">.</span><span class="o">`</span><span class="n">datax_rdbmsreader_ck_student</span><span class="o">`</span><span class="w"> </span><span class="p">(</span>
-<span class="w">  </span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="w"> </span><span class="nb">bigint</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">COMMENT</span><span class="w"> </span><span class="ss">&quot;&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="o">`</span><span class="n">name</span><span class="o">`</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">COMMENT</span><span class="w"> </span><span class="ss">&quot;&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="o">`</span><span class="n">birthday</span><span class="o">`</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">COMMENT</span><span class="w"> </span><span class="ss">&quot;&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="o">`</span><span class="k">class</span><span class="o">`</span><span class="w"> </span><span class="nb">bigint</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">COMMENT</span><span class="w"> </span><span class="ss">&quot;&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="o">`</span><span class="n">grade</span><span class="o">`</span><span class="w"> </span><span class="nb">bigint</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">COMMENT</span><span class="w"> </span><span class="ss">&quot;&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="o">`</span><span class="n">score</span><span class="o">`</span><span class="w"> </span><span class="nb">decimal</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">COMMENT</span><span class="w"> </span><span class="ss">&quot;&quot;</span>
-<span class="p">);</span><span class="w"> </span>
-</code></pre></div>
-<p>Upload clikchousereader to the $DATAX_HOME/plugin/reader directory Unzip the installation package:</p>
-<div class="highlight"><pre><span></span><code><span class="o">[</span>root@root<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>unzip<span class="w"> </span>clickhousereader.zip<span class="w"> </span>
-</code></pre></div>
+```bash
+[root@root ~]$ unzip clickhousereader.zip 
+</code></pre></div></p>
 <p>Move the archive to the /opt/ directory:</p>
 <div class="highlight"><pre><span></span><code><span class="o">[</span>root@root<span class="w"> </span>~<span class="o">]</span><span class="w"> </span>mv<span class="w"> </span>clickhousereader.zip<span class="w"> </span>/opt/
 <span class="w"> </span><span class="sb">```</span>

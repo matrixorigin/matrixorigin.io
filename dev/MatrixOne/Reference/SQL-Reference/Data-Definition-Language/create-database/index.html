@@ -13191,20 +13191,20 @@
 </code></pre></div>
 <p><strong>Expected Result</strong></p>
 <p>You can use <a href="../../Other/SHOW-Statements/show-databases/"><code>SHOW DATABASES</code></a> to check if the databases have been created.</p>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="n">databases</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">--------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">Database</span><span class="w">           </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">mo_task</span><span class="w">            </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">information_schema</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">mysql</span><span class="w">              </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">system_metrics</span><span class="w">     </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="k">system</span><span class="w">             </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">test01</span><span class="w">             </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">mo_catalog</span><span class="w">         </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------------------+</span>
-<span class="mi">10</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+<p><code>sql &lt;!-- validator-ignore-exec --&gt;
+mysql&gt; show databases;
++--------------------+
+| Database           |
++--------------------+
+| mo_task            |
+| information_schema |
+| mysql              |
+| system_metrics     |
+| system             |
+| test01             |
+| mo_catalog         |
++--------------------+
+10 rows in set (0.01 sec)</code></p>
 <p>You can see that the new database <em>test01</em> has been created in addition to the six system databases.</p>
 <h2 id="constraints"><strong>Constraints</strong></h2>
 <ul>

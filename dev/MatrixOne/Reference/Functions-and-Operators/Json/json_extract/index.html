@@ -13277,86 +13277,75 @@
 </li>
 </ul>
 <h2 id="example"><strong>Example</strong></h2>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">JSON_EXTRACT</span><span class="p">(</span><span class="s1">&#39;{&quot;a&quot;: 1, &quot;b&quot;: 2, &quot;c&quot;: [3, 4, 5]}&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;$.*&#39;</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">---------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">JSON_EXTRACT</span><span class="p">(</span><span class="s1">&#39;{&quot;a&quot;: 1, &quot;b&quot;: 2, &quot;c&quot;: [3, 4, 5]}&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;$.*&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">]]</span><span class="w">                                       </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------------------------------------------------------+</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">JSON_EXTRACT</span><span class="p">(</span><span class="s1">&#39;{&quot;a&quot;: 1, &quot;b&quot;: 2, &quot;c&quot;: [3, 4, 5]}&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;$.c[*]&#39;</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">JSON_EXTRACT</span><span class="p">(</span><span class="s1">&#39;{&quot;a&quot;: 1, &quot;b&quot;: 2, &quot;c&quot;: [3, 4, 5]}&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;$.c[*]&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">]</span><span class="w">                                                  </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------------------------------------------------+</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">json_extract</span><span class="p">(</span><span class="s1">&#39;{&quot;a&quot;:{&quot;q&quot;:[1,2,3]}}&#39;</span><span class="p">,</span><span class="s1">&#39;$.a.q[1]&#39;</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">---------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">json_extract</span><span class="p">(</span><span class="err">{</span><span class="ss">&quot;a&quot;</span><span class="p">:</span><span class="err">{</span><span class="ss">&quot;q&quot;</span><span class="p">:[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span><span class="err">}}</span><span class="p">,</span><span class="w"> </span><span class="err">$</span><span class="p">.</span><span class="n">a</span><span class="p">.</span><span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">2</span><span class="w">                                           </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">JSON_EXTRACT</span><span class="p">(</span><span class="s1">&#39;{&quot;a&quot;: {&quot;b&quot;: 1}, &quot;c&quot;: {&quot;b&quot;: 2}}&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;$**.b&#39;</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">---------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">JSON_EXTRACT</span><span class="p">(</span><span class="s1">&#39;{&quot;a&quot;: {&quot;b&quot;: 1}, &quot;c&quot;: {&quot;b&quot;: 2}}&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;$**.b&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="p">[</span><span class="k">null</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">]</span><span class="w">                                                  </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------------------------------------------------------+</span>
-
-<span class="o">#</span><span class="k">In</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">following</span><span class="w"> </span><span class="n">example</span><span class="p">,</span><span class="w"> </span><span class="n">querying</span><span class="w"> </span><span class="n">JSON</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="err">​​</span><span class="k">from</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">shown</span><span class="p">:</span>
-<span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="n">json</span><span class="p">,</span><span class="n">b</span><span class="w"> </span><span class="nb">int</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;{&quot;a&quot;:1,&quot;b&quot;:2,&quot;c&quot;:3}&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">json_extract</span><span class="p">(</span><span class="n">t1</span><span class="p">.</span><span class="n">a</span><span class="p">,</span><span class="s1">&#39;$.a&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">t1</span><span class="p">.</span><span class="n">b</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">-------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">json_extract</span><span class="p">(</span><span class="n">t1</span><span class="p">.</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="err">$</span><span class="p">.</span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">1</span><span class="w">                       </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;{&quot;a&quot;:4,&quot;b&quot;:5,&quot;c&quot;:6}&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">json_extract</span><span class="p">(</span><span class="n">t1</span><span class="p">.</span><span class="n">a</span><span class="p">,</span><span class="s1">&#39;$.b&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">t1</span><span class="p">.</span><span class="n">b</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">-------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">json_extract</span><span class="p">(</span><span class="n">t1</span><span class="p">.</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="err">$</span><span class="p">.</span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">5</span><span class="w">                       </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">json_extract</span><span class="p">(</span><span class="n">t1</span><span class="p">.</span><span class="n">a</span><span class="p">,</span><span class="s1">&#39;$.a&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">-------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">json_extract</span><span class="p">(</span><span class="n">t1</span><span class="p">.</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="err">$</span><span class="p">.</span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">1</span><span class="w">                       </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">4</span><span class="w">                       </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------------------------+</span>
-<span class="mi">2</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;{&quot;a&quot;:{&quot;q&quot;:[1,2,3]}}&#39;</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">json_extract</span><span class="p">(</span><span class="n">t1</span><span class="p">.</span><span class="n">a</span><span class="p">,</span><span class="s1">&#39;$.a.q[1]&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">t1</span><span class="p">.</span><span class="n">b</span><span class="o">=</span><span class="mi">3</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">json_extract</span><span class="p">(</span><span class="n">t1</span><span class="p">.</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="err">$</span><span class="p">.</span><span class="n">a</span><span class="p">.</span><span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">2</span><span class="w">                            </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;[{&quot;a&quot;:1,&quot;b&quot;:2,&quot;c&quot;:3},{&quot;a&quot;:4,&quot;b&quot;:5,&quot;c&quot;:6}]&#39;</span><span class="p">,</span><span class="mi">4</span><span class="p">);</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">json_extract</span><span class="p">(</span><span class="n">t1</span><span class="p">.</span><span class="n">a</span><span class="p">,</span><span class="s1">&#39;$[1].a&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">t1</span><span class="p">.</span><span class="n">b</span><span class="o">=</span><span class="mi">4</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">----------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">json_extract</span><span class="p">(</span><span class="n">t1</span><span class="p">.</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="err">$</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">4</span><span class="w">                          </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+<p>```sql <!-- validator-ignore-exec -->
+mysql&gt; select JSON_EXTRACT('{"a": 1, "b": 2, "c": [3, 4, 5]}', '$.<em>');
++---------------------------------------------------------+
+| JSON_EXTRACT('{"a": 1, "b": 2, "c": [3, 4, 5]}', '$.</em>') |
++---------------------------------------------------------+
+| [1, 2, [3, 4, 5]]                                       |
++---------------------------------------------------------+</p>
+<p>mysql&gt; SELECT JSON_EXTRACT('{"a": 1, "b": 2, "c": [3, 4, 5]}', '$.c[<em>]');
++------------------------------------------------------------+
+| JSON_EXTRACT('{"a": 1, "b": 2, "c": [3, 4, 5]}', '$.c[</em>]') |
++------------------------------------------------------------+
+| [3, 4, 5]                                                  |
++------------------------------------------------------------+</p>
+<p>mysql&gt; select json_extract('{"a":{"q":[1,2,3]}}','$.a.q[1]');
++---------------------------------------------+
+| json_extract({"a":{"q":[1,2,3]}}, $.a.q[1]) |
++---------------------------------------------+
+| 2                                           |
++---------------------------------------------+
+1 row in set (0.00 sec)</p>
+<p>mysql&gt; select JSON_EXTRACT('{"a": {"b": 1}, "c": {"b": 2}}', '$<strong>.b');
++---------------------------------------------------------+
+| JSON_EXTRACT('{"a": {"b": 1}, "c": {"b": 2}}', '$</strong>.b') |
++---------------------------------------------------------+
+| [null, 1, 2]                                                  |
++---------------------------------------------------------+</p>
+<h1 id="in-the-following-example-querying-json-values-from-a-column-will-be-shown">In the following example, querying JSON values ​​from a column will be shown:</h1>
+<p>create table t1 (a json,b int);
+insert into t1(a,b) values ('{"a":1,"b":2,"c":3}',1);</p>
+<p>mysql&gt; select json_extract(t1.a,'$.a') from t1 where t1.b=1;
++-------------------------+
+| json_extract(t1.a, $.a) |
++-------------------------+
+| 1                       |
++-------------------------+
+1 row in set (0.00 sec)</p>
+<p>insert into t1(a,b) values ('{"a":4,"b":5,"c":6}',2);</p>
+<p>mysql&gt; select json_extract(t1.a,'$.b') from t1 where t1.b=2;
++-------------------------+
+| json_extract(t1.a, $.b) |
++-------------------------+
+| 5                       |
++-------------------------+
+1 row in set (0.00 sec)</p>
+<p>mysql&gt; select json_extract(t1.a,'$.a') from t1;
++-------------------------+
+| json_extract(t1.a, $.a) |
++-------------------------+
+| 1                       |
+| 4                       |
++-------------------------+
+2 rows in set (0.00 sec)</p>
+<p>insert into t1(a,b) values ('{"a":{"q":[1,2,3]}}',3);</p>
+<p>mysql&gt; select json_extract(t1.a,'$.a.q[1]') from t1 where t1.b=3;
++------------------------------+
+| json_extract(t1.a, $.a.q[1]) |
++------------------------------+
+| 2                            |
++------------------------------+
+1 row in set (0.01 sec)</p>
+<p>insert into t1(a,b) values ('[{"a":1,"b":2,"c":3},{"a":4,"b":5,"c":6}]',4);</p>
+<p>mysql&gt; select json_extract(t1.a,'$[1].a') from t1 where t1.b=4;
++----------------------------+
+| json_extract(t1.a, $[1].a) |
++----------------------------+
+| 4                          |
++----------------------------+
+1 row in set (0.00 sec)
+```</p>
 
 
 

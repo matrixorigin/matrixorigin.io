@@ -5778,13 +5778,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#examples" class="md-nav__link">
-    Examples
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -13130,13 +13123,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#examples" class="md-nav__link">
-    Examples
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -13164,65 +13150,67 @@
 <h2 id="syntax-description">Syntax Description</h2>
 <p><code>CREATE TABLE ... LIKE</code> Create an empty table based on the definition of another table, which copies the structure of the original table but not the data stored in the original table.</p>
 <h2 id="syntax-structure">Syntax structure</h2>
-<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">new_tbl</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="n">orig_tbl</span><span class="p">;</span>
-</code></pre></div>
-<h2 id="examples">Examples</h2>
-<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">test1</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="k">primary</span><span class="w"> </span><span class="k">key</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="k">unique</span><span class="w"> </span><span class="k">key</span><span class="p">);</span>
-<span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">test2</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="k">primary</span><span class="w"> </span><span class="k">key</span><span class="p">,</span><span class="n">b</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="k">unique</span><span class="w"> </span><span class="k">key</span><span class="p">,</span><span class="k">c</span><span class="w"> </span><span class="n">double</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="nb">char</span><span class="p">,</span><span class="n">e</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="k">foreign</span><span class="w"> </span><span class="k">key</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="k">references</span><span class="w"> </span><span class="n">foreign01</span><span class="p">(</span><span class="n">a</span><span class="p">),</span><span class="w"> </span><span class="k">unique</span><span class="w"> </span><span class="k">index</span><span class="p">(</span><span class="k">c</span><span class="p">,</span><span class="n">d</span><span class="p">));</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">test1</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">101</span><span class="p">,</span><span class="s1">&#39;abc&#39;</span><span class="p">),(</span><span class="mi">102</span><span class="p">,</span><span class="s1">&#39;def&#39;</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">test2</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;zs1&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="mi">101</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;zs2&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="mi">102</span><span class="p">);</span>
+<p>```sql <!-- validator-ignore-exec -->
+CREATE TABLE new_tbl LIKE orig_tbl;
+<div class="highlight"><pre><span></span><code>## Examples
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">test3</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="n">test2</span><span class="p">;</span>
-<span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">02</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+```sql &lt;!-- validator-ignore-exec --&gt;
+create table test1 (a int primary key, b varchar(5) unique key);
+create table test2 (a int primary key,b varchar(5) unique key,c double DEFAULT 0, d char,e int, foreign key(e) references foreign01(a), unique index(c,d));
+insert into test1 values (101,&#39;abc&#39;),(102,&#39;def&#39;);
+insert into test2 values (1,&#39;zs1&#39;,1,&#39;a&#39;,101),(2,&#39;zs2&#39;,2,&#39;b&#39;,102);
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">test2</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">-------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">Table</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">Create</span><span class="w"> </span><span class="k">Table</span><span class="w">                                                                                                                                                                                                                                                                                                                                            </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">test2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="o">`</span><span class="n">test2</span><span class="o">`</span><span class="w"> </span><span class="p">(</span>
-<span class="o">`</span><span class="n">a</span><span class="o">`</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="o">`</span><span class="n">b</span><span class="o">`</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="o">`</span><span class="k">c</span><span class="o">`</span><span class="w"> </span><span class="n">DOUBLE</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="o">`</span><span class="n">d</span><span class="o">`</span><span class="w"> </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="o">`</span><span class="n">e</span><span class="o">`</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="o">`</span><span class="n">a</span><span class="o">`</span><span class="p">),</span>
-<span class="k">UNIQUE</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="o">`</span><span class="n">b</span><span class="o">`</span><span class="w"> </span><span class="p">(</span><span class="o">`</span><span class="n">b</span><span class="o">`</span><span class="p">),</span>
-<span class="k">UNIQUE</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="o">`</span><span class="k">c</span><span class="o">`</span><span class="w"> </span><span class="p">(</span><span class="o">`</span><span class="k">c</span><span class="o">`</span><span class="p">,</span><span class="o">`</span><span class="n">d</span><span class="o">`</span><span class="p">),</span>
-<span class="k">CONSTRAINT</span><span class="w"> </span><span class="o">`</span><span class="mi">018</span><span class="n">eb74f</span><span class="o">-</span><span class="mi">38</span><span class="n">f3</span><span class="o">-</span><span class="mi">7</span><span class="n">eb4</span><span class="o">-</span><span class="mi">80</span><span class="n">c1</span><span class="o">-</span><span class="mi">95</span><span class="n">d9c65de706</span><span class="o">`</span><span class="w"> </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="o">`</span><span class="n">e</span><span class="o">`</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="o">`</span><span class="n">foreign01</span><span class="o">`</span><span class="w"> </span><span class="p">(</span><span class="o">`</span><span class="n">a</span><span class="o">`</span><span class="p">)</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">RESTRICT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">UPDATE</span><span class="w"> </span><span class="k">RESTRICT</span>
-<span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+mysql&gt; create table test3 like test2;
+Query OK, 0 rows affected (0.02 sec)
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">test3</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">-------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">Table</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">Create</span><span class="w"> </span><span class="k">Table</span><span class="w">                                                                                                                                                                                                                                                                                                                                            </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">test3</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="o">`</span><span class="n">test3</span><span class="o">`</span><span class="w"> </span><span class="p">(</span>
-<span class="o">`</span><span class="n">a</span><span class="o">`</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="o">`</span><span class="n">b</span><span class="o">`</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">null</span><span class="p">,</span>
-<span class="o">`</span><span class="k">c</span><span class="o">`</span><span class="w"> </span><span class="n">DOUBLE</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="o">`</span><span class="n">d</span><span class="o">`</span><span class="w"> </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">null</span><span class="p">,</span>
-<span class="o">`</span><span class="n">e</span><span class="o">`</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">null</span><span class="p">,</span>
-<span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="o">`</span><span class="n">a</span><span class="o">`</span><span class="p">),</span>
-<span class="k">UNIQUE</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="o">`</span><span class="n">b</span><span class="o">`</span><span class="w"> </span><span class="p">(</span><span class="o">`</span><span class="n">b</span><span class="o">`</span><span class="p">),</span>
-<span class="k">UNIQUE</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="o">`</span><span class="k">c</span><span class="o">`</span><span class="w"> </span><span class="p">(</span><span class="o">`</span><span class="k">c</span><span class="o">`</span><span class="p">,</span><span class="o">`</span><span class="n">d</span><span class="o">`</span><span class="p">),</span>
-<span class="k">CONSTRAINT</span><span class="w"> </span><span class="o">`</span><span class="mi">018</span><span class="n">eb74f</span><span class="o">-</span><span class="mi">38</span><span class="n">f3</span><span class="o">-</span><span class="mi">7</span><span class="n">eb4</span><span class="o">-</span><span class="mi">80</span><span class="n">c1</span><span class="o">-</span><span class="mi">95</span><span class="n">d9c65de706</span><span class="o">`</span><span class="w"> </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="o">`</span><span class="n">e</span><span class="o">`</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="o">`</span><span class="n">foreign01</span><span class="o">`</span><span class="w"> </span><span class="p">(</span><span class="o">`</span><span class="n">a</span><span class="o">`</span><span class="p">)</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">RESTRICT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">UPDATE</span><span class="w"> </span><span class="k">RESTRICT</span>
-<span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+mysql&gt; show CREATE TABLE test2;
++-------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table | Create Table                                                                                                                                                                                                                                                                                                                                            |
++-------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| test2 | CREATE TABLE `test2` (
+`a` INT NOT NULL,
+`b` VARCHAR(5) DEFAULT NULL,
+`c` DOUBLE DEFAULT 0,
+`d` CHAR(1) DEFAULT NULL,
+`e` INT DEFAULT NULL,
+PRIMARY KEY (`a`),
+UNIQUE KEY `b` (`b`),
+UNIQUE KEY `c` (`c`,`d`),
+CONSTRAINT `018eb74f-38f3-7eb4-80c1-95d9c65de706` FOREIGN KEY (`e`) REFERENCES `foreign01` (`a`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) |
++-------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">test2</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------+------+------+------+------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">a</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="n">b</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="k">c</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="n">d</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="n">e</span><span class="w">    </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+------+------+------+------+</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">zs1</span><span class="w">  </span><span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">a</span><span class="w">    </span><span class="o">|</span><span class="w">  </span><span class="mi">101</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">zs2</span><span class="w">  </span><span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">b</span><span class="w">    </span><span class="o">|</span><span class="w">  </span><span class="mi">102</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+------+------+------+------+</span>
-<span class="mi">2</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+mysql&gt; show CREATE TABLE test3;
++-------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table | Create Table                                                                                                                                                                                                                                                                                                                                            |
++-------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| test3 | CREATE TABLE `test3` (
+`a` INT NOT NULL,
+`b` VARCHAR(5) DEFAULT null,
+`c` DOUBLE DEFAULT 0,
+`d` CHAR(1) DEFAULT null,
+`e` INT DEFAULT null,
+PRIMARY KEY (`a`),
+UNIQUE KEY `b` (`b`),
+UNIQUE KEY `c` (`c`,`d`),
+CONSTRAINT `018eb74f-38f3-7eb4-80c1-95d9c65de706` FOREIGN KEY (`e`) REFERENCES `foreign01` (`a`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) |
++-------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">test3</span><span class="p">;</span>
-<span class="n">Empty</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+mysql&gt; select * from test2;
++------+------+------+------+------+
+| a    | b    | c    | d    | e    |
++------+------+------+------+------+
+|    1 | zs1  |    1 | a    |  101 |
+|    2 | zs2  |    2 | b    |  102 |
++------+------+------+------+------+
+2 rows in set (0.00 sec)
+
+mysql&gt; select * from test3;
+Empty set (0.01 sec)
+</code></pre></div></p>
 
 
 

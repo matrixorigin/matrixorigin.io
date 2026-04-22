@@ -13204,14 +13204,14 @@
 </tbody>
 </table>
 <h2 id="example"><strong>Example</strong></h2>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">ENCODE</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;mysecretkey&#39;</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">----------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">ENCODE</span><span class="p">(</span><span class="n">hello</span><span class="p">,</span><span class="w"> </span><span class="n">mysecretkey</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="o">?</span><span class="p">;</span><span class="o">?</span><span class="w">                         </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+<p><code>SQL &lt;!-- validator-ignore-exec --&gt;
+mysql&gt; SELECT ENCODE('hello', 'mysecretkey');
++----------------------------+
+| ENCODE(hello, mysecretkey) |
++----------------------------+
+| ?;?                         |
++----------------------------+
+1 row in set (0.00 sec)</code></p>
 
 
 

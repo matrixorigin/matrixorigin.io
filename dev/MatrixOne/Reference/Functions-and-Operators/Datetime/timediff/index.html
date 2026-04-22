@@ -13199,67 +13199,66 @@
 </tbody>
 </table>
 <h2 id="examples"><strong>Examples</strong></h2>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">timediff</span><span class="p">(</span><span class="ss">&quot;22:22:22&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;11:00:00&quot;</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">timediff</span><span class="p">(</span><span class="mi">22</span><span class="p">:</span><span class="mi">22</span><span class="p">:</span><span class="mi">22</span><span class="p">,</span><span class="w"> </span><span class="mi">11</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">11</span><span class="p">:</span><span class="mi">22</span><span class="p">:</span><span class="mi">22</span><span class="p">.</span><span class="mi">000000</span><span class="w">              </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+<p>```sql <!-- validator-ignore-exec -->
+mysql&gt; select timediff("22:22:22", "11:00:00");
++------------------------------+
+| timediff(22:22:22, 11:00:00) |
++------------------------------+
+| 11:22:22.000000              |
++------------------------------+
+1 row in set (0.01 sec)</p>
+<p>mysql&gt; select timediff(cast('22:22:22' as time), null);
++--------------------------------------------+
+| timediff(cast(22:22:22 as time(26)), null) |
++--------------------------------------------+
+| NULL                                       |
++--------------------------------------------+
+1 row in set (0.00 sec)</p>
+<p>mysql&gt; select timediff(CAST('2017-08-08 22:22:22' as datetime), CAST('2000-01-02 11:00:00' as datetime));
++------------------------------------------------------------------------------------------------+
+| timediff(cast(2017-08-08 22:22:22 as datetime(26)), cast(2000-01-02 11:00:00 as datetime(26))) |
++------------------------------------------------------------------------------------------------+
+| 154283:22:22                                                                                   |
++------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+<div class="highlight"><pre><span></span><code>```sql
+create table time_01(t1 time,t2 time,t3 time);
+insert into time_01 values(&quot;-838:59:59.0000&quot;,&quot;838:59:59.00&quot;,&quot;22:00:00&quot;);
+insert into time_01 values(&quot;0:00:00.0000&quot;,&quot;0&quot;,&quot;0:00&quot;);
+insert into time_01 values(null,NULL,null);
+insert into time_01 values(&quot;23&quot;,&quot;1122&quot;,&quot;-1122&quot;);
+insert into time_01 values(&quot;101412&quot;,&quot;4&quot;,&quot;-101219&quot;);
+insert into time_01 values(&quot;24:59:09.932823&quot;,&quot;24:02:00.93282332424&quot;,&quot;24:20:34.00000000&quot;);
+insert into time_01 values(&quot;2022-09-08 12:00:01&quot;,&quot;019&quot;,&quot;23403&quot;);
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">timediff</span><span class="p">(</span><span class="k">cast</span><span class="p">(</span><span class="s1">&#39;22:22:22&#39;</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">time</span><span class="p">),</span><span class="w"> </span><span class="k">null</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">--------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">timediff</span><span class="p">(</span><span class="k">cast</span><span class="p">(</span><span class="mi">22</span><span class="p">:</span><span class="mi">22</span><span class="p">:</span><span class="mi">22</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">time</span><span class="p">(</span><span class="mi">26</span><span class="p">)),</span><span class="w"> </span><span class="k">null</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w">                                       </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+mysql&gt; select * from time_01;
++------------+-----------+-----------+
+| t1         | t2        | t3        |
++------------+-----------+-----------+
+| -838:59:59 | 838:59:59 | 22:00:00  |
+| 00:00:00   | 00:00:00  | 00:00:00  |
+| NULL       | NULL      | NULL      |
+| 00:00:23   | 00:11:22  | -00:11:22 |
+| 10:14:12   | 00:00:04  | -10:12:19 |
+| 24:59:10   | 24:02:01  | 24:20:34  |
+| 12:00:01   | 00:00:19  | 02:34:03  |
++------------+-----------+-----------+
+7 rows in set (0.00 sec)
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">timediff</span><span class="p">(</span><span class="k">CAST</span><span class="p">(</span><span class="s1">&#39;2017-08-08 22:22:22&#39;</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">datetime</span><span class="p">),</span><span class="w"> </span><span class="k">CAST</span><span class="p">(</span><span class="s1">&#39;2000-01-02 11:00:00&#39;</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">datetime</span><span class="p">));</span>
-<span class="o">+</span><span class="c1">------------------------------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">timediff</span><span class="p">(</span><span class="k">cast</span><span class="p">(</span><span class="mi">2017</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">08</span><span class="w"> </span><span class="mi">22</span><span class="p">:</span><span class="mi">22</span><span class="p">:</span><span class="mi">22</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">datetime</span><span class="p">(</span><span class="mi">26</span><span class="p">)),</span><span class="w"> </span><span class="k">cast</span><span class="p">(</span><span class="mi">2000</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">02</span><span class="w"> </span><span class="mi">11</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">datetime</span><span class="p">(</span><span class="mi">26</span><span class="p">)))</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------------------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">154283</span><span class="p">:</span><span class="mi">22</span><span class="p">:</span><span class="mi">22</span><span class="w">                                                                                   </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------------------------------------------------------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">time_01</span><span class="p">(</span><span class="n">t1</span><span class="w"> </span><span class="k">time</span><span class="p">,</span><span class="n">t2</span><span class="w"> </span><span class="k">time</span><span class="p">,</span><span class="n">t3</span><span class="w"> </span><span class="k">time</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">time_01</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="ss">&quot;-838:59:59.0000&quot;</span><span class="p">,</span><span class="ss">&quot;838:59:59.00&quot;</span><span class="p">,</span><span class="ss">&quot;22:00:00&quot;</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">time_01</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="ss">&quot;0:00:00.0000&quot;</span><span class="p">,</span><span class="ss">&quot;0&quot;</span><span class="p">,</span><span class="ss">&quot;0:00&quot;</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">time_01</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="k">null</span><span class="p">,</span><span class="k">NULL</span><span class="p">,</span><span class="k">null</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">time_01</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="ss">&quot;23&quot;</span><span class="p">,</span><span class="ss">&quot;1122&quot;</span><span class="p">,</span><span class="ss">&quot;-1122&quot;</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">time_01</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="ss">&quot;101412&quot;</span><span class="p">,</span><span class="ss">&quot;4&quot;</span><span class="p">,</span><span class="ss">&quot;-101219&quot;</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">time_01</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="ss">&quot;24:59:09.932823&quot;</span><span class="p">,</span><span class="ss">&quot;24:02:00.93282332424&quot;</span><span class="p">,</span><span class="ss">&quot;24:20:34.00000000&quot;</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">time_01</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="ss">&quot;2022-09-08 12:00:01&quot;</span><span class="p">,</span><span class="ss">&quot;019&quot;</span><span class="p">,</span><span class="ss">&quot;23403&quot;</span><span class="p">);</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">time_01</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------------+-----------+-----------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">t1</span><span class="w">         </span><span class="o">|</span><span class="w"> </span><span class="n">t2</span><span class="w">        </span><span class="o">|</span><span class="w"> </span><span class="n">t3</span><span class="w">        </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------+-----------+-----------+</span>
-<span class="o">|</span><span class="w"> </span><span class="o">-</span><span class="mi">838</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mi">59</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">838</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mi">59</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">22</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="w">  </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="w">  </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w">      </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">23</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="mi">00</span><span class="p">:</span><span class="mi">11</span><span class="p">:</span><span class="mi">22</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="o">-</span><span class="mi">00</span><span class="p">:</span><span class="mi">11</span><span class="p">:</span><span class="mi">22</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">10</span><span class="p">:</span><span class="mi">14</span><span class="p">:</span><span class="mi">12</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">04</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="o">-</span><span class="mi">10</span><span class="p">:</span><span class="mi">12</span><span class="p">:</span><span class="mi">19</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">24</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mi">10</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="mi">24</span><span class="p">:</span><span class="mi">02</span><span class="p">:</span><span class="mi">01</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="mi">24</span><span class="p">:</span><span class="mi">20</span><span class="p">:</span><span class="mi">34</span><span class="w">  </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">12</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">01</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">19</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="mi">02</span><span class="p">:</span><span class="mi">34</span><span class="p">:</span><span class="mi">03</span><span class="w">  </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------+-----------+-----------+</span>
-<span class="mi">7</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">timediff</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span><span class="n">t2</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">time_01</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">timediff</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span><span class="w"> </span><span class="n">t2</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="o">-</span><span class="mi">1677</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mi">58</span><span class="w">      </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="w">         </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w">             </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="o">-</span><span class="mi">00</span><span class="p">:</span><span class="mi">10</span><span class="p">:</span><span class="mi">59</span><span class="w">        </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">10</span><span class="p">:</span><span class="mi">14</span><span class="p">:</span><span class="mi">08</span><span class="w">         </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">00</span><span class="p">:</span><span class="mi">57</span><span class="p">:</span><span class="mi">09</span><span class="w">         </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">11</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mi">42</span><span class="w">         </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------+</span>
-<span class="mi">7</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+mysql&gt; select timediff(t1,t2) from time_01;
++------------------+
+| timediff(t1, t2) |
++------------------+
+| -1677:59:58      |
+| 00:00:00         |
+| NULL             |
+| -00:10:59        |
+| 10:14:08         |
+| 00:57:09         |
+| 11:59:42         |
++------------------+
+7 rows in set (0.00 sec)
+</code></pre></div></p>
 
 
 

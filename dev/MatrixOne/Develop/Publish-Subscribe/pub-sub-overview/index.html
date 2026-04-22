@@ -13342,6 +13342,7 @@
 </ul>
 <h2 id="publish-and-subscribe-example">Publish and subscribe example</h2>
 <p>Suppose there is a cross-regional retail company. The central warehouse database needs to publish inventory and product price changes, and each branch database subscribes to these changes to ensure that inventory and price information are synchronized in each branch system.</p>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="k">drop</span><span class="w"> </span><span class="n">account</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="n">acc1</span><span class="p">;</span>
 <span class="k">create</span><span class="w"> </span><span class="n">account</span><span class="w"> </span><span class="n">acc1</span><span class="w"> </span><span class="n">admin_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;test_account&#39;</span><span class="w"> </span><span class="n">identified</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="s1">&#39;111&#39;</span><span class="p">;</span>
 <span class="k">drop</span><span class="w"> </span><span class="n">account</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="n">acc2</span><span class="p">;</span>
@@ -13391,133 +13392,121 @@
 </li>
 <li>
 <p>Subscribe to publications individually in branch tenants</p>
-<div class="highlight"><pre><span></span><code><span class="c1">-- Subscribe to db_warehouse_pub in acc1</span>
-<span class="k">create</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n">db_warehouse_sub</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">sys</span><span class="w"> </span><span class="n">publication</span><span class="w"> </span><span class="n">db_warehouse_pub</span><span class="p">;</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="n">subscriptions</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------------------+-------------+----------------------+------------+-------------+---------------------+------------------+---------------------+--------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">pub_name</span><span class="w">         </span><span class="o">|</span><span class="w"> </span><span class="n">pub_account</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">pub_database</span><span class="w">         </span><span class="o">|</span><span class="w"> </span><span class="n">pub_tables</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">pub_comment</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">pub_time</span><span class="w">            </span><span class="o">|</span><span class="w"> </span><span class="n">sub_name</span><span class="w">         </span><span class="o">|</span><span class="w"> </span><span class="n">sub_time</span><span class="w">            </span><span class="o">|</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------+-------------+----------------------+------------+-------------+---------------------+------------------+---------------------+--------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">db_warehouse_pub</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">sys</span><span class="w">         </span><span class="o">|</span><span class="w"> </span><span class="n">central_warehouse_db</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="o">*</span><span class="w">          </span><span class="o">|</span><span class="w">             </span><span class="o">|</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">15</span><span class="w"> </span><span class="mi">11</span><span class="p">:</span><span class="mi">58</span><span class="p">:</span><span class="mi">04</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">db_warehouse_sub</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">15</span><span class="w"> </span><span class="mi">11</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mi">47</span><span class="w"> </span><span class="o">|</span><span class="w">      </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------+-------------+----------------------+------------+-------------+---------------------+------------------+---------------------+--------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">use</span><span class="w"> </span><span class="n">db_warehouse_sub</span><span class="p">;</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="n">tables</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">----------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">Tables_in_db_warehouse_sub</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">inventory</span><span class="w">                  </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">products</span><span class="w">                   </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------------------+</span>
-<span class="mi">2</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">inventory</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------------+--------------+----------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">product_id</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">product_name</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">stock_quantity</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------+--------------+----------------+</span>
-<span class="o">|</span><span class="w">          </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Laptop</span><span class="w">       </span><span class="o">|</span><span class="w">            </span><span class="mi">100</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">          </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Smartphone</span><span class="w">   </span><span class="o">|</span><span class="w">            </span><span class="mi">200</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">          </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Tablet</span><span class="w">       </span><span class="o">|</span><span class="w">            </span><span class="mi">150</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------+--------------+----------------+</span>
-<span class="mi">3</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">products</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------------+--------------+--------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">product_id</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">product_name</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">price</span><span class="w">  </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------+--------------+--------+</span>
-<span class="o">|</span><span class="w">          </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Laptop</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="mi">999</span><span class="p">.</span><span class="mi">99</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">          </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Smartphone</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="mi">599</span><span class="p">.</span><span class="mi">99</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">          </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Tablet</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="mi">399</span><span class="p">.</span><span class="mi">99</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------+--------------+--------+</span>
-<span class="mi">3</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="c1">-- Subscribe to tab_products_pub in acc2</span>
-<span class="k">create</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n">tab_products_sub</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">sys</span><span class="w"> </span><span class="n">publication</span><span class="w"> </span><span class="n">tab_products_pub</span><span class="p">;</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="n">subscriptions</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------------------+-------------+----------------------+------------+-------------+---------------------+------------------+---------------------+--------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">pub_name</span><span class="w">         </span><span class="o">|</span><span class="w"> </span><span class="n">pub_account</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">pub_database</span><span class="w">         </span><span class="o">|</span><span class="w"> </span><span class="n">pub_tables</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">pub_comment</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">pub_time</span><span class="w">            </span><span class="o">|</span><span class="w"> </span><span class="n">sub_name</span><span class="w">         </span><span class="o">|</span><span class="w"> </span><span class="n">sub_time</span><span class="w">            </span><span class="o">|</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------+-------------+----------------------+------------+-------------+---------------------+------------------+---------------------+--------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">tab_products_pub</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">sys</span><span class="w">         </span><span class="o">|</span><span class="w"> </span><span class="n">central_warehouse_db</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">products</span><span class="w">   </span><span class="o">|</span><span class="w">             </span><span class="o">|</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">15</span><span class="w"> </span><span class="mi">11</span><span class="p">:</span><span class="mi">58</span><span class="p">:</span><span class="mi">04</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">tab_products_sub</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">15</span><span class="w"> </span><span class="mi">13</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mi">22</span><span class="w"> </span><span class="o">|</span><span class="w">      </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------+-------------+----------------------+------------+-------------+---------------------+------------------+---------------------+--------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">use</span><span class="w"> </span><span class="n">tab_products_sub</span><span class="p">;</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="n">tables</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">----------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">Tables_in_tab_products_sub</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">products</span><span class="w">                   </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">products</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------------+--------------+--------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">product_id</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">product_name</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">price</span><span class="w">  </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------+--------------+--------+</span>
-<span class="o">|</span><span class="w">          </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Laptop</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="mi">999</span><span class="p">.</span><span class="mi">99</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">          </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Smartphone</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="mi">599</span><span class="p">.</span><span class="mi">99</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">          </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Tablet</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="mi">399</span><span class="p">.</span><span class="mi">99</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------+--------------+--------+</span>
-<span class="mi">3</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+<p>```sql <!-- validator-ignore-exec -->
+-- Subscribe to db_warehouse_pub in acc1
+create database db_warehouse_sub from sys publication db_warehouse_pub;</p>
+<p>mysql&gt; show subscriptions;
++------------------+-------------+----------------------+------------+-------------+---------------------+------------------+---------------------+--------+
+| pub_name         | pub_account | pub_database         | pub_tables | pub_comment | pub_time            | sub_name         | sub_time            | status |
++------------------+-------------+----------------------+------------+-------------+---------------------+------------------+---------------------+--------+
+| db_warehouse_pub | sys         | central_warehouse_db | *          |             | 2024-10-15 11:58:04 | db_warehouse_sub | 2024-10-15 11:59:47 |      0 |
++------------------+-------------+----------------------+------------+-------------+---------------------+------------------+---------------------+--------+
+1 row in set (0.01 sec)</p>
+<p>use db_warehouse_sub;</p>
+<p>mysql&gt; show tables;
++----------------------------+
+| Tables_in_db_warehouse_sub |
++----------------------------+
+| inventory                  |
+| products                   |
++----------------------------+
+2 rows in set (0.01 sec)</p>
+<p>mysql&gt; select * from inventory;
++------------+--------------+----------------+
+| product_id | product_name | stock_quantity |
++------------+--------------+----------------+
+|          1 | Laptop       |            100 |
+|          2 | Smartphone   |            200 |
+|          3 | Tablet       |            150 |
++------------+--------------+----------------+
+3 rows in set (0.01 sec)</p>
+<p>mysql&gt; select * from products;
++------------+--------------+--------+
+| product_id | product_name | price  |
++------------+--------------+--------+
+|          1 | Laptop       | 999.99 |
+|          2 | Smartphone   | 599.99 |
+|          3 | Tablet       | 399.99 |
++------------+--------------+--------+
+3 rows in set (0.01 sec)</p>
+<p>-- Subscribe to tab_products_pub in acc2
+create database tab_products_sub from sys publication tab_products_pub;</p>
+<p>mysql&gt; show subscriptions;
++------------------+-------------+----------------------+------------+-------------+---------------------+------------------+---------------------+--------+
+| pub_name         | pub_account | pub_database         | pub_tables | pub_comment | pub_time            | sub_name         | sub_time            | status |
++------------------+-------------+----------------------+------------+-------------+---------------------+------------------+---------------------+--------+
+| tab_products_pub | sys         | central_warehouse_db | products   |             | 2024-10-15 11:58:04 | tab_products_sub | 2024-10-15 13:59:22 |      0 |
++------------------+-------------+----------------------+------------+-------------+---------------------+------------------+---------------------+--------+
+1 row in set (0.01 sec)</p>
+<p>use tab_products_sub;</p>
+<p>mysql&gt; show tables;
++----------------------------+
+| Tables_in_tab_products_sub |
++----------------------------+
+| products                   |
++----------------------------+
+1 row in set (0.01 sec)</p>
+<p>mysql&gt; select * from products;
++------------+--------------+--------+
+| product_id | product_name | price  |
++------------+--------------+--------+
+|          1 | Laptop       | 999.99 |
+|          2 | Smartphone   | 599.99 |
+|          3 | Tablet       | 399.99 |
++------------+--------------+--------+
+3 rows in set (0.01 sec)
+```</p>
 </li>
 <li>
 <p>Data changes</p>
 <p>On the publishing side of data, the publishing and subscription mechanism will synchronize these changes to the subscribing side.</p>
-<div class="highlight"><pre><span></span><code><span class="c1">-- Modify the inventory quantity in the inventory table</span>
-<span class="k">UPDATE</span><span class="w"> </span><span class="n">inventory</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">stock_quantity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">80</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">product_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
-
-<span class="c1">-- Delete a row in the product price list</span>
-<span class="k">DELETE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">products</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">product_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">inventory</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------------+--------------+----------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">product_id</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">product_name</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">stock_quantity</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------+--------------+----------------+</span>
-<span class="o">|</span><span class="w">          </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Laptop</span><span class="w">       </span><span class="o">|</span><span class="w">             </span><span class="mi">80</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">          </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Smartphone</span><span class="w">   </span><span class="o">|</span><span class="w">            </span><span class="mi">200</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">          </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Tablet</span><span class="w">       </span><span class="o">|</span><span class="w">            </span><span class="mi">150</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------+--------------+----------------+</span>
-<span class="mi">3</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">products</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------------+--------------+--------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">product_id</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">product_name</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">price</span><span class="w">  </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------+--------------+--------+</span>
-<span class="o">|</span><span class="w">          </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Laptop</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="mi">999</span><span class="p">.</span><span class="mi">99</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">          </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Tablet</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="mi">399</span><span class="p">.</span><span class="mi">99</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------+--------------+--------+</span>
-<span class="mi">2</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+<p>```sql <!-- validator-ignore-exec -->
+-- Modify the inventory quantity in the inventory table
+UPDATE inventory SET stock_quantity = 80 WHERE product_id = 1;</p>
+<p>-- Delete a row in the product price list
+DELETE FROM products WHERE product_id = 2;</p>
+<p>mysql&gt; select * from inventory;
++------------+--------------+----------------+
+| product_id | product_name | stock_quantity |
++------------+--------------+----------------+
+|          1 | Laptop       |             80 |
+|          2 | Smartphone   |            200 |
+|          3 | Tablet       |            150 |
++------------+--------------+----------------+
+3 rows in set (0.00 sec)</p>
+<p>mysql&gt; select * from products;
++------------+--------------+--------+
+| product_id | product_name | price  |
++------------+--------------+--------+
+|          1 | Laptop       | 999.99 |
+|          3 | Tablet       | 399.99 |
++------------+--------------+--------+
+2 rows in set (0.01 sec)
+```</p>
 </li>
 <li>
 <p>View changes on the subscription side</p>
-<div class="highlight"><pre><span></span><code><span class="c1">-- Check stock availability in acc1</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">inventory</span><span class="w"> </span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------------+--------------+----------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">product_id</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">product_name</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">stock_quantity</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------+--------------+----------------+</span>
-<span class="o">|</span><span class="w">          </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Laptop</span><span class="w">       </span><span class="o">|</span><span class="w">             </span><span class="mi">80</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">          </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Smartphone</span><span class="w">   </span><span class="o">|</span><span class="w">            </span><span class="mi">200</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">          </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Tablet</span><span class="w">       </span><span class="o">|</span><span class="w">            </span><span class="mi">150</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------+--------------+----------------+</span>
-<span class="mi">3</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="c1">-- Check product prices in acc2</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">products</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------------+--------------+--------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">product_id</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">product_name</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">price</span><span class="w">  </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------+--------------+--------+</span>
-<span class="o">|</span><span class="w">          </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Laptop</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="mi">999</span><span class="p">.</span><span class="mi">99</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">          </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Tablet</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="mi">399</span><span class="p">.</span><span class="mi">99</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------+--------------+--------+</span>
-<span class="mi">2</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+<p>```sql <!-- validator-ignore-exec -->
+-- Check stock availability in acc1
+mysql&gt; select * from inventory ;
++------------+--------------+----------------+
+| product_id | product_name | stock_quantity |
++------------+--------------+----------------+
+|          1 | Laptop       |             80 |
+|          2 | Smartphone   |            200 |
+|          3 | Tablet       |            150 |
++------------+--------------+----------------+
+3 rows in set (0.01 sec)</p>
+<p>-- Check product prices in acc2</p>
+<p>mysql&gt; select * from products;
++------------+--------------+--------+
+| product_id | product_name | price  |
++------------+--------------+--------+
+|          1 | Laptop       | 999.99 |
+|          3 | Tablet       | 399.99 |
++------------+--------------+--------+
+2 rows in set (0.01 sec)
+```</p>
 </li>
 <li>
 <p>Delete publication</p>

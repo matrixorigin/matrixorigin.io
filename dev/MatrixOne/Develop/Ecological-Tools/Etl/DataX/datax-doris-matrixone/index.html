@@ -13221,42 +13221,42 @@
 <h2 id="prepare-before-you-start">Prepare before you start</h2>
 <p>Before you can start writing data to MatrixOne using DataX, you need to complete the installation of the following software:</p>
 <ul>
-<li>Finished <a href="../../../Get-Started/install-standalone-matrixone.md">installing and starting</a> MatrixOne.</li>
+<li>Finished <a href="../../../../../Get-Started/install-standalone-matrixone/">installing and starting</a> MatrixOne.</li>
 <li>Install <a href="https://www.oracle.com/sg/java/technologies/javase/javase8-archive-downloads.html">JDK 8+ version</a>.</li>
 <li>Install <a href="https://www.python.org/downloads/">Python 3.8 (or plus)</a>.</li>
 <li>Download the <a href="https://datax-opensource.oss-cn-hangzhou.aliyuncs.com/202210/datax.tar.gz">DataX</a> installation package and unzip it.</li>
-<li>Download and install <a href="https://doris.apache.org/zh-CN/docs/dev/get-starting/quick-start/">Doris</a>.</li>
+<li>Download and install <a href="https://doris.apache.org/zh-CN/docs/gettingStarted/quick-start">Doris</a>.</li>
 <li>Download <a href="https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/develop/Computing-Engine/datax-write/matrixonewriter.zip">matrixonewriter.zip</a> and extract it to the <code>plugin/writer/</code> directory in the root of your DataX project.</li>
 <li>Install the <a href="https://dev.mysql.com/downloads/mysql" target="_blank">MySQL Client</a>.</li>
 </ul>
 <h2 id="steps">Steps</h2>
 <h3 id="creating-test-data-in-doris">Creating Test Data in Doris</h3>
-<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n">test</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code>create database test;
 
-<span class="n">use</span><span class="w"> </span><span class="n">test</span><span class="p">;</span>
+use test;
 
-<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">example_tbl</span>
-<span class="p">(</span>
-<span class="w">    </span><span class="n">user_id</span><span class="w"> </span><span class="nb">BIGINT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">COMMENT</span><span class="w"> </span><span class="ss">&quot;用户id&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nb">date</span><span class="w"> </span><span class="nb">DATE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">COMMENT</span><span class="w"> </span><span class="ss">&quot;数据灌入日期时间&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="n">city</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="k">COMMENT</span><span class="w"> </span><span class="ss">&quot;用户所在城市&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="n">age</span><span class="w"> </span><span class="nb">SMALLINT</span><span class="w"> </span><span class="k">COMMENT</span><span class="w"> </span><span class="ss">&quot;用户年龄&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="n">sex</span><span class="w"> </span><span class="n">TINYINT</span><span class="w"> </span><span class="k">COMMENT</span><span class="w"> </span><span class="ss">&quot;用户性别&quot;</span>
-<span class="p">)</span>
-<span class="n">DUPLICATE</span><span class="w"> </span><span class="k">KEY</span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span><span class="w"> </span><span class="nb">date</span><span class="p">)</span>
-<span class="n">DISTRIBUTED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">HASH</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span><span class="w"> </span><span class="n">BUCKETS</span><span class="w"> </span><span class="mi">1</span>
-<span class="n">PROPERTIES</span><span class="w"> </span><span class="p">(</span>
-<span class="w">    </span><span class="ss">&quot;replication_num&quot;</span><span class="o">=</span><span class="ss">&quot;1&quot;</span>
-<span class="p">);</span>
+CREATE TABLE IF NOT EXISTS example_tbl
+(
+    user_id BIGINT NOT NULL COMMENT &quot;用户id&quot;,
+    date DATE NOT NULL COMMENT &quot;数据灌入日期时间&quot;,
+    city VARCHAR(20) COMMENT &quot;用户所在城市&quot;,
+    age SMALLINT COMMENT &quot;用户年龄&quot;,
+    sex TINYINT COMMENT &quot;用户性别&quot;
+)
+DUPLICATE KEY(user_id, date)
+DISTRIBUTED BY HASH(user_id) BUCKETS 1
+PROPERTIES (
+    &quot;replication_num&quot;=&quot;1&quot;
+);
 
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">example_tbl</span><span class="w"> </span><span class="k">values</span>
-<span class="p">(</span><span class="mi">10000</span><span class="p">,</span><span class="s1">&#39;2017-10-01&#39;</span><span class="p">,</span><span class="s1">&#39;北京&#39;</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">10000</span><span class="p">,</span><span class="s1">&#39;2017-10-01&#39;</span><span class="p">,</span><span class="s1">&#39;北京&#39;</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">10001</span><span class="p">,</span><span class="s1">&#39;2017-10-01&#39;</span><span class="p">,</span><span class="s1">&#39;北京&#39;</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">10002</span><span class="p">,</span><span class="s1">&#39;2017-10-02&#39;</span><span class="p">,</span><span class="s1">&#39;上海&#39;</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">10003</span><span class="p">,</span><span class="s1">&#39;2017-10-02&#39;</span><span class="p">,</span><span class="s1">&#39;广州&#39;</span><span class="p">,</span><span class="mi">32</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">10004</span><span class="p">,</span><span class="s1">&#39;2017-10-01&#39;</span><span class="p">,</span><span class="s1">&#39;深圳&#39;</span><span class="p">,</span><span class="mi">35</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">10004</span><span class="p">,</span><span class="s1">&#39;2017-10-03&#39;</span><span class="p">,</span><span class="s1">&#39;深圳&#39;</span><span class="p">,</span><span class="mi">35</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+insert into example_tbl values
+(10000,&#39;2017-10-01&#39;,&#39;北京&#39;,20,0),
+(10000,&#39;2017-10-01&#39;,&#39;北京&#39;,20,0),
+(10001,&#39;2017-10-01&#39;,&#39;北京&#39;,30,1),
+(10002,&#39;2017-10-02&#39;,&#39;上海&#39;,20,1),
+(10003,&#39;2017-10-02&#39;,&#39;广州&#39;,32,0),
+(10004,&#39;2017-10-01&#39;,&#39;深圳&#39;,35,0),
+(10004,&#39;2017-10-03&#39;,&#39;深圳&#39;,35,0);
 </code></pre></div>
 <h3 id="creating-a-target-library-table-in-matrixone">Creating a Target Library Table in MatrixOne</h3>
 <div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n">sparkdemo</span><span class="p">;</span>

@@ -13203,60 +13203,60 @@
 <ul>
 <li>Example: Calculate</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">COALESCE</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="k">COALESCE</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">---------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">coalesce</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="k">coalesce</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------------------------+</span>
-<span class="o">|</span><span class="w">                         </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------------------------+</span>
-</code></pre></div>
-<ul>
-<li>Example: Comparison</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="k">drop</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="n">t2</span><span class="p">;</span>
-<span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t2</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">float</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="n">datetime</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">12</span><span class="p">.</span><span class="mi">345</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2022-02-20 10:10:10.999999&#39;</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="p">.</span><span class="mi">45646</span><span class="p">,</span><span class="w"> </span><span class="k">NULL</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="k">NULL</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2023-04-03 22:10:29.999999&#39;</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="k">NULL</span><span class="p">,</span><span class="w"> </span><span class="k">NULL</span><span class="p">);</span>
+<p>```sql <!-- validator-ignore-exec -->
+mysql&gt; SELECT COALESCE(1)+COALESCE(1);
++---------------------------+
+| coalesce(1) + coalesce(1) |
++---------------------------+
+|                         2 |
++---------------------------+
+<div class="highlight"><pre><span></span><code>- Example: Comparison
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t2</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">---------+---------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">a</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="n">b</span><span class="w">                   </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------+---------------------+</span>
-<span class="o">|</span><span class="w">  </span><span class="mi">12</span><span class="p">.</span><span class="mi">345</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2022</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">20</span><span class="w"> </span><span class="mi">10</span><span class="p">:</span><span class="mi">10</span><span class="p">:</span><span class="mi">11</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">3</span><span class="p">.</span><span class="mi">45646</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w">                </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="k">NULL</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2023</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">03</span><span class="w"> </span><span class="mi">22</span><span class="p">:</span><span class="mi">10</span><span class="p">:</span><span class="mi">30</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="k">NULL</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w">                </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------+---------------------+</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="k">coalesce</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t2</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">--------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">coalesce</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span><span class="w">   </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">12</span><span class="p">.</span><span class="mi">345000267028809</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">3</span><span class="p">.</span><span class="mi">4564599990844727</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">                  </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">                  </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------------------+</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="k">coalesce</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t2</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">--------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">coalesce</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w">     </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">12</span><span class="p">.</span><span class="mi">345000267028809</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">3</span><span class="p">.</span><span class="mi">4564599990844727</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">                  </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">                  </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------------------+</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="k">coalesce</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="mi">2022</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t2</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">---------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">coalesce</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="mi">2022</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">2022</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">20</span><span class="w"> </span><span class="mi">10</span><span class="p">:</span><span class="mi">10</span><span class="p">:</span><span class="mi">11</span><span class="w">       </span><span class="o">|</span>
-<span class="o">|</span><span class="w">                           </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">2023</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">03</span><span class="w"> </span><span class="mi">22</span><span class="p">:</span><span class="mi">10</span><span class="p">:</span><span class="mi">30</span><span class="w">       </span><span class="o">|</span>
-<span class="o">|</span><span class="w">                           </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------------------------+</span>
-</code></pre></div>
+```SQL &lt;!-- validator-ignore-exec --&gt;
+drop table if exists t2;
+create table t2(a float, b datetime);
+insert into t2 values (12.345, &#39;2022-02-20 10:10:10.999999&#39;);
+insert into t2 values (3.45646, NULL);
+insert into t2 values(NULL, &#39;2023-04-03 22:10:29.999999&#39;);
+insert into t2 values (NULL, NULL);
+
+mysql&gt; select * from t2;
++---------+---------------------+
+| a       | b                   |
++---------+---------------------+
+|  12.345 | 2022-02-20 10:10:11 |
+| 3.45646 | NULL                |
+|    NULL | 2023-04-03 22:10:30 |
+|    NULL | NULL                |
++---------+---------------------+
+mysql&gt; select coalesce(a, 1.0) from t2;
++--------------------+
+| coalesce(a, 1.0)   |
++--------------------+
+| 12.345000267028809 |
+| 3.4564599990844727 |
+|                  1 |
+|                  1 |
++--------------------+
+mysql&gt; select coalesce(a, 1) from t2;
++--------------------+
+| coalesce(a, 1)     |
++--------------------+
+| 12.345000267028809 |
+| 3.4564599990844727 |
+|                  1 |
+|                  1 |
++--------------------+
+mysql&gt; select coalesce(b, 2022-01-01) from t2;
++---------------------------+
+| coalesce(b, 2022 - 1 - 1) |
++---------------------------+
+| 2022-02-20 10:10:11       |
+|                           |
+| 2023-04-03 22:10:30       |
+|                           |
++---------------------------+
+</code></pre></div></p>
 <ul>
 <li>Example: <code>ORDER BY</code> Clause</li>
 </ul>
@@ -13320,62 +13320,64 @@
 <ul>
 <li>Example: <code>WHERE</code></li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">ot1</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">INT</span><span class="p">);</span>
-<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">ot2</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">INT</span><span class="p">);</span>
-<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">ot3</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">INT</span><span class="p">);</span>
-<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">it1</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">INT</span><span class="p">);</span>
-<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">it2</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">INT</span><span class="p">);</span>
-<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">it3</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">INT</span><span class="p">);</span>
-<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">ot1</span><span class="w"> </span><span class="k">VALUES</span><span class="p">(</span><span class="mi">0</span><span class="p">),(</span><span class="mi">1</span><span class="p">),(</span><span class="mi">2</span><span class="p">),(</span><span class="mi">3</span><span class="p">),(</span><span class="mi">4</span><span class="p">),(</span><span class="mi">5</span><span class="p">),(</span><span class="mi">6</span><span class="p">),(</span><span class="mi">7</span><span class="p">);</span>
-<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">ot2</span><span class="w"> </span><span class="k">VALUES</span><span class="p">(</span><span class="mi">0</span><span class="p">),(</span><span class="mi">2</span><span class="p">),(</span><span class="mi">4</span><span class="p">),(</span><span class="mi">6</span><span class="p">);</span>
-<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">ot3</span><span class="w"> </span><span class="k">VALUES</span><span class="p">(</span><span class="mi">0</span><span class="p">),(</span><span class="mi">3</span><span class="p">),(</span><span class="mi">6</span><span class="p">);</span>
-<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">it1</span><span class="w"> </span><span class="k">VALUES</span><span class="p">(</span><span class="mi">0</span><span class="p">),(</span><span class="mi">1</span><span class="p">),(</span><span class="mi">2</span><span class="p">),(</span><span class="mi">3</span><span class="p">),(</span><span class="mi">4</span><span class="p">),(</span><span class="mi">5</span><span class="p">),(</span><span class="mi">6</span><span class="p">),(</span><span class="mi">7</span><span class="p">);</span>
-<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">it2</span><span class="w"> </span><span class="k">VALUES</span><span class="p">(</span><span class="mi">0</span><span class="p">),(</span><span class="mi">2</span><span class="p">),(</span><span class="mi">4</span><span class="p">),(</span><span class="mi">6</span><span class="p">);</span>
-<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">it3</span><span class="w"> </span><span class="k">VALUES</span><span class="p">(</span><span class="mi">0</span><span class="p">),(</span><span class="mi">3</span><span class="p">),(</span><span class="mi">6</span><span class="p">);</span>
+<p>```sql <!-- validator-ignore-exec -->
+CREATE TABLE ot1(a INT);
+CREATE TABLE ot2(a INT);
+CREATE TABLE ot3(a INT);
+CREATE TABLE it1(a INT);
+CREATE TABLE it2(a INT);
+CREATE TABLE it3(a INT);
+INSERT INTO ot1 VALUES(0),(1),(2),(3),(4),(5),(6),(7);
+INSERT INTO ot2 VALUES(0),(2),(4),(6);
+INSERT INTO ot3 VALUES(0),(3),(6);
+INSERT INTO it1 VALUES(0),(1),(2),(3),(4),(5),(6),(7);
+INSERT INTO it2 VALUES(0),(2),(4),(6);
+INSERT INTO it3 VALUES(0),(3),(6);</p>
+<p>mysql&gt; SELECT * FROM ot1 LEFT JOIN ot2 ON ot1.a=ot2.a WHERE COALESCE(ot2.a,0) IN (SELECT a FROM it3);
++------+------+
+| a    | a    |
++------+------+
+|    0 |    0 |
+|    1 | NULL |
+|    3 | NULL |
+|    5 | NULL |
+|    6 |    6 |
+|    7 | NULL |
++------+------+
+<div class="highlight"><pre><span></span><code>- Example: `HAVING`
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">ot1</span><span class="w"> </span><span class="k">LEFT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">ot2</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">ot1</span><span class="p">.</span><span class="n">a</span><span class="o">=</span><span class="n">ot2</span><span class="p">.</span><span class="n">a</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="k">COALESCE</span><span class="p">(</span><span class="n">ot2</span><span class="p">.</span><span class="n">a</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">it3</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">------+------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">a</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="n">a</span><span class="w">    </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+------+</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">5</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">6</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">6</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">7</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+------+</span>
-</code></pre></div>
-<ul>
-<li>Example: <code>HAVING</code></li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="k">drop</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
-<span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="n">datetime</span><span class="p">);</span>
-<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="k">NULL</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;2001-01-01 00:00:00.12&#39;</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;2002-01-01 00:00:00.567&#39;</span><span class="p">);</span>
+```sql &lt;!-- validator-ignore-exec --&gt;
+drop table if exists t1;
+create table t1(a datetime);
+INSERT INTO t1 VALUES (NULL), (&#39;2001-01-01 00:00:00.12&#39;), (&#39;2002-01-01 00:00:00.567&#39;);
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">having</span><span class="w"> </span><span class="k">COALESCE</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">&lt;</span><span class="ss">&quot;2002-01-01&quot;</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">---------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">a</span><span class="w">                   </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">2001</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="w"> </span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------------------+</span>
-</code></pre></div>
+mysql&gt; select a from t1 group by a having COALESCE(a)&lt;&quot;2002-01-01&quot;;
++---------------------+
+| a                   |
++---------------------+
+| 2001-01-01 00:00:00 |
++---------------------+
+</code></pre></div></p>
 <ul>
 <li>Example: <code>ON CONDITION</code></li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="k">drop</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
-<span class="k">drop</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="n">t2</span><span class="p">;</span>
-<span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span><span class="w">  </span><span class="n">b</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">255</span><span class="p">));</span>
-<span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t2</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span><span class="w">  </span><span class="n">b</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">255</span><span class="p">));</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;你好&quot;</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;再见&quot;</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;日期时间&quot;</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;明天&quot;</span><span class="p">);</span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">t1</span><span class="p">.</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">t2</span><span class="p">.</span><span class="n">a</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="p">(</span><span class="k">length</span><span class="p">(</span><span class="k">COALESCE</span><span class="p">(</span><span class="n">t1</span><span class="p">.</span><span class="n">b</span><span class="p">))</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">length</span><span class="p">(</span><span class="k">COALESCE</span><span class="p">(</span><span class="n">t2</span><span class="p">.</span><span class="n">b</span><span class="p">)));</span>
-<span class="o">+</span><span class="c1">------+------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">a</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="n">a</span><span class="w">    </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+------+</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+------+</span>
-</code></pre></div>
+<p>```sql <!-- validator-ignore-exec -->
+drop table if exists t1;
+drop table if exists t2;
+create table t1(a INT,  b varchar(255));
+create table t2(a INT,  b varchar(255));
+insert into t1 values(1, "你好"), (3, "再见");
+insert into t2 values(2, "日期时间"), (4, "明天");</p>
+<blockquote>
+<p>SELECT t1.a, t2.a FROM t1 JOIN t2 ON (length(COALESCE(t1.b)) = length(COALESCE(t2.b)));
++------+------+
+| a    | a    |
++------+------+
+|    1 |    4 |
+|    3 |    4 |
++------+------+
+```</p>
+</blockquote>
 
 
 

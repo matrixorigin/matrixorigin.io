@@ -13198,22 +13198,22 @@
 </tbody>
 </table>
 <h2 id="examples"><strong>Examples</strong></h2>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">lcase</span><span class="p">(</span><span class="s1">&#39;HELLO&#39;</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">--------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">lcase</span><span class="p">(</span><span class="n">HELLO</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">hello</span><span class="w">        </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">02</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">lcase</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">),</span><span class="n">lcase</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">),</span><span class="n">lcase</span><span class="p">(</span><span class="s1">&#39;C&#39;</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">----------+----------+----------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">lcase</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">lcaser</span><span class="p">(</span><span class="n">B</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">lcase</span><span class="p">(</span><span class="k">C</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------+----------+----------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">a</span><span class="w">        </span><span class="o">|</span><span class="w"> </span><span class="n">b</span><span class="w">        </span><span class="o">|</span><span class="w"> </span><span class="k">c</span><span class="w">        </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------+----------+----------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">03</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+<p>```sql <!-- validator-ignore-exec -->
+mysql&gt; select lcase('HELLO');
++--------------+
+| lcase(HELLO) |
++--------------+
+| hello        |
++--------------+
+1 row in set (0.02 sec)</p>
+<p>mysql&gt; select lcase('A'),lcase('B'),lcase('C');
++----------+----------+----------+
+| lcase(A) | lcaser(B) | lcase(C) |
++----------+----------+----------+
+| a        | b        | c        |
++----------+----------+----------+
+1 row in set (0.03 sec)
+```</p>
 
 
 

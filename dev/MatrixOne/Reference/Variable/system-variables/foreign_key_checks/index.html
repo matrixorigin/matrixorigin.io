@@ -13178,73 +13178,73 @@
 </code></pre></div>
 <h2 id="set-foreign_key_checks">Set foreign_key_checks</h2>
 <p>Set foreign_key_checks in MatrixOne with the following command:</p>
-<div class="highlight"><pre><span></span><code><span class="c1">--Global mode, reconnecting the database takes effect</span>
-<span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">foreign_key_checks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;xxx&#39;</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code>--Global mode, reconnecting the database takes effect
+set global foreign_key_checks = &#39;xxx&#39; 
 
-<span class="c1">--session mode</span>
-<span class="k">set</span><span class="w"> </span><span class="k">session</span><span class="w"> </span><span class="n">foreign_key_checks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;xxx&#39;</span>
+--session mode
+set session foreign_key_checks = &#39;xxx&#39;
 </code></pre></div>
 <h2 id="examples">Examples</h2>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w">  </span><span class="k">SELECT</span><span class="w"> </span><span class="o">@@</span><span class="k">session</span><span class="p">.</span><span class="n">foreign_key_checks</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">----------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="o">@@</span><span class="n">foreign_key_checks</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">1</span><span class="w">                    </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t2</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="k">primary</span><span class="w"> </span><span class="k">key</span><span class="p">,</span><span class="n">b</span><span class="w"> </span><span class="nb">int</span><span class="p">);</span>
-<span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="p">(</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="k">constraint</span><span class="w"> </span><span class="o">`</span><span class="n">c1</span><span class="o">`</span><span class="w"> </span><span class="k">foreign</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="o">`</span><span class="n">fk1</span><span class="o">`</span><span class="w"> </span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="k">references</span><span class="w"> </span><span class="n">t2</span><span class="p">(</span><span class="n">a</span><span class="p">));</span>
-
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span><span class="c1">--When foreign key constraint checking is turned on, values that violate the constraint cannot be inserted</span>
-<span class="n">ERROR</span><span class="w"> </span><span class="mi">20101</span><span class="w"> </span><span class="p">(</span><span class="n">HY000</span><span class="p">):</span><span class="w"> </span><span class="n">internal</span><span class="w"> </span><span class="n">error</span><span class="p">:</span><span class="w"> </span><span class="n">Cannot</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="k">update</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">child</span><span class="w"> </span><span class="k">row</span><span class="p">:</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">foreign</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="k">constraint</span><span class="w"> </span><span class="n">fails</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">drop</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t2</span><span class="p">;</span><span class="c1">--Parent table cannot be deleted when foreign key constraint checking is turned on</span>
-<span class="n">ERROR</span><span class="w"> </span><span class="mi">20101</span><span class="w"> </span><span class="p">(</span><span class="n">HY000</span><span class="p">):</span><span class="w"> </span><span class="n">internal</span><span class="w"> </span><span class="n">error</span><span class="p">:</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">drop</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="s1">&#39;t2&#39;</span><span class="w"> </span><span class="n">referenced</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="k">some</span><span class="w"> </span><span class="k">foreign</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="k">constraint</span>
-
-<span class="k">set</span><span class="w"> </span><span class="k">session</span><span class="w"> </span><span class="n">foreign_key_checks</span><span class="w"> </span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="c1">--Turn off foreign key constraint checking</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w">  </span><span class="k">SELECT</span><span class="w"> </span><span class="o">@@</span><span class="k">session</span><span class="p">.</span><span class="n">foreign_key_checks</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">----------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="o">@@</span><span class="n">foreign_key_checks</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">0</span><span class="w">                    </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span><span class="c1">--When you turn off foreign key constraint checking, you can insert values that violate constraints</span>
-<span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">drop</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t2</span><span class="p">;</span><span class="c1">--When you turn off foreign key constraint checking, you can delete the parent table.</span>
-<span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">02</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span><span class="c1">--Delete the parent table and the foreign key constraints are also deleted</span>
-<span class="o">+</span><span class="c1">-------+--------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">Table</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">Create</span><span class="w"> </span><span class="k">Table</span><span class="w">                               </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+--------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">t1</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="o">`</span><span class="n">t1</span><span class="o">`</span><span class="w"> </span><span class="p">(</span>
-<span class="o">`</span><span class="n">b</span><span class="o">`</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span>
-<span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+--------------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t2</span><span class="p">(</span><span class="n">n1</span><span class="w"> </span><span class="nb">int</span><span class="p">);</span><span class="c1">--Rebuild the deleted parent table t2 with the original foreign key reference columns of the child table.</span>
-<span class="n">ERROR</span><span class="w"> </span><span class="mi">20101</span><span class="w"> </span><span class="p">(</span><span class="n">HY000</span><span class="p">):</span><span class="w"> </span><span class="n">internal</span><span class="w"> </span><span class="n">error</span><span class="p">:</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="w"> </span><span class="k">no</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="s1">&#39;&#39;</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t2</span><span class="p">(</span><span class="n">n1</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="n">a</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="k">primary</span><span class="w"> </span><span class="k">key</span><span class="p">);</span><span class="c1">--Contains referenced primary key column a, rebuild successful</span>
-<span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span><span class="c1">--After rebuilding t2, the foreign key relationship is automatically re-established</span>
-<span class="o">+</span><span class="c1">-------+-------------------------------------------------------------------------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">Table</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">Create</span><span class="w"> </span><span class="k">Table</span><span class="w">                                                                                                                              </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+-------------------------------------------------------------------------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">t1</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="o">`</span><span class="n">t1</span><span class="o">`</span><span class="w"> </span><span class="p">(</span>
-<span class="o">`</span><span class="n">b</span><span class="o">`</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="k">CONSTRAINT</span><span class="w"> </span><span class="o">`</span><span class="n">c1</span><span class="o">`</span><span class="w"> </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="o">`</span><span class="n">b</span><span class="o">`</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="o">`</span><span class="n">t2</span><span class="o">`</span><span class="w"> </span><span class="p">(</span><span class="o">`</span><span class="n">a</span><span class="o">`</span><span class="p">)</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">RESTRICT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">UPDATE</span><span class="w"> </span><span class="k">RESTRICT</span>
-<span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+-------------------------------------------------------------------------------------------------------------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+<p>```sql <!-- validator-ignore-exec -->
+mysql&gt;  SELECT @@session.foreign_key_checks;
++----------------------+
+| @@foreign_key_checks |
++----------------------+
+| 1                    |
++----------------------+
+1 row in set (0.00 sec)</p>
+<p>create table t2(a int primary key,b int);
+create table t1( b int, constraint <code>c1</code> foreign key <code>fk1</code> (b) references t2(a));</p>
+<p>insert into t2 values(1,2);
+mysql&gt; insert into t1 values(3);
+-- When foreign key constraint checking is turned on, values that violate the constraint cannot be inserted
+ERROR 20101 (HY000): internal error: Cannot add or update a child row: a foreign key constraint fails</p>
+<p>mysql&gt; drop table t2;
+-- Parent table cannot be deleted when foreign key constraint checking is turned on
+ERROR 20101 (HY000): internal error: can not drop table 't2' referenced by some foreign key constraint</p>
+<p>set session foreign_key_checks =0;
+-- Turn off foreign key constraint checking
+mysql&gt;  SELECT @@session.foreign_key_checks;
++----------------------+
+| @@foreign_key_checks |
++----------------------+
+| 0                    |
++----------------------+
+1 row in set (0.00 sec)</p>
+<p>mysql&gt; insert into t1 values(3);
+-- When you turn off foreign key constraint checking, you can insert values that violate constraints
+Query OK, 1 row affected (0.01 sec)</p>
+<p>mysql&gt; drop table t2;
+-- When you turn off foreign key constraint checking, you can delete the parent table.
+Query OK, 0 rows affected (0.02 sec)</p>
+<p>mysql&gt; show create table t1;
+-- Delete the parent table and the foreign key constraints are also deleted
++-------+--------------------------------------------+
+| Table | Create Table                               |
++-------+--------------------------------------------+
+| t1    | CREATE TABLE <code>t1</code> (
+<code>b</code> INT DEFAULT NULL
+) |
++-------+--------------------------------------------+
+1 row in set (0.00 sec)</p>
+<p>mysql&gt; create table t2(n1 int);
+-- Rebuild the deleted parent table t2 with the original foreign key reference columns of the child table.
+ERROR 20101 (HY000): internal error: column 'a' no exists in table ''</p>
+<p>mysql&gt; create table t2(n1 int,a int primary key);
+-- Contains referenced primary key column a, rebuild successful
+Query OK, 0 rows affected (0.01 sec)</p>
+<p>mysql&gt; show create table t1;
+-- After rebuilding t2, the foreign key relationship is automatically re-established
++-------+-------------------------------------------------------------------------------------------------------------------------------------------+
+| Table | Create Table                                                                                                                              |
++-------+-------------------------------------------------------------------------------------------------------------------------------------------+
+| t1    | CREATE TABLE <code>t1</code> (
+<code>b</code> INT DEFAULT NULL,
+CONSTRAINT <code>c1</code> FOREIGN KEY (<code>b</code>) REFERENCES <code>t2</code> (<code>a</code>) ON DELETE RESTRICT ON UPDATE RESTRICT
+) |
++-------+-------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+```</p>
 
 
 

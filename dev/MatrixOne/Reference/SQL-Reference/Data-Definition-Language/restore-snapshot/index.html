@@ -13274,20 +13274,24 @@
 <h2 id="syntax-description">Syntax Description</h2>
 <p><code>RESTORE ... SNAPSHOT</code> is used to restore data at the cluster/tenant/database/table level from previously created snapshots of the corresponding levels.</p>
 <h2 id="syntax-structure">Syntax Structure</h2>
-<div class="highlight"><pre><span></span><code><span class="n">RESTORE</span><span class="w"> </span><span class="k">CLUSTER</span><span class="w"> </span><span class="err">{</span><span class="n">SNAPSHOT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&lt;</span><span class="n">snapshot_name</span><span class="o">&gt;</span><span class="err">}</span><span class="p">;</span>
+<!-- validator-ignore -->
+<div class="highlight"><pre><span></span><code><span class="n">RESTORE</span><span class="w"> </span><span class="k">CLUSTER</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">SNAPSHOT</span><span class="w"> </span><span class="o">&lt;</span><span class="n">snapshot_name</span><span class="o">&gt;</span><span class="p">;</span>
 
-<span class="n">RESTORE</span><span class="w"> </span><span class="n">ACCOUNT</span><span class="w"> </span><span class="o">&lt;</span><span class="n">account_name</span><span class="o">&gt;</span><span class="w"> </span><span class="err">{</span><span class="n">SNAPSHOT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&lt;</span><span class="n">snapshot_name</span><span class="o">&gt;</span><span class="err">}</span><span class="w"> </span><span class="p">[</span><span class="k">TO</span><span class="w"> </span><span class="n">ACCOUNT</span><span class="w"> </span><span class="o">&lt;</span><span class="n">target_account_name</span><span class="o">&gt;</span><span class="p">];</span>
+<span class="n">RESTORE</span><span class="w"> </span><span class="n">ACCOUNT</span><span class="w"> </span><span class="o">&lt;</span><span class="n">account_name</span><span class="o">&gt;</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">SNAPSHOT</span><span class="w"> </span><span class="o">&lt;</span><span class="n">snapshot_name</span><span class="o">&gt;</span><span class="p">;</span>
 
-<span class="n">RESTORE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="p">[</span><span class="o">&lt;</span><span class="n">account_name</span><span class="o">&gt;</span><span class="p">.]</span><span class="o">&lt;</span><span class="n">database_name</span><span class="o">&gt;</span><span class="w"> </span><span class="err">{</span><span class="n">SNAPSHOT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&lt;</span><span class="n">snapshot_name</span><span class="o">&gt;</span><span class="err">}</span><span class="w"> </span><span class="p">[</span><span class="k">TO</span><span class="w"> </span><span class="n">ACCOUNT</span><span class="w"> </span><span class="o">&lt;</span><span class="n">target_account_name</span><span class="o">&gt;</span><span class="p">];</span>
+<span class="n">RESTORE</span><span class="w"> </span><span class="n">ACCOUNT</span><span class="w"> </span><span class="o">&lt;</span><span class="n">account_name</span><span class="o">&gt;</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="o">&lt;</span><span class="n">database_name</span><span class="o">&gt;</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">SNAPSHOT</span><span class="w"> </span><span class="o">&lt;</span><span class="n">snapshot_name</span><span class="o">&gt;</span><span class="p">;</span>
 
-<span class="n">RESTORE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="p">[</span><span class="o">&lt;</span><span class="n">account_name</span><span class="o">&gt;</span><span class="p">.]</span><span class="o">&lt;</span><span class="n">database_name</span><span class="o">&gt;</span><span class="p">.</span><span class="o">&lt;</span><span class="k">table_name</span><span class="o">&gt;</span><span class="w"> </span><span class="err">{</span><span class="n">SNAPSHOT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&lt;</span><span class="n">snapshot_name</span><span class="o">&gt;</span><span class="err">}</span><span class="w"> </span><span class="p">[</span><span class="k">TO</span><span class="w"> </span><span class="n">ACCOUNT</span><span class="w"> </span><span class="o">&lt;</span><span class="n">target_account_name</span><span class="o">&gt;</span><span class="p">];</span>
+<span class="n">RESTORE</span><span class="w"> </span><span class="n">ACCOUNT</span><span class="w"> </span><span class="o">&lt;</span><span class="n">account_name</span><span class="o">&gt;</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="o">&lt;</span><span class="n">database_name</span><span class="o">&gt;</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="o">&lt;</span><span class="k">table_name</span><span class="o">&gt;</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">SNAPSHOT</span><span class="w"> </span><span class="o">&lt;</span><span class="n">snapshot_name</span><span class="o">&gt;</span><span class="p">;</span>
+
+<span class="n">RESTORE</span><span class="w"> </span><span class="n">ACCOUNT</span><span class="w"> </span><span class="o">&lt;</span><span class="n">account_name</span><span class="o">&gt;</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">SNAPSHOT</span><span class="w"> </span><span class="o">&lt;</span><span class="n">snapshot_name</span><span class="o">&gt;</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">ACCOUNT</span><span class="w"> </span><span class="o">&lt;</span><span class="n">target_account_name</span><span class="o">&gt;</span><span class="p">;</span>
 </code></pre></div>
 <ul>
-<li><code>RESTORE DATABASE</code> and <code>RESTORE TABLE</code> default to the current account when <code>&lt;account_name&gt;.</code> is omitted. Use the dotted form when restoring objects owned by another account.</li>
-<li>The snapshot clause also accepts the legacy form <code>FROM SNAPSHOT &lt;snapshot_name&gt;</code> or <code>{SNAPSHOT = "&lt;snapshot_name&gt;"}</code>.</li>
+<li>Database-level and table-level restores require specifying the account name explicitly.</li>
+<li>The <code>TO ACCOUNT</code> clause is used for cross-tenant restoration, which is only available from the system tenant.</li>
 </ul>
 <h2 id="examples">Examples</h2>
 <h3 id="example-1-restore-cluster">Example 1: Restore Cluster</h3>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="c1">-- Execute in tenants acc1, acc2</span>
 <span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">db1</span><span class="p">;</span>
 
@@ -13305,10 +13309,12 @@
 <span class="mi">6</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 
 <span class="c1">-- Execute in system tenant sys</span>
-<span class="k">CREATE</span><span class="w"> </span><span class="n">SNAPSHOT</span><span class="w"> </span><span class="n">cluster_sp1</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="k">CLUSTER</span><span class="p">;</span><span class="w"> </span><span class="c1">-- Create cluster snapshot</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="n">SNAPSHOT</span><span class="w"> </span><span class="n">cluster_sp1</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="k">CLUSTER</span><span class="p">;</span>
+<span class="c1">-- Create cluster snapshot</span>
 
 <span class="c1">-- Execute in tenants acc1, acc2</span>
-<span class="k">DROP</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">db1</span><span class="p">;</span><span class="w"> </span><span class="c1">-- Drop database db1</span>
+<span class="k">DROP</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">db1</span><span class="p">;</span>
+<span class="c1">-- Drop database db1</span>
 
 <span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SHOW</span><span class="w"> </span><span class="n">DATABASES</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">--------------------+</span>
@@ -13323,10 +13329,12 @@
 <span class="mi">5</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 
 <span class="c1">-- Execute in system tenant sys</span>
-<span class="n">RESTORE</span><span class="w"> </span><span class="k">CLUSTER</span><span class="w"> </span><span class="err">{</span><span class="n">SNAPSHOT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">&quot;cluster_sp1&quot;</span><span class="err">}</span><span class="p">;</span><span class="w"> </span><span class="c1">-- Restore cluster from snapshot</span>
+<span class="n">RESTORE</span><span class="w"> </span><span class="k">CLUSTER</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">SNAPSHOT</span><span class="w"> </span><span class="n">cluster_sp1</span><span class="p">;</span>
+<span class="c1">-- Restore cluster from snapshot</span>
 
 <span class="c1">-- Execute in tenants acc1, acc2</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SHOW</span><span class="w"> </span><span class="n">DATABASES</span><span class="p">;</span><span class="w"> </span><span class="c1">-- Restoration successful</span>
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SHOW</span><span class="w"> </span><span class="n">DATABASES</span><span class="p">;</span>
+<span class="c1">-- Restoration successful</span>
 <span class="o">+</span><span class="c1">--------------------+</span>
 <span class="o">|</span><span class="w"> </span><span class="k">Database</span><span class="w">           </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">--------------------+</span>
@@ -13340,6 +13348,7 @@
 <span class="mi">6</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 </code></pre></div>
 <h3 id="example-2-restore-tenant">Example 2: Restore Tenant</h3>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="c1">-- Execute in tenant acc1</span>
 <span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">db1</span><span class="p">;</span>
 <span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">db2</span><span class="p">;</span>
@@ -13358,8 +13367,10 @@
 <span class="o">+</span><span class="c1">--------------------+</span>
 <span class="mi">7</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 
-<span class="k">CREATE</span><span class="w"> </span><span class="n">SNAPSHOT</span><span class="w"> </span><span class="n">acc1_snap1</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="n">ACCOUNT</span><span class="w"> </span><span class="n">acc1</span><span class="p">;</span><span class="w"> </span><span class="c1">-- Create snapshot</span>
-<span class="k">DROP</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">db1</span><span class="p">;</span><span class="w"> </span><span class="c1">-- Drop databases db1, db2</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="n">SNAPSHOT</span><span class="w"> </span><span class="n">acc1_snap1</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="n">ACCOUNT</span><span class="w"> </span><span class="n">acc1</span><span class="p">;</span>
+<span class="c1">-- Create snapshot</span>
+<span class="k">DROP</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">db1</span><span class="p">;</span>
+<span class="c1">-- Drop databases db1, db2</span>
 <span class="k">DROP</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">db2</span><span class="p">;</span>
 
 <span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SHOW</span><span class="w"> </span><span class="n">DATABASES</span><span class="p">;</span>
@@ -13374,9 +13385,11 @@
 <span class="o">+</span><span class="c1">--------------------+</span>
 <span class="mi">5</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 
-<span class="n">RESTORE</span><span class="w"> </span><span class="n">ACCOUNT</span><span class="w"> </span><span class="n">acc1</span><span class="w"> </span><span class="err">{</span><span class="n">SNAPSHOT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">acc1_snap1</span><span class="err">}</span><span class="p">;</span><span class="w"> </span><span class="c1">-- Restore tenant snapshot</span>
+<span class="n">RESTORE</span><span class="w"> </span><span class="n">ACCOUNT</span><span class="w"> </span><span class="n">acc1</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">SNAPSHOT</span><span class="w"> </span><span class="n">acc1_snap1</span><span class="p">;</span>
+<span class="c1">-- Restore tenant snapshot</span>
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SHOW</span><span class="w"> </span><span class="n">DATABASES</span><span class="p">;</span><span class="w"> </span><span class="c1">-- Restoration successful</span>
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SHOW</span><span class="w"> </span><span class="n">DATABASES</span><span class="p">;</span>
+<span class="c1">-- Restoration successful</span>
 <span class="o">+</span><span class="c1">--------------------+</span>
 <span class="o">|</span><span class="w"> </span><span class="k">Database</span><span class="w">           </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">--------------------+</span>
@@ -13391,6 +13404,7 @@
 <span class="mi">7</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 </code></pre></div>
 <h3 id="example-3-restore-database">Example 3: Restore Database</h3>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="c1">-- Execute in tenant acc1</span>
 <span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">db1</span><span class="p">;</span>
 
@@ -13407,8 +13421,10 @@
 <span class="o">+</span><span class="c1">--------------------+</span>
 <span class="mi">6</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 
-<span class="k">CREATE</span><span class="w"> </span><span class="n">SNAPSHOT</span><span class="w"> </span><span class="n">acc1_db_snap1</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="n">ACCOUNT</span><span class="w"> </span><span class="n">acc1</span><span class="p">;</span><span class="w"> </span><span class="c1">-- Create snapshot</span>
-<span class="k">DROP</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">db1</span><span class="p">;</span><span class="w"> </span><span class="c1">-- Drop database db1</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="n">SNAPSHOT</span><span class="w"> </span><span class="n">acc1_db_snap1</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="n">ACCOUNT</span><span class="w"> </span><span class="n">acc1</span><span class="p">;</span>
+<span class="c1">-- Create snapshot</span>
+<span class="k">DROP</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">db1</span><span class="p">;</span>
+<span class="c1">-- Drop database db1</span>
 
 <span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SHOW</span><span class="w"> </span><span class="n">DATABASES</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">--------------------+</span>
@@ -13423,9 +13439,11 @@
 <span class="mi">5</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 
 <span class="c1">-- Execute in system tenant sys</span>
-<span class="n">RESTORE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">acc1</span><span class="p">.</span><span class="n">db1</span><span class="w"> </span><span class="err">{</span><span class="n">SNAPSHOT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">acc1_db_snap1</span><span class="err">}</span><span class="p">;</span><span class="w"> </span><span class="c1">-- Restore database snapshot</span>
+<span class="n">RESTORE</span><span class="w"> </span><span class="n">ACCOUNT</span><span class="w"> </span><span class="n">acc1</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">db1</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">SNAPSHOT</span><span class="w"> </span><span class="n">acc1_db_snap1</span><span class="p">;</span>
+<span class="c1">-- Restore database snapshot</span>
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SHOW</span><span class="w"> </span><span class="n">DATABASES</span><span class="p">;</span><span class="w"> </span><span class="c1">-- Restoration successful</span>
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SHOW</span><span class="w"> </span><span class="n">DATABASES</span><span class="p">;</span>
+<span class="c1">-- Restoration successful</span>
 <span class="o">+</span><span class="c1">--------------------+</span>
 <span class="o">|</span><span class="w"> </span><span class="k">Database</span><span class="w">           </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">--------------------+</span>
@@ -13439,6 +13457,7 @@
 <span class="mi">6</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 </code></pre></div>
 <h3 id="example-4-restore-table">Example 4: Restore Table</h3>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="c1">-- Execute in tenant acc1</span>
 <span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="p">(</span><span class="n">n1</span><span class="w"> </span><span class="nb">INT</span><span class="p">);</span>
 <span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">VALUES</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
@@ -13451,16 +13470,20 @@
 <span class="o">+</span><span class="c1">------+</span>
 <span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 
-<span class="k">CREATE</span><span class="w"> </span><span class="n">SNAPSHOT</span><span class="w"> </span><span class="n">acc1_tab_snap1</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="n">ACCOUNT</span><span class="w"> </span><span class="n">acc1</span><span class="p">;</span><span class="w"> </span><span class="c1">-- Create snapshot</span>
-<span class="k">TRUNCATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span><span class="w"> </span><span class="c1">-- Clear table t1</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="n">SNAPSHOT</span><span class="w"> </span><span class="n">acc1_tab_snap1</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="n">ACCOUNT</span><span class="w"> </span><span class="n">acc1</span><span class="p">;</span>
+<span class="c1">-- Create snapshot</span>
+<span class="k">TRUNCATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
+<span class="c1">-- Clear table t1</span>
 
 <span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
 <span class="n">Empty</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 
 <span class="c1">-- Execute in system tenant sys</span>
-<span class="n">RESTORE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">acc1</span><span class="p">.</span><span class="n">db1</span><span class="p">.</span><span class="n">t1</span><span class="w"> </span><span class="err">{</span><span class="n">SNAPSHOT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">acc1_tab_snap1</span><span class="err">}</span><span class="p">;</span><span class="w"> </span><span class="c1">-- Restore table snapshot</span>
+<span class="n">RESTORE</span><span class="w"> </span><span class="n">ACCOUNT</span><span class="w"> </span><span class="n">acc1</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">db1</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">SNAPSHOT</span><span class="w"> </span><span class="n">acc1_tab_snap1</span><span class="p">;</span>
+<span class="c1">-- Restore table snapshot</span>
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span><span class="w"> </span><span class="c1">-- Restoration successful</span>
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
+<span class="c1">-- Restoration successful</span>
 <span class="o">+</span><span class="c1">------+</span>
 <span class="o">|</span><span class="w"> </span><span class="n">n1</span><span class="w">   </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">------+</span>
@@ -13469,6 +13492,7 @@
 <span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 </code></pre></div>
 <h3 id="example-5-system-tenant-restores-regular-tenant-to-itself">Example 5: System Tenant Restores Regular Tenant to Itself</h3>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="c1">-- Execute in tenant acc1</span>
 <span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">db1</span><span class="p">;</span>
 
@@ -13486,10 +13510,12 @@
 <span class="mi">6</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 
 <span class="c1">-- Execute in system tenant sys</span>
-<span class="k">CREATE</span><span class="w"> </span><span class="n">SNAPSHOT</span><span class="w"> </span><span class="n">acc1_snap1</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="n">ACCOUNT</span><span class="w"> </span><span class="n">acc1</span><span class="p">;</span><span class="w"> </span><span class="c1">-- Create snapshot for acc1</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="n">SNAPSHOT</span><span class="w"> </span><span class="n">acc1_snap1</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="n">ACCOUNT</span><span class="w"> </span><span class="n">acc1</span><span class="p">;</span>
+<span class="c1">-- Create snapshot for acc1</span>
 
 <span class="c1">-- Execute in tenant acc1</span>
-<span class="k">DROP</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">db1</span><span class="p">;</span><span class="w"> </span><span class="c1">-- Drop database db1</span>
+<span class="k">DROP</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">db1</span><span class="p">;</span>
+<span class="c1">-- Drop database db1</span>
 
 <span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SHOW</span><span class="w"> </span><span class="n">DATABASES</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">--------------------+</span>
@@ -13504,10 +13530,12 @@
 <span class="mi">5</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 
 <span class="c1">-- Execute in system tenant sys</span>
-<span class="n">RESTORE</span><span class="w"> </span><span class="n">ACCOUNT</span><span class="w"> </span><span class="n">acc1</span><span class="w"> </span><span class="err">{</span><span class="n">SNAPSHOT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">acc1_snap1</span><span class="err">}</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">ACCOUNT</span><span class="w"> </span><span class="n">acc1</span><span class="p">;</span><span class="w"> </span><span class="c1">-- Restore snapshot to acc1</span>
+<span class="n">RESTORE</span><span class="w"> </span><span class="n">ACCOUNT</span><span class="w"> </span><span class="n">acc1</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">SNAPSHOT</span><span class="w"> </span><span class="n">acc1_snap1</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">ACCOUNT</span><span class="w"> </span><span class="n">acc1</span><span class="p">;</span>
+<span class="c1">-- Restore snapshot to acc1</span>
 
 <span class="c1">-- Execute in tenant acc1</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SHOW</span><span class="w"> </span><span class="n">DATABASES</span><span class="p">;</span><span class="w"> </span><span class="c1">-- Restoration successful</span>
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SHOW</span><span class="w"> </span><span class="n">DATABASES</span><span class="p">;</span>
+<span class="c1">-- Restoration successful</span>
 <span class="o">+</span><span class="c1">--------------------+</span>
 <span class="o">|</span><span class="w"> </span><span class="k">Database</span><span class="w">           </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">--------------------+</span>
@@ -13521,6 +13549,7 @@
 <span class="mi">6</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 </code></pre></div>
 <h3 id="example-6-system-tenant-restores-regular-tenant-to-new-tenant">Example 6: System Tenant Restores Regular Tenant to New Tenant</h3>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="c1">-- Execute in tenant acc1</span>
 <span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">db1</span><span class="p">;</span>
 
@@ -13538,10 +13567,12 @@
 <span class="mi">6</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 
 <span class="c1">-- Execute in system tenant sys</span>
-<span class="k">CREATE</span><span class="w"> </span><span class="n">SNAPSHOT</span><span class="w"> </span><span class="n">acc1_snap1</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="n">ACCOUNT</span><span class="w"> </span><span class="n">acc1</span><span class="p">;</span><span class="w"> </span><span class="c1">-- Create snapshot for acc1</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="n">SNAPSHOT</span><span class="w"> </span><span class="n">acc1_snap1</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="n">ACCOUNT</span><span class="w"> </span><span class="n">acc1</span><span class="p">;</span>
+<span class="c1">-- Create snapshot for acc1</span>
 
 <span class="c1">-- Execute in tenant acc1</span>
-<span class="k">DROP</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">db1</span><span class="p">;</span><span class="w"> </span><span class="c1">-- Drop database db1</span>
+<span class="k">DROP</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">db1</span><span class="p">;</span>
+<span class="c1">-- Drop database db1</span>
 
 <span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SHOW</span><span class="w"> </span><span class="n">DATABASES</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">--------------------+</span>
@@ -13556,8 +13587,10 @@
 <span class="mi">5</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 
 <span class="c1">-- Execute in system tenant sys</span>
-<span class="k">CREATE</span><span class="w"> </span><span class="n">ACCOUNT</span><span class="w"> </span><span class="n">acc2</span><span class="w"> </span><span class="n">ADMIN_NAME</span><span class="w"> </span><span class="k">admin</span><span class="w"> </span><span class="n">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;111&#39;</span><span class="p">;</span><span class="w"> </span><span class="c1">-- Create target tenant first</span>
-<span class="n">RESTORE</span><span class="w"> </span><span class="n">ACCOUNT</span><span class="w"> </span><span class="n">acc1</span><span class="w"> </span><span class="err">{</span><span class="n">SNAPSHOT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">acc1_snap1</span><span class="err">}</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">ACCOUNT</span><span class="w"> </span><span class="n">acc2</span><span class="p">;</span><span class="w"> </span><span class="c1">-- Restore acc1 snapshot to acc2</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="n">ACCOUNT</span><span class="w"> </span><span class="n">acc2</span><span class="w"> </span><span class="n">ADMIN_NAME</span><span class="w"> </span><span class="k">admin</span><span class="w"> </span><span class="n">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;111&#39;</span><span class="p">;</span>
+<span class="c1">-- Create target tenant first</span>
+<span class="n">RESTORE</span><span class="w"> </span><span class="n">ACCOUNT</span><span class="w"> </span><span class="n">acc1</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">SNAPSHOT</span><span class="w"> </span><span class="n">acc1_snap1</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">ACCOUNT</span><span class="w"> </span><span class="n">acc2</span><span class="p">;</span>
+<span class="c1">-- Restore acc1 snapshot to acc2</span>
 
 <span class="c1">-- Execute in tenant acc1</span>
 <span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SHOW</span><span class="w"> </span><span class="n">DATABASES</span><span class="p">;</span>
@@ -13573,7 +13606,8 @@
 <span class="mi">5</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 
 <span class="c1">-- Execute in tenant acc2</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SHOW</span><span class="w"> </span><span class="n">DATABASES</span><span class="p">;</span><span class="w"> </span><span class="c1">-- Restored to acc2</span>
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SHOW</span><span class="w"> </span><span class="n">DATABASES</span><span class="p">;</span>
+<span class="c1">-- Restored to acc2</span>
 <span class="o">+</span><span class="c1">--------------------+</span>
 <span class="o">|</span><span class="w"> </span><span class="k">Database</span><span class="w">           </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">--------------------+</span>

@@ -13167,48 +13167,44 @@
 <div class="highlight"><pre><span></span><code>&gt; INSERT INTO [db.]table [(c1, c2, c3)] VALUES (v11, v12, v13), (v21, v22, v23), ...
 </code></pre></div>
 <h2 id="examples"><strong>Examples</strong></h2>
-<div class="highlight"><pre><span></span><code><span class="k">drop</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
-<span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="mi">12</span><span class="p">),</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="nb">int</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------+------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">a</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="n">b</span><span class="w">    </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+------+</span>
-<span class="o">|</span><span class="w">   </span><span class="mi">13</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">   </span><span class="mi">13</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+------+</span>
-<span class="mi">2</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="k">drop</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
-<span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">date</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="nb">DATE</span><span class="p">(</span><span class="ss">&quot;2017-06-15 09:34:21&quot;</span><span class="p">)),(</span><span class="nb">DATE</span><span class="p">(</span><span class="ss">&quot;2019-06-25 10:12:21&quot;</span><span class="p">)),(</span><span class="nb">DATE</span><span class="p">(</span><span class="ss">&quot;2019-06-25 18:20:49&quot;</span><span class="p">));</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">a</span><span class="w">          </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">2017</span><span class="o">-</span><span class="mi">06</span><span class="o">-</span><span class="mi">15</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">2019</span><span class="o">-</span><span class="mi">06</span><span class="o">-</span><span class="mi">25</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">2019</span><span class="o">-</span><span class="mi">06</span><span class="o">-</span><span class="mi">25</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------+</span>
-<span class="mi">3</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="k">drop</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="n">t</span><span class="p">;</span>
-<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="p">(</span><span class="n">i1</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span><span class="w"> </span><span class="n">d1</span><span class="w"> </span><span class="n">DOUBLE</span><span class="p">,</span><span class="w"> </span><span class="n">e2</span><span class="w"> </span><span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">));</span>
-<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">.</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">.</span><span class="mi">0</span><span class="o">/</span><span class="mi">3</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="k">null</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">.</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">.</span><span class="mi">0</span><span class="o">/</span><span class="mi">3</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="k">null</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">.</span><span class="mi">0</span><span class="o">/</span><span class="mi">3</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">.</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="k">null</span><span class="w"> </span><span class="p">);</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------+------+------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">i1</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">d1</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">e2</span><span class="w">   </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+------+------+</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">6</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">6</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">3</span><span class="p">.</span><span class="mi">33</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">9</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">3</span><span class="p">.</span><span class="mi">33</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">3</span><span class="p">.</span><span class="mi">33</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+------+------+</span>
-<span class="mi">4</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+<p>```sql <!-- validator-ignore-exec -->
+drop table if exists t1;
+create table t1(a int default (1+12), b int);
+insert into t1(b) values(1), (1);</p>
+<p>mysql&gt; select * from t1;
++------+------+
+| a    | b    |
++------+------+
+|   13 |    1 |
+|   13 |    1 |
++------+------+
+2 rows in set (0.01 sec)</p>
+<p>drop table if exists t1;
+create table t1 (a date);
+insert into t1 values(DATE("2017-06-15 09:34:21")),(DATE("2019-06-25 10:12:21")),(DATE("2019-06-25 18:20:49"));</p>
+<p>mysql&gt; select * from t1;
++------------+
+| a          |
++------------+
+| 2017-06-15 |
+| 2019-06-25 |
+| 2019-06-25 |
++------------+
+3 rows in set (0.00 sec)</p>
+<p>drop table if exists t;
+CREATE TABLE t (i1 INT, d1 DOUBLE, e2 DECIMAL(5,2));
+INSERT INTO t VALUES ( 6, 6.0, 10.0/3), ( null, 9.0, 10.0/3), ( 1, null, 10.0/3), ( 2, 2.0, null );</p>
+<p>mysql&gt; select * from t;
++------+------+------+
+| i1   | d1   | e2   |
++------+------+------+
+|    6 |    6 | 3.33 |
+| NULL |    9 | 3.33 |
+|    1 | NULL | 3.33 |
+|    2 |    2 | NULL |
++------+------+------+
+4 rows in set (0.01 sec)
+```</p>
 
 
 

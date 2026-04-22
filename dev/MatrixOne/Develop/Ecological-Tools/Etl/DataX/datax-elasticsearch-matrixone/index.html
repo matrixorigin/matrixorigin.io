@@ -13289,7 +13289,7 @@
 <h2 id="prepare-before-you-start">Prepare before you start</h2>
 <p>Before you can start writing data to MatrixOne using DataX, you need to complete the installation of the following software:</p>
 <ul>
-<li>Finished <a href="../../../Get-Started/install-standalone-matrixone.md">installing and starting</a> MatrixOne.</li>
+<li>Finished <a href="../../../../../Get-Started/install-standalone-matrixone/">installing and starting</a> MatrixOne.</li>
 <li>Install <a href="https://www.oracle.com/sg/java/technologies/javase/javase8-archive-downloads.html">JDK 8+ version</a>.</li>
 <li>Install <a href="https://www.python.org/downloads/">Python 3.8 (or plus)</a>.</li>
 <li>Download the <a href="https://datax-opensource.oss-cn-hangzhou.aliyuncs.com/202210/datax.tar.gz">DataX</a> installation package and unzip it.</li>
@@ -13426,16 +13426,16 @@ python<span class="w"> </span>bin/datax.py<span class="w"> </span>job/es2mo.json
 </code></pre></div>
 <h3 id="view-post-migration-data-in-matrixone">View post-migration data in MatrixOne</h3>
 <p>View the results in the target table in the MatrixOne database to confirm that the migration is complete:</p>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">mo</span><span class="p">.</span><span class="n">person</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------+-----------+------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">id</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">name</span><span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="n">birthday</span><span class="w">   </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+-----------+------------+</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">MatrixOne</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">1992</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">08</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">MO</span><span class="w">        </span><span class="o">|</span><span class="w"> </span><span class="mi">1993</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">08</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="err">墨墨</span><span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="mi">1994</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">08</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+-----------+------------+</span>
-<span class="mi">3</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+<p><code>sql &lt;!-- validator-ignore-exec --&gt;
+mysql&gt; select * from mo.person;
++------+-----------+------------+
+| id   | name      | birthday   |
++------+-----------+------------+
+|    1 | MatrixOne | 1992-08-08 |
+|    2 | MO        | 1993-08-08 |
+|    3 | 墨墨      | 1994-08-08 |
++------+-----------+------------+
+3 rows in set (0.00 sec)</code></p>
 
 
 

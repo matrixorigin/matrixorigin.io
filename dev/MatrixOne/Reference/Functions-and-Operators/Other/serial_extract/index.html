@@ -13206,58 +13206,54 @@
 </tbody>
 </table>
 <h2 id="examples">Examples</h2>
-<div class="highlight"><pre><span></span><code><span class="k">drop</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="n">vtab64</span><span class="p">;</span>
-<span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">vtab64</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="k">primary</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="n">auto_increment</span><span class="p">,</span><span class="o">`</span><span class="n">vecf64_3</span><span class="o">`</span><span class="w"> </span><span class="n">vecf64</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span><span class="o">`</span><span class="n">vecf64_5</span><span class="o">`</span><span class="w"> </span><span class="n">vecf64</span><span class="p">(</span><span class="mi">5</span><span class="p">));</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">vtab64</span><span class="p">(</span><span class="n">vecf64_3</span><span class="p">,</span><span class="n">vecf64_5</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="ss">&quot;[1,NULL,2]&quot;</span><span class="p">,</span><span class="k">NULL</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">vtab64</span><span class="p">(</span><span class="n">vecf64_3</span><span class="p">,</span><span class="n">vecf64_5</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="k">NULL</span><span class="p">,</span><span class="k">NULL</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">vtab64</span><span class="p">(</span><span class="n">vecf64_3</span><span class="p">,</span><span class="n">vecf64_5</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="ss">&quot;[2,3,4]&quot;</span><span class="p">,</span><span class="k">NULL</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">vtab64</span><span class="p">(</span><span class="n">vecf64_3</span><span class="p">,</span><span class="n">vecf64_5</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="ss">&quot;[4,5,6]&quot;</span><span class="p">,</span><span class="ss">&quot;[1,2,3,4,5]&quot;</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">vtab64</span><span class="p">(</span><span class="n">vecf64_3</span><span class="p">,</span><span class="n">vecf64_5</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="ss">&quot;[7,8,9]&quot;</span><span class="p">,</span><span class="ss">&quot;[2,3,4,5,6]&quot;</span><span class="p">);</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">vtab64</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------+-----------+-----------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">id</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">vecf64_3</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">vecf64_5</span><span class="w">        </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+-----------+-----------------+</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w">            </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">]</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w">            </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">]</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">]</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">]</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">]</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+-----------+-----------------+</span>
-<span class="mi">4</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="c1">--max(max(serial(id, `vecf64_3`, `vecf64_5`)) gets a maximum serialized value, and then normally the max obtained would be the record (4, [7, 8, 9], [2, 3, 4, 5, 6]), but the 1 represents the value in the second position, so that&#39;s [7, 8, 9].</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">serial_extract</span><span class="p">(</span><span class="k">max</span><span class="p">(</span><span class="nb">serial</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">vecf64_3</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">vecf64_5</span><span class="o">`</span><span class="p">)),</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">vecf64</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">vtab64</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">-----------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">a</span><span class="w">         </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-----------+</span>
-<span class="o">|</span><span class="w"> </span><span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">]</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-----------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">serial_extract</span><span class="p">(</span><span class="k">min</span><span class="p">(</span><span class="nb">serial</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">vecf64_3</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">vecf64_5</span><span class="o">`</span><span class="p">)),</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">vecf64</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">vtab64</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">-----------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">a</span><span class="w">               </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-----------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">]</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-----------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">serial_extract</span><span class="p">(</span><span class="k">max</span><span class="p">(</span><span class="n">serial_full</span><span class="p">(</span><span class="k">cast</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">decimal</span><span class="p">),</span><span class="w"> </span><span class="o">`</span><span class="n">vecf64_3</span><span class="o">`</span><span class="p">)),</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">decimal</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">vtab64</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">a</span><span class="w">    </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">serial_extract</span><span class="p">(</span><span class="k">min</span><span class="p">(</span><span class="n">serial_full</span><span class="p">(</span><span class="k">cast</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">decimal</span><span class="p">),</span><span class="w"> </span><span class="o">`</span><span class="n">vecf64_3</span><span class="o">`</span><span class="p">)),</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">vecf64</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">vtab64</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">a</span><span class="w">    </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+<p><code>``sql &lt;!-- validator-ignore-exec --&gt;
+drop table if exists vtab64;
+create table vtab64(id int primary key auto_increment,</code>vecf64_3<code>vecf64(3),</code>vecf64_5` vecf64(5));
+insert into vtab64(vecf64_3,vecf64_5) values("[1,NULL,2]",NULL);
+insert into vtab64(vecf64_3,vecf64_5) values(NULL,NULL);
+insert into vtab64(vecf64_3,vecf64_5) values("[2,3,4]",NULL);
+insert into vtab64(vecf64_3,vecf64_5) values ("[4,5,6]","[1,2,3,4,5]");
+insert into vtab64(vecf64_3,vecf64_5) values ("[7,8,9]","[2,3,4,5,6]");</p>
+<p>mysql&gt; select * from vtab64;
++------+-----------+-----------------+
+| id   | vecf64_3  | vecf64_5        |
++------+-----------+-----------------+
+|    1 | NULL      | NULL            |
+|    2 | [2, 3, 4] | NULL            |
+|    3 | [4, 5, 6] | [1, 2, 3, 4, 5] |
+|    4 | [7, 8, 9] | [2, 3, 4, 5, 6] |
++------+-----------+-----------------+
+4 rows in set (0.01 sec)</p>
+<p>--max(max(serial(id, <code>vecf64_3</code>, <code>vecf64_5</code>)) gets a maximum serialized value, and then normally the max obtained would be the record (4, [7, 8, 9], [2, 3, 4, 5, 6]), but the 1 represents the value in the second position, so that's [7, 8, 9].
+mysql&gt; select serial_extract(max(serial(id, <code>vecf64_3</code>, <code>vecf64_5</code>)), 1 as vecf64(3)) as a from vtab64;
++-----------+
+| a         |
++-----------+
+| [7, 8, 9] |
++-----------+
+1 row in set (0.01 sec)</p>
+<p>mysql&gt; select serial_extract(min(serial(id, <code>vecf64_3</code>, <code>vecf64_5</code>)), 2 as vecf64(5)) as a from vtab64;
++-----------------+
+| a               |
++-----------------+
+| [1, 2, 3, 4, 5] |
++-----------------+
+1 row in set (0.00 sec)</p>
+<p>mysql&gt; select serial_extract(max(serial_full(cast(id as decimal), <code>vecf64_3</code>)), 0 as decimal) as a from vtab64;
++------+
+| a    |
++------+
+|    4 |
++------+
+1 row in set (0.01 sec)</p>
+<p>mysql&gt; select serial_extract(min(serial_full(cast(id as decimal), <code>vecf64_3</code>)), 1 as vecf64(3)) as a from vtab64;
++------+
+| a    |
++------+
+| NULL |
++------+
+1 row in set (0.00 sec)
+```</p>
 
 
 

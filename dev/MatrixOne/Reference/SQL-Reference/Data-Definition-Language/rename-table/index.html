@@ -13175,23 +13175,22 @@
     [, tbl_name2 TO new_tbl_name2] ...
 </code></pre></div>
 <h2 id="example"><strong>Example</strong></h2>
-<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">old_table1</span><span class="p">(</span><span class="n">n1</span><span class="w"> </span><span class="nb">int</span><span class="p">);</span>
-<span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">old_table2</span><span class="p">(</span><span class="n">n1</span><span class="w"> </span><span class="nb">int</span><span class="p">);</span>
-<span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">old_table3</span><span class="p">(</span><span class="n">n1</span><span class="w"> </span><span class="nb">int</span><span class="p">);</span>
-
-<span class="k">RENAME</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">old_table1</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">new_table1</span><span class="p">;</span>
-<span class="k">RENAME</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">old_table2</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">new_table2</span><span class="p">,</span><span class="n">old_table3</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">new_table3</span><span class="p">;</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="n">tables</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">---------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">Tables_in_db1</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">new_table1</span><span class="w">    </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">new_table2</span><span class="w">    </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">new_table3</span><span class="w">    </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------------+</span>
-<span class="mi">3</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+<p>```sql <!-- validator-ignore-exec -->
+create table old_table1(n1 int);
+create table old_table2(n1 int);
+create table old_table3(n1 int);</p>
+<p>RENAME TABLE old_table1 TO new_table1;
+RENAME TABLE old_table2 TO new_table2,old_table3 TO new_table3;</p>
+<p>mysql&gt; show tables;
++---------------+
+| Tables_in_db1 |
++---------------+
+| new_table1    |
+| new_table2    |
+| new_table3    |
++---------------+
+3 rows in set (0.00 sec)
+```</p>
 
 
 

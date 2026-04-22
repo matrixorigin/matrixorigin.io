@@ -13206,38 +13206,36 @@
 </tbody>
 </table>
 <h2 id="examples"><strong>Examples</strong></h2>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">CONVERT_TZ</span><span class="p">(</span><span class="s1">&#39;2004-01-01 12:00:00&#39;</span><span class="p">,</span><span class="s1">&#39;GMT&#39;</span><span class="p">,</span><span class="s1">&#39;MET&#39;</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">-------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">convert_tz</span><span class="p">(</span><span class="mi">2004</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="w"> </span><span class="mi">12</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">,</span><span class="w"> </span><span class="n">GMT</span><span class="p">,</span><span class="w"> </span><span class="n">MET</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">2004</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="w"> </span><span class="mi">13</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="w">                       </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">CONVERT_TZ</span><span class="p">(</span><span class="s1">&#39;2004-01-01 12:00:00&#39;</span><span class="p">,</span><span class="s1">&#39;+00:00&#39;</span><span class="p">,</span><span class="s1">&#39;+10:00&#39;</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">-------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">convert_tz</span><span class="p">(</span><span class="mi">2004</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="w"> </span><span class="mi">12</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">,</span><span class="w"> </span><span class="o">+</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">,</span><span class="w"> </span><span class="o">+</span><span class="mi">10</span><span class="p">:</span><span class="mi">00</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">2004</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="w"> </span><span class="mi">22</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="w">                             </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------------------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">convert_tz</span><span class="p">(</span><span class="s1">&#39;2023-12-31 10:28:00&#39;</span><span class="p">,</span><span class="s1">&#39;+08:00&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;America/New_York&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">dtime</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">---------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">dtime</span><span class="w">               </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">2023</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">30</span><span class="w"> </span><span class="mi">21</span><span class="p">:</span><span class="mi">28</span><span class="p">:</span><span class="mi">00</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">convert_tz</span><span class="p">(</span><span class="k">NULL</span><span class="p">,</span><span class="s1">&#39;-05:00&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;+05:30&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">dtime</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">-------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">dtime</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w">  </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+<p>```sql <!-- validator-ignore-exec -->
+mysql&gt; SELECT CONVERT_TZ('2004-01-01 12:00:00','GMT','MET');
++-------------------------------------------+
+| convert_tz(2004-01-01 12:00:00, GMT, MET) |
++-------------------------------------------+
+| 2004-01-01 13:00:00                       |
++-------------------------------------------+
+1 row in set (0.00 sec)</p>
+<p>mysql&gt; SELECT CONVERT_TZ('2004-01-01 12:00:00','+00:00','+10:00');
++-------------------------------------------------+
+| convert_tz(2004-01-01 12:00:00, +00:00, +10:00) |
++-------------------------------------------------+
+| 2004-01-01 22:00:00                             |
++-------------------------------------------------+
+1 row in set (0.01 sec)</p>
+<p>mysql&gt; select convert_tz('2023-12-31 10:28:00','+08:00', 'America/New_York') as dtime;
++---------------------+
+| dtime               |
++---------------------+
+| 2023-12-30 21:28:00 |
++---------------------+
+1 row in set (0.00 sec)</p>
+<p>mysql&gt; select convert_tz(NULL,'-05:00', '+05:30') as dtime;
++-------+
+| dtime |
++-------+
+| NULL  |
++-------+
+1 row in set (0.00 sec)
+```</p>
 
 
 

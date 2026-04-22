@@ -13208,52 +13208,51 @@
 <div class="highlight"><pre><span></span><code><span class="o">(</span>base<span class="o">)</span><span class="w"> </span>admin@192<span class="w"> </span><span class="k">case</span><span class="w"> </span>%<span class="w"> </span>cat<span class="w"> </span>t1.csv<span class="w"> </span>
 this<span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span><span class="nb">test</span><span class="w"> </span>message
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="k">drop</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">test01</span><span class="p">;</span>
-<span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">test01</span><span class="w"> </span><span class="p">(</span><span class="n">col1</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">col2</span><span class="w"> </span><span class="n">datalink</span><span class="p">);</span>
-<span class="k">create</span><span class="w"> </span><span class="n">stage</span><span class="w"> </span><span class="n">stage01</span><span class="w"> </span><span class="n">url</span><span class="o">=</span><span class="s1">&#39;file:///Users/admin/case/&#39;</span><span class="p">;</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">test01</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;file:///Users/admin/case/t1.csv&#39;</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">test01</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;file:///Users/admin/case/t1.csv?size=2&#39;</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">test01</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;file:///Users/admin/case/t1.csv?offset=4&#39;</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">test01</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;file:///Users/admin/case/t1.csv?offset=4&amp;size=2&#39;</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">test01</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;stage://stage01/t1.csv&#39;</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">test01</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;stage://stage01/t1.csv?size=2&#39;</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">test01</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;stage://stage01/t1.csv?offset=4&#39;</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">test01</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;stage://stage01/t1.csv?offset=4&amp;size=2&#39;</span><span class="p">);</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">test01</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------+-------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">col1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">col2</span><span class="w">                                            </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+-------------------------------------------------+</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">file</span><span class="p">:</span><span class="o">///</span><span class="n">Users</span><span class="o">/</span><span class="k">admin</span><span class="o">/</span><span class="k">case</span><span class="o">/</span><span class="n">t1</span><span class="p">.</span><span class="n">csv</span><span class="w">                 </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">file</span><span class="p">:</span><span class="o">///</span><span class="n">Users</span><span class="o">/</span><span class="k">admin</span><span class="o">/</span><span class="k">case</span><span class="o">/</span><span class="n">t1</span><span class="p">.</span><span class="n">csv</span><span class="o">?</span><span class="k">size</span><span class="o">=</span><span class="mi">2</span><span class="w">          </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">file</span><span class="p">:</span><span class="o">///</span><span class="n">Users</span><span class="o">/</span><span class="k">admin</span><span class="o">/</span><span class="k">case</span><span class="o">/</span><span class="n">t1</span><span class="p">.</span><span class="n">csv</span><span class="o">?</span><span class="k">offset</span><span class="o">=</span><span class="mi">4</span><span class="w">        </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">file</span><span class="p">:</span><span class="o">///</span><span class="n">Users</span><span class="o">/</span><span class="k">admin</span><span class="o">/</span><span class="k">case</span><span class="o">/</span><span class="n">t1</span><span class="p">.</span><span class="n">csv</span><span class="o">?</span><span class="k">offset</span><span class="o">=</span><span class="mi">4</span><span class="o">&amp;</span><span class="k">size</span><span class="o">=</span><span class="mi">2</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">5</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">stage</span><span class="p">:</span><span class="o">//</span><span class="n">stage01</span><span class="o">/</span><span class="n">t1</span><span class="p">.</span><span class="n">csv</span><span class="w">                          </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">6</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">stage</span><span class="p">:</span><span class="o">//</span><span class="n">stage01</span><span class="o">/</span><span class="n">t1</span><span class="p">.</span><span class="n">csv</span><span class="o">?</span><span class="k">size</span><span class="o">=</span><span class="mi">2</span><span class="w">                   </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">7</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">stage</span><span class="p">:</span><span class="o">//</span><span class="n">stage01</span><span class="o">/</span><span class="n">t1</span><span class="p">.</span><span class="n">csv</span><span class="o">?</span><span class="k">offset</span><span class="o">=</span><span class="mi">4</span><span class="w">                 </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">8</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">stage</span><span class="p">:</span><span class="o">//</span><span class="n">stage01</span><span class="o">/</span><span class="n">t1</span><span class="p">.</span><span class="n">csv</span><span class="o">?</span><span class="k">offset</span><span class="o">=</span><span class="mi">4</span><span class="o">&amp;</span><span class="k">size</span><span class="o">=</span><span class="mi">2</span><span class="w">          </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+-------------------------------------------------+</span>
-<span class="mi">8</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">col1</span><span class="p">,</span><span class="w"> </span><span class="n">load_file</span><span class="p">(</span><span class="n">col2</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">test01</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------+-------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">col1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">load_file</span><span class="p">(</span><span class="n">col2</span><span class="p">)</span><span class="w">         </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+-------------------------+</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">test</span><span class="w"> </span><span class="n">message</span>
-<span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">th</span><span class="w">                      </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w">  </span><span class="k">is</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">test</span><span class="w"> </span><span class="n">message</span>
-<span class="w">     </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span><span class="w">  </span><span class="n">i</span><span class="w">                      </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">5</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">test</span><span class="w"> </span><span class="n">message</span>
-<span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">6</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">th</span><span class="w">                      </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">7</span><span class="w"> </span><span class="o">|</span><span class="w">  </span><span class="k">is</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">test</span><span class="w"> </span><span class="n">message</span>
-<span class="w">     </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">8</span><span class="w"> </span><span class="o">|</span><span class="w">  </span><span class="n">i</span><span class="w">                      </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+-------------------------+</span>
-<span class="mi">8</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+<p>```sql <!-- validator-ignore -->
+drop table test01;
+create table test01 (col1 int, col2 datalink);
+create stage stage01 url='file:///Users/admin/case/';
+insert into test01 values (1, 'file:///Users/admin/case/t1.csv');
+insert into test01 values (2, 'file:///Users/admin/case/t1.csv?size=2');
+insert into test01 values (3, 'file:///Users/admin/case/t1.csv?offset=4');
+insert into test01 values (4, 'file:///Users/admin/case/t1.csv?offset=4&amp;size=2');
+insert into test01 values (5, 'stage://stage01/t1.csv');
+insert into test01 values (6, 'stage://stage01/t1.csv?size=2');
+insert into test01 values (7, 'stage://stage01/t1.csv?offset=4');
+insert into test01 values (8, 'stage://stage01/t1.csv?offset=4&amp;size=2');</p>
+<p>mysql&gt; select * from test01;
++------+-------------------------------------------------+
+| col1 | col2                                            |
++------+-------------------------------------------------+
+|    1 | file:///Users/admin/case/t1.csv                 |
+|    2 | file:///Users/admin/case/t1.csv?size=2          |
+|    3 | file:///Users/admin/case/t1.csv?offset=4        |
+|    4 | file:///Users/admin/case/t1.csv?offset=4&amp;size=2 |
+|    5 | stage://stage01/t1.csv                          |
+|    6 | stage://stage01/t1.csv?size=2                   |
+|    7 | stage://stage01/t1.csv?offset=4                 |
+|    8 | stage://stage01/t1.csv?offset=4&amp;size=2          |
++------+-------------------------------------------------+
+8 rows in set (0.01 sec)</p>
+<p>mysql&gt; select col1, load_file(col2) from test01;
++------+-------------------------+
+| col1 | load_file(col2)         |
++------+-------------------------+
+|    1 | this is a test message
+ |
+|    2 | th                      |
+|    3 |  is a test message
+     |
+|    4 |  i                      |
+|    5 | this is a test message
+ |
+|    6 | th                      |
+|    7 |  is a test message
+     |
+|    8 |  i                      |
++------+-------------------------+
+8 rows in set (0.01 sec)
+```</p>
 
 
 

@@ -13171,14 +13171,14 @@
 <div class="highlight"><pre><span></span><code>&gt; IS NOT boolean_value
 </code></pre></div>
 <h2 id="examples"><strong>Examples</strong></h2>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">TRUE</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">FALSE</span><span class="p">,</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">UNKNOWN</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">-----------+------------+----------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">true</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">false</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">null</span><span class="w"> </span><span class="o">!=</span><span class="w">  </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-----------+------------+----------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">false</span><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="k">false</span><span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w">     </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-----------+------------+----------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+<p><code>sql &lt;!-- validator-ignore-exec --&gt;
+mysql&gt; SELECT 1 IS NOT TRUE, 0 IS NOT FALSE, NULL IS NOT UNKNOWN;
++-----------+------------+----------+
+| 1 != true | 0 != false | null !=  |
++-----------+------------+----------+
+| false     | false      | NULL     |
++-----------+------------+----------+
+1 row in set (0.01 sec)</code></p>
 
 
 

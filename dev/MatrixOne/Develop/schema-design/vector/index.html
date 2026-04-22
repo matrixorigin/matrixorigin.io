@@ -1486,20 +1486,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#constriants" class="md-nav__link">
-    Constriants
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#reference" class="md-nav__link">
-    Reference
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -13245,20 +13231,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#constriants" class="md-nav__link">
-    Constriants
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#reference" class="md-nav__link">
-    Reference
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -13317,14 +13289,17 @@
 <h3 id="inserting">Inserting</h3>
 <p>MatrixOne supports inserting vectors in two formats.</p>
 <p><strong>Textual Format</strong></p>
-<div class="highlight"><pre><span></span><code><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;[1,2,3]&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;[4,5,6]&quot;</span><span class="p">);</span>
-</code></pre></div>
-<p><strong>Binary Format</strong></p>
-<p>Suppose you are working with Python NumPy arrays. In that case, you can directly insert the NumPy array into MatrixOne by performing hexadecimal encoding on the array instead of converting it into a comma-separated textual format. This approach is faster when inserting vectors with higher dimensions.</p>
-<div class="highlight"><pre><span></span><code><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="k">cast</span><span class="p">(</span><span class="n">unhex</span><span class="p">(</span><span class="ss">&quot;7e98b23e9e10383b2f41133f&quot;</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">blob</span><span class="p">));</span>
+<p>```sql <!-- validator-ignore-exec -->
+insert into t1 values(1, "[1,2,3]", "[4,5,6]");
+<div class="highlight"><pre><span></span><code>**Binary Format**
 
-<span class="c1">-- &quot;7e98b23e9e10383b2f41133f&quot; represents the hexadecimal encoding of the little-endian []float32{0.34881967, 0.0028086076, 0.5752134}</span>
-</code></pre></div>
+Suppose you are working with Python NumPy arrays. In that case, you can directly insert the NumPy array into MatrixOne by performing hexadecimal encoding on the array instead of converting it into a comma-separated textual format. This approach is faster when inserting vectors with higher dimensions.
+
+```sql &lt;!-- validator-ignore-exec --&gt;
+insert into t1 (a, b) values (2, cast(unhex(&quot;7e98b23e9e10383b2f41133f&quot;) as blob));
+
+-- &quot;7e98b23e9e10383b2f41133f&quot; represents the hexadecimal encoding of the little-endian []float32{0.34881967, 0.0028086076, 0.5752134}
+</code></pre></div></p>
 <h3 id="querying">Querying</h3>
 <p>Vector columns can also be read in two formats.</p>
 <p><strong>Textual Format</strong></p>
@@ -13351,106 +13326,97 @@
 <h2 id="example-top-k-queries">Example - Top K Queries</h2>
 <p>Top K queries are a database query operation that retrieves the top K data items or records from a database. These queries find application in various scenarios, including recommendation systems, search engines, and data analysis, among other fields.</p>
 <p>First, we create a table named <code>t1</code> that contains vector data <code>b</code> and insert some sample data. Then, we perform top K queries using the given SQL statements for <code>l1_distance</code>, <code>l2_distance</code>, cosine similarity, and cosine distance, limiting the results to the top 5 matches.</p>
-<div class="highlight"><pre><span></span><code><span class="c1">-- Sample table &#39;t1&#39; with vector data &#39;b&#39;</span>
-<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span>
-<span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span>
-<span class="w">    </span><span class="n">b</span><span class="w"> </span><span class="n">vecf64</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-<span class="p">);</span>
-
-<span class="c1">-- Insert some sample data</span>
-<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;[1,2,3]&#39;</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;[4,5,6]&#39;</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;[2,1,1]&#39;</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;[7,8,9]&#39;</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;[2,2,2]&#39;</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;[3,1,2]&#39;</span><span class="p">);</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------+-----------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">id</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">b</span><span class="w">         </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+-----------+</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">]</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">]</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">5</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">6</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+-----------+</span>
-<span class="mi">6</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="c1">-- Top K Queries using l1_distance</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">l1_norm</span><span class="p">(</span><span class="n">b</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="s1">&#39;[3,1,2]&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------+-----------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">id</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">b</span><span class="w">         </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+-----------+</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">6</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">5</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">]</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+-----------+</span>
-<span class="mi">5</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="c1">-- Top K Queries using l2_distance</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">l2_distance</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="s1">&#39;[3,1,2]&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------+-----------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">id</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">b</span><span class="w">         </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+-----------+</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">6</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">5</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">]</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+-----------+</span>
-<span class="mi">5</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="c1">-- Top K Queries using cosine similarity</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">cosine_similarity</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;[3,1,2]&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------+-----------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">id</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">b</span><span class="w">         </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+-----------+</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">]</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">]</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">5</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+-----------+</span>
-<span class="mi">5</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="c1">-- Top K Queries using cosine distance</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">cosine_distance</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;[3,1,2]&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------+-----------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">id</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">b</span><span class="w">         </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+-----------+</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">6</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">5</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">]</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">]</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+-----------+</span>
-<span class="mi">5</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+<p>```sql <!-- validator-ignore-exec -->
+-- Sample table 't1' with vector data 'b'
+CREATE TABLE t1 (
+    id int,
+    b vecf64(3)
+);</p>
+<p>-- Insert some sample data
+INSERT INTO t1 (id,b) VALUES (1, '[1,2,3]'), (2, '[4,5,6]'), (3, '[2,1,1]'), (4, '[7,8,9]'), (5, '[2,2,2]'), (6, '[3,1,2]');</p>
+<p>mysql&gt; select * from t1;
++------+-----------+
+| id   | b         |
++------+-----------+
+|    1 | [1, 2, 3] |
+|    2 | [4, 5, 6] |
+|    3 | [2, 1, 1] |
+|    4 | [7, 8, 9] |
+|    5 | [2, 2, 2] |
+|    6 | [3, 1, 2] |
++------+-----------+
+6 rows in set (0.01 sec)</p>
+<p>-- Top K Queries using l1_distance
+mysql&gt; SELECT * FROM t1 ORDER BY l1_norm(b - '[3,1,2]') LIMIT 5;
++------+-----------+
+| id   | b         |
++------+-----------+
+|    6 | [3, 1, 2] |
+|    5 | [2, 2, 2] |
+|    3 | [2, 1, 1] |
+|    1 | [1, 2, 3] |
+|    2 | [4, 5, 6] |
++------+-----------+
+5 rows in set (0.00 sec)</p>
+<p>-- Top K Queries using l2_distance
+mysql&gt; SELECT * FROM t1 ORDER BY l2_distance(b,'[3,1,2]') LIMIT 5;
++------+-----------+
+| id   | b         |
++------+-----------+
+|    6 | [3, 1, 2] |
+|    5 | [2, 2, 2] |
+|    3 | [2, 1, 1] |
+|    1 | [1, 2, 3] |
+|    2 | [4, 5, 6] |
++------+-----------+
+5 rows in set (0.00 sec)</p>
+<p>-- Top K Queries using cosine similarity
+mysql&gt; SELECT * FROM t1 ORDER BY cosine_similarity(b, '[3,1,2]') LIMIT 5;
++------+-----------+
+| id   | b         |
++------+-----------+
+|    1 | [1, 2, 3] |
+|    2 | [4, 5, 6] |
+|    4 | [7, 8, 9] |
+|    5 | [2, 2, 2] |
+|    3 | [2, 1, 1] |
++------+-----------+
+5 rows in set (0.00 sec)</p>
+<p>-- Top K Queries using cosine distance
+mysql&gt; SELECT * FROM t1 ORDER BY cosine_distance(b, '[3,1,2]') LIMIT 5;
++------+-----------+
+| id   | b         |
++------+-----------+
+|    6 | [3, 1, 2] |
+|    3 | [2, 1, 1] |
+|    5 | [2, 2, 2] |
+|    4 | [7, 8, 9] |
+|    2 | [4, 5, 6] |
++------+-----------+
+5 rows in set (0.00 sec)
+```</p>
 <p>These queries demonstrate retrieving the top 5 vectors most similar to the given vector <code>[3,1,2]</code> using different distance and similarity measures. With these queries, you can find the data that best matches your target vector based on different measurement criteria.</p>
 <h2 id="best-practices">Best Practices</h2>
 <ul>
 <li>
 <p><strong>Casting between Vectors:</strong> When casting a vector from one type to another, it is also advisable to specify the dimension. For instance:</p>
-<div class="highlight"><pre><span></span><code>SELECT b + CAST(&quot;[1,2,3]&quot; AS vecf32(3)) FROM t1;
-</code></pre></div>
+<p><code>SELECT b + CAST("[1,2,3]" AS vecf32(3)) FROM t1;</code></p>
 <p>This practice ensures accuracy and consistency in vector-type conversions.</p>
 </li>
 <li>
 <p><strong>Utilizing Binary Format:</strong> To enhance overall insertion performance, consider using binary rather than textual format. Ensure the array is in little-endian format before converting it into hexadecimal encoding. Here's a sample Python code:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">binascii</span>
-
-<span class="c1"># &#39;value&#39; is a NumPy object</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">to_binary</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">value</span>
-
-   <span class="c1"># Little-endian float array</span>
-   <span class="n">value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;&lt;f&#39;</span><span class="p">)</span>
-
-   <span class="k">if</span> <span class="n">value</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
-       <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;expected ndim to be 1&#39;</span><span class="p">)</span>
-
-   <span class="k">return</span> <span class="n">binascii</span><span class="o">.</span><span class="n">b2a_hex</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
-</code></pre></div>
+<p>```python
+import binascii</p>
+<h1 id="value-is-a-numpy-object">'value' is a NumPy object</h1>
+<p>def to_binary(value):
+    if value is None:
+        return value</p>
+<p># Little-endian float array
+   value = np.asarray(value, dtype='&lt;f')</p>
+<p>if value.ndim != 1:
+       raise ValueError('expected ndim to be 1')</p>
+<p>return binascii.b2a_hex(value)
+```</p>
 <p>This approach can significantly improve data insertion efficiency.</p>
 </li>
 </ul>

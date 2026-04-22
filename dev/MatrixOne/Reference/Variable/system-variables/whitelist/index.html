@@ -13182,8 +13182,10 @@
 <span class="k">select</span><span class="w"> </span><span class="o">@@</span><span class="k">global</span><span class="p">.</span><span class="n">invited_nodes</span><span class="p">;</span>
 </code></pre></div>
 <h2 id="set-up">set up</h2>
-<div class="highlight"><pre><span></span><code><span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">validnode_checking</span><span class="o">=</span><span class="n">xx</span><span class="p">;</span><span class="c1">--Default is 0</span>
-<span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">invited_nodes</span><span class="o">=</span><span class="n">xx</span><span class="p">;</span><span class="w"> </span><span class="c1">--Default is *</span>
+<div class="highlight"><pre><span></span><code><span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">validnode_checking</span><span class="o">=</span><span class="n">xx</span><span class="p">;</span><span class="w"> </span>
+<span class="c1">-- Default is 0</span>
+<span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">invited_nodes</span><span class="o">=</span><span class="n">xx</span><span class="p">;</span><span class="w"> </span>
+<span class="c1">-- Default is *</span>
 </code></pre></div>
 <h2 id="example">Example</h2>
 <div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">@@</span><span class="k">global</span><span class="p">.</span><span class="n">validnode_checking</span><span class="p">;</span>

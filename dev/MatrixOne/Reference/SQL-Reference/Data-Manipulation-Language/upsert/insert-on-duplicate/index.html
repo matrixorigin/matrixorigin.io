@@ -13186,48 +13186,44 @@
   [ON DUPLICATE KEY UPDATE column1 = value1, column2 = value2, column3 = value3, ...];
 </code></pre></div>
 <h2 id="examples"><strong>Examples</strong></h2>
-<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="p">(</span>
-<span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
-<span class="w">    </span><span class="n">name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="w">    </span><span class="n">age</span><span class="w"> </span><span class="nb">INT</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span>
-<span class="p">);</span>
-<span class="c1">-- Insert a new piece of data, the id doesn&#39;t exist, so enter the new data.</span>
-<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Tom&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">18</span><span class="p">)</span>
-<span class="k">ON</span><span class="w"> </span><span class="n">DUPLICATE</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="k">UPDATE</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Tom&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="o">=</span><span class="mi">18</span><span class="p">;</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="k">user</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------+------+------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">id</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">age</span><span class="w">  </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+------+------+</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Tom</span><span class="w">  </span><span class="o">|</span><span class="w">   </span><span class="mi">18</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+------+------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="c1">-- Increases the age field of an existing record by 1, while leaving the name field unchanged.</span>
-<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Tom&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">18</span><span class="p">)</span>
-<span class="k">ON</span><span class="w"> </span><span class="n">DUPLICATE</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="k">UPDATE</span><span class="w"> </span><span class="n">age</span><span class="o">=</span><span class="n">age</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="k">user</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------+------+------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">id</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">age</span><span class="w">  </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+------+------+</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Tom</span><span class="w">  </span><span class="o">|</span><span class="w">   </span><span class="mi">19</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+------+------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="c1">-- Inserts a new row, updating the name and age fields to the specified values.</span>
-<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Lucy&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">)</span>
-<span class="k">ON</span><span class="w"> </span><span class="n">DUPLICATE</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="k">UPDATE</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Lucy&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="o">=</span><span class="mi">20</span><span class="p">;</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="k">user</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------+------+------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">id</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">age</span><span class="w">  </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+------+------+</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Tom</span><span class="w">  </span><span class="o">|</span><span class="w">   </span><span class="mi">19</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Lucy</span><span class="w"> </span><span class="o">|</span><span class="w">   </span><span class="mi">20</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+------+------+</span>
-<span class="mi">2</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+<p>```sql <!-- validator-ignore-exec -->
+CREATE TABLE user (
+    id INT(11) NOT NULL PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    age INT(3) NOT NULL
+);
+-- Insert a new piece of data, the id doesn't exist, so enter the new data.
+INSERT INTO user (id, name, age) VALUES (1, 'Tom', 18)
+ON DUPLICATE KEY UPDATE name='Tom', age=18;</p>
+<p>mysql&gt; select * from user;
++------+------+------+
+| id   | name | age  |
++------+------+------+
+|    1 | Tom  |   18 |
++------+------+------+
+1 row in set (0.01 sec)</p>
+<p>-- Increases the age field of an existing record by 1, while leaving the name field unchanged.
+INSERT INTO user (id, name, age) VALUES (1, 'Tom', 18)
+ON DUPLICATE KEY UPDATE age=age+1;</p>
+<p>mysql&gt; select * from user;
++------+------+------+
+| id   | name | age  |
++------+------+------+
+|    1 | Tom  |   19 |
++------+------+------+
+1 row in set (0.00 sec)</p>
+<p>-- Inserts a new row, updating the name and age fields to the specified values.
+INSERT INTO user (id, name, age) VALUES (2, 'Lucy', 20)
+ON DUPLICATE KEY UPDATE name='Lucy', age=20;</p>
+<p>mysql&gt; select * from user;
++------+------+------+
+| id   | name | age  |
++------+------+------+
+|    1 | Tom  |   19 |
+|    2 | Lucy |   20 |
++------+------+------+
+2 rows in set (0.01 sec)
+```</p>
 <h2 id="restrictions"><strong>Restrictions</strong></h2>
 <p><code>INSERT ... ON</code> DUPLICATE KEY UPDATE does not currently support Unique keys, which may cause some unknown errors because they can be <code>NULL</code>.</p>
 

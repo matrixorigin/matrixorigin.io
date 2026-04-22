@@ -13223,21 +13223,21 @@ SLEEP(duration)
 <ol>
 <li>
 <p>In session 1, execute the following command to query the current connection_id and execute the <code>SLEEP()</code> function:</p>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">connection_id</span><span class="p">();</span>
-<span class="o">+</span><span class="c1">-----------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">connection_id</span><span class="p">()</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-----------------+</span>
-<span class="o">|</span><span class="w">            </span><span class="mi">1476</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-----------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">03</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">sleep</span><span class="p">(</span><span class="mi">200</span><span class="p">);</span>
-</code></pre></div>
+<p><code>sql &lt;!-- validator-ignore --&gt;
+mysql&gt; select connection_id();
++-----------------+
+| connection_id() |
++-----------------+
+|            1476 |
++-----------------+
+1 row in set (0.03 sec)
+mysql&gt; select sleep(200);</code></p>
 </li>
 <li>
 <p>At this point, open a new session, interrupt session 1, and run the following command.</p>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="n">kill</span><span class="w"> </span><span class="mi">1463</span><span class="p">;</span>
-<span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+<p><code>sql &lt;!-- validator-ignore --&gt;
+mysql&gt; kill 1463;
+Query OK, 0 rows affected (0.00 sec)</code></p>
 </li>
 <li>
 <p>Check the query result of session 1:</p>
@@ -13254,41 +13254,40 @@ SLEEP(duration)
 </li>
 <li>
 <p>When SLEEP() returns an error (part of a query is uninterrupted). For example:</p>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">SLEEP</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
-<span class="n">ERROR</span><span class="w"> </span><span class="mi">20101</span><span class="w"> </span><span class="p">(</span><span class="n">HY000</span><span class="p">):</span><span class="w"> </span><span class="n">internal</span><span class="w"> </span><span class="n">error</span><span class="p">:</span><span class="w"> </span><span class="n">pipeline</span><span class="w"> </span><span class="n">closed</span><span class="w"> </span><span class="n">unexpectedly</span>
+<div class="highlight"><pre><span></span><code>mysql&gt; SELECT 1 FROM t1 WHERE SLEEP(1000);
+ERROR 20101 (HY000): internal error: pipeline closed unexpectedly
 </code></pre></div>
 </li>
 </ul>
 <h2 id="examples"><strong>Examples</strong></h2>
-<div class="highlight"><pre><span></span><code><span class="c1">-- without interruption</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">SLEEP</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">----------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------+</span>
-<span class="o">|</span><span class="w">        </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="c1">-- without interruption</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">SLEEP</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">-------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">sleep</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------------+</span>
-<span class="o">|</span><span class="w">           </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">18</span><span class="w"> </span><span class="k">min</span><span class="w"> </span><span class="mi">20</span><span class="p">.</span><span class="mi">87</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="n">b</span><span class="w"> </span><span class="nb">int</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="mi">1</span><span class="p">,</span><span class="k">null</span><span class="p">);</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">sleep</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">----------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">sleep</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------+</span>
-<span class="o">|</span><span class="w">        </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">        </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------+</span>
-<span class="mi">2</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+<p>```sql <!-- validator-ignore -->
+-- without interruption
+mysql&gt; SELECT SLEEP(1);
++----------+
+| sleep(1) |
++----------+
+|        0 |
++----------+
+1 row in set (1.01 sec)</p>
+<p>-- without interruption
+mysql&gt; SELECT SLEEP(1000);
++-------------+
+| sleep(1000) |
++-------------+
+|           0 |
++-------------+
+1 row in set (18 min 20.87 sec)</p>
+<p>create table t1 (a int,b int);
+insert into t1 values (1,1),(1,null);
+mysql&gt; select sleep(a) from t1;
++----------+
+| sleep(a) |
++----------+
+|        0 |
+|        0 |
++----------+
+2 rows in set (2.01 sec)
+```</p>
 
 
 

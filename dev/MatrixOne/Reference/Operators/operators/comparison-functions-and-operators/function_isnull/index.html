@@ -13176,39 +13176,39 @@
 <ul>
 <li>Example 1:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">ISNULL</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">---------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">isnull</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">false</span><span class="w">         </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">02</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
-<ul>
-<li>Example 2:</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">students</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"> </span><span class="n">birth_date</span><span class="w"> </span><span class="nb">DATE</span><span class="w"> </span><span class="p">);</span>
+<p>```sql <!-- validator-ignore-exec -->
+mysql&gt; SELECT ISNULL(1+1);
++---------------+
+| isnull(1 + 1) |
++---------------+
+| false         |
++---------------+
+1 row in set (0.02 sec)
+<div class="highlight"><pre><span></span><code>- Example 2:
 
-<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">students</span><span class="w"> </span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">birth_date</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;John Doe&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2000-05-15&#39;</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;Alice Smith&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">NULL</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;Bob Johnson&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1999-10-20&#39;</span><span class="p">);</span>
+```sql
+CREATE TABLE students (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(50) NOT NULL, birth_date DATE );
 
-<span class="c1">-- Use the ISNULL() function to find students whose birth date is not filled in:</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">students</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="k">ISNULL</span><span class="p">(</span><span class="n">birth_date</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">------+-------------+------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">id</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">name</span><span class="w">        </span><span class="o">|</span><span class="w"> </span><span class="n">birth_date</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+-------------+------------+</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Alice</span><span class="w"> </span><span class="n">Smith</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w">       </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+-------------+------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+INSERT INTO students (name, birth_date) VALUES (&#39;John Doe&#39;, &#39;2000-05-15&#39;), (&#39;Alice Smith&#39;, NULL), (&#39;Bob Johnson&#39;, &#39;1999-10-20&#39;);
 
-<span class="c1">-- The ISNULL() function can also use IS NULL to achieve the same function, so the following queries are also equivalent:</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">students</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">birth_date</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NULL</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------+-------------+------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">id</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">name</span><span class="w">        </span><span class="o">|</span><span class="w"> </span><span class="n">birth_date</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+-------------+------------+</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Alice</span><span class="w"> </span><span class="n">Smith</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w">       </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+-------------+------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+-- Use the ISNULL() function to find students whose birth date is not filled in:
+mysql&gt; SELECT * FROM students WHERE ISNULL(birth_date);
++------+-------------+------------+
+| id   | name        | birth_date |
++------+-------------+------------+
+|    2 | Alice Smith | NULL       |
++------+-------------+------------+
+1 row in set (0.00 sec)
+
+-- The ISNULL() function can also use IS NULL to achieve the same function, so the following queries are also equivalent:
+mysql&gt; SELECT * FROM students WHERE birth_date IS NULL;
++------+-------------+------------+
+| id   | name        | birth_date |
++------+-------------+------------+
+|    2 | Alice Smith | NULL       |
++------+-------------+------------+
+1 row in set (0.01 sec)
+</code></pre></div></p>
 
 
 

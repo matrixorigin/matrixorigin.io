@@ -13194,6 +13194,7 @@
 <p>In some scenarios, we'd expect a python function to receive multiple tuples at once to run more efficiently, and MatrixOne provides vector options for functions to handle this.</p>
 <p>MatrixOne Python UDF does not currently support overloading, and function names are required to be unique within a matrixone cluster.</p>
 <h2 id="grammar-structure"><strong>Grammar structure</strong></h2>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="k">REPLACE</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="k">FUNCTION</span><span class="w"> </span><span class="o">&lt;</span><span class="n">name</span><span class="o">&gt;</span><span class="w"> </span><span class="p">(</span>
 <span class="p">[</span><span class="w"> </span><span class="o">&lt;</span><span class="n">arg_name</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">arg_data_type</span><span class="o">&gt;</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">)</span>
 <span class="k">RETURNS</span><span class="w"> </span><span class="o">&lt;</span><span class="n">result_data_type</span><span class="o">&gt;</span><span class="w">  </span><span class="k">LANGUAGE</span><span class="w"> </span><span class="n">PYTHON</span><span class="w"> </span><span class="k">AS</span>
@@ -13278,6 +13279,7 @@
 </table>
 <h2 id="examples"><strong>Examples</strong></h2>
 <p><strong>Example 1</strong></p>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="c1">--Sum of Two Numbers with python UDF</span>
 <span class="k">create</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="k">replace</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">py_add</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="nb">int</span><span class="p">)</span><span class="w"> </span><span class="k">returns</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="k">language</span><span class="w"> </span><span class="n">python</span><span class="w"> </span><span class="k">as</span><span class="w"> </span>
 <span class="err">$$</span>
@@ -13296,6 +13298,7 @@
 <span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 </code></pre></div>
 <p><strong>Example 2</strong></p>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="k">replace</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">py_helloworld</span><span class="p">()</span><span class="w"> </span><span class="k">returns</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="w"> </span><span class="k">language</span><span class="w"> </span><span class="n">python</span><span class="w"> </span><span class="k">as</span><span class="w"> </span>
 <span class="err">$$</span>
 <span class="n">def</span><span class="w"> </span><span class="n">helloworld</span><span class="p">():</span>

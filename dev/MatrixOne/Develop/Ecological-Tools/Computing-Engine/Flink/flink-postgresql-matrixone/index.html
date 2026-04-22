@@ -3275,13 +3275,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#adding-data-to-postgrsql" class="md-nav__link">
-    Adding data to postgrsql
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -13293,13 +13286,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#adding-data-to-postgrsql" class="md-nav__link">
-    Adding data to postgrsql
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -13397,9 +13383,11 @@ host replication all 0.0.0.0/0 password
 </code></pre></div>
 <h3 id="turn-on-checkpoint">Turn on checkpoint</h3>
 <p>Set up checkpoint every 3 seconds</p>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="k">SET</span><span class="w"> </span><span class="n">execution</span><span class="p">.</span><span class="n">checkpointing</span><span class="p">.</span><span class="nb">interval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="n">s</span><span class="p">;</span><span class="w"> </span>
 </code></pre></div>
 <h3 id="create-source-table-with-flink-ddl">Create source table with flink ddl</h3>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">pgsql_bog</span><span class="w">  </span><span class="p">(</span>
 <span class="w">      </span><span class="n">stu_id</span><span class="w">  </span><span class="nb">int</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">,</span>
 <span class="w">      </span><span class="n">stu_name</span><span class="w">    </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span>
@@ -13421,6 +13409,7 @@ host replication all 0.0.0.0/0 password
 </code></pre></div>
 <p>If it's table sql, pgoutput is the standard logical decode output plugin in PostgreSQL 10+. It needs to be set up. Without adding: <code>'decoding.plugin.name' = 'pgoutput'</code>, an error is reported: <code>org.postgresql.util.PSQLException: ERROR: could not access file "decoderbufs": No such file or directory</code>.</p>
 <h3 id="create-sink-table">Create sink table</h3>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">test_pg</span><span class="w"> </span><span class="p">(</span>
 <span class="w">      </span><span class="n">stu_id</span><span class="w">  </span><span class="nb">int</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">,</span>
 <span class="w">      </span><span class="n">stu_name</span><span class="w">    </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span>
@@ -13437,59 +13426,69 @@ host replication all 0.0.0.0/0 password
 <span class="p">);</span>
 </code></pre></div>
 <h3 id="importing-postgresql-data-into-matrixone">Importing PostgreSQL data into MatrixOne</h3>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">test_pg</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">pgsql_bog</span><span class="p">;</span><span class="w"> </span>
 </code></pre></div>
 <p>Query the corresponding table data in MatrixOne;</p>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">student</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">--------+----------+---------+------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">stu_id</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">stu_name</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">stu_age</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">stu_bth</span><span class="w">    </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------+----------+---------+------------+</span>
-<span class="o">|</span><span class="w">      </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">lisa</span><span class="w">     </span><span class="o">|</span><span class="w">      </span><span class="mi">12</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2022</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">12</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">      </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">tom</span><span class="w">      </span><span class="o">|</span><span class="w">      </span><span class="mi">23</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2021</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">10</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">      </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">jenny</span><span class="w">    </span><span class="o">|</span><span class="w">      </span><span class="mi">11</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">19</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">      </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">henry</span><span class="w">    </span><span class="o">|</span><span class="w">      </span><span class="mi">12</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2022</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">22</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------+----------+---------+------------+</span>
-<span class="mi">4</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
-<p>Data can be found to have been imported</p>
-<h3 id="adding-data-to-postgrsql">Adding data to postgrsql</h3>
-<div class="highlight"><pre><span></span><code><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="k">public</span><span class="p">.</span><span class="n">student</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">51</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;58&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">39</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2020-01-03&#39;</span><span class="p">);</span><span class="w"> </span>
-</code></pre></div>
+<p>```sql <!-- validator-ignore-exec -->
+mysql&gt; select * from student;
++--------+----------+---------+------------+
+| stu_id | stu_name | stu_age | stu_bth    |
++--------+----------+---------+------------+
+|      1 | lisa     |      12 | 2022-10-12 |
+|      2 | tom      |      23 | 2021-11-10 |
+|      3 | jenny    |      11 | 2024-02-19 |
+|      4 | henry    |      12 | 2022-04-22 |
++--------+----------+---------+------------+
+4 rows in set (0.00 sec)
+<div class="highlight"><pre><span></span><code>Data can be found to have been imported
+
+### Adding data to postgrsql
+
+&lt;!-- validator-ignore --&gt;
+```sql
+insert into public.student values (51, &#39;58&#39;, 39, &#39;2020-01-03&#39;); 
+</code></pre></div></p>
 <p>Query the corresponding table data in MatrixOne;</p>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w">  </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">student</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">--------+----------+---------+------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">stu_id</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">stu_name</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">stu_age</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">stu_bth</span><span class="w">    </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------+----------+---------+------------+</span>
-<span class="o">|</span><span class="w">      </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">lisa</span><span class="w">     </span><span class="o">|</span><span class="w">      </span><span class="mi">12</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2022</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">12</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">      </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">tom</span><span class="w">      </span><span class="o">|</span><span class="w">      </span><span class="mi">23</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2021</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">10</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">      </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">jenny</span><span class="w">    </span><span class="o">|</span><span class="w">      </span><span class="mi">11</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">19</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">      </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">henry</span><span class="w">    </span><span class="o">|</span><span class="w">      </span><span class="mi">12</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2022</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">22</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">     </span><span class="mi">51</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">58</span><span class="w">       </span><span class="o">|</span><span class="w">      </span><span class="mi">39</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2020</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">03</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------+----------+---------+------------+</span>
-<span class="mi">5</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
-<p>You can find that the data has been synchronized to the MatrixOne correspondence table.</p>
-<p>To delete data:</p>
-<div class="highlight"><pre><span></span><code><span class="k">delete</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="k">public</span><span class="p">.</span><span class="n">student</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">stu_id</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="w"> </span>
-</code></pre></div>
+<p>```sql <!-- validator-ignore-exec -->
+mysql&gt;  select * from student;
++--------+----------+---------+------------+
+| stu_id | stu_name | stu_age | stu_bth    |
++--------+----------+---------+------------+
+|      1 | lisa     |      12 | 2022-10-12 |
+|      2 | tom      |      23 | 2021-11-10 |
+|      3 | jenny    |      11 | 2024-02-19 |
+|      4 | henry    |      12 | 2022-04-22 |
+|     51 | 58       |      39 | 2020-01-03 |
++--------+----------+---------+------------+
+5 rows in set (0.01 sec)
+<div class="highlight"><pre><span></span><code>You can find that the data has been synchronized to the MatrixOne correspondence table.
+
+To delete data:
+
+&lt;!-- validator-ignore --&gt;
+```sql
+delete from public.student where stu_id=1; 
+</code></pre></div></p>
 <p>If something goes wrong,</p>
-<div class="highlight"><pre><span></span><code><span class="n">cannot</span><span class="w"> </span><span class="k">delete</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="ss">&quot;student&quot;</span><span class="w"> </span><span class="n">because</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="n">does</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="n">have</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">replica</span><span class="w"> </span><span class="k">identity</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">publishes</span><span class="w"> </span><span class="n">deletes</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code>cannot delete from table &quot;student&quot; because it does not have a replica identity and publishes deletes 
 </code></pre></div>
 <p>then execute</p>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="k">public</span><span class="p">.</span><span class="n">student</span><span class="w"> </span><span class="n">replica</span><span class="w"> </span><span class="k">identity</span><span class="w"> </span><span class="k">full</span><span class="p">;</span><span class="w"> </span>
 </code></pre></div>
 <p>Query the corresponding table data in MatrixOne;</p>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">student</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">--------+----------+---------+------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">stu_id</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">stu_name</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">stu_age</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">stu_bth</span><span class="w">    </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------+----------+---------+------------+</span>
-<span class="o">|</span><span class="w">      </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">tom</span><span class="w">      </span><span class="o">|</span><span class="w">      </span><span class="mi">23</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2021</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">10</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">      </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">jenny</span><span class="w">    </span><span class="o">|</span><span class="w">      </span><span class="mi">11</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">19</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">      </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">henry</span><span class="w">    </span><span class="o">|</span><span class="w">      </span><span class="mi">12</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2022</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">22</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">     </span><span class="mi">51</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">58</span><span class="w">       </span><span class="o">|</span><span class="w">      </span><span class="mi">39</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2020</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">03</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------+----------+---------+------------+</span>
-<span class="mi">4</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+<p><code>sql &lt;!-- validator-ignore-exec --&gt;
+mysql&gt; select * from student;
++--------+----------+---------+------------+
+| stu_id | stu_name | stu_age | stu_bth    |
++--------+----------+---------+------------+
+|      2 | tom      |      23 | 2021-11-10 |
+|      3 | jenny    |      11 | 2024-02-19 |
+|      4 | henry    |      12 | 2022-04-22 |
+|     51 | 58       |      39 | 2020-01-03 |
++--------+----------+---------+------------+
+4 rows in set (0.00 sec)</code></p>
 
 
 

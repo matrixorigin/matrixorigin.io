@@ -13216,19 +13216,21 @@ rollback;
 </code></pre></div>
 <h2 id="autocommit">Autocommit</h2>
 <p>In MatrixOne, there is a parameter <code>AUTOCOMMIT</code>, which determines whether there is a single SQL statement to be automatically committed as an independent transaction without <code>START TRANSACTION</code> or <code>BEGIN</code>. The syntax is as follows:</p>
-<div class="highlight"><pre><span></span><code><span class="c1">-- Set the value of this parameter</span>
-<span class="k">SET</span><span class="w"> </span><span class="n">AUTOCOMMIT</span><span class="o">=</span><span class="err">{</span><span class="k">on</span><span class="o">|</span><span class="k">off</span><span class="o">|</span><span class="mi">0</span><span class="o">|</span><span class="mi">1</span><span class="err">}</span><span class="w">  </span>
-<span class="k">SHOW</span><span class="w"> </span><span class="n">VARIABLES</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;AUTOCOMMIT&#39;</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code>-- Set the value of this parameter
+SET AUTOCOMMIT={on|off|0|1}  
+SHOW VARIABLES LIKE &#39;AUTOCOMMIT&#39;;
 </code></pre></div>
 <p>When this parameter is set to ON or 1, it means automatic submission. All single SQL statements not in <code>START TRANSACTION</code> or <code>BEGIN</code> will be automatically submitted when executed.</p>
-<div class="highlight"><pre><span></span><code><span class="c1">-- Autocommit</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span><span class="w">   </span>
-</code></pre></div>
-<p>When this parameter is set to OFF or 0, it is not automatically committed. All SQL statements not in <code>START TRANSACTION</code> or <code>BEGIN</code> need to use <code>COMMIT</code> or <code>ROLLBACK</code> to perform commit or rollback.</p>
-<div class="highlight"><pre><span></span><code><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
-<span class="c1">-- Manual submission is required here</span>
-<span class="k">COMMIT</span><span class="p">;</span><span class="w">  </span>
-</code></pre></div>
+<p>```sql <!-- validator-ignore-exec -->
+-- Autocommit
+insert into t1 values(1,2,3); <br />
+<div class="highlight"><pre><span></span><code>When this parameter is set to OFF or 0, it is not automatically committed. All SQL statements not in `START TRANSACTION` or `BEGIN` need to use `COMMIT` or `ROLLBACK` to perform commit or rollback.
+
+```sql &lt;!-- validator-ignore-exec --&gt;
+insert into t1 values(1,2,3);
+-- Manual submission is required here
+COMMIT;  
+</code></pre></div></p>
 <h2 id="switch-transaction-mode">Switch Transaction Mode</h2>
 <p>MatrixOne adopts pessimistic transaction and RC isolation level by default. But if you need to switch to optimistic transaction mode, the corresponding isolation level will be changed to snapshot isolation.</p>
 <p>Add the following configuration parameters to the configuration file <em>cn.toml</em> under the <em>matrixone/etc/launch-with-proxy/</em> directory to switch the transaction mode:</p>

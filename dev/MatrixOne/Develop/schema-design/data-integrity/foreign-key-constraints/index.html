@@ -1539,13 +1539,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#example-2-foreign-key-self-reference" class="md-nav__link">
-    Example 2 - Foreign key self-reference
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#example-3-multi-column-foreign-key" class="md-nav__link">
     Example 3 - Multi-column foreign key
   </a>
@@ -13166,13 +13159,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#example-2-foreign-key-self-reference" class="md-nav__link">
-    Example 2 - Foreign key self-reference
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#example-3-multi-column-foreign-key" class="md-nav__link">
     Example 3 - Multi-column foreign key
   </a>
@@ -13286,56 +13272,54 @@ reference_option:
 <p>These parameters collectively define a foreign key constraint, ensuring the data integrity relationship between the child and parent tables.</p>
 <h2 id="examples"><strong>Examples</strong></h2>
 <h3 id="example-1">Example 1</h3>
-<div class="highlight"><pre><span></span><code><span class="c1">-- Create a table named t1, containing two columns: a and b. The column a is of type int and is set as the primary key, while the column b is of type varchar with a length of 5.</span>
-<span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="k">primary</span><span class="w"> </span><span class="k">key</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">5</span><span class="p">));</span>
+<p>```sql <!-- validator-ignore-exec -->
+-- Create a table named t1, containing two columns: a and b. The column a is of type int and is set as the primary key, while the column b is of type varchar with a length of 5.
+create table t1(a int primary key, b varchar(5));</p>
+<p>-- Create a table named t2, containing three columns: a, b, and c. The column a is of type int, the column b is of type varchar with a length of 5. The column c is of type int, and is set as a foreign key, establishing a relationship with the column a in table t1.
+create table t2(a int ,b varchar(5), c int, foreign key(c) references t1(a));</p>
+<p>-- Insert two rows of data into table t1: (101, 'abc') and (102, 'def').
+mysql&gt; insert into t1 values(101,'abc'),(102,'def');
+Query OK, 2 rows affected (0.01 sec)</p>
+<p>-- Insert two rows of data into table t2: (1, 'zs1', 101) and (2, 'zs2', 102), where 101 and 102 are the primary keys in table t1.
+mysql&gt; insert into t2 values(1,'zs1',101),(2,'zs2',102);
+Query OK, 2 rows affected (0.01 sec)</p>
+<p>-- Insert a row of data into table t2: (3, 'xyz', null), where null means that this row of data has no associated primary key in column c (the foreign key column).
+mysql&gt; insert into t2 values(3,'xyz',null);
+Query OK, 1 row affected (0.01 sec)</p>
+<p>-- Attempt to insert a row of data into table t2: (3, 'xxa', 103). However, 103 does not exist in the primary keys of table t1, so the insertion fails due to violation of the foreign key constraint.
+mysql&gt; insert into t2 values(3,'xxa',103);
+ERROR 20101 (HY000): internal error: Cannot add or update a child row: a foreign key constraint fails</p>
+<div class="highlight"><pre><span></span><code>**Example Explanation**: In the above example, column c of t2 can only refer to the value or null value of column a in t1, so the operation of inserting row 1 and row 2 of t1 can be successfully inserted, but row 3 103 in the row is not a value in column a of t1, which violates the foreign key constraint, so the insert fails.
 
-<span class="c1">-- Create a table named t2, containing three columns: a, b, and c. The column a is of type int, the column b is of type varchar with a length of 5. The column c is of type int, and is set as a foreign key, establishing a relationship with the column a in table t1.</span>
-<span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t2</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="p">,</span><span class="n">b</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span><span class="w"> </span><span class="k">c</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="k">foreign</span><span class="w"> </span><span class="k">key</span><span class="p">(</span><span class="k">c</span><span class="p">)</span><span class="w"> </span><span class="k">references</span><span class="w"> </span><span class="n">t1</span><span class="p">(</span><span class="n">a</span><span class="p">));</span>
+### Example 2 - Foreign key self-reference
 
-<span class="c1">-- Insert two rows of data into table t1: (101, &#39;abc&#39;) and (102, &#39;def&#39;).</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">101</span><span class="p">,</span><span class="s1">&#39;abc&#39;</span><span class="p">),(</span><span class="mi">102</span><span class="p">,</span><span class="s1">&#39;def&#39;</span><span class="p">);</span>
-<span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+```sql
+-- Create a table named categories to store product categorization information.
+CREATE TABLE categories (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    parent_id INT,
+    FOREIGN KEY (parent_id) REFERENCES categories(id)
+);
 
-<span class="c1">-- Insert two rows of data into table t2: (1, &#39;zs1&#39;, 101) and (2, &#39;zs2&#39;, 102), where 101 and 102 are the primary keys in table t1.</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;zs1&#39;</span><span class="p">,</span><span class="mi">101</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;zs2&#39;</span><span class="p">,</span><span class="mi">102</span><span class="p">);</span>
-<span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+mysql&gt; INSERT INTO categories (name) VALUES (&#39;Electronics&#39;),(&#39;Books&#39;);
+Query OK, 2 rows affected (0.01 sec)
 
-<span class="c1">-- Insert a row of data into table t2: (3, &#39;xyz&#39;, null), where null means that this row of data has no associated primary key in column c (the foreign key column).</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="s1">&#39;xyz&#39;</span><span class="p">,</span><span class="k">null</span><span class="p">);</span>
-<span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+mysql&gt; INSERT INTO categories (name, parent_id) VALUES (&#39;Laptops&#39;, 1),(&#39;Smartphones&#39;, 1),(&#39;Science Fiction&#39;, 2),(&#39;Mystery&#39;, 2);
+Query OK, 4 rows affected (0.01 sec)
 
-<span class="c1">-- Attempt to insert a row of data into table t2: (3, &#39;xxa&#39;, 103). However, 103 does not exist in the primary keys of table t1, so the insertion fails due to violation of the foreign key constraint.</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="s1">&#39;xxa&#39;</span><span class="p">,</span><span class="mi">103</span><span class="p">);</span>
-<span class="n">ERROR</span><span class="w"> </span><span class="mi">20101</span><span class="w"> </span><span class="p">(</span><span class="n">HY000</span><span class="p">):</span><span class="w"> </span><span class="n">internal</span><span class="w"> </span><span class="n">error</span><span class="p">:</span><span class="w"> </span><span class="n">Cannot</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="k">update</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">child</span><span class="w"> </span><span class="k">row</span><span class="p">:</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">foreign</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="k">constraint</span><span class="w"> </span><span class="n">fails</span>
-</code></pre></div>
-<p><strong>Example Explanation</strong>: In the above example, column c of t2 can only refer to the value or null value of column a in t1, so the operation of inserting row 1 and row 2 of t1 can be successfully inserted, but row 3 103 in the row is not a value in column a of t1, which violates the foreign key constraint, so the insert fails.</p>
-<h3 id="example-2-foreign-key-self-reference">Example 2 - Foreign key self-reference</h3>
-<div class="highlight"><pre><span></span><code><span class="c1">-- Create a table named categories to store product categorization information.</span>
-<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">categories</span><span class="w"> </span><span class="p">(</span>
-<span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
-<span class="w">    </span><span class="n">name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="w">    </span><span class="n">parent_id</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
-<span class="w">    </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">parent_id</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">categories</span><span class="p">(</span><span class="n">id</span><span class="p">)</span>
-<span class="p">);</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">categories</span><span class="w"> </span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;Electronics&#39;</span><span class="p">),(</span><span class="s1">&#39;Books&#39;</span><span class="p">);</span>
-<span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">categories</span><span class="w"> </span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">parent_id</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;Laptops&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">),(</span><span class="s1">&#39;Smartphones&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">),(</span><span class="s1">&#39;Science Fiction&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">),(</span><span class="s1">&#39;Mystery&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
-<span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">categories</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------+-----------------+-----------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">id</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">name</span><span class="w">            </span><span class="o">|</span><span class="w"> </span><span class="n">parent_id</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+-----------------+-----------+</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Electronics</span><span class="w">     </span><span class="o">|</span><span class="w">      </span><span class="k">NULL</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Books</span><span class="w">           </span><span class="o">|</span><span class="w">      </span><span class="k">NULL</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Laptops</span><span class="w">         </span><span class="o">|</span><span class="w">         </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Smartphones</span><span class="w">     </span><span class="o">|</span><span class="w">         </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">5</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Science</span><span class="w"> </span><span class="n">Fiction</span><span class="w"> </span><span class="o">|</span><span class="w">         </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">6</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Mystery</span><span class="w">         </span><span class="o">|</span><span class="w">         </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+-----------------+-----------+</span>
-<span class="mi">6</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+mysql&gt; select * from categories;
++------+-----------------+-----------+
+| id   | name            | parent_id |
++------+-----------------+-----------+
+|    1 | Electronics     |      NULL |
+|    2 | Books           |      NULL |
+|    3 | Laptops         |         1 |
+|    4 | Smartphones     |         1 |
+|    5 | Science Fiction |         2 |
+|    6 | Mystery         |         2 |
++------+-----------------+-----------+
+6 rows in set (0.01 sec)
 </code></pre></div>
 <p><strong>Example Explanation</strong>:In the above code, we have created a table named <code>categories</code> to store the category information of the products and first inserted two top level categories <code>Electronics</code> and <code>Books</code>. Then, we added subcategories to each of the top-level categories, for example, <code>Laptops</code> and <code>Smartphones</code> are subcategories of <code>Electronics</code>, and <code>Science Fiction</code> and <code>Mystery</code> are subcategories of <code>Books</code>.</p>
 <h3 id="example-3-multi-column-foreign-key">Example 3 - Multi-column foreign key</h3>

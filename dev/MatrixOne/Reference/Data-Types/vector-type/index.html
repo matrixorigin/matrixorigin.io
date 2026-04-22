@@ -5583,6 +5583,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#query-vector" class="md-nav__link">
+    query vector
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -13142,6 +13149,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#query-vector" class="md-nav__link">
+    query vector
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -13188,18 +13202,13 @@
 </code></pre></div>
 <p><strong>binary format</strong></p>
 <p>If you want to use a Python NumPy array, you can insert that NumPy array directly into MatrixOne by encoding the array in hexadecimal instead of converting it to comma-separated text format. This is faster when inserting vectors with higher dimensions.</p>
-<div class="highlight"><pre><span></span><code><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="k">cast</span><span class="p">(</span><span class="n">unhex</span><span class="p">(</span><span class="ss">&quot;7e98b23e9e10383b2f41133f&quot;</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">blob</span><span class="p">));</span>
-<span class="w"> </span><span class="c1">-- &quot;7e98b23e9e10383b2f41133f&quot; for small-endian hexadecimal encoding of []float32{0.34881967, 0.0028086076, 0.5752134}</span>
-<span class="w"> </span><span class="o">```</span>
-
-<span class="o">###</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="n">vector</span>
-
-<span class="n">Vector</span><span class="w"> </span><span class="n">columns</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">also</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="k">read</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">two</span><span class="w"> </span><span class="n">formats</span><span class="p">.</span>
-
-<span class="o">**</span><span class="nb">Text</span><span class="w"> </span><span class="n">Format</span><span class="o">**</span>
-
-<span class="o">```</span><span class="k">sql</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
+<p><code>sql &lt;!-- validator-ignore-exec --&gt;
+insert into t1 (a, b) values (2, cast(unhex("7e98b23e9e10383b2f41133f") as blob));
+ -- "7e98b23e9e10383b2f41133f" for small-endian hexadecimal encoding of []float32{0.34881967, 0.0028086076, 0.5752134}</code></p>
+<h3 id="query-vector">query vector</h3>
+<p>Vector columns can also be read in two formats.</p>
+<p><strong>Text Format</strong></p>
+<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">------+---------------------------------------+</span>
 <span class="o">|</span><span class="w"> </span><span class="n">a</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="n">b</span><span class="w">                                     </span><span class="o">|</span>
 <span class="o">+</span><span class="c1">------+---------------------------------------+</span>

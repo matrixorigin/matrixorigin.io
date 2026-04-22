@@ -13181,36 +13181,33 @@
 |\|Backslash () |
 |\uXXXX|Unicode value XXXX UTF-8 byte|</p>
 <h2 id="example"><strong>Example</strong></h2>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="o">@</span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&quot;abc&quot;&#39;</span><span class="p">;</span>
-<span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">@</span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="n">JSON_UNQUOTE</span><span class="p">(</span><span class="o">@</span><span class="n">j</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">-------+------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="o">@</span><span class="n">j</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="n">json_unquote</span><span class="p">(</span><span class="o">@</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="ss">&quot;abc&quot;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">abc</span><span class="w">              </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="o">@</span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;[1, 2, 3]&#39;</span><span class="p">;</span>
-<span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">@</span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="n">JSON_UNQUOTE</span><span class="p">(</span><span class="o">@</span><span class="n">j</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">-----------+------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="o">@</span><span class="n">j</span><span class="w">        </span><span class="o">|</span><span class="w"> </span><span class="n">json_unquote</span><span class="p">(</span><span class="o">@</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-----------+------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">]</span><span class="w">        </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-----------+------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">JSON_UNQUOTE</span><span class="p">(</span><span class="s1">&#39;&quot;\\t\\u0032&quot;&#39;</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">----------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">json_unquote</span><span class="p">(</span><span class="ss">&quot;\\t\\u0032&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------------------+</span>
-<span class="o">|</span><span class="w">       </span><span class="mi">2</span><span class="w">                         </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+<p>```sql <!-- validator-ignore-exec -->
+mysql&gt; SET @j = '"abc"';
+Query OK, 0 rows affected (0.00 sec)</p>
+<p>mysql&gt; SELECT @j, JSON_UNQUOTE(@j);
++-------+------------------+
+| @j    | json_unquote(@j) |
++-------+------------------+
+| "abc" | abc              |
++-------+------------------+
+1 row in set (0.00 sec)</p>
+<p>mysql&gt; SET @j = '[1, 2, 3]';
+Query OK, 0 rows affected (0.00 sec)</p>
+<p>mysql&gt; SELECT @j, JSON_UNQUOTE(@j);
++-----------+------------------+
+| @j        | json_unquote(@j) |
++-----------+------------------+
+| [1, 2, 3] | [1, 2, 3]        |
++-----------+------------------+
+1 row in set (0.00 sec)</p>
+<p>mysql&gt; SELECT JSON_UNQUOTE('"\t\u0032"');
++----------------------------+
+| json_unquote("\t\u0032") |
++----------------------------+
+|       2                         |
++----------------------------+
+1 row in set (0.00 sec)
+```</p>
 
 
 

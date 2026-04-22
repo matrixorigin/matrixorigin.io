@@ -13171,73 +13171,71 @@
 <ul>
 <li>Example 1:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">uuid</span><span class="p">();</span>
-<span class="o">+</span><span class="c1">--------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">uuid</span><span class="p">()</span><span class="w">                               </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">4</span><span class="n">aa4f4de</span><span class="o">-</span><span class="mi">1</span><span class="n">b00</span><span class="o">-</span><span class="mi">11</span><span class="n">ee</span><span class="o">-</span><span class="n">b656</span><span class="o">-</span><span class="mi">5</span><span class="n">ad2460dea50</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
-<ul>
-<li>Example 2:</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="k">drop</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
-<span class="c1">-- Create a new table &#39;t1&#39; with two columns &#39;a&#39; and &#39;b&#39;, column &#39;a&#39; is of type INT and column &#39;b&#39; is of type float</span>
-<span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="nb">float</span><span class="p">);</span>
+<p>```sql <!-- validator-ignore-exec -->
+mysql&gt; select uuid();
++--------------------------------------+
+| uuid()                               |
++--------------------------------------+
+| 4aa4f4de-1b00-11ee-b656-5ad2460dea50 |
++--------------------------------------+
+1 row in set (0.00 sec)
+<div class="highlight"><pre><span></span><code>- Example 2:
 
-<span class="c1">-- Insert two rows into table &#39;t1&#39;</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">12124</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">4213</span><span class="p">.</span><span class="mi">413</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">12124</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">42413</span><span class="p">.</span><span class="mi">409</span><span class="p">);</span>
+```sql
+drop table if exists t1;
+-- Create a new table &#39;t1&#39; with two columns &#39;a&#39; and &#39;b&#39;, column &#39;a&#39; is of type INT and column &#39;b&#39; is of type float
+create table t1(a INT, b float);
 
-<span class="c1">-- Query the number of rows in the &#39;t1&#39; table, and generate the length of the uuid() function of each row. Note that the uuid() function generates a new UUID here.</span>
-<span class="c1">-- does not depend on any data from the &#39;t1&#39; table, the returned length is 36 because the UUID is a 36 character string with 32 characters and 4 dashes</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">length</span><span class="p">(</span><span class="n">uuid</span><span class="p">())</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
+-- Insert two rows into table &#39;t1&#39;
+insert into t1 values(12124, -4213.413), (12124, -42413.409);
 
-<span class="o">+</span><span class="c1">----------------+</span>
-<span class="o">|</span><span class="k">length</span><span class="p">(</span><span class="n">uuid</span><span class="p">())</span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">36</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">36</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------+</span>
-<span class="mi">2</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+-- Query the number of rows in the &#39;t1&#39; table, and generate the length of the uuid() function of each row. Note that the uuid() function generates a new UUID here.
+-- does not depend on any data from the &#39;t1&#39; table, the returned length is 36 because the UUID is a 36 character string with 32 characters and 4 dashes
+mysql&gt; SELECT length(uuid()) FROM t1;
+
++----------------+
+|length(uuid())|
++----------------+
+| 36 |
+| 36 |
++----------------+
+2 rows in set (0.00 sec)
+</code></pre></div></p>
 <ul>
 <li>Example 3:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="c1">-- Create a table named &#39;t1&#39; with a column named &#39;a&#39; of data type VARCHAR with a maximum length of 20</span>
-<span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">20</span><span class="p">));</span>
+<p>```sql <!-- validator-ignore-exec -->
+-- Create a table named 't1' with a column named 'a' of data type VARCHAR with a maximum length of 20
+create table t1(a varchar(20));</p>
+<p>-- Insert a row of data in the 't1' table, the value of the 'a' column is '123123sdafsdf'
+insert into t1 values('123123sdafsdf');</p>
+<p>-- Select all rows from table 't1' and return the value of column 'a' for each row, and a newly generated UUID value
+mysql&gt; select uuid(), a from t1;
++--------------------------------------+---------------+
+| uuid()                               | a             |
++--------------------------------------+---------------+
+| 664f1a96-1981-11ee-a041-5ad2460dea50 | 123123sdafsdf |
++--------------------------------------+---------------+
+1 row in set (0.01 sec)
+<div class="highlight"><pre><span></span><code>- Example 4:
 
-<span class="c1">-- Insert a row of data in the &#39;t1&#39; table, the value of the &#39;a&#39; column is &#39;123123sdafsdf&#39;</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="s1">&#39;123123sdafsdf&#39;</span><span class="p">);</span>
-
-<span class="c1">-- Select all rows from table &#39;t1&#39; and return the value of column &#39;a&#39; for each row, and a newly generated UUID value</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">uuid</span><span class="p">(),</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">-------------------------------------+---------- -----+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">uuid</span><span class="p">()</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------------------------------------+---------- -----+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">664</span><span class="n">f1a96</span><span class="o">-</span><span class="mi">1981</span><span class="o">-</span><span class="mi">11</span><span class="n">ee</span><span class="o">-</span><span class="n">a041</span><span class="o">-</span><span class="mi">5</span><span class="n">ad2460dea50</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">123123</span><span class="n">sdafsdf</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------------------------------------+---------- -----+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
-<ul>
-<li>Example 4:</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="c1">-- Create a table named namelists with two fields, id and name</span>
-<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">namelists</span><span class="w"> </span><span class="p">(</span>
-<span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="n">UUID</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">uuid</span><span class="p">()</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="w"> </span><span class="c1">-- the id field is of UUID type, and the default value is the UUID value generated by the uuid() function as the primary key</span>
-<span class="w">    </span><span class="n">name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="c1">-- the name field is of type VARCHAR and cannot be empty</span>
-<span class="p">);</span>
-<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">namelists</span><span class="w"> </span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;Tom&#39;</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;Jane&#39;</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;Bob&#39;</span><span class="p">);</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">namelists</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">--------------------------------------+--------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">id</span><span class="w">                                   </span><span class="o">|</span><span class="w"> </span><span class="n">name</span><span class="w">   </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------------------------------------+--------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">61400</span><span class="n">e9c</span><span class="o">-</span><span class="mi">1</span><span class="n">bbc</span><span class="o">-</span><span class="mi">11</span><span class="n">ee</span><span class="o">-</span><span class="n">b512</span><span class="o">-</span><span class="mi">5</span><span class="n">ad2460dea50</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Tom</span><span class="w">    </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">61400</span><span class="n">ea6</span><span class="o">-</span><span class="mi">1</span><span class="n">bbc</span><span class="o">-</span><span class="mi">11</span><span class="n">ee</span><span class="o">-</span><span class="n">b512</span><span class="o">-</span><span class="mi">5</span><span class="n">ad2460dea50</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Jane</span><span class="w">   </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">61400</span><span class="n">ea6</span><span class="o">-</span><span class="mi">1</span><span class="n">bbc</span><span class="o">-</span><span class="mi">11</span><span class="n">ee</span><span class="o">-</span><span class="n">b513</span><span class="o">-</span><span class="mi">5</span><span class="n">ad2460dea50</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Bob</span><span class="w">    </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------------------------------------+--------+</span>
-<span class="mi">3</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+```sql &lt;!-- validator-ignore-exec --&gt;
+-- Create a table named namelists with two fields, id and name
+CREATE TABLE namelists (
+    id UUID DEFAULT uuid() PRIMARY KEY, -- the id field is of UUID type, and the default value is the UUID value generated by the uuid() function as the primary key
+    name VARCHAR NOT NULL -- the name field is of type VARCHAR and cannot be empty
+);
+INSERT INTO namelists (name) VALUES (&#39;Tom&#39;), (&#39;Jane&#39;), (&#39;Bob&#39;);
+mysql&gt; select * from namelists;
++--------------------------------------+--------+
+| id                                   | name   |
++--------------------------------------+--------+
+| 61400e9c-1bbc-11ee-b512-5ad2460dea50 | Tom    |
+| 61400ea6-1bbc-11ee-b512-5ad2460dea50 | Jane   |
+| 61400ea6-1bbc-11ee-b513-5ad2460dea50 | Bob    |
++--------------------------------------+--------+
+3 rows in set (0.00 sec)
+</code></pre></div></p>
 
 
 

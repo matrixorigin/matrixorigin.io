@@ -11931,19 +11931,6 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-about-matrixone-partition-expressions" class="md-nav__link">
-    3. About MatrixOne Partition Expressions
-  </a>
-  
-    <nav class="md-nav" aria-label="3. About MatrixOne Partition Expressions">
-      <ul class="md-nav__list">
-        
           <li class="md-nav__item">
   <a href="#key-partitioning" class="md-nav__link">
     KEY Partitioning
@@ -13209,19 +13196,6 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-about-matrixone-partition-expressions" class="md-nav__link">
-    3. About MatrixOne Partition Expressions
-  </a>
-  
-    <nav class="md-nav" aria-label="3. About MatrixOne Partition Expressions">
-      <ul class="md-nav__list">
-        
           <li class="md-nav__item">
   <a href="#key-partitioning" class="md-nav__link">
     KEY Partitioning
@@ -13320,36 +13294,39 @@
 <p>For example, in the following table construction sentence, the KEY partition key is NULL, no primary key is defined, but the unique key is used as the partitioning key when the partition expression is constructed:</p>
 </li>
 </ol>
-<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span>
-<span class="w">    </span><span class="n">col1</span><span class="w"> </span><span class="nb">INT</span><span class="w">  </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="w">    </span><span class="n">col2</span><span class="w"> </span><span class="nb">DATE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="w">    </span><span class="n">col3</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="w">    </span><span class="n">col4</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="w">    </span><span class="k">UNIQUE</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">col1</span><span class="p">,</span><span class="w"> </span><span class="n">col2</span><span class="p">)</span>
-<span class="p">)</span>
-<span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">KEY</span><span class="p">()</span>
-<span class="n">PARTITIONS</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span>
-</code></pre></div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Other partition rules are the same as MySQL.</p>
-</div>
-<h2 id="3-about-matrixone-partition-expressions">3. About MatrixOne Partition Expressions</h2>
-<p>​When a DDL statement constructs a partitioned table, a partition expression is generated for each partition definition. The partition expression can calculate the partition to which the data belongs.</p>
-<p>In the plan build phase, the partition information data structure in the DDL statement is plan.PartitionInfo:</p>
-<div class="highlight"><pre><span></span><code><span class="k">type</span><span class="w"> </span><span class="n">PartitionInfo</span><span class="w"> </span><span class="n">struct</span><span class="w"> </span><span class="err">{</span>
-<span class="w">    </span><span class="k">Type</span><span class="w">                 </span><span class="n">PartitionType</span>
-<span class="w">    </span><span class="n">Expr</span><span class="w">                 </span><span class="o">*</span><span class="n">Expr</span>
-<span class="w">    </span><span class="n">PartitionExpression</span><span class="w">  </span><span class="o">*</span><span class="n">Expr</span>
-<span class="w">    </span><span class="n">Columns</span><span class="w">              </span><span class="p">[]</span><span class="o">*</span><span class="n">Expr</span>
-<span class="w">    </span><span class="n">PartitionColumns</span><span class="w">     </span><span class="p">[]</span><span class="n">string</span>
-<span class="w">    </span><span class="n">PartitionNum</span><span class="w">         </span><span class="n">uint64</span>
-<span class="w">    </span><span class="n">Partitions</span><span class="w">           </span><span class="p">[]</span><span class="o">*</span><span class="n">PartitionItem</span>
-<span class="w">    </span><span class="n">Algorithm</span><span class="w">            </span><span class="n">int64</span>
-<span class="w">    </span><span class="n">IsSubPartition</span><span class="w">       </span><span class="n">bool</span>
-<span class="w">    </span><span class="n">PartitionMsg</span><span class="w">         </span><span class="n">string</span>
-<span class="err">}</span>
-</code></pre></div>
+<p>```sql <!-- validator-ignore-exec -->
+CREATE TABLE t1 (
+    col1 INT  NOT NULL,
+    col2 DATE NOT NULL,
+    col3 INT NOT NULL,
+    col4 INT NOT NULL,
+    UNIQUE KEY (col1, col2)
+)
+PARTITION BY KEY()
+PARTITIONS 4;
+<div class="highlight"><pre><span></span><code>!!! note
+    Other partition rules are the same as MySQL.
+
+## 3. About MatrixOne Partition Expressions
+
+​When a DDL statement constructs a partitioned table, a partition expression is generated for each partition definition. The partition expression can calculate the partition to which the data belongs.
+
+In the plan build phase, the partition information data structure in the DDL statement is plan.PartitionInfo:
+
+```go
+type PartitionInfo struct {
+    Type                 PartitionType
+    Expr                 *Expr
+    PartitionExpression  *Expr
+    Columns              []*Expr
+    PartitionColumns     []string
+    PartitionNum         uint64
+    Partitions           []*PartitionItem
+    Algorithm            int64
+    IsSubPartition       bool
+    PartitionMsg         string
+}
+</code></pre></div></p>
 <p><code>PartitionExpression</code> is the partition expression. Partition expressions are MatrixOne's way of converting a partition clause into an expression. Each partition expression is constructed as follows:</p>
 <h3 id="key-partitioning">KEY Partitioning</h3>
 <p>KEY partitioning will construct a partition expression based on the partition key and the number of partitions. The result of the partition expression is an integer greater than or equal to 0, representing the partition sequence number, which increases sequentially from zero.</p>

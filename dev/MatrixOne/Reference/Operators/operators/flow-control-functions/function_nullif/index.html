@@ -13172,21 +13172,20 @@
 <div class="highlight"><pre><span></span><code>&gt; NULLIF(expr1,expr2)
 </code></pre></div>
 <h2 id="examples"><strong>Examples</strong></h2>
-<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">employees</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"> </span><span class="n">salary</span><span class="w"> </span><span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="p">);</span>
-
-<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">employees</span><span class="w"> </span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">salary</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;John Doe&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">1000</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;Alice Smith&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">2000</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;Bob Johnson&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">1500</span><span class="p">);</span>
-
-<span class="c1">-- Use the NULLIF() function to set the salary of employees whose salary is a specific value to NULL. The NULLIF(salary, 1500) function will compare the value of the salary field with 1500. Returns NULL if the salary value equals 1500; otherwise, returns the salary value.</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">salary</span><span class="p">,</span><span class="w"> </span><span class="k">NULLIF</span><span class="p">(</span><span class="n">salary</span><span class="p">,</span><span class="w"> </span><span class="mi">1500</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">adjusted_salary</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">employees</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">-------------+---------+-----------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">name</span><span class="w">        </span><span class="o">|</span><span class="w"> </span><span class="n">salary</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">adjusted_salary</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------------+---------+-----------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">John</span><span class="w"> </span><span class="n">Doe</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="mi">1000</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">1000</span><span class="p">.</span><span class="mi">00</span><span class="w">         </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">Alice</span><span class="w"> </span><span class="n">Smith</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2000</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2000</span><span class="p">.</span><span class="mi">00</span><span class="w">         </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">Bob</span><span class="w"> </span><span class="n">Johnson</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">1500</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="o">|</span><span class="w">                 </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------------+---------+-----------------+</span>
-<span class="mi">3</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+<p>```sql <!-- validator-ignore-exec -->
+CREATE TABLE employees ( id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(50) NOT NULL, salary DECIMAL(10, 2) );</p>
+<p>INSERT INTO employees (name, salary) VALUES ('John Doe', 1000), ('Alice Smith', 2000), ('Bob Johnson', 1500);</p>
+<p>-- Use the NULLIF() function to set the salary of employees whose salary is a specific value to NULL. The NULLIF(salary, 1500) function will compare the value of the salary field with 1500. Returns NULL if the salary value equals 1500; otherwise, returns the salary value.
+mysql&gt; SELECT name, salary, NULLIF(salary, 1500) AS adjusted_salary FROM employees;
++-------------+---------+-----------------+
+| name        | salary  | adjusted_salary |
++-------------+---------+-----------------+
+| John Doe    | 1000.00 | 1000.00         |
+| Alice Smith | 2000.00 | 2000.00         |
+| Bob Johnson | 1500.00 |                 |
++-------------+---------+-----------------+
+3 rows in set (0.01 sec)
+```</p>
 
 
 

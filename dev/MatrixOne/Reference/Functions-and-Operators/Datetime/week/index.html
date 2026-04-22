@@ -13215,37 +13215,37 @@
 <ul>
 <li>Example 1:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">WEEK</span><span class="p">(</span><span class="s1">&#39;2008-02-20&#39;</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">week</span><span class="p">(</span><span class="mi">2008</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------+</span>
-<span class="o">|</span><span class="w">                </span><span class="mi">8</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
-<ul>
-<li>Example 2:</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="k">drop</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
-<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="p">(</span><span class="n">c1</span><span class="w"> </span><span class="n">DATETIME</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">);</span>
-<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;2000-01-01&#39;</span><span class="p">);</span>
-<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;1999-12-31&#39;</span><span class="p">);</span>
-<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;2000-01-01&#39;</span><span class="p">);</span>
-<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;2006-12-25&#39;</span><span class="p">);</span>
-<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;2008-02-29&#39;</span><span class="p">);</span>
+<p>```sql <!-- validator-ignore-exec -->
+mysql&gt; SELECT WEEK('2008-02-20');
++------------------+
+| week(2008-02-20) |
++------------------+
+|                8 |
++------------------+
+1 row in set (0.01 sec)
+<div class="highlight"><pre><span></span><code>- Example 2:
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">WEEK</span><span class="p">(</span><span class="n">c1</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">----------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">week</span><span class="p">(</span><span class="n">c1</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------+</span>
-<span class="o">|</span><span class="w">       </span><span class="mi">52</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">       </span><span class="mi">52</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">       </span><span class="mi">52</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">       </span><span class="mi">52</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">        </span><span class="mi">9</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------+</span>
-<span class="mi">5</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+```sql &lt;!-- validator-ignore-exec --&gt;
+drop table if exists t1;
+CREATE TABLE t1(c1 DATETIME NOT NULL);
+INSERT INTO t1 VALUES(&#39;2000-01-01&#39;);
+INSERT INTO t1 VALUES(&#39;1999-12-31&#39;);
+INSERT INTO t1 VALUES(&#39;2000-01-01&#39;);
+INSERT INTO t1 VALUES(&#39;2006-12-25&#39;);
+INSERT INTO t1 VALUES(&#39;2008-02-29&#39;);
+
+mysql&gt; SELECT WEEK(c1) FROM t1;
++----------+
+| week(c1) |
++----------+
+|       52 |
+|       52 |
+|       52 |
+|       52 |
+|        9 |
++----------+
+5 rows in set (0.00 sec)
+</code></pre></div></p>
 <h2 id="constraints"><strong>Constraints</strong></h2>
 <p>The <code>WEEK()</code> function of MatrixOne only supports the <code>date</code> parameter, and does not support the optional parameter <code>[, mode]</code>, which is different from MySQL.</p>
 

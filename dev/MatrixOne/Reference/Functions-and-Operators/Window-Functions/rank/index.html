@@ -13177,47 +13177,46 @@
 <li>The <code>ORDER BY</code> clause defines how the dataset is sorted, i.e., according to which column or columns to sort. You can specify ascending (ASC) or descending (DESC) sorting.</li>
 </ul>
 <h2 id="examples"><strong>Examples</strong></h2>
-<div class="highlight"><pre><span></span><code><span class="c1">-- Create a new table, &#39;SalesTable&#39; with three fields: &#39;Department&#39;, &#39;Employee&#39;, and &#39;Sales&#39;</span>
-<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">SalesTable</span><span class="w"> </span><span class="p">(</span>
-<span class="w">  </span><span class="n">Department</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span>
-<span class="w">  </span><span class="n">Employee</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span>
-<span class="w">  </span><span class="n">Sales</span><span class="w"> </span><span class="nb">INT</span>
-<span class="p">);</span>
-
-<span class="c1">-- Insert data into the &#39;SalesTable&#39; table; each row contains a department (Department), an employee (Employee), and their sales (Sales)</span>
-<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">SalesTable</span><span class="w"> </span><span class="p">(</span><span class="n">Department</span><span class="p">,</span><span class="w"> </span><span class="n">Employee</span><span class="p">,</span><span class="w"> </span><span class="n">Sales</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span>
-<span class="p">(</span><span class="s1">&#39;Marketing&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;John&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">1000</span><span class="p">),</span>
-<span class="p">(</span><span class="s1">&#39;Marketing&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Jane&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">1200</span><span class="p">),</span>
-<span class="p">(</span><span class="s1">&#39;Sales&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Alex&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">900</span><span class="p">),</span>
-<span class="p">(</span><span class="s1">&#39;Sales&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Bob&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">1100</span><span class="p">),</span>
-<span class="p">(</span><span class="s1">&#39;HR&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Alice&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">800</span><span class="p">),</span>
-<span class="p">(</span><span class="s1">&#39;HR&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Charlie&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">850</span><span class="p">);</span>
-
-<span class="c1">-- Query the &#39;SalesTable&#39; table and return each employee in each department, their sales, and the total sales of their department (DepartmentSales)</span>
-<span class="c1">-- will also return each employee&#39;s sales rank in their department (SalesRank)</span>
-<span class="c1">-- For the total sales, use the window function SUM(), and use &#39;OVER(PARTITION BY Department)&#39; to calculate each department separately</span>
-<span class="c1">-- For sales ranking, use the window function RANK(), and use &#39;OVER(PARTITION BY Department ORDER BY Sales DESC)&#39; to rank employees in each department in descending order by sales</span>
-<span class="c1">-- In the RANK() function, if two employees have the same sales, they get the same rank, and the next sales rank is skipped. For example, if two employees are number one in sales, the next sales rank is number three, not number two.</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span>
-<span class="w">  </span><span class="n">Department</span><span class="p">,</span>
-<span class="w">  </span><span class="n">Employee</span><span class="p">,</span>
-<span class="w">  </span><span class="n">Sales</span><span class="p">,</span>
-<span class="w">  </span><span class="k">SUM</span><span class="p">(</span><span class="n">Sales</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">Department</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">DepartmentSales</span><span class="p">,</span>
-<span class="w">  </span><span class="n">RANK</span><span class="p">()</span><span class="w"> </span><span class="n">OVER</span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">Department</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">Sales</span><span class="w"> </span><span class="k">DESC</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">SalesRank</span>
-<span class="k">FROM</span>
-<span class="w">  </span><span class="n">SalesTable</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------------+----------+-------+-----------------+-----------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">department</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">employee</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">sales</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">DepartmentSales</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">SalesRank</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------+----------+-------+-----------------+-----------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">HR</span><span class="w">         </span><span class="o">|</span><span class="w"> </span><span class="n">Charlie</span><span class="w">  </span><span class="o">|</span><span class="w">   </span><span class="mi">850</span><span class="w"> </span><span class="o">|</span><span class="w">            </span><span class="mi">1650</span><span class="w"> </span><span class="o">|</span><span class="w">         </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">HR</span><span class="w">         </span><span class="o">|</span><span class="w"> </span><span class="n">Alice</span><span class="w">    </span><span class="o">|</span><span class="w">   </span><span class="mi">800</span><span class="w"> </span><span class="o">|</span><span class="w">            </span><span class="mi">1650</span><span class="w"> </span><span class="o">|</span><span class="w">         </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">Marketing</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">Jane</span><span class="w">     </span><span class="o">|</span><span class="w">  </span><span class="mi">1200</span><span class="w"> </span><span class="o">|</span><span class="w">            </span><span class="mi">2200</span><span class="w"> </span><span class="o">|</span><span class="w">         </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">Marketing</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">John</span><span class="w">     </span><span class="o">|</span><span class="w">  </span><span class="mi">1000</span><span class="w"> </span><span class="o">|</span><span class="w">            </span><span class="mi">2200</span><span class="w"> </span><span class="o">|</span><span class="w">         </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">Sales</span><span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="n">Bob</span><span class="w">      </span><span class="o">|</span><span class="w">  </span><span class="mi">1100</span><span class="w"> </span><span class="o">|</span><span class="w">            </span><span class="mi">2000</span><span class="w"> </span><span class="o">|</span><span class="w">         </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">Sales</span><span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="n">Alex</span><span class="w">     </span><span class="o">|</span><span class="w">   </span><span class="mi">900</span><span class="w"> </span><span class="o">|</span><span class="w">            </span><span class="mi">2000</span><span class="w"> </span><span class="o">|</span><span class="w">         </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------+----------+-------+-----------------+-----------+</span>
-<span class="mi">6</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+<p>```SQL <!-- validator-ignore-exec -->
+-- Create a new table, 'SalesTable' with three fields: 'Department', 'Employee', and 'Sales'
+CREATE TABLE SalesTable (
+  Department VARCHAR(50),
+  Employee VARCHAR(50),
+  Sales INT
+);</p>
+<p>-- Insert data into the 'SalesTable' table; each row contains a department (Department), an employee (Employee), and their sales (Sales)
+INSERT INTO SalesTable (Department, Employee, Sales) VALUES
+('Marketing', 'John', 1000),
+('Marketing', 'Jane', 1200),
+('Sales', 'Alex', 900),
+('Sales', 'Bob', 1100),
+('HR', 'Alice', 800),
+('HR', 'Charlie', 850);</p>
+<p>-- Query the 'SalesTable' table and return each employee in each department, their sales, and the total sales of their department (DepartmentSales)
+-- will also return each employee's sales rank in their department (SalesRank)
+-- For the total sales, use the window function SUM(), and use 'OVER(PARTITION BY Department)' to calculate each department separately
+-- For sales ranking, use the window function RANK(), and use 'OVER(PARTITION BY Department ORDER BY Sales DESC)' to rank employees in each department in descending order by sales
+-- In the RANK() function, if two employees have the same sales, they get the same rank, and the next sales rank is skipped. For example, if two employees are number one in sales, the next sales rank is number three, not number two.
+mysql&gt; SELECT
+  Department,
+  Employee,
+  Sales,
+  SUM(Sales) OVER(PARTITION BY Department) AS DepartmentSales,
+  RANK() OVER(PARTITION BY Department ORDER BY Sales DESC) AS SalesRank
+FROM
+  SalesTable;
++------------+----------+-------+-----------------+-----------+
+| department | employee | sales | DepartmentSales | SalesRank |
++------------+----------+-------+-----------------+-----------+
+| HR         | Charlie  |   850 |            1650 |         1 |
+| HR         | Alice    |   800 |            1650 |         2 |
+| Marketing  | Jane     |  1200 |            2200 |         1 |
+| Marketing  | John     |  1000 |            2200 |         2 |
+| Sales      | Bob      |  1100 |            2000 |         1 |
+| Sales      | Alex     |   900 |            2000 |         2 |
++------------+----------+-------+-----------------+-----------+
+6 rows in set (0.01 sec)
+```</p>
 
 
 

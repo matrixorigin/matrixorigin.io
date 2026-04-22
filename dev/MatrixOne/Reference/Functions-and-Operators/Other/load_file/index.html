@@ -13197,7 +13197,7 @@
 <tbody>
 <tr>
 <td>datalink_type_data</td>
-<td>datalink type data can be converted using the <a href="../../../Reference/Operators/operators/cast-functions-and-operators/cast/">cast()</a> function</td>
+<td>datalink type data can be converted using the <a href="../../../Operators/operators/cast-functions-and-operators/cast/">cast()</a> function</td>
 </tr>
 </tbody>
 </table>
@@ -13206,50 +13206,46 @@
 <div class="highlight"><pre><span></span><code><span class="o">(</span>base<span class="o">)</span><span class="w"> </span>admin@192<span class="w"> </span><span class="k">case</span><span class="w"> </span>%<span class="w"> </span>cat<span class="w"> </span>t1.csv<span class="w"> </span>
 this<span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span><span class="nb">test</span><span class="w"> </span>message
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">col1</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">col2</span><span class="w"> </span><span class="n">datalink</span><span class="p">);</span>
-<span class="k">create</span><span class="w"> </span><span class="n">stage</span><span class="w"> </span><span class="n">stage1</span><span class="w"> </span><span class="n">url</span><span class="o">=</span><span class="s1">&#39;file:///Users/admin/case/&#39;</span><span class="p">;</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;file:///Users/admin/case/t1.csv&#39;</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;stage://stage1//t1.csv&#39;</span><span class="p">);</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------+---------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">col1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">col2</span><span class="w">                            </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+---------------------------------+</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">file</span><span class="p">:</span><span class="o">///</span><span class="n">Users</span><span class="o">/</span><span class="k">admin</span><span class="o">/</span><span class="k">case</span><span class="o">/</span><span class="n">t1</span><span class="p">.</span><span class="n">csv</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">stage</span><span class="p">:</span><span class="o">//</span><span class="n">stage1</span><span class="o">//</span><span class="n">t1</span><span class="p">.</span><span class="n">csv</span><span class="w">          </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+---------------------------------+</span>
-<span class="mi">2</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">col1</span><span class="p">,</span><span class="w"> </span><span class="n">load_file</span><span class="p">(</span><span class="n">col2</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------+-------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">col1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">load_file</span><span class="p">(</span><span class="n">col2</span><span class="p">)</span><span class="w">         </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+-------------------------+</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">test</span><span class="w"> </span><span class="n">message</span>
-<span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">test</span><span class="w"> </span><span class="n">message</span>
-<span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+-------------------------+</span>
-<span class="mi">2</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">load_file</span><span class="p">(</span><span class="k">cast</span><span class="p">(</span><span class="s1">&#39;file:///Users/admin/case/t1.csv&#39;</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">datalink</span><span class="p">));</span>
-<span class="o">+</span><span class="c1">--------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">load_file</span><span class="p">(</span><span class="k">cast</span><span class="p">(</span><span class="n">file</span><span class="p">:</span><span class="o">///</span><span class="n">Users</span><span class="o">/</span><span class="k">admin</span><span class="o">/</span><span class="k">case</span><span class="o">/</span><span class="n">t1</span><span class="p">.</span><span class="n">csv</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">datalink</span><span class="p">))</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">test</span><span class="w"> </span><span class="n">message</span>
-<span class="w">                                      </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------------------------------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">load_file</span><span class="p">(</span><span class="k">cast</span><span class="p">(</span><span class="s1">&#39;stage://stage1//t1.csv&#39;</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">datalink</span><span class="p">));</span>
-<span class="o">+</span><span class="c1">-----------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">load_file</span><span class="p">(</span><span class="k">cast</span><span class="p">(</span><span class="n">stage</span><span class="p">:</span><span class="o">//</span><span class="n">stage1</span><span class="o">//</span><span class="n">t1</span><span class="p">.</span><span class="n">csv</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">datalink</span><span class="p">))</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-----------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">test</span><span class="w"> </span><span class="n">message</span>
-<span class="w">                             </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-----------------------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+<p>```sql <!-- validator-ignore -->
+create table t1 (col1 int, col2 datalink);
+create stage stage1 url='file:///Users/admin/case/';
+insert into t1 values (1, 'file:///Users/admin/case/t1.csv');
+insert into t1 values (2, 'stage://stage1//t1.csv');</p>
+<p>mysql&gt; select * from t1;
++------+---------------------------------+
+| col1 | col2                            |
++------+---------------------------------+
+|    1 | file:///Users/admin/case/t1.csv |
+|    2 | stage://stage1//t1.csv          |
++------+---------------------------------+
+2 rows in set (0.00 sec)</p>
+<p>mysql&gt; select col1, load_file(col2) from t1;
++------+-------------------------+
+| col1 | load_file(col2)         |
++------+-------------------------+
+|    1 | this is a test message
+ |
+|    2 | this is a test message
+ |
++------+-------------------------+
+2 rows in set (0.01 sec)</p>
+<p>mysql&gt; select load_file(cast('file:///Users/admin/case/t1.csv' as datalink));
++--------------------------------------------------------------+
+| load_file(cast(file:///Users/admin/case/t1.csv as datalink)) |
++--------------------------------------------------------------+
+| this is a test message
+                                      |
++--------------------------------------------------------------+
+1 row in set (0.00 sec)</p>
+<p>mysql&gt; select load_file(cast('stage://stage1//t1.csv' as datalink));
++-----------------------------------------------------+
+| load_file(cast(stage://stage1//t1.csv as datalink)) |
++-----------------------------------------------------+
+| this is a test message
+                             |
++-----------------------------------------------------+
+1 row in set (0.00 sec)
+```</p>
 
 
 

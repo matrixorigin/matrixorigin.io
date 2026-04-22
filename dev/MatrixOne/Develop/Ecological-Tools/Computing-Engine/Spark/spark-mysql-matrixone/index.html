@@ -13372,19 +13372,19 @@
 <ol>
 <li>
 <p>Prepare MySQL data: On node3, connect to your local Mysql using the Mysql client, create the required database, data table, and insert the data:</p>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="w"> </span><span class="o">-</span><span class="n">h127</span><span class="p">.</span><span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="p">.</span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="n">P3306</span><span class="w"> </span><span class="o">-</span><span class="n">uroot</span><span class="w"> </span><span class="o">-</span><span class="n">proot</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">motest</span><span class="p">;</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="n">USE</span><span class="w"> </span><span class="n">motest</span><span class="p">;</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="o">`</span><span class="n">person</span><span class="o">`</span><span class="w"> </span><span class="p">(</span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">name</span><span class="o">`</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">birthday</span><span class="o">`</span><span class="w"> </span><span class="nb">date</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">);</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">motest</span><span class="p">.</span><span class="n">person</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">birthday</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;lisi&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2023-07-09&#39;</span><span class="p">),(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;wangwu&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2023-07-13&#39;</span><span class="p">),(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;zhaoliu&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2023-08-08&#39;</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code>mysql -h127.0.0.1 -P3306 -uroot -proot
+mysql&gt; CREATE DATABASE motest;
+mysql&gt; USE motest;
+mysql&gt; CREATE TABLE `person` (`id` int DEFAULT NULL, `name` varchar(255) DEFAULT NULL, `birthday` date DEFAULT NULL);
+mysql&gt; INSERT INTO motest.person (id, name, birthday) VALUES(2, &#39;lisi&#39;, &#39;2023-07-09&#39;),(3, &#39;wangwu&#39;, &#39;2023-07-13&#39;),(4, &#39;zhaoliu&#39;, &#39;2023-08-08&#39;);
 </code></pre></div>
 </li>
 <li>
 <p>Empty MatrixOne table data:</p>
 <p>On node3, connect to the local MatrixOne using a MySQL client. Since this example continues to use the <code>test</code> database from the example that read the MatrixOne data earlier, we need to first empty the data from the <code>person</code> table.</p>
-<div class="highlight"><pre><span></span><code><span class="c1">-- On node3, connect to MatrixOne on node1 using the Mysql client</span>
-<span class="n">mysql</span><span class="w"> </span><span class="o">-</span><span class="n">hxx</span><span class="p">.</span><span class="n">xx</span><span class="p">.</span><span class="n">xx</span><span class="p">.</span><span class="n">xx</span><span class="w"> </span><span class="o">-</span><span class="n">P6001</span><span class="w"> </span><span class="o">-</span><span class="n">uroot</span><span class="w"> </span><span class="o">-</span><span class="n">p111</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">TRUNCATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">test</span><span class="p">.</span><span class="n">person</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code>-- On node3, connect to MatrixOne on node1 using the Mysql client
+mysql -hxx.xx.xx.xx -P6001 -uroot -p111
+mysql&gt; TRUNCATE TABLE test.person;
 </code></pre></div>
 </li>
 <li>

@@ -13193,19 +13193,19 @@ FROM table_name
 WHERE columnN LIKE pattern;
 </code></pre></div>
 <h2 id="examples"><strong>Examples</strong></h2>
-<div class="highlight"><pre><span></span><code><span class="k">drop</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
-<span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">20</span><span class="p">));</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;abc&#39;</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;ABC&#39;</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;abC&#39;</span><span class="p">);</span>
-<span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">ilike</span><span class="w"> </span><span class="s1">&#39;%abC%&#39;</span><span class="p">;</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="s1">&#39;%abC%&#39;</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">a</span><span class="w">    </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">abC</span><span class="w">  </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+<p>```sql <!-- validator-ignore-exec -->
+drop table t1;
+create table t1(a varchar(20));
+insert into t1 values ('abc'), ('ABC'), ('abC');
+select * from t1 where a ilike '%abC%';</p>
+<p>mysql&gt; select * from t1 where a like '%abC%';
++------+
+| a    |
++------+
+| abC  |
++------+
+1 row in set (0.00 sec)
+```</p>
 
 
 

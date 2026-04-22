@@ -5217,13 +5217,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#parameter-set-to-1" class="md-nav__link">
-    Parameter set to 1
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -13165,13 +13158,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#parameter-set-to-1" class="md-nav__link">
-    Parameter set to 1
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -13212,80 +13198,84 @@
 </code></pre></div>
 <h2 id="set-lower_case_table_names">Set lower_case_table_names</h2>
 <p>Set <code>lower_case_table_names</code> in MatrixOne with the following command:</p>
-<div class="highlight"><pre><span></span><code><span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">lower_case_table_names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="c1">--default is 1, reconnecting to database takes effect</span>
+<div class="highlight"><pre><span></span><code><span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">lower_case_table_names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="c1">-- default is 1, reconnecting to database takes effect</span>
 </code></pre></div>
 <h2 id="explanation-of-parameters">Explanation of parameters</h2>
 <h3 id="parameter-is-set-to-0">parameter is set to 0</h3>
 <p>Set <code>lower_case_table_names</code> to 0. Identifiers are stored as raw strings with names that are case sensitive.</p>
 <p><strong>Examples</strong></p>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="n">variables</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="ss">&quot;lower_case_table_names&quot;</span><span class="p">;</span><span class="c1">--Check the default parameter, the default value is 1</span>
-<span class="o">+</span><span class="c1">------------------------+-------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">Variable_name</span><span class="w">          </span><span class="o">|</span><span class="w"> </span><span class="n">Value</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------------+-------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">lower_case_table_names</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">1</span><span class="w">     </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------------+-------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+<p>```sql <!-- validator-ignore-exec -->
+mysql&gt; show variables like "lower_case_table_names";
+-- Check the default parameter, the default value is 1
++------------------------+-------+
+| Variable_name          | Value |
++------------------------+-------+
+| lower_case_table_names | 1     |
++------------------------+-------+
+1 row in set (0.00 sec)</p>
+<p>set global lower_case_table_names = 0;
+-- Reconnecting to the database takes effect</p>
+<p>mysql&gt; show variables like "lower_case_table_names"; -- Reconnect to the database to view the parameters, the change was successful
++------------------------+-------+
+| Variable_name          | Value |
++------------------------+-------+
+| lower_case_table_names | 0     |
++------------------------+-------+
+1 row in set (0.00 sec)</p>
+<p>create table Tt (Aa int);
+insert into Tt values (1), (2), (3);</p>
+<p>mysql&gt; select Aa from Tt; -- Name comparison is case sensitive
++------+
+| Aa   |
++------+
+|    1 |
+|    2 |
+|    3 |
++------+
+3 rows in set (0.03 sec)
+<div class="highlight"><pre><span></span><code>### Parameter set to 1
 
-<span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">lower_case_table_names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="c1">--Reconnecting to the database takes effect</span>
+ Set `lower_case_table_names` to 1. identifiers are stored in lowercase and name comparisons are case insensitive.
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="n">variables</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="ss">&quot;lower_case_table_names&quot;</span><span class="p">;</span><span class="c1">--Reconnect to the database to view the parameters, the change was successful</span>
-<span class="o">+</span><span class="c1">------------------------+-------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">Variable_name</span><span class="w">          </span><span class="o">|</span><span class="w"> </span><span class="n">Value</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------------+-------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">lower_case_table_names</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">0</span><span class="w">     </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------------+-------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+**Example**
 
-<span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">Tt</span><span class="w"> </span><span class="p">(</span><span class="n">Aa</span><span class="w"> </span><span class="nb">int</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">Tt</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+```sql &lt;!-- validator-ignore-exec --&gt;
+set global lower_case_table_names = 1;
+-- Reconnecting to the database takes effect
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">Aa</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">Tt</span><span class="p">;</span><span class="c1">--Name comparison is case sensitive</span>
-<span class="o">+</span><span class="c1">------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">Aa</span><span class="w">   </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+</span>
-<span class="mi">3</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">03</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
-<h3 id="parameter-set-to-1">Parameter set to 1</h3>
-<p>Set <code>lower_case_table_names</code> to 1. identifiers are stored in lowercase and name comparisons are case insensitive.</p>
-<p><strong>Example</strong></p>
-<div class="highlight"><pre><span></span><code><span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">lower_case_table_names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="c1">--Reconnecting to the database takes effect</span>
+mysql&gt; show variables like &quot;lower_case_table_names&quot;;
+-- Reconnect to the database to view the parameters, the change was successful
++------------------------+-------+
+| Variable_name          | Value |
++------------------------+-------+
+| lower_case_table_names | 1     |
++------------------------+-------+
+1 row in set (0.00 sec)
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="n">variables</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="ss">&quot;lower_case_table_names&quot;</span><span class="p">;</span><span class="c1">--Reconnect to the database to view the parameters, the change was successful</span>
-<span class="o">+</span><span class="c1">------------------------+-------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">Variable_name</span><span class="w">          </span><span class="o">|</span><span class="w"> </span><span class="n">Value</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------------+-------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">lower_case_table_names</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">1</span><span class="w">     </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------------+-------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+create table Tt (Aa int,Bb int);
+insert into Tt values (1,2), (2,3), (3,4);
 
-<span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">Tt</span><span class="w"> </span><span class="p">(</span><span class="n">Aa</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="n">Bb</span><span class="w"> </span><span class="nb">int</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">Tt</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">);</span>
+mysql&gt; select Aa from Tt; -- Name comparison is case insensitive
++------+
+| aa   |
++------+
+|    1 |
+|    2 |
+|    3 |
++------+
+3 rows in set (0.03 sec)
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">Aa</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">Tt</span><span class="p">;</span><span class="c1">--Name comparison is case insensitive</span>
-<span class="o">+</span><span class="c1">------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">aa</span><span class="w">   </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+</span>
-<span class="mi">3</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">03</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="c1">-- The alias of a column displays the original string when the result set is returned, but the name comparison is case insensitive, as shown in the following example:</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">Aa</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">AA</span><span class="p">,</span><span class="n">Bb</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">Tt</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------+------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">AA</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">bb</span><span class="w">   </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+------+</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+------+</span>
-<span class="mi">3</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+-- The alias of a column displays the original string when the result set is returned, but the name comparison is case insensitive, as shown in the following example:
+mysql&gt; select Aa as AA,Bb from Tt;
++------+------+
+| AA   | bb   |
++------+------+
+|    1 |    2 |
+|    2 |    3 |
+|    3 |    4 |
++------+------+
+3 rows in set (0.00 sec)
+</code></pre></div></p>
 
 
 

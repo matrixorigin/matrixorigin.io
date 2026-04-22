@@ -13165,60 +13165,60 @@
 <div class="highlight"><pre><span></span><code>SET time_zone = timezone;
 </code></pre></div>
 <p>You can use the following statement to view the current values of the global, client-specific and system time zones:</p>
-<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">@@</span><span class="k">global</span><span class="p">.</span><span class="n">time_zone</span><span class="p">,</span><span class="w"> </span><span class="o">@@</span><span class="k">session</span><span class="p">.</span><span class="n">time_zone</span><span class="p">,</span><span class="w"> </span><span class="o">@@</span><span class="k">global</span><span class="p">.</span><span class="n">system_time_zone</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">-------------+-------------+--------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="o">@@</span><span class="n">time_zone</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="o">@@</span><span class="n">time_zone</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="o">@@</span><span class="n">system_time_zone</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------------+-------------+--------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">timezone</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="o">+</span><span class="mi">08</span><span class="p">:</span><span class="mi">00</span><span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="n">CST</span><span class="w">                </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------------+-------------+--------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
-<p>To set the format of the value of the time_zone:</p>
-<ul>
-<li>
-<p>The value <code>SYSTEM</code> indicates that the time zone should be the same as the server system time zone.</p>
-</li>
-<li>
-<p>The value <code>UTC</code> indicates that the time zone is set to Coordinated Universal Time. Only <code>UTC</code> as time zone abbreviation is supported.</p>
-</li>
-<li>
-<p>The value can be given as a string indicating an offset from UTC of the form <code>HH:MM</code> with a + or -, such as <code>+10:00</code> or <code>-06:00</code>. The permitted range is <code>-13:59</code> to <code>+14:00</code>, inclusive.</p>
-</li>
-</ul>
-<p>The current session time zone setting affects the display and storage of time values that are zone-sensitive. This includes the values displayed by functions such as <code>NOW()</code> and values stored in and retrieved from TIMESTAMP columns.</p>
-<p>The session time zone setting does not affect values displayed by functions such as UTC_TIMESTAMP() or values in DATE, TIME, or DATETIME columns.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Only the values of the Timestamp data type is affected by time zone. This is because the Timestamp data type uses the literal value + time zone information. Other data types, such as Datetime/Date/Time, do not have time zone information, thus their values are not affected by the changes of time zone.</p>
-</div>
-<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">@@</span><span class="k">global</span><span class="p">.</span><span class="n">time_zone</span><span class="p">,</span><span class="w"> </span><span class="o">@@</span><span class="k">session</span><span class="p">.</span><span class="n">time_zone</span><span class="p">,</span><span class="w"> </span><span class="o">@@</span><span class="k">global</span><span class="p">.</span><span class="n">system_time_zone</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">-------------+-------------+--------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="o">@@</span><span class="n">time_zone</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="o">@@</span><span class="n">time_zone</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="o">@@</span><span class="n">system_time_zone</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------------+-------------+--------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">SYSTEM</span><span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="k">SYSTEM</span><span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="n">CST</span><span class="w">                </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------------+-------------+--------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+<p>```sql <!-- validator-ignore-exec --></p>
+<blockquote>
+<p>SELECT @@global.time_zone, @@session.time_zone, @@global.system_time_zone;
++-------------+-------------+--------------------+
+| @@time_zone | @@time_zone | @@system_time_zone |
++-------------+-------------+--------------------+
+| timezone    | +08:00      | CST                |
++-------------+-------------+--------------------+
+1 row in set (0.01 sec)
+<div class="highlight"><pre><span></span><code>To set the format of the value of the time_zone:
 
-<span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="p">(</span><span class="n">ts</span><span class="w"> </span><span class="k">timestamp</span><span class="p">,</span><span class="w"> </span><span class="n">dt</span><span class="w"> </span><span class="n">datetime</span><span class="p">);</span>
-<span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">02</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+- The value `SYSTEM` indicates that the time zone should be the same as the server system time zone.
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="o">@@</span><span class="n">time_zone</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;UTC&#39;</span><span class="p">;</span>
-<span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+- The value `UTC` indicates that the time zone is set to Coordinated Universal Time. Only `UTC` as time zone abbreviation is supported.
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;2017-09-30 11:11:11&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2017-09-30 11:11:11&#39;</span><span class="p">);</span>
-<span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">02</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+- The value can be given as a string indicating an offset from UTC of the form `HH:MM` with a + or -, such as `+10:00` or `-06:00`. The permitted range is `-13:59` to `+14:00`, inclusive.
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="o">@@</span><span class="n">time_zone</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;+08:00&#39;</span><span class="p">;</span>
-<span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+The current session time zone setting affects the display and storage of time values that are zone-sensitive. This includes the values displayed by functions such as `NOW()` and values stored in and retrieved from TIMESTAMP columns.
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">---------------------+---------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">ts</span><span class="w">                  </span><span class="o">|</span><span class="w"> </span><span class="n">dt</span><span class="w">                  </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------------------+---------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">2017</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">30</span><span class="w"> </span><span class="mi">19</span><span class="p">:</span><span class="mi">11</span><span class="p">:</span><span class="mi">11</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2017</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">30</span><span class="w"> </span><span class="mi">11</span><span class="p">:</span><span class="mi">11</span><span class="p">:</span><span class="mi">11</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------------------+---------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+The session time zone setting does not affect values displayed by functions such as UTC_TIMESTAMP() or values in DATE, TIME, or DATETIME columns.
+
+!!! note
+    Only the values of the Timestamp data type is affected by time zone. This is because the Timestamp data type uses the literal value + time zone information. Other data types, such as Datetime/Date/Time, do not have time zone information, thus their values are not affected by the changes of time zone.
+
+```sql &lt;!-- validator-ignore-exec --&gt;
+&gt; SELECT @@global.time_zone, @@session.time_zone, @@global.system_time_zone;
++-------------+-------------+--------------------+
+| @@time_zone | @@time_zone | @@system_time_zone |
++-------------+-------------+--------------------+
+| SYSTEM      | SYSTEM      | CST                |
++-------------+-------------+--------------------+
+1 row in set (0.00 sec)
+
+&gt; create table t (ts timestamp, dt datetime);
+Query OK, 0 rows affected (0.02 sec)
+
+mysql&gt; set @@time_zone = &#39;UTC&#39;;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql&gt; insert into t values (&#39;2017-09-30 11:11:11&#39;, &#39;2017-09-30 11:11:11&#39;);
+Query OK, 1 row affected (0.02 sec)
+
+mysql&gt; set @@time_zone = &#39;+08:00&#39;;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql&gt; select * from t;
++---------------------+---------------------+
+| ts                  | dt                  |
++---------------------+---------------------+
+| 2017-09-30 19:11:11 | 2017-09-30 11:11:11 |
++---------------------+---------------------+
+1 row in set (0.00 sec)
+</code></pre></div></p>
+</blockquote>
 <p>In this example, no matter how you adjust the value of the time zone, the value of the Datetime data type is not affected. But the displayed value of the Timestamp data type changes if the time zone information changes. In fact, the value that is stored in the storage does not change, it's just displayed differently according to different time zone setting.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -13228,37 +13228,33 @@
 <ol>
 <li>View the current time and time zone:</li>
 </ol>
-<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">now</span><span class="p">();</span>
-<span class="o">+</span><span class="c1">----------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">now</span><span class="p">()</span><span class="w">                      </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">2022</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">14</span><span class="w"> </span><span class="mi">18</span><span class="p">:</span><span class="mi">38</span><span class="p">:</span><span class="mi">27</span><span class="p">.</span><span class="mi">876181</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+<p>```sql <!-- validator-ignore-exec --></p>
+<blockquote>
+<p>select now();
++----------------------------+
+| now()                      |
++----------------------------+
+| 2022-10-14 18:38:27.876181 |
++----------------------------+
+1 row in set (0.00 sec)</p>
+<p>show variables like "%time_zone%";
++------------------+--------+
+| Variable_name    | Value  |
++------------------+--------+
+| system_time_zone | CST    |
+| time_zone        | SYSTEM |
++------------------+--------+
+2 rows in set (0.00 sec)
+<div class="highlight"><pre><span></span><code>- `time_zone` indicates that MatrixOne uses the system time zone.
 
-<span class="o">&gt;</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="n">variables</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="ss">&quot;%time_zone%&quot;</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------------------+--------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">Variable_name</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="n">Value</span><span class="w">  </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------+--------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">system_time_zone</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">CST</span><span class="w">    </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">time_zone</span><span class="w">        </span><span class="o">|</span><span class="w"> </span><span class="k">SYSTEM</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------+--------+</span>
-<span class="mi">2</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+- `system_time_zone` indicates the time zone which server system uses.
+
+2. modify the time zone:
 </code></pre></div>
-<ul>
-<li>
-<p><code>time_zone</code> indicates that MatrixOne uses the system time zone.</p>
-</li>
-<li>
-<p><code>system_time_zone</code> indicates the time zone which server system uses.</p>
-</li>
-<li>
-<p>modify the time zone:</p>
-</li>
-</ul>
-<div class="highlight"><pre><span></span><code>set global time_zone = &#39;+08:00&#39;;
-set time_zone = &#39;+08:00&#39;;
-</code></pre></div>
+set global time_zone = '+08:00';
+set time_zone = '+08:00';
+```</p>
+</blockquote>
 <ul>
 <li><code>set global time_zone = '+08:00';</code>: Change the global time zone to Beijing time if we are in the east eight zones.</li>
 <li><code>set time_zone = '+08:00';</code>: Change the time zone of the current session.</li>

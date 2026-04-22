@@ -13298,6 +13298,7 @@
 <h2 id="hands-on-scenario-parallel-modifications-on-an-orders-table">Hands-on Scenario: Parallel Modifications on an Orders Table</h2>
 <p>We simulate a real-world scenario: a main orders table where the risk control team and the operations team need to make modifications simultaneously without interfering with each other, and finally merge their respective changes back into the main table.</p>
 <h3 id="step-1-prepare-the-main-table-data">Step 1: Prepare the Main Table Data</h3>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="c1">-- Create demo database</span>
 <span class="k">DROP</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">demo_branch</span><span class="p">;</span>
 <span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">demo_branch</span><span class="p">;</span>
@@ -13336,10 +13337,12 @@
 </code></pre></div>
 <h3 id="step-2-take-a-snapshot-to-establish-a-safety-anchor">Step 2: Take a Snapshot to Establish a Safety Anchor</h3>
 <p>Before any modifications, take a snapshot of the main table first. This is your "safety net" — no matter what happens next, you can always return to this point.</p>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="n">SNAPSHOT</span><span class="w"> </span><span class="n">sp_orders_v1</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">demo_branch</span><span class="w"> </span><span class="n">orders</span><span class="p">;</span>
 </code></pre></div>
 <h3 id="step-3-create-two-branches">Step 3: Create Two Branches</h3>
 <p>Create two independent branch tables from the main table, one for each team:</p>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="c1">-- Risk control branch: for flagging high-risk orders</span>
 <span class="k">DATA</span><span class="w"> </span><span class="n">BRANCH</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">orders_risk</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">orders</span><span class="p">;</span>
 
@@ -13347,6 +13350,7 @@
 <span class="k">DATA</span><span class="w"> </span><span class="n">BRANCH</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">orders_promo</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">orders</span><span class="p">;</span>
 </code></pre></div>
 <p>At this point, all three tables have identical data. Let's verify:</p>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">orders_risk</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">order_id</span><span class="p">;</span>
 <span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">orders_promo</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">order_id</span><span class="p">;</span>
 </code></pre></div>
@@ -13358,6 +13362,7 @@
 <h3 id="step-4-independent-modifications-on-two-branches">Step 4: Independent Modifications on Two Branches</h3>
 <p>Now both teams work on their own branches independently, without interfering with each other.</p>
 <p><strong>Risk control team</strong> operates on <code>orders_risk</code>:</p>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="c1">-- Flag Bob&#39;s order as high risk</span>
 <span class="k">UPDATE</span><span class="w"> </span><span class="n">orders_risk</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">risk_flag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">order_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1002</span><span class="p">;</span>
 
@@ -13368,6 +13373,7 @@
 <span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">orders_risk</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">1006</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Frank&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">500</span><span class="p">.</span><span class="mi">00</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="k">NULL</span><span class="p">);</span>
 </code></pre></div>
 <p><strong>Operations team</strong> operates on <code>orders_promo</code>:</p>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="c1">-- Add campaign tags to Alice&#39;s and Bob&#39;s orders, and apply a 10% discount</span>
 <span class="k">UPDATE</span><span class="w"> </span><span class="n">orders_promo</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">promo_tag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;summer_sale&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">amount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">amount</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="mi">9</span>
 <span class="k">WHERE</span><span class="w"> </span><span class="n">order_id</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="mi">1001</span><span class="p">,</span><span class="w"> </span><span class="mi">1002</span><span class="p">);</span>
@@ -13376,12 +13382,14 @@
 <span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">orders_promo</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">1007</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Grace&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">39</span><span class="p">.</span><span class="mi">90</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;summer_sale&#39;</span><span class="p">);</span>
 </code></pre></div>
 <p>At this point, the main table is completely unaffected:</p>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">order_id</span><span class="p">;</span>
 <span class="c1">-- Still the original 5 rows, with no changes whatsoever</span>
 </code></pre></div>
 <h3 id="step-5-use-diff-to-view-differences">Step 5: Use DIFF to View Differences</h3>
 <p>Before merging, let's see what each branch has changed relative to the main table.</p>
 <p><strong>View differences between the risk control branch and the main table:</strong></p>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="k">DATA</span><span class="w"> </span><span class="n">BRANCH</span><span class="w"> </span><span class="n">DIFF</span><span class="w"> </span><span class="n">orders_risk</span><span class="w"> </span><span class="n">AGAINST</span><span class="w"> </span><span class="n">orders</span><span class="p">;</span>
 </code></pre></div>
 <p>Result:</p>
@@ -13395,6 +13403,7 @@
 </code></pre></div>
 <p>You can clearly see: 1 row updated, 1 row deleted, 1 row inserted.</p>
 <p><strong>View differences between the operations branch and the main table:</strong></p>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="k">DATA</span><span class="w"> </span><span class="n">BRANCH</span><span class="w"> </span><span class="n">DIFF</span><span class="w"> </span><span class="n">orders_promo</span><span class="w"> </span><span class="n">AGAINST</span><span class="w"> </span><span class="n">orders</span><span class="p">;</span>
 </code></pre></div>
 <p>Result:</p>
@@ -13408,6 +13417,7 @@
 </code></pre></div>
 <p>2 rows updated, 1 row inserted.</p>
 <p><strong>You can also directly compare the differences between two branches:</strong></p>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="c1">-- DATA BRANCH DIFF orders_risk AGAINST orders_promo;</span>
 </code></pre></div>
 <p>This shows all differing rows between the two branches, helping you anticipate potential conflicts before merging.</p>
@@ -13420,6 +13430,7 @@
 </div>
 <p><strong>Export differences as a patch file:</strong></p>
 <p>If you need to bring changes to another environment (e.g., syncing from staging to production), you can export the DIFF results as a file before merging:</p>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="c1">-- Export to local directory (execute before merge to ensure the patch reflects the original branch changes)</span>
 <span class="c1">-- DATA BRANCH DIFF orders_risk AGAINST orders OUTPUT FILE &#39;/tmp/diff_output/&#39;;</span>
 </code></pre></div>
@@ -13429,6 +13440,7 @@
 mysql<span class="w"> </span>-h<span class="w"> </span>&lt;target_host&gt;<span class="w"> </span>-P<span class="w"> </span><span class="m">6001</span><span class="w"> </span>-u<span class="w"> </span>root<span class="w"> </span>-p111<span class="w"> </span>demo_branch<span class="w"> </span>&lt;<span class="w"> </span>/tmp/diff_output/diff_xxx.sql
 </code></pre></div>
 <p>You can also export to object storage (via Stage):</p>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="c1">-- Create a Stage pointing to S3</span>
 <span class="c1">-- CREATE STAGE my_stage URL = &#39;s3://my-bucket/diffs/?region=us-east-1&amp;access_key_id=&lt;ak&gt;&amp;secret_access_key=&lt;sk&gt;&#39;;</span>
 
@@ -13437,9 +13449,11 @@ mysql<span class="w"> </span>-h<span class="w"> </span>&lt;target_host&gt;<span 
 </code></pre></div>
 <h3 id="step-6-merge-branches-into-the-main-table">Step 6: Merge Branches into the Main Table</h3>
 <p>First, merge the risk control branch (no conflict scenario):</p>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="k">DATA</span><span class="w"> </span><span class="n">BRANCH</span><span class="w"> </span><span class="n">MERGE</span><span class="w"> </span><span class="n">orders_risk</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">orders</span><span class="p">;</span>
 </code></pre></div>
 <p>Verify the main table:</p>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">order_id</span><span class="p">;</span>
 </code></pre></div>
 <p>Result:</p>
@@ -13457,6 +13471,7 @@ mysql<span class="w"> </span>-h<span class="w"> </span>&lt;target_host&gt;<span 
 <h3 id="step-7-handle-merge-conflicts">Step 7: Handle Merge Conflicts</h3>
 <p>Now merge the operations branch. Note that the operations branch also modified <code>order_id = 1002</code> (Bob's order), while the risk control branch has already merged its modification to the same row — this creates a conflict.</p>
 <p><strong>Default behavior — error on conflict:</strong></p>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="c1">-- DATA BRANCH MERGE orders_promo INTO orders;</span>
 <span class="c1">-- ERROR: conflict on pk(1002)</span>
 </code></pre></div>
@@ -13493,9 +13508,11 @@ mysql<span class="w"> </span>-h<span class="w"> </span>&lt;target_host&gt;<span 
 </tbody>
 </table>
 <p>In this scenario, the risk control flag is more important than the operations discount, so we choose SKIP (keep the risk control modifications in the main table):</p>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="k">DATA</span><span class="w"> </span><span class="n">BRANCH</span><span class="w"> </span><span class="n">MERGE</span><span class="w"> </span><span class="n">orders_promo</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="k">WHEN</span><span class="w"> </span><span class="n">CONFLICT</span><span class="w"> </span><span class="n">SKIP</span><span class="p">;</span>
 </code></pre></div>
 <p>Verify the final result:</p>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">order_id</span><span class="p">;</span>
 </code></pre></div>
 <p>Result:</p>
@@ -13517,28 +13534,26 @@ mysql<span class="w"> </span>-h<span class="w"> </span>&lt;target_host&gt;<span 
 </ul>
 <h3 id="step-8-delete-branches">Step 8: Delete Branches</h3>
 <p>After branches are no longer needed, clean them up promptly:</p>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="k">DATA</span><span class="w"> </span><span class="n">BRANCH</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">orders_risk</span><span class="p">;</span>
 <span class="k">DATA</span><span class="w"> </span><span class="n">BRANCH</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">orders_promo</span><span class="p">;</span>
 </code></pre></div>
 <p>Unlike a regular <code>DROP TABLE</code>, <code>DATA BRANCH DELETE</code> retains metadata records in the system table <code>mo_catalog.mo_branch_metadata</code> (marked as deleted), making it convenient for subsequent audit tracking.</p>
 <h3 id="step-9-rollback-if-needed">Step 9: Rollback (If Needed)</h3>
 <p>If issues are discovered after merging, you can use the snapshot to return to the initial state:</p>
-<div class="highlight"><pre><span></span><code><span class="n">RESTORE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">sys</span><span class="p">.</span><span class="n">demo_branch</span><span class="p">.</span><span class="n">orders</span><span class="err">{</span><span class="n">SNAPSHOT</span><span class="o">=</span><span class="s1">&#39;sp_orders_v1&#39;</span><span class="err">}</span><span class="p">;</span>
+<!-- validator-ignore -->
+<div class="highlight"><pre><span></span><code><span class="n">RESTORE</span><span class="w"> </span><span class="n">ACCOUNT</span><span class="w"> </span><span class="n">sys</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">demo_branch</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">SNAPSHOT</span><span class="w"> </span><span class="n">sp_orders_v1</span><span class="p">;</span>
 </code></pre></div>
-<blockquote>
-<p><strong>Note</strong>: The syntax above is for MatrixOne versions after v3.0. For v3.0, use the following syntax:</p>
-<div class="highlight"><pre><span></span><code><span class="c1">-- v3.0 syntax</span>
-<span class="c1">-- RESTORE ACCOUNT sys DATABASE demo_branch TABLE orders FROM SNAPSHOT sp_orders_v1;</span>
-</code></pre></div>
-</blockquote>
 <p>This is the value of snapshots — turning "rollback" from a high-risk operation into a routine action.</p>
 <h3 id="clean-up-the-environment">Clean Up the Environment</h3>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="k">DROP</span><span class="w"> </span><span class="n">SNAPSHOT</span><span class="w"> </span><span class="n">sp_orders_v1</span><span class="p">;</span>
 <span class="k">DROP</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">demo_branch</span><span class="p">;</span>
 </code></pre></div>
 <h2 id="advanced-usage">Advanced Usage</h2>
 <h3 id="database-level-branches">Database-Level Branches</h3>
 <p>In addition to table-level branches, you can also create branches for an entire database, copying all tables at once:</p>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="c1">-- DATA BRANCH CREATE DATABASE dev_db FROM prod_db;</span>
 
 <span class="c1">-- Freely modify within dev_db without affecting prod_db</span>
@@ -13546,12 +13561,14 @@ mysql<span class="w"> </span>-h<span class="w"> </span>&lt;target_host&gt;<span 
 </code></pre></div>
 <h3 id="creating-branches-from-snapshots">Creating Branches from Snapshots</h3>
 <p>Create a branch from a specific historical point in time, suitable for "going back to yesterday's data for analysis":</p>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="c1">-- CREATE SNAPSHOT sp_yesterday FOR TABLE mydb mytable;</span>
 <span class="c1">-- ... time passes, data changes ...</span>
 <span class="c1">-- DATA BRANCH CREATE TABLE mytable_analysis FROM mytable{SNAPSHOT=&#39;sp_yesterday&#39;};</span>
 </code></pre></div>
 <h3 id="multi-level-branches">Multi-Level Branches</h3>
 <p>Branches can create further branches, forming a multi-level structure:</p>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="c1">-- DATA BRANCH CREATE TABLE branch_v1 FROM main_table;</span>
 <span class="c1">-- Modify on branch_v1...</span>
 <span class="c1">-- DATA BRANCH CREATE TABLE branch_v2 FROM branch_v1;</span>

@@ -13122,7 +13122,7 @@
 <p>Completed <a href="../../../../Get-Started/install-standalone-matrixone/">MatrixOne installation and setup</a>.</p>
 </li>
 <li>
-<p>Installed <a href="https://dolphinscheduler.apache.org/docs/3.1.8/en/installation/standalone">DolphinScheduler installation</a>.</p>
+<p>Installed <a href="https://github.com/apache/dolphinscheduler/blob/dev/docs/docs/en/guide/installation/standalone.md">DolphinScheduler installation</a>.</p>
 </li>
 </ul>
 <h2 id="operating-steps">Operating Steps</h2>
@@ -13180,17 +13180,14 @@ bash<span class="w"> </span>./bin/dolphinscheduler-daemon.sh<span class="w"> </s
 <p>Next, create <strong>Insert Data</strong> and <strong>Query Data</strong> nodes in a similar way. The dependency relationship between these three nodes is shown below, and you can manually connect them:</p>
 <p><img alt="image-20230809153149428" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/Scheduling-tool/image-20230809153149428.png?raw=true" /></p>
 <p>The SQL statements for these three nodes are as follows:</p>
-<div class="highlight"><pre><span></span><code><span class="o">#</span><span class="n">create_table</span>
+<div class="highlight"><pre><span></span><code><span class="c1">-- create_table</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">test_table</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">);</span>
 
-<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">test_table</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">)</span>
+<span class="c1">-- insert_data</span>
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">test_table</span><span class="w"> </span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;John Doe&#39;</span><span class="p">);</span>
 
-<span class="o">#</span><span class="n">insert_data</span>
-
-<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">test_table</span><span class="w"> </span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;John Doe&#39;</span><span class="p">)</span>
-
-<span class="o">#</span><span class="n">select_data</span>
-
-<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">test_table</span>
+<span class="c1">-- select_data</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">test_table</span><span class="p">;</span>
 </code></pre></div>
 <p>Connect these three nodes based on their dependency relationship, then click <strong>Save</strong>. Enter the <strong>Workflow Name</strong>, select the previously created <strong>Tenant</strong>, choose <strong>Parallel</strong> as the execution policy, and click <strong>OK</strong>.</p>
 <p><img alt="image-20230809161503945" src="https://github.com/matrixorigin/artwork/blob/main/docs/develop/Scheduling-tool/image-20230809161503945.png?raw=true" /></p>

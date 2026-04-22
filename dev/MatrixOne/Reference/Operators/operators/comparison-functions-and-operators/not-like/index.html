@@ -13178,29 +13178,29 @@ FROM table_name
 WHERE columnN NOT LIKE pattern;
 </code></pre></div>
 <h2 id="examples"><strong>Examples</strong></h2>
-<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">char</span><span class="p">(</span><span class="mi">10</span><span class="p">));</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="s1">&#39;abcdef&#39;</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="s1">&#39;_bcdef&#39;</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="s1">&#39;a_cdef&#39;</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="s1">&#39;ab_def&#39;</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="s1">&#39;abc_ef&#39;</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="s1">&#39;abcd_f&#39;</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="s1">&#39;abcde_&#39;</span><span class="p">);</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="s1">&#39;a%&#39;</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">--------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">a</span><span class="w">      </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">_bcdef</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------+</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="ss">&quot;%d_\_&quot;</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">--------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">a</span><span class="w">      </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">abc_ef</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+<p>```sql <!-- validator-ignore-exec -->
+create table t1 (a char(10));
+insert into t1 values('abcdef');
+insert into t1 values('<em>bcdef');
+insert into t1 values('a_cdef');
+insert into t1 values('ab_def');
+insert into t1 values('abc_ef');
+insert into t1 values('abcd_f');
+insert into t1 values('abcde</em>');</p>
+<p>mysql&gt; select * from t1 where a not like 'a%';
++--------+
+| a      |
++--------+
+| <em>bcdef |
++--------+
+mysql&gt; select * from t1 where a not like "%d</em>_";
++--------+
+| a      |
++--------+
+| abc_ef |
++--------+
+1 row in set (0.01 sec)
+```</p>
 
 
 

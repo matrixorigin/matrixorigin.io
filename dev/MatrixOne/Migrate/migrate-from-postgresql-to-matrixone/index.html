@@ -13498,7 +13498,8 @@ sed -i '' 's/numeric/decimal/g' mysql_ddl.sql
 <p>Connect to MatrixOne and create a new database and table in MatrixOne:</p>
 <div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n">tpch</span><span class="p">;</span>
 <span class="n">use</span><span class="w"> </span><span class="n">tpch</span><span class="p">;</span>
-<span class="k">source</span><span class="w"> </span><span class="s1">&#39;/YOUR_PATH/mysql_ddl.sql&#39;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>source &#39;/YOUR_PATH/mysql_ddl.sql&#39;
 </code></pre></div>
 </li>
 </ol>
@@ -13594,7 +13595,8 @@ sed -i '' 's/numeric/decimal/g' mysql_ddl.sql
 <p>Connect to MatrixOne and create a new database and table in MatrixOne:</p>
 <div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n">tpch</span><span class="p">;</span>
 <span class="n">use</span><span class="w"> </span><span class="n">tpch</span><span class="p">;</span>
-<span class="k">source</span><span class="w"> </span><span class="s1">&#39;/YOUR_PATH/mysql_ddl.sql&#39;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>source &#39;/YOUR_PATH/mysql_ddl.sql&#39;
 </code></pre></div>
 </li>
 </ol>
@@ -13604,15 +13606,15 @@ sed -i '' 's/numeric/decimal/g' mysql_ddl.sql
 <ol>
 <li>
 <p>Export the PostgreSQL data table to CSV format in the PostgreSQL database command line environment:</p>
-<div class="highlight"><pre><span></span><code><span class="n">postgres</span><span class="o">=#</span><span class="w"> </span><span class="err">\</span><span class="k">c</span><span class="w"> </span><span class="n">tpch</span><span class="p">;</span>
-<span class="n">postgres</span><span class="o">=#</span><span class="w"> </span><span class="k">COPY</span><span class="w"> </span><span class="n">tpch</span><span class="p">.</span><span class="n">nation</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="s1">&#39;/{filepath}/nation.tbl&#39;</span><span class="w"> </span><span class="k">DELIMITER</span><span class="w"> </span><span class="s1">&#39;|&#39;</span><span class="p">;</span>
-<span class="n">postgres</span><span class="o">=#</span><span class="w"> </span><span class="k">COPY</span><span class="w"> </span><span class="n">tpch</span><span class="p">.</span><span class="n">region</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="s1">&#39;/{filepath}/region.tbl&#39;</span><span class="w"> </span><span class="k">DELIMITER</span><span class="w"> </span><span class="s1">&#39;|&#39;</span><span class="p">;</span>
-<span class="n">postgres</span><span class="o">=#</span><span class="w"> </span><span class="k">COPY</span><span class="w"> </span><span class="n">tpch</span><span class="p">.</span><span class="n">customer</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="s1">&#39;/{filepath}/customer.tbl&#39;</span><span class="w"> </span><span class="k">DELIMITER</span><span class="w"> </span><span class="s1">&#39;|&#39;</span><span class="p">;</span>
-<span class="n">postgres</span><span class="o">=#</span><span class="w"> </span><span class="k">COPY</span><span class="w"> </span><span class="n">tpch</span><span class="p">.</span><span class="n">part</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="s1">&#39;/{filepath}/part.tbl&#39;</span><span class="w"> </span><span class="k">DELIMITER</span><span class="w"> </span><span class="s1">&#39;|&#39;</span><span class="p">;</span>
-<span class="n">postgres</span><span class="o">=#</span><span class="w"> </span><span class="k">COPY</span><span class="w"> </span><span class="n">tpch</span><span class="p">.</span><span class="n">supplier</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="s1">&#39;/{filepath}/supplier.tbl&#39;</span><span class="w"> </span><span class="k">DELIMITER</span><span class="w"> </span><span class="s1">&#39;|&#39;</span><span class="p">;</span>
-<span class="n">postgres</span><span class="o">=#</span><span class="w"> </span><span class="k">COPY</span><span class="w"> </span><span class="n">tpch</span><span class="p">.</span><span class="n">partsupp</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="s1">&#39;/{filepath}/partsupp.tbl&#39;</span><span class="w"> </span><span class="k">DELIMITER</span><span class="w"> </span><span class="s1">&#39;|&#39;</span><span class="p">;</span>
-<span class="n">postgres</span><span class="o">=#</span><span class="w"> </span><span class="k">COPY</span><span class="w"> </span><span class="n">tpch</span><span class="p">.</span><span class="n">lineitem</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="s1">&#39;/{filepath}/lineitem.tbl&#39;</span><span class="w"> </span><span class="k">DELIMITER</span><span class="w"> </span><span class="s1">&#39;|&#39;</span><span class="p">;</span>
-<span class="n">postgres</span><span class="o">=#</span><span class="w"> </span><span class="k">COPY</span><span class="w"> </span><span class="n">tpch</span><span class="p">.</span><span class="n">orders</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="s1">&#39;/{filepath}/orders.tbl&#39;</span><span class="w"> </span><span class="k">DELIMITER</span><span class="w"> </span><span class="s1">&#39;|&#39;</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code>postgres=# \c tpch;
+postgres=# COPY tpch.nation TO &#39;/{filepath}/nation.tbl&#39; DELIMITER &#39;|&#39;;
+postgres=# COPY tpch.region TO &#39;/{filepath}/region.tbl&#39; DELIMITER &#39;|&#39;;
+postgres=# COPY tpch.customer TO &#39;/{filepath}/customer.tbl&#39; DELIMITER &#39;|&#39;;
+postgres=# COPY tpch.part TO &#39;/{filepath}/part.tbl&#39; DELIMITER &#39;|&#39;;
+postgres=# COPY tpch.supplier TO &#39;/{filepath}/supplier.tbl&#39; DELIMITER &#39;|&#39;;
+postgres=# COPY tpch.partsupp TO &#39;/{filepath}/partsupp.tbl&#39; DELIMITER &#39;|&#39;;
+postgres=# COPY tpch.lineitem TO &#39;/{filepath}/lineitem.tbl&#39; DELIMITER &#39;|&#39;;
+postgres=# COPY tpch.orders TO &#39;/{filepath}/orders.tbl&#39; DELIMITER &#39;|&#39;;
 </code></pre></div>
 </li>
 <li>
@@ -13634,7 +13636,7 @@ sed -i '' 's/numeric/decimal/g' mysql_ddl.sql
 <ol>
 <li>
 <p>Use <code>pgdump</code> to export data. To ensure that MatrixOne directly writes to S3 when inserting, inserting as large a batch as possible is recommended. The <code>net_buffer_length</code> parameter should start at 10MB:</p>
-<div class="highlight"><pre><span></span><code><span class="err">$</span><span class="w"> </span><span class="n">pg_dump</span><span class="w"> </span><span class="o">-</span><span class="n">U</span><span class="w"> </span><span class="n">postgres</span><span class="w"> </span><span class="c1">--no-acl --no-owner --inserts --rows-per-insert 5000  --format p --data-only --schema=tpch tpch -f pg_data.sql</span>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>pg_dump<span class="w"> </span>-U<span class="w"> </span>postgres<span class="w"> </span>--no-acl<span class="w"> </span>--no-owner<span class="w"> </span>--inserts<span class="w"> </span>--rows-per-insert<span class="w"> </span><span class="m">5000</span><span class="w">  </span>--format<span class="w"> </span>p<span class="w"> </span>--data-only<span class="w"> </span>--schema<span class="o">=</span>tpch<span class="w"> </span>tpch<span class="w"> </span>-f<span class="w"> </span>pg_data.sql
 </code></pre></div>
 </li>
 <li>

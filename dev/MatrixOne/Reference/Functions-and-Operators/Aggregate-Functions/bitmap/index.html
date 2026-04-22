@@ -9258,40 +9258,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#bitmap_or_agg" class="md-nav__link">
-    BITMAP_OR_AGG
-  </a>
-  
-    <nav class="md-nav" aria-label="BITMAP_OR_AGG">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#grammar_3" class="md-nav__link">
-    Grammar
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#parameter-interpretation_3" class="md-nav__link">
-    Parameter interpretation
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#examples_3" class="md-nav__link">
-    Examples
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -13370,40 +13336,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#bitmap_or_agg" class="md-nav__link">
-    BITMAP_OR_AGG
-  </a>
-  
-    <nav class="md-nav" aria-label="BITMAP_OR_AGG">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#grammar_3" class="md-nav__link">
-    Grammar
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#parameter-interpretation_3" class="md-nav__link">
-    Parameter interpretation
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#examples_3" class="md-nav__link">
-    Examples
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -13564,241 +13496,240 @@
 </tbody>
 </table>
 <h4 id="examples_2">Examples</h4>
-<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">n1</span><span class="w"> </span><span class="nb">int</span><span class="p">);</span>
-<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">VALUES</span><span class="p">(</span><span class="mi">0</span><span class="p">),(</span><span class="mi">1</span><span class="p">),(</span><span class="mi">1</span><span class="p">),(</span><span class="mi">32767</span><span class="p">);</span><span class="c1">--Inserted data in [0,32767].</span>
+<p>```sql <!-- validator-ignore-exec -->
+CREATE TABLE t1 ( n1 int);
+INSERT INTO t1 VALUES(0),(1),(1),(32767);
+-- Inserted data in [0,32767].</p>
+<p>mysql&gt; select * from t1;
++-------+
+| n1    |
++-------+
+|     0 |
+|     1 |
+|     1 |
+| 32767 |
++-------+
+4 rows in set (0.01 sec)</p>
+<p>mysql&gt; SELECT BITMAP_CONSTRUCT_AGG(BITMAP_BIT_POSITION(n1)) AS bitmap FROM t1;
++------------------------+
+| bitmap                 |
++------------------------+
+| :0              ?  |
++------------------------+
+1 row in set (0.00 sec)
+<div class="highlight"><pre><span></span><code>!!! note
+    bitmap column contains the physical representation of bitmap and is not readable. To determine which bits are set, we should use a combination of `BITMAP` functions (rather than checking binary values ourselves).
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">-------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">n1</span><span class="w">    </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+</span>
-<span class="o">|</span><span class="w">     </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">     </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">     </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">32767</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+</span>
-<span class="mi">4</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+```sql &lt;!-- validator-ignore-exec --&gt;
+-- The number set to 1 in the bitmap
+mysql&gt; SELECT bitmap_count(BITMAP_CONSTRUCT_AGG(BITMAP_BIT_POSITION(n1))) AS n1_discnt FROM t1;
++-----------+
+| n1_discnt |
++-----------+
+|         3 |
++-----------+
+1 row in set (0.00 sec)
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">BITMAP_CONSTRUCT_AGG</span><span class="p">(</span><span class="n">BITMAP_BIT_POSITION</span><span class="p">(</span><span class="n">n1</span><span class="p">))</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">bitmap</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">bitmap</span><span class="w">                 </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="p">:</span><span class="mi">0</span><span class="w">              </span><span class="o">?</span><span class="w">  </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>bitmap column contains the physical representation of bitmap and is not readable. To determine which bits are set, we should use a combination of <code>BITMAP</code> functions (rather than checking binary values ourselves).</p>
-</div>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">bitmap_count</span><span class="p">(</span><span class="n">BITMAP_CONSTRUCT_AGG</span><span class="p">(</span><span class="n">BITMAP_BIT_POSITION</span><span class="p">(</span><span class="n">n1</span><span class="p">)))</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">n1_discnt</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span><span class="n">The</span><span class="w"> </span><span class="nb">number</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="c1">--bitmap.</span>
-<span class="o">+</span><span class="c1">-----------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">n1_discnt</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-----------+</span>
-<span class="o">|</span><span class="w">         </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-----------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+mysql&gt; SELECT count(DISTINCT n1) AS n1_discnt FROM t1;
+-- Return Consistency
++-----------+
+| n1_discnt |
++-----------+
+|         3 |
++-----------+
+1 row in set (0.01 sec)
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">n1</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">n1_discnt</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span><span class="c1">--Return Consistency</span>
-<span class="o">+</span><span class="c1">-----------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">n1_discnt</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-----------+</span>
-<span class="o">|</span><span class="w">         </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-----------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+INSERT INTO t1 VALUES(32768),(32769),(65535);
+-- Insert data greater than 32767
 
-<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">VALUES</span><span class="p">(</span><span class="mi">32768</span><span class="p">),(</span><span class="mi">32769</span><span class="p">),(</span><span class="mi">65535</span><span class="p">);</span><span class="c1">--Insert data greater than 32767</span>
+mysql&gt; select * from t1;
++-------+
+| n1    |
++-------+
+|     0 |
+|     1 |
+|     1 |
+| 32767 |
+| 32768 |
+| 32769 |
+| 65535 |
++-------+
+7 rows in set (0.01 sec)
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">-------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">n1</span><span class="w">    </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+</span>
-<span class="o">|</span><span class="w">     </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">     </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">     </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">32767</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">32768</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">32769</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">65535</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+</span>
-<span class="mi">7</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+-- The result is the same as the first insertion because bucket_bit_position = n1 % 32768 and the data inserted the second time is in the same position in a different bucket than the first insertion, so it is de-emphasized.
+mysql&gt; SELECT bitmap_count(BITMAP_CONSTRUCT_AGG(BITMAP_BIT_POSITION(n1))) AS n1_discnt FROM t1;
++-----------+
+| t1_bitmap |
++-----------+
+|         3 |
++-----------+
+1 row in set (0.00 sec)
 
-<span class="c1">--The result is the same as the first insertion because bucket_bit_position = n1 % 32768 and the data inserted the second time is in the same position in a different bucket than the first insertion, so it is de-emphasized.</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">bitmap_count</span><span class="p">(</span><span class="n">BITMAP_CONSTRUCT_AGG</span><span class="p">(</span><span class="n">BITMAP_BIT_POSITION</span><span class="p">(</span><span class="n">n1</span><span class="p">)))</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">n1_discnt</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">-----------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">t1_bitmap</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-----------+</span>
-<span class="o">|</span><span class="w">         </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-----------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">bitmap_bit_position</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="n">bitmap_bit_position</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="n">bitmap_bit_position</span><span class="p">(</span><span class="mi">32767</span><span class="p">),</span><span class="n">bitmap_bit_position</span><span class="p">(</span><span class="mi">32768</span><span class="p">),</span><span class="n">bitmap_bit_position</span><span class="p">(</span><span class="mi">65535</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">------------------------+------------------------+----------------------------+----------------------------+----------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">bitmap_bit_position</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">bitmap_bit_position</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">bitmap_bit_position</span><span class="p">(</span><span class="mi">32767</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">bitmap_bit_position</span><span class="p">(</span><span class="mi">32768</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">bitmap_bit_position</span><span class="p">(</span><span class="mi">65535</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------------+------------------------+----------------------------+----------------------------+----------------------------+</span>
-<span class="o">|</span><span class="w">                      </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span><span class="w">                      </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w">                      </span><span class="mi">32767</span><span class="w"> </span><span class="o">|</span><span class="w">                          </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span><span class="w">                      </span><span class="mi">32767</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------------+------------------------+----------------------------+----------------------------+----------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+mysql&gt; SELECT bitmap_bit_position(0),bitmap_bit_position(1),bitmap_bit_position(32767),bitmap_bit_position(32768),bitmap_bit_position(65535);
++------------------------+------------------------+----------------------------+----------------------------+----------------------------+
+| bitmap_bit_position(0) | bitmap_bit_position(1) | bitmap_bit_position(32767) | bitmap_bit_position(32768) | bitmap_bit_position(65535) |
++------------------------+------------------------+----------------------------+----------------------------+----------------------------+
+|                      0 |                      1 |                      32767 |                          0 |                      32767 |
++------------------------+------------------------+----------------------------+----------------------------+----------------------------+
+1 row in set (0.00 sec)
+</code></pre></div></p>
 <p>So you need to combine the <code>BITMAP_BUCKET_NUMBER()</code> function if you want to dedupe data larger than 32767.</p>
-<div class="highlight"><pre><span></span><code><span class="c1">--Grouped in buckets, the first bucket contains three non-repeating numbers (0,1,32767) and the second bucket contains three non-repeating numbers (32768,32769,65535).</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">bitmap_count</span><span class="p">(</span><span class="n">BITMAP_CONSTRUCT_AGG</span><span class="p">(</span><span class="n">BITMAP_BIT_POSITION</span><span class="p">(</span><span class="n">n1</span><span class="p">)))</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">t1_bitmap</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">BITMAP_BUCKET_NUMBER</span><span class="p">(</span><span class="n">n1</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">-----------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">t1_bitmap</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-----------+</span>
-<span class="o">|</span><span class="w">         </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">         </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-----------+</span>
-<span class="mi">2</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+<p>```sql <!-- validator-ignore-exec -->
+-- Grouped in buckets, the first bucket contains three non-repeating numbers (0,1,32767) and the second bucket contains three non-repeating numbers (32768,32769,65535).
+mysql&gt; SELECT bitmap_count(BITMAP_CONSTRUCT_AGG(BITMAP_BIT_POSITION(n1))) AS t1_bitmap FROM t1 GROUP BY BITMAP_BUCKET_NUMBER(n1);
++-----------+
+| t1_bitmap |
++-----------+
+|         3 |
+|         3 |
++-----------+
+2 rows in set (0.01 sec)</p>
+<p>-- Combine this with the sum() function to calculate the non-repeating value of n1.
+mysql&gt; SELECT SUM(t1_bitmap) FROM (
+    -&gt; SELECT bitmap_count(BITMAP_CONSTRUCT_AGG(BITMAP_BIT_POSITION(n1))) AS t1_bitmap
+    -&gt; FROM t1 
+    -&gt; GROUP BY BITMAP_BUCKET_NUMBER(n1)
+    -&gt; );
++----------------+
+| sum(t1_bitmap) |
++----------------+
+|              6 |
++----------------+
+1 row in set (0.01 sec)
+<div class="highlight"><pre><span></span><code>### BITMAP_OR_AGG
 
-<span class="c1">--Combine this with the sum() function to calculate the non-repeating value of n1.</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">t1_bitmap</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="p">(</span>
-<span class="w">    </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">bitmap_count</span><span class="p">(</span><span class="n">BITMAP_CONSTRUCT_AGG</span><span class="p">(</span><span class="n">BITMAP_BIT_POSITION</span><span class="p">(</span><span class="n">n1</span><span class="p">)))</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">t1_bitmap</span>
-<span class="w">    </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span>
-<span class="w">    </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">BITMAP_BUCKET_NUMBER</span><span class="p">(</span><span class="n">n1</span><span class="p">)</span>
-<span class="w">    </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">);</span>
-<span class="o">+</span><span class="c1">----------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">sum</span><span class="p">(</span><span class="n">t1_bitmap</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------+</span>
-<span class="o">|</span><span class="w">              </span><span class="mi">6</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+The `BITMAP_OR_AGG()` function is used to calculate the bitwise or (OR) results of multiple bitmaps. Typically used to merge multiple bitmaps to represent the combined information of all input bitmaps in one bitmap.
+
+`BITMAP_OR_AGG()` is useful when aggregate aggregation of data of different dimensions is required, especially in data warehouses and analytic queries.
+
+#### Grammar
 </code></pre></div>
-<h3 id="bitmap_or_agg">BITMAP_OR_AGG</h3>
-<p>The <code>BITMAP_OR_AGG()</code> function is used to calculate the bitwise or (OR) results of multiple bitmaps. Typically used to merge multiple bitmaps to represent the combined information of all input bitmaps in one bitmap.</p>
-<p><code>BITMAP_OR_AGG()</code> is useful when aggregate aggregation of data of different dimensions is required, especially in data warehouses and analytic queries.</p>
-<h4 id="grammar_3">Grammar</h4>
-<div class="highlight"><pre><span></span><code>BITMAP_OR_AGG( bitmap )
-</code></pre></div>
-<h4 id="parameter-interpretation_3">Parameter interpretation</h4>
-<table>
-<thead>
-<tr>
-<th>Parameters</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>bitmap</td>
-<td>Required. All bitmaps by bit or merged resulting bitmap.</td>
-</tr>
-</tbody>
-</table>
-<h4 id="examples_3">Examples</h4>
-<div class="highlight"><pre><span></span><code><span class="c1">--Create a table to store information about the author&#39;s published books, including the author&#39;s name, the year of publication, and the book id.</span>
-<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">book_table</span><span class="p">(</span>
-<span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="n">auto_increment</span><span class="w"> </span><span class="k">primary</span><span class="w"> </span><span class="k">key</span><span class="p">,</span>
-<span class="w">    </span><span class="n">author</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
-<span class="w">    </span><span class="n">pub_year</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
-<span class="w">    </span><span class="n">book_id</span><span class="w"> </span><span class="nb">int</span>
-<span class="p">);</span>
-<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">book_table</span><span class="p">(</span><span class="n">author</span><span class="p">,</span><span class="n">pub_year</span><span class="p">,</span><span class="n">book_id</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span>
-<span class="p">(</span><span class="s1">&#39;A author&#39;</span><span class="p">,</span><span class="s1">&#39;2020&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="s1">&#39;A author&#39;</span><span class="p">,</span><span class="s1">&#39;2020&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="s1">&#39;A author&#39;</span><span class="p">,</span><span class="s1">&#39;2020&#39;</span><span class="p">,</span><span class="mi">32768</span><span class="p">),</span>
-<span class="p">(</span><span class="s1">&#39;A author&#39;</span><span class="p">,</span><span class="s1">&#39;2021&#39;</span><span class="p">,</span><span class="mi">32767</span><span class="p">),(</span><span class="s1">&#39;A author&#39;</span><span class="p">,</span><span class="s1">&#39;2021&#39;</span><span class="p">,</span><span class="mi">32768</span><span class="p">),(</span><span class="s1">&#39;A author&#39;</span><span class="p">,</span><span class="s1">&#39;2021&#39;</span><span class="p">,</span><span class="mi">65536</span><span class="p">),</span>
-<span class="p">(</span><span class="s1">&#39;B author&#39;</span><span class="p">,</span><span class="s1">&#39;2020&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">),(</span><span class="s1">&#39;B author&#39;</span><span class="p">,</span><span class="s1">&#39;2020&#39;</span><span class="p">,</span><span class="mi">10</span><span class="p">),(</span><span class="s1">&#39;B author&#39;</span><span class="p">,</span><span class="s1">&#39;2020&#39;</span><span class="p">,</span><span class="mi">32769</span><span class="p">),</span>
-<span class="p">(</span><span class="s1">&#39;B author&#39;</span><span class="p">,</span><span class="s1">&#39;2021&#39;</span><span class="p">,</span><span class="mi">5</span><span class="p">),(</span><span class="s1">&#39;B author&#39;</span><span class="p">,</span><span class="s1">&#39;2021&#39;</span><span class="p">,</span><span class="mi">65539</span><span class="p">);</span>
+BITMAP_OR_AGG( bitmap )
+<div class="highlight"><pre><span></span><code>#### Parameter interpretation
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">book_table</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------+----------+----------+---------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">id</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">author</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">pub_year</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">book_id</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+----------+----------+---------+</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">author</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2020</span><span class="w">     </span><span class="o">|</span><span class="w">       </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">author</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2020</span><span class="w">     </span><span class="o">|</span><span class="w">       </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">author</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2020</span><span class="w">     </span><span class="o">|</span><span class="w">   </span><span class="mi">32768</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">author</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2021</span><span class="w">     </span><span class="o">|</span><span class="w">   </span><span class="mi">32767</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">5</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">author</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2021</span><span class="w">     </span><span class="o">|</span><span class="w">   </span><span class="mi">32768</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">6</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">author</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2021</span><span class="w">     </span><span class="o">|</span><span class="w">   </span><span class="mi">65536</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">7</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="n">author</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2020</span><span class="w">     </span><span class="o">|</span><span class="w">       </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">8</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="n">author</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2020</span><span class="w">     </span><span class="o">|</span><span class="w">      </span><span class="mi">10</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">9</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="n">author</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2020</span><span class="w">     </span><span class="o">|</span><span class="w">   </span><span class="mi">32769</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">   </span><span class="mi">10</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="n">author</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2021</span><span class="w">     </span><span class="o">|</span><span class="w">       </span><span class="mi">5</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">   </span><span class="mi">11</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="n">author</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2021</span><span class="w">     </span><span class="o">|</span><span class="w">   </span><span class="mi">65539</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+----------+----------+---------+</span>
-<span class="mi">11</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+| Parameters | Description |
+| ---- | ---- |
+| bitmap | Required. All bitmaps by bit or merged resulting bitmap. |
 
-<span class="c1">--Define a pre-calculated table to save the results of coarse-grained calculations in the table, followed by a variety of different dimensions of aggregation can be used to pre-calculate the results of the table, after a simple calculation of the results can be obtained to accelerate the query.</span>
-<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">precompute</span><span class="w"> </span><span class="k">AS</span>
-<span class="k">SELECT</span>
-<span class="w">  </span><span class="n">author</span><span class="p">,</span>
-<span class="w">  </span><span class="n">pub_year</span><span class="p">,</span>
-<span class="w">  </span><span class="n">BITMAP_BUCKET_NUMBER</span><span class="p">(</span><span class="n">book_id</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">bucket</span><span class="p">,</span>
-<span class="w">  </span><span class="n">BITMAP_CONSTRUCT_AGG</span><span class="p">(</span><span class="n">BITMAP_BIT_POSITION</span><span class="p">(</span><span class="n">book_id</span><span class="p">))</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">bitmap</span><span class="w"> </span>
-<span class="k">FROM</span><span class="w"> </span><span class="n">book_table</span>
-<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w">  </span><span class="n">author</span><span class="p">,</span><span class="n">pub_year</span><span class="p">,</span><span class="n">bucket</span><span class="p">;</span>
+#### Examples
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">precompute</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">---------+----------+--------+----------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">author</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">pub_year</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">bucket</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">bitmap</span><span class="w">               </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------+----------+--------+----------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">author</span><span class="o">|</span><span class="w"> </span><span class="mi">2020</span><span class="w">     </span><span class="o">|</span><span class="w">      </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">:</span><span class="mi">0</span><span class="w">                </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">author</span><span class="o">|</span><span class="w"> </span><span class="mi">2020</span><span class="w">     </span><span class="o">|</span><span class="w">      </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">:</span><span class="mi">0</span><span class="w">                 </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">author</span><span class="o">|</span><span class="w"> </span><span class="mi">2021</span><span class="w">     </span><span class="o">|</span><span class="w">      </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">:</span><span class="mi">0</span><span class="w">            </span><span class="o">?</span><span class="w">    </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">author</span><span class="o">|</span><span class="w"> </span><span class="mi">2021</span><span class="w">     </span><span class="o">|</span><span class="w">      </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">:</span><span class="mi">0</span><span class="w">                 </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">author</span><span class="o">|</span><span class="w"> </span><span class="mi">2021</span><span class="w">     </span><span class="o">|</span><span class="w">      </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">:</span><span class="mi">0</span><span class="w">                 </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="n">author</span><span class="o">|</span><span class="w"> </span><span class="mi">2020</span><span class="w">     </span><span class="o">|</span><span class="w">      </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">:</span><span class="mi">0</span><span class="w">                </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="n">author</span><span class="o">|</span><span class="w"> </span><span class="mi">2020</span><span class="w">     </span><span class="o">|</span><span class="w">      </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">:</span><span class="mi">0</span><span class="w">                </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="n">author</span><span class="o">|</span><span class="w"> </span><span class="mi">2021</span><span class="w">     </span><span class="o">|</span><span class="w">      </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">:</span><span class="mi">0</span><span class="w">                </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="n">author</span><span class="o">|</span><span class="w"> </span><span class="mi">2021</span><span class="w">     </span><span class="o">|</span><span class="w">      </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">:</span><span class="mi">0</span><span class="w">                </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------+----------+--------+----------------------+</span>
+```sql &lt;!-- validator-ignore-exec --&gt;
+-- Create a table to store information about the author&#39;s published books, including the author&#39;s name, the year of publication, and the book id.
+CREATE TABLE book_table(
+    id int auto_increment primary key,
+    author varchar(100),
+    pub_year varchar(100),
+    book_id int
+);
+INSERT INTO book_table(author,pub_year,book_id) VALUES
+(&#39;A author&#39;,&#39;2020&#39;,1),(&#39;A author&#39;,&#39;2020&#39;,1),(&#39;A author&#39;,&#39;2020&#39;,32768),
+(&#39;A author&#39;,&#39;2021&#39;,32767),(&#39;A author&#39;,&#39;2021&#39;,32768),(&#39;A author&#39;,&#39;2021&#39;,65536),
+(&#39;B author&#39;,&#39;2020&#39;,2),(&#39;B author&#39;,&#39;2020&#39;,10),(&#39;B author&#39;,&#39;2020&#39;,32769),
+(&#39;B author&#39;,&#39;2021&#39;,5),(&#39;B author&#39;,&#39;2021&#39;,65539);
 
-<span class="c1">--Calculates the number of book_id de-duplications in the case of author and publication year aggregation, reflecting the number of book types published by the author in different years.</span>
-<span class="c1">--The sum() function sums the number of 1&#39;s in the bitmaps of different buckets.</span>
-<span class="c1">--For example, when author=A author, pub_year=2020, book_id=(1,1,32768), after de-emphasis is book_id=(1,32768), but 1 is located in the first bucket, 32768 is located in the second bucket, so we need to sum for accumulation.</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span>
-<span class="w">    </span><span class="o">-&gt;</span><span class="w">   </span><span class="n">author</span><span class="p">,</span>
-<span class="w">    </span><span class="o">-&gt;</span><span class="w">   </span><span class="n">pub_year</span><span class="p">,</span>
-<span class="w">    </span><span class="o">-&gt;</span><span class="w">   </span><span class="k">SUM</span><span class="p">(</span><span class="n">BITMAP_COUNT</span><span class="p">(</span><span class="n">bitmap</span><span class="p">))</span>
-<span class="w">    </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">precompute</span>
-<span class="w">    </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w">  </span><span class="n">author</span><span class="p">,</span><span class="n">pub_year</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">---------+----------+---------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">author</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">pub_year</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">sum</span><span class="p">(</span><span class="n">bitmap_count</span><span class="p">(</span><span class="n">bitmap</span><span class="p">))</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------+----------+---------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">author</span><span class="o">|</span><span class="w"> </span><span class="mi">2020</span><span class="w">     </span><span class="o">|</span><span class="w">                         </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">author</span><span class="o">|</span><span class="w"> </span><span class="mi">2021</span><span class="w">     </span><span class="o">|</span><span class="w">                         </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="n">author</span><span class="o">|</span><span class="w"> </span><span class="mi">2020</span><span class="w">     </span><span class="o">|</span><span class="w">                         </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="n">author</span><span class="o">|</span><span class="w"> </span><span class="mi">2021</span><span class="w">     </span><span class="o">|</span><span class="w">                         </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------+----------+---------------------------+</span>
-<span class="mi">4</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+mysql&gt; select * from book_table;
++------+----------+----------+---------+
+| id   | author   | pub_year | book_id |
++------+----------+----------+---------+
+|    1 | A author | 2020     |       1 |
+|    2 | A author | 2020     |       1 |
+|    3 | A author | 2020     |   32768 |
+|    4 | A author | 2021     |   32767 |
+|    5 | A author | 2021     |   32768 |
+|    6 | A author | 2021     |   65536 |
+|    7 | B author | 2020     |       2 |
+|    8 | B author | 2020     |      10 |
+|    9 | B author | 2020     |   32769 |
+|   10 | B author | 2021     |       5 |
+|   11 | B author | 2021     |   65539 |
++------+----------+----------+---------+
+11 rows in set (0.00 sec)
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">author</span><span class="p">,</span><span class="n">pub_year</span><span class="p">,</span><span class="k">count</span><span class="p">(</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">book_id</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">book_table</span><span class="w"> </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">author</span><span class="p">,</span><span class="n">pub_year</span><span class="p">;</span><span class="c1">--返回一致</span>
-<span class="o">+</span><span class="c1">----------+----------+-------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">author</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">pub_year</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="k">distinct</span><span class="w"> </span><span class="n">book_id</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------+----------+-------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">author</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2020</span><span class="w">     </span><span class="o">|</span><span class="w">                       </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">author</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2021</span><span class="w">     </span><span class="o">|</span><span class="w">                       </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="n">author</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2020</span><span class="w">     </span><span class="o">|</span><span class="w">                       </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="n">author</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2021</span><span class="w">     </span><span class="o">|</span><span class="w">                       </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------+----------+-------------------------+</span>
-<span class="mi">4</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+-- Define a pre-calculated table to save the results of coarse-grained calculations in the table, followed by a variety of different dimensions of aggregation can be used to pre-calculate the results of the table, after a simple calculation of the results can be obtained to accelerate the query.
+CREATE TABLE precompute AS
+SELECT
+  author,
+  pub_year,
+  BITMAP_BUCKET_NUMBER(book_id) as bucket,
+  BITMAP_CONSTRUCT_AGG(BITMAP_BIT_POSITION(book_id)) as bitmap 
+FROM book_table
+GROUP BY  author,pub_year,bucket;
 
-<span class="c1">--Calculates the number of book_id de-duplications in the case of author aggregation, reflecting the number of book types published by the author in total.</span>
-<span class="c1">--The BITMAP_OR_AGG() function merges bitmaps of different dimensions (same author different years).</span>
-<span class="c1">--For example, when author=A author, pub_date=2020, book_id is (1,32768) after de-weighting, when pub_date=2021, book_id is (32767,32768,65536) after de-weighting, BITMAP_OR_AGG do or operation on the bitmap of the two different years to get book_id=(1,32767,32768,65536), finally sum() accumulates book_id of different bucktets.</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">author</span><span class="p">,</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">cnt</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="p">(</span>
-<span class="w">    </span><span class="o">-&gt;</span><span class="w">   </span><span class="k">SELECT</span>
-<span class="w">    </span><span class="o">-&gt;</span><span class="w">     </span><span class="n">author</span><span class="p">,</span>
-<span class="w">    </span><span class="o">-&gt;</span><span class="w">     </span><span class="n">BITMAP_COUNT</span><span class="p">(</span><span class="n">BITMAP_OR_AGG</span><span class="p">(</span><span class="n">bitmap</span><span class="p">))</span><span class="w"> </span><span class="n">cnt</span>
-<span class="w">    </span><span class="o">-&gt;</span><span class="w">   </span><span class="k">FROM</span><span class="w"> </span><span class="n">precompute</span>
-<span class="w">    </span><span class="o">-&gt;</span><span class="w">   </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">author</span><span class="p">,</span><span class="n">bucket</span>
-<span class="w">    </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">)</span>
-<span class="w">    </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">author</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">---------+----------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">author</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="k">sum</span><span class="p">(</span><span class="n">cnt</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------+----------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">author</span><span class="o">|</span><span class="w">        </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="n">author</span><span class="o">|</span><span class="w">        </span><span class="mi">5</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------+----------+</span>
-<span class="mi">2</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+mysql&gt; select * from precompute;
++---------+----------+--------+----------------------+
+| author  | pub_year | bucket | bitmap               |
++---------+----------+--------+----------------------+
+| A author| 2020     |      0 | :0                |
+| A author| 2020     |      1 | :0                 |
+| A author| 2021     |      0 | :0            ?    |
+| A author| 2021     |      1 | :0                 |
+| A author| 2021     |      2 | :0                 |
+| B author| 2020     |      0 | :0                |
+| B author| 2020     |      1 | :0                |
+| B author| 2021     |      0 | :0                |
+| B author| 2021     |      2 | :0                |
++---------+----------+--------+----------------------+
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">author</span><span class="p">,</span><span class="k">count</span><span class="p">(</span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">book_id</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">book_table</span><span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">author</span><span class="p">;</span><span class="c1">--Return Consistency</span>
-<span class="o">+</span><span class="c1">----------+-------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">author</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="k">distinct</span><span class="w"> </span><span class="n">book_id</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------+-------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">author</span><span class="w"> </span><span class="o">|</span><span class="w">                       </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="n">author</span><span class="w"> </span><span class="o">|</span><span class="w">                       </span><span class="mi">5</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------+-------------------------+</span>
-<span class="mi">2</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+-- Calculates the number of book_id de-duplications in the case of author and publication year aggregation, reflecting the number of book types published by the author in different years.
+-- The sum() function sums the number of 1&#39;s in the bitmaps of different buckets.
+-- For example, when author=A author, pub_year=2020, book_id=(1,1,32768), after de-emphasis is book_id=(1,32768), but 1 is located in the first bucket, 32768 is located in the second bucket, so we need to sum for accumulation.
+mysql&gt; SELECT
+    -&gt;   author,
+    -&gt;   pub_year,
+    -&gt;   SUM(BITMAP_COUNT(bitmap))
+    -&gt; FROM precompute
+    -&gt; GROUP BY  author,pub_year;
++---------+----------+---------------------------+
+| author  | pub_year | sum(bitmap_count(bitmap)) |
++---------+----------+---------------------------+
+| A author| 2020     |                         2 |
+| A author| 2021     |                         3 |
+| B author| 2020     |                         3 |
+| B author| 2021     |                         2 |
++---------+----------+---------------------------+
+4 rows in set (0.00 sec)
+
+mysql&gt; SELECT author,pub_year,count( DISTINCT book_id) FROM book_table group by author,pub_year;
+-- 返回一致
++----------+----------+-------------------------+
+| author   | pub_year | count(distinct book_id) |
++----------+----------+-------------------------+
+| A author | 2020     |                       2 |
+| A author | 2021     |                       3 |
+| B author | 2020     |                       3 |
+| B author | 2021     |                       2 |
++----------+----------+-------------------------+
+4 rows in set (0.00 sec)
+
+-- Calculates the number of book_id de-duplications in the case of author aggregation, reflecting the number of book types published by the author in total.
+-- The BITMAP_OR_AGG() function merges bitmaps of different dimensions (same author different years).
+-- For example, when author=A author, pub_date=2020, book_id is (1,32768) after de-weighting, when pub_date=2021, book_id is (32767,32768,65536) after de-weighting, BITMAP_OR_AGG do or operation on the bitmap of the two different years to get book_id=(1,32767,32768,65536), finally sum() accumulates book_id of different bucktets.
+mysql&gt; SELECT author, SUM(cnt) FROM (
+    -&gt;   SELECT
+    -&gt;     author,
+    -&gt;     BITMAP_COUNT(BITMAP_OR_AGG(bitmap)) cnt
+    -&gt;   FROM precompute
+    -&gt;   GROUP BY author,bucket
+    -&gt; )
+    -&gt; GROUP BY author;
++---------+----------+
+| author  | sum(cnt) |
++---------+----------+
+| A author|        4 |
+| B author|        5 |
++---------+----------+
+2 rows in set (0.01 sec)
+
+mysql&gt; SELECT author,count(DISTINCT book_id) FROM book_table GROUP BY author;
+-- Return Consistency
++----------+-------------------------+
+| author   | count(distinct book_id) |
++----------+-------------------------+
+| A author |                       4 |
+| B author |                       5 |
++----------+-------------------------+
+2 rows in set (0.00 sec)
+</code></pre></div></p>
 
 
 

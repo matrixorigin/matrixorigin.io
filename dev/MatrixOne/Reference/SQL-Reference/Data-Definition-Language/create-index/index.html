@@ -13231,75 +13231,73 @@ COMMENT &#39;string&#39;
 <h4 id="create-unique-index">CREATE UNIQUE INDEX</h4>
 <p>Creates a unique index on a table. Duplicate values are not allowed.</p>
 <h2 id="examples"><strong>Examples</strong></h2>
-<div class="highlight"><pre><span></span><code><span class="k">drop</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
-<span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="n">name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">),</span><span class="n">age</span><span class="w"> </span><span class="nb">int</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="ss">&quot;Abby&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">24</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="ss">&quot;Bob&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">25</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="ss">&quot;Carol&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">23</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="ss">&quot;Dora&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">29</span><span class="p">);</span>
-<span class="k">create</span><span class="w"> </span><span class="k">unique</span><span class="w"> </span><span class="k">index</span><span class="w"> </span><span class="n">idx</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">t1</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------+-------+------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">id</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">name</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">age</span><span class="w">  </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+-------+------+</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Abby</span><span class="w">  </span><span class="o">|</span><span class="w">   </span><span class="mi">24</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Bob</span><span class="w">   </span><span class="o">|</span><span class="w">   </span><span class="mi">25</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Carol</span><span class="w"> </span><span class="o">|</span><span class="w">   </span><span class="mi">23</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Dora</span><span class="w">  </span><span class="o">|</span><span class="w">   </span><span class="mi">29</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+-------+------+</span>
-<span class="mi">4</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">-------+--------------------------------------------------------------------------------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">Table</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">Create</span><span class="w"> </span><span class="k">Table</span><span class="w">                                                                                                                                     </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+--------------------------------------------------------------------------------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">t1</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="o">`</span><span class="n">t1</span><span class="o">`</span><span class="w"> </span><span class="p">(</span>
-<span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="o">`</span><span class="n">name</span><span class="o">`</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="o">`</span><span class="n">age</span><span class="o">`</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="p">),</span>
-<span class="k">UNIQUE</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="o">`</span><span class="n">idx</span><span class="o">`</span><span class="w"> </span><span class="p">(</span><span class="o">`</span><span class="n">name</span><span class="o">`</span><span class="p">)</span>
-<span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+--------------------------------------------------------------------------------------------------------------------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-
-<span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="p">(</span>
-<span class="n">col1</span><span class="w"> </span><span class="nb">bigint</span><span class="w"> </span><span class="k">primary</span><span class="w"> </span><span class="k">key</span><span class="p">,</span>
-<span class="n">col2</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">25</span><span class="p">),</span>
-<span class="n">col3</span><span class="w"> </span><span class="nb">float</span><span class="p">,</span>
-<span class="n">col4</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
-<span class="p">);</span>
-<span class="k">create</span><span class="w"> </span><span class="k">unique</span><span class="w"> </span><span class="k">index</span><span class="w"> </span><span class="n">idx</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">t2</span><span class="p">(</span><span class="n">col2</span><span class="p">)</span><span class="w"> </span><span class="k">comment</span><span class="w"> </span><span class="s1">&#39;create varchar index&#39;</span><span class="p">;</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="ss">&quot;Abby&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="s1">&#39;zbcvdf&#39;</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="ss">&quot;Bob&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="s1">&#39;zbcvdf&#39;</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="ss">&quot;Carol&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="s1">&#39;zbcvdf&#39;</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="ss">&quot;Dora&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">29</span><span class="p">,</span><span class="s1">&#39;zbcvdf&#39;</span><span class="p">);</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t2</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------+-------+------+--------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">col1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">col2</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">col3</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">col4</span><span class="w">   </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+-------+------+--------+</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Abby</span><span class="w">  </span><span class="o">|</span><span class="w">   </span><span class="mi">24</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">zbcvdf</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Bob</span><span class="w">   </span><span class="o">|</span><span class="w">   </span><span class="mi">25</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">zbcvdf</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Carol</span><span class="w"> </span><span class="o">|</span><span class="w">   </span><span class="mi">23</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">zbcvdf</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Dora</span><span class="w">  </span><span class="o">|</span><span class="w">   </span><span class="mi">29</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">zbcvdf</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+-------+------+--------+</span>
-<span class="mi">4</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t2</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">-------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">Table</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">Create</span><span class="w"> </span><span class="k">Table</span><span class="w">                                                                                                                                                                                                              </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">t2</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="o">`</span><span class="n">t2</span><span class="o">`</span><span class="w"> </span><span class="p">(</span>
-<span class="o">`</span><span class="n">col1</span><span class="o">`</span><span class="w"> </span><span class="nb">BIGINT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="o">`</span><span class="n">col2</span><span class="o">`</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">25</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="o">`</span><span class="n">col3</span><span class="o">`</span><span class="w"> </span><span class="nb">FLOAT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="o">`</span><span class="n">col4</span><span class="o">`</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="o">`</span><span class="n">col1</span><span class="o">`</span><span class="p">),</span>
-<span class="k">UNIQUE</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="o">`</span><span class="n">idx</span><span class="o">`</span><span class="w"> </span><span class="p">(</span><span class="o">`</span><span class="n">col2</span><span class="o">`</span><span class="p">)</span><span class="w"> </span><span class="k">COMMENT</span><span class="w"> </span><span class="o">`</span><span class="k">create</span><span class="w"> </span><span class="nb">varchar</span><span class="w"> </span><span class="k">index</span><span class="o">`</span>
-<span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+<p>```sql <!-- validator-ignore-exec -->
+drop table if exists t1;
+create table t1(id int PRIMARY KEY,name VARCHAR(255),age int);
+insert into t1 values(1,"Abby", 24);
+insert into t1 values(2,"Bob", 25);
+insert into t1 values(3,"Carol", 23);
+insert into t1 values(4,"Dora", 29);
+create unique index idx on t1(name);
+mysql&gt; select * from t1;
++------+-------+------+
+| id   | name  | age  |
++------+-------+------+
+|    1 | Abby  |   24 |
+|    2 | Bob   |   25 |
+|    3 | Carol |   23 |
+|    4 | Dora  |   29 |
++------+-------+------+
+4 rows in set (0.00 sec)</p>
+<p>mysql&gt; show create table t1;
++-------+--------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table | Create Table                                                                                                                                     |
++-------+--------------------------------------------------------------------------------------------------------------------------------------------------+
+| t1    | CREATE TABLE <code>t1</code> (
+<code>id</code> INT NOT NULL,
+<code>name</code> VARCHAR(255) DEFAULT NULL,
+<code>age</code> INT DEFAULT NULL,
+PRIMARY KEY (<code>id</code>),
+UNIQUE KEY <code>idx</code> (<code>name</code>)
+) |
++-------+--------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.01 sec)</p>
+<p>create table t2 (
+col1 bigint primary key,
+col2 varchar(25),
+col3 float,
+col4 varchar(50)
+);
+create unique index idx on t2(col2) comment 'create varchar index';
+insert into t2 values(1,"Abby", 24,'zbcvdf');
+insert into t2 values(2,"Bob", 25,'zbcvdf');
+insert into t2 values(3,"Carol", 23,'zbcvdf');
+insert into t2 values(4,"Dora", 29,'zbcvdf');
+mysql&gt; select * from t2;
++------+-------+------+--------+
+| col1 | col2  | col3 | col4   |
++------+-------+------+--------+
+|    1 | Abby  |   24 | zbcvdf |
+|    2 | Bob   |   25 | zbcvdf |
+|    3 | Carol |   23 | zbcvdf |
+|    4 | Dora  |   29 | zbcvdf |
++------+-------+------+--------+
+4 rows in set (0.00 sec)
+mysql&gt; show create table t2;
++-------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table | Create Table                                                                                                                                                                                                              |
++-------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| t2    | CREATE TABLE <code>t2</code> (
+<code>col1</code> BIGINT NOT NULL,
+<code>col2</code> VARCHAR(25) DEFAULT NULL,
+<code>col3</code> FLOAT DEFAULT NULL,
+<code>col4</code> VARCHAR(50) DEFAULT NULL,
+PRIMARY KEY (<code>col1</code>),
+UNIQUE KEY <code>idx</code> (<code>col2</code>) COMMENT <code>create varchar index</code>
+) |
++-------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.01 sec)
+```</p>
 
 
 

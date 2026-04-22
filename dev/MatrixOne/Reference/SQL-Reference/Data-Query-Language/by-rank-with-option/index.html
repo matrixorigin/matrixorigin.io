@@ -13343,36 +13343,32 @@
 <span class="k">BY</span><span class="w"> </span><span class="n">RANK</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">OPTION</span><span class="w"> </span><span class="s1">&#39;mode = post&#39;</span><span class="p">;</span>
 </code></pre></div>
 <h3 id="complete-example">Complete Example</h3>
-<div class="highlight"><pre><span></span><code><span class="c1">-- Enable IVF index feature</span>
-<span class="k">SET</span><span class="w"> </span><span class="k">GLOBAL</span><span class="w"> </span><span class="n">experimental_ivf_index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
-
-<span class="c1">-- Create table with vector column</span>
-<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">documents</span><span class="w"> </span><span class="p">(</span>
-<span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="nb">BIGINT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
-<span class="w">    </span><span class="n">title</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">200</span><span class="p">),</span>
-<span class="w">    </span><span class="n">embedding</span><span class="w"> </span><span class="n">VECF32</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
-<span class="p">);</span>
-
-<span class="c1">-- Insert sample data</span>
-<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">documents</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Document A&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;[0.1, 0.2, 0.3, 0.4]&#39;</span><span class="p">);</span>
-<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">documents</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Document B&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;[0.5, 0.6, 0.7, 0.8]&#39;</span><span class="p">);</span>
-<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">documents</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Document C&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;[0.2, 0.3, 0.4, 0.5]&#39;</span><span class="p">);</span>
-
-<span class="c1">-- Create IVF index</span>
-<span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_docs_embedding</span><span class="w"> </span>
-<span class="k">USING</span><span class="w"> </span><span class="n">IVFFLAT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">documents</span><span class="p">(</span><span class="n">embedding</span><span class="p">)</span><span class="w"> </span>
-<span class="n">LISTS</span><span class="o">=</span><span class="mi">2</span><span class="w"> </span><span class="n">OP_TYPE</span><span class="w"> </span><span class="ss">&quot;vector_l2_ops&quot;</span><span class="p">;</span>
-
-<span class="c1">-- Set probe limit</span>
-<span class="k">SET</span><span class="w"> </span><span class="o">@</span><span class="n">PROBE_LIMIT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
-
-<span class="c1">-- Query with rank option</span>
-<span class="k">SELECT</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="n">l2_distance</span><span class="p">(</span><span class="n">embedding</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;[0.1, 0.2, 0.3, 0.4]&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">distance</span>
-<span class="k">FROM</span><span class="w"> </span><span class="n">documents</span>
-<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">l2_distance</span><span class="p">(</span><span class="n">embedding</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;[0.1, 0.2, 0.3, 0.4]&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">ASC</span>
-<span class="k">LIMIT</span><span class="w"> </span><span class="mi">3</span>
-<span class="k">BY</span><span class="w"> </span><span class="n">RANK</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">OPTION</span><span class="w"> </span><span class="s1">&#39;mode = post&#39;</span><span class="p">;</span>
-</code></pre></div>
+<p>```sql <!-- validator-ignore-exec -->
+-- Enable IVF index feature
+SET GLOBAL experimental_ivf_index = 1;</p>
+<p>-- Create table with vector column
+CREATE TABLE documents (
+    id BIGINT PRIMARY KEY,
+    title VARCHAR(200),
+    embedding VECF32(4)
+);</p>
+<p>-- Insert sample data
+INSERT INTO documents VALUES (1, 'Document A', '[0.1, 0.2, 0.3, 0.4]');
+INSERT INTO documents VALUES (2, 'Document B', '[0.5, 0.6, 0.7, 0.8]');
+INSERT INTO documents VALUES (3, 'Document C', '[0.2, 0.3, 0.4, 0.5]');</p>
+<p>-- Create IVF index
+CREATE INDEX idx_docs_embedding 
+USING IVFFLAT ON documents(embedding) 
+LISTS=2 OP_TYPE "vector_l2_ops";</p>
+<p>-- Set probe limit
+SET @PROBE_LIMIT = 1;</p>
+<p>-- Query with rank option
+SELECT id, title, l2_distance(embedding, '[0.1, 0.2, 0.3, 0.4]') AS distance
+FROM documents
+ORDER BY l2_distance(embedding, '[0.1, 0.2, 0.3, 0.4]') ASC
+LIMIT 3
+BY RANK WITH OPTION 'mode = post';
+```</p>
 <h2 id="limitations">Limitations</h2>
 <ul>
 <li>Only works with IVF indexed vector columns</li>

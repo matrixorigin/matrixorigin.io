@@ -3393,13 +3393,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#insert-data" class="md-nav__link">
-    Insert Data
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#query-data" class="md-nav__link">
     query data
   </a>
@@ -13188,13 +13181,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#insert-data" class="md-nav__link">
-    Insert Data
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#query-data" class="md-nav__link">
     query data
   </a>
@@ -13303,7 +13289,7 @@ manage
 </code></pre></div>
 <p>0.0.0.0 Let other computers connect to the development server, 8000 is the port number. If not, then the port number defaults to 8000.</p>
 <p>Enter the ip of your server in your browser (here we enter the native IP address: 127.0.0.1:8000) and the port number. If it starts normally, the output is as follows:</p>
-<p><img alt="" src="https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/django/django-1.png?raw=true" /></p>
+<p><img alt="" src="https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/djiango/django-1.png?raw=true" /></p>
 </li>
 <li>
 <p>We found the DATABASES configuration item in the project's settings.py file and modified its information to:</p>
@@ -13372,7 +13358,7 @@ TestModel
 <p>The Django model uses its own ORM. The above class name represents the database table name (<em>testmodel_book</em>) and inherits models.Model. Fields inside the class represent fields in the data table. Data types: AutoField (equivalent to int), CharField (equivalent to varchar), DecimalField (equivalent to decimal), DateField (equivalent to date), max_length parameter limits length.</p>
 <p>ORM correspondence table:</p>
 <div align="center">
-<img src=https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/django/django-7.png?raw=true width=70% heigth=70%/>
+<img src=https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/djiango/django-7.png?raw=true width=70% heigth=70%/>
 </div>
 
 <p>Refer to: <a href="https://docs.djangoproject.com/en/5.0/ref/models/fields/">https://docs.djangoproject.com/en/5.0/ref/models/fields/</a> for more model field types.</p>
@@ -13383,57 +13369,52 @@ TestModel
 python3<span class="w"> </span>manage.py<span class="w"> </span>migrate<span class="w"> </span>TestModel<span class="w"> </span><span class="c1"># Automatically generate the appropriate SQL statements based on the configuration file</span>
 </code></pre></div>
 <p>Go into the <em>test</em> database and see that the <em>testmodel_book table</em> has been generated. where a record of the operations performed is generated in the <em>django_migrations table</em>.</p>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="n">tables</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">-------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">Tables_in_test</span><span class="w">    </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">django_migrations</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">testmodel_book</span><span class="w">    </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------------------+</span>
-<span class="mi">2</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+<p>```sql <!-- validator-ignore-exec -->
+mysql&gt; show tables;
++-------------------+
+| Tables_in_test    |
++-------------------+
+| django_migrations |
+| testmodel_book    |
++-------------------+
+2 rows in set (0.01 sec)
+<div class="highlight"><pre><span></span><code>## Insert Data
+
+- Adding data requires the creation of objects first, and then through the ORM-supplied objects-supplied method create . Create a new views.py file in the django\_crud\_matrixone directory under the previously created django_crud_matrixone directory and enter the code:
 </code></pre></div>
-<h2 id="insert-data">Insert Data</h2>
-<ul>
-<li>Adding data requires the creation of objects first, and then through the ORM-supplied objects-supplied method create . Create a new views.py file in the django_crud_matrixone directory under the previously created django_crud_matrixone directory and enter the code:</li>
-</ul>
-<div class="highlight"><pre><span></span><code>from django.shortcuts import render,HttpResponse
+from django.shortcuts import render,HttpResponse
 from TestModel import models
 def add_book(request):
-    books = models.Book.objects.create(title=&quot;白夜行&quot;,price=39.50,publish=&quot;南海出版公司&quot;,pub_date=&quot;2010-10-10&quot;)
-    return HttpResponse(&quot;&lt;p&gt;数据添加成功！&lt;/p&gt;&quot;)
+    books = models.Book.objects.create(title="白夜行",price=39.50,publish="南海出版公司",pub_date="2010-10-10")
+    return HttpResponse("<p>数据添加成功！</p>")
+<div class="highlight"><pre><span></span><code>- Next, bind the URL to the view function. Open the urls.py file, delete the original code, and copy and paste the following code into the urls.py file:
 </code></pre></div>
-<ul>
-<li>Next, bind the URL to the view function. Open the urls.py file, delete the original code, and copy and paste the following code into the urls.py file:</li>
-</ul>
-<div class="highlight"><pre><span></span><code>from django.contrib import admin
+from django.contrib import admin
 from django.urls import path
-from . import views
-
-urlpatterns = [
-    path(&#39;&#39;, views.add_book),
+from . import views</p>
+<p>urlpatterns = [
+    path('', views.add_book),
     ]
+<div class="highlight"><pre><span></span><code>- Next we start the server by entering the following command into the django\_crud\_matrixone directory:
 </code></pre></div>
-<ul>
-<li>Next we start the server by entering the following command into the django_crud_matrixone directory:</li>
-</ul>
-<div class="highlight"><pre><span></span><code>python3 manage.py runserver 0.0.0.0:8000
-</code></pre></div>
-<p>Enter the ip of your server in your browser (here we enter the native IP address: 127.0.0.1:8000) and the port number. If it starts normally, the output is as follows:</p>
-<div align="center">
-<img src=https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/django/django-2.png?raw=true width=50% heigth=50%/>
-</div>
+python3 manage.py runserver 0.0.0.0:8000
+<div class="highlight"><pre><span></span><code>Enter the ip of your server in your browser (here we enter the native IP address: 127.0.0.1:8000) and the port number. If it starts normally, the output is as follows:
 
-<ul>
-<li>Connecting to the database to query the data, you can see that the data was successfully inserted:</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">testmodel_book</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------+-----------+-------+--------------------+------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">id</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">title</span><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="n">price</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">publish</span><span class="w">            </span><span class="o">|</span><span class="w"> </span><span class="n">pub_date</span><span class="w">   </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+-----------+-------+--------------------+------------+</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="err">白夜行</span><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="mi">39</span><span class="p">.</span><span class="mi">50</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="err">南海出版公司</span><span class="w">         </span><span class="o">|</span><span class="w"> </span><span class="mi">2010</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">10</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+-----------+-------+--------------------+------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+&lt;div align=&quot;center&quot;&gt;
+&lt;img src=https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/djiango/django-2.png?raw=true width=50% heigth=50%/&gt;
+&lt;/div&gt;
+
+- Connecting to the database to query the data, you can see that the data was successfully inserted:
+
+```sql
+mysql&gt; select * from testmodel_book;
++------+-----------+-------+--------------------+------------+
+| id   | title     | price | publish            | pub_date   |
++------+-----------+-------+--------------------+------------+
+|    1 | 白夜行     | 39.50 | 南海出版公司         | 2010-10-10 |
++------+-----------+-------+--------------------+------------+
+1 row in set (0.00 sec)
+</code></pre></div></p>
 <h2 id="query-data">query data</h2>
 <ul>
 <li>Modify the views.py file in the django_crud_matrixone directory and add the code:</li>
@@ -13461,12 +13442,12 @@ path(&#39;&#39;, views.src_book),
 </code></pre></div>
 <p>Enter the ip of your server in your browser (here we enter the native IP address: 127.0.0.1:8000) and the port number. If it starts normally, the output is as follows:</p>
 <div align="center">
-<img src=https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/django/django-3.png?raw=true width=50% heigth=50%/>
+<img src=https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/djiango/django-3.png?raw=true width=50% heigth=50%/>
 </div>
 
 <p>The command line results are:</p>
 <div align="center">
-<img src=https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/django/django-4.png?raw=true width=50% heigth=50%/>
+<img src=https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/djiango/django-4.png?raw=true width=50% heigth=50%/>
 </div>
 
 <h2 id="update-data">Update Data</h2>
@@ -13492,7 +13473,7 @@ path(&#39;&#39;, views.upd_book),
 </code></pre></div>
 <p>Enter the ip of your server in your browser (here we enter the native IP address: 127.0.0.1:8000) and the port number. If it starts normally, the output is as follows:</p>
 <div align="center">
-<img src=https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/django/django-5.png?raw=true width=40% heigth=40%/>
+<img src=https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/djiango/django-5.png?raw=true width=40% heigth=40%/>
 </div>
 
 <ul>
@@ -13528,7 +13509,7 @@ path(&#39;&#39;, views.del_book),
 </code></pre></div>
 <p>Enter the ip of your server in your browser (here we enter the native IP address: 127.0.0.1:8000) and the port number. If it starts normally, the output is as follows:</p>
 <div align="center">
-<img src=https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/django/django-6.png?raw=true width=50% heigth=50%/>
+<img src=https://github.com/matrixorigin/artwork/blob/main/docs/tutorial/djiango/django-6.png?raw=true width=50% heigth=50%/>
 </div>
 
 <ul>

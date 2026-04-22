@@ -13201,28 +13201,27 @@
 </tbody>
 </table>
 <h2 id="examples">Examples</h2>
-<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="nb">int</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="ss">&quot;ABC&quot;</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="ss">&quot;DEF&quot;</span><span class="p">,</span><span class="k">NULL</span><span class="p">);</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="nb">serial</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span><span class="c1">--The query returns the serialized result of the combination of columns a and b. The output is NULL when there is a NULL value.</span>
-<span class="o">+</span><span class="c1">--------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="nb">serial</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">FABC</span><span class="w"> </span><span class="p">:</span><span class="w">    </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w">         </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------------+</span>
-<span class="mi">2</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="nb">serial</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="s1">&#39;hello&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span><span class="c1">--The query returns the result of serializing the combination of column a and the value hello.</span>
-<span class="o">+</span><span class="c1">------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="nb">serial</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">hello</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">FABC</span><span class="w"> </span><span class="n">Fhello</span><span class="w">    </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">FDEF</span><span class="w"> </span><span class="n">Fhello</span><span class="w">    </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------+</span>
-<span class="mi">2</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+<p>```sql <!-- validator-ignore-exec -->
+create table t1(a varchar(3), b int);
+insert into t1 values("ABC",1);
+insert into t1 values("DEF",NULL);</p>
+<p>mysql&gt; select serial(a,b) from t1; -- The query returns the serialized result of the combination of columns a and b. The output is NULL when there is a NULL value.
++--------------+
+| serial(a, b) |
++--------------+
+| FABC :    |
+| NULL         |
++--------------+
+2 rows in set (0.00 sec)</p>
+<p>mysql&gt; select serial(a,'hello') from t1; -- The query returns the result of serializing the combination of column a and the value hello.
++------------------+
+| serial(a, hello) |
++------------------+
+| FABC Fhello    |
+| FDEF Fhello    |
++------------------+
+2 rows in set (0.00 sec)
+```</p>
 
 
 

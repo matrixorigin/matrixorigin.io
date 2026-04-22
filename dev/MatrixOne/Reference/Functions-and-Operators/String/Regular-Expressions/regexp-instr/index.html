@@ -13213,38 +13213,36 @@
 </li>
 </ul>
 <h2 id="examples"><strong>Examples</strong></h2>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">REGEXP_INSTR</span><span class="p">(</span><span class="s1">&#39;Hello, my number is 12345.&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;[0-9]+&#39;</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">--------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">regexp_instr</span><span class="p">(</span><span class="n">Hello</span><span class="p">,</span><span class="w"> </span><span class="n">my</span><span class="w"> </span><span class="nb">number</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="mi">12345</span><span class="p">.,</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="p">]</span><span class="o">+</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------------------------------------------------+</span>
-<span class="o">|</span><span class="w">                                               </span><span class="mi">21</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------------------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">REGEXP_INSTR</span><span class="p">(</span><span class="s1">&#39;apple&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;z+&#39;</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">-------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">regexp_instr</span><span class="p">(</span><span class="n">apple</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="o">+</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------------------------+</span>
-<span class="o">|</span><span class="w">                       </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">REGEXP_INSTR</span><span class="p">(</span><span class="s1">&#39;Hello, World!&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;World&#39;</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">regexp_instr</span><span class="p">(</span><span class="n">Hello</span><span class="p">,</span><span class="w"> </span><span class="n">World</span><span class="o">!</span><span class="p">,</span><span class="w"> </span><span class="n">World</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------------------------+</span>
-<span class="o">|</span><span class="w">                                  </span><span class="mi">8</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">REGEXP_INSTR</span><span class="p">(</span><span class="s1">&#39;Hello, World! World!&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;World&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">-------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">regexp_instr</span><span class="p">(</span><span class="n">Hello</span><span class="p">,</span><span class="w"> </span><span class="n">World</span><span class="o">!</span><span class="w"> </span><span class="n">World</span><span class="o">!</span><span class="p">,</span><span class="w"> </span><span class="n">World</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------------------------------------------------+</span>
-<span class="o">|</span><span class="w">                                              </span><span class="mi">15</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------------------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+<p>```SQL <!-- validator-ignore-exec -->
+mysql&gt; SELECT REGEXP_INSTR('Hello, my number is 12345.', '[0-9]+');
++--------------------------------------------------+
+| regexp_instr(Hello, my number is 12345., [0-9]+) |
++--------------------------------------------------+
+|                                               21 |
++--------------------------------------------------+
+1 row in set (0.00 sec)</p>
+<p>mysql&gt; SELECT REGEXP_INSTR('apple', 'z+');
++-------------------------+
+| regexp_instr(apple, z+) |
++-------------------------+
+|                       0 |
++-------------------------+
+1 row in set (0.00 sec)</p>
+<p>mysql&gt; SELECT REGEXP_INSTR('Hello, World!', 'World');
++------------------------------------+
+| regexp_instr(Hello, World!, World) |
++------------------------------------+
+|                                  8 |
++------------------------------------+
+1 row in set (0.00 sec)</p>
+<p>mysql&gt; SELECT REGEXP_INSTR('Hello, World! World!', 'World', 1, 2);
++-------------------------------------------------+
+| regexp_instr(Hello, World! World!, World, 1, 2) |
++-------------------------------------------------+
+|                                              15 |
++-------------------------------------------------+
+1 row in set (0.00 sec)
+```</p>
 
 
 

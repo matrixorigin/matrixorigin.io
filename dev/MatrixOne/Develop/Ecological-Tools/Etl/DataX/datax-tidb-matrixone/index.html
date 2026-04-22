@@ -2922,13 +2922,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#creating-a-target-table-in-matrixone" class="md-nav__link">
-    Creating a Target Table in MatrixOne
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#configure-the-json-file" class="md-nav__link">
     Configure the json file
   </a>
@@ -13175,13 +13168,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#creating-a-target-table-in-matrixone" class="md-nav__link">
-    Creating a Target Table in MatrixOne
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#configure-the-json-file" class="md-nav__link">
     Configure the json file
   </a>
@@ -13245,34 +13231,30 @@
 </ul>
 <h2 id="operational-steps">Operational steps</h2>
 <h3 id="creating-test-data-in-tidb">Creating Test Data in TiDB</h3>
-<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="o">`</span><span class="n">tidb_dx</span><span class="o">`</span><span class="w"> </span><span class="p">(</span>
-<span class="w">    </span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="w"> </span><span class="nb">bigint</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="w">    </span><span class="o">`</span><span class="n">name</span><span class="o">`</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="w">    </span><span class="o">`</span><span class="n">salary</span><span class="o">`</span><span class="w"> </span><span class="nb">decimal</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="w">    </span><span class="o">`</span><span class="n">age</span><span class="o">`</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="w">    </span><span class="o">`</span><span class="n">entrytime</span><span class="o">`</span><span class="w"> </span><span class="nb">date</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="w">    </span><span class="o">`</span><span class="n">gender</span><span class="o">`</span><span class="w"> </span><span class="nb">char</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="w">    </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="p">)</span>
-<span class="p">);</span>
+<p><code>``sql &lt;!-- validator-ignore-exec --&gt;
+CREATE TABLE</code>tidb_dx<code>(</code>id<code>bigint(20) NOT NULL,</code>name<code>varchar(100) DEFAULT NULL,</code>salary<code>decimal(10,0) DEFAULT NULL,</code>age<code>int(11) DEFAULT NULL,</code>entrytime<code>date DEFAULT NULL,</code>gender<code>char(1) DEFAULT NULL,
+    PRIMARY KEY (</code>id`)
+);</p>
+<p>insert into testdx2tidb values
+(1,"lisa",15660,30,'2022-10-12',0),
+(2,"tom",15060,24,'2021-11-10',1),
+(3,"jenny",15000,28,'2024-02-19',0),
+(4,"henry",12660,24,'2022-04-22',1);
+<div class="highlight"><pre><span></span><code>### Creating a Target Table in MatrixOne
 
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">testdx2tidb</span><span class="w"> </span><span class="k">values</span>
-<span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="ss">&quot;lisa&quot;</span><span class="p">,</span><span class="mi">15660</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="s1">&#39;2022-10-12&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="ss">&quot;tom&quot;</span><span class="p">,</span><span class="mi">15060</span><span class="p">,</span><span class="mi">24</span><span class="p">,</span><span class="s1">&#39;2021-11-10&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="ss">&quot;jenny&quot;</span><span class="p">,</span><span class="mi">15000</span><span class="p">,</span><span class="mi">28</span><span class="p">,</span><span class="s1">&#39;2024-02-19&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="ss">&quot;henry&quot;</span><span class="p">,</span><span class="mi">12660</span><span class="p">,</span><span class="mi">24</span><span class="p">,</span><span class="s1">&#39;2022-04-22&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
-</code></pre></div>
-<h3 id="creating-a-target-table-in-matrixone">Creating a Target Table in MatrixOne</h3>
-<p>Since DataX can only synchronize data, not table structure, we need to manually create the table in the target database (MatrixOne) before we can perform the task.</p>
-<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="o">`</span><span class="n">testdx2tidb</span><span class="o">`</span><span class="w"> </span><span class="p">(</span>
-<span class="w">    </span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="w"> </span><span class="nb">bigint</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">COMMENT</span><span class="w"> </span><span class="ss">&quot;&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="o">`</span><span class="n">name</span><span class="o">`</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">COMMENT</span><span class="w"> </span><span class="ss">&quot;&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="o">`</span><span class="n">salary</span><span class="o">`</span><span class="w"> </span><span class="nb">decimal</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">COMMENT</span><span class="w"> </span><span class="ss">&quot;&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="o">`</span><span class="n">age</span><span class="o">`</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">COMMENT</span><span class="w"> </span><span class="ss">&quot;&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="o">`</span><span class="n">entrytime</span><span class="o">`</span><span class="w"> </span><span class="nb">date</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">COMMENT</span><span class="w"> </span><span class="ss">&quot;&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="o">`</span><span class="n">gender</span><span class="o">`</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">COMMENT</span><span class="w"> </span><span class="ss">&quot;&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="p">)</span>
-<span class="p">);</span>
-</code></pre></div>
+Since DataX can only synchronize data, not table structure, we need to manually create the table in the target database (MatrixOne) before we can perform the task.
+
+```sql
+CREATE TABLE `testdx2tidb` (
+    `id` bigint(20) NOT NULL COMMENT &quot;&quot;,
+    `name` varchar(100) NULL COMMENT &quot;&quot;,
+    `salary` decimal(10, 0) NULL COMMENT &quot;&quot;,
+    `age` int(11) NULL COMMENT &quot;&quot;,
+    `entrytime` date NULL COMMENT &quot;&quot;,
+    `gender` varchar(1) NULL COMMENT &quot;&quot;,
+    PRIMARY KEY (`id`)
+);
+</code></pre></div></p>
 <h3 id="configure-the-json-file">Configure the json file</h3>
 <p>tidb can be read directly using mysqlreader. in the job directory of datax. Edit the configuration file <code>tidb2mo.json</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
@@ -13329,17 +13311,17 @@
 <div class="highlight"><pre><span></span><code>python<span class="w"> </span>bin/datax.py<span class="w"> </span>job/tidb2mo.json<span class="w"> </span>
 </code></pre></div>
 <h3 id="view-target-table-data-in-matrixone">View target table data in MatrixOne</h3>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">testdx2tidb</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------+-------+--------+------+------------+--------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">id</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">name</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">salary</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">age</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">entrytime</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">gender</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+-------+--------+------+------------+--------+</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">lisa</span><span class="w">  </span><span class="o">|</span><span class="w">  </span><span class="mi">15660</span><span class="w"> </span><span class="o">|</span><span class="w">   </span><span class="mi">30</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2022</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">12</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">0</span><span class="w">      </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">tom</span><span class="w">   </span><span class="o">|</span><span class="w">  </span><span class="mi">15060</span><span class="w"> </span><span class="o">|</span><span class="w">   </span><span class="mi">24</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2021</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">10</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">1</span><span class="w">      </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">jenny</span><span class="w"> </span><span class="o">|</span><span class="w">  </span><span class="mi">15000</span><span class="w"> </span><span class="o">|</span><span class="w">   </span><span class="mi">28</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">19</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">0</span><span class="w">      </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">henry</span><span class="w"> </span><span class="o">|</span><span class="w">  </span><span class="mi">12660</span><span class="w"> </span><span class="o">|</span><span class="w">   </span><span class="mi">24</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2022</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">22</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">1</span><span class="w">      </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+-------+--------+------+------------+--------+</span>
-<span class="mi">4</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+<p><code>sql &lt;!-- validator-ignore-exec --&gt;
+mysql&gt; select * from testdx2tidb;
++------+-------+--------+------+------------+--------+
+| id   | name  | salary | age  | entrytime  | gender |
++------+-------+--------+------+------------+--------+
+|    1 | lisa  |  15660 |   30 | 2022-10-12 | 0      |
+|    2 | tom   |  15060 |   24 | 2021-11-10 | 1      |
+|    3 | jenny |  15000 |   28 | 2024-02-19 | 0      |
+|    4 | henry |  12660 |   24 | 2022-04-22 | 1      |
++------+-------+--------+------+------------+--------+
+4 rows in set (0.01 sec)</code></p>
 <p>Data import succeeded.</p>
 
 

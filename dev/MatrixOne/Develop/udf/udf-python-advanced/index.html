@@ -13488,11 +13488,11 @@ pip3 install grpcio
 <li>
 <p>Creating a UDF Function</p>
 <p>Copy the whl package to the planned function repository directory, such as the path: <code>/opt/udf/udf-1.0.0-py3-none-any.whl</code>, and use the whl package in the create statement to create the UDF function. An example of the create statement is as follows:</p>
-<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="k">replace</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">py_add_3</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="nb">int</span><span class="p">)</span>
-<span class="k">returns</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="k">language</span><span class="w"> </span><span class="n">python</span><span class="w"> </span>
-<span class="n">import</span><span class="w"> </span><span class="s1">&#39;/opt/udf/udf-1.0.0-py3-none-any.whl&#39;</span><span class="w"> </span><span class="c1">-- wheel The directory in which the package resides </span>
-<span class="k">handler</span><span class="w"> </span><span class="s1">&#39;add_udf.add&#39;</span><span class="p">;</span><span class="w"> </span><span class="c1">-- Specifies the add function that calls the add_udf module in the whl package</span>
-</code></pre></div>
+<p><code>sql &lt;!-- validator-ignore-exec --&gt;
+create or replace function py_add_3(a int, b int)
+returns int language python 
+import '/opt/udf/udf-1.0.0-py3-none-any.whl' -- wheel The directory in which the package resides 
+handler 'add_udf.add'; -- Specifies the add function that calls the add_udf module in the whl package</code></p>
 </li>
 <li>
 <p>Call the UDF function</p>
@@ -13534,8 +13534,8 @@ pip3 install grpcio
 </li>
 <li>
 <p>Create a UDF function by executing the following command We use <code>add.vector = True</code> to mark the python function add to receive two int lists (vectors) instead of int values:</p>
-<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="k">replace</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">py_add_4</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="nb">int</span><span class="p">)</span><span class="w"> </span><span class="k">returns</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="k">language</span><span class="w"> </span><span class="n">python</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="err">$$</span><span class="w"> </span><span class="n">def</span><span class="w"> </span><span class="k">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">):</span><span class="w"> </span><span class="err">\</span><span class="o">#</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="k">are</span><span class="w"> </span><span class="n">list</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="err">\</span><span class="p">[</span><span class="n">a</span><span class="err">\</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="err">\</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">range</span><span class="p">(</span><span class="n">len</span><span class="p">(</span><span class="n">a</span><span class="p">))]</span><span class="w"> </span><span class="k">add</span><span class="p">.</span><span class="n">vector</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">True</span><span class="w"> </span><span class="err">$$</span><span class="w"> </span><span class="k">handler</span><span class="w"> </span><span class="s1">&#39;add&#39;</span><span class="p">;</span><span class="w"> </span>
-</code></pre></div>
+<p><code>sql &lt;!-- validator-ignore-exec --&gt;
+create or replace function py_add_4(a int, b int) returns int language python as $$ def add(a, b): \# a, b are list return \[a\[i] + b\[i] for i in range(len(a))] add.vector = True $$ handler 'add';</code></p>
 </li>
 <li>
 <p>Call the UDF function</p>
@@ -13594,7 +13594,7 @@ pip3 install grpcio
 </table>
 <p>Let's take the data according to 8: 1: The scale of 1 is divided into a training set, a validation set, and a test set. Since the training process is not the focus of this article, it is not covered too much here.</p>
 <p>We store the test set as new data emerging from the production process in the MO. <a href="https://github.com/matrixorigin/matrixone/blob/main/pkg/udf/pythonservice/demo/ddl.sql">Click here to</a> get the <code>ddl.sql</code> file, import the data table with the following statement and some of the test data:</p>
-<div class="highlight"><pre><span></span><code><span class="k">source</span><span class="w"> </span><span class="o">/</span><span class="n">your_download_path</span><span class="o">/</span><span class="n">ddl</span><span class="p">.</span><span class="k">sql</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code>source /your_download_path/ddl.sql 
 </code></pre></div>
 <h3 id="preparing-the-python-whl-package">Preparing the python-whl package</h3>
 <ol>
@@ -13668,12 +13668,14 @@ pip3 install grpcio
 <ol>
 <li>
 <p>To create a udf function:</p>
-<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="k">replace</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">py_detect</span><span class="p">(</span><span class="n">features</span><span class="w"> </span><span class="n">json</span><span class="p">,</span><span class="w"> </span><span class="n">amount</span><span class="w"> </span><span class="nb">decimal</span><span class="p">)</span><span class="w"> </span>
-<span class="k">returns</span><span class="w"> </span><span class="n">bool</span><span class="w"> </span>
-<span class="k">language</span><span class="w"> </span><span class="n">python</span><span class="w"> </span>
-<span class="n">import</span><span class="w"> </span><span class="s1">&#39;your_code_path/detect-1.0.0-py3-none-any.whl&#39;</span><span class="w"> </span><span class="c1">-- replace with handler &#39;credit.detect&#39;;</span>
-<span class="k">handler</span><span class="w"> </span><span class="s1">&#39;credit.detect&#39;</span><span class="p">;</span><span class="c1">-- detect function under credit module</span>
-</code></pre></div>
+<p><code>sql &lt;!-- validator-ignore --&gt;
+create or replace function py_detect(features json, amount decimal) 
+returns bool 
+language python 
+import 'your_code_path/detect-1.0.0-py3-none-any.whl'
+-- replace with your wheel path; maps to handler 'credit.detect'
+handler 'credit.detect';
+-- detect function under credit module</code></p>
 </li>
 <li>
 <p>Call the udf function for fraud detection:</p>

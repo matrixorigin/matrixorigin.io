@@ -13421,6 +13421,7 @@ CLONE source_db
 </ol>
 <h2 id="examples"><strong>Examples</strong></h2>
 <h3 id="preparation-create-test-tenants-databases-and-tables">Preparation: Create Test Tenants, Databases, and Tables</h3>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="c1">-- Create test tenants under the sys tenant</span>
 <span class="k">CREATE</span><span class="w"> </span><span class="n">ACCOUNT</span><span class="w"> </span><span class="n">acc1</span><span class="w"> </span><span class="n">ADMIN_NAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;admin&#39;</span><span class="w"> </span><span class="n">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;111&#39;</span><span class="p">;</span>
 <span class="k">CREATE</span><span class="w"> </span><span class="n">ACCOUNT</span><span class="w"> </span><span class="n">acc2</span><span class="w"> </span><span class="n">ADMIN_NAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;admin&#39;</span><span class="w"> </span><span class="n">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;111&#39;</span><span class="p">;</span>
@@ -13448,6 +13449,7 @@ CLONE source_db
 </code></pre></div>
 <h3 id="case-1-clone-within-the-same-tenant">Case 1: Clone Within the Same Tenant</h3>
 <p><strong>Clone Table:</strong></p>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="c1">-- Clone a table within the same tenant</span>
 <span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">acc1_db</span><span class="p">.</span><span class="n">t2</span><span class="w"> </span><span class="n">CLONE</span><span class="w"> </span><span class="n">acc1_db</span><span class="p">.</span><span class="n">acc1_tbl</span><span class="p">;</span>
 
@@ -13475,6 +13477,7 @@ CLONE source_db
 <span class="mi">2</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 </code></pre></div>
 <p><strong>Clone Database:</strong></p>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="c1">-- Clone a database within the same tenant</span>
 <span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">acc1_db_clone</span><span class="w"> </span><span class="n">CLONE</span><span class="w"> </span><span class="n">acc1_db</span><span class="p">;</span>
 
@@ -13515,6 +13518,7 @@ CLONE source_db
 <p><strong>Note:</strong> Cross-tenant cloning can only be performed by the sys tenant and requires a pre-created snapshot.</p>
 </blockquote>
 <h3 id="case-2-clone-data-from-another-ordinary-tenant-to-sys">Case 2: Clone Data from Another Ordinary Tenant to Sys</h3>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="c1">-- Switch to sys tenant</span>
 <span class="c1">-- mysql -h 127.0.0.1 -P 6001 -u sys:root -p111</span>
 
@@ -13551,6 +13555,7 @@ CLONE source_db
 <span class="mi">2</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 </code></pre></div>
 <h3 id="case-3-clone-sys-tenant-data-to-another-ordinary-tenant">Case 3: Clone Sys Tenant Data to Another Ordinary Tenant</h3>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="c1">-- Create test data under the sys tenant</span>
 <span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">sys_db</span><span class="p">;</span>
 <span class="n">USE</span><span class="w"> </span><span class="n">sys_db</span><span class="p">;</span>
@@ -13593,6 +13598,7 @@ CLONE source_db
 <span class="mi">2</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 </code></pre></div>
 <h3 id="case-4-clone-data-from-one-ordinary-tenant-to-another">Case 4: Clone Data from One Ordinary Tenant to Another</h3>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="c1">-- Sys creates a snapshot for the source tenant acc1</span>
 <span class="k">CREATE</span><span class="w"> </span><span class="n">SNAPSHOT</span><span class="w"> </span><span class="n">sp_acc1_for_clone</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="n">ACCOUNT</span><span class="w"> </span><span class="n">acc1</span><span class="p">;</span>
 

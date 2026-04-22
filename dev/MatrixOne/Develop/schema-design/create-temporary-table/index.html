@@ -13222,7 +13222,7 @@
 </ul>
 <h2 id="how-to-use-temporary-tables">How to use temporary tables</h2>
 <p>The syntax for using a temporary table is the same as for a regular table, except that the TEMPORARY keyword is added before the statement that creates the table:</p>
-<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TEMPORARY</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">temp_table_name</span><span class="w"> </span><span class="p">(</span><span class="n">column_list</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code>CREATE TEMPORARY TABLE temp_table_name (column_list);
 </code></pre></div>
 <p>You can use the same table name for temporary and regular tables without conflicts because they are in different namespaces. However, two temporary tables cannot share the same name in the session.</p>
 <div class="admonition note">
@@ -13233,38 +13233,36 @@
 </ol>
 </div>
 <h2 id="example">Example</h2>
-<div class="highlight"><pre><span></span><code><span class="c1">-- Create a temporary table &#39;temp_employees&#39;</span>
-<span class="k">CREATE</span><span class="w"> </span><span class="k">TEMPORARY</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">temp_employees</span><span class="w"> </span><span class="p">(</span>
-<span class="w">    </span><span class="n">employee_id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="p">,</span><span class="w"> </span><span class="c1">-- auto-increment employee ID</span>
-<span class="w">    </span><span class="n">first_name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span><span class="w"> </span><span class="c1">-- employee name</span>
-<span class="w">    </span><span class="n">last_name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span><span class="w"> </span><span class="c1">-- employee last name</span>
-<span class="w">    </span><span class="n">email</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span><span class="w"> </span><span class="c1">-- employee email address</span>
-<span class="w">    </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">employee_id</span><span class="p">)</span><span class="w"> </span><span class="c1">-- set &#39;employee_id&#39; as the primary key</span>
-<span class="p">);</span>
-
-<span class="c1">-- Insert some data into the &#39;temp_employees&#39; table</span>
-<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">temp_employees</span><span class="w"> </span><span class="p">(</span><span class="n">first_name</span><span class="p">,</span><span class="w"> </span><span class="n">last_name</span><span class="p">,</span><span class="w"> </span><span class="n">email</span><span class="p">)</span>
-<span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;John&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Doe&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;john.doe@example.com&#39;</span><span class="p">),</span>
-<span class="w">       </span><span class="p">(</span><span class="s1">&#39;Jane&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Doe&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;jane.doe@example.com&#39;</span><span class="p">),</span>
-<span class="w">       </span><span class="p">(</span><span class="s1">&#39;Jim&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Smith&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;jim.smith@example.com&#39;</span><span class="p">),</span>
-<span class="w">       </span><span class="p">(</span><span class="s1">&#39;Jack&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Johnson&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;jack.johnson@example.com&#39;</span><span class="p">),</span>
-<span class="w">       </span><span class="p">(</span><span class="s1">&#39;Jill&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Jackson&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;jill.jackson@example.com&#39;</span><span class="p">);</span>
-
-<span class="c1">-- Query the temporary table to view all employee information</span>
-<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">temp_employees</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">-------------+------------+-----------+--------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">employee_id</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">first_name</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">last_name</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">email</span><span class="w">                    </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------------+------------+-----------+--------------------------+</span>
-<span class="o">|</span><span class="w">           </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">John</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="n">Doe</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="n">john</span><span class="p">.</span><span class="n">doe</span><span class="o">@</span><span class="n">example</span><span class="p">.</span><span class="n">com</span><span class="w">     </span><span class="o">|</span>
-<span class="o">|</span><span class="w">           </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Jane</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="n">Doe</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="n">jane</span><span class="p">.</span><span class="n">doe</span><span class="o">@</span><span class="n">example</span><span class="p">.</span><span class="n">com</span><span class="w">     </span><span class="o">|</span>
-<span class="o">|</span><span class="w">           </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Jim</span><span class="w">        </span><span class="o">|</span><span class="w"> </span><span class="n">Smith</span><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="n">jim</span><span class="p">.</span><span class="n">smith</span><span class="o">@</span><span class="n">example</span><span class="p">.</span><span class="n">com</span><span class="w">    </span><span class="o">|</span>
-<span class="o">|</span><span class="w">           </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Jack</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="n">Johnson</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">jack</span><span class="p">.</span><span class="n">johnson</span><span class="o">@</span><span class="n">example</span><span class="p">.</span><span class="n">com</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">           </span><span class="mi">5</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Jill</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="n">Jackson</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">jill</span><span class="p">.</span><span class="n">jackson</span><span class="o">@</span><span class="n">example</span><span class="p">.</span><span class="n">com</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------------+------------+-----------+--------------------------+</span>
-<span class="mi">5</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="c1">-- At the end of this session, the temporary table &#39;temp_employees&#39; will be dropped automatically</span>
-</code></pre></div>
+<p>```sql <!-- validator-ignore-exec -->
+-- Create a temporary table 'temp_employees'
+CREATE TEMPORARY TABLE temp_employees (
+    employee_id INT AUTO_INCREMENT, -- auto-increment employee ID
+    first_name VARCHAR(50), -- employee name
+    last_name VARCHAR(50), -- employee last name
+    email VARCHAR(100), -- employee email address
+    PRIMARY KEY (employee_id) -- set 'employee_id' as the primary key
+);</p>
+<p>-- Insert some data into the 'temp_employees' table
+INSERT INTO temp_employees (first_name, last_name, email)
+VALUES ('John', 'Doe', 'john.doe@example.com'),
+       ('Jane', 'Doe', 'jane.doe@example.com'),
+       ('Jim', 'Smith', 'jim.smith@example.com'),
+       ('Jack', 'Johnson', 'jack.johnson@example.com'),
+       ('Jill', 'Jackson', 'jill.jackson@example.com');</p>
+<p>-- Query the temporary table to view all employee information
+SELECT * FROM temp_employees;
++-------------+------------+-----------+--------------------------+
+| employee_id | first_name | last_name | email                    |
++-------------+------------+-----------+--------------------------+
+|           1 | John       | Doe       | john.doe@example.com     |
+|           2 | Jane       | Doe       | jane.doe@example.com     |
+|           3 | Jim        | Smith     | jim.smith@example.com    |
+|           4 | Jack       | Johnson   | jack.johnson@example.com |
+|           5 | Jill       | Jackson   | jill.jackson@example.com |
++-------------+------------+-----------+--------------------------+
+5 rows in set (0.01 sec)</p>
+<p>-- At the end of this session, the temporary table 'temp_employees' will be dropped automatically
+```</p>
 
 
 

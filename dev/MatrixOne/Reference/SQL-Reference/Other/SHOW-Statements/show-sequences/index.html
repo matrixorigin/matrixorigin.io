@@ -13170,19 +13170,19 @@
        [WHERE expr]
 </code></pre></div>
 <h2 id="examples"><strong>Examples</strong></h2>
-<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="n">SEQUENCE</span><span class="w"> </span><span class="n">s1</span><span class="w"> </span><span class="k">START</span><span class="w"> </span><span class="mi">101</span><span class="p">;</span>
-<span class="k">CREATE</span><span class="w"> </span><span class="n">SEQUENCE</span><span class="w"> </span><span class="n">s3</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">smallint</span><span class="w"> </span><span class="k">INCREMENT</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="k">MINVALUE</span><span class="w"> </span><span class="o">-</span><span class="mi">100</span><span class="w"> </span><span class="k">MAXVALUE</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="k">START</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">CYCLE</span><span class="p">;</span>
-<span class="k">CREATE</span><span class="w"> </span><span class="n">SEQUENCE</span><span class="w"> </span><span class="n">seq_id</span><span class="w"> </span><span class="k">INCREMENT</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">MAXVALUE</span><span class="w"> </span><span class="mi">1000</span><span class="w"> </span><span class="k">START</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="n">sequences</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">--------+-----------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">Names</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="k">Data</span><span class="w"> </span><span class="k">Type</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------+-----------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">s3</span><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="nb">SMALLINT</span><span class="w">  </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">s1</span><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="nb">BIGINT</span><span class="w">    </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">seq_id</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nb">BIGINT</span><span class="w">    </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------+-----------+</span>
-<span class="mi">3</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+<p><code>sql &lt;!-- validator-ignore-exec --&gt;
+CREATE SEQUENCE s1 START 101;
+CREATE SEQUENCE s3 as smallint INCREMENT 10 MINVALUE -100 MAXVALUE 100 START 0 CYCLE;
+CREATE SEQUENCE seq_id INCREMENT BY 1 MAXVALUE 1000 START with 1;
+mysql&gt; show sequences;
++--------+-----------+
+| Names  | Data Type |
++--------+-----------+
+| s3     | SMALLINT  |
+| s1     | BIGINT    |
+| seq_id | BIGINT    |
++--------+-----------+
+3 rows in set (0.01 sec)</code></p>
 
 
 

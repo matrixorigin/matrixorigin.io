@@ -13210,6 +13210,7 @@
 <div class="highlight"><pre><span></span><code><span class="o">(</span>base<span class="o">)</span><span class="w"> </span>admin@192<span class="w"> </span><span class="k">case</span><span class="w"> </span>%<span class="w"> </span>ls
 customer<span class="w">    </span>student.csv<span class="w"> </span>t1.csv<span class="w">      </span>t2.txt<span class="w">      </span>t3<span class="w">      </span>user.txt
 </code></pre></div>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="n">stage</span><span class="w"> </span><span class="n">stage_test</span><span class="w"> </span><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;file:///Users/admin/case&#39;</span><span class="p">;</span>
 
 <span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">stage_list</span><span class="p">(</span><span class="s1">&#39;stage://stage_test&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">f</span><span class="p">;</span>

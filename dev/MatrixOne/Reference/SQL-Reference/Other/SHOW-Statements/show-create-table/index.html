@@ -13169,26 +13169,26 @@
 <div class="highlight"><pre><span></span><code>&gt; SHOW CREATE TABLE tbl_name
 </code></pre></div>
 <h2 id="examples"><strong>Examples</strong></h2>
-<div class="highlight"><pre><span></span><code><span class="k">drop</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
-<span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="p">(</span>
-<span class="n">col1</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="k">comment</span><span class="w"> </span><span class="s1">&#39;First column&#39;</span><span class="p">,</span>
-<span class="n">col2</span><span class="w"> </span><span class="nb">float</span><span class="w"> </span><span class="k">comment</span><span class="w"> </span><span class="s1">&#39;&quot;%$^&amp;*()_+@!&#39;</span><span class="p">,</span>
-<span class="n">col3</span><span class="w"> </span><span class="nb">varchar</span><span class="w"> </span><span class="k">comment</span><span class="w"> </span><span class="s1">&#39;ZD5lTndyuEzw49gxR&#39;</span><span class="p">,</span>
-<span class="n">col4</span><span class="w"> </span><span class="n">bool</span><span class="w"> </span><span class="k">comment</span><span class="w"> </span><span class="s1">&#39;&#39;</span>
-<span class="p">);</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">-------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">Table</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">Create</span><span class="w"> </span><span class="k">Table</span><span class="w">                                                                                                                                                                                                     </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">t1</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="o">`</span><span class="n">t1</span><span class="o">`</span><span class="w"> </span><span class="p">(</span>
-<span class="o">`</span><span class="n">col1</span><span class="o">`</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">COMMENT</span><span class="w"> </span><span class="s1">&#39;First column&#39;</span><span class="p">,</span>
-<span class="o">`</span><span class="n">col2</span><span class="o">`</span><span class="w"> </span><span class="nb">FLOAT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">COMMENT</span><span class="w"> </span><span class="s1">&#39;&quot;%$^&amp;*()_+@!&#39;</span><span class="p">,</span>
-<span class="o">`</span><span class="n">col3</span><span class="o">`</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">65535</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">COMMENT</span><span class="w"> </span><span class="s1">&#39;ZD5lTndyuEzw49gxR&#39;</span><span class="p">,</span>
-<span class="o">`</span><span class="n">col4</span><span class="o">`</span><span class="w"> </span><span class="n">BOOL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span>
-<span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+<p><code>sql &lt;!-- validator-ignore-exec --&gt;
+drop table if exists t1;
+create table t1(
+col1 int comment 'First column',
+col2 float comment '"%$^&amp;*()_+@!',
+col3 varchar comment 'ZD5lTndyuEzw49gxR',
+col4 bool comment ''
+);
+mysql&gt; show create table t1;
++-------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table | Create Table                                                                                                                                                                                                     |
++-------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| t1    | CREATE TABLE `t1` (
+`col1` INT DEFAULT NULL COMMENT 'First column',
+`col2` FLOAT DEFAULT NULL COMMENT '"%$^&amp;*()_+@!',
+`col3` VARCHAR(65535) DEFAULT NULL COMMENT 'ZD5lTndyuEzw49gxR',
+`col4` BOOL DEFAULT NULL
+) |
++-------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)</code></p>
 
 
 

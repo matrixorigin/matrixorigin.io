@@ -13153,14 +13153,14 @@
 </code></pre></div>
 <p>You cannot insert a <code>NULL</code> value into a column that contains a <code>NOT NULL</code> constraint or update an old value to <code>NULL</code>.</p>
 <h2 id="examples"><strong>Examples</strong></h2>
-<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">,</span><span class="n">b</span><span class="w"> </span><span class="nb">int</span><span class="p">);</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="k">null</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
-<span class="n">ERROR</span><span class="w"> </span><span class="mi">3819</span><span class="w"> </span><span class="p">(</span><span class="n">HY000</span><span class="p">):</span><span class="w"> </span><span class="k">constraint</span><span class="w"> </span><span class="n">violation</span><span class="p">:</span><span class="w"> </span><span class="k">Column</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="w"> </span><span class="n">cannot</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="k">null</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="k">null</span><span class="p">);</span>
-<span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">update</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="n">a</span><span class="o">=</span><span class="k">null</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
-<span class="n">ERROR</span><span class="w"> </span><span class="mi">3819</span><span class="w"> </span><span class="p">(</span><span class="n">HY000</span><span class="p">):</span><span class="w"> </span><span class="k">constraint</span><span class="w"> </span><span class="n">violation</span><span class="p">:</span><span class="w"> </span><span class="k">Column</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="w"> </span><span class="n">cannot</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="k">null</span>
-</code></pre></div>
+<p><code>sql &lt;!-- validator-ignore-exec --&gt;
+create table t1(a int not null,b int);
+mysql&gt; insert into t1 values(null,1);
+ERROR 3819 (HY000): constraint violation: Column 'a' cannot be null
+mysql&gt; insert into t1 values(1,null);
+Query OK, 1 row affected (0.01 sec)
+mysql&gt; update t1 set a=null where a=1;
+ERROR 3819 (HY000): constraint violation: Column 'a' cannot be null</code></p>
 <p><strong>Example Explanation</strong>: In the above example, because there is a non-null constraint in column a, the execution of the first insert statement will fail, the second statement satisfies the non-null constraint in column a, and there is no non-null constraint in column b so that it can be inserted successfully. The update statement fails because it triggers the non-null constraint of column a.</p>
 
 

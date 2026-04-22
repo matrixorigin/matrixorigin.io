@@ -13302,6 +13302,7 @@
 <p>A large SaaS provider manages a multi-tenant environment that provides various services to different business customers. These tenants host their databases through clusters, storing business-critical data. One day, when the system administrator was performing an upgrade operation, he accidentally triggered some erroneous script operations, which affected multiple databases and tables in different tenants. In order to ensure that the system can be restored as quickly as possible and reduce data loss, the team decided to PITR for recovery.</p>
 <h3 id="create-business-data">Create business data</h3>
 <p>There are two tenants acc1 and acc2 under this system, which represent different customers. Each tenant has product information and order information.</p>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="n">account</span><span class="w"> </span><span class="n">acc1</span><span class="w"> </span><span class="n">admin_name</span><span class="w"> </span><span class="s1">&#39;root&#39;</span><span class="w"> </span><span class="n">identified</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="s1">&#39;111&#39;</span><span class="p">;</span>
 <span class="k">create</span><span class="w"> </span><span class="n">account</span><span class="w"> </span><span class="n">acc2</span><span class="w"> </span><span class="n">admin_name</span><span class="w"> </span><span class="s1">&#39;root&#39;</span><span class="w"> </span><span class="n">identified</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="s1">&#39;111&#39;</span><span class="p">;</span>
 
@@ -13405,6 +13406,7 @@ pitr3<span class="w"> </span><span class="m">2024</span>-10-28<span class="w"> <
 </code></pre></div>
 <h3 id="simulate-upgrade-error">Simulate upgrade error</h3>
 <p>Due to an upgrade script error, both db1 and db2 under acc1 were deleted, db1 under acc2 was deleted, and the orders table data under db2 was cleared.</p>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="c1">--Execute under acc1</span>
 <span class="k">drop</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n">db1</span><span class="p">;</span>
 <span class="k">drop</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n">db2</span><span class="p">;</span>
@@ -13421,20 +13423,20 @@ pitr3<span class="w"> </span><span class="m">2024</span>-10-28<span class="w"> <
 <div class="highlight"><pre><span></span><code>./mo_br<span class="w"> </span>pitr<span class="w"> </span>restore<span class="w"> </span>--host<span class="w"> </span><span class="s2">&quot;127.0.0.1&quot;</span><span class="w"> </span>--port<span class="w"> </span><span class="m">6001</span><span class="w"> </span>--user<span class="w"> </span><span class="s2">&quot;acc1#root&quot;</span><span class="w"> </span>--password<span class="w"> </span><span class="s2">&quot;111&quot;</span><span class="w"> </span>--pname<span class="w"> </span><span class="s2">&quot;pitr2&quot;</span><span class="w"> </span>--timestamp<span class="w"> </span><span class="s2">&quot;2024-10-28 17:30: 00&quot;</span><span class="w"> </span>--account<span class="w"> </span><span class="s2">&quot;acc1&quot;</span>
 </code></pre></div>
 <p>Connect acc1 query, you can see that the data is successfully restored</p>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="n">databases</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">--------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">Database</span><span class="w">           </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">db1</span><span class="w">                </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">db2</span><span class="w">                </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">information_schema</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">mo_catalog</span><span class="w">         </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">mysql</span><span class="w">              </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="k">system</span><span class="w">             </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">system_metrics</span><span class="w">     </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------------------+</span>
-<span class="mi">7</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+<p><code>sql &lt;!-- validator-ignore-exec --&gt;
+mysql&gt; show databases;
++--------------------+
+| Database           |
++--------------------+
+| db1                |
+| db2                |
+| information_schema |
+| mo_catalog         |
+| mysql              |
+| system             |
+| system_metrics     |
++--------------------+
+7 rows in set (0.01 sec)</code></p>
 </li>
 <li>
 <p>Database table level recovery for acc2</p>
@@ -13445,30 +13447,30 @@ pitr3<span class="w"> </span><span class="m">2024</span>-10-28<span class="w"> <
 ./mo_br<span class="w"> </span>pitr<span class="w"> </span>restore<span class="w"> </span>--host<span class="w"> </span><span class="s2">&quot;127.0.0.1&quot;</span><span class="w"> </span>--port<span class="w"> </span><span class="m">6001</span><span class="w"> </span>--user<span class="w"> </span><span class="s2">&quot;acc2#root&quot;</span><span class="w"> </span>--password<span class="w"> </span><span class="s2">&quot;111&quot;</span><span class="w"> </span>--pname<span class="w"> </span><span class="s2">&quot;pitr3&quot;</span><span class="w"> </span>--timestamp<span class="w"> </span><span class="s2">&quot;2024-10-28 17:30: 00&quot;</span><span class="w"> </span>--account<span class="w"> </span><span class="s2">&quot;acc2&quot;</span><span class="w"> </span>--database<span class="w"> </span><span class="s2">&quot;db2&quot;</span><span class="w"> </span>--table<span class="w"> </span><span class="s2">&quot;orders&quot;</span>
 </code></pre></div>
 <p>Connect acc2 query and you can see that the data is successfully restored</p>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="n">databases</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">--------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">Database</span><span class="w">           </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">db1</span><span class="w">                </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">db2</span><span class="w">                </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">information_schema</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">mo_catalog</span><span class="w">         </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">mysql</span><span class="w">              </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="k">system</span><span class="w">             </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">system_metrics</span><span class="w">     </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------------------+</span>
-<span class="mi">7</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">db2</span><span class="p">.</span><span class="n">orders</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------+--------------+----------+---------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">id</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">product_name</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">quantity</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">order_date</span><span class="w">          </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+--------------+----------+---------------------+</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Smartphone</span><span class="w">   </span><span class="o">|</span><span class="w">       </span><span class="mi">10</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">28</span><span class="w"> </span><span class="mi">17</span><span class="p">:</span><span class="mi">11</span><span class="p">:</span><span class="mi">27</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Headphones</span><span class="w">   </span><span class="o">|</span><span class="w">       </span><span class="mi">15</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">28</span><span class="w"> </span><span class="mi">17</span><span class="p">:</span><span class="mi">11</span><span class="p">:</span><span class="mi">27</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Tablet</span><span class="w">       </span><span class="o">|</span><span class="w">        </span><span class="mi">7</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">28</span><span class="w"> </span><span class="mi">17</span><span class="p">:</span><span class="mi">11</span><span class="p">:</span><span class="mi">27</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+--------------+----------+---------------------+</span>
-<span class="mi">3</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+<p>```sql <!-- validator-ignore-exec -->
+mysql&gt; show databases;
++--------------------+
+| Database           |
++--------------------+
+| db1                |
+| db2                |
+| information_schema |
+| mo_catalog         |
+| mysql              |
+| system             |
+| system_metrics     |
++--------------------+
+7 rows in set (0.01 sec)</p>
+<p>mysql&gt; select * from db2.orders;
++------+--------------+----------+---------------------+
+| id   | product_name | quantity | order_date          |
++------+--------------+----------+---------------------+
+|    1 | Smartphone   |       10 | 2024-10-28 17:11:27 |
+|    2 | Headphones   |       15 | 2024-10-28 17:11:27 |
+|    3 | Tablet       |        7 | 2024-10-28 17:11:27 |
++------+--------------+----------+---------------------+
+3 rows in set (0.00 sec)
+```</p>
 </li>
 </ul>
 

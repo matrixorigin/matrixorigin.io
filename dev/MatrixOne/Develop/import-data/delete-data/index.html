@@ -13329,54 +13329,51 @@
 <ul>
 <li>Example 2</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="c1">-- Create table</span>
-<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="p">(</span>
-<span class="w">  </span><span class="n">order_id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
-<span class="w">  </span><span class="n">customer_name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span>
-<span class="w">  </span><span class="n">order_date</span><span class="w"> </span><span class="nb">DATE</span>
-<span class="p">);</span>
-
-<span class="c1">-- Insert data</span>
-<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="p">(</span><span class="n">order_id</span><span class="p">,</span><span class="w"> </span><span class="n">customer_name</span><span class="p">,</span><span class="w"> </span><span class="n">order_date</span><span class="p">)</span>
-<span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;John Doe&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2022-01-01&#39;</span><span class="p">),</span>
-<span class="w">       </span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Jane Smith&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2022-02-01&#39;</span><span class="p">),</span>
-<span class="w">       </span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Mike Johnson&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2022-03-01&#39;</span><span class="p">),</span>
-<span class="w">       </span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Emily Brown&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2022-04-01&#39;</span><span class="p">),</span>
-<span class="w">       </span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;David Wilson&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2022-05-01&#39;</span><span class="p">);</span>
-
-<span class="c1">-- View initial data</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">orders</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">----------+---------------+------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">order_id</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">customer_name</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">order_date</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------+---------------+------------+</span>
-<span class="o">|</span><span class="w">        </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">John</span><span class="w"> </span><span class="n">Doe</span><span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="mi">2022</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">        </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Jane</span><span class="w"> </span><span class="n">Smith</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="mi">2022</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">01</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">        </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Mike</span><span class="w"> </span><span class="n">Johnson</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="mi">2022</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">01</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">        </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Emily</span><span class="w"> </span><span class="n">Brown</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="mi">2022</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">01</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">        </span><span class="mi">5</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">David</span><span class="w"> </span><span class="n">Wilson</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="mi">2022</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">01</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------+---------------+------------+</span>
-<span class="mi">5</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="c1">-- Delete the earliest two orders</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">orders</span>
-<span class="w">       </span><span class="k">WHERE</span><span class="w"> </span><span class="n">order_id</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span>
-<span class="w">       </span><span class="k">SELECT</span><span class="w"> </span><span class="n">order_id</span>
-<span class="w">       </span><span class="k">FROM</span><span class="w"> </span><span class="n">orders</span>
-<span class="w">       </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">order_date</span>
-<span class="w">       </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
-<span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="c1">-- View data after the deletion</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">orders</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">----------+---------------+------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">order_id</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">customer_name</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">order_date</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------+---------------+------------+</span>
-<span class="o">|</span><span class="w">        </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Mike</span><span class="w"> </span><span class="n">Johnson</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="mi">2022</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">01</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">        </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Emily</span><span class="w"> </span><span class="n">Brown</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="mi">2022</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">01</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">        </span><span class="mi">5</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">David</span><span class="w"> </span><span class="n">Wilson</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="mi">2022</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">01</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------+---------------+------------+</span>
-<span class="mi">3</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+<p>```sql <!-- validator-ignore-exec -->
+-- Create table
+CREATE TABLE orders (
+  order_id INT PRIMARY KEY,
+  customer_name VARCHAR(50),
+  order_date DATE
+);</p>
+<p>-- Insert data
+INSERT INTO orders (order_id, customer_name, order_date)
+VALUES (1, 'John Doe', '2022-01-01'),
+       (2, 'Jane Smith', '2022-02-01'),
+       (3, 'Mike Johnson', '2022-03-01'),
+       (4, 'Emily Brown', '2022-04-01'),
+       (5, 'David Wilson', '2022-05-01');</p>
+<p>-- View initial data
+mysql&gt; SELECT * FROM orders;
++----------+---------------+------------+
+| order_id | customer_name | order_date |
++----------+---------------+------------+
+|        1 | John Doe      | 2022-01-01 |
+|        2 | Jane Smith    | 2022-02-01 |
+|        3 | Mike Johnson  | 2022-03-01 |
+|        4 | Emily Brown   | 2022-04-01 |
+|        5 | David Wilson  | 2022-05-01 |
++----------+---------------+------------+
+5 rows in set (0.01 sec)</p>
+<p>-- Delete the earliest two orders
+mysql&gt; DELETE FROM orders
+       WHERE order_id IN (
+       SELECT order_id
+       FROM orders
+       ORDER BY order_date
+       LIMIT 2);
+Query OK, 2 rows affected (0.01 sec)</p>
+<p>-- View data after the deletion
+mysql&gt; SELECT * FROM orders;
++----------+---------------+------------+
+| order_id | customer_name | order_date |
++----------+---------------+------------+
+|        3 | Mike Johnson  | 2022-03-01 |
+|        4 | Emily Brown   | 2022-04-01 |
+|        5 | David Wilson  | 2022-05-01 |
++----------+---------------+------------+
+3 rows in set (0.01 sec)
+```</p>
 
 
 

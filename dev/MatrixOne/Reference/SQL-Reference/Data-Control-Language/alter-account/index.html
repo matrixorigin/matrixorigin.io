@@ -7196,13 +7196,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#examples" class="md-nav__link">
-    Examples
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -13198,13 +13191,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#examples" class="md-nav__link">
-    Examples
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -13265,61 +13251,62 @@ OPEN
 <h3 id="comment">comment</h3>
 <p>Account notes are stored as VARCHAR in the table <em>mo_account</em> in the system database <em>mo_catalog</em>.</p>
 <p><code>COMMENT</code> can be arbitrary quoted text, and the new <code>COMMENT</code> replaces any existing user comments. As follows:</p>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">desc</span><span class="w"> </span><span class="n">mo_catalog</span><span class="p">.</span><span class="n">mo_account</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">----------------+--------------+------+------+---------+-------+---------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">Field</span><span class="w">          </span><span class="o">|</span><span class="w"> </span><span class="k">Type</span><span class="w">         </span><span class="o">|</span><span class="w"> </span><span class="k">Null</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">Key</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="k">Default</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Extra</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">Comment</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------+--------------+------+------+---------+-------+---------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">account_id</span><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="nb">INT</span><span class="w">          </span><span class="o">|</span><span class="w"> </span><span class="n">YES</span><span class="w">  </span><span class="o">|</span><span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w">    </span><span class="o">|</span><span class="w">       </span><span class="o">|</span><span class="w">         </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">account_name</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">300</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">YES</span><span class="w">  </span><span class="o">|</span><span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w">    </span><span class="o">|</span><span class="w">       </span><span class="o">|</span><span class="w">         </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">status</span><span class="w">         </span><span class="o">|</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">300</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">YES</span><span class="w">  </span><span class="o">|</span><span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w">    </span><span class="o">|</span><span class="w">       </span><span class="o">|</span><span class="w">         </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">created_time</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="n">YES</span><span class="w">  </span><span class="o">|</span><span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w">    </span><span class="o">|</span><span class="w">       </span><span class="o">|</span><span class="w">         </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">comments</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">256</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">YES</span><span class="w">  </span><span class="o">|</span><span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w">    </span><span class="o">|</span><span class="w">       </span><span class="o">|</span><span class="w">         </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">suspended_time</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="n">YES</span><span class="w">  </span><span class="o">|</span><span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="k">null</span><span class="w">    </span><span class="o">|</span><span class="w">       </span><span class="o">|</span><span class="w">         </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------+--------------+------+------+---------+-------+---------+</span>
-<span class="mi">6</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">06</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
-<h2 id="examples"><strong>Examples</strong></h2>
-<ul>
-<li>Example 1: Modify the information on the account</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="c1">-- Create a account named &quot;root1&quot; with password &quot;111&quot;</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="n">account</span><span class="w"> </span><span class="n">acc1</span><span class="w"> </span><span class="n">admin_name</span><span class="w"> </span><span class="ss">&quot;root1&quot;</span><span class="w"> </span><span class="n">identified</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="ss">&quot;111&quot;</span><span class="p">;</span>
-<span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">42</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-<span class="c1">-- Change the initial password &quot;111&quot; to &quot;Abcd_1234@1234&quot;</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">alter</span><span class="w"> </span><span class="n">account</span><span class="w"> </span><span class="n">acc1</span><span class="w"> </span><span class="n">admin_name</span><span class="w"> </span><span class="ss">&quot;root1&quot;</span><span class="w"> </span><span class="n">identified</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="ss">&quot;Abcd_1234@1234&quot;</span><span class="p">;</span>
-<span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-<span class="c1">-- Modify the comment for account &quot;root1&quot;</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">alter</span><span class="w"> </span><span class="n">account</span><span class="w"> </span><span class="n">acc1</span><span class="w"> </span><span class="k">comment</span><span class="w"> </span><span class="ss">&quot;new account&quot;</span><span class="p">;</span>
-<span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">02</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-<span class="c1">-- Check to verify that the &quot;new account&quot; comment has been added to the account &quot;root1&quot;</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="n">accounts</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">--------------+------------+---------------------+--------+----------------+----------+-------------+-----------+-------+----------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">account_name</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">admin_name</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">created</span><span class="w">             </span><span class="o">|</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">suspended_time</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">db_count</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">table_count</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">row_count</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">size</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="k">comment</span><span class="w">        </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------------+------------+---------------------+--------+----------------+----------+-------------+-----------+-------+----------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">acc1</span><span class="w">         </span><span class="o">|</span><span class="w"> </span><span class="n">root1</span><span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="mi">2023</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">15</span><span class="w"> </span><span class="mi">06</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mi">51</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">open</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w">           </span><span class="o">|</span><span class="w">        </span><span class="mi">5</span><span class="w"> </span><span class="o">|</span><span class="w">          </span><span class="mi">34</span><span class="w"> </span><span class="o">|</span><span class="w">       </span><span class="mi">787</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="mi">036</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">account</span><span class="w">    </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">sys</span><span class="w">          </span><span class="o">|</span><span class="w"> </span><span class="n">root</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="mi">2023</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">14</span><span class="w"> </span><span class="mi">06</span><span class="p">:</span><span class="mi">58</span><span class="p">:</span><span class="mi">15</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">open</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w">           </span><span class="o">|</span><span class="w">        </span><span class="mi">8</span><span class="w"> </span><span class="o">|</span><span class="w">          </span><span class="mi">57</span><span class="w"> </span><span class="o">|</span><span class="w">      </span><span class="mi">3767</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="mi">599</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">system</span><span class="w"> </span><span class="n">account</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------------+------------+---------------------+--------+----------------+----------+-------------+-----------+-------+----------------+</span>
-<span class="mi">3</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">19</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+<p>```sql <!-- validator-ignore-exec -->
+mysql&gt; desc mo_catalog.mo_account;
++----------------+--------------+------+------+---------+-------+---------+
+| Field          | Type         | Null | Key  | Default | Extra | Comment |
++----------------+--------------+------+------+---------+-------+---------+
+| account_id     | INT          | YES  |      | NULL    |       |         |
+| account_name   | VARCHAR(300) | YES  |      | NULL    |       |         |
+| status         | VARCHAR(300) | YES  |      | NULL    |       |         |
+| created_time   | TIMESTAMP    | YES  |      | NULL    |       |         |
+| comments       | VARCHAR(256) | YES  |      | NULL    |       |         |
+| suspended_time | TIMESTAMP    | YES  |      | null    |       |         |
++----------------+--------------+------+------+---------+-------+---------+
+6 rows in set (0.06 sec)
+<div class="highlight"><pre><span></span><code>## **Examples**
+
+- Example 1: Modify the information on the account
+
+```sql &lt;!-- validator-ignore-exec --&gt;
+-- Create a account named &quot;root1&quot; with password &quot;111&quot;
+mysql&gt; create account acc1 admin_name &quot;root1&quot; identified by &quot;111&quot;;
+Query OK, 0 rows affected (0.42 sec)
+-- Change the initial password &quot;111&quot; to &quot;Abcd_1234@1234&quot;
+mysql&gt; alter account acc1 admin_name &quot;root1&quot; identified by &quot;Abcd_1234@1234&quot;;
+Query OK, 0 rows affected (0.01 sec)
+-- Modify the comment for account &quot;root1&quot;
+mysql&gt; alter account acc1 comment &quot;new account&quot;;
+Query OK, 0 rows affected (0.02 sec)
+-- Check to verify that the &quot;new account&quot; comment has been added to the account &quot;root1&quot;
+mysql&gt; show accounts;
++--------------+------------+---------------------+--------+----------------+----------+-------------+-----------+-------+----------------+
+| account_name | admin_name | created             | status | suspended_time | db_count | table_count | row_count | size  | comment        |
++--------------+------------+---------------------+--------+----------------+----------+-------------+-----------+-------+----------------+
+| acc1         | root1      | 2023-02-15 06:26:51 | open   | NULL           |        5 |          34 |       787 | 0.036 | new account    |
+| sys          | root       | 2023-02-14 06:58:15 | open   | NULL           |        8 |          57 |      3767 | 0.599 | system account |
++--------------+------------+---------------------+--------+----------------+----------+-------------+-----------+-------+----------------+
+3 rows in set (0.19 sec)
+</code></pre></div></p>
 <ul>
 <li>Example 2: Modify the status of the account</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="c1">-- Create a account named &quot;root1&quot; with password &quot;111&quot;</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="n">account</span><span class="w"> </span><span class="n">accx</span><span class="w"> </span><span class="n">admin_name</span><span class="w"> </span><span class="ss">&quot;root1&quot;</span><span class="w"> </span><span class="n">identified</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="ss">&quot;111&quot;</span><span class="p">;</span>
-<span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">27</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-<span class="c1">-- Modify the account status to &quot;suspend&quot;, that is, suspend user access to MatrixOne.</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">alter</span><span class="w"> </span><span class="n">account</span><span class="w"> </span><span class="n">accx</span><span class="w"> </span><span class="n">suspend</span><span class="p">;</span>
-<span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-<span class="c1">-- Check if the modification status is successful.</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="n">accounts</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">--------------+------------+---------------------+---------+---------------------+----------+-------------+-----------+-------+----------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">account_name</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">admin_name</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">created</span><span class="w">             </span><span class="o">|</span><span class="w"> </span><span class="n">status</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">suspended_time</span><span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="n">db_count</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">table_count</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">row_count</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">size</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="k">comment</span><span class="w">        </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------------+------------+---------------------+---------+---------------------+----------+-------------+-----------+-------+----------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">accx</span><span class="w">         </span><span class="o">|</span><span class="w"> </span><span class="n">root1</span><span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="mi">2023</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">15</span><span class="w"> </span><span class="mi">06</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mi">51</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">suspend</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2023</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">15</span><span class="w"> </span><span class="mi">06</span><span class="p">:</span><span class="mi">27</span><span class="p">:</span><span class="mi">15</span><span class="w"> </span><span class="o">|</span><span class="w">        </span><span class="mi">5</span><span class="w"> </span><span class="o">|</span><span class="w">          </span><span class="mi">34</span><span class="w"> </span><span class="o">|</span><span class="w">       </span><span class="mi">787</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="mi">036</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">accout</span><span class="w">     </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">sys</span><span class="w">          </span><span class="o">|</span><span class="w"> </span><span class="n">root</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="mi">2023</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">14</span><span class="w"> </span><span class="mi">06</span><span class="p">:</span><span class="mi">58</span><span class="p">:</span><span class="mi">15</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">open</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w">                </span><span class="o">|</span><span class="w">        </span><span class="mi">8</span><span class="w"> </span><span class="o">|</span><span class="w">          </span><span class="mi">57</span><span class="w"> </span><span class="o">|</span><span class="w">      </span><span class="mi">3767</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="mi">599</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">system</span><span class="w"> </span><span class="n">account</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">--------------+------------+---------------------+---------+---------------------+----------+-------------+-----------+-------+----------------+</span>
-<span class="mi">2</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">15</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+<p><code>sql &lt;!-- validator-ignore-exec --&gt;
+-- Create a account named "root1" with password "111"
+mysql&gt; create account accx admin_name "root1" identified by "111";
+Query OK, 0 rows affected (0.27 sec)
+-- Modify the account status to "suspend", that is, suspend user access to MatrixOne.
+mysql&gt; alter account accx suspend;
+Query OK, 0 rows affected (0.01 sec)
+-- Check if the modification status is successful.
+mysql&gt; show accounts;
++--------------+------------+---------------------+---------+---------------------+----------+-------------+-----------+-------+----------------+
+| account_name | admin_name | created             | status  | suspended_time      | db_count | table_count | row_count | size  | comment        |
++--------------+------------+---------------------+---------+---------------------+----------+-------------+-----------+-------+----------------+
+| accx         | root1      | 2023-02-15 06:26:51 | suspend | 2023-02-15 06:27:15 |        5 |          34 |       787 | 0.036 | new accout     |
+| sys          | root       | 2023-02-14 06:58:15 | open    | NULL                |        8 |          57 |      3767 | 0.599 | system account |
++--------------+------------+---------------------+---------+---------------------+----------+-------------+-----------+-------+----------------+
+2 rows in set (0.15 sec)</code></p>
 
 
 

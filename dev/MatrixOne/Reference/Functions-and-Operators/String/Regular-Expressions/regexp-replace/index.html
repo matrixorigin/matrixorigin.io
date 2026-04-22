@@ -13213,22 +13213,22 @@
 </li>
 </ul>
 <h2 id="examples"><strong>Examples</strong></h2>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">REGEXP_REPLACE</span><span class="p">(</span><span class="s1">&#39;Hello, World!&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;World&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Universe&#39;</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">regexp_replace</span><span class="p">(</span><span class="n">Hello</span><span class="p">,</span><span class="w"> </span><span class="n">World</span><span class="o">!</span><span class="p">,</span><span class="w"> </span><span class="n">World</span><span class="p">,</span><span class="w"> </span><span class="n">Universe</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">Hello</span><span class="p">,</span><span class="w"> </span><span class="n">Universe</span><span class="o">!</span><span class="w">                               </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">REGEXP_REPLACE</span><span class="p">(</span><span class="s1">&#39;Cat Dog Cat Dog Cat&#39;</span><span class="p">,</span><span class="s1">&#39;Cat&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Tiger&#39;</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39;Result&#39;</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">---------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">Result</span><span class="w">                    </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">Tiger</span><span class="w"> </span><span class="n">Dog</span><span class="w"> </span><span class="n">Tiger</span><span class="w"> </span><span class="n">Dog</span><span class="w"> </span><span class="n">Tiger</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+<p>```SQL <!-- validator-ignore-exec -->
+mysql&gt; SELECT REGEXP_REPLACE('Hello, World!', 'World', 'Universe');
++------------------------------------------------+
+| regexp_replace(Hello, World!, World, Universe) |
++------------------------------------------------+
+| Hello, Universe!                               |
++------------------------------------------------+
+1 row in set (0.00 sec)</p>
+<p>mysql&gt; SELECT REGEXP_REPLACE('Cat Dog Cat Dog Cat','Cat', 'Tiger') 'Result';
++---------------------------+
+| Result                    |
++---------------------------+
+| Tiger Dog Tiger Dog Tiger |
++---------------------------+
+1 row in set (0.01 sec)
+```</p>
 
 
 

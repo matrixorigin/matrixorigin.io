@@ -13264,9 +13264,11 @@
 </ul>
 <h2 id="workflow">Workflow</h2>
 <h3 id="create-pitr">Create PITR</h3>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="n">pitr</span><span class="w"> </span><span class="n">pitr1</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">account</span><span class="w"> </span><span class="n">range</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="ss">&quot;h&quot;</span><span class="p">;</span>
 </code></pre></div>
 <h3 id="create-table-and-insert-data-on-source">Create Table and Insert Data on Source</h3>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n">source_db</span><span class="p">;</span>
 <span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">source_db</span><span class="p">.</span><span class="n">orders</span><span class="w"> </span><span class="p">(</span>
 <span class="w">    </span><span class="n">order_id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
@@ -13283,6 +13285,7 @@
 <span class="w"> </span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">105</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2024-05-12 14:00:00&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">49</span><span class="p">.</span><span class="mi">99</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Delivered&#39;</span><span class="p">);</span>
 </code></pre></div>
 <h3 id="create-downstream-database">Create Downstream Database</h3>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n">analytics_db</span><span class="p">;</span>
 </code></pre></div>
 <h3 id="create-mo_cdc-synchronization-task">Create <code>mo_cdc</code> Synchronization Task</h3>
@@ -13313,6 +13316,7 @@
 <span class="o">]</span>
 </code></pre></div>
 <p>Connect to the downstream MySQL to verify full data synchronization.</p>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">analytics_db</span><span class="p">.</span><span class="n">orders_backup</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">----------+-------------+---------------------+--------+------------+</span>
 <span class="o">|</span><span class="w"> </span><span class="n">order_id</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">customer_id</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">order_date</span><span class="w">          </span><span class="o">|</span><span class="w"> </span><span class="n">amount</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">status</span><span class="w">     </span><span class="o">|</span>
@@ -13327,6 +13331,7 @@
 </code></pre></div>
 <h3 id="incremental-synchronization-task">Incremental Synchronization Task</h3>
 <p>After the task is established, perform data changes in the upstream MatrixOne.</p>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">source_db</span><span class="p">.</span><span class="n">orders</span><span class="w"> </span><span class="p">(</span><span class="n">order_id</span><span class="p">,</span><span class="w"> </span><span class="n">customer_id</span><span class="p">,</span><span class="w"> </span><span class="n">order_date</span><span class="p">,</span><span class="w"> </span><span class="n">amount</span><span class="p">,</span><span class="w"> </span><span class="n">status</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span>
 <span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">106</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2024-10-29 12:00:00&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">150</span><span class="p">.</span><span class="mi">00</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;New&#39;</span><span class="p">);</span>
 <span class="k">DELETE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">source_db</span><span class="p">.</span><span class="n">orders</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">order_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">6</span><span class="p">;</span>
@@ -13345,6 +13350,7 @@
 <span class="mi">5</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
 </code></pre></div>
 <p>Connect to the downstream MySQL to verify incremental data synchronization.</p>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">analytics_db</span><span class="p">.</span><span class="n">orders_backup</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">----------+-------------+---------------------+--------+------------+</span>
 <span class="o">|</span><span class="w"> </span><span class="n">order_id</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">customer_id</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">order_date</span><span class="w">          </span><span class="o">|</span><span class="w"> </span><span class="n">amount</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">status</span><span class="w">     </span><span class="o">|</span>
@@ -13364,6 +13370,7 @@
 <span class="w">    </span>--source-uri<span class="w"> </span><span class="s2">&quot;mysql://root:111@127.0.0.1:6001&quot;</span>
 </code></pre></div>
 <p>During the task interruption, continue inserting data into the upstream MatrixOne.</p>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">source_db</span><span class="p">.</span><span class="n">orders</span><span class="w"> </span><span class="p">(</span><span class="n">order_id</span><span class="p">,</span><span class="w"> </span><span class="n">customer_id</span><span class="p">,</span><span class="w"> </span><span class="n">order_date</span><span class="p">,</span><span class="w"> </span><span class="n">amount</span><span class="p">,</span><span class="w"> </span><span class="n">status</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span>
 <span class="p">(</span><span class="mi">11</span><span class="p">,</span><span class="w"> </span><span class="mi">111</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2024-06-15 08:30:00&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">250</span><span class="p">.</span><span class="mi">75</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Processing&#39;</span><span class="p">);</span>
 <span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">source_db</span><span class="p">.</span><span class="n">orders</span><span class="w"> </span><span class="p">(</span><span class="n">order_id</span><span class="p">,</span><span class="w"> </span><span class="n">customer_id</span><span class="p">,</span><span class="w"> </span><span class="n">order_date</span><span class="p">,</span><span class="w"> </span><span class="n">amount</span><span class="p">,</span><span class="w"> </span><span class="n">status</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span>
@@ -13392,6 +13399,7 @@
 <span class="w">    </span>--source-uri<span class="w"> </span><span class="s2">&quot;mysql://root:111@127.0.0.1:6001&quot;</span>
 </code></pre></div>
 <p>Connect to the downstream MySQL to verify checkpoint recovery.</p>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">analytics_db</span><span class="p">.</span><span class="n">orders_backup</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">----------+-------------+---------------------+--------+------------+</span>
 <span class="o">|</span><span class="w"> </span><span class="n">order_id</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">customer_id</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">order_date</span><span class="w">          </span><span class="o">|</span><span class="w"> </span><span class="n">amount</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">status</span><span class="w">     </span><span class="o">|</span>

@@ -13218,35 +13218,38 @@
 <p><font size=3>The execution result of <code>ANY_VALUE</code> is uncertain. The same input may produce different execution results.</font></p>
 </div>
 <h2 id="examples"><strong>Examples</strong></h2>
-<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="p">(</span>
-<span class="w">    </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span>
-<span class="w">    </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span>
-<span class="w">    </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">c</span><span class="w"> </span><span class="nb">int</span>
-<span class="w">    </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">);</span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t2</span><span class="p">(</span>
-<span class="w">    </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span>
-<span class="w">    </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span>
-<span class="w">    </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">c</span><span class="w"> </span><span class="nb">int</span>
-<span class="w">    </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">);</span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">34</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">14</span><span class="p">);</span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="o">-</span><span class="mi">45</span><span class="p">);</span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">ANY_VALUE</span><span class="p">(</span><span class="n">t1</span><span class="p">.</span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">left</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">t1</span><span class="p">.</span><span class="k">c</span><span class="o">=</span><span class="n">t1</span><span class="p">.</span><span class="n">b</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">t1</span><span class="p">.</span><span class="n">a</span><span class="o">=</span><span class="n">t1</span><span class="p">.</span><span class="k">c</span><span class="w"> </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">t1</span><span class="p">.</span><span class="n">a</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">-----------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">any_value</span><span class="p">(</span><span class="n">t1</span><span class="p">.</span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-----------------+</span>
-<span class="o">|</span><span class="w">              </span><span class="mi">10</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">              </span><span class="mi">20</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-----------------+</span>
-<span class="mi">2</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="mi">3</span><span class="o">+</span><span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="n">ANY_VALUE</span><span class="p">(</span><span class="n">t1</span><span class="p">.</span><span class="n">b</span><span class="p">))</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">left</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">t1</span><span class="p">.</span><span class="k">c</span><span class="o">=</span><span class="n">t1</span><span class="p">.</span><span class="n">b</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">t1</span><span class="p">.</span><span class="n">a</span><span class="o">=</span><span class="n">t1</span><span class="p">.</span><span class="k">c</span><span class="w"> </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">t1</span><span class="p">.</span><span class="n">a</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">---------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="mi">5</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">any_value</span><span class="p">(</span><span class="n">t1</span><span class="p">.</span><span class="n">b</span><span class="p">))</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------------------------+</span>
-<span class="o">|</span><span class="w">                        </span><span class="mi">53</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">                       </span><span class="mi">103</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------------------------+</span>
-<span class="mi">2</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+<p>```sql <!-- validator-ignore-exec --></p>
+<blockquote>
+<p>create table t1(
+    -&gt; a int,
+    -&gt; b int,
+    -&gt; c int
+    -&gt; );
+create table t2(
+    -&gt; a int,
+    -&gt; b int,
+    -&gt; c int
+    -&gt; );
+insert into t1 values(1,10,34),(2,20,14);
+insert into t2 values(1,-10,-45);
+select ANY_VALUE(t1.b) from t1 left join t2 on t1.c=t1.b and t1.a=t1.c group by t1.a;
++-----------------+
+| any_value(t1.b) |
++-----------------+
+|              10 |
+|              20 |
++-----------------+
+2 rows in set (0.01 sec)
+select 3+(5*ANY_VALUE(t1.b)) from t1 left join t2 on t1.c=t1.b and t1.a=t1.c group by t1.a;
++---------------------------+
+| 3 + (5 * any_value(t1.b)) |
++---------------------------+
+|                        53 |
+|                       103 |
++---------------------------+
+2 rows in set (0.00 sec)
+```</p>
+</blockquote>
 
 
 

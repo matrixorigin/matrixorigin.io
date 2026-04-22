@@ -13199,38 +13199,36 @@
 </tbody>
 </table>
 <h2 id="examples">Examples</h2>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">now</span><span class="p">();</span>
-<span class="o">+</span><span class="c1">----------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">now</span><span class="p">()</span><span class="w">                      </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">29</span><span class="w"> </span><span class="mi">08</span><span class="p">:</span><span class="mi">03</span><span class="p">:</span><span class="mi">50</span><span class="p">.</span><span class="mi">479238</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">03</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">now</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">----------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">now</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="w">                     </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">29</span><span class="w"> </span><span class="mi">08</span><span class="p">:</span><span class="mi">05</span><span class="p">:</span><span class="mi">26</span><span class="p">.</span><span class="mi">528629</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">02</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">NOW</span><span class="p">(),</span><span class="w"> </span><span class="n">SLEEP</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="n">NOW</span><span class="p">();</span>
-<span class="o">+</span><span class="c1">----------------------------+----------+----------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">now</span><span class="p">()</span><span class="w">                      </span><span class="o">|</span><span class="w"> </span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">now</span><span class="p">()</span><span class="w">                      </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------------------+----------+----------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">29</span><span class="w"> </span><span class="mi">08</span><span class="p">:</span><span class="mi">17</span><span class="p">:</span><span class="mi">23</span><span class="p">.</span><span class="mi">876546</span><span class="w"> </span><span class="o">|</span><span class="w">        </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">29</span><span class="w"> </span><span class="mi">08</span><span class="p">:</span><span class="mi">17</span><span class="p">:</span><span class="mi">23</span><span class="p">.</span><span class="mi">876546</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------------------+----------+----------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">.</span><span class="mi">06</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">SYSDATE</span><span class="p">(),</span><span class="w"> </span><span class="n">SLEEP</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="n">SYSDATE</span><span class="p">();</span>
-<span class="o">+</span><span class="c1">----------------------------+----------+----------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">sysdate</span><span class="p">()</span><span class="w">                  </span><span class="o">|</span><span class="w"> </span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">sysdate</span><span class="p">()</span><span class="w">                  </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------------------+----------+----------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">29</span><span class="w"> </span><span class="mi">16</span><span class="p">:</span><span class="mi">19</span><span class="p">:</span><span class="mi">21</span><span class="p">.</span><span class="mi">439725</span><span class="w"> </span><span class="o">|</span><span class="w">        </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">29</span><span class="w"> </span><span class="mi">16</span><span class="p">:</span><span class="mi">19</span><span class="p">:</span><span class="mi">23</span><span class="p">.</span><span class="mi">440187</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------------------+----------+----------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+<p>```sql <!-- validator-ignore-exec -->
+mysql&gt; select now();
++----------------------------+
+| now()                      |
++----------------------------+
+| 2024-04-29 08:03:50.479238 |
++----------------------------+
+1 row in set (0.03 sec)</p>
+<p>mysql&gt; select now(6);
++----------------------------+
+| now(6)                     |
++----------------------------+
+| 2024-04-29 08:05:26.528629 |
++----------------------------+
+1 row in set (0.02 sec)</p>
+<p>mysql&gt; SELECT NOW(), SLEEP(2), NOW();
++----------------------------+----------+----------------------------+
+| now()                      | sleep(2) | now()                      |
++----------------------------+----------+----------------------------+
+| 2024-04-29 08:17:23.876546 |        0 | 2024-04-29 08:17:23.876546 |
++----------------------------+----------+----------------------------+
+1 row in set (2.06 sec)</p>
+<p>mysql&gt; SELECT SYSDATE(), SLEEP(2), SYSDATE();
++----------------------------+----------+----------------------------+
+| sysdate()                  | sleep(2) | sysdate()                  |
++----------------------------+----------+----------------------------+
+| 2024-04-29 16:19:21.439725 |        0 | 2024-04-29 16:19:23.440187 |
++----------------------------+----------+----------------------------+
+1 row in set (2.01 sec)
+```</p>
 
 
 

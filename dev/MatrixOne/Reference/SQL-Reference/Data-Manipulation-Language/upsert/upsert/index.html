@@ -13180,14 +13180,17 @@
 <h2 id="what-is-upsert-in-sql">What is Upsert in SQL?</h2>
 <p><code>UPSERT</code> is one of the basic functions of a database management system to manage a database. It is a combination of <code>UPDATE</code> and <code>INSERT</code> that allows the database operation language to insert a new piece of data into a table or update existing data. An <code>INSERT</code> operation is triggered when a <code>UPSERT</code> operation is a new piece of data, and <code>UPSERT is</code> similar to the <code>UPDATE</code> statement if the record already exists in the table.</p>
 <p>For example, we have a <code>student</code> table with the <code>id</code> column as the primary key:</p>
-<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="k">desc</span><span class="w"> </span><span class="n">student</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">-------+-------------+------+------+---------+-------+---------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">Field</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">Type</span><span class="w">        </span><span class="o">|</span><span class="w"> </span><span class="k">Null</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">Key</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="k">Default</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Extra</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">Comment</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+-------------+------+------+---------+-------+---------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">id</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="nb">INT</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="k">NO</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">PRI</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w">    </span><span class="o">|</span><span class="w">       </span><span class="o">|</span><span class="w">         </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">name</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">YES</span><span class="w">  </span><span class="o">|</span><span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w">    </span><span class="o">|</span><span class="w">       </span><span class="o">|</span><span class="w">         </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+-------------+------+------+---------+-------+---------+</span>
-</code></pre></div>
+<p>```sql <!-- validator-ignore-exec --></p>
+<blockquote>
+<p>desc student;
++-------+-------------+------+------+---------+-------+---------+
+| Field | Type        | Null | Key  | Default | Extra | Comment |
++-------+-------------+------+------+---------+-------+---------+
+| id    | INT(32)     | NO   | PRI  | NULL    |       |         |
+| name  | VARCHAR(50) | YES  |      | NULL    |       |         |
++-------+-------------+------+------+---------+-------+---------+
+```</p>
+</blockquote>
 <p>We can use <code>upsert</code> when changing student information in this table. The logic goes like this:</p>
 <ul>
 <li>

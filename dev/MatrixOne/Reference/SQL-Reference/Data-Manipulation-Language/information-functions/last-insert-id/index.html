@@ -6582,20 +6582,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#syntax" class="md-nav__link">
-    Syntax
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#examples" class="md-nav__link">
-    Examples
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -13125,20 +13111,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#syntax" class="md-nav__link">
-    Syntax
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#examples" class="md-nav__link">
-    Examples
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -13168,95 +13140,94 @@
 <p>When the argument is <code>NULL</code>, <code>LAST_INSERT_ID()</code> returns a value representing the first automatically generated value successfully inserted for an <code>AUTO_INCREMENT</code> column as a result of the most recently executed <code>INSERT</code> statement; if you haven't inserted a column before, then the return value start at 1, and if you've inserted a column before, then the return value of the <code>AUTO_INCREMENT</code> column increases by 1.</p>
 <p>The value of <code>LAST_INSERT_ID()</code> remains unchanged if no rows are successfully inserted.</p>
 <p>In MySQL, if you insert multiple rows using a single INSERT statement, LAST_INSERT_ID() returns the value generated for the first inserted row only. For example:</p>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">);</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="k">NULL</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Bob&#39;</span><span class="p">);</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">----+------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----+------+</span>
-<span class="o">|</span><span class="w">  </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Bob</span><span class="w">  </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----+------+</span>
+<p>```sql <!-- validator-ignore-exec -->
+mysql&gt; CREATE TABLE t (id INT AUTO_INCREMENT NOT NULL PRIMARY KEY, name VARCHAR(10) NOT NULL);
+mysql&gt; INSERT INTO t VALUES (NULL, 'Bob');
+mysql&gt; SELECT * FROM t;
++----+------+
+| id | name |
++----+------+
+|  1 | Bob  |
++----+------+</p>
+<p>mysql&gt; SELECT LAST_INSERT_ID();
++------------------+
+| LAST_INSERT_ID() |
++------------------+
+|                1 |
++------------------+</p>
+<p>mysql&gt; INSERT INTO t VALUES (NULL, 'Mary'), (NULL, 'Jane'), (NULL, 'Lisa');</p>
+<p>mysql&gt; SELECT * FROM t;
++----+------+
+| id | name |
++----+------+
+|  1 | Bob  |
+|  2 | Mary |
+|  3 | Jane |
+|  4 | Lisa |
++----+------+</p>
+<p>mysql&gt; SELECT LAST_INSERT_ID();
++------------------+
+| LAST_INSERT_ID() |
++------------------+
+|                2 |
++------------------+
+<div class="highlight"><pre><span></span><code>But in MatrixOne, we have a different behavior; if you insert multiple rows using a single INSERT statement, LAST_INSERT_ID() returns the value generated for the last inserted row. Like the example above, when you execute `INSERT INTO t VALUES (NULL, &#39;Mary&#39;), (NULL, &#39;Jane&#39;), (NULL, &#39;Lisa&#39;);`, the `LAST_INSERT_ID()` will return 4.
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">LAST_INSERT_ID</span><span class="p">();</span>
-<span class="o">+</span><span class="c1">------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">LAST_INSERT_ID</span><span class="p">()</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------+</span>
-<span class="o">|</span><span class="w">                </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------+</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="k">NULL</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Mary&#39;</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="k">NULL</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Jane&#39;</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="k">NULL</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Lisa&#39;</span><span class="p">);</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">----+------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----+------+</span>
-<span class="o">|</span><span class="w">  </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Bob</span><span class="w">  </span><span class="o">|</span>
-<span class="o">|</span><span class="w">  </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Mary</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">  </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Jane</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">  </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Lisa</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----+------+</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">LAST_INSERT_ID</span><span class="p">();</span>
-<span class="o">+</span><span class="c1">------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">LAST_INSERT_ID</span><span class="p">()</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------+</span>
-<span class="o">|</span><span class="w">                </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------+</span>
+## **Syntax**
 </code></pre></div>
-<p>But in MatrixOne, we have a different behavior; if you insert multiple rows using a single INSERT statement, LAST_INSERT_ID() returns the value generated for the last inserted row. Like the example above, when you execute <code>INSERT INTO t VALUES (NULL, 'Mary'), (NULL, 'Jane'), (NULL, 'Lisa');</code>, the <code>LAST_INSERT_ID()</code> will return 4.</p>
-<h2 id="syntax"><strong>Syntax</strong></h2>
-<div class="highlight"><pre><span></span><code>LAST_INSERT_ID(), LAST_INSERT_ID(expr)
-</code></pre></div>
-<h2 id="examples"><strong>Examples</strong></h2>
-<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="n">auto_increment</span><span class="w"> </span><span class="k">primary</span><span class="w"> </span><span class="k">key</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="p">();</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">last_insert_id</span><span class="p">();</span>
-<span class="o">+</span><span class="c1">------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">last_insert_id</span><span class="p">()</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------+</span>
-<span class="o">|</span><span class="w">                </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">02</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+LAST_INSERT_ID(), LAST_INSERT_ID(expr)
+<div class="highlight"><pre><span></span><code>## **Examples**
 
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">11</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="p">();</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">last_insert_id</span><span class="p">();</span>
-<span class="o">+</span><span class="c1">------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">last_insert_id</span><span class="p">()</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------+</span>
-<span class="o">|</span><span class="w">               </span><span class="mi">12</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">02</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+```sql
+create table t1(a int auto_increment primary key);
+insert into t1 values();
+mysql&gt; select last_insert_id();
++------------------+
+| last_insert_id() |
++------------------+
+|                1 |
++------------------+
+1 row in set (0.02 sec)
 
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="k">null</span><span class="p">);</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">last_insert_id</span><span class="p">();</span>
-<span class="o">+</span><span class="c1">------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">last_insert_id</span><span class="p">()</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------+</span>
-<span class="o">|</span><span class="w">               </span><span class="mi">13</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">02</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+insert into t1 values(11);
+insert into t1 values();
+mysql&gt; select last_insert_id();
++------------------+
+| last_insert_id() |
++------------------+
+|               12 |
++------------------+
+1 row in set (0.02 sec)
 
-<span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t2</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="n">auto_increment</span><span class="w"> </span><span class="k">primary</span><span class="w"> </span><span class="k">key</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="k">values</span><span class="p">();</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">last_insert_id</span><span class="p">();</span>
-<span class="o">+</span><span class="c1">------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">last_insert_id</span><span class="p">()</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------+</span>
-<span class="o">|</span><span class="w">                </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">02</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+insert into t1 values(null);
+mysql&gt; select last_insert_id();
++------------------+
+| last_insert_id() |
++------------------+
+|               13 |
++------------------+
+1 row in set (0.02 sec)
 
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="k">values</span><span class="p">();</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">last_insert_id</span><span class="p">();</span>
-<span class="o">+</span><span class="c1">------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">last_insert_id</span><span class="p">()</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------+</span>
-<span class="o">|</span><span class="w">              </span><span class="mi">101</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">02</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+create table t2(a int auto_increment primary key);
+insert into t2 values();
+mysql&gt; select last_insert_id();
++------------------+
+| last_insert_id() |
++------------------+
+|                1 |
++------------------+
+1 row in set (0.02 sec)
+
+insert into t2 values(100);
+insert into t2 values();
+mysql&gt; select last_insert_id();
++------------------+
+| last_insert_id() |
++------------------+
+|              101 |
++------------------+
+1 row in set (0.02 sec)
+</code></pre></div></p>
 
 
 

@@ -2578,13 +2578,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#query-examples" class="md-nav__link">
-    Query Examples
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -13319,13 +13312,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#query-examples" class="md-nav__link">
-    Query Examples
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -13515,53 +13501,51 @@
 </table>
 <h2 id="complete-example">Complete Example</h2>
 <h3 id="setup">Setup</h3>
-<div class="highlight"><pre><span></span><code><span class="c1">-- Enable IVF index feature</span>
-<span class="k">SET</span><span class="w"> </span><span class="k">GLOBAL</span><span class="w"> </span><span class="n">experimental_ivf_index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<p>```sql <!-- validator-ignore-exec -->
+-- Enable IVF index feature
+SET GLOBAL experimental_ivf_index = 1;</p>
+<p>-- Create table with vector column
+CREATE TABLE products (
+    id BIGINT PRIMARY KEY,
+    name VARCHAR(200),
+    embedding VECF32(4)
+);</p>
+<p>-- Insert sample data
+INSERT INTO products VALUES (1, 'Product A', '[0.1, 0.2, 0.3, 0.4]');
+INSERT INTO products VALUES (2, 'Product B', '[0.5, 0.6, 0.7, 0.8]');
+INSERT INTO products VALUES (3, 'Product C', '[0.2, 0.3, 0.4, 0.5]');
+INSERT INTO products VALUES (4, 'Product D', '[0.9, 0.8, 0.7, 0.6]');
+INSERT INTO products VALUES (5, 'Product E', '[0.3, 0.4, 0.5, 0.6]');</p>
+<p>-- Create IVF index
+CREATE INDEX idx_products_embedding 
+USING IVFFLAT ON products(embedding) 
+LISTS=2 OP_TYPE "vector_l2_ops";</p>
+<p>-- Set probe limit for query
+SET @PROBE_LIMIT = 1;
+<div class="highlight"><pre><span></span><code>### Query Examples
 
-<span class="c1">-- Create table with vector column</span>
-<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">products</span><span class="w"> </span><span class="p">(</span>
-<span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="nb">BIGINT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
-<span class="w">    </span><span class="n">name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">200</span><span class="p">),</span>
-<span class="w">    </span><span class="n">embedding</span><span class="w"> </span><span class="n">VECF32</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
-<span class="p">);</span>
+```sql
+-- Fast approximate search (pre-ranking)
+SELECT id, name, l2_distance(embedding, &#39;[0.1, 0.2, 0.3, 0.4]&#39;) AS distance
+FROM products
+ORDER BY l2_distance(embedding, &#39;[0.1, 0.2, 0.3, 0.4]&#39;) ASC
+LIMIT 3
+BY RANK WITH OPTION &#39;mode = pre&#39;;
 
-<span class="c1">-- Insert sample data</span>
-<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">products</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Product A&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;[0.1, 0.2, 0.3, 0.4]&#39;</span><span class="p">);</span>
-<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">products</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Product B&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;[0.5, 0.6, 0.7, 0.8]&#39;</span><span class="p">);</span>
-<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">products</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Product C&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;[0.2, 0.3, 0.4, 0.5]&#39;</span><span class="p">);</span>
-<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">products</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Product D&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;[0.9, 0.8, 0.7, 0.6]&#39;</span><span class="p">);</span>
-<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">products</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Product E&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;[0.3, 0.4, 0.5, 0.6]&#39;</span><span class="p">);</span>
+-- Guaranteed index usage (force mode)
+SELECT id, name, l2_distance(embedding, &#39;[0.1, 0.2, 0.3, 0.4]&#39;) AS distance
+FROM products
+ORDER BY l2_distance(embedding, &#39;[0.1, 0.2, 0.3, 0.4]&#39;) ASC
+LIMIT 3
+BY RANK WITH OPTION &#39;mode = force&#39;;
 
-<span class="c1">-- Create IVF index</span>
-<span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_products_embedding</span><span class="w"> </span>
-<span class="k">USING</span><span class="w"> </span><span class="n">IVFFLAT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">products</span><span class="p">(</span><span class="n">embedding</span><span class="p">)</span><span class="w"> </span>
-<span class="n">LISTS</span><span class="o">=</span><span class="mi">2</span><span class="w"> </span><span class="n">OP_TYPE</span><span class="w"> </span><span class="ss">&quot;vector_l2_ops&quot;</span><span class="p">;</span>
-
-<span class="c1">-- Set probe limit for query</span>
-<span class="k">SET</span><span class="w"> </span><span class="o">@</span><span class="n">PROBE_LIMIT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
-</code></pre></div>
-<h3 id="query-examples">Query Examples</h3>
-<div class="highlight"><pre><span></span><code><span class="c1">-- Fast approximate search (pre-ranking)</span>
-<span class="k">SELECT</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">l2_distance</span><span class="p">(</span><span class="n">embedding</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;[0.1, 0.2, 0.3, 0.4]&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">distance</span>
-<span class="k">FROM</span><span class="w"> </span><span class="n">products</span>
-<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">l2_distance</span><span class="p">(</span><span class="n">embedding</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;[0.1, 0.2, 0.3, 0.4]&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">ASC</span>
-<span class="k">LIMIT</span><span class="w"> </span><span class="mi">3</span>
-<span class="k">BY</span><span class="w"> </span><span class="n">RANK</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">OPTION</span><span class="w"> </span><span class="s1">&#39;mode = pre&#39;</span><span class="p">;</span>
-
-<span class="c1">-- Guaranteed index usage (force mode)</span>
-<span class="k">SELECT</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">l2_distance</span><span class="p">(</span><span class="n">embedding</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;[0.1, 0.2, 0.3, 0.4]&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">distance</span>
-<span class="k">FROM</span><span class="w"> </span><span class="n">products</span>
-<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">l2_distance</span><span class="p">(</span><span class="n">embedding</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;[0.1, 0.2, 0.3, 0.4]&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">ASC</span>
-<span class="k">LIMIT</span><span class="w"> </span><span class="mi">3</span>
-<span class="k">BY</span><span class="w"> </span><span class="n">RANK</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">OPTION</span><span class="w"> </span><span class="s1">&#39;mode = force&#39;</span><span class="p">;</span>
-
-<span class="c1">-- High-accuracy search (post-ranking)</span>
-<span class="k">SELECT</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">l2_distance</span><span class="p">(</span><span class="n">embedding</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;[0.1, 0.2, 0.3, 0.4]&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">distance</span>
-<span class="k">FROM</span><span class="w"> </span><span class="n">products</span>
-<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">l2_distance</span><span class="p">(</span><span class="n">embedding</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;[0.1, 0.2, 0.3, 0.4]&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">ASC</span>
-<span class="k">LIMIT</span><span class="w"> </span><span class="mi">3</span>
-<span class="k">BY</span><span class="w"> </span><span class="n">RANK</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">OPTION</span><span class="w"> </span><span class="s1">&#39;mode = post&#39;</span><span class="p">;</span>
-</code></pre></div>
+-- High-accuracy search (post-ranking)
+SELECT id, name, l2_distance(embedding, &#39;[0.1, 0.2, 0.3, 0.4]&#39;) AS distance
+FROM products
+ORDER BY l2_distance(embedding, &#39;[0.1, 0.2, 0.3, 0.4]&#39;) ASC
+LIMIT 3
+BY RANK WITH OPTION &#39;mode = post&#39;;
+</code></pre></div></p>
 <h2 id="best-practices">Best Practices</h2>
 <h3 id="choosing-the-right-mode">Choosing the Right Mode</h3>
 <ol>

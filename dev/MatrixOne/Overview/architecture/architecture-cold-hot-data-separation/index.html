@@ -735,13 +735,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#cache-replacement" class="md-nav__link">
-    Cache Replacement
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#query-preheating" class="md-nav__link">
     Query Preheating
   </a>
@@ -13171,13 +13164,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#cache-replacement" class="md-nav__link">
-    Cache Replacement
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#query-preheating" class="md-nav__link">
     Query Preheating
   </a>
@@ -13227,26 +13213,26 @@
 <ol>
 <li>
 <p>Prepare a table named <code>pe</code> and the corresponding CSV data. This CSV data table is 35.8MB, with 1,048,575 rows of data. We will use the following SQL statement to create two databases and load the same data table into the <code>pe</code> table in both databases.</p>
-<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n">stock</span><span class="p">;</span>
-<span class="k">drop</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="n">stock</span><span class="p">.</span><span class="n">pe</span><span class="p">;</span>
-<span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">stock</span><span class="p">.</span><span class="n">pe</span><span class="w"> </span><span class="p">(</span>
-<span class="n">ts_code</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">null</span><span class="p">,</span>
-<span class="n">trade_date</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">null</span><span class="p">,</span>
-<span class="n">pe</span><span class="w"> </span><span class="nb">FLOAT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">null</span><span class="p">,</span>
-<span class="n">pb</span><span class="w"> </span><span class="nb">FLOAT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">null</span>
-<span class="p">);</span>
-<span class="k">load</span><span class="w"> </span><span class="k">data</span><span class="w"> </span><span class="k">local</span><span class="w"> </span><span class="n">infile</span><span class="w"> </span><span class="s1">&#39;/XXX/pe.csv&#39;</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">stock</span><span class="p">.</span><span class="n">pe</span><span class="w"> </span><span class="n">fields</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;\t&#39;</span><span class="p">;</span>
-
-<span class="k">create</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n">stock2</span><span class="p">;</span>
-<span class="k">drop</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="n">stock2</span><span class="p">.</span><span class="n">pe</span><span class="p">;</span>
-<span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">stock2</span><span class="p">.</span><span class="n">pe</span><span class="w"> </span><span class="p">(</span>
-<span class="n">ts_code</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">null</span><span class="p">,</span>
-<span class="n">trade_date</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">null</span><span class="p">,</span>
-<span class="n">pe</span><span class="w"> </span><span class="nb">FLOAT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">null</span><span class="p">,</span>
-<span class="n">pb</span><span class="w"> </span><span class="nb">FLOAT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">null</span>
-<span class="p">);</span>
-<span class="k">load</span><span class="w"> </span><span class="k">data</span><span class="w"> </span><span class="k">local</span><span class="w"> </span><span class="n">infile</span><span class="w"> </span><span class="s1">&#39;/XXX/pe.csv&#39;</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">stock</span><span class="p">.</span><span class="n">pe</span><span class="w"> </span><span class="n">fields</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;\t&#39;</span><span class="p">;</span>
-</code></pre></div>
+<p>```sql <!-- validator-ignore -->
+create database stock;
+drop table if exists stock.pe;
+create table stock.pe (
+ts_code VARCHAR(255) DEFAULT null,
+trade_date VARCHAR(255) DEFAULT null,
+pe FLOAT DEFAULT null,
+pb FLOAT DEFAULT null
+);
+load data local infile '/XXX/pe.csv' into table stock.pe fields TERMINATED BY '\t';</p>
+<p>create database stock2;
+drop table if exists stock2.pe;
+create table stock2.pe (
+ts_code VARCHAR(255) DEFAULT null,
+trade_date VARCHAR(255) DEFAULT null,
+pe FLOAT DEFAULT null,
+pb FLOAT DEFAULT null
+);
+load data local infile '/XXX/pe.csv' into table stock.pe fields TERMINATED BY '\t';
+```</p>
 </li>
 <li>
 <p>Next, perform the corresponding cache configuration. In the cluster yaml settings of MatrixOne, TN, Log Service, and CN all have cache-related settings. However, you only need to focus on the CN cache directly related to the query, and the primary cache size is managed by <code>memoryCacheSize</code> and <code>diskCacheSize</code>.</p>
@@ -13278,80 +13264,83 @@
 </code></pre></div>
 <h3 id="query-acceleration">Query Acceleration</h3>
 <p>After completing the above settings and starting the MatrixOne cluster, you can experience the effect of cache acceleration through the results of multiple queries. Here, you can run a full table scan of <code>stock.pe</code> multiple times in a row.</p>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">stock</span><span class="p">.</span><span class="n">pe</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">outfile</span><span class="w"> </span><span class="ss">&quot;test01.txt&quot;</span><span class="p">;</span>
-<span class="n">Empty</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">6</span><span class="p">.</span><span class="mi">53</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+<p>```sql <!-- validator-ignore -->
+mysql&gt; select * from stock.pe into outfile "test01.txt";
+Empty set (6.53 sec)</p>
+<p>mysql&gt; select * from stock.pe into outfile "test02.txt";
+Empty set (4.01 sec)</p>
+<p>mysql&gt; select * from stock.pe into outfile "test03.txt";
+Empty set (3.84 sec)</p>
+<p>mysql&gt; select * from stock.pe into outfile "test04.txt";
+Empty set (3.96 sec)
+<div class="highlight"><pre><span></span><code>The above results show that the first query is noticeably slower because it needs to fetch data from object storage. However, since the data has been cached to the disk in the subsequent three queries, the query speed has significantly improved.
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">stock</span><span class="p">.</span><span class="n">pe</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">outfile</span><span class="w"> </span><span class="ss">&quot;test02.txt&quot;</span><span class="p">;</span>
-<span class="n">Empty</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">4</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+### Cache Replacement
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">stock</span><span class="p">.</span><span class="n">pe</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">outfile</span><span class="w"> </span><span class="ss">&quot;test03.txt&quot;</span><span class="p">;</span>
-<span class="n">Empty</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="p">.</span><span class="mi">84</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+Next, you can alternate and run a full table scan of `stock.pe` and `stock2.pe` multiple times.
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">stock</span><span class="p">.</span><span class="n">pe</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">outfile</span><span class="w"> </span><span class="ss">&quot;test04.txt&quot;</span><span class="p">;</span>
-<span class="n">Empty</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="p">.</span><span class="mi">96</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
-<p>The above results show that the first query is noticeably slower because it needs to fetch data from object storage. However, since the data has been cached to the disk in the subsequent three queries, the query speed has significantly improved.</p>
-<h3 id="cache-replacement">Cache Replacement</h3>
-<p>Next, you can alternate and run a full table scan of <code>stock.pe</code> and <code>stock2.pe</code> multiple times.</p>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">stock2</span><span class="p">.</span><span class="n">pe</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">outfile</span><span class="w"> </span><span class="ss">&quot;test05.txt&quot;</span><span class="p">;</span>
-<span class="n">Empty</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">5</span><span class="p">.</span><span class="mi">84</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+```sql &lt;!-- validator-ignore --&gt;
+mysql&gt; select * from stock2.pe into outfile &quot;test05.txt&quot;;
+Empty set (5.84 sec)
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">stock2</span><span class="p">.</span><span class="n">pe</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">outfile</span><span class="w"> </span><span class="ss">&quot;test06.txt&quot;</span><span class="p">;</span>
-<span class="n">Empty</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">4</span><span class="p">.</span><span class="mi">27</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+mysql&gt; select * from stock2.pe into outfile &quot;test06.txt&quot;;
+Empty set (4.27 sec)
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">stock2</span><span class="p">.</span><span class="n">pe</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">outfile</span><span class="w"> </span><span class="ss">&quot;test07.txt&quot;</span><span class="p">;</span>
-<span class="n">Empty</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">4</span><span class="p">.</span><span class="mi">15</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+mysql&gt; select * from stock2.pe into outfile &quot;test07.txt&quot;;
+Empty set (4.15 sec)
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">stock</span><span class="p">.</span><span class="n">pe</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">outfile</span><span class="w"> </span><span class="ss">&quot;test08.txt&quot;</span><span class="p">;</span>
-<span class="n">Empty</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">6</span><span class="p">.</span><span class="mi">37</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+mysql&gt; select * from stock.pe into outfile &quot;test08.txt&quot;;
+Empty set (6.37 sec)
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">stock</span><span class="p">.</span><span class="n">pe</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">outfile</span><span class="w"> </span><span class="ss">&quot;test09.txt&quot;</span><span class="p">;</span>
-<span class="n">Empty</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">4</span><span class="p">.</span><span class="mi">14</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+mysql&gt; select * from stock.pe into outfile &quot;test09.txt&quot;;
+Empty set (4.14 sec)
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">stock</span><span class="p">.</span><span class="n">pe</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">outfile</span><span class="w"> </span><span class="ss">&quot;test10.txt&quot;</span><span class="p">;</span>
-<span class="n">Empty</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="p">.</span><span class="mi">81</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+mysql&gt; select * from stock.pe into outfile &quot;test10.txt&quot;;
+Empty set (3.81 sec)
+</code></pre></div></p>
 <p>You might notice that each time the data table for the query is switched, the query efficiency significantly decreases. This is due to the cache replacement mechanism. You only set a small cache, which is just enough to store the complete data of a table. Therefore, when you alternate queries, the old cache data is replaced. The new query needs to fetch data from the object storage, and when queried again, since the data has been cached, the query speed is improved.</p>
 <h3 id="query-preheating">Query Preheating</h3>
 <p>In many business scenarios, we often need to accelerate the queries due to a large amount of data or complex queries. The cache mechanism of MatrixOne can accelerate queries by preheating the data.</p>
 <p>For example, the following SQL query:</p>
-<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">pe1</span><span class="p">.</span><span class="n">ts_code</span><span class="p">,</span><span class="w"> </span><span class="n">pe1</span><span class="p">.</span><span class="n">pe</span><span class="p">,</span><span class="w"> </span><span class="n">pe1</span><span class="p">.</span><span class="n">pb</span>
-<span class="k">FROM</span><span class="w"> </span><span class="n">stock2</span><span class="p">.</span><span class="n">pe</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">pe1</span>
-<span class="k">WHERE</span><span class="w"> </span><span class="n">pe1</span><span class="p">.</span><span class="n">pe</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="k">min</span><span class="p">(</span><span class="n">pe2</span><span class="p">.</span><span class="n">pe</span><span class="p">)</span>
-<span class="k">FROM</span><span class="w"> </span><span class="n">stock2</span><span class="p">.</span><span class="n">pe</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">pe2</span>
-<span class="k">WHERE</span><span class="w"> </span><span class="n">pe1</span><span class="p">.</span><span class="n">ts_code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pe2</span><span class="p">.</span><span class="n">ts_code</span><span class="p">)</span>
-<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">trade_date</span>
-<span class="k">DESC</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
-</code></pre></div>
-<p>If not optimized, the execution speed is as follows:</p>
-<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">pe1</span><span class="p">.</span><span class="n">ts_code</span><span class="p">,</span><span class="w"> </span><span class="n">pe1</span><span class="p">.</span><span class="n">pe</span><span class="p">,</span><span class="w"> </span><span class="n">pe1</span><span class="p">.</span><span class="n">pb</span>
-<span class="k">FROM</span><span class="w"> </span><span class="n">stock2</span><span class="p">.</span><span class="n">pe</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">pe1</span>
-<span class="k">WHERE</span><span class="w"> </span><span class="n">pe1</span><span class="p">.</span><span class="n">pe</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="k">min</span><span class="p">(</span><span class="n">pe2</span><span class="p">.</span><span class="n">pe</span><span class="p">)</span>
-<span class="k">FROM</span><span class="w"> </span><span class="n">stock2</span><span class="p">.</span><span class="n">pe</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">pe2</span>
-<span class="k">WHERE</span><span class="w"> </span><span class="n">pe1</span><span class="p">.</span><span class="n">ts_code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pe2</span><span class="p">.</span><span class="n">ts_code</span><span class="p">)</span>
-<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">trade_date</span>
-<span class="k">DESC</span><span class="w"> </span><span class="k">LIMIT</span>
+<p>```sql <!-- validator-ignore -->
+SELECT pe1.ts_code, pe1.pe, pe1.pb
+FROM stock2.pe as pe1
+WHERE pe1.pe = (SELECT min(pe2.pe)
+FROM stock2.pe as pe2
+WHERE pe1.ts_code = pe2.ts_code)
+ORDER BY trade_date
+DESC LIMIT 1;
+<div class="highlight"><pre><span></span><code>If not optimized, the execution speed is as follows:
 
-<span class="mi">1</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">-----------+------+--------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">ts_code</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">pe</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">pb</span><span class="w">     </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-----------+------+--------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">000038</span><span class="p">.</span><span class="n">SZ</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">1</span><span class="p">.</span><span class="mi">2322</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-----------+------+--------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">5</span><span class="p">.</span><span class="mi">21</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+```sql &lt;!-- validator-ignore --&gt;
+SELECT pe1.ts_code, pe1.pe, pe1.pb
+FROM stock2.pe as pe1
+WHERE pe1.pe = (SELECT min(pe2.pe)
+FROM stock2.pe as pe2
+WHERE pe1.ts_code = pe2.ts_code)
+ORDER BY trade_date
+DESC LIMIT
+
+1;
++-----------+------+--------+
+| ts_code   | pe   | pb     |
++-----------+------+--------+
+| 000038.SZ |    0 | 1.2322 |
++-----------+------+--------+
+1 row in set (5.21 sec)
+</code></pre></div></p>
 <p>This SQL query only involves the query of the <code>stock2.pe</code> table. We can preheat the table data to the cache by pre-scanning the complete table data, so the query can significantly improve the speed of this SQL query.</p>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">stock2</span><span class="p">.</span><span class="n">pe</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">outfile</span><span class="w"> </span><span class="ss">&quot;test11.txt&quot;</span><span class="p">;</span>
-<span class="n">Empty</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">6</span><span class="p">.</span><span class="mi">48</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">pe1</span><span class="p">.</span><span class="n">ts_code</span><span class="p">,</span><span class="w"> </span><span class="n">pe1</span><span class="p">.</span><span class="n">pe</span><span class="p">,</span><span class="w"> </span><span class="n">pe1</span><span class="p">.</span><span class="n">pb</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">stock2</span><span class="p">.</span><span class="n">pe</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">pe1</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">pe1</span><span class="p">.</span><span class="n">pe</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="k">min</span><span class="p">(</span><span class="n">pe2</span><span class="p">.</span><span class="n">pe</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">stock2</span><span class="p">.</span><span class="n">pe</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">pe2</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">pe1</span><span class="p">.</span><span class="n">ts_code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pe2</span><span class="p">.</span><span class="n">ts_code</span><span class="p">)</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">trade_date</span><span class="w"> </span><span class="k">DESC</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">-----------+------+---------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">ts_code</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">pe</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">pb</span><span class="w">      </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-----------+------+---------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">000068</span><span class="p">.</span><span class="n">SZ</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">14</span><span class="p">.</span><span class="mi">6959</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-----------+------+---------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">.</span><span class="mi">21</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+<p>```sql <!-- validator-ignore -->
+mysql&gt; select * from stock2.pe into outfile "test11.txt";
+Empty set (6.48 sec)</p>
+<p>mysql&gt; SELECT pe1.ts_code, pe1.pe, pe1.pb FROM stock2.pe as pe1 WHERE pe1.pe = (SELECT min(pe2.pe) FROM stock2.pe as pe2 WHERE pe1.ts_code = pe2.ts_code) ORDER BY trade_date DESC LIMIT 1;
++-----------+------+---------+
+| ts_code   | pe   | pb      |
++-----------+------+---------+
+| 000068.SZ |    0 | 14.6959 |
++-----------+------+---------+
+1 row in set (2.21 sec)
+```</p>
 <p>This feature is particularly suitable for some fixed report calculation scenarios. Users can preheat the data involved in the query and then perform the query, which can significantly improve the query effect.</p>
 
 

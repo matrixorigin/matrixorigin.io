@@ -13255,7 +13255,7 @@
 <span class="p">)</span><span class="w"> </span><span class="n">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">CHARSET</span><span class="o">=</span><span class="n">utf8mb4</span><span class="p">;</span>
 
 <span class="c1">--Insert sample data</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">mysql_datax</span><span class="w"> </span><span class="n">valus</span>
+<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">mysql_datax</span><span class="w"> </span><span class="k">values</span>
 <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="ss">&quot;lisa&quot;</span><span class="p">,</span><span class="mi">15660</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="s1">&#39;2022-10-12&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span>
 <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="ss">&quot;tom&quot;</span><span class="p">,</span><span class="mi">15060</span><span class="p">,</span><span class="mi">24</span><span class="p">,</span><span class="s1">&#39;2021-11-10&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span>
 <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="ss">&quot;jenny&quot;</span><span class="p">,</span><span class="mi">15000</span><span class="p">,</span><span class="mi">28</span><span class="p">,</span><span class="s1">&#39;2024-02-19&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span>
@@ -13328,17 +13328,17 @@
 <div class="highlight"><pre><span></span><code>python<span class="w"> </span>/opt/module/datax/bin/datax.py<span class="w"> </span>/opt/module/datax/job/mysql2mo.json
 </code></pre></div>
 <h3 id="view-data-in-a-matrixone-table">View data in a MatrixOne table</h3>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">mysql_datax</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------+-------+--------+------+------------+--------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">id</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">name</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">salary</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">age</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">entrytime</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">gender</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+-------+--------+------+------------+--------+</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">lisa</span><span class="w">  </span><span class="o">|</span><span class="w">  </span><span class="mi">15660</span><span class="w"> </span><span class="o">|</span><span class="w">   </span><span class="mi">30</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2022</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">12</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">0</span><span class="w">      </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">tom</span><span class="w">   </span><span class="o">|</span><span class="w">  </span><span class="mi">15060</span><span class="w"> </span><span class="o">|</span><span class="w">   </span><span class="mi">24</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2021</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">10</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">1</span><span class="w">      </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">jenny</span><span class="w"> </span><span class="o">|</span><span class="w">  </span><span class="mi">15000</span><span class="w"> </span><span class="o">|</span><span class="w">   </span><span class="mi">28</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">19</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">0</span><span class="w">      </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">henry</span><span class="w"> </span><span class="o">|</span><span class="w">  </span><span class="mi">12660</span><span class="w"> </span><span class="o">|</span><span class="w">   </span><span class="mi">24</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2022</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">22</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">1</span><span class="w">      </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+-------+--------+------+------------+--------+</span>
-<span class="mi">4</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+<p><code>sql &lt;!-- validator-ignore-exec --&gt;
+mysql&gt; select * from mysql_datax;
++------+-------+--------+------+------------+--------+
+| id   | name  | salary | age  | entrytime  | gender |
++------+-------+--------+------+------------+--------+
+|    1 | lisa  |  15660 |   30 | 2022-10-12 | 0      |
+|    2 | tom   |  15060 |   24 | 2021-11-10 | 1      |
+|    3 | jenny |  15000 |   28 | 2024-02-19 | 0      |
+|    4 | henry |  12660 |   24 | 2022-04-22 | 1      |
++------+-------+--------+------+------------+--------+
+4 rows in set (0.00 sec)</code></p>
 
 
 

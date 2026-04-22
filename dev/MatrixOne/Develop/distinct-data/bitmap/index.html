@@ -2091,13 +2091,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-define-the-precalculation-table" class="md-nav__link">
-    2. Define the precalculation table
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#3-aggregate-filter-data-by-different-dimensions" class="md-nav__link">
     3. Aggregate filter data by different dimensions
   </a>
@@ -13199,13 +13192,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-define-the-precalculation-table" class="md-nav__link">
-    2. Define the precalculation table
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#3-aggregate-filter-data-by-different-dimensions" class="md-nav__link">
     3. Aggregate filter data by different dimensions
   </a>
@@ -13281,86 +13267,89 @@
 <h3 id="steps">Steps</h3>
 <h4 id="1-create-user-tables-and-import-data">1. Create user tables and import data</h4>
 <p>Prepare a table named <code>user_behavior_table</code> and the corresponding csv data, which has 39270760 rows of data.</p>
-<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">user_behavior_table</span><span class="p">(</span>
-<span class="n">user_id</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="c1">--user id </span>
-<span class="n">behavior</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span><span class="c1">--behavior, including browser,purchase,returns</span>
-<span class="n">occur_year</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="c1">----behavior occurred year</span>
-<span class="p">);</span>
+<p>```sql <!-- validator-ignore -->
+CREATE TABLE user_behavior_table(
+user_id int, -- user id
+behavior varchar(100), -- behavior, including browser,purchase,returns
+occur_year varchar(100) -- behavior occurred year
+);</p>
+<p>LOAD DATA INFILE '/your_path/user_behavior_table.csv' INTO TABLE user_behavior_table FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"';
+<div class="highlight"><pre><span></span><code>#### 2. Define the precalculation table
 
-<span class="k">LOAD</span><span class="w"> </span><span class="k">DATA</span><span class="w"> </span><span class="n">INFILE</span><span class="w"> </span><span class="s1">&#39;/your_path/user_behavior_table.csv&#39;</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">user_behavior_table</span><span class="w"> </span><span class="n">FIELDS</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;,&#39;</span><span class="w"> </span><span class="n">OPTIONALLY</span><span class="w"> </span><span class="n">ENCLOSED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;&quot;&#39;</span><span class="p">;</span>
-</code></pre></div>
-<h4 id="2-define-the-precalculation-table">2. Define the precalculation table</h4>
-<p>The coarse-grained calculation results are saved in the pre-computed table.Subsequent aggregation of various different dimensions can use the results in the pre-computed table.After simple calculation,the results can be obtained and the query can be accelerated.</p>
-<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">precompute</span><span class="w"> </span><span class="k">AS</span>
-<span class="k">SELECT</span>
-<span class="w">  </span><span class="n">behavior</span><span class="p">,</span>
-<span class="w">  </span><span class="n">occur_year</span><span class="p">,</span>
-<span class="w">  </span><span class="n">BITMAP_BUCKET_NUMBER</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">bucket</span><span class="p">,</span>
-<span class="w">  </span><span class="n">BITMAP_CONSTRUCT_AGG</span><span class="p">(</span><span class="n">BITMAP_BIT_POSITION</span><span class="p">(</span><span class="n">user_id</span><span class="p">))</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">bitmap</span><span class="w"> </span>
-<span class="k">FROM</span><span class="w"> </span><span class="n">user_behavior_table</span>
-<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w">  </span><span class="n">behavior</span><span class="p">,</span><span class="n">occur_year</span><span class="p">,</span><span class="n">bucket</span><span class="p">;</span>
-</code></pre></div>
+The coarse-grained calculation results are saved in the pre-computed table.Subsequent aggregation of various different dimensions can use the results in the pre-computed table.After simple calculation,the results can be obtained and the query can be accelerated.
+
+```sql &lt;!-- validator-ignore --&gt;
+CREATE TABLE precompute AS
+SELECT
+  behavior,
+  occur_year,
+  BITMAP_BUCKET_NUMBER(user_id) as bucket,
+  BITMAP_CONSTRUCT_AGG(BITMAP_BIT_POSITION(user_id)) as bitmap 
+FROM user_behavior_table
+GROUP BY  behavior,occur_year,bucket;
+</code></pre></div></p>
 <h4 id="3-aggregate-filter-data-by-different-dimensions">3. Aggregate filter data by different dimensions</h4>
 <p>Calculates the number of deduplications for user_id in case of user behavior and year aggregation, reflecting the number of users who browsed, purchased, and returned items in different years.</p>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span>
-<span class="w">    </span><span class="o">-&gt;</span><span class="w">     </span><span class="n">behavior</span><span class="p">,</span>
-<span class="w">    </span><span class="o">-&gt;</span><span class="w">     </span><span class="n">occur_year</span><span class="p">,</span>
-<span class="w">    </span><span class="o">-&gt;</span><span class="w">     </span><span class="k">SUM</span><span class="p">(</span><span class="n">BITMAP_COUNT</span><span class="p">(</span><span class="n">bitmap</span><span class="p">))</span>
-<span class="w">    </span><span class="o">-&gt;</span><span class="w">     </span><span class="k">FROM</span><span class="w"> </span><span class="n">precompute</span>
-<span class="w">    </span><span class="o">-&gt;</span><span class="w">     </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w">  </span><span class="n">behavior</span><span class="p">,</span><span class="n">occur_year</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">----------+------------+---------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">behavior</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">occur_year</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">sum</span><span class="p">(</span><span class="n">bitmap_count</span><span class="p">(</span><span class="n">bitmap</span><span class="p">))</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------+------------+---------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">browser</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="mi">2022</span><span class="w">       </span><span class="o">|</span><span class="w">                    </span><span class="mi">939995</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">browser</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="mi">2023</span><span class="w">       </span><span class="o">|</span><span class="w">                   </span><span class="mi">1003173</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">purchase</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2022</span><span class="w">       </span><span class="o">|</span><span class="w">                    </span><span class="mi">669474</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">purchase</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2023</span><span class="w">       </span><span class="o">|</span><span class="w">                    </span><span class="mi">660605</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="k">returns</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="mi">2023</span><span class="w">       </span><span class="o">|</span><span class="w">                      </span><span class="mi">4910</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="k">returns</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="mi">2022</span><span class="w">       </span><span class="o">|</span><span class="w">                      </span><span class="mi">4350</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------+------------+---------------------------+</span>
-<span class="mi">6</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+<p>```sql <!-- validator-ignore -->
+mysql&gt; SELECT
+    -&gt;     behavior,
+    -&gt;     occur_year,
+    -&gt;     SUM(BITMAP_COUNT(bitmap))
+    -&gt;     FROM precompute
+    -&gt;     GROUP BY  behavior,occur_year;
++----------+------------+---------------------------+
+| behavior | occur_year | sum(bitmap_count(bitmap)) |
++----------+------------+---------------------------+
+| browser  | 2022       |                    939995 |
+| browser  | 2023       |                   1003173 |
+| purchase | 2022       |                    669474 |
+| purchase | 2023       |                    660605 |
+| returns  | 2023       |                      4910 |
+| returns  | 2022       |                      4350 |
++----------+------------+---------------------------+
+6 rows in set (0.01 sec)</p>
+<p>mysql&gt; select behavior,occur_year,count(distinct user_id) from user_behavior_table group by behavior,occur_year;
++----------+------------+---------------------------+
+| behavior | occur_year | sum(bitmap_count(bitmap)) |
++----------+------------+---------------------------+
+| browser  | 2022       |                    939995 |
+| browser  | 2023       |                   1003173 |
+| purchase | 2022       |                    669474 |
+| purchase | 2023       |                    660605 |
+| returns  | 2023       |                      4910 |
+| returns  | 2022       |                      4350 |
++----------+------------+---------------------------+
+6 rows in set (3.26 sec)
+<div class="highlight"><pre><span></span><code>Calculate the number of users viewing, purchasing, and returning items from 2022-2023.
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">behavior</span><span class="p">,</span><span class="n">occur_year</span><span class="p">,</span><span class="k">count</span><span class="p">(</span><span class="k">distinct</span><span class="w"> </span><span class="n">user_id</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">user_behavior_table</span><span class="w"> </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">behavior</span><span class="p">,</span><span class="n">occur_year</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">----------+------------+---------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">behavior</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">occur_year</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">sum</span><span class="p">(</span><span class="n">bitmap_count</span><span class="p">(</span><span class="n">bitmap</span><span class="p">))</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------+------------+---------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">browser</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="mi">2022</span><span class="w">       </span><span class="o">|</span><span class="w">                    </span><span class="mi">939995</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">browser</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="mi">2023</span><span class="w">       </span><span class="o">|</span><span class="w">                   </span><span class="mi">1003173</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">purchase</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2022</span><span class="w">       </span><span class="o">|</span><span class="w">                    </span><span class="mi">669474</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">purchase</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2023</span><span class="w">       </span><span class="o">|</span><span class="w">                    </span><span class="mi">660605</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="k">returns</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="mi">2023</span><span class="w">       </span><span class="o">|</span><span class="w">                      </span><span class="mi">4910</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="k">returns</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="mi">2022</span><span class="w">       </span><span class="o">|</span><span class="w">                      </span><span class="mi">4350</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------+------------+---------------------------+</span>
-<span class="mi">6</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="p">.</span><span class="mi">26</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
-<p>Calculate the number of users viewing, purchasing, and returning items from 2022-2023.</p>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">behavior</span><span class="p">,</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">cnt</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="p">(</span>
-<span class="w">    </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">SELECT</span>
-<span class="w">    </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">behavior</span><span class="p">,</span>
-<span class="w">    </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">BITMAP_COUNT</span><span class="p">(</span><span class="n">BITMAP_OR_AGG</span><span class="p">(</span><span class="n">bitmap</span><span class="p">))</span><span class="w"> </span><span class="n">cnt</span>
-<span class="w">    </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">precompute</span>
-<span class="w">    </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">behavior</span><span class="p">,</span><span class="n">bucket</span>
-<span class="w">    </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">)</span>
-<span class="w">    </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">behavior</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">----------+----------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">behavior</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">sum</span><span class="p">(</span><span class="n">cnt</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------+----------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">browser</span><span class="w">  </span><span class="o">|</span><span class="w">  </span><span class="mi">1003459</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">purchase</span><span class="w"> </span><span class="o">|</span><span class="w">   </span><span class="mi">780308</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="k">returns</span><span class="w">  </span><span class="o">|</span><span class="w">     </span><span class="mi">9260</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------+----------+</span>
-<span class="mi">3</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+```sql &lt;!-- validator-ignore --&gt;
+mysql&gt; SELECT behavior, SUM(cnt) FROM (
+    -&gt; SELECT
+    -&gt; behavior,
+    -&gt; BITMAP_COUNT(BITMAP_OR_AGG(bitmap)) cnt
+    -&gt; FROM precompute
+    -&gt; GROUP BY behavior,bucket
+    -&gt; )
+    -&gt; GROUP BY behavior;
++----------+----------+
+| behavior | sum(cnt) |
++----------+----------+
+| browser  |  1003459 |
+| purchase |   780308 |
+| returns  |     9260 |
++----------+----------+
+3 rows in set (0.01 sec)
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">behavior</span><span class="p">,</span><span class="k">count</span><span class="p">(</span><span class="k">distinct</span><span class="w"> </span><span class="n">user_id</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">user_behavior_table</span><span class="w"> </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">behavior</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">----------+-------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">behavior</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="k">distinct</span><span class="w"> </span><span class="n">user_id</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------+-------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">browser</span><span class="w">  </span><span class="o">|</span><span class="w">                 </span><span class="mi">1003459</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">purchase</span><span class="w"> </span><span class="o">|</span><span class="w">                  </span><span class="mi">780308</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="k">returns</span><span class="w">  </span><span class="o">|</span><span class="w">                    </span><span class="mi">9260</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------+-------------------------+</span>
-<span class="mi">3</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">.</span><span class="mi">44</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+mysql&gt; select behavior,count(distinct user_id) from user_behavior_table group by behavior;
++----------+-------------------------+
+| behavior | count(distinct user_id) |
++----------+-------------------------+
+| browser  |                 1003459 |
+| purchase |                  780308 |
+| returns  |                    9260 |
++----------+-------------------------+
+3 rows in set (1.44 sec)
+</code></pre></div></p>
 <p>It is obviously more efficient to use <code>BITMAP</code> when comparing the return times of the two queries. By using <code>BITMAP</code>, merchants can quickly filter out specific types of events to count the total number of users with a certain behavior.</p>
 <h2 id="reference-documents">Reference Documents</h2>
 <ul>

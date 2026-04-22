@@ -13060,26 +13060,6 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#usage-scenarios-of-partition-pruning-in-key-partitioned-tables" class="md-nav__link">
-    Usage scenarios of Partition Pruning in KEY Partitioned Tables
-  </a>
-  
-    <nav class="md-nav" aria-label="Usage scenarios of Partition Pruning in KEY Partitioned Tables">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#applicable-scenarios-in-key-partitioned-tables" class="md-nav__link">
-    Applicable Scenarios in KEY Partitioned Tables
-  </a>
-  
-</li>
-        
           <li class="md-nav__item">
   <a href="#inapplicable-scenarios-in-key-partitioned-tables" class="md-nav__link">
     Inapplicable Scenarios in KEY Partitioned Tables
@@ -13091,13 +13071,6 @@
           <li class="md-nav__item">
   <a href="#scenario-1" class="md-nav__link">
     Scenario 1
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scenario-2" class="md-nav__link">
-    Scenario 2
   </a>
   
 </li>
@@ -13125,33 +13098,12 @@
     Applicable Scenarios in HASH Partitioned Tables
   </a>
   
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#inapplicable-scenarios-in-hash-partitioned-tables" class="md-nav__link">
-    Inapplicable Scenarios in HASH Partitioned Tables
-  </a>
-  
-    <nav class="md-nav" aria-label="Inapplicable Scenarios in HASH Partitioned Tables">
+    <nav class="md-nav" aria-label="Applicable Scenarios in HASH Partitioned Tables">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#scenario-1_1" class="md-nav__link">
-    Scenario 1
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scenario-2_1" class="md-nav__link">
+  <a href="#scenario-2" class="md-nav__link">
     Scenario 2
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scenario-3" class="md-nav__link">
-    Scenario 3
   </a>
   
 </li>
@@ -13182,22 +13134,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#example-2" class="md-nav__link">
-    Example 2
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#example-3" class="md-nav__link">
     Example 3
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-4" class="md-nav__link">
-    Example 4
   </a>
   
 </li>
@@ -13250,368 +13188,388 @@
 <h3 id="overview">Overview</h3>
 <p>Partition pruning is a method used for query optimization, applicable only when dealing with partitioned tables. By analyzing the filtering conditions in a query statement, partition pruning selects the partitions that may satisfy the conditions, thus avoiding scanning partitions that do not match the criteria and significantly reducing the amount of data that needs to be processed.</p>
 <p>For example:</p>
-<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span>
-<span class="w">    </span><span class="n">col1</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="w">    </span><span class="n">col2</span><span class="w"> </span><span class="nb">DATE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="w">    </span><span class="n">col3</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="w">    </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">(</span><span class="n">col1</span><span class="p">,</span><span class="w"> </span><span class="n">col3</span><span class="p">)</span>
-<span class="p">)</span><span class="w"> </span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">KEY</span><span class="p">(</span><span class="n">col1</span><span class="p">,</span><span class="w"> </span><span class="n">col3</span><span class="p">)</span><span class="w"> </span><span class="n">PARTITIONS</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span>
+<p>```sql <!-- validator-ignore-exec -->
+CREATE TABLE t1 (
+    col1 INT NOT NULL,
+    col2 DATE NOT NULL,
+    col3 INT NOT NULL,
+    PRIMARY KEY(col1, col3)
+) PARTITION BY KEY(col1, col3) PARTITIONS 4;</p>
+<p>INSERT INTO t1 VALUES
+(1, '1980-12-17', 7369),
+(2, '1981-02-20', 7499),
+(3, '1981-02-22', 7521),
+(4, '1981-04-02', 7566),
+(5, '1981-09-28', 7654),
+(6, '1981-05-01', 7698),
+(7, '1981-06-09', 7782),
+(8, '0087-07-13', 7788),
+(9, '1981-11-17', 7839),
+(10, '1981-09-08', 7844),
+(11, '2007-07-13', 7876),
+(12, '1981-12-03', 7900),
+(13, '1987-07-13', 7980),
+(14, '2001-11-17', 7981),
+(15, '1951-11-08', 7982),
+(16, '1927-10-13', 7983),
+(17, '1671-12-09', 7984),
+(18, '1981-11-06', 7985),
+(19, '1771-12-06', 7986),
+(20, '1985-10-06', 7987),
+(21, '1771-10-06', 7988),
+(22, '1981-10-05', 7989),
+(23, '2001-12-04', 7990),
+(24, '1999-08-01', 7991),
+(25, '1951-11-08', 7992),
+(26, '1927-10-13', 7993),
+(27, '1971-12-09', 7994),
+(28, '1981-12-09', 7995),
+(29, '2001-11-17', 7996),
+(30, '1981-12-09', 7997),
+(31, '2001-11-17', 7998),
+(32, '2001-11-17', 7999);</p>
+<p>mysql&gt; EXPLAIN VERBOSE SELECT * FROM t1 WHERE (col1 = 1 AND col3 = 7369) OR (col1 = 6 AND col3 = 7698);
++-----------------------------------------------------------------------------------------------------+
+| QUERY PLAN                                                                                          |
++-----------------------------------------------------------------------------------------------------+
+| Project (cost=1000.00 outcnt=1000.00 selectivity=1.0000)                                            |
+|   Output: t1.col1, t1.col2, t1.col3                                                                 |
+|   -&gt;  Table Scan on db2.t1 (cost=1000.00 outcnt=1000.00 selectivity=1.0000 blockNum=1)              |
+|         Output: t1.col1, t1.col2, t1.col3                                                           |
+|         Table: 't1' (0:'col1', 1:'col2', 2:'col3')                                                  |
+|         Hit Partition: p0, p2                                                                       |
+|         Filter Cond: (((t1.col1 = 1) and (t1.col3 = 7369)) or ((t1.col1 = 6) and (t1.col3 = 7698))) |
++-----------------------------------------------------------------------------------------------------+
+7 rows in set (0.00 sec)
+<div class="highlight"><pre><span></span><code>This query prunes the partitions and scans only the p0 and p2 partitions.
 
-<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">VALUES</span>
-<span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1980-12-17&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">7369</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1981-02-20&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">7499</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1981-02-22&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">7521</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1981-04-02&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">7566</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1981-09-28&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">7654</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1981-05-01&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">7698</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1981-06-09&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">7782</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;0087-07-13&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">7788</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1981-11-17&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">7839</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1981-09-08&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">7844</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">11</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2007-07-13&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">7876</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1981-12-03&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">7900</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">13</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1987-07-13&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">7980</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2001-11-17&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">7981</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1951-11-08&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">7982</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1927-10-13&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">7983</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">17</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1671-12-09&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">7984</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">18</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1981-11-06&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">7985</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">19</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1771-12-06&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">7986</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1985-10-06&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">7987</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">21</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1771-10-06&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">7988</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">22</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1981-10-05&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">7989</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">23</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2001-12-04&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">7990</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">24</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1999-08-01&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">7991</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">25</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1951-11-08&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">7992</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">26</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1927-10-13&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">7993</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">27</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1971-12-09&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">7994</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">28</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1981-12-09&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">7995</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">29</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2001-11-17&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">7996</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">30</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1981-12-09&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">7997</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">31</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2001-11-17&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">7998</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">32</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2001-11-17&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">7999</span><span class="p">);</span>
+## Usage scenarios of Partition Pruning in KEY Partitioned Tables
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">EXPLAIN</span><span class="w"> </span><span class="k">VERBOSE</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="p">(</span><span class="n">col1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">col3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">7369</span><span class="p">)</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="p">(</span><span class="n">col1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">col3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">7698</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">-----------------------------------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">QUERY</span><span class="w"> </span><span class="n">PLAN</span><span class="w">                                                                                          </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-----------------------------------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">Project</span><span class="w"> </span><span class="p">(</span><span class="n">cost</span><span class="o">=</span><span class="mi">1000</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">outcnt</span><span class="o">=</span><span class="mi">1000</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">selectivity</span><span class="o">=</span><span class="mi">1</span><span class="p">.</span><span class="mi">0000</span><span class="p">)</span><span class="w">                                            </span><span class="o">|</span>
-<span class="o">|</span><span class="w">   </span><span class="k">Output</span><span class="p">:</span><span class="w"> </span><span class="n">t1</span><span class="p">.</span><span class="n">col1</span><span class="p">,</span><span class="w"> </span><span class="n">t1</span><span class="p">.</span><span class="n">col2</span><span class="p">,</span><span class="w"> </span><span class="n">t1</span><span class="p">.</span><span class="n">col3</span><span class="w">                                                                 </span><span class="o">|</span>
-<span class="o">|</span><span class="w">   </span><span class="o">-&gt;</span><span class="w">  </span><span class="k">Table</span><span class="w"> </span><span class="n">Scan</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">db2</span><span class="p">.</span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">cost</span><span class="o">=</span><span class="mi">1000</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">outcnt</span><span class="o">=</span><span class="mi">1000</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">selectivity</span><span class="o">=</span><span class="mi">1</span><span class="p">.</span><span class="mi">0000</span><span class="w"> </span><span class="n">blockNum</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="w">              </span><span class="o">|</span>
-<span class="o">|</span><span class="w">         </span><span class="k">Output</span><span class="p">:</span><span class="w"> </span><span class="n">t1</span><span class="p">.</span><span class="n">col1</span><span class="p">,</span><span class="w"> </span><span class="n">t1</span><span class="p">.</span><span class="n">col2</span><span class="p">,</span><span class="w"> </span><span class="n">t1</span><span class="p">.</span><span class="n">col3</span><span class="w">                                                           </span><span class="o">|</span>
-<span class="o">|</span><span class="w">         </span><span class="k">Table</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;t1&#39;</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="s1">&#39;col1&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">:</span><span class="s1">&#39;col2&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">:</span><span class="s1">&#39;col3&#39;</span><span class="p">)</span><span class="w">                                                  </span><span class="o">|</span>
-<span class="o">|</span><span class="w">         </span><span class="n">Hit</span><span class="w"> </span><span class="n">Partition</span><span class="p">:</span><span class="w"> </span><span class="n">p0</span><span class="p">,</span><span class="w"> </span><span class="n">p2</span><span class="w">                                                                       </span><span class="o">|</span>
-<span class="o">|</span><span class="w">         </span><span class="n">Filter</span><span class="w"> </span><span class="n">Cond</span><span class="p">:</span><span class="w"> </span><span class="p">(((</span><span class="n">t1</span><span class="p">.</span><span class="n">col1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="p">(</span><span class="n">t1</span><span class="p">.</span><span class="n">col3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">7369</span><span class="p">))</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="p">((</span><span class="n">t1</span><span class="p">.</span><span class="n">col1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">6</span><span class="p">)</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="p">(</span><span class="n">t1</span><span class="p">.</span><span class="n">col3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">7698</span><span class="p">)))</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-----------------------------------------------------------------------------------------------------+</span>
-<span class="mi">7</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
-<p>This query prunes the partitions and scans only the p0 and p2 partitions.</p>
-<h2 id="usage-scenarios-of-partition-pruning-in-key-partitioned-tables">Usage scenarios of Partition Pruning in KEY Partitioned Tables</h2>
-<h3 id="applicable-scenarios-in-key-partitioned-tables">Applicable Scenarios in KEY Partitioned Tables</h3>
-<p>Only equality comparison query conditions that match the partition key can support partition pruning for KEY partitioned tables.</p>
-<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span>
-<span class="w">    </span><span class="n">col1</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="w">    </span><span class="n">col2</span><span class="w"> </span><span class="nb">DATE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="w">    </span><span class="n">col3</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span>
-<span class="p">)</span><span class="w"> </span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">KEY</span><span class="p">(</span><span class="n">col3</span><span class="p">)</span><span class="w"> </span><span class="n">PARTITIONS</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span>
+### Applicable Scenarios in KEY Partitioned Tables
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">EXPLAIN</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">col3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">7990</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="n">col3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">7988</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">-------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">QUERY</span><span class="w"> </span><span class="n">PLAN</span><span class="w">                                                        </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">Project</span><span class="w">                                                           </span><span class="o">|</span>
-<span class="o">|</span><span class="w">   </span><span class="o">-&gt;</span><span class="w">  </span><span class="k">Table</span><span class="w"> </span><span class="n">Scan</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">db1</span><span class="p">.</span><span class="n">t1</span><span class="w">                                        </span><span class="o">|</span>
-<span class="o">|</span><span class="w">         </span><span class="n">Hit</span><span class="w"> </span><span class="n">Partition</span><span class="p">:</span><span class="w"> </span><span class="n">p0</span><span class="p">,</span><span class="w"> </span><span class="n">p1</span><span class="w">                                     </span><span class="o">|</span>
-<span class="o">|</span><span class="w">         </span><span class="n">Filter</span><span class="w"> </span><span class="n">Cond</span><span class="p">:</span><span class="w"> </span><span class="p">((</span><span class="n">t1</span><span class="p">.</span><span class="n">col3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">7990</span><span class="p">)</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="p">(</span><span class="n">t1</span><span class="p">.</span><span class="n">col3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">7988</span><span class="p">))</span><span class="w">       </span><span class="o">|</span>
-<span class="o">|</span><span class="w">         </span><span class="n">Block</span><span class="w"> </span><span class="n">Filter</span><span class="w"> </span><span class="n">Cond</span><span class="p">:</span><span class="w"> </span><span class="p">((</span><span class="n">t1</span><span class="p">.</span><span class="n">col3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">7990</span><span class="p">)</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="p">(</span><span class="n">t1</span><span class="p">.</span><span class="n">col3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">7988</span><span class="p">))</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------------------------------------------------------------------+</span>
-<span class="mi">5</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+Only equality comparison query conditions that match the partition key can support partition pruning for KEY partitioned tables.
+
+```sql &lt;!-- validator-ignore-exec --&gt;
+CREATE TABLE t1 (
+    col1 INT NOT NULL,
+    col2 DATE NOT NULL,
+    col3 INT PRIMARY KEY
+) PARTITION BY KEY(col3) PARTITIONS 4;
+
+mysql&gt; EXPLAIN SELECT * FROM t1 WHERE col3 = 7990 OR col3 = 7988;
++-------------------------------------------------------------------+
+| QUERY PLAN                                                        |
++-------------------------------------------------------------------+
+| Project                                                           |
+|   -&gt;  Table Scan on db1.t1                                        |
+|         Hit Partition: p0, p1                                     |
+|         Filter Cond: ((t1.col3 = 7990) or (t1.col3 = 7988))       |
+|         Block Filter Cond: ((t1.col3 = 7990) or (t1.col3 = 7988)) |
++-------------------------------------------------------------------+
+5 rows in set (0.00 sec)
+</code></pre></div></p>
 <p>In this SQL statement, the condition <code>col3 = 7990</code> can determine that all results are located in partition p0. The condition <code>col3 = 7988</code> can determine that all results are situated in partition p1. Since these two conditions are combined using OR, only partitions p0 and p1 need to be scanned, resulting in partition pruning with the outcome of p0 and p1.</p>
 <h3 id="inapplicable-scenarios-in-key-partitioned-tables">Inapplicable Scenarios in KEY Partitioned Tables</h3>
 <h4 id="scenario-1">Scenario 1</h4>
 <p>Conditions that cannot determine if the query results are within a single partition, such as <code>between</code>, <code>&gt; &lt; &gt;= &lt;=</code>, and similar conditions, cannot benefit from partition pruning optimization.</p>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">EXPLAIN</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">col3</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">7782</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">----------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">QUERY</span><span class="w"> </span><span class="n">PLAN</span><span class="w">                                   </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">Project</span><span class="w">                                      </span><span class="o">|</span>
-<span class="o">|</span><span class="w">   </span><span class="o">-&gt;</span><span class="w">  </span><span class="k">Table</span><span class="w"> </span><span class="n">Scan</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">db1</span><span class="p">.</span><span class="n">t1</span><span class="w">                   </span><span class="o">|</span>
-<span class="o">|</span><span class="w">         </span><span class="n">Hit</span><span class="w"> </span><span class="n">Partition</span><span class="p">:</span><span class="w"> </span><span class="k">all</span><span class="w"> </span><span class="n">partitions</span><span class="w">        </span><span class="o">|</span>
-<span class="o">|</span><span class="w">         </span><span class="n">Filter</span><span class="w"> </span><span class="n">Cond</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="n">t1</span><span class="p">.</span><span class="n">col3</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">7782</span><span class="p">)</span><span class="w">       </span><span class="o">|</span>
-<span class="o">|</span><span class="w">         </span><span class="n">Block</span><span class="w"> </span><span class="n">Filter</span><span class="w"> </span><span class="n">Cond</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="n">t1</span><span class="p">.</span><span class="n">col3</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">7782</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------------------------------------+</span>
-<span class="mi">5</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
-<h4 id="scenario-2">Scenario 2</h4>
-<p>In scenarios where filtering conditions can only be obtained during the execution plan generation phase, partition pruning optimization cannot be utilized.</p>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">EXPLAIN</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">col3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">col3</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">t1</span><span class="p">.</span><span class="n">col3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t2</span><span class="p">.</span><span class="n">col3</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">t2</span><span class="p">.</span><span class="n">col1</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">5</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">QUERY</span><span class="w"> </span><span class="n">PLAN</span><span class="w">                                           </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">Project</span><span class="w">                                              </span><span class="o">|</span>
-<span class="o">|</span><span class="w">   </span><span class="o">-&gt;</span><span class="w">  </span><span class="n">Filter</span><span class="w">                                         </span><span class="o">|</span>
-<span class="o">|</span><span class="w">         </span><span class="n">Filter</span><span class="w"> </span><span class="n">Cond</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="n">t1</span><span class="p">.</span><span class="n">col3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t2</span><span class="p">.</span><span class="n">col3</span>
+<p>```sql <!-- validator-ignore-exec -->
+mysql&gt; EXPLAIN SELECT * FROM t1 WHERE col3 &gt;= 7782;
++----------------------------------------------+
+| QUERY PLAN                                   |
++----------------------------------------------+
+| Project                                      |
+|   -&gt;  Table Scan on db1.t1                   |
+|         Hit Partition: all partitions        |
+|         Filter Cond: (t1.col3 &gt;= 7782)       |
+|         Block Filter Cond: (t1.col3 &gt;= 7782) |
++----------------------------------------------+
+5 rows in set (0.00 sec)
+<div class="highlight"><pre><span></span><code>#### Scenario 2
 
-<span class="p">)</span><span class="w">             </span><span class="o">|</span>
-<span class="o">|</span><span class="w">         </span><span class="o">-&gt;</span><span class="w">  </span><span class="k">Join</span><span class="w">                                     </span><span class="o">|</span>
-<span class="o">|</span><span class="w">               </span><span class="k">Join</span><span class="w"> </span><span class="k">Type</span><span class="p">:</span><span class="w"> </span><span class="n">SINGLE</span><span class="w">                      </span><span class="o">|</span>
-<span class="o">|</span><span class="w">               </span><span class="k">Join</span><span class="w"> </span><span class="n">Cond</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="n">t1</span><span class="p">.</span><span class="n">col3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t2</span><span class="p">.</span><span class="n">col3</span><span class="p">)</span><span class="w">         </span><span class="o">|</span>
-<span class="o">|</span><span class="w">               </span><span class="o">-&gt;</span><span class="w">  </span><span class="k">Table</span><span class="w"> </span><span class="n">Scan</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">db1</span><span class="p">.</span><span class="n">t1</span><span class="w">               </span><span class="o">|</span>
-<span class="o">|</span><span class="w">                     </span><span class="n">Hit</span><span class="w"> </span><span class="n">Partition</span><span class="p">:</span><span class="w"> </span><span class="k">all</span><span class="w"> </span><span class="n">partitions</span><span class="w">    </span><span class="o">|</span>
-<span class="o">|</span><span class="w">               </span><span class="o">-&gt;</span><span class="w">  </span><span class="k">Table</span><span class="w"> </span><span class="n">Scan</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">db1</span><span class="p">.</span><span class="n">t2</span><span class="w">               </span><span class="o">|</span>
-<span class="o">|</span><span class="w">                     </span><span class="n">Hit</span><span class="w"> </span><span class="n">Partition</span><span class="p">:</span><span class="w"> </span><span class="k">all</span><span class="w"> </span><span class="n">partitions</span><span class="w">    </span><span class="o">|</span>
-<span class="o">|</span><span class="w">                     </span><span class="n">Filter</span><span class="w"> </span><span class="n">Cond</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="n">t2</span><span class="p">.</span><span class="n">col1</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span><span class="w">       </span><span class="o">|</span>
-<span class="o">|</span><span class="w">                     </span><span class="n">Block</span><span class="w"> </span><span class="n">Filter</span><span class="w"> </span><span class="n">Cond</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="n">t2</span><span class="p">.</span><span class="n">col1</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------------------------------------------+</span>
-<span class="mi">12</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+In scenarios where filtering conditions can only be obtained during the execution plan generation phase, partition pruning optimization cannot be utilized.
+
+```sql
+mysql&gt; EXPLAIN SELECT * FROM t1 WHERE col3 = (SELECT col3 FROM t2 WHERE t1.col3 = t2.col3 AND t2.col1 &lt; 5);
++------------------------------------------------------+
+| QUERY PLAN                                           |
++------------------------------------------------------+
+| Project                                              |
+|   -&gt;  Filter                                         |
+|         Filter Cond: (t1.col3 = t2.col3
+
+)             |
+|         -&gt;  Join                                     |
+|               Join Type: SINGLE                      |
+|               Join Cond: (t1.col3 = t2.col3)         |
+|               -&gt;  Table Scan on db1.t1               |
+|                     Hit Partition: all partitions    |
+|               -&gt;  Table Scan on db1.t2               |
+|                     Hit Partition: all partitions    |
+|                     Filter Cond: (t2.col1 &lt; 5)       |
+|                     Block Filter Cond: (t2.col1 &lt; 5) |
++------------------------------------------------------+
+12 rows in set (0.00 sec)
+</code></pre></div></p>
 <p>This query retrieves results from a subquery and constructs an equality filter condition <code>col3 = ?</code> for each row read. However, partition pruning only takes effect during the query plan generation phase, not during execution, making it ineffective in this scenario.</p>
 <h2 id="usage-scenarios-of-partition-pruning-in-hash-partitioned-tables">Usage scenarios of Partition Pruning in HASH Partitioned Tables</h2>
 <h3 id="applicable-scenarios-in-hash-partitioned-tables">Applicable Scenarios in HASH Partitioned Tables</h3>
 <p>HASH partitioned tables are similar to KEY partitioned tables, where only equality comparison query conditions can benefit from HASH partition pruning.</p>
-<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">employees</span><span class="w"> </span><span class="p">(</span>
-<span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="w">    </span><span class="n">fname</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span>
-<span class="w">    </span><span class="n">lname</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span>
-<span class="w">    </span><span class="n">hired</span><span class="w"> </span><span class="nb">DATE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;1970-01-01&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="n">separated</span><span class="w"> </span><span class="nb">DATE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;9999-12-31&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="n">job_code</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
-<span class="w">    </span><span class="n">store_id</span><span class="w"> </span><span class="nb">INT</span>
-<span class="p">)</span>
-<span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">HASH</span><span class="p">(</span><span class="n">store_id</span><span class="p">)</span><span class="w"> </span><span class="n">PARTITIONS</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span>
+<p>```sql <!-- validator-ignore-exec -->
+CREATE TABLE employees (
+    id INT NOT NULL,
+    fname VARCHAR(30),
+    lname VARCHAR(30),
+    hired DATE NOT NULL DEFAULT '1970-01-01',
+    separated DATE NOT NULL DEFAULT '9999-12-31',
+    job_code INT,
+    store_id INT
+)
+PARTITION BY HASH(store_id) PARTITIONS 4;</p>
+<p>INSERT INTO employees VALUES
+(10001, 'Georgi', 'Facello', '1953-09-02','1986-06-26',120, 1),
+(10002, 'Bezalel', 'Simmel', '1964-06-02','1985-11-21',150, 7),
+(10003, 'Parto', 'Bamford', '1959-12-03','1986-08-28',140, 3),
+(10004, 'Chirstian', 'Koblick', '1954-05-01','1986-12-01',150, 3),
+(10005, 'Kyoichi', 'Maliniak', '1955-01-21','1989-09-12',150, 18),
+(10006, 'Anneke', 'Preusig', '1953-04-20','1989-06-02',150, 15),
+(10007, 'Tzvetan', 'Zielinski', '1957-05-23','1989-02-10',110, 6),
+(10008, 'Saniya', 'Kalloufi', '1958-02-19','1994-09-15',170, 10),
+(10009, 'Sumant', 'Peac', '1952-04-19','1985-02-18',110, 13),
+(10010, 'Duangkaew', 'Piveteau', '1963-06-01','1989-08-24',160, 10),
+(10011, 'Mary', 'Sluis', '1953-11-07','1990-01-22',120, 8),
+(10012, 'Patricio', 'Bridgland', '1960-10-04','1992-12-18',120, 7),
+(10013, 'Eberhardt', 'Terkki', '1963-06-07','1985-10-20',160, 17),
+(10014, 'Berni', 'Genin', '1956-02-12','1987-03-11',120, 15),
+(10015, 'Guoxiang', 'Nooteboom', '1959-08-19','1987-07-02',140, 8),
+(10016, 'Kazuhito', 'Cappelletti', '1961-05-02','1995-01-27',140, 2),
+(10017, 'Cristinel', 'Bouloucos', '1958-07-06','1993-08-03',170, 10),
+(10018, 'Kazuhide', 'Peha', '1954-06-19','1987-04-03',170, 2),
+(10019, 'Lillian', 'Haddadi', '1953-01-23','1999-04-30',170, 13),
+(10020, 'Mayuko', 'Warwick', '1952-12-24','1991-01-26',120, 1),
+(10021, 'Ramzi', 'Erde', '1960-02-20','1988-02-10',120, 9),
+(10022, 'Shahaf', 'Famili', '1952-07-08','1995-08-22',130, 10),
+(10023, 'Bojan', 'Montemayor', '1953-09-29','1989-12-17',120, 5),
+(10024, 'Suzette', 'Pettey', '1958-09-05','1997-05-19',130, 4),
+(10025, 'Prasadram', 'Heyers', '1958-10-31','1987-08-17',180, 8),
+(10026, 'Yongqiao', 'Berztiss', '1953-04-03','1995-03-20',170, 4),
+(10027, 'Divier', 'Reistad', '1962-07-10','1989-07-07',180, 10),
+(10028, 'Domenick', 'Tempesti', '1963-11-26','1991-10-22',110, 11),
+(10029, 'Otmar', 'Herbst', '1956-12-13','1985-11-20',110, 12),
+(10030, 'Elvis', 'Demeyer', '1958-07-14','1994-02-17',110, 1),
+(10031, 'Karsten', 'Joslin', '1959-01-27','1991-09-01',110, 10),
+(10032, 'Jeong', 'Reistad', '1960-08-09','1990-06-20',120, 19),
+(10033, 'Arif', 'Merlo', '1956-11-14','1987-03-18',120, 14),
+(10034, 'Bader', 'Swan', '1962-12-29','1988-09-21',130, 16),
+(10035, 'Alain', 'Chappelet', '1953-02-08','1988-09-05',130, 3),
+(10036, 'Adamantios', 'Portugali', '1959-08-10','1992-01-03',130, 14),
+(10037, 'Pradeep', 'Makrucki', '1963-07-22','1990-12-05',140, 12),
+(10038, 'Huan', 'Lortz', '1960-07-20','1989-09-20',140, 7),
+(10039, 'Alejandro', 'Brender', '1959-10-01','1988-01-19',110, 20),
+(10040, 'Weiyi', 'Meriste', '1959-09-13','1993-02-14',140, 17);</p>
+<p>mysql&gt; EXPLAIN SELECT * FROM employees WHERE store_id = 10;
++------------------------------------------------+
+| QUERY PLAN                                     |
++------------------------------------------------+
+| Project                                        |
+|   -&gt;  Table Scan on db1.employees              |
+|         Hit Partition: p0                      |
+|         Filter Cond: (employees.store_id = 10) |
++------------------------------------------------+
+4 rows in set (0.00 sec)
+<div class="highlight"><pre><span></span><code>In this SQL statement, since the partition key for the partitioned table is `store_id`, the condition `store_id = 10` can determine that all results are within a single partition. The value 10 is hashed to partition p0. Therefore, it is only necessary to scan partition p0, without accessing partitions p1, p2, and p3, which do not contain relevant results. As seen in the execution plan, there is only one `TableScan` operator, specifying `Hit Partition` as p0, ensuring the effectiveness of partition pruning.
 
-<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">employees</span><span class="w"> </span><span class="k">VALUES</span>
-<span class="p">(</span><span class="mi">10001</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Georgi&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Facello&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1953-09-02&#39;</span><span class="p">,</span><span class="s1">&#39;1986-06-26&#39;</span><span class="p">,</span><span class="mi">120</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">10002</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Bezalel&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Simmel&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1964-06-02&#39;</span><span class="p">,</span><span class="s1">&#39;1985-11-21&#39;</span><span class="p">,</span><span class="mi">150</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">10003</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Parto&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Bamford&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1959-12-03&#39;</span><span class="p">,</span><span class="s1">&#39;1986-08-28&#39;</span><span class="p">,</span><span class="mi">140</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">10004</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Chirstian&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Koblick&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1954-05-01&#39;</span><span class="p">,</span><span class="s1">&#39;1986-12-01&#39;</span><span class="p">,</span><span class="mi">150</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">10005</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Kyoichi&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Maliniak&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1955-01-21&#39;</span><span class="p">,</span><span class="s1">&#39;1989-09-12&#39;</span><span class="p">,</span><span class="mi">150</span><span class="p">,</span><span class="w"> </span><span class="mi">18</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">10006</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Anneke&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Preusig&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1953-04-20&#39;</span><span class="p">,</span><span class="s1">&#39;1989-06-02&#39;</span><span class="p">,</span><span class="mi">150</span><span class="p">,</span><span class="w"> </span><span class="mi">15</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">10007</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Tzvetan&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Zielinski&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1957-05-23&#39;</span><span class="p">,</span><span class="s1">&#39;1989-02-10&#39;</span><span class="p">,</span><span class="mi">110</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">10008</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Saniya&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Kalloufi&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1958-02-19&#39;</span><span class="p">,</span><span class="s1">&#39;1994-09-15&#39;</span><span class="p">,</span><span class="mi">170</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">10009</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Sumant&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Peac&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1952-04-19&#39;</span><span class="p">,</span><span class="s1">&#39;1985-02-18&#39;</span><span class="p">,</span><span class="mi">110</span><span class="p">,</span><span class="w"> </span><span class="mi">13</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">10010</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Duangkaew&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Piveteau&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1963-06-01&#39;</span><span class="p">,</span><span class="s1">&#39;1989-08-24&#39;</span><span class="p">,</span><span class="mi">160</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">10011</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Mary&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Sluis&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1953-11-07&#39;</span><span class="p">,</span><span class="s1">&#39;1990-01-22&#39;</span><span class="p">,</span><span class="mi">120</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">10012</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Patricio&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Bridgland&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1960-10-04&#39;</span><span class="p">,</span><span class="s1">&#39;1992-12-18&#39;</span><span class="p">,</span><span class="mi">120</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">10013</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Eberhardt&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Terkki&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1963-06-07&#39;</span><span class="p">,</span><span class="s1">&#39;1985-10-20&#39;</span><span class="p">,</span><span class="mi">160</span><span class="p">,</span><span class="w"> </span><span class="mi">17</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">10014</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Berni&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Genin&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1956-02-12&#39;</span><span class="p">,</span><span class="s1">&#39;1987-03-11&#39;</span><span class="p">,</span><span class="mi">120</span><span class="p">,</span><span class="w"> </span><span class="mi">15</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">10015</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Guoxiang&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Nooteboom&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1959-08-19&#39;</span><span class="p">,</span><span class="s1">&#39;1987-07-02&#39;</span><span class="p">,</span><span class="mi">140</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">10016</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Kazuhito&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Cappelletti&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1961-05-02&#39;</span><span class="p">,</span><span class="s1">&#39;1995-01-27&#39;</span><span class="p">,</span><span class="mi">140</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">10017</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Cristinel&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Bouloucos&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1958-07-06&#39;</span><span class="p">,</span><span class="s1">&#39;1993-08-03&#39;</span><span class="p">,</span><span class="mi">170</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">10018</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Kazuhide&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Peha&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1954-06-19&#39;</span><span class="p">,</span><span class="s1">&#39;1987-04-03&#39;</span><span class="p">,</span><span class="mi">170</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">10019</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Lillian&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Haddadi&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1953-01-23&#39;</span><span class="p">,</span><span class="s1">&#39;1999-04-30&#39;</span><span class="p">,</span><span class="mi">170</span><span class="p">,</span><span class="w"> </span><span class="mi">13</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">10020</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Mayuko&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Warwick&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1952-12-24&#39;</span><span class="p">,</span><span class="s1">&#39;1991-01-26&#39;</span><span class="p">,</span><span class="mi">120</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">10021</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Ramzi&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Erde&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1960-02-20&#39;</span><span class="p">,</span><span class="s1">&#39;1988-02-10&#39;</span><span class="p">,</span><span class="mi">120</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">10022</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Shahaf&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Famili&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1952-07-08&#39;</span><span class="p">,</span><span class="s1">&#39;1995-08-22&#39;</span><span class="p">,</span><span class="mi">130</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">10023</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Bojan&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Montemayor&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1953-09-29&#39;</span><span class="p">,</span><span class="s1">&#39;1989-12-17&#39;</span><span class="p">,</span><span class="mi">120</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">10024</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Suzette&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Pettey&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1958-09-05&#39;</span><span class="p">,</span><span class="s1">&#39;1997-05-19&#39;</span><span class="p">,</span><span class="mi">130</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">10025</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Prasadram&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Heyers&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1958-10-31&#39;</span><span class="p">,</span><span class="s1">&#39;1987-08-17&#39;</span><span class="p">,</span><span class="mi">180</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">10026</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Yongqiao&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Berztiss&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1953-04-03&#39;</span><span class="p">,</span><span class="s1">&#39;1995-03-20&#39;</span><span class="p">,</span><span class="mi">170</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">10027</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Divier&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Reistad&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1962-07-10&#39;</span><span class="p">,</span><span class="s1">&#39;1989-07-07&#39;</span><span class="p">,</span><span class="mi">180</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">10028</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Domenick&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Tempesti&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1963-11-26&#39;</span><span class="p">,</span><span class="s1">&#39;1991-10-22&#39;</span><span class="p">,</span><span class="mi">110</span><span class="p">,</span><span class="w"> </span><span class="mi">11</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">10029</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Otmar&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Herbst&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1956-12-13&#39;</span><span class="p">,</span><span class="s1">&#39;1985-11-20&#39;</span><span class="p">,</span><span class="mi">110</span><span class="p">,</span><span class="w"> </span><span class="mi">12</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">10030</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Elvis&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Demeyer&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1958-07-14&#39;</span><span class="p">,</span><span class="s1">&#39;1994-02-17&#39;</span><span class="p">,</span><span class="mi">110</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">10031</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Karsten&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Joslin&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1959-01-27&#39;</span><span class="p">,</span><span class="s1">&#39;1991-09-01&#39;</span><span class="p">,</span><span class="mi">110</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">10032</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Jeong&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Reistad&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1960-08-09&#39;</span><span class="p">,</span><span class="s1">&#39;1990-06-20&#39;</span><span class="p">,</span><span class="mi">120</span><span class="p">,</span><span class="w"> </span><span class="mi">19</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">10033</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Arif&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Merlo&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1956-11-14&#39;</span><span class="p">,</span><span class="s1">&#39;1987-03-18&#39;</span><span class="p">,</span><span class="mi">120</span><span class="p">,</span><span class="w"> </span><span class="mi">14</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">10034</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Bader&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Swan&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1962-12-29&#39;</span><span class="p">,</span><span class="s1">&#39;1988-09-21&#39;</span><span class="p">,</span><span class="mi">130</span><span class="p">,</span><span class="w"> </span><span class="mi">16</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">10035</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Alain&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Chappelet&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1953-02-08&#39;</span><span class="p">,</span><span class="s1">&#39;1988-09-05&#39;</span><span class="p">,</span><span class="mi">130</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">10036</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Adamantios&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Portugali&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1959-08-10&#39;</span><span class="p">,</span><span class="s1">&#39;1992-01-03&#39;</span><span class="p">,</span><span class="mi">130</span><span class="p">,</span><span class="w"> </span><span class="mi">14</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">10037</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Pradeep&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Makrucki&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1963-07-22&#39;</span><span class="p">,</span><span class="s1">&#39;1990-12-05&#39;</span><span class="p">,</span><span class="mi">140</span><span class="p">,</span><span class="w"> </span><span class="mi">12</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">10038</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Huan&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Lortz&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1960-07-20&#39;</span><span class="p">,</span><span class="s1">&#39;1989-09-20&#39;</span><span class="p">,</span><span class="mi">140</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">10039</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Alejandro&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Brender&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1959-10-01&#39;</span><span class="p">,</span><span class="s1">&#39;1988-01-19&#39;</span><span class="p">,</span><span class="mi">110</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">10040</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Weiyi&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Meriste&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1959-09-13&#39;</span><span class="p">,</span><span class="s1">&#39;1993-02-14&#39;</span><span class="p">,</span><span class="mi">140</span><span class="p">,</span><span class="w"> </span><span class="mi">17</span><span class="p">);</span>
+### Inapplicable Scenarios in HASH Partitioned Tables
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">EXPLAIN</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">employees</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">store_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">QUERY</span><span class="w"> </span><span class="n">PLAN</span><span class="w">                                     </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">Project</span><span class="w">                                        </span><span class="o">|</span>
-<span class="o">|</span><span class="w">   </span><span class="o">-&gt;</span><span class="w">  </span><span class="k">Table</span><span class="w"> </span><span class="n">Scan</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">db1</span><span class="p">.</span><span class="n">employees</span><span class="w">              </span><span class="o">|</span>
-<span class="o">|</span><span class="w">         </span><span class="n">Hit</span><span class="w"> </span><span class="n">Partition</span><span class="p">:</span><span class="w"> </span><span class="n">p0</span><span class="w">                      </span><span class="o">|</span>
-<span class="o">|</span><span class="w">         </span><span class="n">Filter</span><span class="w"> </span><span class="n">Cond</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="n">employees</span><span class="p">.</span><span class="n">store_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------------------------------------+</span>
-<span class="mi">4</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
-<p>In this SQL statement, since the partition key for the partitioned table is <code>store_id</code>, the condition <code>store_id = 10</code> can determine that all results are within a single partition. The value 10 is hashed to partition p0. Therefore, it is only necessary to scan partition p0, without accessing partitions p1, p2, and p3, which do not contain relevant results. As seen in the execution plan, there is only one <code>TableScan</code> operator, specifying <code>Hit Partition</code> as p0, ensuring the effectiveness of partition pruning.</p>
-<h3 id="inapplicable-scenarios-in-hash-partitioned-tables">Inapplicable Scenarios in HASH Partitioned Tables</h3>
-<h4 id="scenario-1_1">Scenario 1</h4>
-<p>Conditions that cannot determine if the query results are within a single partition, such as <code>between</code>, <code>&gt; &lt; &gt;= &lt;=</code>, and similar conditions, cannot benefit from partition pruning optimization.</p>
-<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">employees</span><span class="w"> </span><span class="p">(</span>
-<span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="w"> </span><span class="n">fname</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span>
-<span class="w"> </span><span class="n">lname</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span>
-<span class="w"> </span><span class="n">hired</span><span class="w"> </span><span class="nb">DATE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;1970-01-01&#39;</span><span class="p">,</span>
-<span class="w"> </span><span class="n">separated</span><span class="w"> </span><span class="nb">DATE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;9999-12-31&#39;</span><span class="p">,</span>
-<span class="w"> </span><span class="n">job_code</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
-<span class="w"> </span><span class="n">store_id</span><span class="w"> </span><span class="nb">INT</span>
-<span class="p">)</span>
-<span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">HASH</span><span class="p">(</span><span class="n">store_id</span><span class="p">)</span><span class="w"> </span><span class="n">PARTITIONS</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span>
+#### Scenario 1
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">EXPLAIN</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">employees</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">store_id</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">15</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">QUERY</span><span class="w"> </span><span class="n">PLAN</span><span class="w">                                     </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">Project</span><span class="w">                                        </span><span class="o">|</span>
-<span class="o">|</span><span class="w">   </span><span class="o">-&gt;</span><span class="w">  </span><span class="k">Table</span><span class="w"> </span><span class="n">Scan</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">db1</span><span class="p">.</span><span class="n">employees</span><span class="w">              </span><span class="o">|</span>
-<span class="o">|</span><span class="w">         </span><span class="n">Hit</span><span class="w"> </span><span class="n">Partition</span><span class="p">:</span><span class="w"> </span><span class="k">all</span><span class="w"> </span><span class="n">partitions</span><span class="w">          </span><span class="o">|</span>
-<span class="o">|</span><span class="w">         </span><span class="n">Filter</span><span class="w"> </span><span class="n">Cond</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="n">employees</span><span class="p">.</span><span class="n">store_id</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">15</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------------------------------------+</span>
-<span class="mi">4</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+Conditions that cannot determine if the query results are within a single partition, such as `between`, `&gt; &lt; &gt;= &lt;=`, and similar conditions, cannot benefit from partition pruning optimization.
+
+```sql &lt;!-- validator-ignore-exec --&gt;
+CREATE TABLE employees (
+ id INT NOT NULL,
+ fname VARCHAR(30),
+ lname VARCHAR(30),
+ hired DATE NOT NULL DEFAULT &#39;1970-01-01&#39;,
+ separated DATE NOT NULL DEFAULT &#39;9999-12-31&#39;,
+ job_code INT,
+ store_id INT
+)
+PARTITION BY HASH(store_id) PARTITIONS 4;
+
+mysql&gt; EXPLAIN SELECT * FROM employees WHERE store_id &gt; 15;
++------------------------------------------------+
+| QUERY PLAN                                     |
++------------------------------------------------+
+| Project                                        |
+|   -&gt;  Table Scan on db1.employees              |
+|         Hit Partition: all partitions          |
+|         Filter Cond: (employees.store_id &gt; 15) |
++------------------------------------------------+
+4 rows in set (0.00 sec)
+</code></pre></div></p>
 <p>In this SQL statement, the condition <code>store_id &gt; 15</code> cannot determine the corresponding Hash partition, and therefore, partition pruning optimization cannot be used.</p>
-<h4 id="scenario-2_1">Scenario 2</h4>
+<h4 id="scenario-2">Scenario 2</h4>
 <p>In scenarios where filtering conditions can only be obtained during the execution plan generation phase, partition pruning optimization cannot be utilized.</p>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">EXPLAIN</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">col1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">store_id</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">employees</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">employees</span><span class="p">.</span><span class="n">store_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t1</span><span class="p">.</span><span class="n">col1</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">employees</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10010</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">---------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">QUERY</span><span class="w"> </span><span class="n">PLAN</span><span class="w">                                              </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">Project</span><span class="w">                                                 </span><span class="o">|</span>
-<span class="o">|</span><span class="w">   </span><span class="o">-&gt;</span><span class="w">  </span><span class="n">Filter</span><span class="w">                                            </span><span class="o">|</span>
-<span class="o">|</span><span class="w">         </span><span class="n">Filter</span><span class="w"> </span><span class="n">Cond</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="n">t1</span><span class="p">.</span><span class="n">col1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">employees</span><span class="p">.</span><span class="n">store_id</span><span class="p">)</span><span class="w">     </span><span class="o">|</span>
-<span class="o">|</span><span class="w">         </span><span class="o">-&gt;</span><span class="w">  </span><span class="k">Join</span><span class="w">                                        </span><span class="o">|</span>
-<span class="o">|</span><span class="w">               </span><span class="k">Join</span><span class="w"> </span><span class="k">Type</span><span class="p">:</span><span class="w"> </span><span class="n">SINGLE</span><span class="w">                         </span><span class="o">|</span>
-<span class="o">|</span><span class="w">               </span><span class="k">Join</span><span class="w"> </span><span class="n">Cond</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="n">t1</span><span class="p">.</span><span class="n">col1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">employees</span><span class="p">.</span><span class="n">store_id</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">               </span><span class="o">-&gt;</span><span class="w">  </span><span class="k">Table</span><span class="w"> </span><span class="n">Scan</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">db1</span><span class="p">.</span><span class="n">t1</span><span class="w">                  </span><span class="o">|</span>
-<span class="o">|</span><span class="w">                     </span><span class="n">Hit</span><span class="w"> </span><span class="n">Partition</span><span class="p">:</span><span class="w"> </span><span class="k">all</span><span class="w"> </span><span class="n">partitions</span><span class="w">       </span><span class="o">|</span>
-<span class="o">|</span><span class="w">               </span><span class="o">-&gt;</span><span class="w">  </span><span class="k">Table</span><span class="w"> </span><span class="n">Scan</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">db1</span><span class="p">.</span><span class="n">employees</span><span class="w">           </span><span class="o">|</span>
-<span class="o">|</span><span class="w">                     </span><span class="n">Hit</span><span class="w"> </span><span class="n">Partition</span><span class="p">:</span><span class="w"> </span><span class="k">all</span><span class="w"> </span><span class="n">partitions</span><span class="w">       </span><span class="o">|</span>
-<span class="o">|</span><span class="w">                     </span><span class="n">Filter</span><span class="w"> </span><span class="n">Cond</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="n">employees</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10010</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------------------------------------------------------+</span>
-<span class="mi">11</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
-<p>This query retrieves results from a subquery and constructs an equality filter condition <code>col3 = ?</code> for each row read. However, partition pruning only takes effect during the query plan generation phase, not during execution, making it ineffective in this scenario.</p>
-<h4 id="scenario-3">Scenario 3</h4>
-<p>Using function expressions as partitioning expressions for HASH partitioned tables is not supported for partition pruning.</p>
-<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t3</span><span class="w"> </span><span class="p">(</span>
-<span class="n">col1</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
-<span class="n">col2</span><span class="w"> </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span>
-<span class="n">col3</span><span class="w"> </span><span class="n">DATETIME</span>
-<span class="p">)</span><span class="w"> </span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">HASH</span><span class="w"> </span><span class="p">(</span><span class="k">YEAR</span><span class="p">(</span><span class="n">col3</span><span class="p">))</span><span class="w"> </span><span class="n">PARTITIONS</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span>
+<p>```sql <!-- validator-ignore-exec -->
+mysql&gt; EXPLAIN SELECT * FROM t1 WHERE col1 = (SELECT store_id FROM employees WHERE employees.store_id = t1.col1 AND employees.id = 10010);
++---------------------------------------------------------+
+| QUERY PLAN                                              |
++---------------------------------------------------------+
+| Project                                                 |
+|   -&gt;  Filter                                            |
+|         Filter Cond: (t1.col1 = employees.store_id)     |
+|         -&gt;  Join                                        |
+|               Join Type: SINGLE                         |
+|               Join Cond: (t1.col1 = employees.store_id) |
+|               -&gt;  Table Scan on db1.t1                  |
+|                     Hit Partition: all partitions       |
+|               -&gt;  Table Scan on db1.employees           |
+|                     Hit Partition: all partitions       |
+|                     Filter Cond: (employees.id = 10010) |
++---------------------------------------------------------+
+11 rows in set (0.01 sec)</p>
+<div class="highlight"><pre><span></span><code>This query retrieves results from a subquery and constructs an equality filter condition `col3 = ?` for each row read. However, partition pruning only takes effect during the query plan generation phase, not during execution, making it ineffective in this scenario.
 
-<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">t3</span><span class="w"> </span><span class="k">VALUES</span>
-<span class="p">(</span><span class="mi">10001</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Georgi&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1999-04-05 11:01:02&#39;</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">10002</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Bezalel&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2004-04-03 13:11:10&#39;</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">10003</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Parto&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1997-04-05 11:01:02&#39;</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">10004</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Chirstian&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2004-04-03 13:11:10&#39;</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">10005</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Mary&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1998-04-05 11:01:02&#39;</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">10006</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Patricio&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2004-04-03 13:11:10&#39;</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">10007</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Eberhardt&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1953-09-02 13:11:10&#39;</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">10008</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Kazuhide&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1986-06-26 19:21:10&#39;</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">10009</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Tempesti&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1956-11-14 08:11:10&#39;</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">10010</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Nooteboom&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1987-03-18 23:11:10&#39;</span><span class="p">);</span>
+#### Scenario 3
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">EXPLAIN</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t3</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="k">YEAR</span><span class="p">(</span><span class="n">col3</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1999</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">---------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">QUERY</span><span class="w"> </span><span class="n">PLAN</span><span class="w">                                  </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">Project</span><span class="w">                                     </span><span class="o">|</span>
-<span class="o">|</span><span class="w">   </span><span class="o">-&gt;</span><span class="w">  </span><span class="k">Table</span><span class="w"> </span><span class="n">Scan</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">db1</span><span class="p">.</span><span class="n">t3</span><span class="w">                  </span><span class="o">|</span>
-<span class="o">|</span><span class="w">         </span><span class="n">Hit</span><span class="w"> </span><span class="n">Partition</span><span class="p">:</span><span class="w"> </span><span class="k">all</span><span class="w"> </span><span class="n">partitions</span><span class="w">       </span><span class="o">|</span>
-<span class="o">|</span><span class="w">         </span><span class="n">Filter</span><span class="w"> </span><span class="n">Cond</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="k">YEAR</span><span class="p">(</span><span class="n">t3</span><span class="p">.</span><span class="n">col3</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1999</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------------------------------------------+</span>
-<span class="mi">4</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+Using function expressions as partitioning expressions for HASH partitioned tables is not supported for partition pruning.
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t3</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="k">YEAR</span><span class="p">(</span><span class="n">col3</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1999</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">-------+--------+---------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">col1</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">col2</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">col3</span><span class="w">                </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+--------+---------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">10001</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Georgi</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">1999</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">05</span><span class="w"> </span><span class="mi">11</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">02</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+--------+---------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+```sql &lt;!-- validator-ignore-exec --&gt;
+
+CREATE TABLE t3 (
+col1 INT,
+col2 CHAR(10),
+col3 DATETIME
+) PARTITION BY HASH (YEAR(col3)) PARTITIONS 4;
+
+INSERT INTO t3 VALUES
+(10001, &#39;Georgi&#39;, &#39;1999-04-05 11:01:02&#39;),
+(10002, &#39;Bezalel&#39;, &#39;2004-04-03 13:11:10&#39;),
+(10003, &#39;Parto&#39;, &#39;1997-04-05 11:01:02&#39;),
+(10004, &#39;Chirstian&#39;, &#39;2004-04-03 13:11:10&#39;),
+(10005, &#39;Mary&#39;, &#39;1998-04-05 11:01:02&#39;),
+(10006, &#39;Patricio&#39;, &#39;2004-04-03 13:11:10&#39;),
+(10007, &#39;Eberhardt&#39;, &#39;1953-09-02 13:11:10&#39;),
+(10008, &#39;Kazuhide&#39;, &#39;1986-06-26 19:21:10&#39;),
+(10009, &#39;Tempesti&#39;, &#39;1956-11-14 08:11:10&#39;),
+(10010, &#39;Nooteboom&#39;, &#39;1987-03-18 23:11:10&#39;);
+
+mysql&gt; EXPLAIN SELECT * FROM t3 WHERE YEAR(col3) = 1999;
++---------------------------------------------+
+| QUERY PLAN                                  |
++---------------------------------------------+
+| Project                                     |
+|   -&gt;  Table Scan on db1.t3                  |
+|         Hit Partition: all partitions       |
+|         Filter Cond: (YEAR(t3.col3) = 1999) |
++---------------------------------------------+
+4 rows in set (0.00 sec)
+
+mysql&gt; SELECT * FROM t3 WHERE YEAR(col3) = 1999;
++-------+--------+---------------------+
+| col1  | col2   | col3                |
++-------+--------+---------------------+
+| 10001 | Georgi | 1999-04-05 11:01:02 |
++-------+--------+---------------------+
+1 row in set (0.01 sec)
 </code></pre></div>
 <h2 id="performance-tuning-examples-for-partition-pruning">Performance Tuning Examples for Partition Pruning</h2>
 <h3 id="example-1">Example 1</h3>
 <p>Equality Conditions in KEY Partitioned Table:</p>
-<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span>
-<span class="w">    </span><span class="n">col1</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="w">    </span><span class="n">col2</span><span class="w"> </span><span class="nb">DATE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="w">    </span><span class="n">col3</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="w">    </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">(</span><span class="n">col1</span><span class="p">,</span><span class="w"> </span><span class="n">col3</span><span class="p">)</span>
-<span class="p">)</span><span class="w"> </span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">KEY</span><span class="p">(</span><span class="n">col1</span><span class="p">,</span><span class="w"> </span><span class="n">col3</span><span class="p">)</span><span class="w"> </span><span class="n">PARTITIONS</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span>
+<p>```sql <!-- validator-ignore-exec -->
+CREATE TABLE t1 (
+    col1 INT NOT NULL,
+    col2 DATE NOT NULL,
+    col3 INT NOT NULL,
+    PRIMARY KEY(col1, col3)
+) PARTITION BY KEY(col1, col3) PARTITIONS 4;</p>
+<p>mysql&gt; EXPLAIN SELECT * FROM t1 WHERE col1 = 1 AND col3 = 7369;
++------------------------------------------------+
+| QUERY PLAN                                     |
++------------------------------------------------+
+| Project                                        |
+|   -&gt;  Table Scan on db2.t1                     |
+|         Hit Partition: p0                      |
+|         Filter Cond: ((t1.col1 = 1) and (t1.col3 = 7369)) |
++------------------------------------------------+
+5 rows in set (0.00 sec)
+<div class="highlight"><pre><span></span><code>In this query, only partition p0 is accessed after partition pruning because the query conditions match the data in partition p0.
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">EXPLAIN</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">col1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">col3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">7369</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">QUERY</span><span class="w"> </span><span class="n">PLAN</span><span class="w">                                     </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">Project</span><span class="w">                                        </span><span class="o">|</span>
-<span class="o">|</span><span class="w">   </span><span class="o">-&gt;</span><span class="w">  </span><span class="k">Table</span><span class="w"> </span><span class="n">Scan</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">db2</span><span class="p">.</span><span class="n">t1</span><span class="w">                     </span><span class="o">|</span>
-<span class="o">|</span><span class="w">         </span><span class="n">Hit</span><span class="w"> </span><span class="n">Partition</span><span class="p">:</span><span class="w"> </span><span class="n">p0</span><span class="w">                      </span><span class="o">|</span>
-<span class="o">|</span><span class="w">         </span><span class="n">Filter</span><span class="w"> </span><span class="n">Cond</span><span class="p">:</span><span class="w"> </span><span class="p">((</span><span class="n">t1</span><span class="p">.</span><span class="n">col1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="p">(</span><span class="n">t1</span><span class="p">.</span><span class="n">col3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">7369</span><span class="p">))</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------------------------------------+</span>
-<span class="mi">5</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
-<p>In this query, only partition p0 is accessed after partition pruning because the query conditions match the data in partition p0.</p>
-<h3 id="example-2">Example 2</h3>
-<p><code>OR</code> Conditions in KEY Partitioned Table:</p>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">EXPLAIN</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="p">(</span><span class="n">col1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">col3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">7369</span><span class="p">)</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="p">(</span><span class="n">col1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">col3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">7698</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">-----------------------------------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">QUERY</span><span class="w"> </span><span class="n">PLAN</span><span class="w">                                                                                          </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-----------------------------------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">Project</span><span class="w"> </span><span class="p">(</span><span class="n">cost</span><span class="o">=</span><span class="mi">1000</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">outcnt</span><span class="o">=</span><span class="mi">1000</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">selectivity</span><span class="o">=</span><span class="mi">1</span><span class="p">.</span><span class="mi">0000</span><span class="p">)</span><span class="w">                                            </span><span class="o">|</span>
-<span class="o">|</span><span class="w">   </span><span class="k">Output</span><span class="p">:</span><span class="w"> </span><span class="n">t1</span><span class="p">.</span><span class="n">col1</span><span class="p">,</span><span class="w"> </span><span class="n">t1</span><span class="p">.</span><span class="n">col2</span><span class="p">,</span><span class="w"> </span><span class="n">t1</span><span class="p">.</span><span class="n">col3</span><span class="w">                                                                 </span><span class="o">|</span>
-<span class="o">|</span><span class="w">   </span><span class="o">-&gt;</span><span class="w">  </span><span class="k">Table</span><span class="w"> </span><span class="n">Scan</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">db2</span><span class="p">.</span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">cost</span><span class="o">=</span><span class="mi">1000</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">outcnt</span><span class="o">=</span><span class="mi">1000</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">selectivity</span><span class="o">=</span><span class="mi">1</span><span class="p">.</span><span class="mi">0000</span><span class="w"> </span><span class="n">blockNum</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="w">              </span><span class="o">|</span>
-<span class="o">|</span><span class="w">         </span><span class="k">Output</span><span class="p">:</span><span class="w"> </span><span class="n">t1</span><span class="p">.</span><span class="n">col1</span><span class="p">,</span><span class="w"> </span><span class="n">t1</span><span class="p">.</span><span class="n">col2</span><span class="p">,</span><span class="w"> </span><span class="n">t1</span><span class="p">.</span><span class="n">col3</span><span class="w">                                                           </span><span class="o">|</span>
-<span class="o">|</span><span class="w">         </span><span class="k">Table</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;t1&#39;</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="s1">&#39;col1&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">:</span><span class="s1">&#39;col2&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">:</span><span class="s1">&#39;col3&#39;</span><span class="p">)</span><span class="w">                                                  </span><span class="o">|</span>
-<span class="o">|</span><span class="w">         </span><span class="n">Hit</span><span class="w"> </span><span class="n">Partition</span><span class="p">:</span><span class="w"> </span><span class="n">p0</span><span class="p">,</span><span class="w"> </span><span class="n">p2</span><span class="w">                                                                       </span><span class="o">|</span>
-<span class="o">|</span><span class="w">         </span><span class="n">Filter</span><span class="w"> </span><span class="n">Cond</span><span class="p">:</span><span class="w"> </span><span class="p">(((</span><span class="n">t1</span><span class="p">.</span><span class="n">col1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="p">(</span><span class="n">t1</span><span class="p">.</span><span class="n">col3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">7369</span><span class="p">))</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="p">((</span><span class="n">t1</span><span class="p">.</span><span class="n">col1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">6</span><span class="p">)</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="p">(</span><span class="n">t1</span><span class="p">.</span><span class="n">col3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">7698</span><span class="p">)))</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-----------------------------------------------------------------------------------------------------+</span>
-<span class="mi">7</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+### Example 2
+
+`OR` Conditions in KEY Partitioned Table:
+
+```sql &lt;!-- validator-ignore-exec --&gt;
+mysql&gt; EXPLAIN SELECT * FROM t1 WHERE (col1 = 1 AND col3 = 7369) OR (col1 = 6 AND col3 = 7698);
++-----------------------------------------------------------------------------------------------------+
+| QUERY PLAN                                                                                          |
++-----------------------------------------------------------------------------------------------------+
+| Project (cost=1000.00 outcnt=1000.00 selectivity=1.0000)                                            |
+|   Output: t1.col1, t1.col2, t1.col3                                                                 |
+|   -&gt;  Table Scan on db2.t1 (cost=1000.00 outcnt=1000.00 selectivity=1.0000 blockNum=1)              |
+|         Output: t1.col1, t1.col2, t1.col3                                                           |
+|         Table: &#39;t1&#39; (0:&#39;col1&#39;, 1:&#39;col2&#39;, 2:&#39;col3&#39;)                                                  |
+|         Hit Partition: p0, p2                                                                       |
+|         Filter Cond: (((t1.col1 = 1) and (t1.col3 = 7369)) or ((t1.col1 = 6) and (t1.col3 = 7698))) |
++-----------------------------------------------------------------------------------------------------+
+7 rows in set (0.00 sec)
+</code></pre></div></p>
 <p>This query prunes partitions p0 and p2 because the query conditions match the data in these two partitions.</p>
 <h3 id="example-3">Example 3</h3>
 <p>Equality Condition in HASH Partitioned Table:</p>
-<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">employees</span><span class="w"> </span><span class="p">(</span>
-<span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="w">    </span><span class="n">fname</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span>
-<span class="w">    </span><span class="n">lname</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span>
-<span class="w">    </span><span class="n">hired</span><span class="w"> </span><span class="nb">DATE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;1970-01-01&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="n">separated</span><span class="w"> </span><span class="nb">DATE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;9999-12-31&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="n">job_code</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
-<span class="w">    </span><span class="n">store_id</span><span class="w"> </span><span class="nb">INT</span>
-<span class="p">)</span><span class="w"> </span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">HASH</span><span class="p">(</span><span class="n">store_id</span><span class="p">)</span><span class="w"> </span><span class="n">PARTITIONS</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span>
+<p>```sql <!-- validator-ignore-exec -->
+CREATE TABLE employees (
+    id INT NOT NULL,
+    fname VARCHAR(30),
+    lname VARCHAR(30),
+    hired DATE NOT NULL DEFAULT '1970-01-01',
+    separated DATE NOT NULL DEFAULT '9999-12-31',
+    job_code INT,
+    store_id INT
+) PARTITION BY HASH(store_id) PARTITIONS 4;</p>
+<p>mysql&gt; EXPLAIN SELECT * FROM employees WHERE store_id = 10;
++------------------------------------------------+
+| QUERY PLAN                                     |
++------------------------------------------------+
+| Project                                        |
+|   -&gt;  Table Scan on db1.employees              |
+|         Hit Partition: p0                      |
+|         Filter Cond: (employees.store_id = 10) |
++------------------------------------------------+
+4 rows in set (0.00 sec)
+<div class="highlight"><pre><span></span><code>In this query, only partition p0 contains data matching the condition `store_id = 10`, so only partition p0 is scanned.
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">EXPLAIN</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">employees</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">store_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">QUERY</span><span class="w"> </span><span class="n">PLAN</span><span class="w">                                     </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">Project</span><span class="w">                                        </span><span class="o">|</span>
-<span class="o">|</span><span class="w">   </span><span class="o">-&gt;</span><span class="w">  </span><span class="k">Table</span><span class="w"> </span><span class="n">Scan</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">db1</span><span class="p">.</span><span class="n">employees</span><span class="w">              </span><span class="o">|</span>
-<span class="o">|</span><span class="w">         </span><span class="n">Hit</span><span class="w"> </span><span class="n">Partition</span><span class="p">:</span><span class="w"> </span><span class="n">p0</span><span class="w">                      </span><span class="o">|</span>
-<span class="o">|</span><span class="w">         </span><span class="n">Filter</span><span class="w"> </span><span class="n">Cond</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="n">employees</span><span class="p">.</span><span class="n">store_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------------------------------------+</span>
-<span class="mi">4</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
-<p>In this query, only partition p0 contains data matching the condition <code>store_id = 10</code>, so only partition p0 is scanned.</p>
-<h3 id="example-4">Example 4</h3>
-<p>Multiple Conditions in HASH Partitioned Table:</p>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">EXPLAIN</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">employees</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">store_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="n">store_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">15</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">---------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">QUERY</span><span class="w"> </span><span class="n">PLAN</span><span class="w">                                        </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">Project</span><span class="w">                                           </span><span class="o">|</span>
-<span class="o">|</span><span class="w">   </span><span class="o">-&gt;</span><span class="w">  </span><span class="k">Table</span><span class="w"> </span><span class="n">Scan</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">db1</span><span class="p">.</span><span class="n">employees</span><span class="w">                 </span><span class="o">|</span>
-<span class="o">|</span><span class="w">         </span><span class="n">Hit</span><span class="w"> </span><span class="n">Partition</span><span class="p">:</span><span class="w"> </span><span class="n">p0</span><span class="p">,</span><span class="w"> </span><span class="n">p3</span><span class="w">                     </span><span class="o">|</span>
-<span class="o">|</span><span class="w">         </span><span class="n">Filter</span><span class="w"> </span><span class="n">Cond</span><span class="p">:</span><span class="w"> </span><span class="p">((</span><span class="n">employees</span><span class="p">.</span><span class="n">store_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="p">(</span><span class="n">employees</span><span class="p">.</span><span class="n">store_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">15</span><span class="p">))</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------------------------------------------------+</span>
-<span class="mi">5</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+### Example 4
+
+Multiple Conditions in HASH Partitioned Table:
+
+```sql &lt;!-- validator-ignore-exec --&gt;
+mysql&gt; EXPLAIN SELECT * FROM employees WHERE store_id = 10 OR store_id = 15;
++---------------------------------------------------+
+| QUERY PLAN                                        |
++---------------------------------------------------+
+| Project                                           |
+|   -&gt;  Table Scan on db1.employees                 |
+|         Hit Partition: p0, p3                     |
+|         Filter Cond: ((employees.store_id = 10) or (employees.store_id = 15)) |
++---------------------------------------------------+
+5 rows in set (0.00 sec)
+</code></pre></div></p>
 <p>This query prunes partitions p0 and p3 because these two partitions contain data matching the condition <code>store_id = 10 OR store_id = 15</code>.</p>
 <h3 id="example-5">Example 5</h3>
 <p>Scenarios Inapplicable for Partition Pruning:</p>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">EXPLAIN</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">col1</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">QUERY</span><span class="w"> </span><span class="n">PLAN</span><span class="w">                                     </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">Project</span><span class="w">                                        </span><span class="o">|</span>
-<span class="o">|</span><span class="w">   </span><span class="o">-&gt;</span><span class="w">  </span><span class="k">Table</span><span class="w"> </span><span class="n">Scan</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">db1</span><span class="p">.</span><span class="n">t1</span><span class="w">                     </span><span class="o">|</span>
-<span class="o">|</span><span class="w">         </span><span class="n">Hit</span><span class="w"> </span><span class="n">Partition</span><span class="p">:</span><span class="w"> </span><span class="k">all</span><span class="w"> </span><span class="n">partitions</span><span class="w">          </span><span class="o">|</span>
-<span class="o">|</span><span class="w">         </span><span class="n">Filter</span><span class="w"> </span><span class="n">Cond</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="n">t1</span><span class="p">.</span><span class="n">col1</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span><span class="w">             </span><span class="o">|</span>
-<span class="o">|</span><span class="w">         </span><span class="n">Block</span><span class="w"> </span><span class="n">Filter</span><span class="w"> </span><span class="n">Cond</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="n">t1</span><span class="p">.</span><span class="n">col1</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span><span class="w">       </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------------------------------------+</span>
-<span class="mi">5</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+<p><code>sql &lt;!-- validator-ignore-exec --&gt;
+mysql&gt; EXPLAIN SELECT * FROM t1 WHERE col1 &gt; 5;
++------------------------------------------------+
+| QUERY PLAN                                     |
++------------------------------------------------+
+| Project                                        |
+|   -&gt;  Table Scan on db1.t1                     |
+|         Hit Partition: all partitions          |
+|         Filter Cond: (t1.col1 &gt; 5)             |
+|         Block Filter Cond: (t1.col1 &gt; 5)       |
++------------------------------------------------+
+5 rows in set (0.00 sec)</code></p>
 <p>In this query, the condition <code>col1 &gt; 5</code> cannot determine the corresponding partition, and therefore, partition pruning cannot be used.</p>
 <h2 id="constraints">Constraints</h2>
 <p>MatrixOne supports four partitioning methods: <code>Key</code>, <code>Hash</code>, <code>Range</code>, and <code>List</code>:</p>

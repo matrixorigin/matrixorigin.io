@@ -13415,7 +13415,7 @@ WHERE OrderID = 1
 FOR UPDATE;
 <div class="highlight"><pre><span></span><code>In this transaction, the `SELECT FOR UPDATE` statement selects and locks the row in the `Orders` table where `OrderID` is 1. Other transactions cannot modify this row until the transaction ends. After modifying the row, you can commit the transaction to release the lock:
 
-```sql src/main.sql
+```sql src/main.sql &lt;!-- validator-ignore-exec --&gt;
 UPDATE Orders
 SET Quantity = Quantity - 1
 WHERE OrderID = 1;
@@ -13424,7 +13424,7 @@ COMMIT;
 </code></pre></div></p>
 <p>The <code>UPDATE</code> statement modifies the <code>Quantity</code> value of the selected row, and the <code>COMMIT</code> statement releases the lock. Other blocked transactions can then proceed. If you decide not to make any changes, use <code>ROLLBACK</code> to end the transaction and release the lock.</p>
 <h2 id="examples"><strong>Examples</strong></h2>
-<p>```sql src/main.sql
+<p>```sql src/main.sql <!-- validator-ignore-exec -->
 CREATE TABLE t1 (spID INT, userID INT, score SMALLINT);
 INSERT INTO t1 VALUES (1,1,1);
 INSERT INTO t1 VALUES (2,2,2);

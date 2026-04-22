@@ -13584,6 +13584,7 @@
 <h2 id="examples">Examples</h2>
 <h3 id="example-1-basic-difference-comparison">Example 1: Basic Difference Comparison</h3>
 <p>Compare two tables without a common ancestor:</p>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="c1">-- Expected-Rows: 0</span>
 <span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">test</span><span class="p">;</span>
 <span class="c1">-- Expected-Rows: 0</span>
@@ -13623,6 +13624,7 @@
 <span class="k">DROP</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">test</span><span class="p">.</span><span class="n">t2</span><span class="p">;</span>
 </code></pre></div>
 <h3 id="example-2-compare-branch-tables-with-common-ancestor">Example 2: Compare Branch Tables (With Common Ancestor)</h3>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="c1">-- Expected-Rows: 0</span>
 <span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">test</span><span class="p">.</span><span class="n">t0</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="nb">INT</span><span class="p">);</span>
 <span class="c1">-- Expected-Rows: 0</span>
@@ -13655,6 +13657,7 @@
 <span class="k">DROP</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">test</span><span class="p">.</span><span class="n">t2</span><span class="p">;</span>
 </code></pre></div>
 <h3 id="example-3-compare-using-snapshots">Example 3: Compare Using Snapshots</h3>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="c1">-- Expected-Rows: 0</span>
 <span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">test</span><span class="p">.</span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="nb">INT</span><span class="p">);</span>
 <span class="c1">-- Expected-Rows: 0</span>
@@ -13691,6 +13694,7 @@
 <p>When comparing two snapshots of the same table, the system compares based on incremental changes between snapshots. In this example, although the UPDATE operation modified the row where a=1, due to the special mechanism of snapshot comparison, only the newly inserted row is shown.</p>
 </div>
 <h3 id="example-4-get-only-difference-count">Example 4: Get Only Difference Count</h3>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="c1">-- Expected-Rows: 0</span>
 <span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">test</span><span class="p">.</span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="nb">INT</span><span class="p">);</span>
 <span class="c1">-- Expected-Rows: 0</span>
@@ -13717,6 +13721,7 @@
 <span class="k">DROP</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">test</span><span class="p">.</span><span class="n">t2</span><span class="p">;</span>
 </code></pre></div>
 <h3 id="example-5-limit-returned-rows">Example 5: Limit Returned Rows</h3>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="c1">-- Expected-Rows: 0</span>
 <span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">test</span><span class="p">.</span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="nb">INT</span><span class="p">);</span>
 <span class="c1">-- Expected-Rows: 0</span>
@@ -13749,6 +13754,7 @@
 <p>The rows returned by <code>OUTPUT LIMIT</code> are not necessarily ordered by primary key, but rather return the first N difference rows based on internal storage order.</p>
 </div>
 <h3 id="example-6-export-differences-as-sql-file">Example 6: Export Differences as SQL File</h3>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="c1">-- Expected-Rows: 0</span>
 <span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">test</span><span class="p">.</span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="nb">INT</span><span class="p">);</span>
 <span class="c1">-- Expected-Rows: 0</span>
@@ -13804,6 +13810,7 @@
 <div class="highlight"><pre><span></span><code>mysql -h &lt;mo_host&gt; -P &lt;mo_port&gt; -u &lt;user&gt; -p &lt;db_name&gt; &lt; diff_t2_t1_20241225.sql
 </code></pre></div>
 <p><strong>Import CSV file (full sync)</strong>:</p>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="c1">-- Expected-Success: false</span>
 <span class="k">LOAD</span><span class="w"> </span><span class="k">DATA</span><span class="w"> </span><span class="k">LOCAL</span><span class="w"> </span><span class="n">INFILE</span><span class="w"> </span><span class="s1">&#39;/tmp/diff_output/diff_xxx.csv&#39;</span>
 <span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">test</span><span class="p">.</span><span class="n">t1</span>
@@ -13812,6 +13819,7 @@
 </code></pre></div>
 <h3 id="example-6b-export-differences-to-stage-object-storage">Example 6b: Export Differences to Stage (Object Storage)</h3>
 <p>Stage is a logical object in MatrixOne for connecting to external storage (such as S3, HDFS). You can output difference files directly to object storage for cross-cluster/cross-environment data synchronization.</p>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="c1">-- Expected-Rows: 0</span>
 <span class="k">CREATE</span><span class="w"> </span><span class="n">STAGE</span><span class="w"> </span><span class="n">my_stage</span><span class="w"> </span><span class="n">URL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;s3://my-bucket/diff-output/?region=us-east-1&amp;access_key_id=xxx&amp;secret_access_key=yyy&#39;</span><span class="p">;</span>
 
@@ -13836,6 +13844,7 @@
 <li><strong>Cross-cluster sync</strong>: Source writes to object storage, target reads and executes directly</li>
 </ul>
 <h3 id="example-7-detect-update-operations">Example 7: Detect Update Operations</h3>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="c1">-- Expected-Rows: 0</span>
 <span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">test</span><span class="p">.</span><span class="n">t0</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span><span class="w"> </span><span class="k">c</span><span class="w"> </span><span class="nb">INT</span><span class="p">);</span>
 <span class="c1">-- Expected-Rows: 0</span>
@@ -13873,6 +13882,7 @@
 <span class="k">DROP</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">test</span><span class="p">.</span><span class="n">t2</span><span class="p">;</span>
 </code></pre></div>
 <h3 id="example-8-difference-comparison-for-composite-primary-key-tables">Example 8: Difference Comparison for Composite Primary Key Tables</h3>
+<!-- validator-ignore -->
 <div class="highlight"><pre><span></span><code><span class="c1">-- Expected-Rows: 0</span>
 <span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">test</span><span class="p">.</span><span class="n">orders</span><span class="w"> </span><span class="p">(</span>
 <span class="w">    </span><span class="n">tenant_id</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>

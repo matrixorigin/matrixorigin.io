@@ -13227,103 +13227,102 @@
 <ul>
 <li>Example 1:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">UTC_TIMESTAMP</span><span class="p">();</span>
-<span class="o">+</span><span class="c1">---------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">utc_timestamp</span><span class="p">()</span><span class="w">     </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">2022</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">16</span><span class="w"> </span><span class="mi">03</span><span class="p">:</span><span class="mi">37</span><span class="p">:</span><span class="mi">40</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+<p>```sql <!-- validator-ignore-exec -->
+mysql&gt; SELECT UTC_TIMESTAMP();
++---------------------+
+| utc_timestamp()     |
++---------------------+
+| 2022-09-16 03:37:40 |
++---------------------+
+1 row in set (0.01 sec)</p>
+<p>mysql&gt; select unix_timestamp(utc_timestamp());
++---------------------------------+
+| unix_timestamp(utc_timestamp()) |
++---------------------------------+
+|                      1663282842 |
++---------------------------------+
+1 row in set (0.02 sec)
+<div class="highlight"><pre><span></span><code>- Example 2:
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">unix_timestamp</span><span class="p">(</span><span class="n">utc_timestamp</span><span class="p">());</span>
-<span class="o">+</span><span class="c1">---------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">unix_timestamp</span><span class="p">(</span><span class="n">utc_timestamp</span><span class="p">())</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------------------------------+</span>
-<span class="o">|</span><span class="w">                      </span><span class="mi">1663282842</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">02</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
-<ul>
-<li>Example 2:</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">ts</span><span class="w"> </span><span class="k">timestamp</span><span class="p">);</span>
-<span class="k">set</span><span class="w"> </span><span class="n">time_zone</span><span class="o">=</span><span class="s1">&#39;+00:00&#39;</span><span class="p">;</span>
+```sql &lt;!-- validator-ignore-exec --&gt;
+create table t1 (ts timestamp);
+set time_zone=&#39;+00:00&#39;;
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">unix_timestamp</span><span class="p">(</span><span class="n">utc_timestamp</span><span class="p">())</span><span class="o">-</span><span class="n">unix_timestamp</span><span class="p">(</span><span class="n">utc_timestamp</span><span class="p">());</span>
-<span class="o">+</span><span class="c1">-------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">unix_timestamp</span><span class="p">(</span><span class="n">utc_timestamp</span><span class="p">())</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">unix_timestamp</span><span class="p">(</span><span class="n">utc_timestamp</span><span class="p">())</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w">                                                                 </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------------------------------------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+mysql&gt; select unix_timestamp(utc_timestamp())-unix_timestamp(utc_timestamp());
++-------------------------------------------------------------------+
+| unix_timestamp(utc_timestamp()) - unix_timestamp(utc_timestamp()) |
++-------------------------------------------------------------------+
+|                                                                 0 |
++-------------------------------------------------------------------+
+1 row in set (0.00 sec)
 
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">ts</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;2003-03-30 02:30:00&#39;</span><span class="p">);</span>
-<span class="k">set</span><span class="w"> </span><span class="n">time_zone</span><span class="o">=</span><span class="s1">&#39;+10:30&#39;</span><span class="p">;</span>
+insert into t1 (ts) values (&#39;2003-03-30 02:30:00&#39;);
+set time_zone=&#39;+10:30&#39;;
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">unix_timestamp</span><span class="p">(</span><span class="n">utc_timestamp</span><span class="p">())</span><span class="o">-</span><span class="n">unix_timestamp</span><span class="p">(</span><span class="n">utc_timestamp</span><span class="p">());</span>
-<span class="o">+</span><span class="c1">-------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">unix_timestamp</span><span class="p">(</span><span class="n">utc_timestamp</span><span class="p">())</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">unix_timestamp</span><span class="p">(</span><span class="n">utc_timestamp</span><span class="p">())</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w">                                                                 </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------------------------------------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+mysql&gt; select unix_timestamp(utc_timestamp())-unix_timestamp(utc_timestamp());
++-------------------------------------------------------------------+
+| unix_timestamp(utc_timestamp()) - unix_timestamp(utc_timestamp()) |
++-------------------------------------------------------------------+
+|                                                                 0 |
++-------------------------------------------------------------------+
+1 row in set (0.01 sec)
 
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">ts</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;2003-03-30 02:30:00&#39;</span><span class="p">);</span>
-<span class="k">set</span><span class="w"> </span><span class="n">time_zone</span><span class="o">=</span><span class="s1">&#39;-10:00&#39;</span><span class="p">;</span>
+insert into t1 (ts) values (&#39;2003-03-30 02:30:00&#39;);
+set time_zone=&#39;-10:00&#39;;
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">unix_timestamp</span><span class="p">(</span><span class="n">utc_timestamp</span><span class="p">())</span><span class="o">-</span><span class="n">unix_timestamp</span><span class="p">(</span><span class="k">current_timestamp</span><span class="p">());</span>
-<span class="o">+</span><span class="c1">-----------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">unix_timestamp</span><span class="p">(</span><span class="n">utc_timestamp</span><span class="p">())</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">unix_timestamp</span><span class="p">(</span><span class="k">current_timestamp</span><span class="p">())</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-----------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w">                                                                 </span><span class="mi">36000</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-----------------------------------------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+mysql&gt; select unix_timestamp(utc_timestamp())-unix_timestamp(current_timestamp());
++-----------------------------------------------------------------------+
+| unix_timestamp(utc_timestamp()) - unix_timestamp(current_timestamp()) |
++-----------------------------------------------------------------------+
+|                                                                 36000 |
++-----------------------------------------------------------------------+
+1 row in set (0.00 sec)
 
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">ts</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;2003-03-30 02:30:00&#39;</span><span class="p">);</span>
+insert into t1 (ts) values (&#39;2003-03-30 02:30:00&#39;);
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">---------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">ts</span><span class="w">                  </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">2003</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">29</span><span class="w"> </span><span class="mi">16</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">00</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">2003</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">29</span><span class="w"> </span><span class="mi">06</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="mi">2003</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">30</span><span class="w"> </span><span class="mi">02</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">00</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------------------+</span>
-<span class="mi">3</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+mysql&gt; select * from t1;
++---------------------+
+| ts                  |
++---------------------+
+| 2003-03-29 16:30:00 |
+| 2003-03-29 06:00:00 |
+| 2003-03-30 02:30:00 |
++---------------------+
+3 rows in set (0.00 sec)
+</code></pre></div></p>
 <ul>
 <li>Example 3:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="k">DROP</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
-<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="p">);</span>
-<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="p">(</span><span class="n">utc_timestamp</span><span class="p">());</span>
-<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="p">(</span><span class="n">utc_timestamp</span><span class="p">());</span>
-<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="p">(</span><span class="n">utc_timestamp</span><span class="p">());</span>
+<p>```sql <!-- validator-ignore-exec -->
+DROP TABLE IF EXISTS t1;
+CREATE TABLE t1 (a TIMESTAMP);
+INSERT INTO t1 select (utc_timestamp());
+INSERT INTO t1 select (utc_timestamp());
+INSERT INTO t1 select (utc_timestamp());</p>
+<p>mysql&gt; SELECT year(a) FROM t1 WHERE a &gt; '2008-01-01';
++---------+
+| year(a) |
++---------+
+|    2022 |
+|    2022 |
+|    2022 |
++---------+
+3 rows in set (0.04 sec)
+<div class="highlight"><pre><span></span><code>```sql &lt;!-- validator-ignore-exec --&gt;
+DROP TABLE if exists t1;
+create table t1 (a int primary key, b int, c int, d timestamp);
+insert into t1 select 1,1,1,utc_timestamp();
+insert into t1 select 2,0,0,null;
 
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">year</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="s1">&#39;2008-01-01&#39;</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">---------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">year</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------+</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">2022</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">2022</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">2022</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------+</span>
-<span class="mi">3</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">04</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="k">DROP</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
-<span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="k">primary</span><span class="w"> </span><span class="k">key</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="k">c</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="k">timestamp</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">utc_timestamp</span><span class="p">();</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="k">null</span><span class="p">;</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="k">c</span><span class="p">,</span><span class="k">year</span><span class="p">(</span><span class="n">d</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------+------+------+---------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">a</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="n">b</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="k">c</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="k">year</span><span class="p">(</span><span class="n">d</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+------+------+---------+</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">2022</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="k">NULL</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+------+------+---------+</span>
-<span class="mi">2</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+mysql&gt; select a,b,c,year(d) from t1;
++------+------+------+---------+
+| a    | b    | c    | year(d) |
++------+------+------+---------+
+|    1 |    1 |    1 |    2022 |
+|    2 |    0 |    0 |    NULL |
++------+------+------+---------+
+2 rows in set (0.01 sec)
+</code></pre></div></p>
 <div class="highlight"><pre><span></span><code><span class="k">DROP</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
 <span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="p">);</span>
 <span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="p">(</span><span class="n">utc_timestamp</span><span class="p">());</span>

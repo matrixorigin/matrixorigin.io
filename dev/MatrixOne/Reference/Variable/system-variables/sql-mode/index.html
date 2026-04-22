@@ -13168,59 +13168,60 @@
 </div>
 <h2 id="view-sql_mode">View sql_mode</h2>
 <p>View sql_mode in MatrixOne using the following command:</p>
-<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">@@</span><span class="k">global</span><span class="p">.</span><span class="n">sql_mode</span><span class="p">;</span><span class="w"> </span><span class="c1">--global mode </span>
-<span class="k">SELECT</span><span class="w"> </span><span class="o">@@</span><span class="k">session</span><span class="p">.</span><span class="n">sql_mode</span><span class="p">;</span><span class="w"> </span><span class="c1">--session mode </span>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">@@</span><span class="k">global</span><span class="p">.</span><span class="n">sql_mode</span><span class="p">;</span><span class="w"> </span>
+<span class="c1">-- global mode</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="o">@@</span><span class="k">session</span><span class="p">.</span><span class="n">sql_mode</span><span class="p">;</span><span class="w"> </span>
+<span class="c1">-- session mode</span>
 </code></pre></div>
 <h2 id="set-sql_mode">Set sql_mode</h2>
 <p>Set sql_mode in MatrixOne using the following command:</p>
-<div class="highlight"><pre><span></span><code><span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">sql_mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;xxx&#39;</span><span class="w"> </span><span class="c1">-- global mode, reconnecting to database takes effect </span>
-<span class="k">set</span><span class="w"> </span><span class="k">session</span><span class="w"> </span><span class="n">sql_mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;xxx&#39;</span><span class="w"> </span><span class="c1">-- session mode </span>
+<div class="highlight"><pre><span></span><code>set global sql_mode = &#39;xxx&#39; -- global mode, reconnecting to database takes effect 
+set session sql_mode = &#39;xxx&#39; -- session mode 
 </code></pre></div>
 <h2 id="examples">Examples</h2>
-<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">student</span><span class="p">(</span>
-<span class="n">id</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span>
-<span class="n">name</span><span class="w"> </span><span class="nb">char</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
-<span class="n">age</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span>
-<span class="n">nation</span><span class="w"> </span><span class="nb">char</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
-<span class="p">);</span>
-
-<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">student</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;tom&#39;</span><span class="p">,</span><span class="mi">18</span><span class="p">,</span><span class="s1">&#39;上海&#39;</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;jan&#39;</span><span class="p">,</span><span class="mi">19</span><span class="p">,</span><span class="s1">&#39;上海&#39;</span><span class="p">),(</span><span class="mi">3</span><span class="p">,</span><span class="s1">&#39;jen&#39;</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="s1">&#39;北京&#39;</span><span class="p">),(</span><span class="mi">4</span><span class="p">,</span><span class="s1">&#39;bob&#39;</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="s1">&#39;北京&#39;</span><span class="p">),(</span><span class="mi">5</span><span class="p">,</span><span class="s1">&#39;tim&#39;</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="s1">&#39;广州&#39;</span><span class="p">);</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">student</span><span class="w"> </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">nation</span><span class="p">;</span><span class="c1">--This operation is not supported in `ONLY_FULL_GROUP_BY` mode</span>
-<span class="n">ERROR</span><span class="w"> </span><span class="mi">1149</span><span class="w"> </span><span class="p">(</span><span class="n">HY000</span><span class="p">):</span><span class="w"> </span><span class="k">SQL</span><span class="w"> </span><span class="n">syntax</span><span class="w"> </span><span class="n">error</span><span class="p">:</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="ss">&quot;student.id&quot;</span><span class="w"> </span><span class="n">must</span><span class="w"> </span><span class="n">appear</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">clause</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">used</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="k">aggregate</span><span class="w"> </span><span class="k">function</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="k">session</span><span class="w"> </span><span class="n">sql_mode</span><span class="o">=</span><span class="s1">&#39;ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION,NO_ZERO_DATE,NO_ZERO_IN_DATE,STRICT_TRANS_TAB</span>
-<span class="s1">LES&#39;</span><span class="p">;</span><span class="c1">--Turns off ONLY_FULL_GROUP_BY mode for the current session</span>
-<span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">02</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">student</span><span class="w"> </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">nation</span><span class="p">;</span><span class="c1">--Turns off `ONLY_FULL_GROUP_BY` mode immediately in the current session</span>
-<span class="o">+</span><span class="c1">------+------+------+--------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">id</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">age</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">nation</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+------+------+--------+</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">tom</span><span class="w">  </span><span class="o">|</span><span class="w">   </span><span class="mi">18</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="err">上海</span><span class="w">   </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">jen</span><span class="w">  </span><span class="o">|</span><span class="w">   </span><span class="mi">20</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="err">北京</span><span class="w">   </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">5</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">tim</span><span class="w">  </span><span class="o">|</span><span class="w">   </span><span class="mi">20</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="err">广州</span><span class="w">   </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+------+------+--------+</span>
-<span class="mi">3</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">sql_mode</span><span class="o">=</span><span class="s1">&#39;ONLY_FULL_GROUP_BY&#39;</span><span class="p">;</span><span class="c1">--Set the global ONLY_FULL_GROUP_BY mode on.</span>
-<span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">02</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">student</span><span class="w"> </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">nation</span><span class="p">;</span><span class="c1">--ONLY_FULL_GROUP_BY mode does not take effect, because you need to reconnect to the database for global mode to take effect.</span>
-<span class="o">+</span><span class="c1">------+------+------+--------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">id</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">age</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">nation</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+------+------+--------+</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">tom</span><span class="w">  </span><span class="o">|</span><span class="w">   </span><span class="mi">18</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="err">上海</span><span class="w">   </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">jen</span><span class="w">  </span><span class="o">|</span><span class="w">   </span><span class="mi">20</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="err">北京</span><span class="w">   </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">5</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">tim</span><span class="w">  </span><span class="o">|</span><span class="w">   </span><span class="mi">20</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="err">广州</span><span class="w">   </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+------+------+--------+</span>
-<span class="mi">3</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="n">exit</span><span class="w"> </span><span class="c1">--Exit the current session</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">student</span><span class="w"> </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">nation</span><span class="p">;</span><span class="c1">--After reconnecting the database and executing the query, ONLY_FULL_GROUP_BY mode is successfully enabled.</span>
-<span class="n">ERROR</span><span class="w"> </span><span class="mi">1149</span><span class="w"> </span><span class="p">(</span><span class="n">HY000</span><span class="p">):</span><span class="w"> </span><span class="k">SQL</span><span class="w"> </span><span class="n">syntax</span><span class="w"> </span><span class="n">error</span><span class="p">:</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="ss">&quot;student.id&quot;</span><span class="w"> </span><span class="n">must</span><span class="w"> </span><span class="n">appear</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">clause</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">used</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="k">aggregate</span><span class="w"> </span><span class="k">function</span>
-</code></pre></div>
+<p>```sql <!-- validator-ignore-exec -->
+CREATE TABLE student(
+id int,
+name char(20),
+age int,
+nation char(20)
+);</p>
+<p>INSERT INTO student values(1,'tom',18,'上海'),(2,'jan',19,'上海'),(3,'jen',20,'北京'),(4,'bob',20,'北京'),(5,'tim',20,'广州');</p>
+<p>mysql&gt; select * from student group by nation;
+-- This operation is not supported in <code>ONLY_FULL_GROUP_BY</code> mode
+ERROR 1149 (HY000): SQL syntax error: column "student.id" must appear in the GROUP BY clause or be used in an aggregate function</p>
+<p>mysql&gt; SET session sql_mode='ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION,NO_ZERO_DATE,NO_ZERO_IN_DATE,STRICT_TRANS_TABLES';
+-- Turns off ONLY_FULL_GROUP_BY mode for the current session
+Query OK, 0 rows affected (0.02 sec)</p>
+<p>mysql&gt; select * from student group by nation;
+-- Turns off <code>ONLY_FULL_GROUP_BY</code> mode immediately in the current session
++------+------+------+--------+
+| id   | name | age  | nation |
++------+------+------+--------+
+|    1 | tom  |   18 | 上海   |
+|    3 | jen  |   20 | 北京   |
+|    5 | tim  |   20 | 广州   |
++------+------+------+--------+
+3 rows in set (0.00 sec)</p>
+<p>mysql&gt; SET global sql_mode='ONLY_FULL_GROUP_BY';
+-- Set the global ONLY_FULL_GROUP_BY mode on.
+Query OK, 0 rows affected (0.02 sec)</p>
+<p>mysql&gt; select * from student group by nation;
+-- ONLY_FULL_GROUP_BY mode does not take effect, because you need to reconnect to the database for global mode to take effect.
++------+------+------+--------+
+| id   | name | age  | nation |
++------+------+------+--------+
+|    1 | tom  |   18 | 上海   |
+|    3 | jen  |   20 | 北京   |
+|    5 | tim  |   20 | 广州   |
++------+------+------+--------+
+3 rows in set (0.00 sec)</p>
+<p>-- Exit the current session
+mysql&gt; exit;</p>
+<p>mysql&gt; select * from student group by nation;
+-- After reconnecting the database and executing the query, ONLY_FULL_GROUP_BY mode is successfully enabled.
+ERROR 1149 (HY000): SQL syntax error: column "student.id" must appear in the GROUP BY clause or be used in an aggregate function
+```</p>
 
 
 

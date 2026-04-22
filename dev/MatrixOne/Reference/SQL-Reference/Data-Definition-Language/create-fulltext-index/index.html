@@ -13267,109 +13267,97 @@
 </li>
 </ul>
 <h2 id="examples">Examples</h2>
-<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">example_table</span><span class="w"> </span><span class="p">(</span>
-<span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
-<span class="w">    </span><span class="n">english_text</span><span class="w"> </span><span class="nb">TEXT</span><span class="p">,</span><span class="w">       </span><span class="c1">-- English text</span>
-<span class="w">    </span><span class="n">chinese_text</span><span class="w"> </span><span class="nb">TEXT</span><span class="p">,</span><span class="w">       </span><span class="c1">-- Chinese text</span>
-<span class="w">    </span><span class="n">json_data</span><span class="w"> </span><span class="n">JSON</span><span class="w">           </span><span class="c1">-- JSON data</span>
-<span class="p">);</span>
-<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">example_table</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">english_text</span><span class="p">,</span><span class="w"> </span><span class="n">chinese_text</span><span class="p">,</span><span class="w"> </span><span class="n">json_data</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span>
-<span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Hello, world!&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;你好世界&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;{&quot;name&quot;: &quot;Alice&quot;, &quot;age&quot;: 30}&#39;</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;This is a test.&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;这是一个测试&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;{&quot;name&quot;: &quot;Bob&quot;, &quot;age&quot;: 25}&#39;</span><span class="p">),</span>
-<span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Full-text search is powerful.&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;全文搜索很强大&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;{&quot;name&quot;: &quot;Charlie&quot;, &quot;age&quot;: 35}&#39;</span><span class="p">);</span>
-
-<span class="c1">-- Create a full-text index using the default parser</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="n">FULLTEXT</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_english_text</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">example_table</span><span class="w"> </span><span class="p">(</span><span class="n">english_text</span><span class="p">);</span>
-<span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">03</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="c1">-- Create a full-text index using the ngram parser</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="n">FULLTEXT</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_chinese_text</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">example_table</span><span class="w"> </span><span class="p">(</span><span class="n">chinese_text</span><span class="p">)</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="n">PARSER</span><span class="w"> </span><span class="n">ngram</span><span class="p">;</span>
-<span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">02</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="c1">-- Create a full-text index using the json parser</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="n">FULLTEXT</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_json_data</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">example_table</span><span class="w"> </span><span class="p">(</span><span class="n">json_data</span><span class="p">)</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="n">PARSER</span><span class="w"> </span><span class="n">json</span><span class="p">;</span>
-<span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SHOW</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">example_table</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">---------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">Table</span><span class="w">         </span><span class="o">|</span><span class="w"> </span><span class="k">Create</span><span class="w"> </span><span class="k">Table</span><span class="w">                                                                                                                                                                                                                                                                                                                                               </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">example_table</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="o">`</span><span class="n">example_table</span><span class="o">`</span><span class="w"> </span><span class="p">(</span>
-<span class="w">  </span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="w">  </span><span class="o">`</span><span class="n">english_text</span><span class="o">`</span><span class="w"> </span><span class="nb">text</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="w">  </span><span class="o">`</span><span class="n">chinese_text</span><span class="o">`</span><span class="w"> </span><span class="nb">text</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="w">  </span><span class="o">`</span><span class="n">json_data</span><span class="o">`</span><span class="w"> </span><span class="n">json</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="w">  </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="p">),</span>
-<span class="w"> </span><span class="n">FULLTEXT</span><span class="w"> </span><span class="o">`</span><span class="n">idx_english_text</span><span class="o">`</span><span class="p">(</span><span class="o">`</span><span class="n">english_text</span><span class="o">`</span><span class="p">),</span>
-<span class="w"> </span><span class="n">FULLTEXT</span><span class="w"> </span><span class="o">`</span><span class="n">idx_chinese_text</span><span class="o">`</span><span class="p">(</span><span class="o">`</span><span class="n">chinese_text</span><span class="o">`</span><span class="p">)</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="n">PARSER</span><span class="w"> </span><span class="n">ngram</span><span class="p">,</span>
-<span class="w"> </span><span class="n">FULLTEXT</span><span class="w"> </span><span class="o">`</span><span class="n">idx_json_data</span><span class="o">`</span><span class="p">(</span><span class="o">`</span><span class="n">json_data</span><span class="o">`</span><span class="p">)</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="n">PARSER</span><span class="w"> </span><span class="n">json</span>
-<span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">---------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="c1">-- Search for English text containing &quot;world&quot;</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">example_table</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="k">MATCH</span><span class="p">(</span><span class="n">english_text</span><span class="p">)</span><span class="w"> </span><span class="n">AGAINST</span><span class="p">(</span><span class="s1">&#39;world&#39;</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">------+---------------+--------------+------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">id</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">english_text</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">chinese_text</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">json_data</span><span class="w">                    </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+---------------+--------------+------------------------------+</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Hello</span><span class="p">,</span><span class="w"> </span><span class="n">world</span><span class="o">!</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="err">你好世界</span><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="err">{</span><span class="ss">&quot;age&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="ss">&quot;Alice&quot;</span><span class="err">}</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+---------------+--------------+------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">02</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="c1">-- Search for Chinese text containing &quot;你好&quot;</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">example_table</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="k">MATCH</span><span class="p">(</span><span class="n">chinese_text</span><span class="p">)</span><span class="w"> </span><span class="n">AGAINST</span><span class="p">(</span><span class="s1">&#39;你好&#39;</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">------+---------------+--------------+------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">id</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">english_text</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">chinese_text</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">json_data</span><span class="w">                    </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+---------------+--------------+------------------------------+</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Hello</span><span class="p">,</span><span class="w"> </span><span class="n">world</span><span class="o">!</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="err">你好世界</span><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="err">{</span><span class="ss">&quot;age&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="ss">&quot;Alice&quot;</span><span class="err">}</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+---------------+--------------+------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="c1">-- Search for JSON data containing &quot;Alice&quot;</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">example_table</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="k">MATCH</span><span class="p">(</span><span class="n">json_data</span><span class="p">)</span><span class="w"> </span><span class="n">AGAINST</span><span class="p">(</span><span class="s1">&#39;Alice&#39;</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">------+---------------+--------------+------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">id</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">english_text</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">chinese_text</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">json_data</span><span class="w">                    </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+---------------+--------------+------------------------------+</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Hello</span><span class="p">,</span><span class="w"> </span><span class="n">world</span><span class="o">!</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="err">你好世界</span><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="err">{</span><span class="ss">&quot;age&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="ss">&quot;Alice&quot;</span><span class="err">}</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+---------------+--------------+------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="c1">-- Using Boolean mode for searches</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">ft_relevancy_algorithm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">&quot;BM25&quot;</span><span class="p">;</span>
-<span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="c1">-- 1. Using the &quot;+&quot; operator: Must include &quot;test&quot;</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">example_table</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="k">MATCH</span><span class="p">(</span><span class="n">english_text</span><span class="p">)</span><span class="w"> </span><span class="n">AGAINST</span><span class="p">(</span><span class="s1">&#39;+test&#39;</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="nb">BOOLEAN</span><span class="w"> </span><span class="k">MODE</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">------+-----------------+--------------------+----------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">id</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">english_text</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="n">chinese_text</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="n">json_data</span><span class="w">                  </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+-----------------+--------------------+----------------------------+</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">This</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">test</span><span class="p">.</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="err">这是一个测试</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="err">{</span><span class="ss">&quot;age&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="ss">&quot;Bob&quot;</span><span class="err">}</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+-----------------+--------------------+----------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="c1">-- 2. Using the &quot;-&quot; operator: Must exclude &quot;This&quot;</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">example_table</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="k">MATCH</span><span class="p">(</span><span class="n">english_text</span><span class="p">)</span><span class="w"> </span><span class="n">AGAINST</span><span class="p">(</span><span class="s1">&#39;+test -This&#39;</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="nb">BOOLEAN</span><span class="w"> </span><span class="k">MODE</span><span class="p">);</span>
-<span class="n">Empty</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="c1">-- 3. Using the &quot;*&quot; operator: Matches words starting with &quot;pow&quot;</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">example_table</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="k">MATCH</span><span class="p">(</span><span class="n">english_text</span><span class="p">)</span><span class="w"> </span><span class="n">AGAINST</span><span class="p">(</span><span class="s1">&#39;pow*&#39;</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="nb">BOOLEAN</span><span class="w"> </span><span class="k">MODE</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">------+-------------------------------+-----------------------+--------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">id</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">english_text</span><span class="w">                  </span><span class="o">|</span><span class="w"> </span><span class="n">chinese_text</span><span class="w">          </span><span class="o">|</span><span class="w"> </span><span class="n">json_data</span><span class="w">                      </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+-------------------------------+-----------------------+--------------------------------+</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">Full</span><span class="o">-</span><span class="nb">text</span><span class="w"> </span><span class="k">search</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">powerful</span><span class="p">.</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="err">全文搜索很强大</span><span class="w">        </span><span class="o">|</span><span class="w"> </span><span class="err">{</span><span class="ss">&quot;age&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">35</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="ss">&quot;Charlie&quot;</span><span class="err">}</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+-------------------------------+-----------------------+--------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="c1">-- 4. Using double quotes &quot;&quot; to match the exact phrase &quot;search is powerful&quot;</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">example_table</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="k">MATCH</span><span class="p">(</span><span class="n">english_text</span><span class="p">)</span><span class="w"> </span><span class="n">AGAINST</span><span class="p">(</span><span class="s1">&#39;&quot;search is powerful&quot;&#39;</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="nb">BOOLEAN</span><span class="w"> </span><span class="k">MODE</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">------+-------------------------------+-----------------------+--------------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">id</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">english_text</span><span class="w">                  </span><span class="o">|</span><span class="w"> </span><span class="n">chinese_text</span><span class="w">          </span><span class="o">|</span><span class="w"> </span><span class="n">json_data</span><span class="w">                      </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+-------------------------------+-----------------------+--------------------------------+</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">Full</span><span class="o">-</span><span class="nb">text</span><span class="w"> </span><span class="k">search</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">powerful</span><span class="p">.</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="err">全文搜索很强大</span><span class="w">        </span><span class="o">|</span><span class="w"> </span><span class="err">{</span><span class="ss">&quot;age&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">35</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="ss">&quot;Charlie&quot;</span><span class="err">}</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+-------------------------------+-----------------------+--------------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">02</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+<p>```sql <!-- validator-ignore-exec --></p>
+<p>CREATE TABLE example_table (
+    id INT PRIMARY KEY,
+    english_text TEXT,       -- English text
+    chinese_text TEXT,       -- Chinese text
+    json_data JSON           -- JSON data
+);
+INSERT INTO example_table (id, english_text, chinese_text, json_data) VALUES
+(1, 'Hello, world!', '你好世界', '{"name": "Alice", "age": 30}'),
+(2, 'This is a test.', '这是一个测试', '{"name": "Bob", "age": 25}'),
+(3, 'Full-text search is powerful.', '全文搜索很强大', '{"name": "Charlie", "age": 35}');</p>
+<p>-- Create a full-text index using the default parser
+mysql&gt; CREATE FULLTEXT INDEX idx_english_text ON example_table (english_text);
+Query OK, 0 rows affected (0.03 sec)</p>
+<p>-- Create a full-text index using the ngram parser
+mysql&gt; CREATE FULLTEXT INDEX idx_chinese_text ON example_table (chinese_text) WITH PARSER ngram;
+Query OK, 0 rows affected (0.02 sec)</p>
+<p>-- Create a full-text index using the json parser
+mysql&gt; CREATE FULLTEXT INDEX idx_json_data ON example_table (json_data) WITH PARSER json;
+Query OK, 0 rows affected (0.01 sec)</p>
+<p>mysql&gt; SHOW CREATE TABLE example_table;
++---------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table         | Create Table                                                                                                                                                                                                                                                                                                                                               |
++---------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| example_table | CREATE TABLE <code>example_table</code> (
+  <code>id</code> int NOT NULL,
+  <code>english_text</code> text DEFAULT NULL,
+  <code>chinese_text</code> text DEFAULT NULL,
+  <code>json_data</code> json DEFAULT NULL,
+  PRIMARY KEY (<code>id</code>),
+ FULLTEXT <code>idx_english_text</code>(<code>english_text</code>),
+ FULLTEXT <code>idx_chinese_text</code>(<code>chinese_text</code>) WITH PARSER ngram,
+ FULLTEXT <code>idx_json_data</code>(<code>json_data</code>) WITH PARSER json
+) |
++---------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)</p>
+<p>-- Search for English text containing "world"
+mysql&gt; SELECT * FROM example_table WHERE MATCH(english_text) AGAINST('world');
++------+---------------+--------------+------------------------------+
+| id   | english_text  | chinese_text | json_data                    |
++------+---------------+--------------+------------------------------+
+|    1 | Hello, world! | 你好世界     | {"age": 30, "name": "Alice"} |
++------+---------------+--------------+------------------------------+
+1 row in set (0.02 sec)</p>
+<p>-- Search for Chinese text containing "你好"
+mysql&gt; SELECT * FROM example_table WHERE MATCH(chinese_text) AGAINST('你好');
++------+---------------+--------------+------------------------------+
+| id   | english_text  | chinese_text | json_data                    |
++------+---------------+--------------+------------------------------+
+|    1 | Hello, world! | 你好世界     | {"age": 30, "name": "Alice"} |
++------+---------------+--------------+------------------------------+
+1 row in set (0.01 sec)</p>
+<p>-- Search for JSON data containing "Alice"
+mysql&gt; SELECT * FROM example_table WHERE MATCH(json_data) AGAINST('Alice');
++------+---------------+--------------+------------------------------+
+| id   | english_text  | chinese_text | json_data                    |
++------+---------------+--------------+------------------------------+
+|    1 | Hello, world! | 你好世界     | {"age": 30, "name": "Alice"} |
++------+---------------+--------------+------------------------------+
+1 row in set (0.01 sec)</p>
+<p>-- Using Boolean mode for searches</p>
+<p>mysql&gt; SET ft_relevancy_algorithm = "BM25";
+Query OK, 0 rows affected (0.00 sec)</p>
+<p>-- 1. Using the "+" operator: Must include "test"
+mysql&gt; SELECT * FROM example_table WHERE MATCH(english_text) AGAINST('+test' IN BOOLEAN MODE);
++------+-----------------+--------------------+----------------------------+
+| id   | english_text    | chinese_text       | json_data                  |
++------+-----------------+--------------------+----------------------------+
+|    2 | This is a test. | 这是一个测试       | {"age": 25, "name": "Bob"} |
++------+-----------------+--------------------+----------------------------+
+1 row in set (0.01 sec)</p>
+<p>-- 2. Using the "-" operator: Must exclude "This"
+mysql&gt; SELECT * FROM example_table WHERE MATCH(english_text) AGAINST('+test -This' IN BOOLEAN MODE);
+Empty set (0.00 sec)</p>
+<p>-- 3. Using the "<em>" operator: Matches words starting with "pow"
+mysql&gt; SELECT * FROM example_table WHERE MATCH(english_text) AGAINST('pow</em>' IN BOOLEAN MODE);
++------+-------------------------------+-----------------------+--------------------------------+
+| id   | english_text                  | chinese_text          | json_data                      |
++------+-------------------------------+-----------------------+--------------------------------+
+|    3 | Full-text search is powerful. | 全文搜索很强大        | {"age": 35, "name": "Charlie"} |
++------+-------------------------------+-----------------------+--------------------------------+
+1 row in set (0.01 sec)</p>
+<p>-- 4. Using double quotes "" to match the exact phrase "search is powerful"
+mysql&gt; SELECT * FROM example_table WHERE MATCH(english_text) AGAINST('"search is powerful"' IN BOOLEAN MODE);
++------+-------------------------------+-----------------------+--------------------------------+
+| id   | english_text                  | chinese_text          | json_data                      |
++------+-------------------------------+-----------------------+--------------------------------+
+|    3 | Full-text search is powerful. | 全文搜索很强大        | {"age": 35, "name": "Charlie"} |
++------+-------------------------------+-----------------------+--------------------------------+
+1 row in set (0.02 sec)
+```</p>
 
 
 

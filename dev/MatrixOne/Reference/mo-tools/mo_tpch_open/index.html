@@ -12036,13 +12036,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#import-data" class="md-nav__link">
-    Import Data
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#run-the-query-command" class="md-nav__link">
     Run the query command
   </a>
@@ -13164,13 +13157,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#import-data" class="md-nav__link">
-    Import Data
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#run-the-query-command" class="md-nav__link">
     Run the query command
   </a>
@@ -13265,26 +13251,29 @@ export DB=&#39;tpch&#39;
 <div class="highlight"><pre><span></span><code>./bin/create-tpch-tables.sh<span class="w"> </span>
 </code></pre></div>
 <p>Connect to MatrixOne to view and build table successfully.</p>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="n">tables</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">----------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">Tables_in_tpch</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">customer</span><span class="w">       </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">lineitem</span><span class="w">       </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">nation</span><span class="w">         </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">orders</span><span class="w">         </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">part</span><span class="w">           </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">partsupp</span><span class="w">       </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">region</span><span class="w">         </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">revenue0</span><span class="w">       </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">supplier</span><span class="w">       </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------+</span>
-<span class="mi">9</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
-<h2 id="import-data">Import Data</h2>
-<p>Execute the following script to import the data required for the TPC-H test:</p>
-<div class="highlight"><pre><span></span><code>./bin/load-tpch-data.sh<span class="w"> </span>-c<span class="w"> </span><span class="m">10</span>
-</code></pre></div>
+<p>```sql <!-- validator-ignore-exec -->
+mysql&gt; show tables;
++----------------+
+| Tables_in_tpch |
++----------------+
+| customer       |
+| lineitem       |
+| nation         |
+| orders         |
+| part           |
+| partsupp       |
+| region         |
+| revenue0       |
+| supplier       |
++----------------+
+9 rows in set (0.00 sec)
+<div class="highlight"><pre><span></span><code>## Import Data
+
+Execute the following script to import the data required for the TPC-H test:
+
+```bash
+./bin/load-tpch-data.sh -c 10
+</code></pre></div></p>
 <p><strong>Parameter interpretation</strong></p>
 <p><strong>-c</strong>: You can specify the number of threads to perform the import, which defaults to 5.</p>
 <p>Once loaded, you can query the data in MatrixOne using the created table.</p>

@@ -13199,30 +13199,29 @@
 </tbody>
 </table>
 <h2 id="examples">Examples</h2>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">TO_BASE64</span><span class="p">(</span><span class="s1">&#39;abc&#39;</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">----------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">to_base64</span><span class="p">(</span><span class="n">abc</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">YWJj</span><span class="w">           </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">TO_BASE64</span><span class="p">(</span><span class="mi">255</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">----------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">to_base64</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">MjU1</span><span class="w">           </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">----------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">TO_BASE64</span><span class="p">(</span><span class="k">null</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">-----------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">to_base64</span><span class="p">(</span><span class="k">null</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-----------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w">            </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-----------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+<p>```SQL <!-- validator-ignore-exec -->
+mysql&gt; SELECT TO_BASE64('abc');
++----------------+
+| to_base64(abc) |
++----------------+
+| YWJj           |
++----------------+
+1 row in set (0.00 sec)</p>
+<p>mysql&gt; SELECT TO_BASE64(255);
++----------------+
+| to_base64(255) |
++----------------+
+| MjU1           |
++----------------+
+1 row in set (0.00 sec)</p>
+<p>mysql&gt; SELECT TO_BASE64(null);
++-----------------+
+| to_base64(null) |
++-----------------+
+| NULL            |
++-----------------+
+1 row in set (0.01 sec)
+```</p>
 
 
 

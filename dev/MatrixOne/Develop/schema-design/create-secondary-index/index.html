@@ -13202,11 +13202,13 @@
 <p>The syntax structure is<code>'CREATE INDEX index_name on table_name (column_name);</code></p>
 <p><code>index_name</code> is the name of the index, <code>table_name</code> is the name of the table on which the index is to be created, and <code>column_name</code> is the name of the column used to create the index.</p>
 <p>For example, if you want to create a secondary index on the <code>last_name</code> column of a table named <code>employees</code>, you can use the following SQL statement:</p>
-<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_lastname</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">employees</span><span class="w"> </span><span class="p">(</span><span class="n">last_name</span><span class="p">);</span>
-</code></pre></div>
-<p>Use a secondary index: You can use a secondary index in a query statement to locate data rows. The SQL query optimizer will automatically select the appropriate index to perform the query operation for the best performance. Such as:</p>
-<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">employees</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">last_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Smith&#39;</span><span class="p">;</span>
-</code></pre></div>
+<p>```sql <!-- validator-ignore-exec -->
+CREATE INDEX idx_lastname ON employees (last_name);
+<div class="highlight"><pre><span></span><code>Use a secondary index: You can use a secondary index in a query statement to locate data rows. The SQL query optimizer will automatically select the appropriate index to perform the query operation for the best performance. Such as:
+
+```sql
+SELECT * FROM employees WHERE last_name = &#39;Smith&#39;;
+</code></pre></div></p>
 <p>In this example, the query optimizer will use the <code>idx_lastname</code> index to locate the data row whose <code>last_name</code> is <code>smith</code>.</p>
 <p>It should be noted that creating an index will increase the storage and maintenance costs of the database, and it may also affect performance when inserting, updating, and deleting data. Therefore, when creating a secondary index, it is necessary to carefully consider its impact on database performance and make the necessary optimizations and adjustments.</p>
 <h2 id="examples">Examples</h2>

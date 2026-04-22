@@ -13184,85 +13184,75 @@ assignment_list:
 </ul>
 </div>
 <h2 id="examples"><strong>Examples</strong></h2>
-<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="k">names</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="n">name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">),</span><span class="n">age</span><span class="w"> </span><span class="nb">int</span><span class="p">);</span>
-
-<span class="c1">-- Insert a row of data, id=1, name=&quot;Abby&quot;, age=24</span>
-<span class="k">replace</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="k">names</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="ss">&quot;Abby&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">24</span><span class="p">);</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="k">names</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------+------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">age</span><span class="w">  </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">Abby</span><span class="w"> </span><span class="o">|</span><span class="w">   </span><span class="mi">24</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="k">names</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------+------+------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">id</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">age</span><span class="w">  </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+------+------+</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Abby</span><span class="w"> </span><span class="o">|</span><span class="w">   </span><span class="mi">24</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+------+------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="c1">-- Use the replace statement to update the record with id=1 to have the values ​​&quot;Bob&quot; and 25 in the name and age columns</span>
-<span class="k">replace</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="k">names</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="ss">&quot;Bobby&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">25</span><span class="p">);</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="k">names</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">-------+------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">name</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">age</span><span class="w">  </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">Bobby</span><span class="w"> </span><span class="o">|</span><span class="w">   </span><span class="mi">25</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="k">names</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------+-------+------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">id</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">name</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">age</span><span class="w">  </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+-------+------+</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Bobby</span><span class="w"> </span><span class="o">|</span><span class="w">   </span><span class="mi">25</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+-------+------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="c1">-- Use the replace statement to insert a row of data, id=2, name=&quot;Ciro&quot;, age is NULL</span>
-<span class="k">replace</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="k">names</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">&quot;Ciro&quot;</span><span class="p">;</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="k">names</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------+------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">age</span><span class="w">  </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">Ciro</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="k">names</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------+-------+------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">id</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">name</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">age</span><span class="w">  </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+-------+------+</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Bobby</span><span class="w"> </span><span class="o">|</span><span class="w">   </span><span class="mi">25</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Ciro</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+-------+------+</span>
-<span class="mi">2</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="c1">-- Use the replace statement to update the record with id=2 to have the value of the name column &quot;Ciro&quot; and the value of the age column 17</span>
-<span class="k">replace</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="k">names</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">&quot;Ciro&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">17</span><span class="p">;</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="k">names</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------+------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">age</span><span class="w">  </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">Ciro</span><span class="w"> </span><span class="o">|</span><span class="w">   </span><span class="mi">17</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="k">names</span><span class="p">;</span>
-<span class="o">+</span><span class="c1">------+-------+------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">id</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">name</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">age</span><span class="w">  </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+-------+------+</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Bobby</span><span class="w"> </span><span class="o">|</span><span class="w">   </span><span class="mi">25</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Ciro</span><span class="w">  </span><span class="o">|</span><span class="w">   </span><span class="mi">17</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------+-------+------+</span>
-<span class="mi">2</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+<p>```sql <!-- validator-ignore-exec -->
+create table names(id int PRIMARY KEY,name VARCHAR(255),age int);</p>
+<p>-- Insert a row of data, id=1, name="Abby", age=24
+replace into names(id, name, age) values(1,"Abby", 24);
+mysql&gt; select name, age from names where id = 1;
++------+------+
+| name | age  |
++------+------+
+| Abby |   24 |
++------+------+
+1 row in set (0.00 sec)</p>
+<p>mysql&gt; select * from names;
++------+------+------+
+| id   | name | age  |
++------+------+------+
+|    1 | Abby |   24 |
++------+------+------+
+1 row in set (0.00 sec)</p>
+<p>-- Use the replace statement to update the record with id=1 to have the values ​​"Bob" and 25 in the name and age columns
+replace into names(id, name, age) values(1,"Bobby", 25);</p>
+<p>mysql&gt; select name, age from names where id = 1;
++-------+------+
+| name  | age  |
++-------+------+
+| Bobby |   25 |
++-------+------+
+1 row in set (0.00 sec)</p>
+<p>mysql&gt; select * from names;
++------+-------+------+
+| id   | name  | age  |
++------+-------+------+
+|    1 | Bobby |   25 |
++------+-------+------+
+1 row in set (0.01 sec)</p>
+<p>-- Use the replace statement to insert a row of data, id=2, name="Ciro", age is NULL
+replace into names set id = 2, name = "Ciro";</p>
+<p>mysql&gt; select name, age from names where id = 2;
++------+------+
+| name | age  |
++------+------+
+| Ciro | NULL |
++------+------+
+1 row in set (0.01 sec)</p>
+<p>mysql&gt; select * from names;
++------+-------+------+
+| id   | name  | age  |
++------+-------+------+
+|    1 | Bobby |   25 |
+|    2 | Ciro  | NULL |
++------+-------+------+
+2 rows in set (0.00 sec)</p>
+<p>-- Use the replace statement to update the record with id=2 to have the value of the name column "Ciro" and the value of the age column 17
+replace into names set id = 2, name = "Ciro", age = 17;</p>
+<p>mysql&gt; select name, age from names where id = 2;
++------+------+
+| name | age  |
++------+------+
+| Ciro |   17 |
++------+------+
+1 row in set (0.01 sec)</p>
+<p>mysql&gt; select * from names;
++------+-------+------+
+| id   | name  | age  |
++------+-------+------+
+|    1 | Bobby |   25 |
+|    2 | Ciro  |   17 |
++------+-------+------+
+2 rows in set (0.01 sec)
+```</p>
 <h2 id="constraints"><strong>Constraints</strong></h2>
 <p>MatrixOne does not currently support rows of values ​​inserted using the <code>VALUES row_constructor_list</code> parameter.</p>
 

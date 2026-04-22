@@ -13249,7 +13249,7 @@
 <h2 id="prepare-before-you-start">Prepare before you start</h2>
 <ul>
 <li>
-<p>Finished <a href="../../../Get-Started/install-standalone-matrixone.md">installing and starting</a> MatrixOne.</p>
+<p>Finished <a href="../../../../../Get-Started/install-standalone-matrixone/">installing and starting</a> MatrixOne.</p>
 </li>
 <li>
 <p>Finished <a href="https://www.oracle.com/database/technologies/oracle-database-software-downloads.html">installing Oracle 19c</a>.</p>
@@ -13274,12 +13274,12 @@
 <ul>
 <li>Access to the database</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="n">sqlplus</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">sysdba</span>
+<div class="highlight"><pre><span></span><code>sqlplus / as sysdba
 </code></pre></div>
 <ul>
 <li>Create a scott user and specify a password</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="n">scott</span><span class="w"> </span><span class="n">identified</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">tiger</span><span class="p">;</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code>create user scott identified by tiger; 
 </code></pre></div>
 <ul>
 <li>To facilitate testing, we grant the scott dba role:</li>
@@ -13289,23 +13289,23 @@
 <ul>
 <li>Subsequent access is available via the scott user login:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="n">sqlplus</span><span class="w"> </span><span class="n">scott</span><span class="o">/</span><span class="n">tiger</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code>sqlplus scott/tiger 
 </code></pre></div>
 <ul>
 <li>Creating Test Data in Oracle</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">employees_oracle</span><span class="p">(</span>
-<span class="n">id</span><span class="w"> </span><span class="nb">number</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span>
-<span class="n">name</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
-<span class="p">);</span>
+<div class="highlight"><pre><span></span><code>create table employees_oracle(
+id number(5),
+name varchar(20)
+);
 
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">employees_oracle</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;zhangsan&#39;</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">employees_oracle</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;lisi&#39;</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">employees_oracle</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="s1">&#39;wangwu&#39;</span><span class="p">);</span>
-<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">employees_oracle</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="s1">&#39;oracle&#39;</span><span class="p">);</span>
-<span class="k">COMMIT</span><span class="p">;</span>
-<span class="c1">--View table data:</span>
-<span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">employees_oracle</span><span class="p">;</span>
+insert into employees_oracle values(1,&#39;zhangsan&#39;);
+insert into employees_oracle values(2,&#39;lisi&#39;);
+insert into employees_oracle values(3,&#39;wangwu&#39;);
+insert into employees_oracle values(4,&#39;oracle&#39;);
+COMMIT;
+--View table data:
+select * from employees_oracle;
 </code></pre></div>
 <h3 id="build-tables-in-advance-in-matrixone">Build tables in advance in MatrixOne</h3>
 <p>Since SeaTunnel can only synchronize data, not table structure, we need to manually create the table in the target database (mo) before we can perform the task.</p>

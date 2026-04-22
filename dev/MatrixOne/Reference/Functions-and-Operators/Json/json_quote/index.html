@@ -13186,29 +13186,29 @@
 <h2 id="parameter-description"><strong>Parameter description</strong></h2>
 <p><code>string_value</code> is the string to be converted to a JSON string. This function returns a JSON-formatted string, where the original string has been surrounded by quotes and escaped appropriately.</p>
 <h2 id="example"><strong>Example</strong></h2>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">JSON_QUOTE</span><span class="p">(</span><span class="s1">&#39;null&#39;</span><span class="p">),</span><span class="w"> </span><span class="n">JSON_QUOTE</span><span class="p">(</span><span class="s1">&#39;&quot;null&quot;&#39;</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">------------------+--------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">json_quote</span><span class="p">(</span><span class="k">null</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">json_quote</span><span class="p">(</span><span class="ss">&quot;null&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------+--------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="ss">&quot;null&quot;</span><span class="w">           </span><span class="o">|</span><span class="w"> </span><span class="ss">&quot;\&quot;</span><span class="k">null</span><span class="err">\</span><span class="ss">&quot;&quot;</span><span class="w">         </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------+--------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">JSON_QUOTE</span><span class="p">(</span><span class="s1">&#39;[1, 2, 3]&#39;</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">-----------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">json_quote</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">])</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-----------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="ss">&quot;[1, 2, 3]&quot;</span><span class="w">           </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-----------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">JSON_QUOTE</span><span class="p">(</span><span class="s1">&#39;hello world&#39;</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">-------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="n">json_quote</span><span class="p">(</span><span class="n">hello</span><span class="w"> </span><span class="n">world</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------------------------+</span>
-<span class="o">|</span><span class="w"> </span><span class="ss">&quot;hello world&quot;</span><span class="w">           </span><span class="o">|</span>
-<span class="o">+</span><span class="c1">-------------------------+</span>
-<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
-</code></pre></div>
+<p>```sql <!-- validator-ignore-exec -->
+mysql&gt; SELECT JSON_QUOTE('null'), JSON_QUOTE('"null"');
++------------------+--------------------+
+| json_quote(null) | json_quote("null") |
++------------------+--------------------+
+| "null"           | "\"null\""         |
++------------------+--------------------+
+1 row in set (0.00 sec)
+mysql&gt; SELECT JSON_QUOTE('[1, 2, 3]');
++-----------------------+
+| json_quote([1, 2, 3]) |
++-----------------------+
+| "[1, 2, 3]"           |
++-----------------------+
+1 row in set (0.00 sec)</p>
+<p>mysql&gt; SELECT JSON_QUOTE('hello world');
++-------------------------+
+| json_quote(hello world) |
++-------------------------+
+| "hello world"           |
++-------------------------+
+1 row in set (0.00 sec)
+```</p>
 <p>As you can see, the original string is surrounded by quotes and the double quotes in the string are escaped. This way, you can use it as a JSON-formatted value, for example, as a property value of a JSON object.</p>
 
 
