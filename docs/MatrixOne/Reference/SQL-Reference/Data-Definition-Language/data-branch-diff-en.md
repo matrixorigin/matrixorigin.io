@@ -15,8 +15,19 @@ The system automatically identifies the Lowest Common Ancestor (LCA) between two
 ```
 DATA BRANCH DIFF target_table [{ SNAPSHOT = 'snapshot_name' }] 
     AGAINST base_table [{ SNAPSHOT = 'snapshot_name' }] 
+    [COLUMNS ( column_list )]
     [OUTPUT output_option]
 ```
+
+### Column Projection
+
+```
+COLUMNS ( col_name [, col_name ...] )   -- Restrict the diff output to the listed columns
+```
+
+`COLUMNS` narrows the comparison to the listed columns. Primary-key columns are always included in the result, regardless of whether they appear in `column_list`. A row is reported as `UPDATE` only when one of the projected columns differs; differences in columns outside `column_list` are ignored.
+
+`COLUMNS` cannot be used together with `OUTPUT FILE`.
 
 ### Output Options
 
@@ -432,6 +443,43 @@ DROP TABLE test.orders_branch;
 -- Expected-Rows: 0
 DROP DATABASE test;
 ```
+
+### Example 9: Project a Subset of Columns
+
+Use `COLUMNS` to limit the comparison to specific non-primary-key columns. Differences in other columns are ignored.
+
+<!-- validator-ignore -->
+```sql
+-- Expected-Rows: 0
+CREATE TABLE test.t0 (a INT PRIMARY KEY, b INT, c INT);
+-- Expected-Rows: 0
+INSERT INTO test.t0 VALUES (1, 1, 1), (2, 2, 2), (3, 3, 3);
+
+-- Expected-Rows: 0
+DATA BRANCH CREATE TABLE test.t1 FROM test.t0;
+-- Expected-Rows: 1
+UPDATE test.t1 SET b = 99 WHERE a = 1;
+-- Expected-Rows: 1
+UPDATE test.t1 SET c = 99 WHERE a = 2;
+
+-- Only project column b: the change on a=2 (which only touched c) is ignored.
+-- Expected-Rows: 2
+DATA BRANCH DIFF test.t1 AGAINST test.t0 COLUMNS (b);
++--------------------+--------+------+------+
+| diff t1 against t0 | flag   | a    | b    |
++--------------------+--------+------+------+
+| t1                 | UPDATE |    1 |   99 |
+| t0                 | UPDATE |    1 |    1 |
++--------------------+--------+------+------+
+
+-- Expected-Rows: 0
+DROP TABLE test.t0;
+-- Expected-Rows: 0
+DROP TABLE test.t1;
+```
+
+!!! note
+    `COLUMNS` cannot be combined with `OUTPUT FILE`; use `OUTPUT LIMIT` or `OUTPUT COUNT` with projected columns instead.
 
 ## Notes
 
