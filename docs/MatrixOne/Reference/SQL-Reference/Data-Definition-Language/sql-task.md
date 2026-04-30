@@ -222,8 +222,11 @@ ALTER TASK rollup_hourly SET WHEN (SELECT should_rollup());
 ALTER TASK rollup_hourly SET RETRY 1;
 ALTER TASK rollup_hourly SET TIMEOUT '1m';
 
-ALTER TASK rollup_hourly SUSPEND;  -- enabled=0 after this
-ALTER TASK rollup_hourly RESUME;   -- recomputes the next fire time
+ALTER TASK rollup_hourly SUSPEND;
+-- enabled=0 after this
+
+ALTER TASK rollup_hourly RESUME;
+-- recomputes the next fire time
 ```
 
 ### Example 6: Remove a task
