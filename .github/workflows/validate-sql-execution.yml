@@ -159,7 +159,7 @@ jobs:
             # Run SQL validation
             echo ""
             echo "🔍 Running SQL Execution Validation..."
-            if pnpm run check:sql-exec:changed -- --base-branch "${BASE_BRANCH}"; then
+            if node ./scripts/doc-validator/index.js --check=execution --changed-only --base-branch "${BASE_BRANCH}"; then
               echo ""
               echo "============================================================"
               echo "✅ SQL Validation PASSED with $SHA ($BRANCH)"

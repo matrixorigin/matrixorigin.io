@@ -96,4 +96,4 @@ jobs:
           echo "🔍 Starting SQL Syntax Check"
           echo "============================================================"
           echo "🧾 Diff base branch: ${BASE_BRANCH}"
-          pnpm run check:sql-syntax:changed -- --base-branch "${BASE_BRANCH}"
+          node ./scripts/doc-validator/index.js --changed-only --base-branch "${BASE_BRANCH}"

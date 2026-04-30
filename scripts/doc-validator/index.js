@@ -56,6 +56,12 @@ async function main() {
   // Determine files to check
   let filesToCheck = []
 
+  if (specifiedFiles.length > 0 && options.changedOnly) {
+    console.error('❌ Error: --changed-only cannot be combined with positional file arguments')
+    console.error(`   Received positional args: ${specifiedFiles.join(' ')}`)
+    process.exit(1)
+  }
+
   if (specifiedFiles.length > 0) {
     // Use files specified from command line
     console.log('📝 Check mode: Specified files')
