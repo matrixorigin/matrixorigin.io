@@ -188,7 +188,7 @@ SHOW TASK RUNS FOR rollup_hourly LIMIT 5;
 ```sql
 CREATE TASK refresh_cache
     SCHEDULE '*/5 * * * *'
-    WHEN (SELECT COUNT(*) FROM pending_updates) > 0
+    WHEN ((SELECT COUNT(*) FROM pending_updates) > 0)
     AS BEGIN
         CALL refresh_cache_proc();
     END;
