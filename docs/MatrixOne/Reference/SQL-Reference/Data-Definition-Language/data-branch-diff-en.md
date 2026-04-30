@@ -15,6 +15,7 @@ The system automatically identifies the Lowest Common Ancestor (LCA) between two
 ```
 DATA BRANCH DIFF target_table [{ SNAPSHOT = 'snapshot_name' }] 
     AGAINST base_table [{ SNAPSHOT = 'snapshot_name' }] 
+    [COLUMNS (col_name [, col_name ...])]
     [OUTPUT output_option]
 ```
 
@@ -24,9 +25,22 @@ DATA BRANCH DIFF target_table [{ SNAPSHOT = 'snapshot_name' }]
 output_option:
     COUNT                           -- Return only the count of different rows
   | LIMIT number                    -- Limit the number of returned difference rows
+  | SUMMARY                         -- Return a summary (counts by INSERT/DELETE/UPDATE)
   | FILE 'directory_path'           -- Export differences as SQL file
   | AS table_name                   -- Save differences to a table (not yet supported)
 ```
+
+### COLUMNS Projection
+
+`COLUMNS (...)` restricts the diff output to the listed columns only.
+Column names are matched case-insensitively; duplicate names in the
+list are deduplicated. When `COLUMNS` is omitted, the diff returns
+every visible column, preserving the previous behavior.
+
+`COLUMNS` may be combined with `OUTPUT LIMIT`, `OUTPUT COUNT`, or
+`OUTPUT SUMMARY`; counts and summaries are unaffected by the
+projection (they describe how many rows differ, not which columns
+are shown).
 
 ## Arguments
 
@@ -37,8 +51,10 @@ output_option:
 | `target_table` | Target table (the table to compare) |
 | `base_table` | Base table (the table used as comparison baseline) |
 | `SNAPSHOT = 'snapshot_name'` | Optional parameter to specify using data at a snapshot point for comparison |
+| `COLUMNS (col_name, ...)` | Optional. Project only the listed columns in the diff output. Names are case-insensitive; duplicates are deduplicated. Does not affect `OUTPUT COUNT` or `OUTPUT SUMMARY` results. |
 | `OUTPUT COUNT` | Return only the count of differences |
 | `OUTPUT LIMIT number` | Limit the number of returned difference rows |
+| `OUTPUT SUMMARY` | Return a summary of the diff instead of the rows themselves |
 | `OUTPUT FILE 'path'` | Export differences as SQL file to specified directory, supports local path or Stage path (e.g., `stage://stage_name/`) |
 
 ### Output Column Description
@@ -431,6 +447,61 @@ DROP TABLE test.orders;
 DROP TABLE test.orders_branch;
 -- Expected-Rows: 0
 DROP DATABASE test;
+```
+
+### Example 9: Project Selected Columns (COLUMNS)
+
+Use `COLUMNS` to restrict the diff output to specific columns. The
+projection does not change the set of differing rows — it only
+changes which columns are rendered per row.
+
+<!-- validator-ignore -->
+```sql
+-- Expected-Rows: 0
+CREATE DATABASE test_diff_columns;
+-- Expected-Rows: 0
+USE test_diff_columns;
+
+-- Expected-Rows: 0
+CREATE TABLE c1(
+    id INT PRIMARY KEY,
+    name VARCHAR(30),
+    balance DECIMAL(12,2),
+    created_at TIMESTAMP,
+    birthday DATE
+);
+-- Expected-Rows: 0
+INSERT INTO c1 VALUES
+    (1, 'alice', 1000.50, '2024-01-01 10:00:00', '1990-03-15'),
+    (2, 'bob',   2000.75, '2024-01-02 11:00:00', '1985-07-20'),
+    (3, 'carol', 3000.00, '2024-01-03 12:00:00', '1992-11-08');
+
+-- Expected-Rows: 0
+CREATE SNAPSHOT c1_sp0 FOR TABLE test_diff_columns c1;
+
+-- Expected-Rows: 0
+DATA BRANCH CREATE TABLE c1_br FROM c1{SNAPSHOT="c1_sp0"};
+-- Expected-Rows: 1
+UPDATE c1_br SET balance = 1500.50, name = 'alice_v2' WHERE id = 1;
+-- Expected-Rows: 1
+DELETE FROM c1_br WHERE id = 2;
+-- Expected-Rows: 0
+INSERT INTO c1_br VALUES (4, 'dave', 4000.00, '2024-02-01 09:00:00', '1988-12-25');
+
+-- Project only the name and balance columns
+DATA BRANCH DIFF c1_br AGAINST c1{SNAPSHOT="c1_sp0"} COLUMNS (name, balance);
+
+-- COLUMNS combined with OUTPUT COUNT: counts are unaffected
+DATA BRANCH DIFF c1_br AGAINST c1{SNAPSHOT="c1_sp0"} COLUMNS (name) OUTPUT COUNT;
+
+-- Expected-Rows: 0
+DROP SNAPSHOT c1_sp0;
+-- Expected-Rows: 0
+DROP TABLE c1;
+-- Expected-Rows: 0
+DROP TABLE c1_br;
+-- Expected-Rows: 0
+DROP DATABASE test_diff_columns;
 ```
 
 ## Notes
