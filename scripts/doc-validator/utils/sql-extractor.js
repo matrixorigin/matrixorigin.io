@@ -583,11 +583,14 @@ function extractVersionFromContext(lines, currentIndex) {
  * @returns {Array} Array of individual SQL statements
  */
 export function splitSqlStatements(sql) {
-    // Simple splitting logic: split by semicolon
-    // Note: This is a simplified version; more complex parsing may be needed to handle semicolons in strings
+    // Split by semicolon, but respect BEGIN/END (and IF/LOOP/WHILE/CASE/REPEAT)
+    // compound blocks — inner `;` separators inside such blocks must not
+    // terminate the outer statement. MatrixOne's parser accepts the whole
+    // compound as a single statement (e.g. CREATE TASK ... AS BEGIN ...; END).
     const statements = []
     const lines = sql.split('\n')
     let currentStatement = ''
+    let blockDepth = 0
 
     for (const line of lines) {
         const trimmedLine = line.trim()
@@ -603,6 +606,7 @@ export function splitSqlStatements(sql) {
             const sqlPart = trimmedLine.replace(/^(mysql>|>)\s*/, '')
             if (sqlPart && !shouldSkipLine(sqlPart.trim())) {
                 currentStatement += sqlPart + '\n'
+                blockDepth = updateBlockDepth(sqlPart, blockDepth)
             }
             continue
         }
@@ -613,9 +617,11 @@ export function splitSqlStatements(sql) {
         }
 
         currentStatement += line + '\n'
+        blockDepth = updateBlockDepth(line, blockDepth)
 
-        // Consider a statement complete if line ends with semicolon
-        if (trimmedLine.endsWith(';')) {
+        // Consider a statement complete if line ends with semicolon and we
+        // are not inside a BEGIN/END (or IF/LOOP/...) compound block.
+        if (trimmedLine.endsWith(';') && blockDepth === 0) {
             if (currentStatement.trim()) {
                 statements.push(currentStatement.trim())
             }
@@ -642,6 +648,7 @@ export function splitSqlStatementsWithAnnotations(sql) {
     const lines = sql.split('\n')
     let currentStatement = ''
     let currentAnnotations = []
+    let blockDepth = 0
 
     for (const rawLine of lines) {
         // Strip trailing inline comments (-- ..., # ..., // ...) outside string literals.
@@ -671,6 +678,7 @@ export function splitSqlStatementsWithAnnotations(sql) {
             const sqlPart = trimmedLine.replace(/^(mysql>|>)\s*/, '')
             if (sqlPart && !shouldSkipLine(sqlPart.trim())) {
                 currentStatement += sqlPart + '\n'
+                blockDepth = updateBlockDepth(sqlPart, blockDepth)
             }
             continue
         }
@@ -681,9 +689,11 @@ export function splitSqlStatementsWithAnnotations(sql) {
         }
 
         currentStatement += line + '\n'
+        blockDepth = updateBlockDepth(line, blockDepth)
 
-        // Consider a statement complete if line ends with semicolon
-        if (trimmedLine.endsWith(';')) {
+        // Consider a statement complete if line ends with semicolon and we
+        // are not inside a BEGIN/END (or IF/LOOP/...) compound block.
+        if (trimmedLine.endsWith(';') && blockDepth === 0) {
             if (currentStatement.trim()) {
                 results.push({
                     sql: currentStatement.trim(),
@@ -826,6 +836,134 @@ function stripTrailingInlineComment(line) {
     }
 
     return line
+}
+
+/**
+ * Track BEGIN/END compound-statement nesting across lines so that callers can
+ * defer statement termination until the outer block closes. Mirrors the MySQL
+ * dialect grammar in MatrixOne:
+ *   - `BEGIN` opens a compound block (SPBEGIN in the scanner), except in the
+ *     transaction forms `BEGIN WORK`, `BEGIN TRANSACTION`, or a bare `BEGIN;`.
+ *   - `END` closes a compound block, except when followed by a block qualifier
+ *     (`END IF`, `END LOOP`, `END WHILE`, `END CASE`, `END REPEAT`) that closes
+ *     a different construct which never opened via BEGIN to begin with.
+ *   - `IF/LOOP/WHILE/CASE/REPEAT` themselves also open blocks whose only
+ *     terminator is `END <keyword>`, so count them symmetrically.
+ * String and comment contents are ignored.
+ *
+ * @param {string} line - One raw line of SQL.
+ * @param {number} depth - Current block depth entering the line.
+ * @returns {number} Updated block depth after processing the line.
+ */
+function updateBlockDepth(line, depth) {
+    let i = 0
+    let inSingle = false
+    let inDouble = false
+    let inBacktick = false
+    let newDepth = depth
+    const len = line.length
+    const isWord = c => /[A-Za-z0-9_]/.test(c)
+    const atWordStart = pos => pos === 0 || !isWord(line[pos - 1])
+
+    while (i < len) {
+        const ch = line[i]
+        const prev = i > 0 ? line[i - 1] : ''
+
+        if (!inDouble && !inBacktick && ch === "'" && prev !== '\\') {
+            inSingle = !inSingle
+            i++
+            continue
+        }
+        if (!inSingle && !inBacktick && ch === '"' && prev !== '\\') {
+            inDouble = !inDouble
+            i++
+            continue
+        }
+        if (!inSingle && !inDouble && ch === '`') {
+            inBacktick = !inBacktick
+            i++
+            continue
+        }
+        if (inSingle || inDouble || inBacktick) {
+            i++
+            continue
+        }
+
+        // Line-comment markers end the scan (trailing comments were already
+        // stripped upstream, but be defensive for direct callers).
+        if (ch === '-' && line[i + 1] === '-') break
+        if (ch === '#') break
+        if (ch === '/' && line[i + 1] === '/') break
+        if (ch === '/' && line[i + 1] === '*') {
+            const end = line.indexOf('*/', i + 2)
+            if (end < 0) break
+            i = end + 2
+            continue
+        }
+
+        if (isWord(ch) && atWordStart(i)) {
+            let j = i
+            while (j < len && isWord(line[j])) j++
+            const word = line.slice(i, j).toUpperCase()
+
+            if (word === 'BEGIN') {
+                // MatrixOne's scanner emits the transactional BEGIN (not
+                // SPBEGIN) only for `BEGIN WORK`, `BEGIN TRANSACTION`, or a
+                // bare `BEGIN;`. If `BEGIN` sits at end-of-line we can't
+                // decide from this line alone, but docs realistically write
+                // the txn form on a single line — prefer the compound
+                // interpretation in that ambiguous case so `AS BEGIN\n...\nEND`
+                // is handled correctly. Only the clear single-line `BEGIN;`
+                // shape is treated as the transactional form.
+                let k = j
+                while (k < len && /\s/.test(line[k])) k++
+                const rest = line.slice(k).toUpperCase()
+                const isTxn =
+                    /^WORK\b/.test(rest) ||
+                    /^TRANSACTION\b/.test(rest) ||
+                    (k < len && line[k] === ';')
+                if (!isTxn) {
+                    newDepth++
+                }
+            } else if (word === 'END') {
+                // `END IF/LOOP/WHILE/CASE/REPEAT` closes one of those blocks,
+                // not a BEGIN block — but since we also increment depth for
+                // those openers below, a single decrement here still balances.
+                newDepth = Math.max(0, newDepth - 1)
+            } else if (
+                word === 'IF' ||
+                word === 'LOOP' ||
+                word === 'WHILE' ||
+                word === 'CASE' ||
+                word === 'REPEAT'
+            ) {
+                // Only count these as openers when they introduce a compound
+                // block, not when used as expressions (`CASE WHEN ... END` as
+                // a value, `IF(a,b,c)` function call, `WHERE x = CASE ...`).
+                // Heuristic: treat as opener only if the token is at the
+                // start of a trimmed line or preceded solely by whitespace +
+                // label `ident:`. Expression uses stay inline within a
+                // larger statement on the same physical line.
+                const before = line.slice(0, i)
+                const beforeTrim = before.replace(/\s+$/, '')
+                const isAtLineStart =
+                    beforeTrim === '' || /[A-Za-z0-9_]+:\s*$/.test(beforeTrim)
+                // Function-call form IF(...) is never a block opener.
+                const nextNonSpace = line.slice(j).match(/^\s*(.)/)
+                const isFuncCall = word === 'IF' && nextNonSpace && nextNonSpace[1] === '('
+                if (isAtLineStart && !isFuncCall) {
+                    newDepth++
+                }
+            }
+
+            i = j
+            continue
+        }
+
+        i++
+    }
+
+    return newDepth
 }
 
 /**
