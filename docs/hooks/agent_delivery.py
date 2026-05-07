@@ -58,50 +58,104 @@ COMPAT_TAG = {
 # it as None to auto-derive from the page's frontmatter/first paragraph.
 FEATURED_PAGES = [
     ("Docs", [
-        ("MatrixOne/Overview/matrixone-introduction.md", None),
-        ("MatrixOne/Overview/matrixone-feature-list.md", None),
-        ("MatrixOne/Get-Started/install-standalone-matrixone.md", None),
+        ("MatrixOne/Overview/matrixone-introduction.md",
+         "What MatrixOne is: a hyper-converged cloud-native HSTAP database that unifies OLTP, OLAP, streaming, and vector/full-text workloads in one engine."),
+        ("MatrixOne/Overview/matrixone-feature-list.md",
+         "Feature list at a glance — what's supported today vs on the roadmap."),
+        ("MatrixOne/Get-Started/install-standalone-matrixone.md",
+         "Single-node install walkthrough — fastest path to a running instance for trying things out."),
         ("MatrixOne/Reference/SQL-Reference/SQL-Type.md",
-         "SQL statement taxonomy — entry point for every supported statement"),
+         "SQL statement taxonomy — entry point for every supported statement."),
         (COMPAT_MATRIX_REL,
-         "MySQL 8.0 compatibility status per SQL statement — consult first"),
+         "MySQL 8.0 compatibility status per SQL statement — consult first before assuming syntax works."),
+        ("MatrixOne/Reference/Data-Types/data-types.md",
+         "All supported data types, including MatrixOne-specific `VECF32` / `VECF64` vectors and `DATALINK`."),
+        ("MatrixOne/Reference/Variable/system-variables/system-variables-overview.md",
+         "System variables reference — session/global toggles that change SQL behaviour."),
+        ("MatrixOne/Reference/System-Parameters/system-parameter.md",
+         "Server configuration parameters (static startup-time + dynamic) for tuning the engine."),
+    ]),
+    ("Core Capabilities", [
+        ("MatrixOne/Overview/feature/key-feature-htap.md",
+         "HTAP: run transactional and analytical workloads against the same data without ETL."),
+        ("MatrixOne/Tutorial/git4data-demo.md",
+         "Git-for-Data branching workflow: create/diff/merge data branches just like code branches — the MatrixOne differentiator for agent-safe experiments."),
+        ("MatrixOne/Maintain/backup-restore/mobr-backup-restore/mobr-snapshot-backup-restore.md",
+         "Snapshot-based backup & restore — cluster/tenant/database/table scope, copy-on-write semantics."),
+        ("MatrixOne/Maintain/backup-restore/mobr-backup-restore/mobr-pitr-backup-restore.md",
+         "Point-in-time recovery (PITR) — restore to an arbitrary timestamp within the configured retention window."),
+        ("MatrixOne/Tutorial/efficient-clone-demo.md",
+         "CREATE CLONE: instant copy-on-write table/database clones, including across tenants."),
+        ("MatrixOne/Develop/Vector/vector_search.md",
+         "Vector search with `VECF32` / `VECF64`, L2/cosine/IP distance, IVFFLAT and HNSW indexes."),
+        ("MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-fulltext-index.md",
+         "Full-text indexing — natural-language, boolean, and JSON search modes."),
+        ("MatrixOne/Tutorial/hybrid-search-demo.md",
+         "Hybrid retrieval: combine vector search with full-text and scalar filters in a single query — the RAG-friendly pattern."),
     ]),
     ("SDK & Drivers", [
         ("MatrixOne/Develop/connect-mo/python-connect-to-matrixone.md",
-         "Python client setup (PyMySQL / SQLAlchemy)"),
+         "Python client setup (PyMySQL / SQLAlchemy)."),
         ("MatrixOne/Develop/connect-mo/java-connect-to-matrixone/connect-mo-with-jdbc.md",
-         "Java/JDBC client setup"),
+         "Java/JDBC client setup."),
         ("MatrixOne/Develop/connect-mo/connect-to-matrixone-with-go.md",
-         "Go client setup"),
+         "Go client setup (`database/sql` + driver)."),
+    ]),
+    ("Data In / Out", [
+        ("MatrixOne/Develop/import-data/bulk-load/bulk-load-overview.md",
+         "Bulk load overview: `LOAD DATA` for CSV/JSONL, `SOURCE` for SQL dumps, S3-backed external ingestion."),
+        ("MatrixOne/Develop/import-data/bulk-load/load-s3.md",
+         "Load directly from S3-compatible object storage via stages."),
+        ("MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-external-table.md",
+         "External tables: query CSV/Parquet/S3 data in place without ingestion."),
+        ("MatrixOne/Develop/export-data/select-into-outfile.md",
+         "Export query results via `SELECT ... INTO OUTFILE` to local files or S3 stages."),
+    ]),
+    ("Migrate", [
+        ("MatrixOne/Migrate/migrate-overview.md",
+         "Migration overview: tools and workflows for moving from MySQL / PostgreSQL / Oracle / SQL Server to MatrixOne."),
+        ("MatrixOne/Migrate/migrate-from-mysql-to-matrixone.md",
+         "MySQL → MatrixOne migration — the most common path, leverages MySQL wire-protocol compatibility."),
     ]),
     ("Operate", [
-        ("MatrixOne/Deploy/deploy-MatrixOne-cluster.md", None),
-        ("MatrixOne/Maintain/backup-restore/backup-restore-overview.md", None),
+        ("MatrixOne/Deploy/deploy-MatrixOne-cluster.md",
+         "Distributed cluster deployment on Kubernetes — separates storage, compute, and transaction."),
+        ("MatrixOne/Maintain/backup-restore/backup-restore-overview.md",
+         "Backup & restore strategy overview — snapshot, PITR, and `mo_br` tool."),
     ]),
     ("Optional", [
         ("MatrixOne/Overview/architecture/matrixone-architecture-design.md",
-         "HSTAP architecture deep dive — storage/compute/transaction split"),
-        ("MatrixOne/Performance-Tuning/performance-tuning-overview.md", None),
+         "HSTAP architecture deep dive — storage/compute/transaction split, TAE engine, log service, proxy."),
+        ("MatrixOne/Performance-Tuning/performance-tuning-overview.md",
+         "Performance tuning methods — query plan reading, indexing, statistics, resource controls."),
         ("MatrixOne/Troubleshooting/error-code.md",
-         "Error code taxonomy — look up any 5-character error code"),
+         "Error code taxonomy — look up any 5-character error code."),
     ]),
 ]
 
 SYSTEM_PROMPT_BLOCK = (
-    "MatrixOne is a cloud-native HTAP database broadly MySQL 8.0 compatible, "
-    "but not every MySQL 8.0 feature is supported. Before assuming syntax "
-    "works, consult the MySQL Compatibility Matrix at "
-    "/MatrixOne/Reference/mysql-compatibility-matrix.md. Use `SHOW CREATE "
-    "TABLE` to confirm schema shape; system tables differ from MySQL. SQL "
-    "examples on these pages are validated against the latest 3.0-dev image "
-    "via `scripts/doc-validator`."
+    "MatrixOne is a cloud-native HSTAP database unifying OLTP, OLAP, streaming, "
+    "vector, and full-text workloads in one engine. It is broadly MySQL 8.0 "
+    "wire-protocol compatible, but not all MySQL features are supported — "
+    "always verify against the MySQL Compatibility Matrix. SQL examples on "
+    "these pages are executed against the latest 3.0-dev image by "
+    "`scripts/doc-validator` on every pull request."
+)
+
+# Short routing hint shown after the header bullets so agents know which
+# artifact to pull for which kind of question.
+AGENT_ROUTING = (
+    "Agent routing: writing or debugging SQL → pull `llms-sql.txt` for the "
+    "flat per-statement catalogue; broad conceptual questions → this file; "
+    "long-context offline reading → `llms-full.txt`; authoritative diffs "
+    "from MySQL → the MySQL Compatibility Matrix linked above."
 )
 
 # Behavioural directives kept here so they survive prompt-review sweeps.
 # Each entry should be one actionable line.
 AGENT_HINTS = [
     "Not all MySQL 8.0 features are supported — consult the compatibility matrix before assuming syntax works.",
-    "Prefer MatrixOne-native clauses when documented: `CLUSTER BY`, `AS OF TIMESTAMP`, `USING IVFFLAT`/`USING HNSW`, `CLONE`, `PITR`.",
+    "Prefer MatrixOne-native clauses when documented: `CLUSTER BY`, `AS OF TIMESTAMP`, `USING IVFFLAT`/`USING HNSW`, `CLONE`, `PITR`, `SNAPSHOT`.",
     "Use `SHOW CREATE TABLE <name>` to inspect a table before mutating it; system tables differ from MySQL.",
     "Vector indexes (`USING IVFFLAT`, `USING HNSW`) must be declared via `CREATE INDEX`, not `ALTER TABLE ADD INDEX`.",
     "Secondary indexes are syntactically accepted but do not yet accelerate queries — do not rely on them for performance.",
@@ -109,7 +163,9 @@ AGENT_HINTS = [
     "Tables created with `CLUSTER BY` and temporary tables cannot be altered — plan schema shape up front.",
     "`CREATE DATABASE` supports only `utf8mb4` / `utf8mb4_bin`; the `ENCRYPTION` clause is accepted but inert.",
     "Foreign keys do not support `ON CASCADE DELETE`.",
+    "`LOAD DATA INFILE` expects a local absolute path or a stage URL (e.g. `stage://my_stage/file.csv`) — relative paths and MySQL-style secure-file-priv do not apply.",
     "Use `CREATE SNAPSHOT` / `PITR` / `CREATE CLONE` for point-in-time and copy-on-write workflows rather than MySQL's binlog tooling.",
+    "For agent-safe experiments, prefer a data branch (`DATA BRANCH CREATE` → test → `DATA BRANCH DIFF` → `DATA BRANCH MERGE` / delete) over mutating shared tables in place.",
 ]
 
 
@@ -150,6 +206,8 @@ def on_post_build(config, **_kwargs):
     llms.append(f"- **Full SQL reference (flat index, all statements)**: {base}/llms-sql.txt")
     llms.append(f"- **Full corpus**: {base}/llms-full.txt")
     llms.append(f"- **Generated**: {built_at} (UTC)")
+    llms.append("")
+    llms.append(AGENT_ROUTING)
     llms.append("")
     llms.append("Hints for AI agents writing MatrixOne SQL:")
     llms.append("")
