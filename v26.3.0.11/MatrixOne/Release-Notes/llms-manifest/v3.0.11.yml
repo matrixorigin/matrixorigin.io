@@ -1,0 +1,73 @@
+tag: v3.0.11
+docs_added:
+  - path: docs/MatrixOne/Reference/Operators/operators/comparison-functions-and-operators/null-safe-equal.md
+    doc_type: reference
+    mysql_compat: full
+    llms_summary: "NULL-safe equality operator that returns 1 when both operands are equal (including two NULLs) and 0 otherwise, never returning NULL itself in MatrixOne comparisons."
+  - path: docs/MatrixOne/Reference/Functions-and-Operators/Datetime/addtime.md
+    doc_type: reference
+    mysql_compat: full
+    llms_summary: "ADDTIME adds a TIME expression to a TIME, DATETIME, TIMESTAMP, or string value, with the result type following the input type and the scale widening to the larger input scale in MatrixOne."
+  - path: docs/MatrixOne/Reference/Functions-and-Operators/Datetime/curtime.md
+    doc_type: reference
+    mysql_compat: full
+    llms_summary: "CURTIME and its synonym CURRENT_TIME return the current server time as a TIME value, optionally with up to microsecond precision in MatrixOne."
+  - path: docs/MatrixOne/Reference/Functions-and-Operators/Datetime/get-format.md
+    doc_type: reference
+    mysql_compat: full
+    llms_summary: "GET_FORMAT returns the MySQL-style locale-specific format string for DATE, TIME, or DATETIME values across USA, EUR, JIS, ISO, and INTERNAL regions in MatrixOne."
+  - path: docs/MatrixOne/Reference/Functions-and-Operators/Datetime/subtime.md
+    doc_type: reference
+    mysql_compat: full
+    llms_summary: "SUBTIME subtracts a TIME expression from a TIME, DATETIME, TIMESTAMP, or string value, with the result type following the input type and the scale widening to the larger input scale in MatrixOne."
+  - path: docs/MatrixOne/Reference/Functions-and-Operators/Datetime/timestampadd.md
+    doc_type: reference
+    mysql_compat: full
+    llms_summary: "TIMESTAMPADD adds an integer interval of a given unit to a date, datetime, timestamp, or string expression, with the return type aligned to the input type in MatrixOne."
+  - path: docs/MatrixOne/Reference/Functions-and-Operators/Json/json-arrow.md
+    doc_type: reference
+    mysql_compat: full
+    llms_summary: "The JSON arrow operators -> and ->> are parser shorthand for json_extract and json_unquote(json_extract(...)), extracting JSON values or unquoted strings by path in MatrixOne."
+  - path: docs/MatrixOne/Reference/Functions-and-Operators/String/aes_decrypt.md
+    doc_type: reference
+    mysql_compat: partial
+    llms_summary: "AES_DECRYPT decrypts a ciphertext with a key using the mode set by block_encryption_mode, supporting aes-128-ecb (default) and aes-256-cbc with a required 16-byte IV in MatrixOne."
+  - path: docs/MatrixOne/Reference/Functions-and-Operators/String/aes_encrypt.md
+    doc_type: reference
+    mysql_compat: partial
+    llms_summary: "AES_ENCRYPT encrypts plaintext with a key and returns a BLOB using the mode set by block_encryption_mode, supporting aes-128-ecb (default) and aes-256-cbc with a required 16-byte IV in MatrixOne."
+  - path: docs/MatrixOne/Reference/Functions-and-Operators/String/elt.md
+    doc_type: reference
+    mysql_compat: full
+    llms_summary: "ELT returns the N-th string argument counting from 1, yielding NULL when N is out of range or any referenced argument is NULL in MatrixOne."
+  - path: docs/MatrixOne/Reference/Functions-and-Operators/Window-Functions/cume_dist.md
+    doc_type: reference
+    mysql_compat: full
+    llms_summary: "CUME_DIST returns the cumulative distribution of the current row within its window partition as a DOUBLE in (0, 1], computed as rows-with-value-<=-current divided by partition size in MatrixOne."
+  - path: docs/MatrixOne/Reference/Functions-and-Operators/Window-Functions/percent_rank.md
+    doc_type: reference
+    mysql_compat: full
+    llms_summary: "PERCENT_RANK returns the relative rank of the current row within its window partition as a DOUBLE in the range [0, 1], computed as (rank - 1) divided by (partition size - 1) in MatrixOne."
+  - path: docs/MatrixOne/Reference/mo-tools/mo_service.md
+    doc_type: reference
+    mysql_compat: mo_only
+    llms_summary: "mo-service exposes --block-profile-rate and --mutex-profile-fraction flags that drive Go runtime block and mutex profilers for continuous profiling against the /debug/pprof endpoints in MatrixOne."
+docs_updated:
+  - path: docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-view.md
+    change_summary: "Document the optional SQL SECURITY { DEFINER | INVOKER } clause and the session variable view_security_type."
+  - path: docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/alter-view.md
+    change_summary: "Document the optional SQL SECURITY { DEFINER | INVOKER } clause on ALTER VIEW."
+  - path: docs/MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-create-view.md
+    change_summary: "Note that SHOW CREATE VIEW now always renders SQL SECURITY DEFINER or INVOKER in the output header."
+  - path: docs/MatrixOne/Reference/SQL-Reference/Data-Control-Language/grant.md
+    change_summary: "Add ON VIEW object type and explain DEFINER vs INVOKER privilege checks for views."
+  - path: docs/MatrixOne/Reference/SQL-Reference/Data-Control-Language/revoke.md
+    change_summary: "Add ON VIEW object type alongside TABLE / FUNCTION / PROCEDURE."
+  - path: docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/drop-table.md
+    change_summary: "Document multi-target DROP TABLE and per-target privilege checking behavior."
+  - path: docs/MatrixOne/Reference/Operators/operators/arithmetic-operators/div.md
+    change_summary: "Document DECIMAL(64) / DECIMAL(128) operand support with scale alignment and truncating division."
+  - path: docs/MatrixOne/Reference/Operators/operators/comparison-functions-and-operators/comparison-functions-and-operators-overview.md
+    change_summary: "List the new <=> NULL-safe equal operator in the overview table."
+  - path: docs/MatrixOne/Reference/Variable/system-variables/system-variables-overview.md
+    change_summary: "Add server_id (read-only, populated with CN service UUID) and view_security_type (DEFINER/INVOKER) session variables."
