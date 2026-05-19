@@ -1,0 +1,38 @@
+---
+title: "DROP VIEW"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "DROP VIEW removes one or more views."
+---
+# **DROP VIEW**
+
+> DROP VIEW removes one or more views.
+
+## **Description**
+
+`DROP VIEW` removes one or more views.
+
+If any views named in the argument list do not exist, the statement fails with an error indicating by name which nonexisting views it was unable to drop, and no changes are made.
+
+The `IF EXISTS` clause prevents an error from occurring for views that don't exist. When this clause is given, a `NOTE` is generated for each nonexistent view.
+
+## **Syntax**
+
+```
+> DROP VIEW [IF EXISTS]
+    view_name [, view_name] ...
+```
+
+## **Examples**
+
+```sql
+CREATE TABLE t1(c1 INT PRIMARY KEY, c2 INT);
+CREATE VIEW v1 AS SELECT * FROM t1;
+
+mysql> DROP VIEW v1;
+Query OK, 0 rows affected (0.02 sec)
+```
