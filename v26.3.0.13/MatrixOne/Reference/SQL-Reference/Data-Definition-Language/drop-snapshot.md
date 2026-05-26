@@ -1,0 +1,43 @@
+---
+title: "DROP SNAPSHOT"
+doc_type: reference
+mysql_compat: mo_only
+differs_from_mysql: []
+mo_only:
+  - "DROP SNAPSHOT"
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "DROP SNAPSHOT is used to delete snapshots created under the current tenant."
+---
+# DROP SNAPSHOT
+
+> DROP SNAPSHOT is used to delete snapshots created under the current tenant.
+
+## Syntax Description
+
+`DROP SNAPSHOT` is used to delete snapshots created under the current tenant. Branch protect snapshots (sname prefixed `__mo_branch_`, created automatically by `DATA BRANCH CREATE`) cannot be dropped via this command — an error is returned.
+
+## Syntax structure
+
+```
+> DROP SNAPSHOT snapshot_name;
+```
+
+## Examples
+
+```sql
+create snapshot sp1 for account sys;
+
+mysql>  show snapshots;
++---------------+----------------------------+----------------+--------------+---------------+------------+
+| SNAPSHOT_NAME | TIMESTAMP                  | SNAPSHOT_LEVEL | ACCOUNT_NAME | DATABASE_NAME | TABLE_NAME |
++---------------+----------------------------+----------------+--------------+---------------+------------+
+| sp1           | 2024-05-10 09:55:11.601605 | account        | sys          |               |            |
++---------------+----------------------------+----------------+--------------+---------------+------------+
+1 row in set (0.01 sec)
+
+drop snapshot sp1;
+
+mysql>  show snapshots;
+Empty set (0.01 sec)
+```

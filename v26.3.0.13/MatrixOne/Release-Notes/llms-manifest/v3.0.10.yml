@@ -1,0 +1,17 @@
+tag: v3.0.10
+docs_added:
+  - path: docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/data-branch-pick.md
+    doc_type: reference
+    mysql_compat: mo_only
+    llms_summary: "Cherry-pick specific rows from a source table into a target table by primary key or snapshot range inside a MatrixOne data branch, with configurable conflict handling."
+  - path: docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/sql-task.md
+    doc_type: reference
+    mysql_compat: mo_only
+    llms_summary: "Define, alter, drop, execute, and inspect MatrixOne SQL tasks that run a SQL body on a cron schedule or on demand, with optional gate, retry, and timeout options."
+  - path: docs/MatrixOne/Reference/SQL-Reference/Data-Control-Language/role-rule.md
+    doc_type: reference
+    mysql_compat: mo_only
+    llms_summary: "Attach per-table rewrite rules to a MatrixOne role via ALTER ROLE ADD RULE / DROP RULE and list them with SHOW RULES ON ROLE, enabled per session by enable_remap_hint."
+docs_updated:
+  - path: docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/data-branch-diff-en.md
+    change_summary: "Document COLUMNS projection clause and OUTPUT SUMMARY option added to DATA BRANCH DIFF."
