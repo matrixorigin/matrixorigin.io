@@ -19,6 +19,9 @@ theme:
 plugins:
   - search:
       separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
+hooks:
+  - docs/hooks/generate_compat_matrix.py
+  - docs/hooks/agent_delivery.py
 edit_uri: edit/main/docs/
 extra_css:
   - stylesheets/extra.css
