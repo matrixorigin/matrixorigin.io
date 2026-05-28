@@ -429,102 +429,72 @@ mysql_compat: full
 | Operator | MySQL Compat | Notes |
 |---|---|---|
 | [interval](./Operators/interval.md) | ❓ Unknown | — |
-| [operator-precedence](./Operators/operator-precedence.md) | ❓ Unknown | — |
-| [operators](./Operators/operators.md) | ❓ Unknown | — |
 
-### Arithmetic Operators
+### operators
 
 | Operator | MySQL Compat | Notes |
 |---|---|---|
-| [addition](./Operators/arithmetic-operators/addition.md) | ❓ Unknown | — |
-| [arithmetic-operators-overview](./Operators/arithmetic-operators/arithmetic-operators-overview.md) | ❓ Unknown | — |
-| [div](./Operators/arithmetic-operators/div.md) | ❓ Unknown | — |
-| [division](./Operators/arithmetic-operators/division.md) | ❓ Unknown | — |
-| [minus](./Operators/arithmetic-operators/minus.md) | ❓ Unknown | — |
-| [mod](./Operators/arithmetic-operators/mod.md) | ❓ Unknown | — |
-| [multiplication](./Operators/arithmetic-operators/multiplication.md) | ❓ Unknown | — |
-| [unary-minus](./Operators/arithmetic-operators/unary-minus.md) | ❓ Unknown | — |
-
-### Assignment Operators
-
-| Operator | MySQL Compat | Notes |
-|---|---|---|
-| [assignment-operators-overview](./Operators/assignment-operators/assignment-operators-overview.md) | ❓ Unknown | — |
-| [equal](./Operators/assignment-operators/equal.md) | ❓ Unknown | — |
-
-### Bit Functions and Operators
-
-| Operator | MySQL Compat | Notes |
-|---|---|---|
-| [bit-functions-and-operators-overview](./Operators/bit-functions-and-operators/bit-functions-and-operators-overview.md) | ❓ Unknown | — |
-| [bitwise-and](./Operators/bit-functions-and-operators/bitwise-and.md) | ❓ Unknown | — |
-| [bitwise-inversion](./Operators/bit-functions-and-operators/bitwise-inversion.md) | ❓ Unknown | — |
-| [bitwise-or](./Operators/bit-functions-and-operators/bitwise-or.md) | ❓ Unknown | — |
-| [bitwise-xor](./Operators/bit-functions-and-operators/bitwise-xor.md) | ❓ Unknown | — |
-| [left-shift](./Operators/bit-functions-and-operators/left-shift.md) | ❓ Unknown | — |
-| [right-shift](./Operators/bit-functions-and-operators/right-shift.md) | ❓ Unknown | — |
-
-### Cast Functions and Operators
-
-| Operator | MySQL Compat | Notes |
-|---|---|---|
-| [binary](./Operators/cast-functions-and-operators/binary.md) | ❓ Unknown | — |
-| [cast](./Operators/cast-functions-and-operators/cast.md) | ❓ Unknown | — |
-| [cast-functions-and-operators-overview](./Operators/cast-functions-and-operators/cast-functions-and-operators-overview.md) | ❓ Unknown | — |
-| [convert](./Operators/cast-functions-and-operators/convert.md) | ❓ Unknown | — |
-| [decode](./Operators/cast-functions-and-operators/decode.md) | ❓ Unknown | — |
-| [encode](./Operators/cast-functions-and-operators/encode.md) | ❓ Unknown | — |
-| [serial](./Operators/cast-functions-and-operators/serial.md) | ❓ Unknown | — |
-| [serial_full](./Operators/cast-functions-and-operators/serial_full.md) | ❓ Unknown | — |
-
-### Comparison Functions and Operators
-
-| Operator | MySQL Compat | Notes |
-|---|---|---|
-| [<=>](./Operators/comparison-functions-and-operators/null-safe-equal.md) | ✅ Full | — |
-| [assign-equal](./Operators/comparison-functions-and-operators/assign-equal.md) | ❓ Unknown | — |
-| [between](./Operators/comparison-functions-and-operators/between.md) | ❓ Unknown | — |
-| [coalesce](./Operators/comparison-functions-and-operators/coalesce.md) | ❓ Unknown | — |
-| [comparison-functions-and-operators-overview](./Operators/comparison-functions-and-operators/comparison-functions-and-operators-overview.md) | ❓ Unknown | — |
-| [function_interval](./Operators/comparison-functions-and-operators/function_interval.md) | ❓ Unknown | — |
-| [function_isnull](./Operators/comparison-functions-and-operators/function_isnull.md) | ❓ Unknown | — |
-| [function_least](./Operators/comparison-functions-and-operators/function_least.md) | ❓ Unknown | — |
-| [function_strcmp](./Operators/comparison-functions-and-operators/function_strcmp.md) | ❓ Unknown | — |
-| [greater-than](./Operators/comparison-functions-and-operators/greater-than.md) | ❓ Unknown | — |
-| [greater-than-or-equal](./Operators/comparison-functions-and-operators/greater-than-or-equal.md) | ❓ Unknown | — |
-| [ilike](./Operators/comparison-functions-and-operators/ilike.md) | ❓ Unknown | — |
-| [in](./Operators/comparison-functions-and-operators/in.md) | ❓ Unknown | — |
-| [is](./Operators/comparison-functions-and-operators/is.md) | ❓ Unknown | — |
-| [is-not](./Operators/comparison-functions-and-operators/is-not.md) | ❓ Unknown | — |
-| [is-not-null](./Operators/comparison-functions-and-operators/is-not-null.md) | ❓ Unknown | — |
-| [is-null](./Operators/comparison-functions-and-operators/is-null.md) | ❓ Unknown | — |
-| [less-than](./Operators/comparison-functions-and-operators/less-than.md) | ❓ Unknown | — |
-| [less-than-or-equal](./Operators/comparison-functions-and-operators/less-than-or-equal.md) | ❓ Unknown | — |
-| [like](./Operators/comparison-functions-and-operators/like.md) | ❓ Unknown | — |
-| [not-between](./Operators/comparison-functions-and-operators/not-between.md) | ❓ Unknown | — |
-| [not-equal](./Operators/comparison-functions-and-operators/not-equal.md) | ❓ Unknown | — |
-| [not-in](./Operators/comparison-functions-and-operators/not-in.md) | ❓ Unknown | — |
-| [not-like](./Operators/comparison-functions-and-operators/not-like.md) | ❓ Unknown | — |
-
-### Flow Control Functions
-
-| Operator | MySQL Compat | Notes |
-|---|---|---|
-| [case-when](./Operators/flow-control-functions/case-when.md) | ❓ Unknown | — |
-| [flow-control-functions-overview](./Operators/flow-control-functions/flow-control-functions-overview.md) | ❓ Unknown | — |
-| [function_if](./Operators/flow-control-functions/function_if.md) | ❓ Unknown | — |
-| [function_ifnull](./Operators/flow-control-functions/function_ifnull.md) | ❓ Unknown | — |
-| [function_nullif](./Operators/flow-control-functions/function_nullif.md) | ❓ Unknown | — |
-
-### Logical Operators
-
-| Operator | MySQL Compat | Notes |
-|---|---|---|
-| [and](./Operators/logical-operators/and.md) | ❓ Unknown | — |
-| [logical-operators-overview](./Operators/logical-operators/logical-operators-overview.md) | ❓ Unknown | — |
-| [not](./Operators/logical-operators/not.md) | ❓ Unknown | — |
-| [or](./Operators/logical-operators/or.md) | ❓ Unknown | — |
-| [xor](./Operators/logical-operators/xor.md) | ❓ Unknown | — |
+| [<=>](./Operators/operators/comparison-functions-and-operators/null-safe-equal.md) | ✅ Full | — |
+| [addition](./Operators/operators/arithmetic-operators/addition.md) | ❓ Unknown | — |
+| [and](./Operators/operators/logical-operators/and.md) | ❓ Unknown | — |
+| [arithmetic-operators-overview](./Operators/operators/arithmetic-operators/arithmetic-operators-overview.md) | ❓ Unknown | — |
+| [assign-equal](./Operators/operators/comparison-functions-and-operators/assign-equal.md) | ❓ Unknown | — |
+| [assignment-operators-overview](./Operators/operators/assignment-operators/assignment-operators-overview.md) | ❓ Unknown | — |
+| [between](./Operators/operators/comparison-functions-and-operators/between.md) | ❓ Unknown | — |
+| [binary](./Operators/operators/cast-functions-and-operators/binary.md) | ❓ Unknown | — |
+| [bit-functions-and-operators-overview](./Operators/operators/bit-functions-and-operators/bit-functions-and-operators-overview.md) | ❓ Unknown | — |
+| [bitwise-and](./Operators/operators/bit-functions-and-operators/bitwise-and.md) | ❓ Unknown | — |
+| [bitwise-inversion](./Operators/operators/bit-functions-and-operators/bitwise-inversion.md) | ❓ Unknown | — |
+| [bitwise-or](./Operators/operators/bit-functions-and-operators/bitwise-or.md) | ❓ Unknown | — |
+| [bitwise-xor](./Operators/operators/bit-functions-and-operators/bitwise-xor.md) | ❓ Unknown | — |
+| [case-when](./Operators/operators/flow-control-functions/case-when.md) | ❓ Unknown | — |
+| [cast](./Operators/operators/cast-functions-and-operators/cast.md) | ❓ Unknown | — |
+| [cast-functions-and-operators-overview](./Operators/operators/cast-functions-and-operators/cast-functions-and-operators-overview.md) | ❓ Unknown | — |
+| [coalesce](./Operators/operators/comparison-functions-and-operators/coalesce.md) | ❓ Unknown | — |
+| [comparison-functions-and-operators-overview](./Operators/operators/comparison-functions-and-operators/comparison-functions-and-operators-overview.md) | ❓ Unknown | — |
+| [convert](./Operators/operators/cast-functions-and-operators/convert.md) | ❓ Unknown | — |
+| [decode](./Operators/operators/cast-functions-and-operators/decode.md) | ❓ Unknown | — |
+| [div](./Operators/operators/arithmetic-operators/div.md) | ❓ Unknown | — |
+| [division](./Operators/operators/arithmetic-operators/division.md) | ❓ Unknown | — |
+| [encode](./Operators/operators/cast-functions-and-operators/encode.md) | ❓ Unknown | — |
+| [equal](./Operators/operators/assignment-operators/equal.md) | ❓ Unknown | — |
+| [flow-control-functions-overview](./Operators/operators/flow-control-functions/flow-control-functions-overview.md) | ❓ Unknown | — |
+| [function_if](./Operators/operators/flow-control-functions/function_if.md) | ❓ Unknown | — |
+| [function_ifnull](./Operators/operators/flow-control-functions/function_ifnull.md) | ❓ Unknown | — |
+| [function_interval](./Operators/operators/comparison-functions-and-operators/function_interval.md) | ❓ Unknown | — |
+| [function_isnull](./Operators/operators/comparison-functions-and-operators/function_isnull.md) | ❓ Unknown | — |
+| [function_least](./Operators/operators/comparison-functions-and-operators/function_least.md) | ❓ Unknown | — |
+| [function_nullif](./Operators/operators/flow-control-functions/function_nullif.md) | ❓ Unknown | — |
+| [function_strcmp](./Operators/operators/comparison-functions-and-operators/function_strcmp.md) | ❓ Unknown | — |
+| [greater-than](./Operators/operators/comparison-functions-and-operators/greater-than.md) | ❓ Unknown | — |
+| [greater-than-or-equal](./Operators/operators/comparison-functions-and-operators/greater-than-or-equal.md) | ❓ Unknown | — |
+| [ilike](./Operators/operators/comparison-functions-and-operators/ilike.md) | ❓ Unknown | — |
+| [in](./Operators/operators/comparison-functions-and-operators/in.md) | ❓ Unknown | — |
+| [is](./Operators/operators/comparison-functions-and-operators/is.md) | ❓ Unknown | — |
+| [is-not](./Operators/operators/comparison-functions-and-operators/is-not.md) | ❓ Unknown | — |
+| [is-not-null](./Operators/operators/comparison-functions-and-operators/is-not-null.md) | ❓ Unknown | — |
+| [is-null](./Operators/operators/comparison-functions-and-operators/is-null.md) | ❓ Unknown | — |
+| [left-shift](./Operators/operators/bit-functions-and-operators/left-shift.md) | ❓ Unknown | — |
+| [less-than](./Operators/operators/comparison-functions-and-operators/less-than.md) | ❓ Unknown | — |
+| [less-than-or-equal](./Operators/operators/comparison-functions-and-operators/less-than-or-equal.md) | ❓ Unknown | — |
+| [like](./Operators/operators/comparison-functions-and-operators/like.md) | ❓ Unknown | — |
+| [logical-operators-overview](./Operators/operators/logical-operators/logical-operators-overview.md) | ❓ Unknown | — |
+| [minus](./Operators/operators/arithmetic-operators/minus.md) | ❓ Unknown | — |
+| [mod](./Operators/operators/arithmetic-operators/mod.md) | ❓ Unknown | — |
+| [multiplication](./Operators/operators/arithmetic-operators/multiplication.md) | ❓ Unknown | — |
+| [not](./Operators/operators/logical-operators/not.md) | ❓ Unknown | — |
+| [not-between](./Operators/operators/comparison-functions-and-operators/not-between.md) | ❓ Unknown | — |
+| [not-equal](./Operators/operators/comparison-functions-and-operators/not-equal.md) | ❓ Unknown | — |
+| [not-in](./Operators/operators/comparison-functions-and-operators/not-in.md) | ❓ Unknown | — |
+| [not-like](./Operators/operators/comparison-functions-and-operators/not-like.md) | ❓ Unknown | — |
+| [operator-precedence](./Operators/operators/operator-precedence.md) | ❓ Unknown | — |
+| [operators](./Operators/operators/operators.md) | ❓ Unknown | — |
+| [or](./Operators/operators/logical-operators/or.md) | ❓ Unknown | — |
+| [right-shift](./Operators/operators/bit-functions-and-operators/right-shift.md) | ❓ Unknown | — |
+| [serial](./Operators/operators/cast-functions-and-operators/serial.md) | ❓ Unknown | — |
+| [serial_full](./Operators/operators/cast-functions-and-operators/serial_full.md) | ❓ Unknown | — |
+| [unary-minus](./Operators/operators/arithmetic-operators/unary-minus.md) | ❓ Unknown | — |
+| [xor](./Operators/operators/logical-operators/xor.md) | ❓ Unknown | — |
 
 ## Data Types
 
