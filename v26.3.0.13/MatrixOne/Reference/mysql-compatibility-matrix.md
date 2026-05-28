@@ -437,102 +437,72 @@ mysql_compat: full
 | Operator | MySQL Compat | Notes |
 |---|---|---|
 | [INTERVAL](./Operators/interval.md) | ⚠️ Partial | INTERVAL is internally implemented as a two-argument function rather than as a true SQL keyword; documented syntax INTERVAL(expr,unit) differs from MySQL's INTERVAL expr unit keyword-style notation<br/>Malformed dates in DATE_ADD/DATE_SUB raise errors rather than returning NULL (MySQL 8.0 returns NULL) |
-| [operator-precedence](./Operators/operator-precedence.md) | ❓ Unknown | — |
-| [operators](./Operators/operators.md) | ❓ Unknown | — |
 
-### Arithmetic Operators
+### operators
 
 | Operator | MySQL Compat | Notes |
 |---|---|---|
-| [addition](./Operators/arithmetic-operators/addition.md) | ❓ Unknown | — |
-| [arithmetic-operators-overview](./Operators/arithmetic-operators/arithmetic-operators-overview.md) | ❓ Unknown | — |
-| [div](./Operators/arithmetic-operators/div.md) | ❓ Unknown | — |
-| [division](./Operators/arithmetic-operators/division.md) | ❓ Unknown | — |
-| [minus](./Operators/arithmetic-operators/minus.md) | ❓ Unknown | — |
-| [mod](./Operators/arithmetic-operators/mod.md) | ❓ Unknown | — |
-| [multiplication](./Operators/arithmetic-operators/multiplication.md) | ❓ Unknown | — |
-| [unary-minus](./Operators/arithmetic-operators/unary-minus.md) | ❓ Unknown | — |
-
-### Assignment Operators
-
-| Operator | MySQL Compat | Notes |
-|---|---|---|
-| [assignment-operators-overview](./Operators/assignment-operators/assignment-operators-overview.md) | ❓ Unknown | — |
-| [equal](./Operators/assignment-operators/equal.md) | ❓ Unknown | — |
-
-### Bit Functions and Operators
-
-| Operator | MySQL Compat | Notes |
-|---|---|---|
-| [bit-functions-and-operators-overview](./Operators/bit-functions-and-operators/bit-functions-and-operators-overview.md) | ❓ Unknown | — |
-| [bitwise-and](./Operators/bit-functions-and-operators/bitwise-and.md) | ❓ Unknown | — |
-| [bitwise-inversion](./Operators/bit-functions-and-operators/bitwise-inversion.md) | ❓ Unknown | — |
-| [bitwise-or](./Operators/bit-functions-and-operators/bitwise-or.md) | ❓ Unknown | — |
-| [bitwise-xor](./Operators/bit-functions-and-operators/bitwise-xor.md) | ❓ Unknown | — |
-| [left-shift](./Operators/bit-functions-and-operators/left-shift.md) | ❓ Unknown | — |
-| [right-shift](./Operators/bit-functions-and-operators/right-shift.md) | ❓ Unknown | — |
-
-### Cast Functions and Operators
-
-| Operator | MySQL Compat | Notes |
-|---|---|---|
-| [binary](./Operators/cast-functions-and-operators/binary.md) | ❓ Unknown | — |
-| [CAST](./Operators/cast-functions-and-operators/cast.md) | ⚠️ Partial | CAST('non-numeric' AS SIGNED) raises an error instead of returning 0 or NULL (MySQL 8.0 returns 0 with a warning)<br/>CAST(datetime_typed_value AS CHAR) may fail in some cases (MySQL 8.0 supports it universally) |
-| [cast-functions-and-operators-overview](./Operators/cast-functions-and-operators/cast-functions-and-operators-overview.md) | ❓ Unknown | — |
-| [CONVERT](./Operators/cast-functions-and-operators/convert.md) | ⚠️ Partial | CONVERT('non-numeric', SIGNED) raises an error instead of returning 0 or NULL<br/>CONVERT(datetime_typed_value, CHAR) may fail in some cases (MySQL 8.0 supports it universally) |
-| [DECODE()](./Operators/cast-functions-and-operators/decode.md) | 🟣 MatrixOne-only | [MO-only] DECODE() was deprecated in MySQL 5.7 and removed in MySQL 8.0; MatrixOne continues to support it |
-| [ENCODE()](./Operators/cast-functions-and-operators/encode.md) | 🟣 MatrixOne-only | [MO-only] ENCODE() was deprecated in MySQL 5.7 and removed in MySQL 8.0; MatrixOne continues to support it |
-| [SERIAL_FULL()](./Operators/cast-functions-and-operators/serial_full.md) | 🟣 MatrixOne-only | [MO-only] SERIAL_FULL() is a MO-specific serialization function variant with NULL preservation, no MySQL 8.0 counterpart |
-| [SERIAL()](./Operators/cast-functions-and-operators/serial.md) | 🟣 MatrixOne-only | [MO-only] SERIAL() is a MO-specific serialization function with no MySQL 8.0 counterpart |
-
-### Comparison Functions and Operators
-
-| Operator | MySQL Compat | Notes |
-|---|---|---|
-| [<=>](./Operators/comparison-functions-and-operators/null-safe-equal.md) | ✅ Full | — |
-| [assign-equal](./Operators/comparison-functions-and-operators/assign-equal.md) | ❓ Unknown | — |
-| [between](./Operators/comparison-functions-and-operators/between.md) | ❓ Unknown | — |
-| [coalesce](./Operators/comparison-functions-and-operators/coalesce.md) | ❓ Unknown | — |
-| [comparison-functions-and-operators-overview](./Operators/comparison-functions-and-operators/comparison-functions-and-operators-overview.md) | ❓ Unknown | — |
-| [function_interval](./Operators/comparison-functions-and-operators/function_interval.md) | ❓ Unknown | — |
-| [function_isnull](./Operators/comparison-functions-and-operators/function_isnull.md) | ❓ Unknown | — |
-| [function_least](./Operators/comparison-functions-and-operators/function_least.md) | ❓ Unknown | — |
-| [function_strcmp](./Operators/comparison-functions-and-operators/function_strcmp.md) | ❓ Unknown | — |
-| [greater-than](./Operators/comparison-functions-and-operators/greater-than.md) | ❓ Unknown | — |
-| [greater-than-or-equal](./Operators/comparison-functions-and-operators/greater-than-or-equal.md) | ❓ Unknown | — |
-| [ILIKE](./Operators/comparison-functions-and-operators/ilike.md) | 🟣 MatrixOne-only | [MO-only] ILIKE operator for case-insensitive LIKE matching (PostgreSQL extension) |
-| [IN](./Operators/comparison-functions-and-operators/in.md) | ✅ Full | — |
-| [is](./Operators/comparison-functions-and-operators/is.md) | ❓ Unknown | — |
-| [IS NULL](./Operators/comparison-functions-and-operators/is-null.md) | ✅ Full | — |
-| [is-not](./Operators/comparison-functions-and-operators/is-not.md) | ❓ Unknown | — |
-| [is-not-null](./Operators/comparison-functions-and-operators/is-not-null.md) | ❓ Unknown | — |
-| [less-than](./Operators/comparison-functions-and-operators/less-than.md) | ❓ Unknown | — |
-| [less-than-or-equal](./Operators/comparison-functions-and-operators/less-than-or-equal.md) | ❓ Unknown | — |
-| [like](./Operators/comparison-functions-and-operators/like.md) | ❓ Unknown | — |
-| [NOT IN](./Operators/comparison-functions-and-operators/not-in.md) | ✅ Full | — |
-| [not-between](./Operators/comparison-functions-and-operators/not-between.md) | ❓ Unknown | — |
-| [not-equal](./Operators/comparison-functions-and-operators/not-equal.md) | ❓ Unknown | — |
-| [not-like](./Operators/comparison-functions-and-operators/not-like.md) | ❓ Unknown | — |
-
-### Flow Control Functions
-
-| Operator | MySQL Compat | Notes |
-|---|---|---|
-| [CASE WHEN](./Operators/flow-control-functions/case-when.md) | ✅ Full | — |
-| [flow-control-functions-overview](./Operators/flow-control-functions/flow-control-functions-overview.md) | ❓ Unknown | — |
-| [function_ifnull](./Operators/flow-control-functions/function_ifnull.md) | ❓ Unknown | — |
-| [function_nullif](./Operators/flow-control-functions/function_nullif.md) | ❓ Unknown | — |
-| [IF()](./Operators/flow-control-functions/function_if.md) | ⚠️ Partial | IF(NULL, expr2, expr3) raises an error instead of returning expr3 (MySQL 8.0 returns expr3) |
-
-### Logical Operators
-
-| Operator | MySQL Compat | Notes |
-|---|---|---|
-| [and](./Operators/logical-operators/and.md) | ❓ Unknown | — |
-| [logical-operators-overview](./Operators/logical-operators/logical-operators-overview.md) | ❓ Unknown | — |
-| [NOT / !](./Operators/logical-operators/not.md) | ✅ Full | — |
-| [or](./Operators/logical-operators/or.md) | ❓ Unknown | — |
-| [xor](./Operators/logical-operators/xor.md) | ❓ Unknown | — |
+| [<=>](./Operators/operators/comparison-functions-and-operators/null-safe-equal.md) | ✅ Full | — |
+| [addition](./Operators/operators/arithmetic-operators/addition.md) | ❓ Unknown | — |
+| [and](./Operators/operators/logical-operators/and.md) | ❓ Unknown | — |
+| [arithmetic-operators-overview](./Operators/operators/arithmetic-operators/arithmetic-operators-overview.md) | ❓ Unknown | — |
+| [assign-equal](./Operators/operators/comparison-functions-and-operators/assign-equal.md) | ❓ Unknown | — |
+| [assignment-operators-overview](./Operators/operators/assignment-operators/assignment-operators-overview.md) | ❓ Unknown | — |
+| [between](./Operators/operators/comparison-functions-and-operators/between.md) | ❓ Unknown | — |
+| [binary](./Operators/operators/cast-functions-and-operators/binary.md) | ❓ Unknown | — |
+| [bit-functions-and-operators-overview](./Operators/operators/bit-functions-and-operators/bit-functions-and-operators-overview.md) | ❓ Unknown | — |
+| [bitwise-and](./Operators/operators/bit-functions-and-operators/bitwise-and.md) | ❓ Unknown | — |
+| [bitwise-inversion](./Operators/operators/bit-functions-and-operators/bitwise-inversion.md) | ❓ Unknown | — |
+| [bitwise-or](./Operators/operators/bit-functions-and-operators/bitwise-or.md) | ❓ Unknown | — |
+| [bitwise-xor](./Operators/operators/bit-functions-and-operators/bitwise-xor.md) | ❓ Unknown | — |
+| [CASE WHEN](./Operators/operators/flow-control-functions/case-when.md) | ✅ Full | — |
+| [CAST](./Operators/operators/cast-functions-and-operators/cast.md) | ⚠️ Partial | CAST('non-numeric' AS SIGNED) raises an error instead of returning 0 or NULL (MySQL 8.0 returns 0 with a warning)<br/>CAST(datetime_typed_value AS CHAR) may fail in some cases (MySQL 8.0 supports it universally) |
+| [cast-functions-and-operators-overview](./Operators/operators/cast-functions-and-operators/cast-functions-and-operators-overview.md) | ❓ Unknown | — |
+| [coalesce](./Operators/operators/comparison-functions-and-operators/coalesce.md) | ❓ Unknown | — |
+| [comparison-functions-and-operators-overview](./Operators/operators/comparison-functions-and-operators/comparison-functions-and-operators-overview.md) | ❓ Unknown | — |
+| [CONVERT](./Operators/operators/cast-functions-and-operators/convert.md) | ⚠️ Partial | CONVERT('non-numeric', SIGNED) raises an error instead of returning 0 or NULL<br/>CONVERT(datetime_typed_value, CHAR) may fail in some cases (MySQL 8.0 supports it universally) |
+| [DECODE()](./Operators/operators/cast-functions-and-operators/decode.md) | 🟣 MatrixOne-only | [MO-only] DECODE() was deprecated in MySQL 5.7 and removed in MySQL 8.0; MatrixOne continues to support it |
+| [div](./Operators/operators/arithmetic-operators/div.md) | ❓ Unknown | — |
+| [division](./Operators/operators/arithmetic-operators/division.md) | ❓ Unknown | — |
+| [ENCODE()](./Operators/operators/cast-functions-and-operators/encode.md) | 🟣 MatrixOne-only | [MO-only] ENCODE() was deprecated in MySQL 5.7 and removed in MySQL 8.0; MatrixOne continues to support it |
+| [equal](./Operators/operators/assignment-operators/equal.md) | ❓ Unknown | — |
+| [flow-control-functions-overview](./Operators/operators/flow-control-functions/flow-control-functions-overview.md) | ❓ Unknown | — |
+| [function_ifnull](./Operators/operators/flow-control-functions/function_ifnull.md) | ❓ Unknown | — |
+| [function_interval](./Operators/operators/comparison-functions-and-operators/function_interval.md) | ❓ Unknown | — |
+| [function_isnull](./Operators/operators/comparison-functions-and-operators/function_isnull.md) | ❓ Unknown | — |
+| [function_least](./Operators/operators/comparison-functions-and-operators/function_least.md) | ❓ Unknown | — |
+| [function_nullif](./Operators/operators/flow-control-functions/function_nullif.md) | ❓ Unknown | — |
+| [function_strcmp](./Operators/operators/comparison-functions-and-operators/function_strcmp.md) | ❓ Unknown | — |
+| [greater-than](./Operators/operators/comparison-functions-and-operators/greater-than.md) | ❓ Unknown | — |
+| [greater-than-or-equal](./Operators/operators/comparison-functions-and-operators/greater-than-or-equal.md) | ❓ Unknown | — |
+| [IF()](./Operators/operators/flow-control-functions/function_if.md) | ⚠️ Partial | IF(NULL, expr2, expr3) raises an error instead of returning expr3 (MySQL 8.0 returns expr3) |
+| [ILIKE](./Operators/operators/comparison-functions-and-operators/ilike.md) | 🟣 MatrixOne-only | [MO-only] ILIKE operator for case-insensitive LIKE matching (PostgreSQL extension) |
+| [IN](./Operators/operators/comparison-functions-and-operators/in.md) | ✅ Full | — |
+| [is](./Operators/operators/comparison-functions-and-operators/is.md) | ❓ Unknown | — |
+| [IS NULL](./Operators/operators/comparison-functions-and-operators/is-null.md) | ✅ Full | — |
+| [is-not](./Operators/operators/comparison-functions-and-operators/is-not.md) | ❓ Unknown | — |
+| [is-not-null](./Operators/operators/comparison-functions-and-operators/is-not-null.md) | ❓ Unknown | — |
+| [left-shift](./Operators/operators/bit-functions-and-operators/left-shift.md) | ❓ Unknown | — |
+| [less-than](./Operators/operators/comparison-functions-and-operators/less-than.md) | ❓ Unknown | — |
+| [less-than-or-equal](./Operators/operators/comparison-functions-and-operators/less-than-or-equal.md) | ❓ Unknown | — |
+| [like](./Operators/operators/comparison-functions-and-operators/like.md) | ❓ Unknown | — |
+| [logical-operators-overview](./Operators/operators/logical-operators/logical-operators-overview.md) | ❓ Unknown | — |
+| [minus](./Operators/operators/arithmetic-operators/minus.md) | ❓ Unknown | — |
+| [mod](./Operators/operators/arithmetic-operators/mod.md) | ❓ Unknown | — |
+| [multiplication](./Operators/operators/arithmetic-operators/multiplication.md) | ❓ Unknown | — |
+| [NOT / !](./Operators/operators/logical-operators/not.md) | ✅ Full | — |
+| [NOT IN](./Operators/operators/comparison-functions-and-operators/not-in.md) | ✅ Full | — |
+| [not-between](./Operators/operators/comparison-functions-and-operators/not-between.md) | ❓ Unknown | — |
+| [not-equal](./Operators/operators/comparison-functions-and-operators/not-equal.md) | ❓ Unknown | — |
+| [not-like](./Operators/operators/comparison-functions-and-operators/not-like.md) | ❓ Unknown | — |
+| [operator-precedence](./Operators/operators/operator-precedence.md) | ❓ Unknown | — |
+| [operators](./Operators/operators/operators.md) | ❓ Unknown | — |
+| [or](./Operators/operators/logical-operators/or.md) | ❓ Unknown | — |
+| [right-shift](./Operators/operators/bit-functions-and-operators/right-shift.md) | ❓ Unknown | — |
+| [SERIAL_FULL()](./Operators/operators/cast-functions-and-operators/serial_full.md) | 🟣 MatrixOne-only | [MO-only] SERIAL_FULL() is a MO-specific serialization function variant with NULL preservation, no MySQL 8.0 counterpart |
+| [SERIAL()](./Operators/operators/cast-functions-and-operators/serial.md) | 🟣 MatrixOne-only | [MO-only] SERIAL() is a MO-specific serialization function with no MySQL 8.0 counterpart |
+| [unary-minus](./Operators/operators/arithmetic-operators/unary-minus.md) | ❓ Unknown | — |
+| [xor](./Operators/operators/logical-operators/xor.md) | ❓ Unknown | — |
 
 ## Data Types
 
