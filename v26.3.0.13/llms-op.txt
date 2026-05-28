@@ -1,0 +1,93 @@
+# MatrixOne Operators Reference — Flat Index
+
+> Every operator supported by MatrixOne, grouped by category, each tagged with its MySQL 8.0 compatibility status. Generated from `mysql_compat` frontmatter on 2026-05-28 (UTC).
+
+Legend: `[full]` MySQL-compatible · `[partial]` compatible with caveats (see linked page for `differs_from_mysql:`) · `[mo-only]` MatrixOne-only, no MySQL counterpart · `[unknown]` frontmatter missing.
+
+Compatibility matrix (grouped table view): https://docs.matrixorigin.cn/en/v26.3.0.13/MatrixOne/Reference/mysql-compatibility-matrix/
+
+## Arithmetic Operators
+
+- [%,MOD](https://docs.matrixorigin.cn/en/v26.3.0.13/MatrixOne/Reference/Operators/operators/arithmetic-operators/mod/) [unknown]: The %,MOD operator is used for modulo operation. Returns the remainder of N divided by M. For more information.
+- [*](https://docs.matrixorigin.cn/en/v26.3.0.13/MatrixOne/Reference/Operators/operators/arithmetic-operators/multiplication/) [unknown]: The * operator is used for multiplication.
+- [+](https://docs.matrixorigin.cn/en/v26.3.0.13/MatrixOne/Reference/Operators/operators/arithmetic-operators/addition/) [unknown]: The + operator is used for addition.
+- [-](https://docs.matrixorigin.cn/en/v26.3.0.13/MatrixOne/Reference/Operators/operators/arithmetic-operators/minus/) [unknown]: The - operator is used for subtraction.
+- [-](https://docs.matrixorigin.cn/en/v26.3.0.13/MatrixOne/Reference/Operators/operators/arithmetic-operators/unary-minus/) [unknown]: Unary minus. This operator changes the sign of the operand.
+- [/](https://docs.matrixorigin.cn/en/v26.3.0.13/MatrixOne/Reference/Operators/operators/arithmetic-operators/division/) [unknown]: The / operator is used for division.
+- [Arithmetic Operators Overview](https://docs.matrixorigin.cn/en/v26.3.0.13/MatrixOne/Reference/Operators/operators/arithmetic-operators/arithmetic-operators-overview/) [unknown]: The usual arithmetic operators are available. The result is determined according to the following rules
+- [DIV](https://docs.matrixorigin.cn/en/v26.3.0.13/MatrixOne/Reference/Operators/operators/arithmetic-operators/div/) [unknown]: The DIV operator is used for integer division. Discards from the division result any fractional part to the right of the decimal point.
+
+## Assignment Operators
+
+- [=](https://docs.matrixorigin.cn/en/v26.3.0.13/MatrixOne/Reference/Operators/operators/assignment-operators/equal/) [unknown]: This = operator is used to perform value assignments in the below cases
+- [operators/assignment-operators/assignment-operators-overview.md](https://docs.matrixorigin.cn/en/v26.3.0.13/MatrixOne/Reference/Operators/operators/assignment-operators/assignment-operators-overview/) [unknown]
+
+## Bit Functions and Operators
+
+- [&](https://docs.matrixorigin.cn/en/v26.3.0.13/MatrixOne/Reference/Operators/operators/bit-functions-and-operators/bitwise-and/) [unknown]: Bitwise AND operator returns an unsigned 64-bit integer.
+- [<<](https://docs.matrixorigin.cn/en/v26.3.0.13/MatrixOne/Reference/Operators/operators/bit-functions-and-operators/left-shift/) [unknown]: Shifts a longlong (BIGINT) number or binary string to the left.
+- [>>](https://docs.matrixorigin.cn/en/v26.3.0.13/MatrixOne/Reference/Operators/operators/bit-functions-and-operators/right-shift/) [unknown]: Shifts a longlong (BIGINT) number or binary string to the right.
+- [\|](https://docs.matrixorigin.cn/en/v26.3.0.13/MatrixOne/Reference/Operators/operators/bit-functions-and-operators/bitwise-or/) [unknown]: Bitwise OR.
+- [^](https://docs.matrixorigin.cn/en/v26.3.0.13/MatrixOne/Reference/Operators/operators/bit-functions-and-operators/bitwise-xor/) [unknown]: Bitwise XOR.
+- [Bit Functions and Operators](https://docs.matrixorigin.cn/en/v26.3.0.13/MatrixOne/Reference/Operators/operators/bit-functions-and-operators/bit-functions-and-operators-overview/) [unknown]: Bit functions and operators required BIGINT (64-bit integer) arguments and returned BIGINT values, so they had a maximum range of 64 bits…
+- [~](https://docs.matrixorigin.cn/en/v26.3.0.13/MatrixOne/Reference/Operators/operators/bit-functions-and-operators/bitwise-inversion/) [unknown]: Invert all bits.
+
+## Cast Functions and Operators
+
+- [BINARY](https://docs.matrixorigin.cn/en/v26.3.0.13/MatrixOne/Reference/Operators/operators/cast-functions-and-operators/binary/) [unknown]: The BINARY() function is a function used to convert a value into a binary string. It is typically used when comparing text or character data…
+- [CAST](https://docs.matrixorigin.cn/en/v26.3.0.13/MatrixOne/Reference/Operators/operators/cast-functions-and-operators/cast/) [partial]: The CAST() function converts a value (of any type) into the specified datatype.
+- [Cast Functions and Operators](https://docs.matrixorigin.cn/en/v26.3.0.13/MatrixOne/Reference/Operators/operators/cast-functions-and-operators/cast-functions-and-operators-overview/) [unknown]
+- [CONVERT](https://docs.matrixorigin.cn/en/v26.3.0.13/MatrixOne/Reference/Operators/operators/cast-functions-and-operators/convert/) [partial]: The CONVERT() function converts a value into the specified datatype or character set.
+- [DECODE()](https://docs.matrixorigin.cn/en/v26.3.0.13/MatrixOne/Reference/Operators/operators/cast-functions-and-operators/decode/) [mo-only]: The DECODE() function is used to decrypt data encoded by ENCODE().
+- [ENCODE()](https://docs.matrixorigin.cn/en/v26.3.0.13/MatrixOne/Reference/Operators/operators/cast-functions-and-operators/encode/) [mo-only]: The ENCODE() function is used to symmetrically encrypt a string. It encodes a string by combining a secret key, and the same key is required for decoding…
+- [SERIAL()](https://docs.matrixorigin.cn/en/v26.3.0.13/MatrixOne/Reference/Operators/operators/cast-functions-and-operators/serial/) [mo-only]: The SERIAL() function is used to serialize a concatenation string, combining single or multiple columns/values into a binary format with a return type of…
+- [SERIAL_FULL()](https://docs.matrixorigin.cn/en/v26.3.0.13/MatrixOne/Reference/Operators/operators/cast-functions-and-operators/serial_full/) [mo-only]: SERIAL_FULL() is used to serialize concatenation strings and convert single or multiple column/value combinations into binary format with a return type of…
+
+## Comparison Functions and Operators
+
+- [<](https://docs.matrixorigin.cn/en/v26.3.0.13/MatrixOne/Reference/Operators/operators/comparison-functions-and-operators/less-than/) [unknown]: The < operator returns true only if the left-hand operand is less than the right-hand operand.
+- [<=](https://docs.matrixorigin.cn/en/v26.3.0.13/MatrixOne/Reference/Operators/operators/comparison-functions-and-operators/less-than-or-equal/) [unknown]: The <= operator returns true only if the left-hand operand is less than or equal to the right-hand operand.
+- [<=>](https://docs.matrixorigin.cn/en/v26.3.0.13/MatrixOne/Reference/Operators/operators/comparison-functions-and-operators/null-safe-equal/) [full]: <=> performs a NULL-safe equality comparison. Unlike =, whose result is NULL as soon as either operand is NULL, <=> always returns an integer 0 or 1…
+- [<>,!=](https://docs.matrixorigin.cn/en/v26.3.0.13/MatrixOne/Reference/Operators/operators/comparison-functions-and-operators/not-equal/) [unknown]: The <>,!= operator returns true only if the left-hand operand is not equal to the right-hand operand.
+- [=](https://docs.matrixorigin.cn/en/v26.3.0.13/MatrixOne/Reference/Operators/operators/comparison-functions-and-operators/assign-equal/) [unknown]: The = operator returns true only if the left-hand operand is equal to the right-hand operand.
+- [>](https://docs.matrixorigin.cn/en/v26.3.0.13/MatrixOne/Reference/Operators/operators/comparison-functions-and-operators/greater-than/) [unknown]: The > operator returns true only if the left-hand operand is greater than the right-hand operand.
+- [>=](https://docs.matrixorigin.cn/en/v26.3.0.13/MatrixOne/Reference/Operators/operators/comparison-functions-and-operators/greater-than-or-equal/) [unknown]: The >= operator returns true only if the left-hand operand is greater than or equal to the right-hand operand.
+- [BETWEEN ... AND ...](https://docs.matrixorigin.cn/en/v26.3.0.13/MatrixOne/Reference/Operators/operators/comparison-functions-and-operators/between/) [unknown]: If expr is greater than or equal to min and expr is less than or equal to max, BETWEEN returns true, otherwise it returns false.
+- [COALESCE()](https://docs.matrixorigin.cn/en/v26.3.0.13/MatrixOne/Reference/Operators/operators/comparison-functions-and-operators/coalesce/) [unknown]: The COALESCE() function returns the first non-null value in a list.
+- [Comparison Functions and Operators Overview](https://docs.matrixorigin.cn/en/v26.3.0.13/MatrixOne/Reference/Operators/operators/comparison-functions-and-operators/comparison-functions-and-operators-overview/) [unknown]: Comparison operations result in a value of TRUE, FALSE, or NULL. These operations work for both numbers and strings…
+- [ILIKE](https://docs.matrixorigin.cn/en/v26.3.0.13/MatrixOne/Reference/Operators/operators/comparison-functions-and-operators/ilike/) [mo-only]: The ILIKE operator is used similarly to the LIKE operator to search for a specified pattern in a column in the WHERE clause.
+- [IN](https://docs.matrixorigin.cn/en/v26.3.0.13/MatrixOne/Reference/Operators/operators/comparison-functions-and-operators/in/) [full]: The IN operator allows you to specify multiple values in a WHERE clause. And it's a shorthand for multiple OR conditions.
+- [INTERVAL](https://docs.matrixorigin.cn/en/v26.3.0.13/MatrixOne/Reference/Operators/operators/comparison-functions-and-operators/function_interval/) [unknown]: The INTERVAL operator returns 0 if N < N1, 1 if N < N2 and so on or -1 if N is NULL. All arguments are treated as integers…
+- [IS](https://docs.matrixorigin.cn/en/v26.3.0.13/MatrixOne/Reference/Operators/operators/comparison-functions-and-operators/is/) [unknown]: The IS tests a value against a boolean value, where boolean_value can be TRUE, FALSE, or UNKNOWN.
+- [IS NOT](https://docs.matrixorigin.cn/en/v26.3.0.13/MatrixOne/Reference/Operators/operators/comparison-functions-and-operators/is-not/) [unknown]: The IS NOT tests a value against a boolean value, where boolean_value can be TRUE, FALSE, or UNKNOWN.
+- [IS NOT NULL](https://docs.matrixorigin.cn/en/v26.3.0.13/MatrixOne/Reference/Operators/operators/comparison-functions-and-operators/is-not-null/) [unknown]: The IS NOT NULL function tests whether a value is not NULL.
+- [IS NULL](https://docs.matrixorigin.cn/en/v26.3.0.13/MatrixOne/Reference/Operators/operators/comparison-functions-and-operators/is-null/) [full]: The IS NULL operator tests whether a value is NULL.
+- [ISNULL](https://docs.matrixorigin.cn/en/v26.3.0.13/MatrixOne/Reference/Operators/operators/comparison-functions-and-operators/function_isnull/) [unknown]: The ISNULL() function can be used instead of = to test whether a value is NULL. (Comparing a value to NULL using = always yields NULL.)
+- [LIKE](https://docs.matrixorigin.cn/en/v26.3.0.13/MatrixOne/Reference/Operators/operators/comparison-functions-and-operators/like/) [unknown]: The LIKE operator is used in a WHERE clause to search for a specified pattern in a column.
+- [NOT BETWEEN ... AND ...](https://docs.matrixorigin.cn/en/v26.3.0.13/MatrixOne/Reference/Operators/operators/comparison-functions-and-operators/not-between/) [unknown]: If expr is less than or equal to min and expr is greater than or equal to max, NOT BETWEEN returns true, otherwise it returns false.
+- [NOT IN](https://docs.matrixorigin.cn/en/v26.3.0.13/MatrixOne/Reference/Operators/operators/comparison-functions-and-operators/not-in/) [full]: The NOT IN operator allows you to specify multiple values in a WHERE clause. And it's a shorthand for multiple XOR conditions.
+- [NOT LIKE](https://docs.matrixorigin.cn/en/v26.3.0.13/MatrixOne/Reference/Operators/operators/comparison-functions-and-operators/not-like/) [unknown]: The NOT LIKE operator is used in a WHERE clause to search for a specified pattern in a column.
+- [operators/comparison-functions-and-operators/function_least.md](https://docs.matrixorigin.cn/en/v26.3.0.13/MatrixOne/Reference/Operators/operators/comparison-functions-and-operators/function_least/) [unknown]
+- [STRCMP](https://docs.matrixorigin.cn/en/v26.3.0.13/MatrixOne/Reference/Operators/operators/comparison-functions-and-operators/function_strcmp/) [unknown]: The STRCMP() returns 0 if the strings are the same, -1 if the first argument is smaller than the second according to the current sort order…
+
+## Flow Control Functions
+
+- [CASE WHEN](https://docs.matrixorigin.cn/en/v26.3.0.13/MatrixOne/Reference/Operators/operators/flow-control-functions/case-when/) [full]: CASE WHEN statement is used in that evaluates a list of conditions and returns one of multiple possible result expressions.
+- [Flow Control Functions](https://docs.matrixorigin.cn/en/v26.3.0.13/MatrixOne/Reference/Operators/operators/flow-control-functions/flow-control-functions-overview/) [unknown]
+- [IF()](https://docs.matrixorigin.cn/en/v26.3.0.13/MatrixOne/Reference/Operators/operators/flow-control-functions/function_if/) [partial]: The IF() function returns a value if a condition is TRUE, or another value if a condition is FALSE.
+- [IFNULL](https://docs.matrixorigin.cn/en/v26.3.0.13/MatrixOne/Reference/Operators/operators/flow-control-functions/function_ifnull/) [unknown]: If expr1 is not NULL, IFNULL() returns expr1; otherwise it returns expr2. The default return type of IFNULL(expr1,expr2) is the more "general" of the two…
+- [NULLIF](https://docs.matrixorigin.cn/en/v26.3.0.13/MatrixOne/Reference/Operators/operators/flow-control-functions/function_nullif/) [unknown]: The NULLIF() function returns NULL if expr1 = expr2 is true, otherwise returns expr1.
+
+## Logical Operators
+
+- [AND,&&](https://docs.matrixorigin.cn/en/v26.3.0.13/MatrixOne/Reference/Operators/operators/logical-operators/and/) [unknown]: Logical AND,&&. Evaluates to true if all operands are nonzero and not NULL, to false if one or more operands are 0, otherwise NULL is returned.
+- [Logical Operators](https://docs.matrixorigin.cn/en/v26.3.0.13/MatrixOne/Reference/Operators/operators/logical-operators/logical-operators-overview/) [unknown]
+- [NOT / !](https://docs.matrixorigin.cn/en/v26.3.0.13/MatrixOne/Reference/Operators/operators/logical-operators/not/) [full]: Logical NOT,!. Evaluates to true if the operand is 0, to false if the operand is nonzero, and NOT NULL returns NULL.
+- [OR](https://docs.matrixorigin.cn/en/v26.3.0.13/MatrixOne/Reference/Operators/operators/logical-operators/or/) [unknown]: Logical OR,||. When both operands are non-NULL, the result is true if any operand is nonzero, and false otherwise…
+- [XOR](https://docs.matrixorigin.cn/en/v26.3.0.13/MatrixOne/Reference/Operators/operators/logical-operators/xor/) [unknown]: Logical XOR. Returns NULL if either operand is NULL. For non-NULL operands, evaluates to true if an odd number of operands is nonzero…
+
+## Uncategorised
+
+- [INTERVAL](https://docs.matrixorigin.cn/en/v26.3.0.13/MatrixOne/Reference/Operators/interval/) [partial]: + INTERVAL expr unit is permitted on either side of the + operator if the expression on the other side is a date or datetime value…
+- [Operator Precedence](https://docs.matrixorigin.cn/en/v26.3.0.13/MatrixOne/Reference/Operators/operators/operator-precedence/) [unknown]: Operator precedences are shown in the following list, from highest precedence to the lowest. Operators that are shown together on a line have the same…
+- [Operators Overview](https://docs.matrixorigin.cn/en/v26.3.0.13/MatrixOne/Reference/Operators/operators/operators/) [unknown]
