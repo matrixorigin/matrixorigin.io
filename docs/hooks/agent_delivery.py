@@ -24,7 +24,7 @@ MCP servers, etc.) can consume the MatrixOne docs without parsing HTML:
    agents can stuff the full docs into a single context window when needed.
 
 Override the base URL via `MATRIXONE_DOCS_BASE_URL` env var. Defaults to
-`https://docs.matrixorigin.io`.
+`https://docs.matrixorigin.cn`.
 """
 
 from __future__ import annotations
