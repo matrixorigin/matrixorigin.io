@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../SQL-Reference/SQL-Type/">
+        <link rel="prev" href="../../Security/audit/">
       
       
-        <link rel="next" href="../SQL-Reference/Data-Definition-Language/create-database/">
+        <link rel="next" href="../Variable/system-variables/system-variables-overview/">
       
       <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.1.21">
@@ -5039,6 +5039,280 @@
               
   
   
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          MySQL Compatibility Matrix
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        MySQL Compatibility Matrix
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    Summary
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sql-statements" class="md-nav__link">
+    SQL Statements
+  </a>
+  
+    <nav class="md-nav" aria-label="SQL Statements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sql-statements_1" class="md-nav__link">
+    SQL Statements
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-control-language-dcl" class="md-nav__link">
+    Data Control Language (DCL)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-definition-language-ddl" class="md-nav__link">
+    Data Definition Language (DDL)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-manipulation-language-dml" class="md-nav__link">
+    Data Manipulation Language (DML)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-query-language-dql" class="md-nav__link">
+    Data Query Language (DQL)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other" class="md-nav__link">
+    Other
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    Functions
+  </a>
+  
+    <nav class="md-nav" aria-label="Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#functions_1" class="md-nav__link">
+    Functions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aggregate-functions" class="md-nav__link">
+    Aggregate Functions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#datetime" class="md-nav__link">
+    Datetime
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#json" class="md-nav__link">
+    Json
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mathematical" class="md-nav__link">
+    Mathematical
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other_1" class="md-nav__link">
+    Other
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#string" class="md-nav__link">
+    String
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#system-operations" class="md-nav__link">
+    System Operations
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#table" class="md-nav__link">
+    Table
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vector" class="md-nav__link">
+    Vector
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#window-functions" class="md-nav__link">
+    Window Functions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operators" class="md-nav__link">
+    Operators
+  </a>
+  
+    <nav class="md-nav" aria-label="Operators">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#operators_1" class="md-nav__link">
+    Operators
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#operators_2" class="md-nav__link">
+    operators
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-types" class="md-nav__link">
+    Data Types
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-types_1" class="md-nav__link">
+    Data Types
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#datetime-data-types" class="md-nav__link">
+    Date/Time Data Types
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#language-structure" class="md-nav__link">
+    Language Structure
+  </a>
+  
+    <nav class="md-nav" aria-label="Language Structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#language-structure_1" class="md-nav__link">
+    Language Structure
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
   
     
     <li class="md-nav__item md-nav__item--nested">
@@ -5046,17 +5320,17 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_1" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_2" >
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_1" id="__nav_1_12_1_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_1_12_2" id="__nav_1_12_2_label" tabindex="0">
           System Variables
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_1_12_1_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_1_12_1">
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_1_12_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1_12_2">
           <span class="md-nav__icon md-icon"></span>
           System Variables
         </label>
@@ -5087,17 +5361,17 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_1_2" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_2_2" >
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_1_2" id="__nav_1_12_1_2_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_1_12_2_2" id="__nav_1_12_2_2_label" tabindex="0">
           System Variables parameters
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_1_12_1_2_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_1_12_1_2">
+      <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_1_12_2_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1_12_2_2">
           <span class="md-nav__icon md-icon"></span>
           System Variables parameters
         </label>
@@ -5282,17 +5556,17 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_2" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_3" >
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_2" id="__nav_1_12_2_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_1_12_3" id="__nav_1_12_3_label" tabindex="0">
           SQL Language Structure
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_1_12_2_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_1_12_2">
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_1_12_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1_12_3">
           <span class="md-nav__icon md-icon"></span>
           SQL Language Structure
         </label>
@@ -5344,17 +5618,17 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_3" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_4" >
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_3" id="__nav_1_12_3_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_1_12_4" id="__nav_1_12_4_label" tabindex="0">
           Data Types
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_1_12_3_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_1_12_3">
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_1_12_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1_12_4">
           <span class="md-nav__icon md-icon"></span>
           Data Types
         </label>
@@ -5399,17 +5673,17 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_3_3" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_4_3" >
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_3_3" id="__nav_1_12_3_3_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_1_12_4_3" id="__nav_1_12_4_3_label" tabindex="0">
           Date and Time Types
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_1_12_3_3_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_1_12_3_3">
+      <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_1_12_4_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1_12_4_3">
           <span class="md-nav__icon md-icon"></span>
           Date and Time Types
         </label>
@@ -5573,26 +5847,24 @@
               
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_4" checked>
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_5" >
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_4" id="__nav_1_12_4_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_1_12_5" id="__nav_1_12_5_label" tabindex="0">
           SQL Statements
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_1_12_4_label" aria-expanded="true">
-        <label class="md-nav__title" for="__nav_1_12_4">
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_1_12_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1_12_5">
           <span class="md-nav__icon md-icon"></span>
           SQL Statements
         </label>
@@ -5616,103 +5888,6 @@
               
   
   
-    
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          MySQL Compatibility Matrix
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        MySQL Compatibility Matrix
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#summary" class="md-nav__link">
-    Summary
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#data-definition-language-ddl" class="md-nav__link">
-    Data Definition Language (DDL)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#data-manipulation-language-dml" class="md-nav__link">
-    Data Manipulation Language (DML)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#data-query-language-dql" class="md-nav__link">
-    Data Query Language (DQL)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#data-control-language-dcl" class="md-nav__link">
-    Data Control Language (DCL)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#other" class="md-nav__link">
-    Other
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#uncategorized" class="md-nav__link">
-    Uncategorized
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
   
     
     <li class="md-nav__item md-nav__item--nested">
@@ -5720,17 +5895,17 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_4_3" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_5_2" >
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_4_3" id="__nav_1_12_4_3_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_1_12_5_2" id="__nav_1_12_5_2_label" tabindex="0">
           Data Definition Language
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_1_12_4_3_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_1_12_4_3">
+      <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_1_12_5_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1_12_5_2">
           <span class="md-nav__icon md-icon"></span>
           Data Definition Language
         </label>
@@ -6454,17 +6629,17 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_4_4" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_5_3" >
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_4_4" id="__nav_1_12_4_4_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_1_12_5_3" id="__nav_1_12_5_3_label" tabindex="0">
           Data Manipulation Language
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_1_12_4_4_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_1_12_4_4">
+      <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_1_12_5_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1_12_5_3">
           <span class="md-nav__icon md-icon"></span>
           Data Manipulation Language
         </label>
@@ -6565,17 +6740,17 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_4_4_7" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_5_3_7" >
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_4_4_7" id="__nav_1_12_4_4_7_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_1_12_5_3_7" id="__nav_1_12_5_3_7_label" tabindex="0">
           UPSERT
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_1_12_4_4_7_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_1_12_4_4_7">
+      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_1_12_5_3_7_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1_12_5_3_7">
           <span class="md-nav__icon md-icon"></span>
           UPSERT
         </label>
@@ -6655,17 +6830,17 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_4_4_8" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_5_3_8" >
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_4_4_8" id="__nav_1_12_4_4_8_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_1_12_5_3_8" id="__nav_1_12_5_3_8_label" tabindex="0">
           Information Functions
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_1_12_4_4_8_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_1_12_4_4_8">
+      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_1_12_5_3_8_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1_12_5_3_8">
           <span class="md-nav__icon md-icon"></span>
           Information Functions
         </label>
@@ -6724,17 +6899,17 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_4_5" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_5_4" >
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_4_5" id="__nav_1_12_4_5_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_1_12_5_4" id="__nav_1_12_5_4_label" tabindex="0">
           Data Query Language
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_1_12_4_5_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_1_12_4_5">
+      <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_1_12_5_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1_12_5_4">
           <span class="md-nav__icon md-icon"></span>
           Data Query Language
         </label>
@@ -6751,17 +6926,17 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_4_5_1" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_5_4_1" >
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_4_5_1" id="__nav_1_12_4_5_1_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_1_12_5_4_1" id="__nav_1_12_5_4_1_label" tabindex="0">
           APPLY
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_1_12_4_5_1_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_1_12_4_5_1">
+      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_1_12_5_4_1_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1_12_5_4_1">
           <span class="md-nav__icon md-icon"></span>
           APPLY
         </label>
@@ -6813,17 +6988,17 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_4_5_2" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_5_4_2" >
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_4_5_2" id="__nav_1_12_4_5_2_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_1_12_5_4_2" id="__nav_1_12_5_4_2_label" tabindex="0">
           JOIN
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_1_12_4_5_2_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_1_12_4_5_2">
+      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_1_12_5_4_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1_12_5_4_2">
           <span class="md-nav__icon md-icon"></span>
           JOIN
         </label>
@@ -6987,17 +7162,17 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_4_5_5" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_5_4_5" >
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_4_5_5" id="__nav_1_12_4_5_5_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_1_12_5_4_5" id="__nav_1_12_5_4_5_label" tabindex="0">
           SUBQUERY
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_1_12_4_5_5_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_1_12_4_5_5">
+      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_1_12_5_4_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1_12_5_4_5">
           <span class="md-nav__icon md-icon"></span>
           SUBQUERY
         </label>
@@ -7133,17 +7308,17 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_4_5_7" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_5_4_7" >
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_4_5_7" id="__nav_1_12_4_5_7_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_1_12_5_4_7" id="__nav_1_12_5_4_7_label" tabindex="0">
           Combining Queries
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_1_12_4_5_7_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_1_12_4_5_7">
+      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_1_12_5_4_7_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1_12_5_4_7">
           <span class="md-nav__icon md-icon"></span>
           Combining Queries
         </label>
@@ -7230,17 +7405,17 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_4_6" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_5_5" >
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_4_6" id="__nav_1_12_4_6_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_1_12_5_5" id="__nav_1_12_5_5_label" tabindex="0">
           Data Control Language
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_1_12_4_6_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_1_12_4_6">
+      <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_1_12_5_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1_12_5_5">
           <span class="md-nav__icon md-icon"></span>
           Data Control Language
         </label>
@@ -7418,17 +7593,17 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_4_7" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_5_6" >
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_4_7" id="__nav_1_12_4_7_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_1_12_5_6" id="__nav_1_12_5_6_label" tabindex="0">
           Other
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_1_12_4_7_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_1_12_4_7">
+      <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_1_12_5_6_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1_12_5_6">
           <span class="md-nav__icon md-icon"></span>
           Other
         </label>
@@ -7445,17 +7620,17 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_4_7_1" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_5_6_1" >
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_4_7_1" id="__nav_1_12_4_7_1_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_1_12_5_6_1" id="__nav_1_12_5_6_1_label" tabindex="0">
           SHOW
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_1_12_4_7_1_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_1_12_4_7_1">
+      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_1_12_5_6_1_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1_12_5_6_1">
           <span class="md-nav__icon md-icon"></span>
           SHOW
         </label>
@@ -7745,17 +7920,17 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_4_7_2" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_5_6_2" >
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_4_7_2" id="__nav_1_12_4_7_2_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_1_12_5_6_2" id="__nav_1_12_5_6_2_label" tabindex="0">
           SET
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_1_12_4_7_2_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_1_12_4_7_2">
+      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_1_12_5_6_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1_12_5_6_2">
           <span class="md-nav__icon md-icon"></span>
           SET
         </label>
@@ -7793,17 +7968,17 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_4_7_3" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_5_6_3" >
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_4_7_3" id="__nav_1_12_4_7_3_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_1_12_5_6_3" id="__nav_1_12_5_6_3_label" tabindex="0">
           USE
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_1_12_4_7_3_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_1_12_4_7_3">
+      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_1_12_5_6_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1_12_5_6_3">
           <span class="md-nav__icon md-icon"></span>
           USE
         </label>
@@ -7855,17 +8030,17 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_4_7_5" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_5_6_5" >
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_4_7_5" id="__nav_1_12_4_7_5_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_1_12_5_6_5" id="__nav_1_12_5_6_5_label" tabindex="0">
           Prepared Statements
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_1_12_4_7_5_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_1_12_4_7_5">
+      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_1_12_5_6_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1_12_5_6_5">
           <span class="md-nav__icon md-icon"></span>
           Prepared Statements
         </label>
@@ -7931,17 +8106,17 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_4_7_6" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_5_6_6" >
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_4_7_6" id="__nav_1_12_4_7_6_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_1_12_5_6_6" id="__nav_1_12_5_6_6_label" tabindex="0">
           Explain
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_1_12_4_7_6_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_1_12_4_7_6">
+      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_1_12_5_6_6_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1_12_5_6_6">
           <span class="md-nav__icon md-icon"></span>
           Explain
         </label>
@@ -8035,17 +8210,17 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_5" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_6" >
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_5" id="__nav_1_12_5_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_1_12_6" id="__nav_1_12_6_label" tabindex="0">
           Functions and Operators
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_1_12_5_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_1_12_5">
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_1_12_6_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1_12_6">
           <span class="md-nav__icon md-icon"></span>
           Functions and Operators
         </label>
@@ -8062,17 +8237,17 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_5_1" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_6_1" >
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_5_1" id="__nav_1_12_5_1_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_1_12_6_1" id="__nav_1_12_6_1_label" tabindex="0">
           Operators
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_1_12_5_1_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_1_12_5_1">
+      <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_1_12_6_1_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1_12_6_1">
           <span class="md-nav__icon md-icon"></span>
           Operators
         </label>
@@ -8103,17 +8278,17 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_5_1_2" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_6_1_2" >
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_5_1_2" id="__nav_1_12_5_1_2_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_1_12_6_1_2" id="__nav_1_12_6_1_2_label" tabindex="0">
           OPERATORS
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_1_12_5_1_2_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_1_12_5_1_2">
+      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_1_12_6_1_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1_12_6_1_2">
           <span class="md-nav__icon md-icon"></span>
           OPERATORS
         </label>
@@ -8158,17 +8333,17 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_5_1_2_3" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_6_1_2_3" >
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_5_1_2_3" id="__nav_1_12_5_1_2_3_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_1_12_6_1_2_3" id="__nav_1_12_6_1_2_3_label" tabindex="0">
           Arithmetic Operators
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="6" aria-labelledby="__nav_1_12_5_1_2_3_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_1_12_5_1_2_3">
+      <nav class="md-nav" data-md-level="6" aria-labelledby="__nav_1_12_6_1_2_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1_12_6_1_2_3">
           <span class="md-nav__icon md-icon"></span>
           Arithmetic Operators
         </label>
@@ -8304,17 +8479,17 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_5_1_2_4" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_6_1_2_4" >
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_5_1_2_4" id="__nav_1_12_5_1_2_4_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_1_12_6_1_2_4" id="__nav_1_12_6_1_2_4_label" tabindex="0">
           Assignment Operators
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="6" aria-labelledby="__nav_1_12_5_1_2_4_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_1_12_5_1_2_4">
+      <nav class="md-nav" data-md-level="6" aria-labelledby="__nav_1_12_6_1_2_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1_12_6_1_2_4">
           <span class="md-nav__icon md-icon"></span>
           Assignment Operators
         </label>
@@ -8366,17 +8541,17 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_5_1_2_5" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_6_1_2_5" >
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_5_1_2_5" id="__nav_1_12_5_1_2_5_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_1_12_6_1_2_5" id="__nav_1_12_6_1_2_5_label" tabindex="0">
           Bit Functions and Operators
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="6" aria-labelledby="__nav_1_12_5_1_2_5_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_1_12_5_1_2_5">
+      <nav class="md-nav" data-md-level="6" aria-labelledby="__nav_1_12_6_1_2_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1_12_6_1_2_5">
           <span class="md-nav__icon md-icon"></span>
           Bit Functions and Operators
         </label>
@@ -8498,17 +8673,17 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_5_1_2_6" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_6_1_2_6" >
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_5_1_2_6" id="__nav_1_12_5_1_2_6_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_1_12_6_1_2_6" id="__nav_1_12_6_1_2_6_label" tabindex="0">
           Cast Functions and Operators
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="6" aria-labelledby="__nav_1_12_5_1_2_6_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_1_12_5_1_2_6">
+      <nav class="md-nav" data-md-level="6" aria-labelledby="__nav_1_12_6_1_2_6_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1_12_6_1_2_6">
           <span class="md-nav__icon md-icon"></span>
           Cast Functions and Operators
         </label>
@@ -8644,17 +8819,17 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_5_1_2_7" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_6_1_2_7" >
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_5_1_2_7" id="__nav_1_12_5_1_2_7_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_1_12_6_1_2_7" id="__nav_1_12_6_1_2_7_label" tabindex="0">
           Comparison Functions and Operators
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="6" aria-labelledby="__nav_1_12_5_1_2_7_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_1_12_5_1_2_7">
+      <nav class="md-nav" data-md-level="6" aria-labelledby="__nav_1_12_6_1_2_7_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1_12_6_1_2_7">
           <span class="md-nav__icon md-icon"></span>
           Comparison Functions and Operators
         </label>
@@ -8972,17 +9147,17 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_5_1_2_8" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_6_1_2_8" >
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_5_1_2_8" id="__nav_1_12_5_1_2_8_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_1_12_6_1_2_8" id="__nav_1_12_6_1_2_8_label" tabindex="0">
           Flow Control Functions
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="6" aria-labelledby="__nav_1_12_5_1_2_8_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_1_12_5_1_2_8">
+      <nav class="md-nav" data-md-level="6" aria-labelledby="__nav_1_12_6_1_2_8_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1_12_6_1_2_8">
           <span class="md-nav__icon md-icon"></span>
           Flow Control Functions
         </label>
@@ -9076,17 +9251,17 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_5_1_2_9" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_6_1_2_9" >
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_5_1_2_9" id="__nav_1_12_5_1_2_9_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_1_12_6_1_2_9" id="__nav_1_12_6_1_2_9_label" tabindex="0">
           Logical Operators
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="6" aria-labelledby="__nav_1_12_5_1_2_9_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_1_12_5_1_2_9">
+      <nav class="md-nav" data-md-level="6" aria-labelledby="__nav_1_12_6_1_2_9_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1_12_6_1_2_9">
           <span class="md-nav__icon md-icon"></span>
           Logical Operators
         </label>
@@ -9194,17 +9369,17 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_5_2" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_6_2" >
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_5_2" id="__nav_1_12_5_2_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_1_12_6_2" id="__nav_1_12_6_2_label" tabindex="0">
           Functions
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_1_12_5_2_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_1_12_5_2">
+      <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_1_12_6_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1_12_6_2">
           <span class="md-nav__icon md-icon"></span>
           Functions
         </label>
@@ -9235,17 +9410,17 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_5_2_2" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_6_2_2" >
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_5_2_2" id="__nav_1_12_5_2_2_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_1_12_6_2_2" id="__nav_1_12_6_2_2_label" tabindex="0">
           Aggregate Functions
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_1_12_5_2_2_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_1_12_5_2_2">
+      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_1_12_6_2_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1_12_6_2_2">
           <span class="md-nav__icon md-icon"></span>
           Aggregate Functions
         </label>
@@ -9479,17 +9654,17 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_5_2_3" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_6_2_3" >
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_5_2_3" id="__nav_1_12_5_2_3_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_1_12_6_2_3" id="__nav_1_12_6_2_3_label" tabindex="0">
           Datetime
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_1_12_5_2_3_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_1_12_5_2_3">
+      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_1_12_6_2_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1_12_6_2_3">
           <span class="md-nav__icon md-icon"></span>
           Datetime
         </label>
@@ -10031,17 +10206,17 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_5_2_4" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_6_2_4" >
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_5_2_4" id="__nav_1_12_5_2_4_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_1_12_6_2_4" id="__nav_1_12_6_2_4_label" tabindex="0">
           Mathematical
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_1_12_5_2_4_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_1_12_5_2_4">
+      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_1_12_6_2_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1_12_6_2_4">
           <span class="md-nav__icon md-icon"></span>
           Mathematical
         </label>
@@ -10359,17 +10534,17 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_5_2_5" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_6_2_5" >
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_5_2_5" id="__nav_1_12_5_2_5_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_1_12_6_2_5" id="__nav_1_12_6_2_5_label" tabindex="0">
           String
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_1_12_5_2_5_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_1_12_5_2_5">
+      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_1_12_6_2_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1_12_6_2_5">
           <span class="md-nav__icon md-icon"></span>
           String
         </label>
@@ -10974,17 +11149,17 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_5_2_5_43" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_6_2_5_43" >
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_5_2_5_43" id="__nav_1_12_5_2_5_43_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_1_12_6_2_5_43" id="__nav_1_12_6_2_5_43_label" tabindex="0">
           Regular Expressions
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="6" aria-labelledby="__nav_1_12_5_2_5_43_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_1_12_5_2_5_43">
+      <nav class="md-nav" data-md-level="6" aria-labelledby="__nav_1_12_6_2_5_43_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1_12_6_2_5_43">
           <span class="md-nav__icon md-icon"></span>
           Regular Expressions
         </label>
@@ -11099,17 +11274,17 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_5_2_6" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_6_2_6" >
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_5_2_6" id="__nav_1_12_5_2_6_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_1_12_6_2_6" id="__nav_1_12_6_2_6_label" tabindex="0">
           Vector
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_1_12_5_2_6_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_1_12_5_2_6">
+      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_1_12_6_2_6_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1_12_6_2_6">
           <span class="md-nav__icon md-icon"></span>
           Vector
         </label>
@@ -11301,17 +11476,17 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_5_2_7" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_6_2_7" >
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_5_2_7" id="__nav_1_12_5_2_7_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_1_12_6_2_7" id="__nav_1_12_6_2_7_label" tabindex="0">
           Table
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_1_12_5_2_7_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_1_12_5_2_7">
+      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_1_12_6_2_7_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1_12_6_2_7">
           <span class="md-nav__icon md-icon"></span>
           Table
         </label>
@@ -11363,17 +11538,17 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_5_2_8" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_6_2_8" >
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_5_2_8" id="__nav_1_12_5_2_8_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_1_12_6_2_8" id="__nav_1_12_6_2_8_label" tabindex="0">
           Vector
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_1_12_5_2_8_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_1_12_5_2_8">
+      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_1_12_6_2_8_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1_12_6_2_8">
           <span class="md-nav__icon md-icon"></span>
           Vector
         </label>
@@ -11537,17 +11712,17 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_5_2_9" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_6_2_9" >
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_5_2_9" id="__nav_1_12_5_2_9_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_1_12_6_2_9" id="__nav_1_12_6_2_9_label" tabindex="0">
           Window Functions
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_1_12_5_2_9_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_1_12_5_2_9">
+      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_1_12_6_2_9_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1_12_6_2_9">
           <span class="md-nav__icon md-icon"></span>
           Window Functions
         </label>
@@ -11641,17 +11816,17 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_5_2_10" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_6_2_10" >
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_5_2_10" id="__nav_1_12_5_2_10_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_1_12_6_2_10" id="__nav_1_12_6_2_10_label" tabindex="0">
           JSON Functions
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_1_12_5_2_10_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_1_12_5_2_10">
+      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_1_12_6_2_10_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1_12_6_2_10">
           <span class="md-nav__icon md-icon"></span>
           JSON Functions
         </label>
@@ -11815,17 +11990,17 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_5_2_11" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_6_2_11" >
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_5_2_11" id="__nav_1_12_5_2_11_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_1_12_6_2_11" id="__nav_1_12_6_2_11_label" tabindex="0">
           Other Functions
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_1_12_5_2_11_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_1_12_5_2_11">
+      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_1_12_6_2_11_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1_12_6_2_11">
           <span class="md-nav__icon md-icon"></span>
           Other Functions
         </label>
@@ -11947,17 +12122,17 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_5_2_12" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_6_2_12" >
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_5_2_12" id="__nav_1_12_5_2_12_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_1_12_6_2_12" id="__nav_1_12_6_2_12_label" tabindex="0">
           System OPS Functions
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_1_12_5_2_12_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_1_12_5_2_12">
+      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_1_12_6_2_12_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1_12_6_2_12">
           <span class="md-nav__icon md-icon"></span>
           System OPS Functions
         </label>
@@ -12065,17 +12240,17 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_6" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_7" >
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_6" id="__nav_1_12_6_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_1_12_7" id="__nav_1_12_7_label" tabindex="0">
           System Paramaters
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_1_12_6_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_1_12_6">
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_1_12_7_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1_12_7">
           <span class="md-nav__icon md-icon"></span>
           System Paramaters
         </label>
@@ -12169,17 +12344,17 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_9" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_10" >
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_9" id="__nav_1_12_9_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_1_12_10" id="__nav_1_12_10_label" tabindex="0">
           Limitations
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_1_12_9_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_1_12_9">
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_1_12_10_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1_12_10">
           <span class="md-nav__icon md-icon"></span>
           Limitations
         </label>
@@ -12245,17 +12420,17 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_11" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12_12" >
       
       
       
-        <label class="md-nav__link" for="__nav_1_12_11" id="__nav_1_12_11_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_1_12_12" id="__nav_1_12_12_label" tabindex="0">
           MatrixOne Tools
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_1_12_11_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_1_12_11">
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_1_12_12_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1_12_12">
           <span class="md-nav__icon md-icon"></span>
           MatrixOne Tools
         </label>
@@ -13458,44 +13633,221 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#data-definition-language-ddl" class="md-nav__link">
-    Data Definition Language (DDL)
+  <a href="#sql-statements" class="md-nav__link">
+    SQL Statements
+  </a>
+  
+    <nav class="md-nav" aria-label="SQL Statements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sql-statements_1" class="md-nav__link">
+    SQL Statements
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#data-manipulation-language-dml" class="md-nav__link">
-    Data Manipulation Language (DML)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#data-query-language-dql" class="md-nav__link">
-    Data Query Language (DQL)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#data-control-language-dcl" class="md-nav__link">
     Data Control Language (DCL)
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
+  <a href="#data-definition-language-ddl" class="md-nav__link">
+    Data Definition Language (DDL)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-manipulation-language-dml" class="md-nav__link">
+    Data Manipulation Language (DML)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-query-language-dql" class="md-nav__link">
+    Data Query Language (DQL)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#other" class="md-nav__link">
     Other
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#uncategorized" class="md-nav__link">
-    Uncategorized
+  <a href="#functions" class="md-nav__link">
+    Functions
   </a>
+  
+    <nav class="md-nav" aria-label="Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#functions_1" class="md-nav__link">
+    Functions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aggregate-functions" class="md-nav__link">
+    Aggregate Functions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#datetime" class="md-nav__link">
+    Datetime
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#json" class="md-nav__link">
+    Json
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mathematical" class="md-nav__link">
+    Mathematical
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other_1" class="md-nav__link">
+    Other
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#string" class="md-nav__link">
+    String
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#system-operations" class="md-nav__link">
+    System Operations
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#table" class="md-nav__link">
+    Table
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vector" class="md-nav__link">
+    Vector
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#window-functions" class="md-nav__link">
+    Window Functions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operators" class="md-nav__link">
+    Operators
+  </a>
+  
+    <nav class="md-nav" aria-label="Operators">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#operators_1" class="md-nav__link">
+    Operators
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#operators_2" class="md-nav__link">
+    operators
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-types" class="md-nav__link">
+    Data Types
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-types_1" class="md-nav__link">
+    Data Types
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#datetime-data-types" class="md-nav__link">
+    Date/Time Data Types
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#language-structure" class="md-nav__link">
+    Language Structure
+  </a>
+  
+    <nav class="md-nav" aria-label="Language Structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#language-structure_1" class="md-nav__link">
+    Language Structure
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -13525,11 +13877,46 @@
 <h1 id="mysql-compatibility-matrix">MySQL Compatibility Matrix</h1>
 <blockquote>
 <p>Auto-generated from <code>mysql_compat</code> frontmatter across
-<code>docs/MatrixOne/Reference/SQL-Reference/**</code>. Do not edit by hand —
-re-run <code>node scripts/generate-compat-matrix.js</code> after updating any
-source page.</p>
+<code>docs/MatrixOne/Reference/SQL-Reference/**</code>, <code>docs/MatrixOne/Reference/Functions-and-Operators/**</code>, <code>docs/MatrixOne/Reference/Operators/**</code>, <code>docs/MatrixOne/Reference/Data-Types/**</code>, <code>docs/MatrixOne/Reference/Language-Structure/**</code>.
+Do not edit by hand — re-run <code>node scripts/generate-compat-matrix.js</code>
+after updating any source page.</p>
 </blockquote>
 <h2 id="summary">Summary</h2>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>✅ Full</td>
+<td>142</td>
+</tr>
+<tr>
+<td>⚠️ Partial</td>
+<td>62</td>
+</tr>
+<tr>
+<td>❌ None</td>
+<td>0</td>
+</tr>
+<tr>
+<td>🟣 MatrixOne-only</td>
+<td>93</td>
+</tr>
+<tr>
+<td>❓ Unknown</td>
+<td>73</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td><strong>370</strong></td>
+</tr>
+</tbody>
+</table>
+<h2 id="sql-statements">SQL Statements</h2>
 <table>
 <thead>
 <tr>
@@ -13547,16 +13934,8 @@ source page.</p>
 <td>43</td>
 </tr>
 <tr>
-<td>❌ None</td>
-<td>0</td>
-</tr>
-<tr>
 <td>🟣 MatrixOne-only</td>
 <td>57</td>
-</tr>
-<tr>
-<td>❓ Unknown</td>
-<td>0</td>
 </tr>
 <tr>
 <td><strong>Total</strong></td>
@@ -13564,327 +13943,359 @@ source page.</p>
 </tr>
 </tbody>
 </table>
-<h2 id="data-definition-language-ddl">Data Definition Language (DDL)</h2>
+<h3 id="sql-statements_1">SQL Statements</h3>
 <table>
 <thead>
 <tr>
 <th>Statement</th>
 <th>MySQL Compat</th>
-<th>Differences from MySQL</th>
-<th>MatrixOne-only</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../SQL-Reference/SQL-Type/">Type of SQL Statements</a></td>
+<td>🟣 MatrixOne-only</td>
+<td>[MO-only] Index page describing MatrixOne's own SQL statement taxonomy; not a MySQL-equivalent concept.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="data-control-language-dcl">Data Control Language (DCL)</h3>
+<table>
+<thead>
+<tr>
+<th>Statement</th>
+<th>MySQL Compat</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../SQL-Reference/Data-Control-Language/alter-account/">ALTER ACCOUNT</a></td>
+<td>🟣 MatrixOne-only</td>
+<td>[MO-only] ALTER ACCOUNT</td>
+</tr>
+<tr>
+<td><a href="../SQL-Reference/Data-Control-Language/alter-user/">ALTER USER</a></td>
+<td>⚠️ Partial</td>
+<td>Only ALTER USER can change passwords; account-limit clauses not honoured</td>
+</tr>
+<tr>
+<td><a href="../SQL-Reference/Data-Control-Language/create-account/">CREATE ACCOUNT</a></td>
+<td>🟣 MatrixOne-only</td>
+<td>[MO-only] CREATE ACCOUNT … ADMIN_NAME …</td>
+</tr>
+<tr>
+<td><a href="../SQL-Reference/Data-Control-Language/create-role/">CREATE ROLE</a></td>
+<td>⚠️ Partial</td>
+<td>Role exists inside MatrixOne's multi-account model; roles are account-scoped, not server-global as in MySQL.</td>
+</tr>
+<tr>
+<td><a href="../SQL-Reference/Data-Control-Language/create-user/">CREATE USER</a></td>
+<td>⚠️ Partial</td>
+<td>IDENTIFIED BY is the only supported password form; IDENTIFIED WITH plugins not supported<br/>Connection-IP whitelists and connection-limit clauses not supported<br/>COMMENT and ATTRIBUTE clauses are accepted syntactically but not honoured<br/>User identifier is a bare username scoped to the current account; MySQL uses 'user'@'host' tuples</td>
+</tr>
+<tr>
+<td><a href="../SQL-Reference/Data-Control-Language/drop-account/">DROP ACCOUNT</a></td>
+<td>🟣 MatrixOne-only</td>
+<td>[MO-only] DROP ACCOUNT</td>
+</tr>
+<tr>
+<td><a href="../SQL-Reference/Data-Control-Language/drop-role/">DROP ROLE</a></td>
+<td>⚠️ Partial</td>
+<td>Role exists inside MatrixOne's multi-account model; roles are account-scoped, not server-global as in MySQL.</td>
+</tr>
+<tr>
+<td><a href="../SQL-Reference/Data-Control-Language/drop-user/">DROP USER</a></td>
+<td>⚠️ Partial</td>
+<td>User identifier is a bare username scoped to the current account; MySQL uses 'user'@'host' tuples.</td>
+</tr>
+<tr>
+<td><a href="../SQL-Reference/Data-Control-Language/grant/">GRANT</a></td>
+<td>⚠️ Partial</td>
+<td>Authorization logic differs from MySQL — MatrixOne evaluates via its role/account model<br/>User identifier is a bare username scoped to the current account; MySQL uses 'user'@'host' tuples<br/>[MO-only] <code>GRANT ... ON ACCOUNT *</code> — account-level privileges have no MySQL counterpart<br/>[MO-only] <code>GRANT ... ON DATABASE *</code> — MatrixOne-specific database-level grant target</td>
+</tr>
+<tr>
+<td><a href="../SQL-Reference/Data-Control-Language/revoke/">REVOKE</a></td>
+<td>⚠️ Partial</td>
+<td>Recovery logic differs from MySQL — privileges return to the role/account graph<br/>User identifier is a bare username scoped to the current account; MySQL uses 'user'@'host' tuples<br/>[MO-only] <code>REVOKE ... ON ACCOUNT *</code> — account-level privileges have no MySQL counterpart<br/>[MO-only] <code>REVOKE ... ON DATABASE *</code> — MatrixOne-specific database-level revoke target</td>
+</tr>
+<tr>
+<td><a href="../SQL-Reference/Data-Control-Language/role-rule/">Role Rewrite Rules (ALTER ROLE ... RULE / SHOW RULES)</a></td>
+<td>🟣 MatrixOne-only</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h3 id="data-definition-language-ddl">Data Definition Language (DDL)</h3>
+<table>
+<thead>
+<tr>
+<th>Statement</th>
+<th>MySQL Compat</th>
+<th>Notes</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><a href="../SQL-Reference/Data-Definition-Language/alter-pitr/">ALTER PITR</a></td>
 <td>🟣 MatrixOne-only</td>
-<td>—</td>
-<td>ALTER PITR</td>
+<td>[MO-only] ALTER PITR</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Definition-Language/alter-publication/">ALTER PUBLICATION</a></td>
 <td>🟣 MatrixOne-only</td>
-<td>—</td>
-<td>ALTER PUBLICATION</td>
+<td>[MO-only] ALTER PUBLICATION</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Definition-Language/alter-reindex/">ALTER REINDEX</a></td>
 <td>🟣 MatrixOne-only</td>
-<td>—</td>
-<td>ALTER … REINDEX (rebuild vector index)</td>
+<td>[MO-only] ALTER … REINDEX (rebuild vector index)</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Definition-Language/alter-sequence/">ALTER SEQUENCE</a></td>
 <td>🟣 MatrixOne-only</td>
-<td>—</td>
-<td>ALTER SEQUENCE</td>
+<td>[MO-only] ALTER SEQUENCE</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Definition-Language/alter-stage/">ALTER STAGE</a></td>
 <td>🟣 MatrixOne-only</td>
-<td>—</td>
-<td>ALTER STAGE</td>
+<td>[MO-only] ALTER STAGE</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Definition-Language/alter-table/">ALTER TABLE</a></td>
 <td>⚠️ Partial</td>
 <td>CHANGE [COLUMN], MODIFY [COLUMN], RENAME COLUMN, ADD/DROP PRIMARY KEY, ALTER COLUMN ORDER BY cannot be combined with other clauses in the same ALTER TABLE<br/>Temporary tables cannot be altered<br/>Tables created with CLUSTER BY cannot be altered<br/>ALTER TABLE does not support PARTITION operations</td>
-<td>—</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Definition-Language/alter-view/">ALTER VIEW</a></td>
 <td>⚠️ Partial</td>
 <td>Inherits CREATE VIEW limitations: no WITH CHECK OPTION, no DEFINER = user clause</td>
-<td>—</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Definition-Language/branch-protect-snapshots/">Branch Protect Snapshots</a></td>
 <td>🟣 MatrixOne-only</td>
 <td>—</td>
-<td>—</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Definition-Language/create-clone/">CREATE CLONE</a></td>
 <td>🟣 MatrixOne-only</td>
-<td>—</td>
-<td>CREATE TABLE … CLONE db.table [TO ACCOUNT …]</td>
+<td>[MO-only] CREATE TABLE … CLONE db.table [TO ACCOUNT …]</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Definition-Language/create-cluster-table/">CREATE CLUSTER TABLE</a></td>
 <td>🟣 MatrixOne-only</td>
-<td>—</td>
-<td>CREATE CLUSTER TABLE</td>
+<td>[MO-only] CREATE CLUSTER TABLE</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Definition-Language/create-database/">CREATE DATABASE</a></td>
 <td>⚠️ Partial</td>
 <td>Chinese database names not supported<br/>Only utf8mb4 / utf8mb4_bin are supported and cannot be changed<br/>ENCRYPTION clause accepted but inert</td>
-<td>—</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Definition-Language/create-dynamic-table/">CREATE DYNAMIC TABLE</a></td>
 <td>🟣 MatrixOne-only</td>
-<td>—</td>
-<td>CREATE DYNAMIC TABLE</td>
+<td>[MO-only] CREATE DYNAMIC TABLE</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Definition-Language/create-external-table/">CREATE EXTERNAL TABLE</a></td>
 <td>🟣 MatrixOne-only</td>
-<td>—</td>
-<td>CREATE EXTERNAL TABLE</td>
+<td>[MO-only] CREATE EXTERNAL TABLE</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Definition-Language/create-fulltext-index/">Create Fulltext Index</a></td>
 <td>⚠️ Partial</td>
 <td>MatrixOne full-text index is implemented on TAE storage with CJK/English optimizations; MySQL implements it on InnoDB/MyISAM with different stopword and parser semantics.</td>
-<td>—</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Definition-Language/create-function-python/">CREATE FUNCTION...LANGUAGE PYTHON AS</a></td>
 <td>🟣 MatrixOne-only</td>
-<td>—</td>
-<td>CREATE FUNCTION … LANGUAGE PYTHON AS …</td>
+<td>[MO-only] CREATE FUNCTION … LANGUAGE PYTHON AS …</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Definition-Language/create-function-sql/">CREATE FUNCTION...LANGUAGE SQL AS</a></td>
 <td>⚠️ Partial</td>
 <td>Only LANGUAGE SQL and LANGUAGE PYTHON are supported; usage differs significantly from MySQL stored functions</td>
-<td>—</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Definition-Language/create-index/">CREATE INDEX</a></td>
 <td>⚠️ Partial</td>
-<td>Secondary indexes are syntactically accepted but do not yet provide query speed-up<br/>Foreign keys do not support ON CASCADE DELETE</td>
-<td>USING IVFFLAT — vector index for approximate nearest neighbour<br/>USING HNSW — vector index for approximate nearest neighbour<br/>USING MASTER — composite master index</td>
+<td>Secondary indexes are syntactically accepted but do not yet provide query speed-up<br/>Foreign keys do not support ON CASCADE DELETE<br/>[MO-only] USING IVFFLAT — vector index for approximate nearest neighbour<br/>[MO-only] USING HNSW — vector index for approximate nearest neighbour<br/>[MO-only] USING MASTER — composite master index</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Definition-Language/create-index-hnsw/">CREATE INDEX USING HNSW</a></td>
 <td>🟣 MatrixOne-only</td>
-<td>—</td>
-<td>CREATE INDEX … USING HNSW</td>
+<td>[MO-only] CREATE INDEX … USING HNSW</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Definition-Language/create-index-ivfflat/">CREATE INDEX USING IVFFLAT</a></td>
 <td>🟣 MatrixOne-only</td>
-<td>—</td>
-<td>CREATE INDEX … USING IVFFLAT</td>
+<td>[MO-only] CREATE INDEX … USING IVFFLAT</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Definition-Language/create-pitr/">CREATE PITR</a></td>
 <td>🟣 MatrixOne-only</td>
-<td>—</td>
-<td>CREATE PITR … RANGE N {h|d|mo|y}</td>
+<td>[MO-only] CREATE PITR … RANGE N {h|d|mo|y}</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Definition-Language/create-publication/">CREATE PUBLICATION</a></td>
 <td>🟣 MatrixOne-only</td>
-<td>—</td>
-<td>CREATE PUBLICATION</td>
+<td>[MO-only] CREATE PUBLICATION</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Definition-Language/create-sequence/">CREATE SEQUENCE</a></td>
 <td>🟣 MatrixOne-only</td>
-<td>—</td>
-<td>CREATE SEQUENCE (PostgreSQL-style)</td>
+<td>[MO-only] CREATE SEQUENCE (PostgreSQL-style)</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Definition-Language/create-snapshot/">CREATE SNAPSHOT</a></td>
 <td>🟣 MatrixOne-only</td>
-<td>—</td>
-<td>CREATE SNAPSHOT FOR {ACCOUNT|DATABASE|TABLE|CLUSTER}</td>
+<td>[MO-only] CREATE SNAPSHOT FOR {ACCOUNT|DATABASE|TABLE|CLUSTER}</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Definition-Language/create-source/">CREATE SOURCE</a></td>
 <td>🟣 MatrixOne-only</td>
-<td>—</td>
-<td>CREATE SOURCE (stream/Kafka connector)</td>
+<td>[MO-only] CREATE SOURCE (stream/Kafka connector)</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Definition-Language/create-stage/">CREATE STAGE</a></td>
 <td>🟣 MatrixOne-only</td>
-<td>—</td>
-<td>CREATE STAGE (external file-system binding)</td>
+<td>[MO-only] CREATE STAGE (external file-system binding)</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Definition-Language/create-table/">CREATE TABLE</a></td>
 <td>⚠️ Partial</td>
-<td>ENGINE= clause in table definition not supported (MatrixOne has a single TAE engine)<br/>Spatial and SET types not supported; MEDIUMINT not supported<br/>BOOL is a native boolean type, not an INT alias as in MySQL<br/>AUTO_INCREMENT step is always 1; @@auto_increment_increment / @@auto_increment_offset are syntactically accepted but inert<br/>Partitioning accepts syntax but only HASH and KEY participate in partition pruning (RANGE/LIST/RANGE COLUMNS/LIST COLUMNS are syntax-only); subpartitioning is syntax-only; ADD/DROP/TRUNCATE PARTITION not supported</td>
-<td>CLUSTER BY (col, …) — pre-sort columns to accelerate queries</td>
+<td>ENGINE= clause in table definition not supported (MatrixOne has a single TAE engine)<br/>Spatial and SET types not supported; MEDIUMINT not supported<br/>BOOL is a native boolean type, not an INT alias as in MySQL<br/>AUTO_INCREMENT step is always 1; @@auto_increment_increment / @@auto_increment_offset are syntactically accepted but inert<br/>Partitioning accepts syntax but only HASH and KEY participate in partition pruning (RANGE/LIST/RANGE COLUMNS/LIST COLUMNS are syntax-only); subpartitioning is syntax-only; ADD/DROP/TRUNCATE PARTITION not supported<br/>[MO-only] CLUSTER BY (col, …) — pre-sort columns to accelerate queries</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Definition-Language/create-table-like/">CREATE TABLE ... LIKE</a></td>
 <td>✅ Full</td>
-<td>—</td>
 <td>—</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Definition-Language/create-table-as-select/">CREATE TABLE AS SELECT</a></td>
 <td>✅ Full</td>
 <td>—</td>
-<td>—</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Definition-Language/sql-task/">CREATE TASK (SQL Task)</a></td>
 <td>🟣 MatrixOne-only</td>
-<td>—</td>
 <td>—</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Definition-Language/create-view/">CREATE VIEW</a></td>
 <td>⚠️ Partial</td>
 <td>WITH CHECK OPTION clause not supported<br/>DEFINER = user clause not supported; SQL SECURITY {DEFINER | INVOKER} is supported<br/>ALGORITHM = {UNDEFINED | MERGE | TEMPTABLE} clause not supported</td>
-<td>—</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Definition-Language/create-subscription/">CREATE...FROM...PUBLICATION...</a></td>
 <td>🟣 MatrixOne-only</td>
-<td>—</td>
-<td>CREATE DATABASE … FROM … PUBLICATION …</td>
+<td>[MO-only] CREATE DATABASE … FROM … PUBLICATION …</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Definition-Language/data-branch-create-en/">DATA BRANCH CREATE</a></td>
 <td>🟣 MatrixOne-only</td>
-<td>—</td>
-<td>DATA BRANCH CREATE (Git-for-Data)</td>
+<td>[MO-only] DATA BRANCH CREATE (Git-for-Data)</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Definition-Language/data-branch-delete-en/">DATA BRANCH DELETE</a></td>
 <td>🟣 MatrixOne-only</td>
-<td>—</td>
-<td>DATA BRANCH DELETE</td>
+<td>[MO-only] DATA BRANCH DELETE</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Definition-Language/data-branch-diff-en/">DATA BRANCH DIFF</a></td>
 <td>🟣 MatrixOne-only</td>
-<td>—</td>
-<td>DATA BRANCH DIFF</td>
+<td>[MO-only] DATA BRANCH DIFF</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Definition-Language/data-branch-merge-en/">DATA BRANCH MERGE</a></td>
 <td>🟣 MatrixOne-only</td>
-<td>—</td>
-<td>DATA BRANCH MERGE</td>
+<td>[MO-only] DATA BRANCH MERGE</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Definition-Language/data-branch-pick/">DATA BRANCH PICK</a></td>
 <td>🟣 MatrixOne-only</td>
-<td>—</td>
 <td>—</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Definition-Language/drop-database/">DROP DATABASE</a></td>
 <td>✅ Full</td>
 <td>—</td>
-<td>—</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Definition-Language/drop-function/">DROP FUNCTION</a></td>
 <td>⚠️ Partial</td>
 <td>Drops MatrixOne-style SQL / Python functions, not MySQL stored procedures/functions</td>
-<td>—</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Definition-Language/drop-index/">DROP INDEX</a></td>
 <td>✅ Full</td>
 <td>—</td>
-<td>—</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Definition-Language/drop-pitr/">DROP PITR</a></td>
 <td>🟣 MatrixOne-only</td>
-<td>—</td>
-<td>DROP PITR</td>
+<td>[MO-only] DROP PITR</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Definition-Language/drop-publication/">DROP PUBLICATION</a></td>
 <td>🟣 MatrixOne-only</td>
-<td>—</td>
-<td>DROP PUBLICATION</td>
+<td>[MO-only] DROP PUBLICATION</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Definition-Language/drop-sequence/">DROP SEQUENCE</a></td>
 <td>🟣 MatrixOne-only</td>
-<td>—</td>
-<td>DROP SEQUENCE</td>
+<td>[MO-only] DROP SEQUENCE</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Definition-Language/drop-snapshot/">DROP SNAPSHOT</a></td>
 <td>🟣 MatrixOne-only</td>
-<td>—</td>
-<td>DROP SNAPSHOT</td>
+<td>[MO-only] DROP SNAPSHOT</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Definition-Language/drop-stage/">DROP STAGE</a></td>
 <td>🟣 MatrixOne-only</td>
-<td>—</td>
-<td>DROP STAGE</td>
+<td>[MO-only] DROP STAGE</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Definition-Language/drop-table/">DROP TABLE</a></td>
 <td>✅ Full</td>
-<td>—</td>
 <td>—</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Definition-Language/drop-view/">DROP VIEW</a></td>
 <td>✅ Full</td>
 <td>—</td>
-<td>—</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Definition-Language/rename-table/">Rename Table</a></td>
 <td>✅ Full</td>
 <td>—</td>
-<td>—</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Definition-Language/restore-pitr/">RESTORE ... FROM PITR</a></td>
 <td>🟣 MatrixOne-only</td>
-<td>—</td>
-<td>RESTORE … FROM PITR</td>
+<td>[MO-only] RESTORE … FROM PITR</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Definition-Language/restore-snapshot/">RESTORE ... SNAPSHOT</a></td>
 <td>🟣 MatrixOne-only</td>
-<td>—</td>
-<td>RESTORE … FROM SNAPSHOT</td>
+<td>[MO-only] RESTORE … FROM SNAPSHOT</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Definition-Language/truncate-table/">TRUNCATE TABLE</a></td>
 <td>✅ Full</td>
 <td>—</td>
-<td>—</td>
 </tr>
 </tbody>
 </table>
-<h2 id="data-manipulation-language-dml">Data Manipulation Language (DML)</h2>
+<h3 id="data-manipulation-language-dml">Data Manipulation Language (DML)</h3>
 <table>
 <thead>
 <tr>
 <th>Statement</th>
 <th>MySQL Compat</th>
-<th>Differences from MySQL</th>
-<th>MatrixOne-only</th>
+<th>Notes</th>
 </tr>
 </thead>
 <tbody>
@@ -13892,338 +14303,218 @@ source page.</p>
 <td><a href="../SQL-Reference/Data-Manipulation-Language/case/">CASE</a></td>
 <td>✅ Full</td>
 <td>—</td>
-<td>—</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Manipulation-Language/information-functions/current_role/">CURRENT_ROLE()</a></td>
 <td>⚠️ Partial</td>
 <td>Returns a single active role name; MySQL 8.0 can return multiple comma-separated active roles or 'NONE'.</td>
-<td>—</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Manipulation-Language/delete/">DELETE</a></td>
 <td>⚠️ Partial</td>
 <td>LOW_PRIORITY, QUICK, IGNORE modifiers not supported</td>
-<td>—</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Manipulation-Language/insert/">INSERT</a></td>
 <td>⚠️ Partial</td>
 <td>Modifiers LOW_PRIORITY / DELAYED / HIGH_PRIORITY not supported</td>
-<td>—</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Manipulation-Language/upsert/insert-on-duplicate/">INSERT ... ON DUPLICATE KEY UPDATE</a></td>
 <td>✅ Full</td>
-<td>—</td>
 <td>—</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Manipulation-Language/upsert/insert-ignore/">INSERT IGNORE</a></td>
 <td>⚠️ Partial</td>
 <td>LOW_PRIORITY / DELAYED / HIGH_PRIORITY modifiers not supported<br/>Duplicates are silently ignored; MySQL emits a warning for each skipped row.<br/>Does not ignore NULL-into-NOT-NULL, type-conversion, or partition-mismatch errors as MySQL does.</td>
-<td>—</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Manipulation-Language/insert-into-select/">INSERT INTO SELECT</a></td>
 <td>✅ Full</td>
-<td>—</td>
 <td>—</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Manipulation-Language/information-functions/last-insert-id/">LAST_INSERT_ID()</a></td>
 <td>⚠️ Partial</td>
 <td>Multi-row INSERT returns the last inserted auto-increment value; MySQL returns the first inserted value.</td>
-<td>—</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Manipulation-Language/information-functions/last-query-id/">LAST_QUERY_ID</a></td>
 <td>🟣 MatrixOne-only</td>
-<td>—</td>
-<td>LAST_QUERY_ID()</td>
+<td>[MO-only] LAST_QUERY_ID()</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Manipulation-Language/load-data-infile/">LOAD DATA</a></td>
 <td>⚠️ Partial</td>
 <td>LOAD DATA LOCAL requires --local-infile on the client<br/>SET clause only accepts columns_name = nullif(expr1, expr2)<br/>JSONLines import uses MatrixOne-specific syntax<br/>Object-storage import (S3/URL) uses MatrixOne-specific syntax</td>
-<td>—</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Manipulation-Language/load-data-inline/">LOAD DATA INLINE</a></td>
 <td>🟣 MatrixOne-only</td>
-<td>—</td>
-<td>LOAD DATA INLINE (stage-sourced import)</td>
+<td>[MO-only] LOAD DATA INLINE (stage-sourced import)</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Manipulation-Language/replace/">REPLACE</a></td>
 <td>⚠️ Partial</td>
 <td>REPLACE does not support VALUES row_constructor_list<br/>node-sql-parser rejects REPLACE … WHERE (parser bug, not MatrixOne)</td>
-<td>—</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Manipulation-Language/upsert/replace/">REPLACE</a></td>
 <td>⚠️ Partial</td>
 <td>REPLACE does not support VALUES row_constructor_list<br/>node-sql-parser rejects REPLACE … WHERE (parser bug, not MatrixOne)</td>
-<td>—</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Manipulation-Language/update/">UPDATE</a></td>
 <td>⚠️ Partial</td>
 <td>LOW_PRIORITY and IGNORE modifiers not supported</td>
-<td>—</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Manipulation-Language/upsert/upsert/">UPSERT</a></td>
 <td>🟣 MatrixOne-only</td>
-<td>—</td>
-<td>UPSERT (convenience alias over INSERT … ON DUPLICATE KEY UPDATE)</td>
+<td>[MO-only] UPSERT (convenience alias over INSERT … ON DUPLICATE KEY UPDATE)</td>
 </tr>
 </tbody>
 </table>
-<h2 id="data-query-language-dql">Data Query Language (DQL)</h2>
+<h3 id="data-query-language-dql">Data Query Language (DQL)</h3>
 <table>
 <thead>
 <tr>
 <th>Statement</th>
 <th>MySQL Compat</th>
-<th>Differences from MySQL</th>
-<th>MatrixOne-only</th>
+<th>Notes</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><a href="../SQL-Reference/Data-Query-Language/by-rank-with-option/">BY RANK WITH OPTION</a></td>
 <td>🟣 MatrixOne-only</td>
-<td>—</td>
-<td>BY RANK WITH OPTION (IVF vector ranking)</td>
+<td>[MO-only] BY RANK WITH OPTION (IVF vector ranking)</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Query-Language/union-intersect-minus-overview/">Combining Queries (UNION, INTERSECT, MINUS)</a></td>
 <td>🟣 MatrixOne-only</td>
-<td>—</td>
-<td>MINUS, INTERSECT set operators</td>
+<td>[MO-only] MINUS, INTERSECT set operators</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Query-Language/subqueries/comparisons-using-subqueries/">Comparisons Using Subqueries</a></td>
 <td>✅ Full</td>
 <td>—</td>
-<td>—</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Query-Language/apply/cross-apply/">CROSS APPLY</a></td>
 <td>🟣 MatrixOne-only</td>
-<td>—</td>
-<td>CROSS APPLY (SQL Server-style, not in MySQL)</td>
+<td>[MO-only] CROSS APPLY (SQL Server-style, not in MySQL)</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Query-Language/join/cross-join/">CROSS JOIN</a></td>
 <td>✅ Full</td>
-<td>—</td>
 <td>—</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Query-Language/subqueries/derived-tables/">Derived Tables</a></td>
 <td>✅ Full</td>
 <td>—</td>
-<td>—</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Query-Language/join/full-join/">FULL JOIN</a></td>
 <td>🟣 MatrixOne-only</td>
-<td>—</td>
-<td>FULL JOIN / FULL OUTER JOIN is not supported in MySQL 8.0 (users must emulate it with LEFT JOIN UNION RIGHT JOIN).</td>
+<td>[MO-only] FULL JOIN / FULL OUTER JOIN is not supported in MySQL 8.0 (users must emulate it with LEFT JOIN UNION RIGHT JOIN).</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Query-Language/join/inner-join/">INNER JOIN</a></td>
 <td>✅ Full</td>
 <td>—</td>
-<td>—</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Query-Language/intersect/">INTERSECT</a></td>
 <td>🟣 MatrixOne-only</td>
-<td>—</td>
-<td>INTERSECT set operator is not available in MySQL 8.0.</td>
+<td>[MO-only] INTERSECT set operator is not available in MySQL 8.0.</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Query-Language/join/join/">JOIN</a></td>
 <td>✅ Full</td>
-<td>—</td>
 <td>—</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Query-Language/join/left-join/">LEFT JOIN</a></td>
 <td>✅ Full</td>
 <td>—</td>
-<td>—</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Query-Language/minus/">MINUS</a></td>
 <td>🟣 MatrixOne-only</td>
-<td>—</td>
-<td>MINUS (set-difference query, not in MySQL)</td>
+<td>[MO-only] MINUS (set-difference query, not in MySQL)</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Query-Language/join/natural-join/">NATURAL JOIN</a></td>
 <td>✅ Full</td>
 <td>—</td>
-<td>—</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Query-Language/apply/outer-apply/">OUTER APPLY</a></td>
 <td>🟣 MatrixOne-only</td>
-<td>—</td>
-<td>OUTER APPLY (SQL Server-style, not in MySQL)</td>
+<td>[MO-only] OUTER APPLY (SQL Server-style, not in MySQL)</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Query-Language/join/outer-join/">OUTER JOIN</a></td>
 <td>⚠️ Partial</td>
 <td>Overview page that includes FULL OUTER JOIN, which MySQL 8.0 does not support.</td>
-<td>—</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Query-Language/join/right-join/">RIGHT JOIN</a></td>
 <td>✅ Full</td>
 <td>—</td>
-<td>—</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Query-Language/select/">SELECT</a></td>
 <td>⚠️ Partial</td>
-<td>SELECT … FOR UPDATE only supports single-table queries<br/>SELECT INTO OUTFILE is only partially supported<br/>Unqualified SELECT ... FROM DUAL requires explicit database name (SELECT ... FROM dbname.DUAL)</td>
-<td>{ AS OF TIMESTAMP 'YYYY-MM-DD HH:MM:SS' } — time-travel query against snapshot/PITR<br/>ORDER BY ... NULLS { FIRST | LAST } — PostgreSQL-style NULL ordering not available in MySQL</td>
+<td>SELECT … FOR UPDATE only supports single-table queries<br/>SELECT INTO OUTFILE is only partially supported<br/>Unqualified SELECT ... FROM DUAL requires explicit database name (SELECT ... FROM dbname.DUAL)<br/>[MO-only] { AS OF TIMESTAMP 'YYYY-MM-DD HH:MM:SS' } — time-travel query against snapshot/PITR<br/>[MO-only] ORDER BY ... NULLS { FIRST | LAST } — PostgreSQL-style NULL ordering not available in MySQL</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Query-Language/subqueries/subquery-with-all/">Subqueries with ALL</a></td>
 <td>✅ Full</td>
-<td>—</td>
 <td>—</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Query-Language/subqueries/subquery-with-any-some/">Subqueries with ANY or SOME</a></td>
 <td>✅ Full</td>
 <td>—</td>
-<td>—</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Query-Language/subqueries/subquery-with-exists/">Subqueries with EXISTS or NOT EXISTS</a></td>
 <td>✅ Full</td>
-<td>—</td>
 <td>—</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Query-Language/subqueries/subquery-with-in/">Subqueries with IN</a></td>
 <td>⚠️ Partial</td>
 <td>Multi-level correlated subqueries inside IN() are not supported</td>
-<td>—</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Query-Language/subqueries/subquery/">SUBQUERY</a></td>
 <td>⚠️ Partial</td>
 <td>Multi-level correlated subqueries inside IN() are not supported</td>
-<td>—</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Query-Language/union/">UNION</a></td>
 <td>✅ Full</td>
-<td>—</td>
 <td>—</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Data-Query-Language/with-cte/">WITH (Common Table Expressions)</a></td>
 <td>✅ Full</td>
 <td>—</td>
-<td>—</td>
 </tr>
 </tbody>
 </table>
-<h2 id="data-control-language-dcl">Data Control Language (DCL)</h2>
+<h3 id="other">Other</h3>
 <table>
 <thead>
 <tr>
 <th>Statement</th>
 <th>MySQL Compat</th>
-<th>Differences from MySQL</th>
-<th>MatrixOne-only</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="../SQL-Reference/Data-Control-Language/alter-account/">ALTER ACCOUNT</a></td>
-<td>🟣 MatrixOne-only</td>
-<td>—</td>
-<td>ALTER ACCOUNT</td>
-</tr>
-<tr>
-<td><a href="../SQL-Reference/Data-Control-Language/alter-user/">ALTER USER</a></td>
-<td>⚠️ Partial</td>
-<td>Only ALTER USER can change passwords; account-limit clauses not honoured</td>
-<td>—</td>
-</tr>
-<tr>
-<td><a href="../SQL-Reference/Data-Control-Language/create-account/">CREATE ACCOUNT</a></td>
-<td>🟣 MatrixOne-only</td>
-<td>—</td>
-<td>CREATE ACCOUNT … ADMIN_NAME …</td>
-</tr>
-<tr>
-<td><a href="../SQL-Reference/Data-Control-Language/create-role/">CREATE ROLE</a></td>
-<td>⚠️ Partial</td>
-<td>Role exists inside MatrixOne's multi-account model; roles are account-scoped, not server-global as in MySQL.</td>
-<td>—</td>
-</tr>
-<tr>
-<td><a href="../SQL-Reference/Data-Control-Language/create-user/">CREATE USER</a></td>
-<td>⚠️ Partial</td>
-<td>IDENTIFIED BY is the only supported password form; IDENTIFIED WITH plugins not supported<br/>Connection-IP whitelists and connection-limit clauses not supported<br/>COMMENT and ATTRIBUTE clauses are accepted syntactically but not honoured<br/>User identifier is a bare username scoped to the current account; MySQL uses 'user'@'host' tuples</td>
-<td>—</td>
-</tr>
-<tr>
-<td><a href="../SQL-Reference/Data-Control-Language/drop-account/">DROP ACCOUNT</a></td>
-<td>🟣 MatrixOne-only</td>
-<td>—</td>
-<td>DROP ACCOUNT</td>
-</tr>
-<tr>
-<td><a href="../SQL-Reference/Data-Control-Language/drop-role/">DROP ROLE</a></td>
-<td>⚠️ Partial</td>
-<td>Role exists inside MatrixOne's multi-account model; roles are account-scoped, not server-global as in MySQL.</td>
-<td>—</td>
-</tr>
-<tr>
-<td><a href="../SQL-Reference/Data-Control-Language/drop-user/">DROP USER</a></td>
-<td>⚠️ Partial</td>
-<td>User identifier is a bare username scoped to the current account; MySQL uses 'user'@'host' tuples.</td>
-<td>—</td>
-</tr>
-<tr>
-<td><a href="../SQL-Reference/Data-Control-Language/grant/">GRANT</a></td>
-<td>⚠️ Partial</td>
-<td>Authorization logic differs from MySQL — MatrixOne evaluates via its role/account model<br/>User identifier is a bare username scoped to the current account; MySQL uses 'user'@'host' tuples</td>
-<td><code>GRANT ... ON ACCOUNT *</code> — account-level privileges have no MySQL counterpart<br/><code>GRANT ... ON DATABASE *</code> — MatrixOne-specific database-level grant target</td>
-</tr>
-<tr>
-<td><a href="../SQL-Reference/Data-Control-Language/revoke/">REVOKE</a></td>
-<td>⚠️ Partial</td>
-<td>Recovery logic differs from MySQL — privileges return to the role/account graph<br/>User identifier is a bare username scoped to the current account; MySQL uses 'user'@'host' tuples</td>
-<td><code>REVOKE ... ON ACCOUNT *</code> — account-level privileges have no MySQL counterpart<br/><code>REVOKE ... ON DATABASE *</code> — MatrixOne-specific database-level revoke target</td>
-</tr>
-<tr>
-<td><a href="../SQL-Reference/Data-Control-Language/role-rule/">Role Rewrite Rules (ALTER ROLE ... RULE / SHOW RULES)</a></td>
-<td>🟣 MatrixOne-only</td>
-<td>—</td>
-<td>—</td>
-</tr>
-</tbody>
-</table>
-<h2 id="other">Other</h2>
-<table>
-<thead>
-<tr>
-<th>Statement</th>
-<th>MySQL Compat</th>
-<th>Differences from MySQL</th>
-<th>MatrixOne-only</th>
+<th>Notes</th>
 </tr>
 </thead>
 <tbody>
@@ -14231,194 +14522,1630 @@ source page.</p>
 <td><a href="../SQL-Reference/Other/Prepared-Statements/deallocate/">DEALLOCATE PREPARE</a></td>
 <td>✅ Full</td>
 <td>—</td>
-<td>—</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Other/Prepared-Statements/execute/">EXECUTE</a></td>
 <td>✅ Full</td>
-<td>—</td>
 <td>—</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Other/Explain/explain/">EXPLAIN</a></td>
 <td>⚠️ Partial</td>
 <td>Output format mirrors PostgreSQL, not MySQL<br/>JSON output not supported</td>
-<td>—</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Other/Explain/explain-workflow/">EXPLAIN Output Format</a></td>
 <td>⚠️ Partial</td>
 <td>Output format mirrors PostgreSQL; JSON output not supported</td>
-<td>—</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Other/Explain/explain-prepared/">EXPLAIN PREPARED</a></td>
 <td>🟣 MatrixOne-only</td>
-<td>—</td>
-<td>EXPLAIN FORCE EXECUTE stmt_name [USING @var] is a MatrixOne extension; MySQL explains prepared statements through EXPLAIN FOR CONNECTION.</td>
+<td>[MO-only] EXPLAIN FORCE EXECUTE stmt_name [USING @var] is a MatrixOne extension; MySQL explains prepared statements through EXPLAIN FOR CONNECTION.</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Other/Explain/explain-analyze/">Get information with EXPLAIN ANALYZE</a></td>
 <td>⚠️ Partial</td>
 <td>Output format mirrors PostgreSQL; JSON output not supported</td>
-<td>—</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Other/kill/">KILL</a></td>
 <td>✅ Full</td>
-<td>—</td>
 <td>—</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Other/Prepared-Statements/prepare/">PREPARE</a></td>
 <td>⚠️ Partial</td>
 <td>MatrixOne cannot PREPARE SET statements</td>
-<td>—</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Other/Set/set-role/">SET ROLE</a></td>
 <td>⚠️ Partial</td>
-<td>Accepts a single role name only; MySQL 8.0 also supports NONE, DEFAULT, ALL, ALL EXCEPT role_list, and role lists.</td>
-<td>SET SECONDARY ROLE {NONE | ALL} — MatrixOne-only primary/secondary role model.</td>
+<td>Accepts a single role name only; MySQL 8.0 also supports NONE, DEFAULT, ALL, ALL EXCEPT role_list, and role lists.<br/>[MO-only] SET SECONDARY ROLE {NONE | ALL} — MatrixOne-only primary/secondary role model.</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Other/SHOW-Statements/show-account/">SHOW ACCOUNTS</a></td>
 <td>🟣 MatrixOne-only</td>
-<td>—</td>
-<td>SHOW ACCOUNTS</td>
+<td>[MO-only] SHOW ACCOUNTS</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Other/SHOW-Statements/show-collation/">SHOW COLLATION</a></td>
 <td>⚠️ Partial</td>
 <td>Only utf8mb4_bin is effective; other collations appear but are inert</td>
-<td>—</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Other/SHOW-Statements/show-columns/">SHOW COLUMNS</a></td>
 <td>✅ Full</td>
 <td>—</td>
-<td>—</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Other/SHOW-Statements/show-create-publication/">SHOW CREATE PUBLICATION</a></td>
 <td>🟣 MatrixOne-only</td>
-<td>—</td>
-<td>SHOW CREATE PUBLICATION</td>
+<td>[MO-only] SHOW CREATE PUBLICATION</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Other/SHOW-Statements/show-create-table/">SHOW CREATE TABLE</a></td>
 <td>⚠️ Partial</td>
 <td>Output reflects MatrixOne-specific extensions (CLUSTER BY, USING IVFFLAT/HNSW, etc.)</td>
-<td>—</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Other/SHOW-Statements/show-create-view/">SHOW CREATE VIEW</a></td>
 <td>⚠️ Partial</td>
 <td>DEFINER = user clause absent from output; SQL SECURITY {DEFINER|INVOKER} is emitted</td>
-<td>—</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Other/SHOW-Statements/show-databases/">SHOW DATABASES</a></td>
 <td>✅ Full</td>
-<td>—</td>
 <td>—</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Other/SHOW-Statements/show-function-status/">SHOW FUNCTION STATUS</a></td>
 <td>⚠️ Partial</td>
 <td>Lists MatrixOne SQL/Python functions, not MySQL stored routines</td>
-<td>—</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Other/SHOW-Statements/show-grants/">SHOW GRANTS</a></td>
 <td>⚠️ Partial</td>
 <td>Results reflect MatrixOne role/account graph and differ from MySQL significantly</td>
-<td>—</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Other/SHOW-Statements/show-index/">SHOW INDEX</a></td>
 <td>⚠️ Partial</td>
 <td>Reflects MatrixOne index model — secondary index rows appear but may not accelerate queries</td>
-<td>—</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Other/SHOW-Statements/show-pitrs/">SHOW PITR</a></td>
 <td>🟣 MatrixOne-only</td>
-<td>—</td>
-<td>SHOW PITR</td>
+<td>[MO-only] SHOW PITR</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Other/SHOW-Statements/show-processlist/">SHOW PROCESSLIST</a></td>
 <td>⚠️ Partial</td>
 <td>Output differs significantly from MySQL due to different implementation</td>
-<td>—</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Other/SHOW-Statements/show-publications/">SHOW PUBLICATIONS</a></td>
 <td>🟣 MatrixOne-only</td>
-<td>—</td>
-<td>SHOW PUBLICATIONS</td>
+<td>[MO-only] SHOW PUBLICATIONS</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Other/SHOW-Statements/show-roles/">SHOW ROLES</a></td>
 <td>🟣 MatrixOne-only</td>
-<td>—</td>
-<td>SHOW ROLES</td>
+<td>[MO-only] SHOW ROLES</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Other/SHOW-Statements/show-sequences/">SHOW SEQUENCES</a></td>
 <td>🟣 MatrixOne-only</td>
-<td>—</td>
-<td>SHOW SEQUENCES</td>
+<td>[MO-only] SHOW SEQUENCES</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Other/SHOW-Statements/show-stage/">SHOW STAGES</a></td>
 <td>🟣 MatrixOne-only</td>
-<td>—</td>
-<td>SHOW STAGES</td>
+<td>[MO-only] SHOW STAGES</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Other/SHOW-Statements/show-subscriptions/">SHOW SUBSCRIPTIONS</a></td>
 <td>🟣 MatrixOne-only</td>
-<td>—</td>
-<td>SHOW SUBSCRIPTIONS</td>
+<td>[MO-only] SHOW SUBSCRIPTIONS</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Other/SHOW-Statements/show-tables/">SHOW TABLES</a></td>
 <td>⚠️ Partial</td>
 <td>Result column is named 'name' rather than MySQL's 'Tables_in_<dbname>'.</td>
-<td>—</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Other/SHOW-Statements/show-variables/">SHOW VARIABLES</a></td>
 <td>⚠️ Partial</td>
 <td>System variables are mostly syntactic stubs; actual behaviour differs from MySQL</td>
-<td>—</td>
 </tr>
 <tr>
 <td><a href="../SQL-Reference/Other/use-database/">USE</a></td>
 <td>✅ Full</td>
 <td>—</td>
-<td>—</td>
 </tr>
 </tbody>
 </table>
-<h2 id="uncategorized">Uncategorized</h2>
+<h2 id="functions">Functions</h2>
 <table>
 <thead>
 <tr>
-<th>Statement</th>
-<th>MySQL Compat</th>
-<th>Differences from MySQL</th>
-<th>MatrixOne-only</th>
+<th>Status</th>
+<th>Count</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><a href="../SQL-Reference/SQL-Type/">Type of SQL Statements</a></td>
+<td>✅ Full</td>
+<td>111</td>
+</tr>
+<tr>
+<td>⚠️ Partial</td>
+<td>17</td>
+</tr>
+<tr>
 <td>🟣 MatrixOne-only</td>
+<td>36</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td><strong>164</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="functions_1">Functions</h3>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>MySQL Compat</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../Functions-and-Operators/matrixone-function-list/">Summary table of functions</a></td>
+<td>🟣 MatrixOne-only</td>
+<td>[MO-only] Listing page (includes MatrixOne-only functions).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="aggregate-functions">Aggregate Functions</h3>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>MySQL Compat</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../Functions-and-Operators/Aggregate-Functions/any-value/">ANY_VALUE</a></td>
+<td>✅ Full</td>
 <td>—</td>
-<td>Index page describing MatrixOne's own SQL statement taxonomy; not a MySQL-equivalent concept.</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Aggregate-Functions/avg/">AVG</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Aggregate-Functions/bit_and/">BIT_AND</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Aggregate-Functions/bit_or/">BIT_OR</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Aggregate-Functions/bit_xor/">BIT_XOR</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Aggregate-Functions/bitmap/">BITMAP function</a></td>
+<td>🟣 MatrixOne-only</td>
+<td>[MO-only] BITMAP aggregates are MatrixOne extensions.</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Aggregate-Functions/count/">COUNT</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Aggregate-Functions/group-concat/">GROUP_CONCAT</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Aggregate-Functions/max/">MAX</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Aggregate-Functions/median/">MEDIAN()</a></td>
+<td>🟣 MatrixOne-only</td>
+<td>[MO-only] MEDIAN aggregate is a MatrixOne-specific aggregate (no native MySQL equivalent).</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Aggregate-Functions/min/">MIN</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Aggregate-Functions/stddev_pop/">STDDEV_POP</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Aggregate-Functions/sum/">SUM</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Aggregate-Functions/var_pop/">VAR_POP</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Aggregate-Functions/variance/">VARIANCE</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h3 id="datetime">Datetime</h3>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>MySQL Compat</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../Functions-and-Operators/Datetime/addtime/">ADDTIME()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Datetime/convert-tz/">CONVERT_TZ()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Datetime/curdate/">CURDATE()</a></td>
+<td>⚠️ Partial</td>
+<td>curdate()+int returns days since 1970-01-01 rather than coercing both sides to integer and adding like MySQL.</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Datetime/current-timestamp/">CURRENT_TIMESTAMP()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Datetime/curtime/">CURTIME()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Datetime/date-add/">DATE_ADD()</a></td>
+<td>⚠️ Partial</td>
+<td>Date literals accept only 'yyyy-mm-dd' and 'yyyymmdd' formats; MySQL accepts wider variants.</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Datetime/date-format/">DATE_FORMAT()</a></td>
+<td>⚠️ Partial</td>
+<td>Date literals accept only 'yyyy-mm-dd' and 'yyyymmdd' formats; MySQL accepts wider variants.</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Datetime/date-sub/">DATE_SUB()</a></td>
+<td>⚠️ Partial</td>
+<td>Date literals accept only 'yyyy-mm-dd' and 'yyyymmdd' formats; MySQL accepts wider variants.</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Datetime/date/">DATE()</a></td>
+<td>⚠️ Partial</td>
+<td>Date literals accept only 'yyyy-mm-dd' and 'yyyymmdd' formats; MySQL accepts wider variants (yy-mm-dd, yy/mm/dd, yymmdd, etc.).</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Datetime/datediff/">DATEDIFF()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Datetime/day/">DAY()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Datetime/dayofyear/">DAYOFYEAR()</a></td>
+<td>⚠️ Partial</td>
+<td>Date literals accept only 'yyyy-mm-dd' and 'yyyymmdd' formats; MySQL accepts wider variants.</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Datetime/extract/">EXTRACT()</a></td>
+<td>⚠️ Partial</td>
+<td>Date literals accept only 'yyyy-mm-dd' and 'yyyymmdd' formats; MySQL accepts wider variants.</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Datetime/from-unixtime/">FROM_UNIXTIME()</a></td>
+<td>⚠️ Partial</td>
+<td>Date literals accept only 'yyyy-mm-dd' and 'yyyymmdd' formats; MySQL accepts wider variants.</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Datetime/get-format/">GET_FORMAT()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Datetime/hour/">HOUR()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Datetime/minute/">MINUTE()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Datetime/month/">MONTH()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Datetime/now/">NOW()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Datetime/second/">SECOND()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Datetime/str-to-date/">STR_TO_DATE()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Datetime/subtime/">SUBTIME()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Datetime/sysdate/">SYSDATE()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Datetime/time/">TIME()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Datetime/timediff/">TIMEDIFF()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Datetime/timestamp/">TIMESTAMP()</a></td>
+<td>⚠️ Partial</td>
+<td>MatrixOne TIMESTAMP range is '0001-01-01'–'9999-12-31' vs MySQL '1970-01-01'–'2038-01-19' (compat doc: Data Types).</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Datetime/timestampadd/">TIMESTAMPADD()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Datetime/timestampdiff/">TIMESTAMPDIFF()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Datetime/to-date/">TO_DATE()</a></td>
+<td>🟣 MatrixOne-only</td>
+<td>[MO-only] TO_DATE is a MatrixOne alias for MySQL STR_TO_DATE (compat doc: Date and Time Functions). MySQL's own TO_DATE does not exist.</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Datetime/to-days/">TO_DAYS()</a></td>
+<td>⚠️ Partial</td>
+<td>Two-digit year handling differs: MatrixOne completes '08-10-07' to year 0008; MySQL interprets it as 2008.<br/>Dates '0000-00-00' and '0000-01-01' raise an error in MatrixOne rather than being accepted as MySQL does.</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Datetime/to-seconds/">TO_SECONDS()</a></td>
+<td>⚠️ Partial</td>
+<td>Two-digit year handling differs: MatrixOne completes '08-10-07' to year 0008; MySQL interprets it as 2008.<br/>Dates '0000-00-00' and '0000-01-01' raise an error in MatrixOne rather than being accepted as MySQL does.</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Datetime/unix-timestamp/">UNIX_TIMESTAMP()</a></td>
+<td>⚠️ Partial</td>
+<td>Date literals accept only 'yyyy-mm-dd' and 'yyyymmdd' formats; MySQL accepts wider variants.</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Datetime/utc-timestamp/">UTC_TIMESTAMP()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Datetime/week/">WEEK()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Datetime/weekday/">WEEKDAY()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Datetime/year/">YEAR()</a></td>
+<td>⚠️ Partial</td>
+<td>Date literals accept only 'yyyy-mm-dd' and 'yyyymmdd' formats; MySQL accepts wider variants.<br/>[MO-only] TOYEAR() is a MatrixOne alias for YEAR() with no MySQL counterpart.</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Datetime/yearweek/">YEARWEEK()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h3 id="json">Json</h3>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>MySQL Compat</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../Functions-and-Operators/Json/jq/">JQ()</a></td>
+<td>🟣 MatrixOne-only</td>
+<td>[MO-only] MatrixOne integration of the jq JSON query language; no MySQL equivalent.</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Json/json-arrow/">JSON Arrow Operators -&gt; and -&gt;&gt;</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Json/json_extract_float64/">JSON_EXTRACT_FLOAT64()</a></td>
+<td>🟣 MatrixOne-only</td>
+<td>[MO-only] MatrixOne convenience wrapper returning FLOAT64 directly.</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Json/json_extract_string/">JSON_EXTRACT_FLOAT64()</a></td>
+<td>🟣 MatrixOne-only</td>
+<td>[MO-only] MatrixOne convenience wrapper returning a string result directly.</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Json/json_extract/">JSON_EXTRACT()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Json/json_quote/">JSON_QUOTE()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Json/json_row/">JSON_ROW()</a></td>
+<td>🟣 MatrixOne-only</td>
+<td>[MO-only] MatrixOne-only; no MySQL equivalent.</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Json/json_set/">JSON_SET()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Json/json_unquote/">JSON_UNQUOTE()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Json/try_jq/">TRY_JQ()</a></td>
+<td>🟣 MatrixOne-only</td>
+<td>[MO-only] MatrixOne integration of the jq JSON query language; no MySQL equivalent.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="mathematical">Mathematical</h3>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>MySQL Compat</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../Functions-and-Operators/Mathematical/abs/">ABS()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Mathematical/acos/">ACOS()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Mathematical/atan/">ATAN()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Mathematical/ceil/">CEIL()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Mathematical/ceiling/">CEILING()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Mathematical/cos/">COS()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Mathematical/cot/">COT()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Mathematical/crc32/">CRC32()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Mathematical/exp/">EXP()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Mathematical/floor/">FLOOR()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Mathematical/ln/">LN()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Mathematical/log/">LOG()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Mathematical/log10/">LOG10()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Mathematical/log2/">LOG2()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Mathematical/pi/">PI()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Mathematical/power/">POWER()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Mathematical/rand/">RAND()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Mathematical/round/">ROUND()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Mathematical/sin/">SIN()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Mathematical/sinh/">SINH()</a></td>
+<td>🟣 MatrixOne-only</td>
+<td>[MO-only] MySQL 8.0 has no hyperbolic trigonometric functions; SINH() is a MatrixOne extension.</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Mathematical/tan/">TAN()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h3 id="other_1">Other</h3>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>MySQL Compat</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../Functions-and-Operators/Other/load_file/">LOAD_FILE()</a></td>
+<td>🟣 MatrixOne-only</td>
+<td>[MO-only] LOAD_FILE() takes a DATALINK value (file:// or stage:// URL) rather than MySQL's plain filesystem path argument; semantics differ.</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Other/sample/">SAMPLE Sampling Function</a></td>
+<td>🟣 MatrixOne-only</td>
+<td>[MO-only] SAMPLE() is a MatrixOne sampling operator; no MySQL equivalent.</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Other/save_file/">SAVE_FILE()</a></td>
+<td>🟣 MatrixOne-only</td>
+<td>[MO-only] SAVE_FILE() writes to a MatrixOne stage; no MySQL equivalent.</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Other/serial_extract/">SERIAL_EXTRACT function</a></td>
+<td>🟣 MatrixOne-only</td>
+<td>[MO-only] SERIAL_EXTRACT() is a MatrixOne internal serial-column extractor.</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Other/sleep/">SLEEP()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Other/stage_list/">STAGE_LIST()</a></td>
+<td>🟣 MatrixOne-only</td>
+<td>[MO-only] STAGE_LIST() lists MatrixOne stage contents.</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Other/uuid/">UUID()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h3 id="string">String</h3>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>MySQL Compat</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../Functions-and-Operators/String/aes_decrypt/">AES_DECRYPT()</a></td>
+<td>⚠️ Partial</td>
+<td>MatrixOne supports only aes-128-ecb and aes-256-cbc block modes; MySQL 8.0 also supports the full set of ECB/CBC/CFB/OFB variants at multiple key sizes.<br/>MatrixOne AES_DECRYPT does not accept the optional kdf_name / salt / info KDF arguments present in MySQL 8.0.</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/String/aes_encrypt/">AES_ENCRYPT()</a></td>
+<td>⚠️ Partial</td>
+<td>MatrixOne supports only aes-128-ecb and aes-256-cbc block modes; MySQL 8.0 also supports the full set of ECB/CBC/CFB/OFB variants at multiple key sizes.<br/>MatrixOne AES_ENCRYPT does not accept the optional kdf_name / salt / info KDF arguments present in MySQL 8.0.</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/String/bin/">BIN()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/String/bit-length/">BIT_LENGTH()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/String/char-length/">CHAR_LENGTH()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/String/concat-ws/">CONCAT_WS()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/String/concat/">CONCAT()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/String/elt/">ELT()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/String/empty/">EMPTY()</a></td>
+<td>🟣 MatrixOne-only</td>
+<td>[MO-only] EMPTY() is a MatrixOne helper returning whether a string is empty.</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/String/endswith/">ENDSWITH()</a></td>
+<td>🟣 MatrixOne-only</td>
+<td>[MO-only] ENDSWITH() is a MatrixOne helper; MySQL has no direct equivalent.</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/String/field/">FIELD()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/String/find-in-set/">FIND_IN_SET()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/String/format/">FORMAT()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/String/from_base64/">FROM_BASE64()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/String/hex/">HEX()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/String/instr/">INSTR()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/String/lcase/">LCASE()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/String/left/">LEFT()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/String/length/">LENGTH()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/String/locate/">LOCATE()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/String/lower/">LOWER()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/String/lpad/">LPAD()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/String/ltrim/">LTRIM()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/String/md5/">MD5()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/String/Regular-Expressions/not-regexp/">NOT REGEXP</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/String/oct/">OCT(N)</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/String/Regular-Expressions/regexp-instr/">REGEXP_INSTR()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/String/Regular-Expressions/regexp-like/">REGEXP_LIKE()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/String/Regular-Expressions/regexp-replace/">REGEXP_REPLACE()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/String/Regular-Expressions/regexp-substr/">REGEXP_SUBSTR()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/String/Regular-Expressions/Regular-Expression-Functions-Overview/">Regular Expressions Overview</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/String/repeat/">REPEAT()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/String/reverse/">REVERSE()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/String/rpad/">RPAD()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/String/rtrim/">RTRIM()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/String/sha1/">SHA1()/SHA()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/String/sha2/">SHA2()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/String/space/">SPACE()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/String/split_part/">SPLIT_PART()</a></td>
+<td>🟣 MatrixOne-only</td>
+<td>[MO-only] SPLIT_PART() is inherited from PostgreSQL; no MySQL equivalent.</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/String/startswith/">STARTSWITH()</a></td>
+<td>🟣 MatrixOne-only</td>
+<td>[MO-only] STARTSWITH() is a MatrixOne helper; MySQL has no direct equivalent.</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/String/strcmp/">STRCMP()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/String/substring-index/">SUBSTRING_INDEX()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/String/substring/">SUBSTRING()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/String/to_base64/">TO_BASE64()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/String/trim/">TRIM()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/String/ucase/">UCASE()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/String/unhex/">UNHEX()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/String/upper/">UPPER()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h3 id="system-operations">System Operations</h3>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>MySQL Compat</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../Functions-and-Operators/system-ops/current_role_name/">CURRENT_ROLE_NAME()</a></td>
+<td>🟣 MatrixOne-only</td>
+<td>[MO-only] MatrixOne multi-account/role system management function (compat doc: System Management Functions).</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/system-ops/current_role/">CURRENT_ROLE()</a></td>
+<td>⚠️ Partial</td>
+<td>Returns a single active role name; MySQL 8.0 can return multiple comma-separated active roles or 'NONE'.</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/system-ops/current_user_name/">CURRENT_USER_NAME()</a></td>
+<td>🟣 MatrixOne-only</td>
+<td>[MO-only] MatrixOne multi-account/role system management function (compat doc: System Management Functions).</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/system-ops/current_user/">CURRENT_USER, CURRENT_USER()</a></td>
+<td>⚠️ Partial</td>
+<td>Return format is 'username@0.0.0.0' rather than MySQL's 'username@host' with a resolved client host.</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/system-ops/purge_log/">PURGE_LOG()</a></td>
+<td>🟣 MatrixOne-only</td>
+<td>[MO-only] MatrixOne multi-account/role system management function (compat doc: System Management Functions).</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/system-ops/version/">VERSION</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h3 id="table">Table</h3>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>MySQL Compat</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../Functions-and-Operators/Table/generate_series/">GENERATE_SERIES()</a></td>
+<td>🟣 MatrixOne-only</td>
+<td>[MO-only] Table-valued function; no direct MySQL equivalent.</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Table/unnest/">UNNEST()</a></td>
+<td>🟣 MatrixOne-only</td>
+<td>[MO-only] Table-valued function; no direct MySQL equivalent.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="vector">Vector</h3>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>MySQL Compat</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../Functions-and-Operators/Vector/arithmetic/">Arithmetic operators</a></td>
+<td>🟣 MatrixOne-only</td>
+<td>[MO-only] Vector type and related distance/norm/clustering functions are MatrixOne extensions (compat doc: Data Types — \"MatrixOne supports vector types\").</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Vector/cluster_centers/">CLUSTER_CENTERS</a></td>
+<td>🟣 MatrixOne-only</td>
+<td>[MO-only] Vector type and related distance/norm/clustering functions are MatrixOne extensions (compat doc: Data Types — \"MatrixOne supports vector types\").</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Vector/cosine_distance/">COSINE_DISTANCE()</a></td>
+<td>🟣 MatrixOne-only</td>
+<td>[MO-only] Vector type and related distance/norm/clustering functions are MatrixOne extensions (compat doc: Data Types — \"MatrixOne supports vector types\").</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Vector/cosine_similarity/">cosine_similarity()</a></td>
+<td>🟣 MatrixOne-only</td>
+<td>[MO-only] Vector type and related distance/norm/clustering functions are MatrixOne extensions (compat doc: Data Types — \"MatrixOne supports vector types\").</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Vector/inner_product/">inner_product()</a></td>
+<td>🟣 MatrixOne-only</td>
+<td>[MO-only] Vector type and related distance/norm/clustering functions are MatrixOne extensions (compat doc: Data Types — \"MatrixOne supports vector types\").</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Vector/l1_norm/">l1_norm()</a></td>
+<td>🟣 MatrixOne-only</td>
+<td>[MO-only] Vector type and related distance/norm/clustering functions are MatrixOne extensions (compat doc: Data Types — \"MatrixOne supports vector types\").</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Vector/l2_distance/">L2_DISTANCE()</a></td>
+<td>🟣 MatrixOne-only</td>
+<td>[MO-only] Vector type and related distance/norm/clustering functions are MatrixOne extensions (compat doc: Data Types — \"MatrixOne supports vector types\").</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Vector/l2_norm/">l2_norm()</a></td>
+<td>🟣 MatrixOne-only</td>
+<td>[MO-only] Vector type and related distance/norm/clustering functions are MatrixOne extensions (compat doc: Data Types — \"MatrixOne supports vector types\").</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Vector/misc/">Mathematical class functions</a></td>
+<td>🟣 MatrixOne-only</td>
+<td>[MO-only] Vector type and related distance/norm/clustering functions are MatrixOne extensions (compat doc: Data Types — \"MatrixOne supports vector types\").</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Vector/normalize_l2/">NORMALIZE_L2()</a></td>
+<td>🟣 MatrixOne-only</td>
+<td>[MO-only] Vector type and related distance/norm/clustering functions are MatrixOne extensions (compat doc: Data Types — \"MatrixOne supports vector types\").</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Vector/subvector/">SUBVECTOR()</a></td>
+<td>🟣 MatrixOne-only</td>
+<td>[MO-only] Vector type and related distance/norm/clustering functions are MatrixOne extensions (compat doc: Data Types — \"MatrixOne supports vector types\").</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Vector/vector_dims/">vector_dims()</a></td>
+<td>🟣 MatrixOne-only</td>
+<td>[MO-only] Vector type and related distance/norm/clustering functions are MatrixOne extensions (compat doc: Data Types — \"MatrixOne supports vector types\").</td>
+</tr>
+</tbody>
+</table>
+<h3 id="window-functions">Window Functions</h3>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>MySQL Compat</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../Functions-and-Operators/Window-Functions/cume_dist/">CUME_DIST()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Window-Functions/dense_rank/">DENSE_RANK()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Window-Functions/percent_rank/">PERCENT_RANK()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Window-Functions/rank/">RANK()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Functions-and-Operators/Window-Functions/row_number/">ROW_NUMBER()</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h2 id="operators">Operators</h2>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>✅ Full</td>
+<td>1</td>
+</tr>
+<tr>
+<td>❓ Unknown</td>
+<td>61</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td><strong>62</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="operators_1">Operators</h3>
+<table>
+<thead>
+<tr>
+<th>Operator</th>
+<th>MySQL Compat</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../Operators/interval/">interval</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h3 id="operators_2">operators</h3>
+<table>
+<thead>
+<tr>
+<th>Operator</th>
+<th>MySQL Compat</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../Operators/operators/comparison-functions-and-operators/null-safe-equal/">&lt;=&gt;</a></td>
+<td>✅ Full</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Operators/operators/arithmetic-operators/addition/">addition</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Operators/operators/logical-operators/and/">and</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Operators/operators/arithmetic-operators/arithmetic-operators-overview/">arithmetic-operators-overview</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Operators/operators/comparison-functions-and-operators/assign-equal/">assign-equal</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Operators/operators/assignment-operators/assignment-operators-overview/">assignment-operators-overview</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Operators/operators/comparison-functions-and-operators/between/">between</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Operators/operators/cast-functions-and-operators/binary/">binary</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Operators/operators/bit-functions-and-operators/bit-functions-and-operators-overview/">bit-functions-and-operators-overview</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Operators/operators/bit-functions-and-operators/bitwise-and/">bitwise-and</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Operators/operators/bit-functions-and-operators/bitwise-inversion/">bitwise-inversion</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Operators/operators/bit-functions-and-operators/bitwise-or/">bitwise-or</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Operators/operators/bit-functions-and-operators/bitwise-xor/">bitwise-xor</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Operators/operators/flow-control-functions/case-when/">case-when</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Operators/operators/cast-functions-and-operators/cast/">cast</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Operators/operators/cast-functions-and-operators/cast-functions-and-operators-overview/">cast-functions-and-operators-overview</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Operators/operators/comparison-functions-and-operators/coalesce/">coalesce</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Operators/operators/comparison-functions-and-operators/comparison-functions-and-operators-overview/">comparison-functions-and-operators-overview</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Operators/operators/cast-functions-and-operators/convert/">convert</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Operators/operators/cast-functions-and-operators/decode/">decode</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Operators/operators/arithmetic-operators/div/">div</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Operators/operators/arithmetic-operators/division/">division</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Operators/operators/cast-functions-and-operators/encode/">encode</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Operators/operators/assignment-operators/equal/">equal</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Operators/operators/flow-control-functions/flow-control-functions-overview/">flow-control-functions-overview</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Operators/operators/flow-control-functions/function_if/">function_if</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Operators/operators/flow-control-functions/function_ifnull/">function_ifnull</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Operators/operators/comparison-functions-and-operators/function_interval/">function_interval</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Operators/operators/comparison-functions-and-operators/function_isnull/">function_isnull</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Operators/operators/comparison-functions-and-operators/function_least/">function_least</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Operators/operators/flow-control-functions/function_nullif/">function_nullif</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Operators/operators/comparison-functions-and-operators/function_strcmp/">function_strcmp</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Operators/operators/comparison-functions-and-operators/greater-than/">greater-than</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Operators/operators/comparison-functions-and-operators/greater-than-or-equal/">greater-than-or-equal</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Operators/operators/comparison-functions-and-operators/ilike/">ilike</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Operators/operators/comparison-functions-and-operators/in/">in</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Operators/operators/comparison-functions-and-operators/is/">is</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Operators/operators/comparison-functions-and-operators/is-not/">is-not</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Operators/operators/comparison-functions-and-operators/is-not-null/">is-not-null</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Operators/operators/comparison-functions-and-operators/is-null/">is-null</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Operators/operators/bit-functions-and-operators/left-shift/">left-shift</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Operators/operators/comparison-functions-and-operators/less-than/">less-than</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Operators/operators/comparison-functions-and-operators/less-than-or-equal/">less-than-or-equal</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Operators/operators/comparison-functions-and-operators/like/">like</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Operators/operators/logical-operators/logical-operators-overview/">logical-operators-overview</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Operators/operators/arithmetic-operators/minus/">minus</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Operators/operators/arithmetic-operators/mod/">mod</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Operators/operators/arithmetic-operators/multiplication/">multiplication</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Operators/operators/logical-operators/not/">not</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Operators/operators/comparison-functions-and-operators/not-between/">not-between</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Operators/operators/comparison-functions-and-operators/not-equal/">not-equal</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Operators/operators/comparison-functions-and-operators/not-in/">not-in</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Operators/operators/comparison-functions-and-operators/not-like/">not-like</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Operators/operators/operator-precedence/">operator-precedence</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Operators/operators/operators/">operators</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Operators/operators/logical-operators/or/">or</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Operators/operators/bit-functions-and-operators/right-shift/">right-shift</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Operators/operators/cast-functions-and-operators/serial/">serial</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Operators/operators/cast-functions-and-operators/serial_full/">serial_full</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Operators/operators/arithmetic-operators/unary-minus/">unary-minus</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Operators/operators/logical-operators/xor/">xor</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h2 id="data-types">Data Types</h2>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>⚠️ Partial</td>
+<td>2</td>
+</tr>
+<tr>
+<td>❓ Unknown</td>
+<td>10</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td><strong>12</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="data-types_1">Data Types</h3>
+<table>
+<thead>
+<tr>
+<th>Data Type</th>
+<th>MySQL Compat</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../Data-Types/blob-text-type/">blob-text-type</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Data-Types/data-type-conversion/">data-type-conversion</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Data-Types/data-types/">data-types</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Data-Types/datalink-type/">datalink-type</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Data-Types/enum-type/">ENUM Type</a></td>
+<td>⚠️ Partial</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Data-Types/fixed-point-types/">fixed-point-types</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Data-Types/json-type/">json-type</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Data-Types/set-type/">SET Type</a></td>
+<td>⚠️ Partial</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Data-Types/uuid-type/">uuid-type</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Data-Types/vector-type/">vector-type</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h3 id="datetime-data-types">Date/Time Data Types</h3>
+<table>
+<thead>
+<tr>
+<th>Data Type</th>
+<th>MySQL Compat</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../Data-Types/date-time-data-types/timestamp-initialization/">timestamp-initialization</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Data-Types/date-time-data-types/year-type/">year-type</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h2 id="language-structure">Language Structure</h2>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>❓ Unknown</td>
+<td>2</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td><strong>2</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="language-structure_1">Language Structure</h3>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>MySQL Compat</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../Language-Structure/comment/">comment</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../Language-Structure/keywords/">keywords</a></td>
+<td>❓ Unknown</td>
+<td>—</td>
 </tr>
 </tbody>
 </table>
@@ -14443,7 +16170,7 @@ source page.</p>
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../SQL-Reference/SQL-Type/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Type of SQL Statements" rel="prev">
+          <a href="../../Security/audit/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Security Audit" rel="prev">
             <div class="md-footer__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
             </div>
@@ -14452,20 +16179,20 @@ source page.</p>
                 Previous
               </span>
               <div class="md-ellipsis">
-                Type of SQL Statements
+                Security Audit
               </div>
             </div>
           </a>
         
         
           
-          <a href="../SQL-Reference/Data-Definition-Language/create-database/" class="md-footer__link md-footer__link--next" aria-label="Next: CREATE DATABASE" rel="next">
+          <a href="../Variable/system-variables/system-variables-overview/" class="md-footer__link md-footer__link--next" aria-label="Next: System Variables Overview" rel="next">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                CREATE DATABASE
+                System Variables Overview
               </div>
             </div>
             <div class="md-footer__button md-icon">
