@@ -5,11 +5,6 @@ mysql_compat: full
 
 # MySQL Compatibility Matrix
 
-> Auto-generated from `mysql_compat` frontmatter across
-> `docs/MatrixOne/Reference/SQL-Reference/**`, `docs/MatrixOne/Reference/Functions-and-Operators/**`, `docs/MatrixOne/Reference/Operators/**`, `docs/MatrixOne/Reference/Data-Types/**`, `docs/MatrixOne/Reference/Language-Structure/**`.
-> Do not edit by hand — re-run `node scripts/generate-compat-matrix.js`
-> after updating any source page.
-
 ## Summary
 
 | Status | Count |
