@@ -24,7 +24,7 @@ MCP servers, etc.) can consume the MatrixOne docs without parsing HTML:
    agents can stuff the full docs into a single context window when needed.
 
 Override the base URL via `MATRIXONE_DOCS_BASE_URL` env var. Defaults to
-`https://docs.matrixorigin.io`.
+`https://docs.matrixorigin.cn`.
 """
 
 from __future__ import annotations
@@ -36,7 +36,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Iterable
 
-BASE_URL_DEFAULT = "https://docs.matrixorigin.io"
+BASE_URL_DEFAULT = "https://docs.matrixorigin.cn"
 DOC_ROOT_REL = Path("MatrixOne")
 COMPAT_MATRIX_REL = "MatrixOne/Reference/mysql-compatibility-matrix.md"
 SQL_REF_ROOT_REL = Path("MatrixOne/Reference/SQL-Reference")
