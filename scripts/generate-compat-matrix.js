@@ -71,19 +71,11 @@ function categoryOf(relPath) {
   return parts[0]
 }
 
-function cleanRelPath(sourceDir, relPath) {
-  if (sourceDir === 'Operators') {
-    const parts = relPath.split('/')
-    if (parts[0] === 'operators') return parts.slice(1).join('/')
-  }
-  return relPath
-}
-
 /** Derive a stable machine-readable ID from a source-relative path. */
 function entryId(sourceDir, relPath) {
   const prefix = SOURCE_ID_PREFIX[sourceDir] || sourceDir.toLowerCase()
   // Strip .md, replace path separators and dashes with dots
-  const slug = cleanRelPath(sourceDir, relPath)
+  const slug = relPath
     .replace(/\.md$/, '')
     .replace(/[\/\\]/g, '.')
     .replace(/-/g, '_')
@@ -158,7 +150,7 @@ async function scanSource(sourceDir) {
     const rel = path.relative(sourceRoot, file)
     const raw = readFileSync(file, 'utf-8')
     const fm = parseFrontmatter(raw) || {}
-    const displayRel = cleanRelPath(sourceDir, rel)
+    const displayRel = rel
     rows.push({
       file,
       rel: displayRel,
