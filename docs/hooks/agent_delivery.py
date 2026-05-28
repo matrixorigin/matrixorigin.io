@@ -203,6 +203,15 @@ def _base_url() -> str:
     return os.environ.get("MATRIXONE_DOCS_BASE_URL", BASE_URL_DEFAULT).rstrip("/")
 
 
+def _page_url(base: str, rel_from_docs: str) -> str:
+    """Convert a source-relative path to a clean documentation URL.
+    Strips .md and appends / for mkdocs clean URLs.
+    """
+    if rel_from_docs.endswith(".md"):
+        rel_from_docs = rel_from_docs[:-3] + "/"
+    return f"{base}/{rel_from_docs}"
+
+
 def _iter_source_pages(docs_dir: Path) -> Iterable[Path]:
     for path in sorted((docs_dir / DOC_ROOT_REL).rglob("*.md")):
         yield path
@@ -226,13 +235,14 @@ def on_post_build(config, **_kwargs):
 
     # 2. llms.txt
     base = _base_url()
-    compat_url = f"{base}/{COMPAT_MATRIX_REL}"
+    compat_url = _page_url(base, COMPAT_MATRIX_REL)
     built_at = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     llms: list[str] = ["# MatrixOne", ""]
     llms.append(f"> {SYSTEM_PROMPT_BLOCK}")
     llms.append("")
     llms.append(f"- **MySQL Compatibility Matrix**: {compat_url}")
     llms.append(f"- **Per-page markdown mirror**: append `.md` to any doc URL under {base}/")
+    llms.append(f"- **MySQL Compatibility Matrix (JSON)**: {base}/MatrixOne/Reference/mysql-compatibility-matrix.json")
     llms.append(f"- **Full SQL reference (flat index, all statements)**: {base}/llms-sql.txt")
     llms.append(f"- **Functions reference (flat index)**: {base}/llms-func.txt")
     llms.append(f"- **Operators reference (flat index)**: {base}/llms-op.txt")
@@ -249,7 +259,7 @@ def on_post_build(config, **_kwargs):
     for section_title, entries in FEATURED_PAGES:
         llms.append(f"## {section_title}")
         for rel_path, override in entries:
-            url = f"{base}/{rel_path}"
+            url = _page_url(base, rel_path)
             src_path = docs_dir / rel_path
             title = _page_title(src_path) or rel_path
             desc = override or _page_description(src_path) or ""
@@ -345,7 +355,7 @@ def _build_sql_index(docs_dir: Path, base: str, built_at: str) -> list[str]:
         "`[mo-only]` MatrixOne-only, no MySQL counterpart · "
         "`[none]` not supported · `[unknown]` frontmatter missing.",
         "",
-        f"Compatibility matrix (grouped table view): {base}/{COMPAT_MATRIX_REL}",
+        f"Compatibility matrix (grouped table view): {_page_url(base, COMPAT_MATRIX_REL)}",
         "",
     ]
     if not root.exists():
@@ -364,7 +374,7 @@ def _build_sql_index(docs_dir: Path, base: str, built_at: str) -> list[str]:
         title = fm.get("title") or _page_title(src) or rel_to_ref.as_posix()
         desc = _page_description(src) or ""
         rel_from_docs = src.relative_to(docs_dir).as_posix()
-        url = f"{base}/{rel_from_docs}"
+        url = _page_url(base, rel_from_docs)
         row = (title, url, compat, desc)
         if category in buckets:
             buckets[category].append(row)
@@ -410,7 +420,7 @@ def _build_func_index(docs_dir: Path, base: str, built_at: str) -> list[str]:
         "`[mo-only]` MatrixOne-only, no MySQL counterpart · "
         "`[unknown]` frontmatter missing.",
         "",
-        f"Compatibility matrix (grouped table view): {base}/{COMPAT_MATRIX_REL}",
+        f"Compatibility matrix (grouped table view): {_page_url(base, COMPAT_MATRIX_REL)}",
         "",
     ]
     if not root.exists():
@@ -429,7 +439,7 @@ def _build_func_index(docs_dir: Path, base: str, built_at: str) -> list[str]:
         title = fm.get("title") or _page_title(src) or rel_to_ref.as_posix()
         desc = _page_description(src) or ""
         rel_from_docs = src.relative_to(docs_dir).as_posix()
-        url = f"{base}/{rel_from_docs}"
+        url = _page_url(base, rel_from_docs)
         row = (title, url, compat, desc)
         if category in buckets:
             buckets[category].append(row)
@@ -473,7 +483,7 @@ def _build_op_index(docs_dir: Path, base: str, built_at: str) -> list[str]:
         "`[mo-only]` MatrixOne-only, no MySQL counterpart · "
         "`[unknown]` frontmatter missing.",
         "",
-        f"Compatibility matrix (grouped table view): {base}/{COMPAT_MATRIX_REL}",
+        f"Compatibility matrix (grouped table view): {_page_url(base, COMPAT_MATRIX_REL)}",
         "",
     ]
     if not root.exists():
@@ -496,7 +506,7 @@ def _build_op_index(docs_dir: Path, base: str, built_at: str) -> list[str]:
         title = fm.get("title") or _page_title(src) or rel_to_ref.as_posix()
         desc = _page_description(src) or ""
         rel_from_docs = src.relative_to(docs_dir).as_posix()
-        url = f"{base}/{rel_from_docs}"
+        url = _page_url(base, rel_from_docs)
         row = (title, url, compat, desc)
         if category in buckets:
             buckets[category].append(row)
