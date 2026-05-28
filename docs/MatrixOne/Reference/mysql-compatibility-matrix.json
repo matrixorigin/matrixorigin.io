@@ -1,0 +1,3156 @@
+{
+  "generated_at": "2026-05-27T10:50:42.176Z",
+  "summary": {
+    "total": 367,
+    "full": 141,
+    "partial": 60,
+    "none": 0,
+    "mo_only": 92,
+    "unknown": 74
+  },
+  "sections": [
+    {
+      "id": "sql-reference",
+      "label": "SQL Statements",
+      "summary": {
+        "full": 30,
+        "partial": 43,
+        "none": 0,
+        "mo_only": 56,
+        "unknown": 0
+      },
+      "categories": [
+        {
+          "id": "_root",
+          "label": "SQL Statements",
+          "entries": [
+            {
+              "id": "sql.sql_type",
+              "title": "Type of SQL Statements",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/SQL-Type.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] Index page describing MatrixOne's own SQL statement taxonomy; not a MySQL-equivalent concept."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "data_control_language",
+          "label": "Data Control Language (DCL)",
+          "entries": [
+            {
+              "id": "sql.data_control_language.alter_account",
+              "title": "ALTER ACCOUNT",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Control-Language/alter-account.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] ALTER ACCOUNT"
+              ]
+            },
+            {
+              "id": "sql.data_control_language.alter_user",
+              "title": "ALTER USER",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Control-Language/alter-user.md",
+              "compat": "partial",
+              "notes": [
+                "Only ALTER USER can change passwords; account-limit clauses not honoured"
+              ]
+            },
+            {
+              "id": "sql.data_control_language.create_account",
+              "title": "CREATE ACCOUNT",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Control-Language/create-account.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] CREATE ACCOUNT … ADMIN_NAME …"
+              ]
+            },
+            {
+              "id": "sql.data_control_language.create_role",
+              "title": "CREATE ROLE",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Control-Language/create-role.md",
+              "compat": "partial",
+              "notes": [
+                "Role exists inside MatrixOne's multi-account model; roles are account-scoped, not server-global as in MySQL."
+              ]
+            },
+            {
+              "id": "sql.data_control_language.create_user",
+              "title": "CREATE USER",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Control-Language/create-user.md",
+              "compat": "partial",
+              "notes": [
+                "IDENTIFIED BY is the only supported password form; IDENTIFIED WITH plugins not supported",
+                "Connection-IP whitelists and connection-limit clauses not supported",
+                "COMMENT and ATTRIBUTE clauses are accepted syntactically but not honoured",
+                "User identifier is a bare username scoped to the current account; MySQL uses 'user'@'host' tuples"
+              ]
+            },
+            {
+              "id": "sql.data_control_language.drop_account",
+              "title": "DROP ACCOUNT",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Control-Language/drop-account.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] DROP ACCOUNT"
+              ]
+            },
+            {
+              "id": "sql.data_control_language.drop_role",
+              "title": "DROP ROLE",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Control-Language/drop-role.md",
+              "compat": "partial",
+              "notes": [
+                "Role exists inside MatrixOne's multi-account model; roles are account-scoped, not server-global as in MySQL."
+              ]
+            },
+            {
+              "id": "sql.data_control_language.drop_user",
+              "title": "DROP USER",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Control-Language/drop-user.md",
+              "compat": "partial",
+              "notes": [
+                "User identifier is a bare username scoped to the current account; MySQL uses 'user'@'host' tuples."
+              ]
+            },
+            {
+              "id": "sql.data_control_language.grant",
+              "title": "GRANT",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Control-Language/grant.md",
+              "compat": "partial",
+              "notes": [
+                "Authorization logic differs from MySQL — MatrixOne evaluates via its role/account model",
+                "User identifier is a bare username scoped to the current account; MySQL uses 'user'@'host' tuples",
+                "[MO-only] `GRANT ... ON ACCOUNT *` — account-level privileges have no MySQL counterpart",
+                "[MO-only] `GRANT ... ON DATABASE *` — MatrixOne-specific database-level grant target"
+              ]
+            },
+            {
+              "id": "sql.data_control_language.revoke",
+              "title": "REVOKE",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Control-Language/revoke.md",
+              "compat": "partial",
+              "notes": [
+                "Recovery logic differs from MySQL — privileges return to the role/account graph",
+                "User identifier is a bare username scoped to the current account; MySQL uses 'user'@'host' tuples",
+                "[MO-only] `REVOKE ... ON ACCOUNT *` — account-level privileges have no MySQL counterpart",
+                "[MO-only] `REVOKE ... ON DATABASE *` — MatrixOne-specific database-level revoke target"
+              ]
+            },
+            {
+              "id": "sql.data_control_language.role_rule",
+              "title": "Role Rewrite Rules (ALTER ROLE ... RULE / SHOW RULES)",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Control-Language/role-rule.md",
+              "compat": "mo_only",
+              "notes": []
+            }
+          ]
+        },
+        {
+          "id": "data_definition_language",
+          "label": "Data Definition Language (DDL)",
+          "entries": [
+            {
+              "id": "sql.data_definition_language.alter_pitr",
+              "title": "ALTER PITR",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/alter-pitr.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] ALTER PITR"
+              ]
+            },
+            {
+              "id": "sql.data_definition_language.alter_publication",
+              "title": "ALTER PUBLICATION",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/alter-publication.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] ALTER PUBLICATION"
+              ]
+            },
+            {
+              "id": "sql.data_definition_language.alter_reindex",
+              "title": "ALTER REINDEX",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/alter-reindex.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] ALTER … REINDEX (rebuild vector index)"
+              ]
+            },
+            {
+              "id": "sql.data_definition_language.alter_sequence",
+              "title": "ALTER SEQUENCE",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/alter-sequence.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] ALTER SEQUENCE"
+              ]
+            },
+            {
+              "id": "sql.data_definition_language.alter_stage",
+              "title": "ALTER STAGE",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/alter-stage.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] ALTER STAGE"
+              ]
+            },
+            {
+              "id": "sql.data_definition_language.alter_table",
+              "title": "ALTER TABLE",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/alter-table.md",
+              "compat": "partial",
+              "notes": [
+                "CHANGE [COLUMN], MODIFY [COLUMN], RENAME COLUMN, ADD/DROP PRIMARY KEY, ALTER COLUMN ORDER BY cannot be combined with other clauses in the same ALTER TABLE",
+                "Temporary tables cannot be altered",
+                "Tables created with CLUSTER BY cannot be altered",
+                "ALTER TABLE does not support PARTITION operations"
+              ]
+            },
+            {
+              "id": "sql.data_definition_language.alter_view",
+              "title": "ALTER VIEW",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/alter-view.md",
+              "compat": "partial",
+              "notes": [
+                "Inherits CREATE VIEW limitations: no WITH CHECK OPTION, no DEFINER = user clause"
+              ]
+            },
+            {
+              "id": "sql.data_definition_language.create_clone",
+              "title": "CREATE CLONE",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-clone.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] CREATE TABLE … CLONE db.table [TO ACCOUNT …]"
+              ]
+            },
+            {
+              "id": "sql.data_definition_language.create_cluster_table",
+              "title": "CREATE CLUSTER TABLE",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-cluster-table.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] CREATE CLUSTER TABLE"
+              ]
+            },
+            {
+              "id": "sql.data_definition_language.create_database",
+              "title": "CREATE DATABASE",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-database.md",
+              "compat": "partial",
+              "notes": [
+                "Chinese database names not supported",
+                "Only utf8mb4 / utf8mb4_bin are supported and cannot be changed",
+                "ENCRYPTION clause accepted but inert"
+              ]
+            },
+            {
+              "id": "sql.data_definition_language.create_dynamic_table",
+              "title": "CREATE DYNAMIC TABLE",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-dynamic-table.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] CREATE DYNAMIC TABLE"
+              ]
+            },
+            {
+              "id": "sql.data_definition_language.create_external_table",
+              "title": "CREATE EXTERNAL TABLE",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-external-table.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] CREATE EXTERNAL TABLE"
+              ]
+            },
+            {
+              "id": "sql.data_definition_language.create_fulltext_index",
+              "title": "Create Fulltext Index",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-fulltext-index.md",
+              "compat": "partial",
+              "notes": [
+                "MatrixOne full-text index is implemented on TAE storage with CJK/English optimizations; MySQL implements it on InnoDB/MyISAM with different stopword and parser semantics."
+              ]
+            },
+            {
+              "id": "sql.data_definition_language.create_function_python",
+              "title": "CREATE FUNCTION...LANGUAGE PYTHON AS",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-function-python.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] CREATE FUNCTION … LANGUAGE PYTHON AS …"
+              ]
+            },
+            {
+              "id": "sql.data_definition_language.create_function_sql",
+              "title": "CREATE FUNCTION...LANGUAGE SQL AS",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-function-sql.md",
+              "compat": "partial",
+              "notes": [
+                "Only LANGUAGE SQL and LANGUAGE PYTHON are supported; usage differs significantly from MySQL stored functions"
+              ]
+            },
+            {
+              "id": "sql.data_definition_language.create_index",
+              "title": "CREATE INDEX",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-index.md",
+              "compat": "partial",
+              "notes": [
+                "Secondary indexes are syntactically accepted but do not yet provide query speed-up",
+                "Foreign keys do not support ON CASCADE DELETE",
+                "[MO-only] USING IVFFLAT — vector index for approximate nearest neighbour",
+                "[MO-only] USING HNSW — vector index for approximate nearest neighbour",
+                "[MO-only] USING MASTER — composite master index"
+              ]
+            },
+            {
+              "id": "sql.data_definition_language.create_index_hnsw",
+              "title": "CREATE INDEX USING HNSW",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-index-hnsw.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] CREATE INDEX … USING HNSW"
+              ]
+            },
+            {
+              "id": "sql.data_definition_language.create_index_ivfflat",
+              "title": "CREATE INDEX USING IVFFLAT",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-index-ivfflat.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] CREATE INDEX … USING IVFFLAT"
+              ]
+            },
+            {
+              "id": "sql.data_definition_language.create_pitr",
+              "title": "CREATE PITR",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-pitr.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] CREATE PITR … RANGE N {h|d|mo|y}"
+              ]
+            },
+            {
+              "id": "sql.data_definition_language.create_publication",
+              "title": "CREATE PUBLICATION",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-publication.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] CREATE PUBLICATION"
+              ]
+            },
+            {
+              "id": "sql.data_definition_language.create_sequence",
+              "title": "CREATE SEQUENCE",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-sequence.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] CREATE SEQUENCE (PostgreSQL-style)"
+              ]
+            },
+            {
+              "id": "sql.data_definition_language.create_snapshot",
+              "title": "CREATE SNAPSHOT",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-snapshot.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] CREATE SNAPSHOT FOR {ACCOUNT|DATABASE|TABLE|CLUSTER}"
+              ]
+            },
+            {
+              "id": "sql.data_definition_language.create_source",
+              "title": "CREATE SOURCE",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-source.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] CREATE SOURCE (stream/Kafka connector)"
+              ]
+            },
+            {
+              "id": "sql.data_definition_language.create_stage",
+              "title": "CREATE STAGE",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-stage.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] CREATE STAGE (external file-system binding)"
+              ]
+            },
+            {
+              "id": "sql.data_definition_language.create_table",
+              "title": "CREATE TABLE",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-table.md",
+              "compat": "partial",
+              "notes": [
+                "ENGINE= clause in table definition not supported (MatrixOne has a single TAE engine)",
+                "Spatial and SET types not supported; MEDIUMINT not supported",
+                "BOOL is a native boolean type, not an INT alias as in MySQL",
+                "AUTO_INCREMENT step is always 1; @@auto_increment_increment / @@auto_increment_offset are syntactically accepted but inert",
+                "Partitioning accepts syntax but only HASH and KEY participate in partition pruning (RANGE/LIST/RANGE COLUMNS/LIST COLUMNS are syntax-only); subpartitioning is syntax-only; ADD/DROP/TRUNCATE PARTITION not supported",
+                "[MO-only] CLUSTER BY (col, …) — pre-sort columns to accelerate queries"
+              ]
+            },
+            {
+              "id": "sql.data_definition_language.create_table_like",
+              "title": "CREATE TABLE ... LIKE",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-table-like.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "sql.data_definition_language.create_table_as_select",
+              "title": "CREATE TABLE AS SELECT",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-table-as-select.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "sql.data_definition_language.sql_task",
+              "title": "CREATE TASK (SQL Task)",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/sql-task.md",
+              "compat": "mo_only",
+              "notes": []
+            },
+            {
+              "id": "sql.data_definition_language.create_view",
+              "title": "CREATE VIEW",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-view.md",
+              "compat": "partial",
+              "notes": [
+                "WITH CHECK OPTION clause not supported",
+                "DEFINER = user clause not supported; SQL SECURITY {DEFINER | INVOKER} is supported",
+                "ALGORITHM = {UNDEFINED | MERGE | TEMPTABLE} clause not supported"
+              ]
+            },
+            {
+              "id": "sql.data_definition_language.create_subscription",
+              "title": "CREATE...FROM...PUBLICATION...",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-subscription.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] CREATE DATABASE … FROM … PUBLICATION …"
+              ]
+            },
+            {
+              "id": "sql.data_definition_language.data_branch_create_en",
+              "title": "DATA BRANCH CREATE",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/data-branch-create-en.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] DATA BRANCH CREATE (Git-for-Data)"
+              ]
+            },
+            {
+              "id": "sql.data_definition_language.data_branch_delete_en",
+              "title": "DATA BRANCH DELETE",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/data-branch-delete-en.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] DATA BRANCH DELETE"
+              ]
+            },
+            {
+              "id": "sql.data_definition_language.data_branch_diff_en",
+              "title": "DATA BRANCH DIFF",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/data-branch-diff-en.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] DATA BRANCH DIFF"
+              ]
+            },
+            {
+              "id": "sql.data_definition_language.data_branch_merge_en",
+              "title": "DATA BRANCH MERGE",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/data-branch-merge-en.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] DATA BRANCH MERGE"
+              ]
+            },
+            {
+              "id": "sql.data_definition_language.data_branch_pick",
+              "title": "DATA BRANCH PICK",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/data-branch-pick.md",
+              "compat": "mo_only",
+              "notes": []
+            },
+            {
+              "id": "sql.data_definition_language.drop_database",
+              "title": "DROP DATABASE",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/drop-database.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "sql.data_definition_language.drop_function",
+              "title": "DROP FUNCTION",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/drop-function.md",
+              "compat": "partial",
+              "notes": [
+                "Drops MatrixOne-style SQL / Python functions, not MySQL stored procedures/functions"
+              ]
+            },
+            {
+              "id": "sql.data_definition_language.drop_index",
+              "title": "DROP INDEX",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/drop-index.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "sql.data_definition_language.drop_pitr",
+              "title": "DROP PITR",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/drop-pitr.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] DROP PITR"
+              ]
+            },
+            {
+              "id": "sql.data_definition_language.drop_publication",
+              "title": "DROP PUBLICATION",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/drop-publication.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] DROP PUBLICATION"
+              ]
+            },
+            {
+              "id": "sql.data_definition_language.drop_sequence",
+              "title": "DROP SEQUENCE",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/drop-sequence.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] DROP SEQUENCE"
+              ]
+            },
+            {
+              "id": "sql.data_definition_language.drop_snapshot",
+              "title": "DROP SNAPSHOT",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/drop-snapshot.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] DROP SNAPSHOT"
+              ]
+            },
+            {
+              "id": "sql.data_definition_language.drop_stage",
+              "title": "DROP STAGE",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/drop-stage.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] DROP STAGE"
+              ]
+            },
+            {
+              "id": "sql.data_definition_language.drop_table",
+              "title": "DROP TABLE",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/drop-table.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "sql.data_definition_language.drop_view",
+              "title": "DROP VIEW",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/drop-view.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "sql.data_definition_language.rename_table",
+              "title": "Rename Table",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/rename-table.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "sql.data_definition_language.restore_pitr",
+              "title": "RESTORE ... FROM PITR",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/restore-pitr.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] RESTORE … FROM PITR"
+              ]
+            },
+            {
+              "id": "sql.data_definition_language.restore_snapshot",
+              "title": "RESTORE ... SNAPSHOT",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/restore-snapshot.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] RESTORE … FROM SNAPSHOT"
+              ]
+            },
+            {
+              "id": "sql.data_definition_language.truncate_table",
+              "title": "TRUNCATE TABLE",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/truncate-table.md",
+              "compat": "full",
+              "notes": []
+            }
+          ]
+        },
+        {
+          "id": "data_manipulation_language",
+          "label": "Data Manipulation Language (DML)",
+          "entries": [
+            {
+              "id": "sql.data_manipulation_language.case",
+              "title": "CASE",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/case.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "sql.data_manipulation_language.information_functions.current_role",
+              "title": "CURRENT_ROLE()",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/information-functions/current_role.md",
+              "compat": "partial",
+              "notes": [
+                "Returns a single active role name; MySQL 8.0 can return multiple comma-separated active roles or 'NONE'."
+              ]
+            },
+            {
+              "id": "sql.data_manipulation_language.delete",
+              "title": "DELETE",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/delete.md",
+              "compat": "partial",
+              "notes": [
+                "LOW_PRIORITY, QUICK, IGNORE modifiers not supported"
+              ]
+            },
+            {
+              "id": "sql.data_manipulation_language.insert",
+              "title": "INSERT",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/insert.md",
+              "compat": "partial",
+              "notes": [
+                "Modifiers LOW_PRIORITY / DELAYED / HIGH_PRIORITY not supported"
+              ]
+            },
+            {
+              "id": "sql.data_manipulation_language.upsert.insert_on_duplicate",
+              "title": "INSERT ... ON DUPLICATE KEY UPDATE",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/upsert/insert-on-duplicate.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "sql.data_manipulation_language.upsert.insert_ignore",
+              "title": "INSERT IGNORE",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/upsert/insert-ignore.md",
+              "compat": "partial",
+              "notes": [
+                "LOW_PRIORITY / DELAYED / HIGH_PRIORITY modifiers not supported",
+                "Duplicates are silently ignored; MySQL emits a warning for each skipped row.",
+                "Does not ignore NULL-into-NOT-NULL, type-conversion, or partition-mismatch errors as MySQL does."
+              ]
+            },
+            {
+              "id": "sql.data_manipulation_language.insert_into_select",
+              "title": "INSERT INTO SELECT",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/insert-into-select.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "sql.data_manipulation_language.information_functions.last_insert_id",
+              "title": "LAST_INSERT_ID()",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/information-functions/last-insert-id.md",
+              "compat": "partial",
+              "notes": [
+                "Multi-row INSERT returns the last inserted auto-increment value; MySQL returns the first inserted value."
+              ]
+            },
+            {
+              "id": "sql.data_manipulation_language.information_functions.last_query_id",
+              "title": "LAST_QUERY_ID",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/information-functions/last-query-id.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] LAST_QUERY_ID()"
+              ]
+            },
+            {
+              "id": "sql.data_manipulation_language.load_data_infile",
+              "title": "LOAD DATA",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/load-data-infile.md",
+              "compat": "partial",
+              "notes": [
+                "LOAD DATA LOCAL requires --local-infile on the client",
+                "SET clause only accepts columns_name = nullif(expr1, expr2)",
+                "JSONLines import uses MatrixOne-specific syntax",
+                "Object-storage import (S3/URL) uses MatrixOne-specific syntax"
+              ]
+            },
+            {
+              "id": "sql.data_manipulation_language.load_data_inline",
+              "title": "LOAD DATA INLINE",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/load-data-inline.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] LOAD DATA INLINE (stage-sourced import)"
+              ]
+            },
+            {
+              "id": "sql.data_manipulation_language.replace",
+              "title": "REPLACE",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/replace.md",
+              "compat": "partial",
+              "notes": [
+                "REPLACE does not support VALUES row_constructor_list",
+                "node-sql-parser rejects REPLACE … WHERE (parser bug, not MatrixOne)"
+              ]
+            },
+            {
+              "id": "sql.data_manipulation_language.upsert.replace",
+              "title": "REPLACE",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/upsert/replace.md",
+              "compat": "partial",
+              "notes": [
+                "REPLACE does not support VALUES row_constructor_list",
+                "node-sql-parser rejects REPLACE … WHERE (parser bug, not MatrixOne)"
+              ]
+            },
+            {
+              "id": "sql.data_manipulation_language.update",
+              "title": "UPDATE",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/update.md",
+              "compat": "partial",
+              "notes": [
+                "LOW_PRIORITY and IGNORE modifiers not supported"
+              ]
+            },
+            {
+              "id": "sql.data_manipulation_language.upsert.upsert",
+              "title": "UPSERT",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/upsert/upsert.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] UPSERT (convenience alias over INSERT … ON DUPLICATE KEY UPDATE)"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "data_query_language",
+          "label": "Data Query Language (DQL)",
+          "entries": [
+            {
+              "id": "sql.data_query_language.by_rank_with_option",
+              "title": "BY RANK WITH OPTION",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Query-Language/by-rank-with-option.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] BY RANK WITH OPTION (IVF vector ranking)"
+              ]
+            },
+            {
+              "id": "sql.data_query_language.union_intersect_minus_overview",
+              "title": "Combining Queries (UNION, INTERSECT, MINUS)",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Query-Language/union-intersect-minus-overview.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] MINUS, INTERSECT set operators"
+              ]
+            },
+            {
+              "id": "sql.data_query_language.subqueries.comparisons_using_subqueries",
+              "title": "Comparisons Using Subqueries",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Query-Language/subqueries/comparisons-using-subqueries.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "sql.data_query_language.apply.cross_apply",
+              "title": "CROSS APPLY",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Query-Language/apply/cross-apply.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] CROSS APPLY (SQL Server-style, not in MySQL)"
+              ]
+            },
+            {
+              "id": "sql.data_query_language.join.cross_join",
+              "title": "CROSS JOIN",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Query-Language/join/cross-join.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "sql.data_query_language.subqueries.derived_tables",
+              "title": "Derived Tables",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Query-Language/subqueries/derived-tables.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "sql.data_query_language.join.full_join",
+              "title": "FULL JOIN",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Query-Language/join/full-join.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] FULL JOIN / FULL OUTER JOIN is not supported in MySQL 8.0 (users must emulate it with LEFT JOIN UNION RIGHT JOIN)."
+              ]
+            },
+            {
+              "id": "sql.data_query_language.join.inner_join",
+              "title": "INNER JOIN",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Query-Language/join/inner-join.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "sql.data_query_language.intersect",
+              "title": "INTERSECT",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Query-Language/intersect.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] INTERSECT set operator is not available in MySQL 8.0."
+              ]
+            },
+            {
+              "id": "sql.data_query_language.join.join",
+              "title": "JOIN",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Query-Language/join/join.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "sql.data_query_language.join.left_join",
+              "title": "LEFT JOIN",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Query-Language/join/left-join.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "sql.data_query_language.minus",
+              "title": "MINUS",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Query-Language/minus.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] MINUS (set-difference query, not in MySQL)"
+              ]
+            },
+            {
+              "id": "sql.data_query_language.join.natural_join",
+              "title": "NATURAL JOIN",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Query-Language/join/natural-join.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "sql.data_query_language.apply.outer_apply",
+              "title": "OUTER APPLY",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Query-Language/apply/outer-apply.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] OUTER APPLY (SQL Server-style, not in MySQL)"
+              ]
+            },
+            {
+              "id": "sql.data_query_language.join.outer_join",
+              "title": "OUTER JOIN",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Query-Language/join/outer-join.md",
+              "compat": "partial",
+              "notes": [
+                "Overview page that includes FULL OUTER JOIN, which MySQL 8.0 does not support."
+              ]
+            },
+            {
+              "id": "sql.data_query_language.join.right_join",
+              "title": "RIGHT JOIN",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Query-Language/join/right-join.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "sql.data_query_language.select",
+              "title": "SELECT",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Query-Language/select.md",
+              "compat": "partial",
+              "notes": [
+                "SELECT … FOR UPDATE only supports single-table queries",
+                "SELECT INTO OUTFILE is only partially supported",
+                "Unqualified SELECT ... FROM DUAL requires explicit database name (SELECT ... FROM dbname.DUAL)",
+                "[MO-only] { AS OF TIMESTAMP 'YYYY-MM-DD HH:MM:SS' } — time-travel query against snapshot/PITR",
+                "[MO-only] ORDER BY ... NULLS { FIRST | LAST } — PostgreSQL-style NULL ordering not available in MySQL"
+              ]
+            },
+            {
+              "id": "sql.data_query_language.subqueries.subquery_with_all",
+              "title": "Subqueries with ALL",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Query-Language/subqueries/subquery-with-all.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "sql.data_query_language.subqueries.subquery_with_any_some",
+              "title": "Subqueries with ANY or SOME",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Query-Language/subqueries/subquery-with-any-some.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "sql.data_query_language.subqueries.subquery_with_exists",
+              "title": "Subqueries with EXISTS or NOT EXISTS",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Query-Language/subqueries/subquery-with-exists.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "sql.data_query_language.subqueries.subquery_with_in",
+              "title": "Subqueries with IN",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Query-Language/subqueries/subquery-with-in.md",
+              "compat": "partial",
+              "notes": [
+                "Multi-level correlated subqueries inside IN() are not supported"
+              ]
+            },
+            {
+              "id": "sql.data_query_language.subqueries.subquery",
+              "title": "SUBQUERY",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Query-Language/subqueries/subquery.md",
+              "compat": "partial",
+              "notes": [
+                "Multi-level correlated subqueries inside IN() are not supported"
+              ]
+            },
+            {
+              "id": "sql.data_query_language.union",
+              "title": "UNION",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Query-Language/union.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "sql.data_query_language.with_cte",
+              "title": "WITH (Common Table Expressions)",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Query-Language/with-cte.md",
+              "compat": "full",
+              "notes": []
+            }
+          ]
+        },
+        {
+          "id": "other",
+          "label": "Other",
+          "entries": [
+            {
+              "id": "sql.other.prepared_statements.deallocate",
+              "title": "DEALLOCATE PREPARE",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Other/Prepared-Statements/deallocate.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "sql.other.prepared_statements.execute",
+              "title": "EXECUTE",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Other/Prepared-Statements/execute.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "sql.other.explain.explain",
+              "title": "EXPLAIN",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Other/Explain/explain.md",
+              "compat": "partial",
+              "notes": [
+                "Output format mirrors PostgreSQL, not MySQL",
+                "JSON output not supported"
+              ]
+            },
+            {
+              "id": "sql.other.explain.explain_workflow",
+              "title": "EXPLAIN Output Format",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Other/Explain/explain-workflow.md",
+              "compat": "partial",
+              "notes": [
+                "Output format mirrors PostgreSQL; JSON output not supported"
+              ]
+            },
+            {
+              "id": "sql.other.explain.explain_prepared",
+              "title": "EXPLAIN PREPARED",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Other/Explain/explain-prepared.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] EXPLAIN FORCE EXECUTE stmt_name [USING @var] is a MatrixOne extension; MySQL explains prepared statements through EXPLAIN FOR CONNECTION."
+              ]
+            },
+            {
+              "id": "sql.other.explain.explain_analyze",
+              "title": "Get information with EXPLAIN ANALYZE",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Other/Explain/explain-analyze.md",
+              "compat": "partial",
+              "notes": [
+                "Output format mirrors PostgreSQL; JSON output not supported"
+              ]
+            },
+            {
+              "id": "sql.other.kill",
+              "title": "KILL",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Other/kill.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "sql.other.prepared_statements.prepare",
+              "title": "PREPARE",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Other/Prepared-Statements/prepare.md",
+              "compat": "partial",
+              "notes": [
+                "MatrixOne cannot PREPARE SET statements"
+              ]
+            },
+            {
+              "id": "sql.other.set.set_role",
+              "title": "SET ROLE",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Other/Set/set-role.md",
+              "compat": "partial",
+              "notes": [
+                "Accepts a single role name only; MySQL 8.0 also supports NONE, DEFAULT, ALL, ALL EXCEPT role_list, and role lists.",
+                "[MO-only] SET SECONDARY ROLE {NONE | ALL} — MatrixOne-only primary/secondary role model."
+              ]
+            },
+            {
+              "id": "sql.other.show_statements.show_account",
+              "title": "SHOW ACCOUNTS",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-account.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] SHOW ACCOUNTS"
+              ]
+            },
+            {
+              "id": "sql.other.show_statements.show_collation",
+              "title": "SHOW COLLATION",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-collation.md",
+              "compat": "partial",
+              "notes": [
+                "Only utf8mb4_bin is effective; other collations appear but are inert"
+              ]
+            },
+            {
+              "id": "sql.other.show_statements.show_columns",
+              "title": "SHOW COLUMNS",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-columns.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "sql.other.show_statements.show_create_publication",
+              "title": "SHOW CREATE PUBLICATION",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-create-publication.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] SHOW CREATE PUBLICATION"
+              ]
+            },
+            {
+              "id": "sql.other.show_statements.show_create_table",
+              "title": "SHOW CREATE TABLE",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-create-table.md",
+              "compat": "partial",
+              "notes": [
+                "Output reflects MatrixOne-specific extensions (CLUSTER BY, USING IVFFLAT/HNSW, etc.)"
+              ]
+            },
+            {
+              "id": "sql.other.show_statements.show_create_view",
+              "title": "SHOW CREATE VIEW",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-create-view.md",
+              "compat": "partial",
+              "notes": [
+                "DEFINER = user clause absent from output; SQL SECURITY {DEFINER|INVOKER} is emitted"
+              ]
+            },
+            {
+              "id": "sql.other.show_statements.show_databases",
+              "title": "SHOW DATABASES",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-databases.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "sql.other.show_statements.show_function_status",
+              "title": "SHOW FUNCTION STATUS",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-function-status.md",
+              "compat": "partial",
+              "notes": [
+                "Lists MatrixOne SQL/Python functions, not MySQL stored routines"
+              ]
+            },
+            {
+              "id": "sql.other.show_statements.show_grants",
+              "title": "SHOW GRANTS",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-grants.md",
+              "compat": "partial",
+              "notes": [
+                "Results reflect MatrixOne role/account graph and differ from MySQL significantly"
+              ]
+            },
+            {
+              "id": "sql.other.show_statements.show_index",
+              "title": "SHOW INDEX",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-index.md",
+              "compat": "partial",
+              "notes": [
+                "Reflects MatrixOne index model — secondary index rows appear but may not accelerate queries"
+              ]
+            },
+            {
+              "id": "sql.other.show_statements.show_pitrs",
+              "title": "SHOW PITR",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-pitrs.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] SHOW PITR"
+              ]
+            },
+            {
+              "id": "sql.other.show_statements.show_processlist",
+              "title": "SHOW PROCESSLIST",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-processlist.md",
+              "compat": "partial",
+              "notes": [
+                "Output differs significantly from MySQL due to different implementation"
+              ]
+            },
+            {
+              "id": "sql.other.show_statements.show_publications",
+              "title": "SHOW PUBLICATIONS",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-publications.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] SHOW PUBLICATIONS"
+              ]
+            },
+            {
+              "id": "sql.other.show_statements.show_roles",
+              "title": "SHOW ROLES",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-roles.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] SHOW ROLES"
+              ]
+            },
+            {
+              "id": "sql.other.show_statements.show_sequences",
+              "title": "SHOW SEQUENCES",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-sequences.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] SHOW SEQUENCES"
+              ]
+            },
+            {
+              "id": "sql.other.show_statements.show_stage",
+              "title": "SHOW STAGES",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-stage.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] SHOW STAGES"
+              ]
+            },
+            {
+              "id": "sql.other.show_statements.show_subscriptions",
+              "title": "SHOW SUBSCRIPTIONS",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-subscriptions.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] SHOW SUBSCRIPTIONS"
+              ]
+            },
+            {
+              "id": "sql.other.show_statements.show_tables",
+              "title": "SHOW TABLES",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-tables.md",
+              "compat": "partial",
+              "notes": [
+                "Result column is named 'name' rather than MySQL's 'Tables_in_<dbname>'."
+              ]
+            },
+            {
+              "id": "sql.other.show_statements.show_variables",
+              "title": "SHOW VARIABLES",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-variables.md",
+              "compat": "partial",
+              "notes": [
+                "System variables are mostly syntactic stubs; actual behaviour differs from MySQL"
+              ]
+            },
+            {
+              "id": "sql.other.use_database",
+              "title": "USE",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Other/use-database.md",
+              "compat": "full",
+              "notes": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "functions-and-operators",
+      "label": "Functions",
+      "summary": {
+        "full": 110,
+        "partial": 17,
+        "none": 0,
+        "mo_only": 36,
+        "unknown": 0
+      },
+      "categories": [
+        {
+          "id": "_root",
+          "label": "Functions",
+          "entries": [
+            {
+              "id": "func.matrixone_function_list",
+              "title": "Summary table of functions",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/matrixone-function-list.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] Listing page (includes MatrixOne-only functions)."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "aggregate_functions",
+          "label": "Aggregate Functions",
+          "entries": [
+            {
+              "id": "func.aggregate_functions.any_value",
+              "title": "ANY_VALUE",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Aggregate-Functions/any-value.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.aggregate_functions.avg",
+              "title": "AVG",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Aggregate-Functions/avg.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.aggregate_functions.bit_and",
+              "title": "BIT_AND",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Aggregate-Functions/bit_and.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.aggregate_functions.bit_or",
+              "title": "BIT_OR",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Aggregate-Functions/bit_or.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.aggregate_functions.bit_xor",
+              "title": "BIT_XOR",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Aggregate-Functions/bit_xor.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.aggregate_functions.bitmap",
+              "title": "BITMAP function",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Aggregate-Functions/bitmap.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] BITMAP aggregates are MatrixOne extensions."
+              ]
+            },
+            {
+              "id": "func.aggregate_functions.count",
+              "title": "COUNT",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Aggregate-Functions/count.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.aggregate_functions.group_concat",
+              "title": "GROUP_CONCAT",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Aggregate-Functions/group-concat.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.aggregate_functions.max",
+              "title": "MAX",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Aggregate-Functions/max.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.aggregate_functions.median",
+              "title": "MEDIAN()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Aggregate-Functions/median.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] MEDIAN aggregate is a MatrixOne-specific aggregate (no native MySQL equivalent)."
+              ]
+            },
+            {
+              "id": "func.aggregate_functions.min",
+              "title": "MIN",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Aggregate-Functions/min.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.aggregate_functions.stddev_pop",
+              "title": "STDDEV_POP",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Aggregate-Functions/stddev_pop.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.aggregate_functions.sum",
+              "title": "SUM",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Aggregate-Functions/sum.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.aggregate_functions.var_pop",
+              "title": "VAR_POP",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Aggregate-Functions/var_pop.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.aggregate_functions.variance",
+              "title": "VARIANCE",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Aggregate-Functions/variance.md",
+              "compat": "full",
+              "notes": []
+            }
+          ]
+        },
+        {
+          "id": "datetime",
+          "label": "Datetime",
+          "entries": [
+            {
+              "id": "func.datetime.addtime",
+              "title": "ADDTIME()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Datetime/addtime.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.datetime.convert_tz",
+              "title": "CONVERT_TZ()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Datetime/convert-tz.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.datetime.curdate",
+              "title": "CURDATE()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Datetime/curdate.md",
+              "compat": "partial",
+              "notes": [
+                "curdate()+int returns days since 1970-01-01 rather than coercing both sides to integer and adding like MySQL."
+              ]
+            },
+            {
+              "id": "func.datetime.current_timestamp",
+              "title": "CURRENT_TIMESTAMP()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Datetime/current-timestamp.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.datetime.curtime",
+              "title": "CURTIME()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Datetime/curtime.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.datetime.date_add",
+              "title": "DATE_ADD()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Datetime/date-add.md",
+              "compat": "partial",
+              "notes": [
+                "Date literals accept only 'yyyy-mm-dd' and 'yyyymmdd' formats; MySQL accepts wider variants."
+              ]
+            },
+            {
+              "id": "func.datetime.date_format",
+              "title": "DATE_FORMAT()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Datetime/date-format.md",
+              "compat": "partial",
+              "notes": [
+                "Date literals accept only 'yyyy-mm-dd' and 'yyyymmdd' formats; MySQL accepts wider variants."
+              ]
+            },
+            {
+              "id": "func.datetime.date_sub",
+              "title": "DATE_SUB()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Datetime/date-sub.md",
+              "compat": "partial",
+              "notes": [
+                "Date literals accept only 'yyyy-mm-dd' and 'yyyymmdd' formats; MySQL accepts wider variants."
+              ]
+            },
+            {
+              "id": "func.datetime.date",
+              "title": "DATE()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Datetime/date.md",
+              "compat": "partial",
+              "notes": [
+                "Date literals accept only 'yyyy-mm-dd' and 'yyyymmdd' formats; MySQL accepts wider variants (yy-mm-dd, yy/mm/dd, yymmdd, etc.)."
+              ]
+            },
+            {
+              "id": "func.datetime.datediff",
+              "title": "DATEDIFF()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Datetime/datediff.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.datetime.day",
+              "title": "DAY()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Datetime/day.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.datetime.dayofyear",
+              "title": "DAYOFYEAR()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Datetime/dayofyear.md",
+              "compat": "partial",
+              "notes": [
+                "Date literals accept only 'yyyy-mm-dd' and 'yyyymmdd' formats; MySQL accepts wider variants."
+              ]
+            },
+            {
+              "id": "func.datetime.extract",
+              "title": "EXTRACT()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Datetime/extract.md",
+              "compat": "partial",
+              "notes": [
+                "Date literals accept only 'yyyy-mm-dd' and 'yyyymmdd' formats; MySQL accepts wider variants."
+              ]
+            },
+            {
+              "id": "func.datetime.from_unixtime",
+              "title": "FROM_UNIXTIME()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Datetime/from-unixtime.md",
+              "compat": "partial",
+              "notes": [
+                "Date literals accept only 'yyyy-mm-dd' and 'yyyymmdd' formats; MySQL accepts wider variants."
+              ]
+            },
+            {
+              "id": "func.datetime.get_format",
+              "title": "GET_FORMAT()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Datetime/get-format.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.datetime.hour",
+              "title": "HOUR()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Datetime/hour.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.datetime.minute",
+              "title": "MINUTE()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Datetime/minute.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.datetime.month",
+              "title": "MONTH()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Datetime/month.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.datetime.now",
+              "title": "NOW()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Datetime/now.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.datetime.second",
+              "title": "SECOND()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Datetime/second.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.datetime.str_to_date",
+              "title": "STR_TO_DATE()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Datetime/str-to-date.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.datetime.subtime",
+              "title": "SUBTIME()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Datetime/subtime.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.datetime.sysdate",
+              "title": "SYSDATE()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Datetime/sysdate.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.datetime.time",
+              "title": "TIME()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Datetime/time.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.datetime.timediff",
+              "title": "TIMEDIFF()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Datetime/timediff.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.datetime.timestamp",
+              "title": "TIMESTAMP()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Datetime/timestamp.md",
+              "compat": "partial",
+              "notes": [
+                "MatrixOne TIMESTAMP range is '0001-01-01'–'9999-12-31' vs MySQL '1970-01-01'–'2038-01-19' (compat doc: Data Types)."
+              ]
+            },
+            {
+              "id": "func.datetime.timestampadd",
+              "title": "TIMESTAMPADD()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Datetime/timestampadd.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.datetime.timestampdiff",
+              "title": "TIMESTAMPDIFF()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Datetime/timestampdiff.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.datetime.to_date",
+              "title": "TO_DATE()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Datetime/to-date.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] TO_DATE is a MatrixOne alias for MySQL STR_TO_DATE (compat doc: Date and Time Functions). MySQL's own TO_DATE does not exist."
+              ]
+            },
+            {
+              "id": "func.datetime.to_days",
+              "title": "TO_DAYS()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Datetime/to-days.md",
+              "compat": "partial",
+              "notes": [
+                "Two-digit year handling differs: MatrixOne completes '08-10-07' to year 0008; MySQL interprets it as 2008.",
+                "Dates '0000-00-00' and '0000-01-01' raise an error in MatrixOne rather than being accepted as MySQL does."
+              ]
+            },
+            {
+              "id": "func.datetime.to_seconds",
+              "title": "TO_SECONDS()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Datetime/to-seconds.md",
+              "compat": "partial",
+              "notes": [
+                "Two-digit year handling differs: MatrixOne completes '08-10-07' to year 0008; MySQL interprets it as 2008.",
+                "Dates '0000-00-00' and '0000-01-01' raise an error in MatrixOne rather than being accepted as MySQL does."
+              ]
+            },
+            {
+              "id": "func.datetime.unix_timestamp",
+              "title": "UNIX_TIMESTAMP()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Datetime/unix-timestamp.md",
+              "compat": "partial",
+              "notes": [
+                "Date literals accept only 'yyyy-mm-dd' and 'yyyymmdd' formats; MySQL accepts wider variants."
+              ]
+            },
+            {
+              "id": "func.datetime.utc_timestamp",
+              "title": "UTC_TIMESTAMP()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Datetime/utc-timestamp.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.datetime.week",
+              "title": "WEEK()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Datetime/week.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.datetime.weekday",
+              "title": "WEEKDAY()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Datetime/weekday.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.datetime.year",
+              "title": "YEAR()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Datetime/year.md",
+              "compat": "partial",
+              "notes": [
+                "Date literals accept only 'yyyy-mm-dd' and 'yyyymmdd' formats; MySQL accepts wider variants.",
+                "[MO-only] TOYEAR() is a MatrixOne alias for YEAR() with no MySQL counterpart."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "json",
+          "label": "Json",
+          "entries": [
+            {
+              "id": "func.json.jq",
+              "title": "JQ()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Json/jq.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] MatrixOne integration of the jq JSON query language; no MySQL equivalent."
+              ]
+            },
+            {
+              "id": "func.json.json_arrow",
+              "title": "JSON Arrow Operators -> and ->>",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Json/json-arrow.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.json.json_extract_float64",
+              "title": "JSON_EXTRACT_FLOAT64()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Json/json_extract_float64.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] MatrixOne convenience wrapper returning FLOAT64 directly."
+              ]
+            },
+            {
+              "id": "func.json.json_extract_string",
+              "title": "JSON_EXTRACT_FLOAT64()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Json/json_extract_string.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] MatrixOne convenience wrapper returning a string result directly."
+              ]
+            },
+            {
+              "id": "func.json.json_extract",
+              "title": "JSON_EXTRACT()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Json/json_extract.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.json.json_quote",
+              "title": "JSON_QUOTE()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Json/json_quote.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.json.json_row",
+              "title": "JSON_ROW()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Json/json_row.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] MatrixOne-only; no MySQL equivalent."
+              ]
+            },
+            {
+              "id": "func.json.json_set",
+              "title": "JSON_SET()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Json/json_set.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.json.json_unquote",
+              "title": "JSON_UNQUOTE()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Json/json_unquote.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.json.try_jq",
+              "title": "TRY_JQ()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Json/try_jq.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] MatrixOne integration of the jq JSON query language; no MySQL equivalent."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mathematical",
+          "label": "Mathematical",
+          "entries": [
+            {
+              "id": "func.mathematical.abs",
+              "title": "ABS()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Mathematical/abs.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.mathematical.acos",
+              "title": "ACOS()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Mathematical/acos.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.mathematical.atan",
+              "title": "ATAN()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Mathematical/atan.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.mathematical.ceil",
+              "title": "CEIL()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Mathematical/ceil.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.mathematical.ceiling",
+              "title": "CEILING()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Mathematical/ceiling.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.mathematical.cos",
+              "title": "COS()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Mathematical/cos.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.mathematical.cot",
+              "title": "COT()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Mathematical/cot.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.mathematical.crc32",
+              "title": "CRC32()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Mathematical/crc32.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.mathematical.exp",
+              "title": "EXP()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Mathematical/exp.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.mathematical.floor",
+              "title": "FLOOR()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Mathematical/floor.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.mathematical.ln",
+              "title": "LN()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Mathematical/ln.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.mathematical.log",
+              "title": "LOG()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Mathematical/log.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.mathematical.log10",
+              "title": "LOG10()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Mathematical/log10.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.mathematical.log2",
+              "title": "LOG2()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Mathematical/log2.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.mathematical.pi",
+              "title": "PI()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Mathematical/pi.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.mathematical.power",
+              "title": "POWER()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Mathematical/power.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.mathematical.rand",
+              "title": "RAND()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Mathematical/rand.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.mathematical.round",
+              "title": "ROUND()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Mathematical/round.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.mathematical.sin",
+              "title": "SIN()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Mathematical/sin.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.mathematical.sinh",
+              "title": "SINH()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Mathematical/sinh.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] MySQL 8.0 has no hyperbolic trigonometric functions; SINH() is a MatrixOne extension."
+              ]
+            },
+            {
+              "id": "func.mathematical.tan",
+              "title": "TAN()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Mathematical/tan.md",
+              "compat": "full",
+              "notes": []
+            }
+          ]
+        },
+        {
+          "id": "other",
+          "label": "Other",
+          "entries": [
+            {
+              "id": "func.other.load_file",
+              "title": "LOAD_FILE()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Other/load_file.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] LOAD_FILE() takes a DATALINK value (file:// or stage:// URL) rather than MySQL's plain filesystem path argument; semantics differ."
+              ]
+            },
+            {
+              "id": "func.other.sample",
+              "title": "SAMPLE Sampling Function",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Other/sample.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] SAMPLE() is a MatrixOne sampling operator; no MySQL equivalent."
+              ]
+            },
+            {
+              "id": "func.other.save_file",
+              "title": "SAVE_FILE()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Other/save_file.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] SAVE_FILE() writes to a MatrixOne stage; no MySQL equivalent."
+              ]
+            },
+            {
+              "id": "func.other.serial_extract",
+              "title": "SERIAL_EXTRACT function",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Other/serial_extract.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] SERIAL_EXTRACT() is a MatrixOne internal serial-column extractor."
+              ]
+            },
+            {
+              "id": "func.other.sleep",
+              "title": "SLEEP()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Other/sleep.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.other.stage_list",
+              "title": "STAGE_LIST()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Other/stage_list.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] STAGE_LIST() lists MatrixOne stage contents."
+              ]
+            },
+            {
+              "id": "func.other.uuid",
+              "title": "UUID()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Other/uuid.md",
+              "compat": "full",
+              "notes": []
+            }
+          ]
+        },
+        {
+          "id": "string",
+          "label": "String",
+          "entries": [
+            {
+              "id": "func.string.aes_decrypt",
+              "title": "AES_DECRYPT()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/String/aes_decrypt.md",
+              "compat": "partial",
+              "notes": [
+                "MatrixOne supports only aes-128-ecb and aes-256-cbc block modes; MySQL 8.0 also supports the full set of ECB/CBC/CFB/OFB variants at multiple key sizes.",
+                "MatrixOne AES_DECRYPT does not accept the optional kdf_name / salt / info KDF arguments present in MySQL 8.0."
+              ]
+            },
+            {
+              "id": "func.string.aes_encrypt",
+              "title": "AES_ENCRYPT()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/String/aes_encrypt.md",
+              "compat": "partial",
+              "notes": [
+                "MatrixOne supports only aes-128-ecb and aes-256-cbc block modes; MySQL 8.0 also supports the full set of ECB/CBC/CFB/OFB variants at multiple key sizes.",
+                "MatrixOne AES_ENCRYPT does not accept the optional kdf_name / salt / info KDF arguments present in MySQL 8.0."
+              ]
+            },
+            {
+              "id": "func.string.bin",
+              "title": "BIN()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/String/bin.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.string.bit_length",
+              "title": "BIT_LENGTH()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/String/bit-length.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.string.char_length",
+              "title": "CHAR_LENGTH()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/String/char-length.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.string.concat_ws",
+              "title": "CONCAT_WS()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/String/concat-ws.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.string.concat",
+              "title": "CONCAT()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/String/concat.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.string.elt",
+              "title": "ELT()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/String/elt.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.string.empty",
+              "title": "EMPTY()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/String/empty.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] EMPTY() is a MatrixOne helper returning whether a string is empty."
+              ]
+            },
+            {
+              "id": "func.string.endswith",
+              "title": "ENDSWITH()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/String/endswith.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] ENDSWITH() is a MatrixOne helper; MySQL has no direct equivalent."
+              ]
+            },
+            {
+              "id": "func.string.field",
+              "title": "FIELD()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/String/field.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.string.find_in_set",
+              "title": "FIND_IN_SET()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/String/find-in-set.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.string.format",
+              "title": "FORMAT()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/String/format.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.string.from_base64",
+              "title": "FROM_BASE64()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/String/from_base64.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.string.hex",
+              "title": "HEX()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/String/hex.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.string.instr",
+              "title": "INSTR()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/String/instr.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.string.lcase",
+              "title": "LCASE()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/String/lcase.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.string.left",
+              "title": "LEFT()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/String/left.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.string.length",
+              "title": "LENGTH()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/String/length.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.string.locate",
+              "title": "LOCATE()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/String/locate.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.string.lower",
+              "title": "LOWER()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/String/lower.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.string.lpad",
+              "title": "LPAD()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/String/lpad.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.string.ltrim",
+              "title": "LTRIM()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/String/ltrim.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.string.md5",
+              "title": "MD5()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/String/md5.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.string.regular_expressions.not_regexp",
+              "title": "NOT REGEXP",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/String/Regular-Expressions/not-regexp.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.string.oct",
+              "title": "OCT(N)",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/String/oct.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.string.regular_expressions.regexp_instr",
+              "title": "REGEXP_INSTR()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/String/Regular-Expressions/regexp-instr.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.string.regular_expressions.regexp_like",
+              "title": "REGEXP_LIKE()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/String/Regular-Expressions/regexp-like.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.string.regular_expressions.regexp_replace",
+              "title": "REGEXP_REPLACE()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/String/Regular-Expressions/regexp-replace.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.string.regular_expressions.regexp_substr",
+              "title": "REGEXP_SUBSTR()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/String/Regular-Expressions/regexp-substr.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.string.regular_expressions.regular_expression_functions_overview",
+              "title": "Regular Expressions Overview",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/String/Regular-Expressions/Regular-Expression-Functions-Overview.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.string.repeat",
+              "title": "REPEAT()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/String/repeat.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.string.reverse",
+              "title": "REVERSE()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/String/reverse.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.string.rpad",
+              "title": "RPAD()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/String/rpad.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.string.rtrim",
+              "title": "RTRIM()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/String/rtrim.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.string.sha1",
+              "title": "SHA1()/SHA()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/String/sha1.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.string.sha2",
+              "title": "SHA2()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/String/sha2.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.string.space",
+              "title": "SPACE()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/String/space.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.string.split_part",
+              "title": "SPLIT_PART()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/String/split_part.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] SPLIT_PART() is inherited from PostgreSQL; no MySQL equivalent."
+              ]
+            },
+            {
+              "id": "func.string.startswith",
+              "title": "STARTSWITH()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/String/startswith.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] STARTSWITH() is a MatrixOne helper; MySQL has no direct equivalent."
+              ]
+            },
+            {
+              "id": "func.string.strcmp",
+              "title": "STRCMP()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/String/strcmp.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.string.substring_index",
+              "title": "SUBSTRING_INDEX()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/String/substring-index.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.string.substring",
+              "title": "SUBSTRING()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/String/substring.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.string.to_base64",
+              "title": "TO_BASE64()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/String/to_base64.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.string.trim",
+              "title": "TRIM()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/String/trim.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.string.ucase",
+              "title": "UCASE()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/String/ucase.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.string.unhex",
+              "title": "UNHEX()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/String/unhex.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.string.upper",
+              "title": "UPPER()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/String/upper.md",
+              "compat": "full",
+              "notes": []
+            }
+          ]
+        },
+        {
+          "id": "system_ops",
+          "label": "System Operations",
+          "entries": [
+            {
+              "id": "func.system_ops.current_role_name",
+              "title": "CURRENT_ROLE_NAME()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/system-ops/current_role_name.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] MatrixOne multi-account/role system management function (compat doc: System Management Functions)."
+              ]
+            },
+            {
+              "id": "func.system_ops.current_role",
+              "title": "CURRENT_ROLE()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/system-ops/current_role.md",
+              "compat": "partial",
+              "notes": [
+                "Returns a single active role name; MySQL 8.0 can return multiple comma-separated active roles or 'NONE'."
+              ]
+            },
+            {
+              "id": "func.system_ops.current_user_name",
+              "title": "CURRENT_USER_NAME()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/system-ops/current_user_name.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] MatrixOne multi-account/role system management function (compat doc: System Management Functions)."
+              ]
+            },
+            {
+              "id": "func.system_ops.current_user",
+              "title": "CURRENT_USER, CURRENT_USER()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/system-ops/current_user.md",
+              "compat": "partial",
+              "notes": [
+                "Return format is 'username@0.0.0.0' rather than MySQL's 'username@host' with a resolved client host."
+              ]
+            },
+            {
+              "id": "func.system_ops.purge_log",
+              "title": "PURGE_LOG()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/system-ops/purge_log.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] MatrixOne multi-account/role system management function (compat doc: System Management Functions)."
+              ]
+            },
+            {
+              "id": "func.system_ops.version",
+              "title": "VERSION",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/system-ops/version.md",
+              "compat": "full",
+              "notes": []
+            }
+          ]
+        },
+        {
+          "id": "table",
+          "label": "Table",
+          "entries": [
+            {
+              "id": "func.table.generate_series",
+              "title": "GENERATE_SERIES()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Table/generate_series.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] Table-valued function; no direct MySQL equivalent."
+              ]
+            },
+            {
+              "id": "func.table.unnest",
+              "title": "UNNEST()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Table/unnest.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] Table-valued function; no direct MySQL equivalent."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "vector",
+          "label": "Vector",
+          "entries": [
+            {
+              "id": "func.vector.arithmetic",
+              "title": "Arithmetic operators",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Vector/arithmetic.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] Vector type and related distance/norm/clustering functions are MatrixOne extensions (compat doc: Data Types — \\\"MatrixOne supports vector types\\\")."
+              ]
+            },
+            {
+              "id": "func.vector.cluster_centers",
+              "title": "CLUSTER_CENTERS",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Vector/cluster_centers.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] Vector type and related distance/norm/clustering functions are MatrixOne extensions (compat doc: Data Types — \\\"MatrixOne supports vector types\\\")."
+              ]
+            },
+            {
+              "id": "func.vector.cosine_distance",
+              "title": "COSINE_DISTANCE()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Vector/cosine_distance.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] Vector type and related distance/norm/clustering functions are MatrixOne extensions (compat doc: Data Types — \\\"MatrixOne supports vector types\\\")."
+              ]
+            },
+            {
+              "id": "func.vector.cosine_similarity",
+              "title": "cosine_similarity()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Vector/cosine_similarity.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] Vector type and related distance/norm/clustering functions are MatrixOne extensions (compat doc: Data Types — \\\"MatrixOne supports vector types\\\")."
+              ]
+            },
+            {
+              "id": "func.vector.inner_product",
+              "title": "inner_product()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Vector/inner_product.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] Vector type and related distance/norm/clustering functions are MatrixOne extensions (compat doc: Data Types — \\\"MatrixOne supports vector types\\\")."
+              ]
+            },
+            {
+              "id": "func.vector.l1_norm",
+              "title": "l1_norm()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Vector/l1_norm.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] Vector type and related distance/norm/clustering functions are MatrixOne extensions (compat doc: Data Types — \\\"MatrixOne supports vector types\\\")."
+              ]
+            },
+            {
+              "id": "func.vector.l2_distance",
+              "title": "L2_DISTANCE()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Vector/l2_distance.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] Vector type and related distance/norm/clustering functions are MatrixOne extensions (compat doc: Data Types — \\\"MatrixOne supports vector types\\\")."
+              ]
+            },
+            {
+              "id": "func.vector.l2_norm",
+              "title": "l2_norm()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Vector/l2_norm.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] Vector type and related distance/norm/clustering functions are MatrixOne extensions (compat doc: Data Types — \\\"MatrixOne supports vector types\\\")."
+              ]
+            },
+            {
+              "id": "func.vector.misc",
+              "title": "Mathematical class functions",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Vector/misc.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] Vector type and related distance/norm/clustering functions are MatrixOne extensions (compat doc: Data Types — \\\"MatrixOne supports vector types\\\")."
+              ]
+            },
+            {
+              "id": "func.vector.normalize_l2",
+              "title": "NORMALIZE_L2()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Vector/normalize_l2.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] Vector type and related distance/norm/clustering functions are MatrixOne extensions (compat doc: Data Types — \\\"MatrixOne supports vector types\\\")."
+              ]
+            },
+            {
+              "id": "func.vector.subvector",
+              "title": "SUBVECTOR()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Vector/subvector.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] Vector type and related distance/norm/clustering functions are MatrixOne extensions (compat doc: Data Types — \\\"MatrixOne supports vector types\\\")."
+              ]
+            },
+            {
+              "id": "func.vector.vector_dims",
+              "title": "vector_dims()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Vector/vector_dims.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] Vector type and related distance/norm/clustering functions are MatrixOne extensions (compat doc: Data Types — \\\"MatrixOne supports vector types\\\")."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "window_functions",
+          "label": "Window Functions",
+          "entries": [
+            {
+              "id": "func.window_functions.cume_dist",
+              "title": "CUME_DIST()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Window-Functions/cume_dist.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.window_functions.dense_rank",
+              "title": "DENSE_RANK()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Window-Functions/dense_rank.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.window_functions.percent_rank",
+              "title": "PERCENT_RANK()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Window-Functions/percent_rank.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.window_functions.rank",
+              "title": "RANK()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Window-Functions/rank.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "func.window_functions.row_number",
+              "title": "ROW_NUMBER()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Window-Functions/row_number.md",
+              "compat": "full",
+              "notes": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "operators",
+      "label": "Operators",
+      "summary": {
+        "full": 1,
+        "partial": 0,
+        "none": 0,
+        "mo_only": 0,
+        "unknown": 61
+      },
+      "categories": [
+        {
+          "id": "_root",
+          "label": "Operators",
+          "entries": [
+            {
+              "id": "op.interval",
+              "title": "interval",
+              "path": "docs/MatrixOne/Reference/Operators/interval.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.operator_precedence",
+              "title": "operator-precedence",
+              "path": "docs/MatrixOne/Reference/Operators/operator-precedence.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.operators",
+              "title": "operators",
+              "path": "docs/MatrixOne/Reference/Operators/operators.md",
+              "compat": "unknown",
+              "notes": []
+            }
+          ]
+        },
+        {
+          "id": "arithmetic_operators",
+          "label": "Arithmetic Operators",
+          "entries": [
+            {
+              "id": "op.arithmetic_operators.addition",
+              "title": "addition",
+              "path": "docs/MatrixOne/Reference/Operators/arithmetic-operators/addition.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.arithmetic_operators.arithmetic_operators_overview",
+              "title": "arithmetic-operators-overview",
+              "path": "docs/MatrixOne/Reference/Operators/arithmetic-operators/arithmetic-operators-overview.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.arithmetic_operators.div",
+              "title": "div",
+              "path": "docs/MatrixOne/Reference/Operators/arithmetic-operators/div.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.arithmetic_operators.division",
+              "title": "division",
+              "path": "docs/MatrixOne/Reference/Operators/arithmetic-operators/division.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.arithmetic_operators.minus",
+              "title": "minus",
+              "path": "docs/MatrixOne/Reference/Operators/arithmetic-operators/minus.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.arithmetic_operators.mod",
+              "title": "mod",
+              "path": "docs/MatrixOne/Reference/Operators/arithmetic-operators/mod.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.arithmetic_operators.multiplication",
+              "title": "multiplication",
+              "path": "docs/MatrixOne/Reference/Operators/arithmetic-operators/multiplication.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.arithmetic_operators.unary_minus",
+              "title": "unary-minus",
+              "path": "docs/MatrixOne/Reference/Operators/arithmetic-operators/unary-minus.md",
+              "compat": "unknown",
+              "notes": []
+            }
+          ]
+        },
+        {
+          "id": "assignment_operators",
+          "label": "Assignment Operators",
+          "entries": [
+            {
+              "id": "op.assignment_operators.assignment_operators_overview",
+              "title": "assignment-operators-overview",
+              "path": "docs/MatrixOne/Reference/Operators/assignment-operators/assignment-operators-overview.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.assignment_operators.equal",
+              "title": "equal",
+              "path": "docs/MatrixOne/Reference/Operators/assignment-operators/equal.md",
+              "compat": "unknown",
+              "notes": []
+            }
+          ]
+        },
+        {
+          "id": "bit_functions_and_operators",
+          "label": "Bit Functions and Operators",
+          "entries": [
+            {
+              "id": "op.bit_functions_and_operators.bit_functions_and_operators_overview",
+              "title": "bit-functions-and-operators-overview",
+              "path": "docs/MatrixOne/Reference/Operators/bit-functions-and-operators/bit-functions-and-operators-overview.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.bit_functions_and_operators.bitwise_and",
+              "title": "bitwise-and",
+              "path": "docs/MatrixOne/Reference/Operators/bit-functions-and-operators/bitwise-and.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.bit_functions_and_operators.bitwise_inversion",
+              "title": "bitwise-inversion",
+              "path": "docs/MatrixOne/Reference/Operators/bit-functions-and-operators/bitwise-inversion.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.bit_functions_and_operators.bitwise_or",
+              "title": "bitwise-or",
+              "path": "docs/MatrixOne/Reference/Operators/bit-functions-and-operators/bitwise-or.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.bit_functions_and_operators.bitwise_xor",
+              "title": "bitwise-xor",
+              "path": "docs/MatrixOne/Reference/Operators/bit-functions-and-operators/bitwise-xor.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.bit_functions_and_operators.left_shift",
+              "title": "left-shift",
+              "path": "docs/MatrixOne/Reference/Operators/bit-functions-and-operators/left-shift.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.bit_functions_and_operators.right_shift",
+              "title": "right-shift",
+              "path": "docs/MatrixOne/Reference/Operators/bit-functions-and-operators/right-shift.md",
+              "compat": "unknown",
+              "notes": []
+            }
+          ]
+        },
+        {
+          "id": "cast_functions_and_operators",
+          "label": "Cast Functions and Operators",
+          "entries": [
+            {
+              "id": "op.cast_functions_and_operators.binary",
+              "title": "binary",
+              "path": "docs/MatrixOne/Reference/Operators/cast-functions-and-operators/binary.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.cast_functions_and_operators.cast",
+              "title": "cast",
+              "path": "docs/MatrixOne/Reference/Operators/cast-functions-and-operators/cast.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.cast_functions_and_operators.cast_functions_and_operators_overview",
+              "title": "cast-functions-and-operators-overview",
+              "path": "docs/MatrixOne/Reference/Operators/cast-functions-and-operators/cast-functions-and-operators-overview.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.cast_functions_and_operators.convert",
+              "title": "convert",
+              "path": "docs/MatrixOne/Reference/Operators/cast-functions-and-operators/convert.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.cast_functions_and_operators.decode",
+              "title": "decode",
+              "path": "docs/MatrixOne/Reference/Operators/cast-functions-and-operators/decode.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.cast_functions_and_operators.encode",
+              "title": "encode",
+              "path": "docs/MatrixOne/Reference/Operators/cast-functions-and-operators/encode.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.cast_functions_and_operators.serial",
+              "title": "serial",
+              "path": "docs/MatrixOne/Reference/Operators/cast-functions-and-operators/serial.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.cast_functions_and_operators.serial_full",
+              "title": "serial_full",
+              "path": "docs/MatrixOne/Reference/Operators/cast-functions-and-operators/serial_full.md",
+              "compat": "unknown",
+              "notes": []
+            }
+          ]
+        },
+        {
+          "id": "comparison_functions_and_operators",
+          "label": "Comparison Functions and Operators",
+          "entries": [
+            {
+              "id": "op.comparison_functions_and_operators.null_safe_equal",
+              "title": "<=>",
+              "path": "docs/MatrixOne/Reference/Operators/comparison-functions-and-operators/null-safe-equal.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "op.comparison_functions_and_operators.assign_equal",
+              "title": "assign-equal",
+              "path": "docs/MatrixOne/Reference/Operators/comparison-functions-and-operators/assign-equal.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.comparison_functions_and_operators.between",
+              "title": "between",
+              "path": "docs/MatrixOne/Reference/Operators/comparison-functions-and-operators/between.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.comparison_functions_and_operators.coalesce",
+              "title": "coalesce",
+              "path": "docs/MatrixOne/Reference/Operators/comparison-functions-and-operators/coalesce.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.comparison_functions_and_operators.comparison_functions_and_operators_overview",
+              "title": "comparison-functions-and-operators-overview",
+              "path": "docs/MatrixOne/Reference/Operators/comparison-functions-and-operators/comparison-functions-and-operators-overview.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.comparison_functions_and_operators.function_interval",
+              "title": "function_interval",
+              "path": "docs/MatrixOne/Reference/Operators/comparison-functions-and-operators/function_interval.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.comparison_functions_and_operators.function_isnull",
+              "title": "function_isnull",
+              "path": "docs/MatrixOne/Reference/Operators/comparison-functions-and-operators/function_isnull.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.comparison_functions_and_operators.function_least",
+              "title": "function_least",
+              "path": "docs/MatrixOne/Reference/Operators/comparison-functions-and-operators/function_least.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.comparison_functions_and_operators.function_strcmp",
+              "title": "function_strcmp",
+              "path": "docs/MatrixOne/Reference/Operators/comparison-functions-and-operators/function_strcmp.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.comparison_functions_and_operators.greater_than",
+              "title": "greater-than",
+              "path": "docs/MatrixOne/Reference/Operators/comparison-functions-and-operators/greater-than.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.comparison_functions_and_operators.greater_than_or_equal",
+              "title": "greater-than-or-equal",
+              "path": "docs/MatrixOne/Reference/Operators/comparison-functions-and-operators/greater-than-or-equal.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.comparison_functions_and_operators.ilike",
+              "title": "ilike",
+              "path": "docs/MatrixOne/Reference/Operators/comparison-functions-and-operators/ilike.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.comparison_functions_and_operators.in",
+              "title": "in",
+              "path": "docs/MatrixOne/Reference/Operators/comparison-functions-and-operators/in.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.comparison_functions_and_operators.is",
+              "title": "is",
+              "path": "docs/MatrixOne/Reference/Operators/comparison-functions-and-operators/is.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.comparison_functions_and_operators.is_not",
+              "title": "is-not",
+              "path": "docs/MatrixOne/Reference/Operators/comparison-functions-and-operators/is-not.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.comparison_functions_and_operators.is_not_null",
+              "title": "is-not-null",
+              "path": "docs/MatrixOne/Reference/Operators/comparison-functions-and-operators/is-not-null.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.comparison_functions_and_operators.is_null",
+              "title": "is-null",
+              "path": "docs/MatrixOne/Reference/Operators/comparison-functions-and-operators/is-null.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.comparison_functions_and_operators.less_than",
+              "title": "less-than",
+              "path": "docs/MatrixOne/Reference/Operators/comparison-functions-and-operators/less-than.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.comparison_functions_and_operators.less_than_or_equal",
+              "title": "less-than-or-equal",
+              "path": "docs/MatrixOne/Reference/Operators/comparison-functions-and-operators/less-than-or-equal.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.comparison_functions_and_operators.like",
+              "title": "like",
+              "path": "docs/MatrixOne/Reference/Operators/comparison-functions-and-operators/like.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.comparison_functions_and_operators.not_between",
+              "title": "not-between",
+              "path": "docs/MatrixOne/Reference/Operators/comparison-functions-and-operators/not-between.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.comparison_functions_and_operators.not_equal",
+              "title": "not-equal",
+              "path": "docs/MatrixOne/Reference/Operators/comparison-functions-and-operators/not-equal.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.comparison_functions_and_operators.not_in",
+              "title": "not-in",
+              "path": "docs/MatrixOne/Reference/Operators/comparison-functions-and-operators/not-in.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.comparison_functions_and_operators.not_like",
+              "title": "not-like",
+              "path": "docs/MatrixOne/Reference/Operators/comparison-functions-and-operators/not-like.md",
+              "compat": "unknown",
+              "notes": []
+            }
+          ]
+        },
+        {
+          "id": "flow_control_functions",
+          "label": "Flow Control Functions",
+          "entries": [
+            {
+              "id": "op.flow_control_functions.case_when",
+              "title": "case-when",
+              "path": "docs/MatrixOne/Reference/Operators/flow-control-functions/case-when.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.flow_control_functions.flow_control_functions_overview",
+              "title": "flow-control-functions-overview",
+              "path": "docs/MatrixOne/Reference/Operators/flow-control-functions/flow-control-functions-overview.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.flow_control_functions.function_if",
+              "title": "function_if",
+              "path": "docs/MatrixOne/Reference/Operators/flow-control-functions/function_if.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.flow_control_functions.function_ifnull",
+              "title": "function_ifnull",
+              "path": "docs/MatrixOne/Reference/Operators/flow-control-functions/function_ifnull.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.flow_control_functions.function_nullif",
+              "title": "function_nullif",
+              "path": "docs/MatrixOne/Reference/Operators/flow-control-functions/function_nullif.md",
+              "compat": "unknown",
+              "notes": []
+            }
+          ]
+        },
+        {
+          "id": "logical_operators",
+          "label": "Logical Operators",
+          "entries": [
+            {
+              "id": "op.logical_operators.and",
+              "title": "and",
+              "path": "docs/MatrixOne/Reference/Operators/logical-operators/and.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.logical_operators.logical_operators_overview",
+              "title": "logical-operators-overview",
+              "path": "docs/MatrixOne/Reference/Operators/logical-operators/logical-operators-overview.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.logical_operators.not",
+              "title": "not",
+              "path": "docs/MatrixOne/Reference/Operators/logical-operators/not.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.logical_operators.or",
+              "title": "or",
+              "path": "docs/MatrixOne/Reference/Operators/logical-operators/or.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.logical_operators.xor",
+              "title": "xor",
+              "path": "docs/MatrixOne/Reference/Operators/logical-operators/xor.md",
+              "compat": "unknown",
+              "notes": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "data-types",
+      "label": "Data Types",
+      "summary": {
+        "full": 0,
+        "partial": 0,
+        "none": 0,
+        "mo_only": 0,
+        "unknown": 11
+      },
+      "categories": [
+        {
+          "id": "_root",
+          "label": "Data Types",
+          "entries": [
+            {
+              "id": "dtype.blob_text_type",
+              "title": "blob-text-type",
+              "path": "docs/MatrixOne/Reference/Data-Types/blob-text-type.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "dtype.data_type_conversion",
+              "title": "data-type-conversion",
+              "path": "docs/MatrixOne/Reference/Data-Types/data-type-conversion.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "dtype.data_types",
+              "title": "data-types",
+              "path": "docs/MatrixOne/Reference/Data-Types/data-types.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "dtype.datalink_type",
+              "title": "datalink-type",
+              "path": "docs/MatrixOne/Reference/Data-Types/datalink-type.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "dtype.enum_type",
+              "title": "enum-type",
+              "path": "docs/MatrixOne/Reference/Data-Types/enum-type.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "dtype.fixed_point_types",
+              "title": "fixed-point-types",
+              "path": "docs/MatrixOne/Reference/Data-Types/fixed-point-types.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "dtype.json_type",
+              "title": "json-type",
+              "path": "docs/MatrixOne/Reference/Data-Types/json-type.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "dtype.uuid_type",
+              "title": "uuid-type",
+              "path": "docs/MatrixOne/Reference/Data-Types/uuid-type.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "dtype.vector_type",
+              "title": "vector-type",
+              "path": "docs/MatrixOne/Reference/Data-Types/vector-type.md",
+              "compat": "unknown",
+              "notes": []
+            }
+          ]
+        },
+        {
+          "id": "date_time_data_types",
+          "label": "Date/Time Data Types",
+          "entries": [
+            {
+              "id": "dtype.date_time_data_types.timestamp_initialization",
+              "title": "timestamp-initialization",
+              "path": "docs/MatrixOne/Reference/Data-Types/date-time-data-types/timestamp-initialization.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "dtype.date_time_data_types.year_type",
+              "title": "year-type",
+              "path": "docs/MatrixOne/Reference/Data-Types/date-time-data-types/year-type.md",
+              "compat": "unknown",
+              "notes": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "language-structure",
+      "label": "Language Structure",
+      "summary": {
+        "full": 0,
+        "partial": 0,
+        "none": 0,
+        "mo_only": 0,
+        "unknown": 2
+      },
+      "categories": [
+        {
+          "id": "_root",
+          "label": "Language Structure",
+          "entries": [
+            {
+              "id": "lang.comment",
+              "title": "comment",
+              "path": "docs/MatrixOne/Reference/Language-Structure/comment.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "lang.keywords",
+              "title": "keywords",
+              "path": "docs/MatrixOne/Reference/Language-Structure/keywords.md",
+              "compat": "unknown",
+              "notes": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
