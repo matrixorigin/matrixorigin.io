@@ -36,7 +36,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Iterable
 
-BASE_URL_DEFAULT = "https://docs.matrixorigin.io"
+BASE_URL_DEFAULT = "https://docs.matrixorigin.cn"
 DOC_ROOT_REL = Path("MatrixOne")
 COMPAT_MATRIX_REL = "MatrixOne/Reference/mysql-compatibility-matrix.md"
 SQL_REF_ROOT_REL = Path("MatrixOne/Reference/SQL-Reference")
