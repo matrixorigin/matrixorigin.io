@@ -1,0 +1,37 @@
+tag: v3.0.12
+docs_added:
+  - path: docs/MatrixOne/Reference/Functions-and-Operators/Datetime/yearweek.md
+    doc_type: reference
+    mysql_compat: full
+    llms_summary: "YEARWEEK(date, [mode]) returns year and week number for a given date as YYYYWW format, with an optional mode parameter (0-7) controlling week numbering."
+  - path: docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/branch-protect-snapshots.md
+    doc_type: reference
+    mysql_compat: mo_only
+    llms_summary: "Internal snapshots automatically created by DATA BRANCH CREATE to protect parent data from garbage collection, hidden from SHOW SNAPSHOTS and reclaimed on DAG subtree deletion."
+  - path: docs/MatrixOne/Reference/Data-Types/set-type.md
+    doc_type: reference
+    mysql_compat: partial
+    llms_summary: "The SET type stores a set of predefined string values as a bitmask, supporting INSERT by name or numeric index, LOAD DATA, DISTINCT, GROUP BY, and ALTER MODIFY to expand members."
+docs_updated:
+  - path: docs/MatrixOne/Reference/Functions-and-Operators/Datetime/week.md
+    change_summary: "Document the optional mode parameter (0-7) controlling week numbering, add mode values table, and replace legacy examples with runnable examples."
+  - path: docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-snapshot.md
+    change_summary: "Add Branch Protect Snapshots section explaining automatic internal snapshots created by DATA BRANCH CREATE, hidden from SHOW SNAPSHOTS and rejected by DROP SNAPSHOT."
+  - path: docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/drop-snapshot.md
+    change_summary: "Note that branch protect snapshots (kind=branch, auto-created by DATA BRANCH CREATE) are rejected by DROP SNAPSHOT since v3.0.12."
+  - path: docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/data-branch-create-en.md
+    change_summary: "Add Note #6 documenting automatic branch protect snapshot creation and lifecycle."
+  - path: docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/data-branch-diff-en.md
+    change_summary: "Update LCA section to note that DATA BRANCH DIFF works across arbitrary DAG depth since v3.0.12."
+  - path: docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/data-branch-merge-en.md
+    change_summary: "Update Description to note that LCA resolution and collect-range computation work across arbitrary DAG depth since v3.0.12."
+  - path: docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-external-table.md
+    change_summary: "Document Hive-style partitioned Parquet external tables with new INFILE options hive_partitioning and hive_partition_columns, plus two runnable examples."
+  - path: docs/MatrixOne/Reference/Data-Types/fixed-point-types.md
+    change_summary: "Document DECIMAL256 storage (39-76 digits, 32 bytes) added in v3.0.12, update max precision from 38 to 76, add new storage tier to the byte table."
+  - path: docs/MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/load-data-infile.md
+    change_summary: "Note that LOAD DATA from Parquet files correctly converts all three binary decimal encodings (INT32, INT64, FixedLenByteArray) since v3.0.12."
+  - path: docs/MatrixOne/Reference/Data-Types/date-time-data-types/year-type.md
+    change_summary: "Add runnable SQL examples covering INSERT with 4-digit, 2-digit string, 2-digit numeric, CAST operations, and comparison queries."
+  - path: docs/MatrixOne/Reference/Data-Types/enum-type.md
+    change_summary: "Add frontmatter and TL;DR blockquote, document v3.0.12 ENUM validation improvements (stricter input validation, improved comparison semantics, better NOT NULL handling)."

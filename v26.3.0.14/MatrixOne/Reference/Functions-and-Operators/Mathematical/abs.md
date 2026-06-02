@@ -1,0 +1,49 @@
+---
+title: "ABS()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "ABS(X) Returns the absolute value of X, or NULL if X is NULL."
+---
+# **ABS()**
+
+> ABS(X) Returns the absolute value of X, or NULL if X is NULL.
+
+## **Description**
+
+ABS(X) Returns the absolute value of X, or NULL if X is NULL.
+
+## **Syntax**
+
+```
+> ABS(number)
+```
+
+## **Arguments**
+
+|  Arguments   | Description  |
+|  ----  | ----  |
+| number | Required. Any numeric data type supported now. |
+
+The result type is derived from the argument type.
+
+## **Examples**
+
+```sql
+drop table if exists t1;
+create table t1(a int,b float);
+insert into t1 values(1,-3.1416);
+insert into t1 values(-1,1.57);
+
+mysql> select abs(a),abs(b) from t1;
++--------+--------------------+
+| abs(a) | abs(b)             |
++--------+--------------------+
+|      1 | 3.1415998935699463 |
+|      1 | 1.5700000524520874 |
++--------+--------------------+
+2 rows in set (0.01 sec)
+```
