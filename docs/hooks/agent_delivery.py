@@ -5,7 +5,7 @@ MCP servers, etc.) can consume the MatrixOne docs without parsing HTML:
 
 1. **Per-page markdown mirror.** Every source `docs/MatrixOne/**/*.md` file
    is copied into `site/` at the same relative location. Frontmatter is
-   preserved as-is — it's cheap metadata for downstream tools.
+   preserved as-is - it's cheap metadata for downstream tools.
 2. **`site/llms.txt`**. A concise llmstxt.org-format index pointing at the
    most load-bearing pages. Section titles come from the page's `title:`
    frontmatter (or first H1); one-line descriptions come from the page's
@@ -45,10 +45,10 @@ OP_REF_ROOT_REL = Path("MatrixOne/Reference/Operators")
 MAX_AUTO_DESC_CHARS = 160
 
 SQL_CATEGORY_ORDER = [
-    ("Data-Definition-Language", "DDL — Data Definition Language"),
-    ("Data-Manipulation-Language", "DML — Data Manipulation Language"),
-    ("Data-Query-Language", "DQL — Data Query Language"),
-    ("Data-Control-Language", "DCL — Data Control Language"),
+    ("Data-Definition-Language", "DDL - Data Definition Language"),
+    ("Data-Manipulation-Language", "DML - Data Manipulation Language"),
+    ("Data-Query-Language", "DQL - Data Query Language"),
+    ("Data-Control-Language", "DCL - Data Control Language"),
     ("Other", "Other"),
 ]
 COMPAT_TAG = {
@@ -90,17 +90,17 @@ FEATURED_PAGES = [
         ("MatrixOne/Overview/matrixone-introduction.md",
          "What MatrixOne is: a hyper-converged cloud-native HSTAP database that unifies OLTP, OLAP, streaming, and vector/full-text workloads in one engine."),
         ("MatrixOne/Overview/matrixone-feature-list.md",
-         "Feature list at a glance — what's supported today vs on the roadmap."),
+         "Feature list at a glance - what's supported today vs on the roadmap."),
         ("MatrixOne/Get-Started/install-standalone-matrixone.md",
-         "Single-node install walkthrough — fastest path to a running instance for trying things out."),
+         "Single-node install walkthrough - fastest path to a running instance for trying things out."),
         ("MatrixOne/Reference/SQL-Reference/SQL-Type.md",
-         "SQL statement taxonomy — entry point for every supported statement."),
+         "SQL statement taxonomy - entry point for every supported statement."),
         (COMPAT_MATRIX_REL,
-         "MySQL 8.0 compatibility status per SQL statement — consult first before assuming syntax works."),
+         "MySQL 8.0 compatibility status per SQL statement - consult first before assuming syntax works."),
         ("MatrixOne/Reference/Data-Types/data-types.md",
          "All supported data types, including MatrixOne-specific `VECF32` / `VECF64` vectors and `DATALINK`."),
         ("MatrixOne/Reference/Variable/system-variables/system-variables-overview.md",
-         "System variables reference — session/global toggles that change SQL behaviour."),
+         "System variables reference - session/global toggles that change SQL behaviour."),
         ("MatrixOne/Reference/System-Parameters/system-parameter.md",
          "Server configuration parameters (static startup-time + dynamic) for tuning the engine."),
     ]),
@@ -108,19 +108,19 @@ FEATURED_PAGES = [
         ("MatrixOne/Overview/feature/key-feature-htap.md",
          "HTAP: run transactional and analytical workloads against the same data without ETL."),
         ("MatrixOne/Tutorial/git4data-demo.md",
-         "Git-for-Data branching workflow: create/diff/merge data branches just like code branches — the MatrixOne differentiator for agent-safe experiments."),
+         "Git-for-Data branching workflow: create/diff/merge data branches just like code branches - the MatrixOne differentiator for agent-safe experiments."),
         ("MatrixOne/Maintain/backup-restore/mobr-backup-restore/mobr-snapshot-backup-restore.md",
-         "Snapshot-based backup & restore — cluster/tenant/database/table scope, copy-on-write semantics."),
+         "Snapshot-based backup & restore - cluster/tenant/database/table scope, copy-on-write semantics."),
         ("MatrixOne/Maintain/backup-restore/mobr-backup-restore/mobr-pitr-backup-restore.md",
-         "Point-in-time recovery (PITR) — restore to an arbitrary timestamp within the configured retention window."),
+         "Point-in-time recovery (PITR) - restore to an arbitrary timestamp within the configured retention window."),
         ("MatrixOne/Tutorial/efficient-clone-demo.md",
          "CREATE CLONE: instant copy-on-write table/database clones, including across tenants."),
         ("MatrixOne/Develop/Vector/vector_search.md",
          "Vector search with `VECF32` / `VECF64`, L2/cosine/IP distance, IVFFLAT and HNSW indexes."),
         ("MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-fulltext-index.md",
-         "Full-text indexing — natural-language, boolean, and JSON search modes."),
+         "Full-text indexing - natural-language, boolean, and JSON search modes."),
         ("MatrixOne/Tutorial/hybrid-search-demo.md",
-         "Hybrid retrieval: combine vector search with full-text and scalar filters in a single query — the RAG-friendly pattern."),
+         "Hybrid retrieval: combine vector search with full-text and scalar filters in a single query - the RAG-friendly pattern."),
     ]),
     ("SDK & Drivers", [
         ("MatrixOne/Develop/connect-mo/python-connect-to-matrixone.md",
@@ -144,28 +144,28 @@ FEATURED_PAGES = [
         ("MatrixOne/Migrate/migrate-overview.md",
          "Migration overview: tools and workflows for moving from MySQL / PostgreSQL / Oracle / SQL Server to MatrixOne."),
         ("MatrixOne/Migrate/migrate-from-mysql-to-matrixone.md",
-         "MySQL → MatrixOne migration — the most common path, leverages MySQL wire-protocol compatibility."),
+         "MySQL → MatrixOne migration - the most common path, leverages MySQL wire-protocol compatibility."),
     ]),
     ("Operate", [
         ("MatrixOne/Deploy/deploy-MatrixOne-cluster.md",
-         "Distributed cluster deployment on Kubernetes — separates storage, compute, and transaction."),
+         "Distributed cluster deployment on Kubernetes - separates storage, compute, and transaction."),
         ("MatrixOne/Maintain/backup-restore/backup-restore-overview.md",
-         "Backup & restore strategy overview — snapshot, PITR, and `mo_br` tool."),
+         "Backup & restore strategy overview - snapshot, PITR, and `mo_br` tool."),
     ]),
     ("Optional", [
         ("MatrixOne/Overview/architecture/matrixone-architecture-design.md",
-         "HSTAP architecture deep dive — storage/compute/transaction split, TAE engine, log service, proxy."),
+         "HSTAP architecture deep dive - storage/compute/transaction split, TAE engine, log service, proxy."),
         ("MatrixOne/Performance-Tuning/performance-tuning-overview.md",
-         "Performance tuning methods — query plan reading, indexing, statistics, resource controls."),
+         "Performance tuning methods - query plan reading, indexing, statistics, resource controls."),
         ("MatrixOne/Troubleshooting/error-code.md",
-         "Error code taxonomy — look up any 5-character error code."),
+         "Error code taxonomy - look up any 5-character error code."),
     ]),
 ]
 
 SYSTEM_PROMPT_BLOCK = (
     "MatrixOne is a cloud-native HSTAP database unifying OLTP, OLAP, streaming, "
     "vector, and full-text workloads in one engine. It is broadly MySQL 8.0 "
-    "wire-protocol compatible, but not all MySQL features are supported — "
+    "wire-protocol compatible, but not all MySQL features are supported - "
     "always verify against the MySQL Compatibility Matrix. SQL examples on "
     "these pages are executed against the latest 3.0-dev image by "
     "`scripts/doc-validator` on every pull request."
@@ -184,16 +184,16 @@ AGENT_ROUTING = (
 # Behavioural directives kept here so they survive prompt-review sweeps.
 # Each entry should be one actionable line.
 AGENT_HINTS = [
-    "Not all MySQL 8.0 features are supported — consult the compatibility matrix before assuming syntax works.",
+    "Not all MySQL 8.0 features are supported - consult the compatibility matrix before assuming syntax works.",
     "Prefer MatrixOne-native clauses when documented: `CLUSTER BY`, `AS OF TIMESTAMP`, `USING IVFFLAT`/`USING HNSW`, `CLONE`, `PITR`, `SNAPSHOT`.",
     "Use `SHOW CREATE TABLE <name>` to inspect a table before mutating it; system tables differ from MySQL.",
     "Vector indexes (`USING IVFFLAT`, `USING HNSW`) must be declared via `CREATE INDEX`, not `ALTER TABLE ADD INDEX`.",
-    "Secondary indexes are syntactically accepted but do not yet accelerate queries — do not rely on them for performance.",
+    "Secondary indexes are syntactically accepted but do not yet accelerate queries - do not rely on them for performance.",
     "`ALTER TABLE` cannot combine column-level clauses (CHANGE/MODIFY/RENAME COLUMN, ADD/DROP PK) with other clauses; split into separate statements.",
-    "Tables created with `CLUSTER BY` and temporary tables cannot be altered — plan schema shape up front.",
+    "Tables created with `CLUSTER BY` and temporary tables cannot be altered - plan schema shape up front.",
     "`CREATE DATABASE` supports only `utf8mb4` / `utf8mb4_bin`; the `ENCRYPTION` clause is accepted but inert.",
     "Foreign keys do not support `ON CASCADE DELETE`.",
-    "`LOAD DATA INFILE` expects a local absolute path or a stage URL (e.g. `stage://my_stage/file.csv`) — relative paths and MySQL-style secure-file-priv do not apply.",
+    "`LOAD DATA INFILE` expects a local absolute path or a stage URL (e.g. `stage://my_stage/file.csv`) - relative paths and MySQL-style secure-file-priv do not apply.",
     "Use `CREATE SNAPSHOT` / `PITR` / `CREATE CLONE` for point-in-time and copy-on-write workflows rather than MySQL's binlog tooling.",
     "For agent-safe experiments, prefer a data branch (`DATA BRANCH CREATE` → test → `DATA BRANCH DIFF` → `DATA BRANCH MERGE` / delete) over mutating shared tables in place.",
 ]
@@ -260,15 +260,15 @@ def on_post_build(config, **_kwargs):
         llms.append("")
     (site_dir / "llms.txt").write_text("\n".join(llms), encoding="utf-8")
 
-    # 3. llms-sql.txt — flat index of every SQL-Reference page with compat tag.
+    # 3. llms-sql.txt - flat index of every SQL-Reference page with compat tag.
     sql_lines = _build_sql_index(docs_dir, base, built_at)
     (site_dir / "llms-sql.txt").write_text("\n".join(sql_lines), encoding="utf-8")
 
-    # 3b. llms-func.txt — flat index of every Functions-and-Operators page.
+    # 3b. llms-func.txt - flat index of every Functions-and-Operators page.
     func_lines = _build_func_index(docs_dir, base, built_at)
     (site_dir / "llms-func.txt").write_text("\n".join(func_lines), encoding="utf-8")
 
-    # 3c. llms-op.txt — flat index of every Operators page.
+    # 3c. llms-op.txt - flat index of every Operators page.
     op_lines = _build_op_index(docs_dir, base, built_at)
     (site_dir / "llms-op.txt").write_text("\n".join(op_lines), encoding="utf-8")
 
@@ -291,7 +291,7 @@ def on_post_build(config, **_kwargs):
         "MatrixOne/Contribution-Guide",
     ]
     full_parts = [
-        "# MatrixOne — Full Documentation",
+        "# MatrixOne - Full Documentation",
         "",
         "Source: " + base,
         f"Generated: {built_at} (UTC)",
@@ -334,7 +334,7 @@ def _build_sql_index(docs_dir: Path, base: str, built_at: str) -> list[str]:
     """
     root = docs_dir / SQL_REF_ROOT_REL
     lines: list[str] = [
-        "# MatrixOne SQL Reference — Flat Index",
+        "# MatrixOne SQL Reference - Flat Index",
         "",
         f"> Every SQL statement supported by MatrixOne, grouped by category, "
         f"each tagged with its MySQL 8.0 compatibility status. Generated from "
@@ -399,7 +399,7 @@ def _build_func_index(docs_dir: Path, base: str, built_at: str) -> list[str]:
     """
     root = docs_dir / FUNC_REF_ROOT_REL
     lines: list[str] = [
-        "# MatrixOne Functions Reference — Flat Index",
+        "# MatrixOne Functions Reference - Flat Index",
         "",
         f"> Every function supported by MatrixOne, grouped by category, "
         f"each tagged with its MySQL 8.0 compatibility status. Generated from "
@@ -462,7 +462,7 @@ def _build_op_index(docs_dir: Path, base: str, built_at: str) -> list[str]:
     """Emit a flat one-line-per-operator catalogue of every Operators page."""
     root = docs_dir / OP_REF_ROOT_REL
     lines: list[str] = [
-        "# MatrixOne Operators Reference — Flat Index",
+        "# MatrixOne Operators Reference - Flat Index",
         "",
         f"> Every operator supported by MatrixOne, grouped by category, "
         f"each tagged with its MySQL 8.0 compatibility status. Generated from "
@@ -537,7 +537,7 @@ def _read(md_path: Path) -> str | None:
 
 
 def _split_frontmatter(text: str) -> tuple[dict[str, str], str]:
-    """Return (frontmatter_dict, body). Accepts only flat scalar frontmatter —
+    """Return (frontmatter_dict, body). Accepts only flat scalar frontmatter -
     nested lists/dicts (e.g. `differs_from_mysql:`) are ignored.
     """
     m = _FRONTMATTER_RE.match(text)
