@@ -1,0 +1,27 @@
+tag: v3.0.14
+docs_added:
+  - path: docs/MatrixOne/Reference/Functions-and-Operators/Mathematical/sign.md
+    doc_type: reference
+    mysql_compat: full
+    llms_summary: "The SIGN() function returns the sign of a number: -1 for negative, 0 for zero, and 1 for positive."
+  - path: docs/MatrixOne/Reference/Functions-and-Operators/Mathematical/truncate.md
+    doc_type: reference
+    mysql_compat: full
+    llms_summary: "The TRUNCATE() function returns a number truncated to the specified number of decimal places, without rounding."
+  - path: docs/MatrixOne/Reference/Functions-and-Operators/Mathematical/radians.md
+    doc_type: reference
+    mysql_compat: full
+    llms_summary: "The RADIANS() function converts a value from degrees to radians by multiplying by PI()/180."
+  - path: docs/MatrixOne/Reference/Functions-and-Operators/Mathematical/degrees.md
+    doc_type: reference
+    mysql_compat: full
+    llms_summary: "The DEGREES() function converts a value from radians to degrees by multiplying by 180/PI()."
+  - path: docs/MatrixOne/Reference/Functions-and-Operators/Mathematical/atan2.md
+    doc_type: reference
+    mysql_compat: full
+    llms_summary: "The ATAN2() function returns the arctangent of Y divided by X, using the signs of both arguments to determine the quadrant of the result."
+docs_updated:
+  - path: docs/MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/update.md
+    change_summary: "Added PostgreSQL-style UPDATE ... SET ... FROM ... WHERE syntax and examples."
+  - path: docs/MatrixOne/Reference/Functions-and-Operators/Aggregate-Functions/sum.md
+    change_summary: "Noted SUM() support for boolean expressions (TRUE=1, FALSE=0) starting from v3.0.14."

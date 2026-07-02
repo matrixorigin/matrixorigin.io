@@ -1,0 +1,209 @@
+# MatrixOne Functions Reference — Flat Index
+
+> Every function supported by MatrixOne, grouped by category, each tagged with its MySQL 8.0 compatibility status. Generated from `mysql_compat` frontmatter on 2026-07-02 (UTC).
+
+Legend: `[full]` MySQL-compatible · `[partial]` compatible with caveats (see linked page for `differs_from_mysql:`) · `[mo-only]` MatrixOne-only, no MySQL counterpart · `[unknown]` frontmatter missing.
+
+Compatibility matrix (grouped table view): https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/mysql-compatibility-matrix.md
+
+## Aggregate Functions
+
+- [ANY_VALUE](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Aggregate-Functions/any-value.md) [full]: The ANY_VALUE function is useful for GROUP BY queries.
+- [AVG](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Aggregate-Functions/avg.md) [partial]: Aggregate function.
+- [BIT_AND](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Aggregate-Functions/bit_and.md) [full]: Aggregate function.
+- [BIT_OR](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Aggregate-Functions/bit_or.md) [full]: Aggregate function.
+- [BIT_XOR](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Aggregate-Functions/bit_xor.md) [full]: Aggregate function.
+- [BITMAP function](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Aggregate-Functions/bitmap.md) [mo-only]: A BITMAP function is a set of built-in functions for processing bitmaps, which are contiguous pieces of memory stored as binary data types…
+- [COUNT](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Aggregate-Functions/count.md) [full]: Aggregate function.
+- [GROUP_CONCAT](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Aggregate-Functions/group-concat.md) [full]: This function returns a string result with the concatenated non-NULL values from a group. It returns NULL if there are no non-NULL values.
+- [MAX](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Aggregate-Functions/max.md) [full]: Aggregate function.
+- [MEDIAN()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Aggregate-Functions/median.md) [mo-only]: MEDIAN() returns the median value of a set of values, that is, returns the value in the middle after sorting a set of values…
+- [MIN](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Aggregate-Functions/min.md) [full]: Aggregate function.
+- [STDDEV_POP](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Aggregate-Functions/stddev_pop.md) [full]: Aggregate function.
+- [SUM](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Aggregate-Functions/sum.md) [partial]: Aggregate function.
+- [VAR_POP](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Aggregate-Functions/var_pop.md) [full]: VAR_POP() is an aggregate function that calculates the overall variance. Synonymous with VARIANCE().
+- [VARIANCE](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Aggregate-Functions/variance.md) [full]: The VARIANCE(expr) function returns the population standard variance of expr. Variance is an essential concept in statistics…
+
+## Date/Time Functions
+
+- [ADDTIME()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Datetime/addtime.md) [full]: The ADDTIME() function adds expr2 to expr1 and returns the result. expr1 is a TIME, DATETIME, or TIMESTAMP value (or a string that can be parsed as such)…
+- [CONVERT_TZ()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Datetime/convert-tz.md) [full]: The CONVERT_TZ() function is used to convert a given datetime from one time zone to another. If the argument is invalid, the function returns NULL.
+- [CURDATE()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Datetime/curdate.md) [partial]: The CURDATE() function returns the current date as a value in YYYY-MM-DD format, depending on whether the function is used in string or numeric context.
+- [CURRENT_TIMESTAMP()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Datetime/current-timestamp.md) [full]: CURRENT_TIMESTAMP and CURRENT_TIMESTAMP() are synonyms for NOW().
+- [CURTIME()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Datetime/curtime.md) [full]: The CURTIME() function returns the current time as a TIME value. CURRENT_TIME() is a synonym for CURTIME().
+- [DATE()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Datetime/date.md) [partial]: Extracts the date part of the date or datetime expression expr.
+- [DATE_ADD()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Datetime/date-add.md) [partial]: The `DATE_ADD() function adds a time/date interval to a date and then returns the date. If date is NULL, the function returns NULL`.
+- [DATE_FORMAT()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Datetime/date-format.md) [partial]: Formats the date value according to the format string. If either argument is NULL, the function returns NULL.
+- [DATE_SUB()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Datetime/date-sub.md) [partial]: The `DATE_SUB() function subtracts a time/date interval from a date and then returns the date. If date is NULL, the function returns NULL`.
+- [DATEDIFF()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Datetime/datediff.md) [full]: DATEDIFF() returns expr1 − expr2 expressed as a value in days from one date to the other. expr1 and expr2 are date or date-and-time expressions…
+- [DAY()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Datetime/day.md) [full]: Returns the day of the month for date, in the range 1 to 31, or 0 for dates such as 0000-00-00 or 2008-00-00 that have a zero day part…
+- [DAYOFYEAR()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Datetime/dayofyear.md) [full]: Returns the day of the year for date, in the range 1 to 366.
+- [EXTRACT()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Datetime/extract.md) [partial]: The `EXTRACT() function uses the same kinds of unit specifiers as DATE_ADD() or DATE_SUB(), but extracts parts from the date rather than performing date…
+- [FROM_UNIXTIME()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Datetime/from-unixtime.md) [partial]: The `FROM_UNIXTIME() function returns a representation of unix_timestamp as a datetime or character string value…
+- [GET_FORMAT()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Datetime/get-format.md) [full]: The GET_FORMAT() function returns the MySQL-style format string used by locale-specific date/time formatting for a given type (DATE, TIME…
+- [HOUR()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Datetime/hour.md) [full]: Returns the hour for time. The range of the return value is 0 to 23 for time-of-day values. However, the range of TIME values actually is much larger…
+- [MINUTE()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Datetime/minute.md) [full]: Returns the minute for time, in the range 0 to 59, or NULL if time is NULL.
+- [MONTH()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Datetime/month.md) [full]: Returns the month for date, in the range 1 to 12 for January to December, or 0 for dates such as '0000-00-00' or '2008-00-00' that have a zero month part…
+- [NOW()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Datetime/now.md) [full]: The NOW() function returns a value in 'YYYY-MM-DD HH:MM:SS' format for the current date and time.
+- [SECOND()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Datetime/second.md) [full]: Returns the second for time, in the range 0 to 59, or NULL if time is NULL.
+- [STR_TO_DATE()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Datetime/str-to-date.md) [full]: The STR_TO_DATE() function converts a string to a date or datetime type in the specified date or time display format, synonymous with TO_DATE().
+- [SUBTIME()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Datetime/subtime.md) [full]: The SUBTIME() function subtracts expr2 from expr1 and returns the result. expr1 is a TIME, DATETIME…
+- [SYSDATE()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Datetime/sysdate.md) [full]: The SYSDATE() function returns a value in 'YYYY-MM-DD HH:MM:SS' format for the current date and time.
+- [TIME()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Datetime/time.md) [full]: Extracts the time part of the time or datetime expression expr and returns it as a string. Returns NULL if expr is NULL.
+- [TIMEDIFF()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Datetime/timediff.md) [full]: TIMEDIFF() returns expr1 − expr2 expressed as a time value.
+- [TIMESTAMP()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Datetime/timestamp.md) [partial]: With a single argument, this function returns the date or datetime expression expr as a datetime value. Returns NULL if expr is NULL.
+- [TIMESTAMPADD()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Datetime/timestampadd.md) [full]: The TIMESTAMPADD() function adds an integer interval of the specified unit to a date, datetime, or timestamp expression datetime_expr and returns the result.
+- [TIMESTAMPDIFF()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Datetime/timestampdiff.md) [full]: Returns datetime_expr2 − datetime_expr1, where datetime_expr1 and datetime_expr2 are date or datetime expressions…
+- [TO_DATE()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Datetime/to-date.md) [mo-only]: `TO_DATE()` returns a DATETIME value if the format string contains both date and time parts, or a DATE or TIME value if the string contains only date or time…
+- [TO_DAYS()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Datetime/to-days.md) [partial]: TO_DAYS() is used to calculate the number of days between a given date and the start date of the Gregorian calendar (January 1, 0000)…
+- [TO_SECONDS()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Datetime/to-seconds.md) [partial]: The TO_SECONDS(expr) function is used to calculate the number of seconds between a given date or datetime expr and the year 0, January 1, 00:00:00…
+- [UNIX_TIMESTAMP()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Datetime/unix-timestamp.md) [partial]: If `UNIX_TIMESTAMP()` is called with no date argument, it returns a Unix timestamp representing seconds since '1970-01-01 00:00:00' UTC.
+- [UTC_TIMESTAMP()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Datetime/utc-timestamp.md) [full]: Returns the current UTC date and time as a value in YYYY-MM-DD hh:mm:ss or YYYYMMDDhhmmss format, depending on whether the function is used in string or…
+- [WEEK()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Datetime/week.md) [full]: WEEK() returns the week number for a given date or datetime expression. The optional mode parameter (0–7) controls the start day of the week and whether the…
+- [WEEKDAY()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Datetime/weekday.md) [full]: Returns the weekday index for date (0 = Monday, 1 = Tuesday, … 6 = Sunday). Returns NULL if date is NULL.
+- [YEAR()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Datetime/year.md) [partial]: The YEAR() or TOYEAR() function returns the year part for a given date (a number from 1000 to 9999).
+- [YEARWEEK()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Datetime/yearweek.md) [full]: YEARWEEK() returns the year and week number for a date or datetime expression. The result is an integer in YYYYWW format — for example…
+
+## JSON Functions
+
+- [JQ()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Json/jq.md) [mo-only]: The JQ() function is used to parse and transform JSON data based on jq expressions. Different from TRY_JQ()…
+- [JSON Arrow Operators -> and ->>](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Json/json-arrow.md) [full]: The JSON arrow operators -> and ->> are shorthand for extracting values from a JSON document by path…
+- [JSON_EXTRACT()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Json/json_extract.md) [full]: JSON EXTRACT() is a JSON query function that can be used to query JSON documents.
+- [JSON_EXTRACT_FLOAT64()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Json/json_extract_float64.md) [mo-only]: JSON_EXTRACT_FLOAT64() is used to extract the numeric value of the specified path from JSON data.
+- [JSON_EXTRACT_STRING()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Json/json_extract_string.md) [mo-only]: JSON_EXTRACT_STRING() is used to extract the string value of the specified path from JSON data.
+- [JSON_QUOTE()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Json/json_quote.md) [full]: The JSON_QUOTE function is used to convert a string value to a string in JSON format. Quote the string as a JSON value by wrapping the string in double quotes…
+- [JSON_ROW()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Json/json_row.md) [mo-only]: JSON_ROW() is used to convert each row into a json array.
+- [JSON_SET()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Json/json_set.md) [full]: JSON_SET() is used to set or update the value of a key in a JSON document. If the key does not exist, JSON_SET will add it to the JSON document.
+- [JSON_UNQUOTE()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Json/json_unquote.md) [full]: The JSON_UNQUOTE() function is used to extract an unquoted JSON value from a JSON string and return it as a string.
+- [TRY_JQ()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Json/try_jq.md) [mo-only]: The TRY_JQ() function is used to parse and transform JSON data based on jq expressions. Different from JQ()…
+
+## Math Functions
+
+- [ABS()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Mathematical/abs.md) [full]: ABS(X) Returns the absolute value of X, or NULL if X is NULL.
+- [ACOS()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Mathematical/acos.md) [full]: The ACOS() function returns the arccosine(given in radians) of the input number.
+- [ATAN()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Mathematical/atan.md) [full]: The ATAN() function returns the arctangent(given in radians) of the input number.
+- [ATAN2()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Mathematical/atan2.md) [full]: The ATAN2() function returns the angle (in radians) between the positive x-axis and the point (X, Y). Both X and Y can be any numeric type…
+- [CEIL()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Mathematical/ceil.md) [full]: The CEIL(X) function returns the smallest integer value not less than X.Synonymous with CEILING().
+- [CEILING()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Mathematical/ceiling.md) [full]: The CEILING(X) function returns the smallest integer value not less than X.Synonymous with CEIL().
+- [COS()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Mathematical/cos.md) [full]: The COS() function returns the cosine of input number(given in radians).
+- [COT()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Mathematical/cot.md) [full]: The COT() function returns the cotangent of input number(given in radians).
+- [CRC32()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Mathematical/crc32.md) [full]: The CRC32() function is used to calculate the CRC32 checksum of a string. If the argument passed to CRC32() is NULL, the function returns NULL.
+- [DEGREES()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Mathematical/degrees.md) [full]: The DEGREES() function converts the input number from radians to degrees. The conversion uses the formula X * 180 / PI().
+- [EXP()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Mathematical/exp.md) [full]: The EXP() function returns the value of e (the base of natural logarithms) raised to the power of X.
+- [FLOOR()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Mathematical/floor.md) [partial]: The FLOOR() function returns the largest round number that is less than or equal to the number.
+- [LN()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Mathematical/ln.md) [full]: LN(X) returns the natural logarithm of X. This function is synonymous with LOG(X).
+- [LOG()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Mathematical/log.md) [full]: LOG(X) returns the natural logarithm of X.
+- [LOG10()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Mathematical/log10.md) [full]: LOG10(X) returns the base-10 logarithm of X.
+- [LOG2()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Mathematical/log2.md) [full]: LOG2(X) returns the base-2 logarithm of X.
+- [PI()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Mathematical/pi.md) [full]: PI() returns the value of π (pi).
+- [POWER()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Mathematical/power.md) [full]: POWER(X, Y) returns the value of X raised to the power of Y.
+- [RADIANS()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Mathematical/radians.md) [full]: The RADIANS() function converts the input number from degrees to radians. The conversion uses the formula X * PI() / 180.
+- [RAND()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Mathematical/rand.md) [partial]: The RAND() function is used to generate a Float64 type random number between 0 and 1. It does not accept any arguments and generates a random number that is…
+- [ROUND()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Mathematical/round.md) [full]: The ROUND() function rounds a number to a specified number of decimal places. The function returns the nearest number of the specified order…
+- [SIGN()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Mathematical/sign.md) [full]: The SIGN() function returns the sign of the input number. It returns -1 if the number is negative, 0 if the number is zero, and 1 if the number is positive.
+- [SIN()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Mathematical/sin.md) [full]: The SIN() function returns the sine of input number(given in radians).
+- [SINH()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Mathematical/sinh.md) [mo-only]: The SINH() function returns the hyperbolic sine of the input number(given in radians).
+- [TAN()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Mathematical/tan.md) [full]: The TAN() function returns the tangent of input number(given in radians).
+- [TRUNCATE()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Mathematical/truncate.md) [full]: The TRUNCATE() function returns the number X truncated to D decimal places. If D is 0, the result has no decimal point or fractional part…
+
+## String Functions
+
+- [AES_DECRYPT()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/String/aes_decrypt.md) [partial]: The AES_DECRYPT() function decrypts crypt_str with key_str using AES and returns the plaintext as a VARCHAR…
+- [AES_ENCRYPT()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/String/aes_encrypt.md) [partial]: The AES_ENCRYPT() function encrypts str with key_str using AES and returns the ciphertext as a BLOB…
+- [BIN()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/String/bin.md) [full]: This function `BIN() returns a string representation of the binary value of *N*, where *N* is a longlong (BIGINT) number. Returns NULL` if N is NULL.
+- [BIT_LENGTH()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/String/bit-length.md) [full]: Returns the length of the string str in bits. Returns NULL if str is NULL.
+- [CHAR_LENGTH()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/String/char-length.md) [full]: The CHAR_LENGTH function returns the length of the string str, measured in code points. A multibyte character counts as a single code point…
+- [CONCAT()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/String/concat.md) [partial]: This function CONCAT() returns the string that results from concatenating the arguments. May have one or more arguments…
+- [CONCAT_WS()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/String/concat-ws.md) [full]: This function `CONCAT_WS() stands for Concatenate With Separator and is a special form of CONCAT()…
+- [ELT()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/String/elt.md) [full]: The ELT() function returns the N-th string argument, counting from 1. ELT(1, str1, str2, ...) returns str1, ELT(2, ...) returns str2, and so on.
+- [EMPTY()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/String/empty.md) [mo-only]: Checks whether the input string is empty. A string is considered non-empty if it contains at least one byte, even if this is a space or a null byte.
+- [ENDSWITH()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/String/endswith.md) [mo-only]: Returns whether to end with the specified suffix. Returns 1 if the string ends with the specified suffix, otherwise it returns 0…
+- [FIELD()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/String/field.md) [full]: FIELD() returns the index (position) of str in the str1, str2, str3, ... list.
+- [FIND_IN_SET()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/String/find-in-set.md) [full]: This function `FIND_IN_SET() returns a value in the range of 1 to *N* if the string *str* is in the string list *strlist* consisting of *N* substrings…
+- [FORMAT()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/String/format.md) [full]: Formats the number X to a format like '#,###,###.##', rounded to D decimal places, and returns the result as a string.
+- [FROM_BASE64()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/String/from_base64.md) [partial]: FROM_BASE64() is used to convert a Base64 encoded string back to raw binary data (or text data). Data that is Base64 encoded using the TO_BASE64() function can…
+- [HEX()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/String/hex.md) [full]: For a string argument str, HEX() returns a hexadecimal string representation of str where each byte of each character in str is converted to two hexadecimal…
+- [INSTR()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/String/instr.md) [full]: INSTR() function is used to return the position of the first occurrence of a substring in a given string…
+- [LCASE()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/String/lcase.md) [full]: LCASE() is used to convert a given string to lowercase, a synonym for LOWER().
+- [LEFT()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/String/left.md) [full]: This function LEFT() returns the leftmost len characters from the string str, or NULL if any argument is NULL.
+- [LENGTH()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/String/length.md) [full]: The length() function returns the length of the string.
+- [LOCATE()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/String/locate.md) [full]: The LOCATE() function is a function used to find the location of a substring in a string. It returns the position of the substring in the string or 0 if not…
+- [LOWER()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/String/lower.md) [full]: LOWER() Converts the given string to lowercase.
+- [LPAD()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/String/lpad.md) [full]: This function LPAD(str,len,padstr) returns the string str, left-padded with the string padstr to a length of len characters…
+- [LTRIM()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/String/ltrim.md) [full]: This function LTRIM() returns the string with leading space characters removed.
+- [MD5()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/String/md5.md) [full]: MD5 () Function A widely used hash function that generates a 32-character long hexadecimal MD5 hash of a string…
+- [NOT REGEXP](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/String/Regular-Expressions/not-regexp.md) [full]: NOT REGEXP is used to test whether a string does not match a specified regular expression.
+- [OCT(N)](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/String/oct.md) [partial]: This function `OCT(N) returns a string representation of the octal value of *N*, where *N* is a longlong (BIGINT) number. Returns NULL` if N is NULL.
+- [REGEXP_INSTR()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/String/Regular-Expressions/regexp-instr.md) [partial]: REGEXP_INSTR() returns the starting position in the string of the matched regular expression pattern. If no match is found, the function returns 0.
+- [REGEXP_LIKE()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/String/Regular-Expressions/regexp-like.md) [full]: Returns TRUE if the string expr matches the regular expression specified by the pattern pat, FALSE otherwise. If expr or pat is NULL, the return value is NULL.
+- [REGEXP_REPLACE()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/String/Regular-Expressions/regexp-replace.md) [full]: REGEXP_REPLACE() is used to replace a string matching a given regular expression pattern with the specified new string.
+- [REGEXP_SUBSTR()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/String/Regular-Expressions/regexp-substr.md) [partial]: REGEXP_SUBSTR() is used to return the substring of the string expr that matches the regular expression pattern pat.
+- [Regular Expressions Overview](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/String/Regular-Expressions/Regular-Expression-Functions-Overview.md) [full]: Regular expressions provide a powerful method for matching text patterns. You can use simple wildcards (such as %, _) in LIKE statements…
+- [REPEAT()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/String/repeat.md) [full]: Returns a string consisting of the string str repeated count times. If count is less than 1, returns an empty string. Returns NULL if str or count is NULL.
+- [REVERSE()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/String/reverse.md) [full]: Returns the string str with the order of the characters reversed.
+- [RPAD()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/String/rpad.md) [full]: This function RPAD(str,len,padstr) returns the string str, right-padded with the string padstr to a length of len characters…
+- [RTRIM()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/String/rtrim.md) [full]: This function RTRIM() returns the string with trailing space characters removed.
+- [SHA1()/SHA()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/String/sha1.md) [full]: The SHA1()/SHA() function is an encrypted hash function that calculates and returns the SHA-1 hash value for a given string…
+- [SHA2()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/String/sha2.md) [full]: The SHA2() encryption function is used to calculate the SHA2 hash of the input string. The first argument is the plaintext string to hash…
+- [SPACE()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/String/space.md) [full]: SPACE(N) Returns a string consisting of N space characters.
+- [SPLIT_PART()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/String/split_part.md) [mo-only]: The SPLIT_PART() function is used to split a string into multiple parts based on a given delimiter and returns the specified part.
+- [STARTSWITH()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/String/startswith.md) [mo-only]: Returns 1 whether string starts with the specified prefix, otherwise it returns 0.This function is case sensitive.
+- [STRCMP()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/String/strcmp.md) [full]: The STRCMP() function is used to compare two strings str1 and str2. If both strings are identical, it returns 0…
+- [SUBSTRING()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/String/substring.md) [full]: SUBSTR() and MID() are both synonyms of SUBSTRING(). The forms without a len argument return a substring from string str starting at position pos…
+- [SUBSTRING_INDEX()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/String/substring-index.md) [full]: This function `SUBSTRING_INDEX()` returns the substring from string str before count occurrences of the delimiter delim.
+- [TO_BASE64()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/String/to_base64.md) [full]: The TO_BASE64() function is used to convert a string to a Base64 encoded string. If the argument is not a string…
+- [TRIM()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/String/trim.md) [full]: This function TRIM() returns the string str with all remstr prefixes or suffixes removed. If none of the specifiers BOTH, LEADING, or TRAILING is given…
+- [UCASE()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/String/ucase.md) [full]: UCASE() is used to convert a given string to uppercase form, a synonym for UPPER().
+- [UNHEX()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/String/unhex.md) [full]: For a string argument str, UNHEX() interprets each pair of characters in the argument as a hexadecimal number and converts it to the byte represented by the…
+- [UPPER()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/String/upper.md) [full]: UPPER() is used to convert a given string to uppercase.
+
+## Table Functions
+
+- [GENERATE_SERIES()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Table/generate_series.md) [mo-only]: GENERATE_SERIES() can generate a sequence from the start value to the end value, usually used in the following scenarios
+- [UNNEST()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Table/unnest.md) [mo-only]: The UNNEST function is used to expand the column or parameter of the array type in the JSON type data into a table…
+
+## Vector Functions
+
+- [Arithmetic operators](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Vector/arithmetic.md) [mo-only]: MatrixOne supports basic arithmetic operators such as addition, subtraction, multiplication, and division between vectors or between vectors and scalars…
+- [CLUSTER_CENTERS](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Vector/cluster_centers.md) [mo-only]: The CLUSTER_CENTERS() function can be used to determine the K cluster centers of a vector column. Returns a row of JSON array strings containing all cluster…
+- [COSINE_DISTANCE()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Vector/cosine_distance.md) [mo-only]: The COSINE_DISTANCE() function is used to calculate the cosine distance between two vectors.
+- [cosine_similarity()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Vector/cosine_similarity.md) [mo-only]: cosine_similarity() is a cosine similarity that measures the cosine value of the angle between two vectors…
+- [inner_product()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Vector/inner_product.md) [mo-only]: The INNER PRODUCT function is used to calculate the inner/dot product between two vectors. It is the result of multiplying the corresponding elements of two…
+- [l1_norm()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Vector/l1_norm.md) [mo-only]: The l1_norm function is used to calculate the l1/Manhattan/TaxiCab norm. The l1 norm is obtained by summing the absolute values of the vector elements.
+- [L2_DISTANCE()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Vector/l2_distance.md) [mo-only]: The L2_DISTANCE() function is used to calculate the Euclidean distance between two vectors. Returns a value of type FLOAT64.
+- [l2_norm()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Vector/l2_norm.md) [mo-only]: The l2_norm function is used to calculate the l2/Euclidean norm. The l2 norm is obtained by performing a square root operation on the sum of squares of the…
+- [Mathematical class functions](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Vector/misc.md) [mo-only]: Vectors support the following mathematical functions
+- [NORMALIZE_L2()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Vector/normalize_l2.md) [mo-only]: The NORMALIZE_L2() function performs Euclidean normalization on vectors.
+- [SUBVECTOR()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Vector/subvector.md) [mo-only]: The SUBVECTOR() function is used to extract subvectors from vectors.
+- [vector_dims()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Vector/vector_dims.md) [mo-only]: The vector_dims function is used to determine the dimension of a vector.
+
+## Window Functions
+
+- [CUME_DIST()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Window-Functions/cume_dist.md) [full]: CUME_DIST() returns the cumulative distribution of the current row within its window partition. The value is a DOUBLE in the range (0, 1] and is defined as
+- [DENSE_RANK()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Window-Functions/dense_rank.md) [full]: DENSE_RANK() gives each row in the dataset a unique rank, very similar to the RANK() function. The DENSE_RANK() function first sorts the dataset according to…
+- [PERCENT_RANK()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Window-Functions/percent_rank.md) [full]: PERCENT_RANK() returns the relative rank of the current row within its window partition as a value in the range [0, 1]. It is defined as
+- [RANK()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Window-Functions/rank.md) [full]: RANK() provides a unique rank for each row in the dataset. RANK() first sorts the dataset according to the columns specified in the ORDER BY clause…
+- [ROW_NUMBER()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Window-Functions/row_number.md) [full]: ROW_NUMBER() provides a unique ordinal number for each row in the dataset, starting at one and ending with the last row in the result set…
+
+## System Operations
+
+- [CURRENT_ROLE()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/system-ops/current_role.md) [partial]: Returns the role of the current session.
+- [CURRENT_ROLE_NAME()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/system-ops/current_role_name.md) [mo-only]: CURRENT_ROLE_NAME() is used to query the name of the role owned by the user you are currently logged in.
+- [CURRENT_USER, CURRENT_USER()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/system-ops/current_user.md) [partial]: Returns the current user account; the returned account format is username@hostname. The return value is a string in the utf8mb3 character set.
+- [CURRENT_USER_NAME()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/system-ops/current_user_name.md) [mo-only]: CURRENT_USER_NAME() is used to query the name of the user you are currently logged in as.
+- [PURGE_LOG()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/system-ops/purge_log.md) [mo-only]: PURGE_LOG() deletes logs recorded in MatrixOne database system tables. Returning 0 means the deletion is successful…
+- [VERSION](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/system-ops/version.md) [full]: The VERSION() function is used to retrieve the version information of the current database management system…
+
+## Other Functions
+
+- [LOAD_FILE()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Other/load_file.md) [partial]: The LOAD_FILE() function is used to read the contents of the file pointed to by the datalink type.
+- [SAMPLE Sampling Function](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Other/sample.md) [mo-only]: The SAMPLE sampling function feature is a key tool for handling large amounts of data analysis, primarily to quickly narrow down queries.
+- [SAVE_FILE()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Other/save_file.md) [mo-only]: The SAVE_FILE() function is used to write content to the file pointed to by datalink, and the reference line returns the byte length of the written content.
+- [SERIAL_EXTRACT function](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Other/serial_extract.md) [mo-only]: The SERIAL_EXTRACT() function is used to extract the individual elements in a sequence/tuple value and is used in conjunction with the functions MAX(), MIN()…
+- [SLEEP()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Other/sleep.md) [full]: Sleeps (pauses) for the number of seconds given by the duration argument, then returns 0.
+- [STAGE_LIST()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Other/stage_list.md) [mo-only]: The STAGE_LIST() function is used to view the directories and files in the stage.
+- [UUID()](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/Other/uuid.md) [full]: Returns a Universal Unique Identifier (UUID) generated according to RFC 4122, "A Universally Unique IDentifier (UUID) URN Namespace".
+
+## Uncategorised
+
+- [Summary table of functions](https://docs.matrixorigin.cn/en/dev/MatrixOne/Reference/Functions-and-Operators/matrixone-function-list.md) [mo-only]: This document lists the functions supported in the latest version of MatrixOne.
