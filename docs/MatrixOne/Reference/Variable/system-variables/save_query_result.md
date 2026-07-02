@@ -6,7 +6,7 @@ differs_from_mysql: []
 mo_only:
   - "MatrixOne-specific feature that saves query results for reuse, with configurable timeout and max size; no MySQL equivalent"
 since: unknown
-last_updated: 2026-05-21
+last_updated: 2026-07-02
 llms_summary: "When enabled, MatrixOne saves query results for reuse, controlled by save_query_result, query_result_timeout, and query_result_maxsize parameters."
 ---
 # save_query_result Save query result support
@@ -24,7 +24,12 @@ There are three parameters that have an impact on saving query results:
 ## Limitations
 
 - Only statements with returned results, such as `SELECT`, `SHOW`, `DESC`, `EXECUTE` statements, are supported for saving
-- For `SELECT` statements, only the results of `SELECT` statements that start fixedly with `/*cloud_user */` and `/*save_result */` are saved.
+- For `SELECT` statements, only the results of `SELECT` statements that start fixedly with `/* cloud_user */` and `/* save_result */` are saved.
+- If you use the MySQL command-line client to run `/* save_result */SELECT ...`, start the client with `--comments` (or `-c`). Otherwise, the client may remove comments before sending SQL to MatrixOne, and MatrixOne will not receive the `/* save_result */` tag.
+
+    ```bash
+    mysql --comments -h127.0.0.1 -P6001 -u<user> -p
+    ```
 
 ## Turn on the Save Query Results setting
 
