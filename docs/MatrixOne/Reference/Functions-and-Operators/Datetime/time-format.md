@@ -17,6 +17,7 @@ llms_summary: "Formats a TIME value according to a format string, using the same
 The `TIME_FORMAT()` function formats a `TIME` value using format specifiers. It is the time-specific counterpart to `DATE_FORMAT()`, suitable for formatting time values without date components.
 
 Supported format specifiers:
+
 - `%H`: Hour (00–23)
 - `%h` / `%I`: Hour (01–12)
 - `%k`: Hour (0–23, without leading zero)

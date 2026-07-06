@@ -289,7 +289,7 @@ github@shpc2-10-222-1-9:/data/mo/main/matrixone/etc/launch$ mo_ctl connect
 2024-08-26 17:44:10.207 UTC+0800    [INFO]    Ok, connecting for user ... 
 Welcome to the MySQL monitor.  Commands end with ; or \g.
 Your MySQL connection id is 10
-Server version: 8.0.30-MatrixOne-v3.0.14 MatrixOne
+Server version: 8.0.30-MatrixOne-v3.0.15 MatrixOne
 
 Copyright (c) 2000, 2024, Oracle and/or its affiliates.
 
@@ -613,7 +613,7 @@ github@VM-32-6-debian:/data/mo/main$ mo_ctl connect
 2024-08-26 18:38:31.124 UTC+0800    [INFO]    Ok, connecting for user ... 
 Welcome to the MariaDB monitor.  Commands end with ; or \g.
 Your MySQL connection id is 3
-Server version: 8.0.30-MatrixOne-v3.0.14 MatrixOne
+Server version: 8.0.30-MatrixOne-v3.0.15 MatrixOne
 
 Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
 
@@ -736,7 +736,7 @@ cnservices = [
 
 ```bash
 #Configure cn.toml, tn.toml and log.toml first.
-mo_ctl set_conf MO_CONTAINER_IMAGE=matrixorigin/matrixone/3.0.14 #Setting up mirroring
+mo_ctl set_conf MO_CONTAINER_IMAGE=matrixorigin/matrixone/3.0.15 #Setting up mirroring
 mo_ctl set_conf MO_CONTAINER_NAME=mo # Setting the container name
 mo_ctl set_conf MO_CONTAINER_CONF_HOST_PATH=/data/mo_confs/ # Set the directory on the host machine where the mo configuration file is stored
 mo_ctl set_conf MO_CONTAINER_CONF_CON_FILE="/etc/launch.toml" # Set the path to the configuration file inside the container when the container starts up
