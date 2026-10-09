@@ -7,24 +7,20 @@ mo_only:
   - "UUID as a native column type (MySQL 8.0 has UUID() function only, no UUID column type)"
   - "DEFAULT uuid() on UUID columns"
 since: unknown
-last_updated: 2026-05-21
+last_updated: 2026-10-09
 llms_summary: "MatrixOne-specific UUID column type. MySQL 8.0 provides UUID() as a function only, not as a column data type."
 ---
 
 # UUID Type
 
-A UUID is a universally unique identifier consisting of 32 hexadecimal digits followed by 4 hyphens. UUIDs are globally unique, not unique in the database, and even performing a UUID call on two unconnected, standalone devices is expected to generate two different values. UUID is often used to generate a random value for the corresponding row to ensure the uniqueness of each record. . UUIDs are suitable as unique identifiers in a cluster environment.
+A UUID is a 128-bit identifier stored in MatrixOne's native 16-byte `UUID` type. Clients render it as 32 hexadecimal digits separated by four hyphens: `aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee`.
+
+`UUID()` and `UUID_V7()` generate version 7 values according to [RFC 9562](https://www.rfc-editor.org/rfc/rfc9562.html). `UUID_V1()` explicitly generates version 1; the native type can store supported UUID versions without changing their bytes. UUIDv7 is time ordered, whereas version 1's canonical byte order is not timestamp ordered.
 
 !!! info
-    Although `UUID()` values ​​are unique, they are not guessable or unpredictable. If unpredictability is desired, UUID values ​​should be generated in other ways.
+    Generated UUIDs are intended to be unique. They are not secrets or authorization tokens.
 
-`UUID()` returns a version 1 UUID value conforming to the [RFC 4122](http://www.ietf.org/rfc/rfc4122.txt) standard, which is a 128-bit number, which represents a utf8mb3 composed of five A string of hexadecimal numbers, that is, aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee, the format is explained as follows:
-
-- The first three numbers are generated from the low, middle, and high parts of a timestamp. The high part also includes the UUID version number.
-
-- The fourth number preserves temporal uniqueness in case the timestamp value loses monotonicity (for example, due to daylight saving time).
-
-- The fifth number is an IEEE 802 node number that provides spatial uniqueness. A random number is substituted if the latter is not available (for example, because the host device has no Ethernet card, or it is unknown how to find the hardware address of an interface on the host operating system). In this case, spatial uniqueness cannot be guaranteed. Nevertheless, a collision should have very low probability.
+MySQL has no native UUID column type and its `UUID()` returns a version 1 character string. MatrixOne's native type is an intentional extension. Cast explicitly with `CAST(value AS CHAR)` for arbitrary string comparisons; native comparisons validate textual operands as UUIDs. See [UUID()](../Functions-and-Operators/Other/uuid.md) for generation and conversion behavior.
 
 **SQL statement supported by UUID type**:
 
@@ -55,7 +51,7 @@ mysql> select uuid();
 +--------------------------------------+
 | uuid()                               |
 +--------------------------------------+
-| 4aa4f4de-1b00-11ee-b656-5ad2460dea50 |
+| 018f0000-0000-7000-8000-000000000001 |
 +--------------------------------------+
 1 row in set (0.00 sec)
 ```
@@ -98,7 +94,7 @@ mysql> select uuid(), a from t1;
 +--------------------------------------+---------------+
 | uuid()                               | a             |
 +--------------------------------------+---------------+
-| 664f1a96-1981-11ee-a041-5ad2460dea50 | 123123sdafsdf |
+| 018f0000-0000-7000-8000-000000000002 | 123123sdafsdf |
 +--------------------------------------+---------------+
 1 row in set (0.01 sec)
 ```
@@ -116,9 +112,9 @@ mysql> select * from namelists;
 +--------------------------------------+--------+
 | id                                   | name   |
 +--------------------------------------+--------+
-| 61400e9c-1bbc-11ee-b512-5ad2460dea50 | Tom    |
-| 61400ea6-1bbc-11ee-b512-5ad2460dea50 | Jane   |
-| 61400ea6-1bbc-11ee-b513-5ad2460dea50 | Bob    |
+| 018f0000-0000-7000-8000-000000000003 | Tom    |
+| 018f0000-0000-7000-8000-000000000004 | Jane   |
+| 018f0000-0000-7000-8000-000000000005 | Bob    |
 +--------------------------------------+--------+
 3 rows in set (0.00 sec)
 ```

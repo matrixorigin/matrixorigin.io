@@ -1,33 +1,35 @@
 ---
 title: "UUID()"
 doc_type: reference
-mysql_compat: full
-differs_from_mysql: []
-mo_only: []
+mysql_compat: partial
+differs_from_mysql:
+  - "UUID() generates UUIDv7 instead of MySQL UUIDv1"
+  - "UUID() returns native UUID, not a character type"
+mo_only:
+  - "UUID(datetime) deterministic timestamp boundary"
 since: unknown
-last_updated: 2026-05-08
-llms_summary: "Returns a Universal Unique Identifier (UUID) generated according to RFC 4122, \"A Universally Unique IDentifier (UUID) URN Namespace\"."
+last_updated: 2026-10-09
+llms_summary: "Returns a native UUIDv7 value; use UUID_V1() for version 1 and CAST(... AS CHAR) for string semantics."
 ---
 # **UUID()**
 
-> Returns a Universal Unique Identifier (UUID) generated according to RFC 4122, "A Universally Unique IDentifier (UUID) URN Namespace".
+> Returns a native UUID version 7 value, displayed in canonical 36-character form.
 
 ## **Description**
 
-Returns a Universal Unique Identifier (UUID) generated according to [RFC 4122](http://www.ietf.org/rfc/rfc4122.txt), "A Universally Unique IDentifier (UUID) URN Namespace".
+`UUID()` and `UUID_V7()` generate UUIDv7 values according to [RFC 9562](https://www.rfc-editor.org/rfc/rfc9562.html). MatrixOne stores the value as a native 16-byte `UUID`; SQL clients display it as `aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee`.
 
-A UUID is designed as a number that is globally unique in space and time. Two calls to UUID() are expected to generate two different values, even if these calls are performed on two separate devices not connected to each other.
+UUIDv7 places the Unix timestamp in milliseconds before random bits, which supports time-ordered keys. Generated identifiers are intended to be unique, but do not use them as secrets or authorization tokens.
 
-!!! info
-    Although UUID() values are intended to be unique, they are not necessarily unguessable or unpredictable. If unpredictability is required, UUID values should be generated some other way.
+### MySQL compatibility
 
-`UUID()` returns a value that conforms to UUID version 1 as described in [RFC 4122](http://www.ietf.org/rfc/rfc4122.txt). The value is a 128-bit number represented as a utf8mb3 string of five hexadecimal numbers in aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee format:
+MySQL's `UUID()` generates version 1 and returns a character string. MatrixOne intentionally keeps version 7 and its native UUID type. Use `UUID_V1()` when a version 1 identifier is required, and `CAST(UUID_V1() AS CHAR)` when both version 1 and character expression semantics are required.
 
-- The first three numbers are generated from the low, middle, and high parts of a timestamp. The high part also includes the UUID version number.
+A plain `CREATE TABLE ... AS SELECT UUID()` creates a native UUID column. Native UUID comparisons parse text operands as UUID values: `UUID() IN ('fallback')` is an invalid UUID comparison. For arbitrary text comparisons, cast explicitly, for example `CAST(UUID() AS CHAR) IN ('fallback')`.
 
-- The fourth number preserves temporal uniqueness in case the timestamp value loses monotonicity (for example, due to daylight saving time).
+`UUID_TO_BIN(value)` preserves UUID byte order. The optional swap flag applies the same byte permutation for every UUID version; use the default or `0` for UUIDv7. Matching flags are required when decoding with `BIN_TO_UUID`.
 
-- The fifth number is an IEEE 802 node number that provides spatial uniqueness. A random number is substituted if the latter is not available (for example, because the host device has no Ethernet card, or it is unknown how to find the hardware address of an interface on the host operating system). In this case, spatial uniqueness cannot be guaranteed. Nevertheless, a collision should have very low probability.
+`UUID(datetime)` and `UUID_V7(datetime)` produce a deterministic minimum UUID for the supplied timestamp, suitable as a range boundary. These forms do not generate fresh unique identifiers.
 
 UUID is both a data type and a function. For more information on UUID data types, see [UUID Type](../../Data-Types/uuid-type.md).
 
@@ -35,6 +37,7 @@ UUID is both a data type and a function. For more information on UUID data types
 
 ```
 > UUID()
+> UUID(datetime)
 ```
 
 ## **Examples**
@@ -58,11 +61,11 @@ mysql> SELECT UUID();
 +--------------------------------------+
 | uuid()                               |
 +--------------------------------------+
-| b293b688-70a7-11ed-a25a-5ad2460dea50 |
+| 018f0000-0000-7000-8000-000000000001 |
 +--------------------------------------+
 1 row in set (0.00 sec)
 ```
 
 ## **Constraints**
 
-`UUID()` takes no arguments in both MatrixOne and MySQL 8.0.
+MySQL's `UUID()` takes no arguments. MatrixOne additionally supports the deterministic datetime boundary form described above.
