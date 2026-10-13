@@ -241,6 +241,7 @@ public class Mysql2Mo {
         Properties properties = new Properties();
         properties.put("user", destUserName);
         properties.put("password", destPassword);;
+        properties.put("isolationLevel", "READ_COMMITTED");
         dataset.write()
                 .mode(SaveMode.Append)
                 .jdbc("jdbc:mysql://" + destHost + ":" + destPort + "/" + destDataBase,destTable, properties);
@@ -260,8 +261,87 @@ select * from test.person;
 +------+---------------+------------+
 | id   | name          | birthday   |
 +------+---------------+------------+
-|    3 | spark_wangwu  | 2023-07-12 |
-|    4 | spark_zhaoliu | 2023-08-07 |
+|    3 | spark_wangwu  | 2023-07-13 |
+|    4 | spark_zhaoliu | 2023-08-08 |
 +------+---------------+------------+
 2 rows in set (0.01 sec)
 ```
+
+The transformation changes the name, not the birthday. The destination `DATE` must equal the source `DATE`. If dates shift, inspect the driver, JVM, Spark session and JDBC connection timezone settings and compare complete source and destination rows before accepting the migration.
+
+## JDBC write isolation and a DATE round-trip check
+
+Spark 3.5.3's JDBC writer defaults to `READ_UNCOMMITTED`. MatrixOne commit `23d8f61252f3017dff218b530817a240206fd762` rejects that setting; explicitly selecting `READ_COMMITTED` allowed writes and independently verified readback. See [the Spark compatibility issue](https://github.com/matrixorigin/matrixone/issues/29838). This is an integration setting, not a promise of dirty-read semantics.
+
+The Java migration example above retains its original Spark 3.2.1 / Connector-J 8.0.16 dependencies. The following separate, executable regression uses Python 3.12, PySpark 3.5.3, Java 17, PyMySQL and MySQL Connector/J 8.0.33. It exercises MatrixOne JDBC write, read, transformation and writeback of SQL DATE values; it does not retest the original MySQL server or older dependency combination.
+
+Set `MO_JDBC_URL` to a dedicated test database, `MO_USER`, `MO_PASSWORD` and `MYSQL_CONNECTOR_JAR` to the connector path. Use `JAVA_HOME` for Java 17, and set `PYSPARK_PYTHON` and `PYSPARK_DRIVER_PYTHON` to the same Python environment. Both source and destination tables below are tutorial tables and are removed afterward.
+
+```python
+import datetime as dt
+import os
+from urllib.parse import unquote, urlsplit
+
+import pymysql
+from pyspark.sql import SparkSession, functions as F
+
+spark = (SparkSession.builder.master("local[1]")
+         .appName("mo-date-roundtrip")
+         .config("spark.jars", os.environ["MYSQL_CONNECTOR_JAR"])
+         .config("spark.sql.session.timeZone", "UTC")
+         .getOrCreate())
+url = os.environ["MO_JDBC_URL"]
+props = {
+    "driver": "com.mysql.cj.jdbc.Driver",
+    "user": os.environ["MO_USER"],
+    "password": os.environ["MO_PASSWORD"],
+    "isolationLevel": "READ_COMMITTED",
+}
+source = "doc_spark_date_source"
+target = "doc_spark_date_target"
+address = urlsplit(url.removeprefix("jdbc:"))
+connection = pymysql.connect(
+    host=address.hostname, port=address.port or 6001,
+    user=props["user"], password=props["password"],
+    database=unquote(address.path.lstrip("/")), autocommit=True,
+)
+statement = connection.cursor()
+created = []
+try:
+    # Fail if these names already exist; do not overwrite another user's tables.
+    statement.execute(f"CREATE TABLE {source}(id BIGINT,name VARCHAR(255),birthday DATE)")
+    created.append(source)
+    statement.execute(f"CREATE TABLE {target}(id BIGINT,name VARCHAR(255),birthday DATE)")
+    created.append(target)
+    expected = [(3, "spark_wangwu", dt.date(2023, 7, 13)),
+                (4, "spark_zhaoliu", dt.date(2023, 8, 8))]
+    rows = [(2, "lisi", dt.date(2023, 7, 9)),
+            (3, "wangwu", dt.date(2023, 7, 13)),
+            (4, "zhaoliu", dt.date(2023, 8, 8))]
+    frame = spark.createDataFrame(rows, "id long,name string,birthday date")
+    frame.write.jdbc(url, source, mode="append", properties=props)
+    loaded = spark.read.jdbc(url, source, properties=props)
+    changed = loaded.filter(F.col("id") > 2).withColumn(
+        "name", F.concat(F.lit("spark_"), F.col("name"))
+    )
+    changed.write.jdbc(url, target, mode="append", properties=props)
+    actual = [tuple(r) for r in spark.read.jdbc(
+        url, target, properties=props
+    ).orderBy("id").collect()]
+    assert actual == expected, (actual, expected)
+    print(actual)
+finally:
+    for table in reversed(created):
+        statement.execute(f"DROP TABLE {table}")
+    statement.close()
+    connection.close()
+    spark.stop()
+```
+
+Expected Python output preserves both dates:
+
+```text
+[(3, 'spark_wangwu', datetime.date(2023, 7, 13)), (4, 'spark_zhaoliu', datetime.date(2023, 8, 8))]
+```
+
+For broader timezone coverage, repeat with dates around DST transitions and UTC day boundaries, and verify every returned date. A successful `DATE` check does not establish `TIMESTAMP` timezone equivalence or streaming exactly-once behavior.
