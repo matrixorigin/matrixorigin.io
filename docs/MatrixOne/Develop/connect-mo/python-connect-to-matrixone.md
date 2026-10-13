@@ -88,7 +88,7 @@ SQLAlchemy is the Python SQL toolkit and Object Relational Mapper(ORM) that give
 2. Connect to MatrixOne by MySQL client. Create a new database named *test*, a new table named *student* and insert two records.
 
     ```sql
-    create database test;
+    create database if not exists test;
     use test;
     create table student (name varchar(20), age int);
     insert into student values ("tom", 11), ("alice", "10");
@@ -101,16 +101,16 @@ SQLAlchemy is the Python SQL toolkit and Object Relational Mapper(ORM) that give
     from sqlalchemy import create_engine, text
 
     # Open database connection
-    my_conn = create_engine("mysql+mysqldb://root:111@127.0.0.1:6001/test")
+    my_conn = create_engine("mysql+pymysql://root:111@127.0.0.1:6001/test")
 
     # execute SQL query using execute() method.
     query=text("SELECT * FROM student LIMIT 0,10")
-    my_data=my_conn.execute(query)
-
-    # print SQL result
-    for row in my_data:
+    # SQLAlchemy 2.x executes through a connection, not Engine.execute().
+    with my_conn.connect() as connection:
+        for row in connection.execute(query).mappings():
             print("name:", row["name"])
             print("age:", row["age"])
+    my_conn.dispose()
 
     ```
 
@@ -125,5 +125,7 @@ SQLAlchemy is the Python SQL toolkit and Object Relational Mapper(ORM) that give
     ```
 
 ## Reference
+
+For pandas/NumPy calculations, strict time-visible features and model storage with full result checks, see the [analytics and machine-learning cookbook](../../Tutorial/analytics-cookbook/index.md).
 
 For the example about using Python to build a simple CRUD with MatrixOne, see [Build a simple Python+SQLAlchemy CRUD demo with MatrixOne](../../Tutorial/sqlalchemy-python-crud-demo.md) and [Build a simple Python CRUD demo with MatrixOne](../../Tutorial/develop-python-crud-demo.md)
