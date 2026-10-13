@@ -27,6 +27,16 @@ SQL window functions have a wide range of applications in a variety of business 
 |[DENSE_RANK()](../../../Reference/Functions-and-Operators/Window-Functions/dense_rank.md)|Use to assign a rank to rows in the dataset, always assigning a consecutive rank to the next value, even if the previous value has the same rank.|
 |[RANK()](../../../Reference/Functions-and-Operators/Window-Functions/rank.md)|Assign a rank value to each row in the query result set, rows of the same value will have the same rank, and the next rank value will skip the same number of rows.|
 |[ROW_NUMBER()](../../../Reference/Functions-and-Operators/Window-Functions/row_number.md)|Assign a unique integer value to each row in the query result set, determining the order based on the specified sort rules.|
+|[PERCENT_RANK()](../../../Reference/Functions-and-Operators/Window-Functions/percent_rank.md)|Relative rank: (rank - 1) / (partition size - 1); returns 0 for a singleton.|
+|[CUME_DIST()](../../../Reference/Functions-and-Operators/Window-Functions/cume_dist.md)|Fraction of rows at or before the current peer group.|
+|NTILE(n)|Divide ordered rows into n buckets; use a stable tie-breaker for deterministic membership.|
+|LAG(value[, offset[, default]])|Read an earlier row in the partition; offsets count rows, not elapsed time.|
+|LEAD(value[, offset[, default]])|Read a later row in the partition.|
+|FIRST_VALUE(value)|Read the first value in the frame.|
+|LAST_VALUE(value)|Read the last value in the frame; specify a full frame for the partition's last value.|
+|NTH_VALUE(value, n)|Read the nth value in the frame; returns NULL if the frame is too short.|
+
+These entries were verified on MatrixOne commit `23d8f61252f3017dff218b530817a240206fd762`. For executable examples, complete expected results and version-specific limitations, see [Analytical windows: frames, NULLs and migration](analytical-windows.md).
 
 ## How to use window functions
 
