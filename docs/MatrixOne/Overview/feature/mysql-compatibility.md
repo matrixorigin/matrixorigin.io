@@ -125,7 +125,7 @@ MatrixOne is highly compatible with the MySQL 8.0 protocol and commonly used fea
 ## Data Types
 
 * BOOL: Different from MySQL's Boolean value type, which is int, MatrixOne's `Boolean` value is a new type whose value can only be `True` or `False`.
-* DECIMAL: `DECIMAL(P, D)`, the maximum precision of the effective number P and the number of digits after the decimal point D of MatrixOne is 38 digits, and MySQL is 65 and 30, respectively.
+* DECIMAL: For releases with DECIMAL256, `DECIMAL(P, D)` supports precision P up to 65 and scale D from 0 to P. MySQL supports precision up to 65 and scale up to 30. Earlier MatrixOne releases may have a lower precision limit; see [DECIMAL](../../Reference/Data-Types/fixed-point-types.md) and check the target release.
 * Float numbers: The usage of `Float(M,D)` and `Double(M,D)` is discarded after MySQL 8.0.17, but MatrixOne still retains this usage.
 * DATETIME: The maximum value range of MySQL is `'1000-01-01 00:00:00'` to `'9999-12-31 23:59:59'`, and the maximum range of MatrixOne is `'0001-01 -01 00:00:00'` to `'9999-12-31 23:59:59'`.
 * TIMESTAMP: The maximum value range of MySQL is `'1970-01-01 00:00:01.000000'` UTC to `'2038-01-19 03:14:07.999999'` UTC, the maximum range of MatrixOne is `'0001- 01-01 00:00:00'` UTC to `'9999-12-31 23:59:59'` UTC.
@@ -133,7 +133,7 @@ MatrixOne is highly compatible with the MySQL 8.0 protocol and commonly used fea
 * MatrixOne supports vector types.
 * MatrixOne supports datalink type.
 * Spatial types are not supported.
-* `SET` types are not supported.
+* `SET` is supported in releases that include the SET type. Check the target release and the [SET reference](../../Reference/Data-Types/set-type.md) for member, conversion and ALTER behavior.
 * `MEDIUMINT` type is not supported.
 
 ## Indexes and Constraints

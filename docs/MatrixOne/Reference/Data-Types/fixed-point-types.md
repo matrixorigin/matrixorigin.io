@@ -30,13 +30,15 @@ If the scale is 0, DECIMAL values contain no decimal point or fractional part.
 
 MatrixOne supports DECIMAL256 for precisions 39 through 65, stored in 32 bytes.
 
-MatrixOne supports two internal representations for DECIMAL:
+MatrixOne supports three internal representations for DECIMAL:
 
 | Representation | Precision Range | Storage |
 |---|---|---|
 | DECIMAL64 | 1–18 digits | 8 bytes |
 | DECIMAL128 | 19–38 digits | 16 bytes |
 | DECIMAL256 | 39–65 digits | 32 bytes |
+
+The SQL declaration limit is distinct from the internal representation capacity. DECIMAL256 can represent a wider coefficient internally, but `DECIMAL(M,D)` declarations in the [documented parser](https://github.com/matrixorigin/matrixone/blob/652c643666428f1c434e03369834f2a9bead7c27/pkg/sql/parsers/dialect/mysql/mysql_sql.y#L15154) limit M to 65. Check the target release before relying on a wider SQL declaration.
 
 The maximum number of digits for DECIMAL is 65, but the actual range for a given DECIMAL column can be constrained by the precision or scale for a given column. When such a column is assigned a value with more digits following the decimal point than are permitted by the specified scale, the value is converted to that scale.
 
